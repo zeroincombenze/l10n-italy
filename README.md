@@ -13,7 +13,7 @@
 Odoo Italia Modules
 ===================
 
-Italian modules for Odoo (formerly Odoo) 7.0
+Italian modules for Odoo (formerly OpenERP) 7.0
 
 http://www.odoo-italia.org/
 
@@ -45,7 +45,7 @@ Un wizard di conversione è fornito.
 
 ----
 
-**Odoo** is a trademark of [Odoo S.A.](https://www.odoo.com/)
+**Odoo** is a trademark of [Odoo S.A.](https://www.odoo.com/) (formerly OpenERP)
 
 **OCA**, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
