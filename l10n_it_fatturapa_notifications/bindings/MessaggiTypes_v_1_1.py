@@ -99,6 +99,8 @@ class Codice_Type (pyxb.binding.datatypes.string):
         131,
         1)
     _Documentation = None
+
+
 Codice_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
 Codice_Type._InitializeFacetMap(Codice_Type._CF_length)
@@ -120,6 +122,8 @@ class CodiceDestinatario_Type (pyxb.binding.datatypes.string):
         194,
         1)
     _Documentation = None
+
+
 CodiceDestinatario_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceDestinatario_Type._CF_pattern.addPattern(pattern='[A-Z0-9]{6}')
 CodiceDestinatario_Type._InitializeFacetMap(
@@ -143,6 +147,8 @@ class Formato_Type (pyxb.binding.datatypes.string):
         200,
         1)
     _Documentation = None
+
+
 Formato_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
 Formato_Type._InitializeFacetMap(Formato_Type._CF_maxLength)
@@ -166,6 +172,8 @@ class EsitoCommittente_Type (
         206,
         1)
     _Documentation = None
+
+
 EsitoCommittente_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=EsitoCommittente_Type,
     enum_prefix=None)
@@ -200,6 +208,8 @@ class Scarto_Type (
         225,
         1)
     _Documentation = None
+
+
 Scarto_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=Scarto_Type,
     enum_prefix=None)
@@ -228,6 +238,8 @@ class IdentificativoSdI_Type (pyxb.binding.datatypes.integer):
         247,
         1)
     _Documentation = None
+
+
 IdentificativoSdI_Type._CF_totalDigits = pyxb.binding.facets.CF_totalDigits(
     value=pyxb.binding.datatypes.positiveInteger(12))
 IdentificativoSdI_Type._InitializeFacetMap(
@@ -251,6 +263,8 @@ class NomeFile_Type (pyxb.binding.datatypes.string):
         253,
         1)
     _Documentation = None
+
+
 NomeFile_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(50))
 NomeFile_Type._InitializeFacetMap(NomeFile_Type._CF_maxLength)
@@ -272,6 +286,8 @@ class NumeroFattura_Type (pyxb.binding.datatypes.normalizedString):
         267,
         1)
     _Documentation = None
+
+
 NumeroFattura_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 NumeroFattura_Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
 NumeroFattura_Type._InitializeFacetMap(NumeroFattura_Type._CF_pattern)
@@ -294,6 +310,8 @@ class AnnoFattura_Type (pyxb.binding.datatypes.nonNegativeInteger):
         273,
         1)
     _Documentation = None
+
+
 AnnoFattura_Type._InitializeFacetMap()
 Namespace.addCategoryObject(
     'typeBinding',
@@ -314,6 +332,8 @@ class MessageId_Type (pyxb.binding.datatypes.string):
         278,
         1)
     _Documentation = None
+
+
 MessageId_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(14))
 MessageId_Type._CF_minLength = pyxb.binding.facets.CF_minLength(
@@ -336,6 +356,8 @@ class PecMessageId_Type (pyxb.binding.datatypes.string):
         285,
         1)
     _Documentation = None
+
+
 PecMessageId_Type._InitializeFacetMap()
 Namespace.addCategoryObject(
     'typeBinding',
@@ -356,6 +378,8 @@ class Descrizione_Type (pyxb.binding.datatypes.string):
         289,
         1)
     _Documentation = None
+
+
 Descrizione_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(255))
 Descrizione_Type._InitializeFacetMap(Descrizione_Type._CF_maxLength)
@@ -378,6 +402,8 @@ class Versione_Type (pyxb.binding.datatypes.string):
         295,
         1)
     _Documentation = None
+
+
 Versione_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
 Versione_Type._InitializeFacetMap(Versione_Type._CF_maxLength)
@@ -452,6 +478,8 @@ class RiferimentoArchivio_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'RiferimentoArchivio_Type',
@@ -500,6 +528,8 @@ class ListaErrori_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'ListaErrori_Type',
@@ -564,6 +594,8 @@ class Errore_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'Errore_Type', Errore_Type)
 
 
@@ -656,6 +688,8 @@ class RiferimentoFattura_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'RiferimentoFattura_Type',
@@ -723,6 +757,8 @@ class Destinatario_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'Destinatario_Type',
@@ -1014,6 +1050,8 @@ class RicevutaConsegna_Type (pyxb.binding.basis.complexTypeDefinition):
         __versione.name(): __versione,
         __IntermediarioConDupliceRuolo.name(): __IntermediarioConDupliceRuolo
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'RicevutaConsegna_Type',
@@ -1250,6 +1288,8 @@ class NotificaScarto_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'NotificaScarto_Type',
@@ -1486,6 +1526,8 @@ class NotificaMancataConsegna_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'NotificaMancataConsegna_Type',
@@ -1711,6 +1753,8 @@ class NotificaEsito_Type (pyxb.binding.basis.complexTypeDefinition):
         __versione.name(): __versione,
         __IntermediarioConDupliceRuolo.name(): __IntermediarioConDupliceRuolo
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'NotificaEsito_Type',
@@ -1976,6 +2020,8 @@ class AttestazioneTrasmissioneFattura_Type (
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'AttestazioneTrasmissioneFattura_Type',
@@ -2170,6 +2216,8 @@ class MetadatiInvioFile_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'MetadatiInvioFile_Type',
@@ -2349,6 +2397,8 @@ class NotificaEsitoCommittente_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'NotificaEsitoCommittente_Type',
@@ -2567,6 +2617,8 @@ class ScartoEsitoCommittente_Type (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'ScartoEsitoCommittente_Type',
@@ -2812,6 +2864,8 @@ class NotificaDecorrenzaTermini_Type (
         __versione.name(): __versione,
         __IntermediarioConDupliceRuolo.name(): __IntermediarioConDupliceRuolo
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding',
     'NotificaDecorrenzaTermini_Type',
@@ -3009,6 +3063,8 @@ def _BuildAutomaton():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RiferimentoArchivio_Type._Automaton = _BuildAutomaton()
 
 
@@ -3059,6 +3115,8 @@ def _BuildAutomaton_():
         fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ListaErrori_Type._Automaton = _BuildAutomaton_()
 
 
@@ -3126,6 +3184,8 @@ def _BuildAutomaton_2():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 Errore_Type._Automaton = _BuildAutomaton_2()
 
 
@@ -3232,6 +3292,8 @@ def _BuildAutomaton_3():
         fac.UpdateInstruction(cc_0, True)]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RiferimentoFattura_Type._Automaton = _BuildAutomaton_3()
 
 
@@ -3299,6 +3361,8 @@ def _BuildAutomaton_4():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 Destinatario_Type._Automaton = _BuildAutomaton_4()
 
 
@@ -3629,6 +3693,8 @@ def _BuildAutomaton_5():
     transitions = []
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RicevutaConsegna_Type._Automaton = _BuildAutomaton_5()
 
 
@@ -3931,6 +3997,8 @@ def _BuildAutomaton_6():
     transitions = []
     st_8._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 NotificaScarto_Type._Automaton = _BuildAutomaton_6()
 
 
@@ -4247,6 +4315,8 @@ def _BuildAutomaton_7():
     transitions = []
     st_8._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 NotificaMancataConsegna_Type._Automaton = _BuildAutomaton_7()
 
 
@@ -4481,6 +4551,8 @@ def _BuildAutomaton_8():
     transitions = []
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 NotificaEsito_Type._Automaton = _BuildAutomaton_8()
 
 
@@ -4811,6 +4883,8 @@ def _BuildAutomaton_9():
     transitions = []
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 AttestazioneTrasmissioneFattura_Type._Automaton = _BuildAutomaton_9()
 
 
@@ -5029,6 +5103,8 @@ def _BuildAutomaton_10():
         fac.UpdateInstruction(cc_0, True)]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 MetadatiInvioFile_Type._Automaton = _BuildAutomaton_10()
 
 
@@ -5260,6 +5336,8 @@ def _BuildAutomaton_11():
         fac.UpdateInstruction(cc_3, True)]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 NotificaEsitoCommittente_Type._Automaton = _BuildAutomaton_11()
 
 
@@ -5550,6 +5628,8 @@ def _BuildAutomaton_12():
     transitions = []
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ScartoEsitoCommittente_Type._Automaton = _BuildAutomaton_12()
 
 
@@ -5836,4 +5916,6 @@ def _BuildAutomaton_13():
     transitions = []
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 NotificaDecorrenzaTermini_Type._Automaton = _BuildAutomaton_13()

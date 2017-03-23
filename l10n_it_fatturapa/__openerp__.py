@@ -87,7 +87,7 @@ To contribute to this module, please visit http://odoo-community.org.
     'license': 'AGPL-3',
     "depends": [
         'account',
-        'l10n_it_bbone',
+        'l10n_it_base',
         'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',
@@ -105,7 +105,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'security/ir.model.access.csv',
     ],
     "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": False,
+    "installable": True,
     'external_dependencies': {
         'python': ['pyxb'],
     }

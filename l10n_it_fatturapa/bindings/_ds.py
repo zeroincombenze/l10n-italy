@@ -92,6 +92,8 @@ class CryptoBinary (pyxb.binding.datatypes.base64Binary):
         'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
         '12/xmldsig-core-schema.xsd', 36, 0)
     _Documentation = None
+
+
 CryptoBinary._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'CryptoBinary', CryptoBinary)
 
@@ -107,6 +109,8 @@ class DigestValueType (pyxb.binding.datatypes.base64Binary):
         'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
         '12/xmldsig-core-schema.xsd', 136, 0)
     _Documentation = None
+
+
 DigestValueType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'DigestValueType', DigestValueType)
 
@@ -124,6 +128,8 @@ class HMACOutputLengthType (pyxb.binding.datatypes.integer):
         'http://www.w3.org/TR/2002/REC-xmldsig-core-200202'
         '12/xmldsig-core-schema.xsd', 283, 0)
     _Documentation = None
+
+
 HMACOutputLengthType._InitializeFacetMap()
 Namespace.addCategoryObject(
     'typeBinding', 'HMACOutputLengthType', HMACOutputLengthType)
@@ -220,6 +226,8 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignatureType', SignatureType)
 
 
@@ -262,6 +270,8 @@ class SignatureValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'SignatureValueType', SignatureValueType)
 
@@ -346,6 +356,8 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignedInfoType', SignedInfoType)
 
 
@@ -388,6 +400,8 @@ class CanonicalizationMethodType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'CanonicalizationMethodType', CanonicalizationMethodType)
 
@@ -445,6 +459,8 @@ class SignatureMethodType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'SignatureMethodType', SignatureMethodType)
 
@@ -555,6 +571,8 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
         __URI.name(): __URI,
         __Type.name(): __Type
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'ReferenceType', ReferenceType)
 
 
@@ -593,6 +611,8 @@ class TransformsType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'TransformsType', TransformsType)
 
 
@@ -646,6 +666,8 @@ class TransformType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'TransformType', TransformType)
 
 
@@ -687,6 +709,8 @@ class DigestMethodType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'DigestMethodType', DigestMethodType)
 
@@ -821,6 +845,8 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'KeyInfoType', KeyInfoType)
 
 
@@ -873,6 +899,8 @@ class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'KeyValueType', KeyValueType)
 
 
@@ -941,6 +969,8 @@ class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
         __URI.name(): __URI,
         __Type.name(): __Type
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'RetrievalMethodType', RetrievalMethodType)
 
@@ -1039,6 +1069,8 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'X509DataType', X509DataType)
 
 
@@ -1095,6 +1127,8 @@ class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'X509IssuerSerialType', X509IssuerSerialType)
 
@@ -1149,6 +1183,8 @@ class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'PGPDataType', PGPDataType)
 
 
@@ -1188,6 +1224,8 @@ class SPKIDataType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SPKIDataType', SPKIDataType)
 
 
@@ -1259,6 +1297,8 @@ class ObjectType (pyxb.binding.basis.complexTypeDefinition):
         __MimeType.name(): __MimeType,
         __Encoding.name(): __Encoding
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'ObjectType', ObjectType)
 
 
@@ -1311,6 +1351,8 @@ class ManifestType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'ManifestType', ManifestType)
 
 
@@ -1366,6 +1408,8 @@ class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'SignaturePropertiesType', SignaturePropertiesType)
 
@@ -1424,6 +1468,8 @@ class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
         __Target.name(): __Target,
         __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'SignaturePropertyType', SignaturePropertyType)
 
@@ -1536,6 +1582,8 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'DSAKeyValueType', DSAKeyValueType)
 
 
@@ -1587,6 +1635,8 @@ class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'RSAKeyValueType', RSAKeyValueType)
 
 
@@ -1900,6 +1950,8 @@ def _BuildAutomaton():
         fac.UpdateInstruction(cc_1, True)]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignatureType._Automaton = _BuildAutomaton()
 
 SignedInfoType._AddElement(
@@ -1978,6 +2030,8 @@ def _BuildAutomaton_():
     ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignedInfoType._Automaton = _BuildAutomaton_()
 
 
@@ -2012,6 +2066,8 @@ def _BuildAutomaton_2():
         fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 CanonicalizationMethodType._Automaton = _BuildAutomaton_2()
 
 SignatureMethodType._AddElement(
@@ -2078,6 +2134,8 @@ def _BuildAutomaton_3():
         fac.UpdateInstruction(cc_1, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 SignatureMethodType._Automaton = _BuildAutomaton_3()
 
 ReferenceType._AddElement(pyxb.binding.basis.element(
@@ -2159,6 +2217,8 @@ def _BuildAutomaton_4():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ReferenceType._Automaton = _BuildAutomaton_4()
 
 TransformsType._AddElement(
@@ -2193,6 +2253,8 @@ def _BuildAutomaton_5():
     ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 TransformsType._Automaton = _BuildAutomaton_5()
 
 TransformType._AddElement(pyxb.binding.basis.element(
@@ -2255,6 +2317,8 @@ def _BuildAutomaton_6():
         fac.UpdateInstruction(cc_0, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 TransformType._Automaton = _BuildAutomaton_6()
 
 
@@ -2291,6 +2355,8 @@ def _BuildAutomaton_7():
         fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 DigestMethodType._Automaton = _BuildAutomaton_7()
 
 KeyInfoType._AddElement(pyxb.binding.basis.element(
@@ -2576,6 +2642,8 @@ def _BuildAutomaton_8():
     ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 KeyInfoType._Automaton = _BuildAutomaton_8()
 
 KeyValueType._AddElement(pyxb.binding.basis.element(
@@ -2642,6 +2710,8 @@ def _BuildAutomaton_9():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 KeyValueType._Automaton = _BuildAutomaton_9()
 
 RetrievalMethodType._AddElement(pyxb.binding.basis.element(
@@ -2681,6 +2751,8 @@ def _BuildAutomaton_10():
         fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 RetrievalMethodType._Automaton = _BuildAutomaton_10()
 
 X509DataType._AddElement(pyxb.binding.basis.element(
@@ -2876,6 +2948,8 @@ def _BuildAutomaton_11():
     ]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 X509DataType._Automaton = _BuildAutomaton_11()
 
 X509IssuerSerialType._AddElement(pyxb.binding.basis.element(
@@ -2928,6 +3002,8 @@ def _BuildAutomaton_12():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 X509IssuerSerialType._Automaton = _BuildAutomaton_12()
 
 PGPDataType._AddElement(pyxb.binding.basis.element(
@@ -3054,6 +3130,8 @@ def _BuildAutomaton_13():
         fac.UpdateInstruction(cc_2, True)]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 PGPDataType._Automaton = _BuildAutomaton_13()
 
 SPKIDataType._AddElement(pyxb.binding.basis.element(
@@ -3115,6 +3193,8 @@ def _BuildAutomaton_14():
         fac.UpdateInstruction(cc_0, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SPKIDataType._Automaton = _BuildAutomaton_14()
 
 
@@ -3150,6 +3230,8 @@ def _BuildAutomaton_15():
         fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 ObjectType._Automaton = _BuildAutomaton_15()
 
 ManifestType._AddElement(pyxb.binding.basis.element(
@@ -3183,6 +3265,8 @@ def _BuildAutomaton_16():
     ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ManifestType._Automaton = _BuildAutomaton_16()
 
 SignaturePropertiesType._AddElement(pyxb.binding.basis.element(
@@ -3217,6 +3301,8 @@ def _BuildAutomaton_17():
     ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignaturePropertiesType._Automaton = _BuildAutomaton_17()
 
 
@@ -3247,6 +3333,8 @@ def _BuildAutomaton_18():
     ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignaturePropertyType._Automaton = _BuildAutomaton_18()
 
 DSAKeyValueType._AddElement(pyxb.binding.basis.element(
@@ -3445,6 +3533,8 @@ def _BuildAutomaton_19():
         fac.UpdateInstruction(cc_3, True)]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DSAKeyValueType._Automaton = _BuildAutomaton_19()
 
 RSAKeyValueType._AddElement(
@@ -3502,4 +3592,6 @@ def _BuildAutomaton_20():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RSAKeyValueType._Automaton = _BuildAutomaton_20()

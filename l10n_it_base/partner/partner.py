@@ -21,8 +21,8 @@
 #
 #
 
-from osv import osv
-from osv import fields
+from openerp.osv import osv
+from openerp.osv import fields
 
 
 class res_region(osv.osv):
@@ -60,9 +60,14 @@ class res_city(osv.osv):
     _name = 'res.city'
     _description = 'City'
     _columns = {
-        'name': fields.char('City', size=64, required=True),
+        'name': fields.char('City',
+                            size=64,
+                            help='Official city name.',
+                            required=True),
         'province_id': fields.many2one('res.province', 'Province'),
-        'zip': fields.char('ZIP', size=5),
+        'zip': fields.char('CAP',
+                           size=16,
+                           help='City\'s ZIP code. (Country dependent).'),
         'phone_prefix': fields.char('Telephone Prefix', size=16),
         'istat_code': fields.char('ISTAT code', size=16),
         'cadaster_code': fields.char('Cadaster Code', size=16),
