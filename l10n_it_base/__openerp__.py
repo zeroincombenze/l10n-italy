@@ -39,12 +39,12 @@ Funcionalities:
     "depends": ['base'],
     "init_xml": [
     ],
-    "update_xml": ['partner/partner_view.xml',
-                   "security/ir.model.access.csv",
-                   'partner/data/res.region.csv',
-                   'partner/data/res.province.csv',
-                   'partner/data/res.city.csv',
-                   'partner/data/res.partner.title.csv'],
+    "update_xml": ['views/partner_view.xml',
+                   'security/ir.model.access.csv',
+                   'data/res.region.csv',
+                   'data/res.province.csv',
+                   'data/res.city.csv',
+                   'data/res.partner.title.csv'],
     "demo_xml": [],
     "active": False,
     "installable": True
