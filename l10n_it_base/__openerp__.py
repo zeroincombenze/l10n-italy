@@ -40,11 +40,14 @@ Funcionalities:
     "init_xml": [
     ],
     "update_xml": ['views/partner_view.xml',
+                   # 'views/company_view.xml',
                    'security/ir.model.access.csv',
                    'data/res.region.csv',
                    'data/res.province.csv',
                    'data/res.city.csv',
-                   'data/res.partner.title.csv'],
+                   'data/res.partner.title.csv',
+                   'data/res.country.state.csv',
+                   ],
     "demo_xml": [],
     "active": False,
     "installable": True
