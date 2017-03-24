@@ -1,0 +1,176 @@
+<?xml version="1.0" ?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_partner_form_inherit_country_id">
+        <field name="name">partner.form.country_id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <data>
+                <field name="country_id" position="replace"/>
+                <field name="street" position="before">
+                    <field name="country_id" placeholder="Country"
+                           class="oe_no_button"
+                           on_change="on_change_country(country_id)"
+                           options='{"no_open": True}' attrs="{'readonly': [('use_parent_address','=',True)]}"
+                           select="1" required="1"/>
+                </field>
+            </data>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_partner_form_inherit_province">
+        <field name="name">partner.form.province</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="state_id" position="replace"/>
+            <field name="city" position="after">
+                <div class="province_format">
+                    <field name="state_id" placeholder="Province" style="width: 39%%"
+                           class="oe_no_button"
+                           options='{"no_open": True}' attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                    <field name="province" placeholder="Province" style="width: 29%%" select="2"/>
+                    <field name="region" placeholder="Region" style="width: 30%%"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+    <!-- Field inserted just for compatibility, use birthdate -->
+    <record model="ir.ui.view" id="view_partner_form_inherit_zip">
+        <field name="name">partner.form.zip</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="title" position="after">
+                <field name="birthdate" placeholder="dd-mm-yyyy"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_partner_form_inherit_city">
+        <field name="name">partner.form.city</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="zip" position="replace"/>
+            <field name="city" position="replace"/>
+            <field name="street2" position="after">
+                <div class="zi_custom_address">
+                    <field name="zip" placeholder="ZIP" style="width: 20%%"
+                           select="1"
+                           attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                    <field name="city" placeholder="City" style="width: 79%%"
+                           select="1"
+                           on_change="on_change_city(city)"
+                           attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+    <!-- Field inserted just for compatibility, use date -->
+    <record model="ir.ui.view" id="view_partner_form_inherit_street2">
+        <field name="name">partner.form.street2</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="title" position="after">
+                <field name="date" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!--
+    Province
+    -->
+
+    <record id="view_res_province_tree" model="ir.ui.view">
+        <field name="name">res.province.tree</field>
+        <field name="model">res.province</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Province">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="region"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_province_form" model="ir.ui.view">
+        <field name="name">res.province.form</field>
+        <field name="model">res.province</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Province">
+                <field name="name" select="1"/>
+                <field name="code" select="1"/>
+                <field name="region" select="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_province" model="ir.actions.act_window">
+        <field name="name">Provinces</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.province</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_localisation" name="Localisation" parent="base.menu_base_config"/>
+    <menuitem action="action_province" id="menu_province_partner" parent="base.menu_localisation"/>
+
+    <!--
+    City
+    -->
+
+    <record id="view_res_city_tree" model="ir.ui.view">
+        <field name="name">res.city.tree</field>
+        <field name="model">res.city</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="City">
+                <field name="name"/>
+                <field name="zip"/>
+                <field name="province_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_city_form" model="ir.ui.view">
+        <field name="name">res.city.form</field>
+        <field name="model">res.city</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="City">
+                <group col="4">
+                    <field name="name" select="1" colspan="4"/>
+                    <field name="zip" select="1"/>
+                    <field name="province_id" select="1"/>
+                    <field name="phone_prefix" select="2"/>
+                    <field name="istat_code" select="2"/>
+                    <field name="cadaster_code" select="2"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_city" model="ir.actions.act_window">
+        <field name="name">Cities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.city</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem action="action_city" id="menu_city_partner" parent="base.menu_localisation"/>
+
+</data>
+</openerp>

@@ -1,0 +1,10 @@
+-
+  I create partner one
+-
+  !record {model: res.partner, id: partner_1}:
+    name: 'Prima Infanzia s.r.l.'
+    vat: 'IT01234560017'
+    street: 'Via I Maggio, 11'
+    zip: '20022'
+    city: 'Castano Primo'
+    birthdate: '1976-07-04'
