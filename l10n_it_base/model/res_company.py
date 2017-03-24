@@ -29,5 +29,8 @@ class res_company(osv.osv):
     _inherit = 'res.company'
 
     _columns = {
-        'vat': fields.related('partner_id', 'vat', string="Tax ID", type="char", size=32),
+        'vat': fields.related('partner_id',
+                              'vat',
+                              string="Tax ID",
+                              type="char", size=32),
     }

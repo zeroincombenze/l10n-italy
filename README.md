@@ -28,6 +28,7 @@ Translation Status
 Moduli Odoo Italia
 ==================
 
+Attenzione: i moduli l10n_it_base e l10n_it_bbone sono in fase di merging
 Differenze rispetto localizzazione ufficiale Odoo/OCA:
 
 - Il modulo [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) è sostituito dal modulo [l10n_it_bbone](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_bbone)

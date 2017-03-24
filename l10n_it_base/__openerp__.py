@@ -40,7 +40,7 @@ Funcionalities:
     "init_xml": [
     ],
     "update_xml": ['views/partner_view.xml',
-                   # 'views/company_view.xml',
+                   'views/company_view.xml',
                    'security/ir.model.access.csv',
                    'data/res.region.csv',
                    'data/res.province.csv',
