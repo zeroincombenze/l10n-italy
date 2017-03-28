@@ -28,18 +28,14 @@ Translation Status
 Moduli Odoo Italia
 ==================
 
-Attenzione: i moduli l10n_it_base e l10n_it_bbone sono in fase di merging
 Differenze rispetto localizzazione ufficiale Odoo/OCA:
 
-- Il modulo [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) è sostituito dal modulo [l10n_it_bbone](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_bbone)
+- Il modulo [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) è basato su [ricerca con CAP] (https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/);
+- Inoltre il campo provincia è allineato ai moduli internazionali (utilizzo del campo state_id al posto del campo personalizzato province) ma per compatibilità con i moduli della Community Italiana, agisce anche sul campo province.
+- Aggiunti test yaml di validazione
 - Basato su [piano dei conti](https://www.zeroincombenze.it/il-piano-dei-conti-2/) personalizzato  in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
 - Basato su [codici IVA](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) personalizzati in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
 - Classificazione [comuni italiani](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) aggiornata ai nuovi comuni
-
-Il modulo l10n_it_bbone è basato su [ricerca con CAP] (https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/);
-inoltre il campo provincia è allineato ai moduli internazionali (utilizzo del campo state_id al posto del campo personalizzato province) ma per compatibilità con i moduli della Community Italiana, il modulo l10n_it_bbone agisce anche sul campo province.
-
-Un wizard di conversione è fornito.
 
 
 [//]: # (copyright)
@@ -59,7 +55,6 @@ is mainly designed for Italian law and markeplace.
 Everytime, every Odoo DB and customized code can be deployed on local server too.
 
 [//]: # (end copyright)
-
 
 
 [![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)

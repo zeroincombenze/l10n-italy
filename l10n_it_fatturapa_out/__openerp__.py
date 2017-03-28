@@ -92,7 +92,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
-    "installable": True,
+    "installable": False,
     'external_dependencies': {
         'python': ['unidecode'],
     }

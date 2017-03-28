@@ -5,6 +5,68 @@
     name: 'Prima Infanzia s.r.l.'
     vat: 'IT01234560017'
     street: 'Via I Maggio, 11'
-    zip: '20022'
-    city: 'Castano Primo'
-    birthdate: '1976-07-04'
+    city: 'Maddaloni'
+-
+  !python {model: res.partner}: |
+    country_obj = self.pool['res.country']
+    state_obj = self.pool['res.country.state']
+    city_obj = self.pool['res.city']
+    province_obj = self.pool['res.province']
+    region_obj = self.pool['res.region']
+    part_ids = self.search(cr, uid, [('name', '=', 'Prima Infanzia s.r.l.')])
+    partner = self.browse(cr, uid, part_ids[0])
+    assert partner.city == 'Maddaloni', "Invalid city!"
+    assert partner.zip == '81024', "Invalid zip code!"
+    IT_id = country_obj.search(cr, uid, [('code', '=', 'IT')])[0]
+    assert partner.country_id.id == IT_id, "Invalid country code"
+    CE_id = state_obj.search(cr, uid, [('country_id', '=', IT_id), ('code', '=', 'CE')])[0]
+    assert partner.state_id.id == CE_id, "Invalid state_id"
+    CE_id2 = province_obj.search(cr, uid, [('code', '=', 'CE')])[0]
+    province = province_obj.browse(cr, uid, CE_id2)
+    assert partner.province.id == CE_id2, "Invalid province"
+    assert partner.region.id == province.region.id, "Invalid region"
+-
+  Test on_change for res.partner
+-
+  !python {model: res.partner}: |
+    country_obj = self.pool['res.country']
+    state_obj = self.pool['res.country.state']
+    city_obj = self.pool['res.city']
+    province_obj = self.pool['res.province']
+    region_obj = self.pool['res.region']
+    partner = self.browse(cr, uid, ref('partner_1'))
+    country_id = partner.country_id.id
+    zip = partner.zip
+    city = partner.city
+    state_id = partner.state_id.id
+    province = partner.province.id
+    region = partner.region.id
+    vals = self.on_change_zip(cr, uid, [ref('partner_1')], country_id, '20022', city, state_id, province, region)['value']
+    self.write(cr, uid, [ref('partner_1')], vals)
+    part_ids = self.search(cr, uid, [('name', '=', 'Prima Infanzia s.r.l.')])
+    partner = self.browse(cr, uid, part_ids[0])
+    assert partner.city == 'Castano Primo', "Invalid city change!"
+    assert partner.zip == '20022', "Invalid zip code change!"
+    IT_id = country_obj.search(cr, uid, [('code', '=', 'IT')])[0]
+    assert partner.country_id.id == IT_id, "Invalid country code change"
+    MI_id = state_obj.search(cr, uid, [('country_id', '=', IT_id), ('code', '=', 'MI')])[0]
+    assert partner.state_id.id == MI_id, "Invalid state_id change"
+    MI_id2 = province_obj.search(cr, uid, [('code', '=', 'MI')])[0]
+    province = province_obj.browse(cr, uid, MI_id2)
+    assert partner.province.id == MI_id2, "Invalid province change"
+    assert partner.region.id == province.region.id, "Invalid region change"
+-
+  !record {model: res.partner, id: partner_2}:
+    name: 'Secondamano s.r.l.'
+    vat: 'IT01250630504'
+    zip: '10060'
+    city: 'S. Secondo'
+-
+  !python {model: res.partner}: |
+    country_obj = self.pool['res.country']
+    state_obj = self.pool['res.country.state']
+    city_obj = self.pool['res.city']
+    province_obj = self.pool['res.province']
+    region_obj = self.pool['res.region']
+    partner = self.browse(cr, uid, ref('partner_2'))
+    assert partner.city == 'San Secondo di Pinerolo', "Invalid city written!"

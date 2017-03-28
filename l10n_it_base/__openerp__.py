@@ -21,7 +21,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '0.1',
+    'version': '7.0.0.1.0',
     'category': 'Localisation/Italy',
     'description': """Italian Localization module - Base version
 
@@ -49,6 +49,8 @@ Funcionalities:
                    'data/res.country.state.csv',
                    ],
     "demo_xml": [],
+    "test": ['test/res_partner.yml',
+             ],
     "active": False,
     "installable": True
 }

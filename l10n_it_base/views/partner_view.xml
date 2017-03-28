@@ -13,8 +13,8 @@
                 <field name="street" position="before">
                     <field name="country_id" placeholder="Country"
                            class="oe_no_button"
-                           on_change="on_change_country(country_id)"
-                           options='{"no_open": True}' attrs="{'readonly': [('use_parent_address','=',True)]}"
+                           on_change="on_change_country(country_id, zip, city, state_id, province, region)"
+                           options='{"no_open": True}'
                            select="1" required="1"/>
                 </field>
             </data>
@@ -30,11 +30,15 @@
             <field name="state_id" position="replace"/>
             <field name="city" position="after">
                 <div class="province_format">
-                    <field name="state_id" placeholder="Province" style="width: 39%%"
+                    <field name="state_id" placeholder="Province" style="width: 38%%"
+                           on_change="on_change_state(country_id, zip, city, state_id, province, region)"
                            class="oe_no_button"
-                           options='{"no_open": True}' attrs="{'readonly': [('use_parent_address','=',True)]}"/>
-                    <field name="province" placeholder="Province" style="width: 29%%" select="2"/>
-                    <field name="region" placeholder="Region" style="width: 30%%"/>
+                           options='{"no_open": True}' />
+                    <field name="province" placeholder="Province" style="width: 19%%"
+                           on_change="on_change_province(country_id, zip, city, state_id, province, region)"
+                           select="2"/>
+                    <field name="region" placeholder="Region" style="width: 41%%"
+                           on_change="on_change_region(country_id, zip, city, state_id, province, region)"/>
                 </div>
             </field>
         </field>
@@ -48,7 +52,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="title" position="after">
-                <field name="birthdate" placeholder="dd-mm-yyyy"/>
+                <field name="birthday" widget="date"/>
             </field>
         </field>
     </record>
@@ -65,25 +69,11 @@
                 <div class="zi_custom_address">
                     <field name="zip" placeholder="ZIP" style="width: 20%%"
                            select="1"
-                           attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                           on_change="on_change_zip(country_id, zip, city, state_id, province, region)"/>
                     <field name="city" placeholder="City" style="width: 79%%"
                            select="1"
-                           on_change="on_change_city(city)"
-                           attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                           on_change="on_change_city(country_id, zip, city, state_id, province, region)"/>
                 </div>
-            </field>
-        </field>
-    </record>
-
-    <!-- Field inserted just for compatibility, use date -->
-    <record model="ir.ui.view" id="view_partner_form_inherit_street2">
-        <field name="name">partner.form.street2</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <field name="title" position="after">
-                <field name="date" invisible="1"/>
             </field>
         </field>
     </record>
@@ -91,7 +81,6 @@
     <!--
     Province
     -->
-
     <record id="view_res_province_tree" model="ir.ui.view">
         <field name="name">res.province.tree</field>
         <field name="model">res.province</field>
@@ -171,6 +160,42 @@
     </record>
 
     <menuitem action="action_city" id="menu_city_partner" parent="base.menu_localisation"/>
+
+    <!--
+    Region
+    -->
+    <record id="view_res_region_tree" model="ir.ui.view">
+        <field name="name">res.region.tree</field>
+        <field name="model">res.region</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Region">
+                <field name="name"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_region_form" model="ir.ui.view">
+        <field name="name">res.region.form</field>
+        <field name="model">res.region</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Region">
+                <field name="name" select="1"/>
+                <field name="country_id" select="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_region" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.region</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem action="action_region" id="menu_region_partner" parent="base.menu_localisation"/>
 
 </data>
 </openerp>

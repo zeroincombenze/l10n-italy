@@ -20,7 +20,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
 from openerp.osv import osv
 from openerp.osv import fields
 
@@ -29,8 +28,12 @@ class res_company(osv.osv):
     _inherit = 'res.company'
 
     _columns = {
-        'vat': fields.related('partner_id',
-                              'vat',
-                              string="Tax ID",
-                              type="char", size=32),
+        'region': fields.related('partner_id',
+                                 'region',
+                                 type='char',
+                                 string="Region"),
+        # 'region': fields.function(_get_region,
+        #                          fnct_inv=_set_region,
+        #                           type='char',
+        #                          string='Region')
     }

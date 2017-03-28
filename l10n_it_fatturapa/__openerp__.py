@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italian Localization - FatturaPA',
-    'version': '0.1',
+    'version': '7.0.0.1.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
@@ -105,7 +105,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'security/ir.model.access.csv',
     ],
     "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": True,
+    "installable": False,
     'external_dependencies': {
         'python': ['pyxb'],
     }

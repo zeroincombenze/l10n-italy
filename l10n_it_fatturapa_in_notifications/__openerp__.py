@@ -91,5 +91,5 @@ To contribute to this module, please visit http://odoo-community.org.
         'wizard/send_notification_view.xml',
         'account_view.xml',
     ],
-    "installable": True
+    "installable": False
 }
