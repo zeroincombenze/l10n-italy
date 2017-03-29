@@ -22,3 +22,6 @@
 
 # from . import res_company
 from . import res_partner
+from . import res_region
+from . import res_province
+from . import res_city

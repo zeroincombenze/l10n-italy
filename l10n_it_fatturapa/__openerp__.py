@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italian Localization - FatturaPA',
-    'version': '7.0.0.1.0',
+    'version': '0.1',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
@@ -87,7 +87,7 @@ To contribute to this module, please visit http://odoo-community.org.
     'license': 'AGPL-3',
     "depends": [
         'account',
-        'l10n_it_base',
+        'l10n_it_bbone',
         'l10n_it_fiscalcode',
         'document',
         'l10n_it_ipa',

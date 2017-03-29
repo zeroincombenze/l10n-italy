@@ -21,26 +21,35 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.1.0',
+    'version': '7.0.0.2.0',
     'category': 'Localisation/Italy',
     'description': """Italian Localization module - Base version
 
-Funcionalities:
+[en] Funcionalities:
 
-- Comuni italiani
-- res.partner.title italiani
+- Italian cities
+- Titles
+- Provinces (districts) and Regions
+
+[en] Funzionalità
+
+- Comuni italiani (aggiornati al 2008)
+- Titoli
 - Province e regioni
 - Automatistmi su res.partner.address
-
 """,
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.openerp-italia.org',
+    'author': "Odoo Italian Community,Odoo Community Association (OCA),"
+              "SHS-AV s.r.l.",
+    'maintainer': 'Antonio Maria Vigliotti',
+    'website': 'https://odoo-italia.org/',
     'license': 'AGPL-3',
     "depends": ['base'],
     "init_xml": [
     ],
     "update_xml": ['views/partner_view.xml',
                    'views/company_view.xml',
+                   'views/city_view.xml',
+                   'views/province_view.xml',
                    'security/ir.model.access.csv',
                    'data/res.region.csv',
                    'data/res.province.csv',
