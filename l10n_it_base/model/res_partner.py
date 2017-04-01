@@ -25,10 +25,13 @@ from openerp.osv import osv, orm
 from openerp.osv import fields
 import re
 # import pdb #debug
-from tndb import tndb
+# from tndb import tndb
 
-FLDS_LIST = ['country_id', 'zip', 'city', 'state_id',
-             'province_id', 'region_id']
+FLDS_LIST1 = ['country_id', 'zip', 'city']
+FLD_STATE = 'state_id'
+FLD_PROVINCE = 'province_id'
+FLD_REGION = 'region_id'
+ACCEPT_MAX_RES = 16
 
 
 class res_config_settings(orm.TransientModel):
@@ -45,255 +48,411 @@ class res_config_settings(orm.TransientModel):
         'region_id': fields.many2one('res.region', string='Region'),
     }
 
-    def fld_in_model(self, model, f, name):
-        if f in model._columns:
-            return f
-        elif name in model._columns:
-            return name
+    def _set_flds_list(self):
+        if hasattr(self, 'fld_res') and \
+                hasattr(self, 'fld_all') and \
+                hasattr(self, 'alt_name'):
+            flds_res = self.flds_res
+            flds_all = self.flds_all
+            alt_name = self.alt_name
+        else:
+            # Warning: due to python binding DO NOT change follow code!
+            flds_res = []
+            flds_all = []
+            alt_name = {}
+            for f in FLDS_LIST1:
+                flds_res.append(f)
+            tbl_f = self._fld_in_model('res.city', 'state_id')
+            if tbl_f:
+                for f in FLDS_LIST1 + [FLD_STATE] + [FLD_PROVINCE]:
+                    flds_all.append(f)
+                flds_res.append(FLD_STATE)
+            else:
+                for f in FLDS_LIST1 + [FLD_PROVINCE] + [FLD_STATE]:
+                    flds_all.append(f)
+                flds_res.append(FLD_PROVINCE)
+            flds_all.append(FLD_REGION)
+            for f in flds_all:
+                if f == 'city':
+                    alt_name[f] = 'name'
+                elif f[-3:] == '_id':
+                    alt_name[f] = f[0: -3]
+                else:
+                    alt_name[f] = f
+            self.flds_res = flds_res
+            self.flds_all = flds_all
+            self.alt_name = alt_name
+        # tndb.wlog('_set_flds_list() =', flds_res, flds_all, alt_name)
+
+    def _clear_field(self, f, fix):
+        fix[f] = True
+        # tndb.wlog('fix[', f, '] = True')
+        if hasattr(self, f):
+            delattr(self, f)
+            # tndb.wlog('clear', f)
+        return fix
+
+    def _fld_in_model(self, model, f):
+        r = False
+        model_obj = self.pool.get(model)
+        if f in model_obj._columns:
+            r = f
+        elif hasattr(self, 'alt_name') and f in self.alt_name and \
+                self.alt_name[f] in model_obj._columns:
+            r = self.alt_name[f]
+        # tndb.wlog(r, '= self._fld_in_model(', model,
+        #           ', f =', f, ')')
+        return r
+
+    def _set_field(self, fix, f, value):
+        if value:
+            setattr(self, f, value)
+            # tndb.wlog(f, '=', value)
+            fix[f] = True
+            # tndb.wlog('fix[', f, '] = True')
+
+    def _read_field(self, cr, uid, dst, value):
+        # tndb.wlog('_read_field(', dst, value, ')')
+        if dst == 'country_id':
+            model = 'res.country'
+            dst_obj = self.pool.get(model)
+        else:
+            return False
+        if value:
+            w = []
+            tbl_f = self._fld_in_model(model, 'country_id')
+            if tbl_f:
+                w.append((tbl_f, '=', getattr(self, 'country_id')))
+            w.append(('code', '=', value))
+            res_ids = dst_obj.search(cr,
+                                     uid,
+                                     w)
+            # tndb.wlog('search(dst_obj,', w, ')=', res_ids)
+            if len(res_ids) == 1:
+                # tndb.wlog('return', res_ids[0])
+                return res_ids[0]
         return False
 
-    def set_geoloc(self, cr, uid, ids, name, value, context=None):
-        """Set values of geolocalization from country, zip, city
-        and other fields."""
-        # pdb.set_trace()
-        tndb.wstamp(name, value)
-        context = {} if context is None else context
-        res_obj = self.pool.get('res.partner')
-        city_obj = self.pool.get('res.city')
-        state_obj = self.pool.get('res.country.state')
-        province_obj = self.pool.get('res.province')
-        search_in_it = False
-        is_updated = False
-        flds = FLDS_LIST
-        names = {}
-        for f in flds:
-            if f == 'city':
-                names[f] = 'name'
-            elif f[-3:] == '_id':
-                names[f] = f[0: -3]
+    def _inherit_field(self, cr, uid, dst, src, fix):
+        # tndb.wlog('_inherit_field(', dst, src, ')')
+        if src == 'province_id':
+            src_model = 'res.province'
+        elif src == 'state_id':
+            src_model = 'res.country.state'
+        else:
+            return False
+        src_obj = self.pool.get(src_model)
+        if dst == 'province_id':
+            dst_model = 'res.province'
+        elif dst == 'state_id':
+            dst_model = 'res.country.state'
+        elif dst == 'region_id':
+            dst_model = 'res.region'
+        else:
+            return False
+        dst_obj = self.pool.get(dst_model)
+        # tndb.wlog('if hasattr(self, src) =', hasattr(self, src),
+        #           'and (not hasattr(self, dst) =', not hasattr(self, dst),
+        #           'or fix[dst] =', fix[dst], ')')
+        if hasattr(self, src) and (not hasattr(self, dst) or fix[dst]):
+            rec = src_obj.browse(cr,
+                                 uid,
+                                 getattr(self, src))
+            if dst == 'region_id':
+                if rec.region:
+                    res_ids = rec.region.id
+                    # tndb.wlog('return', res_ids)
+                    return res_ids
             else:
-                names[f] = f
+                w = []
+                tbl_f = self._fld_in_model(dst_model, 'country_id')
+                if tbl_f:
+                    w.append((tbl_f, '=', getattr(self, 'country_id')))
+                w.append(('code', '=', rec.code))
+                res_ids = dst_obj.search(cr,
+                                         uid,
+                                         w)
+                # tndb.wlog('search(dst_obj,', w, ')=', res_ids)
+                if len(res_ids) == 1:
+                    # tndb.wlog('return', res_ids[0])
+                    return res_ids[0]
+        return False
+
+    def _init_local_vars(self, cr, uid, name, value, context):
+        # tndb.wlog('init_local_var()')
         fix = {}
-        for f in flds:
+        for f in self.flds_all:
             fix[f] = False
             if f != name:
-                if not hasattr(self, f) and f in context and context[f]:
+                if f in context and context[f]:
                     setattr(self, f, context[f])
-                    tndb.wlog(f, '=ctx(', context[f], ')')
+                    # tndb.wlog(f, '=ctx(', context[f], ')')
                 elif hasattr(self, f) and \
                         f not in context and f != 'country_id':
                     delattr(self, f)
-                    tndb.wlog('del', f)
-        fix[name] = True
+                    # tndb.wlog('del', f)
+        if name[-3:] == '_id' or value.find('.') >= 0:
+            fix[name] = True
+        is_updated = False
         if not hasattr(self, name) or value != getattr(self, name):
             is_updated = True
-            tndb.wlog(name, 'is updated')
+            # tndb.wlog(name, 'is updated')
             if value:
                 res = False
-                for i, f in enumerate(flds):
-                    if f == name and i < 3:
-                        res = True
+                for i, f in enumerate(self.flds_all):
+                    if f == name:
+                        if name != 'city' or value.find('.') < 0:
+                            res = True
                     elif res:
                         fix[f] = True
-                        if hasattr(self, f):
-                            delattr(self, f)
-                        tndb.wlog('clear ', f)
-                if value:
-                    setattr(self, name, value)
-                    tndb.wlog(name, '=', value)
-                else:
-                    delattr(self, name)
-                    tndb.wlog('del', name)
+                setattr(self, name, value)
+                # tndb.wlog(name, '=', value)
+            else:
+                fix = self._clear_field(f, fix)
+        # Special field:country_id
         # This module is for Italy so country is supposed to be Italy
         if not hasattr(self, 'country_id'):
-            country_id = self.pool.get(
-                'res.country').search(cr,
-                                      uid,
-                                      [('code', '=', 'IT')])
-            if len(country_id):
-                f = 'country_id'
-                setattr(self, f, country_id[0])
-                tndb.wlog(f, '=', country_id[0])
-                fix[f] = True
-                tndb.wlog('fix[', f, '] = True')
-        # prepare city where
+            f = 'country_id'
+            id = self._read_field(cr, uid, f, 'IT')
+            self._set_field(fix, f, id)
+        # tndb.wlog('return', fix, is_updated)
+        return fix, is_updated
+
+    def _store_lazy_city(self, cr, uid, name):
+        y = getattr(self, 'city').split(' ')
+        if len(y) > 2:
+            w = self.pool.get(
+                'res.country.state').browse(cr,
+                                            uid,
+                                            self.state_id).name[0:5]
+            where_valid = False
+            tofind = '%'
+            for i in range(len(y)):
+                if y[i].find(w) < 0:
+                    tofind = tofind + y[i] + '%'
+                else:
+                    where_valid = True
+            if where_valid:
+                setattr(self, 'x_city', tofind)
+                # tndb.wlog('x_city =', tofind)
+            elif hasattr(self, 'x_city'):
+                delattr(self, 'x_city')
+                # tndb.wlog('del x_city')
+
+    def _search_level2(self, cr, uid, name, value, where):
+        # tndb.wlog('_search_level2()')
+        best_res = {}
+        best_where = {}
+        for ix, f in enumerate(self.flds_res):
+            # python does not assign dictionary but it binds
+            # >>>w=where does not save <where>
+            w = []
+            for y in where:
+                w.append(y)
+            tbl_f = self._fld_in_model('res.city', f)
+            for i, x in enumerate(w):
+                if x[0] == tbl_f:
+                    if x[0] == 'zip':
+                        l = int(len(getattr(self, 'zip')) / 2) + 1
+                        tofind = getattr(self, 'zip')[0:l] + '%'
+                        tofind = tofind.replace('%%', '%')
+                        y = (x[0], x[1], tofind)
+                        w[i] = y
+                        c_ids = self.pool.get('res.city').search(cr, uid, w)
+                        # tndb.wlog('search(city,', w, ')=', c_ids)
+                        best_where[ix + 100] = w
+                        best_res[ix + 100] = len(c_ids)
+                    elif x[0] == 'name':
+                        if name != 'city' and hasattr(self, 'x_city'):
+                            tofind = getattr(self, 'x_city')
+                        else:
+                            tofind = getattr(self,
+                                             'city').replace('.',
+                                                             '%')
+                            tofind = '%' + tofind.replace(' ',
+                                                          '%') + '%'
+                            tofind = tofind.replace('%%', '%')
+                        y = (x[0], 'ilike', tofind)
+                        w[i] = y
+                        c_ids = self.pool.get('res.city').search(cr, uid, w)
+                        # tndb.wlog('search(city,', w, ')=', c_ids)
+                        best_where[ix + 100] = w
+                        best_res[ix + 100] = len(c_ids)
+                    if len(where) > 1 and x[0] != name:
+                        del w[i]
+                        c_ids = self.pool.get('res.city').search(cr, uid, w)
+                        # tndb.wlog('search(city,', w, ')=', c_ids)
+                        best_where[ix] = w
+                        best_res[ix] = len(c_ids)
+                    break
+        city_ids = []
+        best_result = -1
+        # tndb.wlog('for ix, x in ', best_res, '):')
+        for ix, x in best_res.iteritems():
+            if x and (best_result < 0 or x < best_res[best_result]):
+                best_result = ix
+        if best_result >= 0 and best_res[best_result] < ACCEPT_MAX_RES:
+            where = best_where[best_result]
+            city_ids = self.pool.get('res.city').search(cr, uid, where)
+            # tndb.wlog('search(city,', where, ')=', city_ids)
+        return city_ids
+
+    def _search_level3(self, cr, uid, name, value, where):
+        # tndb.wlog('_search_level3()')
         where = []
-        for f in flds:
-            tbl_f = self.fld_in_model(city_obj, f, names[f])
-            tndb.wlog(tbl_f, '= self.fld_in_model(city_obj,', f,
-                      ', names[f]);', names[f])
-            tndb.wlog('123>if hasattr(self, ', f, ') and tbl_f:',
-                      hasattr(self, f), tbl_f)
+        city_ids = []
+        f = 'country_id'
+        tbl_f = self._fld_in_model('res.city', f)
+        if hasattr(self, f) and tbl_f:
+            where.append(('country_id', '=', self.country_id))
+        if name == 'zip':
+            where.append((name, '=', value))
+            city_ids = self.pool.get('res.city').search(cr, uid, where)
+            # tndb.wlog('search(city,', where, ')=', city_ids)
+        elif name == 'zip':
+            where.append((name, 'like', value.replace('.', '%')))
+            city_ids = self.pool.get('res.city').search(cr, uid, where)
+            # tndb.wlog('search(city,', where, ')=', city_ids)
+        return city_ids
+
+    def _build_where(self, name, fix):
+        # prepare city 'where condition'
+        where = []
+        where_valid = False
+        for f in self.flds_res:
+            tbl_f = self._fld_in_model('res.city', f)
+            # tndb.wlog('260>if hasattr(self, f) =', hasattr(self, f),
+            #           ' and tbl_f =', tbl_f, ':')
             if hasattr(self, f) and tbl_f:
                 if f[-3:] == '_id':
                     where.append((tbl_f, '=', getattr(self, f)))
+                    if f != 'country_id':
+                        where_valid = True
+                elif f == 'city' and f != name and hasattr(self, 'x_city'):
+                    where_valid = True
+                    tofind = getattr(self, 'x_city')
+                    where.append((tbl_f, '=ilike', tofind))
+                    fix[f] = True
+                    # tndb.wlog('fix[', f, '] = True')
                 else:
+                    where_valid = True
                     tofind = getattr(self, f).replace('.', '%') + '%'
                     where.append((tbl_f, '=ilike', tofind))
                     if tofind.find('%') < 0:
                         fix[f] = False
-                        tndb.wlog('fix[', f, '] = False')
+                        # tndb.wlog('fix[', f, '] = False')
                     else:
                         fix[f] = True
-                        tndb.wlog('fix[', f, '] = True')
-        if hasattr(self, 'country_id'):
-            if self.pool.get(
-                    'res.country').browse(cr,
-                                          uid,
-                                          self.country_id).code == 'IT':
-                search_in_it = True
-                tndb.wlog('search_in_it =', search_in_it)
-        res = True
+                        # tndb.wlog('fix[', f, '] = True')
+        return where, where_valid
+
+    def _search_in_it(self, cr, uid):
         f = 'country_id'
-        tbl_f = self.fld_in_model(city_obj, f, names[f])
-        tndb.wlog(tbl_f, '= self.fld_in_model(city_obj,', f, ', names[f]);',
-                  names[f])
-        tndb.wlog('150>if (search_in_it or tbl_f) and '
-                  'is_updated and len(where):',
-                  search_in_it, tbl_f,
-                  is_updated, '(', where, ')')
-        if (search_in_it or tbl_f) and is_updated and len(where):
-            city_ids = city_obj.search(cr, uid, where)
-            tndb.wlog('search(city,', where, ')=', city_ids)
-            ix = 4
-            while not len(city_ids) and ix:
-                for i, x in enumerate(where):
-                    if x[0] == 'zip':
-                        if ix > 1:
-                            l = len(getattr(self, 'zip')) + ix - 5
-                            tofind = getattr(self, 'zip')[0:l] + '%'
-                        else:
-                            tofind = '%'
-                        y = (x[0], x[1], tofind)
-                        where[i] = y
-                    elif x[0] == 'name':
-                        if ix > 2:
-                            tofind = getattr(self, 'city').replace('.', '%')
-                        elif ix == 2:
-                            l = len(getattr(self, 'city')) - 2
-                            if l < 6:
-                                l = 6
-                            tofind = getattr(self, 'city')[0:l] + '%'
-                            tofind = tofind.replace('.', '%')
-                        else:
-                            l = len(getattr(self, 'city')) - 4
-                            if l < 4:
-                                l = 4
-                            tofind = getattr(self, 'city')[0:l] + '%'
-                            tofind = tofind.replace('.', '%')
-                        y = (x[0], 'ilike', tofind)
-                        where[i] = y
-                        if tofind.find('%') < 0:
-                            fix[f] = False
-                        else:
-                            fix[f] = True
-                    elif x[0] == 'province_id':
-                        if ix < 4:
-                            del where[i]
-                            break
-                    elif x[0] == 'state_id':
-                        if ix < 4:
-                            del where[i]
-                            break
-                    elif x[0] == 'region':
-                        if ix < 4:
-                            del where[i]
-                            break
-                city_ids = city_obj.search(cr, uid, where)
-                tndb.wlog('search(city,', where, ')=', city_ids)
-                ix -= 1
-            if len(city_ids):
-                city = city_obj.browse(cr, uid, city_ids[0])
-                r = {}
-                for f in flds:
-                    res_f = self.fld_in_model(res_obj, f, names[f])
-                    tbl_f = self.fld_in_model(city_obj, f, names[f])
-                    tndb.wlog(tbl_f, '= self.fld_in_model(city_obj,', f,
-                              ', names[f]);', names[f])
-                    tndb.wlog('172>if tbl_f and hasattr(city, tbl_f) and',
-                              '(not hasattr(self, ', f, ') or',
-                              '(fix[f] and len(city_ids) == 1)):',
-                              tbl_f,
-                              hasattr(city, tbl_f or 'NA'),
-                              hasattr(self, f), fix[f],
-                              city_ids)
-                    if tbl_f and hasattr(city, tbl_f) and \
-                            (not hasattr(self, f) or
-                             (fix[f] and len(city_ids) == 1)):
+        tbl_f = self._fld_in_model('res.city', f)
+        search_in_it = False
+        if not tbl_f and hasattr(self, f):
+            if self.pool.get(
+                'res.country').browse(cr,
+                                      uid,
+                                      self.country_id).code == 'IT':
+                search_in_it = True
+        # tndb.wlog('search_in_it =', search_in_it)
+        return search_in_it, tbl_f
+
+    def set_geoloc(self, cr, uid, ids, name, value, context=None):
+        """Set values of geolocalization from country, zip, city and
+        other fields."""
+        # tndb.wstamp(name, value, context)
+        context = {} if context is None else context
+        self._set_flds_list()
+        fix, is_updated = self._init_local_vars(cr, uid,
+                                                name,
+                                                value,
+                                                context)
+        # prepare city 'where condition'
+        where, where_valid = self._build_where(name, fix)
+        search_in_it, tbl_f = self._search_in_it(cr, uid)
+        # tndb.wlog('357>if (search_in_it =', search_in_it,
+        #           'or tbl_f =', tbl_f, ') and is_updated =', is_updated,
+        #           'and where_valid =', where_valid, ':', where)
+        res = False
+        if (search_in_it or tbl_f) and is_updated and where_valid:
+            city_ids = self.pool.get('res.city').search(cr, uid, where)
+            # tndb.wlog('search(city,', where, ')=', city_ids)
+            # tndb.wlog('if not len(city_ids):')
+            if not len(city_ids):
+                city_ids = self._search_level2(cr, uid, name, value, where)
+            if not len(city_ids):
+                city_ids = self._search_level3(cr, uid, name, value, where)
+            if len(city_ids) and len(city_ids) < ACCEPT_MAX_RES:
+                city = self.pool.get('res.city').browse(cr, uid, city_ids[0])
+                r = {name: value}
+                for f in self.flds_all:
+                    res_f = self._fld_in_model('res.partner', f)
+                    tbl_f = self._fld_in_model('res.city', f)
+                    # tndb.wlog(' 391>if tbl_f =', tbl_f,
+                    #           'and hasattr(city, tbl_f) =',
+                    #           hasattr(city, (tbl_f or 'NA')))
+                    if tbl_f and hasattr(city, tbl_f):
+                        # tndb.wlog(' 395>if f[-3:] == _id')
                         if f[-3:] == '_id':
-                            r[res_f] = getattr(city, tbl_f).id
+                            # tndb.wlog(' 400>if not hasattr(self, f) =',
+                            #           not hasattr(self, f),
+                            #           'or fix[f] =', fix[f],
+                            #           'or len(city_ids) =', len(city_ids),
+                            #           ' == 1)):')
+                            if not hasattr(self, f) or \
+                                    fix[f] or len(city_ids) == 1:
+                                r[res_f] = getattr(city, tbl_f).id
+                                # tndb.wlog('r[', res_f, '] = ', r[res_f])
+                                if f == 'state_id':
+                                    fix = self._clear_field('province_id',
+                                                            fix)
+                                elif f == 'province_id':
+                                    fix = self._clear_field('state_id',
+                                                            fix)
                         else:
-                            r[res_f] = getattr(city, tbl_f)
-                        tndb.wlog('r[', res_f, '] = ', r[res_f])
+                            x = getattr(city, tbl_f)
+                            # tndb.wlog(' 419>if x =', x,
+                            #           'and x.find(%) < 0 ',
+                            #           'and (not hasattr(self, f) =',
+                            #           not hasattr(self, f),
+                            #           'or (fix[f] =', fix[f],
+                            #           'or len(city_ids) =', len(city_ids),
+                            #           ' == 1)):')
+                            if x and x.find('%') < 0 and \
+                                    (not hasattr(self, f) or
+                                     (fix[f] and len(city_ids) == 1)):
+                                r[res_f] = x
+                                # tndb.wlog('r[', res_f, '] = ', r[res_f])
+                    elif f == 'country_id' and res_f and hasattr(self, f):
+                        r[res_f] = getattr(self, f)
+                        # tndb.wlog('r[', res_f, '] = ', r[res_f])
                     if res_f in r:
                         setattr(self, f, r[res_f])
-                        tndb.wlog(f, '=', r[res_f])
-                f = 'province_id'
-                f1 = 'state_id'
-                tndb.wlog('201>if', hasattr(self, f1), 'and (not',
-                          hasattr(self, f), 'or(', fix[f],
-                          'and len(city_ids)==', city_ids, '))')
-                if hasattr(self, f1) and \
-                        (not hasattr(self, f) or
-                         (fix[f] and len(city_ids) == 1)):
-                    state = state_obj.browse(cr,
-                                             uid,
-                                             getattr(self, f1))
-                    w = []
-                    res_f = self.fld_in_model(res_obj, f, names[f])
-                    tbl_f = self.fld_in_model(province_obj,
-                                              'country_id',
-                                              names['country_id'])
-                    tndb.wlog(tbl_f, '= self.fld_in_model(city_obj,', f,
-                              ', names[f]);', names[f])
-                    if tbl_f:
-                        w.append((tbl_f, '=', getattr(self, 'country_id')))
-                    w.append(('code', '=', state.code))
-                    state_ids = province_obj.search(cr,
-                                                    uid,
-                                                    w)
-                    tndb.wlog('search(province,', w, ')=', state_ids)
-                    if len(state_ids) == 1:
-                        r[res_f] = state_ids[0]
-                        tndb.wlog('r[', res_f, '] = ', state_ids[0])
-                        setattr(self, f, r[res_f])
-                        tndb.wlog(f, '=', r[res_f])
-                f = 'state_id'
-                f1 = 'province_id'
-                tndb.wlog('228>if', hasattr(self, f1), 'and (not',
-                          hasattr(self, f), 'or(', fix[f],
-                          'and len(city_ids)==', city_ids, '))')
-                if hasattr(self, f1) and \
-                        (not hasattr(self, f) or
-                         (fix[f] and len(city_ids) == 1)):
-                    province = province_obj.browse(cr,
-                                                   uid,
-                                                   getattr(self, f1))
-                    w = []
-                    res_f = self.fld_in_model(res_obj, f, names[f])
-                    tbl_f = self.fld_in_model(state_obj,
-                                              'country_id',
-                                              names['country_id'])
-                    tndb.wlog(tbl_f, '= self.fld_in_model(city_obj,', f,
-                              ', names[f]);', names[f])
-                    if tbl_f:
-                        w.append((tbl_f, '=', getattr(self, 'country_id')))
-                    w.append(('code', '=', province.code))
-                    state_ids = state_obj.search(cr,
-                                                 uid,
-                                                 w)
-                    tndb.wlog('search(state,', w, ')=', state_ids)
-                    if len(state_ids) == 1:
-                        r[res_f] = state_ids[0]
-                        tndb.wlog('r[', res_f, '] = ', state_ids[0])
-                        setattr(self, f, r[res_f])
-                        tndb.wlog(f, '=', r[res_f])
+                        # tndb.wlog(f, '=', r[res_f])
+                for f in ('province_id', 'state_id', 'region_id'):
+                    f1 = 'province_id' if f != 'province_id' else 'state_id'
+                    tbl_f = self._fld_in_model('res.city', f)
+                    if not tbl_f:
+                        id = self._inherit_field(cr, uid, f, f1, fix)
+                        self._set_field(fix, f, id)
+                        res_f = self._fld_in_model('res.partner', f)
+                        if fix[f] and res_f not in r:
+                            r[res_f] = getattr(self, f)
+                            # tndb.wlog('r[', res_f, '] = ', r[res_f])
                 f = 'country_id'
-                if fix[f] and f not in r:
+                tbl_f = self._fld_in_model('res.city', f)
+                if not tbl_f and fix[f] and f not in r:
                     r[f] = getattr(self, f)
+                    # tndb.wlog('r[', f, '] = ', r[f])
+                if hasattr(self, 'city') and hasattr(self, 'state_id'):
+                    self._store_lazy_city(cr, uid, name)
                 res = {'value': r}
-                tndb.wlog('fix', fix)
-                tndb.wlog('res =', res)
+                # tndb.wlog('fix', fix)
+        if not res:
+            res = {'value': {name: value}}
+        # tndb.wlog('res =', res)
         return res
 
 
@@ -333,24 +492,6 @@ class res_partner(osv.osv):
                                     type='date',
                                     string='Birth date')
     }
-
-    def new_ctx(self,
-                country_id, zip, city, state_id, province_id, region_id,
-                context=None):
-        context = {} if context is None else context
-        if country_id:
-            context['country_id'] = country_id
-        if zip:
-            context['zip'] = zip
-        if city:
-            context['city'] = city
-        if state_id:
-            context['state_id'] = state_id
-        if province_id:
-            context['province_id'] = province_id
-        if region_id:
-            context['region_id'] = region_id
-        return context
 
     def on_change_country(self, cr, uid, ids,
                           country_id, zip, city, state_id, province, region,
@@ -406,7 +547,26 @@ class res_partner(osv.osv):
         return config_obj.set_geoloc(cr, uid, ids, 'city', city,
                                      context=context)
 
+    def new_ctx(self,
+                country_id, zip, city, state_id, province_id, region_id,
+                context=None):
+        context = {} if context is None else context
+        if country_id:
+            context['country_id'] = country_id
+        if zip:
+            context['zip'] = zip
+        if city:
+            context['city'] = city
+        if state_id:
+            context['state_id'] = state_id
+        if province_id:
+            context['province_id'] = province_id
+        if region_id:
+            context['region_id'] = region_id
+        return context
+
     def _set_vals_city_data(self, cr, uid, vals):
+        # tndb.wstamp('_set_vals_city_data(', vals, ')')
         context = self.new_ctx(vals.get('country_id', None),
                                vals.get('zip', None),
                                vals.get('city', None),
@@ -418,11 +578,14 @@ class res_partner(osv.osv):
         for f in ('city', 'zip'):
             if f in vals:
                 res = config_obj.set_geoloc(cr, uid, [],
-                                            f, vals[f], context=context)
-                if not isinstance(res, bool) and 'value' in res:
+                                            f, vals[f],
+                                            context=context)
+                # tndb.wlog('_set_vals_city_data(', f, ') = ', res)
+                if 'value' in res:
                     res = res['value']
                     for f in ('country_id', 'zip', 'city',
-                              'province_id', 'state_id', 'region_id'):
+                              'province_id', 'state_id', 'region_id',
+                              'province', 'region'):
                         if f == 'province_id':
                             f1 = 'province'
                         elif f == 'region_id':
@@ -431,15 +594,22 @@ class res_partner(osv.osv):
                             f1 = f
                         if f1 not in vals and f in res:
                             vals[f1] = res[f]
+                    # tndb.wlog('return', vals)
                     break
         return vals
 
     # Function compatible with old l10n_it_base
     def create(self, cr, uid, vals, context=None):
+        # pdb.set_trace()
+        # tndb.wstamp('partner.create(', vals, ')')
         vals = self._set_vals_city_data(cr, uid, vals)
+        # tndb.wlog('partner.create() = ', vals)
         return super(res_partner, self).create(cr, uid, vals, context)
 
     # Function compatible with old l10n_it_base
     def write(self, cr, uid, ids, vals, context=None):
+        # pdb.set_trace()
+        # tndb.wstamp('partner.write(', vals, ')')
         vals = self._set_vals_city_data(cr, uid, vals)
+        # tndb.wlog('partner.write() = ', vals)
         return super(res_partner, self).write(cr, uid, ids, vals, context)

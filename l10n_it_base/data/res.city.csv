@@ -270,7 +270,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 270,Strambino,TO,10019,0125,001269,I970,http://www.comuni-italiani.it/001/269/
 271,Susa,TO,10059,0122,001270,L013,http://www.comuni-italiani.it/001/270/
 272,Tavagnasco,TO,10010,0125,001271,L066,http://www.comuni-italiani.it/001/271/
-273,Torino,TO,101xx,011,001272,L219,http://www.comuni-italiani.it/001/272/
+273,Torino,TO,101%%,011,001272,L219,http://www.comuni-italiani.it/001/272/
 274,Torrazza Piemonte,TO,10037,011,001273,L238,http://www.comuni-italiani.it/001/273/
 275,Torre Canavese,TO,10010,0124,001274,L247,http://www.comuni-italiani.it/001/274/
 276,Torre Pellice,TO,10066,0121,001275,L277,http://www.comuni-italiani.it/001/275/
@@ -858,7 +858,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 858,Montiglio Monferrato,AT,14026,0141,005121,M302,http://www.comuni-italiani.it/005/121/
 859,Acqui Terme,AL,15011,0144,006001,A052,http://www.comuni-italiani.it/006/001/
 860,Albera Ligure,AL,15060,0143,006002,A146,http://www.comuni-italiani.it/006/002/
-861,Alessandria,AL,1512x,0131,006003,A182,http://www.comuni-italiani.it/006/003/
+861,Alessandria,AL,1512%,0131,006003,A182,http://www.comuni-italiani.it/006/003/
 862,Alfiano Natta,AL,15021,0141,006004,A189,http://www.comuni-italiani.it/006/004/
 863,Alice Bel Colle,AL,15010,0144,006005,A197,http://www.comuni-italiani.it/006/005/
 864,Alluvioni Cambiò,AL,15040,0131,006006,A211,http://www.comuni-italiani.it/006/006/
@@ -1280,7 +1280,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 1280,Fascia,GE,16020,010,010022,D509,http://www.comuni-italiani.it/010/022/
 1281,Favale di Malvaro,GE,16040,0185,010023,D512,http://www.comuni-italiani.it/010/023/
 1282,Fontanigorda,GE,16023,010,010024,D677,http://www.comuni-italiani.it/010/024/
-1283,Genova,GE,161xx,010,010025,D969,http://www.comuni-italiani.it/010/025/
+1283,Genova,GE,161%%,010,010025,D969,http://www.comuni-italiani.it/010/025/
 1284,Gorreto,GE,16020,010,010026,E109,http://www.comuni-italiani.it/010/026/
 1285,Isola del Cantone,GE,16017,010,010027,E341,http://www.comuni-italiani.it/010/027/
 1286,Lavagna,GE,16033,0185,010028,E488,http://www.comuni-italiani.it/010/028/
@@ -1337,7 +1337,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 1337,Deiva Marina,SP,19013,0187,011012,D265,http://www.comuni-italiani.it/011/012/
 1338,Follo,SP,19020,0187,011013,D655,http://www.comuni-italiani.it/011/013/
 1339,Framura,SP,19014,0187,011014,D758,http://www.comuni-italiani.it/011/014/
-1340,La Spezia,SP,191xx,0187,011015,E463,http://www.comuni-italiani.it/011/015/
+1340,La Spezia,SP,191%%,0187,011015,E463,http://www.comuni-italiani.it/011/015/
 1341,Lerici,SP,19032,0187,011016,E542,http://www.comuni-italiani.it/011/016/
 1342,Levanto,SP,19015,0187,011017,E560,http://www.comuni-italiani.it/011/017/
 1343,Maissana,SP,19010,0187,011018,E842,http://www.comuni-italiani.it/011/018/
@@ -1837,7 +1837,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 1842,Melzo,MI,20066,02,015142,F119,http://www.comuni-italiani.it/015/142/
 1843,Mesero,MI,20010,02,015144,F155,http://www.comuni-italiani.it/015/144/
 1844,Mezzago,MB,20883,039,108031,F165,http://www.comuni-italiani.it/108/031/
-1845,Milano,MI,201xx,02,015146,F205,http://www.comuni-italiani.it/015/146/
+1845,Milano,MI,201%%,02,015146,F205,http://www.comuni-italiani.it/015/146/
 1846,Misinto,MB,20826,02,108032,F247,http://www.comuni-italiani.it/108/032/
 1847,Monza,MB,20900,039,108033,F704,http://www.comuni-italiani.it/108/033/
 1848,Morimondo,MI,20081,02,015150,D033,http://www.comuni-italiani.it/015/150/
@@ -1943,7 +1943,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 1948,Barzana,BG,24030,035,016021,A684,http://www.comuni-italiani.it/016/021/
 1949,Bedulita,BG,24030,035,016022,A732,http://www.comuni-italiani.it/016/022/
 1950,Berbenno,BG,24030,035,016023,A786,http://www.comuni-italiani.it/016/023/
-1951,Bergamo,BG,241xx,035,016024,A794,http://www.comuni-italiani.it/016/024/
+1951,Bergamo,BG,241%%,035,016024,A794,http://www.comuni-italiani.it/016/024/
 1952,Berzo San Fermo,BG,24060,035,016025,A815,http://www.comuni-italiani.it/016/025/
 1953,Bianzano,BG,24060,035,016026,A846,http://www.comuni-italiani.it/016/026/
 1954,Blello,BG,24010,0345,016027,A903,http://www.comuni-italiani.it/016/027/
@@ -2192,7 +2192,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 2197,Brandico,BS,25030,030,017026,B120,http://www.comuni-italiani.it/017/026/
 2198,Braone,BS,25040,0364,017027,B124,http://www.comuni-italiani.it/017/027/
 2199,Breno,BS,25043,0364,017028,B149,http://www.comuni-italiani.it/017/028/
-2200,Brescia,BS,251xx,030,017029,B157,http://www.comuni-italiani.it/017/029/
+2200,Brescia,BS,251%%,030,017029,B157,http://www.comuni-italiani.it/017/029/
 2201,Brione,BS,25060,030,017030,B184,http://www.comuni-italiani.it/017/030/
 2202,Caino,BS,25070,030,017031,B365,http://www.comuni-italiani.it/017/031/
 2203,Calcinato,BS,25011,030,017032,B394,http://www.comuni-italiani.it/017/032/
@@ -3054,7 +3054,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3067,Torcegno,TN,38050,0461,022202,L211,http://www.comuni-italiani.it/022/202/
 3068,Trambileno,TN,38068,0464,022203,L322,http://www.comuni-italiani.it/022/203/
 3069,Transacqua,TN,38054,0439,022204,L329,http://www.comuni-italiani.it/022/204/
-3070,Trento,TN,3812x,0461,022205,L378,http://www.comuni-italiani.it/022/205/
+3070,Trento,TN,3812%,0461,022205,L378,http://www.comuni-italiani.it/022/205/
 3071,Tres,TN,38010,0463,022206,L385,http://www.comuni-italiani.it/022/206/
 3072,Tuenno,TN,38019,0463,022207,L457,http://www.comuni-italiani.it/022/207/
 3073,Valda,TN,38030,0461,022208,L550,http://www.comuni-italiani.it/022/208/
@@ -3166,7 +3166,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3179,Trevenzuolo,VR,37060,045,023088,L396,http://www.comuni-italiani.it/023/088/
 3180,Valeggio sul Mincio,VR,37067,045,023089,L567,http://www.comuni-italiani.it/023/089/
 3181,Velo Veronese,VR,37030,045,023090,L722,http://www.comuni-italiani.it/023/090/
-3182,Verona,VR,371xx,045,023091,L781,http://www.comuni-italiani.it/023/091/
+3182,Verona,VR,371%%,045,023091,L781,http://www.comuni-italiani.it/023/091/
 3183,Veronella,VR,37040,0442,023092,D193,http://www.comuni-italiani.it/023/092/
 3184,Vestenanova,VR,37030,045,023093,L810,http://www.comuni-italiani.it/023/093/
 3185,Vigasio,VR,37068,045,023094,L869,http://www.comuni-italiani.it/023/094/
@@ -3499,7 +3499,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3513,Stra,VE,30039,049,027039,I965,http://www.comuni-italiani.it/027/039/
 3514,Teglio Veneto,VE,30025,0421,027040,L085,http://www.comuni-italiani.it/027/040/
 3515,Torre di Mosto,VE,30020,0421,027041,L267,http://www.comuni-italiani.it/027/041/
-3516,Venezia,VE,301xx,041,027042,L736,http://www.comuni-italiani.it/027/042/
+3516,Venezia,VE,301%%,041,027042,L736,http://www.comuni-italiani.it/027/042/
 3517,Vigonovo,VE,30030,049,027043,L899,http://www.comuni-italiani.it/027/043/
 3518,Cavallino-Treporti,VE,30013,041,027044,M308,http://www.comuni-italiani.it/027/044/
 3519,Abano Terme,PD,35031,049,028001,A001,http://www.comuni-italiani.it/028/001/
@@ -3559,7 +3559,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3573,Montegrotto Terme,PD,35036,049,028057,F529,http://www.comuni-italiani.it/028/057/
 3574,Noventa Padovana,PD,35027,049,028058,F962,http://www.comuni-italiani.it/028/058/
 3575,Ospedaletto Euganeo,PD,35045,0429,028059,G167,http://www.comuni-italiani.it/028/059/
-3576,Padova,PD,351xx,049,028060,G224,http://www.comuni-italiani.it/028/060/
+3576,Padova,PD,351%%,049,028060,G224,http://www.comuni-italiani.it/028/060/
 3577,Pernumia,PD,35020,0429,028061,G461,http://www.comuni-italiani.it/028/061/
 3578,Piacenza d'Adige,PD,35040,0425,028062,G534,http://www.comuni-italiani.it/028/062/
 3579,Piazzola sul Brenta,PD,35016,049,028063,G587,http://www.comuni-italiani.it/028/063/
@@ -3822,7 +3822,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3837,Muggia,TS,34015,040,032003,F795,http://www.comuni-italiani.it/032/003/
 3838,San Dorligo della Valle - Dolina,TS,34018,040,032004,D324,http://www.comuni-italiani.it/032/004/
 3839,Sgonico,TS,34010,040,032005,I715,http://www.comuni-italiani.it/032/005/
-3840,Trieste,TS,341xx,040,032006,L424,http://www.comuni-italiani.it/032/006/
+3840,Trieste,TS,341%%,040,032006,L424,http://www.comuni-italiani.it/032/006/
 3841,Agazzano,PC,29010,0523,033001,A067,http://www.comuni-italiani.it/033/001/
 3842,Alseno,PC,29010,0523,033002,A223,http://www.comuni-italiani.it/033/002/
 3843,Besenzone,PC,29010,0523,033003,A823,http://www.comuni-italiani.it/033/003/
@@ -3854,7 +3854,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3869,Nibbiano,PC,29010,0523,033029,F885,http://www.comuni-italiani.it/033/029/
 3870,Ottone,PC,29026,0523,033030,G195,http://www.comuni-italiani.it/033/030/
 3871,Pecorara,PC,29010,0523,033031,G399,http://www.comuni-italiani.it/033/031/
-3872,Piacenza,PC,2912x,0523,033032,G535,http://www.comuni-italiani.it/033/032/
+3872,Piacenza,PC,2912%,0523,033032,G535,http://www.comuni-italiani.it/033/032/
 3873,Pianello Val Tidone,PC,29010,0523,033033,G557,http://www.comuni-italiani.it/033/033/
 3874,Piozzano,PC,29010,0523,033034,G696,http://www.comuni-italiani.it/033/034/
 3875,Podenzano,PC,29027,0523,033035,G747,http://www.comuni-italiani.it/033/035/
@@ -3897,7 +3897,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3912,Neviano degli Arduini,PR,43024,0521,034024,F882,http://www.comuni-italiani.it/034/024/
 3913,Noceto,PR,43015,0521,034025,F914,http://www.comuni-italiani.it/034/025/
 3914,Palanzano,PR,43025,0521,034026,G255,http://www.comuni-italiani.it/034/026/
-3915,Parma,PR,4312x,0521,034027,G337,http://www.comuni-italiani.it/034/027/
+3915,Parma,PR,4312%,0521,034027,G337,http://www.comuni-italiani.it/034/027/
 3916,Pellegrino Parmense,PR,43047,0524,034028,G424,http://www.comuni-italiani.it/034/028/
 3917,Polesine Parmense,PR,43010,0524,034029,G783,http://www.comuni-italiani.it/034/029/
 3918,Roccabianca,PR,43010,0521,034030,H384,http://www.comuni-italiani.it/034/030/
@@ -3950,7 +3950,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 3965,Quattro Castella,RE,42020,0522,035030,H122,http://www.comuni-italiani.it/035/030/
 3966,Ramiseto,RE,42030,0522,035031,G654,http://www.comuni-italiani.it/035/031/
 3967,Reggiolo,RE,42046,0522,035032,H225,http://www.comuni-italiani.it/035/032/
-3968,Reggio nell'Emilia,RE,4212x,0522,035033,H223,http://www.comuni-italiani.it/035/033/
+3968,Reggio nell'Emilia,RE,4212%,0522,035033,H223,http://www.comuni-italiani.it/035/033/
 3969,Rio Saliceto,RE,42010,0522,035034,H298,http://www.comuni-italiani.it/035/034/
 3970,Rolo,RE,42047,0522,035035,H500,http://www.comuni-italiani.it/035/035/
 3971,Rubiera,RE,42048,0522,035036,H628,http://www.comuni-italiani.it/035/036/
@@ -3985,7 +3985,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4000,Marano sul Panaro,MO,41054,059,036020,E905,http://www.comuni-italiani.it/036/020/
 4001,Medolla,MO,41036,0535,036021,F087,http://www.comuni-italiani.it/036/021/
 4002,Mirandola,MO,41037,0535,036022,F240,http://www.comuni-italiani.it/036/022/
-4003,Modena,MO,4112x,059,036023,F257,http://www.comuni-italiani.it/036/023/
+4003,Modena,MO,4112%,059,036023,F257,http://www.comuni-italiani.it/036/023/
 4004,Montecreto,MO,41025,0536,036024,F484,http://www.comuni-italiani.it/036/024/
 4005,Montefiorino,MO,41045,0536,036025,F503,http://www.comuni-italiani.it/036/025/
 4006,Montese,MO,41055,059,036026,F642,http://www.comuni-italiani.it/036/026/
@@ -4015,7 +4015,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4030,Baricella,BO,40052,051,037003,A665,http://www.comuni-italiani.it/037/003/
 4031,Bazzano,BO,40053,051,037004,A726,http://www.comuni-italiani.it/037/004/
 4032,Bentivoglio,BO,40010,051,037005,A785,http://www.comuni-italiani.it/037/005/
-4033,Bologna,BO,401xx,051,037006,A944,http://www.comuni-italiani.it/037/006/
+4033,Bologna,BO,401%%,051,037006,A944,http://www.comuni-italiani.it/037/006/
 4034,Borgo Tossignano,BO,40021,0542,037007,B044,http://www.comuni-italiani.it/037/007/
 4035,Budrio,BO,40054,051,037008,B249,http://www.comuni-italiani.it/037/008/
 4036,Calderara di Reno,BO,40012,051,037009,B399,http://www.comuni-italiani.it/037/009/
@@ -4077,7 +4077,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4092,Codigoro,FE,44021,0533,038005,C814,http://www.comuni-italiani.it/038/005/
 4093,Comacchio,FE,44022,0533,038006,C912,http://www.comuni-italiani.it/038/006/
 4094,Copparo,FE,44034,0532,038007,C980,http://www.comuni-italiani.it/038/007/
-4095,Ferrara,FE,4412x,0532,038008,D548,http://www.comuni-italiani.it/038/008/
+4095,Ferrara,FE,4412%,0532,038008,D548,http://www.comuni-italiani.it/038/008/
 4096,Formignana,FE,44035,0533,038009,D713,http://www.comuni-italiani.it/038/009/
 4097,Jolanda di Savoia,FE,44037,0532,038010,E320,http://www.comuni-italiani.it/038/010/
 4098,Lagosanto,FE,44023,0533,038011,E410,http://www.comuni-italiani.it/038/011/
@@ -4109,7 +4109,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4124,Fusignano,RA,48010,0545,039011,D829,http://www.comuni-italiani.it/039/011/
 4125,Lugo,RA,48022,0545,039012,E730,http://www.comuni-italiani.it/039/012/
 4126,Massa Lombarda,RA,48024,0545,039013,F029,http://www.comuni-italiani.it/039/013/
-4127,Ravenna,RA,4812x,0544,039014,H199,http://www.comuni-italiani.it/039/014/
+4127,Ravenna,RA,4812%,0544,039014,H199,http://www.comuni-italiani.it/039/014/
 4128,Riolo Terme,RA,48025,0546,039015,H302,http://www.comuni-italiani.it/039/015/
 4129,Russi,RA,48026,0544,039016,H642,http://www.comuni-italiani.it/039/016/
 4130,Sant'Agata sul Santerno,RA,48020,0545,039017,I196,http://www.comuni-italiani.it/039/017/
@@ -4118,11 +4118,11 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4133,Bertinoro,FC,47032,0543,040003,A809,http://www.comuni-italiani.it/040/003/
 4134,Borghi,FC,47030,0541,040004,B001,http://www.comuni-italiani.it/040/004/
 4135,Castrocaro Terme e Terra del Sole,FC,47011,0543,040005,C339,http://www.comuni-italiani.it/040/005/
-4136,Cesena,FC,4752x,0547,040007,C573,http://www.comuni-italiani.it/040/007/
+4136,Cesena,FC,4752%,0547,040007,C573,http://www.comuni-italiani.it/040/007/
 4137,Cesenatico,FC,47042,0547,040008,C574,http://www.comuni-italiani.it/040/008/
 4138,Civitella di Romagna,FC,47012,0543,040009,C777,http://www.comuni-italiani.it/040/009/
 4139,Dovadola,FC,47013,0543,040011,D357,http://www.comuni-italiani.it/040/011/
-4140,Forlì,FC,4712x,0543,040012,D704,http://www.comuni-italiani.it/040/012/
+4140,Forlì,FC,4712%,0543,040012,D704,http://www.comuni-italiani.it/040/012/
 4141,Forlimpopoli,FC,47034,0543,040013,D705,http://www.comuni-italiani.it/040/013/
 4142,Galeata,FC,47010,0543,040014,D867,http://www.comuni-italiani.it/040/014/
 4143,Gambettola,FC,47035,0547,040015,D899,http://www.comuni-italiani.it/040/015/
@@ -4187,7 +4187,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4202,Peglio,PU,61049,0722,041041,G416,http://www.comuni-italiani.it/041/041/
 4203,Pennabilli,RN,47864,0541,099024,G433,http://www.comuni-italiani.it/099/024/
 4204,Pergola,PU,61045,0721,041043,G453,http://www.comuni-italiani.it/041/043/
-4205,Pesaro,PU,6112x,0721,041044,G479,http://www.comuni-italiani.it/041/044/
+4205,Pesaro,PU,6112%,0721,041044,G479,http://www.comuni-italiani.it/041/044/
 4206,Petriano,PU,61020,0722,041045,G514,http://www.comuni-italiani.it/041/045/
 4207,Piagge,PU,61030,0721,041046,G537,http://www.comuni-italiani.it/041/046/
 4208,Piandimeleto,PU,61026,0722,041047,G551,http://www.comuni-italiani.it/041/047/
@@ -4212,7 +4212,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4227,Urbania,PU,61049,0722,041066,L498,http://www.comuni-italiani.it/041/066/
 4228,Urbino,PU,61029,0722,041067,L500,http://www.comuni-italiani.it/041/067/
 4229,Agugliano,AN,60020,071,042001,A092,http://www.comuni-italiani.it/042/001/
-4230,Ancona,AN,601xx,071,042002,A271,http://www.comuni-italiani.it/042/002/
+4230,Ancona,AN,601%%,071,042002,A271,http://www.comuni-italiani.it/042/002/
 4231,Arcevia,AN,60011,0731,042003,A366,http://www.comuni-italiani.it/042/003/
 4232,Barbara,AN,60010,071,042004,A626,http://www.comuni-italiani.it/042/004/
 4233,Belvedere Ostrense,AN,60030,0731,042005,A769,http://www.comuni-italiani.it/042/005/
@@ -4478,7 +4478,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4493,Empoli,FI,50053,0571,048014,D403,http://www.comuni-italiani.it/048/014/
 4494,Fiesole,FI,50014,055,048015,D575,http://www.comuni-italiani.it/048/015/
 4495,Figline Valdarno,FI,50063,055,048016,D583,http://www.comuni-italiani.it/048/016/
-4496,Firenze,FI,501xx,055,048017,D612,http://www.comuni-italiani.it/048/017/
+4496,Firenze,FI,501%%,055,048017,D612,http://www.comuni-italiani.it/048/017/
 4497,Firenzuola,FI,50033,055,048018,D613,http://www.comuni-italiani.it/048/018/
 4498,Fucecchio,FI,50054,0571,048019,D815,http://www.comuni-italiani.it/048/019/
 4499,Gambassi Terme,FI,50050,0571,048020,D895,http://www.comuni-italiani.it/048/020/
@@ -4516,7 +4516,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4531,Castagneto Carducci,LI,57022,0565,049006,C044,http://www.comuni-italiani.it/049/006/
 4532,Cecina,LI,57023,0586,049007,C415,http://www.comuni-italiani.it/049/007/
 4533,Collesalvetti,LI,57014,0586,049008,C869,http://www.comuni-italiani.it/049/008/
-4534,Livorno,LI,571xx,0586,049009,E625,http://www.comuni-italiani.it/049/009/
+4534,Livorno,LI,571%%,0586,049009,E625,http://www.comuni-italiani.it/049/009/
 4535,Marciana,LI,57030,0565,049010,E930,http://www.comuni-italiani.it/049/010/
 4536,Marciana Marina,LI,57033,0565,049011,E931,http://www.comuni-italiani.it/049/011/
 4537,Piombino,LI,57025,0565,049012,G687,http://www.comuni-italiani.it/049/012/
@@ -4553,7 +4553,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4568,Orciano Pisano,PI,56040,050,050023,G090,http://www.comuni-italiani.it/050/023/
 4569,Palaia,PI,56036,0587,050024,G254,http://www.comuni-italiani.it/050/024/
 4570,Peccioli,PI,56037,0587,050025,G395,http://www.comuni-italiani.it/050/025/
-4571,Pisa,PI,5612x,050,050026,G702,http://www.comuni-italiani.it/050/026/
+4571,Pisa,PI,5612%,050,050026,G702,http://www.comuni-italiani.it/050/026/
 4572,Pomarance,PI,56045,0588,050027,G804,http://www.comuni-italiani.it/050/027/
 4573,Ponsacco,PI,56038,0587,050028,G822,http://www.comuni-italiani.it/050/028/
 4574,Pontedera,PI,56025,0587,050029,G843,http://www.comuni-italiani.it/050/029/
@@ -4708,7 +4708,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 4723,Paciano,PG,06060,075,054036,G212,http://www.comuni-italiani.it/054/036/
 4724,Panicale,PG,06064,075,054037,G308,http://www.comuni-italiani.it/054/037/
 4725,Passignano sul Trasimeno,PG,06065,075,054038,G359,http://www.comuni-italiani.it/054/038/
-4726,Perugia,PG,061xx,075,054039,G478,http://www.comuni-italiani.it/054/039/
+4726,Perugia,PG,061%%,075,054039,G478,http://www.comuni-italiani.it/054/039/
 4727,Piegaro,PG,06066,075,054040,G601,http://www.comuni-italiani.it/054/040/
 4728,Pietralunga,PG,06026,075,054041,G618,http://www.comuni-italiani.it/054/041/
 4729,Poggiodomo,PG,06040,0743,054042,G758,http://www.comuni-italiani.it/054/042/
@@ -4985,7 +4985,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 5000,Rocca Priora,RM,00040,06,058088,H432,http://www.comuni-italiani.it/058/088/
 5001,Rocca Santo Stefano,RM,00030,06,058089,H441,http://www.comuni-italiani.it/058/089/
 5002,Roiate,RM,00030,06,058090,H494,http://www.comuni-italiani.it/058/090/
-5003,Roma,RM,001xx,06,058091,H501,http://www.comuni-italiani.it/058/091/
+5003,Roma,RM,001%%,06,058091,H501,http://www.comuni-italiani.it/058/091/
 5004,Roviano,RM,00027,0774,058092,H618,http://www.comuni-italiani.it/058/092/
 5005,Sacrofano,RM,00060,06,058093,H658,http://www.comuni-italiani.it/058/093/
 5006,Sambuci,RM,00020,0774,058094,H745,http://www.comuni-italiani.it/058/094/
@@ -5370,7 +5370,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 5385,Meta,NA,80062,081,063046,F162,http://www.comuni-italiani.it/063/046/
 5386,Monte di Procida,NA,80070,081,063047,F488,http://www.comuni-italiani.it/063/047/
 5387,Mugnano di Napoli,NA,80018,081,063048,F799,http://www.comuni-italiani.it/063/048/
-5388,Napoli,NA,801xx,081,063049,F839,http://www.comuni-italiani.it/063/049/
+5388,Napoli,NA,801%%,081,063049,F839,http://www.comuni-italiani.it/063/049/
 5389,Nola,NA,80035,081,063050,F924,http://www.comuni-italiani.it/063/050/
 5390,Ottaviano,NA,80044,081,063051,G190,http://www.comuni-italiani.it/063/051/
 5391,Palma Campania,NA,80036,081,063052,G283,http://www.comuni-italiani.it/063/052/
@@ -5648,7 +5648,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 5663,Sacco,SA,84070,0974,065113,H654,http://www.comuni-italiani.it/065/113/
 5664,Sala Consilina,SA,84036,0975,065114,H683,http://www.comuni-italiani.it/065/114/
 5665,Salento,SA,84070,0974,065115,H686,http://www.comuni-italiani.it/065/115/
-5666,Salerno,SA,841xx,089,065116,H703,http://www.comuni-italiani.it/065/116/
+5666,Salerno,SA,841%%,089,065116,H703,http://www.comuni-italiani.it/065/116/
 5667,Salvitelle,SA,84020,0975,065117,H732,http://www.comuni-italiani.it/065/117/
 5668,San Cipriano Picentino,SA,84099,089,065118,H800,http://www.comuni-italiani.it/065/118/
 5669,San Giovanni a Piro,SA,84070,0974,065119,H907,http://www.comuni-italiani.it/065/119/
@@ -5873,7 +5873,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 5888,Moscufo,PE,65010,085,068025,F765,http://www.comuni-italiani.it/068/025/
 5889,Nocciano,PE,65010,085,068026,F908,http://www.comuni-italiani.it/068/026/
 5890,Penne,PE,65017,085,068027,G438,http://www.comuni-italiani.it/068/027/
-5891,Pescara,PE,6512x,085,068028,G482,http://www.comuni-italiani.it/068/028/
+5891,Pescara,PE,6512%,085,068028,G482,http://www.comuni-italiani.it/068/028/
 5892,Pescosansonesco,PE,65020,085,068029,G499,http://www.comuni-italiani.it/068/029/
 5893,Pianella,PE,65019,085,068030,G555,http://www.comuni-italiani.it/068/030/
 5894,Picciano,PE,65010,085,068031,G589,http://www.comuni-italiani.it/068/031/
@@ -6103,7 +6103,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 6118,Chieuti,FG,71010,0882,071021,C633,http://www.comuni-italiani.it/071/021/
 6119,Deliceto,FG,71026,0881,071022,D269,http://www.comuni-italiani.it/071/022/
 6120,Faeto,FG,71020,0881,071023,D459,http://www.comuni-italiani.it/071/023/
-6121,Foggia,FG,7112x,0881,071024,D643,http://www.comuni-italiani.it/071/024/
+6121,Foggia,FG,7112%,0881,071024,D643,http://www.comuni-italiani.it/071/024/
 6122,Ischitella,FG,71010,0884,071025,E332,http://www.comuni-italiani.it/071/025/
 6123,Isole Tremiti,FG,71040,0882,071026,E363,http://www.comuni-italiani.it/071/026/
 6124,Lesina,FG,71010,0882,071027,E549,http://www.comuni-italiani.it/071/027/
@@ -6149,7 +6149,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 6164,Alberobello,BA,70011,080,072003,A149,http://www.comuni-italiani.it/072/003/
 6165,Altamura,BA,70022,080,072004,A225,http://www.comuni-italiani.it/072/004/
 6166,Andria,BT,76123,0883,110001,A285,http://www.comuni-italiani.it/110/001/
-6167,Bari,BA,701xx,080,072006,A662,http://www.comuni-italiani.it/072/006/
+6167,Bari,BA,701%%,080,072006,A662,http://www.comuni-italiani.it/072/006/
 6168,Barletta,BT,76121,0883,110002,A669,http://www.comuni-italiani.it/110/002/
 6169,Binetto,BA,70020,080,072008,A874,http://www.comuni-italiani.it/072/008/
 6170,Bisceglie,BT,76011,080,110003,A883,http://www.comuni-italiani.it/110/003/
@@ -6218,7 +6218,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 6233,San Giorgio Ionico,TA,74027,099,073024,H882,http://www.comuni-italiani.it/073/024/
 6234,San Marzano di San Giuseppe,TA,74020,099,073025,I018,http://www.comuni-italiani.it/073/025/
 6235,Sava,TA,74028,099,073026,I467,http://www.comuni-italiani.it/073/026/
-6236,Taranto,TA,7412x,099,073027,L049,http://www.comuni-italiani.it/073/027/
+6236,Taranto,TA,7412%,099,073027,L049,http://www.comuni-italiani.it/073/027/
 6237,Torricella,TA,74020,099,073028,L294,http://www.comuni-italiani.it/073/028/
 6238,Statte,TA,74010,099,073029,M298,http://www.comuni-italiani.it/073/029/
 6239,Brindisi,BR,72100,0831,074001,B180,http://www.comuni-italiani.it/074/001/
@@ -6766,7 +6766,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 6781,Platì,RC,89039,0964,080060,G735,http://www.comuni-italiani.it/080/060/
 6782,Polistena,RC,89024,0966,080061,G791,http://www.comuni-italiani.it/080/061/
 6783,Portigliola,RC,89040,0964,080062,G905,http://www.comuni-italiani.it/080/062/
-6784,Reggio di Calabria,RC,891xx,0965,080063,H224,http://www.comuni-italiani.it/080/063/
+6784,Reggio di Calabria,RC,891%%,0965,080063,H224,http://www.comuni-italiani.it/080/063/
 6785,Riace,RC,89040,0964,080064,H265,http://www.comuni-italiani.it/080/064/
 6786,Rizziconi,RC,89016,0966,080065,H359,http://www.comuni-italiani.it/080/065/
 6787,Roccaforte del Greco,RC,89060,0965,080066,H408,http://www.comuni-italiani.it/080/066/
@@ -6877,7 +6877,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 6892,Montelepre,PA,90040,091,082050,F544,http://www.comuni-italiani.it/082/050/
 6893,Montemaggiore Belsito,PA,90020,091,082051,F553,http://www.comuni-italiani.it/082/051/
 6894,Palazzo Adriano,PA,90030,091,082052,G263,http://www.comuni-italiani.it/082/052/
-6895,Palermo,PA,901xx,091,082053,G273,http://www.comuni-italiani.it/082/053/
+6895,Palermo,PA,901%%,091,082053,G273,http://www.comuni-italiani.it/082/053/
 6896,Partinico,PA,90047,091,082054,G348,http://www.comuni-italiani.it/082/054/
 6897,Petralia Soprana,PA,90026,0921,082055,G510,http://www.comuni-italiani.it/082/055/
 6898,Petralia Sottana,PA,90027,0921,082056,G511,http://www.comuni-italiani.it/082/056/
@@ -6954,7 +6954,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 6969,Mandanici,ME,98020,0942,083045,E876,http://www.comuni-italiani.it/083/045/
 6970,Mazzarrà Sant'Andrea,ME,98056,0941,083046,F066,http://www.comuni-italiani.it/083/046/
 6971,Merì,ME,98040,090,083047,F147,http://www.comuni-italiani.it/083/047/
-6972,Messina,ME,981xx,090,083048,F158,http://www.comuni-italiani.it/083/048/
+6972,Messina,ME,981%%,090,083048,F158,http://www.comuni-italiani.it/083/048/
 6973,Milazzo,ME,98057,090,083049,F206,http://www.comuni-italiani.it/083/049/
 6974,Militello Rosmarino,ME,98070,0941,083050,F210,http://www.comuni-italiani.it/083/050/
 6975,Mirto,ME,98070,0941,083051,F242,http://www.comuni-italiani.it/083/051/
@@ -7114,7 +7114,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 7129,Camporotondo Etneo,CT,95040,095,087012,B561,http://www.comuni-italiani.it/087/012/
 7130,Castel di Iudica,CT,95040,095,087013,C091,http://www.comuni-italiani.it/087/013/
 7131,Castiglione di Sicilia,CT,95012,0942,087014,C297,http://www.comuni-italiani.it/087/014/
-7132,Catania,CT,951xx,095,087015,C351,http://www.comuni-italiani.it/087/015/
+7132,Catania,CT,951%%,095,087015,C351,http://www.comuni-italiani.it/087/015/
 7133,Fiumefreddo di Sicilia,CT,95013,095,087016,D623,http://www.comuni-italiani.it/087/016/
 7134,Giarre,CT,95014,095,087017,E017,http://www.comuni-italiani.it/087/017/
 7135,Grammichele,CT,95042,0933,087018,E133,http://www.comuni-italiani.it/087/018/
@@ -7314,7 +7314,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 7329,Ballao,CA,09040,070,092004,A597,http://www.comuni-italiani.it/092/004/
 7330,Barrali,CA,09040,070,092005,A677,http://www.comuni-italiani.it/092/005/
 7331,Burcei,CA,09040,070,092008,B274,http://www.comuni-italiani.it/092/008/
-7332,Cagliari,CA,091xx,070,092009,B354,http://www.comuni-italiani.it/092/009/
+7332,Cagliari,CA,091%%,070,092009,B354,http://www.comuni-italiani.it/092/009/
 7333,Capoterra,CA,09012,070,092011,B675,http://www.comuni-italiani.it/092/011/
 7334,Decimomannu,CA,09033,070,092015,D259,http://www.comuni-italiani.it/092/015/
 7335,Decimoputzu,CA,09010,070,092016,D260,http://www.comuni-italiani.it/092/016/
@@ -7817,7 +7817,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 7832,Morciano di Romagna,RN,47833,0541,099011,F715,http://www.comuni-italiani.it/099/011/
 7833,Poggio Berni,RN,47824,0541,099012,G755,http://www.comuni-italiani.it/099/012/
 7834,Riccione,RN,47838,0541,099013,H274,http://www.comuni-italiani.it/099/013/
-7835,Rimini,RN,4792x,0541,099014,H294,http://www.comuni-italiani.it/099/014/
+7835,Rimini,RN,4792%,0541,099014,H294,http://www.comuni-italiani.it/099/014/
 7836,Saludecio,RN,47835,0541,099015,H724,http://www.comuni-italiani.it/099/015/
 7837,San Clemente,RN,47832,0541,099016,H801,http://www.comuni-italiani.it/099/016/
 7838,San Giovanni in Marignano,RN,47842,0541,099017,H921,http://www.comuni-italiani.it/099/017/
@@ -7978,7 +7978,7 @@ id,name,province_id:id,zip,phone_prefix,istat_code,cadaster_code,web_site
 7994,Valstrona,VB,28897,0323,103069,L651,http://www.comuni-italiani.it/103/069/
 7995,Vanzone con San Carlo,VB,28879,0324,103070,L666,http://www.comuni-italiani.it/103/070/
 7996,Varzo,VB,28868,0324,103071,L691,http://www.comuni-italiani.it/103/071/
-7997,Verbania,VB,2892x,0323,103072,L746,http://www.comuni-italiani.it/103/072/
+7997,Verbania,VB,2892%,0323,103072,L746,http://www.comuni-italiani.it/103/072/
 7998,Viganella,VB,28841,0324,103073,L864,http://www.comuni-italiani.it/103/073/
 7999,Vignone,VB,28819,0323,103074,L889,http://www.comuni-italiani.it/103/074/
 8000,Villadossola,VB,28844,0324,103075,L906,http://www.comuni-italiani.it/103/075/

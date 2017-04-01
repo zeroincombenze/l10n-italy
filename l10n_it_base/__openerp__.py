@@ -21,15 +21,22 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.0',
+    'version': '7.0.0.2.1',
     'category': 'Localisation/Italy',
     'description': """Italian Localization module - Base version
+
+Italian Localization - Base version
+-----------------------------------
 
 [en] Funcionalities:
 
 - Italian cities
 - Titles
 - Provinces (districts) and Regions
+
+
+Localizzazione italiana - Versione base
+---------------------------------------
 
 [en] Funzionalità
 
