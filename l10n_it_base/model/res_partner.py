@@ -191,7 +191,7 @@ class res_config_settings(orm.TransientModel):
                         f not in context and f != 'country_id':
                     delattr(self, f)
                     # tndb.wlog('del', f)
-        if name[-3:] == '_id' or value.find('.') >= 0:
+        if name[-3:] == '_id' or (value and value.find('.') >= 0):
             fix[name] = True
         is_updated = False
         if not hasattr(self, name) or value != getattr(self, name):
@@ -211,7 +211,7 @@ class res_config_settings(orm.TransientModel):
                 fix = self._clear_field(f, fix)
         # Special field:country_id
         # This module is for Italy so country is supposed to be Italy
-        if not hasattr(self, 'country_id'):
+        if not hasattr(self, 'country_id') and hasattr(self, 'city'):
             f = 'country_id'
             id = self._read_field(cr, uid, f, 'IT')
             self._set_field(fix, f, id)
@@ -219,19 +219,33 @@ class res_config_settings(orm.TransientModel):
         return fix, is_updated
 
     def _store_lazy_city(self, cr, uid, name):
-        y = getattr(self, 'city').split(' ')
-        if len(y) > 2:
-            w = self.pool.get(
+        wrd = getattr(self, 'city').split(' ')
+        if len(wrd) > 2:
+            pfx = self.pool.get(
                 'res.country.state').browse(cr,
                                             uid,
                                             self.state_id).name[0:5]
             where_valid = False
             tofind = '%'
-            for i in range(len(y)):
-                if y[i].find(w) < 0:
-                    tofind = tofind + y[i] + '%'
-                else:
+            discard = False
+            for i in range(len(wrd)):
+                if discard:
+                    discard = False
+                elif wrd[i].find(pfx) >= 0:
                     where_valid = True
+                elif wrd[i].endswith("ano") or \
+                        wrd[i].endswith("asco") or \
+                        wrd[i].endswith("ese") or \
+                        wrd[i].endswith("ino") or \
+                        wrd[i].endswith("ota") or \
+                        wrd[i].endswith("oto") or \
+                        wrd[i].startswith("d'"):
+                    where_valid = True
+                elif wrd[i].startswith("di"):
+                    where_valid = True
+                    discard = True
+                else:
+                    tofind = tofind + wrd[i] + '%'
             if where_valid:
                 setattr(self, 'x_city', tofind)
                 # tndb.wlog('x_city =', tofind)
@@ -375,7 +389,7 @@ class res_config_settings(orm.TransientModel):
         # tndb.wlog('357>if (search_in_it =', search_in_it,
         #           'or tbl_f =', tbl_f, ') and is_updated =', is_updated,
         #           'and where_valid =', where_valid, ':', where)
-        res = False
+        res = {name: value}
         if (search_in_it or tbl_f) and is_updated and where_valid:
             city_ids = self.pool.get('res.city').search(cr, uid, where)
             # tndb.wlog('search(city,', where, ')=', city_ids)
@@ -386,7 +400,6 @@ class res_config_settings(orm.TransientModel):
                 city_ids = self._search_level3(cr, uid, name, value, where)
             if len(city_ids) and len(city_ids) < ACCEPT_MAX_RES:
                 city = self.pool.get('res.city').browse(cr, uid, city_ids[0])
-                r = {name: value}
                 for f in self.flds_all:
                     res_f = self._fld_in_model('res.partner', f)
                     tbl_f = self._fld_in_model('res.city', f)
@@ -403,8 +416,8 @@ class res_config_settings(orm.TransientModel):
                             #           ' == 1)):')
                             if not hasattr(self, f) or \
                                     fix[f] or len(city_ids) == 1:
-                                r[res_f] = getattr(city, tbl_f).id
-                                # tndb.wlog('r[', res_f, '] = ', r[res_f])
+                                res[res_f] = getattr(city, tbl_f).id
+                                # tndb.wlog('res[', res_f, '] = ', res[res_f])
                                 if f == 'state_id':
                                     fix = self._clear_field('province_id',
                                                             fix)
@@ -423,35 +436,33 @@ class res_config_settings(orm.TransientModel):
                             if x and x.find('%') < 0 and \
                                     (not hasattr(self, f) or
                                      (fix[f] and len(city_ids) == 1)):
-                                r[res_f] = x
-                                # tndb.wlog('r[', res_f, '] = ', r[res_f])
+                                res[res_f] = x
+                                # tndb.wlog('res[', res_f, '] = ', res[res_f])
                     elif f == 'country_id' and res_f and hasattr(self, f):
-                        r[res_f] = getattr(self, f)
-                        # tndb.wlog('r[', res_f, '] = ', r[res_f])
-                    if res_f in r:
-                        setattr(self, f, r[res_f])
-                        # tndb.wlog(f, '=', r[res_f])
-                for f in ('province_id', 'state_id', 'region_id'):
-                    f1 = 'province_id' if f != 'province_id' else 'state_id'
-                    tbl_f = self._fld_in_model('res.city', f)
-                    if not tbl_f:
-                        id = self._inherit_field(cr, uid, f, f1, fix)
-                        self._set_field(fix, f, id)
-                        res_f = self._fld_in_model('res.partner', f)
-                        if fix[f] and res_f not in r:
-                            r[res_f] = getattr(self, f)
-                            # tndb.wlog('r[', res_f, '] = ', r[res_f])
+                        res[res_f] = getattr(self, f)
+                        # tndb.wlog('res[', res_f, '] = ', res[res_f])
+                    if res_f in res:
+                        setattr(self, f, res[res_f])
+                        # tndb.wlog(f, '=', res[res_f])
                 f = 'country_id'
                 tbl_f = self._fld_in_model('res.city', f)
-                if not tbl_f and fix[f] and f not in r:
-                    r[f] = getattr(self, f)
-                    # tndb.wlog('r[', f, '] = ', r[f])
+                if not tbl_f and fix[f] and f not in res:
+                    res[f] = getattr(self, f)
+                    # tndb.wlog('res[', f, '] = ', res[f])
                 if hasattr(self, 'city') and hasattr(self, 'state_id'):
                     self._store_lazy_city(cr, uid, name)
-                res = {'value': r}
-                # tndb.wlog('fix', fix)
-        if not res:
-            res = {'value': {name: value}}
+        for f in ('province_id', 'state_id', 'region_id'):
+            f1 = 'province_id' if f != 'province_id' else 'state_id'
+            tbl_f = self._fld_in_model('res.city', f)
+            if not tbl_f:
+                id = self._inherit_field(cr, uid, f, f1, fix)
+                self._set_field(fix, f, id)
+                res_f = self._fld_in_model('res.partner', f)
+                if fix[f] and res_f not in res and hasattr(self, f):
+                    res[res_f] = getattr(self, f)
+                    # tndb.wlog('res[', res_f, '] = ', res[res_f])
+        if 'value' not in res:
+            res = {'value': res}
         # tndb.wlog('res =', res)
         return res
 

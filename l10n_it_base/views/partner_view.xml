@@ -31,6 +31,7 @@
             <field name="city" position="after">
                 <div class="province_format">
                     <field name="state_id" placeholder="Province" style="width: 38%%"
+                           domain="[('country_id', '=', country_id)]"
                            on_change="on_change_state(country_id, zip, city, state_id, province, region)"
                            class="oe_no_button"
                            options='{"no_open": True}' />
@@ -38,6 +39,7 @@
                            on_change="on_change_province(country_id, zip, city, state_id, province, region)"
                            select="2"/>
                     <field name="region" placeholder="Region" style="width: 41%%"
+                           domain="[('country_id', '=', country_id)]"
                            on_change="on_change_region(country_id, zip, city, state_id, province, region)"/>
                 </div>
             </field>
@@ -52,6 +54,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="title" position="after">
+                <field name="birthdate" readonly="1"/>
                 <field name="birthday" widget="date"/>
             </field>
         </field>

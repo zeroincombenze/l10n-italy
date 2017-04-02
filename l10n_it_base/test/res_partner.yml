@@ -1,4 +1,17 @@
 -
+  I create partner empty
+-
+  !record {model: res.partner, id: partner_0}:
+    name: 'John Doe'
+-
+  Check for empty fields
+-
+  !python {model: res.partner}: |
+    partner = self.browse(cr, uid, ref('partner_0'))
+    assert not partner.country_id, "Wrong country code [0]!"
+    assert not partner.zip, "Wrong zip [0]!"
+    assert not partner.city, "Wrong city [0]!"
+-
   I create partner one
 -
   !record {model: res.partner, id: partner_1}:
