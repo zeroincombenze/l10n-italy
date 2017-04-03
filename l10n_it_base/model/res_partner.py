@@ -323,7 +323,7 @@ class res_config_settings(orm.TransientModel):
             where.append((name, '=', value))
             city_ids = self.pool.get('res.city').search(cr, uid, where)
             # tndb.wlog('search(city,', where, ')=', city_ids)
-        elif name == 'zip':
+        elif name == 'name':
             where.append((name, 'like', value.replace('.', '%')))
             city_ids = self.pool.get('res.city').search(cr, uid, where)
             # tndb.wlog('search(city,', where, ')=', city_ids)
