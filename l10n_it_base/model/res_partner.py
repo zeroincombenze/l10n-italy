@@ -124,7 +124,7 @@ class res_config_settings(orm.TransientModel):
         if dst == 'country_id':
             model = 'res.country'
             dst_obj = self.pool.get(model)
-        else:
+        else:                                               # pragma: no cover
             return False
         if value:
             w = self._bulk_where(model)
@@ -148,7 +148,7 @@ class res_config_settings(orm.TransientModel):
             src_model = 'res.province'
         elif src == 'state_id':
             src_model = 'res.country.state'
-        else:
+        else:                                               # pragma: no cover
             return False
         src_obj = self.pool.get(src_model)
         if dst == 'province_id':
@@ -157,7 +157,7 @@ class res_config_settings(orm.TransientModel):
             dst_model = 'res.country.state'
         elif dst == 'region_id':
             dst_model = 'res.region'
-        else:
+        else:                                               # pragma: no cover
             return False
         dst_obj = self.pool.get(dst_model)
         # tndb.wlog('if hasattr(self, src) =', hasattr(self, src),
