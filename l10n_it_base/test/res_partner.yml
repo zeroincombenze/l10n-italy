@@ -1,17 +1,4 @@
 -
-  I create partner empty
--
-  !record {model: res.partner, id: partner_0}:
-    name: 'John Doe'
--
-  Check for empty fields
--
-  !python {model: res.partner}: |
-    partner = self.browse(cr, uid, ref('partner_0'))
-    assert not partner.country_id, "Wrong country code [0]!"
-    assert not partner.zip, "Wrong zip [0]!"
-    assert not partner.city, "Wrong city [0]!"
--
   I create partner one
 -
   !record {model: res.partner, id: partner_1}:
@@ -65,7 +52,7 @@
     name: 'Secondamano s.r.l.'
     vat: 'IT01250630504'
     zip: '10060'
-    city: 'S. Secondo'
+    city: 'San Secondo'
 -
   Test on_change (city) for res.partner
 -
@@ -73,16 +60,23 @@
     province_obj = self.pool['res.province']
     region_obj = self.pool['res.region']
     partner = self.browse(cr, uid, ref('partner_2'))
-    country_id = partner.country_id.id
+    country_id = False
     zip = partner.zip
     city = partner.city
-    state_id = partner.state_id.id
-    province = partner.province.id
-    region = partner.region.id
-    vals = self.on_change_city(cr, uid, [ref('partner_2')], country_id, zip, 'S.Secondo', state_id, province, region)['value']
+    print "<<<",partner.city,">>>"
+    assert partner.city == 'San Secondo', "Invalid city[2]!"
+    state_id = False
+    province = False
+    region = False
+    vals = self.on_change_city(cr, uid, [ref('partner_2')], country_id, zip, 'S. Secondo', state_id, province, region)['value']
     self.write(cr, uid, [ref('partner_2')], vals)
     partner = self.browse(cr, uid, ref('partner_2'))
     assert partner.city == 'San Secondo di Pinerolo', "Invalid city rewritten [2]!"
+    assert partner.state_id.id == ref('l10n_it_base.it_TO'), "Invalid state_id [2]!"
+    TO_id = province_obj.search(cr, uid, [('code', '=', 'TO')])[0]
+    province = province_obj.browse(cr, uid, TO_id)
+    assert partner.province.id == TO_id, "Invalid province [2]!"
+    assert partner.region.id == province.region.id, "Invalid region [2]!"
 -
   I create partner three
 -
@@ -100,6 +94,25 @@
     partner = self.browse(cr, uid, ref('partner_3'))
     assert partner.city == 'Terzo', "Invalid city [3]!"
     assert partner.zip == '15010', "Invalid zip [3]!"
+-
+  Test on_change (zip multizone) for res.partner
+-
+  !python {model: res.partner}: |
+    province_obj = self.pool['res.province']
+    region_obj = self.pool['res.region']
+    partner = self.browse(cr, uid, ref('partner_3'))
+    country_id = partner.country_id.id
+    zip = partner.zip
+    city = partner.city
+    state_id = partner.state_id.id
+    province = partner.province.id
+    region = partner.region.id
+    vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '15121', city, state_id, province, region)['value']
+    assert vals['zip'] == '15121', "Invalid zip on change [3b]!"
+    assert vals['city'] == 'Alessandria', "Invalid city on change [3b]!"
+    vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '10121', city, state_id, province, region)['value']
+    assert vals['zip'] == '10121', "Invalid zip on change [3b]!"
+    assert vals['city'] == 'Torino', "Invalid city on change [3b]!"
 -
   I create partner four
 -
