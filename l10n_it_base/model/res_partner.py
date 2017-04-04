@@ -724,7 +724,7 @@ class res_partner(osv.osv):
         # tndb.wlog('partner.write() = ', vals)
         return super(res_partner, self).write(cr, uid, ids, vals, context)
 
-    def fill_fields(self, cr, uid, ids, data, context=None):
+    def fill_fields(self, cr, uid, ids, context=None):
         """Write record filling address empty fields
         May be called by button"""
         # tndb.wstamp('fill_fields(', ids, ')')
@@ -733,3 +733,6 @@ class res_partner(osv.osv):
                 return self._fill_fields(cr, uid, id)
         else:
             return self._fill_fields(cr, uid, ids)
+
+    def button_complete_addr(self, cr, uid, ids, context=None):
+        self.fill_fields(cr, uid, ids, context)

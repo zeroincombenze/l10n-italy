@@ -30,7 +30,7 @@ class res_city(osv.osv):
     _columns = {
         'name': fields.char('City',
                             size=64,
-                            help='Official city name.',
+                            help='Use "." (dot) to search with abbreviation',
                             required=True),
         'province_id': fields.many2one('res.province', 'Province'),
         'zip': fields.char('CAP',
