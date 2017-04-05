@@ -93,7 +93,7 @@ class res_config_settings(orm.TransientModel):
 
     def _clear_field(self, f, fix):
         fix[f] = True
-        # tndb.wlog('fix[', f, '] = True')
+        # tndb.wlog('_clear_field: fix[', f, '] = True')
         if hasattr(self, f):
             delattr(self, f)
             # tndb.wlog('clear', f)
@@ -116,8 +116,6 @@ class res_config_settings(orm.TransientModel):
         if value:
             setattr(self, f, value)
             # tndb.wlog(f, '=', value)
-            # fix[f] = True
-            # tndb.wlog('fix[', f, '] = True')
 
     def _read_field(self, cr, uid, dst, value):
         # tndb.wlog('_read_field(', dst, value, ')')
@@ -185,13 +183,26 @@ class res_config_settings(orm.TransientModel):
         return False
 
     def _init_local_vars(self, cr, uid, name, value, context):
-        # tndb.wlog('init_local_var()')
+        # tndb.wlog('init_local_var(', name, value, ')')
         do_fill = context.get('DoFill', False)
         fix = {}
+        if value != getattr(self, name, False):
+            is_updated = True
+            # tndb.wlog(name, 'is updated')
+        else:
+            is_updated = False
         for f in self.flds_all:
             fix[f] = False
+            # tndb.wlog('fix[', f, '] = False')
+            # tndb.wlog('if do_fill =', do_fill, ' or f != name:')
             if do_fill or f != name:
                 if f in context and context[f]:
+                    # tndb.wlog('if getattr(self, f, False) =',
+                    #           getattr(self, f, False),
+                    #           ' != context[f] =', context[f], ':')
+                    if getattr(self, f, False) != context[f]:
+                        is_updated = True
+                        # tndb.wlog(f, 'is updated')
                     setattr(self, f, context[f])
                     # tndb.wlog(f, '=ctx(', context[f], ')')
                 elif hasattr(self, f) and \
@@ -201,14 +212,12 @@ class res_config_settings(orm.TransientModel):
         if not do_fill and name[-3:] == '_id' or \
                 (isinstance(value, basestring) and value.find('.') >= 0):
             fix[name] = True
-        is_updated = False
         # tndb.wlog('if not hasattr(self,', name, ') =',
         #           not hasattr(self, name),
-        #           ' or value =', value, ' != getattr(self, name),:')
-        if not hasattr(self, name) or value != getattr(self, name):
-            if not do_fill:
-                is_updated = True
-                # tndb.wlog(name, 'is updated')
+        #           ' or value =', value,
+        #           ' != getattr(self, name) =', getattr(self, name, False),
+        #           ':')
+        if value != getattr(self, name, False):
             if value:
                 res = False
                 if not do_fill:
@@ -276,8 +285,8 @@ class res_config_settings(orm.TransientModel):
         f = 'country_id'
         tbl_f = self._fld_in_model(model, f)
         # tndb.wlog('if hasattr(self, country_id) =',
-        #           hasattr(self, 'country_id'),
-        #           'and getattr(self, country_id) and tbl_f =', tbl_f)
+#                   hasattr(self, 'country_id'),
+#                   'and getattr(self, country_id) and tbl_f =', tbl_f)
         if hasattr(self, 'country_id') and \
                 getattr(self, 'country_id') and \
                 tbl_f:
@@ -291,7 +300,7 @@ class res_config_settings(orm.TransientModel):
         where_valid = False
         for f in self.flds_res:
             tbl_f = self._fld_in_model('res.city', f)
-            # tndb.wlog('287>if hasattr(self,', f, ') =', hasattr(self, f),
+            # tndb.wlog('295>if hasattr(self,', f, ') =', hasattr(self, f),
             #           ' and tbl_f =', tbl_f, ':')
             if hasattr(self, f) and tbl_f:
                 if f[-3:] == '_id':
@@ -457,7 +466,7 @@ class res_config_settings(orm.TransientModel):
         # prepare city 'where condition'
         where, where_valid = self._build_where(name, fix)
         do_search = self._do_search(cr, uid)
-        # tndb.wlog('452>if do_fill =', do_fill,
+        # tndb.wlog('464>if do_fill =', do_fill,
         #           ' or (do_search =', do_search,
         #           'and is_updated =', is_updated,
         #           ' and where_valid=', where_valid,
@@ -481,13 +490,13 @@ class res_config_settings(orm.TransientModel):
                 for f in self.flds_all:
                     res_f = self._fld_in_model('res.partner', f)
                     tbl_f = self._fld_in_model('res.city', f)
-                    # tndb.wlog(' 474>if tbl_f =', tbl_f,
+                    # tndb.wlog(' 486>if tbl_f =', tbl_f,
                     #           'and hasattr(city, tbl_f) =',
                     #           hasattr(city, (tbl_f or 'NA')))
                     if tbl_f and hasattr(city, tbl_f):
-                        # tndb.wlog(' 476>if f[-3:] == _id')
+                        # tndb.wlog(' 488>if f[-3:] == _id')
                         if f[-3:] == '_id':
-                            # tndb.wlog(' 482>if not hasattr(self, f) =',
+                            # tndb.wlog(' 494>if not hasattr(self, f) =',
                             #           not hasattr(self, f),
                             #           'or fix[f] =', fix[f],
                             #           'or len(city_ids) =', len(city_ids),
@@ -504,7 +513,7 @@ class res_config_settings(orm.TransientModel):
                                                             fix)
                         else:
                             x = getattr(city, tbl_f)
-                            # tndb.wlog(' 500>if ((x =', x,
+                            # tndb.wlog(' 513>if ((x =', x,
                             #           'and x.find(%) < 0) or f =', f,
                             #           '!= name) and (not hasattr(self, f) =',
                             #           not hasattr(self, f),
@@ -542,6 +551,9 @@ class res_config_settings(orm.TransientModel):
         if 'value' not in res:
             res = {'value': res}
         # tndb.wlog('res =', res)
+        if context.get('DoWrite', False):
+            for f in self.flds_all:
+                fix = self._clear_field(f, fix)
         return res
 
 
@@ -674,7 +686,7 @@ class res_partner(osv.osv):
                                vals.get('state_id', None),
                                vals.get('province', None),
                                vals.get('region', None),
-                               context=None)
+                               context={'DoWrite': True})
         config_obj = self.pool.get('res.config.settings')
         for f in ('city', 'zip'):
             if f in vals:
