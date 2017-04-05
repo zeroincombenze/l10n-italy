@@ -641,17 +641,29 @@ class res_partner(osv.osv):
                 context=None):
         context = {} if context is None else context
         if country_id:
-            context['country_id'] = country_id
+            if isinstance(country_id, (int, long)):
+                context['country_id'] = country_id
+            else:
+                context['country_id'] = country_id.id
         if zip:
             context['zip'] = zip
         if city:
             context['city'] = city
         if state_id:
-            context['state_id'] = state_id
+            if isinstance(state_id, (int, long)):
+                context['state_id'] = state_id
+            else:
+                context['state_id'] = state_id.id
         if province_id:
-            context['province_id'] = province_id
+            if isinstance(province_id, (int, long)):
+                context['province_id'] = province_id
+            else:
+                context['province_id'] = province_id.id
         if region_id:
-            context['region_id'] = region_id
+            if isinstance(region_id, (int, long)):
+                context['region_id'] = region_id
+            else:
+                context['region_id'] = region_id.id
         return context
 
     def _set_vals_city_data(self, cr, uid, vals):
