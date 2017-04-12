@@ -41,6 +41,7 @@
                            class="oe_no_button"
                            options='{"no_open": True}' />
                     <field name="province" placeholder="Province" style="width: 19%%"
+                           readonly="1"
                            on_change="on_change_province(country_id, zip, city, state_id, province, region)"
                            select="2"/>
                     <field name="region" placeholder="Region" style="width: 41%%"
