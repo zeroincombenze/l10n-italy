@@ -23,7 +23,6 @@
 
 from openerp.osv import osv, orm
 from openerp.osv import fields
-import re
 # import pdb #debug
 # from tndb import tndb
 
@@ -560,38 +559,12 @@ class res_config_settings(orm.TransientModel):
 class res_partner(osv.osv):
     _inherit = 'res.partner'
 
-    def _get_birthday(self, cr, uid, ids, field_names, arg, context=None):
-        """ Read string birthday from res.partner """
-        res = {}
-        for partner in self.browse(cr, uid, ids, context=context):
-            if partner.birthdate:
-                f = partner.birthdate
-                if re.match('[0-9]{4}.[0-9]{2}.[0-9]{2}', f):
-                    res[partner.id] = f[0:4] + '-' + f[5:7] + '-' + f[8:10]
-                elif re.match('[0-9]{2}.[0-9]{2}.[0-9]{4}', f):
-                    res[partner.id] = f[6:10] + '-' + f[3:5] + '-' + f[0:2]
-        return res
-
-    def _set_birthday(self, cr, uid, partner_id, name, value, arg,
-                      context=None):
-        """ Write string birthday to res.partner """
-        self.write(cr,
-                   uid,
-                   [partner_id],
-                   {'birthdate': value or False},
-                   context=context)
-        return True
-
     _columns = {
         'province': fields.many2one('res.province', string='Province'),
         'region': fields.many2one('res.region', string='Region'),
         'province_code': fields.related(
             'province', 'code', type='char',
             size=2, string='Province code'),
-        'birthday': fields.function(_get_birthday,
-                                    fnct_inv=_set_birthday,
-                                    type='date',
-                                    string='Birth date')
     }
 
     def on_change_country(self, cr, uid, ids,
