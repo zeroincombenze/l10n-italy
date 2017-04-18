@@ -23,7 +23,7 @@
 
 from openerp.osv import osv, orm
 from openerp.osv import fields
-# import pdb #debug
+# import pdb  # debug
 # from tndb import tndb
 
 FLDS_LIST1 = ['country_id', 'zip', 'city']
@@ -284,8 +284,8 @@ class res_config_settings(orm.TransientModel):
         f = 'country_id'
         tbl_f = self._fld_in_model(model, f)
         # tndb.wlog('if hasattr(self, country_id) =',
-#                   hasattr(self, 'country_id'),
-#                   'and getattr(self, country_id) and tbl_f =', tbl_f)
+        #           hasattr(self, 'country_id'),
+        #           'and getattr(self, country_id) and tbl_f =', tbl_f)
         if hasattr(self, 'country_id') and \
                 getattr(self, 'country_id') and \
                 tbl_f:
@@ -406,10 +406,21 @@ class res_config_settings(orm.TransientModel):
             where.append((name, '=', value))
             city_ids = self.pool.get('res.city').search(cr, uid, where)
             # tndb.wlog('search(city,', where, ')=', city_ids)
-        elif name == 'name':
-            where.append((name, 'like', value.replace('.', '%')))
+        elif name == 'city':
+            tofind = False
+            if getattr(self, 'zip', False):
+                tofind = self.zip[0:3] + '%'
+                where.append(('zip', '=ilike', tofind))
+            where.append(('name', '=ilike', value.replace('.', '%')))
             city_ids = self.pool.get('res.city').search(cr, uid, where)
             # tndb.wlog('search(city,', where, ')=', city_ids)
+            if len(city_ids) == 0:
+                where = self._bulk_where('res.city')
+                if tofind:
+                    where.append(('zip', '=ilike', tofind))
+                where.append(('name', 'ilike', value.replace('.', '%') + '%'))
+                city_ids = self.pool.get('res.city').search(cr, uid, where)
+                # tndb.wlog('search(city,', where, ')=', city_ids)
         return city_ids
 
     def _search_level4(self, cr, uid, name, value, where):
@@ -704,7 +715,6 @@ class res_partner(osv.osv):
 
     # Function compatible with old l10n_it_base
     def create(self, cr, uid, vals, context=None):
-        # pdb.set_trace()
         # tndb.wstamp('partner.create(', vals, ')')
         # In order to debug old version records
         if vals.get('name', False) != 'John Doe' or \
@@ -715,7 +725,6 @@ class res_partner(osv.osv):
 
     # Function compatible with old l10n_it_base
     def write(self, cr, uid, ids, vals, context=None):
-        # pdb.set_trace()
         # tndb.wstamp('partner.write(', vals, ')')
         vals = self._set_vals_city_data(cr, uid, vals)
         # tndb.wlog('partner.write() = ', vals)
