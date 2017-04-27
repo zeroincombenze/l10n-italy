@@ -463,7 +463,7 @@ class res_config_settings(orm.TransientModel):
         # tndb.wlog('do_search =', do_search)
         return do_search
 
-    def set_geoloc(self, cr, uid, ids, name, value, context=None):
+    def fill_geoloc(self, cr, uid, ids, name, value, context=None):
         """Set values of geolocalization from country, zip, city and
         other fields."""
         # tndb.wstamp(name, value, context)
@@ -584,8 +584,8 @@ class res_partner(osv.osv):
         context = self.new_ctx(country_id, zip, city, state_id,
                                province, region, context=context)
         config_obj = self.pool.get('res.config.settings')
-        return config_obj.set_geoloc(cr, uid, ids, 'country_id', country_id,
-                                     context=context)
+        return config_obj.fill_geoloc(cr, uid, ids, 'country_id', country_id,
+                                      context=context)
 
     def on_change_zip(self, cr, uid, ids,
                       country_id, zip, city, state_id, province, region,
@@ -593,8 +593,8 @@ class res_partner(osv.osv):
         context = self.new_ctx(country_id, zip, city, state_id,
                                province, region, context=context)
         config_obj = self.pool.get('res.config.settings')
-        return config_obj.set_geoloc(cr, uid, ids, 'zip', zip,
-                                     context=context)
+        return config_obj.fill_geoloc(cr, uid, ids, 'zip', zip,
+                                      context=context)
 
     def on_change_state(self, cr, uid, ids,
                         country_id, zip, city, state_id, province, region,
@@ -602,8 +602,8 @@ class res_partner(osv.osv):
         context = self.new_ctx(country_id, zip, city, state_id,
                                province, region, context=context)
         config_obj = self.pool.get('res.config.settings')
-        return config_obj.set_geoloc(cr, uid, ids, 'state_id', state_id,
-                                     context=context)
+        return config_obj.fill_geoloc(cr, uid, ids, 'state_id', state_id,
+                                      context=context)
 
     def on_change_province(self, cr, uid, ids,
                            country_id, zip, city, state_id, province, region,
@@ -611,8 +611,8 @@ class res_partner(osv.osv):
         context = self.new_ctx(country_id, zip, city, state_id,
                                province, region, context=context)
         config_obj = self.pool.get('res.config.settings')
-        return config_obj.set_geoloc(cr, uid, ids, 'province_id', province,
-                                     context=context)
+        return config_obj.fill_geoloc(cr, uid, ids, 'province_id', province,
+                                      context=context)
 
     def on_change_region(self, cr, uid, ids,
                          country_id, zip, city, state_id, province, region,
@@ -620,8 +620,8 @@ class res_partner(osv.osv):
         context = self.new_ctx(country_id, zip, city, state_id,
                                province, region, context=context)
         config_obj = self.pool.get('res.config.settings')
-        return config_obj.set_geoloc(cr, uid, ids, 'region_id', region,
-                                     context=context)
+        return config_obj.fill_geoloc(cr, uid, ids, 'region_id', region,
+                                      context=context)
 
     def on_change_city(self, cr, uid, ids,
                        country_id, zip, city, state_id, province, region,
@@ -629,8 +629,8 @@ class res_partner(osv.osv):
         context = self.new_ctx(country_id, zip, city, state_id,
                                province, region, context=context)
         config_obj = self.pool.get('res.config.settings')
-        return config_obj.set_geoloc(cr, uid, ids, 'city', city,
-                                     context=context)
+        return config_obj.fill_geoloc(cr, uid, ids, 'city', city,
+                                      context=context)
 
     def new_ctx(self,
                 country_id, zip, city, state_id, province_id, region_id,
@@ -674,9 +674,9 @@ class res_partner(osv.osv):
         config_obj = self.pool.get('res.config.settings')
         for f in ('city', 'zip'):
             if f in vals:
-                res = config_obj.set_geoloc(cr, uid, [],
-                                            f, vals[f],
-                                            context=context)
+                res = config_obj.fill_geoloc(cr, uid, [],
+                                             f, vals[f],
+                                             context=context)
                 # tndb.wlog('_set_vals_city_data(', f, ') = ', res)
                 if 'value' in res:
                     res = res['value']
@@ -706,9 +706,9 @@ class res_partner(osv.osv):
                                partner.region,
                                context={'DoFill': True})
         config_obj = self.pool.get('res.config.settings')
-        res = config_obj.set_geoloc(cr, uid, [],
-                                    'city', False,
-                                    context=context)
+        res = config_obj.fill_geoloc(cr, uid, [],
+                                     'city', False,
+                                     context=context)
         vals = res['value']
         # tndb.wlog('partner.write(_fill_fields) = ', vals)
         return super(res_partner, self).write(cr, uid, [id], vals, context)
