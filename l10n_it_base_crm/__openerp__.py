@@ -33,7 +33,7 @@ Funcionalities:
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": ['crm', 'l10n_it_bbone'],
+    "depends": ['crm', 'l10n_it_base'],
     "data": ['crm/crm_view.xml'],
     "demo": [],
     'test': [],

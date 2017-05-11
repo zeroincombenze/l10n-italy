@@ -26,7 +26,7 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'l10n_it_bbone', 'account'
+        'l10n_it_base', 'account'
     ],
     "data": [
         'partner_view.xml',
