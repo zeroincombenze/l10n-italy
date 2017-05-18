@@ -25,6 +25,7 @@ Odoo Italia Association
 http://www.odoo-italia.org/
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
@@ -33,6 +34,7 @@ addon | version | summary
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 9.0.0.1.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_ddt](l10n_it_ddt/) | 9.0.1.0.0 | Documento di Trasporto
 [l10n_it_rea](l10n_it_rea/) | 9.0.0.1.0 | Manage fields for Economic Administrative catalogue
+
 
 Unported addons
 ---------------
