@@ -10,9 +10,9 @@
 Odoo Italia Modules
 ===================
 
-Italian modules for odoo (formerly OpenERP) 6.0
+Italian modules for odoo (formerly OpenERP) 6.1
 
-http://www.openerp-italia.org/
+http://www.odoo-italia.org/
 
 [//]: # (copyright)
 
