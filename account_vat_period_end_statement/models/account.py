@@ -230,6 +230,18 @@ class account_vat_period_end_statement(orm.Model):
             result[statement.id] = lines
         return result
 
+    def _get_default_interest(self, cr, uid, context=None):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id
+        return company.of_account_end_vat_statement_interest
+
+    def _get_default_interest_percent(self, cr, uid, context=None):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id
+        if not company.of_account_end_vat_statement_interest:
+            return 0
+        return company.of_account_end_vat_statement_interest_percent
+
     _name = "account.vat.period.end.statement"
     _rec_name = 'date'
     _columns = {

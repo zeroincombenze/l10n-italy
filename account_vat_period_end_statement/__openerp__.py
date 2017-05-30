@@ -27,7 +27,10 @@
     "name": "Period End VAT Statement",
     "version": "7.0.0.3.0",
     'category': 'Generic Modules/Accounting',
-    "depends": ["account_voucher", "report_webkit"],
+    'license': 'AGPL-3',
+    "depends": ["account_voucher",
+                "report_webkit"
+                ],
     "author": ["Agile Business Group", "Odoo Italian Community"],
     "description": """
 
