@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2013 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@
 #
 
 from openerp.osv import orm, fields
-from tools.translate import _
+from openerp.tools.translate import _
 import math
 import decimal_precision as dp
 
@@ -439,38 +439,43 @@ class account_vat_period_end_statement(orm.Model):
             statement.write({'move_id': move_id})
 
             for debit_line in statement.debit_vat_account_line_ids:
-                debit_vat_data = {
-                    'name': _('Debit VAT'),
-                    'account_id': debit_line.account_id.id,
-                    'move_id': move_id,
-                    'journal_id': statement.journal_id.id,
-                    'debit': 0.0,
-                    'credit': 0.0,
-                    'date': statement.date,
-                    'period_id': period_ids[0],
-                }
-                if debit_line.amount > 0:
-                    debit_vat_data['debit'] = math.fabs(debit_line.amount)
-                else:
-                    debit_vat_data['credit'] = math.fabs(debit_line.amount)
-                line_obj.create(cr, uid, debit_vat_data)
+                if debit_line.amount != 0.0:
+                    debit_vat_data = {
+                        'name': _('Debit VAT'),
+                        'account_id': debit_line.account_id.id,
+                        'move_id': move_id,
+                        'journal_id': statement.journal_id.id,
+                        'debit': 0.0,
+                        'credit': 0.0,
+                        'date': statement.date,
+                        'period_id': period_ids[0],
+                    }
+
+                    if debit_line.amount > 0:
+                        debit_vat_data['debit'] = math.fabs(debit_line.amount)
+                    else:
+                        debit_vat_data['credit'] = math.fabs(debit_line.amount)
+                    line_obj.create(cr, uid, debit_vat_data)
 
             for credit_line in statement.credit_vat_account_line_ids:
-                credit_vat_data = {
-                    'name': _('Credit VAT'),
-                    'account_id': credit_line.account_id.id,
-                    'move_id': move_id,
-                    'journal_id': statement.journal_id.id,
-                    'debit': 0.0,
-                    'credit': 0.0,
-                    'date': statement.date,
-                    'period_id': period_ids[0],
-                }
-                if credit_line.amount < 0:
-                    credit_vat_data['debit'] = math.fabs(credit_line.amount)
-                else:
-                    credit_vat_data['credit'] = math.fabs(credit_line.amount)
-                line_obj.create(cr, uid, credit_vat_data)
+                if credit_line.amount != 0.0:
+                    credit_vat_data = {
+                        'name': _('Credit VAT'),
+                        'account_id': credit_line.account_id.id,
+                        'move_id': move_id,
+                        'journal_id': statement.journal_id.id,
+                        'debit': 0.0,
+                        'credit': 0.0,
+                        'date': statement.date,
+                        'period_id': period_ids[0],
+                    }
+                    if credit_line.amount < 0:
+                        credit_vat_data['debit'] = math.fabs(
+                            credit_line.amount)
+                    else:
+                        credit_vat_data['credit'] = math.fabs(
+                            credit_line.amount)
+                    line_obj.create(cr, uid, credit_vat_data)
 
             if statement.previous_credit_vat_amount:
                 previous_credit_vat_data = {
@@ -568,6 +573,8 @@ class account_vat_period_end_statement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
         for statement in self.browse(cr, uid, ids, context):
@@ -710,7 +717,8 @@ class account_tax_code(orm.Model):
     _columns = {
         'vat_statement_account_id': fields.many2one(
             'account.account',
-            "Account used for VAT statement. The tax code balance will be "
+            "Account used for VAT statement",
+            help="The tax code balance will be "
             "associated to this account after selecting the period in "
             "VAT statement"),
         'vat_statement_type': fields.selection(

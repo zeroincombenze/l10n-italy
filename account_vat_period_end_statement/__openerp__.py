@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2013 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,10 +25,10 @@
 
 {
     "name": "Period End VAT Statement",
-    "version": "0.3",
+    "version": "7.0.0.3.0",
     'category': 'Generic Modules/Accounting',
     "depends": ["account_voucher", "report_webkit"],
-    "author": ["Agile Business Group", "OpenERP Italian Community"],
+    "author": ["Agile Business Group", "Odoo Italian Community"],
     "description": """
 
 This module helps to register the VAT statement of period end.
@@ -52,19 +52,18 @@ The statement can be paid like every other debit: by voucher or 'move.line'
 reconciliation.
 
 Specification:
-http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
+http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
 """,
     'website': 'http://www.agilebg.com',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
-        'account_view.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'reports.xml',
+        'views/account_view.xml',
     ],
     'demo': [],
     'installable': True,
-    'active': False,
 }
