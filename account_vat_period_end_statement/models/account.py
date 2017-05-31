@@ -585,8 +585,7 @@ class account_vat_period_end_statement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
         for statement in self.browse(cr, uid, ids, context):
