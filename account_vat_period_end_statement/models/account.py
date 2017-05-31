@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 #    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2015 Associazione Odoo Italia
@@ -595,8 +595,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         statement_generic_account_line_obj = self.pool[
             'statement.generic.account.line']
         decimal_precision_obj = self.pool['decimal.precision']
@@ -618,8 +617,8 @@ class AccountVatPeriodEndStatement(orm.Model):
                         {'previous_debit_vat_amount': prev_statement.residual})
                 elif prev_statement.authority_vat_amount < 0:
                     statement.write(
-                        {'previous_credit_vat_amount': (
-                            - prev_statement.authority_vat_amount)})
+                        {'previous_credit_vat_amount': -
+                            prev_statement.authority_vat_amount})
 
             credit_line_ids = []
             debit_line_ids = []
@@ -679,7 +678,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             domain = [
                 ('account_id', '=', acc_id),
                 ('statement_id', '=', statement.id),
-                ]
+            ]
             line_ids = statement_generic_account_line_obj.search(
                 cr, uid, domain)
             if line_ids:
@@ -697,7 +696,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                     'statement_id': statement.id,
                     'account_id': acc_id,
                     'amount': interest_amount,
-                    }
+                }
                 statement_generic_account_line_obj.create(cr, uid, val)
         return True
 
@@ -720,7 +719,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         res = {'value': {
             'interest_percent':
                 company.of_account_end_vat_statement_interest_percent,
-            }}
+        }}
         return res
 
     def get_account_interest(self, cr, uid, ids, context=None):
