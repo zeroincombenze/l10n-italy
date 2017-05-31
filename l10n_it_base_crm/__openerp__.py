@@ -3,7 +3,7 @@
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-#    Copyright (C) 2013 Associazione OpenERP Italia
+#    Copyright (C) 2013 Associazione Odoo Italia
 #                 (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ Funcionalities:
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": ['crm', 'l10n_it_base'],
+    "depends": ['crm', 'l10n_it_bbone'],
     "data": ['crm/crm_view.xml'
              ],
     "demo": [],

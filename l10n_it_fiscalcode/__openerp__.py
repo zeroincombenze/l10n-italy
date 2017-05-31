@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2010-2012 Associazione OpenERP Italia
+#    Copyright (C) 2010-2012 Associazione Odoo Italia
 #    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -29,10 +29,10 @@ Functionalities:
 - Fiscal code computation for partner
 
 """,
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
+    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends": ['base', 'l10n_it_base'],
+    "depends": ['base', 'l10n_it_bbone'],
     "init_xml": [
         'fiscalcode_view.xml',
         'wizard/compute_fc_view.xml'

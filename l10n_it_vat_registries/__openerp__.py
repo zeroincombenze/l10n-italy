@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
+#    Copyright (C) 2011-2013 Associazione Odoo Italia
 #    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
@@ -27,12 +27,12 @@
     'description': """Accounting reports for Italian localization
 - VAT Registries
 http://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
+    'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": [
         'report_webkit',
-        'l10n_it_base',
+        'l10n_it_bbone',
         'l10n_it_fiscalcode',
         'l10n_it_partially_deductible_vat'],
     "init_xml": [
