@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L.
-# (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All
+# Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
 #                       Pedro Tarrafeta <pedro@acysos.com>
@@ -14,8 +14,8 @@
 #    Copyright (C) 2013 Sergio Corato (<http://www.icstools.it>)
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public
-# License as published by
+#    it under the terms of the GNU Affero General Public License as
+# published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -36,14 +36,15 @@
     "website": "http://www.odoo-italia.org",
     "category": "Generic Modules/Accounting",
     "description": """
-Generalization of l10n_es_fiscal_year_closing ( http://apps.odoo.com/addon/4506 )
+Generalization of l10n_es_fiscal_year_closing ( http:
+    //apps.odoo.com/addon/4506 )
 
 Fiscal Year Closing Wizard
 
 Replaces the default Odoo end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:
-  - Check for unbalanced moves, moves with invalid dates or
-    period or draft moves on the fiscal year to be closed.
+  - Check for unbalanced moves, moves with invalid dates
+    or period or draft moves on the fiscal year to be closed.
   - Create the Loss and Profit entry.
   - Create the Net Loss and Profit entry.
   - Create the Closing entry.

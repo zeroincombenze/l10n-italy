@@ -24,7 +24,9 @@
     'name': 'Italian Localisation - VAT Registries',
     'version': '2.0.4.5',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - VAT Registries\nhttp://wiki.odoo-italia.org/doku.php/moduli/l10n_it_tax_journal""",
+    'description': """Accounting reports for Italian localization - VAT
+    Registries\nhttp:
+        //wiki.odoo-italia.org/doku.php/moduli/l10n_it_tax_journal""",
     'author': 'Odoo Italian Community',
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',

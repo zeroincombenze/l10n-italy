@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 ISA s.r.l. (<http://www.isa.it>).
 #
 #    This program is free software: you can redistribute it and/or modify

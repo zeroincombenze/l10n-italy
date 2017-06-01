@@ -45,7 +45,8 @@ class account_invoice(orm.Model):
         return res
 
     def _format_time(self, date):
-        return datetime.strptime(date, DEFAULT_SERVER_DATE_FORMAT).strftime('%d/%m/%Y')  # caution is not DEFAULT_SERVER_DATE_FORMAT
+        return datetime.strptime(date, DEFAULT_SERVER_DATE_FORMAT).strftime(
+            '%d/%m/%Y')  # caution is not DEFAULT_SERVER_DATE_FORMAT
 
     def _get_preview_line(self, invoice, line):
         currency_name = invoice.currency_id.name
@@ -68,18 +69,25 @@ class account_invoice(orm.Model):
             if invoice.id not in result:
                 result[invoice.id] = []
             if invoice.state == 'draft':
-                compute_taxes = ait_obj.compute(cr, uid, invoice.id, context=context)
+                compute_taxes = ait_obj.compute(
+                    cr, uid, invoice.id, context=context)
                 for tax in compute_taxes:
                     amount_tax += compute_taxes[tax]['amount']
                 t_amount_total = invoice.amount_total
                 context.update({'amount_tax': amount_tax})
                 if invoice.payment_term:
-                    for line in self.pool['account.payment.term'].compute(cr, uid, invoice.payment_term.id, t_amount_total, date_ref=invoice.date_invoice, context=context):
-                        result[invoice.id].append(self._get_preview_line(invoice, line))
+                    for line in self.pool['account.payment.term'].compute(
+                            cr, uid, invoice.payment_term.id, t_amount_total,
+                            date_ref=invoice.date_invoice, context=context):
+                        result[invoice.id].append(self._get_preview_line(
+                            invoice, line))
         return result
 
     _columns = {
-        'registration_date': fields.date('Registration Date', states={'paid': [('readonly', True)], 'open': [('readonly', True)], 'close': [('readonly', True)]}, select=True, help="Keep empty to use the current date"),
+        'registration_date': fields.date('Registration Date', states={'paid': [
+            ('readonly', True)], 'open': [('readonly', True)], 'close': [(
+                'readonly', True)]}, select=True,
+            help="Keep empty to use the current date"),
         'maturity_ids': fields.function(
             _maturity, type="one2many", store=False,
             relation="account.move.line", method=True),
@@ -92,14 +100,15 @@ class account_invoice(orm.Model):
         #                                    type="one2many",
         #
         # relation='account.invoice.maturity.preview.lines',
-        #                                    string="Payments
-        # overview", readonly=True),
+        #                                    string="Payments overview",
+        # readonly=True),
     }
 
     def action_move_create(self, cr, uid, ids, context=None):
         if not context:
             context = self.pool['res.users'].context_get(cr, uid)
-        super(account_invoice, self).action_move_create(cr, uid, ids, context=context)
+        super(account_invoice, self).action_move_create(
+            cr, uid, ids, context=context)
         for invoice in self.browse(cr, uid, ids, context):
             date_invoice = invoice.date_invoice
             reg_date = invoice.registration_date
@@ -110,7 +119,8 @@ class account_invoice(orm.Model):
                     reg_date = time.strftime(DEFAULT_SERVER_DATE_FORMAT)
             if date_invoice and reg_date:
                 if date_invoice > reg_date:
-                    raise orm.except_orm(_('Error date !'), _('The invoice date cannot be later than the date of registration!'))
+                    raise orm.except_orm(_('Error date !'), _(
+                        'The invoice date cannot be later than the date of registration!'))
             # periodo
             if invoice.type in ['in_invoice', 'in_refund']:
                 date_start = invoice.registration_date or invoice.date_invoice or time.strftime(DEFAULT_SERVER_DATE_FORMAT)
@@ -119,30 +129,46 @@ class account_invoice(orm.Model):
                 date_start = invoice.date_invoice or invoice.registration_date or time.strftime(DEFAULT_SERVER_DATE_FORMAT)
                 date_stop = invoice.date_invoice or invoice.registration_date or time.strftime(DEFAULT_SERVER_DATE_FORMAT)
             period_ids = self.pool['account.period'].search(
-                cr, uid, [('date_start', '<=', date_start), ('date_stop', '>=', date_stop), ('company_id', '=', invoice.company_id.id), ('special', '!=', True)])
+                cr, uid, [('date_start', '<=', date_start), (
+                    'date_stop', '>=', date_stop), (
+                    'company_id', '=', invoice.company_id.id), (
+                    'special', '!=', True)])
             if period_ids:
                 period_id = period_ids[0]
-                self.write(cr, uid, [invoice.id], {'registration_date': reg_date, 'period_id': period_id})
-                mov_date = reg_date or invoice.date_invoice or time.strftime(DEFAULT_SERVER_DATE_FORMAT)
-                self.pool['account.move'].write(cr, uid, [invoice.move_id.id], {'state': 'draft'})
-                if hasattr(invoice, 'supplier_invoice_number') and invoice.supplier_invoice_number:
+                self.write(cr, uid, [invoice.id], {'registration_date':
+                                                   reg_date, 'period_id': period_id})
+                mov_date = reg_date or invoice.date_invoice or time.strftime(
+                    DEFAULT_SERVER_DATE_FORMAT)
+                self.pool['account.move'].write(cr, uid, [
+                    invoice.move_id.id], {'state': 'draft'})
+                if hasattr(
+                        invoice,
+                        'supplier_invoice_number') and invoice.supplier_invoice_number:
                     sql = "update account_move_line set period_id = " + \
-                        str(period_id) + ", date = '" + mov_date + "' , ref = '" + \
+                        str(
+                            period_id) + ", date = '" + mov_date + "' , ref = '" + \
                         invoice.supplier_invoice_number + "' where move_id = " + str(invoice.move_id.id)
                 else:
                     sql = "update account_move_line set period_id = " + \
-                        str(period_id) + ", date = '" + mov_date + "' where move_id = " + str(invoice.move_id.id)
+                        str(
+                            period_id) + ", date = '" + mov_date + "' where move_id = " + str(invoice.move_id.id)
                 cr.execute(sql)
 
-                if hasattr(invoice, 'supplier_invoice_number') and invoice.supplier_invoice_number:
-                    self.pool['account.move'].write(cr, uid, [invoice.move_id.id], {
+                if hasattr(
+                        invoice,
+                        'supplier_invoice_number') and invoice.supplier_invoice_number:
+                    self.pool['account.move'].write(cr, uid, [
+                        invoice.move_id.id], {
                         'period_id': period_id,
                         'date': mov_date,
-                        'ref': invoice.supplier_invoice_number}, context=context)
+                        'ref':
+                        invoice.supplier_invoice_number}, context=context)
                 else:
                     self.pool['account.move'].write(
-                        cr, uid, [invoice.move_id.id], {'period_id': period_id, 'date': mov_date}, context=context)
-                self.pool['account.move'].write(cr, uid, [invoice.move_id.id], {'state': 'posted'}, context=context)
+                        cr, uid, [invoice.move_id.id], {'period_id':
+                                                        period_id, 'date': mov_date}, context=context)
+                self.pool['account.move'].write(cr, uid, [
+                    invoice.move_id.id], {'state': 'posted'}, context=context)
 
         self._log_event(cr, uid, ids)
         return True
@@ -153,4 +179,5 @@ class account_invoice(orm.Model):
             default.update({
                 'registration_date': False,
             })
-        return super(account_invoice, self).copy(cr, uid, ids, default, context)
+        return super(account_invoice, self).copy(
+            cr, uid, ids, default, context)

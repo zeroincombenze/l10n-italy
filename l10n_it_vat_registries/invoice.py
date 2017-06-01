@@ -32,13 +32,15 @@ class Parser(report_sxw.rml_parse):
     def _get_account_lines(self, move):
         res = []
         # tax_code_obj = self.pool.get('account.tax.code')
-        # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
+        # index è usato per non ripetere la stampa dei dati fattura quando ci
+        # sono più codici IVA
         index = 0
         invoice = False
         for move_line in move.line_id:
             if move_line.invoice:
                 if invoice and invoice.id != move_line.invoice.id:
-                    raise Exception(_("Move %s contains different invoices") % move.name)
+                    raise Exception(_(
+                        "Move %s contains different invoices") % move.name)
                 invoice = move_line.invoice
             account_item = {
                 'tax_code_name': move_line.tax_code_id.name,
@@ -46,8 +48,10 @@ class Parser(report_sxw.rml_parse):
                 'account_name': move_line.account_id.name,
                 'index': index,
                 'ref': move_line.ref,
-                'invoice_date': (invoice and invoice.date_invoice or move.date or ''),
-                'supplier_invoice_number': (invoice and invoice.supplier_invoice_number or ''),
+                'invoice_date': (
+                    invoice and invoice.date_invoice or move.date or ''),
+                'supplier_invoice_number': (
+                    invoice and invoice.supplier_invoice_number or ''),
                 'amount_total': invoice and invoice.amount_total or '',
             }
             res.append(account_item)
@@ -62,21 +66,25 @@ class Parser(report_sxw.rml_parse):
             if move_line.tax_code_id and not move_line.tax_code_id.exclude_from_registries and move_line.tax_amount:
                 if not res.get(move_line.tax_code_id.id):
                     res[move_line.tax_code_id.id] = 0.0
-                    self.localcontext['used_tax_codes'][move_line.tax_code_id.id] = True
+                    self.localcontext['used_tax_codes'][
+                        move_line.tax_code_id.id] = True
                 res[move_line.tax_code_id.id] += (move_line.tax_amount
-                                                  * self.localcontext['data']['tax_sign'])
+                                                  * self.localcontext['data'][
+                                                      'tax_sign'])
         return res
 
     def _get_tax_lines(self, move):
         res = []
         tax_code_obj = self.pool.get('account.tax.code')
-        # index è usato per non ripetere la stampa dei dati fattura quando ci sono più codici IVA
+        # index è usato per non ripetere la stampa dei dati fattura quando ci
+        # sono più codici IVA
         index = 0
         invoice = False
         for move_line in move.line_id:
             if move_line.invoice:
                 if invoice and invoice.id != move_line.invoice.id:
-                    raise Exception(_("Move %s contains different invoices") % move.name)
+                    raise Exception(_(
+                        "Move %s contains different invoices") % move.name)
                 invoice = move_line.invoice
         amounts_by_code = self._tax_amounts_by_code(move)
         for tax_code_id in amounts_by_code:
@@ -87,7 +95,8 @@ class Parser(report_sxw.rml_parse):
                 'index': index,
                 'invoice_date': (invoice and invoice.date_invoice or
                                  move.date or ''),
-                'supplier_invoice_number': (invoice and invoice.supplier_invoice_number or '')
+                'supplier_invoice_number': (
+                    invoice and invoice.supplier_invoice_number or '')
             }
             res.append(tax_item)
             index += 1
@@ -126,11 +135,14 @@ class Parser(report_sxw.rml_parse):
                                                 }):
                 if not res_dict.get(tax_code.id):
                     res_dict[tax_code.id] = 0.0
-                res_dict[tax_code.id] += (tax_code.sum_period * self.localcontext['data']['tax_sign'])
+                res_dict[tax_code.id] += (
+                    tax_code.sum_period * self.localcontext['data'][
+                        'tax_sign'])
         for tax_code_id in res_dict:
             tax_code = tax_code_obj.browse(self.cr, self.uid, tax_code_id)
             if res_dict[tax_code_id]:
-                res.append((tax_code.name, res_dict[tax_code_id], tax_code.is_base))
+                res.append((tax_code.name, res_dict[
+                    tax_code_id], tax_code.is_base))
         return res
 
     def _get_tax_codes(self):
@@ -140,7 +152,8 @@ class Parser(report_sxw.rml_parse):
         parent_codes = {}
         tax_code_obj = self.pool['account.tax.code']
         for tax_code in tax_code_obj.browse(self.cr, self.uid,
-                                            self.localcontext['used_tax_codes'].keys()):
+                                            self.localcontext[
+                                                'used_tax_codes'].keys()):
             parent_codes.update(self.build_parent_tax_codes(tax_code))
         return self._compute_totals(parent_codes.keys())
 
@@ -148,8 +161,10 @@ class Parser(report_sxw.rml_parse):
         period_obj = self.pool['account.period']
         start_date = False
         for period in period_obj.browse(self.cr, self.uid,
-                                        self.localcontext['data']['period_ids']):
-            period_start = datetime.strptime(period.date_start, DEFAULT_SERVER_DATE_FORMAT)
+                                        self.localcontext['data'][
+                                            'period_ids']):
+            period_start = datetime.strptime(
+                period.date_start, DEFAULT_SERVER_DATE_FORMAT)
             if not start_date or start_date > period_start:
                 start_date = period_start
         return start_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
@@ -158,8 +173,10 @@ class Parser(report_sxw.rml_parse):
         period_obj = self.pool['account.period']
         end_date = False
         for period in period_obj.browse(self.cr, self.uid,
-                                        self.localcontext['data']['period_ids']):
-            period_end = datetime.strptime(period.date_stop, DEFAULT_SERVER_DATE_FORMAT)
+                                        self.localcontext['data'][
+                                            'period_ids']):
+            period_end = datetime.strptime(
+                period.date_stop, DEFAULT_SERVER_DATE_FORMAT)
             if not end_date or end_date < period_end:
                 end_date = period_end
         return end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
@@ -180,7 +197,8 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'fiscal_page_base': data.get('fiscal_page_base'),
         })
-        return super(Parser, self).set_context(objects, data, ids, report_type=report_type)
+        return super(Parser, self).set_context(
+            objects, data, ids, report_type=report_type)
 
 
 report_sxw.report_sxw('report.registro_iva_vendite',

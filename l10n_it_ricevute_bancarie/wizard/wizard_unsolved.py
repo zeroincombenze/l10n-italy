@@ -28,10 +28,14 @@ from openerp.tools.translate import _
 class RibaUnsolved(orm.TransientModel):
 
     def _get_unsolved_journal_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'unsolved_journal_id', context=context)
+        return self.pool.get(
+            'riba.configurazione').get_default_value_by_distinta_line(
+            cr, uid, 'unsolved_journal_id', context=context)
 
     def _get_effects_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'acceptance_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione').get_default_value_by_distinta_line(
+            cr, uid, 'acceptance_account_id', context=context)
 
     def _get_effects_amount(self, cr, uid, context=None):
         context = {} if context is None else context
@@ -43,19 +47,29 @@ class RibaUnsolved(orm.TransientModel):
 
     def _get_riba_bank_account_id(self, cr, uid, context=None):
         res = False
-        res = self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'accreditation_account_id', context=context)
+        res = self.pool.get(
+            'riba.configurazione').get_default_value_by_distinta_line(
+            cr, uid, 'accreditation_account_id', context=context)
         if not res:
-            res = self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'acceptance_account_id', context=context)
+            res = self.pool.get(
+                'riba.configurazione').get_default_value_by_distinta_line(
+                cr, uid, 'acceptance_account_id', context=context)
         return res
 
     def _get_overdue_effects_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'overdue_effects_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione').get_default_value_by_distinta_line(
+            cr, uid, 'overdue_effects_account_id', context=context)
 
     def _get_bank_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'bank_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione').get_default_value_by_distinta_line(
+            cr, uid, 'bank_account_id', context=context)
 
     def _get_bank_expense_account_id(self, cr, uid, context=None):
-        return self.pool.get('riba.configurazione').get_default_value_by_distinta_line(cr, uid, 'protest_charge_account_id', context=context)
+        return self.pool.get(
+            'riba.configurazione').get_default_value_by_distinta_line(
+            cr, uid, 'protest_charge_account_id', context=context)
 
     _name = "riba.unsolved"
     _columns = {
@@ -106,7 +120,8 @@ class RibaUnsolved(orm.TransientModel):
         line_pool.write(cr, uid, active_id, {'state': 'unsolved'},
                         context=context)
         wf_service.trg_validate(
-            uid, 'riba.distinta', line_pool.browse(cr, uid, active_id).distinta_id.id, 'unsolved', cr)
+            uid, 'riba.distinta', line_pool.browse(
+                cr, uid, active_id).distinta_id.id, 'unsolved', cr)
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self, cr, uid, ids, context=None):
@@ -135,11 +150,13 @@ class RibaUnsolved(orm.TransientModel):
             'line_id': [
                 (0, 0, {
                     'name': _('Overdue Effects'),
-                    'account_id': distinta_line.partner_id.property_account_receivable.id,  # wizard.overdue_effects_account_id.id,
+                    'account_id':
+                        distinta_line.partner_id.property_account_receivable.id,  # wizard.overdue_effects_account_id.id,
                     'debit': wizard.overdue_effects_amount,
                     'credit': 0.0,
                     'partner_id': distinta_line.partner_id.id,
-                    'date_maturity': wizard.new_due_date,  # distinta_line.due_date,
+                    'date_maturity':
+                    wizard.new_due_date,  # distinta_line.due_date,
                 }),
                 (0, 0, {
                     'name': _('Effects'),
@@ -169,12 +186,14 @@ class RibaUnsolved(orm.TransientModel):
         }
         move_id = move_pool.create(cr, uid, move_vals, context=context)
 
-        for move_line in move_pool.browse(cr, uid, move_id, context=context).line_id:
+        for move_line in move_pool.browse(
+                cr, uid, move_id, context=context).line_id:
             if move_line.account_id.id == distinta_line.partner_id.property_account_receivable.id:  # wizard.overdue_effects_account_id.id:
                 for riba_move_line in distinta_line.move_line_ids:
-                    invoice_pool.write(cr, uid, riba_move_line.move_line_id.invoice.id, {
-                        'unsolved_move_line_ids': [(4, move_line.id)],
-                    }, context=context)
+                    invoice_pool.write(
+                        cr, uid, riba_move_line.move_line_id.invoice.id, {
+                            'unsolved_move_line_ids': [(4, move_line.id)],
+                        }, context=context)
 
         distinta_line.write({
             'unsolved_move_id': move_id,

@@ -36,7 +36,8 @@ class sale_order_confirm(orm.TransientModel):
     _inherit = "sale.order.confirm"
 
     _columns = {
-        'cig': fields.char('CIG', size=64, help="Codice identificativo di gara"),
+        'cig': fields.char(
+            'CIG', size=64, help="Codice identificativo di gara"),
         'cup': fields.char('CUP', size=64, help="Codice unico di Progetto")
     }
 
@@ -44,8 +45,10 @@ class sale_order_confirm(orm.TransientModel):
     #     sale_order_obj = self.pool['sale.order']
     #     context = {} if context is None else context
     #
-    #     res = super(sale_order_confirm, self).default_get(cr, uid, fields, context=context)
-    #     sale_order_data = sale_order_obj.browse(cr, uid, context['active_ids'][0], context)
+    #     res = super(sale_order_confirm, self).default_get(cr, uid, fields,
+    # context=context)
+    #     sale_order_data = sale_order_obj.browse(cr, uid,
+    # context['active_ids'][0], context)
     #
     #     res['cup'] = sale_order_data.cig
     #     res['cig'] = sale_order_data.cup
@@ -55,7 +58,8 @@ class sale_order_confirm(orm.TransientModel):
     def sale_order_confirmated(self, cr, uid, ids, context=None):
 
         sale_order_obj = self.pool['sale.order']
-        result = super(sale_order_confirm, self).sale_order_confirmated(cr, uid, ids, context=context)
+        result = super(sale_order_confirm, self).sale_order_confirmated(
+            cr, uid, ids, context=context)
         sale_order_confirm_data = self.browse(cr, uid, ids[0], context=context)
 
         if result.get('res_id'):
@@ -69,10 +73,13 @@ class sale_order_confirm(orm.TransientModel):
                 'cup': sale_order_confirm_data.cup,
             }, context=context)
 
-        for order in sale_order_obj.browse(cr, uid, [result.get('res_id') or context['active_ids'][0]], context=context):
-            # partner = self.pool['res.partner'].browse(cr, uid, order.partner_id.id)
+        for order in sale_order_obj.browse(cr, uid, [result.get(
+                'res_id') or context['active_ids'][0]], context=context):
+            # partner = self.pool['res.partner'].browse(cr, uid,
+            # order.partner_id.id)
             picking_obj = self.pool['stock.picking']
-            picking_ids = picking_obj.search(cr, uid, [('sale_id', '=', order.id)], context=context)
+            picking_ids = picking_obj.search(cr, uid, [(
+                'sale_id', '=', order.id)], context=context)
             for picking_id in picking_ids:
                 picking_obj.write(cr, uid, picking_id, {
                     'cig': sale_order_confirm_data.cig or '',

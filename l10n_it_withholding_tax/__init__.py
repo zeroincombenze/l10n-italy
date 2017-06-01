@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (C) 2012 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    
+#    Copyright (C) 2012 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>). 
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public
-# License as published by
+#    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #

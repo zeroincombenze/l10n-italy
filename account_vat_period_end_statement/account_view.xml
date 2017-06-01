@@ -10,7 +10,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Vat statement">
-                    <field name="journal_id"   widget="selection" select="1" domain="[('type', '=', 'general')]"/>
+                    <field name="journal_id"   widget="selection" select="1"/>
                     <group col="2" colspan="2">
                         <field name="date"  select="1" />
                         <!-- TODO check if it's manageable
@@ -19,15 +19,11 @@
                     </group>
                     <field name="move_id"  select="1"/>
                     <field name="payment_term_id"  select="1"/>
-                    <field name="endyear_statement"/>
-                    <field name="quarter_vat_period"/>
                     <notebook colspan="4">
                         <page string="Periods">
-                            <button type='action' name="%(action_add_period)d" string="Add period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))], 'invisible': [('endyear_statement','=',True)]}"></button>
-                            <button type='object' name="add_periods" string="Add periods" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))], 'invisible': [('endyear_statement','!=',True)]}"></button>
+                            <button type='action' name="%(action_add_period)d" string="Add period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
                             <button type='action' name="%(action_remove_period)d" string="Remove period" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))]}"></button>
-                            <field name="period_ids" colspan="4" nolabel="1" readonly="1" attrs="{'invisible': [('endyear_statement','=',True)]}"/>
-                            <field name="endyear_period_ids" colspan="4" nolabel="1" readonly="1" attrs="{'invisible': [('endyear_statement','!=',True)]}"/>
+                            <field name="period_ids" colspan="4" nolabel="1" readonly="1"/>
                         </page>
                         <page string="Accounts">
                             <group colspan="4" col="3">
@@ -36,28 +32,24 @@
                                         <tree editable="bottom" string="Debit Account Lines">
                                             <field name="tax_code_id" />
                                             <field name="account_id" />
-                                            <field name="amount" string="IVA"/>
-                                            <field name="amount_base" />
+                                            <field name="amount" />
                                        </tree>
                                         <form>
                                             <field name="tax_code_id" />
                                             <field name="account_id" />
-                                            <field name="amount" string="IVA"/>
-                                            <field name="amount_base" />
+                                            <field name="amount" />
                                        </form>
                                     </field>
                                     <field name="credit_vat_account_line_ids" nolabel="1">
                                         <tree editable="bottom" string="Credit Account Lines">
                                             <field name="tax_code_id" />
                                             <field name="account_id" />
-                                            <field name="amount" string="IVA"/>
-                                            <field name="amount_base" />
+                                            <field name="amount" />
                                        </tree>
                                         <form>
                                             <field name="tax_code_id" />
                                             <field name="account_id" />
-                                            <field name="amount" string="IVA"/>
-                                            <field name="amount_base" />
+                                            <field name="amount" />
                                        </form>
                                     </field>
                                 </group>
@@ -95,7 +87,7 @@
                     <field name="fiscal_page_base"/>
                     <field name="state"  select="1"/>
                     <field name="reconciled"/>
-                    <button name="create_move" string="Create Move" colspan="2" attrs="{'invisible': ['|',('state','not in',['draft',]),('endyear_statement','=',True)]}"/>
+                    <button name="create_move" states="draft" string="Create Move" colspan="2"/>
                     <button name="set_draft" states="confirmed,paid" string="Set to draft" colspan="2"/>
                </form>
             </field>

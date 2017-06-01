@@ -55,13 +55,7 @@ tr {
     <% debit_total_base = 0.0 %>
     <% debit_total_vat = 0.0 %>
     <% totals_by_tax_code = {} %>
-    %if statement.endyear_statement :
-    <% periods = statement.endyear_period_ids %>
-    %endif
-    %if not statement.endyear_statement :
-    <% periods = statement.period_ids %>
-    %endif
-    %for period in periods:
+    %for period in statement.period_ids:
         <tr >
             <td style="text-align:left" colspan="3"><strong>${ _('Period') + ' ' + period.name}</strong></td>
         </tr>
@@ -79,7 +73,6 @@ tr {
             </tr>
         %endfor
     %endfor
-    %if len(period_ids) > 1 :
     <tr >
         <td style="text-align:left" colspan="3"><strong>${ _('Totals')}</strong></td>
     </tr>
@@ -90,9 +83,8 @@ tr {
             <td style="text-align:right">${ formatLang(totals_by_tax_code[tax_code]['vat'])|entity }</td>
         </tr>
     %endfor
-    %endif
     <tr >
-        <td style="text-align:left"><strong>${ _('Totals')}</strong></td>
+        <td style="text-align:left"></td>
         <td style="text-align:right"><strong>${ formatLang(debit_total_base)|entity }</strong></td>
         <td style="text-align:right"><strong>${ formatLang(debit_total_vat)|entity }</strong></td>
     </tr>
@@ -110,13 +102,7 @@ tr {
     <% credit_total_base = 0.0 %>
     <% credit_total_vat = 0.0 %>
     <% totals_by_tax_code = {} %>
-    %if statement.endyear_statement :
-    <% periods = statement.endyear_period_ids %>
-    %endif
-    %if not statement.endyear_statement :
-    <% periods = statement.period_ids %>
-    %endif
-    %for period in periods:
+    %for period in statement.period_ids:
         <tr >
             <td style="text-align:left" colspan="3"><strong>${ _('Period') + ' ' + period.name}</strong></td>
         </tr>
@@ -134,7 +120,6 @@ tr {
             </tr>
         %endfor
     %endfor
-    %if len(period_ids) > 1 :
     <tr >
         <td style="text-align:left" colspan="3"><strong>${ _('Totals')}</strong></td>
     </tr>
@@ -145,9 +130,8 @@ tr {
             <td style="text-align:right">${ formatLang(totals_by_tax_code[tax_code]['vat'])|entity }</td>
         </tr>
     %endfor
-    %endif
     <tr >
-        <td style="text-align:left"><strong>${ _('Totals')}</strong></td>
+        <td style="text-align:left"></td>
         <td style="text-align:right"><strong>${ formatLang(credit_total_base)|entity }</strong></td>
         <td style="text-align:right"><strong>${ formatLang(credit_total_vat)|entity }</strong></td>
     </tr>
@@ -158,36 +142,36 @@ tr {
         <th  colspan="3">${_("Summary")}</th>
     </tr>
     <tr>
-        <th width="60%"> ${ _('Description') }</th>
+        <th width="60%"></th>
         <th width="20%"> ${ _('Debit') }</th>
         <th width="20%"> ${ _('Credit') }</th>
     </tr>
     %for debit_line in statement.debit_vat_account_line_ids :
-    %if debit_line.amount != 0:
         <tr >
-            <td>${ debit_line.tax_code_id.name|entity }</td>
+            <td>${ debit_line.account_id.name|entity }</td>
             <td>${ formatLang(debit_line.amount)|entity }</td>
             <td></td>
         </tr>
-    %endif
     %endfor
-
+    <!--
+    <tr >
+        <td>${_("Total")}</td>
+        <td>${ statement.payable_vat_amount|entity }</td>
+    </tr>
+    -->
     %for credit_line in statement.credit_vat_account_line_ids :
-    %if credit_line.amount != 0:
         <tr >
-            <td>${ credit_line.tax_code_id.name|entity }</td>
+            <td>${ credit_line.account_id.name|entity }</td>
             <td></td>
             <td>${ formatLang(credit_line.amount)|entity }</td>
         </tr>
-    %endif
     %endfor
-    
-    <tr>
-        <td><strong>${_("Total")}</strong></td>
-        <td><strong>${ statement.payable_vat_amount|entity }</td>
-        <td><strong>${ statement.deductible_vat_amount|entity }</strong></td>
+    <!--
+    <tr >
+        <td>${_("Total")}</td>
+        <td>${ statement.deductible_vat_amount|entity }</td>
     </tr>
-
+    -->
     <tr >
         <td>${_("Previous Credits VAT")}</td>
         <td></td>

@@ -25,7 +25,8 @@ from openerp.osv import orm, fields
 class sale_order(orm.Model):
     _inherit = "sale.order"
     _columns = {
-        'cig': fields.char('CIG', size=64, help="Codice identificativo di gara"),
+        'cig': fields.char(
+            'CIG', size=64, help="Codice identificativo di gara"),
         'cup': fields.char('CUP', size=64, help="Codice unico di Progetto")
     }
 
@@ -50,7 +51,8 @@ class sale_order(orm.Model):
         return super(sale_order, self).copy(cr, uid, id, default, context)
 
     def _make_invoice(self, cr, uid, order, lines, context=None):
-        inv_id = super(sale_order, self)._make_invoice(cr, uid, order, lines, context)
+        inv_id = super(sale_order, self)._make_invoice(
+            cr, uid, order, lines, context)
 
         self.pool['account.invoice'].write(cr, uid, inv_id, {
             'carriage_condition_id': order.carriage_condition_id.id,

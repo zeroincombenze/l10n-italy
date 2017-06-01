@@ -23,13 +23,15 @@
     'name': 'Account Invoice entry Date',
     'version': '3.2.7.5',
     'category': 'Generic Modules/Accounting',
-    'description': """This module allows to specify the date to be used by the move created while confirming (supplier) invoice""",
+    'description': """This module allows to specify the date to be used by the
+    move created while confirming (supplier) invoice""",
     'author': 'Odoo Italian Community',
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
         'account',
-        'account_payment_term_month',  # for update payment with tax in function compute
+        'account_payment_term_month',
+        # for update payment with tax in function compute
     ],
     "data": [
         'invoice_view.xml'

@@ -30,14 +30,16 @@ class account_move_line(orm.Model):
         res = {}
         for line in self.browse(cr, uid, ids, context):
             if 'maturity_currency' in field_names:
-                res[line.id] = line.currency_id and line.currency_id.symbol or line.company_id and line.company_id.currency_id.symbol
+                res[
+                    line.id] = line.currency_id and line.currency_id.symbol or line.company_id and line.company_id.currency_id.symbol
             if 'maturity_debit' in field_names:
                 res[line.id] = line.amount_currency or line.debit or ''
         return res
 
     _columns = {
         'maturity_currency': fields.function(
-            _maturity_amount, type="char", store=False, string="Currency", method=True),
+            _maturity_amount, type="char", store=False, string="Currency",
+            method=True),
         'maturity_debit': fields.function(
             _maturity_amount, type="float", store=False, method=True)
     }

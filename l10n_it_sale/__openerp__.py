@@ -45,7 +45,8 @@ Functionalities:
         'invoice_immediate',     # fattura accompagnatoria
         'sale_order_confirm',
         'core_extended',
-        'stock_picking_filter',  # for have date from and date to on picking filter for ddt date
+        'stock_picking_filter',
+        # for have date from and date to on picking filter for ddt date
         'sequence_recovery',
     ],
     "data": [

@@ -24,7 +24,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields
+from openerp.osv import fields, orm
 
 
 class res_partner(orm.Model):

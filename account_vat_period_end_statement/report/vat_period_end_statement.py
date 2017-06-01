@@ -24,8 +24,8 @@
 
 import time
 from openerp.report import report_sxw
-from tools.translate import _
-from osv import orm
+from openerp.tools.translate import _
+from openerp.osv import orm
 
 
 class print_vat_period_end_statement(report_sxw.rml_parse):
@@ -39,12 +39,8 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                 raise orm.except_orm(_('Error'), _(
                     'Too many occurences of tax code %s') % tax_code.name)
             # search for taxes linked to that code
-            tax_ids = tax_pool.search(self.cr, self.uid, ['|', (
-                'tax_code_id', '=', tax_code.id),
-                (
-                'base_code_id', '=',
-                tax_code.id)],
-                context=context)
+            tax_ids = tax_pool.search(self.cr, self.uid, [(
+                'tax_code_id', '=', tax_code.id)], context=context)
             if tax_ids:
                 tax = tax_pool.browse(self.cr, self.uid, tax_ids[
                     0], context=context)
@@ -62,7 +58,7 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                         raise orm.except_orm(_('Error'), _(
                             'Not every tax linked to tax code %s is linked the same base code') % tax_code.name)
                 res[tax_code.name] = {
-                    'vat': not tax_code.is_base and tax_code.sum_period or 0.0,
+                    'vat': tax_code.sum_period,
                     'base': base_code.sum_period,
                 }
             for child_code in tax_code.child_ids:

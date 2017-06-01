@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 
@@ -32,14 +32,21 @@ class wizard_registro_iva(orm.TransientModel):
 
     _name = "wizard.registro.iva"
     _columns = {
-        'period_ids': fields.many2many('account.period', 'registro_iva_periods_rel', 'period_id', 'registro_id', 'Periods', help='Select periods you want retrieve documents from', required=True),
+        'period_ids': fields.many2many(
+            'account.period', 'registro_iva_periods_rel', 'period_id',
+            'registro_id', 'Periods',
+            help='Select periods you want retrieve documents from', required=True),
         'type': fields.selection([
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
             ('corrispettivi', 'Corrispettivi'),
             #    ('generale', 'Registro generale'),
         ], 'Layout', required=True),
-        'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
+        'journal_ids': fields.many2many(
+            'account.journal', 'registro_iva_journals_rel', 'journal_id',
+            'registro_id', 'Journals',
+            help='Select journals you want retrieve documents from',
+            required=True),
         'tax_sign': fields.float('Tax amount sign',
                                  help="Use -1 you have negative tax amounts and you want to print them prositive"),
         'message': fields.char('Message', size=64, readonly=True),
@@ -64,9 +71,12 @@ class wizard_registro_iva(orm.TransientModel):
             ('state', '=', 'posted'),
         ], order='date, name')
         if not move_ids:
-            self.write(cr, uid, ids, {'message': _('No documents found in the current selection')})
-            model_data_ids = obj_model_data.search(cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'wizard_registro_iva')])
-            resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
+            self.write(cr, uid, ids, {'message': _(
+                'No documents found in the current selection')})
+            model_data_ids = obj_model_data.search(cr, uid, [(
+                'model', '=', 'ir.ui.view'), ('name', '=', 'wizard_registro_iva')])
+            resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=[
+                'res_id'])[0]['res_id']
             return {
                 'name': _('No documents'),
                 'res_id': ids[0],
@@ -103,11 +113,14 @@ class wizard_registro_iva(orm.TransientModel):
         journal_obj = self.pool['account.journal']
         res = []
         if j_type == 'supplier':
-            res = journal_obj.search(cr, uid, [('type', 'in', ['purchase', 'purchase_refund'])])
+            res = journal_obj.search(cr, uid, [('type', 'in', [
+                'purchase', 'purchase_refund'])])
         elif j_type == 'customer' or j_type == 'corrispettivi':
-            res = journal_obj.search(cr, uid, [('type', 'in', ['sale', 'sale_refund'])])
+            res = journal_obj.search(cr, uid, [('type', 'in', [
+                'sale', 'sale_refund'])])
         else:
-            res = journal_obj.search(cr, uid, [('type', 'in', ['sale', 'sale_refund', 'purchase', 'purchase_refund'])])
+            res = journal_obj.search(cr, uid, [('type', 'in', [
+                'sale', 'sale_refund', 'purchase', 'purchase_refund'])])
         return res
 
     def on_type_changed(self, cr, uid, ids, j_type, context=None):
@@ -117,5 +130,6 @@ class wizard_registro_iva(orm.TransientModel):
                 res['value'] = {'tax_sign': -1}
             else:
                 res['value'] = {'tax_sign': 1}
-            res['value'].update({'journal_ids': self._get_journal(cr, uid, j_type, context=context)})
+            res['value'].update({'journal_ids': self._get_journal(
+                cr, uid, j_type, context=context)})
         return res

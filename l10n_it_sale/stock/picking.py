@@ -29,7 +29,8 @@ class stock_picking(orm.Model):
         'ddt_date': fields.date('DDT date'),
         'ddt_in_reference': fields.char('In DDT', size=32),
         'ddt_in_date': fields.date('In DDT Date'),
-        'cig': fields.char('CIG', size=64, help="Codice identificativo di gara"),
+        'cig': fields.char(
+            'CIG', size=64, help="Codice identificativo di gara"),
         'cup': fields.char('CUP', size=64, help="Codice unico di Progetto")
     }
 
@@ -38,14 +39,20 @@ class stock_picking(orm.Model):
             context = self.pool['res.users'].context_get(cr, uid)
         res = []
         for picking in self.browse(cr, uid, ids, context):
-            res.append((picking.id, picking.ddt_number or picking.ddt_in_reference or picking.name))
+            res.append((
+                picking.id,
+                picking.ddt_number or picking.ddt_in_reference or picking.name))
         return res
 
     def _check_ddt_in_reference_unique(self, cr, uid, ids, context=None):
-        # qui và cercato da gli stock.picking quelli che hanno ddt_in_reference e partner_id uguali
+        # qui và cercato da gli stock.picking quelli che hanno
+        # ddt_in_reference e partner_id uguali
         return True
 
-    _constraints = [(_check_ddt_in_reference_unique, 'Error! For a Partner must be only one DDT reference for year.', ['ddt_in_reference', 'partner_id'])]
+    _constraints = [(
+        _check_ddt_in_reference_unique,
+        'Error! For a Partner must be only one DDT reference for year.', [
+            'ddt_in_reference', 'partner_id'])]
 
     #-----------------------------------------------------------------------------
     # EVITARE LA COPIA DI 'NUMERO DDT'
@@ -84,8 +91,10 @@ class stock_picking(orm.Model):
         if not context:
             context = self.pool['res.users'].context_get(cr, uid)
 
-        res = super(stock_picking, self).action_invoice_create(cr, uid, ids, journal_id,
-                                                               group, type, context)
+        res = super(stock_picking, self).action_invoice_create(
+            cr, uid, ids, journal_id,
+            group, type,
+            context)
 
         for picking in self.browse(cr, uid, ids, context=context):
             self.pool['account.invoice'].write(cr, uid, res[picking.id], {
@@ -102,26 +111,33 @@ class stock_picking(orm.Model):
             ids = [ids]
 
         # adaptative function: the system learn
-        if vals.get('carriage_condition_id', False) or vals.get('goods_description_id', False):
+        if vals.get('carriage_condition_id', False) or vals.get(
+                'goods_description_id', False):
             for picking in self.browse(cr, uid, ids, context):
                 partner_vals = {}
                 if not picking.partner_id.carriage_condition_id:
-                    partner_vals['carriage_condition_id'] = vals.get('carriage_condition_id')
+                    partner_vals['carriage_condition_id'] = vals.get(
+                        'carriage_condition_id')
                 if not picking.partner_id.goods_description_id:
-                    partner_vals['goods_description_id'] = vals.get('goods_description_id')
+                    partner_vals['goods_description_id'] = vals.get(
+                        'goods_description_id')
                 if partner_vals:
-                    self.pool['res.partner'].write(cr, uid, [picking.partner_id.id], partner_vals, context)
+                    self.pool['res.partner'].write(cr, uid, [
+                        picking.partner_id.id], partner_vals, context)
         if vals.get('ddt_number') and vals['ddt_number'] == '':
             for picking in self.browse(cr, uid, ids, context):
                 sequence_id = picking.stock_journal_id.ddt_sequence and \
                     picking.stock_journal_id.ddt_sequence.id or False
                 if not sequence_id:
-                    sequence_ids = self.pool['ir.sequence'].search(cr, uid, [('code', '=', 'stock.ddt')])
+                    sequence_ids = self.pool['ir.sequence'].search(cr, uid, [(
+                        'code', '=', 'stock.ddt')])
                     sequence_id = sequence_ids[0]
 
-                self.pool['ir.sequence_recovery'].set(cr, uid, [picking.id], 'stock.picking', 'ddt_number', '', sequence_id)
+                self.pool['ir.sequence_recovery'].set(cr, uid, [
+                    picking.id], 'stock.picking', 'ddt_number', '', sequence_id)
 
-        return super(stock_picking, self).write(cr, uid, ids, vals, context=context)
+        return super(stock_picking, self).write(
+            cr, uid, ids, vals, context=context)
 
     def unlink(self, cr, uid, ids, context=None):
         for picking in self.browse(cr, uid, ids, context):
@@ -130,8 +146,10 @@ class stock_picking(orm.Model):
             sequence_id = picking.stock_journal_id.ddt_sequence and \
                 picking.stock_journal_id.ddt_sequence.id or False
             if not sequence_id:
-                sequence_ids = self.pool['ir.sequence'].search(cr, uid, [('code', '=', 'stock.ddt')])
+                sequence_ids = self.pool['ir.sequence'].search(cr, uid, [(
+                    'code', '=', 'stock.ddt')])
                 sequence_id = sequence_ids[0]
 
-            self.pool['ir.sequence_recovery'].set(cr, uid, [picking.id], 'stock.picking', 'ddt_number', '', sequence_id)
+            self.pool['ir.sequence_recovery'].set(cr, uid, [
+                picking.id], 'stock.picking', 'ddt_number', '', sequence_id)
         return super(stock_picking, self).unlink(cr, uid, ids, context)
