@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from osv import fields,osv
-import netsvc
+from openerp.osv import fields
 
-class wizard_fattura_accompagnatoria(osv.osv_memory):
+
+class wizard_fattura_accompagnatoria(orm.TransientModel):
 
     def _get_picking_ids(self, cr, uid, fields, context=None):
         invoice_obj = self.pool.get('account.invoice')
@@ -41,8 +41,7 @@ class wizard_fattura_accompagnatoria(osv.osv_memory):
     }
 
     def print_invoice(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         datas = {'ids': context.get('active_ids', [])}
         datas['model'] = 'account.invoice'
         datas['form'] = self.read(cr, uid, ids)[0]
@@ -52,6 +51,6 @@ class wizard_fattura_accompagnatoria(osv.osv_memory):
             'datas': datas,
         }
 
+
 wizard_fattura_accompagnatoria()
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2010 Odoo Italian Community (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -23,7 +24,7 @@
     'name': 'Italian Localisation - Account',
     'version': '0.1',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
+    'description': """This module customizes Odoo in order to fit italian laws and mores - Account version
 
 Functionalities:
 
@@ -31,15 +32,13 @@ Functionalities:
 - Check invoice date consistency
 
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account','base_vat','account_chart','base_iban', 'account_sequence', 'l10n_it_base'],
-    "init_xml" : ['account/partner_view.xml'],
-    "update_xml" : [],
-    "demo_xml" : [],
+    "depends": ['account', 'base_vat', 'account_chart', 'base_iban', 'account_sequence', 'l10n_it_base'],
+    "init_xml": ['account/partner_view.xml'],
+    "update_xml": [],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

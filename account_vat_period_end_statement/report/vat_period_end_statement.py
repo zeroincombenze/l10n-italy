@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
@@ -20,10 +20,10 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+##############################################################################
 
 import time
-from report import report_sxw
+from openerp.report import report_sxw
 from tools.translate import _
 from osv import orm
 
@@ -31,47 +31,38 @@ from osv import orm
 class print_vat_period_end_statement(report_sxw.rml_parse):
     _name = 'parser.vat.period.end.statement'
 
-    def _build_codes_dict(self, tax_code, res=None, context=None):
-        if res is None:
-            res = {}
+    def _build_codes_dict(self, tax_code, res={}, context=None):
         context = {} if context is None else context
-        tax_pool = self.pool.get('account.tax')
+        tax_pool = self.pool['account.tax']
         if tax_code.sum_period:
             if res.get(tax_code.name, False):
-                raise orm.except_orm(
-                    _('Error'),
-                    _('Too many occurences of tax code %s') % tax_code.name)
+                raise orm.except_orm(_('Error'), _(
+                    'Too many occurences of tax code %s') % tax_code.name)
             # search for taxes linked to that code
-            tax_ids = tax_pool.search(
-                self.cr, self.uid, [
-                    ('tax_code_id', '=', tax_code.id)], context=context)
+            tax_ids = tax_pool.search(self.cr, self.uid, ['|', (
+                'tax_code_id', '=', tax_code.id),
+                (
+                'base_code_id', '=',
+                tax_code.id)],
+                context=context)
             if tax_ids:
-                tax = tax_pool.browse(
-                    self.cr, self.uid, tax_ids[0], context=context)
+                tax = tax_pool.browse(self.cr, self.uid, tax_ids[
+                    0], context=context)
                 # search for the related base code
-                base_code = (
-                    tax.base_code_id or tax.parent_id and
-                    tax.parent_id.base_code_id or False)
+                base_code = tax.base_code_id or tax.parent_id and tax.parent_id.base_code_id or False
                 if not base_code:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('No base code found for tax code %s')
-                        % tax_code.name)
-                # check if every tax is linked to the same tax code and base
-                # code
+                    raise orm.except_orm(_('Error'), _(
+                        'No base code found for tax code %s') % tax_code.name)
+                # check if every tax is linked to the same tax code
+                # and base code
                 for tax in tax_pool.browse(
-                    self.cr, self.uid, tax_ids, context=context
-                ):
-                    test_base_code = (
-                        tax.base_code_id or tax.parent_id and
-                        tax.parent_id.base_code_id or False)
+                        self.cr, self.uid, tax_ids, context=context):
+                    test_base_code = tax.base_code_id or tax.parent_id and tax.parent_id.base_code_id or False
                     if test_base_code.id != base_code.id:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('Not every tax linked to tax code %s is linked '
-                              'the same base code') % tax_code.name)
+                        raise orm.except_orm(_('Error'), _(
+                            'Not every tax linked to tax code %s is linked the same base code') % tax_code.name)
                 res[tax_code.name] = {
-                    'vat': tax_code.sum_period,
+                    'vat': not tax_code.is_base and tax_code.sum_period or 0.0,
                     'base': base_code.sum_period,
                 }
             for child_code in tax_code.child_ids:
@@ -79,29 +70,24 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
                     child_code, res=res, context=context)
         return res
 
-    def _get_tax_codes_amounts(
-        self, period_id, tax_code_ids=None, context=None
-    ):
-        if tax_code_ids is None:
-            tax_code_ids = []
+    def _get_tax_codes_amounts(self, period_id, tax_code_ids=[], context=None):
         context = {} if context is None else context
         res = {}
-        code_pool = self.pool.get('account.tax.code')
+        code_pool = self.pool['account.tax.code']
         context['period_id'] = period_id
         for tax_code in code_pool.browse(
-            self.cr, self.uid, tax_code_ids, context=context
-        ):
+                self.cr, self.uid, tax_code_ids, context=context):
             res = self._build_codes_dict(tax_code, res=res, context=context)
         return res
 
     def find_period(self, date, context=None):
         context = {} if context is None else context
-        period_pool = self.pool.get('account.period')
+        period_pool = self.pool['account.period']
         period_ids = period_pool.find(
             self.cr, self.uid, dt=date, context=context)
         if len(period_ids) > 1:
-            raise orm.except_orm(
-                _('Error'), _('Too many periods for date %s') % str(date))
+            raise orm.except_orm(_('Error'), _(
+                'Too many periods for date %s') % str(date))
         return period_ids[0]
 
     def __init__(self, cr, uid, name, context=None):
@@ -116,10 +102,7 @@ class print_vat_period_end_statement(report_sxw.rml_parse):
         self.context = context
 
 
-report_sxw.report_sxw(
-    'report.account.print.vat.period.end.statement',
-    'account.vat.period.end.statement',
-    'addons/account_vat_period_end_statement/report/'
-    'vat_period_end_statement.mako',
-    parser=print_vat_period_end_statement)
-
+report_sxw.report_sxw('report.account.print.vat.period.end.statement',
+                      'account.vat.period.end.statement',
+                      'addons/account_vat_period_end_statement/report/vat_period_end_statement.mako',
+                      parser=print_vat_period_end_statement)

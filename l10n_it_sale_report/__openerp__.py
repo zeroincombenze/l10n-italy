@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -27,17 +27,17 @@
     Install report_aero_ooo to be able to output to a format
     different from the one of the template.
     """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_sale', 'report_aeroo', 'l10n_it_account_report'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
+    "depends": ['l10n_it_sale', 'report_aeroo', 'l10n_it_account_report'],
+    "init_xml": [
+    ],
+    "update_xml": [
         'reports.xml',
         'wizard/print_fattura_accompagnatoria.xml',
-        ],
-    "demo_xml" : [],
+    ],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }

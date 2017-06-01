@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    All Rights Reserved 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
+#    All Rights Reserved
 #    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -23,28 +24,27 @@
 
 import time
 
-from osv import osv, fields
-import netsvc
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp import netsvc
+from openerp.tools.translate import _
 import datetime
 
 
-
-class riba_mode(osv.osv):
-    _name= 'riba.mode'
-    _description= 'Presentacion Bank'
+class riba_mode(orm.Model):
+    _name = 'riba.mode'
+    _description = 'Presentacion Bank'
     _columns = {
         'name': fields.char('Bank of Presentacion', size=64, required=True, help='Banca di Presentazione'),
         'bank_id': fields.many2one('res.partner.bank', "Bank Account for the Riba Mode",
-            required=True,help='Presentacion bank account for the RiBa'),
+                                   required=True, help='Presentacion bank account for the RiBa'),
         'journal': fields.many2one('account.journal', 'Journal', required=True,
-            domain=[('type', '=', 'bank')], help='Bank Journal for the Mode RiBa'),
-        'company_id': fields.many2one('res.company', 'Company',required=True),
-        'partner_id':fields.related('company_id','partner_id',type='many2one',relation='res.partner',string='Partner',store=True,),
-        
+                                   domain=[('type', '=', 'bank')], help='Bank Journal for the Mode RiBa'),
+        'company_id': fields.many2one('res.company', 'Company', required=True),
+        'partner_id': fields.related('company_id', 'partner_id', type='many2one', relation='res.partner', string='Partner', store=True,),
+
     }
     _defaults = {
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id
+        'company_id': lambda self, cr, uid, c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id
     }
 
     def suitable_bank_types(self, cr, uid, payment_code=None, context=None):
@@ -58,18 +58,19 @@ class riba_mode(osv.osv):
             JOIN riba_mode rm ON (rm.bank_id = pb.id)
             WHERE rm.id = %s """, [payment_code])
         return [x[0] for x in cr.fetchall()]
-    
-    def onchange_company_id (self, cr, uid, ids, company_id=False, context=None):
+
+    def onchange_company_id(self, cr, uid, ids, company_id=False, context=None):
         result = {}
         if company_id:
             partner_id = self.pool.get('res.company').browse(cr, uid, company_id, context=context).partner_id.id
             result['partner_id'] = partner_id
         return {'value': result}
-                
+
 
 riba_mode()
 
-class riba_order(osv.osv):
+
+class riba_order(orm.Model):
     _name = 'riba.order'
     _description = 'Riba Order'
     _rec_name = 'reference'
@@ -77,7 +78,7 @@ class riba_order(osv.osv):
     def get_wizard(self, type):
         logger = netsvc.Logger()
         logger.notifyChannel("warning", netsvc.LOG_WARNING,
-                "No wizard found for the RiBa type '%s'." % type)
+                             "No wizard found for the RiBa type '%s'." % type)
         return None
 
     def _total(self, cursor, user, ids, name, args, context=None):
@@ -92,7 +93,7 @@ class riba_order(osv.osv):
         return res
 
     _columns = {
-        'date_scheduled': fields.date('Scheduled date if fixed', states={'done':[('readonly', True)]}, help='Select a date if you have chosen Preferred Date to be fixed.'),
+        'date_scheduled': fields.date('Scheduled date if fixed', states={'done': [('readonly', True)]}, help='Select a date if you have chosen Preferred Date to be fixed.'),
         'reference': fields.char('Reference', size=128, required=1, states={'done': [('readonly', True)]}),
         'mode': fields.many2one('riba.mode', 'Riba mode', select=True, required=1, states={'done': [('readonly', True)]}, help='Select the Riba Mode to be applied.'),
         'state': fields.selection([
@@ -108,18 +109,18 @@ class riba_order(osv.osv):
             ('now', 'Directly'),
             ('due', 'Due date'),
             ('fixed', 'Fixed date')
-            ], "Preferred date", change_default=True, required=True, states={'done': [('readonly', True)]}, help="Choose an option for the Riba Order:'Fixed' stands for a date specified by you.'Directly' stands for the direct execution.'Due date' stands for the scheduled date of execution."),
+        ], "Preferred date", change_default=True, required=True, states={'done': [('readonly', True)]}, help="Choose an option for the Riba Order:'Fixed' stands for a date specified by you.'Directly' stands for the direct execution.'Due date' stands for the scheduled date of execution."),
         'date_created': fields.date('Creation date', readonly=True),
         'date_done': fields.date('Execution date', readonly=True),
         'company_id': fields.related('mode', 'company_id', type='many2one', relation='res.company', string='Company', store=True, readonly=True),
     }
 
     _defaults = {
-        'user_id': lambda self,cr,uid,context: uid,
+        'user_id': lambda self, cr, uid, context: uid,
         'state': 'draft',
         'date_prefered': 'due',
         'date_created': lambda *a: time.strftime('%Y-%m-%d'),
-        'reference': lambda self,cr,uid,context: self.pool.get('ir.sequence').get(cr, uid, 'riba.order'),
+        'reference': lambda self, cr, uid, context: self.pool.get('ir.sequence').get(cr, uid, 'riba.order'),
     }
 
     def set_to_draft(self, cr, uid, ids, *args):
@@ -135,7 +136,7 @@ class riba_order(osv.osv):
         for order in self.read(cr, uid, ids, ['reference']):
             if not order['reference']:
                 reference = ir_seq_obj.get(cr, uid, 'riba.order')
-                self.write(cr, uid, order['id'], {'reference':reference})
+                self.write(cr, uid, order['id'], {'reference': reference})
         return True
 
     def set_done(self, cr, uid, ids, *args):
@@ -153,8 +154,7 @@ class riba_order(osv.osv):
         return super(riba_order, self).copy(cr, uid, id, default, context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         riba_line_obj = self.pool.get('riba.line')
         riba_line_ids = []
 
@@ -176,23 +176,26 @@ class riba_order(osv.osv):
             riba_line_obj.write(cr, uid, riba_line_ids, {'date': False}, context=context)
         return super(riba_order, self).write(cr, uid, ids, vals, context=context)
 
+
 riba_order()
 
-class riba_line(osv.osv):
+
+class riba_line(orm.Model):
     _name = 'riba.line'
     _description = 'Riba Line'
 
     def translate(self, orig):
         return {
-                "due_date": "date_maturity",
-                "reference": "ref"}.get(orig, orig)
+            "due_date": "date_maturity",
+            "reference": "ref"}.get(orig, orig)
 
     def info_owner(self, cr, uid, ids, name=None, args=None, context=None):
-        if not ids: return {}
+        if not ids:
+            return {}
         partner_address_obj = self.pool.get('res.partner.address')
 
         result = {}
-        info=''
+        info = ''
         for line in self.browse(cr, uid, ids, context=context):
             owner = line.order_id.mode.bank_id.partner_id
             result[line.id] = False
@@ -205,16 +208,17 @@ class riba_line(osv.osv):
                             zip_city = ads.zip_id and partner_address_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
                         else:
                             zip = ads.zip and ads.zip or ''
-                            city = ads.city and ads.city or  ''
+                            city = ads.city and ads.city or ''
                             zip_city = zip + ' ' + city
                         cntry = ads.country_id and ads.country_id.name or ''
-                        info = owner.name + "\n" + st + " " + st1 + "\n" + zip_city + "\n" +cntry
+                        info = owner.name + "\n" + st + " " + st1 + "\n" + zip_city + "\n" + cntry
                         result[line.id] = info
                         break
         return result
 
     def info_partner(self, cr, uid, ids, name=None, args=None, context=None):
-        if not ids: return {}
+        if not ids:
+            return {}
         partner_address_obj = self.pool.get('res.partner.address')
         result = {}
         info = ''
@@ -233,14 +237,13 @@ class riba_line(osv.osv):
                             zip_city = ads.zip_id and partner_address_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
                         else:
                             zip = ads.zip and ads.zip or ''
-                            city = ads.city and ads.city or  ''
+                            city = ads.city and ads.city or ''
                             zip_city = zip + ' ' + city
                         cntry = ads.country_id and ads.country_id.name or ''
-                        info = partner + "\n" + st + " " + st1 + "\n" + zip_city + "\n" +cntry
+                        info = partner + "\n" + st + " " + st1 + "\n" + zip_city + "\n" + cntry
                         result[line.id] = info
                         break
         return result
-
 
     def s_bank_types(self, cr, uid, payment_code=None, context=None):
         """Return the codes of the bank type that are suitable
@@ -255,28 +258,29 @@ class riba_line(osv.osv):
         return [x[0] for x in cr.fetchall()]
 
     def select_by_name(self, cr, uid, ids, name, args, context=None):
-        if not ids: return {}
+        if not ids:
+            return {}
         partner_obj = self.pool.get('res.partner')
 
         cr.execute("""SELECT rl.id, ml.%s
             FROM account_move_line ml
                 INNER JOIN riba_line rl
                 ON (ml.id = rl.move_line_id)
-                WHERE rl.id IN %%s"""% self.translate(name),
+                WHERE rl.id IN %%s""" % self.translate(name),
                    (tuple(ids),))
         res = dict(cr.fetchall())
 
         if name == 'partner_id':
             partner_name = {}
             for p_id, p_name in partner_obj.name_get(cr, uid,
-                filter(lambda x:x and x != 0,res.values()), context=context):
+                                                     filter(lambda x: x and x != 0, res.values()), context=context):
                 partner_name[p_id] = p_name
 
             for id in ids:
                 if id in res and partner_name:
-                    res[id] = (res[id],partner_name[res[id]])
+                    res[id] = (res[id], partner_name[res[id]])
                 else:
-                    res[id] = (False,False)
+                    res[id] = (False, False)
         else:
             for id in ids:
                 res.setdefault(id, (False, ""))
@@ -286,16 +290,15 @@ class riba_line(osv.osv):
         if not ids:
             return {}
         currency_obj = self.pool.get('res.currency')
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         res = {}
 
         for line in self.browse(cursor, user, ids, context=context):
             ctx = context.copy()
             ctx['date'] = line.order_id.date_done or time.strftime('%Y-%m-%d')
             res[line.id] = currency_obj.compute(cursor, user, line.currency.id,
-                    line.company_currency.id,
-                    line.amount_currency, context=ctx)
+                                                line.company_currency.id,
+                                                line.amount_currency, context=ctx)
         return res
 
     def _get_currency(self, cr, uid, context=None):
@@ -309,13 +312,13 @@ class riba_line(osv.osv):
             return currency_obj.search(cr, uid, [('rate', '=', 1.0)])[0]
 
     def _get_date(self, cr, uid, context=None):
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         riba_order_obj = self.pool.get('riba.order')
         date = False
 
         if context.get('order_id') and context['order_id']:
-            order = riba_order_obj.browse(cr, uid, context['order_id'], context=context)
+            or
+            er = riba_order_obj.browse(cr, uid, context['order_id'], context=context)
             if order.date_prefered == 'fixed':
                 date = order.date_scheduled
             else:
@@ -355,30 +358,30 @@ class riba_line(osv.osv):
         'communication2': fields.char('Communication 2', size=64, help='The successor message of Communication.'),
         'move_line_id': fields.many2one('account.move.line', 'Entry line', domain=[('account_id.type', '=', 'receivable'), ('account_id.type', '=', 'receivable')], help='This Entry Line will be referred for the information of the ordering customer.'),
         'amount_currency': fields.float('Amount in Partner Currency', digits=(16, 2),
-            required=True, help='Payment amount in the partner currency'),
-        'currency': fields.many2one('res.currency','Partner Currency'),
+                                        required=True, help='Payment amount in the partner currency'),
+        'currency': fields.many2one('res.currency', 'Partner Currency'),
         'company_currency': fields.many2one('res.currency', 'Company Currency', readonly=True),
         'bank_id': fields.many2one('res.partner.bank', 'Debitor Bank'),
         'order_id': fields.many2one('riba.order', 'Order', required=True,
-            ondelete='cascade', select=True),
+                                    ondelete='cascade', select=True),
         'partner_id': fields.many2one('res.partner', string="Partner", required=True, help='The Ordering Customer'),
         'amount': fields.function(_amount, string='Amount in Company Currency',
-            method=True, type='float',
-            help='Payment amount in the company currency'),
+                                  method=True, type='float',
+                                  help='Payment amount in the company currency'),
         'ml_date_created': fields.function(_get_ml_created_date, string="Effective Date",
-            method=True, type='date', help="Invoice Effective Date"),
+                                           method=True, type='date', help="Invoice Effective Date"),
         'ml_maturity_date': fields.function(_get_ml_maturity_date, method=True, type='date', string='Due Date'),
         'ml_inv_ref': fields.function(_get_ml_inv_ref, method=True, type='many2one', relation='account.invoice', string='Invoice Ref.'),
         'info_owner': fields.function(info_owner, string="Owner Account", method=True, type="text", help='Address of the Main Partner'),
         'info_partner': fields.function(info_partner, string="Destination Account", method=True, type="text", help='Address of the Customer.'),
         'date': fields.date('Payment Date', help="If no payment date is specified, the bank will treat this riba line directly"),
         'create_date': fields.datetime('Created', readonly=True),
-        'state': fields.selection([('normal','Free'), ('structured','Structured')], 'Communication Type', required=True),
+        'state': fields.selection([('normal', 'Free'), ('structured', 'Structured')], 'Communication Type', required=True),
         'company_id': fields.related('order_id', 'company_id', type='many2one', relation='res.company', string='Company', store=True, readonly=True),
     }
     _defaults = {
         'name': lambda obj, cursor, user, context: obj.pool.get('ir.sequence'
-            ).get(cursor, user, 'riba.line'),
+                                                                ).get(cursor, user, 'riba.line'),
         'state': 'normal',
         'currency': _get_currency,
         'company_currency': _get_currency,
@@ -393,9 +396,9 @@ class riba_line(osv.osv):
         move_line_obj = self.pool.get('account.move.line')
 
         data['amount_currency'] = data['communication'] = data['partner_id'] = data['reference'] = data['date_created'] = data['bank_id'] = data['amount'] = False
-     
+
         if move_line_id:
-            line = move_line_obj.browse(cr, uid, move_line_id, context=context) 
+            line = move_line_obj.browse(cr, uid, move_line_id, context=context)
             data['amount_currency'] = line.riba_amount_to_pay
 
             res = self.onchange_amount(cr, uid, ids, data['amount_currency'], currency,
@@ -419,7 +422,7 @@ class riba_line(osv.osv):
             data['communication'] = line.ref
 
             if date_prefered == 'now':
-                #no payment date => immediate payment
+                # no payment date => immediate payment
                 data['date'] = False
             elif date_prefered == 'due':
                 data['date'] = line.date_maturity
@@ -456,11 +459,11 @@ class riba_line(osv.osv):
                             zip_city = ads.zip_id and partner_address_obj.name_get(cr, uid, [ads.zip_id.id])[0][1] or ''
                         else:
                             zip = ads.zip and ads.zip or ''
-                            city = ads.city and ads.city or  ''
+                            city = ads.city and ads.city or ''
                             zip_city = zip + ' ' + city
 
                         cntry = ads.country_id and ads.country_id.name or ''
-                        info = partner + "\n" + st + " " + st1 + "\n" + zip_city + "\n" +cntry
+                        info = partner + "\n" + st + " " + st1 + "\n" + zip_city + "\n" + cntry
 
                         data['info_partner'] = info
 
@@ -480,43 +483,52 @@ class riba_line(osv.osv):
             res['communication2']['states']['normal'] = [('readonly', False)]
         return res
 
+
 riba_line()
 
-class account_payment_term(osv.osv):
-    # This OpenERP object inherits from account_payment_term 
+
+class account_payment_term(orm.Model):
+    # This Odoo object inherits from account_payment_term
     # to add a new boolean field
     _inherit = 'account.payment.term'
     _columns = {
-        'riba' : fields.boolean('Riba'),
+        'riba': fields.boolean('Riba'),
     }
     _defaults = {
         'riba': 0,
     }
-# create an instance of account_payment_term_ 
+# create an instance of account_payment_term_
 # to migrate the objects in the system
+
+
 account_payment_term()
 
-class res_bank_add_field(osv.osv):
-    # This OpenERP object inherits from account_payment_term 
+
+class res_bank_add_field(orm.Model):
+    # This Odoo object inherits from account_payment_term
     # to add a new boolean field
     _inherit = 'res.bank'
     _columns = {
-        'banca_estera' : fields.boolean('Banca Estera'),
+        'banca_estera': fields.boolean('Banca Estera'),
     }
-# create an instance of account_payment_term_ 
+# create an instance of account_payment_term_
 # to migrate the objects in the system
+
+
 res_bank_add_field()
 
-class res_partner_bank_add(osv.osv):
-    # This OpenERP object inherits from account_payment_term 
+
+class res_partner_bank_add(orm.Model):
+    # This Odoo object inherits from account_payment_term
     # to add a new boolean field
     _inherit = "res.partner.bank"
     _columns = {
-        'codice_sia' : fields.char('Codice SIA', size=5, help="Identification Code of the Company in the System Interbank")    
+        'codice_sia': fields.char('Codice SIA', size=5, help="Identification Code of the Company in the System Interbank")
     }
 
-# create an instance of account_payment_term_ 
+# create an instance of account_payment_term_
 # to migrate the objects in the system
+
+
 res_partner_bank_add()
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

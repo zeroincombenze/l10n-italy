@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,16 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import fields
 
-class account_invoice(osv.osv):
-    
+
+class account_invoice(orm.Model):
+
     _inherit = 'account.invoice'
-        
+
     _columns = {
         'sale_order_ids': fields.many2many('sale.order', 'sale_order_invoice_rel', 'invoice_id', 'order_id', 'Sale orders')
-        }
+    }
+
+
 account_invoice()

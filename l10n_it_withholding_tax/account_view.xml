@@ -2,17 +2,22 @@
 <openerp>
     <data>
 
-        <record id="view_tax_form" model="ir.ui.view">
-            <field name="name">account.tax.form</field>
-            <field name="model">account.tax</field>
+<!-- company -->
+
+        <record model="ir.ui.view" id="view_company_inherit_form">
+            <field name="name">res.company.form.inherit</field>
+            <field name="inherit_id" ref="account.view_company_inherit_1_form"/>
+            <field name="model">res.company</field>
             <field name="type">form</field>
-            <field name="inherit_id" ref="account.view_tax_form"></field>
             <field name="arch" type="xml">
-                <field name="active" position="after">
-                    <field name="withholding_tax"/>
-                    <field name="withholding_payment_term_id" attrs="{'readonly':[('withholding_tax','=',False)]}"/>
+                <field name="paypal_account" position="after">
+                    <separator colspan="4"></separator>
+                    <field name="withholding_journal_id" />
+                    <separator colspan="4"></separator>
                 </field>
             </field>
         </record>
+        
+
     </data>
 </openerp>

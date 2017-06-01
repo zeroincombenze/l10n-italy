@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
@@ -20,53 +20,57 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+##############################################################################
 
 
 {
     "name": "Period End VAT Statement",
-    "version": "7.0.0.3.0",
+    "version": "2.1.3.5",
     'category': 'Generic Modules/Accounting',
-    'license': 'AGPL-3',
-    "depends": ["account_voucher",
-                "report_webkit"
-                ],
-    "author": ["Agile Business Group", "Odoo Italian Community"],
+    "depends": [
+        "account_voucher",
+        "report_webkit",
+        "l10n_it_vat_registries",
+    ],
+    "author": [
+        "Agile Business Group", "Odoo Italian Community", "Didotech srl"],
     "description": """
 
 This module helps to register the VAT statement of period end.
 
-In order to load correct amount from tax code, the tax code has to be
-associated to account involved in statement, through tax code form.
+In order to load correct amount from tax code,
+the tax code has to be associated to account involved in statement,
+through tax code form.
 
-The 'VAT statement' object allows to specify every amount and relative account
-used by the statement.
-By default, amounts of debit and credit taxes are automatically loaded
-from tax codes of selected periods.
-Previous debit or credit is loaded from previous VAT statement, according
-to its payments status.
-Confirming the statement, the 'account.move' is created. If you select
-a payment term, the due date(s) will be set.
+The 'VAT statement' object allows to specify every amount and relative account used by the statement.
+By default,
+amounts of debit and credit taxes are automatically loaded from tax codes of selected periods.
+Previous debit or credit is loaded from previous VAT statement,
+according to its payments status.
+Confirming the statement,
+the 'account.move' is created. If you select a payment term, the due date(
+    s) will be set.
 
-The 'tax authority' tab contains information about payment(s).
-You can see statement's result ('authority VAT amount') and residual
-amount to pay ('Balance').
-The statement can be paid like every other debit: by voucher or 'move.line'
-reconciliation.
+The 'tax authority' tab contains information about payment(
+    s). You can see statement's result ('authority VAT amount') and residual amount to pay ('Balance').
+The statement can be paid like every other debit:
+    by voucher or 'move.line' reconciliation.
 
-Specification:
-http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
+In case of VAT statement for quarter period,
+it can be configured the interest rate.
+
+Specification: http:
+    //wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
 """,
-    'website': 'http://www.agilebg.com',
-    'data': [
-        'wizard/add_period.xml',
-        'wizard/remove_period.xml',
-        'statement_workflow.xml',
-        'security/ir.model.access.csv',
-        'reports.xml',
-        'views/account_view.xml',
-    ],
+    'website': 'http://www.didotech.com',
+    'data': ['wizard/add_period.xml',
+             'wizard/remove_period.xml',
+             'account_view.xml',
+             'statement_workflow.xml',
+             'security/ir.model.access.csv',
+             'reports.xml', ],
     'demo': [],
     'installable': True,
+    'active': False,
 }

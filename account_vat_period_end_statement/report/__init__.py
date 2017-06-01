@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #    Copyright (C) 2011 Domsense s.r.l. (<http://www.domsense.com>).
@@ -19,5 +19,5 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
-from . import vat_period_end_statement
+##############################################################################
+import vat_period_end_statement

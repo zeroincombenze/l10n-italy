@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2011 Odoo Italian Community (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -26,16 +27,16 @@
     Install report_aero_ooo to be able to output to a format
     different from the one of the template.
     """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['l10n_it_account', 'report_aeroo'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
+    "depends": ['l10n_it_account', 'report_aeroo'],
+    "init_xml": [
+    ],
+    "update_xml": [
         'reports.xml',
-        ],
-    "demo_xml" : [],
+    ],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }

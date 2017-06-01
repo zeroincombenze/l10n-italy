@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010-2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2010-2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,25 +23,23 @@
     'name': 'Italian Localisation - HR',
     'version': '0.2',
     'category': 'Localisation/Italy',
-    'description': """OpenERP Italian Localization - HR version
+    'description': """Odoo Italian Localization - HR version
 
 Functionalities:
 
 - Fiscal Code for employee
 
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['hr'],
-    "init_xml" : [
+    "depends": ['hr'],
+    "init_xml": [
     ],
-    "update_xml" : [
+    "update_xml": [
         'employee_view.xml',
-        ],
-    "demo_xml" : [],
+    ],
+    "demo_xml": [],
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

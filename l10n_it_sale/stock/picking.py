@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    All Rights Reserved
+#
+#    Copyright (C) 2010-2012 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,88 +19,119 @@
 #
 ##############################################################################
 
-import netsvc
-import pooler, tools
-
-from osv import fields, osv
-
-class stock_picking_carriage_condition(osv.osv):
-    """
-    Carriage condition
-    """
-    _name = "stock.picking.carriage_condition"
-    _description = "Carriage Condition"
-    _columns = {
-	'name':fields.char('Carriage Condition', size=64, required=True, readonly=False),
-	'note': fields.text('Note'),
-    }
-stock_picking_carriage_condition()
-
-class stock_picking_goods_description(osv.osv):
-    """
-    Description of Goods
-    """
-    _name = 'stock.picking.goods_description'
-    _description = "Description of Goods"
-
-    _columns = {
-	'name':fields.char('Description of Goods', size=64, required=True, readonly=False),
-	'note': fields.text('Note'),
-    }
-stock_picking_goods_description()
+from openerp.osv import orm, fields
 
 
-class stock_picking_reason(osv.osv):
-    """
-    Reason for Transportation
-    """
-    _name = 'stock.picking.transportation_reason'
-    _description = 'Reason for transportation'
-
-    _columns = {
-	'name':fields.char('Reason For Transportation', size=64, required=True, readonly=False),
-	'note': fields.text('Note'),
-    }
-stock_picking_reason()
-
-class stock_picking(osv.osv):
+class stock_picking(orm.Model):
     _inherit = "stock.picking"
-    _columns =  {
-        'carriage_condition_id': fields.many2one('stock.picking.carriage_condition', 'Carriage condition'),
-        'goods_description_id': fields.many2one('stock.picking.goods_description', 'Description of goods'),
-        'transportation_reason_id': fields.many2one('stock.picking.transportation_reason', 'Reason for transportation'),
-        'ddt_number':  fields.char('DDT', size=64),
-        'ddt_date':  fields.date('DDT date'),
+    _columns = {
+        'ddt_number': fields.char('DDT', size=64),
+        'ddt_date': fields.date('DDT date'),
+        'ddt_in_reference': fields.char('In DDT', size=32),
+        'ddt_in_date': fields.date('In DDT Date'),
+        'cig': fields.char('CIG', size=64, help="Codice identificativo di gara"),
+        'cup': fields.char('CUP', size=64, help="Codice unico di Progetto")
     }
 
-    def create(self, cr, user, vals, context=None):
-        if ('name' not in vals) or (vals.get('name')=='/'):
-	    if 'type' in vals.keys() and vals['type']=='out':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.out')
-	    elif 'type' in vals.keys() and vals['type']=='internal':
-            	vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.internal')
-	    else:
-		vals['name'] = self.pool.get('ir.sequence').get(cr, user, 'stock.picking.in')		
-
-        return super(stock_picking, self).create(cr, user, vals, context)
-
-    def action_invoice_create(self, cursor, user, ids, journal_id=False,
-            group=False, type='out_invoice', context=None):
-        res = super(stock_picking, self).action_invoice_create(cursor, user, ids, journal_id,
-            group, type, context)
-        for picking in self.browse(cursor, user, ids, context=context):
-            self.pool.get('account.invoice').write(cursor, user, res[picking.id], {
-                'carriage_condition_id': picking.carriage_condition_id.id,
-                'goods_description_id': picking.goods_description_id.id,
-                'transportation_reason_id': picking.transportation_reason_id.id,
-                })
+    def name_get(self, cr, uid, ids, context=None):
+        if not context:
+            context = self.pool['res.users'].context_get(cr, uid)
+        res = []
+        for picking in self.browse(cr, uid, ids, context):
+            res.append((picking.id, picking.ddt_number or picking.ddt_in_reference or picking.name))
         return res
+
+    def _check_ddt_in_reference_unique(self, cr, uid, ids, context=None):
+        # qui và cercato da gli stock.picking quelli che hanno ddt_in_reference e partner_id uguali
+        return True
+
+    _constraints = [(_check_ddt_in_reference_unique, 'Error! For a Partner must be only one DDT reference for year.', ['ddt_in_reference', 'partner_id'])]
 
     #-----------------------------------------------------------------------------
     # EVITARE LA COPIA DI 'NUMERO DDT'
     #-----------------------------------------------------------------------------
-    def copy(self, cr, uid, id, default={}, context=None):
-        default.update({'ddt_number': ''})
-        return super(stock_picking, self).copy(cr, uid, id, default, context)
+    def copy(self, cr, uid, ids, default={}, context=None):
+        if not context:
+            context = self.pool['res.users'].context_get(cr, uid)
+        default = default or {}
+        default.update({
+            'ddt_number': '',
+            'ddt_in_reference': '',
+            'cig': '',
+            'cup': '',
+        })
+        if 'ddt_date' not in default:
+            default.update({
+                'ddt_date': False
+            })
+        if 'ddt_in_date' not in default:
+            default.update({
+                'ddt_in_date': False
+            })
+        if 'cig' not in default:
+            default.update({
+                'cig': False
+            })
+        if 'cup' not in default:
+            default.update({
+                'cup': False
+            })
 
-stock_picking()
+        return super(stock_picking, self).copy(cr, uid, ids, default, context)
+
+    def action_invoice_create(self, cr, uid, ids, journal_id=False,
+                              group=False, type='out_invoice', context=None):
+        if not context:
+            context = self.pool['res.users'].context_get(cr, uid)
+
+        res = super(stock_picking, self).action_invoice_create(cr, uid, ids, journal_id,
+                                                               group, type, context)
+
+        for picking in self.browse(cr, uid, ids, context=context):
+            self.pool['account.invoice'].write(cr, uid, res[picking.id], {
+                'cig': picking.cig,
+                'cup': picking.cup,
+            })
+        return res
+
+    def write(self, cr, uid, ids, vals, context=None):
+        if not context:
+            context = self.pool['res.users'].context_get(cr, uid)
+
+        if not isinstance(ids, (list, tuple)):
+            ids = [ids]
+
+        # adaptative function: the system learn
+        if vals.get('carriage_condition_id', False) or vals.get('goods_description_id', False):
+            for picking in self.browse(cr, uid, ids, context):
+                partner_vals = {}
+                if not picking.partner_id.carriage_condition_id:
+                    partner_vals['carriage_condition_id'] = vals.get('carriage_condition_id')
+                if not picking.partner_id.goods_description_id:
+                    partner_vals['goods_description_id'] = vals.get('goods_description_id')
+                if partner_vals:
+                    self.pool['res.partner'].write(cr, uid, [picking.partner_id.id], partner_vals, context)
+        if vals.get('ddt_number') and vals['ddt_number'] == '':
+            for picking in self.browse(cr, uid, ids, context):
+                sequence_id = picking.stock_journal_id.ddt_sequence and \
+                    picking.stock_journal_id.ddt_sequence.id or False
+                if not sequence_id:
+                    sequence_ids = self.pool['ir.sequence'].search(cr, uid, [('code', '=', 'stock.ddt')])
+                    sequence_id = sequence_ids[0]
+
+                self.pool['ir.sequence_recovery'].set(cr, uid, [picking.id], 'stock.picking', 'ddt_number', '', sequence_id)
+
+        return super(stock_picking, self).write(cr, uid, ids, vals, context=context)
+
+    def unlink(self, cr, uid, ids, context=None):
+        for picking in self.browse(cr, uid, ids, context):
+            # ----- get the sequence from journal
+            # import pdb; pdb.set_trace()
+            sequence_id = picking.stock_journal_id.ddt_sequence and \
+                picking.stock_journal_id.ddt_sequence.id or False
+            if not sequence_id:
+                sequence_ids = self.pool['ir.sequence'].search(cr, uid, [('code', '=', 'stock.ddt')])
+                sequence_id = sequence_ids[0]
+
+            self.pool['ir.sequence_recovery'].set(cr, uid, [picking.id], 'stock.picking', 'ddt_number', '', sequence_id)
+        return super(stock_picking, self).unlink(cr, uid, ids, context)

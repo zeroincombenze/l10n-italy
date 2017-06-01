@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010-2011 OpenERP Italian Community
-#    http://www.openerp-italia.org> 
-#    All Rights Reserved
+#
+#    Copyright (C) 2010-2013 Odoo Italian Community
+#    http://www.odoo-italia.org>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Base',
-    'version': '0.1',
+    'version': '2.1.0.3',
     'category': 'Localisation/Italy',
     'description': """Italian Localization module - Base version
 
@@ -31,25 +31,24 @@ Funcionalities:
 - res.partner.title italiani
 - Province e regioni
 - Automatistmi su res.partner.address
+- Numeri postali sloveni e norvegesi
+- res.partner.title sloveni
+- Codici ISTAT e Catast. per Slovenia e Norvegia
+
 
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Didotech',
+    'website': 'http://www.didotech.com',
     'license': 'AGPL-3',
-    "depends" : ['base'],
-    "init_xml" : [
+    "depends": [
+        'base'
     ],
-    "update_xml" : ['partner/partner_view.xml',
-                    "security/ir.model.access.csv", 
-                    'partner/data/res.region.csv',
-                    'partner/data/res.province.csv',
-                    'partner/data/res.city.csv',
-                    'partner/data/res.partner.title.csv'],
-    "demo_xml" : [],
+    "init_xml": [],
+    "data": [
+        'partner/partner_view.xml',
+        "security/ir.model.access.csv",
+        'data/res.country.csv',
+    ],
     "active": False,
     "installable": True
 }
-
-# http://www.istat.it/strumenti/definizioni/comuni/
-# i dati dovrebbero essere sincronizzati con questi
-

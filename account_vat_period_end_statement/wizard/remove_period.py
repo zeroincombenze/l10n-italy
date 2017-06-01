@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#
+##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #    Copyright (C) 2012 Domsense s.r.l. (<http://www.domsense.com>).
@@ -20,26 +20,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+##############################################################################
 
 from osv import orm, fields
 from tools.translate import _
 
 
-class remove_period(osv.osv_memory):
+class remove_period(orm.Model):
 
     def _get_period_ids(self, cr, uid, context=None):
-        statement_obj = self.pool.get('account.vat.period.end.statement')
+        statement_obj = self.pool['account.vat.period.end.statement']
         res = []
         if 'active_id' in context:
-            statement = statement_obj.browse(
-                cr, uid, context['active_id'], context)
+            statement = statement_obj.browse(cr, uid, context[
+                'active_id'], context)
             for period in statement.period_ids:
                 res.append((period.id, period.name))
         return res
 
     _name = 'remove.period.from.vat.statement'
-
     _columns = {
         'period_id': fields.selection(
             _get_period_ids, 'Period', required=True),
@@ -48,11 +47,9 @@ class remove_period(osv.osv_memory):
     def remove_period(self, cr, uid, ids, context=None):
         if 'active_id' not in context:
             raise orm.except_orm(_('Error'), _('Current statement not found'))
-        self.pool.get('account.period').write(
-            cr, uid, [int(self.browse(cr, uid, ids, context)[0].period_id)],
-            {'vat_statement_id': False}, context=context)
-        self.pool.get('account.vat.period.end.statement').compute_amounts(
+        self.pool['account.period'].write(cr, uid, [int(self.browse(
+            cr, uid, ids, context)[0].period_id)], {'vat_statement_id':
+                                                    False}, context=context)
+        self.pool['account.vat.period.end.statement'].compute_amounts(
             cr, uid, [context['active_id']], context=context)
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
+        return {'type': 'ir.actions.act_window_close', }

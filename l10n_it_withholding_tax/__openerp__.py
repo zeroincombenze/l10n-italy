@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
-#    All Rights Reserved
+#
+#    Copyright (C) 2014 Didotech srl (<http://www.didotech.com>)
+#    Copyright (C) 2012 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -20,21 +23,28 @@
 #
 ##############################################################################
 {
-    'name': "Italian Localisation - Ritenute d'acconto",
-    'version': '0.1',
-    'category': 'Localisation/Italy',
+    'name': "Management of withholding tax",
+    'version': '3.0.1.0',
+    'category': 'Accounting & Finance',
     'description': """
-    http://wiki.openerp-italia.org/doku.php/area_utente/requisiti/ritenuta_d_acconto#openerp
+Ritenute d'acconto sulle fatture fornitore
+==========================================
+
+Per utilizzare il modulo bisogna configurare i campi associati alla company:
+ - Sezionale che conterrà le registrazioni legate alla ritenuta
+e quelli nella configurazione dell'imposta:
+ - Termine di pagamento della ritenuta
+ - Boolean per gestire l'imposta come ritenuta
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account_invoice_template'],
-    "init_xml" : [
+    "depends": ['account_voucher', ],
+    "data": [
         'account_view.xml',
-        ],
-    "update_xml" : [],
-    "demo_xml" : [],
+        'tax_view.xml',
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }

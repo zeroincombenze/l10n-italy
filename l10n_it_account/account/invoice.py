@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2010 Odoo Italian Community (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #    $Id$
 #
@@ -20,14 +20,13 @@
 #
 ##############################################################################
 
-import netsvc
-import pooler, tools
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import osv
+from openerp.tools.translate import _
 
-class account_invoice(osv.osv):
-    
+
+class account_invoice(orm.Model):
+
     _inherit = 'account.invoice'
 
     def action_number(self, cr, uid, ids, context=None):
@@ -42,11 +41,10 @@ class account_invoice(osv.osv):
             res = cr.dictfetchall()
             if res:
                 raise osv.except_osv(_('Date Inconsistency'),
-                        _('Cannot create invoice! Post the invoice with a greater date'))
+                                     _('Cannot create invoice! Post the invoice with a greater date'))
         return True
-    
+
+
 account_invoice()
 
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    All Rights Reserved
+#
+#    Copyright (C) 2010 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,4 +19,6 @@
 #
 ##############################################################################
 
-import assign_ddt
+from . import assign_ddt
+from . import confirmation
+from . import stock_partial_picking

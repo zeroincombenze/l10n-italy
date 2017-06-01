@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2010 Odoo Italian Community (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -21,5 +22,3 @@
 ##############################################################################
 
 import account
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

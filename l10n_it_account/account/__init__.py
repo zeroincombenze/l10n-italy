@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010 OpenERP Italian Community (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2010 Odoo Italian Community (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #    $Id$
 #

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010-2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2010-2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,14 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
+from openerp.osv import fields
 
-class hr_employee(osv.osv):
+
+class hr_employee(orm.Model):
     _inherit = 'hr.employee'
     _columns = {
         'fiscalcode': fields.char('Fiscal Code', size=16, help="Italian Fiscal Code"),
-        }
+    }
+
+
 hr_employee()

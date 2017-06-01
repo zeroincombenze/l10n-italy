@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,19 +20,20 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import fields
 
-class corrispettivi_config_data(osv.osv_memory):
+
+class corrispettivi_config_data(orm.TransientModel):
     _name = 'corrispettivi.config.data'
     _inherit = 'res.config'
 
     _columns = {
         'default_credit_account_id': fields.many2one('account.account', 'Default credit account',
-            domain=[('type','!=','view')], required=True, help='If doubtful, use income account'),
+                                                     domain=[('type', '!=', 'view')], required=True, help='If doubtful, use income account'),
         'default_debit_account_id': fields.many2one('account.account', 'Default debit account',
-            domain=[('type','!=','view')], required=True, help='If doubtful, use income account'),
+                                                    domain=[('type', '!=', 'view')], required=True, help='If doubtful, use income account'),
         'journal_view_id': fields.many2one('account.journal.view', 'Journal View', required=True),
-        }
+    }
 
     def execute(self, cr, uid, ids, context=None):
         for o in self.browse(cr, uid, ids, context=context):
@@ -41,7 +42,7 @@ class corrispettivi_config_data(osv.osv_memory):
                 'code': 'account.journal',
                 'padding': 3,
                 'prefix': 'COJ/%(year)s/',
-                })
+            })
             journal_id = self.pool.get('account.journal').create(cr, uid, {
                 'view_id': o.journal_view_id.id,
                 'code': 'COJ',
@@ -51,18 +52,18 @@ class corrispettivi_config_data(osv.osv_memory):
                 'sequence_id': seq_id,
                 'default_credit_account_id': o.default_credit_account_id.id,
                 'default_debit_account_id': o.default_debit_account_id.id,
-                })
+            })
             partner_id = self.pool.get('res.partner').create(cr, uid, {
                 'name': 'Corrispettivi',
                 'ref': 'COJ',
                 'customer': False,
                 'supplier': False,
                 'corrispettivi': True,
-                })
+            })
             address_id = self.pool.get('res.partner.address').create(cr, uid, {
                 'name': 'Corrispettivi',
                 'partner_id': partner_id,
-                })
+            })
+
 
 corrispettivi_config_data()
-

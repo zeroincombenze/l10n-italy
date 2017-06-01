@@ -11,6 +11,8 @@ table.tax_codes {
 	background-color: white;
     margin-right:auto;
     margin-left:auto;
+    font-size: xx-small;
+    page-break-inside: avoid;
 }
 table.tax_codes th {
 	border-width: 1px;
@@ -18,6 +20,8 @@ table.tax_codes th {
 	border-style: inset;
 	border-color: gray;
 	background-color: white;
+	font-size: xx-small;
+	page-break-inside: avoid;
 }
 table.tax_codes td {
 	border-width: 1px;
@@ -25,6 +29,8 @@ table.tax_codes td {
 	border-style: inset;
 	border-color: gray;
 	background-color: white;
+	font-size: xx-small;
+	page-break-inside: avoid;
 }
 tr {
     page-break-inside: avoid;
@@ -37,19 +43,25 @@ tr {
 <h1 style="text-align: center;">${_("VAT Statement Summary")} </h1>
 <h2 style="text-align: center;">${_("Date")}: ${formatLang(statement.date, date=True)|entity} </h2>
 
-<table width="100%"  class="tax_codes">
+<table width="100%"  class="tax_codes" cellspacing="0">
     <tr >
         <th  colspan="3">${ _('Sales') }</th>
     </tr>
     <tr >
-        <th >${ _('Tax Code') }</th>
-        <th >${ _('Base') }</th>
-        <th >${ _('VAT') }</th>
+        <th width="60%">${ _('Tax Code') }</th>
+        <th width="20%">${ _('Base') }</th>
+        <th width="20%">${ _('VAT') }</th>
     </tr>
     <% debit_total_base = 0.0 %>
     <% debit_total_vat = 0.0 %>
     <% totals_by_tax_code = {} %>
-    %for period in statement.period_ids:
+    %if statement.endyear_statement :
+    <% periods = statement.endyear_period_ids %>
+    %endif
+    %if not statement.endyear_statement :
+    <% periods = statement.period_ids %>
+    %endif
+    %for period in periods:
         <tr >
             <td style="text-align:left" colspan="3"><strong>${ _('Period') + ' ' + period.name}</strong></td>
         </tr>
@@ -67,6 +79,7 @@ tr {
             </tr>
         %endfor
     %endfor
+    %if len(period_ids) > 1 :
     <tr >
         <td style="text-align:left" colspan="3"><strong>${ _('Totals')}</strong></td>
     </tr>
@@ -77,26 +90,33 @@ tr {
             <td style="text-align:right">${ formatLang(totals_by_tax_code[tax_code]['vat'])|entity }</td>
         </tr>
     %endfor
+    %endif
     <tr >
-        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>${ _('Totals')}</strong></td>
         <td style="text-align:right"><strong>${ formatLang(debit_total_base)|entity }</strong></td>
         <td style="text-align:right"><strong>${ formatLang(debit_total_vat)|entity }</strong></td>
     </tr>
 </table>
 <br/><br/>
-<table width="100%"  class="tax_codes">
+<table width="100%"  class="tax_codes" cellspacing="0">
     <tr >
         <th  colspan="3">${ _('Purchases') }</th>
     </tr>
     <tr >
-        <th >${ _('Tax Code') }</th>
-        <th >${ _('Base') }</th>
-        <th >${ _('VAT') }</th>
+        <th width="60%">${ _('Tax Code') }</th>
+        <th width="20%">${ _('Base') }</th>
+        <th width="20%" >${ _('VAT') }</th>
     </tr>
     <% credit_total_base = 0.0 %>
     <% credit_total_vat = 0.0 %>
     <% totals_by_tax_code = {} %>
-    %for period in statement.period_ids:
+    %if statement.endyear_statement :
+    <% periods = statement.endyear_period_ids %>
+    %endif
+    %if not statement.endyear_statement :
+    <% periods = statement.period_ids %>
+    %endif
+    %for period in periods:
         <tr >
             <td style="text-align:left" colspan="3"><strong>${ _('Period') + ' ' + period.name}</strong></td>
         </tr>
@@ -114,6 +134,7 @@ tr {
             </tr>
         %endfor
     %endfor
+    %if len(period_ids) > 1 :
     <tr >
         <td style="text-align:left" colspan="3"><strong>${ _('Totals')}</strong></td>
     </tr>
@@ -124,48 +145,49 @@ tr {
             <td style="text-align:right">${ formatLang(totals_by_tax_code[tax_code]['vat'])|entity }</td>
         </tr>
     %endfor
+    %endif
     <tr >
-        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>${ _('Totals')}</strong></td>
         <td style="text-align:right"><strong>${ formatLang(credit_total_base)|entity }</strong></td>
         <td style="text-align:right"><strong>${ formatLang(credit_total_vat)|entity }</strong></td>
     </tr>
 </table>
 <br/><br/>
-<table class="tax_codes"  width="100%" >
+<table class="tax_codes"  width="100%" cellspacing="0">
     <tr >
         <th  colspan="3">${_("Summary")}</th>
     </tr>
     <tr>
-        <th></th>
-        <th> ${ _('Debit') }</th>
-        <th> ${ _('Credit') }</th>
+        <th width="60%"> ${ _('Description') }</th>
+        <th width="20%"> ${ _('Debit') }</th>
+        <th width="20%"> ${ _('Credit') }</th>
     </tr>
     %for debit_line in statement.debit_vat_account_line_ids :
+    %if debit_line.amount != 0:
         <tr >
-            <td>${ debit_line.account_id.name|entity }</td>
+            <td>${ debit_line.tax_code_id.name|entity }</td>
             <td>${ formatLang(debit_line.amount)|entity }</td>
             <td></td>
         </tr>
+    %endif
     %endfor
-    <!--
-    <tr >
-        <td>${_("Total")}</td>
-        <td>${ statement.payable_vat_amount|entity }</td>
-    </tr>
-    -->
+
     %for credit_line in statement.credit_vat_account_line_ids :
+    %if credit_line.amount != 0:
         <tr >
-            <td>${ credit_line.account_id.name|entity }</td>
+            <td>${ credit_line.tax_code_id.name|entity }</td>
             <td></td>
             <td>${ formatLang(credit_line.amount)|entity }</td>
         </tr>
+    %endif
     %endfor
-    <!--
-    <tr >
-        <td>${_("Total")}</td>
-        <td>${ statement.deductible_vat_amount|entity }</td>
+    
+    <tr>
+        <td><strong>${_("Total")}</strong></td>
+        <td><strong>${ statement.payable_vat_amount|entity }</td>
+        <td><strong>${ statement.deductible_vat_amount|entity }</strong></td>
     </tr>
-    -->
+
     <tr >
         <td>${_("Previous Credits VAT")}</td>
         <td></td>
@@ -183,9 +205,24 @@ tr {
             <td>${ generic_line.amount > 0 and formatLang(generic_line.amount) or ''|entity }</td>
         </tr>
     %endfor
+    %if statement.interest_amount > 0.0 :
     <tr >
-        <td><strong>${_("Amount to pay")}</strong></td>
+        <td><strong>${_("Amount")}</strong></td>
         <td colspan="2" style="text-align:center"><strong>${ formatLang(statement.authority_vat_amount)|entity }</strong></td>
+    </tr>
+    <tr >
+        <td><strong>${_("Interest amount")}</strong></td>
+        <td colspan="2" style="text-align:center"><strong>${ formatLang(statement.interest_amount)|entity }</strong></td>
+    </tr>
+    %endif
+    <tr >
+        %if statement.authority_vat_amount > 0.0 :
+        <td><strong>${_("Amount to pay")}</strong></td>
+        <td colspan="2" style="text-align:center"><strong>${ formatLang(statement.authority_vat_amount + statement.interest_amount)|entity }</strong></td>
+        %else :
+        <td><strong>${_("Amount of credit")}</strong></td>
+        <td colspan="2" style="text-align:center"><strong>${ formatLang(- statement.authority_vat_amount)|entity }</strong></td>
+        %endif
     </tr>
 </table>
 %endfor

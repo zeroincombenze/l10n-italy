@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010 Italian OpenERP Community (<http://www.openerp-italia.com>)                            
+#    Odoo, Open Source Management Solution
+#    Copyright (C) 2010 Italian Odoo Community
+# (<http://www.openerp-italia.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,26 +22,25 @@
 
 
 {
-    "name" : "Italy - Generic Chart of Accounts",
-    "version" : "0.1",
-    "depends" : ['l10n_it',],
-    "author" : "OpenERP Italian Community",
+    "name": "Italy - Generic Chart of Accounts",
+    "version": "0.1",
+    "depends": ['l10n_it', ],
+    "author": "Odoo Italian Community",
     "description": """
     Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica (compreso in l10n_it)
     """,
     "license": "AGPL-3",
-    "category" : "Localisation/Italy",
-    'website': 'http://www.openerp-italia.org/',
+    "category": "Localisation/Italy",
+    'website': 'http://www.odoo-italia.org/',
     'init_xml': [
-        ],
+    ],
     'update_xml': [
         'data/account.account.type.csv',
         'data/account.account.csv',
         'account_view.xml',
-        ],
+    ],
     'demo_xml': [
-        ],
+    ],
     'installable': True,
     'active': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

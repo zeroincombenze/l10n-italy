@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2010 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    All Rights Reserved
+#
+#    Copyright (C) 2010 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2014 Didotech SRL (<http://didotech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,41 +19,49 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
     'name': 'Italian Localisation - Sale',
-    'version': '0.2',
+    'version': '3.9.19.20',
     'category': 'Localisation/Italy',
-    'description': """OpenERP Italian Localization - Sale version
+    'description': """Odoo Italian Localization - Sale version
 
 Functionalities:
 
 - Documento di trasporto
+- CIG, CUP nella conferma ordine cliente
 
 """,
-    'author': 'OpenERP Italian Community',
-    'website': 'http://www.openerp-italia.org',
+    'author': 'Odoo Italian Community',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['stock', 'sale', 'account', 'delivery'],
-    "init_xml" : [
+    "depends": [
+        'stock',
+        'sale',
+        'sale_journal',
+        'account',
+        'delivery',
+        'c2c_sequence_fy',       # ricomincia da 0 le sequenze ogni anno
+        'invoice_immediate',     # fattura accompagnatoria
+        'sale_order_confirm',
+        'core_extended',
+        'stock_picking_filter',  # for have date from and date to on picking filter for ddt date
+        'sequence_recovery',
     ],
-    "update_xml" : [
+    "data": [
         'wizard/assign_ddt.xml',
+        'wizard/confirmation_view.xml',
+        'wizard/stock_partial_picking.xml',
         'stock/picking_view.xml',
-        'stock/carriage_condition_view.xml',
-        'stock/transportation_reason_view.xml',
-        'stock/goods_description_view.xml',
-        'stock/transportation_reason_data.xml',
+        'stock/sequence.xml',
+        'stock/stock_journal_view.xml',
+        'sale/sale_order_view.xml',
         'stock/goods_description_data.xml',
         'stock/carriage_condition_data.xml',
-        'stock/sequence.xml',
-        'sale/sale_view.xml',
-        "security/ir.model.access.csv",
-        'partner/partner_view.xml',
-        'account/invoice_view.xml',
-        ],
-    "demo_xml" : [],
+        'stock/transportation_condition_data.xml',
+    ],
+    "demo": [],
+    "test": [],
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

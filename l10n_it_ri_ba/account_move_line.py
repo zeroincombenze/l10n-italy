@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    All Rights Reserved 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
+#    All Rights Reserved
 #    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -22,10 +23,11 @@
 ##############################################################################
 
 from operator import itemgetter
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
 
-class account_move_line(osv.osv):
+
+class account_move_line(orm.Model):
     _inherit = "account.move.line"
 
     def riba_amount_to_pay(self, cr, uid, ids, name, arg={}, context=None):
@@ -73,7 +75,7 @@ class account_move_line(osv.osv):
                 WHERE type=%s AND active)
             AND reconcile_id IS NOT NULL
             AND debit > 0
-            AND ''' + where + ' and ' + query), ('receivable',)+sql_args )
+            AND ''' + where + ' and ' + query), ('receivable',) + sql_args)
         res = cr.fetchall()
         if not res:
             return [('id', '=', '0')]
@@ -92,7 +94,7 @@ class account_move_line(osv.osv):
         if not ids:
             return {}
         bank_type = riba_line_obj.s_bank_types(cr, uid, payment_type,
-                context=context)
+                                               context=context)
         for line in self.browse(cr, uid, ids, context=context):
             line2bank[line.id] = False
             if line.invoice and line.invoice.partner_bank_id:
@@ -124,7 +126,7 @@ class account_move_line(osv.osv):
         if not ids:
             return {}
         bank_type = riba_line_obj.s_bank_types(cr, uid, payment_type,
-                context=context)
+                                               context=context)
         for line in self.browse(cr, uid, ids, context=context):
             line2iban[line.id] = False
             if line.invoice and line.invoice.partner_bank_id:
@@ -145,9 +147,9 @@ class account_move_line(osv.osv):
 
     _columns = {
         'riba_amount_to_pay': fields.function(riba_amount_to_pay, method=True,
-            type='float', string='Amount to pay', fnct_search= riba_to_pay_search),       
+                                              type='float', string='Amount to pay', fnct_search=riba_to_pay_search),
     }
+
 
 account_move_line()
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

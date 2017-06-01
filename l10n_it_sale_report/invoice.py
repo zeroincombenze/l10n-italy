@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,11 +23,12 @@
 import time
 from report import report_sxw
 
+
 class Parser(report_sxw.rml_parse):
 
     def _get_ddt(self):
-        return self.pool.get('stock.picking').browse(self.cr, self.uid, 
-            self.localcontext['data']['form']['picking_id'])
+        return self.pool.get('stock.picking').browse(self.cr, self.uid,
+                                                     self.localcontext['data']['form']['picking_id'])
 
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)

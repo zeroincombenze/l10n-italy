@@ -1,8 +1,11 @@
-from osv import fields, osv
+from openerp.osv import fields
 
-class account_account(osv.osv):
+
+class account_account(orm.Model):
     _inherit = "account.account"
-    _columns =  {
+    _columns = {
         'parent_consol_ids': fields.many2many('account.account', 'account_account_consol_rel', 'parent_id', 'child_id', 'Consolidated Parents'),
     }
+
+
 account_account()

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    All Rights Reserved 
+#
+#    Copyright (C) 2011 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
+#    All Rights Reserved
 #    Thanks to Cecchi s.r.l http://www.cecchi.com/
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public
+# License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -21,9 +22,9 @@
 #
 ##############################################################################
 
-from osv import osv
 
-class riba_issue_make_payment(osv.osv_memory):
+
+class riba_issue_make_payment(orm.TransientModel):
     _name = "riba.issue.make.payment"
     _description = "Riba make issue"
 
@@ -33,10 +34,10 @@ class riba_issue_make_payment(osv.osv_memory):
         If type is manual. just confirm the order.
         """
         obj_riba_order = self.pool.get('riba.order')
-        if context is None:
-            context = {}
+        context = {} if context is None else context
         obj_riba_order.set_done(cr, uid, [context['active_id']], context)
         return {'type': 'ir.actions.act_window_close'}
+
+
 riba_issue_make_payment()
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

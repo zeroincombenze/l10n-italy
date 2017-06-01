@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #    Copyright (C) 2011
-#    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
+#    Associazione Odoo Italia (<http://www.odoo-italia.org>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,18 +21,18 @@
 ##############################################################################
 
 {
-    "name" : "Italy - Minimal Chart of Accounts",
-    "version" : "0.1",
-    "depends" : ['base_vat','account_chart','base_iban'],
-    "author" : "OpenERP Italian Community",
+    "name": "Italy - Minimal Chart of Accounts",
+    "version": "0.1",
+    "depends": ['base_vat', 'account_chart', 'base_iban'],
+    "author": "Odoo Italian Community",
     "description": """
-    Piano dei conti italiano minimale. Contiene solo i conti strettamente necessari a configurare una contabilità di base funzionante in OpenERP. Il modulo va inteso come una base di partenza per costruire il proprio piano dei conti.
+    Piano dei conti italiano minimale. Contiene solo i conti strettamente necessari a configurare una contabilità di base funzionante in Odoo. Il modulo va inteso come una base di partenza per costruire il proprio piano dei conti.
     """,
     "license": "AGPL-3",
-    "category" : "Localisation/Account Charts",
-    'website': 'http://www.openerp-italia.org/',
+    "category": "Localisation/Account Charts",
+    'website': 'http://www.odoo-italia.org/',
     'init_xml': [
-        ],
+    ],
     'update_xml': [
         'data/account.account.type.csv',
         'data/account.account.template.csv',
@@ -41,9 +41,9 @@
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
         'l10n_chart_it_generic.xml',
-        ],
+    ],
     'demo_xml': [
-        ],
+    ],
     'installable': True,
     'active': False,
 }

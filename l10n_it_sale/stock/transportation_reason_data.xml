@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="transportation_reason_VEN" model="stock.picking.transportation_reason">
-            <field name="name">VENDITA</field>
+        <record id="stock.journal_delivery" model="stock.model_stock_journal">
+            <field name="name">SALE</field>
         </record>
-        <record id="transportation_reason_VIS" model="stock.picking.transportation_reason">
-            <field name="name">CONTO VISIONE</field>
+        <record id="transportation_reason_VIS" model="stock.model_stock_journal">
+            <field name="name">FOR EXAMINATION</field>
         </record>
-        <record id="transportation_reason_RES" model="stock.picking.transportation_reason">
-            <field name="name">RESO</field>
+        <record id="transportation_reason_RES" model="stock.model_stock_journal">
+            <field name="name">MADE</field>
         </record>
      </data>
 </openerp>

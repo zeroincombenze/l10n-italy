@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #    Copyright (C) 2011 ISA s.r.l. (<http://www.isa.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,4 +19,6 @@
 #
 ##############################################################################
 
-import invoice
+from . import invoice
+from . import account_move_line
+from . import account_invoice_maturity_preview_lines
