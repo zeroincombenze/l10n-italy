@@ -66,6 +66,7 @@ http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
         'security/ir.model.access.csv',
         'reports.xml',
         'views/account_view.xml',
+        'views/company_view.xml',
     ],
     'demo': [],
     'installable': True,

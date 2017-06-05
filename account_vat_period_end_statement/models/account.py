@@ -392,11 +392,15 @@ class account_vat_period_end_statement(orm.Model):
             string='Payments'),
         'period_ids': fields.one2many(
             'account.period', 'vat_statement_id', 'Periods'),
+        'interest': fields.boolean('Compute Interest'),
+        'interest_percent': fields.float('Interest - Percent'),
         'company_id': fields.many2one('res.company', 'Company'),
     }
 
     _defaults = {
         'date': fields.date.context_today,
+        # 'interest': _get_default_interest,
+        # 'interest_percent': _get_default_interest_percent,
         'company_id': lambda self, cr, uid, c:
             self.pool.get('res.company')._company_default_get(
                 cr, uid, 'account.vat.period.end.statement', context=c),
@@ -668,6 +672,33 @@ class account_vat_period_end_statement(orm.Model):
                 'authority_vat_account_id': partner.property_account_payable.id
             }
         }
+
+    def onchange_interest(self, cr, uid, ids, interest, context=None):
+        res = {}
+        if not ids:
+            return res
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id
+
+        res = {'value': {
+            'interest_percent':
+                company.of_account_end_vat_statement_interest_percent,
+        }}
+        return res
+
+    def get_account_interest(self, cr, uid, ids, context=None):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id
+        if (
+            company.of_account_end_vat_statement_interest or
+            any([s.interest for s in self.browse(cr, uid, ids, context)])
+        ):
+            if not company.of_account_end_vat_statement_interest_account_id:
+                raise orm.except_orm(
+                    _('Error VAT Configuration!'),
+                    _("The account for vat interest must be configurated"))
+
+        return company.of_account_end_vat_statement_interest_account_id.id
 
 
 class statement_debit_account_line(orm.Model):
