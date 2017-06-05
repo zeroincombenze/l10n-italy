@@ -32,8 +32,9 @@
     'license': 'AGPL-3',
     "depends": [
         'report_webkit',
+        'account',
         'l10n_it_base',
-        'l10n_it_partially_deductible_vat'
+        # 'l10n_it_partially_deductible_vat'
     ],
     "data": [
         'reports.xml',

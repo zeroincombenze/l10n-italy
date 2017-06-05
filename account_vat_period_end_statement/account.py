@@ -229,6 +229,14 @@ class account_vat_period_end_statement(orm.Model):
             result[statement.id] = lines
         return result
 
+    def _get_default_interest_percent(self, cr, uid, context=None):
+        # user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        # company = user.company_id
+        # if not company.of_account_end_vat_statement_interest:
+        #     return 0
+        # return company.of_account_end_vat_statement_interest_percent
+        return 0
+
     _name = "account.vat.period.end.statement"
     _rec_name = 'date'
     _order = 'date'
@@ -236,8 +244,11 @@ class account_vat_period_end_statement(orm.Model):
         'debit_vat_account_line_ids': fields.one2many(
             'statement.debit.account.line', 'statement_id', 'Debit VAT',
             help='The accounts containing the debit VAT amount to write-off',
-            states={'confirmed': [('readonly', True)], 'paid': [(
-                'readonly', True)], 'draft': [('readonly', False)]}),
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            }),
 
         'credit_vat_account_line_ids': fields.one2many(
             'statement.credit.account.line', 'statement_id', 'Credit VAT',
@@ -368,11 +379,16 @@ class account_vat_period_end_statement(orm.Model):
             _compute_interest_vat_amount, method=True,
             string='Authority VAT Interest Amount'),
         'fiscal_page_base': fields.integer('Last printed page n.'),
+        'company_id': fields.many2one('res.company', 'Company'),
     }
 
     _defaults = {
         'date': fields.date.context_today,
         'interest_rate': 0.01,
+        # 'interest_rate': _get_default_interest_percent,
+        'company_id': lambda self, cr, uid, c:
+            self.pool.get('res.company')._company_default_get(
+                cr, uid, 'account.vat.period.end.statement', context=c),
     }
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):

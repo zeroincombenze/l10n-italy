@@ -18,6 +18,7 @@
                         -->
                     </group>
                     <field name="move_id"  select="1"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="payment_term_id"  select="1"/>
                     <notebook colspan="4">
                         <page string="Periods">
@@ -102,6 +103,7 @@
                     <field name="journal_id" />
                     <field name="authority_vat_amount"   />
                     <field name="state" />
+                    <field name="company_id" groups="base.group_multi_company"/>
                </tree>
             </field>
         </record>
