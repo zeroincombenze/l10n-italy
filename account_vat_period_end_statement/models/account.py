@@ -350,11 +350,9 @@ class account_vat_period_end_statement(orm.Model):
 
         'payment_term_id': fields.many2one(
             'account.payment.term', 'Payment Term',
-            states={
-                'confirmed': [
-                    ('readonly', True)], 'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-
+            states={'confirmed': [('readonly', True)],
+                    'paid': [('readonly', True)],
+                    'draft': [('readonly', False)]}),
         'reconciled': fields.function(
             _reconciled, string='Paid/Reconciled', type='boolean',
             store={
@@ -394,10 +392,14 @@ class account_vat_period_end_statement(orm.Model):
             string='Payments'),
         'period_ids': fields.one2many(
             'account.period', 'vat_statement_id', 'Periods'),
+        'company_id': fields.many2one('res.company', 'Company'),
     }
 
     _defaults = {
         'date': fields.date.context_today,
+        'company_id': lambda self, cr, uid, c:
+            self.pool.get('res.company')._company_default_get(
+                cr, uid, 'account.vat.period.end.statement', context=c),
     }
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):
