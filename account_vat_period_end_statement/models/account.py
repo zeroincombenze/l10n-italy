@@ -13,7 +13,6 @@ from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
 import decimal_precision as dp
-# import pdb
 
 
 class account_vat_period_end_statement(orm.Model):
@@ -581,7 +580,6 @@ class account_vat_period_end_statement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
-        # pdb.set_trace()
         context = {} if context is None else context
         statement_generic_account_line_obj = self.pool[
             'statement.generic.account.line']
@@ -652,6 +650,55 @@ class account_vat_period_end_statement(orm.Model):
                     'tax_code_id': credit_tax_code.id,
                     'amount': total * credit_tax_code.vat_statement_sign,
                 })
+
+            passed = []
+            tax_pool = self.pool.get('account.tax')
+            for rec in debit_line_ids + credit_line_ids:
+                tax_code_id = rec['tax_code_id']
+                tax_ids = tax_pool.search(cr, uid,
+                                          [('tax_code_id', '=', tax_code_id)])
+                for tax_id in tax_ids:
+                    tax = tax_pool.browse(cr, uid, tax_id)
+                    if tax.base_code_id:
+                        base_tax_code_id = tax.base_code_id.id
+                        if base_tax_code_id not in passed:
+                            passed.append(base_tax_code_id)
+                            rec['base_tax_code_id'] = base_tax_code_id
+                tax_ids = tax_pool.search(cr, uid,
+                                          [('ref_tax_code_id',
+                                            '=',
+                                            tax_code_id)])
+                for tax_id in tax_ids:
+                    tax = tax_pool.browse(cr, uid, tax_id)
+                    if tax.ref_base_code_id:
+                        base_tax_code_id = tax.ref_base_code_id.id
+                        if base_tax_code_id not in passed:
+                            passed.append(base_tax_code_id)
+                            rec['ref_base_tax_code_id'] = base_tax_code_id
+            for rec in debit_line_ids + credit_line_ids:
+                tax_code_id = rec.get('base_tax_code_id', False)
+                if tax_code_id:
+                    tax_code = tax_code_pool.browse(
+                        cr, uid, tax_code_id, context)
+                    total = 0.0
+                    for period in statement.period_ids:
+                        ctx = context.copy()
+                        ctx['period_id'] = period.id
+                        total += tax_code_pool.browse(
+                            cr, uid, tax_code_id, ctx).sum_period
+                    rec['base_amount'] = total * tax_code.vat_statement_sign
+                ref_tax_code_id = rec.get('ref_base_tax_code_id', False)
+                if ref_tax_code_id:
+                    tax_code = tax_code_pool.browse(
+                        cr, uid, ref_tax_code_id, context)
+                    total = 0.0
+                    for period in statement.period_ids:
+                        ctx = context.copy()
+                        ctx['period_id'] = period.id
+                        total += tax_code_pool.browse(
+                            cr, uid, ref_tax_code_id, ctx).sum_period
+                    rec['ref_base_amount'] = total * -1 * \
+                        tax_code.vat_statement_sign
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -741,6 +788,14 @@ class statement_debit_account_line(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
+        'base_tax_code_id':  fields.many2one(
+            'account.tax.code', 'Base Tax Code'),
+        'base_amount': fields.float(
+            'Base amount', digits_compute=dp.get_precision('Account')),
+        'ref_base_tax_code_id': fields.many2one(
+            'account.tax.code', 'Ref Base Tax Code'),
+        'ref_base_amount': fields.float(
+            'Base amount', digits_compute=dp.get_precision('Account')),
     }
 
 
@@ -756,6 +811,14 @@ class statement_credit_account_line(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
+        'base_tax_code_id':  fields.many2one(
+            'account.tax.code', 'Base Tax Code'),
+        'base_amount': fields.float(
+            'Base amount', digits_compute=dp.get_precision('Account')),
+        'ref_base_tax_code_id': fields.many2one(
+            'account.tax.code', 'Ref Base Tax Code'),
+        'ref_base_amount': fields.float(
+            'Base amount', digits_compute=dp.get_precision('Account')),
     }
 
 
@@ -769,6 +832,14 @@ class statement_generic_account_line(orm.Model):
         'amount': fields.float(
             'Amount', digits_compute=dp.get_precision('Account'),
             required=True),
+        'base_tax_code_id':  fields.many2one(
+            'account.tax.code', 'Base Tax Code'),
+        'base_amount': fields.float(
+            'Base amount', digits_compute=dp.get_precision('Account')),
+        'ref_base_tax_code_id': fields.many2one(
+            'account.tax.code', 'Ref Base Tax Code'),
+        'ref_base_amount': fields.float(
+            'Base amount', digits_compute=dp.get_precision('Account')),
     }
 
     def on_change_vat_account_id(
