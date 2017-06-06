@@ -1,28 +1,18 @@
 # -*- coding: utf-8 -*-
+#    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
+#    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
+#    Copyright (C) 2013-15 LinkIt Spa <http://http://www.linkgroup.it>
+#    Copyright (C) 2013-17 Associazione Odoo Italia
+#                          <http://www.odoo-italia.org>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
+#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    Odoo, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
-
+# [2011: domsense] First version
+# [2012: agilebg] Various enhancements
+# [2013: openerp-italia] Various enhancements
+# [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
     "version": "7.0.2.1.4",
@@ -31,7 +21,7 @@
     "depends": ["account_voucher",
                 "report_webkit"
                 ],
-    "author": ["Agile Business Group", "Odoo Italian Community"],
+    "author": ["Agile Business Group", "Odoo Italia Associazione"],
     "description": """
 
 This module helps to register the VAT statement of period end.
@@ -58,7 +48,7 @@ Specification:
 http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
 """,
-    'website': 'http://www.agilebg.com',
+    'website': 'https://odoo-italia.org',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
