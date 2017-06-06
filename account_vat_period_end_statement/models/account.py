@@ -13,6 +13,7 @@ from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
 import decimal_precision as dp
+# import pdb
 
 
 class account_vat_period_end_statement(orm.Model):
@@ -580,13 +581,17 @@ class account_vat_period_end_statement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
+        # pdb.set_trace()
         context = {} if context is None else context
         statement_generic_account_line_obj = self.pool[
             'statement.generic.account.line']
         decimal_precision_obj = self.pool['decimal.precision']
+        company_id = self.pool.get(
+            'res.users').browse(cr, uid, uid, context).company_id.id
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
         for statement in self.browse(cr, uid, ids, context):
+            company_id = statement.company_id.id
             statement.write({'previous_debit_vat_amount': 0.0})
             prev_statement_ids = self.search(
                 cr, uid, [('date', '<', statement.date)], order='date')
@@ -611,6 +616,7 @@ class account_vat_period_end_statement(orm.Model):
             debit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
                 ('vat_statement_type', '=', 'debit'),
+                ('company_id', '=', company_id),
             ], context=context)
             for debit_tax_code_id in debit_tax_code_ids:
                 debit_tax_code = tax_code_pool.browse(
@@ -630,6 +636,7 @@ class account_vat_period_end_statement(orm.Model):
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
                 ('vat_statement_type', '=', 'credit'),
+                ('company_id', '=', company_id),
             ], context=context)
             for credit_tax_code_id in credit_tax_code_ids:
                 credit_tax_code = tax_code_pool.browse(
@@ -783,9 +790,8 @@ class account_tax_code(orm.Model):
         'vat_statement_account_id': fields.many2one(
             'account.account',
             "Account used for VAT statement",
-            help="The tax code balance will be "
-            "associated to this account after selecting the period in "
-            "VAT statement"),
+            help="Set VAT account to compute VAT amount."
+                 "Please, leave empty if no VAT amount record"),
         'vat_statement_type': fields.selection(
             [('credit', 'Credit'), ('debit', 'Debit')], 'Type',
             help="This establish whether amount will "
