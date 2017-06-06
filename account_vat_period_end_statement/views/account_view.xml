@@ -74,10 +74,12 @@
                         </group>
                         <group colspan="4">
                             <separator colspan="4" string="Previous Credits VAT"/>
-                            <field name="previous_credit_vat_account_id" attrs="{'required':[('previous_credit_vat_amount','!=',0)]}"/>
+                            <field name="previous_credit_vat_account_id"
+                                   attrs="{'required':[('previous_credit_vat_amount','!=',0)]}"/>
                             <field name="previous_credit_vat_amount" nolabel="1"/>
                             <separator colspan="4" string="Previous Debits VAT"/>
-                            <field name="previous_debit_vat_account_id" attrs="{'required':[('previous_debit_vat_amount','!=',0)]}"/>
+                            <field name="previous_debit_vat_account_id"
+                                   attrs="{'required':[('previous_debit_vat_amount','!=',0)]}"/>
                             <field name="previous_debit_vat_amount" nolabel="1"/>
                             <separator colspan="4" string="Other VAT Credits / Debits or Tax Compensations (Positive amounts for credits, negative for debits)"/>
                             <field name="generic_vat_account_line_ids" colspan="4" nolabel="1">
