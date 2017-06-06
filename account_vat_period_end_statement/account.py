@@ -253,45 +253,66 @@ class account_vat_period_end_statement(orm.Model):
         'credit_vat_account_line_ids': fields.one2many(
             'statement.credit.account.line', 'statement_id', 'Credit VAT',
             help='The accounts containing the credit VAT amount to write-off',
-            states={'confirmed': [('readonly', True)], 'paid': [(
-                'readonly', True)], 'draft': [('readonly', False)]}),
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            }),
 
         'previous_credit_vat_account_id': fields.many2one(
             'account.account', 'Previous Credits VAT',
-            help='Credit VAT from previous periods', states={'confirmed': [(
-                'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                    'readonly', False)]}),
+            help='Credit VAT from previous periods',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            }),
         'previous_credit_vat_amount': fields.float(
-            'Previous Credits VAT Amount', states={'confirmed': [(
-                'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                    'readonly', False)]},
+            'Previous Credits VAT Amount',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            },
             digits_compute=dp.get_precision('Account')),
 
         'previous_debit_vat_account_id': fields.many2one(
             'account.account', 'Previous Debits VAT',
-            help='Debit VAT from previous periods', states={'confirmed': [(
-                'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                    'readonly', False)]}),
+            help='Debit VAT from previous periods',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            }),
         'previous_debit_vat_amount': fields.float(
-            'Previous Debits VAT Amount', states={'confirmed': [(
-                'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                    'readonly', False)]},
+            'Previous Debits VAT Amount',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]
+            },
             digits_compute=dp.get_precision('Account')),
 
         'generic_vat_account_line_ids': fields.one2many(
             'statement.generic.account.line', 'statement_id',
-            'Other VAT Credits / Debits or Tax Compensations', states={
-                'confirmed': [('readonly', True)], 'paid': [(
-                    'readonly', True)], 'draft': [('readonly', False)]}),
+            'Other VAT Credits / Debits or Tax Compensations',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
 
         'authority_partner_id': fields.many2one(
-            'res.partner', 'Tax Authority Partner', states={'confirmed': [(
-                'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                    'readonly', False)]}),
+            'res.partner', 'Tax Authority Partner',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
         'authority_vat_account_id': fields.many2one(
-            'account.account', 'Tax Authority VAT Account', required=True, states={
-                'confirmed': [('readonly', True)], 'paid': [(
-                    'readonly', True)], 'draft': [('readonly', False)]}),
+            'account.account', 'Tax Authority VAT Account', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
         'authority_vat_amount': fields.function(
             _compute_authority_vat_amount, method=True,
             string='Authority VAT Amount'),
@@ -302,12 +323,17 @@ class account_vat_period_end_statement(orm.Model):
             string='Deductible VAT Amount'),
 
         'journal_id': fields.many2one(
-            'account.journal', 'Journal', required=True, states={'confirmed': [(
-                'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                    'readonly', False)]}),
-        'date': fields.date('Date', required=True, states={'confirmed': [(
-            'readonly', True)], 'paid': [('readonly', True)], 'draft': [(
-                'readonly', False)]}),
+            'account.journal', 'Journal', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+        'date': fields.date(
+            'Date', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
         'move_id': fields.many2one(
             'account.move', 'VAT statement move', readonly=True),
         #'voucher_id': fields.many2one('account.voucher', 'VAT payment',
@@ -320,11 +346,9 @@ class account_vat_period_end_statement(orm.Model):
 
         'payment_term_id': fields.many2one(
             'account.payment.term', 'Payment Term',
-            states={'confirmed': [(
-                'readonly', True)], 'paid': [(
-                    'readonly', True)], 'draft': [(
-                        'readonly', False)]}),
-
+            states={'confirmed': [('readonly', True)],
+                    'paid': [('readonly', True)],
+                    'draft': [('readonly', False)]}),
         'reconciled': fields.function(
             _reconciled, string='Paid/Reconciled', type='boolean',
             store={
