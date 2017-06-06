@@ -1,31 +1,18 @@
 # -*- coding: utf-8 -*-
+#    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
+#    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
+#    Copyright (C) 2013-15 LinkIt Spa <http://http://www.linkgroup.it>
+#    Copyright (C) 2013-17 Associazione Odoo Italia
+#                          <http://www.odoo-italia.org>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
+#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    Odoo, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2015 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
-from openerp.addons.decimal_precision import decimal_precision as dp
+import openerp.addons.decimal_precision as dp
 
 
 class AccountVatPeriodEndStatement(orm.Model):
@@ -350,11 +337,9 @@ class AccountVatPeriodEndStatement(orm.Model):
 
         'payment_term_id': fields.many2one(
             'account.payment.term', 'Payment Term',
-            states={
-                'confirmed': [
-                    ('readonly', True)], 'paid': [('readonly', True)],
-                'draft': [('readonly', False)]}),
-
+            states={'confirmed': [('readonly', True)],
+                    'paid': [('readonly', True)],
+                    'draft': [('readonly', False)]}),
         'reconciled': fields.function(
             _reconciled, string='Paid/Reconciled', type='boolean',
             store={
@@ -599,9 +584,12 @@ class AccountVatPeriodEndStatement(orm.Model):
         statement_generic_account_line_obj = self.pool[
             'statement.generic.account.line']
         decimal_precision_obj = self.pool['decimal.precision']
+        company_id = self.pool.get(
+            'res.users').browse(cr, uid, uid, context).company_id.id
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
         for statement in self.browse(cr, uid, ids, context):
+            company_id = statement.company_id.id
             statement.write({'previous_debit_vat_amount': 0.0})
             prev_statement_ids = self.search(
                 cr, uid, [('date', '<', statement.date)], order='date')
@@ -626,6 +614,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             debit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
                 ('vat_statement_type', '=', 'debit'),
+                ('company_id', '=', company_id),
             ], context=context)
             for debit_tax_code_id in debit_tax_code_ids:
                 debit_tax_code = tax_code_pool.browse(
@@ -645,6 +634,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
                 ('vat_statement_type', '=', 'credit'),
+                ('company_id', '=', company_id),
             ], context=context)
             for credit_tax_code_id in credit_tax_code_ids:
                 credit_tax_code = tax_code_pool.browse(
@@ -798,9 +788,8 @@ class AccountTaxCode(orm.Model):
         'vat_statement_account_id': fields.many2one(
             'account.account',
             "Account used for VAT statement",
-            help="The tax code balance will be "
-            "associated to this account after selecting the period in "
-            "VAT statement"),
+            help="Set VAT account to compute VAT amount."
+                 "Please, leave empty if no VAT amount record"),
         'vat_statement_sign': fields.integer(
             'Sign used in statement',
             help="If tax code period sum is usually negative, set '-1' here"),
