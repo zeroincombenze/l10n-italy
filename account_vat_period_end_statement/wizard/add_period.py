@@ -10,7 +10,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 from openerp.osv import orm, fields
-from tools.translate import _
+from openerp.tools.translate import _
 
 
 class add_period(orm.TransientModel):

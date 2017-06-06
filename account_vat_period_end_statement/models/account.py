@@ -381,13 +381,15 @@ class account_vat_period_end_statement(orm.Model):
             'account.period', 'vat_statement_id', 'Periods'),
         'interest': fields.boolean('Compute Interest'),
         'interest_percent': fields.float('Interest - Percent'),
+        'fiscal_page_base': fields.integer('Last printed page', required=True),
         'company_id': fields.many2one('res.company', 'Company'),
     }
 
     _defaults = {
         'date': fields.date.context_today,
-        # 'interest': _get_default_interest,
-        # 'interest_percent': _get_default_interest_percent,
+        'interest': _get_default_interest,
+        'interest_percent': _get_default_interest_percent,
+        'fiscal_page_base': 1,
         'company_id': lambda self, cr, uid, c:
             self.pool.get('res.company')._company_default_get(
                 cr, uid, 'account.vat.period.end.statement', context=c),
@@ -579,6 +581,9 @@ class account_vat_period_end_statement(orm.Model):
 
     def compute_amounts(self, cr, uid, ids, context=None):
         context = {} if context is None else context
+        statement_generic_account_line_obj = self.pool[
+            'statement.generic.account.line']
+        decimal_precision_obj = self.pool['decimal.precision']
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
         for statement in self.browse(cr, uid, ids, context):
@@ -598,7 +603,7 @@ class account_vat_period_end_statement(orm.Model):
                 elif prev_statement.authority_vat_amount < 0:
                     statement.write(
                         {'previous_credit_vat_amount': -
-                         prev_statement.authority_vat_amount})
+                            prev_statement.authority_vat_amount})
 
             credit_line_ids = []
             debit_line_ids = []
@@ -612,9 +617,10 @@ class account_vat_period_end_statement(orm.Model):
                     cr, uid, debit_tax_code_id, context)
                 total = 0.0
                 for period in statement.period_ids:
-                    context['period_id'] = period.id
+                    ctx = context.copy()
+                    ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
-                        cr, uid, debit_tax_code_id, context).sum_period
+                        cr, uid, debit_tax_code_id, ctx).sum_period
                 debit_line_ids.append({
                     'account_id': debit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': debit_tax_code.id,
@@ -630,9 +636,10 @@ class account_vat_period_end_statement(orm.Model):
                     cr, uid, credit_tax_code_id, context)
                 total = 0.0
                 for period in statement.period_ids:
-                    context['period_id'] = period.id
+                    ctx = context.copy()
+                    ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
-                        cr, uid, credit_tax_code_id, context).sum_period
+                        cr, uid, credit_tax_code_id, ctx).sum_period
                 credit_line_ids.append({
                     'account_id': credit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': credit_tax_code.id,
@@ -649,6 +656,33 @@ class account_vat_period_end_statement(orm.Model):
             for credit_vals in credit_line_ids:
                 credit_vals.update({'statement_id': statement.id})
                 credit_line_pool.create(cr, uid, credit_vals, context=context)
+
+            interest_amount = 0.0
+            # if exits Delete line with interest
+            acc_id = self.get_account_interest(cr, uid, ids, context)
+            domain = [
+                ('account_id', '=', acc_id),
+                ('statement_id', '=', statement.id),
+            ]
+            line_ids = statement_generic_account_line_obj.search(
+                cr, uid, domain)
+            if line_ids:
+                statement_generic_account_line_obj.unlink(cr, uid, line_ids)
+
+            # Compute interest
+            if statement.interest and statement.authority_vat_amount > 0:
+                interest_amount = (-1 * round(
+                    statement.authority_vat_amount *
+                    (float(statement.interest_percent) / 100),
+                    decimal_precision_obj.precision_get(cr, uid, 'Account')))
+            # Add line with interest
+            if interest_amount:
+                val = {
+                    'statement_id': statement.id,
+                    'account_id': acc_id,
+                    'amount': interest_amount,
+                }
+                statement_generic_account_line_obj.create(cr, uid, val)
         return True
 
     def on_change_partner_id(self, cr, uid, ids, partner_id, context=None):

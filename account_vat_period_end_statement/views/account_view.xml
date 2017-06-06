@@ -2,7 +2,7 @@
 <openerp>
 <data>
 
-    <!-- Statement -->
+    <!-- Statement 7.0 -->
 
     <record id="view_account_vat_period_end_statement" model="ir.ui.view">
         <field name="name">account.vat.period.end.statement.form</field>
@@ -11,17 +11,15 @@
         <field name="arch" type="xml">
             <form string="Vat statement">
                 <field name="journal_id" widget="selection" select="1"/>
-                <group col="2" colspan="2">
-                    <field name="date" select="1" />
-                    <!-- TODO check if it's manageable
+                <field name="date" select="1" />
+                <!-- TODO check if it's manageable
                         <button name="open_chart_of_taxes" string="View chart of taxes for selected period" type="object"/>
                         -->
-                </group>
                 <field name="move_id" select="1"/>
                 <field name="company_id" groups="base.group_multi_company"/>
-                    <field name="interest" on_change="onchange_interest(interest)"/>
-                    <field name="interest_percent"
-                           attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
+                <field name="interest" on_change="onchange_interest(interest)"/>
+                <field name="interest_percent"
+                       attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
                 <field name="payment_term_id" select="1"/>
                 <notebook colspan="4">
                     <page string="Periods">
@@ -85,6 +83,11 @@
                         <separator string="Payments" colspan="4"/>
                         <field name="payment_ids" nolabel="1" colspan="4"/>
                     </page>
+                    <page string="Print Options">
+                        <group colspan="4" string="Page Number">
+                            <field name="fiscal_page_base"/>
+                        </group>
+                    </page>
                 </notebook>
                 <field name="state" select="1"/>
                 <field name="reconciled"/>
@@ -121,7 +124,7 @@
     <record id="view_tax_code_form" model="ir.ui.view">
         <field name="name">account.tax.code.form</field>
         <field name="model">account.tax.code</field>
-        <field name="inherit_id" ref="account.view_tax_code_form"></field>
+        <field name="inherit_id" ref="account.view_tax_code_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <separator string="Description" position="before">
