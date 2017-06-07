@@ -36,6 +36,25 @@ If you need to calculate interest, you can add default information in your
 company data (percentage and account).
 
 
+
+[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+
+Liquidazione IVA periodica
+==========================
+
+Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
+mensili che trimestrali.
+
+La liquidazione è calcolata attraverso i totali di periodo dei conti imposte.
+Nei conti imposte deve essere inserito il conto IVA a credito o IVA a debito
+per individuare i conti imposte che fanno riferimento all'IVA.
+
+L'utente può aggiungere l'eventuale credito/debito del periodo precedente e
+calcolare gli interessi; può anche registrare l'utilizzo del credito in
+compensazione.
+Dal 2017 gestisce la liquidazione elettronica IP17.
+
+
 Credits
 =======
 
@@ -58,23 +77,6 @@ Odoo Italia is a nonprofit organization whose develops Italian Localization for
 Odoo.
 
 To contribute to this module, please visit <https://odoo-italia.org/>.
-
-
-
-[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
-
-Liquidazione IVA periodica
-==========================
-
-Gestione liquidazione IVA periodica.
-
-Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
-mensili che trimestrali.
-
-L'utente può aggiungere l'eventuale credito/debito del periodo precedente e
-calcolare gli interessi; può anche registrare l'utilizzo del credito in
-compensazione.
-Dal 2017 gestisce la liquidazione elettronica IP17.
 
 
 [//]: # (copyright)

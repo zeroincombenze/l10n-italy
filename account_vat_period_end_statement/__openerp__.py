@@ -19,7 +19,8 @@
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": ["account_voucher",
-                "report_webkit"
+                "report_webkit",
+                "l10n_it_vat_registries",
                 ],
     "author": ["Agile Business Group", "Odoo Italia Associazione"],
     "description": """
