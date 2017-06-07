@@ -1,60 +1,51 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
+#    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
+#    Copyright (C) 2013-15 LinkIt Spa <http://http://www.linkgroup.it>
+#    Copyright (C) 2013-17 Associazione Odoo Italia
+#                          <http://www.odoo-italia.org>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
+#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-#    Odoo, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-
+# [2011: domsense] First version
+# [2012: agilebg] Various enhancements
+# [2013: openerp-italia] Various enhancements
+# [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "2.1.4",
+    "version": "2.1.4.0",
     'category': 'Generic Modules/Accounting',
+    'license': 'AGPL-3',
     "depends": [
         "account_voucher",
         "report_webkit",
         "l10n_it_vat_registries",
     ],
     "author": [
-        "Agile Business Group", "Odoo Italian Community", "Didotech srl"],
+        "Agile Business Group", "Odoo Italia Associazione", "Didotech srl"],
     "description": """
 
 This module helps to register the VAT statement of period end.
 
-In order to load correct amount from tax code,
-the tax code has to be associated to account involved in statement,
-through tax code form.
+In order to load correct amount from tax code, the tax code has to be
+associated to account involved in statement, through tax code form.
 
-The 'VAT statement' object allows to specify every amount and relative account used by the statement.
-By default,
-amounts of debit and credit taxes are automatically loaded from tax codes of selected periods.
-Previous debit or credit is loaded from previous VAT statement,
-according to its payments status.
-Confirming the statement,
-the 'account.move' is created. If you select a payment term, the due date(
-    s) will be set.
+The 'VAT statement' object allows to specify every amount and relative account
+used by the statement.
+By default, amounts of debit and credit taxes are automatically loaded
+from tax codes of selected periods.
+Previous debit or credit is loaded from previous VAT statement, according
+to its payments status.
+Confirming the statement, the 'account.move' is created. If you select
+a payment term, the due date(s) will be set.
 
-The 'tax authority' tab contains information about payment(
-    s). You can see statement's result ('authority VAT amount') and residual amount to pay ('Balance').
-The statement can be paid like every other debit:
-    by voucher or 'move.line' reconciliation.
+The 'tax authority' tab contains information about payment(s).
+You can see statement's result ('authority VAT amount') and residual
+amount to pay ('Balance').
+The statement can be paid like every other debit: by voucher or 'move.line'
+reconciliation.
 
 In case of VAT statement for quarter period,
 it can be configured the interest rate.
