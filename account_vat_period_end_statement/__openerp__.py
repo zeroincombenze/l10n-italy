@@ -18,9 +18,11 @@
     "version": "7.0.2.1.4",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
-    "depends": ["account_voucher",
+    "depends": ["base",
+                "account_voucher",
                 "report_webkit",
                 "l10n_it_vat_registries",
+                "l10n_it_vat_closeout_pyxb",
                 ],
     "author": ["Agile Business Group", "Odoo Italia Associazione"],
     "description": """
@@ -52,6 +54,7 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17/
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
+        'wizard/vat_settlement.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'reports.xml',

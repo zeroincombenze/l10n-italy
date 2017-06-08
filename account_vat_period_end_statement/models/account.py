@@ -380,6 +380,10 @@ class account_vat_period_end_statement(orm.Model):
         'interest_percent': fields.float('Interest - Percent'),
         'fiscal_page_base': fields.integer('Last printed page', required=True),
         'company_id': fields.many2one('res.company', 'Company'),
+        'vat_settlement_attachment_id': fields.many2one(
+            'account.vat.settlement.attachment',
+            'VAT Settlement Export File',
+            readonly=True),
     }
 
     _defaults = {
@@ -411,6 +415,13 @@ class account_vat_period_end_statement(orm.Model):
         res = super(account_vat_period_end_statement, self).unlink(
             cr, uid, ids, context)
         return res
+
+    def copy(self, cr, uid, ids, defaults, context=None):
+        if context is None:
+            context = self.pool['res.users'].context_get(cr, uid)
+        defaults['vat_settlement_attachment_id'] = False
+        return super(AccountVatPeriodEndStatement, self).copy(
+            cr, uid, ids, defaults, context)
 
     def statement_draft(self, cr, uid, ids, context=None):
         for statement in self.browse(cr, uid, ids, context):
@@ -839,6 +850,16 @@ class account_vat_period_end_statement(orm.Model):
 
         return company.of_account_end_vat_statement_interest_account_id.id
 
+    def action_cancel(self, cr, uid, ids, context=None):
+        for vat_statement in self.browse(cr, uid, ids, context):
+            if vat_statement:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('You should delete VAT Settlement before'
+                      ' deleting Vat Period End Statement')
+                )
+        return super(AccountVatPeriodEndStatement, self).action_cancel(cr, uid, ids, context)
+
 
 class statement_debit_account_line(orm.Model):
     _name = 'statement.debit.account.line'
@@ -932,4 +953,19 @@ class account_period(orm.Model):
     _columns = {
         'vat_statement_id': fields.many2one(
             'account.vat.period.end.statement', "VAT statement"),
+    }
+
+
+class AccountVatSettlementAttachment(orm.Model):
+    _name = "account.vat.settlement.attachment"
+    _description = "Vat Settlement Export File"
+    _inherits = {'ir.attachment': 'ir_attachment_id'}
+    _inherit = ['mail.thread']
+
+    _columns = {
+        'ir_attachment_id': fields.many2one(
+            'ir.attachment', 'Attachment', required=True, ondelete="cascade"),
+        'vat_statement_ids': fields.one2many(
+            'account.vat.period.end.statement', 'vat_settlement_attachment_id',
+            string="VAT Statements", readonly=True),
     }
