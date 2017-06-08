@@ -46,8 +46,7 @@ The statement can be paid like every other debit: by voucher or 'move.line'
 reconciliation.
 
 Specification:
-http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
-
+https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17/
 """,
     'website': 'https://odoo-italia.org',
     'data': [

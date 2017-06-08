@@ -54,6 +54,8 @@ calcolare gli interessi; può anche registrare l'utilizzo del credito in
 compensazione.
 Dal 2017 gestisce la liquidazione elettronica IP17.
 
+[Istruzioni di utilizzo](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
+
 
 Credits
 =======

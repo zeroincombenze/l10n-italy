@@ -743,8 +743,8 @@ class account_vat_period_end_statement(orm.Model):
                 prev_statement = self.browse(
                     cr, uid, prev_statement_ids[len(prev_statement_ids) - 1],
                     context)
-                if (prev_statement.residual > 0 and
-                        prev_statement.authority_vat_amount > 0):
+                if prev_statement.residual > 0 and \
+                        prev_statement.authority_vat_amount > 0:
                     statement.write(
                         {'previous_debit_vat_amount':
                          prev_statement.residual})
@@ -901,8 +901,7 @@ class statement_generic_account_line(orm.Model):
         if not vat_account_id:
             return res
         res['value']['amount'] = self.pool.get('account.account').browse(
-            cr, uid, vat_account_id,
-            context).balance
+            cr, uid, vat_account_id, context).balance
         return res
 
 
