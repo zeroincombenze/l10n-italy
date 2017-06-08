@@ -54,7 +54,8 @@ class account_vat_period_end_statement(orm.Model):
         return res
 
     def _compute_payable_vat_amount(
-            self, cr, uid, ids, field_name, arg, context):
+        self, cr, uid, ids, field_name, arg, context
+    ):
         res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
@@ -65,7 +66,8 @@ class account_vat_period_end_statement(orm.Model):
         return res
 
     def _compute_deductible_vat_amount(
-            self, cr, uid, ids, field_name, arg, context):
+        self, cr, uid, ids, field_name, arg, context
+    ):
         res = {}
         for i in ids:
             statement = self.browse(cr, uid, i)
@@ -123,7 +125,8 @@ class account_vat_period_end_statement(orm.Model):
     def _get_statement_from_line(self, cr, uid, ids, context=None):
         move = {}
         for line in self.pool.get('account.move.line').browse(
-                cr, uid, ids, context=context):
+            cr, uid, ids, context=context
+        ):
             if line.reconcile_partial_id:
                 for line2 in line.reconcile_partial_id.line_partial_ids:
                     move[line2.move_id.id] = True
@@ -141,7 +144,8 @@ class account_vat_period_end_statement(orm.Model):
         move = {}
         statement_ids = []
         for move in self.pool.get('account.move').browse(
-                cr, uid, ids, context=context):
+            cr, uid, ids, context=context
+        ):
             found_ids = self.pool.get(
                 'account.vat.period.end.statement').search(
                 cr, uid, [('move_id', '=', move.id)], context=context)
@@ -153,7 +157,8 @@ class account_vat_period_end_statement(orm.Model):
     def _get_statement_from_reconcile(self, cr, uid, ids, context=None):
         move = {}
         for r in self.pool.get('account.move.reconcile').browse(
-                cr, uid, ids, context=context):
+            cr, uid, ids, context=context
+        ):
             for line in r.line_partial_ids:
                 move[line.move_id.id] = True
             for line in r.line_id:
@@ -169,21 +174,24 @@ class account_vat_period_end_statement(orm.Model):
     def _get_credit_line(self, cr, uid, ids, context=None):
         result = {}
         for line in self.pool.get('statement.credit.account.line').browse(
-                cr, uid, ids, context=context):
+            cr, uid, ids, context=context
+        ):
             result[line.statement_id.id] = True
         return result.keys()
 
     def _get_debit_line(self, cr, uid, ids, context=None):
         result = {}
         for line in self.pool.get('statement.debit.account.line').browse(
-                cr, uid, ids, context=context):
+            cr, uid, ids, context=context
+        ):
             result[line.statement_id.id] = True
         return result.keys()
 
     def _get_generic_line(self, cr, uid, ids, context=None):
         result = {}
         for line in self.pool.get('statement.generic.account.line').browse(
-                cr, uid, ids, context=context):
+            cr, uid, ids, context=context
+        ):
             result[line.statement_id.id] = True
         return result.keys()
 
@@ -206,11 +214,12 @@ class account_vat_period_end_statement(orm.Model):
                 for m in statement.move_id.line_id:
                     temp_lines = []
                     if m.reconcile_id:
-                        temp_lines = map(lambda x:
-                                         x.id, m.reconcile_id.line_id)
+                        temp_lines = map(
+                            lambda x: x.id, m.reconcile_id.line_id)
                     elif m.reconcile_partial_id:
-                        temp_lines = map(lambda x:
-                                         x.id, m.reconcile_partial_id.line_partial_ids)
+                        temp_lines = map(
+                            lambda x: x.id,
+                            m.reconcile_partial_id.line_partial_ids)
                     lines += [x for x in temp_lines if x not in lines]
                     src.append(m.id)
 
@@ -344,14 +353,13 @@ class account_vat_period_end_statement(orm.Model):
             _reconciled, string='Paid/Reconciled', type='boolean',
             store={
                 'account.vat.period.end.statement': (
-                    lambda self, cr, uid, ids, c={}:
-                    ids, None, 50),
+                    lambda self, cr, uid, ids, c={}: ids, None, 50),
                 'account.move.line': (
                     _get_statement_from_line,
                     None, 50),
                 'account.move.reconcile': (
-                    _get_statement_from_reconcile,
-                    None, 50), },
+                    _get_statement_from_reconcile, None, 50),
+            },
             help="It indicates that the statement has been paid and the journal entry of the statement has been reconciled with one or several journal entries of payment."),
         'residual': fields.function(
             _amount_residual, digits_compute=dp.get_precision(
@@ -449,10 +457,12 @@ class account_vat_period_end_statement(orm.Model):
             if len(period_ids) != 1:
                 raise orm.except_orm(_('Encoding error'), _(
                     'No period found or more than one period found for the given date.'))
-            move_data = {'name': _('VAT statement') + ' - ' + statement.date,
-                         'date': statement.date,
-                         'journal_id': statement.journal_id.id,
-                         'period_id': period_ids[0], }
+            move_data = {
+                'name': _('VAT statement') + ' - ' + statement.date,
+                'date': statement.date,
+                'journal_id': statement.journal_id.id,
+                'period_id': period_ids[0],
+            }
             move_id = move_obj.create(cr, uid, move_data)
             statement.write({'move_id': move_id})
 
@@ -489,9 +499,11 @@ class account_vat_period_end_statement(orm.Model):
                         'period_id': period_ids[0],
                     }
                     if credit_line.amount < 0:
-                        credit_vat_data['debit'] = math.fabs(credit_line.amount)
+                        credit_vat_data['debit'] = math.fabs(
+                            credit_line.amount)
                     else:
-                        credit_vat_data['credit'] = math.fabs(credit_line.amount)
+                        credit_vat_data['credit'] = math.fabs(
+                            credit_line.amount)
                     if credit_line.amount <> 0:
                         line_obj.create(cr, uid, credit_vat_data)
 
@@ -621,36 +633,153 @@ class account_vat_period_end_statement(orm.Model):
 
         return True
 
-    """
-    def open_chart_of_taxes(self, cr, uid, ids, context=None):
-        result = {}
-        if context is None:
-            context = {}
-        for statement in self.browse(cr, uid, ids, context):
-            mod_obj = self.pool.get('ir.model.data')
-            act_obj = self.pool.get('ir.actions.act_window')
-            period_obj = self.pool.get('account.period')
-            period_ids = period_obj.find(
-            cr, uid, dt=statement.date, context=context)
-            if len(period_ids)> 1:
-                raise orm.except_orm(_('Error'), _(
-                    'Too many periods for date %s') % str(statement.date))
-            period = period_obj.browse(cr, uid, period_ids[0], context)
-            result = mod_obj.get_object_reference(
-            cr, uid, 'account', 'action_tax_code_tree')
-            id = result and result[1] or False
-            result = act_obj.read(cr, uid, [id], context=context)[0]
+    def build_tax_tree(self, cr, uid, company_id, context=None):
+        """[antoniov: 2017-06-03]
+        account.tax.code records cannot be recognized as VAT or base amount and
+        Italian law requires to couple base and VAT amounts,
+        thats is stored on account.tax model.
+        This function rebuilds (base,VAT) couples throught account.tax.
+        Warning: end-user could have set many-2-many base,VAT relationship;
+        in this case some couple (base,VAT) may be wrong.
+        However, all tutorial of Odoo Italian Comunity and standard Italian
+        Localization have just one-2-one relationshiop on (base,VAT).
+        return: tax_tree[type][basevat][left], where
+        - type may be 'sale', 'purchase' or 'all'
+        - basevat may be 'tax_code_id', 'base_code_id', 'ref_tax_code_id' or
+              'ref_base_code_id'
+        - left is id of account.tax.code record
+        """
+        context = {} if context is None else context
+        tax_pool = self.pool.get('account.tax')
+        tax_ids = tax_pool.search(
+            cr, uid, [('company_id', '=', company_id)])
+        tax_tree = {}
+        for tax_id in tax_ids:
+            tax = tax_pool.browse(cr, uid, tax_id)
+            type = tax.type_tax_use
+            if type not in tax_tree:
+                tax_tree[type] = {}
+            for basevat in ('tax_code_id', 'base_code_id',
+                            'ref_tax_code_id', 'ref_base_code_id'):
+                if basevat[-11:] == 'tax_code_id':
+                    vatbase = basevat[0:-11] + 'base_code_id'
+                elif basevat[-12:] == 'base_code_id':
+                    vatbase = basevat[0:-12] + 'tax_code_id'
+                else:
+                    vatbase = False             # never should run here!
+                if basevat not in tax_tree[type]:
+                    tax_tree[type][basevat] = {}
+                if getattr(tax, basevat):
+                    left = getattr(tax, basevat).id
+                    if getattr(tax, vatbase):
+                        right = getattr(tax, vatbase).id
+                        tax_tree[type][basevat][left] = right
+                    elif left not in tax_tree[type][basevat]:
+                        tax_tree[type][basevat][left] = False
+        return tax_tree
 
-            fiscalyear_id = period.fiscalyear_id.id
-            result['context'] = str({'period_id': period.id, \
-                                     'fiscalyear_id': fiscalyear_id, \
-                                        'state': 'posted'})
-
-            period_code = period.code
-            result['name'] += period_code and (':' + period_code) or ''
-            result['nodestroy'] = True
-        return result
-    """
+    def compute_amount_dbt_crd(self, cr, uid, statement, company_id,
+                               tax_tree, all=None, context=None):
+        context = {} if context is None else context
+        tax_code_pool = self.pool.get('account.tax.code')
+        dbt_crd_line_ids = []
+        dbt_crd_tax_code_ids = tax_code_pool.search(cr, uid, [
+            ('exclude_from_registries', '!=', True),
+            ('company_id', '=', company_id),
+        ], context=context)
+        for dbt_crd_tax_code_id in dbt_crd_tax_code_ids:
+            if tax_code_pool.search(cr, uid, [('parent_id',
+                                               '=',
+                                               dbt_crd_tax_code_id)]):
+                continue
+            dbt_crd_tax_code = tax_code_pool.browse(
+                cr, uid, dbt_crd_tax_code_id, context)
+            total = 0.0
+            for period in statement.period_ids:
+                ctx = context.copy()
+                ctx['period_id'] = period.id
+                total += tax_code_pool.browse(
+                    cr, uid, dbt_crd_tax_code_id, ctx).sum_period
+            if total == 0.0:
+                continue
+            left_id = right_id = False
+            for type in tax_tree:
+                # for basevat in tax_tree[type]:
+                for basevat in ('tax_code_id', 'base_code_id',
+                                'ref_tax_code_id', 'ref_base_code_id'):
+                    if basevat[-11:] == 'tax_code_id':
+                        basevat_id = basevat[-11:]
+                        vatbase = basevat[0:-11] + 'base_code_id'
+                        vatbase_id = vatbase[-12:]
+                    elif basevat[-12:] == 'base_code_id':
+                        basevat_id = basevat[-12:]
+                        vatbase = basevat[0:-12] + 'tax_code_id'
+                        vatbase_id = vatbase[-11:]
+                    else:
+                        vatbase_id = False             # never should run here!
+                    if dbt_crd_tax_code_id in tax_tree[type][basevat]:
+                        left_id = dbt_crd_tax_code_id
+                        if left_id in tax_tree[type][basevat]:
+                            right_id = tax_tree[type][basevat][left_id]
+                        else:
+                            right_id = False
+                        if type == 'sale':
+                            dbt_crd = 'debit'
+                        elif type == 'purchase':
+                            dbt_crd = 'credit'
+                        else:
+                            dbt_crd = dbt_crd_tax_code.vat_statement_type
+                        if left_id and right_id:
+                            break
+                if left_id and right_id:
+                    break
+            if not left_id and not right_id:
+                continue
+            found_rec = False
+            for id, rec in enumerate(dbt_crd_line_ids):
+                if dbt_crd == rec['dbt_crd']:
+                    if basevat_id in rec and rec[basevat_id] == left_id:
+                        found_rec = True
+                        break
+                    elif vatbase_id in rec and rec[vatbase_id] == right_id:
+                        found_rec = True
+                        break
+            if not found_rec:
+                rec = {}
+                rec['dbt_crd'] = dbt_crd
+            if dbt_crd_tax_code.vat_statement_account_id:
+                rec['account_id'] = \
+                    dbt_crd_tax_code.vat_statement_account_id.id
+            if basevat_id == 'tax_code_id':
+                rec[basevat_id] = left_id
+                rec['amount'] = \
+                    total * dbt_crd_tax_code.vat_statement_sign
+                if right_id:
+                    if vatbase not in rec:
+                        rec[vatbase_id] = right_id
+                    if 'base_amount' not in rec:
+                        rec['base_amount'] = 0.0
+            elif basevat_id == 'base_code_id':
+                rec[basevat_id] = left_id
+                rec['base_amount'] = \
+                    total * dbt_crd_tax_code.vat_statement_sign
+                if right_id:
+                    if vatbase not in rec:
+                        rec[vatbase_id] = right_id
+                    if 'amount' not in rec:
+                        rec['amount'] = 0.0
+            if found_rec:
+                del dbt_crd_line_ids[id]
+            dbt_crd_line_ids.append(rec)
+        id = 0
+        while id < len(dbt_crd_line_ids):
+            if not all and \
+                    rec.get('amount', 0) == 0 and \
+                    rec.get('base_amount', 0) == 0:
+                del dbt_crd_line_ids[id]
+            else:
+                id += 1
+        return dbt_crd_line_ids
 
     def compute_amounts(self, cr, uid, ids, context=None):
         context = {} if context is None else context
@@ -661,114 +790,36 @@ class account_vat_period_end_statement(orm.Model):
             'res.users').browse(cr, uid, uid, context).company_id.id
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
+        tax_tree = self.build_tax_tree(cr, uid, company_id, context)
         for statement in self.browse(cr, uid, ids, context):
             company_id = statement.company_id.id
             statement.write({'previous_debit_vat_amount': 0.0})
             prev_statement_ids = self.search(cr, uid, [(
                 'date', '<', statement.date)], order='date')
             if prev_statement_ids:
-                prev_statement = self.browse(cr, uid, prev_statement_ids[len(
-                    prev_statement_ids) - 1], context)
-                if prev_statement.residual > 0 and prev_statement.authority_vat_amount > 0:
-                    statement.write({'previous_debit_vat_amount':
-                                     prev_statement.residual})
+                prev_statement = self.browse(
+                    cr, uid, prev_statement_ids[len(prev_statement_ids) - 1],
+                    context)
+                if prev_statement.residual > 0 and \
+                        prev_statement.authority_vat_amount > 0:
+                    statement.write(
+                        {'previous_debit_vat_amount':
+                         prev_statement.residual})
                 elif prev_statement.authority_vat_amount < 0:
-                    statement.write({'previous_credit_vat_amount': -
-                                     prev_statement.authority_vat_amount})
-
+                    statement.write(
+                        {'previous_credit_vat_amount': -
+                            prev_statement.authority_vat_amount})
+            dbt_crd_ids = self.compute_amount_dbt_crd(
+                cr, uid, statement, company_id, tax_tree, context)
             credit_line_ids = []
             debit_line_ids = []
-            tax_code_pool = self.pool.get('account.tax.code')
-            debit_tax_code_ids = tax_code_pool.search(cr, uid, [
-                ('vat_statement_account_id', '!=', False),
-                ('exclude_from_registries', '!=', True),
-                ('vat_statement_type', '=', 'debit'),
-                ('company_id', '=', company_id),
-            ], context=context)
-            for debit_tax_code_id in debit_tax_code_ids:
-                debit_tax_code = tax_code_pool.browse(
-                    cr, uid, debit_tax_code_id, context)
-                total = 0.0
-                for period in statement.period_ids:
-                    ctx = context.copy()
-                    ctx['period_id'] = period.id
-                    total += tax_code_pool.browse(
-                        cr, uid, debit_tax_code_id, ctx).sum_period
-                debit_line_ids.append({
-                    'account_id': debit_tax_code.vat_statement_account_id.id,
-                    'tax_code_id': debit_tax_code.id,
-                    'amount': total * debit_tax_code.vat_statement_sign,
-                })
-
-            credit_tax_code_ids = tax_code_pool.search(cr, uid, [
-                ('vat_statement_account_id', '!=', False),
-                ('exclude_from_registries', '!=', True),
-                ('vat_statement_type', '=', 'credit'),
-                ('company_id', '=', company_id),
-            ], context=context)
-            for credit_tax_code_id in credit_tax_code_ids:
-                credit_tax_code = tax_code_pool.browse(
-                    cr, uid, credit_tax_code_id, context)
-                total = 0.0
-                for period in statement.period_ids:
-                    ctx = context.copy()
-                    ctx['period_id'] = period.id
-                    total += tax_code_pool.browse(
-                        cr, uid, credit_tax_code_id, ctx).sum_period
-                credit_line_ids.append({
-                    'account_id': credit_tax_code.vat_statement_account_id.id,
-                    'tax_code_id': credit_tax_code.id,
-                    'amount': total * credit_tax_code.vat_statement_sign,
-                })
-
-            passed = []
-            tax_pool = self.pool.get('account.tax')
-            for rec in debit_line_ids + credit_line_ids:
-                tax_code_id = rec['tax_code_id']
-                tax_ids = tax_pool.search(cr, uid,
-                                          [('tax_code_id', '=', tax_code_id)])
-                for tax_id in tax_ids:
-                    tax = tax_pool.browse(cr, uid, tax_id)
-                    if tax.base_code_id:
-                        base_tax_code_id = tax.base_code_id.id
-                        if base_tax_code_id not in passed:
-                            passed.append(base_tax_code_id)
-                            rec['base_tax_code_id'] = base_tax_code_id
-                tax_ids = tax_pool.search(cr, uid,
-                                          [('ref_tax_code_id',
-                                            '=',
-                                            tax_code_id)])
-                for tax_id in tax_ids:
-                    tax = tax_pool.browse(cr, uid, tax_id)
-                    if tax.ref_base_code_id:
-                        base_tax_code_id = tax.ref_base_code_id.id
-                        if base_tax_code_id not in passed:
-                            passed.append(base_tax_code_id)
-                            rec['ref_base_tax_code_id'] = base_tax_code_id
-            for rec in debit_line_ids + credit_line_ids:
-                tax_code_id = rec.get('base_tax_code_id', False)
-                if tax_code_id:
-                    tax_code = tax_code_pool.browse(
-                        cr, uid, tax_code_id, context)
-                    total = 0.0
-                    for period in statement.period_ids:
-                        ctx = context.copy()
-                        ctx['period_id'] = period.id
-                        total += tax_code_pool.browse(
-                            cr, uid, tax_code_id, ctx).sum_period
-                    rec['base_amount'] = total * tax_code.vat_statement_sign
-                ref_tax_code_id = rec.get('ref_base_tax_code_id', False)
-                if ref_tax_code_id:
-                    tax_code = tax_code_pool.browse(
-                        cr, uid, ref_tax_code_id, context)
-                    total = 0.0
-                    for period in statement.period_ids:
-                        ctx = context.copy()
-                        ctx['period_id'] = period.id
-                        total += tax_code_pool.browse(
-                            cr, uid, ref_tax_code_id, ctx).sum_period
-                    rec['ref_base_amount'] = total * -1 * \
-                        tax_code.vat_statement_sign
+            for rec in dbt_crd_ids:
+                if rec['dbt_crd'] == 'debit':
+                    del rec['dbt_crd']
+                    debit_line_ids.append(rec)
+                elif rec['dbt_crd'] == 'credit':
+                    del rec['dbt_crd']
+                    credit_line_ids.append(rec)
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -793,21 +844,16 @@ class statement_debit_account_line(orm.Model):
     _name = 'statement.debit.account.line'
     _columns = {
         'account_id': fields.many2one(
-            'account.account', 'Account', required=True),
+            'account.account', 'Account'),
         'tax_code_id': fields.many2one(
-            'account.tax.code', 'Tax Code', required=True),
+            'account.tax.code', 'Tax Code'),
         'statement_id': fields.many2one(
             'account.vat.period.end.statement', 'VAT statement'),
         'amount': fields.float(
-            'Amount', digits_compute=dp.get_precision('Account'),
-            required=True),
-        'base_tax_code_id':  fields.many2one(
+            'Amount', digits_compute=dp.get_precision('Account')),
+        'base_code_id':  fields.many2one(
             'account.tax.code', 'Base Tax Code'),
         'base_amount': fields.float(
-            'Base amount', digits_compute=dp.get_precision('Account')),
-        'ref_base_tax_code_id': fields.many2one(
-            'account.tax.code', 'Ref Base Tax Code'),
-        'ref_base_amount': fields.float(
             'Base amount', digits_compute=dp.get_precision('Account')),
     }
 
@@ -816,21 +862,16 @@ class statement_credit_account_line(orm.Model):
     _name = 'statement.credit.account.line'
     _columns = {
         'account_id': fields.many2one(
-            'account.account', 'Account', required=True),
+            'account.account', 'Account'),
         'tax_code_id': fields.many2one(
-            'account.tax.code', 'Tax Code', required=True),
+            'account.tax.code', 'Tax Code'),
         'statement_id': fields.many2one(
             'account.vat.period.end.statement', 'VAT statement'),
         'amount': fields.float(
-            'Amount', digits_compute=dp.get_precision('Account'),
-            required=True),
-        'base_tax_code_id':  fields.many2one(
+            'Amount', digits_compute=dp.get_precision('Account')),
+        'base_code_id':  fields.many2one(
             'account.tax.code', 'Base Tax Code'),
         'base_amount': fields.float(
-            'Base amount', digits_compute=dp.get_precision('Account')),
-        'ref_base_tax_code_id': fields.many2one(
-            'account.tax.code', 'Ref Base Tax Code'),
-        'ref_base_amount': fields.float(
             'Base amount', digits_compute=dp.get_precision('Account')),
     }
 
@@ -839,24 +880,22 @@ class statement_generic_account_line(orm.Model):
     _name = 'statement.generic.account.line'
     _columns = {
         'account_id': fields.many2one(
-            'account.account', 'Account', required=True),
+            'account.account', 'Account'),
+        'tax_code_id': fields.many2one(
+            'account.tax.code', 'Tax Code'),
         'statement_id': fields.many2one(
             'account.vat.period.end.statement', 'VAT statement'),
         'amount': fields.float(
-            'Amount', digits_compute=dp.get_precision('Account'),
-            required=True),
-        'base_tax_code_id':  fields.many2one(
+            'Amount', digits_compute=dp.get_precision('Account')),
+        'base_code_id':  fields.many2one(
             'account.tax.code', 'Base Tax Code'),
         'base_amount': fields.float(
-            'Base amount', digits_compute=dp.get_precision('Account')),
-        'ref_base_tax_code_id': fields.many2one(
-            'account.tax.code', 'Ref Base Tax Code'),
-        'ref_base_amount': fields.float(
             'Base amount', digits_compute=dp.get_precision('Account')),
     }
 
     def on_change_vat_account_id(
-            self, cr, uid, ids, vat_account_id=False, context=None):
+        self, cr, uid, ids, vat_account_id=False, context=None
+    ):
         res = {}
         res['value'] = {}
         if not vat_account_id:
@@ -870,10 +909,14 @@ class account_tax_code(orm.Model):
     _inherit = "account.tax.code"
     _columns = {
         'vat_statement_account_id': fields.many2one(
-            'account.account', "Account used for VAT statement"),
-            'vat_statement_type': fields.selection([('credit', 'Credit'), (
-            'debit', 'Debit')], 'Type',
-            help="This establish whether amount will be loaded as debit or credit"),
+            'account.account',
+            "Account used for VAT statement",
+            help="Set VAT account to compute VAT amount."
+                 "Please, leave empty if no VAT amount record"),
+        'vat_statement_type': fields.selection(
+            [('credit', 'Credit'), ('debit', 'Debit')], 'Type',
+            help="This establish whether amount will "
+                 "be loaded as debit or credit"),
         'vat_statement_sign': fields.integer(
             'Sign used in statement',
             help="If tax code period sum is usually negative, set '-1' here"),

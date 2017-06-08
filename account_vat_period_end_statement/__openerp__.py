@@ -18,11 +18,10 @@
     "version": "2.1.4.0",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
-    "depends": [
-        "account_voucher",
-        "report_webkit",
-        "l10n_it_vat_registries",
-    ],
+    "depends": ["account_voucher",
+                "report_webkit",
+                "l10n_it_vat_registries",
+                ],
     "author": [
         "Agile Business Group", "Odoo Italia Associazione", "Didotech srl"],
     "description": """
