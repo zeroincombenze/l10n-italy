@@ -22,7 +22,6 @@
                 "account_voucher",
                 "report_webkit",
                 "l10n_it_vat_registries",
-                # "l10n_it_vat_closeout_pyxb",
                 ],
     "author":  "Agile Business Group, "
                " Odoo Italia Associazione",
