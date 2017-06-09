@@ -26,10 +26,12 @@
     ],
     "author": "Agile Business Group, Odoo Italia Associazione,"
               " Odoo Community Association (OCA)",
+    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
     'website': 'https://odoo-italia.org',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
+        'wizard/vat_settlement.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
@@ -38,5 +40,8 @@
         'views/config.xml',
         'views/account_view.xml',
     ],
+    'external_dependencies': {
+        'python': ['pyxb'],
+    },
     'installable': True,
 }
