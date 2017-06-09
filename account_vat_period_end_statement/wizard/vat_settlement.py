@@ -5,7 +5,7 @@
 #                Odoo-Italia.org Community
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.osv import fields, orm
-from l10n_it_vat_closeout_pyxb.bindings.vat_settlement_v_1_0 import (
+from ..bindings.vat_settlement_v_1_0 import (
     Fornitura,
     # Intestazione,
     Intestazione_IVP_Type,
@@ -276,7 +276,7 @@ class WizardVatSettlement(orm.TransientModel):
             vat_settlement_attachment_out_id = self.pool['account.vat.settlement.attachment'].create(cr, uid, attach_vals, context={})
 
         view_rec = model_data_obj.get_object_reference(
-            cr, uid, 'l10n_it_vat_settlement',
+            cr, uid, 'account_vat_period_end_statement',
             'view_vat_settlement_attachment_form')
         if view_rec:
             view_id = view_rec and view_rec[1] or False

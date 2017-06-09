@@ -19,12 +19,12 @@ from openerp import addons
 from . import _ds as _ImportedBinding__ds
 import pyxb.binding.datatypes
 from . import _cm as _ImportedBinding__cm
-common = addons.get_module_resource('l10n_it_vat_closeout_pyxb',
-                                    'common')
+common = addons.get_module_resource('common')
 
 # Unique identifier for bindings created at the same time
 
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:8fc238dc-397b-11e7-a4ab-a820664035f5')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier(
+    'urn:uuid:8fc238dc-397b-11e7-a4ab-a820664035f5')
 
 # Version of PyXB used to generate the bindings
 
@@ -35,13 +35,11 @@ if pyxb.__version__ != _PyXBVersion:
 
 # NOTE: All namespace declarations are reserved within the binding
 
-Namespace = pyxb.namespace.NamespaceForURI('urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp', create_if_missing=True)
-
-
+Namespace = pyxb.namespace.NamespaceForURI(
+    'urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp',
+    create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 _Namespace_ds = _ImportedBinding__ds.Namespace
-
-
 _Namespace_ds.configureCategories(['typeBinding', 'elementBinding'])
 
 

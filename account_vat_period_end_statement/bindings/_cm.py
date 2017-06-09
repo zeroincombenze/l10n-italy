@@ -19,7 +19,8 @@ from openerp import addons
 import pyxb.binding.datatypes
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:cb93820a-397e-11e7-bf8c-a820664035f5')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier(
+    'urn:uuid:cb93820a-397e-11e7-bf8c-a820664035f5')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -28,13 +29,11 @@ if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
 # NOTE: All namespace declarations are reserved within the binding
-Namespace = pyxb.namespace.NamespaceForURI('urn:www.agenziaentrate.gov.it:specificheTecniche:common', create_if_missing=True)
+Namespace = pyxb.namespace.NamespaceForURI(
+    'urn:www.agenziaentrate.gov.it:specificheTecniche:common', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
-
-# LIBROOT = '/Users/andrei/Programming/lp/LibrERP/l10n_it_vat_closeout_pyxb/common/'
-# LIBROOT = '~/7.0/l10n-italy-supplemental/l10n_it_vat_settlement/l10n_it_vat_closeout_pyxb/common/'
-LIBROOT = addons.get_module_resource('l10n_it_vat_closeout_pyxb',
-                                     'common')
+# LIBROOT = addons.get_module_resource('common')
+LIBROOT = '../common'
 
 
 def CreateFromDocument(xml_text, default_namespace=None, location_base=None):

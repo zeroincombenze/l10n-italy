@@ -15,16 +15,18 @@
 # [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "7.0.2.1.4",
+    "version": "7.0.2.1.5",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": ["base",
                 "account_voucher",
                 "report_webkit",
                 "l10n_it_vat_registries",
-                "l10n_it_vat_closeout_pyxb",
+                # "l10n_it_vat_closeout_pyxb",
                 ],
-    "author": ["Agile Business Group", "Odoo Italia Associazione"],
+    "author":  "Agile Business Group, "
+               " Odoo Italia Associazione",
+    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
     "description": """
 
 This module helps to register the VAT statement of period end.
@@ -61,6 +63,9 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17/
         'views/account_view.xml',
         'views/company_view.xml',
     ],
+    'external_dependencies': {
+        'python': ['pyxb'],
+    },
     'demo': [],
     'installable': True,
 }
