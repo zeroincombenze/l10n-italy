@@ -9,6 +9,10 @@
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
+# [2011: domsense] First version
+# [2012: agilebg] Various enhancements
+# [2013: openerp-italia] Various enhancements
+# [2017: odoo-italia] Electronic VAT statement
 from . import add_period
 from . import remove_period
 from . import vat_settlement

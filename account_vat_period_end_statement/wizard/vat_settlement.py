@@ -25,7 +25,6 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-identificativo = "12345"
 # TODO: mettere in impostazioni del modulo
 FirmaDichiarazione = False
 # TODO: which format????
@@ -116,29 +115,37 @@ class WizardVatSettlement(orm.TransientModel):
             '9': '3',
             '12': '4'
         }
+        statement_pool = self.pool.get('account.vat.period.end.statement')
+        ids = statement_pool.search(
+            cr, uid, [],
+            order='progressivo_telematico desc',
+            limit=1,
+            context=context)
+        if len(ids):
+            progressivo_telematico = statement_pool.browse(
+                cr, uid,
+                ids[0]).progressivo_telematico + 1
+        else:
+            progressivo_telematico = 1
 
         statement_ids = context.get('active_ids', False)
 
-        for statement in self.pool[
-                'account.vat.period.end.statement'].browse(cr,
-                                                           uid,
-                                                           statement_ids,
-                                                           context=context):
+        for statement in statement_pool.browse(cr,
+                                               uid,
+                                               statement_ids,
+                                               context=context):
             settlement = Fornitura()
             settlement.Intestazione = (Intestazione_IVP_Type())
             settlement.Intestazione.CodiceFornitura = codice_fornitura
             # settlement.Intestazione.CodiceFiscaleDichiarante =
             # settlement.Intestazione.CodiceCarica =
             # settlement.Intestazione.IdSistema
-
             _logger.debug(settlement.Intestazione.toDOM().toprettyxml(
                 encoding="latin1"))
-
             settlement.Comunicazione = (Comunicazione_IVP_Type())
             settlement.Comunicazione.Frontespizio = (Frontespizio_IVP_Type())
             settlement.Comunicazione.Frontespizio.CodiceFiscale = \
-                self.company.partner_id.fiscalcode
-
+                statement.soggetto_codice_fiscale
             # date_period_end = datetime.datetime.strptime(statement.date, DEFAULT_SERVER_DATE_FORMAT)
             # settlement.Comunicazione.Frontespizio.AnnoImposta = str(date_period_end.year)
             date_start, date_stop = self.get_date_start_stop(statement,
@@ -261,19 +268,25 @@ class WizardVatSettlement(orm.TransientModel):
 
             _logger.debug(settlement.Comunicazione.DatiContabili.toDOM().toprettyxml(encoding="latin1"))
 
-            settlement.Comunicazione.identificativo = identificativo
+            settlement.Comunicazione.identificativo = \
+                "%05d" % progressivo_telematico
 
             vat_settlement_xml = settlement.toDOM().toprettyxml(encoding="latin1")
 
             # TODO: Resolve: It will attach separate XML to every vat.period.end.statement document
+            fn_name = 'LiquidazioneIVA-%05d.xml' % progressivo_telematico
             attach_vals = {
-                'name': 'Liquidazione IVA {}.xml'.format(date_stop.month),
-                'datas_fname': 'Liquidazione IVA {}.xml'.format(date_stop.month),
+                'name': fn_name,
+                'datas_fname': fn_name,
                 'datas': base64.encodestring(vat_settlement_xml),
                 'res_model': 'account.vat.period.end.statement',
                 'res_id': statement.id
             }
-            vat_settlement_attachment_out_id = self.pool['account.vat.settlement.attachment'].create(cr, uid, attach_vals, context={})
+            statement_pool.write(cr, uid, [statement.id],
+                {'progressivo_telematico': progressivo_telematico})
+            vat_settlement_attachment_out_id = self.pool[
+                'account.vat.settlement.attachment'].create(cr,
+                    uid, attach_vals, context={})
 
         view_rec = model_data_obj.get_object_reference(
             cr, uid, 'account_vat_period_end_statement',

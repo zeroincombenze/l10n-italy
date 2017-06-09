@@ -13,6 +13,8 @@ from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
 import decimal_precision as dp
+import codicefiscale
+from tndb import tndb
 
 
 class account_vat_period_end_statement(orm.Model):
@@ -384,6 +386,13 @@ class account_vat_period_end_statement(orm.Model):
             'account.vat.settlement.attachment',
             'VAT Settlement Export File',
             readonly=True),
+        'show_zero': fields.boolean('Show only VAT structure'),
+        'soggetto_codice_fiscale':
+            fields.char('Codice fiscale soggetto obbligato',
+                        size=16, required=True,
+                        help="Soggetto che presenta la comunicazione"),
+        'progressivo_telematico':
+            fields.integer('Progressivo telematico', readonly=True),
     }
 
     _defaults = {
@@ -394,6 +403,7 @@ class account_vat_period_end_statement(orm.Model):
         'company_id': lambda self, cr, uid, c:
             self.pool.get('res.company')._company_default_get(
                 cr, uid, 'account.vat.period.end.statement', context=c),
+        'show_zero': False,
     }
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):
@@ -633,32 +643,36 @@ class account_vat_period_end_statement(orm.Model):
         return tax_tree
 
     def compute_amount_dbt_crd(self, cr, uid, statement, company_id,
-                               tax_tree, all=None, context=None):
+                               tax_tree, show_zero=None, context=None):
+        tndb.wlog('compute_amount_dbt_crd(', statement, company_id, tax_tree, ')')
         context = {} if context is None else context
+        if show_zero is None:
+            show_zero = statement.show_zero
         tax_code_pool = self.pool.get('account.tax.code')
         dbt_crd_line_ids = []
         dbt_crd_tax_code_ids = tax_code_pool.search(cr, uid, [
-            ('exclude_from_registries', '!=', True),
+            ('exclude_from_registries', '=', False),
             ('company_id', '=', company_id),
         ], context=context)
         for dbt_crd_tax_code_id in dbt_crd_tax_code_ids:
+            tndb.wlog('tax.code.id', dbt_crd_tax_code_id)
             if tax_code_pool.search(cr, uid, [('parent_id',
                                                '=',
                                                dbt_crd_tax_code_id)]):
                 continue
             dbt_crd_tax_code = tax_code_pool.browse(
                 cr, uid, dbt_crd_tax_code_id, context)
+            tndb.wlog('tax.code', dbt_crd_tax_code_id, dbt_crd_tax_code.code, dbt_crd_tax_code.name)
             total = 0.0
             for period in statement.period_ids:
                 ctx = context.copy()
                 ctx['period_id'] = period.id
                 total += tax_code_pool.browse(
                     cr, uid, dbt_crd_tax_code_id, ctx).sum_period
-            if total == 0.0:
+            if not statement.show_zero and total == 0.0:
                 continue
             left_id = right_id = False
             for type in tax_tree:
-                # for basevat in tax_tree[type]:
                 for basevat in ('tax_code_id', 'base_code_id',
                                 'ref_tax_code_id', 'ref_base_code_id'):
                     if basevat[-11:] == 'tax_code_id':
@@ -727,7 +741,7 @@ class account_vat_period_end_statement(orm.Model):
             dbt_crd_line_ids.append(rec)
         id = 0
         while id < len(dbt_crd_line_ids):
-            if not all and \
+            if not show_zero and \
                     rec.get('amount', 0) == 0 and \
                     rec.get('base_amount', 0) == 0:
                 del dbt_crd_line_ids[id]
@@ -835,6 +849,23 @@ class account_vat_period_end_statement(orm.Model):
                 company.of_account_end_vat_statement_interest_percent,
         }}
         return res
+
+    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
+                            context=None):
+        if len(fiscalcode) != 16:
+            return {'value':{name: False},
+                   'warning': {'title':'Invalid len!',
+                               'message':'Fiscal code len must be 16'}
+            }
+        chk = codicefiscale.control_code(fiscalcode[0:15])
+        if chk != fiscalcode[15]:
+            value = fiscalcode[0:15] + chk
+            return {'value':{name: value},
+                   'warning': {'title':'Invalid fiscalcode!',
+                               'message':
+                                    'Fiscal code could be %s' % (value)}
+            }
+        return {'value':{name: fiscalcode}}
 
     def get_account_interest(self, cr, uid, ids, context=None):
         user = self.pool.get('res.users').browse(cr, uid, uid, context)

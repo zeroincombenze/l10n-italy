@@ -99,10 +99,18 @@
                         <group colspan="4" string="Page Number">
                             <field name="fiscal_page_base"/>
                         </group>
+                        <group colspan="4" string="Legal Notice">
+                            <field name="soggetto_codice_fiscale"
+                             on_change="onchange_fiscalcode(soggetto_codice_fiscale,
+                                                            'soggetto_codice_fiscale')"/>
+                             <field name="progressivo_telematico"
+                                    readonly="1"/>
+                        </group>
                     </page>
                 </notebook>
                 <field name="state" select="1"/>
                 <field name="reconciled"/>
+                <field name="show_zero"/>
                 <button name="create_move" states="draft" string="Create Move" colspan="2"/>
                 <button name="set_draft" states="confirmed,paid" string="Set to draft" colspan="2"/>
             </form>
