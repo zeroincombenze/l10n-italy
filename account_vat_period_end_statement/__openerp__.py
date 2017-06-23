@@ -15,7 +15,7 @@
 # [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "2.1.4.0",
+    "version": "2.1.4.1",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": ["account_voucher",
@@ -50,16 +50,21 @@ In case of VAT statement for quarter period,
 it can be configured the interest rate.
 
 Specification: http:
-    //wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
+https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17/
 
 """,
     'website': 'http://www.didotech.com',
     'data': ['wizard/add_period.xml',
              'wizard/remove_period.xml',
+             'wizard/vat_settlement.xml',
              'account_view.xml',
              'statement_workflow.xml',
              'security/ir.model.access.csv',
-             'reports.xml', ],
+             'reports.xml',
+    ],
+    'external_dependencies': {
+        'python': ['pyxb'],
+    },
     'demo': [],
     'installable': True,
     'active': False,

@@ -33,7 +33,7 @@
     "depends": [
         'report_webkit',
         'account',
-        'l10n_it_base',
+        'l10n_it_bbone',
         # 'l10n_it_partially_deductible_vat'
     ],
     "data": [
