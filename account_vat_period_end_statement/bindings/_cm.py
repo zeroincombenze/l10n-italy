@@ -4,16 +4,24 @@
 # Generated 2017-05-15 16:57:35.889604 by PyXB version 1.2.4 using
 # Python 2.7.10.final.0
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
-
 from __future__ import unicode_literals
-import pyxb
-import pyxb.binding
-import pyxb.binding.saxer
+import logging
 import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
-import pyxb.utils.six as _six
+import sys
+_logger = logging.getLogger(__name__)
+try:
+    import pyxb
+    import pyxb.binding
+    import pyxb.binding.saxer
+    import pyxb.utils.utility
+    import pyxb.utils.domutils
+    import pyxb.utils.six as _six
+    # Import bindings for namespaces imported into schema
+    import pyxb.binding.datatypes
+except ImportError as err:
+    _logger.debug(err)
 from openerp import addons
+
 
 # Import bindings for namespaces imported into schema
 import pyxb.binding.datatypes

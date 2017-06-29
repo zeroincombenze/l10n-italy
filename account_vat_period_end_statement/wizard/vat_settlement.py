@@ -25,10 +25,6 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-# TODO: mettere in impostazioni del modulo
-FirmaDichiarazione = False
-# TODO: which format????
-# identificativo_software = 'LibrERP61'
 identificativo_software = 'Odoo.7.0.2.1.4'
 
 
@@ -91,23 +87,27 @@ class WizardVatSettlement(orm.TransientModel):
                     base_amount += debit_line.base_amount
         return base_amount
 
-
     @staticmethod
     def italian_number(number):
         return '{:.2f}'.format(number).replace('.', ',')
+
+    @staticmethod
+    def italian_date(dt):
+        if len(dt) == 8:
+            return dt[-2:] + dt[4:6] + dt[0:4]
+        elif len(dt) == 10:
+            return dt[-2:] + dt[5:7] + dt[0:4]
+        else:
+            return ''
 
     def export_vat_settlemet(self, cr, uid, ids, context=None):
         # TODO: insert period verification
         context = {} if context is None else context
         model_data_obj = self.pool['ir.model.data']
-        # vat_period_end_statement_obj = self.pool['account.vat.period.end.statement']
         statement_debit_account_line_obj = \
             self.pool['statement.debit.account.line']
         statement_credit_account_line_obj = \
             self.pool['statement.credit.account.line']
-
-        self.company = self.pool['res.users'].browse(
-            cr, uid, uid, context=context).company_id
 
         trimestre = {
             '3': '1',
@@ -115,65 +115,95 @@ class WizardVatSettlement(orm.TransientModel):
             '9': '3',
             '12': '4'
         }
-        statement_pool = self.pool.get('account.vat.period.end.statement')
-        ids = statement_pool.search(
-            cr, uid, [],
-            order='progressivo_telematico desc',
-            limit=1,
-            context=context)
-        if len(ids):
-            progressivo_telematico = statement_pool.browse(
-                cr, uid,
-                ids[0]).progressivo_telematico + 1
+        module_pool = self.pool.get('ir.module.module')
+        company_pool = self.pool.get('res.company')
+        ids = module_pool.search(
+                cr, uid, [('name', '=', 'account_vat_period_end_statement')])
+        if len(ids) == 0:
+            _logger.info('Invalid software signature.')
+            _logger.info('Please contact antoniomaria.vigliotti@gmail.com '
+                         'to obtain free valid software')
+            identificativo_software = ''
         else:
-            progressivo_telematico = 1
+            ver = module_pool.browse(cr, uid,
+                ids[0]).installed_version
+            identificativo_software = 'Odoo' + ver
+            identificativo_software = identificativo_software.upper()
 
+        statement_pool = self.pool.get('account.vat.period.end.statement')
         statement_ids = context.get('active_ids', False)
 
         for statement in statement_pool.browse(cr,
                                                uid,
                                                statement_ids,
                                                context=context):
+            ids = statement_pool.search(
+                cr, uid, [],
+                order='progressivo_telematico desc',
+                limit=1,
+                context=context)
+            if len(ids):
+                progressivo_telematico = statement_pool.browse(
+                    cr, uid,
+                    ids[0]).progressivo_telematico + 1
+            else:
+                progressivo_telematico = 1
+
+            company_id = statement.company_id.id
+            company = company_pool.browse(cr, uid, company_id, context=context)
+            if company.partner_id.vat[:2].lower() == 'it':
+                vat = company.partner_id.vat[2:]
+            else:
+                vat = company.partner_id.vat
             settlement = Fornitura()
             settlement.Intestazione = (Intestazione_IVP_Type())
             settlement.Intestazione.CodiceFornitura = codice_fornitura
-            # settlement.Intestazione.CodiceFiscaleDichiarante =
-            # settlement.Intestazione.CodiceCarica =
-            # settlement.Intestazione.IdSistema
+
             _logger.debug(settlement.Intestazione.toDOM().toprettyxml(
                 encoding="latin1"))
+
             settlement.Comunicazione = (Comunicazione_IVP_Type())
             settlement.Comunicazione.Frontespizio = (Frontespizio_IVP_Type())
+
+            settlement.Comunicazione.Frontespizio.FirmaDichiarazione = "1"
             settlement.Comunicazione.Frontespizio.CodiceFiscale = \
-                statement.soggetto_codice_fiscale
-            # date_period_end = datetime.datetime.strptime(statement.date, DEFAULT_SERVER_DATE_FORMAT)
-            # settlement.Comunicazione.Frontespizio.AnnoImposta = str(date_period_end.year)
+                statement.incaricato_trasmissione_codice_fiscale
+            if statement.incaricato_trasmissione_codice_fiscale:
+                settlement.Comunicazione.Frontespizio.CFIntermediario = \
+                    statement.incaricato_trasmissione_codice_fiscale
+                settlement.Comunicazione.Frontespizio.ImpegnoPresentazione = "1"
+                if statement.incaricato_trasmissione_data_impegno:
+                    settlement.Comunicazione.Frontespizio.DataImpegno = \
+                        self.italian_date(
+                            statement.incaricato_trasmissione_data_impegno)
+                settlement.Comunicazione.Frontespizio.FirmaIntermediario = "1"
+
+            if statement.codice_carica:
+                if statement.codice_carica != '0':
+                    settlement.Comunicazione.Frontespizio.CFDichiarante = \
+                        statement.soggetto_codice_fiscale
+                    settlement.Comunicazione.Frontespizio.CodiceCaricaDichiarante = \
+                        statement.codice_carica
+                elif not statement.incaricato_trasmissione_codice_fiscale:
+                    settlement.Comunicazione.Frontespizio.CodiceFiscale = \
+                        statement.soggetto_codice_fiscale
             date_start, date_stop = self.get_date_start_stop(statement,
                                                              context=context)
             settlement.Comunicazione.Frontespizio.AnnoImposta = str(
                 date_stop.year)
-
-            if self.company.partner_id.vat[:2].lower() == 'it':
-                vat = self.company.partner_id.vat[2:]
-            else:
-                vat = self.company.partner_id.vat
             settlement.Comunicazione.Frontespizio.PartitaIVA = vat
+
             # settlement.Comunicazione.Frontespizio.PIVAControllante
             # settlement.Comunicazione.Frontespizio.UltimoMese = str(date_period_end.month)
             # settlement.Comunicazione.Frontespizio.LiquidazioneGruppo
-            # settlement.Comunicazione.Frontespizio.CFDichiarante
-            # settlement.Comunicazione.Frontespizio.CodiceCaricaDichiarante
             # settlement.Comunicazione.Frontespizio.CodiceFiscaleSocieta
-            # TODO: Per il momento 0, poi dovremmo stampare il modulo
-            settlement.Comunicazione.Frontespizio.FirmaDichiarazione = "1"
-            # settlement.Comunicazione.Frontespizio.CFIntermediario = "0"
-            # settlement.Comunicazione.Frontespizio.ImpegnoPresentazione = "1"
-            # settlement.Comunicazione.Frontespizio.DataImpegno
-            # settlement.Comunicazione.Frontespizio.FirmaIntermediario
             # settlement.Comunicazione.Frontespizio.FlagConferma
-            # settlement.Comunicazione.Frontespizio.IdentificativoProdSoftware = identificativo_software
-
-            _logger.debug(settlement.Comunicazione.Frontespizio.toDOM().toprettyxml(encoding="latin1"))
+            if identificativo_software:
+                settlement.Comunicazione.Frontespizio.\
+                    IdentificativoProdSoftware = identificativo_software
+            _logger.debug(
+                settlement.Comunicazione.Frontespizio.toDOM().toprettyxml(
+                    encoding="latin1"))
 
             settlement.Comunicazione.DatiContabili = (DatiContabili_IVP_Type())
 
@@ -273,8 +303,8 @@ class WizardVatSettlement(orm.TransientModel):
 
             vat_settlement_xml = settlement.toDOM().toprettyxml(encoding="latin1")
 
-            # TODO: Resolve: It will attach separate XML to every vat.period.end.statement document
-            fn_name = 'LiquidazioneIVA-%05d.xml' % progressivo_telematico
+            # fn_name = 'LiquidazioneIVA-%05d.xml' % progressivo_telematico
+            fn_name = 'IT%s_LI_%05d.xml'  % (vat, progressivo_telematico)
             attach_vals = {
                 'name': fn_name,
                 'datas_fname': fn_name,

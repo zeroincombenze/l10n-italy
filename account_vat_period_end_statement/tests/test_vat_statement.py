@@ -17,7 +17,7 @@ UT_CREDIT_AMT_QTY = 10
 UT_CREDIT_AMT_TAXABLE = 600
 UT_CREDIT_AMT_VAT = 132
 UT_VAT_TO_PAY = 88
-
+UT_FISCALCODE = 'VGLNTN59H26B963V'
 
 class TestTax(TransactionCase):
     def env7(self, model):
@@ -125,10 +125,11 @@ class TestTax(TransactionCase):
                                 'invoice_open', self.cr)
 
         self.vat_statement_id = self.vat_statement_model.create(
-            self.cr, self.uid, {'journal_id': self.ref(
-                'account.miscellaneous_journal'), 'authority_vat_account_id':
-                self.vat_authority, 'payment_term_id':
-                    self.account_payment_term, })
+            self.cr, self.uid, {
+                'journal_id': self.ref('account.miscellaneous_journal'),
+                'authority_vat_account_id': self.vat_authority,
+                'payment_term_id': self.account_payment_term,
+                'soggetto_codice_fiscale': UT_FISCALCODE })
         self.period_model.write(
             self.cr, self.uid, self.current_period_id,
             {'vat_statement_id': self.vat_statement_id})

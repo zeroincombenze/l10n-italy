@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 #
 #
-#    Copyright (C) 2010 OpenERP Italian Community
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2010 Associazione OpenERP Italia.
+#    Copyright (C) 2010 Odoo Italian Community
+#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2010 Associazione Odoo Italia.
 #    Copyright (C) 2014 Lorenzo Battistini <lorenzo.battistini@agilebg.com>.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-from openerp.osv import osv, orm
+from openerp.osv import orm
 from openerp.osv import fields
 # import pdb  # debug
 # from tndb import tndb
+
 
 FLDS_LIST1 = ['country_id', 'zip', 'city']
 FLD_STATE = 'state_id'
@@ -567,7 +567,7 @@ class res_config_settings(orm.TransientModel):
         return res
 
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     _inherit = 'res.partner'
 
     _columns = {
