@@ -22,10 +22,6 @@ except ImportError as err:
     _logger.debug(err)
 from openerp import addons
 
-
-# Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
-
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
     'urn:uuid:cb93820a-397e-11e7-bf8c-a820664035f5')

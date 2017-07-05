@@ -32,7 +32,7 @@ Functionalities:
     'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends": ['base', 'l10n_it_bbone'],
+    "depends": ['base', 'l10n_it_base'],
     "init_xml": [
         'fiscalcode_view.xml',
         'wizard/compute_fc_view.xml'
