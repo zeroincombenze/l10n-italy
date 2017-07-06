@@ -36,7 +36,7 @@ Differenze rispetto localizzazione ufficiale Odoo/OCA:
 - Basato su [piano dei conti](https://www.zeroincombenze.it/il-piano-dei-conti-2/) personalizzato  in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
 - Basato su [codici IVA](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) personalizzati in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
 - Classificazione [comuni italiani](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) aggiornata ai nuovi comuni
-- Il modulo [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) è stato modificato per adattarlo all normativa IP per la presentazione della liquidazione IVA in formato xml
+- Il modulo [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) è stato modificato per adattarlo all normativa IP17 per la presentazione della liquidazione IVA in formato xml
 
 
 [//]: # (copyright)

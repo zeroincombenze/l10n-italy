@@ -1,3 +1,4 @@
+# flake8: noqa
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
 #    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
@@ -12,8 +13,12 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
-import decimal_precision as dp
-import codicefiscale
+import openerp.addons.decimal_precision as dp
+import logging
+try:
+    import codicefiscale
+except ImportError as err:
+    _logger.debug(err)
 
 
 class account_vat_period_end_statement(orm.Model):
