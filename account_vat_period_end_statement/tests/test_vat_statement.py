@@ -19,6 +19,7 @@ UT_CREDIT_AMT_VAT = 132
 UT_VAT_TO_PAY = 88
 UT_FISCALCODE = 'VGLNTN59H26B963V'
 
+
 class TestTax(TransactionCase):
     def env7(self, model):
         return self.registry(model)
@@ -48,35 +49,44 @@ class TestTax(TransactionCase):
             self.cr, self.uid, dt=self.recent_date)
 
         self.account_tax_code_22 = self.tax_code_model.create(
-            self.cr, self.uid, {'name': '22%', 'vat_statement_type':
-                                'debit', 'vat_statement_sign': 1,
+            self.cr, self.uid, {'name': '22%',
+                                'vat_statement_type': 'debit',
+                                'vat_statement_sign': 1,
                                 'vat_statement_account_id': self.ref(
                                     'account.ova'), })
         self.account_tax_code_22_imp = self.tax_code_model.create(
             self.cr, self.uid, {'name': '22% IMP', })
         self.account_tax_code_22_credit = self.tax_code_model.create(
-            self.cr, self.uid, {'name': '22% credit', 'vat_statement_type':
-                                'credit', 'vat_statement_sign': -1,
+            self.cr, self.uid, {'name': '22% credit',
+                                'vat_statement_type': 'credit',
+                                'vat_statement_sign': -1,
                                 'vat_statement_account_id':
                                 self.ref('account.iva'), })
         self.account_tax_code_22_imp_credit = self.tax_code_model.create(
             self.cr, self.uid, {'name': '22% IMP credit', })
 
         self.account_tax_22 = self.tax_model.create(self.cr, self.uid, {
-            'name': '22%', 'amount': 0.22, 'tax_code_id':
-                self.account_tax_code_22, 'base_code_id':
-                    self.account_tax_code_22_imp, 'base_sign':
-                    1, 'tax_sign': 1, })
+            'name': '22%',
+            'amount': 0.22,
+            'tax_code_id': self.account_tax_code_22,
+            'base_code_id': self.account_tax_code_22_imp,
+            'base_sign': 1,
+            'tax_sign': 1, })
         self.account_tax_22_credit = self.tax_model.create(self.cr, self.uid, {
-            'name': '22% credit', 'amount': 0.22, 'tax_code_id':
-                self.account_tax_code_22_credit, 'base_code_id':
-                    self.account_tax_code_22_imp_credit, 'base_sign': -1,
-                                                         'tax_sign': -1, })
+            'name': '22% credit',
+            'amount': 0.22,
+            'tax_code_id': self.account_tax_code_22_credit,
+            'base_code_id': self.account_tax_code_22_imp_credit,
+            'base_sign': -1,
+            'tax_sign': -1, })
 
         self.vat_authority = self.account_model.create(self.cr, self.uid, {
-            'code': 'VAT AUTH', 'name': 'VAT Authority', 'parent_id':
-                self.ref('account.cli'), 'type': 'payable', 'reconcile':
-                    True, 'user_type': self.ref(
+            'code': 'VAT AUTH',
+            'name': 'VAT Authority',
+            'parent_id': self.ref('account.cli'),
+            'type': 'payable',
+            'reconcile': True,
+            'user_type': self.ref(
                         'account.data_account_type_payable'), })
 
         self.account_payment_term = self.term_model.create(self.cr, self.uid, {
@@ -90,10 +100,11 @@ class TestTax(TransactionCase):
     def test_vat_statement(self):
         wf_service = netsvc.LocalService('workflow')
         out_invoice = self.invoice_model.create(self.cr, self.uid, {
-            'date_invoice': self.recent_date, 'account_id': self.ref(
-                'account.a_recv'), 'journal_id': self.ref(
-                    'account.sales_journal'), 'partner_id': self.ref(
-                        'base.res_partner_3'), 'type': 'out_invoice', })
+            'date_invoice': self.recent_date,
+            'account_id': self.ref('account.a_recv'),
+            'journal_id': self.ref('account.sales_journal'),
+            'partner_id': self.ref('base.res_partner_3'),
+            'type': 'out_invoice', })
         self.invoice_line_model.create(
             self.cr, self.uid, {'invoice_id': out_invoice,
                                 'account_id': self.ref('account.a_sale'),
@@ -107,10 +118,11 @@ class TestTax(TransactionCase):
                                 'invoice_open', self.cr)
 
         in_invoice = self.invoice_model.create(self.cr, self.uid, {
-            'date_invoice': self.recent_date, 'account_id': self.ref(
-                'account.a_pay'), 'journal_id': self.ref(
-                    'account.expenses_journal'), 'partner_id': self.ref(
-                        'base.res_partner_4'), 'type': 'in_invoice', })
+            'date_invoice': self.recent_date,
+            'account_id': self.ref('account.a_pay'),
+            'journal_id': self.ref('account.expenses_journal'),
+            'partner_id': self.ref('base.res_partner_4'),
+            'type': 'in_invoice', })
         self.invoice_line_model.create(
             self.cr, self.uid, {'invoice_id': in_invoice,
                                 'account_id': self.ref('account.a_expense'),
