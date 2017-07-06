@@ -25,8 +25,7 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-# TODO: mettere in impostazioni del modulo
-FirmaDichiarazione = False
+identificativo_software = 'Odoo.7.0.2.1.8'
 
 
 class WizardVatSettlement(orm.TransientModel):
@@ -133,6 +132,7 @@ class WizardVatSettlement(orm.TransientModel):
 
         statement_pool = self.pool.get('account.vat.period.end.statement')
         statement_ids = context.get('active_ids', False)
+
         for statement in statement_pool.browse(cr,
                                                uid,
                                                statement_ids,
@@ -158,36 +158,17 @@ class WizardVatSettlement(orm.TransientModel):
             settlement = Fornitura()
             settlement.Intestazione = (Intestazione_IVP_Type())
             settlement.Intestazione.CodiceFornitura = codice_fornitura
-            # settlement.Intestazione.CodiceFiscaleDichiarante =
-            # settlement.Intestazione.CodiceCarica =
-            # settlement.Intestazione.IdSistema
+
             _logger.debug(settlement.Intestazione.toDOM().toprettyxml(
                 encoding="latin1"))
+
             settlement.Comunicazione = (Comunicazione_IVP_Type())
             settlement.Comunicazione.Frontespizio = (Frontespizio_IVP_Type())
+
+            settlement.Comunicazione.Frontespizio.FirmaDichiarazione = "1"
             settlement.Comunicazione.Frontespizio.CodiceFiscale = \
-                statement.soggetto_codice_fiscale
-            if statement.codice_carica and statement.codice_carica != '0':
-                settlement.Comunicazione.Frontespizio.CFDichiarante = \
-                    statement.soggetto_codice_fiscale
-                settlement.Comunicazione.Frontespizio.CodiceCaricaDichiarante = \
-                    statement.codice_carica
-
-            date_start, date_stop = self.get_date_start_stop(statement,
-                                                             context=context)
-            settlement.Comunicazione.Frontespizio.AnnoImposta = str(
-                date_stop.year)
-            settlement.Comunicazione.Frontespizio.PartitaIVA = vat
-            # settlement.Comunicazione.Frontespizio.PIVAControllante
-            # settlement.Comunicazione.Frontespizio.UltimoMese = str(date_period_end.month)
-            # settlement.Comunicazione.Frontespizio.LiquidazioneGruppo
-            # settlement.Comunicazione.Frontespizio.CFDichiarante
-            # settlement.Comunicazione.Frontespizio.CodiceFiscaleSocieta
-
-            if not statement.incaricato_trasmissione_codice_fiscale:
-                settlement.Comunicazione.Frontespizio.FirmaDichiarazione = "1"
-            else:
-                settlement.Comunicazione.Frontespizio.FirmaDichiarazione = "1"
+                statement.incaricato_trasmissione_codice_fiscale
+            if statement.incaricato_trasmissione_codice_fiscale:
                 settlement.Comunicazione.Frontespizio.CFIntermediario = \
                     statement.incaricato_trasmissione_codice_fiscale
                 settlement.Comunicazione.Frontespizio.ImpegnoPresentazione = "1"
@@ -196,6 +177,26 @@ class WizardVatSettlement(orm.TransientModel):
                         self.italian_date(
                             statement.incaricato_trasmissione_data_impegno)
                 settlement.Comunicazione.Frontespizio.FirmaIntermediario = "1"
+
+            if statement.codice_carica:
+                if statement.codice_carica != '0':
+                    settlement.Comunicazione.Frontespizio.CFDichiarante = \
+                        statement.soggetto_codice_fiscale
+                    settlement.Comunicazione.Frontespizio.CodiceCaricaDichiarante = \
+                        statement.codice_carica
+                elif not statement.incaricato_trasmissione_codice_fiscale:
+                    settlement.Comunicazione.Frontespizio.CodiceFiscale = \
+                        statement.soggetto_codice_fiscale
+            date_start, date_stop = self.get_date_start_stop(statement,
+                                                             context=context)
+            settlement.Comunicazione.Frontespizio.AnnoImposta = str(
+                date_stop.year)
+            settlement.Comunicazione.Frontespizio.PartitaIVA = vat
+
+            # settlement.Comunicazione.Frontespizio.PIVAControllante
+            # settlement.Comunicazione.Frontespizio.UltimoMese = str(date_period_end.month)
+            # settlement.Comunicazione.Frontespizio.LiquidazioneGruppo
+            # settlement.Comunicazione.Frontespizio.CodiceFiscaleSocieta
             # settlement.Comunicazione.Frontespizio.FlagConferma
             if identificativo_software:
                 settlement.Comunicazione.Frontespizio.\
