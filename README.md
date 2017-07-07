@@ -7,28 +7,17 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/l10n-italy)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
+
 Odoo Italia Modules
 ===================
 
-Italian modules for odoo (formerly OpenERP)
-
-**8.0** https://github.com/zeroincombenze/l10n-italy/tree/8.0
-
-**7.0** https://github.com/zeroincombenze/l10n-italy/tree/7.0
-
-**6.1** https://github.com/zeroincombenze/l10n-italy/tree/6.1
-
-**6.0** https://github.com/zeroincombenze/l10n-italy/tree/6.0
-
-**5.0** https://github.com/zeroincombenze/l10n-italy/tree/5.0
-
-
-Odoo Italia Association
-=======================
+Italian modules for Odoo (formerly OpenERP) 8.0
 
 http://www.odoo-italia.org/
 
+
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
@@ -73,6 +62,25 @@ addon | version | summary
 Translation Status
 ------------------
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0)
+
+
+
+[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+
+Moduli Odoo Italia
+==================
+
+Differenze rispetto localizzazione ufficiale Odoo/OCA:
+
+- Il modulo [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) è basato su [ricerca con CAP] (https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/);
+- Inoltre il campo provincia è allineato ai moduli internazionali (utilizzo del campo state_id al posto del campo personalizzato province) ma per compatibilità con i moduli della Community Italiana, agisce anche sul campo province.
+- Aggiunti test yaml di validazione
+- Basato su [piano dei conti](https://www.zeroincombenze.it/il-piano-dei-conti-2/) personalizzato  in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
+- Basato su [codici IVA](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) personalizzati in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
+- Classificazione [comuni italiani](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) aggiornata ai nuovi comuni
+- Il modulo [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) è stato modificato per adattarlo all normativa IP17 per la presentazione della liquidazione IVA in formato xml
+
+
 
 [//]: # (copyright)
 
