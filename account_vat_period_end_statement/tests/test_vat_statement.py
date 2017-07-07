@@ -4,7 +4,6 @@
 #    About License, see __openerp__.py
 #
 
-
 from openerp.tests.common import TransactionCase
 
 
@@ -17,6 +16,7 @@ UT_CREDIT_AMT_QTY = 10
 UT_CREDIT_AMT_TAXABLE = 600
 UT_CREDIT_AMT_VAT = 132
 UT_VAT_TO_PAY = 88
+UT_FISCALCODE = 'VGLNTN59H26B963V'
 
 
 class TestTax(TransactionCase):
@@ -137,6 +137,7 @@ class TestTax(TransactionCase):
             'journal_id': self.env.ref('account.miscellaneous_journal').id,
             'authority_vat_account_id': self.vat_authority.id,
             'payment_term_id': self.account_payment_term.id,
+            'soggetto_codice_fiscale': UT_FISCALCODE
             })
         self.current_period.vat_statement_id = self.vat_statement
         self.vat_statement.compute_amounts()

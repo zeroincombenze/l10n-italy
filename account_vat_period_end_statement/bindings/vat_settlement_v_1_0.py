@@ -19,7 +19,8 @@ from openerp import addons
 from . import _ds as _ImportedBinding__ds
 import pyxb.binding.datatypes
 from . import _cm as _ImportedBinding__cm
-# common = addons.get_module_resource('common')
+# common = addons.get_module_resource('l10n_it_fatturapa')
+# if not common:
 common = '../common'
 
 # Unique identifier for bindings created at the same time

@@ -5,6 +5,4 @@
 # Copyright 2017 Associazione Odoo Italia
 #                <http://www.odoo-italia.org>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-# from . import _cm
-# from . import _ds
 from . import vat_settlement_v_1_0

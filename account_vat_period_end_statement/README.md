@@ -1,19 +1,49 @@
-![License: AGPL-3]
+[![Build Status](https://travis-ci.org/zeroincombenze/account_vat_period_end_statement.svg?branch=8.0)](https://travis-ci.org/zeroincombenze/account_vat_period_end_statement)
+[![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
+[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/account_vat_period_end_statement/badge.svg?branch=8.0)](https://coveralls.io/github/zeroincombenze/account_vat_period_end_statement?branch=8.0)
+[![codecov](https://codecov.io/gh/zeroincombenze/account_vat_period_end_statement/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/account_vat_period_end_statement/branch/8.0)
+[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg)](https://github.com/OCA/account_vat_period_end_statement/tree/8.0)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/dev/8.0)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/l10n-italy)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/8.0/man)
 
 Period End VAT Statement
 ========================
 
-This module helps to register the VAT statement of period end.
+This module evaluates VAT to pay (or on credit) and generates the electronic
+VAT closeout statement as VAT Authority
+http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
 
-In order to load correct amount from tax code, the tax code has to be associated to account involved in statement, through tax code form.
+By default, amounts of debit and credit taxes are automatically loaded
+from tax codes of selected periods.
 
-The ‘VAT statement’ object allows to specify every amount and relative account used by the statement. By default, amounts of debit and credit taxes are automatically loaded from tax codes of selected periods. Previous debit or credit is loaded from previous VAT statement, according to its payments status. Confirming the statement, the ‘account.move’ is created. If you select a payment term, the due date(s) will be set.
+Previous debit or credit is loaded from previous VAT statement, according
+to its payments status.
 
-The ‘tax authority’ tab contains information about payment(s). You can see statement’s result (‘authority VAT amount’) and residual amount to pay (‘Balance’). The statement can be paid like every other debit: by voucher or ‘move.line’ reconciliation.
+[How to use](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
 
-If you need to calculate interest, you can add default information in your company data (percentage and account).
 
-Specification: <http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement>
+
+[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/8.0/man)
+
+Liquidazione IVA periodica
+==========================
+
+Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
+mensili che trimestrali e permette di generare il file della comunicazione
+elettronica come da normativa del 2017 dell'Agenzia delle Entrate
+http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
+
+La liquidazione è calcolata sommando i totali di periodo dei conti imposte.
+
+L'utente può aggiungere l'eventuale credito/debito del periodo precedente e
+calcolare gli interessi; può anche registrare l'utilizzo del credito in
+compensazione.
+
+[Istruzioni di utilizzo](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
+
 
 Credits
 =======
@@ -21,26 +51,40 @@ Credits
 Contributors
 ------------
 
--   Lorenzo Battistini &lt;<lorenzo.battistini@agilebg.com>&gt;
--   Elena Carlesso &lt;<ecarlesso@linkgroup.it>&gt;
--   Marco Marchiori &lt;<marcomarkiori@gmail.com>&gt;
--   Sergio Corato &lt;<sergiocorato@gmail.com>&gt;
--   Andrea Gallina &lt;<a.gallina@apuliasoftware.it>&gt;
--   Alex Comba &lt;<alex.comba@agilebg.com>&gt;
--   Alessandro Camilli &lt;<camillialex@gmail.com>&gt;
+-   Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-   Marco Marchiori <marcomarkiori@gmail.com>
+-   Sergio Corato <sergiocorato@gmail.com>
+-   Andrei Levin <andrei.levin@didotech.com>
+-   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 Maintainer
 ----------
 
-[![Odoo Community Association]]
+This module is maintained by Odoo Italia Associazione
 
-This module is maintained by the OCA.
+Odoo Italia is a nonprofit organization whose develops Italian Localization for
+Odoo.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+To contribute to this module, please visit <https://odoo-italia.org/>.
 
-To contribute to this module, please visit <http://odoo-community.org>.
 
-  [License: AGPL-3]: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-  [Odoo Community Association]: http://odoo-community.org/logo.png
-  [![Odoo Community Association]]: http://odoo-community.org
+[//]: # (copyright)
 
+----
+
+**Odoo** is a trademark of [Odoo S.A.](https://www.odoo.com/) (formerly OpenERP, formerly TinyERP)
+
+**OCA**, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+**zeroincombenze®** is a trademark of [SHS-AV s.r.l.](http://www.shs-av.com/)
+which distributes and promotes **Odoo** ready-to-use on its own cloud infrastructure.
+[Zeroincombenze® distribution](http://wiki.zeroincombenze.org/en/Odoo)
+is mainly designed for Italian law and markeplace.
+Everytime, every Odoo DB and customized code can be deployed on local server too.
+
+[//]: # (end copyright)
+
+[![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)
