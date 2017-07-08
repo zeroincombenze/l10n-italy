@@ -1,3 +1,4 @@
+# flake8: noqa
 # -*- coding: utf-8 -*-
 # Copyright 2017 Didotech srl (<http://www.didotech.com>)
 #                Andrei Levin <andrei.levin@didotech.com>

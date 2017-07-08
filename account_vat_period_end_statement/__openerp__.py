@@ -26,7 +26,7 @@
     "author":  "Agile Business Group, "
                " Odoo Italia Associazione",
     'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
-    "description": """(en) 
+    "description": """(en)
 
 Period End VAT Statement
 ========================

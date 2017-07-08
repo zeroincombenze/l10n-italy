@@ -18,7 +18,6 @@
             - account_tax_21
     journal_id: account.sales_journal
     partner_id: base.res_partner_3
-    
 -
   I confirm and open the invoice
 -

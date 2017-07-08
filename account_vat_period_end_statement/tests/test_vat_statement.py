@@ -87,7 +87,7 @@ class TestTax(TransactionCase):
             'type': 'payable',
             'reconcile': True,
             'user_type': self.ref(
-                        'account.data_account_type_payable'), })
+                    'account.data_account_type_payable'), })
 
         self.account_payment_term = self.term_model.create(self.cr, self.uid, {
             'name': '16 Days End of Month', 'note': '16 Days End of Month', })
@@ -141,7 +141,7 @@ class TestTax(TransactionCase):
                 'journal_id': self.ref('account.miscellaneous_journal'),
                 'authority_vat_account_id': self.vat_authority,
                 'payment_term_id': self.account_payment_term,
-                'soggetto_codice_fiscale': UT_FISCALCODE })
+                'soggetto_codice_fiscale': UT_FISCALCODE})
         self.period_model.write(
             self.cr, self.uid, self.current_period_id,
             {'vat_statement_id': self.vat_statement_id})

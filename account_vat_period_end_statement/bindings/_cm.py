@@ -1,5 +1,6 @@
-# ../../bindings/_cm.py
+# flake8: noqa
 # -*- coding: utf-8 -*-
+# ../../bindings/_cm.py
 # PyXB bindings for NM:6d05a298a781c71d177aab761a79c5e637d7f467
 # Generated 2017-05-15 16:57:35.889604 by PyXB version 1.2.4 using
 # Python 2.7.10.final.0
