@@ -13,7 +13,7 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
-import openerp.addons.decimal_precision as dp
+import decimal_precision as dp
 import logging
 try:
     import codicefiscale
