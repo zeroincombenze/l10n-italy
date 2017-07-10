@@ -8,6 +8,7 @@
 # [2017: SHS-AV, odoo-italia] Totally rewritten
 from openerp.osv import orm
 
+
 class account_invoice(orm.Model):
     _inherit = 'account.invoice'
 
@@ -29,9 +30,20 @@ class account_invoice(orm.Model):
             where = [('type', '=', obj_inv.type),
                      ('journal_id', '=', obj_inv.journal_id.id),
                      ('date_invoice', '>', date_invoice),
+                     ('state', '!=', 'draft'),
+                     ('state', '!=', 'cancel'),
                      ]
-            number = obj_inv.number if obj_inv.number else \
-                obj_inv.internal_number
+            if obj_inv.period_id:
+                period_pool = self.pool.get('account.period')
+                fy_pool = self.pool.get('account.fiscalyear')
+                fiscalyear_id = period_pool.browse(
+                    cr, uid, obj_inv.period_id.id).fiscalyear_id.id
+                periods = period_pool.search(
+                    cr, uid, [('fiscalyear_id', '=', fiscalyear_id)])
+                where.append(('period_id', 'in', periods))
+            if obj_inv.number:
+                return True
+            number = obj_inv.internal_number
             if number:
                 where.append(('number', '<', number))
             res = self.search(cr, uid, where, context=context)
@@ -44,3 +56,9 @@ class account_invoice(orm.Model):
         'Cannot create invoice! Post the invoice with a greater date',
         ['date_invoice', 'registration_date'])]
 
+    def copy(self, cr, uid, id, default=None, context=None):
+        default = default or {}
+        default.update({
+            'registration_date':False,
+        })
+        return super(account_invoice, self).copy(cr, uid, id, default, context)
