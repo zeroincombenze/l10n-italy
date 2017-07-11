@@ -1,5 +1,5 @@
 partner-contact
-account-invoicing https://github.com/zeroincombenze/account-invoicing.git 7.0
+account-invoicing
 account-financial-tools
 webkit-tools
 account-payment
