@@ -1,4 +1,3 @@
-# ./vat_settlement_v_1_0.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:4f059617657cbf045796906b94fd6da476500108
 # Generated 2017-05-15 16:34:27.120519 by PyXB version 1.2.4 using
