@@ -22,12 +22,6 @@ Italian modules for odoo (formerly OpenERP)
 
 **5.0** https://github.com/OCA/l10n-italy/tree/5.0
 
-
-Odoo Italia Association
-=======================
-
-http://www.odoo-italia.org/
-
 [//]: # (addons)
 
 Available addons
