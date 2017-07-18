@@ -3,12 +3,15 @@
 [![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=9.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=9.0)
 [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/9.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/9.0)
 [![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-9.svg)](https://github.com/OCA/l10n-italy/tree/9.0)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-9.svg)](http://wiki.zeroincombenze.org/en/Odoo/dev/9.0)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-9.svg)](http://wiki.zeroincombenze.org/en/Odoo/9.0/l10n-italy)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-9.svg)](http://wiki.zeroincombenze.org/en/Odoo/9.0/dev)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-9.svg)](http://wiki.zeroincombenze.org/en/Odoo/9.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-9.svg)](http://erp9.zeroincombenze.it)
 
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+================================================================================================
+
 Odoo Italia Modules
-===================
 
 Italian modules for odoo (formerly OpenERP)
 
@@ -24,14 +27,12 @@ Italian modules for odoo (formerly OpenERP)
 
 
 Odoo Italia Association
-=======================
 
 http://www.odoo-italia.org/
 
 [//]: # (addons)
 
 Available addons
-----------------
 addon | version | summary
 --- | --- | ---
 [l10n_it_abicab](l10n_it_abicab/) | 9.0.1.0.0 | Base Bank ABI/CAB codes
@@ -41,7 +42,6 @@ addon | version | summary
 
 
 Unported addons
----------------
 addon | version | summary
 --- | --- | ---
 [account_central_journal](account_central_journal/) | 3 (unported) | Account Central Journal
@@ -71,7 +71,6 @@ addon | version | summary
 [//]: # (end addons)
 
 Translation Status
-------------------
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-9-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-9-0)
 
 [//]: # (copyright)
