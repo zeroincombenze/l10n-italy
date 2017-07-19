@@ -3,13 +3,16 @@
 [![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0)
 [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0)
 [![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg)](https://github.com/OCA/l10n-italy/tree/8.0)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/dev/8.0)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/l10n-italy)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/dev)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
 
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+================================================================================================
+
 Odoo Italia Modules
-===================
 
 Italian modules for Odoo (formerly OpenERP) 8.0
 
@@ -19,7 +22,6 @@ http://www.odoo-italia.org/
 [//]: # (addons)
 
 Available addons
-----------------
 addon | version | summary
 --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Account Invoice entry Date
@@ -47,7 +49,6 @@ addon | version | summary
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.0.0 | Italian Withholding Tax Payment
 
 Unported addons
----------------
 addon | version | summary
 --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | Fiscal Year Closing
@@ -60,7 +61,6 @@ addon | version | summary
 [//]: # (end addons)
 
 Translation Status
-------------------
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0)
 
 
@@ -68,7 +68,6 @@ Translation Status
 [![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Moduli Odoo Italia
-==================
 
 Differenze rispetto localizzazione ufficiale Odoo/OCA:
 
