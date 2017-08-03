@@ -26,7 +26,7 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-identificativo_software = 'Odoo.7.0.2.1.8'
+identificativo_software = 'Odoo.7.0.2.1.9'
 
 
 class WizardVatSettlement(orm.TransientModel):
@@ -293,7 +293,7 @@ class WizardVatSettlement(orm.TransientModel):
                 modulo.ImportoDaVersare = self.italian_number(statement.authority_vat_amount)
             elif statement.authority_vat_amount < 0:
                 # NOTE: formato numerico; i decimali vanno separati dall'intero con il carattere  ',' (virgola)
-                modulo.ImportoACredito = self.italian_number(statement.authority_vat_amount)
+                modulo.ImportoACredito = self.italian_number(-statement.authority_vat_amount)
 
             settlement.Comunicazione.DatiContabili.Modulo.append(modulo)
 
