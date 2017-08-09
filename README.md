@@ -8,7 +8,6 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
 
-
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 ================================================================================================
 
@@ -22,6 +21,7 @@ http://www.odoo-italia.org/
 [//]: # (addons)
 
 Available addons
+
 addon | version | summary
 --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Account Invoice entry Date
@@ -49,6 +49,7 @@ addon | version | summary
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.0.0 | Italian Withholding Tax Payment
 
 Unported addons
+
 addon | version | summary
 --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | Fiscal Year Closing
