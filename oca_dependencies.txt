@@ -2,6 +2,6 @@ partner-contact
 account-invoicing https://github.com/zeroincombenze/account-invoicing.git
 account-financial-tools
 webkit-tools
-account-payment
+account-payment https://github.com/zeroincombenze/account-payment.git
 stock-logistics-workflow
 l10n-italy-supplemental https://github.com/zeroincombenze/l10n-italy-supplemental.git
