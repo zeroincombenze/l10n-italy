@@ -8,9 +8,8 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)]
-===================================================
-(http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+================================================================================================
 
 
 Odoo Italia Modules
@@ -21,6 +20,7 @@ Italian modules for Odoo (formerly OpenERP) 7.0
 
 Translation Status
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0)
+
 
 
 [![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
