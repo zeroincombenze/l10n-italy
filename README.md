@@ -8,8 +8,10 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
-================================================================================================
+[![en](http://www.shs-av.com/wp-content/en_US.png)]
+===================================================
+
+(http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Odoo Italia Modules
 
