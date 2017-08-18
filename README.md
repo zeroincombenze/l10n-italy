@@ -9,11 +9,10 @@
 
 
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
-================================================================================================
 
 
 Odoo Italia Modules
-
+===================
 
 Italian modules for Odoo (formerly OpenERP) 7.0
 
@@ -26,6 +25,7 @@ Translation Status
 [![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Moduli Odoo Italia
+==================
 
 Differenze rispetto localizzazione ufficiale Odoo/OCA:
 
@@ -36,6 +36,7 @@ Differenze rispetto localizzazione ufficiale Odoo/OCA:
 - Basato su [codici IVA](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) personalizzati in [l10n-italy-supplemental](https://github.com/zeroincombenze/l10n-italy-supplemental/tree/7.0/l10n_it_fiscal)
 - Classificazione [comuni italiani](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) aggiornata ai nuovi comuni
 - Il modulo [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) è stato modificato per adattarlo all normativa IP17 per la presentazione della liquidazione IVA in formato xml
+- il modulo [account_invoice_sequential_dates](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_invoice_sequential_dates) è stato modificato; ora gestisce la validazione delle date sia per le fatture clienti (come il modulo OCA) che per le fatture fornitori (attraverso il campo data di registrazione). Gestisce più numerazion1 durante la fase di accavallamento degli esercizi.
 
 
 [//]: # (copyright)

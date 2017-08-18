@@ -18,11 +18,11 @@ class account_invoice(orm.Model):
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 date_invoice = obj_inv.registration_date
                 return self._invoice_validate(cr, uid, obj_inv, date_invoice,
-                                                 context=context)
+                                              context=context)
             elif inv_type == 'out_invoice' or inv_type == 'out_refund':
                 date_invoice = obj_inv.date_invoice
                 return self._invoice_validate(cr, uid, obj_inv, date_invoice,
-                                                  context=context)
+                                              context=context)
         return True
 
     def _invoice_validate(self, cr, uid, obj_inv, date_invoice, context=None):
@@ -35,7 +35,7 @@ class account_invoice(orm.Model):
                      ]
             if obj_inv.period_id:
                 period_pool = self.pool.get('account.period')
-                fy_pool = self.pool.get('account.fiscalyear')
+                # fy_pool = self.pool.get('account.fiscalyear')
                 fiscalyear_id = period_pool.browse(
                     cr, uid, obj_inv.period_id.id).fiscalyear_id.id
                 periods = period_pool.search(
@@ -59,6 +59,6 @@ class account_invoice(orm.Model):
     def copy(self, cr, uid, id, default=None, context=None):
         default = default or {}
         default.update({
-            'registration_date':False,
+            'registration_date': False,
         })
         return super(account_invoice, self).copy(cr, uid, id, default, context)
