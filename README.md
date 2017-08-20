@@ -29,6 +29,8 @@ Moduli Odoo Italia
 
 Differenze rispetto localizzazione ufficiale Odoo/OCA:
 
+- Disabilitati test con repository OCA e Odoo e corretto [Errore import decimal precision](https://github.com/OCA/OCB/issues/629)
+- Maggiore copertura coverage tramite unit test aggiuntive
 - Il modulo [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) è basato su [ricerca con CAP] (https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/);
 - Inoltre il campo provincia è allineato ai moduli internazionali (utilizzo del campo state_id al posto del campo personalizzato province) ma per compatibilità con i moduli della Community Italiana, agisce anche sul campo province.
 - Aggiunti test yaml di validazione
