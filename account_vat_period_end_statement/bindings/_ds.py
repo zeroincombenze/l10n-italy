@@ -1,3 +1,4 @@
+# flake8: noqa
 # ../../bindings/_ds.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
