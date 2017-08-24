@@ -1,0 +1,61 @@
+-
+  I create an invoice and confirm it
+-
+  !record {model: account.invoice, id: account_invoice_1}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: '[Z0_CLOUD] Annual Odoo Cloud Service'
+        price_unit: 120.0
+        quantity: 1.0
+        product_id: product.product_product_consultant
+        uos_id: product.product_uom_unit
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_12
+-
+  Set invoice date to recent date in the system
+-
+  !python {model: account.invoice}: |
+    invoice_ids = self.search(cr, uid, [('date_invoice', '!=', False)],
+                              order='date_invoice desc', limit=1,
+                              context=context)
+    if invoice_ids:
+      recent_invoice = self.browse(cr, uid, invoice_ids[0], context=context)
+      self.write(cr, uid, [ref('account_invoice_1'), ],
+                 {'date_invoice': recent_invoice.date_invoice},
+                 context=context)
+-
+  I confirm and open the invoice
+-
+  !workflow {model: account.invoice, ref: account_invoice_1, action: invoice_open}
+-
+  I create another invoice
+-
+  !record {model: account.invoice, id: account_invoice_2}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: '[Z0_CLOUD] Annual Odoo Cloud Service'
+        price_unit: 120.0
+        quantity: 1.0
+        product_id: product.product_product_consultant
+        uos_id: product.product_uom_unit
+    journal_id: account.sales_journal
+    partner_id: base.res_partner_12
+-
+  Set older date to last invoice and test validation
+-
+  !python {model: account.invoice}: |
+    from datetime import datetime, date
+    invoice = self.browse(cr, uid, ref('account_invoice_1'))
+    older_date = datetime.strftime(date(int(invoice.date_invoice[0:4]),1,1), "%Y-%m-%d")
+    vals = {'date_invoice': older_date}
+    try:
+        self.write(cr, uid, [ref('account_invoice_2')], vals)
+        assert False, 'Sequential date failed'
+    except:
+        pass
