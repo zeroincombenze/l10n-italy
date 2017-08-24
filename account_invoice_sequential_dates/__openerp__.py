@@ -9,7 +9,7 @@
 #
 {
     'name': 'Check invoice date consistency',
-    'version': '7.0.0.1.2',
+    'version': '7.0.0.1.3',
     'category': 'Tools',
     'description': """(en)
 This module check for sequential invoice date because Italian law.
@@ -39,8 +39,7 @@ accavallamento degli esercizi.
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": ['account', 'account_invoice_entry_date'],
-    "data": [],
-    "demo_xml": [],
+    'test': ['test/invoice_sequential.yml', ],
     "active": False,
     "installable": True
 }

@@ -13,20 +13,23 @@ class account_invoice(orm.Model):
     _inherit = 'account.invoice'
 
     def _check_4_inv_date(self, cr, uid, ids, context=None):
+        res = True
         for obj_inv in self.browse(cr, uid, ids, context=context):
             inv_type = obj_inv.type
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 date_invoice = obj_inv.registration_date
-                return self._invoice_validate(cr, uid, obj_inv, date_invoice,
-                                              context=context)
+                res = self._invoice_validate(cr, uid, obj_inv, date_invoice,
+                                             context=context)
             elif inv_type == 'out_invoice' or inv_type == 'out_refund':
                 date_invoice = obj_inv.date_invoice
-                return self._invoice_validate(cr, uid, obj_inv, date_invoice,
-                                              context=context)
-        return True
+                res = self._invoice_validate(cr, uid, obj_inv, date_invoice,
+                                             context=context)
+            if not res:
+                break
+        return res
 
     def _invoice_validate(self, cr, uid, obj_inv, date_invoice, context=None):
-        if date_invoice:
+        if date_invoice and obj_inv.state == 'draft':
             where = [('type', '=', obj_inv.type),
                      ('journal_id', '=', obj_inv.journal_id.id),
                      ('date_invoice', '>', date_invoice),
@@ -41,8 +44,6 @@ class account_invoice(orm.Model):
                 periods = period_pool.search(
                     cr, uid, [('fiscalyear_id', '=', fiscalyear_id)])
                 where.append(('period_id', 'in', periods))
-            if obj_inv.number:
-                return True
             number = obj_inv.internal_number
             if number:
                 where.append(('number', '<', number))
