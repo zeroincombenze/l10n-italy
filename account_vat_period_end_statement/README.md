@@ -2,10 +2,10 @@
 [![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
 [![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=6.1)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=6.1)
 [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/6.1/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/6.1)
-[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg)](https://github.com/OCA/l10n-italy/tree/6.1)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/dev/6.1)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/6.1/l10n-italy)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
+[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-6.svg)](https://github.com/OCA/l10n-italy/tree/6.1)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-6.svg)](http://wiki.zeroincombenze.org/en/Odoo/6.1/dev)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-6.svg)](http://wiki.zeroincombenze.org/en/Odoo/6.1/man/FI)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-6.svg)](http://erp6.zeroincombenze.it)
 
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/6.1/man)
 
@@ -36,11 +36,38 @@ If you need to calculate interest, you can add default information in your
 company data (percentage and account).
 
 
-Credits
-=======
-
-Contributors
+Installation
 ------------
+
+
+Configuration
+-------------
+
+
+Usage
+-----
+
+-----
+
+Known issues / Roadmap
+----------------------
+
+
+Bug Tracker
+-----------
+
+
+Credits
+-------
+
+
+
+[![Odoo Italia Associazione]]
+
+
+### Contributors
+
+
 
 -   Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 -   Marco Marchiori <marcomarkiori@gmail.com>
@@ -49,8 +76,12 @@ Contributors
 -   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 
-Maintainer
-----------
+### Funders
+
+### Maintainer
+
+
+
 
 This module is maintained by Odoo Italia Associazione
 
