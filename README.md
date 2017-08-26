@@ -17,10 +17,11 @@ Italian modules for Odoo (formerly OpenERP) 8.0
 
 http://www.odoo-italia.org/
 
-
 [//]: # (addons)
 
+
 Available addons
+----------------
 addon | version | summary
 --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 8.0.1.0.0 | Fiscal Year Closing
@@ -48,6 +49,7 @@ addon | version | summary
 
 
 Unported addons
+---------------
 addon | version | summary
 --- | --- | ---
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.2 (unported) | Period End VAT Statement
@@ -60,6 +62,7 @@ addon | version | summary
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
 
 [//]: # (end addons)
+
 
 Translation Status
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-8-0)

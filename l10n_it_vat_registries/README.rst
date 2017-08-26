@@ -27,8 +27,12 @@ Installation
 
 
 
+
+
 Configuration
 -------------
+
+
 
 
 
@@ -82,6 +86,10 @@ Usage
 
 -----
 
+-----
+
+-----
+
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -98,8 +106,12 @@ Known issues / Roadmap
 
 
 
+
+
 Bug Tracker
 -----------
+
+
 
 
 
@@ -126,7 +138,11 @@ Credits
 
 
 
+
+
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -145,6 +161,8 @@ Credits
 
 
 
+
+
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Sergio Corato <sergiocorato@gmail.com>
 * Elena Carlesso <ecarlesso@linkgroup.it>
@@ -152,6 +170,10 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 
@@ -197,4 +219,9 @@ Since 2017, Odoo Italia Associazione replaces OCA members of Italy are developpi
 Odoo Italia Associazione distributes code only under A-GPL free license.
 
 [//]: # (end copyright)
+
+
+[//]: # (addons)
+
+[//]: # (end addons)
 

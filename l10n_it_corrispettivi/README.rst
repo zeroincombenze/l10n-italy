@@ -30,6 +30,8 @@ Installation
 
 
 
+
+
 Configuration
 -------------
 
@@ -40,7 +42,13 @@ Configuration
 
 
 
+
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -73,8 +81,12 @@ Known issues / Roadmap
 
 
 
+
+
 Bug Tracker
 -----------
+
+
 
 
 
@@ -100,11 +112,15 @@ Credits
 
 
 
+
+
 Images
 
 * Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -123,11 +139,17 @@ Images
 
 
 
+
+
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 
@@ -173,4 +195,9 @@ Since 2017, Odoo Italia Associazione replaces OCA members of Italy are developpi
 Odoo Italia Associazione distributes code only under A-GPL free license.
 
 [//]: # (end copyright)
+
+
+[//]: # (addons)
+
+[//]: # (end addons)
 

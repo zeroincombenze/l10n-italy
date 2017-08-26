@@ -39,6 +39,8 @@ Installation
 
 
 
+
+
 Configuration
 -------------
 
@@ -49,7 +51,13 @@ Configuration
 
 
 
+
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -122,6 +130,8 @@ Installation
 
 
 
+
+
 Configuration
 -------------
 
@@ -132,7 +142,13 @@ Configuration
 
 
 
+
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -159,8 +175,12 @@ Known issues / Roadmap
 
 
 
+
+
 Bug Tracker
 -----------
+
+
 
 
 
@@ -180,7 +200,11 @@ Credits
 
 
 
+
+
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -199,6 +223,8 @@ Credits
 
 
 
+
+
 * Borja López Soilán <borja@kami.es>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -206,6 +232,10 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 
@@ -249,4 +279,9 @@ Since 2017, Odoo Italia Associazione replaces OCA members of Italy are developpi
 Odoo Italia Associazione distributes code only under A-GPL free license.
 
 [//]: # (end copyright)
+
+
+[//]: # (addons)
+
+[//]: # (end addons)
 

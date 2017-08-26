@@ -30,10 +30,14 @@ Installation
 
 
 
+
+
 Nothing special is needed to install this module.
 
 Configuration
 -------------
+
+
 
 
 
@@ -63,8 +67,14 @@ Usage
 
 -----
 
+-----
+
+-----
+
 Known issues / Roadmap
 ----------------------
+
+
 
 
 
@@ -79,6 +89,8 @@ None known.
 
 Bug Tracker
 -----------
+
+
 
 
 
@@ -105,7 +117,11 @@ Credits
 
 
 
+
+
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -124,12 +140,18 @@ Credits
 
 
 
+
+
 * Luigi Di Naro <luigi.dinaro@ktec.it>
 * Alex Comba <alex.comba@agilebg.com>
 
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 
@@ -173,4 +195,9 @@ Since 2017, Odoo Italia Associazione replaces OCA members of Italy are developpi
 Odoo Italia Associazione distributes code only under A-GPL free license.
 
 [//]: # (end copyright)
+
+
+[//]: # (addons)
+
+[//]: # (end addons)
 

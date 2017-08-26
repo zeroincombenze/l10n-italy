@@ -32,8 +32,12 @@ Installation
 
 
 
+
+
 Configuration
 -------------
+
+
 
 
 
@@ -47,6 +51,10 @@ See l10n_it_fatturapa
 
 
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -78,8 +86,12 @@ Known issues / Roadmap
 
 
 
+
+
 Bug Tracker
 -----------
+
+
 
 
 
@@ -99,7 +111,11 @@ Credits
 
 
 
+
+
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -118,6 +134,8 @@ Credits
 
 
 
+
+
 * Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
@@ -126,6 +144,10 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 
@@ -169,4 +191,9 @@ Since 2017, Odoo Italia Associazione replaces OCA members of Italy are developpi
 Odoo Italia Associazione distributes code only under A-GPL free license.
 
 [//]: # (end copyright)
+
+
+[//]: # (addons)
+
+[//]: # (end addons)
 

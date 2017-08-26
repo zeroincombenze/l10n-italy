@@ -48,3 +48,8 @@ Odoo Italia Associazione distributes code only under A-GPL free license.
 
 [//]: # (end copyright)
 
+
+[//]: # (addons)
+
+[//]: # (end addons)
+
