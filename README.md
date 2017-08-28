@@ -10,6 +10,7 @@
 
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 ================================================================================================
+================================================================================================
 
 Odoo Italia Modules
 
@@ -27,7 +28,9 @@ Italian modules for odoo (formerly OpenERP)
 
 [//]: # (addons)
 
+
 Available addons
+----------------
 addon | version | summary
 --- | --- | ---
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.0 | Account invoice report grouped by DDT
@@ -42,12 +45,12 @@ addon | version | summary
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.0.0 | Manage fields for Economic Administrative catalogue
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.1.0 | Italian Localization - VAT Registries
 
 
 Unported addons
+---------------
 addon | version | summary
 --- | --- | ---
 [account_central_journal](account_central_journal/) | 3 (unported) | Account Central Journal
@@ -62,6 +65,7 @@ addon | version | summary
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 (unported) | Electronic invoices emission
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | Italian Localisation - Prima Nota Cassa
+[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 (unported) | Ricevute Bancarie
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 (unported) | Italian Localisation - Withholding tax
 
 [//]: # (end addons)
