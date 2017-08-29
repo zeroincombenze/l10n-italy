@@ -33,7 +33,9 @@ http://www.odoo-italia.org/
 
 [//]: # (addons)
 
+
 Available addons
+----------------
 addon | version | summary
 --- | --- | ---
 [l10n_it_abicab](l10n_it_abicab/) | 9.0.1.0.0 | Base Bank ABI/CAB codes
@@ -43,6 +45,7 @@ addon | version | summary
 
 
 Unported addons
+---------------
 addon | version | summary
 --- | --- | ---
 [account_central_journal](account_central_journal/) | 3 (unported) | Account Central Journal
