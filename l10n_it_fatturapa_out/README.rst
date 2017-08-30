@@ -35,8 +35,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -53,6 +55,8 @@ See l10n_it_fatturapa
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -93,8 +97,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -120,7 +126,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -145,6 +153,7 @@ Credits
 
 
 
+
 * Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
@@ -153,6 +162,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

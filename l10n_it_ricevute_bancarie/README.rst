@@ -65,8 +65,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -84,6 +86,8 @@ si deve configurare un prodotto di tipo servizio e legarlo in Configurazione -> 
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -125,8 +129,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -162,7 +168,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -187,6 +195,7 @@ Credits
 
 
 
+
 * Andrea Cometa <a.cometa@apuliasoftware.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -195,6 +204,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

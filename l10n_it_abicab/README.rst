@@ -31,6 +31,7 @@ Installation
 
 
 
+
 Configuration
 -------------
 
@@ -44,7 +45,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -80,8 +84,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -106,7 +112,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -131,6 +139,7 @@ Credits
 
 
 
+
 * Franco Tampieri <franco@tampieri.info>
 * Alessandro Camilli <a.camilli@yahoo.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -138,6 +147,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 
