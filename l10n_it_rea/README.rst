@@ -32,6 +32,7 @@ Installation
 
 
 
+
 Configuration
 -------------
 
@@ -46,7 +47,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -92,8 +96,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -128,7 +134,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -155,12 +163,15 @@ Credits
 
 
 
+
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 
 ### Funders
 
 ### Maintainer
+
+
 
 
 
