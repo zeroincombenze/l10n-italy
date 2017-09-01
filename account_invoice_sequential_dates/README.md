@@ -40,25 +40,34 @@ accavallamento degli esercizi.
 Installation
 ------------
 
+
 Configuration
 -------------
 
+
 Usage
+-----
+
 -----
 
 Known issues / Roadmap
 ----------------------
 
+
 Bug Tracker
 -----------
+
 
 Credits
 -------
 
 
+
 [![Odoo Italia Associazione]]
 
+
 ### Contributors
+
 
 
 -   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -67,6 +76,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 This module is maintained by Odoo Italia Associazione
