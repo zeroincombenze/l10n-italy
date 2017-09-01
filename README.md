@@ -24,14 +24,12 @@ Available addons
 ----------------
 addon | version | OCA version | summary
 --- | --- | --- | ---
-[account_fiscal_year_closing](account_fiscal_year_closing/) | 8.0.1.0.0 | 1.0 (unported) | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Same | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | Same | Check invoice date consistency
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Same | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Same | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Same | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Same | Italian Localisation - Base
-[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Same | Import base_location entries (provinces) from Geonames
 [l10n_it_central_journal](l10n_it_central_journal/) | 8.0.2.0.0 | Same | Italian Localization - Account central journal
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | Same | Italian Localization - Corrispettivi
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | Same | Documento di Trasporto
@@ -40,7 +38,7 @@ addon | version | OCA version | summary
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 | Same | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 | Same | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 8.0.0.1.0 | Same | Manage fields for Economic Administrative catalogue
-[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 8.0.0.1.0 | 8.0.2.0.0 | Invoice Intra CEE
+[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 8.0.2.0.0 | Same | Reverse Charge for Italy
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 8.0.1.3.0 | Same | Ricevute Bancarie
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Same | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Same | Italian Localization - VAT Registries
@@ -52,9 +50,11 @@ Unported addons
 ---------------
 addon | version | OCA version | summary
 --- | --- | --- | ---
+[account_fiscal_year_closing](account_fiscal_year_closing/) | 8.0.1.0.0 (unported) | 1.0 (unported) | Fiscal Year Closing
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.2 (unported) | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Same | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Same | Italian Localisation - CRM
+[l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | Same | Italian Localisation - Bill of Entry
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.0.0 (unported) | 8.0.2.0.0 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.2.0.0 (unported) | 8.0.2.0.0 | Electronic invoices emission
