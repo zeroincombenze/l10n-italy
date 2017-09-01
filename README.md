@@ -80,12 +80,12 @@ Descrizione | Odoo Italia | OCA
 --- | --- | ---
 Coverage | [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/8.0)
 Test con repository OCA e Odoo | Si | Si
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | [ricerca con CAP] (https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Nessuna ricerca 
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | [ricerca con CAP](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Nessuna ricerca 
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | Provincia allineata ai moduli EU compatibile con versione italiana | Provincia personalizzata incompatibile con moduli EU
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | [comuni italiani](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) | Dati comuni pre 2014
-[l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fiscal) | [piano dei conti](https://www.zeroincombenze.it/il-piano-dei-conti-2/) | N/D
-[l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fiscal) | [codici IVA](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | N/D
-[account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) | Normativa IP17,  presentazione della liquidazione IVA in formato xml | Normativo 2016
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | [Dati comuni italiani 2014](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) | Dati comuni 2013
+[l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fiscal) | [piano dei conti evoluto](https://www.zeroincombenze.it/il-piano-dei-conti-2/) | N/D
+[l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fiscal) | [codici IVA completi](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | N/D
+[account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) | Normativa IP17,  presentazione della liquidazione IVA in formato xml | Normativa 2016
 
 
 [//]: # (copyright)
