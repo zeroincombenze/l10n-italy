@@ -76,7 +76,7 @@ Differenze rispetto localizzazione ufficiale Odoo/OCA
 
 Descrizione | Odoo Italia | OCA
 --- | --- | ---
-Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)[https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0] | [![Coverage Status](https://coveralls.io/OCA/zeroincombenze/l10n-italy/badge.svg?branch=7.0)[https://coveralls.io/OCA/zeroincombenze/l10n-italy?branch=7.0]
+Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0) | [![Coverage Status](https://coveralls.io/OCA/zeroincombenze/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/OCA/zeroincombenze/l10n-italy?branch=7.0)
 Test compatibilità OCA e Odoo | No | [Errore import decimal precision](https://github.com/OCA/OCB/issues/629)
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca CAP, città e provincia](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Ricerca città
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia italia e estero (compatibile con OCA-Italy) | Ricerca provincia Italia (non compatibile con OCA)
