@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
+[![Build Status](https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy.svg?branch=8.0)](https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy)
 [![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
-[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0)
-[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0)
+[![Coverage Status](https://coveralls.io/repos/github/Odoo-Italia-Associazione/l10n-italy/badge.svg?branch=8.0)](https://coveralls.io/github/Odoo-Italia-Associazione/l10n-italy?branch=8.0)
+[![codecov](https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/8.0)
 [![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg)](https://github.com/OCA/l10n-italy/tree/8.0)
 [![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/dev)
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/man/FI)
@@ -26,7 +26,6 @@ addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Same | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | Same | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.2 | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Same | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Same | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Same | Ateco codes
@@ -52,6 +51,7 @@ Unported addons
 addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 8.0.1.0.0 (unported) | 1.0 (unported) | Fiscal Year Closing
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.2 (unported) | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Same | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Same | Italian Localisation - CRM
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
@@ -78,7 +78,7 @@ Differenze rispetto localizzazione ufficiale Odoo/OCA
 
 Descrizione | Odoo Italia | OCA
 --- | --- | ---
-Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/8.0)
+Coverage |  [![codecov](https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/8.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/8.0)
 Test compatibilità OCA e Odoo | Si | Si
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca CAP, città e provincia](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Ricerca città
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia italia e estero (compatibile con OCA-Italy) | Ricerca provincia Italia (non compatibile con OCA)
@@ -98,12 +98,17 @@ Test compatibilità OCA e Odoo | Si | Si
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-**zeroincombenze®** is a trademark of [SHS-AV s.r.l.](http://www.shs-av.com/)
-which distributes and promotes **Odoo** ready-to-use on its own cloud infrastructure.
-[Zeroincombenze® distribution](http://wiki.zeroincombenze.org/en/Odoo)
-is mainly designed for Italian law and markeplace.
-Everytime, every Odoo DB and customized code can be deployed on local server too.
+**Odoo Italia Associazione**, or the [Associazione Odoo Italia](https://www.odoo-italia.org/)
+is the nonprofit Italian Community Association whose mission
+is to support the collaborative development of Odoo designed for Italian law and markeplace.
+Since 2017, Odoo Italia Associazione replaces OCA members of Italy are developping code under Odoo Proprietary License.
+Odoo Italia Associazione distributes code only under AGPL free license.
+
+[Odoo Italia Associazione](https://www.odoo-italia.org/) è un'Associazione senza fine di lucro
+che dal 2017 sostituisce gli sviluppatori italiani di OCA che sviluppano
+con Odoo Proprietary License a pagamento.
+
+Odoo Italia Associazione distribuisce il codice esclusivamente con licenza [AGPL](http://www.gnu.org/licenses/agpl-3.0.html)
 
 [//]: # (end copyright)
 
-[![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)
