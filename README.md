@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Odoo Italia Modules
 ===================
@@ -26,6 +26,7 @@ addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Same | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | Same | Check invoice date consistency
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.2 | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Same | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Same | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | Same | Ateco codes
@@ -51,7 +52,6 @@ Unported addons
 addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 8.0.1.0.0 (unported) | 1.0 (unported) | Fiscal Year Closing
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.2 (unported) | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | Same | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | Same | Italian Localisation - CRM
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
@@ -69,7 +69,7 @@ Translation Status
 
 
 
-[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Moduli Odoo Italia
 ==================
@@ -78,10 +78,10 @@ Differenze rispetto localizzazione ufficiale Odoo/OCA
 
 Descrizione | Odoo Italia | OCA
 --- | --- | ---
-Coverage | [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/8.0)
-Test con repository OCA e Odoo | Si | Si
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | [ricerca con CAP](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Nessuna ricerca 
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | Provincia allineata ai moduli EU compatibile con versione italiana | Provincia personalizzata incompatibile con moduli EU
+Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/8.0)
+Test compatibilità OCA e Odoo | Si | Si
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca CAP, città e provincia](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Ricerca città
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia italia e estero (compatibile con OCA-Italy) | Ricerca provincia Italia (non compatibile con OCA)
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_base) | [Dati comuni italiani 2014](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) | Dati comuni 2013
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fiscal) | [piano dei conti evoluto](https://www.zeroincombenze.it/il-piano-dei-conti-2/) | N/D
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fiscal) | [codici IVA completi](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | N/D

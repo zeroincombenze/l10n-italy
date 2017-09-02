@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
 ================================================================
@@ -47,8 +47,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -98,6 +100,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 To use this module, you need to:
@@ -110,7 +114,7 @@ To use this module, you need to:
 
 
 
-[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Variante del modulo l10n_es_fiscal_year_closing
 ===============================================
@@ -162,6 +166,7 @@ Installation
 
 
 
+
 Configuration
 -------------
 
@@ -180,7 +185,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -231,8 +239,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -268,7 +278,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -303,6 +315,7 @@ Credits
 
 
 
+
 * Borja López Soilán <borja@kami.es>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -310,6 +323,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

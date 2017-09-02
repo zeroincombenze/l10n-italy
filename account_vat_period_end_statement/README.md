@@ -7,7 +7,7 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/8.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Period End VAT Statement
 ========================
@@ -26,7 +26,7 @@ to its payments status.
 
 
 
-[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/8.0/man)
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Liquidazione IVA periodica
 ==========================
@@ -47,6 +47,7 @@ compensazione.
 
 Installation
 ------------
+
 
 
 
@@ -107,7 +108,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -197,8 +201,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -260,7 +266,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -321,6 +329,7 @@ Credits
 
 
 
+
 -   Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 -   Marco Marchiori <marcomarkiori@gmail.com>
 -   Sergio Corato <sergiocorato@gmail.com>
@@ -331,6 +340,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 
