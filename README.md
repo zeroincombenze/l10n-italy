@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 
 Odoo Italia Modules
@@ -67,7 +67,7 @@ Translation Status
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0)
 
 
-[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Moduli Odoo Italia
 ==================
@@ -76,10 +76,10 @@ Differenze rispetto localizzazione ufficiale Odoo/OCA
 
 Descrizione | Odoo Italia | OCA
 --- | --- | ---
-Coverage | [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/7.0)
-Test con repository OCA e Odoo | Si | Si
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca con CAP](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Nessuna ricerca 
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Provincia allineata ai moduli EU compatibile con versione italiana | Provincia personalizzata incompatibile con moduli EU
+Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)[https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0] | [![Coverage Status](https://coveralls.io/OCA/zeroincombenze/l10n-italy/badge.svg?branch=7.0)[https://coveralls.io/OCA/zeroincombenze/l10n-italy?branch=7.0]
+Test compatibilità OCA e Odoo | No | [Errore import decimal precision](https://github.com/OCA/OCB/issues/629)
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca CAP, città e provincia](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Ricerca città
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia italia e estero (compatibile con OCA-Italy) | Ricerca provincia Italia (non compatibile con OCA)
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [Dati comuni italiani 2014](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) | Dati comuni 2013
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [piano dei conti evoluto](https://www.zeroincombenze.it/il-piano-dei-conti-2/) | N/D
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [codici IVA completi](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | N/D
