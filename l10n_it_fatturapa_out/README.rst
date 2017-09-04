@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg)](http://erp10.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
     :alt: License
 =================
@@ -25,14 +25,18 @@ http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 Installation
 ------------
 
+
 Configuration
 -------------
+
 
 
 See l10n_it_fatturapa
 
 
 Usage
+-----
+
 -----
 
 =====
@@ -43,16 +47,21 @@ Usage
 Known issues / Roadmap
 ----------------------
 
+
 Bug Tracker
 -----------
+
 
 Credits
 -------
 
 
+
 [![Odoo Italia Associazione]]
 
+
 ### Contributors
+
 
 
 * Davide Corio <davide.corio@abstract.it>
@@ -63,6 +72,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 .. image:: http://odoo-community.org/logo.png

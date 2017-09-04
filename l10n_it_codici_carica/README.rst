@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg)](http://erp10.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
 ================================================================
@@ -22,14 +22,18 @@ Tabella dei codici carica da usare nei dichiarativi fiscali italiani
 Installation
 ------------
 
+
 Configuration
 -------------
+
 
 
 La tabella viene aggiunta nell'area contabilità, ed è raggiungibile nella 
 sezione configurazione. Occorre avere i privilegi di account manager.
 
 Usage
+-----
+
 -----
 
 =====
@@ -43,8 +47,10 @@ Non è possibile avere più di un elemento con lo stesso codice.
 Known issues / Roadmap
 ----------------------
 
+
 Bug Tracker
 -----------
+
 
 
 Bugs are tracked on `GitHub Issues
@@ -57,9 +63,12 @@ Credits
 -------
 
 
+
 [![Odoo Italia Associazione]]
 
+
 ### Contributors
+
 
 
 * Alessandro Camilli <alessandrocamilli@openforce.it>
@@ -67,6 +76,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 The development of this module has been financially supported by:
