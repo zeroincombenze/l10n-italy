@@ -87,7 +87,7 @@ Test compatibilità OCA e Odoo | :white_check_mark: | :white_check_mark:
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [piano dei conti evoluto](https://www.zeroincombenze.it/il-piano-dei-conti-2/) | :x:
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [codici IVA completi](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | :x:
 [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) | :calendar: Normativa IP17,  presentazione della liquidazione IVA in formato xml | :x: Normativa 2016
-[account_invoice_sequential_dates]
+
 
 [//]: # (copyright)
 
