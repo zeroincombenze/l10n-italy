@@ -41,8 +41,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -116,6 +118,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 To use this module, you need to select the correct fiscal position in invoices
@@ -145,8 +149,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -195,7 +201,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -236,12 +244,15 @@ Credits
 
 
 
+
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
 
 ### Maintainer
+
+
 
 
 

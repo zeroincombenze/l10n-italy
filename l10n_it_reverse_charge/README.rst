@@ -42,8 +42,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -189,6 +191,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -203,8 +207,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -226,11 +232,13 @@ Credits
 
 
 
+
 Images
 
 * Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -245,6 +253,7 @@ Images
 
 
 
+
 * Davide Corio <davide.corio@abstract.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com
@@ -252,6 +261,8 @@ Images
 ### Funders
 
 ### Maintainer
+
+
 
 
 

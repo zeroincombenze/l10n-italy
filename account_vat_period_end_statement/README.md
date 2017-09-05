@@ -79,6 +79,7 @@ Installation
 
 
 
+
 Configuration
 -------------
 
@@ -113,7 +114,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -212,8 +216,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -281,7 +287,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -348,6 +356,7 @@ Credits
 
 
 
+
 -   Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 -   Marco Marchiori <marcomarkiori@gmail.com>
 -   Sergio Corato <sergiocorato@gmail.com>
@@ -358,6 +367,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

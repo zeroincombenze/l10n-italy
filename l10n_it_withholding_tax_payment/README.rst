@@ -8,10 +8,11 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
 
 
-[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
 ================================================================
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
 Italian Withholding Tax - Payment
@@ -25,82 +26,10 @@ Poi è anche possibile generare la registrazione di versamento erario a banca
 Installation
 ------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Configuration
 -------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Usage
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
-
 -----
 
 =====
@@ -114,44 +43,8 @@ Usage
 Known issues / Roadmap
 ----------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Bug Tracker
 -----------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Bugs are tracked on `GitHub Issues
@@ -167,63 +60,9 @@ Credits
 -------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [![Odoo Italia Associazione]]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Contributors
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 * Alessandro Camilli <alessandrocamilli@openforce.it>
@@ -232,42 +71,6 @@ Credits
 ### Funders
 
 ### Maintainer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .. image:: https://odoo-community.org/logo.png
@@ -299,7 +102,6 @@ is mainly designed for Italian law and markeplace.
 Everytime, every Odoo DB and customized code can be deployed on local server too.
 
 [//]: # (end copyright)
-
 
 [//]: # (addons)
 
