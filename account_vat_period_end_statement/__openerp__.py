@@ -22,9 +22,11 @@
                 "account_voucher",
                 "report_webkit",
                 "l10n_it_vat_registries",
+                "l10n_it_fiscalcode",
                 ],
-    "author":  "Agile Business Group, "
-               " Odoo Italia Associazione",
+    "author":  "Agile Business Group,"
+               " Odoo Italia Associazione"
+               " Odoo Community Association (OCA)",
     'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
     "description": """(en)
 

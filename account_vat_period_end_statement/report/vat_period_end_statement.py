@@ -10,8 +10,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import time
-from report import report_sxw
-from tools.translate import _
+from openerp.report import report_sxw
+from openerp.tools.translate import _
 from openerp.osv import orm
 
 
