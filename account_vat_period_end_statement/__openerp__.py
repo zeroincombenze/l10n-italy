@@ -14,7 +14,7 @@
 # [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "8.0.3.0.2",
+    "version": "8.0.3.0.3",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
@@ -24,7 +24,8 @@
         "l10n_it_vat_registries",
         "l10n_it_fiscalcode",
     ],
-    "author": "Agile Business Group, Odoo Italia Associazione,"
+    "author": "Agile Business Group,"
+              " Odoo Italia Associazione,"
               " Odoo Community Association (OCA)",
     'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
     "description": """(en)
@@ -81,5 +82,5 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
         'python': ['pyxb'],
     },
     'demo': [],
-    'installable': False,
+    'installable': True,
 }
