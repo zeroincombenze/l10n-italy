@@ -28,7 +28,7 @@ addon | version | OCA version | summary
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 | :repeat: | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | :repeat: | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.3 | 0.1 | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.2.1.9 | 0.3 | Period End VAT Statement
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.3.0.1 | 0.3 | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
 [l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
