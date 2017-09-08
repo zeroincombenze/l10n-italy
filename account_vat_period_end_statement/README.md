@@ -7,7 +7,7 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-6.svg)](http://wiki.zeroincombenze.org/en/Odoo/6.1/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-6.svg)](http://erp6.zeroincombenze.it)
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/6.1/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Period End VAT Statement
 ========================
@@ -41,12 +41,16 @@ Installation
 
 
 
+
 Configuration
 -------------
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -58,8 +62,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -69,11 +75,14 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
 
 
 
+
 ### Contributors
+
 
 
 
@@ -94,6 +103,8 @@ Credits
 
 
 
+
+
 This module is maintained by Odoo Italia Associazione
 
 Odoo Italia is a nonprofit organization whose develops Italian Localization for
@@ -103,7 +114,7 @@ To contribute to this module, please visit <https://odoo-italia.org/>.
 
 
 
-[![it](http://www.shs-av.com/wp-content/it_IT.png)](http://wiki.zeroincombenze.org/it/Odoo/6.1/man)
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Liquidazione IVA periodica
 ==========================

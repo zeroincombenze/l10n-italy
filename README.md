@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-6.svg)](http://erp6.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 ================================================================================================
 ================================================================================================
 
@@ -45,7 +45,7 @@ addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.1.1 | 1.0 | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 3.2.7.5 | 0.1 | Account Invoice entry Date
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 2.1.4.1 |  N/D  | Period End VAT Statement
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 2.1.4.1 | :x: | Period End VAT Statement
 [l10n_it_account](l10n_it_account/) | 2.20.44.42 | 0.2 | Italian Localisation
 [l10n_it_base](l10n_it_base/) | 2.1.0.3 | 0.1 | Italian Localisation - Base
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 2.0.1.0 | 0.1 | Italy - Partially Deductible VAT
