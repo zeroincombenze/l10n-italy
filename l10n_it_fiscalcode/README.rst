@@ -24,6 +24,7 @@ Installation
 
 
 
+
 To install this module, you need to:
 
 Install Python Depends `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`_.
@@ -32,7 +33,10 @@ Configuration
 -------------
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -52,8 +56,10 @@ Known issues / Roadmap
 ----------------------
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -68,10 +74,13 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
 
 
+
 ### Contributors
+
 
 
 
@@ -91,6 +100,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

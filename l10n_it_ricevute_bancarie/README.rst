@@ -60,8 +60,10 @@ Installation
 ------------
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -70,6 +72,8 @@ si deve configurare un prodotto di tipo servizio e legarlo in Configurazione -> 
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -84,8 +88,10 @@ Known issues / Roadmap
 ----------------------
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -99,10 +105,13 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
 
 
+
 ### Contributors
+
 
 
 
@@ -114,6 +123,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 
