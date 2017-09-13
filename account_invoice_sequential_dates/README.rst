@@ -42,6 +42,8 @@ Installation
 
 
 
+
+
 Configuration
 -------------
 
@@ -66,7 +68,13 @@ Configuration
 
 
 
+
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -143,8 +151,12 @@ Known issues / Roadmap
 
 
 
+
+
 Bug Tracker
 -----------
+
+
 
 
 
@@ -198,11 +210,15 @@ Credits
 
 
 
+
+
 Images
 
 * Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -249,6 +265,8 @@ Images
 
 
 
+
+
 * Davide Corio <davide.corio@domsense.com>
 * Luca Subiaco <subluca@gmail.com>
 * Simone Orsi <simone.orsi@domsense.com>
@@ -263,6 +281,10 @@ Images
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 

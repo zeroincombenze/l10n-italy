@@ -41,8 +41,12 @@ Installation
 
 
 
+
+
 Configuration
 -------------
+
+
 
 
 
@@ -138,6 +142,10 @@ Usage
 
 -----
 
+-----
+
+-----
+
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -168,8 +176,12 @@ Known issues / Roadmap
 
 
 
+
+
 Bug Tracker
 -----------
+
+
 
 
 
@@ -224,7 +236,11 @@ Credits
 
 
 
+
+
 [![Odoo Italia Associazione]]
+
+
 
 
 
@@ -271,6 +287,8 @@ Credits
 
 
 
+
+
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Sergio Corato <sergiocorato@gmail.com>
 * Elena Carlesso <ecarlesso@linkgroup.it>
@@ -278,6 +296,10 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
+
+
 
 
 
