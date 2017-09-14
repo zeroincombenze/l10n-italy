@@ -882,18 +882,18 @@ class account_vat_period_end_statement(orm.Model):
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
                             context=None):
-        # if len(fiscalcode) == 11:
-        #     res_partner_pool = self.pool.get('res.partner')
-        #     chk = res_partner_pool.simple_vat_check(
-        #         self.cr, self.uid, 'it', fiscalcode)
-        #     if not chk:
-        #         return {'value':{name: False},
-        #                'warning': {'title':'Invalid fiscalcode!',
-        #                            'message':
-        #                                 'Invalid vat number'}
-        #         }
         if fiscalcode:
-            if len(fiscalcode) != 16:
+            if len(fiscalcode) == 11:
+                res_partner_pool = self.pool.get('res.partner')
+                chk = res_partner_pool.simple_vat_check(
+                    cr, uid, 'it', fiscalcode)
+                if not chk:
+                    return {'value':{name: False},
+                           'warning': {'title':'Invalid fiscalcode!',
+                                       'message':
+                                            'Invalid vat number'}
+                    }
+            elif len(fiscalcode) != 16:
                 return {'value':{name: False},
                        'warning': {'title':'Invalid len!',
                                    'message':'Fiscal code len must be 11 or 16'}

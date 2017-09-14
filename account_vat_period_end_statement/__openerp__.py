@@ -15,7 +15,7 @@
 # [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "7.0.3.0.1",
+    "version": "7.0.3.0.2",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": ["base",
