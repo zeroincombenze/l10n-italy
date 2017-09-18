@@ -21,7 +21,7 @@ import pyxb.binding.datatypes
 from . import _cm as _ImportedBinding__cm
 # common = addons.get_module_resource('l10n_it_fatturapa')
 # if not common:
-common = '../xml_schemas/common'
+common = '../xml_schemas/common/'
 
 # Unique identifier for bindings created at the same time
 

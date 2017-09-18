@@ -42,7 +42,14 @@ OPTHELP=("this help"\
  "commma separated module exclusion list; may be one or more of: fornituraIvp,FatturaPA,DatiFattura,DatiFatturaMessaggi")
 OPTARGS=()
 
-parseoptargs "$@"
+DISTO=$(xuname "-d")
+if [ "$DISTO" == "CentOS" ]; then
+  parseoptargs "$@"
+else
+  echo "Waring! This tool run just under CentOS, version 6 o 7"
+  opt_version=0
+  opt_help=1
+fi
 if [ "$opt_version" ]; then
   echo "$__version__"
   exit 0
@@ -62,7 +69,7 @@ for x in $TDIR $TDIR/.. $bin_path; do
 done
 cmd=
 mdl=
-BINDINGS=bindings
+BINDINGS=$TDIR/bindings
 rm -fR $BINDINGS
 mkdir -p $BINDINGS
 pushd $BINDINGS ?>/dev/null
@@ -70,11 +77,13 @@ pushd $BINDINGS ?>/dev/null
 exclude="(${opt_exclude//,/|})"
 for d in ../xml_schemas/*; do
   if [ -d $d ]; then
-    if [ -d $d/main ]; then
-      p=$d/main
-    else
-      p=$d
-    fi
+    p=$d
+    for x in main liquidazione; do 
+      if [ -d $d/$x ]; then
+        p=$d/$x
+        break
+      fi
+    done
     for f in $p/*.xsd; do
       fn=$(basename $f)
       m=
