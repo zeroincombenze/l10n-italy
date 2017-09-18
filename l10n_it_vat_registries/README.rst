@@ -24,8 +24,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -35,6 +37,8 @@ setting the 'Exclude from VAT registries' field
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -52,8 +56,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -70,11 +76,14 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
 
 
 
+
 ### Contributors
+
 
 
 
@@ -86,6 +95,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

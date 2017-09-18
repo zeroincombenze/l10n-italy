@@ -24,8 +24,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -34,6 +36,8 @@ La tabella viene aggiunta nell'area contabilità, ed è raggiungibile nella
 sezione configurazione. Occorre avere i privilegi di account manager.
 
 Usage
+-----
+
 -----
 
 -----
@@ -53,8 +57,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -71,11 +77,14 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
 
 
 
+
 ### Contributors
+
 
 
 
@@ -85,6 +94,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 
