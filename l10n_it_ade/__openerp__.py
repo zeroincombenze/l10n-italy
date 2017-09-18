@@ -35,7 +35,7 @@ Entrate, come FatturaPA o Liquidazione IVA elettronica.
     "license": "AGPL-3",
     "depends": [],
     "data": [],
-    "installable": False,
+    "installable": True,
     "external_dependencies": {
         "python": ["pyxb"],
     }

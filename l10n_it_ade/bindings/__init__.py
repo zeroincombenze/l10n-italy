@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                  Associazione Odoo Italia <http://www.odoo-italia.org>
+# Copyright 2017 Didotech srl (<http://www.didotech.com>)
+#                Andrei Levin <andrei.levin@didotech.com>
+#                Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+# Copyright 2017 Associazione Odoo Italia
+#                <http://www.odoo-italia.org>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-#
-# Generated Mon 2017-09-18 09:20:46
-#
 from . import vat_settlement_v_1_0

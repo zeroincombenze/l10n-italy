@@ -1,29 +1,26 @@
 # flake8: noqa
+# ../../bindings/_ds.py
 # -*- coding: utf-8 -*-
-# ./_ds.py
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2017-09-18 09:20:45.858355 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2017-05-15 16:57:35.890205 by PyXB version 1.2.4 using
+# Python 2.7.10.final.0
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
 from __future__ import unicode_literals
-import logging
+import pyxb
+import pyxb.binding
+import pyxb.binding.saxer
 import io
-import sys
+import pyxb.utils.utility
+import pyxb.utils.domutils
+import pyxb.utils.six as _six
 
-# from openerp import addons
-_logger = logging.getLogger(__name__)
-try:
-    import pyxb
-    import pyxb.binding
-    import pyxb.binding.saxer
-    import pyxb.utils.utility
-    import pyxb.utils.domutils
-    import pyxb.utils.six as _six
-except ImportError as err:
-    _logger.debug(err)
+# Import bindings for namespaces imported into schema
+import pyxb.binding.datatypes
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:da1344e8-9c41-11e7-be06-005056ba06a2')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier(
+    'urn:uuid:cb93820a-397e-11e7-bf8c-a820664035f5')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -31,14 +28,13 @@ _PyXBVersion = '1.2.4'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
-# Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
-
 # NOTE: All namespace declarations are reserved within the binding
-Namespace = pyxb.namespace.NamespaceForURI('http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)
+Namespace = pyxb.namespace.NamespaceForURI(
+    'http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 
-def CreateFromDocument (xml_text, default_namespace=None, location_base=None):
+
+def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
     """Parse the given XML and use the document element to create a
     Python instance.
 
@@ -59,10 +55,12 @@ def CreateFromDocument (xml_text, default_namespace=None, location_base=None):
 
     if pyxb.XMLStyle_saxer != pyxb._XMLStyle:
         dom = pyxb.utils.domutils.StringToDOM(xml_text)
-        return CreateFromDOM(dom.documentElement, default_namespace=default_namespace)
+        return CreateFromDOM(dom.documentElement,
+                             default_namespace=default_namespace)
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
-    saxer = pyxb.binding.saxer.make_parser(fallback_namespace=default_namespace, location_base=location_base)
+    saxer = pyxb.binding.saxer.make_parser(
+        fallback_namespace=default_namespace, location_base=location_base)
     handler = saxer.getContentHandler()
     xmld = xml_text
     if isinstance(xmld, _six.text_type):
@@ -71,11 +69,13 @@ def CreateFromDocument (xml_text, default_namespace=None, location_base=None):
     instance = handler.rootObject()
     return instance
 
-def CreateFromDOM (node, default_namespace=None):
+
+def CreateFromDOM(node, default_namespace=None):
     """Create a Python instance from the given DOM node.
     The node tag must correspond to an element declaration in this module.
 
-    @deprecated: Forcing use of DOM interface is unnecessary; use L{CreateFromDocument}."""
+    @deprecated: Forcing use of DOM interface is unnecessary;
+                 use L{CreateFromDocument}."""
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, default_namespace)
@@ -87,23 +87,35 @@ class CryptoBinary (pyxb.binding.datatypes.base64Binary):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CryptoBinary')
-    _XSDLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 36, 0)
+    _XSDLocation = pyxb.utils.utility.Location(
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212' +
+        '/xmldsig-core-schema.xsd', 36, 0)
     _Documentation = None
+
+
 CryptoBinary._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'CryptoBinary', CryptoBinary)
 
 # Atomic simple type: {http://www.w3.org/2000/09/xmldsig#}DigestValueType
+
+
 class DigestValueType (pyxb.binding.datatypes.base64Binary):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DigestValueType')
-    _XSDLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 136, 0)
+    _XSDLocation = pyxb.utils.utility.Location(
+        'http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/' +
+        'xmldsig-core-schema.xsd', 136, 0)
     _Documentation = None
+
+
 DigestValueType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'DigestValueType', DigestValueType)
 
 # Atomic simple type: {http://www.w3.org/2000/09/xmldsig#}HMACOutputLengthType
+
+
 class HMACOutputLengthType (pyxb.binding.datatypes.integer):
 
     """An atomic simple type."""
@@ -111,10 +123,15 @@ class HMACOutputLengthType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'HMACOutputLengthType')
     _XSDLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 283, 0)
     _Documentation = None
+
+
 HMACOutputLengthType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'HMACOutputLengthType', HMACOutputLengthType)
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with
+# content type ELEMENT_ONLY
+
+
 class SignatureType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -125,55 +142,50 @@ class SignatureType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}SignatureValue uses Python identifier SignatureValue
     __SignatureValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'SignatureValue'), 'SignatureValue', '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigSignatureValue', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 54, 2), )
 
-    
     SignatureValue = property(__SignatureValue.value, __SignatureValue.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}SignedInfo uses Python identifier SignedInfo
     __SignedInfo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'SignedInfo'), 'SignedInfo', '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigSignedInfo', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 65, 0), )
 
-    
     SignedInfo = property(__SignedInfo.value, __SignedInfo.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}KeyInfo uses Python identifier KeyInfo
     __KeyInfo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'KeyInfo'), 'KeyInfo', '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigKeyInfo', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 144, 0), )
 
-    
     KeyInfo = property(__KeyInfo.value, __KeyInfo.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}Object uses Python identifier Object
     __Object = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Object'), 'Object', '__httpwww_w3_org200009xmldsig_SignatureType_httpwww_w3_org200009xmldsigObject', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 243, 0), )
 
-    
     Object = property(__Object.value, __Object.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_SignatureType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 51, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 51, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _ElementMap.update({
-        __SignatureValue.name() : __SignatureValue,
-        __SignedInfo.name() : __SignedInfo,
-        __KeyInfo.name() : __KeyInfo,
-        __Object.name() : __Object
+        __SignatureValue.name(): __SignatureValue,
+        __SignedInfo.name(): __SignedInfo,
+        __KeyInfo.name(): __KeyInfo,
+        __Object.name(): __Object
     })
     _AttributeMap.update({
-        __Id.name() : __Id
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignatureType', SignatureType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType with content type SIMPLE
+# Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType
+# with content type SIMPLE
 class SignatureValueType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType with content type SIMPLE"""
     _TypeDefinition = pyxb.binding.datatypes.base64Binary
@@ -184,24 +196,27 @@ class SignatureValueType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.base64Binary
-    
+
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_SignatureValueType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 58, 8)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 58, 8)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _ElementMap.update({
-        
+
     })
     _AttributeMap.update({
-        __Id.name() : __Id
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignatureValueType', SignatureValueType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with
+# content type ELEMENT_ONLY
 class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -212,43 +227,39 @@ class SignedInfoType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}CanonicalizationMethod uses Python identifier CanonicalizationMethod
     __CanonicalizationMethod = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CanonicalizationMethod'), 'CanonicalizationMethod', '__httpwww_w3_org200009xmldsig_SignedInfoType_httpwww_w3_org200009xmldsigCanonicalizationMethod', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 75, 2), )
 
-    
     CanonicalizationMethod = property(__CanonicalizationMethod.value, __CanonicalizationMethod.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}SignatureMethod uses Python identifier SignatureMethod
     __SignatureMethod = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'SignatureMethod'), 'SignatureMethod', '__httpwww_w3_org200009xmldsig_SignedInfoType_httpwww_w3_org200009xmldsigSignatureMethod', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 84, 2), )
 
-    
     SignatureMethod = property(__SignatureMethod.value, __SignatureMethod.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}Reference uses Python identifier Reference
     __Reference = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Reference'), 'Reference', '__httpwww_w3_org200009xmldsig_SignedInfoType_httpwww_w3_org200009xmldsigReference', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 96, 0), )
 
-    
     Reference = property(__Reference.value, __Reference.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_SignedInfoType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 72, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 72, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _ElementMap.update({
-        __CanonicalizationMethod.name() : __CanonicalizationMethod,
-        __SignatureMethod.name() : __SignatureMethod,
-        __Reference.name() : __Reference
+        __CanonicalizationMethod.name(): __CanonicalizationMethod,
+        __SignatureMethod.name(): __SignatureMethod,
+        __Reference.name(): __Reference
     })
     _AttributeMap.update({
-        __Id.name() : __Id
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignedInfoType', SignedInfoType)
 
 
@@ -263,21 +274,23 @@ class CanonicalizationMethodType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Attribute Algorithm uses Python identifier Algorithm
     __Algorithm = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Algorithm'), 'Algorithm', '__httpwww_w3_org200009xmldsig_CanonicalizationMethodType_Algorithm', pyxb.binding.datatypes.anyURI, required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 81, 4)
     __Algorithm._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 81, 4)
-    
+
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        
+
     })
     _AttributeMap.update({
-        __Algorithm.name() : __Algorithm
+        __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'CanonicalizationMethodType', CanonicalizationMethodType)
 
 
@@ -292,32 +305,33 @@ class SignatureMethodType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}HMACOutputLength uses Python identifier HMACOutputLength
     __HMACOutputLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'HMACOutputLength'), 'HMACOutputLength', '__httpwww_w3_org200009xmldsig_SignatureMethodType_httpwww_w3_org200009xmldsigHMACOutputLength', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 87, 6), )
 
-    
     HMACOutputLength = property(__HMACOutputLength.value, __HMACOutputLength.set, None, None)
 
-    
     # Attribute Algorithm uses Python identifier Algorithm
     __Algorithm = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Algorithm'), 'Algorithm', '__httpwww_w3_org200009xmldsig_SignatureMethodType_Algorithm', pyxb.binding.datatypes.anyURI, required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 91, 4)
     __Algorithm._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 91, 4)
-    
+
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __HMACOutputLength.name() : __HMACOutputLength
+        __HMACOutputLength.name(): __HMACOutputLength
     })
     _AttributeMap.update({
-        __Algorithm.name() : __Algorithm
+        __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignatureMethodType', SignatureMethodType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType with
+# content type ELEMENT_ONLY
 class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -328,65 +342,60 @@ class ReferenceType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}Transforms uses Python identifier Transforms
     __Transforms = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Transforms'), 'Transforms', '__httpwww_w3_org200009xmldsig_ReferenceType_httpwww_w3_org200009xmldsigTransforms', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 108, 2), )
 
-    
     Transforms = property(__Transforms.value, __Transforms.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}DigestMethod uses Python identifier DigestMethod
     __DigestMethod = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DigestMethod'), 'DigestMethod', '__httpwww_w3_org200009xmldsig_ReferenceType_httpwww_w3_org200009xmldsigDigestMethod', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 127, 0), )
 
-    
     DigestMethod = property(__DigestMethod.value, __DigestMethod.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}DigestValue uses Python identifier DigestValue
     __DigestValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DigestValue'), 'DigestValue', '__httpwww_w3_org200009xmldsig_ReferenceType_httpwww_w3_org200009xmldsigDigestValue', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 135, 0), )
 
-    
     DigestValue = property(__DigestValue.value, __DigestValue.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_ReferenceType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 103, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 103, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
-    
     # Attribute URI uses Python identifier URI
     __URI = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'URI'), 'URI', '__httpwww_w3_org200009xmldsig_ReferenceType_URI', pyxb.binding.datatypes.anyURI)
     __URI._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 104, 2)
     __URI._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 104, 2)
-    
+
     URI = property(__URI.value, __URI.set, None, None)
 
-    
     # Attribute Type uses Python identifier Type
     __Type = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Type'), 'Type', '__httpwww_w3_org200009xmldsig_ReferenceType_Type', pyxb.binding.datatypes.anyURI)
     __Type._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 105, 2)
     __Type._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 105, 2)
-    
+
     Type = property(__Type.value, __Type.set, None, None)
 
     _ElementMap.update({
-        __Transforms.name() : __Transforms,
-        __DigestMethod.name() : __DigestMethod,
-        __DigestValue.name() : __DigestValue
+        __Transforms.name(): __Transforms,
+        __DigestMethod.name(): __DigestMethod,
+        __DigestValue.name(): __DigestValue
     })
     _AttributeMap.update({
-        __Id.name() : __Id,
-        __URI.name() : __URI,
-        __Type.name() : __Type
+        __Id.name(): __Id,
+        __URI.name(): __URI,
+        __Type.name(): __Type
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'ReferenceType', ReferenceType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType with
+# content type ELEMENT_ONLY
 class TransformsType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -397,23 +406,25 @@ class TransformsType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}Transform uses Python identifier Transform
     __Transform = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Transform'), 'Transform', '__httpwww_w3_org200009xmldsig_TransformsType_httpwww_w3_org200009xmldsigTransform', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 115, 2), )
 
-    
     Transform = property(__Transform.value, __Transform.set, None, None)
 
     _ElementMap.update({
-        __Transform.name() : __Transform
+        __Transform.name(): __Transform
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'TransformsType', TransformsType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType with content type MIXED
+# Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType
+# with content type MIXED
 class TransformType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType with content type MIXED"""
     _TypeDefinition = None
@@ -424,28 +435,28 @@ class TransformType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}XPath uses Python identifier XPath
     __XPath = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'XPath'), 'XPath', '__httpwww_w3_org200009xmldsig_TransformType_httpwww_w3_org200009xmldsigXPath', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 120, 6), )
 
-    
     XPath = property(__XPath.value, __XPath.set, None, None)
 
-    
     # Attribute Algorithm uses Python identifier Algorithm
     __Algorithm = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Algorithm'), 'Algorithm', '__httpwww_w3_org200009xmldsig_TransformType_Algorithm', pyxb.binding.datatypes.anyURI, required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 122, 4)
     __Algorithm._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 122, 4)
-    
+
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __XPath.name() : __XPath
+        __XPath.name(): __XPath
     })
     _AttributeMap.update({
-        __Algorithm.name() : __Algorithm
+        __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'TransformType', TransformType)
 
 
@@ -460,25 +471,28 @@ class DigestMethodType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Attribute Algorithm uses Python identifier Algorithm
     __Algorithm = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Algorithm'), 'Algorithm', '__httpwww_w3_org200009xmldsig_DigestMethodType_Algorithm', pyxb.binding.datatypes.anyURI, required=True)
     __Algorithm._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 132, 2)
     __Algorithm._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 132, 2)
-    
+
     Algorithm = property(__Algorithm.value, __Algorithm.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        
+
     })
     _AttributeMap.update({
-        __Algorithm.name() : __Algorithm
+        __Algorithm.name(): __Algorithm
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'DigestMethodType', DigestMethodType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType with content type MIXED
+# Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType
+# with content type MIXED
 class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType with content type MIXED"""
     _TypeDefinition = None
@@ -489,80 +503,69 @@ class KeyInfoType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}KeyName uses Python identifier KeyName
     __KeyName = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'KeyName'), 'KeyName', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigKeyName', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 160, 2), )
 
-    
     KeyName = property(__KeyName.value, __KeyName.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}MgmtData uses Python identifier MgmtData
     __MgmtData = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'MgmtData'), 'MgmtData', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigMgmtData', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 161, 2), )
 
-    
     MgmtData = property(__MgmtData.value, __MgmtData.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}KeyValue uses Python identifier KeyValue
     __KeyValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'KeyValue'), 'KeyValue', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigKeyValue', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 163, 2), )
 
-    
     KeyValue = property(__KeyValue.value, __KeyValue.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}RetrievalMethod uses Python identifier RetrievalMethod
     __RetrievalMethod = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'RetrievalMethod'), 'RetrievalMethod', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigRetrievalMethod', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 172, 2), )
 
-    
     RetrievalMethod = property(__RetrievalMethod.value, __RetrievalMethod.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}X509Data uses Python identifier X509Data
     __X509Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509Data'), 'X509Data', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigX509Data', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 183, 0), )
 
-    
     X509Data = property(__X509Data.value, __X509Data.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}PGPData uses Python identifier PGPData
     __PGPData = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PGPData'), 'PGPData', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigPGPData', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 208, 0), )
 
-    
     PGPData = property(__PGPData.value, __PGPData.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}SPKIData uses Python identifier SPKIData
     __SPKIData = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'SPKIData'), 'SPKIData', '__httpwww_w3_org200009xmldsig_KeyInfoType_httpwww_w3_org200009xmldsigSPKIData', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 229, 0), )
 
-    
     SPKIData = property(__SPKIData.value, __SPKIData.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_KeyInfoType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 157, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 157, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __KeyName.name() : __KeyName,
-        __MgmtData.name() : __MgmtData,
-        __KeyValue.name() : __KeyValue,
-        __RetrievalMethod.name() : __RetrievalMethod,
-        __X509Data.name() : __X509Data,
-        __PGPData.name() : __PGPData,
-        __SPKIData.name() : __SPKIData
+        __KeyName.name(): __KeyName,
+        __MgmtData.name(): __MgmtData,
+        __KeyValue.name(): __KeyValue,
+        __RetrievalMethod.name(): __RetrievalMethod,
+        __X509Data.name(): __X509Data,
+        __PGPData.name(): __PGPData,
+        __SPKIData.name(): __SPKIData
     })
     _AttributeMap.update({
-        __Id.name() : __Id
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'KeyInfoType', KeyInfoType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType with content type MIXED
+# Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType
+# with content type MIXED
 class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType with content type MIXED"""
     _TypeDefinition = None
@@ -573,32 +576,32 @@ class KeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}DSAKeyValue uses Python identifier DSAKeyValue
     __DSAKeyValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DSAKeyValue'), 'DSAKeyValue', '__httpwww_w3_org200009xmldsig_KeyValueType_httpwww_w3_org200009xmldsigDSAKeyValue', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 289, 0), )
 
-    
     DSAKeyValue = property(__DSAKeyValue.value, __DSAKeyValue.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}RSAKeyValue uses Python identifier RSAKeyValue
     __RSAKeyValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'RSAKeyValue'), 'RSAKeyValue', '__httpwww_w3_org200009xmldsig_KeyValueType_httpwww_w3_org200009xmldsigRSAKeyValue', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 306, 0), )
 
-    
     RSAKeyValue = property(__RSAKeyValue.value, __RSAKeyValue.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __DSAKeyValue.name() : __DSAKeyValue,
-        __RSAKeyValue.name() : __RSAKeyValue
+        __DSAKeyValue.name(): __DSAKeyValue,
+        __RSAKeyValue.name(): __RSAKeyValue
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'KeyValueType', KeyValueType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType with
+# content type ELEMENT_ONLY
 class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -609,40 +612,40 @@ class RetrievalMethodType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}Transforms uses Python identifier Transforms
     __Transforms = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Transforms'), 'Transforms', '__httpwww_w3_org200009xmldsig_RetrievalMethodType_httpwww_w3_org200009xmldsigTransforms', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 108, 2), )
 
-    
     Transforms = property(__Transforms.value, __Transforms.set, None, None)
 
-    
     # Attribute URI uses Python identifier URI
     __URI = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'URI'), 'URI', '__httpwww_w3_org200009xmldsig_RetrievalMethodType_URI', pyxb.binding.datatypes.anyURI)
     __URI._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 177, 4)
     __URI._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 177, 4)
-    
+
     URI = property(__URI.value, __URI.set, None, None)
 
-    
     # Attribute Type uses Python identifier Type
     __Type = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Type'), 'Type', '__httpwww_w3_org200009xmldsig_RetrievalMethodType_Type', pyxb.binding.datatypes.anyURI)
     __Type._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 178, 4)
     __Type._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 178, 4)
-    
+
     Type = property(__Type.value, __Type.set, None, None)
 
     _ElementMap.update({
-        __Transforms.name() : __Transforms
+        __Transforms.name(): __Transforms
     })
     _AttributeMap.update({
-        __URI.name() : __URI,
-        __Type.name() : __Type
+        __URI.name(): __URI,
+        __Type.name(): __Type
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'RetrievalMethodType', RetrievalMethodType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType with
+# content type ELEMENT_ONLY
 class X509DataType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -653,56 +656,50 @@ class X509DataType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerial uses Python identifier X509IssuerSerial
     __X509IssuerSerial = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509IssuerSerial'), 'X509IssuerSerial', '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509IssuerSerial', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 187, 6), )
 
-    
     X509IssuerSerial = property(__X509IssuerSerial.value, __X509IssuerSerial.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}X509SKI uses Python identifier X509SKI
     __X509SKI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509SKI'), 'X509SKI', '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509SKI', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 188, 6), )
 
-    
     X509SKI = property(__X509SKI.value, __X509SKI.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}X509SubjectName uses Python identifier X509SubjectName
     __X509SubjectName = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509SubjectName'), 'X509SubjectName', '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509SubjectName', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 189, 6), )
 
-    
     X509SubjectName = property(__X509SubjectName.value, __X509SubjectName.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}X509Certificate uses Python identifier X509Certificate
     __X509Certificate = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509Certificate'), 'X509Certificate', '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509Certificate', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 190, 6), )
 
-    
     X509Certificate = property(__X509Certificate.value, __X509Certificate.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}X509CRL uses Python identifier X509CRL
     __X509CRL = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509CRL'), 'X509CRL', '__httpwww_w3_org200009xmldsig_X509DataType_httpwww_w3_org200009xmldsigX509CRL', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 191, 6), )
 
-    
     X509CRL = property(__X509CRL.value, __X509CRL.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __X509IssuerSerial.name() : __X509IssuerSerial,
-        __X509SKI.name() : __X509SKI,
-        __X509SubjectName.name() : __X509SubjectName,
-        __X509Certificate.name() : __X509Certificate,
-        __X509CRL.name() : __X509CRL
+        __X509IssuerSerial.name(): __X509IssuerSerial,
+        __X509SKI.name(): __X509SKI,
+        __X509SubjectName.name(): __X509SubjectName,
+        __X509Certificate.name(): __X509Certificate,
+        __X509CRL.name(): __X509CRL
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'X509DataType', X509DataType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType
+# with content type ELEMENT_ONLY
 class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -713,31 +710,31 @@ class X509IssuerSerialType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}X509IssuerName uses Python identifier X509IssuerName
     __X509IssuerName = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509IssuerName'), 'X509IssuerName', '__httpwww_w3_org200009xmldsig_X509IssuerSerialType_httpwww_w3_org200009xmldsigX509IssuerName', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 199, 4), )
 
-    
     X509IssuerName = property(__X509IssuerName.value, __X509IssuerName.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}X509SerialNumber uses Python identifier X509SerialNumber
     __X509SerialNumber = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'X509SerialNumber'), 'X509SerialNumber', '__httpwww_w3_org200009xmldsig_X509IssuerSerialType_httpwww_w3_org200009xmldsigX509SerialNumber', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 200, 4), )
 
-    
     X509SerialNumber = property(__X509SerialNumber.value, __X509SerialNumber.set, None, None)
 
     _ElementMap.update({
-        __X509IssuerName.name() : __X509IssuerName,
-        __X509SerialNumber.name() : __X509SerialNumber
+        __X509IssuerName.name(): __X509IssuerName,
+        __X509SerialNumber.name(): __X509SerialNumber
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'X509IssuerSerialType', X509IssuerSerialType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType with
+# content type ELEMENT_ONLY
 class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -748,32 +745,32 @@ class PGPDataType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}PGPKeyID uses Python identifier PGPKeyID
     __PGPKeyID = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PGPKeyID'), 'PGPKeyID', '__httpwww_w3_org200009xmldsig_PGPDataType_httpwww_w3_org200009xmldsigPGPKeyID', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 212, 6), )
 
-    
     PGPKeyID = property(__PGPKeyID.value, __PGPKeyID.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}PGPKeyPacket uses Python identifier PGPKeyPacket
     __PGPKeyPacket = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PGPKeyPacket'), 'PGPKeyPacket', '__httpwww_w3_org200009xmldsig_PGPDataType_httpwww_w3_org200009xmldsigPGPKeyPacket', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 213, 6), )
 
-    
     PGPKeyPacket = property(__PGPKeyPacket.value, __PGPKeyPacket.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __PGPKeyID.name() : __PGPKeyID,
-        __PGPKeyPacket.name() : __PGPKeyPacket
+        __PGPKeyID.name(): __PGPKeyID,
+        __PGPKeyPacket.name(): __PGPKeyPacket
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'PGPDataType', PGPDataType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType with
+# content type ELEMENT_ONLY
 class SPKIDataType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -784,24 +781,26 @@ class SPKIDataType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}SPKISexp uses Python identifier SPKISexp
     __SPKISexp = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'SPKISexp'), 'SPKISexp', '__httpwww_w3_org200009xmldsig_SPKIDataType_httpwww_w3_org200009xmldsigSPKISexp', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 232, 4), )
 
-    
     SPKISexp = property(__SPKISexp.value, __SPKISexp.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        __SPKISexp.name() : __SPKISexp
+        __SPKISexp.name(): __SPKISexp
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SPKIDataType', SPKIDataType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType with content type MIXED
+# Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType
+# with content type MIXED
 class ObjectType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType with content type MIXED"""
     _TypeDefinition = None
@@ -812,43 +811,44 @@ class ObjectType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_ObjectType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 248, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 248, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
-    
     # Attribute MimeType uses Python identifier MimeType
     __MimeType = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'MimeType'), 'MimeType', '__httpwww_w3_org200009xmldsig_ObjectType_MimeType', pyxb.binding.datatypes.string)
     __MimeType._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 249, 2)
     __MimeType._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 249, 2)
-    
+
     MimeType = property(__MimeType.value, __MimeType.set, None, None)
 
-    
     # Attribute Encoding uses Python identifier Encoding
     __Encoding = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Encoding'), 'Encoding', '__httpwww_w3_org200009xmldsig_ObjectType_Encoding', pyxb.binding.datatypes.anyURI)
     __Encoding._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 250, 2)
     __Encoding._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 250, 2)
-    
+
     Encoding = property(__Encoding.value, __Encoding.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        
+
     })
     _AttributeMap.update({
-        __Id.name() : __Id,
-        __MimeType.name() : __MimeType,
-        __Encoding.name() : __Encoding
+        __Id.name(): __Id,
+        __MimeType.name(): __MimeType,
+        __Encoding.name(): __Encoding
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'ObjectType', ObjectType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType with
+# content type ELEMENT_ONLY
 class ManifestType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -859,31 +859,32 @@ class ManifestType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}Reference uses Python identifier Reference
     __Reference = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Reference'), 'Reference', '__httpwww_w3_org200009xmldsig_ManifestType_httpwww_w3_org200009xmldsigReference', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 96, 0), )
 
-    
     Reference = property(__Reference.value, __Reference.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_ManifestType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 258, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 258, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _ElementMap.update({
-        __Reference.name() : __Reference
+        __Reference.name(): __Reference
     })
     _AttributeMap.update({
-        __Id.name() : __Id
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'ManifestType', ManifestType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType
+# with content type ELEMENT_ONLY
 class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -894,31 +895,32 @@ class SignaturePropertiesType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}SignatureProperty uses Python identifier SignatureProperty
     __SignatureProperty = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'SignatureProperty'), 'SignatureProperty', '__httpwww_w3_org200009xmldsig_SignaturePropertiesType_httpwww_w3_org200009xmldsigSignatureProperty', True, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 269, 3), )
 
-    
     SignatureProperty = property(__SignatureProperty.value, __SignatureProperty.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_SignaturePropertiesType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 266, 2)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 266, 2)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _ElementMap.update({
-        __SignatureProperty.name() : __SignatureProperty
+        __SignatureProperty.name(): __SignatureProperty
     })
     _AttributeMap.update({
-        __Id.name() : __Id
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignaturePropertiesType', SignaturePropertiesType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType with content type MIXED
+# Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType
+# with content type MIXED
 class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType with content type MIXED"""
     _TypeDefinition = None
@@ -929,34 +931,36 @@ class SignaturePropertyType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Attribute Target uses Python identifier Target
     __Target = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Target'), 'Target', '__httpwww_w3_org200009xmldsig_SignaturePropertyType_Target', pyxb.binding.datatypes.anyURI, required=True)
     __Target._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 275, 5)
     __Target._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 275, 5)
-    
+
     Target = property(__Target.value, __Target.set, None, None)
 
-    
     # Attribute Id uses Python identifier Id
     __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_w3_org200009xmldsig_SignaturePropertyType_Id', pyxb.binding.datatypes.ID)
     __Id._DeclarationLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 276, 5)
     __Id._UseLocation = pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 276, 5)
-    
+
     Id = property(__Id.value, __Id.set, None, None)
 
     _HasWildcardElement = True
     _ElementMap.update({
-        
+
     })
     _AttributeMap.update({
-        __Target.name() : __Target,
-        __Id.name() : __Id
+        __Target.name(): __Target,
+        __Id.name(): __Id
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'SignaturePropertyType', SignaturePropertyType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType with
+# content type ELEMENT_ONLY
 class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -967,71 +971,61 @@ class DSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}P uses Python identifier P
     __P = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'P'), 'P', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigP', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 293, 6), )
 
-    
     P = property(__P.value, __P.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}Q uses Python identifier Q
     __Q = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Q'), 'Q', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigQ', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 294, 6), )
 
-    
     Q = property(__Q.value, __Q.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}G uses Python identifier G
     __G = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'G'), 'G', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigG', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 296, 4), )
 
-    
     G = property(__G.value, __G.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}Y uses Python identifier Y
     __Y = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Y'), 'Y', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigY', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 297, 4), )
 
-    
     Y = property(__Y.value, __Y.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}J uses Python identifier J
     __J = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'J'), 'J', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigJ', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 298, 4), )
 
-    
     J = property(__J.value, __J.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}Seed uses Python identifier Seed
     __Seed = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Seed'), 'Seed', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigSeed', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 300, 6), )
 
-    
     Seed = property(__Seed.value, __Seed.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}PgenCounter uses Python identifier PgenCounter
     __PgenCounter = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PgenCounter'), 'PgenCounter', '__httpwww_w3_org200009xmldsig_DSAKeyValueType_httpwww_w3_org200009xmldsigPgenCounter', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 301, 6), )
 
-    
     PgenCounter = property(__PgenCounter.value, __PgenCounter.set, None, None)
 
     _ElementMap.update({
-        __P.name() : __P,
-        __Q.name() : __Q,
-        __G.name() : __G,
-        __Y.name() : __Y,
-        __J.name() : __J,
-        __Seed.name() : __Seed,
-        __PgenCounter.name() : __PgenCounter
+        __P.name(): __P,
+        __Q.name(): __Q,
+        __G.name(): __G,
+        __Y.name(): __Y,
+        __J.name(): __J,
+        __Seed.name(): __Seed,
+        __PgenCounter.name(): __PgenCounter
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'DSAKeyValueType', DSAKeyValueType)
 
 
-# Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType with content type ELEMENT_ONLY
+# Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType with
+# content type ELEMENT_ONLY
 class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
@@ -1042,27 +1036,26 @@ class RSAKeyValueType (pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}Modulus uses Python identifier Modulus
     __Modulus = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Modulus'), 'Modulus', '__httpwww_w3_org200009xmldsig_RSAKeyValueType_httpwww_w3_org200009xmldsigModulus', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 309, 4), )
 
-    
     Modulus = property(__Modulus.value, __Modulus.set, None, None)
 
-    
     # Element {http://www.w3.org/2000/09/xmldsig#}Exponent uses Python identifier Exponent
     __Exponent = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Exponent'), 'Exponent', '__httpwww_w3_org200009xmldsig_RSAKeyValueType_httpwww_w3_org200009xmldsigExponent', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 310, 4), )
 
-    
     Exponent = property(__Exponent.value, __Exponent.set, None, None)
 
     _ElementMap.update({
-        __Modulus.name() : __Modulus,
-        __Exponent.name() : __Exponent
+        __Modulus.name(): __Modulus,
+        __Exponent.name(): __Exponent
     })
     _AttributeMap.update({
-        
+
     })
+
+
 Namespace.addCategoryObject('typeBinding', 'RSAKeyValueType', RSAKeyValueType)
 
 
@@ -1139,7 +1132,6 @@ RSAKeyValue = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 
 Namespace.addCategoryObject('elementBinding', RSAKeyValue.name().localName(), RSAKeyValue)
 
 
-
 SignatureType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'SignatureValue'), SignatureValueType, scope=SignatureType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 54, 2)))
 
 SignatureType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'SignedInfo'), SignedInfoType, scope=SignatureType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 65, 0)))
@@ -1148,7 +1140,8 @@ SignatureType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 SignatureType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Object'), ObjectType, scope=SignatureType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 243, 0)))
 
-def _BuildAutomaton ():
+
+def _BuildAutomaton():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton
     del _BuildAutomaton
@@ -1180,28 +1173,28 @@ def _BuildAutomaton ():
     states.append(st_3)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True) ]))
+        fac.UpdateInstruction(cc_1, True)]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignatureType._Automaton = _BuildAutomaton()
-
-
 
 
 SignedInfoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CanonicalizationMethod'), CanonicalizationMethodType, scope=SignedInfoType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 75, 2)))
@@ -1210,7 +1203,8 @@ SignedInfoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 SignedInfoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Reference'), ReferenceType, scope=SignedInfoType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 96, 0)))
 
-def _BuildAutomaton_ ():
+
+def _BuildAutomaton_():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_
     del _BuildAutomaton_
@@ -1232,23 +1226,23 @@ def _BuildAutomaton_ ():
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignedInfoType._Automaton = _BuildAutomaton_()
 
 
-
-
-def _BuildAutomaton_2 ():
+def _BuildAutomaton_2():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_2
     del _BuildAutomaton_2
@@ -1265,17 +1259,18 @@ def _BuildAutomaton_2 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 CanonicalizationMethodType._Automaton = _BuildAutomaton_2()
-
-
 
 
 SignatureMethodType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'HMACOutputLength'), HMACOutputLengthType, scope=SignatureMethodType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 87, 6)))
 
-def _BuildAutomaton_3 ():
+
+def _BuildAutomaton_3():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_3
     del _BuildAutomaton_3
@@ -1299,18 +1294,18 @@ def _BuildAutomaton_3 ():
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True) ]))
+        fac.UpdateInstruction(cc_1, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 SignatureMethodType._Automaton = _BuildAutomaton_3()
-
-
 
 
 ReferenceType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Transforms'), TransformsType, scope=ReferenceType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 108, 2)))
@@ -1319,7 +1314,8 @@ ReferenceType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 ReferenceType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DigestValue'), DigestValueType, scope=ReferenceType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 135, 0)))
 
-def _BuildAutomaton_4 ():
+
+def _BuildAutomaton_4():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_4
     del _BuildAutomaton_4
@@ -1343,25 +1339,26 @@ def _BuildAutomaton_4 ():
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ReferenceType._Automaton = _BuildAutomaton_4()
-
-
 
 
 TransformsType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Transform'), TransformType, scope=TransformsType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 115, 2)))
 
-def _BuildAutomaton_5 ():
+
+def _BuildAutomaton_5():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_5
     del _BuildAutomaton_5
@@ -1375,17 +1372,18 @@ def _BuildAutomaton_5 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 TransformsType._Automaton = _BuildAutomaton_5()
-
-
 
 
 TransformType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'XPath'), pyxb.binding.datatypes.string, scope=TransformType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 120, 6)))
 
-def _BuildAutomaton_6 ():
+
+def _BuildAutomaton_6():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_6
     del _BuildAutomaton_6
@@ -1407,23 +1405,23 @@ def _BuildAutomaton_6 ():
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 TransformType._Automaton = _BuildAutomaton_6()
 
 
-
-
-def _BuildAutomaton_7 ():
+def _BuildAutomaton_7():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_7
     del _BuildAutomaton_7
@@ -1440,12 +1438,12 @@ def _BuildAutomaton_7 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 DigestMethodType._Automaton = _BuildAutomaton_7()
-
-
 
 
 KeyInfoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'KeyName'), pyxb.binding.datatypes.string, scope=KeyInfoType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 160, 2)))
@@ -1462,7 +1460,8 @@ KeyInfoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 KeyInfoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'SPKIData'), SPKIDataType, scope=KeyInfoType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 229, 0)))
 
-def _BuildAutomaton_8 ():
+
+def _BuildAutomaton_8():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_8
     del _BuildAutomaton_8
@@ -1504,159 +1503,160 @@ def _BuildAutomaton_8 ():
     states.append(st_7)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_7, [
-         ]))
+    ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 KeyInfoType._Automaton = _BuildAutomaton_8()
-
-
 
 
 KeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DSAKeyValue'), DSAKeyValueType, scope=KeyValueType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 289, 0)))
 
 KeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'RSAKeyValue'), RSAKeyValueType, scope=KeyValueType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 306, 0)))
 
-def _BuildAutomaton_9 ():
+
+def _BuildAutomaton_9():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_9
     del _BuildAutomaton_9
@@ -1683,14 +1683,15 @@ def _BuildAutomaton_9 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 KeyValueType._Automaton = _BuildAutomaton_9()
-
-
 
 
 RetrievalMethodType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Transforms'), TransformsType, scope=RetrievalMethodType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 108, 2)))
 
-def _BuildAutomaton_10 ():
+
+def _BuildAutomaton_10():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_10
     del _BuildAutomaton_10
@@ -1707,12 +1708,12 @@ def _BuildAutomaton_10 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 RetrievalMethodType._Automaton = _BuildAutomaton_10()
-
-
 
 
 X509DataType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'X509IssuerSerial'), X509IssuerSerialType, scope=X509DataType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 187, 6)))
@@ -1725,7 +1726,8 @@ X509DataType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 X509DataType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'X509CRL'), pyxb.binding.datatypes.base64Binary, scope=X509DataType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 191, 6)))
 
-def _BuildAutomaton_11 ():
+
+def _BuildAutomaton_11():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_11
     del _BuildAutomaton_11
@@ -1759,99 +1761,100 @@ def _BuildAutomaton_11 ():
     states.append(st_5)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_3, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 X509DataType._Automaton = _BuildAutomaton_11()
-
-
 
 
 X509IssuerSerialType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'X509IssuerName'), pyxb.binding.datatypes.string, scope=X509IssuerSerialType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 199, 4)))
 
 X509IssuerSerialType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'X509SerialNumber'), pyxb.binding.datatypes.integer, scope=X509IssuerSerialType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 200, 4)))
 
-def _BuildAutomaton_12 ():
+
+def _BuildAutomaton_12():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_12
     del _BuildAutomaton_12
@@ -1869,21 +1872,22 @@ def _BuildAutomaton_12 ():
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 X509IssuerSerialType._Automaton = _BuildAutomaton_12()
-
-
 
 
 PGPDataType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PGPKeyID'), pyxb.binding.datatypes.base64Binary, scope=PGPDataType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 212, 6)))
 
 PGPDataType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PGPKeyPacket'), pyxb.binding.datatypes.base64Binary, scope=PGPDataType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 213, 6)))
 
-def _BuildAutomaton_13 ():
+
+def _BuildAutomaton_13():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_13
     del _BuildAutomaton_13
@@ -1922,37 +1926,38 @@ def _BuildAutomaton_13 ():
     states.append(st_4)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_2, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True) ]))
+        fac.UpdateInstruction(cc_1, True)]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, True) ]))
+        fac.UpdateInstruction(cc_2, True)]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 PGPDataType._Automaton = _BuildAutomaton_13()
-
-
 
 
 SPKIDataType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'SPKISexp'), pyxb.binding.datatypes.base64Binary, scope=SPKIDataType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 232, 4)))
 
-def _BuildAutomaton_14 ():
+
+def _BuildAutomaton_14():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_14
     del _BuildAutomaton_14
@@ -1973,23 +1978,23 @@ def _BuildAutomaton_14 ():
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SPKIDataType._Automaton = _BuildAutomaton_14()
 
 
-
-
-def _BuildAutomaton_15 ():
+def _BuildAutomaton_15():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_15
     del _BuildAutomaton_15
@@ -2006,17 +2011,18 @@ def _BuildAutomaton_15 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 ObjectType._Automaton = _BuildAutomaton_15()
-
-
 
 
 ManifestType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Reference'), ReferenceType, scope=ManifestType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 96, 0)))
 
-def _BuildAutomaton_16 ():
+
+def _BuildAutomaton_16():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_16
     del _BuildAutomaton_16
@@ -2030,17 +2036,18 @@ def _BuildAutomaton_16 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ManifestType._Automaton = _BuildAutomaton_16()
-
-
 
 
 SignaturePropertiesType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'SignatureProperty'), SignaturePropertyType, scope=SignaturePropertiesType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 269, 3)))
 
-def _BuildAutomaton_17 ():
+
+def _BuildAutomaton_17():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_17
     del _BuildAutomaton_17
@@ -2054,15 +2061,15 @@ def _BuildAutomaton_17 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignaturePropertiesType._Automaton = _BuildAutomaton_17()
 
 
-
-
-def _BuildAutomaton_18 ():
+def _BuildAutomaton_18():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_18
     del _BuildAutomaton_18
@@ -2076,12 +2083,12 @@ def _BuildAutomaton_18 ():
     states.append(st_0)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 SignaturePropertyType._Automaton = _BuildAutomaton_18()
-
-
 
 
 DSAKeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'P'), CryptoBinary, scope=DSAKeyValueType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 293, 6)))
@@ -2098,7 +2105,8 @@ DSAKeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 DSAKeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PgenCounter'), CryptoBinary, scope=DSAKeyValueType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 301, 6)))
 
-def _BuildAutomaton_19 ():
+
+def _BuildAutomaton_19():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_19
     del _BuildAutomaton_19
@@ -2146,53 +2154,54 @@ def _BuildAutomaton_19 ():
     states.append(st_6)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
+        fac.UpdateInstruction(cc_0, True)]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False) ]))
+        fac.UpdateInstruction(cc_0, False)]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True) ]))
+        fac.UpdateInstruction(cc_1, True)]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False) ]))
+        fac.UpdateInstruction(cc_1, False)]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-         ]))
+    ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
+    ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, True) ]))
+        fac.UpdateInstruction(cc_2, True)]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False) ]))
+        fac.UpdateInstruction(cc_2, False)]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-         ]))
+    ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, True) ]))
+        fac.UpdateInstruction(cc_3, True)]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DSAKeyValueType._Automaton = _BuildAutomaton_19()
-
-
 
 
 RSAKeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Modulus'), CryptoBinary, scope=RSAKeyValueType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 309, 4)))
 
 RSAKeyValueType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Exponent'), CryptoBinary, scope=RSAKeyValueType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 310, 4)))
 
-def _BuildAutomaton_20 ():
+
+def _BuildAutomaton_20():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_20
     del _BuildAutomaton_20
@@ -2210,11 +2219,11 @@ def _BuildAutomaton_20 ():
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-         ]))
+    ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RSAKeyValueType._Automaton = _BuildAutomaton_20()
-
-

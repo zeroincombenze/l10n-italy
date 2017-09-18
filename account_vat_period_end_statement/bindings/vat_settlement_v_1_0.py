@@ -21,7 +21,7 @@ import pyxb.binding.datatypes
 from . import _cm as _ImportedBinding__cm
 # common = addons.get_module_resource('l10n_it_fatturapa')
 # if not common:
-common = '../common'
+common = '../xml_schemas/common'
 
 # Unique identifier for bindings created at the same time
 
@@ -94,7 +94,7 @@ class Eventi_Ecc_Type (pyxb.binding.datatypes.string, pyxb.binding.basis.enumera
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Eventi_Ecc_Type')
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 141, 1)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 141, 1)
     _Documentation = None
 
 
@@ -118,7 +118,7 @@ class DatoVN_Type (pyxb.binding.datatypes.string):
     lunghezza massima prevista è di 16 caratteri, il separatore decimale previsto è la virgola."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoVN_Type')
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 147, 1)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 147, 1)
     _Documentation = 'Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
 
 
@@ -143,7 +143,7 @@ class STD_ANON (_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumeration
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 27, 4)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 27, 4)
     _Documentation = None
 
 
@@ -174,7 +174,7 @@ class STD_ANON_ (_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumeratio
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 49, 4)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 49, 4)
     _Documentation = None
 
 
@@ -205,7 +205,7 @@ class STD_ANON_2 (_ImportedBinding__cm.DatoN1_Type, pyxb.binding.basis.enumerati
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 72, 4)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 72, 4)
     _Documentation = None
 
 
@@ -224,7 +224,7 @@ class STD_ANON_3 (_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumerati
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 91, 7)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 91, 7)
     _Documentation = None
 
 
@@ -253,7 +253,7 @@ class STD_ANON_4 (_ImportedBinding__cm.DatoN1_Type, pyxb.binding.basis.enumerati
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 109, 7)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 109, 7)
     _Documentation = None
 
 
@@ -275,7 +275,7 @@ class STD_ANON_5 (_ImportedBinding__cm.DatoAN_Type, pyxb.binding.basis.enumerati
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 4)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 4)
     _Documentation = None
 
 
@@ -293,7 +293,7 @@ class STD_ANON_6 (_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumerati
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 4)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 4)
     _Documentation = None
 
 
@@ -325,88 +325,88 @@ class Frontespizio_IVP_Type (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Frontespizio_IVP_Type')
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 1)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 1)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscale'), 'CodiceFiscale', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFiscale', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 3), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscale'), 'CodiceFiscale', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFiscale', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 3), )
 
     CodiceFiscale = property(__CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}AnnoImposta uses Python identifier AnnoImposta
-    __AnnoImposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'AnnoImposta'), 'AnnoImposta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpAnnoImposta', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 3), )
+    __AnnoImposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'AnnoImposta'), 'AnnoImposta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpAnnoImposta', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 3), )
 
     AnnoImposta = property(__AnnoImposta.value, __AnnoImposta.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}PartitaIVA uses Python identifier PartitaIVA
-    __PartitaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PartitaIVA'), 'PartitaIVA', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpPartitaIVA', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 24, 3), )
+    __PartitaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PartitaIVA'), 'PartitaIVA', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpPartitaIVA', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 24, 3), )
 
     PartitaIVA = property(__PartitaIVA.value, __PartitaIVA.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}PIVAControllante uses Python identifier PIVAControllante
-    __PIVAControllante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PIVAControllante'), 'PIVAControllante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpPIVAControllante', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3), )
+    __PIVAControllante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'PIVAControllante'), 'PIVAControllante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpPIVAControllante', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3), )
 
     PIVAControllante = property(__PIVAControllante.value, __PIVAControllante.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}UltimoMese uses Python identifier UltimoMese
-    __UltimoMese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'UltimoMese'), 'UltimoMese', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpUltimoMese', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3), )
+    __UltimoMese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'UltimoMese'), 'UltimoMese', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpUltimoMese', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3), )
 
     UltimoMese = property(__UltimoMese.value, __UltimoMese.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}LiquidazioneGruppo uses Python identifier LiquidazioneGruppo
-    __LiquidazioneGruppo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'LiquidazioneGruppo'), 'LiquidazioneGruppo', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpLiquidazioneGruppo', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3), )
+    __LiquidazioneGruppo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'LiquidazioneGruppo'), 'LiquidazioneGruppo', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpLiquidazioneGruppo', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3), )
 
     LiquidazioneGruppo = property(__LiquidazioneGruppo.value, __LiquidazioneGruppo.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CFDichiarante uses Python identifier CFDichiarante
-    __CFDichiarante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CFDichiarante'), 'CFDichiarante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCFDichiarante', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3), )
+    __CFDichiarante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CFDichiarante'), 'CFDichiarante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCFDichiarante', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3), )
 
     CFDichiarante = property(__CFDichiarante.value, __CFDichiarante.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CodiceCaricaDichiarante uses Python identifier CodiceCaricaDichiarante
-    __CodiceCaricaDichiarante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceCaricaDichiarante'), 'CodiceCaricaDichiarante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceCaricaDichiarante', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3), )
+    __CodiceCaricaDichiarante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceCaricaDichiarante'), 'CodiceCaricaDichiarante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceCaricaDichiarante', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3), )
 
     CodiceCaricaDichiarante = property(__CodiceCaricaDichiarante.value, __CodiceCaricaDichiarante.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CodiceFiscaleSocieta uses Python identifier CodiceFiscaleSocieta
-    __CodiceFiscaleSocieta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleSocieta'), 'CodiceFiscaleSocieta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFiscaleSocieta', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3), )
+    __CodiceFiscaleSocieta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleSocieta'), 'CodiceFiscaleSocieta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFiscaleSocieta', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3), )
 
     CodiceFiscaleSocieta = property(__CodiceFiscaleSocieta.value, __CodiceFiscaleSocieta.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}FirmaDichiarazione uses Python identifier FirmaDichiarazione
-    __FirmaDichiarazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'FirmaDichiarazione'), 'FirmaDichiarazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFirmaDichiarazione', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 69, 3), )
+    __FirmaDichiarazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'FirmaDichiarazione'), 'FirmaDichiarazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFirmaDichiarazione', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 69, 3), )
 
     FirmaDichiarazione = property(__FirmaDichiarazione.value, __FirmaDichiarazione.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CFIntermediario uses Python identifier CFIntermediario
-    __CFIntermediario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CFIntermediario'), 'CFIntermediario', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCFIntermediario', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3), )
+    __CFIntermediario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CFIntermediario'), 'CFIntermediario', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCFIntermediario', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3), )
 
     CFIntermediario = property(__CFIntermediario.value, __CFIntermediario.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}ImpegnoPresentazione uses Python identifier ImpegnoPresentazione
-    __ImpegnoPresentazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ImpegnoPresentazione'), 'ImpegnoPresentazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpImpegnoPresentazione', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3), )
+    __ImpegnoPresentazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ImpegnoPresentazione'), 'ImpegnoPresentazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpImpegnoPresentazione', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3), )
 
     ImpegnoPresentazione = property(__ImpegnoPresentazione.value, __ImpegnoPresentazione.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}DataImpegno uses Python identifier DataImpegno
-    __DataImpegno = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DataImpegno'), 'DataImpegno', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpDataImpegno', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3), )
+    __DataImpegno = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DataImpegno'), 'DataImpegno', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpDataImpegno', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3), )
 
     DataImpegno = property(__DataImpegno.value, __DataImpegno.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}FirmaIntermediario uses Python identifier FirmaIntermediario
-    __FirmaIntermediario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'FirmaIntermediario'), 'FirmaIntermediario', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFirmaIntermediario', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3), )
+    __FirmaIntermediario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'FirmaIntermediario'), 'FirmaIntermediario', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFirmaIntermediario', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3), )
 
     FirmaIntermediario = property(__FirmaIntermediario.value, __FirmaIntermediario.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}FlagConferma uses Python identifier FlagConferma
-    __FlagConferma = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'FlagConferma'), 'FlagConferma', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFlagConferma', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3), )
+    __FlagConferma = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'FlagConferma'), 'FlagConferma', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFlagConferma', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3), )
 
     FlagConferma = property(__FlagConferma.value, __FlagConferma.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}IdentificativoProdSoftware uses Python identifier IdentificativoProdSoftware
-    __IdentificativoProdSoftware = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IdentificativoProdSoftware'), 'IdentificativoProdSoftware', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIdentificativoProdSoftware', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3), )
+    __IdentificativoProdSoftware = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IdentificativoProdSoftware'), 'IdentificativoProdSoftware', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Frontespizio_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIdentificativoProdSoftware', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3), )
 
     IdentificativoProdSoftware = property(__IdentificativoProdSoftware.value, __IdentificativoProdSoftware.set, None, None)
 
@@ -443,14 +443,14 @@ class DatiContabili_IVP_Type (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiContabili_IVP_Type')
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 85, 1)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 85, 1)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Modulo
     # uses Python identifier Modulo
-    __Modulo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Modulo'), 'Modulo', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_DatiContabili_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpModulo', True, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3), )
+    __Modulo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Modulo'), 'Modulo', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_DatiContabili_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpModulo', True, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3), )
 
     Modulo = property(__Modulo.value, __Modulo.set, None, None)
 
@@ -472,105 +472,105 @@ class CTD_ANON (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 88, 4)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 88, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Mese
     # uses Python identifier Mese
-    __Mese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Mese'), 'Mese', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpMese', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6), )
+    __Mese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Mese'), 'Mese', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpMese', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6), )
 
     Mese = property(__Mese.value, __Mese.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Trimestre uses Python identifier Trimestre
-    __Trimestre = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Trimestre'), 'Trimestre', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpTrimestre', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6), )
+    __Trimestre = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Trimestre'), 'Trimestre', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpTrimestre', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6), )
 
     Trimestre = property(__Trimestre.value, __Trimestre.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Subfornitura uses Python identifier Subfornitura
-    __Subfornitura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Subfornitura'), 'Subfornitura', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpSubfornitura', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6), )
+    __Subfornitura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Subfornitura'), 'Subfornitura', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpSubfornitura', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6), )
 
     Subfornitura = property(__Subfornitura.value, __Subfornitura.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}EventiEccezionali uses Python identifier EventiEccezionali
-    __EventiEccezionali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'EventiEccezionali'), 'EventiEccezionali', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpEventiEccezionali', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6), )
+    __EventiEccezionali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'EventiEccezionali'), 'EventiEccezionali', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpEventiEccezionali', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6), )
 
     EventiEccezionali = property(__EventiEccezionali.value, __EventiEccezionali.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}TotaleOperazioniAttive uses Python identifier TotaleOperazioniAttive
-    __TotaleOperazioniAttive = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniAttive'), 'TotaleOperazioniAttive', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpTotaleOperazioniAttive', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6), )
+    __TotaleOperazioniAttive = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniAttive'), 'TotaleOperazioniAttive', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpTotaleOperazioniAttive', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6), )
 
     TotaleOperazioniAttive = property(__TotaleOperazioniAttive.value, __TotaleOperazioniAttive.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}TotaleOperazioniPassive uses Python identifier TotaleOperazioniPassive
-    __TotaleOperazioniPassive = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniPassive'), 'TotaleOperazioniPassive', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpTotaleOperazioniPassive', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6), )
+    __TotaleOperazioniPassive = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniPassive'), 'TotaleOperazioniPassive', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpTotaleOperazioniPassive', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6), )
 
     TotaleOperazioniPassive = property(__TotaleOperazioniPassive.value, __TotaleOperazioniPassive.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}IvaEsigibile uses Python identifier IvaEsigibile
-    __IvaEsigibile = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaEsigibile'), 'IvaEsigibile', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaEsigibile', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6), )
+    __IvaEsigibile = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaEsigibile'), 'IvaEsigibile', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaEsigibile', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6), )
 
     IvaEsigibile = property(__IvaEsigibile.value, __IvaEsigibile.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}IvaDetratta uses Python identifier IvaDetratta
-    __IvaDetratta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaDetratta'), 'IvaDetratta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaDetratta', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6), )
+    __IvaDetratta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaDetratta'), 'IvaDetratta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaDetratta', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6), )
 
     IvaDetratta = property(__IvaDetratta.value, __IvaDetratta.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}IvaDovuta uses Python identifier IvaDovuta
-    __IvaDovuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaDovuta'), 'IvaDovuta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaDovuta', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6), )
+    __IvaDovuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaDovuta'), 'IvaDovuta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaDovuta', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6), )
 
     IvaDovuta = property(__IvaDovuta.value, __IvaDovuta.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}IvaCredito uses Python identifier IvaCredito
-    __IvaCredito = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaCredito'), 'IvaCredito', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaCredito', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6), )
+    __IvaCredito = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IvaCredito'), 'IvaCredito', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIvaCredito', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6), )
 
     IvaCredito = property(__IvaCredito.value, __IvaCredito.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}DebitoPrecedente uses Python identifier DebitoPrecedente
-    __DebitoPrecedente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DebitoPrecedente'), 'DebitoPrecedente', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpDebitoPrecedente', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6), )
+    __DebitoPrecedente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DebitoPrecedente'), 'DebitoPrecedente', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpDebitoPrecedente', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6), )
 
     DebitoPrecedente = property(__DebitoPrecedente.value, __DebitoPrecedente.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CreditoPeriodoPrecedente uses Python identifier CreditoPeriodoPrecedente
-    __CreditoPeriodoPrecedente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CreditoPeriodoPrecedente'), 'CreditoPeriodoPrecedente', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCreditoPeriodoPrecedente', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6), )
+    __CreditoPeriodoPrecedente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CreditoPeriodoPrecedente'), 'CreditoPeriodoPrecedente', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCreditoPeriodoPrecedente', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6), )
 
     CreditoPeriodoPrecedente = property(__CreditoPeriodoPrecedente.value, __CreditoPeriodoPrecedente.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CreditoAnnoPrecedente uses Python identifier CreditoAnnoPrecedente
-    __CreditoAnnoPrecedente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CreditoAnnoPrecedente'), 'CreditoAnnoPrecedente', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCreditoAnnoPrecedente', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6), )
+    __CreditoAnnoPrecedente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CreditoAnnoPrecedente'), 'CreditoAnnoPrecedente', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCreditoAnnoPrecedente', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6), )
 
     CreditoAnnoPrecedente = property(__CreditoAnnoPrecedente.value, __CreditoAnnoPrecedente.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}VersamentiAutoUE uses Python identifier VersamentiAutoUE
-    __VersamentiAutoUE = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'VersamentiAutoUE'), 'VersamentiAutoUE', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpVersamentiAutoUE', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6), )
+    __VersamentiAutoUE = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'VersamentiAutoUE'), 'VersamentiAutoUE', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpVersamentiAutoUE', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6), )
 
     VersamentiAutoUE = property(__VersamentiAutoUE.value, __VersamentiAutoUE.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CreditiImposta uses Python identifier CreditiImposta
-    __CreditiImposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CreditiImposta'), 'CreditiImposta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCreditiImposta', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6), )
+    __CreditiImposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CreditiImposta'), 'CreditiImposta', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCreditiImposta', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6), )
 
     CreditiImposta = property(__CreditiImposta.value, __CreditiImposta.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}InteressiDovuti uses Python identifier InteressiDovuti
-    __InteressiDovuti = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'InteressiDovuti'), 'InteressiDovuti', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpInteressiDovuti', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6), )
+    __InteressiDovuti = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'InteressiDovuti'), 'InteressiDovuti', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpInteressiDovuti', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6), )
 
     InteressiDovuti = property(__InteressiDovuti.value, __InteressiDovuti.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Acconto
     # uses Python identifier Acconto
-    __Acconto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Acconto'), 'Acconto', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpAcconto', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6), )
+    __Acconto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Acconto'), 'Acconto', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpAcconto', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6), )
 
     Acconto = property(__Acconto.value, __Acconto.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}ImportoDaVersare uses Python identifier ImportoDaVersare
-    __ImportoDaVersare = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ImportoDaVersare'), 'ImportoDaVersare', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpImportoDaVersare', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6), )
+    __ImportoDaVersare = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ImportoDaVersare'), 'ImportoDaVersare', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpImportoDaVersare', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6), )
 
     ImportoDaVersare = property(__ImportoDaVersare.value, __ImportoDaVersare.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}ImportoACredito uses Python identifier ImportoACredito
-    __ImportoACredito = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ImportoACredito'), 'ImportoACredito', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpImportoACredito', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6), )
+    __ImportoACredito = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ImportoACredito'), 'ImportoACredito', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpImportoACredito', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6), )
 
     ImportoACredito = property(__ImportoACredito.value, __ImportoACredito.set, None, None)
 
@@ -606,7 +606,7 @@ class CTD_ANON_ (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 2)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
@@ -618,12 +618,12 @@ class CTD_ANON_ (pyxb.binding.basis.complexTypeDefinition):
     Signature = property(__Signature.value, __Signature.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Intestazione uses Python identifier Intestazione
-    __Intestazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), 'Intestazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON__urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIntestazione', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 4), )
+    __Intestazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), 'Intestazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON__urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIntestazione', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 4), )
 
     Intestazione = property(__Intestazione.value, __Intestazione.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Comunicazione uses Python identifier Comunicazione
-    __Comunicazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione'), 'Comunicazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON__urnwww_agenziaentrate_gov_itspecificheTecnichescoivpComunicazione', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 4), )
+    __Comunicazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione'), 'Comunicazione', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_CTD_ANON__urnwww_agenziaentrate_gov_itspecificheTecnichescoivpComunicazione', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 4), )
 
     Comunicazione = property(__Comunicazione.value, __Comunicazione.set, None, None)
 
@@ -643,28 +643,28 @@ class Intestazione_IVP_Type (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Intestazione_IVP_Type')
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 11, 1)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 11, 1)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CodiceFornitura uses Python identifier CodiceFornitura
-    __CodiceFornitura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFornitura'), 'CodiceFornitura', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFornitura', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 13, 3), )
+    __CodiceFornitura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFornitura'), 'CodiceFornitura', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFornitura', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 13, 3), )
 
     CodiceFornitura = property(__CodiceFornitura.value, __CodiceFornitura.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CodiceFiscaleDichiarante uses Python identifier CodiceFiscaleDichiarante
-    __CodiceFiscaleDichiarante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleDichiarante'), 'CodiceFiscaleDichiarante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFiscaleDichiarante', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3), )
+    __CodiceFiscaleDichiarante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleDichiarante'), 'CodiceFiscaleDichiarante', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceFiscaleDichiarante', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3), )
 
     CodiceFiscaleDichiarante = property(__CodiceFiscaleDichiarante.value, __CodiceFiscaleDichiarante.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}CodiceCarica uses Python identifier CodiceCarica
-    __CodiceCarica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceCarica'), 'CodiceCarica', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceCarica', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3), )
+    __CodiceCarica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CodiceCarica'), 'CodiceCarica', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpCodiceCarica', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3), )
 
     CodiceCarica = property(__CodiceCarica.value, __CodiceCarica.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}IdSistema uses Python identifier IdSistema
-    __IdSistema = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IdSistema'), 'IdSistema', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIdSistema', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3), )
+    __IdSistema = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IdSistema'), 'IdSistema', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Intestazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpIdSistema', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3), )
 
     IdSistema = property(__IdSistema.value, __IdSistema.set, None, None)
 
@@ -689,18 +689,18 @@ class Comunicazione_IVP_Type (_ImportedBinding__cm.Documento_Type):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Comunicazione_IVP_Type')
-    _XSDLocation = pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 10, 1)
+    _XSDLocation = pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 10, 1)
     _ElementMap = _ImportedBinding__cm.Documento_Type._ElementMap.copy()
     _AttributeMap = _ImportedBinding__cm.Documento_Type._AttributeMap.copy()
     # Base type is _ImportedBinding__cm.Documento_Type
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Frontespizio uses Python identifier Frontespizio
-    __Frontespizio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Frontespizio'), 'Frontespizio', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Comunicazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFrontespizio', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 5), )
+    __Frontespizio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'Frontespizio'), 'Frontespizio', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Comunicazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpFrontespizio', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 5), )
 
     Frontespizio = property(__Frontespizio.value, __Frontespizio.set, None, None)
 
     # Element {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}DatiContabili uses Python identifier DatiContabili
-    __DatiContabili = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DatiContabili'), 'DatiContabili', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Comunicazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpDatiContabili', False, pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 15, 5), )
+    __DatiContabili = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'DatiContabili'), 'DatiContabili', '__urnwww_agenziaentrate_gov_itspecificheTecnichescoivp_Comunicazione_IVP_Type_urnwww_agenziaentrate_gov_itspecificheTecnichescoivpDatiContabili', False, pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 15, 5), )
 
     DatiContabili = property(__DatiContabili.value, __DatiContabili.set, None, None)
 
@@ -718,70 +718,70 @@ class Comunicazione_IVP_Type (_ImportedBinding__cm.Documento_Type):
 Namespace.addCategoryObject('typeBinding', 'Comunicazione_IVP_Type', Comunicazione_IVP_Type)
 
 
-Intestazione = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), pyxb.binding.datatypes.anyType, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 10, 1))
+Intestazione = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), pyxb.binding.datatypes.anyType, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 10, 1))
 
 
 Namespace.addCategoryObject('elementBinding', Intestazione.name().localName(), Intestazione)
 
 
-Fornitura = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Fornitura'), CTD_ANON_, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 1))
+Fornitura = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Fornitura'), CTD_ANON_, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 1))
 
 
 Namespace.addCategoryObject('elementBinding', Fornitura.name().localName(), Fornitura)
 
 
-Comunicazione = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione'), Comunicazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 9, 1))
+Comunicazione = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione'), Comunicazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 9, 1))
 
 
 Namespace.addCategoryObject('elementBinding', Comunicazione.name().localName(), Comunicazione)
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscale'), _ImportedBinding__cm.DatoCF_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscale'), _ImportedBinding__cm.DatoCF_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'AnnoImposta'), _ImportedBinding__cm.DatoDA_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'AnnoImposta'), _ImportedBinding__cm.DatoDA_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PartitaIVA'), _ImportedBinding__cm.DatoPI_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 24, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PartitaIVA'), _ImportedBinding__cm.DatoPI_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 24, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PIVAControllante'), _ImportedBinding__cm.DatoPI_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'PIVAControllante'), _ImportedBinding__cm.DatoPI_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'UltimoMese'), STD_ANON, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'UltimoMese'), STD_ANON, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'LiquidazioneGruppo'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'LiquidazioneGruppo'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CFDichiarante'), _ImportedBinding__cm.DatoCF_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CFDichiarante'), _ImportedBinding__cm.DatoCF_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceCaricaDichiarante'), STD_ANON_, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceCaricaDichiarante'), STD_ANON_, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleSocieta'), _ImportedBinding__cm.DatoCN_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleSocieta'), _ImportedBinding__cm.DatoCN_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FirmaDichiarazione'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 69, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FirmaDichiarazione'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 69, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CFIntermediario'), _ImportedBinding__cm.DatoCF_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CFIntermediario'), _ImportedBinding__cm.DatoCF_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ImpegnoPresentazione'), STD_ANON_2, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ImpegnoPresentazione'), STD_ANON_2, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DataImpegno'), _ImportedBinding__cm.DatoDT_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DataImpegno'), _ImportedBinding__cm.DatoDT_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FirmaIntermediario'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FirmaIntermediario'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FlagConferma'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FlagConferma'), _ImportedBinding__cm.DatoCB_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3)))
 
 
-Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IdentificativoProdSoftware'), _ImportedBinding__cm.DatoAN_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3)))
+Frontespizio_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IdentificativoProdSoftware'), _ImportedBinding__cm.DatoAN_Type, scope=Frontespizio_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3)))
 
 
 def _BuildAutomaton():
@@ -791,99 +791,99 @@ def _BuildAutomaton():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3))
+    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3))
+    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3))
+    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3))
+    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3))
+    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3))
     counters.add(cc_11)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscale')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscale')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 22, 3))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'AnnoImposta')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'AnnoImposta')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 23, 3))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'PartitaIVA')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 24, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'PartitaIVA')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 24, 3))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'PIVAControllante')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'PIVAControllante')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 3))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'UltimoMese')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'UltimoMese')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 3))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'LiquidazioneGruppo')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'LiquidazioneGruppo')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 46, 3))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CFDichiarante')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CFDichiarante')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 47, 3))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceCaricaDichiarante')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceCaricaDichiarante')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 48, 3))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleSocieta')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleSocieta')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 68, 3))
     st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'FirmaDichiarazione')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 69, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'FirmaDichiarazione')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 69, 3))
     st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CFIntermediario')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CFIntermediario')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 70, 3))
     st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ImpegnoPresentazione')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ImpegnoPresentazione')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 71, 3))
     st_11 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'DataImpegno')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'DataImpegno')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 79, 3))
     st_12 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'FirmaIntermediario')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'FirmaIntermediario')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 80, 3))
     st_13 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'FlagConferma')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'FlagConferma')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 81, 3))
     st_14 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IdentificativoProdSoftware')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3))
+    symbol = pyxb.binding.content.ElementUse(Frontespizio_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IdentificativoProdSoftware')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 82, 3))
     st_15 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     transitions = []
@@ -1050,7 +1050,7 @@ def _BuildAutomaton():
 Frontespizio_IVP_Type._Automaton = _BuildAutomaton()
 
 
-DatiContabili_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Modulo'), CTD_ANON, scope=DatiContabili_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3)))
+DatiContabili_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Modulo'), CTD_ANON, scope=DatiContabili_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3)))
 
 
 def _BuildAutomaton_():
@@ -1060,12 +1060,12 @@ def _BuildAutomaton_():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=1, max=5, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3))
+    cc_0 = fac.CounterCondition(min=1, max=5, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3))
     counters.add(cc_0)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiContabili_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Modulo')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3))
+    symbol = pyxb.binding.content.ElementUse(DatiContabili_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Modulo')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 87, 3))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -1078,61 +1078,61 @@ def _BuildAutomaton_():
 DatiContabili_IVP_Type._Automaton = _BuildAutomaton_()
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Mese'), STD_ANON_3, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Mese'), STD_ANON_3, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Trimestre'), STD_ANON_4, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Trimestre'), STD_ANON_4, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Subfornitura'), _ImportedBinding__cm.DatoCB_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Subfornitura'), _ImportedBinding__cm.DatoCB_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'EventiEccezionali'), Eventi_Ecc_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'EventiEccezionali'), Eventi_Ecc_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniAttive'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniAttive'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniPassive'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniPassive'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaEsigibile'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaEsigibile'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaDetratta'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaDetratta'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaDovuta'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaDovuta'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaCredito'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IvaCredito'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DebitoPrecedente'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DebitoPrecedente'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CreditoPeriodoPrecedente'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CreditoPeriodoPrecedente'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CreditoAnnoPrecedente'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CreditoAnnoPrecedente'), DatoVN_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'VersamentiAutoUE'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'VersamentiAutoUE'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CreditiImposta'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CreditiImposta'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'InteressiDovuti'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'InteressiDovuti'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Acconto'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Acconto'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ImportoDaVersare'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ImportoDaVersare'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6)))
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ImportoACredito'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6)))
+CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ImportoACredito'), _ImportedBinding__cm.DatoVP_Type, scope=CTD_ANON, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6)))
 
 
 def _BuildAutomaton_2():
@@ -1142,138 +1142,138 @@ def _BuildAutomaton_2():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6))
+    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6))
+    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6))
+    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6))
+    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6))
+    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6))
+    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6))
     counters.add(cc_12)
-    cc_13 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6))
+    cc_13 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6))
     counters.add(cc_13)
-    cc_14 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6))
+    cc_14 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6))
     counters.add(cc_14)
-    cc_15 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6))
+    cc_15 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6))
     counters.add(cc_15)
-    cc_16 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6))
+    cc_16 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6))
     counters.add(cc_16)
-    cc_17 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6))
+    cc_17 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6))
     counters.add(cc_17)
-    cc_18 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6))
+    cc_18 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6))
     counters.add(cc_18)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Mese')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Mese')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 90, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Trimestre')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Trimestre')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 108, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Subfornitura')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Subfornitura')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 119, 6))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'EventiEccezionali')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'EventiEccezionali')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 120, 6))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniAttive')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniAttive')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 121, 6))
     st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniPassive')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'TotaleOperazioniPassive')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 122, 6))
     st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaEsigibile')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaEsigibile')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 123, 6))
     st_6 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaDetratta')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaDetratta')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 124, 6))
     st_7 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaDovuta')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaDovuta')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 125, 6))
     st_8 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaCredito')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IvaCredito')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 126, 6))
     st_9 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'DebitoPrecedente')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'DebitoPrecedente')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 127, 6))
     st_10 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CreditoPeriodoPrecedente')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CreditoPeriodoPrecedente')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 128, 6))
     st_11 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CreditoAnnoPrecedente')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CreditoAnnoPrecedente')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 129, 6))
     st_12 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_13, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'VersamentiAutoUE')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'VersamentiAutoUE')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 130, 6))
     st_13 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_14, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CreditiImposta')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CreditiImposta')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 131, 6))
     st_14 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_15, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'InteressiDovuti')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'InteressiDovuti')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 132, 6))
     st_15 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_16, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Acconto')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Acconto')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 133, 6))
     st_16 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_16)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_17, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ImportoDaVersare')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ImportoDaVersare')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 134, 6))
     st_17 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_17)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_18, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ImportoACredito')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ImportoACredito')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 135, 6))
     st_18 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_18)
     transitions = []
@@ -1703,10 +1703,10 @@ CTD_ANON._Automaton = _BuildAutomaton_2()
 CTD_ANON_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=CTD_ANON_, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0)))
 
 
-CTD_ANON_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), Intestazione_IVP_Type, scope=CTD_ANON_, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 4)))
+CTD_ANON_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), Intestazione_IVP_Type, scope=CTD_ANON_, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 4)))
 
 
-CTD_ANON_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione'), Comunicazione_IVP_Type, scope=CTD_ANON_, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 4)))
+CTD_ANON_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione'), Comunicazione_IVP_Type, scope=CTD_ANON_, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 4)))
 
 
 def _BuildAutomaton_3():
@@ -1716,20 +1716,20 @@ def _BuildAutomaton_3():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 27, 4))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 27, 4))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Intestazione')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 4))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Intestazione')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 25, 4))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 4))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Comunicazione')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 26, 4))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON_._UseForTag(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 27, 4))
+    symbol = pyxb.binding.content.ElementUse(CTD_ANON_._UseForTag(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 27, 4))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -1750,16 +1750,16 @@ def _BuildAutomaton_3():
 CTD_ANON_._Automaton = _BuildAutomaton_3()
 
 
-Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFornitura'), STD_ANON_5, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 13, 3)))
+Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFornitura'), STD_ANON_5, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 13, 3)))
 
 
-Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleDichiarante'), _ImportedBinding__cm.DatoCF_Type, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3)))
+Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleDichiarante'), _ImportedBinding__cm.DatoCF_Type, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3)))
 
 
-Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceCarica'), STD_ANON_6, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3)))
+Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CodiceCarica'), STD_ANON_6, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3)))
 
 
-Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IdSistema'), _ImportedBinding__cm.DatoCF_Type, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3)))
+Intestazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IdSistema'), _ImportedBinding__cm.DatoCF_Type, scope=Intestazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3)))
 
 
 def _BuildAutomaton_4():
@@ -1769,30 +1769,30 @@ def _BuildAutomaton_4():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3))
     counters.add(cc_2)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFornitura')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 13, 3))
+    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFornitura')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 13, 3))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleDichiarante')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3))
+    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleDichiarante')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 20, 3))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceCarica')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3))
+    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CodiceCarica')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 21, 3))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IdSistema')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3))
+    symbol = pyxb.binding.content.ElementUse(Intestazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IdSistema')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 41, 3))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -1827,10 +1827,10 @@ def _BuildAutomaton_4():
 Intestazione_IVP_Type._Automaton = _BuildAutomaton_4()
 
 
-Comunicazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Frontespizio'), Frontespizio_IVP_Type, scope=Comunicazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 5)))
+Comunicazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Frontespizio'), Frontespizio_IVP_Type, scope=Comunicazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 5)))
 
 
-Comunicazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DatiContabili'), DatiContabili_IVP_Type, scope=Comunicazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 15, 5)))
+Comunicazione_IVP_Type._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DatiContabili'), DatiContabili_IVP_Type, scope=Comunicazione_IVP_Type, location=pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 15, 5)))
 
 
 def _BuildAutomaton_5():
@@ -1842,11 +1842,11 @@ def _BuildAutomaton_5():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(Comunicazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Frontespizio')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 5))
+    symbol = pyxb.binding.content.ElementUse(Comunicazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'Frontespizio')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 14, 5))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Comunicazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'DatiContabili')), pyxb.utils.utility.Location('{common}/main/comunicazioneIvp_2017_v1.xsd'.format(common=common), 15, 5))
+    symbol = pyxb.binding.content.ElementUse(Comunicazione_IVP_Type._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'DatiContabili')), pyxb.utils.utility.Location('{common}/liquidazione/comunicazioneIvp_2017_v1.xsd'.format(common=common), 15, 5))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
