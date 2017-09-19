@@ -27,8 +27,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -37,6 +39,8 @@ See l10n_it_fatturapa
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -53,8 +57,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -64,11 +70,14 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
 
 
 
+
 ### Contributors
+
 
 
 
@@ -81,6 +90,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 
