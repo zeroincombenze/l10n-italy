@@ -41,5 +41,5 @@ accavallamento degli esercizi.
     "depends": ['account', 'account_invoice_entry_date'],
     'test': ['test/invoice_sequential.yml', ],
     "active": False,
-    "installable": True
+    "installable": False
 }

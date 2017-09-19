@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italian Localization - FatturaPA',
-    'version': '0.1',
+    'version': '7.0.0.3.0',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
@@ -37,6 +37,8 @@ Base module to handle FatturaPA data.
 http://fatturapa.gov.it
 
 See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
+
+This version require l10n_it_ade module.
 
 
 Installation
@@ -86,6 +88,7 @@ To contribute to this module, please visit http://odoo-community.org.
 """,
     'license': 'AGPL-3',
     "depends": [
+        'l10n_it_ade',
         'account',
         'l10n_it_base',
         'l10n_it_fiscalcode',
@@ -105,7 +108,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'security/ir.model.access.csv',
     ],
     "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": False,
+    "installable": True,
     'external_dependencies': {
         'python': ['pyxb'],
     }

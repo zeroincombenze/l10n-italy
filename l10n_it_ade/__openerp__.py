@@ -16,7 +16,7 @@
 Italian Localization - Definition for xml files
 ===============================================
 
-This module ha no any specific function for End-user. It is base for modules
+This module has no any specific function for End-user. It is base for modules
 generate xml file like FatturaPA o VAT settlement.
 
 This module requires PyXB 1.2.4
@@ -49,9 +49,10 @@ Schemi
 ------
 
 Il modulo rende disponibili i seguenti schemi:
-- Liquidazione IVA elettronica versione 1.0
-- Comunicazione clienti e fornitori (spesometro 2017) versione 2.0
-- FatturaPA versione 1.2
+
+* Liquidazione IVA elettronica versione 1.0
+* Comunicazione clienti e fornitori (spesometro 2017) versione 2.0
+* FatturaPA versione 1.2
 """,
     "license": "AGPL-3",
     "depends": [],
