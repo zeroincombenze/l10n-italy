@@ -9,9 +9,10 @@
 # (C) 2017-2017 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
 #
 import sys
+import os
 
 
-__version__ = '0.1.0.24'
+__version__ = '0.1.3.1'
 
 
 def main(args):
@@ -23,6 +24,8 @@ def main(args):
         saved_lines = []
         state = 0
         lineno = 0
+        RELCMNDIR = args[1]
+        ABSCMNDIR = os.path.abspath(os.getcwd() + '/' + RELCMNDIR)
         lines.insert(lineno,
                      '# flake8: noqa')
         lineno += 1
@@ -31,7 +34,9 @@ def main(args):
         lineno += 1
         while lineno < len(lines):
             if not lines[lineno]:
-                pass
+                if state < 2:
+                    del lines[lineno]
+                    lineno -= 1
             elif lines[lineno] == '# -*- coding: utf-8 -*-':
                 del lines[lineno]
                 lineno -= 1
@@ -50,9 +55,9 @@ def main(args):
                         lines[lineno][0:10] == 'import _ds':
                     lines[lineno] = 'from . %s' % lines[lineno]
             elif state == 1:
-                lines.insert(lineno,
-                             '# from openerp import addons')
-                lineno += 1
+                # lines.insert(lineno,
+                #              '# from openerp import addons')
+                # lineno += 1
                 lines.insert(lineno,
                              '_logger = logging.getLogger(__name__)')
                 lineno += 1
@@ -69,10 +74,22 @@ def main(args):
                 lines.insert(lineno,
                              '    _logger.debug(err)')
                 lineno += 1
+                # lines.insert(lineno,
+                #              '# common = addons.get_module_resource(\'l10n_it_fatturapa\')')
+                # lineno += 1
+                # lines.insert(lineno,
+                #              '# if not common:')
+                # lineno += 1
+                # lines.insert(lineno,
+                #              '# common = \'../data/common\'')
+                # lineno += 1
                 lines.insert(lineno,
                              '')
                 lineno += 1
                 state = 2
+            else:
+                if lines[lineno].find(ABSCMNDIR) >= 0:
+                    lines[lineno] = lines[lineno].replace(ABSCMNDIR, RELCMNDIR)
             lineno += 1
         fd = open(args[0], 'w')
         fd.write(''.join('%s\n' % l for l in lines))

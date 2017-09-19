@@ -3,6 +3,8 @@
 #                  Associazione Odoo Italia <http://www.odoo-italia.org>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-# Generated Mon 2017-09-18 16:06:59
+# Generated Tue 2017-09-19 08:31:11
 #
 from . import vat_settlement_v_1_0
+from . import dati_fattura_2_0
+from . import fatturapa_v_1_2

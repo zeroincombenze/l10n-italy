@@ -23,7 +23,7 @@ if [ -z "$Z0LIBDIR" ]; then
   exit 2
 fi
 
-__version__=0.1.1
+__version__=0.1.3.1
 
 
 OPTOPTS=(h        k        n           p          q            u       V           v           x)
@@ -39,7 +39,7 @@ OPTHELP=("this help"\
  "execute uri Agenzia delle Entrate"\
  "show version"\
  "verbose mode"\
- "commma separated module exclusion list; may be one or more of: fornituraIvp,FatturaPA,DatiFattura,DatiFatturaMessaggi")
+ "commma separated module exclusion list; i.e. fornituraIvp,FatturaPA,DatiFattura,DatiFatturaMessaggi")
 OPTARGS=()
 
 DISTO=$(xuname "-d")
@@ -70,12 +70,13 @@ done
 cmd=
 mdl=
 BINDINGS=$TDIR/bindings
+SCHEMAS=../data
 rm -fR $BINDINGS
 mkdir -p $BINDINGS
 pushd $BINDINGS ?>/dev/null
 [ $opt_verbose -ne 0 ] && echo "\$ cd $PWD"
 exclude="(${opt_exclude//,/|})"
-for d in ../xml_schemas/*; do
+for d in $SCHEMAS/*; do
   if [ -d $d ]; then
     p=$d
     for x in main liquidazione; do 
@@ -84,6 +85,7 @@ for d in ../xml_schemas/*; do
         break
       fi
     done
+    [ $opt_verbose -ne 0 ] && echo ".. reading directory $p"
     for f in $p/*.xsd; do
       fn=$(basename $f)
       m=
@@ -98,7 +100,7 @@ for d in ../xml_schemas/*; do
       fi
       if [ -n "$m" ] && [[ $fn =~ $exclude ]]; then
         m=
-        break
+        continue
       fi
       if [ -n "$m" ]; then
         mdl="$mdl $m"
@@ -110,28 +112,27 @@ done
 # cmd="$cmd --module-prefix=$BINDINGS --archive-to-file=$BINDINGS/ade.wxs"
 cmd="$PYXBGEN $cmd --archive-to-file=./ade.wxs"
 [ $opt_verbose -ne 0 ] && echo "\$ $cmd"
-eval "$cmd"
-# for f in ./l10n_it_ade/$BINDINGS/*; do
-#   mv $f ./
-# done
+[ $opt_dry_run -ne 0 ] || eval "$cmd"
 i=./__init__.py
-echo "# -*- coding: utf-8 -*-" >$i
-echo "# Copyright 2017 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>">>$i
-echo "#                  Associazione Odoo Italia <http://www.odoo-italia.org>">>$i
-echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$i
-echo "#">>$i
-echo "# Generated $(date '+%a %Y-%m-%d %H:%M:%S')">>$i
-echo "#">>$i
-for m in $mdl; do
-  echo "from . import $m">>$i
-done
+if [ $opt_dry_run -eq 0 ]; then
+  echo "# -*- coding: utf-8 -*-" >$i
+  echo "# Copyright 2017 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>">>$i
+  echo "#                  Associazione Odoo Italia <http://www.odoo-italia.org>">>$i
+  echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$i
+  echo "#">>$i
+  echo "# Generated $(date '+%a %Y-%m-%d %H:%M:%S')">>$i
+  echo "#">>$i
+  for m in $mdl; do
+    echo "from . import $m">>$i
+  done
+fi
 for f in _cm _ds $mdl; do
   fn=$f.py
-  [ $opt_verbose -ne 0 ] && echo "\$ $TDIR/pyxbgen.py $fn"
-  eval $TDIR/pyxbgen.py $fn
+  [ $opt_verbose -ne 0 ] && echo "\$ $TDIR/pyxbgen.py $fn $SCHEMAS"
+  [ $opt_dry_run -ne 0 ] || eval $TDIR/pyxbgen.py $fn $SCHEMAS
   if [ $opt_nopep8 -eq 0 ]; then
     [ $opt_verbose -ne 0 ] && echo "\$ autopep8 $fn -i"
-    autopep8 $fn -i
+    [ $opt_dry_run -ne 0 ] || autopep8 $fn -i
   fi
 done
 popd ?>/dev/null

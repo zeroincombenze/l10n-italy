@@ -9,65 +9,62 @@
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Period End VAT Statement
-========================
+Base xml Agenzia delle Entrate
+==============================
 
-This module evaluates VAT to pay (or on credit) and generates the electronic
-VAT closeout statement as VAT Authority
-http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
-
-By default, amounts of debit and credit taxes are automatically loaded
-from tax codes of selected periods.
-
-Previous debit or credit is loaded from previous VAT statement, according
-to its payments status.
-
-[How to use](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
+This module ha no any specific function for End-user. It is base for modules
+generate xml file like FatturaPA o VAT settlement.
 
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Liquidazione IVA periodica
-==========================
+Localizzazione italiana - Definizioni per file xml
+==================================================
 
-Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
-mensili che trimestrali e permette di generare il file della comunicazione
-elettronica come da normativa del 2017 dell'Agenzia delle Entrate
-http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
+Questo modulo non ha funzioni specifice per l'utente finale. Serve come base
+per i moduli che generano file xml in formato stabilito dall'Agenzia delle
+Entrate, come FatturaPA o Liquidazione IVA elettronica.
 
-La liquidazione è calcolata sommando i totali di periodo dei conti imposte.
+Attenzione! Questo modulo è incompatibile con i moduli l10n_it_fatturapa di OCA
+versioni [7-11].0.2.0.0
+Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml; come conseguenza nasce un conflitto tra moduli diversi con lo stesso
+schema di riferimento dell'Agenzia delle Entrate con l'errore:
+*name CryptoBinary used for multiple values in typeBinding*
 
-L'utente può aggiungere l'eventuale credito/debito del periodo precedente e
-calcolare gli interessi; può anche registrare l'utilizzo del credito in
-compensazione.
+Tutti i moduli che generano file xml per l'Agenzia delle Entrate *devono*
+dipendere da questo modulo.
+Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
+l'autore.
 
-[Istruzioni di utilizzo](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
+Schemi
+------
+
+Il modulo rende disponibili i seguenti schemi:
+- Liquidazione IVA elettronica versione 1.0
+- Comunicazione clienti e fornitori (spesometro 2017) versione 2.0
+- FatturaPA versione 1.2
+
+
+Per aggiungere nuovi schemi o modificare o aggiornare gli schemi gestiti:
+
+- Aggiungere o modificare gli schemi nella directory ./data
+- Eseguire da una macchina CentOS lo script ./pyxbgen.sh -u
 
 
 Installation
 ------------
 
-Warning! Since version [7-8].0.4.0.0 of this module, definition schemas are
-moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
-informations.
-
-Attenzione! A partire dalla versione [7-8].0.4.0.0 di questo modulo, gli schemi
-di definizione sono stati spostati nel modulo l10n_it_ade. Per ulteriori
-informazioni, leggete i documenti relativi al modulo l10n_it_ade.
-
-
-
-Configuration
--------------
-
-Questo modulo richiede pyxb 1.2.4
-
+This module requires PyXB 1.2.4
+http://pyxb.sourceforge.net/
 
 
 Known issues / Roadmap
 ----------------------
 
+Incompatibile con moduli OCA fatturaPA e liquidazione IVA
 
 
 Credits
@@ -77,15 +74,14 @@ Credits
 
 
 ### Contributors
-
--   Lorenzo Battistini <lorenzo.battistini@agilebg.com>
--   Marco Marchiori <marcomarkiori@gmail.com>
--   Sergio Corato <sergiocorato@gmail.com>
--   Andrei Levin <andrei.levin@didotech.com>
 -   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+-   Andrei Levin <andrei.levin@didotech.com>
 
 
 ### Funders
+
+Questo modulo è stato sviluppato con il contributo di SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+
 
 ### Maintainer
 
