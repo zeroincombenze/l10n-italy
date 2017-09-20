@@ -445,6 +445,8 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def setSoggettoEmittente(self, cr, uid, context=None):
+        if context is None:
+            context = {}
 
         # FIXME: this record is to be checked invoice by invoice
         # so a control is needed to verify that all invoices are
@@ -564,7 +566,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 raise orm.except_orm(
                     _('Error'),
                     _("Too many taxes for invoice line %s") % line.name)
-            aliquota = line.invoice_line_tax_id[0].amount*100
+            aliquota = line.invoice_line_tax_id[0].amount * 100
             AliquotaIVA = '%.2f' % (aliquota)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
@@ -676,8 +678,10 @@ class WizardExportFatturapa(orm.TransientModel):
                         invoice.partner_bank_id.bank_name)
                     if invoice.partner_bank_id.acc_number:
                         DettaglioPagamento.IBAN = (
-                            ''.join(invoice.partner_bank_id.acc_number.split())
+                            ''.join(
+                                invoice.partner_bank_id.acc_number.split()
                             )
+                        )
                     if invoice.partner_bank_id.bank_bic:
                         DettaglioPagamento.BIC = (
                             invoice.partner_bank_id.bank_bic)

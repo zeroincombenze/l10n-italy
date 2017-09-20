@@ -4,11 +4,12 @@
 
 {
     'name': 'Italian Localization - FatturaPA',
-    'version': '8.0.2.0.0',
+    'version': '8.0.2.0.1',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
-    'author': 'Davide Corio, Agile Business Group, Innoviu',
-    'website': 'https://odoo-community.org',
+    'author': 'Davide Corio, Agile Business Group, Innoviu, '
+              'Odoo Community Association (OCA)',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
         'account',
@@ -28,9 +29,8 @@
         'views/account_tax_view.xml',
         'security/ir.model.access.csv',
     ],
-    "test": [],
     "demo": ['demo/account_invoice_fatturapa.xml'],
-    "installable": False,
+    "installable": True,
     'external_dependencies': {
         'python': ['pyxb'],
     }

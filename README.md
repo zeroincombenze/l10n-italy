@@ -26,7 +26,6 @@ addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | :repeat: | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | :repeat: | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.3 | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | :repeat: | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | :repeat: | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.0 | :repeat: | Ateco codes
@@ -35,6 +34,8 @@ addon | version | OCA version | summary
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.0 | :repeat: | Italian Localization - Corrispettivi
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.0 | :repeat: | Documento di Trasporto
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | :repeat: | Copy carrier from picking and from sale order
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.0.1 | 8.0.2.0.0 | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.2.0.0 | :repeat: | Electronic invoices emission
 [l10n_it_fiscal](l10n_it_fiscal/) | 0.2 | :x: | Italy - Fiscal localization by zeroincombenze(R)
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.0 | :repeat: | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.1.0.0 | :repeat: | IPA Code (IndicePA)
@@ -53,12 +54,11 @@ Unported addons
 addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 (unported) | :repeat: | Fiscal Year Closing
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.3 (unported) | 8.0.3.0.0 | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 (unported) | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | :repeat: | Italian Localisation - CRM
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 (unported) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | :repeat: | Italian Localisation - Bill of Entry
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.0.0 (unported) | 8.0.2.0.0 | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.2.0.0 (unported) | 8.0.2.0.0 | Electronic invoices emission
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | :repeat: | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | :repeat: | Italian Localisation - Prima Nota Cassa
 

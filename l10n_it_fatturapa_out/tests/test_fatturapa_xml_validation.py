@@ -28,6 +28,7 @@ from datetime import datetime
 from lxml import etree
 import shutil
 import os
+# import pdb
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
@@ -184,6 +185,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             cr, uid, wizard_id, context={'active_ids': [invoice_id]})
 
     def check_content(self, xml_content, file_name):
+        # pdb.set_trace()
         parser = etree.XMLParser(remove_blank_text=True)
         test_fatt_data = self.getFile(file_name)[1]
         test_fatt_content = test_fatt_data.decode('base64')

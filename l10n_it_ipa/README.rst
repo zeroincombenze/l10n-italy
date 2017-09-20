@@ -46,10 +46,12 @@ Installation
 
 
 
+
 Nothing special is needed to install this module.
 
 Configuration
 -------------
+
 
 
 
@@ -127,8 +129,11 @@ Usage
 
 -----
 
+-----
+
 Known issues / Roadmap
 ----------------------
+
 
 
 
@@ -159,6 +164,7 @@ None known.
 
 Bug Tracker
 -----------
+
 
 
 
@@ -217,7 +223,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -268,12 +276,15 @@ Credits
 
 
 
+
 * Luigi Di Naro <luigi.dinaro@ktec.it>
 * Alex Comba <alex.comba@agilebg.com>
 
 ### Funders
 
 ### Maintainer
+
+
 
 
 

@@ -82,5 +82,5 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
         'python': ['pyxb'],
     },
     'demo': [],
-    'installable': True,
+    'installable': False,
 }
