@@ -50,6 +50,7 @@ Installation
 
 
 
+
 Configuration
 -------------
 
@@ -63,7 +64,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -99,8 +103,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -126,7 +132,9 @@ Credits
 
 
 
+
 [![Odoo Italia Associazione]]
+
 
 
 
@@ -151,12 +159,15 @@ Credits
 
 
 
+
 -   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 
 ### Funders
 
 ### Maintainer
+
+
 
 
 

@@ -58,9 +58,9 @@ addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_vat_period_end_statement](__unported__/account_vat_period_end_statement/) | 7.0.4.0.0 (unported) | 0.3 | Period End VAT Statement
 [l10n_it_ade](__unported__/l10n_it_ade/) | 7.0.0.1.0 (unported) | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
-[l10n_it_fatturapa_in](__unported__/l10n_it_fatturapa_in/) | 7.0.0.2.0 (unported) | 0.1 | Electronic invoices reception
-[l10n_it_fatturapa_in_notifications](__unported__/l10n_it_fatturapa_in_notifications/) | 7.0.1.1.0 (unported) | 7.0.1.0.0 | Supplier electronic invoices notifications
-[l10n_it_fatturapa_notifications](__unported__/l10n_it_fatturapa_notifications/) | 7.0.1.1.0 (unported) | 7.0.1.0.0 | Electronic invoices notifications
+[l10n_it_fatturapa_in](__unported__/l10n_it_fatturapa_in/) | deprecated (unported) | 0.1 | Electronic invoices reception
+[l10n_it_fatturapa_in_notifications](__unported__/l10n_it_fatturapa_in_notifications/) | deprecated (unported) | 7.0.1.0.0 | Supplier electronic invoices notifications
+[l10n_it_fatturapa_notifications](__unported__/l10n_it_fatturapa_notifications/) | deprecated (unported) | 7.0.1.0.0 | Electronic invoices notifications
 [l10n_it_pyxb_bindings](__unported__/l10n_it_pyxb_bindings/) | 7.0.0.1.0 (unported) | :x: | Electronic invoices
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.3 (unported) | 0.1 | Check invoice date consistency
 

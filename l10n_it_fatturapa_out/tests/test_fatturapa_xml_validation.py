@@ -173,8 +173,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         # this  write updates context with
         # fiscalyear_id
         if attach:
-            self.attachFileToInvoice(invoice_id, 'attach_test1.pdf')
-            self.attachFileToInvoice(invoice_id, 'attach_test2.pdf')
+            self.attachFileToInvoice(invoice_id, 'test1.pdf')
+            self.attachFileToInvoice(invoice_id, 'test2.pdf')
         self.invoice_model.write(
             cr, uid, invoice_id, {}, context=self.context)
         wf_service = netsvc.LocalService("workflow")
@@ -198,7 +198,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
     def test_0_xml_export(self):
-        # pdb.set_trace()
         cr, uid = self.cr, self.uid
         self.checkCreateFiscalYear('2017-01-07')
         # self.context['fiscalyear_id'] = self.fiscalyear_id
