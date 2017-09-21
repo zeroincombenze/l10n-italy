@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+#    Copyright (C) 2014 KTec S.r.l.
+#    (<http://www.ktec.it>).
+#
+#    Copyright (C) 2014 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as

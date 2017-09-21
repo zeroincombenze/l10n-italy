@@ -44,7 +44,7 @@ class res_company(orm.Model):
             ),
         'fatturapa_rea_office': fields.related(
             'partner_id', 'rea_office', type='many2one',
-            relation='res.province', string='REA office'),
+            relation='res.country.state', string='REA office'),
         'fatturapa_rea_number': fields.related(
             'partner_id', 'rea_code', type='char',
             size=20, string='Rea Number'),
@@ -120,7 +120,7 @@ class account_config_settings(orm.TransientModel):
         'fatturapa_rea_office': fields.related(
             'company_id', 'fatturapa_rea_office',
             type='many2one',
-            relation="res.province",
+            relation="res.country.state",
             string="Rea Office",
             ),
         'fatturapa_rea_number': fields.related(

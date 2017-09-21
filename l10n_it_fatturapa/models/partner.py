@@ -33,7 +33,7 @@ class res_partner(orm.Model):
         'register': fields.char('Professional Register', size=60),
         # 1.2.1.5
         'register_province': fields.many2one(
-            'res.province', string='Register Province'),
+            'res.country.state', string='Register Province'),
         # 1.2.1.6
         'register_code': fields.char('Register Code', size=60),
         # 1.2.1.7

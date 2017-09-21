@@ -18,50 +18,7 @@ Italian modules for Odoo (formerly OpenERP) 7.0
 
 
 [//]: # (addons)
-
-
-Available addons
-----------------
-addon | version | OCA version | summary
---- | --- | --- | ---
-[account_central_journal](account_central_journal/) | 3 | :repeat: | Account Central Journal
-[account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 | :repeat: | Fiscal Year Closing
-[account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | :repeat: | Account Invoice entry Date
-[account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.3 | 0.1 | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.3.0.2 | 0.3 | Period End VAT Statement
-[l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
-[l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
-[l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
-[l10n_it_base](l10n_it_base/) | 7.0.0.2.10 | 0.1 | Italian Localisation - Base
-[l10n_it_base_crm](l10n_it_base_crm/) | 0.1 | :repeat: | Italian Localisation - CRM
-[l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 | :repeat: | Italian Localisation - Bill of Entry
-[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 | :repeat: | Italian Localisation - Corrispettivi
-[l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.0 | :x: | Italy - Fiscal localization by zeroincombenze(R)
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 0.1 | :repeat: | Italian Localisation - Fiscal Code
-[l10n_it_ipa](l10n_it_ipa/) | 1.0 | :repeat: | IPA Code (IndicePA)
-[l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 | :repeat: | Italy - Partially Deductible VAT
-[l10n_it_pec](l10n_it_pec/) | 0.1 | :repeat: | Pec Mail
-[l10n_it_pec_messages](l10n_it_pec_messages/) | 1.0 | :repeat: | Pec Messages
-[l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 | :repeat: | Italian Localisation - Prima Nota Cassa
-[l10n_it_rea](l10n_it_rea/) | 0.1 | :repeat: | Manage fields for Economic Administrative catalogue
-[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 7.0.0.1.0 | :x: | Invoice Intra CEE
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 | :repeat: | Ricevute Bancarie
-[l10n_it_sale](l10n_it_sale/) | 0.2 | :repeat: | Italian Localisation - Sale
-[l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | :repeat: | Split Payment
-[l10n_it_vat_registries](l10n_it_vat_registries/) | 0.2 | :repeat: | Italian Localisation - VAT Registries
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 | :repeat: | Italian Localisation - Withholding tax
-
-
-Unported addons
----------------
-addon | version | OCA version | summary
---- | --- | --- | ---
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 0.1 (unported) | 0.1 | Electronic invoices
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 7.0.0.1.0 (unported) | 0.1 | Electronic invoices reception
-[l10n_it_fatturapa_in_notifications](l10n_it_fatturapa_in_notifications/) | 7.0.1.0.0 (unported) | 7.0.1.0.0 | Supplier electronic invoices notifications
-[l10n_it_fatturapa_notifications](l10n_it_fatturapa_notifications/) | 7.0.1.0.0 (unported) | 7.0.1.0.0 | Electronic invoices notifications
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.0.1.1 (unported) | 7.0.0.1.1 | Electronic invoices emission
-
+__unported__/l10n_it_ade is in __unported__ but is marked installable.
 [//]: # (end addons)
 
 Translation Status

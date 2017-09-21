@@ -20,10 +20,9 @@
 ##############################################################################
 
 import base64
-from unidecode import unidecode
-from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 from openerp.osv import orm
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
+from openerp.tools.translate import _
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,
@@ -46,11 +45,19 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     ContattiType,
     DatiPagamentoType,
     DettaglioPagamentoType,
-    AllegatiType
+    AllegatiType,
+    ScontoMaggiorazioneType
 )
 from openerp.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
-from openerp.tools.translate import _
+import logging
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+    from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
+except ImportError as err:
+    _logger.debug(err)
 
 
 class WizardExportFatturapa(orm.TransientModel):
@@ -92,17 +99,13 @@ class WizardExportFatturapa(orm.TransientModel):
         company = user_obj.browse(cr, uid, uid).company_id
         sequence_obj = self.pool['ir.sequence']
         fatturapa_sequence = company.fatturapa_sequence_id
-
         if not fatturapa_sequence:
             raise orm.except_orm(
                 _('Error!'), _('FatturaPA sequence not configured.'))
-
         self.number = number = sequence_obj.next_by_id(
             cr, uid, fatturapa_sequence.id, context=context)
-
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ProgressivoInvio = number
-
         return True
 
     def _setIdTrasmittente(self, cr, uid, company, context=None):
@@ -199,7 +202,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Denominazione=company.name)
 
         # not using for now
-
+        #
         # Anagrafica = DatiAnagrafici.find('Anagrafica')
         # Nome = Anagrafica.find('Nome')
         # Cognome = Anagrafica.find('Cognome')
@@ -239,7 +242,7 @@ class WizardExportFatturapa(orm.TransientModel):
         if not company.city:
             raise orm.except_orm(
                 _('Error!'), _('City not set.'))
-        if not company.partner_id.province:
+        if not company.partner_id.state_id:
             raise orm.except_orm(
                 _('Error!'), _('Province not set.'))
         if not company.country_id:
@@ -251,7 +254,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Indirizzo=company.street,
             CAP=company.zip,
             Comune=company.city,
-            Provincia=company.partner_id.province.code,
+            Provincia=company.partner_id.state_id.code,
             Nazione=company.country_id.code)
 
         return True
@@ -277,7 +280,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
-            )
+                )
 
     def _setContatti(self, cr, uid, CedentePrestatore,
                      company, context=None):
@@ -287,7 +290,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
-        )
+            )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
                                  company, context=None):
@@ -344,7 +347,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 Denominazione=partner.name)
 
         # not using for now
-
+        #
         # Anagrafica = DatiAnagrafici.find('Anagrafica')
         # Nome = Anagrafica.find('Nome')
         # Cognome = Anagrafica.find('Cognome')
@@ -372,7 +375,7 @@ class WizardExportFatturapa(orm.TransientModel):
         if not partner.city:
             raise orm.except_orm(
                 _('Error!'), _('Customer city not set.'))
-        if not partner.province:
+        if not partner.state_id:
             raise orm.except_orm(
                 _('Error!'), _('Customer province not set.'))
         if not partner.country_id:
@@ -385,7 +388,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 Indirizzo=partner.street,
                 CAP=partner.zip,
                 Comune=partner.city,
-                Provincia=partner.province.code,
+                Provincia=partner.state_id.code,
                 Nazione=partner.country_id.code))
 
         return True
@@ -400,7 +403,6 @@ class WizardExportFatturapa(orm.TransientModel):
             # companies sending invoices to italian PA only
             raise orm.except_orm(
                 _("Error"), _("RappresentanteFiscale not handled"))
-
             # partner = company.fatturapa_tax_representative
 
         # DatiAnagrafici = RappresentanteFiscale.find('DatiAnagrafici')
@@ -423,7 +425,6 @@ class WizardExportFatturapa(orm.TransientModel):
         # if partner.eori_code:
             # DatiAnagrafici.find(
             # 'Anagrafica/CodEORI').text = partner.codiceEORI
-
         return True
 
     def setCessionarioCommittente(self, cr, uid, partner, context=None):
@@ -436,37 +437,11 @@ class WizardExportFatturapa(orm.TransientModel):
             self, cr, uid, company, context=None):
         if context is None:
             context = {}
-
         if company.fatturapa_sender_partner:
             # TODO
             raise orm.except_orm(
                 _("Error"),
                 _("TerzoIntermediarioOSoggettoEmittente not handled"))
-
-        # DatiAnagrafici = TerzoIntermediarioOSoggettoEmittente.find(
-            # 'DatiAnagrafici'
-            # )
-
-        # if not partner.fiscalcode:
-            # raise orm.except_orm(
-            # _('Error!'), _('TerzoIntermediarioOSoggettoEmittente Partner '
-            # 'fiscalcode not set.'))
-
-        # DatiAnagrafici.find('CodiceFiscale').text = partner.fiscalcode
-
-        # if not partner.vat:
-            # raise orm.except_orm(
-            # _('Error!'), _('TerzoIntermediarioOSoggettoEmittente '
-            # 'Partner VAT not set.'))
-        # DatiAnagrafici.find(
-            # 'IdFiscaleIVA/IdPaese').text = partner.vat[0:2]
-        # DatiAnagrafici.find(
-            # 'IdFiscaleIVA/IdCodice').text = partner.vat[2:]
-        # DatiAnagrafici.find('Anagrafica/Denominazione').text = partner.name
-        # if partner.eori_code:
-            # DatiAnagrafici.find(
-            # 'Anagrafica/CodEORI').text = partner.codiceEORI
-
         return True
 
     def setSoggettoEmittente(self, cr, uid, context=None):
@@ -497,14 +472,18 @@ class WizardExportFatturapa(orm.TransientModel):
         TipoDocumento = 'TD01'
         if invoice.type == 'out_refund':
             TipoDocumento = 'TD04'
+        ImportoTotaleDocumento = invoice.amount_total
+        if invoice.split_payment:
+            ImportoTotaleDocumento += invoice.amount_sp
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
-            Numero=invoice.number)
+            Numero=invoice.number,
+            ImportoTotaleDocumento='%.2f' % ImportoTotaleDocumento)
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
-        # ScontoMaggiorazione, ImportoTotaleDocumento, Arrotondamento,
+        # ScontoMaggiorazione, Arrotondamento,
 
         if invoice.comment:
             # max length of Causale is 200
@@ -598,6 +577,12 @@ class WizardExportFatturapa(orm.TransientModel):
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
+            if line.discount:
+                ScontoMaggiorazione = ScontoMaggiorazioneType(
+                    Tipo='SC',
+                    Percentuale='%.2f' % line.discount
+                )
+                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
                 if not line.invoice_line_tax_id[0].non_taxable_nature:
                     raise orm.except_orm(
@@ -615,7 +600,6 @@ class WizardExportFatturapa(orm.TransientModel):
 
             # el.remove(el.find('DataInizioPeriodo'))
             # el.remove(el.find('DataFinePeriodo'))
-            # el.remove(el.find('ScontoMaggiorazione'))
             # el.remove(el.find('Ritenuta'))
             # el.remove(el.find('AltriDatiGestionali'))
 
@@ -635,7 +619,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
-            )
+                )
             if tax.amount == 0.0:
                 if not tax.non_taxable_nature:
                     raise orm.except_orm(
@@ -781,7 +765,7 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
 
-        self.fatturapa = FatturaElettronica(versione='1.1')
+        self.fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
 
@@ -833,4 +817,4 @@ class WizardExportFatturapa(orm.TransientModel):
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             'context': context
-        }
+            }
