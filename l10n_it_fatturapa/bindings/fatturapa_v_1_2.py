@@ -1,15 +1,14 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
+# ./fatturapa_v_1_2.py
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
 # Generated 2017-01-10 12:31:27.348967 by PyXB version 1.2.4 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
-
 from __future__ import unicode_literals
+import logging
 import io
 import sys
-from . import _ds as _ImportedBinding__ds
-import logging
 _logger = logging.getLogger(__name__)
 try:
     import pyxb
@@ -18,8 +17,6 @@ try:
     import pyxb.utils.utility
     import pyxb.utils.domutils
     import pyxb.utils.six as _six
-    # Import bindings for namespaces imported into schema
-    import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
 
@@ -33,10 +30,13 @@ _PyXBVersion = '1.2.4'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
+# Import bindings for namespaces imported into schema
+from . import _ds as _ImportedBinding__ds
+import pyxb.binding.datatypes
+
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
-    'http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2',
-    create_if_missing=True)
+    'http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 _Namespace_ds = _ImportedBinding__ds.Namespace
 _Namespace_ds.configureCategories(['typeBinding', 'elementBinding'])
@@ -63,14 +63,11 @@ def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
 
     if pyxb.XMLStyle_saxer != pyxb._XMLStyle:
         dom = pyxb.utils.domutils.StringToDOM(xml_text)
-        return CreateFromDOM(
-            dom.documentElement,
-            default_namespace=default_namespace)
+        return CreateFromDOM(dom.documentElement, default_namespace=default_namespace)
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     saxer = pyxb.binding.saxer.make_parser(
-        fallback_namespace=default_namespace,
-        location_base=location_base)
+        fallback_namespace=default_namespace, location_base=location_base)
     handler = saxer.getContentHandler()
     xmld = xml_text
     if isinstance(xmld, _six.text_type):
@@ -101,13 +98,13 @@ class CodiceDestinatarioType (pyxb.binding.datatypes.string):
     _XSDLocation = pyxb.utils.utility.Location(
         '/tmp/pyxb/Schema_del_file_xml_FatturaPA_versione_1.2.xsd', 55, 2)
     _Documentation = None
+
+
 CodiceDestinatarioType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceDestinatarioType._CF_pattern.addPattern(pattern='[A-Z0-9]{6,7}')
 CodiceDestinatarioType._InitializeFacetMap(CodiceDestinatarioType._CF_pattern)
 Namespace.addCategoryObject(
-    'typeBinding',
-    'CodiceDestinatarioType',
-    CodiceDestinatarioType)
+    'typeBinding', 'CodiceDestinatarioType', CodiceDestinatarioType)
 
 # Atomic simple type:
 # {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceType
