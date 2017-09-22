@@ -8,7 +8,7 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 ========================================================================
@@ -53,6 +53,7 @@ Installation
 ------------
 
 
+
 :warning: Since version [7-8].0.1.0.0 of this module, definition schemas are
 moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
 informations.
@@ -67,11 +68,15 @@ This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
 Configuration
 -------------
 
+
 Usage
+-----
+
 -----
 
 Known issues / Roadmap
 ----------------------
+
 
 
 :no_entry: Questo modulo sostituisce il modulo OCA
@@ -80,13 +85,17 @@ Known issues / Roadmap
 Bug Tracker
 -----------
 
+
 Credits
 -------
 
 
+
 [![Odoo Italia Associazione]]
 
+
 ### Contributors
+
 
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -99,6 +108,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 Questo modulo è stato sviluppato con il contributo di

@@ -9,7 +9,7 @@
 
 
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 ========================================================================
@@ -21,8 +21,6 @@ This module allows you to generate the fatturaPA XML file version 1.2
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
 to be sent to the Exchange System
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-
-:no_entry: This module replaces l10n_it_fatturapa version [7-11].0.2.0.0 by OCA.
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
@@ -40,7 +38,7 @@ come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
 xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
 ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
 
-:heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
+*name CryptoBinary used for multiple values in typeBinding* :heavy_exclamation_mark:
 
 Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
 essere sostituiti con i moduli di Odoo Italia Associazione per funzionare
@@ -60,6 +58,7 @@ Installation
 ------------
 
 
+
 :warning: Since version [7-8].0.4.0.0 of this module, definition schemas are
 moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
 informations.
@@ -75,6 +74,7 @@ Configuration
 -------------
 
 
+
 * Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the electronic invoices. IPA code is mandatory, EORI code is not.
 * Configure payment terms filling the fatturaPA fields related to payment terms and payment methods.
 * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
@@ -84,8 +84,11 @@ Configuration
 Usage
 -----
 
+-----
+
 Known issues / Roadmap
 ----------------------
+
 
 
 :no_entry: Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA versioni [7-11].0.2.0.0.
@@ -94,13 +97,17 @@ Known issues / Roadmap
 Bug Tracker
 -----------
 
+
 Credits
 -------
 
 
+
 [![Odoo Italia Associazione]]
 
+
 ### Contributors
+
 
 
 * Davide Corio
@@ -113,6 +120,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 Questo modulo è stato sviluppato con il contributo di

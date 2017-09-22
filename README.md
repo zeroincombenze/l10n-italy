@@ -27,6 +27,7 @@ addon | version | OCA version | summary
 [account_central_journal](account_central_journal/) | 3 | :repeat: | Account Central Journal
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 | :repeat: | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | :repeat: | Account Invoice entry Date
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.0 | 0.3 | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
 [l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
@@ -61,7 +62,6 @@ addon | version | OCA version | summary
 [l10n_it_fatturapa_in_notifications](__unported__/l10n_it_fatturapa_in_notifications/) | deprecated (unported) | 7.0.1.0.0 | Supplier electronic invoices notifications
 [l10n_it_fatturapa_notifications](__unported__/l10n_it_fatturapa_notifications/) | deprecated (unported) | 7.0.1.0.0 | Electronic invoices notifications
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.3 (unported) | 0.1 | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.0 (unported) | 0.3 | Period End VAT Statement
 
 [//]: # (end addons)
 
