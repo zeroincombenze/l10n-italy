@@ -29,13 +29,13 @@ per essere spdicta al sistema di interscambio SDI
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 
-Attenzione! Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA
+:no_entry: Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA
 versioni [7-11].0.2.0.0.
 
-Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml; come conseguenza nasce un conflitto tra moduli diversi con lo stesso
-schema di riferimento dell'Agenzia delle Entrate con l'errore:
+:warning: Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
+come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
+ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
 *name CryptoBinary used for multiple values in typeBinding*
 
 Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
@@ -49,7 +49,8 @@ Certificati
 
 Ente/Certificato | Data inizio | Da fine | Note
 --- | --- | --- | ---
-FatturaPA | 22-09-2017 | 31-12-2017 | [![fatturapa]https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
+[FatturaPA](http://www.fatturapa.gov.it/export/fatturazione/it/fattura_PA.htm) | 22-09-2017 | 31-12-2017 | [![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
+
 
 
 Installation
@@ -80,7 +81,7 @@ Bug Tracker
 Credits
 -------
 
-[![Odoo Italia Associazione]]
+[![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20250x112.png)](https://odoo-italia.org)
 
 
 ### Contributors
