@@ -7,10 +7,14 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
-[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+
+[![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
+========================================================================
+
 
 Period End VAT Statement
-========================
 
 This module evaluates VAT to pay (or on credit) and generates the electronic
 VAT closeout statement as VAT Authority
@@ -49,88 +53,47 @@ Installation
 ------------
 
 
-
-
-
-
-Warning! Since version [7-8].0.4.0.0 of this module, definition schemas are
+:warning: Since version [7-8].0.1.0.0 of this module, definition schemas are
 moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
 informations.
 
-Attenzione! A partire dalla versione [7-8].0.4.0.0 di questo modulo, gli schemi
+:warning: A partire dalla versione [7-8].0.1.0.0 di questo modulo, gli schemi
 di definizione sono stati spostati nel modulo l10n_it_ade. Per ulteriori
 informazioni, leggete i documenti relativi al modulo l10n_it_ade.
 
+This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
 
 
 Configuration
 -------------
 
-
-
-
-
-
-Questo modulo richiede pyxb 1.2.4
-
-
-
 Usage
------
-
------
-
------
-
------
-
 -----
 
 Known issues / Roadmap
 ----------------------
 
 
-
-
-
-
+:no_entry: Questo modulo sostituisce il modulo OCA
 
 
 Bug Tracker
 -----------
 
-
-
-
-
 Credits
 -------
 
 
-
-
-
-
 [![Odoo Italia Associazione]]
-
-
-
-
-
-
 
 ### Contributors
 
 
-
-
-
-
--   Lorenzo Battistini <lorenzo.battistini@agilebg.com>
--   Marco Marchiori <marcomarkiori@gmail.com>
--   Sergio Corato <sergiocorato@gmail.com>
--   Andrei Levin <andrei.levin@didotech.com>
--   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Marco Marchiori <marcomarkiori@gmail.com>
+* Sergio Corato <sergiocorato@gmail.com>
+* Andrei Levin <andrei.levin@didotech.com>
+* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 
 ### Funders
@@ -138,16 +101,13 @@ Credits
 ### Maintainer
 
 
+Questo modulo è stato sviluppato con il contributo di
+
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
 
 
-
-
-
-
-
-
-This module is maintained by Odoo Italia Associazione
+[![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
 
 Odoo Italia is a nonprofit organization whose develops Italian Localization for
 Odoo.

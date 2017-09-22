@@ -62,6 +62,7 @@ Installation
 
 
 
+
 This module requires PyXB 1.2.4
 http://pyxb.sourceforge.net/
 
@@ -73,7 +74,10 @@ Configuration
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -92,6 +96,7 @@ Known issues / Roadmap
 
 
 
+
 Incompatibile con moduli OCA fatturaPA e liquidazione IVA
 
 
@@ -102,8 +107,10 @@ Bug Tracker
 
 
 
+
 Credits
 -------
+
 
 
 
@@ -118,7 +125,9 @@ Credits
 
 
 
+
 ### Contributors
+
 
 
 
@@ -131,6 +140,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

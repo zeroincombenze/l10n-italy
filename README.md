@@ -30,6 +30,7 @@ addon | version | OCA version | summary
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
 [l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
+[l10n_it_ade](l10n_it_ade/) | 7.0.0.1.0 | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
 [l10n_it_base](l10n_it_base/) | 7.0.0.2.10 | 0.1 | Italian Localisation - Base
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 | :repeat: | Italian Localisation - CRM
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 | :repeat: | Italian Localisation - Bill of Entry
@@ -56,13 +57,11 @@ Unported addons
 ---------------
 addon | version | OCA version | summary
 --- | --- | --- | ---
-[account_vat_period_end_statement](__unported__/account_vat_period_end_statement/) | 7.0.4.0.0 (unported) | 0.3 | Period End VAT Statement
-[l10n_it_ade](__unported__/l10n_it_ade/) | 7.0.0.1.0 (unported) | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
 [l10n_it_fatturapa_in](__unported__/l10n_it_fatturapa_in/) | deprecated (unported) | 0.1 | Electronic invoices reception
 [l10n_it_fatturapa_in_notifications](__unported__/l10n_it_fatturapa_in_notifications/) | deprecated (unported) | 7.0.1.0.0 | Supplier electronic invoices notifications
 [l10n_it_fatturapa_notifications](__unported__/l10n_it_fatturapa_notifications/) | deprecated (unported) | 7.0.1.0.0 | Electronic invoices notifications
-[l10n_it_pyxb_bindings](__unported__/l10n_it_pyxb_bindings/) | 7.0.0.1.0 (unported) | :x: | Electronic invoices
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.3 (unported) | 0.1 | Check invoice date consistency
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.0 (unported) | 0.3 | Period End VAT Statement
 
 [//]: # (end addons)
 
