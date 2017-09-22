@@ -3,4 +3,3 @@
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 
 from . import models
-from . import bindings
