@@ -7,6 +7,9 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
+
+[![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
+
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 FatturaPA
@@ -16,6 +19,8 @@ This module allows you to generate the fatturaPA XML file version 1.2
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
 to be sent to the Exchange System
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+
+:no_entry: This module replaces l10n_it_fatturapa version [7-11].0.2.0.0 by OCA.
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
@@ -36,7 +41,8 @@ versioni [7-11].0.2.0.0.
 come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
 xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
 ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
-*name CryptoBinary used for multiple values in typeBinding*
+
+:heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
 
 Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
 essere sostituiti con i moduli di Odoo Italia Associazione per funzionare
@@ -81,9 +87,6 @@ Bug Tracker
 Credits
 -------
 
-[![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20250x112.png)](https://odoo-italia.org)
-
-
 ### Contributors
 
 -   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -98,7 +101,7 @@ Questo modulo è stato sviluppato con il contributo di
 
 ### Maintainer
 
-This module is maintained by Odoo Italia Associazione
+This module is maintained by [![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
 
 Odoo Italia is a nonprofit organization whose develops Italian Localization for
 Odoo.

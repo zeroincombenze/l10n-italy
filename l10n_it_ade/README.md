@@ -7,60 +7,60 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
-
-[![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
-
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
-FatturaPA
-=========
+Base xml Agenzia delle Entrate
+==============================
 
-This module allows you to generate the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-to be sent to the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+This module has no any specific function for End-user. It is base for modules
+generate xml file like FatturaPA o VAT settlement.
 
-:no_entry: This module replaces l10n_it_fatturapa version [7-11].0.2.0.0 by OCA.
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-FatturaPA
-=========
+Localizzazione italiana - Definizioni per file xml
+==================================================
 
-Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-per essere spdicta al sistema di interscambio SDI
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+Questo modulo non ha funzioni specifice per l'utente finale. Serve come base
+per i moduli che generano file xml in formato stabilito dall'Agenzia delle
+Entrate, come FatturaPA o Liquidazione IVA elettronica.
 
+Attenzione! Questo modulo è incompatibile con i moduli l10n_it_fatturapa di OCA
+versioni [7-11].0.2.0.0
+Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml; come conseguenza nasce un conflitto tra moduli diversi con lo stesso
+schema di riferimento dell'Agenzia delle Entrate con l'errore:
+*name CryptoBinary used for multiple values in typeBinding*
 
-:no_entry: Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA
-versioni [7-11].0.2.0.0.
-
-:warning: Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
-come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
-ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
-
-:heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
-
-Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
-essere sostituiti con i moduli di Odoo Italia Associazione per funzionare
-correttamente.
+Tutti i moduli che generano file xml per l'Agenzia delle Entrate *devono*
+dipendere da questo modulo.
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'autore.
 
-Certificati
------------
+Schemi
 
-Ente/Certificato | Data inizio | Da fine | Note
---- | --- | --- | ---
-[FatturaPA](http://www.fatturapa.gov.it/export/fatturazione/it/fattura_PA.htm) | 22-09-2017 | 31-12-2017 | [![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
+Il modulo rende disponibili i seguenti schemi:
 
+* Liquidazione IVA elettronica versione 1.0
+* Comunicazione clienti e fornitori (spesometro 2017) versione 2.0
+* FatturaPA versione 1.2
+
+
+Per aggiungere nuovi schemi o modificare o aggiornare gli schemi gestiti:
+
+- Aggiungere o modificare gli schemi nella directory ./data
+- Eseguire da una macchina CentOS lo script ./pyxbgen.sh -u
 
 
 Installation
 ------------
+
+
+
+
+
 
 This module requires PyXB 1.2.4
 http://pyxb.sourceforge.net/
@@ -70,38 +70,82 @@ Configuration
 -------------
 
 
+
+
+
 Usage
 -----
 
+-----
+
+-----
+
+-----
+
+-----
 
 Known issues / Roadmap
 ----------------------
 
-Incompatibile con moduli OCA fatturaPA e OCA liquidazione IVA
+
+
+
+
+
+Incompatibile con moduli OCA fatturaPA e liquidazione IVA
 
 
 Bug Tracker
 -----------
 
 
+
+
+
 Credits
 -------
 
+
+
+
+
+
+[![Odoo Italia Associazione]]
+
+
+
+
+
+
+
 ### Contributors
 
+
+
+
+
 -   Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+-   Andrei Levin <andrei.levin@didotech.com>
 
 
 ### Funders
 
-Questo modulo è stato sviluppato con il contributo di
-
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
-
-
 ### Maintainer
 
-This module is maintained by [![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
+
+
+
+
+
+
+
+
+
+Questo modulo è stato sviluppato con il contributo di SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+
+
+
+This module is maintained by Odoo Italia Associazione
 
 Odoo Italia is a nonprofit organization whose develops Italian Localization for
 Odoo.
