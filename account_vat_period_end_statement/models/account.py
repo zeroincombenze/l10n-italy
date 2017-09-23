@@ -15,6 +15,7 @@ from openerp.tools.translate import _
 import math
 from openerp.addons.decimal_precision import decimal_precision as dp
 import logging
+_logger = logging.getLogger(__name__)
 try:
     import codicefiscale
 except ImportError as err:
