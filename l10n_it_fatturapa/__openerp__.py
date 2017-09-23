@@ -12,6 +12,7 @@
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     "depends": [
+        'l10n_it_ade',
         'account',
         'l10n_it_base',
         'l10n_it_fiscalcode',

@@ -62,8 +62,8 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2014-06-15</Data>
-                <Numero>SAJ/2014/016</Numero>
+                <Data>2017-06-15</Data>
+                <Numero>SAJ/2017/016</Numero>
                 <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
@@ -98,7 +98,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2014-07-31</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2017-07-31</DataScadenzaPagamento>
                 <ImportoPagamento>14.00</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>

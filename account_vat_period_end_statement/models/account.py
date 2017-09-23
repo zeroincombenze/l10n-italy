@@ -13,7 +13,7 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import math
-import openerp.addons.decimal_precision as dp
+from openerp.addons.decimal_precision import decimal_precision as dp
 import logging
 try:
     import codicefiscale
@@ -412,7 +412,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             ('12', 'Liquidatore di DI'),
             ('13', 'Amministratore di condominio'),
             ('14', 'Pubblica Amministrazione'),
-            ('15', 'Commissario PA'),],
+            ('15', 'Commissario PA'), ],
             'Codice carica',),
         'progressivo_telematico':
             fields.integer('Progressivo telematico', readonly=True),
@@ -426,7 +426,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                            size=5,
                            help="Eventuale numero iscrizione albo del C.A.F."),
         'incaricato_trasmissione_data_impegno':
-            fields.date('Data data impegno')    }
+            fields.date('Data data impegno')}
 
     _defaults = {
         'date': fields.date.context_today,
@@ -882,31 +882,33 @@ class AccountVatPeriodEndStatement(orm.Model):
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
                             context=None):
-        # if len(fiscalcode) == 11:
-        #     res_partner_pool = self.pool.get('res.partner')
-        #     chk = res_partner_pool.simple_vat_check(
-        #         self.cr, self.uid, 'it', fiscalcode)
-        #     if not chk:
-        #         return {'value':{name: False},
-        #                'warning': {'title':'Invalid fiscalcode!',
-        #                            'message':
-        #                                 'Invalid vat number'}
-        #         }
         if fiscalcode:
-            if len(fiscalcode) != 16:
-                return {'value':{name: False},
-                       'warning': {'title':'Invalid len!',
-                                   'message':'Fiscal code len must be 11 or 16'}
+            if len(fiscalcode) == 11:
+                res_partner_pool = self.pool.get('res.partner')
+                chk = res_partner_pool.simple_vat_check(
+                    self.cr, self.uid, 'it', fiscalcode)
+                if not chk:
+                    return {'value': {name: False},
+                           'warning': {'title': 'Invalid fiscalcode!',
+                                       'message':
+                                            'Invalid vat number'}
+                    }
+            elif len(fiscalcode) != 16:
+                return {'value': {name: False},
+                       'warning': {'title': 'Invalid len!',
+                                   'message':
+                                       'Fiscal code len must be 11 or 16'}
                 }
             else:
                 chk = codicefiscale.control_code(fiscalcode[0:15])
                 if chk != fiscalcode[15]:
                     value = fiscalcode[0:15] + chk
-                    return {'value':{name: value},
-                           'warning': {'title':'Invalid fiscalcode!',
-                                       'message':
-                                            'Fiscal code could be %s' % (value)}
-                    }
+                    return {'value': {name: value},
+                            'warning': {'title': 'Invalid fiscalcode!',
+                                        'message':
+                                             'Fiscal code could be %s' % (
+                                                 value)}
+                     }
             return {'value':{name: fiscalcode}}
         return {}
 
@@ -932,8 +934,8 @@ class AccountVatPeriodEndStatement(orm.Model):
                     _('You should delete VAT Settlement before'
                       ' deleting Vat Period End Statement')
                 )
-        return super(AccountVatPeriodEndStatement, self).action_cancel(cr, uid, ids, context)
-
+        return super(AccountVatPeriodEndStatement, self).action_cancel(
+        cr, uid, ids, context)
 
 class StatementDebitAccountLine(orm.Model):
     _name = 'statement.debit.account.line'
@@ -998,7 +1000,6 @@ class StatementGenericAccountLine(orm.Model):
         res['value']['amount'] = self.pool.get('account.account').browse(
             cr, uid, vat_account_id, context).balance
         return res
-
 
 class AccountTaxCode(orm.Model):
     _inherit = "account.tax.code"
