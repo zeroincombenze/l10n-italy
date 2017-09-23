@@ -52,16 +52,16 @@ class res_partner(orm.Model):
     _defaults = {
         'individual': False,
     }
-    _constraints = [(
-        check_fiscalcode,
-        "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
-    _sql_constraints = [
-        ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
-         'The fiscal code must be unique per company !'),
-    ]
+    # _constraints = [(
+    #     check_fiscalcode,
+    #     "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
+    # _sql_constraints = [
+    #     ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
+    #      'The fiscal code must be unique per company !'),
+    # ]
 
-    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
-                            context=None):
+    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, context=None):
+        name = 'fiscalcode'
         if fiscalcode:
             if len(fiscalcode) == 11:
                 res_partner_pool = self.pool.get('res.partner')

@@ -11,8 +11,7 @@
                     <label for="fiscalcode" />
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline"
-                               on_change="onchange_fiscalcode(fiscalcode,
-                                         'fiscalcode')" />
+                               on_change="onchange_fiscalcode(fiscalcode)"  />
                         <field name="individual" colspan="1" groups="base.group_extended" />
                     </div>
                 </xpath>
