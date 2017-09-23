@@ -21,8 +21,16 @@
 
 from osv import fields, osv
 from tools.translate import _
-
+# import logging
 import datetime
+# _logger = logging.getLogger(__name__)
+# try:
+#     from codicefiscale import build
+# except ImportError:
+#     _logger.warning(
+#         'codicefiscale library not found. '
+#         'If you plan to use it, please install the codicefiscale library '
+#        'from https://pypi.python.org/pypi/codicefiscale')
 
 
 class wizard_compute_fc(osv.osv_memory):

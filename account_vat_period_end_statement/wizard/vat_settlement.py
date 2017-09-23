@@ -6,7 +6,6 @@
 #                Odoo-Italia.org Community
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.osv import fields, orm
-# from openerp import addons
 from openerp.addons.l10n_it_ade.bindings.vat_settlement_v_1_0 import (
     Fornitura,
     # Intestazione,
@@ -27,7 +26,7 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-identificativo_software = 'Odoo.7.0.2.1.9'
+identificativo_software = 'Odoo.7.0.4.0.0'
 
 
 class WizardVatSettlement(orm.TransientModel):

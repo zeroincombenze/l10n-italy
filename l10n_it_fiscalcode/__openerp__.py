@@ -20,7 +20,7 @@
 #
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '0.1',
+    'version': '7.0.0.1.1',
     'category': 'Localisation/Italy',
     'description': """
 
@@ -32,9 +32,12 @@ Functionalities:
     'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends": ['base', 'l10n_it_base'],
+    "depends": ['base', 'base_vat', 'l10n_it_base'],
+    'external_dependencies': {
+        'python': ['codicefiscale'],
+    },
     "init_xml": [
-        'fiscalcode_view.xml',
+        'views/fiscalcode_view.xml',
         'wizard/compute_fc_view.xml'
     ],
     "update_xml": [],

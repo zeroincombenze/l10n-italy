@@ -15,6 +15,7 @@ from openerp.tools.translate import _
 import math
 import decimal_precision as dp
 import logging
+_logger = logging.getLogger(__name__)
 try:
     import codicefiscale
 except ImportError as err:
@@ -903,10 +904,10 @@ class account_vat_period_end_statement(orm.Model):
                 if chk != fiscalcode[15]:
                     value = fiscalcode[0:15] + chk
                     return {'value':{name: value},
-                           'warning': {'title':'Invalid fiscalcode!',
-                                       'message':
-                                            'Fiscal code could be %s' % (value)}
-                    }
+                            'warning': {'title':'Invalid fiscalcode!',
+                                        'message':
+                                             'Fiscal code could be %s' % (value)}
+                     }
             return {'value':{name: fiscalcode}}
         return {}
 

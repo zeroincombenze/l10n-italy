@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2010-2012 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2010-2012 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,11 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+from osv import fields, orm
+import logging
 
-from osv import fields, osv
+
+_logger = logging.getLogger(__name__)
+try:
+    import codicefiscale
+except ImportError as err:
+    _logger.debug(err)
 
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     _inherit = 'res.partner'
 
     def check_fiscalcode(self, cr, uid, ids, context=None):
@@ -52,3 +59,34 @@ class res_partner(osv.osv):
         ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
          'The fiscal code must be unique per company !'),
     ]
+
+    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
+                            context=None):
+        if fiscalcode:
+            if len(fiscalcode) == 11:
+                res_partner_pool = self.pool.get('res.partner')
+                chk = res_partner_pool.simple_vat_check(
+                    cr, uid, 'it', fiscalcode)
+                if not chk:
+                    return {'value': {name: False},
+                            'warning': {
+                        'title': 'Invalid fiscalcode!',
+                        'message': 'Invalid vat number'}
+                    }
+            elif len(fiscalcode) != 16:
+                return {'value': {name: False},
+                        'warning': {
+                    'title': 'Invalid len!',
+                    'message': 'Fiscal code len must be 11 or 16'}
+                }
+            else:
+                chk = codicefiscale.control_code(fiscalcode[0:15])
+                if chk != fiscalcode[15]:
+                    value = fiscalcode[0:15] + chk
+                    return {'value': {name: value},
+                            'warning': {
+                                'title': 'Invalid fiscalcode!',
+                                'message': 'Fiscal code could be %s' % (value)}
+                            }
+            return {'value': {name: fiscalcode}}
+        return {}
