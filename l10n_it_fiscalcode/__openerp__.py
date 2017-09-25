@@ -45,6 +45,6 @@ Functionalities:
     'test': [
         'test/fiscalcode.yml',
     ],
-    "active": False,
+    'post_init_hook': 'set_default_split_mode',
     "installable": True
 }
