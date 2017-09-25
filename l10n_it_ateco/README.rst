@@ -27,13 +27,17 @@ Installation
 
 
 
+
 Configuration
 -------------
 
 
 
 
+
 Usage
+-----
+
 -----
 
 -----
@@ -55,6 +59,7 @@ Known issues / Roadmap
 
 
 
+
 This module needs a method to import una-tantum ateco codes
 from ISTAT web site in order maintain them up to date.
 
@@ -65,6 +70,7 @@ See:
 
 Bug Tracker
 -----------
+
 
 
 
@@ -82,6 +88,7 @@ Credits
 
 
 
+
 Images
 
 * Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
@@ -91,7 +98,9 @@ Images
 
 
 
+
 ### Contributors
+
 
 
 
@@ -103,6 +112,8 @@ Images
 ### Funders
 
 ### Maintainer
+
+
 
 
 
