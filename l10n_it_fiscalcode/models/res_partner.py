@@ -52,12 +52,12 @@ class res_partner(orm.Model):
                 if hasattr(partner, 'splitmode'):
                     splitmode = partner.splitmode
                 else:
-                    splitmode = self._default_split_mode(cr, uid)
+                    splitmode = self._default_splitmode(cr, uid)
         else:
             if not name:
                 return '', ''
             if not splitmode:
-                splitmode = self._default_split_mode(cr, uid)
+                splitmode = self._default_splitmode(cr, uid)
             f = name.split(' ')
         if len(f) == 1:
             if splitmode[0] == 'F':
@@ -200,5 +200,5 @@ class res_partner(orm.Model):
                          'lastname': lastname}}
         return res
 
-    def _default_split_mode(self, cr, uid, partner=None, context=None):
+    def _default_splitmode(self, cr, uid, partner=None, context=None):
         return 'LF'

@@ -21,4 +21,4 @@
 
 from . import models
 from . import wizard
-from .post_install import set_default_split_mode
+# from .post_install import set_default_splitmode

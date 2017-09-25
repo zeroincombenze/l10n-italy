@@ -11,8 +11,8 @@
                     <group attrs="{'invisible': [('individual', '=', False), 
                                                  ('is_company', '=', True)]}">
                         <!--  
-                        <field name="split_mode"
-                               on_change="onchange_split_mode(split_mode, name)" />
+                        <field name="splitmode"
+                               on_change="onchange_splitmode(splitmode, name)" />
                         -->
                         <field name="lastname" />
                         <field name="firstname" />
