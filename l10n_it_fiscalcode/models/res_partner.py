@@ -1,28 +1,19 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
+# -*- coding: utf-8 -*-
 #    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-from openerp import models, fields, api
+import logging
+from openerp import api, fields, models
 
 
-class res_partner(models.Model):
+_logger = logging.getLogger(__name__)
+try:
+    import codicefiscale
+except ImportError as err:
+    _logger.debug(err)
+
+
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     @api.multi
@@ -35,6 +26,82 @@ class res_partner(models.Model):
             else:
                 return True
 
+    def _join_lastname_particle(self, fields):
+        """Join most common surname particles"""
+        if len(fields) > 1:
+            particles = ['de', 'der', 'des', 'di', 'mc', 'van', 'von', 'zu']
+            for particle in particles:
+                i = [i for i, x in enumerate(fields) if x == particle]
+                if i:
+                    i = i[0]
+                    fields[i + 1] = '%s %s' % (fields[i], fields[i + 1])
+                    del fields[i]
+                    break
+        return fields
+
+    def _split_last_first_name(self, cr, uid, partner=None,
+                               name=None, splitmode=None):
+        if partner:
+            if not partner.individual and partner.is_company:
+                return '', ''
+            name = partner.name
+            if not splitmode:
+                if hasattr(partner, 'splitmode') and partner.splitmode:
+                    splitmode = partner.splitmode
+                else:
+                    splitmode = self._default_splitmode(cr, uid)
+        elif not splitmode:
+            splitmode = self._default_splitmode(cr, uid)
+        if not isinstance(name, basestring) or \
+                not isinstance(splitmode, basestring):
+            return '', ''
+        f = self._join_lastname_particle(name.split(' '))
+        if len(f) == 1:
+            if splitmode[0] == 'F':
+                return '', f[0]
+            elif splitmode[0] == 'L':
+                return f[0], ''
+        elif len(f) == 2:
+            if splitmode[0] == 'F':
+                return f[1], f[0]
+            elif splitmode[0] == 'L':
+                return f[0], f[1]
+        elif len(f) == 3:
+            if splitmode in ('LFM', 'LF', 'L2FM'):
+                return f[2], '%s %s' % (f[0], f[1])
+            elif splitmode in ('FML', 'FL', 'FML2'):
+                return '%s %s' % (f[0], f[1]), f[2]
+            elif splitmode == 'L2F':
+                return '%s %s' % (f[0], f[1]), f[2]
+            elif splitmode == 'FL2':
+                return '%s %s' % (f[1], f[2]), f[0]
+        else:
+            if splitmode[0] == 'F':
+                return '%s %s' % (f[2], f[3]), '%s %s' % (f[0], f[1])
+            elif splitmode[0] == 'L':
+                return '%s %s' % (f[0], f[1]), '%s %s' % (f[2], f[3])
+        return '', ''
+
+    def _split_last_name(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for partner in self.browse(cr, uid, ids, context=context):
+            lastname, firstname = self._split_last_first_name(
+                cr, uid, partner=partner)
+            res[partner.id] = lastname
+        return res
+
+    def _split_first_name(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for partner in self.browse(cr, uid, ids, context=context):
+            lastname, firstname = self._split_last_first_name(
+                cr, uid, partner=partner)
+            res[partner.id] = firstname
+        return res
+
+    def _set_last_first_name(self, cr, uid, partner_id, name, value, arg,
+                             context=None):
+        return True
+
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
     individual = fields.Boolean(
@@ -45,3 +112,56 @@ class res_partner(models.Model):
         (check_fiscalcode,
          "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
     ]
+
+    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, context=None):
+        name = 'fiscalcode'
+        if fiscalcode:
+            if len(fiscalcode) == 11:
+                res_partner_pool = self.pool.get('res.partner')
+                chk = res_partner_pool.simple_vat_check(
+                    cr, uid, 'it', fiscalcode)
+                if not chk:
+                    return {'value': {name: False},
+                            'warning': {
+                        'title': 'Invalid fiscalcode!',
+                        'message': 'Invalid vat number'}
+                    }
+                individual = False
+            elif len(fiscalcode) != 16:
+                return {'value': {name: False},
+                        'warning': {
+                    'title': 'Invalid len!',
+                    'message': 'Fiscal code len must be 11 or 16'}
+                }
+            else:
+                fiscalcode = fiscalcode.upper()
+                chk = codicefiscale.control_code(fiscalcode[0:15])
+                if chk != fiscalcode[15]:
+                    value = fiscalcode[0:15] + chk
+                    return {'value': {name: value},
+                            'warning': {
+                                'title': 'Invalid fiscalcode!',
+                                'message': 'Fiscal code could be %s' % (value)}
+                            }
+                individual = True
+            return {'value': {name: fiscalcode,
+                              'individual': individual}}
+        return {'value': {'individual': False}}
+
+    def onchange_name(self, cr, uid, ids, name, splitmode, context=None):
+        lastname, firstname = self._split_last_first_name(
+            cr, uid, name=name, splitmode=splitmode)
+        res = {'value': {'firstname': firstname,
+                         'lastname': lastname}}
+        return res
+
+    def onchange_splitmode(self, cr, uid, ids, splitmode, name,
+                           context=None):
+        lastname, firstname = self._split_last_first_name(
+            cr, uid, name=name, splitmode=splitmode)
+        res = {'value': {'firstname': firstname,
+                         'lastname': lastname}}
+        return res
+
+    def _default_splitmode(self, cr, uid, partner=None, context=None):
+        return 'LF'
