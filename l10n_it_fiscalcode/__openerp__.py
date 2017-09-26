@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '8.0.0.1.1',
+    'version': '8.0.0.2.0',
     'category': 'Localisation/Italy',
     'description': """
 This module customizes Odoo in order to fit italian laws and mores
@@ -52,6 +52,6 @@ External depends:
     'test': [
         'test/fiscalcode.yml',
         ],
-    'active': False,
+    'post_init_hook': 'set_default_splitmode',
     'installable': True
 }

@@ -107,6 +107,24 @@ class ResPartner(models.Model):
     individual = fields.Boolean(
         'Individual', default=False,
         help="If checked the C.F. is referred to a Individual Person")
+    splitmode = fields.Selection([
+        ('LF', 'Last/First'),
+        ('FL', 'First/Last'),
+        ('LFM', 'Last/First Middle'),
+        ('L2F', 'Last last/First'),
+        ('L2FM', 'Last last/First Middle'),
+        ('FML', 'First middle/Last'),
+        ('FL2', 'First/Last last'),
+        ('FML2', 'First Middle/Last last')],
+        'First Last format', default='LF')
+    firstname = fields.Char('First Name',
+                            compute='_split_first_name',
+                            store=True,
+                            readonly=True)
+    lastname = fields.Char('Last Name',
+                           compute='_split_last_name',
+                           store=True,
+                           readonly=True)
 
     _constraints = [
         (check_fiscalcode,

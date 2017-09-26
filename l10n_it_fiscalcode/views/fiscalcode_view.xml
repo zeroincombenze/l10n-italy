@@ -7,11 +7,25 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name"
+                           on_change="onchange_name(name, splitmode)" />
+                </field>
+                <xpath expr="//field[@name='category_id']" position="before">
+                    <group attrs="{'invisible': [('individual', '=', False), 
+                                                 ('is_company', '=', True)]}">
+                        <field name="lastname" colspan="1" />
+                        <field name="firstname" colspan="1" />
+                        <field name="splitmode" colspan="1"
+                               on_change="onchange_splitmode(splitmode, name)" />
+                    </group>
+                </xpath>
                 <xpath expr="//div[@name='vat_info']" position="after">
                     <label for="fiscalcode" />
                     <div name="fiscalcode_info">
-                        <field name="fiscalcode" class="oe_inline" />
-                        <field name="individual" colspan="1" groups="base.group_extended" />
+                        <field name="fiscalcode" class="oe_inline"
+                               on_change="onchange_fiscalcode(fiscalcode)"  />
+                        <field name="individual" colspan="1" />
                     </div>
                 </xpath>
             </field>
