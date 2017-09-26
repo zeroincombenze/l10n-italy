@@ -1,25 +1,9 @@
 # -*- coding: utf-8 -*-
-#
-#
 #    Copyright (C) 2010-2012 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-from osv import fields, orm
 import logging
+from openerp.osv import fields, orm
 
 
 _logger = logging.getLogger(__name__)
@@ -29,7 +13,7 @@ except ImportError as err:
     _logger.debug(err)
 
 
-class res_partner(orm.Model):
+class ResPartner(orm.Model):
     _inherit = 'res.partner'
 
     def check_fiscalcode(self, cr, uid, ids, context=None):
@@ -42,23 +26,36 @@ class res_partner(orm.Model):
             else:
                 return True
 
+    def _join_lastname_particle(self, fields):
+        """Join most common surname particles"""
+        if len(fields) > 1:
+            particles = ['de', 'der', 'des', 'di', 'mc', 'van', 'von', 'zu']
+            for particle in particles:
+                i = [i for i, x in enumerate(fields) if x == particle]
+                if i:
+                    i = i[0]
+                    fields[i + 1] = '%s %s' % (fields[i], fields[i + 1])
+                    del fields[i]
+                    break
+        return fields
+
     def _split_last_first_name(self, cr, uid, partner=None,
                                name=None, splitmode=None):
         if partner:
             if not partner.individual and partner.is_company:
                 return '', ''
-            f = partner.name.split(' ')
+            name = partner.name
             if not splitmode:
-                if hasattr(partner, 'splitmode'):
+                if hasattr(partner, 'splitmode') and partner.splitmode:
                     splitmode = partner.splitmode
                 else:
                     splitmode = self._default_splitmode(cr, uid)
-        else:
-            if not name:
-                return '', ''
-            if not splitmode:
-                splitmode = self._default_splitmode(cr, uid)
-            f = name.split(' ')
+        elif not splitmode:
+            splitmode = self._default_splitmode(cr, uid)
+        if not isinstance(name, basestring) or \
+                not isinstance(splitmode, basestring):
+            return '', ''
+        f = self._join_lastname_particle(name.split(' '))
         if len(f) == 1:
             if splitmode[0] == 'F':
                 return '', f[0]
@@ -111,40 +108,40 @@ class res_partner(orm.Model):
         'individual': fields.boolean(
             'Individual',
             help="If checked the C.F. is referred to a Individual Person"),
+        # 'splitmode': fields.selection([('LF', 'Last/First'),
+        #                                ('FL', 'First/Last'),
+        #                                ('LFM', 'Last/First Middle'),
+        #                                ('L2F', 'Last last/First'),
+        #                                ('L2FM', 'Last last/First Middle'),
+        #                                ('FML', 'First middle/Last'),
+        #                                ('FL2', 'First/Last last'),
+        #                                ('FML2', 'First Middle/Last last')],
+        #                               "First Last format"),
         'firstname': fields.function(
             _split_first_name,
             string="First Name",
             type="char",
             store=True,
             select=True,
-            readonly=True,
-            fnct_inv=_set_last_first_name),
-        'lastname':  fields.function(
+            readonly=True,),
+        # fnct_inv=_set_last_first_name),
+        'lastname': fields.function(
             _split_last_name,
             string="Last Name",
             type="char",
             store=True,
             select=True,
-            readonly=True,
-            fnct_inv=_set_last_first_name),
+            readonly=True,),
+        # fnct_inv=_set_last_first_name),
     }
-    # 'splitmode': fields.selection([('LF', 'Last/First'),
-    #                            ('FL', 'First/Last'),
-    #                            ('LFM', 'Last/First Middle'),
-    #                            ('L2F', 'Last last/First'),
-    #                            ('L2FM', 'Last last/First Middle'),
-    #                            ('FML', 'First middle/Last'),
-    #                            ('FL2', 'First/Last last'),
-    #                            ('FML2', 'First Middle/Last last')],
-    #                           "First Last format"),
 
     _defaults = {
         'individual': False,
         # 'splitmode': 'LF',
     }
-    # _constraints = [(
-    #     check_fiscalcode,
-    #     "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
+    _constraints = [(
+        check_fiscalcode,
+        "The fiscal code doesn't seem to be correct.", ["fiscalcode"])]
     # _sql_constraints = [
     #     ('fiscalcode_uniq', 'unique (fiscalcode, company_id)',
     #      'The fiscal code must be unique per company !'),
