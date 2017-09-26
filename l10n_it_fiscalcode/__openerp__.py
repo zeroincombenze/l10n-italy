@@ -20,7 +20,7 @@
 #
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '7.0.0.1.2',
+    'version': '7.0.0.2.0',
     'category': 'Localisation/Italy',
     'description': """
 

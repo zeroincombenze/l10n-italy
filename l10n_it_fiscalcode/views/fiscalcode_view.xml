@@ -10,12 +10,10 @@
                 <xpath expr="//div[@class='oe_title']" position="after">
                     <group attrs="{'invisible': [('individual', '=', False), 
                                                  ('is_company', '=', True)]}">
-                        <!--  
-                        <field name="splitmode"
+                        <field name="lastname" colspan="1" />
+                        <field name="firstname" colspan="1" />
+                        <field name="splitmode" colspan="1"
                                on_change="onchange_splitmode(splitmode, name)" />
-                        -->
-                        <field name="lastname" />
-                        <field name="firstname" />
                     </group>
                 </xpath>
                 <xpath expr="//div[@name='vat_info']" position="after">
@@ -23,7 +21,7 @@
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline"
                                on_change="onchange_fiscalcode(fiscalcode)"  />
-                        <field name="individual" colspan="1" groups="base.group_extended" />
+                        <field name="individual" colspan="1" />
                     </div>
                 </xpath>
             </field>

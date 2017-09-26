@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-25 11:32+0000\n"
-"PO-Revision-Date: 2017-09-25 11:32+0000\n"
+"POT-Creation-Date: 2017-09-26 14:09+0000\n"
+"PO-Revision-Date: 2017-09-26 14:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:130
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:49
 #, python-format
 msgid "Cataster code is missing"
 msgstr "Codice Catastale assente"
@@ -55,15 +55,15 @@ msgid "Date of birth"
 msgstr "Data di nascita"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:128
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:130
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:140
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:47
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:49
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:64
 #, python-format
 msgid "Error"
 msgstr "Errore"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:141
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:65
 #, python-format
 msgid "Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one"
 msgstr "Il codice fiscale esistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
@@ -74,14 +74,39 @@ msgid "Female"
 msgstr "Femmina"
 
 #. module: l10n_it_fiscalcode
+#: field:res.partner,splitmode:0
+msgid "First Last format"
+msgstr "Formato Nome/Cognome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First Middle/Last last"
+msgstr "Nome nome/Cognome cognome"
+
+#. module: l10n_it_fiscalcode
 #: field:res.partner,firstname:0
 msgid "First Name"
 msgstr "Nome"
 
 #. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First middle/Last"
+msgstr "Nome nome/Cognome"
+
+#. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,fiscalcode_firstname:0
 msgid "First name"
 msgstr "Nome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First/Last"
+msgstr "Nome/Cognome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First/Last last"
+msgstr "Nome/Cognome cognome"
 
 #. module: l10n_it_fiscalcode
 #: field:res.partner,fiscalcode:0
@@ -115,12 +140,32 @@ msgid "Last Name"
 msgstr "Cognome"
 
 #. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last last/First"
+msgstr "Cognome cognome/Nome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last last/First Middle"
+msgstr "Cognome cognome/Nome nome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last/First"
+msgstr "Cognome/Nome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last/First Middle"
+msgstr "Cognome/Nome nome"
+
+#. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
 msgid "Male"
 msgstr "Maschio"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:128
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:47
 #, python-format
 msgid "One or more fields are missing"
 msgstr "Manca(no) uno o più valori"
@@ -141,4 +186,9 @@ msgstr "Sesso"
 #: field:wizard.compute.fc,fiscalcode_surname:0
 msgid "Surname"
 msgstr "Cognome"
+
+#. module: l10n_it_fiscalcode
+#: constraint:res.partner:0
+msgid "The fiscal code doesn't seem to be correct."
+msgstr "The fiscal code doesn't seem to be correct."
 
