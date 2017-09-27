@@ -134,6 +134,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 The module adds fields in page Accounting of partner form, where you can
