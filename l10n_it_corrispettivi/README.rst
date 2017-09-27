@@ -125,6 +125,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -249,6 +251,7 @@ Images
 
 
 
+
 ### Contributors
 
 
@@ -279,8 +282,8 @@ Images
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

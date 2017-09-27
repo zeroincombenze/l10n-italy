@@ -150,6 +150,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -271,6 +273,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -303,8 +306,8 @@ Credits
 * Elena Carlesso <ecarlesso@linkgroup.it>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

@@ -123,6 +123,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 The module adds fields in page Accounting of partner form, where you can
@@ -245,6 +247,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -276,8 +279,8 @@ Credits
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

@@ -131,6 +131,8 @@ Usage
 
 -----
 
+-----
+
 Known issues / Roadmap
 ----------------------
 
@@ -250,6 +252,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -281,8 +284,8 @@ Credits
 * Alex Comba <alex.comba@agilebg.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

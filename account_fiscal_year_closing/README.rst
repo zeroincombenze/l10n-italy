@@ -134,6 +134,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 To use this module, you need to:
@@ -235,6 +237,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -393,6 +397,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -425,8 +430,8 @@ Credits
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

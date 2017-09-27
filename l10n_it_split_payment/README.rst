@@ -140,6 +140,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 To use this module, you need to select the correct fiscal position in invoices
@@ -263,6 +265,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -294,8 +297,8 @@ Credits
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

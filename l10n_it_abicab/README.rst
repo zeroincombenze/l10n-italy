@@ -123,6 +123,8 @@ Usage
 
 -----
 
+-----
+
 Known issues / Roadmap
 ----------------------
 
@@ -230,6 +232,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -262,8 +265,8 @@ Credits
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 

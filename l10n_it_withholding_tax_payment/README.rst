@@ -52,6 +52,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 * Go to ...
@@ -102,6 +104,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -114,8 +117,8 @@ Credits
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
-
 ### Maintainer
+
 
 
 
