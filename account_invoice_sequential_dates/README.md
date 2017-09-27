@@ -102,6 +102,8 @@ Usage
 
 -----
 
+-----
+
 Known issues / Roadmap
 ----------------------
 
@@ -170,6 +172,7 @@ Credits
 
 
 
+
 ### Contributors
 
 
@@ -191,8 +194,8 @@ Credits
 
 
 ### Funders
-
 ### Maintainer
+
 
 
 

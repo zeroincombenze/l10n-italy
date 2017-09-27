@@ -10,7 +10,6 @@
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
-
 Odoo Italia Modules
 ===================
 
@@ -39,7 +38,7 @@ addon | version | OCA version | summary
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 7.0.2.0.1 | 0.1 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.0.2.1 | 7.0.0.1.1 | Electronic invoices emission
 [l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.0 | :x: | Italy - Fiscal localization by zeroincombenze(R)
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 0.1 | :repeat: | Italian Localisation - Fiscal Code
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 7.0.0.2.0 | 0.1 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 7.0.1.0.0 | 1.0 | IPA Code (IndicePA)
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 | :repeat: | Italy - Partially Deductible VAT
 [l10n_it_pec](l10n_it_pec/) | 0.1 | :repeat: | Pec Mail
@@ -50,6 +49,7 @@ addon | version | OCA version | summary
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 | :repeat: | Ricevute Bancarie
 [l10n_it_sale](l10n_it_sale/) | 0.2 | :repeat: | Italian Localisation - Sale
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | :repeat: | Split Payment
+[l10n_it_vat_communication](l10n_it_vat_communication/) | 7.0.0.1.0 | :x: | Comunicazione periodica IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 0.2 | :repeat: | Italian Localisation - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 | :repeat: | Italian Localisation - Withholding tax
 
@@ -88,7 +88,10 @@ Test compatibilità OCA e Odoo | :x: | [Errore import decimal precision](https:/
 [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) | :calendar: Normativa IP17,  presentazione della liquidazione IVA in formato xml | :x: Normativa 2016
 [account_invoice_sequential_dates](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_invoice_sequential_dates) | Validazione fatture vendita e acquisti con accavallamento esercizi fiscali | Validazione fatture di vendita; no accavallamento
 [l10n_it_fatturapa](l10n_it_fatturapa/)| :calendar: FatturaPA v1.2 (normativa 2017) | :x: FatturaPA v1.1 (Normativa 2016)
+[l10n_it_fatturapa](l10n_it_fatturapa/)| :white_check_mark: Compatibile con Spesometro | :x: Incompatibile con Spesometro
 [l10n_it_fiscalcode](l10n_it_fiscalcode/)| :white_check_mark: Controllo CF in tempo reale | :x: CF senza controllo
+[l10n_it_fiscalcode](l10n_it_fiscalcode/)| :white_check_mark: Separazione cognome e nome | :x:
+Spesometro | In fase di rilascio | :x: Non disponibile
 
 [//]: # (copyright)
 
@@ -107,6 +110,5 @@ is mainly designed for Italian law and markeplace.
 Everytime, every Odoo DB and customized code can be deployed on local server too.
 
 [//]: # (end copyright)
-
 
 [![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)

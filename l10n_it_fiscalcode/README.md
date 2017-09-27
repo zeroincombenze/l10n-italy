@@ -11,115 +11,61 @@
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
-========================================================================
 
 
-Period End VAT Statement
+Italian Localization - Fiscal Code
+==================================
 
-This module evaluates VAT to pay (or on credit) and generates the electronic
-VAT closeout statement as VAT Authority
-http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
-
-By default, amounts of debit and credit taxes are automatically loaded
-from tax codes of selected periods.
-
-Previous debit or credit is loaded from previous VAT statement, according
-to its payments status.
-
-[How to use](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
+Check for Italian fiscal code. This module enables fiscal code validation
+and/or can generate it form person data.
+Split full name into first and last name, when individual person.
 
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Liquidazione IVA periodica
-==========================
+Localizzazione Italiana - Codice Fiscale
+========================================
 
-Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
-mensili che trimestrali e permette di generare il file della comunicazione
-elettronica come da normativa del 2017 dell'Agenzia delle Entrate
-http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
-
-La liquidazione è calcolata sommando i totali di periodo dei conti imposte.
-
-L'utente può aggiungere l'eventuale credito/debito del periodo precedente e
-calcolare gli interessi; può anche registrare l'utilizzo del credito in
-compensazione.
-
-[Istruzioni di utilizzo](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
+Verifica la validità del codice fiscale durante l'immissione dei dati anagrafici.
+Inoltre permette di generare il codice fiscale dai dati.
+Divide la ragione sociale in cognome e nome nel caso di persone fisiche.
 
 
 Installation
 ------------
 
+* pip install codicefiscale
 
-
-:warning: Since version [7-8].0.1.0.0 of this module, definition schemas are
-moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
-informations.
-
-:warning: A partire dalla versione [7-8].0.1.0.0 di questo modulo, gli schemi
-di definizione sono stati spostati nel modulo l10n_it_ade. Per ulteriori
-informazioni, leggete i documenti relativi al modulo l10n_it_ade.
-
-This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
-
-
-Configuration
--------------
-
-
-Usage
------
-
------
-
------
 
 Known issues / Roadmap
 ----------------------
 
-
-
-:no_entry: Questo modulo sostituisce il modulo OCA
-
-
-Bug Tracker
------------
+:no_entry: This module replace OCA module; PR will be issued
 
 
 Credits
 -------
 
-
-
-[![Odoo Italia Associazione]]
-
-
-
 ### Contributors
 
-
-
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Marco Marchiori <marcomarkiori@gmail.com>
-* Sergio Corato <sergiocorato@gmail.com>
-* Andrei Levin <andrei.levin@didotech.com>
-* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-
+* Davide Corio <davide.corio@domsense.com>
+* Luca Subiaco <subluca@gmail.com>
+* Simone Orsi <simone.orsi@domsense.com>
+* Mario Riva <mario.riva@domsense.com>
+* Mauro Soligo <mauro.soligo@katodo.com>
+* Giovanni Barzan <giovanni.barzan@gmail.com>
+* Lorenzo Battistini <lorenzo.battistini@albatos.com>
+* Roberto Onnis <onnis.roberto@gmail.com>
+* Franco Tampieri <franco.tampieri@agilebg.com>
+* Andrea Cometa <info@andreacometa.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 ### Funders
-### Maintainer
-
-
-
-
-
-Questo modulo è stato sviluppato con il contributo di
 
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
-
+### Maintainer
 
 [![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
 

@@ -7,6 +7,10 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name"
+                           on_change="onchange_name(name, splitmode)" />
+                </field>
                 <xpath expr="//div[@class='oe_title']" position="after">
                     <group attrs="{'invisible': [('individual', '=', False), 
                                                  ('is_company', '=', True)]}">
