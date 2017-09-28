@@ -41,7 +41,7 @@ class WizardVatCommunication(orm.TransientModel):
 
     def set_progressivo_telematico(self, cr, uid, statement, context=None):
         context = context or {}
-        company_id = statement.company_id
+        company_id = statement.company_id.id
         sequence_obj = self.pool['ir.sequence']
         sequence_ids = sequence_obj.search(
             cr, uid, [('name', '=', 'vat_communication'),

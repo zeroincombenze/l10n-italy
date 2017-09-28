@@ -1,41 +1,38 @@
-[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
+[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
 [![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
-[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0)
-[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0)
-[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg)](https://github.com/OCA/l10n-italy/tree/8.0)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/dev)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
+[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0)
+[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0)
+[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg)](https://github.com/OCA/l10n-italy/tree/7.0)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/dev)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 
-Italian Localization - Fiscal Code
-==================================
+Italian Localization - Spesometro2017
+=====================================
 
-Check for Italian fiscal code. This module enables fiscal code validation
-and/or can generate it form person data.
-Split full name into first and last name, when individual person.
-
+Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Localizzazione Italiana - Codice Fiscale
+Localizzazione Italiana - Spesometro2017
 ========================================
 
-Verifica la validità del codice fiscale durante l'immissione dei dati anagrafici.
-Inoltre permette di generare il codice fiscale dai dati.
-Divide la ragione sociale in cognome e nome nel caso di persone fisiche.
-
+Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
+ricevute e genera il file da inviare all'Agenzia delle Entrate.
+Questo obbligo è conosciuto anche come Spesometro 2017 e sostistuisce il
+precedente obbbligo chiamato Spesometro.
 
 Installation
 ------------
 
-* pip install codicefiscale
-* do something like -> service odoo-server restart -u l10n_it_fiscalcode -d MYDB
+* Download modules which this one depend from https://github.com/Odoo-Italia-Associazione/
+* Go to Setup > Module > Install
 
 Configuration
 -------------
@@ -43,10 +40,6 @@ Configuration
 :mute:
 
 Usage
------
-
------
-
 -----
 
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
@@ -67,24 +60,15 @@ Credits
 
 ### Contributors
 
-* Davide Corio <davide.corio@domsense.com>
-* Luca Subiaco <subluca@gmail.com>
-* Simone Orsi <simone.orsi@domsense.com>
-* Mario Riva <mario.riva@domsense.com>
-* Mauro Soligo <mauro.soligo@katodo.com>
-* Giovanni Barzan <giovanni.barzan@gmail.com>
-* Lorenzo Battistini <lorenzo.battistini@albatos.com>
-* Roberto Onnis <onnis.roberto@gmail.com>
-* Franco Tampieri <franco.tampieri@agilebg.com>
-* Andrea Cometa <info@andreacometa.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Andrei Levin <andrei.levin@didotech.com>
 
 ### Funders
 
 This module has been financially supported by
 
-* Agile Business Group sagl <http://www.agilebg.com>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* Didotech srl <http://www.didotech.com>
 
 ### Maintainer
 
