@@ -9,6 +9,7 @@
 import logging
 from openerp.osv import fields, orm
 import decimal_precision as dp
+from l10n_it_ade.ade import ADE_LEGALS
 _logger = logging.getLogger(__name__)
 try:
     import codicefiscale
@@ -28,23 +29,8 @@ class AccountVatCommunication(orm.Model):
                         size=16, required=True,
                         help="CF del soggetto che presenta la comunicazione "
                              "se PF o DI o con la specifica carica"),
-        'codice_carica': fields.selection([
-            ('0', 'Azienda PF (Ditta indivisuale/Professionista/eccetera)'),
-            ('1', 'Legale rappresentante, socio amministratore'),
-            ('2', 'Rappresentante di minore,interdetto,eccetera'),
-            ('3', 'Curatore fallimentare'),
-            ('4', 'Commissario liquidatore'),
-            ('5', 'Custode giudiziario'),
-            ('6', 'Rappresentante fiscale di soggetto non residente'),
-            ('7', 'Erede'),
-            ('8', 'Liquidatore'),
-            ('9', 'Obbligato di soggetto estinto'),
-            ('10', 'Rappresentante fiscale art. 44c3 DLgs 331/93'),
-            ('11', 'Tutore di minore'),
-            ('12', 'Liquidatore di DI'),
-            ('13', 'Amministratore di condominio'),
-            ('14', 'Pubblica Amministrazione'),
-            ('15', 'Commissario PA'), ],
+        'codice_carica': fields.selection(
+            ADE_LEGALS['codice_carica'],
             'Codice carica',),
         'state': fields.selection([
             ('draft', 'Draft'),
