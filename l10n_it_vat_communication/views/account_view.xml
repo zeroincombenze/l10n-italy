@@ -27,10 +27,16 @@
                          <field name="account_vat_communication_dte_line_ids" nolabel="1">
                              <tree editable="bottom" string="Sale invoice Lines">
                                   <field name="partner_id" />
+                                  <field name="xml_IdPaese" />
+                                  <field name="xml_IdCodice" />
+                                  <field name="xml_CodiceFiscale" />
                                   <field name="amount_total" />
                              </tree>
                              <form>
                                   <field name="partner_id" />
+                                  <field name="xml_IdPaese" readonly="1" />
+                                  <field name="xml_IdCodice" readonly="1" />
+                                  <field name="xml_CodiceFiscale" readonly="1" />
                                   <field name="amount_total" />
                              </form>
                          </field>
@@ -39,10 +45,16 @@
                          <field name="account_vat_communication_dtr_line_ids" nolabel="1">
                              <tree editable="bottom" string="Purchase invoice Lines">
                                   <field name="partner_id" />
+                                  <field name="xml_IdPaese" />
+                                  <field name="xml_IdCodice" />
+                                  <field name="xml_CodiceFiscale" />
                                   <field name="amount_total" />
                              </tree>
                              <form>
                                   <field name="partner_id" />
+                                  <field name="xml_IdPaese" readonly="1" />
+                                  <field name="xml_IdCodice" readonly="1" />
+                                  <field name="xml_CodiceFiscale" readonly="1" />
                                   <field name="amount_total" />
                              </form>
                          </field>

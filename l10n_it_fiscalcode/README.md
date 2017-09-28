@@ -40,11 +40,9 @@ Installation
 Configuration
 -------------
 
+:mute:
+
 Usage
------
-
------
-
 -----
 
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
@@ -52,7 +50,7 @@ For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo
 Known issues / Roadmap
 ----------------------
 
-:no_entry: This module replace OCA module; PR will be issued
+:ticket: This module replace OCA module; PR will be issued
 
 
 Bug Tracker

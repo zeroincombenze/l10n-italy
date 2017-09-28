@@ -214,25 +214,164 @@ class AccountVatCommunication(orm.Model):
         return {}
 
 
-class commitment_DTE_line(orm.Model):
+class commitment_line(orm.Model):
+    _name = 'account.vat.communication.line'
+
+    def _idpaese(self, cr, uid, line, arg, context=None):
+        vat = line.partner_id.vat
+        if vat:
+            return vat[0:2]
+        return ''
+
+    def _idcodice(self, cr, uid, line, arg, context=None):
+        vat = line.partner_id.vat
+        if vat:
+            return vat[2:]
+        return ''
+
+    def _codicefiscale(self, cr, uid, line, arg, context=None):
+        return line.partner_id.fiscalcode
+
+    def _tipodocumento(self, cr, uid, line, arg, context=None):
+        doctype = line.partner_id.type
+        if doctype in ('out_invoice', 'in_invoice'):
+            return 'TD01'
+        elif doctype in ('out_refund', 'in_refund'):
+            return 'TD04'
+        return False
+
+
+class commitment_DTE_line(commitment_line):
+
+    def _xml_idpaese(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._idpaese(cr, uid, line, arg, context=None)
+        return res
+
+    def _xml_idcodice(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._idcodice(cr, uid, line, arg, context=None)
+        return res
+
+    def _xml_codicefiscale(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._codicefiscale(cr, uid, line, arg,
+                                               context=None)
+        return res
+
+    def _xml_tipodocumento(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._tipodocumento(cr, uid, line, arg,
+                                               context=None)
+        return res
+
     _name = 'account.vat.communication.dte.line'
     _columns = {
         'commitment_id': fields.many2one(
             'account.vat.communication', 'VAT commitment'),
         'partner_id': fields.many2one(
             'res.partner', 'Partner'),
+        'xml_IdPaese': fields.function(
+            _xml_idpaese,
+            string="Country",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
+        'xml_IdCodice': fields.function(
+            _xml_idcodice,
+            string="Country",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
+        'xml_CodiceFiscale': fields.function(
+            _xml_codicefiscale,
+            string="Fiscalcode",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
+        'xml_TipoDocumento': fields.function(
+            _xml_tipodocumento,
+            string="Document type",
+            help="Values: TD01=invoice, TD04=refund",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
         'amount_total': fields.float(
             'Amount', digits_compute=dp.get_precision('Account')),
     }
 
 
-class commitment_DTR_line(orm.Model):
+class commitment_DTR_line(commitment_line):
+
+    def _xml_idpaese(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._idpaese(cr, uid, line, arg, context=None)
+        return res
+
+    def _xml_idcodice(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._idcodice(cr, uid, line, arg, context=None)
+        return res
+
+    def _xml_codicefiscale(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._codicefiscale(cr, uid, line, arg,
+                                               context=None)
+        return res
+
+    def _xml_tipodocumento(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = self._tipodocumento(cr, uid, line, arg,
+                                               context=None)
+        return res
+
     _name = 'account.vat.communication.dtr.line'
     _columns = {
         'commitment_id': fields.many2one(
             'account.vat.communication', 'VAT commitment'),
         'partner_id': fields.many2one(
             'res.partner', 'Partner'),
+        'xml_IdPaese': fields.function(
+            _xml_idpaese,
+            string="Country",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
+        'xml_IdCodice': fields.function(
+            _xml_idcodice,
+            string="Country",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
+        'xml_CodiceFiscale': fields.function(
+            _xml_codicefiscale,
+            string="Fiscalcode",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
+        'xml_TipoDocumento': fields.function(
+            _xml_tipodocumento,
+            string="Document type",
+            help="Values: TD01=invoice, TD04=refund",
+            type="char",
+            store=True,
+            select=True,
+            readonly=True),
         'amount_total': fields.float(
             'Amount', digits_compute=dp.get_precision('Account')),
     }

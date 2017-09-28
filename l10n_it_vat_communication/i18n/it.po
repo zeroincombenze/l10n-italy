@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 15:24+0000\n"
-"PO-Revision-Date: 2017-09-27 15:24+0000\n"
+"POT-Creation-Date: 2017-09-28 06:05+0000\n"
+"PO-Revision-Date: 2017-09-28 06:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -111,6 +111,14 @@ msgid "Confirmed"
 msgstr "Confermato"
 
 #. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_IdCodice:0
+#: field:account.vat.communication.dte.line,xml_IdPaese:0
+#: field:account.vat.communication.dtr.line,xml_IdCodice:0
+#: field:account.vat.communication.dtr.line,xml_IdPaese:0
+msgid "Country"
+msgstr "Nazione"
+
+#. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
 msgid "Curatore fallimentare"
 msgstr "Curatore fallimentare"
@@ -134,6 +142,12 @@ msgid "Dato errato!"
 msgstr "Dato errato!"
 
 #. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_TipoDocumento:0
+#: field:account.vat.communication.dtr.line,xml_TipoDocumento:0
+msgid "Document type"
+msgstr "Tipo documento"
+
+#. module: l10n_it_vat_communication
 #: selection:account.vat.communication,state:0
 msgid "Draft"
 msgstr "Bozza"
@@ -149,13 +163,13 @@ msgstr "Erede"
 #: code:addons/l10n_it_vat_communication/wizard/remove_period.py:33
 #, python-format
 msgid "Error"
-msgstr "Error"
+msgstr "Errore"
 
 #. module: l10n_it_vat_communication
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:51
 #, python-format
 msgid "Error!"
-msgstr "Error!"
+msgstr "Errore!"
 
 #. module: l10n_it_vat_communication
 #: code:addons/l10n_it_vat_communication/__old_spesometro.py:567
@@ -178,6 +192,12 @@ msgstr "File"
 #: field:wizard.vat.communication,name:0
 msgid "Filename"
 msgstr "Filename"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_CodiceFiscale:0
+#: field:account.vat.communication.dtr.line,xml_CodiceFiscale:0
+msgid "Fiscalcode"
+msgstr "Codice Fiscale"
 
 #. module: l10n_it_vat_communication
 #: view:account.vat.communication:0
@@ -353,6 +373,12 @@ msgid "VAT communications"
 msgstr "Comunicazioni IVA"
 
 #. module: l10n_it_vat_communication
+#: help:account.vat.communication.dte.line,xml_TipoDocumento:0
+#: help:account.vat.communication.dtr.line,xml_TipoDocumento:0
+msgid "Values: TD01=invoice, TD04=refund"
+msgstr "Valori: TD01=fattura, TD04=nota credito"
+
+#. module: l10n_it_vat_communication
 #: view:account.vat.communication:0
 #: model:ir.actions.act_window,name:l10n_it_vat_communication.action_account_vat_communication
 msgid "Vat Communication"
@@ -383,6 +409,13 @@ msgstr "account.vat.communication.dte.line"
 #, python-format
 msgid "account.vat.communication.dtr.line"
 msgstr "account.vat.communication.dtr.line"
+
+#. module: l10n_it_vat_communication
+#: code:_description:0
+#: model:ir.model,name:l10n_it_vat_communication.model_account_vat_communication_line
+#, python-format
+msgid "account.vat.communication.line"
+msgstr "account.vat.communication.line"
 
 #. module: l10n_it_vat_communication
 #: code:_description:0
