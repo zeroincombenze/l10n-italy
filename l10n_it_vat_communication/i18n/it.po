@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 06:05+0000\n"
-"PO-Revision-Date: 2017-09-28 06:05+0000\n"
+"POT-Creation-Date: 2017-09-28 13:15+0000\n"
+"PO-Revision-Date: 2017-09-28 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -111,9 +111,7 @@ msgid "Confirmed"
 msgstr "Confermato"
 
 #. module: l10n_it_vat_communication
-#: field:account.vat.communication.dte.line,xml_IdCodice:0
 #: field:account.vat.communication.dte.line,xml_IdPaese:0
-#: field:account.vat.communication.dtr.line,xml_IdCodice:0
 #: field:account.vat.communication.dtr.line,xml_IdPaese:0
 msgid "Country"
 msgstr "Nazione"
@@ -209,6 +207,12 @@ msgstr "Intestazione"
 #, python-format
 msgid "In presenza di operazione nel qudro SE (Acquisti da San Marino)                         sono ammessi solo periodi mensili/trimestrali"
 msgstr "In presenza di operazione nel qudro SE (Acquisti da San Marino)                         sono ammessi solo periodi mensili/trimestrali"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,invoice_id:0
+#: field:account.vat.communication.dtr.line,invoice_id:0
+msgid "Invoice"
+msgstr "Fattura"
 
 #. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
@@ -350,9 +354,53 @@ msgid "State"
 msgstr "Stato"
 
 #. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_Imposta:0
+#: field:account.vat.communication.dtr.line,xml_Imposta:0
+msgid "Tax"
+msgstr "IVA"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,amount_tax:0
+#: field:account.vat.communication.dtr.line,amount_tax:0
+msgid "Tax amount"
+msgstr "Importo IVA"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_Aliquota:0
+#: field:account.vat.communication.dtr.line,xml_Aliquota:0
+msgid "Tax rate"
+msgstr "Aliquota"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_Natura:0
+#: field:account.vat.communication.dtr.line,xml_Natura:0
+msgid "Tax type"
+msgstr "Natura"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_ImponibileImporto:0
+#: field:account.vat.communication.dtr.line,xml_ImponibileImporto:0
+msgid "Taxable"
+msgstr "Imponibile"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,amount_taxable:0
+#: field:account.vat.communication.dtr.line,amount_taxable:0
+msgid "Taxable amount"
+msgstr "Imponibile/Importo"
+
+#. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
 msgid "Tutore di minore"
 msgstr "Tutore di minore"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,tax_id:0
+#: field:account.vat.communication.dte.line,tax_vat_id:0
+#: field:account.vat.communication.dtr.line,tax_id:0
+#: field:account.vat.communication.dtr.line,tax_vat_id:0
+msgid "VAT code"
+msgstr "Codice IVA"
 
 #. module: l10n_it_vat_communication
 #: field:account.period,vat_commitment_id:0
@@ -371,6 +419,24 @@ msgstr "Enumeratore sequenza comunicazione non impostato!"
 #: model:ir.ui.menu,name:l10n_it_vat_communication.menu_account_vat_communication
 msgid "VAT communications"
 msgstr "Comunicazioni IVA"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_IdCodice:0
+#: field:account.vat.communication.dtr.line,xml_IdCodice:0
+msgid "VAT number"
+msgstr "Partita IVA"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,tax_rate:0
+#: field:account.vat.communication.dtr.line,tax_rate:0
+msgid "VAT rate"
+msgstr "Aliquota"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,tax_type:0
+#: field:account.vat.communication.dtr.line,tax_type:0
+msgid "VAT type"
+msgstr "Natura"
 
 #. module: l10n_it_vat_communication
 #: help:account.vat.communication.dte.line,xml_TipoDocumento:0
