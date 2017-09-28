@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # [2017: SHS-AV s.r.l.] First version
 #
-# from openerp.tools.translate import _
-# import math
-# import decimal_precision as dp
 import logging
 from openerp.osv import fields, orm
 import decimal_precision as dp
@@ -155,22 +153,10 @@ class AccountVatCommunication(orm.Model):
                         tax_tree[type][basevat][left] = False
         return tax_tree
 
-    def load_DTE_DTR(self, cr, uid, commitment, commitment_line_obj,
-                     dte_dtr_id, context=None):
+    def load_invoices(self, cr, uid, commitment, commitment_line_obj,
+                      dte_dtr_id, where, comm_lines, context=None):
+        """Read all in/out invoices and return amount and fiscal parts"""
         invoice_obj = self.pool['account.invoice']
-        period_ids = [x.id for x in commitment.period_ids]
-        company_id = commitment.company_id.id
-        # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
-        where = [('company_id', '=', company_id),
-                 ('period_id', 'in', period_ids)]
-        if dte_dtr_id == 'DTE':
-            where.append(('type', '=', 'out_invoice'))
-        elif dte_dtr_id == 'DTR':
-            where.append(('type', '=', 'in_invoice'))
-        else:
-            return
-
-        comm_lines = {}
         for invoice_id in invoice_obj.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_obj.browse(cr, uid, invoice_id)
@@ -203,7 +189,25 @@ class AccountVatCommunication(orm.Model):
                 comm_lines[invoice_id] = {}
                 comm_lines[invoice_id]['partner_id'] = invoice.partner_id.id
                 comm_lines[invoice_id]['taxes'] = inv_line
+        return comm_lines
 
+    def load_DTE_DTR(self, cr, uid, commitment, commitment_line_obj,
+                     dte_dtr_id, context=None):
+        period_ids = [x.id for x in commitment.period_ids]
+        company_id = commitment.company_id.id
+        # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
+        where = [('company_id', '=', company_id),
+                 ('period_id', 'in', period_ids)]
+        if dte_dtr_id == 'DTE':
+            where.append(('type', 'in', ['out_invoice', 'out_refund']))
+        elif dte_dtr_id == 'DTR':
+            where.append(('type', 'in', ['in_invoice', 'in_refund']))
+        else:
+            return
+
+        comm_lines = self.load_invoices(cr, uid,
+                                        commitment, commitment_line_obj,
+                                        dte_dtr_id, where, {}, context)
         if comm_lines:
             for line_id in commitment_line_obj.search(
                 cr, uid, [('commitment_id', '=', commitment.id),
@@ -304,61 +308,52 @@ class AccountVatCommunication(orm.Model):
 class commitment_line(orm.Model):
     _name = 'account.vat.communication.line'
 
-    def _idpaese(self, cr, uid, line, arg, context=None):
+    def _paese_codice(self, cr, uid, line, arg, context=None):
         vat = line.partner_id.vat
-        if vat:
-            return vat[0:2]
-        return ''
+        return {'xml_IdPaese': vat and vat[0:2] or '',
+                'xml_IdCodice': vat and vat[2:] or ''}
 
-    def _idcodice(self, cr, uid, line, arg, context=None):
-        vat = line.partner_id.vat
-        if vat:
-            return vat[2:]
-        return ''
+    def _dati_line(self, cr, uid, line, arg, context=None):
+        if line.partner_id.individual or line.partner_id.fiscalcode:
+            res = {'xml_CodiceFiscale': line.partner_id.fiscalcode}
+        else:
+            res = {'xml_CodiceFiscale':
+                   line.partner_id.vat and line.partner_id.vat[2:] or ''}
+        res['xml_ImponibileImporto'] = line.amount_taxable
+        res['xml_Imposta'] = line.amount_tax
+        res['xml_Aliquota'] = line.tax_rate
+        res['xml_Natura'] = line.tax_type
+        return res
 
     def _codicefiscale(self, cr, uid, line, arg, context=None):
-        return line.partner_id.fiscalcode
+        if line.partner_id.individual or line.partner_id.fiscalcode:
+            return line.partner_id.fiscalcode
+        else:
+            return line.partner_id.vat and line.partner_id.vat[2:] or ''
 
     def _tipodocumento(self, cr, uid, line, arg, context=None):
-        doctype = line.partner_id.type
+        doctype = line.invoice_id.type
         if doctype in ('out_invoice', 'in_invoice'):
             return 'TD01'
         elif doctype in ('out_refund', 'in_refund'):
             return 'TD04'
         return False
 
-    def _imponibileimporto(self, cr, uid, line, arg, context=None):
-        return line.amount_taxable
-
-    def _imposta(self, cr, uid, line, arg, context=None):
-        return line.amount_tax
-
-    def _aliquota(self, cr, uid, line, arg, context=None):
-        return line.tax_rate
-
-    def _natura(self, cr, uid, line, arg, context=None):
-        return line.tax_type
-
 
 class commitment_DTE_line(commitment_line):
+    _name = 'account.vat.communication.dte.line'
 
-    def _xml_idpaese(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_paese_codice(self, cr, uid, ids, fname, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._idpaese(cr, uid, line, arg, context=None)
+            res[line.id] = self._paese_codice(cr, uid, line, arg, context=None)
         return res
 
-    def _xml_idcodice(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_line(self, cr, uid, ids, fname, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._idcodice(cr, uid, line, arg, context=None)
-        return res
-
-    def _xml_codicefiscale(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._codicefiscale(cr, uid, line, arg,
-                                               context=None)
+            res[line.id] = self._dati_line(cr, uid, line, arg,
+                                           context=None)
         return res
 
     def _xml_tipodocumento(self, cr, uid, ids, fname, arg, context=None):
@@ -368,32 +363,6 @@ class commitment_DTE_line(commitment_line):
                                                context=None)
         return res
 
-    def _xml_imponibileimporto(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._imponibileimporto(cr, uid, line, arg,
-                                                   context=None)
-        return res
-
-    def _xml_imposta(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._imposta(cr, uid, line, arg, context=None)
-        return res
-
-    def _xml_aliquota(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._aliquota(cr, uid, line, arg, context=None)
-        return res
-
-    def _xml_natura(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._natura(cr, uid, line, arg, context=None)
-        return res
-
-    _name = 'account.vat.communication.dte.line'
     _columns = {
         'commitment_id': fields.many2one(
             'account.vat.communication', 'VAT commitment'),
@@ -413,25 +382,34 @@ class commitment_DTE_line(commitment_line):
         'tax_type': fields.char(
             'VAT type',
             readony=True),
+        'amount_total': fields.float(
+            'Amount', digits_compute=dp.get_precision('Account')),
+        'amount_taxable': fields.float(
+            'Taxable amount', digits_compute=dp.get_precision('Account')),
+        'amount_tax': fields.float(
+            'Tax amount', digits_compute=dp.get_precision('Account')),
         'xml_IdPaese': fields.function(
-            _xml_idpaese,
+            _xml_paese_codice,
             string="Country",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_IdCodice': fields.function(
-            _xml_idcodice,
+            _xml_paese_codice,
             string="VAT number",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_CodiceFiscale': fields.function(
-            _xml_codicefiscale,
+            _xml_dati_line,
             string="Fiscalcode",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_TipoDocumento': fields.function(
@@ -439,65 +417,59 @@ class commitment_DTE_line(commitment_line):
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_ImponibileImporto': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Taxable",
             type="float",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_Imposta': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Tax",
             type="float",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_Aliquota': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Tax rate",
             type="float",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_Natura': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Tax type",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
-        'amount_total': fields.float(
-            'Amount', digits_compute=dp.get_precision('Account')),
-        'amount_taxable': fields.float(
-            'Taxable amount', digits_compute=dp.get_precision('Account')),
-        'amount_tax': fields.float(
-            'Tax amount', digits_compute=dp.get_precision('Account')),
     }
 
 
 class commitment_DTR_line(commitment_line):
+    _name = 'account.vat.communication.dtr.line'
 
-    def _xml_idpaese(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_paese_codice(self, cr, uid, ids, fname, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._idpaese(cr, uid, line, arg, context=None)
+            res[line.id] = self._paese_codice(cr, uid, line, arg, context=None)
         return res
 
-    def _xml_idcodice(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_line(self, cr, uid, ids, fname, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._idcodice(cr, uid, line, arg, context=None)
-        return res
-
-    def _xml_codicefiscale(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._codicefiscale(cr, uid, line, arg,
-                                               context=None)
+            res[line.id] = self._dati_line(cr, uid, line, arg,
+                                           context=None)
         return res
 
     def _xml_tipodocumento(self, cr, uid, ids, fname, arg, context=None):
@@ -507,32 +479,6 @@ class commitment_DTR_line(commitment_line):
                                                context=None)
         return res
 
-    def _xml_imponibileimporto(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._imponibileimporto(cr, uid, line, arg,
-                                                   context=None)
-        return res
-
-    def _xml_imposta(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._imposta(cr, uid, line, arg, context=None)
-        return res
-
-    def _xml_aliquota(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._aliquota(cr, uid, line, arg, context=None)
-        return res
-
-    def _xml_natura(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._natura(cr, uid, line, arg, context=None)
-        return res
-
-    _name = 'account.vat.communication.dtr.line'
     _columns = {
         'commitment_id': fields.many2one(
             'account.vat.communication', 'VAT commitment'),
@@ -552,25 +498,34 @@ class commitment_DTR_line(commitment_line):
         'tax_type': fields.char(
             'VAT type',
             readony=True),
+        'amount_total': fields.float(
+            'Amount', digits_compute=dp.get_precision('Account')),
+        'amount_taxable': fields.float(
+            'Taxable amount', digits_compute=dp.get_precision('Account')),
+        'amount_tax': fields.float(
+            'Tax amount', digits_compute=dp.get_precision('Account')),
         'xml_IdPaese': fields.function(
-            _xml_idpaese,
+            _xml_paese_codice,
             string="Country",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_IdCodice': fields.function(
-            _xml_idcodice,
+            _xml_paese_codice,
             string="VAT number",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_CodiceFiscale': fields.function(
-            _xml_codicefiscale,
+            _xml_dati_line,
             string="Fiscalcode",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_TipoDocumento': fields.function(
@@ -578,43 +533,42 @@ class commitment_DTR_line(commitment_line):
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_ImponibileImporto': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Taxable",
             type="float",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_Imposta': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Tax",
             type="float",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_Aliquota': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Tax rate",
             type="float",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
         'xml_Natura': fields.function(
-            _xml_tipodocumento,
+            _xml_dati_line,
             string="Tax type",
             type="char",
-            store=True,
+            multi=True,
+            store=False,
             select=True,
             readonly=True),
-        'amount_total': fields.float(
-            'Amount', digits_compute=dp.get_precision('Account')),
-        'amount_taxable': fields.float(
-            'Taxable amount', digits_compute=dp.get_precision('Account')),
-        'amount_tax': fields.float(
-            'Tax amount', digits_compute=dp.get_precision('Account')),
     }
 
 

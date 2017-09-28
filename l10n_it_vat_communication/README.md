@@ -31,7 +31,7 @@ precedente obbbligo chiamato Spesometro.
 Installation
 ------------
 
-* Download modules which this one depend from https://github.com/Odoo-Italia-Associazione/
+* git clone https://github.com/zeroincombenze/l10n-italy
 * Go to Setup > Module > Install
 
 Configuration
@@ -47,7 +47,11 @@ For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo
 Known issues / Roadmap
 ----------------------
 
-:ticket: This module replace OCA module; PR will be issued
+:ticket: This module replacea OCA module; PR will be issued.
+In order to use this module you have to use:
+
+* [l10n_it_ade](l10n_it_ade/) replaces OCA module
+* [l10n_it_fiscalcode](l10n_it_fiscalcode/) replaces OCA module
 
 
 Bug Tracker
