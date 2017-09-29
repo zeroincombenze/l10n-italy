@@ -34,6 +34,7 @@ Divide la ragione sociale in cognome e nome nel caso di persone fisiche.
 Installation
 ------------
 
+* git clone https://github.com/zeroincombenze/l10n-italy
 * pip install codicefiscale
 * do something like -> service odoo-server restart -u l10n_it_fiscalcode -d MYDB
 

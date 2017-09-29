@@ -9,9 +9,9 @@
 import logging
 from openerp.osv import fields, orm
 import decimal_precision as dp
-from l10n_it_ade.ade import ADE_LEGALS
 _logger = logging.getLogger(__name__)
 try:
+    from l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)
@@ -30,7 +30,7 @@ class AccountVatCommunication(orm.Model):
                         help="CF del soggetto che presenta la comunicazione "
                              "se PF o DI o con la specifica carica"),
         'codice_carica': fields.selection(
-            ADE_LEGALS['codice_carica'],
+            ade.ADE_LEGALS['codice_carica'],
             'Codice carica',),
         'state': fields.selection([
             ('draft', 'Draft'),
@@ -143,6 +143,7 @@ class AccountVatCommunication(orm.Model):
                       dte_dtr_id, where, comm_lines, context=None):
         """Read all in/out invoices and return amount and fiscal parts"""
         invoice_obj = self.pool['account.invoice']
+        account_tax_obj = self.pool['account.tax']
         for invoice_id in invoice_obj.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_obj.browse(cr, uid, invoice_id)
@@ -152,7 +153,10 @@ class AccountVatCommunication(orm.Model):
                 if invoice_tax.tax_code_id:
                     taxbase_id = invoice_tax.tax_code_id.id
                     tax_vat_id = False
-                    for vat in invoice_tax.tax_code_id.tax_ids:
+                    # for vat in invoice_tax.tax_code_id.tax_ids:
+                    for vat_id in account_tax_obj.search(
+                            cr, uid, [('tax_code_id', '=', taxbase_id)]):
+                        vat = account_tax_obj.browse(cr, uid, vat_id)
                         if vat and vat.amount > tax_rate:
                             tax_rate = vat.amount
                 else:
@@ -179,11 +183,15 @@ class AccountVatCommunication(orm.Model):
 
     def load_DTE_DTR(self, cr, uid, commitment, commitment_line_obj,
                      dte_dtr_id, context=None):
+        journal_obj = self.pool['account.journal']
+        exclude_journal_ids = journal_obj.search(
+            cr, uid, [('rev_charge', '=', False)])
         period_ids = [x.id for x in commitment.period_ids]
         company_id = commitment.company_id.id
         # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
         where = [('company_id', '=', company_id),
-                 ('period_id', 'in', period_ids)]
+                 ('period_id', 'in', period_ids),
+                 ('journal_id', 'not in', exclude_journal_ids)]
         if dte_dtr_id == 'DTE':
             where.append(('type', 'in', ['out_invoice', 'out_refund']))
         elif dte_dtr_id == 'DTR':

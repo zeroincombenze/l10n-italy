@@ -49,7 +49,7 @@ addon | version | OCA version | summary
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 | :repeat: | Ricevute Bancarie
 [l10n_it_sale](l10n_it_sale/) | 0.2 | :repeat: | Italian Localisation - Sale
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | :repeat: | Split Payment
-[l10n_it_vat_communication](l10n_it_vat_communication/) | 7.0.0.1.0 | :x: | Comunicazione periodica IVA
+[l10n_it_vat_communication](l10n_it_vat_communication/) | 7.0.0.1.0.18 | :x: | Comunicazione periodica IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 0.2 | :repeat: | Italian Localisation - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 | :repeat: | Italian Localisation - Withholding tax
 

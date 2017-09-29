@@ -6,7 +6,7 @@
 # [2017: SHS-AV s.r.l.] First version
 {
     "name": "Comunicazione periodica IVA",
-    "version": "7.0.0.1.0.17",
+    "version": "7.0.0.1.0.19",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
@@ -42,6 +42,7 @@ Questa comunicazione è anche conosciuta come Spesometro 2017.
              'views/remove_period.xml',
              'views/account_view.xml',
              'views/wizard_export_view.xml',
+             'views/account_journal.xml',
              'security/ir.model.access.csv',
              'communication_workflow.xml',
              ],

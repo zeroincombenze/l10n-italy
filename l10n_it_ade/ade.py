@@ -33,6 +33,16 @@ ADE_LEGALS = {
         ('13', 'Amministratore di condominio'),
         ('14', 'Pubblica Amministrazione'),
         ('15', 'Commissario PA')],
+    'ade_natura': [
+        ('', 'Imponibili'),
+        ('N1', 'Escluse ex art. 15'),
+        ('N2', 'Non soggette'),
+        ('N3', 'Non imponibili'),
+        ('N4', 'Esenti'),
+        ('N5', 'Regime del margine / IVA non esposta in fattura'),
+        ('N6', 'Reverse charge/autofatturazione'),
+        ('N7', 'IVA assolta in altro stato UE'),
+        ('FC', 'Fuori campo IVA')],
 }
 
 
