@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 13:15+0000\n"
-"PO-Revision-Date: 2017-09-28 13:15+0000\n"
+"POT-Creation-Date: 2017-09-29 07:29+0000\n"
+"PO-Revision-Date: 2017-09-29 07:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,11 @@ msgstr "CF del soggetto che presenta la comunicazione se PF o DI o con la specif
 #: view:wizard.vat.communication:0
 msgid "Cancel"
 msgstr "Cancella"
+
+#. module: l10n_it_vat_communication
+#: help:account.journal,rev_charge:0
+msgid "Check if reverse charge EU invoices journal"
+msgstr "Check if reverse charge EU invoices journal"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication,codice_carica:0
@@ -215,6 +220,13 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_vat_communication
+#: code:_description:0
+#: model:ir.model,name:l10n_it_vat_communication.model_account_journal
+#, python-format
+msgid "Journal"
+msgstr "Registro"
+
+#. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
 msgid "Legale rappresentante, socio amministratore"
 msgstr "Legale rappresentante, socio amministratore"
@@ -311,6 +323,11 @@ msgid "Rappresentante fiscale di soggetto non residente"
 msgstr "Rappresentante fiscale di soggetto non residente"
 
 #. module: l10n_it_vat_communication
+#: view:account.vat.communication:0
+msgid "Recompute amounts"
+msgstr "Ricalcola importi"
+
+#. module: l10n_it_vat_communication
 #: view:remove.period.from.vat.commitment:0
 msgid "Remove"
 msgstr "Rimuovi"
@@ -321,6 +338,11 @@ msgstr "Rimuovi"
 #: view:remove.period.from.vat.commitment:0
 msgid "Remove period"
 msgstr "Rimuovi periodo"
+
+#. module: l10n_it_vat_communication
+#: field:account.journal,rev_charge:0
+msgid "Reverse Charge Journal"
+msgstr "Registro autofatture"
 
 #. module: l10n_it_vat_communication
 #: view:account.vat.communication:0

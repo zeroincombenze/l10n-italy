@@ -6,3 +6,4 @@
 # [2017: SHS-AV s.r.l.] First version
 #
 from . import account
+from . import account_journal

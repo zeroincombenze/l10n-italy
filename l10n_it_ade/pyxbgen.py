@@ -12,12 +12,10 @@ import sys
 import os
 
 
-__version__ = '0.1.5.2'
+__version__ = '0.1.5.1'
 
 
-def wash_source(lines, kind, source):
-    if source[0:9] != 'fatturapa':
-        return
+def wash_source(lines, kind):
     lineno = 0
     # TODO: patch fatturapa for OCA compatiblity, may not work in the future
     patch = 0
@@ -54,16 +52,6 @@ def main(args):
         fd.close()
         lines = source.split('\n')
         saved_lines = []
-        # prior_line = ''
-        # for line in lines:
-        #     if lines[lineno][0:11] == 'import pyxb':
-        #         if prior_line:
-        #             saved_lines.append(prior_line)
-        #         saved_lines.append(line)
-        #     elif line[0] == '#':
-        #         prior_line = ''
-        #     else:
-        #         prior_line = ''
         state = 0
         lineno = 0
         RELCMNDIR = args[1]
@@ -97,21 +85,13 @@ def main(args):
                         saved_lines.append(lines[lineno])
                         del lines[lineno]
                         lineno -= 1
-                    elif state > 1:
-                        lines.insert(lineno,
-                                     'try:')
-                        lineno += 1
-                        lines[lineno] = '    %s' % lines[lineno]
-                        lineno += 1
-                        lines.insert(lineno,
-                                     'except ImportError as err:')
-                        lineno += 1
-                        lines.insert(lineno,
-                                     '    _logger.debug(err)')
                 elif lines[lineno][0:10] == 'import _cm' or \
                         lines[lineno][0:10] == 'import _ds':
                     lines[lineno] = 'from . %s' % lines[lineno]
             elif state == 1:
+                # lines.insert(lineno,
+                #              '# from openerp import addons')
+                # lineno += 1
                 lines.insert(lineno,
                              '_logger = logging.getLogger(__name__)')
                 lineno += 1
@@ -128,6 +108,15 @@ def main(args):
                 lines.insert(lineno,
                              '    _logger.debug(err)')
                 lineno += 1
+                # lines.insert(lineno,
+                #              '# common = addons.get_module_resource(\'l10n_it_fatturapa\')')
+                # lineno += 1
+                # lines.insert(lineno,
+                #              '# if not common:')
+                # lineno += 1
+                # lines.insert(lineno,
+                #              '# common = \'../data/common\'')
+                # lineno += 1
                 lines.insert(lineno,
                              '')
                 lineno += 1
@@ -136,7 +125,7 @@ def main(args):
                 if lines[lineno].find(ABSCMNDIR) >= 0:
                     lines[lineno] = lines[lineno].replace(ABSCMNDIR, RELCMNDIR)
             lineno += 1
-        wash_source(lines, args[2], args[0])
+        wash_source(lines, args[2])
         fd = open(args[0], 'w')
         fd.write(''.join('%s\n' % l for l in lines))
         fd.close() 
