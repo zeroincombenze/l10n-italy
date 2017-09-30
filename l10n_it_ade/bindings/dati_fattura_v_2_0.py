@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./dati_fattura_v_2_0.py
 # PyXB bindings for NM:c8403c44c9a54a32bd3b5aec75a6504db99822c4
-# Generated 2017-09-22 16:54:15.193895 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2017-09-30 13:52:53.191379 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0
 from __future__ import unicode_literals
@@ -22,7 +22,7 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:dd60366c-9fa5-11e7-a24e-005056ba06a2')
+    'urn:uuid:da854eb0-a5d5-11e7-b447-005056ba06a2')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -31,8 +31,11 @@ if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
 # Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
 from . import _ds as _ImportedBinding__ds
+try:
+    import pyxb.binding.datatypes
+except ImportError as err:
+    _logger.debug(err)
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
@@ -138,14 +141,14 @@ class NazioneITType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumerati
     _Documentation = None
 
 
-NazioneITType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(2))
 NazioneITType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=NazioneITType, enum_prefix=None)
 NazioneITType.IT = NazioneITType._CF_enumeration.addEnumeration(
     unicode_value='IT', tag='IT')
-NazioneITType._InitializeFacetMap(NazioneITType._CF_length,
-                                  NazioneITType._CF_enumeration)
+NazioneITType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(2))
+NazioneITType._InitializeFacetMap(NazioneITType._CF_enumeration,
+                                  NazioneITType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'NazioneITType', NazioneITType)
 
 # Atomic simple type:
@@ -264,8 +267,6 @@ class TipoDocumentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     _Documentation = None
 
 
-TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=TipoDocumentoType, enum_prefix=None)
 TipoDocumentoType.TD01 = TipoDocumentoType._CF_enumeration.addEnumeration(
@@ -282,8 +283,10 @@ TipoDocumentoType.TD10 = TipoDocumentoType._CF_enumeration.addEnumeration(
     unicode_value='TD10', tag='TD10')
 TipoDocumentoType.TD11 = TipoDocumentoType._CF_enumeration.addEnumeration(
     unicode_value='TD11', tag='TD11')
-TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_length,
-                                      TipoDocumentoType._CF_enumeration)
+TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
+TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_enumeration,
+                                      TipoDocumentoType._CF_length)
 Namespace.addCategoryObject(
     'typeBinding', 'TipoDocumentoType', TipoDocumentoType)
 
@@ -320,12 +323,12 @@ class PosizioneType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-PosizioneType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(9999999))
 PosizioneType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(1))
-PosizioneType._InitializeFacetMap(PosizioneType._CF_maxInclusive,
-                                  PosizioneType._CF_minInclusive)
+PosizioneType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
+    value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(9999999))
+PosizioneType._InitializeFacetMap(PosizioneType._CF_minInclusive,
+                                  PosizioneType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'PosizioneType', PosizioneType)
 
 # Atomic simple type:
@@ -342,12 +345,12 @@ class CaricaType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-CaricaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(15))
 CaricaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(1))
-CaricaType._InitializeFacetMap(CaricaType._CF_maxInclusive,
-                               CaricaType._CF_minInclusive)
+CaricaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
+    value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(15))
+CaricaType._InitializeFacetMap(CaricaType._CF_minInclusive,
+                               CaricaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'CaricaType', CaricaType)
 
 # Atomic simple type:
@@ -463,14 +466,14 @@ class VersioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeratio
     _Documentation = None
 
 
-VersioneType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(5))
 VersioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=VersioneType, enum_prefix=None)
 VersioneType.DAT20 = VersioneType._CF_enumeration.addEnumeration(
     unicode_value='DAT20', tag='DAT20')
-VersioneType._InitializeFacetMap(VersioneType._CF_length,
-                                 VersioneType._CF_enumeration)
+VersioneType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(5))
+VersioneType._InitializeFacetMap(VersioneType._CF_enumeration,
+                                 VersioneType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'VersioneType', VersioneType)
 
 # Atomic simple type:
@@ -520,14 +523,14 @@ class DeducibileType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumerat
     _Documentation = None
 
 
-DeducibileType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(2))
 DeducibileType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=DeducibileType, enum_prefix=None)
 DeducibileType.SI = DeducibileType._CF_enumeration.addEnumeration(
     unicode_value='SI', tag='SI')
-DeducibileType._InitializeFacetMap(DeducibileType._CF_length,
-                                   DeducibileType._CF_enumeration)
+DeducibileType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(2))
+DeducibileType._InitializeFacetMap(DeducibileType._CF_enumeration,
+                                   DeducibileType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DeducibileType', DeducibileType)
 
 # Atomic simple type:
@@ -545,8 +548,6 @@ class EsigibilitaIVAType (pyxb.binding.datatypes.string, pyxb.binding.basis.enum
     _Documentation = None
 
 
-EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
-    value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=EsigibilitaIVAType, enum_prefix=None)
 EsigibilitaIVAType.D = EsigibilitaIVAType._CF_enumeration.addEnumeration(
@@ -555,10 +556,12 @@ EsigibilitaIVAType.I = EsigibilitaIVAType._CF_enumeration.addEnumeration(
     unicode_value='I', tag='I')
 EsigibilitaIVAType.S = EsigibilitaIVAType._CF_enumeration.addEnumeration(
     unicode_value='S', tag='S')
+EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+    value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_maxLength,
-                                       EsigibilitaIVAType._CF_enumeration,
+EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_enumeration,
+                                       EsigibilitaIVAType._CF_maxLength,
                                        EsigibilitaIVAType._CF_minLength)
 Namespace.addCategoryObject(
     'typeBinding', 'EsigibilitaIVAType', EsigibilitaIVAType)

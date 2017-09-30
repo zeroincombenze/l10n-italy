@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./_ds.py
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2017-09-22 16:54:15.193481 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2017-09-30 13:52:53.190659 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 from __future__ import unicode_literals
@@ -22,7 +22,7 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:dd60366c-9fa5-11e7-a24e-005056ba06a2')
+    'urn:uuid:da854eb0-a5d5-11e7-b447-005056ba06a2')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -31,7 +31,10 @@ if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
 # Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
+try:
+    import pyxb.binding.datatypes
+except ImportError as err:
+    _logger.debug(err)
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(

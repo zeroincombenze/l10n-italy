@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./_cm.py
 # PyXB bindings for NM:6d05a298a781c71d177aab761a79c5e637d7f467
-# Generated 2017-09-22 16:54:15.194578 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2017-09-30 13:52:53.191790 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
 from __future__ import unicode_literals
@@ -22,7 +22,7 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:dd60366c-9fa5-11e7-a24e-005056ba06a2')
+    'urn:uuid:da854eb0-a5d5-11e7-b447-005056ba06a2')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -31,7 +31,10 @@ if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
 # Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
+try:
+    import pyxb.binding.datatypes
+except ImportError as err:
+    _logger.debug(err)
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
@@ -946,9 +949,9 @@ class PR_Type (pyxb.binding.basis.STD_union):
     _MemberTypes = (ProvincieItaliane, )
 
 
+PR_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PR_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=PR_Type)
-PR_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PR_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
 PR_Type.AL = 'AL'                                 # originally ProvincieItaliane.AL
 PR_Type.AN = 'AN'                                 # originally ProvincieItaliane.AN
@@ -1059,8 +1062,8 @@ PR_Type.VR = 'VR'                                 # originally ProvincieItaliane
 PR_Type.VS = 'VS'                                 # originally ProvincieItaliane.VS
 PR_Type.VT = 'VT'                                 # originally ProvincieItaliane.VT
 PR_Type.VV = 'VV'                                 # originally ProvincieItaliane.VV
-PR_Type._InitializeFacetMap(PR_Type._CF_enumeration,
-                            PR_Type._CF_pattern)
+PR_Type._InitializeFacetMap(PR_Type._CF_pattern,
+                            PR_Type._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'PR_Type', PR_Type)
 
 # Union simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}PN_Type
@@ -1079,9 +1082,9 @@ class PN_Type (pyxb.binding.basis.STD_union):
     _MemberTypes = (ProvincieItaliane, ProvincieCroate, Estero, )
 
 
+PN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PN_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=PN_Type)
-PN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PN_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
 PN_Type.AL = 'AL'                                 # originally ProvincieItaliane.AL
 PN_Type.AN = 'AN'                                 # originally ProvincieItaliane.AN
@@ -1196,8 +1199,8 @@ PN_Type.FU = 'FU'                                 # originally ProvincieCroate.F
 PN_Type.PL = 'PL'                                 # originally ProvincieCroate.PL
 PN_Type.ZA = 'ZA'                                 # originally ProvincieCroate.ZA
 PN_Type.EE = 'EE'                                 # originally Estero.EE
-PN_Type._InitializeFacetMap(PN_Type._CF_enumeration,
-                            PN_Type._CF_pattern)
+PN_Type._InitializeFacetMap(PN_Type._CF_pattern,
+                            PN_Type._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'PN_Type', PN_Type)
 
 # Union simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}PE_Type
@@ -1216,9 +1219,9 @@ class PE_Type (pyxb.binding.basis.STD_union):
     _MemberTypes = (ProvincieItaliane, Estero, )
 
 
+PE_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PE_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=PE_Type)
-PE_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PE_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
 PE_Type.AL = 'AL'                                 # originally ProvincieItaliane.AL
 PE_Type.AN = 'AN'                                 # originally ProvincieItaliane.AN
@@ -1330,8 +1333,8 @@ PE_Type.VS = 'VS'                                 # originally ProvincieItaliane
 PE_Type.VT = 'VT'                                 # originally ProvincieItaliane.VT
 PE_Type.VV = 'VV'                                 # originally ProvincieItaliane.VV
 PE_Type.EE = 'EE'                                 # originally Estero.EE
-PE_Type._InitializeFacetMap(PE_Type._CF_enumeration,
-                            PE_Type._CF_pattern)
+PE_Type._InitializeFacetMap(PE_Type._CF_pattern,
+                            PE_Type._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'PE_Type', PE_Type)
 
 # Complex type

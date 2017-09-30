@@ -5,7 +5,7 @@
 #
 {
     "name": "Base xml Agenzia delle Entrate",
-    "version": "7.0.0.1.1",
+    "version": "7.0.0.1.2",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
