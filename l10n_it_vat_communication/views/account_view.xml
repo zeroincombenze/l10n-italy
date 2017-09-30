@@ -12,11 +12,13 @@
                 <field name="state" select="1"/>
                 <notebook colspan="4">
                     <page string="Header">
-                        <field name="progressivo_telematico" colspan="4" readonly="1"/>
-                        <field name="soggetto_codice_fiscale" colspan="2"
-                               on_change="onchange_fiscalcode(soggetto_codice_fiscale,
+                        <group colspan="4">
+                            <field name="progressivo_telematico" colspan="2" readonly="1"/>
+                            <field name="soggetto_codice_fiscale" colspan="1"
+                                   on_change="onchange_fiscalcode(soggetto_codice_fiscale,
                                                               'soggetto_codice_fiscale')" />
-                        <field name="codice_carica" colspan="2"/>
+                            <field name="codice_carica" colspan="1"/>
+                        </group>
                     </page>
                     <page string="Periods">
                         <button type='action' name="%(action_add_period)d" string="Add period" colspan="1" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"></button>

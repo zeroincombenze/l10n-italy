@@ -9,6 +9,7 @@ from openerp.tests.common import TransactionCase
 # from openerp import netsvc
 
 
+COMPANY_IT_VAT = 'IT12345670017'
 UT_FISCALCODE = 'VGLNTN59H26B963V'
 UT_CODICE_CARICA = '1'
 
@@ -38,12 +39,28 @@ class TestCommunication(TransactionCase):
                                          self.uid,
                                          values)
 
-    # def setUp(self):
-    #     self.setup_company()
+    #
+    # Because other modules have created invoices and other data, there is no
+    # way to know invoices and amounts in the main company.
+    # Create a new company with know data in it.
+    #
+    def setup_company(self):
+        import pdb
+        pdb.set_trace()
+        model = 'res.company'
+        self.company_IT_id = self.create789(
+            model, {'name': 'My Company S.p.A.',
+                    'address': 'Via del Campo, 1',
+                    'zip': '10121',
+                    'city': 'Torino',
+                    'vat': COMPANY_IT_VAT,
+                    })
+        # country_IT = ref789(self, 'base.it')
+        # self.write789(model, self.company_IT_id,
+        #               {'state_id': ''})
 
     def test_vat_communication(self):
         self.vat_communication_id = self.create789(
             'account.vat.communication',
             {'soggetto_codice_fiscale': UT_FISCALCODE,
              'codice_carica': UT_CODICE_CARICA})
-        pass

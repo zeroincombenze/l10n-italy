@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./fatturapa_v_1_2.py
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2017-09-23 15:14:05.542796 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2017-09-30 13:52:53.191058 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 from __future__ import unicode_literals
@@ -22,7 +22,7 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:09bfd26a-a061-11e7-b7c4-005056ba06a2')
+    'urn:uuid:da854eb0-a5d5-11e7-b447-005056ba06a2')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'

@@ -23,7 +23,7 @@ if [ -z "$Z0LIBDIR" ]; then
   exit 2
 fi
 
-__version__=0.1.5.1
+__version__=0.1.5.2
 
 
 OPTOPTS=(h        k        l        n           O       p          q            u       V           v           x)
@@ -35,7 +35,7 @@ OPTHELP=("this help"\
  "keep temporary files"\
  "list xml schemas and module names"\
  "do nothing (dry-run)"\
- "generate fatturapa OCA compatible"\
+ "OCA compatible (convert numeric type to string)"\
  "do not apply pep8"\
  "silent mode"\
  "execute uri Agenzia delle Entrate"\
@@ -74,8 +74,8 @@ done
 cmd=
 mdl=
 grpl=
-OCA_fatturapa=
-if [ $opt_OCA -ne 0 ]; then OCA_fatturapa="OCA"; fi
+OCA_binding=
+if [ $opt_OCA -ne 0 ]; then OCA_binding="OCA"; fi
 BINDINGS=$TDIR/bindings
 SCHEMAS=../data
 if [ $opt_list -eq 0 ]; then
@@ -150,8 +150,9 @@ if [ $opt_list -eq 0 ]; then
   fi
   for f in _cm _ds $mdl; do
     fn=$f.py
-    [ $opt_verbose -ne 0 ] && echo "\$ $TDIR/pyxbgen.py $fn $SCHEMAS $OCA_fatturapa"
-    [ $opt_dry_run -ne 0 ] || eval $TDIR/pyxbgen.py $fn $SCHEMAS "$OCA_fatturapa"
+    [ $opt_verbose -ne 0 ] && echo "\$ $TDIR/pyxbgen.py $fn $SCHEMAS $OCA_binding"
+    [ $opt_dry_run -ne 0 -a $opt_keep -ne 0 ] || cp $fn $fn.bak
+    [ $opt_dry_run -ne 0 ] || eval $TDIR/pyxbgen.py $fn $SCHEMAS "$OCA_binding"
     if [ $opt_nopep8 -eq 0 ]; then
       [ $opt_verbose -ne 0 ] && echo "\$ autopep8 $fn -i"
       [ $opt_dry_run -ne 0 ] || autopep8 $fn -i

@@ -8,10 +8,16 @@
 #
 import logging
 from openerp.osv import fields, orm
-import openerp.addons.decimal_precision as dp
+from openerp.tools.translate import _
+import openerp.release as release
 _logger = logging.getLogger(__name__)
 try:
-    from openerp.addons.l10n_it_ade import ade
+    if release.major_version == '7.0':
+        import openerp.addons.decimal_precision as dp
+        from openerp.addons.l10n_it_ade import ade
+    else:
+        import openerp.addons.decimal_precision as dp
+        from openerp.addons.l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)
@@ -139,6 +145,23 @@ class AccountVatCommunication(orm.Model):
                         tax_tree[type][basevat][left] = False
         return tax_tree
 
+    def set_progressivo_telematico(self, cr, uid, commitment, context=None):
+        context = context or {}
+        company_id = commitment.company_id
+        sequence_obj = self.pool['ir.sequence']
+        sequence_ids = sequence_obj.search(
+            cr, uid, [
+                ('name', '=', 'vat_communication'),
+                ('company_id', '=', company_id.id)
+            ])
+        if len(sequence_ids) != 1:
+            raise orm.except_orm(
+                _('Error!'), _('VAT communication sequence not set!'))
+        number = sequence_obj.next_by_id(
+            cr, uid, sequence_ids[0], context=context)
+        self.write(cr, uid, commitment.id, {'progressivo_telematico': number})
+        return number
+
     def load_invoices(self, cr, uid, commitment, commitment_line_obj,
                       dte_dtr_id, where, comm_lines, context=None):
         """Read all in/out invoices and return amount and fiscal parts"""
@@ -185,7 +208,7 @@ class AccountVatCommunication(orm.Model):
                      dte_dtr_id, context=None):
         journal_obj = self.pool['account.journal']
         exclude_journal_ids = journal_obj.search(
-            cr, uid, [('rev_charge', '=', False)])
+            cr, uid, [('rev_charge', '=', True)])
         period_ids = [x.id for x in commitment.period_ids]
         company_id = commitment.company_id.id
         # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
@@ -298,14 +321,111 @@ class AccountVatCommunication(orm.Model):
             return {'value': {name: fiscalcode}}
         return {}
 
+    #
+    # INTERNAL INTERFACE TO XML EXPORT CODE
+    #
+    def get_dati_fattura_header(self, cr, uid, commitment, dte_dtr_id,
+                                context=None):
+        """Return DatiFatturaHeader: may be empty"""
+        res = {}
+        if not commitment.progressivo_telematico:
+            res['xml_ProgressivoInvio'] = str(self.set_progressivo_telematico(
+                cr, uid, commitment, context))
+        else:
+            res['xml_ProgressivoInvio'] = str(
+                commitment.progressivo_telematico)
+        if commitment.codice_carica:
+            res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
+            res['xml_Carica'] = commitment.codice_carica
+        return res
 
-class commitment_line(orm.Model):
+    def get_cedente_cessionario_company(
+            self, cr, uid, commitment, dte_dtr_id, context=None):
+        """Return data of CessionarioCommittente or CedentePrestatore
+        which referers to current company.
+        This function is pair to get_cessionario_cedente which returns
+        customer or supplier data"""
+        line_model = self.pool['account.vat.communication.line']
+        res = line_model._dati_partner(
+            cr, uid, commitment.company_id.partner_id, None, context)
+        if res['xml_IdPaese'] != 'IT':
+            raise orm.except_orm(
+                _('Error!'),
+                _('Missed company VAT number'))
+        return res
+
+    def get_partner_list(self, cr, uid, commitment_id, dte_dtr_id,
+                         context=None):
+        """Return list of partner_id in communication by commitment_id
+        This function has to be used for CessionarioCommittente or
+        CedentePrestatore iteration"""
+        if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
+            raise orm.except_orm(
+                _('Error!'),
+                _('Internal error: no DTE neither DTR selected'))
+        model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
+        table_name = model_name.replace('.', '_')
+        sql = 'SELECT DISTINCT partner_id FROM %s WHERE commitment_id = %d' % \
+            (table_name, commitment_id)
+        cr.execute(sql)
+        ids = []
+        for rec in cr.fetchall():
+            ids.append(rec[0])
+        return ids
+
+    def get_cessionario_cedente(self, cr, uid, commitment, dte_dtr_id,
+                                partner_id, context=None):
+        """Return data of CessionarioCommittente or CedentePrestatore
+        This function has to be used as result of every iteration of
+        get_aprtner_list"""
+        commitment_line_model = self.pool['account.vat.communication.line']
+        res_partner_model = self.pool['res.partner']
+        partner = res_partner_model.browse(cr, uid, partner_id)
+        return commitment_line_model._dati_partner(cr, uid, partner,
+                                                   None, context)
+
+
+class commitment_line(orm.AbstractModel):
     _name = 'account.vat.communication.line'
 
-    def _paese_codice(self, cr, uid, line, arg, context=None):
-        vat = line.partner_id.vat
-        return {'xml_IdPaese': vat and vat[0:2] or '',
-                'xml_IdCodice': vat and vat[2:] or ''}
+    def _dati_partner(self, cr, uid, partner, arg, context=None):
+        if release.major_version == '6.1':
+            address_id = self.pool['res.partner'].address_get(
+                cr, uid, [partner.id])['default']
+            address = self.pool['res.partner.address'].browse(
+                cr, uid, address_id, context)
+        else:
+            address = partner
+        if partner.individual or partner.fiscalcode:
+            res = {'xml_CodiceFiscale': partner.fiscalcode}
+        else:
+            res = {'xml_CodiceFiscale': partner.vat and partner.vat[2:] or ''}
+        vat = partner.vat
+        res['xml_IdPaese'] = vat and vat[0:2] or ''
+        res['xml_IdCodice'] = vat and vat[2:] or ''
+        if partner.individual:
+            if release.major_version == '6.1':
+                res['xml_Nome'] = partner.fiscalcode_firstname
+                res['xml_Cognome'] = partner.fiscalcode_surname
+            else:
+                res['xml_Nome'] = partner.firstname
+                res['xml_Cognome'] = partner.lastname
+        else:
+            res['xml_Denominazione'] = partner.name
+        res['xml_Nazione'] = address.country_id.code or res[
+            'xml_IdPaese'] or 'IT'
+        res['xml_Indirizzo'] = address.street
+        if res['xml_IdPaese'] == 'IT' and address.zip:
+            res['xml_CAP'] = address.zip
+        res['xml_Comune'] = address.city
+        if res['xml_Nazione'] == 'IT':
+            if release.major_version == '6.1':
+                res['xml_Provincia'] = address.province.code
+            else:
+                res['xml_Provincia'] = partner.state_id.code
+            if not res['xml_Provincia']:
+                del res['xml_Provincia']
+        return res
 
     def _dati_line(self, cr, uid, line, arg, context=None):
         if line.partner_id.individual or line.partner_id.fiscalcode:
@@ -319,12 +439,6 @@ class commitment_line(orm.Model):
         res['xml_Natura'] = line.tax_type
         return res
 
-    def _codicefiscale(self, cr, uid, line, arg, context=None):
-        if line.partner_id.individual or line.partner_id.fiscalcode:
-            return line.partner_id.fiscalcode
-        else:
-            return line.partner_id.vat and line.partner_id.vat[2:] or ''
-
     def _tipodocumento(self, cr, uid, line, arg, context=None):
         doctype = line.invoice_id.type
         if doctype in ('out_invoice', 'in_invoice'):
@@ -334,13 +448,19 @@ class commitment_line(orm.Model):
         return False
 
 
-class commitment_DTE_line(commitment_line):
+class commitment_DTE_line(orm.Model):
     _name = 'account.vat.communication.dte.line'
+    _inherit = 'account.vat.communication.line'
 
-    def _xml_paese_codice(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_partner(self, cr, uid, ids, fname, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._paese_codice(cr, uid, line, arg, context=None)
+            fields = self._dati_partner(cr, uid, line.partner_id, arg,
+                                        context=None)
+            result = {}
+            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
+                result[f] = fields[f]
+            res[line.id] = result
         return res
 
     def _xml_dati_line(self, cr, uid, ids, fname, arg, context=None):
@@ -383,7 +503,7 @@ class commitment_DTE_line(commitment_line):
         'amount_tax': fields.float(
             'Tax amount', digits_compute=dp.get_precision('Account')),
         'xml_IdPaese': fields.function(
-            _xml_paese_codice,
+            _xml_dati_partner,
             string="Country",
             type="char",
             multi=True,
@@ -391,7 +511,7 @@ class commitment_DTE_line(commitment_line):
             select=True,
             readonly=True),
         'xml_IdCodice': fields.function(
-            _xml_paese_codice,
+            _xml_dati_partner,
             string="VAT number",
             type="char",
             multi=True,
@@ -399,7 +519,7 @@ class commitment_DTE_line(commitment_line):
             select=True,
             readonly=True),
         'xml_CodiceFiscale': fields.function(
-            _xml_dati_line,
+            _xml_dati_partner,
             string="Fiscalcode",
             type="char",
             multi=True,
@@ -411,7 +531,7 @@ class commitment_DTE_line(commitment_line):
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             type="char",
-            multi=True,
+            multi=False,
             store=False,
             select=True,
             readonly=True),
@@ -450,13 +570,19 @@ class commitment_DTE_line(commitment_line):
     }
 
 
-class commitment_DTR_line(commitment_line):
+class commitment_DTR_line(orm.Model):
     _name = 'account.vat.communication.dtr.line'
+    _inherit = 'account.vat.communication.line'
 
-    def _xml_paese_codice(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_partner(self, cr, uid, ids, fname, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._paese_codice(cr, uid, line, arg, context=None)
+            fields = self._dati_partner(cr, uid, line.partner_id, arg,
+                                        context=None)
+            result = {}
+            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
+                result[f] = fields[f]
+            res[line.id] = result
         return res
 
     def _xml_dati_line(self, cr, uid, ids, fname, arg, context=None):
@@ -499,7 +625,7 @@ class commitment_DTR_line(commitment_line):
         'amount_tax': fields.float(
             'Tax amount', digits_compute=dp.get_precision('Account')),
         'xml_IdPaese': fields.function(
-            _xml_paese_codice,
+            _xml_dati_partner,
             string="Country",
             type="char",
             multi=True,
@@ -507,7 +633,7 @@ class commitment_DTR_line(commitment_line):
             select=True,
             readonly=True),
         'xml_IdCodice': fields.function(
-            _xml_paese_codice,
+            _xml_dati_partner,
             string="VAT number",
             type="char",
             multi=True,
@@ -515,7 +641,7 @@ class commitment_DTR_line(commitment_line):
             select=True,
             readonly=True),
         'xml_CodiceFiscale': fields.function(
-            _xml_dati_line,
+            _xml_dati_partner,
             string="Fiscalcode",
             type="char",
             multi=True,
@@ -527,7 +653,7 @@ class commitment_DTR_line(commitment_line):
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             type="char",
-            multi=True,
+            multi=False,
             store=False,
             select=True,
             readonly=True),

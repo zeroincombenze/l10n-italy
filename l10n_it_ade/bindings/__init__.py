@@ -3,7 +3,7 @@
 #                  Associazione Odoo Italia <http://www.odoo-italia.org>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-# Generated Sat 2017-09-23 15:14:06 by pyxbgen.sh 0.1.5.2
+# Generated Sat 2017-09-30 13:52:54 by pyxbgen.sh 0.1.5.2
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
 from . import vat_settlement_v_1_0
