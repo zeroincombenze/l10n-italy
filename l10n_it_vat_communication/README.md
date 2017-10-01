@@ -28,26 +28,53 @@ ricevute e genera il file da inviare all'Agenzia delle Entrate.
 Questo obbligo è conosciuto anche come Spesometro 2017 e sostistuisce il
 precedente obbbligo chiamato Spesometro.
 
+
+Funzionalità & Certificati
+--------------------------
+
+Funzione | Status | Note
+--- | --- | ---
+Fatture clienti e fornitori detraibili | :white_check_mark: | 
+Fatture fornitori indetraibili | :x: | In fase di rilascio
+Ignora autofatture | :white_check_mark: | Esclusione tramite sezionale
+
+Ente/Certificato | Data inizio | Da fine | Note
+--- | --- | --- | ---
+[Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2017 | Validazione Schema
+
+
+
 Installation
 ------------
 
-* git clone https://github.com/zeroincombenze/l10n-italy
-* Go to Setup > Module > Install
+These instruction are just an example to remember what you have to do:
+
+    pip install PyXB==1.2.4
+    git clone https://github.com/zeroincombenze/l10n-italy
+    for module in l10n_it_base l10n_it_ade l10n_it_fiscalcode l10n_it_vat_communication; do
+        mv ODOO_DIR/l10n-italy/$module BACKUP_DIR/
+        cp -R l10n-italy/$module ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -u l10n_it_ade -d MYDB
+
+From UI: go to Setup > Module > Install
+
 
 Configuration
 -------------
 
 :mute:
 
+
 Usage
 -----
 
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
 
+
 Known issues / Roadmap
 ----------------------
 
-:ticket: This module replacea OCA module; PR will be issued.
+:ticket: This module replaces OCA module; PR have to be issued.
 In order to use this module you have to use:
 
 * [l10n_it_base](l10n_it_base/) replaces OCA module
@@ -59,6 +86,7 @@ Bug Tracker
 -----------
 
 Have a bug? Please visit https://odoo-italia.org/index.php/kunena/home
+
 
 Credits
 -------

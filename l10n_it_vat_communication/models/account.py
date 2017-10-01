@@ -422,6 +422,8 @@ class AccountVatCommunication(orm.Model):
         # res['xml_Data'] = date.isoformat(invoice.date_invoice)
         res['xml_Data'] = invoice.date_invoice
         res['xml_Numero'] = invoice.number
+        if doctype in ('in_invoice', 'in_refund'):
+            res['xml_DataRegistrazione'] = invoice.registration_date
         return res
 
     def get_riepilogo_list(self, cr, uid, commitment, invoice_id,
