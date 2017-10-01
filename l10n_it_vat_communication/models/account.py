@@ -23,6 +23,11 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
+# TODO: Use module for classification
+EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
+                'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
+                'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
+                'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
 class AccountVatCommunication(orm.Model):
 
@@ -163,6 +168,17 @@ class AccountVatCommunication(orm.Model):
         self.write(cr, uid, commitment.id, {'progressivo_telematico': number})
         return number
 
+    def get_country_code(self, partner):
+        if release.major_version == '6.1':
+            address_id = self.pool['res.partner'].address_get(
+                cr, uid, [partner.id])['default']
+            address = self.pool['res.partner.address'].browse(
+                cr, uid, address_id, context)
+        else:
+            address = partner
+        code = partner.vat and partner.vat[0:2] or 'IT'
+        return address.country_id.code or code
+
     def load_invoices(self, cr, uid, commitment, commitment_line_model,
                       dte_dtr_id, where, comm_lines, context=None):
         """Read all in/out invoices and return amount and fiscal parts"""
@@ -171,6 +187,8 @@ class AccountVatCommunication(orm.Model):
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
+            if self.get_country_code(invoice.partner_id) not in EU_COUNTRIES:
+                continue
             for invoice_tax in invoice.tax_line:
                 tax_type = False
                 tax_rate = 0.0
@@ -415,13 +433,21 @@ class AccountVatCommunication(orm.Model):
         invoice = account_invoice_model.browse(cr, uid, invoice_id)
         doctype = invoice.type
         res = {}
-        if doctype in ('out_invoice', 'in_invoice'):
-            res['xml_TipoDocumento'] = 'TD01'
-        elif doctype in ('out_refund', 'in_refund'):
-            res['xml_TipoDocumento'] = 'TD04'
+        if self.get_country_code(invoice.partner_id) == 'IT':
+            if doctype in ('out_invoice', 'in_invoice'):
+                res['xml_TipoDocumento'] = 'TD01'
+            elif doctype in ('out_refund', 'in_refund'):
+                res['xml_TipoDocumento'] = 'TD04'
+        else:
+            if doctype in ('out_invoice', 'in_invoice'):
+                res['xml_TipoDocumento'] = ''
+            elif doctype in ('out_refund', 'in_refund'):
+                res['xml_TipoDocumento'] = 'TD11'
         # res['xml_Data'] = date.isoformat(invoice.date_invoice)
         res['xml_Data'] = invoice.date_invoice
         res['xml_Numero'] = invoice.number
+        if doctype in ('in_invoice', 'in_refund'):
+            res['xml_DataRegistrazione'] = invoice.registration_date
         return res
 
     def get_riepilogo_list(self, cr, uid, commitment, invoice_id,

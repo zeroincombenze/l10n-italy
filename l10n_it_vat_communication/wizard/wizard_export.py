@@ -1,4 +1,3 @@
-# flake8: noqa
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
@@ -6,14 +5,11 @@
 #
 # [2017: SHS-AV s.r.l.] First version
 #
-import base64
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from openerp import release
-# import datetime
-# from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+# from openerp import release
 import logging
-import pdb
+# import pdb
 _logger = logging.getLogger(__name__)
 try:
     from openerp.addons.l10n_it_ade.bindings.dati_fattura_v_2_0 import (
@@ -34,7 +30,7 @@ try:
         IdentificativiFiscaliNoIVAType,
         IndirizzoType,
         IndirizzoNoCAPType,
-        RettificaType,
+        # RettificaType,
         DatiFatturaBodyDTEType,
         DatiGeneraliType,
         DatiRiepilogoType,
@@ -42,6 +38,8 @@ try:
         DTRType,
         CessionarioCommittenteDTRType,
         CedentePrestatoreDTRType,
+        DatiFatturaBodyDTRType,
+        DatiGeneraliDTRType,
     )
     #   ANNType)
 except ImportError as err:
@@ -83,9 +81,11 @@ class WizardVatCommunication(orm.TransientModel):
         return header
 
     def get_sede(self, cr, uid, fields, dte_dtr_id, selector, context=None):
-        if selector == 'company':
+        if selector == 'supplier' or (selector == 'company' and
+                                      dte_dtr_id == 'DTE'):
             sede = (IndirizzoType())
-        elif selector == 'customer':
+        elif selector == 'customer' or (selector == 'company' and
+                                        dte_dtr_id == 'DTR'):
             sede = (IndirizzoNoCAPType())
         else:
             raise orm.except_orm(
@@ -99,17 +99,15 @@ class WizardVatCommunication(orm.TransientModel):
             raise orm.except_orm(
                 _('Error!'),
                 _('Missed zip code'))
-        if 'xml_Provincia' in fields:
+        if 'xml_Provincia' in fields and fields['xml_Nazione'] == 'IT':
             sede.Provincia = fields['xml_Provincia']
         sede.Nazione = fields['xml_Nazione']
         return sede
 
     def get_name(self, cr, uid, fields, dte_dtr_id, selector, context=None):
-        if selector == 'supplier' or (selector == 'company' and 
-                                       dte_dtr_id == 'DTE'):
-             AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
-        elif selector == 'customer' or (selector == 'company' and 
-                                         dte_dtr_id == 'DTR'):
+        if selector == 'supplier' or selector == 'company':
+            AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
+        elif selector == 'customer':
             AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
         else:
             raise orm.except_orm(
@@ -121,59 +119,90 @@ class WizardVatCommunication(orm.TransientModel):
             AltriDatiIdentificativi.Nome = fields['xml_Nome']
             AltriDatiIdentificativi.Cognome = fields['xml_Cognome']
         AltriDatiIdentificativi.Sede = self.get_sede(
-                cr, uid, fields, dte_dtr_id, selector, context=context)
+            cr, uid, fields, dte_dtr_id, selector, context=context)
         return AltriDatiIdentificativi
 
     def get_company_data(self, cr, uid,
                          commitment_model, commitment, dte_dtr_id,
                          context=None):
+        fields = commitment_model.get_xml_company(
+            cr, uid, commitment, dte_dtr_id, context)
         if dte_dtr_id == 'DTE':
-            fields = commitment_model.get_xml_company(
-                cr, uid, commitment, dte_dtr_id, context)
-            CedentePrestatoreDTE = (CedentePrestatoreDTEType())
-            CedentePrestatoreDTE.IdentificativiFiscali = (
+            CedentePrestatore = (CedentePrestatoreDTEType())
+            CedentePrestatore.IdentificativiFiscali = (
                 IdentificativiFiscaliITType())
-            # Company VAT number must be present
-            CedentePrestatoreDTE.IdentificativiFiscali.IdFiscaleIVA = (
-                IdFiscaleITType())
-            CedentePrestatoreDTE.IdentificativiFiscali.IdFiscaleIVA.\
-                IdPaese = fields['xml_IdPaese']
-            CedentePrestatoreDTE.IdentificativiFiscali.IdFiscaleIVA.\
-                IdCodice = fields['xml_IdCodice']
-            CedentePrestatoreDTE.IdentificativiFiscali.CodiceFiscale = \
-                CodiceFiscaleType(fields['xml_CodiceFiscale'])
-            CedentePrestatoreDTE.AltriDatiIdentificativi = \
-                self.get_name(cr, uid, fields, dte_dtr_id, 'company', context)
-        return CedentePrestatoreDTE
+        elif dte_dtr_id == 'DTR':
+            CedentePrestatore = (CessionarioCommittenteDTRType())
+            CedentePrestatore.IdentificativiFiscali = (
+                IdentificativiFiscaliType())
+        else:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Internal error: invalid parter selector'))
+        # Company VAT number must be present
+        CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA = (
+            IdFiscaleITType())
+        CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
+            IdPaese = fields['xml_IdPaese']
+        CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
+            IdCodice = fields['xml_IdCodice']
+        CedentePrestatore.IdentificativiFiscali.CodiceFiscale = \
+            CodiceFiscaleType(fields['xml_CodiceFiscale'])
+        CedentePrestatore.AltriDatiIdentificativi = \
+            self.get_name(cr, uid, fields, dte_dtr_id, 'company', context)
+        return CedentePrestatore
 
     def get_customer_data(self, cr, uid,
                           commitment_model, commitment, fields, dte_dtr_id,
                           context=None):
-        client = (CessionarioCommittenteDTEType())
-        client.IdentificativiFiscali = (IdentificativiFiscaliNoIVAType())
+        partner = (CessionarioCommittenteDTEType())
+        partner.IdentificativiFiscali = (IdentificativiFiscaliNoIVAType())
         if 'xml_IdPaese' in fields:
-            client.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleType())
-            client.IdentificativiFiscali.IdFiscaleIVA.\
+            partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleType())
+            partner.IdentificativiFiscali.IdFiscaleIVA.\
                 IdPaese = fields['xml_IdPaese']
-            client.IdentificativiFiscali.IdFiscaleIVA.\
+            partner.IdentificativiFiscali.IdFiscaleIVA.\
                 IdCodice = fields['xml_IdCodice']
             if fields['xml_IdPaese'] == 'IT' and 'xml_CodiceFiscale' in fields:
-                client.IdentificativiFiscali.\
+                partner.IdentificativiFiscali.\
                     CodiceFiscale = CodiceFiscaleType(
                         fields['xml_CodiceFiscale'])
         else:
-            client.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
+            partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
                 fields['xml_CodiceFiscale'])
         # row 44: 2.2.2   <AltriDatiIdentificativi>
-        client.AltriDatiIdentificativi = \
+        partner.AltriDatiIdentificativi = \
             self.get_name(cr, uid, fields, dte_dtr_id, 'customer', context)
-        return client
+        return partner
+
+    def get_supplier_data(self, cr, uid,
+                          commitment_model, commitment, fields, dte_dtr_id,
+                          context=None):
+        partner = (CedentePrestatoreDTRType())
+        partner.IdentificativiFiscali = (IdentificativiFiscaliITType())
+        if 'xml_IdPaese' in fields:
+            partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleITType())
+            partner.IdentificativiFiscali.IdFiscaleIVA.\
+                IdPaese = fields['xml_IdPaese']
+            partner.IdentificativiFiscali.IdFiscaleIVA.\
+                IdCodice = fields['xml_IdCodice']
+            if fields['xml_IdPaese'] == 'IT' and 'xml_CodiceFiscale' in fields:
+                partner.IdentificativiFiscali.\
+                    CodiceFiscale = CodiceFiscaleType(
+                        fields['xml_CodiceFiscale'])
+        else:
+            partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
+                fields['xml_CodiceFiscale'])
+        # row 44: 2.2.2   <AltriDatiIdentificativi>
+        partner.AltriDatiIdentificativi = \
+            self.get_name(cr, uid, fields, dte_dtr_id, 'supplier', context)
+        return partner
 
     def get_dte(self, cr, uid,
                 commitment_model, commitment, dte_dtr_id, context=None):
         context = context or {}
         dte = (DTEType())
-        clients = []
+        partners = []
         partner_ids = commitment_model.get_partner_list(
             cr, uid, commitment, dte_dtr_id, context)
         for partner_id in partner_ids:
@@ -187,7 +216,7 @@ class WizardVatCommunication(orm.TransientModel):
                 cr, uid, commitment_model, commitment, dte_dtr_id, context)
             # TODO: StabileOrganizzazione
             # TODO: RappresentanteFiscale
-            client = self.get_customer_data(
+            partner = self.get_customer_data(
                 cr, uid, commitment_model, commitment, fields, dte_dtr_id,
                 context)
             invoices = []
@@ -199,7 +228,8 @@ class WizardVatCommunication(orm.TransientModel):
                     cr, uid, commitment, invoice_id, dte_dtr_id, context)
                 invoice = (DatiFatturaBodyDTEType())
                 invoice.DatiGenerali = (DatiGeneraliType())
-                invoice.DatiGenerali.TipoDocumento = fields['xml_TipoDocumento']
+                invoice.DatiGenerali.TipoDocumento = fields[
+                    'xml_TipoDocumento']
                 invoice.DatiGenerali.Data = fields['xml_Data']
                 invoice.DatiGenerali.Numero = fields['xml_Numero']
                 dati_riepilogo = []
@@ -227,19 +257,80 @@ class WizardVatCommunication(orm.TransientModel):
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
             invoices.append(invoice)
-            client.DatiFatturaBodyDTE = invoices
-            clients.append(client)
-        dte.CessionarioCommittenteDTE = clients
+            partner.DatiFatturaBodyDTE = invoices
+            partners.append(partner)
+        dte.CessionarioCommittenteDTE = partners
 
         # dte.Rettifica = (RettificaType())
 
         return dte
 
-    def get_dtr(self, cr, uid, commitment, context):
+    def get_dtr(self, cr, uid,
+                commitment_model, commitment, dte_dtr_id, context=None):
+        context = context or {}
         dtr = (DTRType())
-        # dtr.CessionarioCommittenteDTR = (CessionarioCommittenteDTRType())
-        #
-        # dtr.CedentePrestatoreDTR = (CedentePrestatoreDTRType())
+        partners = []
+        partner_ids = commitment_model.get_partner_list(
+            cr, uid, commitment, dte_dtr_id, context)
+        for partner_id in partner_ids:
+            fields = commitment_model.get_xml_cessionario_cedente(
+                cr, uid, commitment, partner_id, dte_dtr_id, context)
+            # Missed mandatory data: skip record
+            if 'xml_IdPaese' not in fields and \
+                    'xml_CodiceFiscale' not in fields:
+                continue
+            dtr.CessionarioCommittenteDTR = self.get_company_data(
+                cr, uid, commitment_model, commitment, dte_dtr_id, context)
+            # TODO: StabileOrganizzazione
+            # TODO: RappresentanteFiscale
+            partner = self.get_supplier_data(
+                cr, uid, commitment_model, commitment, fields, dte_dtr_id,
+                context)
+            invoices = []
+            # Iterate over invoices of current partner
+            invoice_ids = commitment_model.get_invoice_list(
+                cr, uid, commitment, partner_id, dte_dtr_id, context)
+            for invoice_id in invoice_ids:
+                fields = commitment_model.get_xml_invoice(
+                    cr, uid, commitment, invoice_id, dte_dtr_id, context)
+                invoice = (DatiFatturaBodyDTRType())
+                invoice.DatiGenerali = (DatiGeneraliDTRType())
+                invoice.DatiGenerali.TipoDocumento = fields[
+                    'xml_TipoDocumento']
+                invoice.DatiGenerali.Data = fields['xml_Data']
+                invoice.DatiGenerali.Numero = fields['xml_Numero']
+                invoice.DatiGenerali.DataRegistrazione = fields[
+                    'xml_DataRegistrazione']
+                dati_riepilogo = []
+                line_ids = commitment_model.get_riepilogo_list(
+                    cr, uid, commitment, invoice_id, dte_dtr_id, context)
+                for line_id in line_ids:
+                    fields = commitment_model.get_xml_riepilogo(
+                        cr, uid, commitment, line_id, dte_dtr_id, context)
+                    riepilogo = (DatiRiepilogoType())
+                    riepilogo.ImponibileImporto = '{:.2f}'.format(
+                        fields['xml_ImponibileImporto'])
+                    riepilogo.DatiIVA = (DatiIVAType())
+                    riepilogo.DatiIVA.Imposta = '{:.2f}'.format(
+                        fields['xml_Imposta'])
+                    riepilogo.DatiIVA.Aliquota = '{:.2f}'.format(
+                        fields['xml_Aliquota'])
+                    if 'xml_Natura' in fields:
+                        riepilogo.Natura = fields['xml_Natura']
+                    # riepilogo.Detraibile = dte_line.xml_
+                    # riepilogo.Deducibile = dte_line.xml_
+                    # riepilogo.EsigibilitaIVA = dte_line.xml_
+                    # riepilogo.Detraibile = '0.00'
+                    # riepilogo.Deducibile = 'SI'
+                    riepilogo.EsigibilitaIVA = fields['EsigibilitaIVA']
+                    dati_riepilogo.append(riepilogo)
+                invoice.DatiRiepilogo = dati_riepilogo
+            invoices.append(invoice)
+            partner.DatiFatturaBodyDTE = invoices
+            partners.append(partner)
+        dtr.CessionarioCommittenteDTE = partners
+
+        # dtr.Rettifica = (RettificaType())
 
         return dtr
 
@@ -257,9 +348,11 @@ class WizardVatCommunication(orm.TransientModel):
                     cr, uid, commitment_model, commitment)
                 communication.DTE = self.get_dte(
                     cr, uid, commitment_model, commitment, 'DTE', context)
-                # communication.DTR = self.get_dtr(cr, uid, commitment, context))
+                # communication.DTR = self.get_dtr(
+                #     cr, uid, commitment_model, commitment, 'DTR', context)
 
-                file_name = 'Comunicazine_IVA-{}.xml'.format(commitment.progressivo_telematico)
+                file_name = 'Comunicazine_IVA-{}.xml'.format(
+                    commitment.progressivo_telematico)
 
                 vat_communication_xml = communication.toDOM().toprettyxml(
                     encoding="latin1")
