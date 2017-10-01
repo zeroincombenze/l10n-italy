@@ -51,7 +51,7 @@ Known issues / Roadmap
 In order to use this module you have to use:
 
 * [l10n_it_base](l10n_it_base/) replaces OCA module
-* [l10n_it_ade](l10n_it_ade/) replaces OCA module
+* [l10n_it_ade](l10n_it_ade/) module does not exist in OCA repository
 * [l10n_it_fiscalcode](l10n_it_fiscalcode/) replaces OCA module
 
 

@@ -7,6 +7,7 @@
 # [2017: SHS-AV s.r.l.] First version
 #
 import logging
+# from datetime import date
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import openerp.release as release
@@ -148,8 +149,8 @@ class AccountVatCommunication(orm.Model):
     def set_progressivo_telematico(self, cr, uid, commitment, context=None):
         context = context or {}
         company_id = commitment.company_id
-        sequence_obj = self.pool['ir.sequence']
-        sequence_ids = sequence_obj.search(
+        sequence_model = self.pool['ir.sequence']
+        sequence_ids = sequence_model.search(
             cr, uid, [
                 ('name', '=', 'vat_communication'),
                 ('company_id', '=', company_id.id)
@@ -157,19 +158,19 @@ class AccountVatCommunication(orm.Model):
         if len(sequence_ids) != 1:
             raise orm.except_orm(
                 _('Error!'), _('VAT communication sequence not set!'))
-        number = sequence_obj.next_by_id(
+        number = sequence_model.next_by_id(
             cr, uid, sequence_ids[0], context=context)
         self.write(cr, uid, commitment.id, {'progressivo_telematico': number})
         return number
 
-    def load_invoices(self, cr, uid, commitment, commitment_line_obj,
+    def load_invoices(self, cr, uid, commitment, commitment_line_model,
                       dte_dtr_id, where, comm_lines, context=None):
         """Read all in/out invoices and return amount and fiscal parts"""
-        invoice_obj = self.pool['account.invoice']
-        account_tax_obj = self.pool['account.tax']
-        for invoice_id in invoice_obj.search(cr, uid, where):
+        invoice_model = self.pool['account.invoice']
+        account_tax_model = self.pool['account.tax']
+        for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
-            invoice = invoice_obj.browse(cr, uid, invoice_id)
+            invoice = invoice_model.browse(cr, uid, invoice_id)
             for invoice_tax in invoice.tax_line:
                 tax_type = False
                 tax_rate = 0.0
@@ -177,9 +178,9 @@ class AccountVatCommunication(orm.Model):
                     taxbase_id = invoice_tax.tax_code_id.id
                     tax_vat_id = False
                     # for vat in invoice_tax.tax_code_id.tax_ids:
-                    for vat_id in account_tax_obj.search(
+                    for vat_id in account_tax_model.search(
                             cr, uid, [('tax_code_id', '=', taxbase_id)]):
-                        vat = account_tax_obj.browse(cr, uid, vat_id)
+                        vat = account_tax_model.browse(cr, uid, vat_id)
                         if vat and vat.amount > tax_rate:
                             tax_rate = vat.amount
                 else:
@@ -204,10 +205,10 @@ class AccountVatCommunication(orm.Model):
                 comm_lines[invoice_id]['taxes'] = inv_line
         return comm_lines
 
-    def load_DTE_DTR(self, cr, uid, commitment, commitment_line_obj,
+    def load_DTE_DTR(self, cr, uid, commitment, commitment_line_model,
                      dte_dtr_id, context=None):
-        journal_obj = self.pool['account.journal']
-        exclude_journal_ids = journal_obj.search(
+        journal_model = self.pool['account.journal']
+        exclude_journal_ids = journal_model.search(
             cr, uid, [('rev_charge', '=', True)])
         period_ids = [x.id for x in commitment.period_ids]
         company_id = commitment.company_id.id
@@ -223,21 +224,21 @@ class AccountVatCommunication(orm.Model):
             return
 
         comm_lines = self.load_invoices(cr, uid,
-                                        commitment, commitment_line_obj,
+                                        commitment, commitment_line_model,
                                         dte_dtr_id, where, {}, context)
         if comm_lines:
-            for line_id in commitment_line_obj.search(
+            for line_id in commitment_line_model.search(
                 cr, uid, [('commitment_id', '=', commitment.id),
                           ('invoice_id', 'not in', comm_lines.keys()), ]):
-                commitment_line_obj.unlink(cr, uid, [line_id])
+                commitment_line_model.unlink(cr, uid, [line_id])
         for invoice_id in comm_lines:
-            for line_id in commitment_line_obj.search(
+            for line_id in commitment_line_model.search(
                 cr, uid, [('commitment_id', '=', commitment.id),
                           ('invoice_id', '=', invoice_id),
                           ('tax_id', 'not in', comm_lines[
                               invoice_id]['taxes'].keys()),
                           ]):
-                commitment_line_obj.unlink(cr, uid, [line_id])
+                commitment_line_model.unlink(cr, uid, [line_id])
             for tax_id in comm_lines[invoice_id]['taxes']:
                 line = {'commitment_id': commitment.id,
                         'invoice_id': invoice_id,
@@ -251,30 +252,30 @@ class AccountVatCommunication(orm.Model):
                           'tax_rate',
                           'tax_type'):
                     line[f] = comm_lines[invoice_id]['taxes'][tax_id][f]
-                ids = commitment_line_obj.search(
+                ids = commitment_line_model.search(
                     cr, uid, [('commitment_id', '=', commitment.id),
                               ('invoice_id', '=', invoice_id),
                               ('tax_id', '=', tax_id), ])
                 if ids:
-                    commitment_line_obj.write(cr, uid, ids, line)
+                    commitment_line_model.write(cr, uid, ids, line)
                 else:
-                    commitment_line_obj.create(cr, uid, line)
+                    commitment_line_model.create(cr, uid, line)
 
     def load_DTE(self, cr, uid, commitment, context=None):
         """Read all sale invoices in periods"""
         context = context or {}
-        commitment_DTE_line_obj = self.pool[
+        commitment_DTE_line_model = self.pool[
             'account.vat.communication.dte.line']
         self.load_DTE_DTR(
-            cr, uid, commitment, commitment_DTE_line_obj, 'DTE', context)
+            cr, uid, commitment, commitment_DTE_line_model, 'DTE', context)
 
     def load_DTR(self, cr, uid, commitment, context=None):
         """Read all purchase invoices in periods"""
         context = context or {}
-        commitment_DTR_line_obj = self.pool[
+        commitment_DTR_line_model = self.pool[
             'account.vat.communication.dtr.line']
         self.load_DTE_DTR(
-            cr, uid, commitment, commitment_DTR_line_obj, 'DTR', context)
+            cr, uid, commitment, commitment_DTR_line_model, 'DTR', context)
 
     def compute_amounts(self, cr, uid, ids, context=None):
         context = {} if context is None else context
@@ -324,8 +325,8 @@ class AccountVatCommunication(orm.Model):
     #
     # INTERNAL INTERFACE TO XML EXPORT CODE
     #
-    def get_dati_fattura_header(self, cr, uid, commitment, dte_dtr_id,
-                                context=None):
+    def get_xml_fattura_header(self, cr, uid, commitment, dte_dtr_id,
+                               context=None):
         """Return DatiFatturaHeader: may be empty"""
         res = {}
         if not commitment.progressivo_telematico:
@@ -339,11 +340,11 @@ class AccountVatCommunication(orm.Model):
             res['xml_Carica'] = commitment.codice_carica
         return res
 
-    def get_cedente_cessionario_company(
+    def get_xml_company(
             self, cr, uid, commitment, dte_dtr_id, context=None):
         """Return data of CessionarioCommittente or CedentePrestatore
         which referers to current company.
-        This function is pair to get_cessionario_cedente which returns
+        This function is pair to get_xml_cessionario_cedente which returns
         customer or supplier data"""
         line_model = self.pool['account.vat.communication.line']
         res = line_model._dati_partner(
@@ -354,7 +355,7 @@ class AccountVatCommunication(orm.Model):
                 _('Missed company VAT number'))
         return res
 
-    def get_partner_list(self, cr, uid, commitment_id, dte_dtr_id,
+    def get_partner_list(self, cr, uid, commitment, dte_dtr_id,
                          context=None):
         """Return list of partner_id in communication by commitment_id
         This function has to be used for CessionarioCommittente or
@@ -366,29 +367,99 @@ class AccountVatCommunication(orm.Model):
         model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
         table_name = model_name.replace('.', '_')
         sql = 'SELECT DISTINCT partner_id FROM %s WHERE commitment_id = %d' % \
-            (table_name, commitment_id)
+            (table_name, commitment.id)
         cr.execute(sql)
         ids = []
         for rec in cr.fetchall():
             ids.append(rec[0])
         return ids
 
-    def get_cessionario_cedente(self, cr, uid, commitment, dte_dtr_id,
-                                partner_id, context=None):
+    def get_xml_cessionario_cedente(self, cr, uid, commitment, partner_id,
+                                    dte_dtr_id, context=None):
         """Return data of CessionarioCommittente or CedentePrestatore
         This function has to be used as result of every iteration of
-        get_aprtner_list"""
+        get_partner_list"""
         commitment_line_model = self.pool['account.vat.communication.line']
         res_partner_model = self.pool['res.partner']
         partner = res_partner_model.browse(cr, uid, partner_id)
         return commitment_line_model._dati_partner(cr, uid, partner,
                                                    None, context)
 
+    def get_invoice_list(self, cr, uid, commitment, partner_id, dte_dtr_id,
+                         context=None):
+        """Return list of invoices in communication
+        by partner_id and commitment_id.
+        This function has to be used for CessionarioCommittente or
+        CedentePrestatore sub-iteration"""
+        if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
+            raise orm.except_orm(
+                _('Error!'),
+                _('Internal error: no DTE neither DTR selected'))
+        model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
+        table_name = model_name.replace('.', '_')
+        sql = '''SELECT DISTINCT invoice_id FROM %s
+                        WHERE commitment_id = %d and partner_id = %d''' % \
+            (table_name, commitment.id, partner_id)
+        cr.execute(sql)
+        ids = []
+        for rec in cr.fetchall():
+            ids.append(rec[0])
+        return ids
+
+    def get_xml_invoice(self, cr, uid, commitment, invoice_id,
+                        dte_dtr_id, context=None):
+        """Return data of Invoice.
+        This function has to be used as result of every iteration of
+        get_invoice_list"""
+        account_invoice_model = self.pool['account.invoice']
+        invoice = account_invoice_model.browse(cr, uid, invoice_id)
+        doctype = invoice.type
+        res = {}
+        if doctype in ('out_invoice', 'in_invoice'):
+            res['xml_TipoDocumento'] = 'TD01'
+        elif doctype in ('out_refund', 'in_refund'):
+            res['xml_TipoDocumento'] = 'TD04'
+        # res['xml_Data'] = date.isoformat(invoice.date_invoice)
+        res['xml_Data'] = invoice.date_invoice
+        res['xml_Numero'] = invoice.number
+        return res
+
+    def get_riepilogo_list(self, cr, uid, commitment, invoice_id,
+                           dte_dtr_id, context=None):
+        """Return list of tax lines of invoice in communication
+        by invoice_id and commitment.id.
+        This function has to be used for CessionarioCommittente or
+        CedentePrestatore sub-sub-iteration"""
+        if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
+            raise orm.except_orm(
+                _('Error!'),
+                _('Internal error: no DTE neither DTR selected'))
+        model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
+        line_model = self.pool[model_name]
+        ids = line_model.search(
+            cr, uid, [
+                ('commitment_id', '=', commitment.id),
+                ('invoice_id', '=', invoice_id)
+            ])
+        return ids
+
+    def get_xml_riepilogo(self, cr, uid, commitment, line_id,
+                          dte_dtr_id, context=None):
+        """Return data of tax invoice line.
+        This function has to be used as result of every iteration of
+        get_riepilogo_list"""
+        commitment_line_model = self.pool['account.vat.communication.line']
+        model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
+        line_model = self.pool[model_name]
+        commitment_line = line_model.browse(cr, uid, line_id)
+        return commitment_line_model._dati_line(
+            cr, uid, commitment_line, {'all': False}, context)
+
 
 class commitment_line(orm.AbstractModel):
     _name = 'account.vat.communication.line'
 
-    def _dati_partner(self, cr, uid, partner, arg, context=None):
+    def _dati_partner(self, cr, uid, partner, args, context=None):
         if release.major_version == '6.1':
             address_id = self.pool['res.partner'].address_get(
                 cr, uid, [partner.id])['default']
@@ -427,19 +498,17 @@ class commitment_line(orm.AbstractModel):
                 del res['xml_Provincia']
         return res
 
-    def _dati_line(self, cr, uid, line, arg, context=None):
-        if line.partner_id.individual or line.partner_id.fiscalcode:
-            res = {'xml_CodiceFiscale': line.partner_id.fiscalcode}
-        else:
-            res = {'xml_CodiceFiscale':
-                   line.partner_id.vat and line.partner_id.vat[2:] or ''}
+    def _dati_line(self, cr, uid, line, args, context=None):
+        res = {}
         res['xml_ImponibileImporto'] = line.amount_taxable
         res['xml_Imposta'] = line.amount_tax
-        res['xml_Aliquota'] = line.tax_rate
-        res['xml_Natura'] = line.tax_type
+        res['xml_Aliquota'] = line.tax_rate * 100
+        if args.get('all', True) or line.tax_type:
+            res['xml_Natura'] = line.tax_type
+        res['EsigibilitaIVA'] = 'I'
         return res
 
-    def _tipodocumento(self, cr, uid, line, arg, context=None):
+    def _tipodocumento(self, cr, uid, line, args, context=None):
         doctype = line.invoice_id.type
         if doctype in ('out_invoice', 'in_invoice'):
             return 'TD01'
@@ -452,10 +521,10 @@ class commitment_DTE_line(orm.Model):
     _name = 'account.vat.communication.dte.line'
     _inherit = 'account.vat.communication.line'
 
-    def _xml_dati_partner(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_partner(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            fields = self._dati_partner(cr, uid, line.partner_id, arg,
+            fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=None)
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
@@ -463,17 +532,17 @@ class commitment_DTE_line(orm.Model):
             res[line.id] = result
         return res
 
-    def _xml_dati_line(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_line(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._dati_line(cr, uid, line, arg,
+            res[line.id] = self._dati_line(cr, uid, line, args,
                                            context=None)
         return res
 
-    def _xml_tipodocumento(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_tipodocumento(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._tipodocumento(cr, uid, line, arg,
+            res[line.id] = self._tipodocumento(cr, uid, line, args,
                                                context=None)
         return res
 
@@ -574,10 +643,10 @@ class commitment_DTR_line(orm.Model):
     _name = 'account.vat.communication.dtr.line'
     _inherit = 'account.vat.communication.line'
 
-    def _xml_dati_partner(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_partner(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            fields = self._dati_partner(cr, uid, line.partner_id, arg,
+            fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=None)
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
@@ -585,17 +654,17 @@ class commitment_DTR_line(orm.Model):
             res[line.id] = result
         return res
 
-    def _xml_dati_line(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_dati_line(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._dati_line(cr, uid, line, arg,
+            res[line.id] = self._dati_line(cr, uid, line, args,
                                            context=None)
         return res
 
-    def _xml_tipodocumento(self, cr, uid, ids, fname, arg, context=None):
+    def _xml_tipodocumento(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._tipodocumento(cr, uid, line, arg,
+            res[line.id] = self._tipodocumento(cr, uid, line, args,
                                                context=None)
         return res
 
