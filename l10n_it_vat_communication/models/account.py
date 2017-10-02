@@ -13,12 +13,11 @@ from openerp.tools.translate import _
 import openerp.release as release
 _logger = logging.getLogger(__name__)
 try:
-    if release.major_version == '7.0':
+    if release.major_version in ('6.1', '7.0'):
         import openerp.addons.decimal_precision as dp
-        from openerp.addons.l10n_it_ade import ade
     else:
         import openerp.addons.decimal_precision as dp
-        from openerp.addons.l10n_it_ade import ade
+    from openerp.addons.l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)
@@ -70,6 +69,8 @@ class AccountVatCommunication(orm.Model):
                 'open': [('readonly', False)],
                 'confirmed': [('readonly', True)]
             }),
+        'attachment_ids': fields.one2many(
+            'ir.attachment', 'res_id', 'Attachments',),
     }
 
     _defaults = {
@@ -177,7 +178,13 @@ class AccountVatCommunication(orm.Model):
                 cr, uid, address_id, context=None)
         else:
             address = partner
-        code = partner.vat and partner.vat[0:2] or 'IT'
+        code = partner.vat and partner.vat[0:2]
+        if not code:
+            if release.major_version == '6.1':
+                raise orm.except_orm(
+                    'Warning',
+                    _('Missed country code in partner'))
+            code = 'IT'
         return address.country_id.code or code
 
     def load_invoices(self, cr, uid, commitment, commitment_line_model,
@@ -191,6 +198,7 @@ class AccountVatCommunication(orm.Model):
             if self.get_country_code(cr, uid,
                                      invoice.partner_id) not in EU_COUNTRIES:
                 continue
+
             for invoice_tax in invoice.tax_line:
                 tax_type = False
                 tax_rate = 0.0
@@ -356,7 +364,7 @@ class AccountVatCommunication(orm.Model):
         else:
             res['xml_ProgressivoInvio'] = str(
                 commitment.progressivo_telematico)
-        if commitment.codice_carica:
+        if commitment.codice_carica and commitment.soggetto_codice_fiscale:
             res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
             res['xml_Carica'] = commitment.codice_carica
         return res
@@ -443,22 +451,20 @@ class AccountVatCommunication(orm.Model):
         elif country_code == 'IT' and doctype in (
                 'out_invoice', 'in_invoice') and invoice.amount_total < 0:
             res['xml_TipoDocumento'] = 'TD04'
-        elif doctype in ('out_invoice',
-                         'in_invoice') and invoice.amount_total < 0:
+        elif doctype == 'in_invoice':
             res['xml_TipoDocumento'] = 'TD11'
-        elif doctype in ('out_refund', 'in_refund'):
-                res['xml_TipoDocumento'] = 'TD11'
         else:
             raise orm.except_orm(
                 _('Error!'),
-                _('Invalid invoice type'))
+                _('Invalid type %s for invoice %s' % (doctype,
+                                                      invoice.number)))
         # res['xml_Data'] = date.isoformat(invoice.date_invoice)
         res['xml_Data'] = invoice.date_invoice
         if doctype in ('in_invoice', 'in_refund'):
-            res['xml_Numero'] = invoice.supplier_invoice_number
+            res['xml_Numero'] = invoice.supplier_invoice_number[-20:]
             res['xml_DataRegistrazione'] = invoice.registration_date
         else:
-            res['xml_Numero'] = invoice.number
+            res['xml_Numero'] = invoice.number[:20]
         return res
 
     def get_riepilogo_list(self, cr, uid, commitment, invoice_id,
@@ -504,27 +510,35 @@ class commitment_line(orm.AbstractModel):
                 cr, uid, address_id, context)
         else:
             address = partner
-        if partner.individual or partner.fiscalcode:
+
+        if partner.individual and partner.fiscalcode:
             res = {'xml_CodiceFiscale': partner.fiscalcode}
         else:
             res = {'xml_CodiceFiscale': partner.vat and partner.vat[2:] or ''}
-        vat = partner.vat
-        res['xml_IdPaese'] = vat and vat[0:2] or ''
-        res['xml_IdCodice'] = vat and vat[2:] or ''
+        if partner.vat:
+            vat = partner.vat
+            res['xml_IdPaese'] = vat and vat[0:2] or ''
+            res['xml_IdCodice'] = vat and vat[2:] or ''
+
         if partner.individual:
             if release.major_version == '6.1':
-                res['xml_Nome'] = partner.fiscalcode_firstname
-                res['xml_Cognome'] = partner.fiscalcode_surname
+                if partner.fiscalcode_firstname and partner.fiscalcode_surname:
+                    res['xml_Nome'] = partner.fiscalcode_firstname
+                    res['xml_Cognome'] = partner.fiscalcode_surname
+                else:
+                    res['xml_Denominazione'] = partner.name[:80]
             else:
                 res['xml_Nome'] = partner.firstname
                 res['xml_Cognome'] = partner.lastname
         else:
-            res['xml_Denominazione'] = partner.name
+            res['xml_Denominazione'] = partner.name[:80]
+
         res['xml_Nazione'] = address.country_id.code or res[
             'xml_IdPaese'] or 'IT'
         res['xml_Indirizzo'] = address.street
-        if res['xml_IdPaese'] == 'IT' and address.zip:
-            res['xml_CAP'] = address.zip
+
+        if res.get('xml_IdPaese', '') == 'IT' and address.zip:
+            res['xml_CAP'] = address.zip.replace('x', '0').replace('%', '0')
         res['xml_Comune'] = address.city
         if res['xml_Nazione'] == 'IT':
             if release.major_version == '6.1':
@@ -541,7 +555,8 @@ class commitment_line(orm.AbstractModel):
         res['xml_Imposta'] = abs(line.amount_tax)
         res['xml_Aliquota'] = line.tax_rate * 100
         if args.get('all', True) or line.tax_type:
-            res['xml_Natura'] = line.tax_type
+            # res['xml_Natura'] = line.tax_type
+            res['xml_Natura'] = "N1"
         res['EsigibilitaIVA'] = 'I'
         return res
 
@@ -565,7 +580,9 @@ class commitment_DTE_line(orm.Model):
                                         context=None)
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
-                result[f] = fields[f]
+                if fields.get(f, ''):
+                    result[f] = fields[f]
+
             res[line.id] = result
         return res
 
@@ -685,6 +702,12 @@ class commitment_DTR_line(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=None)
+
+            if len(fields.get('xml_IdCodice', '')) < 2:
+                raise orm.except_orm(
+                    _('Error!'), _('Check VAT for partner!').format(
+                        line.partner_id.name))
+
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
                 result[f] = fields[f]
