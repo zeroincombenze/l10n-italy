@@ -46,6 +46,8 @@ Configuration
 Usage
 -----
 
+-----
+
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
 
 Known issues / Roadmap

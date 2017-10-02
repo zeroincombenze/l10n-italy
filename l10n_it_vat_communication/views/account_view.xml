@@ -85,6 +85,13 @@
                                   <field name="tax_type" />
                              </form>
                          </field>
+                    </page> 
+                    <page string="Attachments">
+                         <field name="attachment_ids" nolabel="1">
+                             <tree string="Attachments">
+                                <field name="name" />
+                             </tree>
+                         </field>
                     </page>
                 </notebook>
                 <button name="set_draft" states="confirmed,open" string="Set to draft" colspan="2"/>

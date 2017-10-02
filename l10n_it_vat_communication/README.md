@@ -30,13 +30,13 @@ precedente obbbligo chiamato Spesometro.
 
 
 Funzionalità & Certificati
---------------------------
 
 Funzione | Status | Note
 --- | --- | ---
 Fatture clienti e fornitori detraibili | :white_check_mark: | 
 Fatture fornitori indetraibili | :x: | In fase di rilascio
 Fatture a privati senza Partita IVA| :white_check_mark: | Necessario codice fiscale
+Fatture semplificata | :x: | In fase di rilascio
 Fatture senza IVA | :x: | In fase di rilascio
 IVA differita | :x: | In fase di rilascio
 IVA da split-payment | :x: | In fase di rilascio
@@ -46,12 +46,13 @@ Ignora fatture extra-UE | :white_check_mark: | Da nazione, oppure da partita IVA
 Infatture intra-UE beni | :x: | In fase di rilascio
 Infatture intra-UE servizi | :white_check_mark: | Tutte le fatture EU (provvisoriamente)
 Rettifica dichiarazione | :x: | In fase di rilascio
-Nomenclatura del file | :x: | In fase di verifica
+Nomenclatura del file | :white_check_mark: |
 Dimensioni del file | :x: | Nessuna verifica anche futura
 
 Ente/Certificato | Data inizio | Da fine | Note
 --- | --- | --- | ---
 [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2017 | [![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md)
+[Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 03-10-2017 | 31-12-2017 | [![DesktopTelematico](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/DesktopTelematico.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/DesktopTelematico.md)
 
 
 Installation
