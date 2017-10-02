@@ -443,11 +443,8 @@ class AccountVatCommunication(orm.Model):
         elif country_code == 'IT' and doctype in (
                 'out_invoice', 'in_invoice') and invoice.amount_total < 0:
             res['xml_TipoDocumento'] = 'TD04'
-        elif doctype in ('out_invoice',
-                         'in_invoice') and invoice.amount_total < 0:
+        elif doctype == 'in_invoice':
             res['xml_TipoDocumento'] = 'TD11'
-        elif doctype in ('out_refund', 'in_refund'):
-                res['xml_TipoDocumento'] = 'TD11'
         else:
             raise orm.except_orm(
                 _('Error!'),
