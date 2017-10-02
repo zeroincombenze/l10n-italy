@@ -41,7 +41,7 @@ Fatture senza IVA | :x: | In fase di rilascio
 IVA differita | :x: | In fase di rilascio
 IVA da split-payment | :x: | In fase di rilascio
 Ignora autofatture | :white_check_mark: | Esclusione tramite sezionale
-Identificazione Rev-Charge | :x: | In fase di rilascio
+Identificazione Reverse Charge | :x: | In fase di rilascio
 Ignora fatture extra-UE | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
 Infatture intra-UE beni | :x: | In fase di rilascio
 Infatture intra-UE servizi | :white_check_mark: | Tutte le fatture EU (provvisoriamente)
@@ -62,10 +62,10 @@ These instruction are just an example to remember what you have to do:
 
     pip install PyXB==1.2.4
     git clone https://github.com/zeroincombenze/l10n-italy
-    for module in l10n_it_base l10n_it_ade l10n_it_fiscalcode l10n_it_vat_communication; do
+    for module in l10n_it_base l10n_it_ade l10n_it_fiscalcode l10n_it_vat_communication account_invoice_entry_date; do
         mv ODOO_DIR/l10n-italy/$module BACKUP_DIR/
         cp -R l10n-italy/$module ODOO_DIR/l10n-italy/
-    sudo service odoo-server restart -u l10n_it_ade -d MYDB
+    sudo service odoo-server restart -i l10n_it_ade -d MYDB
 
 From UI: go to Setup > Module > Install
 

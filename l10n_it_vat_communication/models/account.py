@@ -29,6 +29,7 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
+
 class AccountVatCommunication(orm.Model):
 
     _name = "account.vat.communication"
@@ -168,12 +169,12 @@ class AccountVatCommunication(orm.Model):
         self.write(cr, uid, commitment.id, {'progressivo_telematico': number})
         return number
 
-    def get_country_code(self, partner):
+    def get_country_code(self, cr, uid, partner):
         if release.major_version == '6.1':
             address_id = self.pool['res.partner'].address_get(
                 cr, uid, [partner.id])['default']
             address = self.pool['res.partner.address'].browse(
-                cr, uid, address_id, context)
+                cr, uid, address_id, context=None)
         else:
             address = partner
         code = partner.vat and partner.vat[0:2] or 'IT'
@@ -187,7 +188,8 @@ class AccountVatCommunication(orm.Model):
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
-            if self.get_country_code(invoice.partner_id) not in EU_COUNTRIES:
+            if self.get_country_code(cr, uid,
+                                     invoice.partner_id) not in EU_COUNTRIES:
                 continue
             for invoice_tax in invoice.tax_line:
                 tax_type = False
@@ -233,7 +235,8 @@ class AccountVatCommunication(orm.Model):
         # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
         where = [('company_id', '=', company_id),
                  ('period_id', 'in', period_ids),
-                 ('journal_id', 'not in', exclude_journal_ids)]
+                 ('journal_id', 'not in', exclude_journal_ids),
+                 ('state', 'in', ('open', 'paid'))]
         if dte_dtr_id == 'DTE':
             where.append(('type', 'in', ['out_invoice', 'out_refund']))
         elif dte_dtr_id == 'DTR':
@@ -432,22 +435,30 @@ class AccountVatCommunication(orm.Model):
         account_invoice_model = self.pool['account.invoice']
         invoice = account_invoice_model.browse(cr, uid, invoice_id)
         doctype = invoice.type
+        country_code = self.get_country_code(cr, uid, invoice.partner_id)
         res = {}
-        if self.get_country_code(invoice.partner_id) == 'IT':
-            if doctype in ('out_invoice', 'in_invoice'):
-                res['xml_TipoDocumento'] = 'TD01'
-            elif doctype in ('out_refund', 'in_refund'):
-                res['xml_TipoDocumento'] = 'TD04'
-        else:
-            if doctype in ('out_invoice', 'in_invoice'):
-                res['xml_TipoDocumento'] = ''
-            elif doctype in ('out_refund', 'in_refund'):
+        if country_code == 'IT' and doctype in (
+                'out_invoice', 'in_invoice') and invoice.amount_total >= 0:
+            res['xml_TipoDocumento'] = 'TD01'
+        elif country_code == 'IT' and doctype in (
+                'out_invoice', 'in_invoice') and invoice.amount_total < 0:
+            res['xml_TipoDocumento'] = 'TD04'
+        elif doctype in ('out_invoice',
+                         'in_invoice') and invoice.amount_total < 0:
+            res['xml_TipoDocumento'] = 'TD11'
+        elif doctype in ('out_refund', 'in_refund'):
                 res['xml_TipoDocumento'] = 'TD11'
+        else:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Invalid invoice type'))
         # res['xml_Data'] = date.isoformat(invoice.date_invoice)
         res['xml_Data'] = invoice.date_invoice
-        res['xml_Numero'] = invoice.number
         if doctype in ('in_invoice', 'in_refund'):
+            res['xml_Numero'] = invoice.supplier_invoice_number
             res['xml_DataRegistrazione'] = invoice.registration_date
+        else:
+            res['xml_Numero'] = invoice.number
         return res
 
     def get_riepilogo_list(self, cr, uid, commitment, invoice_id,
@@ -526,8 +537,8 @@ class commitment_line(orm.AbstractModel):
 
     def _dati_line(self, cr, uid, line, args, context=None):
         res = {}
-        res['xml_ImponibileImporto'] = line.amount_taxable
-        res['xml_Imposta'] = line.amount_tax
+        res['xml_ImponibileImporto'] = abs(line.amount_taxable)
+        res['xml_Imposta'] = abs(line.amount_tax)
         res['xml_Aliquota'] = line.tax_rate * 100
         if args.get('all', True) or line.tax_type:
             res['xml_Natura'] = line.tax_type
