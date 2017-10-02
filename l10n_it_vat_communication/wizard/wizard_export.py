@@ -81,11 +81,9 @@ class WizardVatCommunication(orm.TransientModel):
         return header
 
     def get_sede(self, cr, uid, fields, dte_dtr_id, selector, context=None):
-        if selector == 'supplier' or (selector == 'company' and
-                                      dte_dtr_id == 'DTE'):
+        if selector == 'company':
             sede = (IndirizzoType())
-        elif selector == 'customer' or (selector == 'company' and
-                                        dte_dtr_id == 'DTR'):
+        elif selector == 'customer' or selector == 'supplier':
             sede = (IndirizzoNoCAPType())
         else:
             raise orm.except_orm(
@@ -99,15 +97,15 @@ class WizardVatCommunication(orm.TransientModel):
             raise orm.except_orm(
                 _('Error!'),
                 _('Missed zip code'))
-        if 'xml_Provincia' in fields:
+        if 'xml_Provincia' in fields and fields['xml_Nazione'] == 'IT':
             sede.Provincia = fields['xml_Provincia']
         sede.Nazione = fields['xml_Nazione']
         return sede
 
     def get_name(self, cr, uid, fields, dte_dtr_id, selector, context=None):
-        if selector == 'supplier' or selector == 'company':
+        if selector == 'company':
             AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
-        elif selector == 'customer':
+        elif selector == 'customer' or selector == 'supplier':
             AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
         else:
             raise orm.except_orm(
@@ -134,7 +132,7 @@ class WizardVatCommunication(orm.TransientModel):
         elif dte_dtr_id == 'DTR':
             CedentePrestatore = (CessionarioCommittenteDTRType())
             CedentePrestatore.IdentificativiFiscali = (
-                IdentificativiFiscaliType())
+                IdentificativiFiscaliITType())
         else:
             raise orm.except_orm(
                 _('Error!'),
@@ -179,9 +177,9 @@ class WizardVatCommunication(orm.TransientModel):
                           commitment_model, commitment, fields, dte_dtr_id,
                           context=None):
         partner = (CedentePrestatoreDTRType())
-        partner.IdentificativiFiscali = (IdentificativiFiscaliITType())
+        partner.IdentificativiFiscali = (IdentificativiFiscaliType())
         if 'xml_IdPaese' in fields:
-            partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleITType())
+            partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleType())
             partner.IdentificativiFiscali.IdFiscaleIVA.\
                 IdPaese = fields['xml_IdPaese']
             partner.IdentificativiFiscali.IdFiscaleIVA.\
@@ -328,7 +326,7 @@ class WizardVatCommunication(orm.TransientModel):
             invoices.append(invoice)
             partner.DatiFatturaBodyDTE = invoices
             partners.append(partner)
-        dtr.CessionarioCommittenteDTE = partners
+        dtr.CedentePrestatoreDTR = partners
 
         # dtr.Rettifica = (RettificaType())
 
@@ -348,8 +346,8 @@ class WizardVatCommunication(orm.TransientModel):
                     cr, uid, commitment_model, commitment)
                 communication.DTE = self.get_dte(
                     cr, uid, commitment_model, commitment, 'DTE', context)
-                # communication.DTR = self.get_dtr(
-                #     cr, uid, commitment_model, commitment, 'DTR', context)
+                communication.DTR = self.get_dtr(
+                    cr, uid, commitment_model, commitment, 'DTR', context)
 
                 file_name = 'Comunicazine_IVA-{}.xml'.format(
                     commitment.progressivo_telematico)
