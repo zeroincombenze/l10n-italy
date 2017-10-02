@@ -13,6 +13,7 @@
 ================================================================================================
 
 Odoo Italia Modules
+===================
 
 Italian modules for odoo (formerly OpenERP)
 
@@ -66,7 +67,7 @@ addon | version | OCA version | summary
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | :repeat: | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | :repeat: | Italian Localisation - Prima Nota Cassa
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 (unported) | 10.0.0.1.4 | Ricevute Bancarie
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 (unported) | :repeat: | Italian Localisation - Withholding tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 (unported) | 10.0.1.0.0 | Italian Localisation - Withholding tax
 
 [//]: # (end addons)
 

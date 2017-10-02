@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 l10n_it_ateco
+=============
 
 This module registers a model in order to manage Ateco categories.
 
@@ -36,6 +37,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -93,7 +96,6 @@ Images
 
 * Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
-[![Odoo Italia Associazione]]
 
 
 

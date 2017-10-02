@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 Base Bank ABI/CAB codes
+=======================
 
 This module add to res.bank the ABI/CAB data (bank identification numbers).
 
@@ -33,6 +34,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -65,7 +68,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

@@ -15,6 +15,7 @@
 
 
 Italian Localization - FatturaPA - Emission
+===========================================
 
 This module allows you to generate the fatturaPA XML file version 1.1
 http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
@@ -41,6 +42,8 @@ See l10n_it_fatturapa
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -78,7 +81,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

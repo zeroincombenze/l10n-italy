@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 IPA Code (IndicePA)
+===================
 
 This module adds IPA (IndicePA) field to partner
 
@@ -35,6 +36,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -84,7 +87,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

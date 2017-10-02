@@ -15,6 +15,7 @@
     :alt: License
 
 REA Register
+============
 
 The module implement fields of REA data in partner
 http://www.registroimprese.it/il-registro-imprese-e-altre-banche-dati#page=registro-imprese
@@ -36,6 +37,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -82,7 +85,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

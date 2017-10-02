@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 Italian Localization - DDT: Documento di trasporto
+==================================================
 
 This modules extends stock_picking_package_preparation module adding DDT data
 
@@ -33,6 +34,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -133,7 +136,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

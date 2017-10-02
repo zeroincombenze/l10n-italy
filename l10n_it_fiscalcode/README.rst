@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 IT Fiscal Code
+==============
 
 This module extends the functionality of partner to fit italian laws and mores
 and to allow you to computation Fiscal code computation for partner
@@ -39,6 +40,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -89,7 +92,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

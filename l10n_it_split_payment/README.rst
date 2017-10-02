@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 Italian Localization - split payment
+====================================
 
 Law: http://goo.gl/1riAwt (Articolo 17 ter)
 
@@ -68,6 +69,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 To use this module, you need to select the correct fiscal position in invoices
@@ -106,7 +109,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

@@ -16,6 +16,7 @@
    :alt: License: LGPL
 
 Account Invoice Report DDT Group
+================================
 
 This module modifies the invoice report, so that the invoice lines are grouped by the DDT that generated them
 
@@ -34,6 +35,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -82,7 +85,6 @@ Images
 
 * Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
-[![Odoo Italia Associazione]]
 
 
 

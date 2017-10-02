@@ -16,6 +16,7 @@
    :alt: License: LGPL-3
 
 Italian Localization - codici carica
+====================================
 
 Tabella dei codici carica da usare nei dichiarativi fiscali italiani
 
@@ -38,6 +39,8 @@ La tabella viene aggiunta nell'area contabilità, ed è raggiungibile nella
 sezione configurazione. Occorre avere i privilegi di account manager.
 
 Usage
+-----
+
 -----
 
 -----
@@ -85,7 +88,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

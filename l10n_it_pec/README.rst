@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 PEC Mail
+========
 
 Add PEC Mail field in partner profile
 
@@ -34,6 +35,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -73,7 +76,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 

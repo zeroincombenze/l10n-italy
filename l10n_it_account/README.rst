@@ -15,6 +15,7 @@
    :alt: License: AGPL-3
 
 Italian Localization - Account
+==============================
 
 Accounting-related modules helpers.
 
@@ -35,6 +36,8 @@ Configuration
 
 
 Usage
+-----
+
 -----
 
 -----
@@ -80,7 +83,6 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
 
 
 
