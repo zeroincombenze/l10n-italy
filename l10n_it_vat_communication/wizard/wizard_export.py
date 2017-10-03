@@ -92,7 +92,7 @@ class WizardVatCommunication(orm.TransientModel):
             else:
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Internal error: invalid parter selector'))
+                    _('Internal error: invalid partner selector'))
         else:
             if selector == 'company':
                 sede = (IndirizzoNoCAPType())
@@ -103,7 +103,7 @@ class WizardVatCommunication(orm.TransientModel):
             else:
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Internal error: invalid parter selector'))
+                    _('Internal error: invalid partner selector'))
 
         sede.Indirizzo = fields['xml_Indirizzo']
         sede.Comune = fields['xml_Comune']
@@ -298,7 +298,7 @@ class WizardVatCommunication(orm.TransientModel):
                     # riepilogo.EsigibilitaIVA = dte_line.xml_
                     # riepilogo.Detraibile = '0.00'
                     # riepilogo.Deducibile = 'SI'
-                    riepilogo.EsigibilitaIVA = fields['EsigibilitaIVA']
+                    riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
             invoices.append(invoice)
@@ -368,7 +368,7 @@ class WizardVatCommunication(orm.TransientModel):
                 else:
                     raise orm.except_orm(
                         _('Error!'),
-                        _('Internal error: invalid parter selector'))
+                        _('Internal error: invalid partner selector'))
                 # file_name = 'Comunicazine_IVA-{}.xml'.format(
                 #     commitment.progressivo_telematico)
                 progr_invio = commitment_model.set_progressivo_telematico(

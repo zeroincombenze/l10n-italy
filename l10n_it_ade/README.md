@@ -98,6 +98,7 @@ Credits
 
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Andrei Levin <andrei.levin@didotech.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 ### Funders
 
