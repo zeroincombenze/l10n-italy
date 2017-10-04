@@ -75,7 +75,13 @@ From UI: go to Setup > Module > Install
 Configuration
 -------------
 
-:mute:
+:it:
+
+* Contabilità > Configurazione > Sezionali > Sezionali :point_right: Impostare sezionali autofatture
+* Contabilità > Configurazione > Imposte > Imposte :point_right: Impostare natura codici IVA
+* Contabilità > Clienti > Clienti :point_right: Impostare nazione, partita IVA, codice fiscale e Cognome/nome
+* Contabilità > Fornitori > Fornitori :point_right: Impostare nazione, partita IVA, codice fiscale e Cognome/nome
+* Contabilità > Elaborazione periodica > Fine periodo > Comunicazione :point_right: Gestione Comunicazione e scarico file xml
 
 
 Usage
@@ -91,9 +97,11 @@ Known issues / Roadmap
 :ticket: This module replaces OCA module; PR have to be issued.
 In order to use this module you have to use:
 
-* [l10n_it_base](l10n_it_base/) replaces OCA module
-* [l10n_it_ade](l10n_it_ade/) module does not exist in OCA repository
-* [l10n_it_fiscalcode](l10n_it_fiscalcode/) replaces OCA module
+:warning: Use [l10n_it_base](l10n_it_base/) replacing OCA module
+
+:warning: Use [l10n_it_ade](l10n_it_ade/) module does not exist in OCA repository
+
+:warning: Use [l10n_it_fiscalcode](l10n_it_fiscalcode/) replacing OCA module
 
 
 Bug Tracker

@@ -1,4 +1,3 @@
-# flake8: noqa
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
@@ -7,7 +6,6 @@
 #
 # [2017: SHS-AV s.r.l.] First version
 #
-from tndb import tndb
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 # from openerp import release
@@ -136,7 +134,6 @@ class WizardVatCommunication(orm.TransientModel):
             if selector == 'company':
                 AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
             elif selector == 'customer' or selector == 'supplier':
-                # AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
                 AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
             else:
                 raise orm.except_orm(
@@ -158,7 +155,6 @@ class WizardVatCommunication(orm.TransientModel):
                                context=None):
 
         if dte_dtr_id == 'DTE':
-            tndb.wlog('CedentePrestatore = (CedentePrestatoreDTEType())')
             CedentePrestatore = (CedentePrestatoreDTEType())
             CedentePrestatore.IdentificativiFiscali = (
                 IdentificativiFiscaliITType())
@@ -167,7 +163,6 @@ class WizardVatCommunication(orm.TransientModel):
                 IdFiscaleITType())
             partner_type = 'company'
         elif dte_dtr_id == 'DTR':
-            tndb.wlog('CedentePrestatore = (CedentePrestatoreDTRType())')
             CedentePrestatore = (CedentePrestatoreDTRType())
             CedentePrestatore.IdentificativiFiscali = (
                 IdentificativiFiscaliType())
@@ -195,28 +190,19 @@ class WizardVatCommunication(orm.TransientModel):
                                     context=None):
 
         if dte_dtr_id == 'DTE':
-            tndb.wlog('partner = (CessionarioCommittenteDTEType())')
             partner = (CessionarioCommittenteDTEType())
-            tndb.wlog('partner_type = \'customer\'')
             partner_type = 'customer'
-            tndb.wlog('partner.IdentificativiFiscali = (IdentificativiFiscaliNoIVAType())')
             partner.IdentificativiFiscali = (IdentificativiFiscaliNoIVAType())
         else:
             # DTR
-            tndb.wlog('partner = (CessionarioCommittenteDTRType())')
             partner = (CessionarioCommittenteDTRType())
-            tndb.wlog('partner_type = \'company\'')
             partner_type = 'company'
-            tndb.wlog('partner.IdentificativiFiscali = (IdentificativiFiscaliITType())')
             partner.IdentificativiFiscali = (IdentificativiFiscaliITType())
 
-        tndb.wlog('idPaese', fields.get('xml_IdPaese'),'idCodice', fields.get('xml_IdCodice'), 'CodiceFiscale', fields['xml_CodiceFiscale'])
         if fields.get('xml_IdPaese') and fields.get('xml_IdCodice'):
             if dte_dtr_id == 'DTE':
-                tndb.wlog('partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleType())')
                 partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleType())
             else:
-                tndb.wlog('partner.IdentificativiFiscali.IdFiscaleIVA = (IdFiscaleITType())')
                 partner.IdentificativiFiscali.IdFiscaleIVA = (
                     IdFiscaleITType())
 
@@ -227,12 +213,10 @@ class WizardVatCommunication(orm.TransientModel):
 
             if fields['xml_IdPaese'] == 'IT' and fields.get(
                     'xml_CodiceFiscale'):
-                tndb.wlog('partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(fields[\'xml_CodiceFiscale\'])')
                 partner.IdentificativiFiscali.\
                     CodiceFiscale = CodiceFiscaleType(
                         fields['xml_CodiceFiscale'])
         else:
-            tndb.wlog('partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(fields[\'xml_CodiceFiscale\'])')
             partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
                 fields['xml_CodiceFiscale'])
         # row 44: 2.2.2   <AltriDatiIdentificativi>
@@ -279,14 +263,10 @@ class WizardVatCommunication(orm.TransientModel):
                 fields = commitment_model.get_xml_invoice(
                     cr, uid, commitment, invoice_id, dte_dtr_id, context)
                 if dte_dtr_id == 'DTE':
-                    tndb.wlog('invoice = (DatiFatturaBodyDTEType())')
                     invoice = (DatiFatturaBodyDTEType())
-                    tndb.wlog('invoice.DatiGenerali = (DatiGeneraliType())')
                     invoice.DatiGenerali = (DatiGeneraliType())
                 else:
-                    tndb.wlog('invoice = (DatiFatturaBodyDTRType())')
                     invoice = (DatiFatturaBodyDTRType())
-                    tndb.wlog('invoice.DatiGenerali = (DatiGeneraliDTRType())')
                     invoice.DatiGenerali = (DatiGeneraliDTRType())
 
                 invoice.DatiGenerali.TipoDocumento = fields[
@@ -294,7 +274,6 @@ class WizardVatCommunication(orm.TransientModel):
                 invoice.DatiGenerali.Data = fields['xml_Data']
                 invoice.DatiGenerali.Numero = fields['xml_Numero']
                 if dte_dtr_id == 'DTR':
-                    tndb.wlog('invoice.DatiGenerali.DataRegistrazione = fields[\'xml_DataRegistrazione\']')
                     invoice.DatiGenerali.DataRegistrazione = fields[
                         'xml_DataRegistrazione']
 
@@ -304,7 +283,6 @@ class WizardVatCommunication(orm.TransientModel):
                 for line_id in line_ids:
                     fields = commitment_model.get_xml_riepilogo(
                         cr, uid, commitment, line_id, dte_dtr_id, context)
-                    tndb.wlog('riepilogo = (DatiRiepilogoType())')
                     riepilogo = (DatiRiepilogoType())
                     riepilogo.ImponibileImporto = '{:.2f}'.format(
                         fields['xml_ImponibileImporto'])
@@ -313,22 +291,20 @@ class WizardVatCommunication(orm.TransientModel):
                         fields['xml_Imposta'])
                     riepilogo.DatiIVA.Aliquota = '{:.2f}'.format(
                         fields['xml_Aliquota'])
-                    riepilogo.Detraibile = '{:.2f}'.format(
-                        fields['xml_Detraibile'])
+                    if 'xml_Detraibile' in fields:
+                        riepilogo.Detraibile = '{:.2f}'.format(
+                            fields['xml_Detraibile'])
                     if 'xml_Deducibile' in fields:
                         riepilogo.Deducibile = fields['xml_Deducibile']
                     if 'xml_Natura' in fields:
                         riepilogo.Natura = fields['xml_Natura']
                     riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
-                    tndb.wlog('dati_riepilogo.append(riepilogo)')
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
             invoices.append(invoice)
             if dte_dtr_id == 'DTE':
-                tndb.wlog('partner.DatiFatturaBodyDTE = invoices')
                 partner.DatiFatturaBodyDTE = invoices
             else:
-                tndb.wlog('partner.DatiFatturaBodyDTR = invoices')
                 partner.DatiFatturaBodyDTR = invoices
             partners.append(partner)
 
@@ -337,7 +313,6 @@ class WizardVatCommunication(orm.TransientModel):
         if dte_dtr_id == 'DTE':
             dte = (DTEType())
 
-            tndb.wlog('dte.CedentePrestatoreDTE = self.get_cedente_prestatore()')
             dte.CedentePrestatoreDTE = self.get_cedente_prestatore(
                 cr, uid, fields, dte_dtr_id, context)
             dte.CessionarioCommittenteDTE = partners
@@ -348,7 +323,6 @@ class WizardVatCommunication(orm.TransientModel):
         else:
             dtr = (DTRType())
 
-            tndb.wlog('dtr.CessionarioCommittenteDTR = self.get_cessionario_committente()')
             dtr.CessionarioCommittenteDTR = self.get_cessionario_committente(
                 cr, uid, fields, dte_dtr_id, context
             )
