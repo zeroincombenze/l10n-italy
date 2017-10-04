@@ -211,11 +211,11 @@ class AccountVatCommunication(orm.Model):
                 tax_rate = 0.0
                 tax_nodet_rate = 0.0
                 if invoice_tax.tax_code_id:
-                    taxbase_id = invoice_tax.tax_code_id.id
-                    tax_vat_id = False
+                    taxcode_base_id = invoice_tax.tax_code_id.id
+                    taxcode_vat_id = False
                     # for tax in invoice_tax.tax_code_id.tax_ids:
                     for tax_id in account_tax_model.search(
-                            cr, uid, [('tax_code_id', '=', taxbase_id)]):
+                            cr, uid, [('tax_code_id', '=', taxcode_base_id)]):
                         tax = account_tax_model.browse(cr, uid, tax_id)
                         if tax and not tax.parent_id:
                             if tax.amount > tax_rate:
@@ -223,18 +223,19 @@ class AccountVatCommunication(orm.Model):
                             if tax.payability:
                                 tax_payability = tax.payability
                         else:
-                            taxbase_id = tax.parent_id.id
                             if tax.type == 'percent' and \
                                     tax.amount > tax_nodet_rate:
                                 tax_nodet_rate = tax.amount
-                            tax = account_tax_model.browse(cr, uid, taxbase_id)
+                            tax = account_tax_model.browse(cr, uid,
+                                                           tax.parent_id.id)
+                            taxcode_base_id = invoice_tax.tax_code_id.id
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
                 else:
-                    taxbase_id = invoice_tax.base_code_id.id
-                    tax_vat_id = invoice_tax.tax_code_id.id
+                    taxcode_base_id = invoice_tax.base_code_id.id
+                    taxcode_vat_id = invoice_tax.tax_code_id.id
                     for tax_id in account_tax_model.search(
-                            cr, uid, [('base_code_id', '=', taxbase_id)]):
+                            cr, uid, [('base_code_id', '=', taxcode_base_id)]):
                         tax = account_tax_model.browse(cr, uid, tax_id)
                         if tax and not tax.parent_id:
                             if tax.non_taxable_nature:
@@ -249,27 +250,31 @@ class AccountVatCommunication(orm.Model):
                         _('Invalid tax %s nature for invoice %s' %
                           (invoice_tax.name,
                            invoice.number)))
-                if taxbase_id not in inv_line:
-                    inv_line[taxbase_id] = {}
-                    inv_line[taxbase_id]['amount_taxable'] = 0.0
-                    inv_line[taxbase_id]['amount_tax'] = 0.0
-                    inv_line[taxbase_id]['amount_total'] = 0.0
-                    inv_line[taxbase_id]['tax_vat_id'] = tax_vat_id
-                    inv_line[taxbase_id]['tax_rate'] = tax_rate
-                    inv_line[taxbase_id]['tax_nodet_rate'] = tax_nodet_rate
-                    inv_line[taxbase_id]['tax_nature'] = tax_nature
-                    inv_line[taxbase_id]['tax_payability'] = tax_payability
-                if tax_rate and not inv_line[taxbase_id]['tax_rate']:
-                    inv_line[taxbase_id]['tax_rate'] = tax_rate
-                if tax_nodet_rate and not inv_line[taxbase_id][
+                if taxcode_base_id not in inv_line:
+                    inv_line[taxcode_base_id] = {}
+                    inv_line[taxcode_base_id]['amount_taxable'] = 0.0
+                    inv_line[taxcode_base_id]['amount_tax'] = 0.0
+                    inv_line[taxcode_base_id]['amount_total'] = 0.0
+                    inv_line[taxcode_base_id]['tax_vat_id'] = taxcode_vat_id
+                    inv_line[taxcode_base_id]['tax_rate'] = tax_rate
+                    inv_line[taxcode_base_id][
+                        'tax_nodet_rate'] = tax_nodet_rate
+                    inv_line[taxcode_base_id]['tax_nature'] = tax_nature
+                    inv_line[taxcode_base_id][
+                        'tax_payability'] = tax_payability
+                if tax_rate and not inv_line[taxcode_base_id]['tax_rate']:
+                    inv_line[taxcode_base_id]['tax_rate'] = tax_rate
+                if tax_nodet_rate and not inv_line[taxcode_base_id][
                         'tax_nodet_rate']:
-                    inv_line[taxbase_id]['tax_nodet_rate'] = tax_nodet_rate
-                if tax_payability and not inv_line[taxbase_id][
+                    inv_line[taxcode_base_id][
+                        'tax_nodet_rate'] = tax_nodet_rate
+                if tax_payability and not inv_line[taxcode_base_id][
                         'tax_payability']:
-                    inv_line[taxbase_id]['tax_payability'] = tax_payability
-                inv_line[taxbase_id]['amount_taxable'] += invoice_tax.base
-                inv_line[taxbase_id]['amount_tax'] += invoice_tax.amount
-                inv_line[taxbase_id]['amount_total'] += round(
+                    inv_line[taxcode_base_id][
+                        'tax_payability'] = tax_payability
+                inv_line[taxcode_base_id]['amount_taxable'] += invoice_tax.base
+                inv_line[taxcode_base_id]['amount_tax'] += invoice_tax.amount
+                inv_line[taxcode_base_id]['amount_total'] += round(
                     invoice_tax.base + invoice_tax.amount, 2)
             if inv_line:
                 comm_lines[invoice_id] = {}
@@ -598,7 +603,12 @@ class commitment_line(orm.AbstractModel):
         doctype = invoice.type
         country_code = self.pool['account.vat.communication'].get_country_code(
             cr, uid, invoice.partner_id)
-        if country_code == 'IT' and doctype in ('out_invoice', 'in_invoice'):
+        if doctype == 'out_invoice':
+            if invoice.amount_total >= 0:
+                return 'TD01'
+            else:
+                return 'TD04'
+        elif country_code == 'IT' and doctype == 'in_invoice':
             if invoice.amount_total >= 0:
                 return 'TD01'
             else:
