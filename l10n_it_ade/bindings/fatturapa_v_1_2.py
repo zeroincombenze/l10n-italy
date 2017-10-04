@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./fatturapa_v_1_2.py
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2017-09-30 13:52:53.191058 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2017-10-03 10:08:19.849334 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 from __future__ import unicode_literals
@@ -22,7 +22,7 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:da854eb0-a5d5-11e7-b447-005056ba06a2')
+    'urn:uuid:faf43498-a811-11e7-95f5-005056ba06a2')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -429,12 +429,12 @@ class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_minInclusive,
-                                               RiferimentoNumeroLineaType._CF_maxInclusive)
+RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
+RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_maxInclusive,
+                                               RiferimentoNumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding', 'RiferimentoNumeroLineaType', RiferimentoNumeroLineaType)
 
@@ -1404,11 +1404,10 @@ class RateType (pyxb.binding.datatypes.string):
     _Documentation = None
 
 
+# RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
-# RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._InitializeFacetMap(RateType._CF_pattern)
-#    RateType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 
 # Atomic simple type:
@@ -1426,12 +1425,12 @@ class RiferimentoFaseType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
-RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_minInclusive,
-                                        RiferimentoFaseType._CF_maxInclusive)
+RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
+RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_maxInclusive,
+                                        RiferimentoFaseType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding', 'RiferimentoFaseType', RiferimentoFaseType)
 
@@ -1449,12 +1448,12 @@ class NumeroColliType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
 NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
-NumeroColliType._InitializeFacetMap(NumeroColliType._CF_minInclusive,
-                                    NumeroColliType._CF_maxInclusive)
+NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
+NumeroColliType._InitializeFacetMap(NumeroColliType._CF_maxInclusive,
+                                    NumeroColliType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroColliType', NumeroColliType)
 
 # Atomic simple type:
@@ -1471,12 +1470,12 @@ class NumeroLineaType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_minInclusive,
-                                    NumeroLineaType._CF_maxInclusive)
+NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
+NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_maxInclusive,
+                                    NumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroLineaType', NumeroLineaType)
 
 # Atomic simple type:
@@ -1551,12 +1550,12 @@ class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
-    value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
 GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
-GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_minInclusive,
-                                               GiorniTerminePagamentoType._CF_maxInclusive)
+GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
+    value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
+GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_maxInclusive,
+                                               GiorniTerminePagamentoType._CF_minInclusive)
 Namespace.addCategoryObject(
     'typeBinding', 'GiorniTerminePagamentoType', GiorniTerminePagamentoType)
 

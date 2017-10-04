@@ -46,7 +46,7 @@ Test compatibilità OCA e Odoo | :white_check_mark: | :white_check_mark:
 [l10n_it_fatturapa](l10n_it_fatturapa/)| :white_check_mark: Compatibile con Spesometro | :x: Incompatibile con Spesometro
 [l10n_it_fiscalcode](l10n_it_fiscalcode/)| :white_check_mark: Controllo CF in tempo reale | :x: CF senza controllo
 [l10n_it_fiscalcode](l10n_it_fiscalcode/)| :white_check_mark: Separazione cognome e nome | :x:
-Spesometro | In fase di rilascio | :x: Non disponibile
+[l10n_it_vat_communication](l10n_it_vat_communication/) | :white_check_mark: | :x: Non disponibile
 
 [//]: # (copyright)
 

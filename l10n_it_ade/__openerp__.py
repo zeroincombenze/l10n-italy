@@ -5,7 +5,7 @@
 #
 {
     "name": "Base xml Agenzia delle Entrate",
-    "version": "8.0.0.1.2",
+    "version": "7.0.0.1.5",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
@@ -55,8 +55,13 @@ Il modulo rende disponibili i seguenti schemi:
 * FatturaPA versione 1.2
 """,
     "license": "AGPL-3",
-    "depends": [],
-    # "data": ['views/account_journal.xml'],
+    "depends": [
+        'account',
+        ],
+    "data": [
+        'views/account_tax_view.xml',
+        'views/account_journal.xml',
+        ],
     'installable': True,
     "external_dependencies": {
         "python": ["pyxb"],
