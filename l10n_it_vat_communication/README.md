@@ -43,7 +43,8 @@ Escludi importi Fuori Campo IVA | :white_check_mark: | Totale fattura in Comunic
 IVA differita | :white_check_mark: |
 IVA da split-payment | :white_check_mark: | 
 Ignora autofatture | :white_check_mark: | Esclusione tramite sezionale
-Identificazione Reverse Charge | :x: | In fase di rilascio
+Identificazione Reverse Charge | :white_check_mark: |
+Ignora di vendita fatture UE | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
 Ignora fatture extra-UE | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
 Fatture intra-UE beni | :x: | In fase di rilascio
 Fatture intra-UE servizi | :white_check_mark: | Tutte le fatture EU (provvisoriamente)

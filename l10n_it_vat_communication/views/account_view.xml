@@ -39,8 +39,8 @@
                                   <field name="amount_total" />
                                   <field name="amount_taxable" />
                                   <field name="amount_tax" />
-                                  <field name="tax_rate" />
-                                  <field name="tax_nodet_rate" />
+                                  <field name="xml_Aliquota" />
+                                  <field name="xml_Detraibile" />
                                   <field name="tax_nature" />
                                   <field name="tax_payability" />
                              </tree>
@@ -55,9 +55,9 @@
                                   <field name="amount_total" />
                                   <field name="amount_taxable" />
                                   <field name="amount_tax" />
-                                  <field name="tax_rate" />
-                                  <field name="tax_nodet_rate" />
-                                  <field name="tax_nature" />
+                                  <field name="xml_Aliquota" readonly="1" />
+                                  <field name="xml_Detraibile" readonly="1" />
+                                  <field name="tax_nature"  readonly="1" />
                                   <field name="tax_payability" />
                              </form>
                          </field>
@@ -75,8 +75,8 @@
                                   <field name="amount_total" />
                                   <field name="amount_taxable" />
                                   <field name="amount_tax" />
-                                  <field name="tax_rate" />
-                                  <field name="tax_nodet_rate" />
+                                  <field name="xml_Aliquota" />
+                                  <field name="xml_Detraibile" />
                                   <field name="tax_nature" />
                                   <field name="tax_payability" />
                              </tree>
@@ -91,9 +91,9 @@
                                   <field name="amount_total" />
                                   <field name="amount_taxable" />
                                   <field name="amount_tax" />
-                                  <field name="tax_rate" />
-                                  <field name="tax_nodet_rate" />
-                                  <field name="tax_nature" />
+                                  <field name="xml_Aliquota" readonly="1" />
+                                  <field name="xml_Detraibile" readonly="1" />
+                                  <field name="tax_nature"  readonly="1" />
                                   <field name="tax_payability" />
                              </form>
                          </field>

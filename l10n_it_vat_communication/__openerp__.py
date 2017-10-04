@@ -13,6 +13,7 @@
         "l10n_it_ade",
         "l10n_it_fiscalcode",
         "account_invoice_entry_date",
+        "l10n_it_vat_registries",
         # 'l10n_it_account'
     ],
     "author":  "SHS-AV s.r.l.,"

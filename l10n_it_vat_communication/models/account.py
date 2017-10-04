@@ -26,6 +26,12 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
                 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
+z = '0'
+for i, x in enumerate(ade.ADE_LEGALS['codice_carica']):
+    if ade.ADE_LEGALS['codice_carica'][i][0] == z:
+        j = ade.ADE_LEGALS['codice_carica'][i].index(z)
+        del ade.ADE_LEGALS['codice_carica'][j]
+        break
 
 
 class AccountVatCommunication(orm.Model):
@@ -190,7 +196,7 @@ class AccountVatCommunication(orm.Model):
             if release.major_version == '6.1':
                 raise orm.except_orm(
                     'Warning',
-                    _('Missed country code in partner'))
+                    _('Missed country code in partner %s') % partner.name)
             code = 'IT'
         return address.country_id.code or code
 
@@ -202,8 +208,11 @@ class AccountVatCommunication(orm.Model):
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
-            if self.get_country_code(cr, uid,
-                                     invoice.partner_id) not in EU_COUNTRIES:
+            country_code = self.get_country_code(cr, uid, invoice.partner_id)
+            if country_code not in EU_COUNTRIES:
+                continue
+            if invoice.type in ('out_invoice',
+                                'out_refund') and country_code != 'IT':
                 continue
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
@@ -211,6 +220,8 @@ class AccountVatCommunication(orm.Model):
                 tax_rate = 0.0
                 tax_nodet_rate = 0.0
                 if invoice_tax.tax_code_id:
+                    if invoice_tax.tax_code_id.exclude_from_registries:
+                        continue
                     taxcode_base_id = invoice_tax.tax_code_id.id
                     taxcode_vat_id = False
                     # for tax in invoice_tax.tax_code_id.tax_ids:
@@ -232,6 +243,8 @@ class AccountVatCommunication(orm.Model):
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
                 else:
+                    if invoice_tax.base_code_id.exclude_from_registries:
+                        continue
                     taxcode_base_id = invoice_tax.base_code_id.id
                     taxcode_vat_id = invoice_tax.tax_code_id.id
                     for tax_id in account_tax_model.search(
@@ -247,9 +260,9 @@ class AccountVatCommunication(orm.Model):
                 if not invoice_tax.tax_code_id and not tax_nature:
                     raise orm.except_orm(
                         _('Error!'),
-                        _('Invalid tax %s nature for invoice %s' %
-                          (invoice_tax.name,
-                           invoice.number)))
+                        _('Invalid tax %s nature for invoice %s') % (
+                            invoice_tax.name,
+                            invoice.number))
                 if taxcode_base_id not in inv_line:
                     inv_line[taxcode_base_id] = {}
                     inv_line[taxcode_base_id]['amount_taxable'] = 0.0
@@ -536,7 +549,7 @@ class AccountVatCommunication(orm.Model):
         line_model = self.pool[model_name]
         commitment_line = line_model.browse(cr, uid, line_id)
         return commitment_line_model._dati_line(
-            cr, uid, commitment_line, {'all': False}, context)
+            cr, uid, commitment_line, {'xml': True}, context)
 
 
 class commitment_line(orm.AbstractModel):
@@ -594,35 +607,40 @@ class commitment_line(orm.AbstractModel):
         res['xml_ImponibileImporto'] = abs(line.amount_taxable)
         res['xml_Imposta'] = abs(line.amount_tax)
         res['xml_Aliquota'] = line.tax_rate * 100
-        if args.get('all', True) or line.tax_nature:
+        res['xml_Detraibile'] = 100.0 - line.tax_nodet_rate * 100
+        if (args and args.get('xml', False)):
+            # Load data during export xml
+            if res['xml_Detraibile'] == 0:
+                res['xml_Deducibile'] = "SI"
+            if line.tax_nature:
+                res['xml_Natura'] = line.tax_nature
+            if line.tax_payability:
+                res['xml_EsigibilitaIVA'] = line.tax_payability
+        else:
+            # Data to line for displaying
             res['xml_Natura'] = line.tax_nature
-        res['xml_EsigibilitaIVA'] = line.tax_payability
         return res
 
     def _tipodocumento(self, cr, uid, invoice, context=None):
         doctype = invoice.type
         country_code = self.pool['account.vat.communication'].get_country_code(
             cr, uid, invoice.partner_id)
-        if doctype == 'out_invoice':
-            if invoice.amount_total >= 0:
-                return 'TD01'
-            else:
+        if country_code == 'IT':
+            if doctype in ('out_invoice', 'in_invoice'):
+                if invoice.amount_total >= 0:
+                    return 'TD01'
+                else:
+                    return 'TD04'
+            elif doctype in ('out_refund', 'in_refund'):
                 return 'TD04'
-        elif country_code == 'IT' and doctype == 'in_invoice':
-            if invoice.amount_total >= 0:
-                return 'TD01'
-            else:
-                return 'TD04'
-        elif country_code == 'IT' and doctype in ('out_refund', 'in_refund'):
-            return 'TD04'
         elif doctype == 'in_invoice':
             return 'TD11'
         else:
             raise orm.except_orm(
                 _('Error!'),
-                _('Invalid type %s (%s) for invoice %s' % (doctype,
-                                                           country_code,
-                                                           invoice.number)))
+                _('Invalid type %s (%s) for invoice %s') % (doctype,
+                                                            country_code,
+                                                            invoice.number))
 
 
 class commitment_DTE_line(orm.Model):
@@ -751,6 +769,14 @@ class commitment_DTE_line(orm.Model):
             store=False,
             select=True,
             readonly=True),
+        'xml_Detraibile': fields.function(
+            _xml_dati_line,
+            string="Tax deductible",
+            type="float",
+            multi=True,
+            store=False,
+            select=True,
+            readonly=True),
         'xml_Natura': fields.function(
             _xml_dati_line,
             string="Tax type",
@@ -776,7 +802,7 @@ class commitment_DTR_line(orm.Model):
                     not fields.get('xml_CodiceFiscale', ''):
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Check VAT for partner %s!' % line.partner_id.name))
+                    _('Check VAT for partner %s!') % line.partner_id.name)
 
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
@@ -883,6 +909,14 @@ class commitment_DTR_line(orm.Model):
         'xml_Aliquota': fields.function(
             _xml_dati_line,
             string="Tax rate",
+            type="float",
+            multi=True,
+            store=False,
+            select=True,
+            readonly=True),
+        'xml_Detraibile': fields.function(
+            _xml_dati_line,
+            string="Tax deductible",
             type="float",
             multi=True,
             store=False,
