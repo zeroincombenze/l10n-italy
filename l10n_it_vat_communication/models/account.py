@@ -490,25 +490,12 @@ class AccountVatCommunication(orm.Model):
         get_invoice_list"""
         account_invoice_model = self.pool['account.invoice']
         invoice = account_invoice_model.browse(cr, uid, invoice_id)
-        doctype = invoice.type
-        country_code = self.get_country_code(cr, uid, invoice.partner_id)
         res = {}
-        if country_code == 'IT' and doctype in (
-                'out_invoice', 'in_invoice') and invoice.amount_total >= 0:
-            res['xml_TipoDocumento'] = 'TD01'
-        elif country_code == 'IT' and doctype in (
-                'out_invoice', 'in_invoice') and invoice.amount_total < 0:
-            res['xml_TipoDocumento'] = 'TD04'
-        elif doctype == 'in_invoice':
-            res['xml_TipoDocumento'] = 'TD11'
-        else:
-            raise orm.except_orm(
-                _('Error!'),
-                _('Invalid type %s for invoice %s' % (doctype,
-                                                      invoice.number)))
-        # res['xml_Data'] = date.isoformat(invoice.date_invoice)
+        res['xml_TipoDocumento'] = self.pool[
+            'account.vat.communication.line']._tipodocumento(cr, uid, invoice,
+                                                             context)
         res['xml_Data'] = invoice.date_invoice
-        if doctype in ('in_invoice', 'in_refund'):
+        if invoice.type in ('in_invoice', 'in_refund'):
             res['xml_Numero'] = invoice.supplier_invoice_number[-20:]
             res['xml_DataRegistrazione'] = invoice.registration_date
         else:
@@ -611,19 +598,21 @@ class commitment_line(orm.AbstractModel):
         doctype = invoice.type
         country_code = self.pool['account.vat.communication'].get_country_code(
             cr, uid, invoice.partner_id)
-        if country_code == 'IT' and doctype in (
-                'out_invoice', 'in_invoice') and invoice.amount_total >= 0:
-            return 'TD01'
-        elif country_code == 'IT' and doctype in (
-                'out_invoice', 'in_invoice') and invoice.amount_total < 0:
+        if country_code == 'IT' and doctype in ('out_invoice', 'in_invoice'):
+            if invoice.amount_total >= 0:
+                return 'TD01'
+            else:
+                return 'TD04'
+        elif country_code == 'IT' and doctype in ('out_refund', 'in_refund'):
             return 'TD04'
         elif doctype == 'in_invoice':
             return 'TD11'
         else:
             raise orm.except_orm(
                 _('Error!'),
-                _('Invalid type %s for invoice %s' % (doctype,
-                                                      invoice.number)))
+                _('Invalid type %s (%s) for invoice %s' % (doctype,
+                                                           country_code,
+                                                           invoice.number)))
 
 
 class commitment_DTE_line(orm.Model):
