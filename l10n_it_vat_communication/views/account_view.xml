@@ -31,6 +31,7 @@
                              <tree editable="bottom" string="Sale invoice Lines">
                                   <field name="invoice_id" />
                                   <field name="tax_id" />
+                                  <field name="xml_TipoDocumento" />
                                   <field name="partner_id" />
                                   <field name="xml_IdPaese" />
                                   <field name="xml_IdCodice" />
@@ -46,6 +47,7 @@
                              <form>
                                   <field name="invoice_id" />
                                   <field name="tax_id" />
+                                  <field name="xml_TipoDocumento" />
                                   <field name="partner_id" />
                                   <field name="xml_IdPaese" readonly="1" />
                                   <field name="xml_IdCodice" readonly="1" />
@@ -65,6 +67,7 @@
                              <tree editable="bottom" string="Purchase invoice Lines">
                                   <field name="invoice_id" />
                                   <field name="tax_id" />
+                                  <field name="xml_TipoDocumento" />
                                   <field name="partner_id" />
                                   <field name="xml_IdPaese" />
                                   <field name="xml_IdCodice" />
@@ -80,6 +83,7 @@
                              <form>
                                   <field name="invoice_id" />
                                   <field name="tax_id" />
+                                  <field name="xml_TipoDocumento" />
                                   <field name="partner_id" />
                                   <field name="xml_IdPaese" readonly="1" />
                                   <field name="xml_IdCodice" readonly="1" />
@@ -95,7 +99,9 @@
                          </field>
                     </page> 
                     <page string="Attachments">
-                         <field name="attachment_ids" nolabel="1">
+                         <field name="attachment_ids" nolabel="1"
+                                colspan="4" modifiers="{}"
+                                context="{'default_res_model': 'account.vat.communication','default_res_id': id, 'default_company_id': company_id}">
                              <tree string="Attachments">
                                 <field name="name" />
                              </tree>

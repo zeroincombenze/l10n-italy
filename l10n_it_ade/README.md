@@ -57,9 +57,14 @@ Per aggiungere nuovi schemi o modificare o aggiornare gli schemi gestiti:
 Installation
 ------------
 
-* git clone https://github.com/zeroincombenze/l10n-italy
-* pip install PyXB==1.2.4
-* do something like -> service odoo-server restart -u l10n_it_ade -d MYDB
+These instruction are just an example to remember what you have to do:
+
+    pip install PyXB==1.2.4
+    git clone https://github.com/zeroincombenze/l10n-italy
+    cp -R l10n-italy/l10n_it_ade ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -i l10n_it_ade -d MYDB
+
+From UI: go to Setup > Module > Install
 
 
 Configuration
@@ -71,11 +76,8 @@ Configuration
 Usage
 -----
 
------
-
------
-
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
+
 
 Known issues / Roadmap
 ----------------------
@@ -83,9 +85,7 @@ Known issues / Roadmap
 :ticket: This module replace OCA module; PR will be issued
 In order to use this module you have to use:
 
-* [account_vat_period_end_statement](account_vat_period_end_statement/) replaces OCA module
-* [l10n_it_fatturapa](l10n_it_fatturapa/) replaces OCA module
-* [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) replaces OCA module
+* [l10n_it_base](l10n_it_base/) replaces OCA module
 
 
 Bug Tracker

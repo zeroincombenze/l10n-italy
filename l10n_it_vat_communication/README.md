@@ -18,6 +18,7 @@ Italian Localization - Spesometro2017
 Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 
 
+
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Localizzazione Italiana - Spesometro2017
@@ -79,9 +80,8 @@ Configuration
 Usage
 -----
 
------
-
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
+
 
 
 Known issues / Roadmap

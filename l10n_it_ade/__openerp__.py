@@ -5,7 +5,7 @@
 #
 {
     "name": "Base xml Agenzia delle Entrate",
-    "version": "7.0.0.1.4",
+    "version": "7.0.0.1.5",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
@@ -60,7 +60,7 @@ Il modulo rende disponibili i seguenti schemi:
         ],
     "data": [
         'views/account_tax_view.xml',
-        # 'views/account_journal.xml'
+        'views/account_journal.xml',
         ],
     'installable': True,
     "external_dependencies": {

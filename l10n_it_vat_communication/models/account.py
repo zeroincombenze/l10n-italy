@@ -82,7 +82,14 @@ class AccountVatCommunication(orm.Model):
     def create(self, cr, uid, vals, context=None):
         res = super(AccountVatCommunication, self).create(
             cr, uid, vals, context)
-        self.create_sequence(cr, uid, vals, context)
+        if 'company_id' in vals:
+            sequence_ids = self.pool['ir.sequence'].search(
+                cr, uid, [
+                    ('name', '=', 'vat_communication'),
+                    ('company_id', '=', vals['company_id'])
+                ])
+            if not sequence_ids:
+                self.create_sequence(cr, uid, vals, context)
         return res
 
     def create_sequence(self, cr, uid, vals, context=None):
@@ -96,7 +103,8 @@ class AccountVatCommunication(orm.Model):
         }
         if 'company_id' in vals:
             seq['company_id'] = vals['company_id']
-        return self.pool['ir.sequence'].create(cr, uid, seq)
+            return self.pool['ir.sequence'].create(cr, uid, seq)
+        return False
 
     def test_open(self, cr, uid, ids, *args):
         return True
@@ -599,13 +607,23 @@ class commitment_line(orm.AbstractModel):
         res['xml_EsigibilitaIVA'] = line.tax_payability
         return res
 
-    def _tipodocumento(self, cr, uid, line, args, context=None):
-        doctype = line.invoice_id.type
-        if doctype in ('out_invoice', 'in_invoice'):
+    def _tipodocumento(self, cr, uid, invoice, context=None):
+        doctype = invoice.type
+        country_code = self.pool['account.vat.communication'].get_country_code(
+            cr, uid, invoice.partner_id)
+        if country_code == 'IT' and doctype in (
+                'out_invoice', 'in_invoice') and invoice.amount_total >= 0:
             return 'TD01'
-        elif doctype in ('out_refund', 'in_refund'):
+        elif country_code == 'IT' and doctype in (
+                'out_invoice', 'in_invoice') and invoice.amount_total < 0:
             return 'TD04'
-        return False
+        elif doctype == 'in_invoice':
+            return 'TD11'
+        else:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Invalid type %s for invoice %s' % (doctype,
+                                                      invoice.number)))
 
 
 class commitment_DTE_line(orm.Model):
@@ -616,7 +634,7 @@ class commitment_DTE_line(orm.Model):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
-                                        context=None)
+                                        context=context)
 
             if len(fields.get('xml_IdCodice', '')) < 2 and \
                     not fields.get('xml_CodiceFiscale', ''):
@@ -636,14 +654,14 @@ class commitment_DTE_line(orm.Model):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
             res[line.id] = self._dati_line(cr, uid, line, args,
-                                           context=None)
+                                           context=context)
         return res
 
     def _xml_tipodocumento(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._tipodocumento(cr, uid, line, args,
-                                               context=None)
+            res[line.id] = self._tipodocumento(cr, uid, line.invoice_id,
+                                               context=context)
         return res
 
     _columns = {
@@ -753,12 +771,13 @@ class commitment_DTR_line(orm.Model):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
-                                        context=None)
+                                        context=context)
 
-            if len(fields.get('xml_IdCodice', '')) < 2:
+            if len(fields.get('xml_IdCodice', '')) < 2 and \
+                    not fields.get('xml_CodiceFiscale', ''):
                 raise orm.except_orm(
-                    _('Error!'), _('Check VAT for partner!').format(
-                        line.partner_id.name))
+                    _('Error!'),
+                    _('Check VAT for partner %s!' % line.partner_id.name))
 
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
@@ -772,14 +791,14 @@ class commitment_DTR_line(orm.Model):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
             res[line.id] = self._dati_line(cr, uid, line, args,
-                                           context=None)
+                                           context=context)
         return res
 
     def _xml_tipodocumento(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self._tipodocumento(cr, uid, line, args,
-                                               context=None)
+            res[line.id] = self._tipodocumento(cr, uid, line.invoice_id,
+                                               context=context)
         return res
 
     _columns = {

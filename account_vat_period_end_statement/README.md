@@ -50,71 +50,60 @@ compensazione.
 [Istruzioni di utilizzo](https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17)
 
 
+### Funzionalità & Certificati
+
+Logo | Ente/Certificato | Data inizio | Da fine | Note
+--- | --- | --- | --- | ---
+[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-06-2017 | 31-12-2017 | Validazione contro schema xml
+[![DesktopTelematico](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/DesktopTelematico.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/DesktopTelematico.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-06-2017 | 31-12-2017 | Controllo tramite Desktop telematico
+
+
 Installation
 ------------
 
+These instruction are just an example to remember what you have to do:
 
+    pip install PyXB==1.2.4
+    git clone https://github.com/zeroincombenze/l10n-italy
+    cp -R l10n-italy/account_vat_period_end_statement ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -i account_vat_period_end_statement -d MYDB
 
-:warning: Since version [7-8].0.1.0.0 of this module, definition schemas are
-moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
-informations.
-
-:warning: A partire dalla versione [7-8].0.1.0.0 di questo modulo, gli schemi
-di definizione sono stati spostati nel modulo l10n_it_ade. Per ulteriori
-informazioni, leggete i documenti relativi al modulo l10n_it_ade.
-
-This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
+From UI: go to Setup > Module > Install
 
 
 Configuration
 -------------
 
+:mute:
+
 
 Usage
 -----
 
------
+For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
 
------
-
------
-
------
-
------
-
------
-
------
-
------
-
------
 
 Known issues / Roadmap
 ----------------------
 
+:ticket: This module replaces OCA module; PR have to be issued.
+In order to use this module you have to use:
 
-
-:no_entry: Questo modulo sostituisce il modulo OCA
+* [l10n_it_base](l10n_it_base/) replaces OCA module
+* [l10n_it_ade](l10n_it_ade/) module does not exist in OCA repository
+* [l10n_it_fiscalcode](l10n_it_fiscalcode/) replaces OCA module
 
 
 Bug Tracker
 -----------
 
+Have a bug? Please visit https://odoo-italia.org/index.php/kunena/home
+
 
 Credits
 -------
 
-
-
-
-
-
-
 ### Contributors
-
-
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Marco Marchiori <marcomarkiori@gmail.com>
@@ -122,19 +111,15 @@ Credits
 * Andrei Levin <andrei.levin@didotech.com>
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-
 ### Funders
-### Maintainer
 
+This module has been financially supported by
 
-
-
-
-Questo modulo è stato sviluppato con il contributo di
-
+* Agile Business Group sagl <http://www.agilebg.com>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* Didotech srl <http://www.didotech.com>
 
-
+### Maintainer
 
 [![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
 

@@ -31,31 +31,47 @@ Inoltre permette di generare il codice fiscale dai dati.
 Divide la ragione sociale in cognome e nome nel caso di persone fisiche.
 
 
+### Funzionalità & Certificati
+
+Funzione | Status | Note
+--- | --- | ---
+Controllo validità CF Italia | :white_check_mark: | Verifica carattere di controllo
+Accetta Partita IVA | :white_check_mark: | Per aziende controllate
+Genera CF da dati | :white_check_mark: |
+
+
 Installation
 ------------
 
-* git clone https://github.com/zeroincombenze/l10n-italy
-* pip install codicefiscale
-* do something like -> service odoo-server restart -u l10n_it_fiscalcode -d MYDB
+These instruction are just an example to remember what you have to do:
+
+    pip install PyXB==1.2.4
+    git clone https://github.com/zeroincombenze/l10n-italy
+    cp -R l10n-italy/l10n_it_fiscalcode ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -i l10n_it_fiscalcode -d MYDB
+
+From UI: go to Setup > Module > Install
+
 
 Configuration
 -------------
 
 :mute:
 
+
 Usage
 -----
 
------
-
------
-
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
+
 
 Known issues / Roadmap
 ----------------------
 
 :ticket: This module replace OCA module; PR will be issued
+In order to use this module you have to use:
+
+* [l10n_it_base](l10n_it_base/) replaces OCA module
 
 
 Bug Tracker
