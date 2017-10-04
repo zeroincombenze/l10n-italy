@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
@@ -95,11 +96,11 @@ class WizardVatCommunication(orm.TransientModel):
                     _('Internal error: invalid partner selector'))
         else:
             if selector == 'company':
-                sede = (IndirizzoNoCAPType())
+                sede = (IndirizzoType())
             elif selector == 'customer':
-                sede = (IndirizzoType())
+                sede = (IndirizzoNoCAPType())
             elif selector == 'supplier':
-                sede = (IndirizzoType())
+                sede = (IndirizzoNoCAPType())
             else:
                 raise orm.except_orm(
                     _('Error!'),
@@ -112,7 +113,7 @@ class WizardVatCommunication(orm.TransientModel):
         elif selector == 'company':
             raise orm.except_orm(
                 _('Error!'),
-                _('Missed zip code'))
+                _('Missed company zip code'))
         if 'xml_Provincia' in fields and fields['xml_Nazione'] == 'IT':
             sede.Provincia = fields['xml_Provincia']
 
@@ -131,9 +132,9 @@ class WizardVatCommunication(orm.TransientModel):
                     _('Internal error: invalid partner selector'))
         else:
             if selector == 'company':
-                AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
-            elif selector == 'customer' or selector == 'supplier':
                 AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
+            elif selector == 'customer' or selector == 'supplier':
+                AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
             else:
                 raise orm.except_orm(
                     _('Error!'),
@@ -160,6 +161,7 @@ class WizardVatCommunication(orm.TransientModel):
             # Company VAT number must be present
             CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA = (
                 IdFiscaleITType())
+            partner_type = 'company'
         elif dte_dtr_id == 'DTR':
             CedentePrestatore = (CedentePrestatoreDTRType())
             CedentePrestatore.IdentificativiFiscali = (
@@ -167,6 +169,7 @@ class WizardVatCommunication(orm.TransientModel):
             # Company VAT number must be present
             CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA = (
                 IdFiscaleType())
+            partner_type = 'supplier'
         else:
             raise orm.except_orm(
                 _('Error!'),
@@ -179,7 +182,7 @@ class WizardVatCommunication(orm.TransientModel):
         CedentePrestatore.IdentificativiFiscali.CodiceFiscale = \
             CodiceFiscaleType(fields['xml_CodiceFiscale'])
         CedentePrestatore.AltriDatiIdentificativi = \
-            self.get_name(cr, uid, fields, dte_dtr_id, 'company', context)
+            self.get_name(cr, uid, fields, dte_dtr_id, partner_type, context)
         return CedentePrestatore
 
     def get_cessionario_committente(self, cr, uid,
@@ -193,7 +196,7 @@ class WizardVatCommunication(orm.TransientModel):
         else:
             # DTR
             partner = (CessionarioCommittenteDTRType())
-            partner_type = 'supplier'
+            partner_type = 'company'
             partner.IdentificativiFiscali = (IdentificativiFiscaliITType())
 
         if fields.get('xml_IdPaese') and fields.get('xml_IdCodice'):
@@ -236,13 +239,10 @@ class WizardVatCommunication(orm.TransientModel):
             if 'xml_IdPaese' not in fields and \
                     'xml_CodiceFiscale' not in fields:
                 continue
-            elif 'xml_IdCodice' not in fields and \
-                    'xml_CodiceFiscale' not in fields:
+            elif not fields.get('xml_IdCodice', False) and \
+                    not fields.get('xml_CodiceFiscale', False):
                 # Corrispettivi
                 continue
-            # [antoniov: da verificare con Adrei]
-            # elif not fields['xml_IdPaese'] == 'IT':
-            #    continue
 
             # TODO: StabileOrganizzazione
             # TODO: RappresentanteFiscale
@@ -291,13 +291,13 @@ class WizardVatCommunication(orm.TransientModel):
                         fields['xml_Imposta'])
                     riepilogo.DatiIVA.Aliquota = '{:.2f}'.format(
                         fields['xml_Aliquota'])
+                    if 'xml_Detraibile' in fields:
+                        riepilogo.Detraibile = '{:.2f}'.format(
+                            fields['xml_Detraibile'])
+                    if 'xml_Deducibile' in fields:
+                        riepilogo.Deducibile = fields['xml_Deducibile']
                     if 'xml_Natura' in fields:
                         riepilogo.Natura = fields['xml_Natura']
-                    # riepilogo.Detraibile = dte_line.xml_
-                    # riepilogo.Deducibile = dte_line.xml_
-                    # riepilogo.EsigibilitaIVA = dte_line.xml_
-                    # riepilogo.Detraibile = '0.00'
-                    # riepilogo.Deducibile = 'SI'
                     riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
