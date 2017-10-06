@@ -39,8 +39,8 @@ class AccountVatCommunication(orm.Model):
     _name = "account.vat.communication"
     _columns = {
         'company_id': fields.many2one('res.company', 'Azienda', required=True),
-        'progressivo_telematico':
-            fields.integer('Progressivo telematico', readonly=True),
+        # 'progressivo_telematico':
+        #     fields.integer('Progressivo telematico', readonly=True),
         'soggetto_codice_fiscale':
             fields.char('Codice fiscale dichiarante',
                         size=16, required=True,
@@ -205,14 +205,19 @@ class AccountVatCommunication(orm.Model):
         """Read all in/out invoices and return amount and fiscal parts"""
         invoice_model = self.pool['account.invoice']
         account_tax_model = self.pool['account.tax']
+        sum_amounts = {}
+        for f in ('total', 'taxable', 'tax', 'ignored'):
+            sum_amounts[f] = 0.0
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
             country_code = self.get_country_code(cr, uid, invoice.partner_id)
             if country_code not in EU_COUNTRIES:
+                sum_amounts['ignored'] += invoice.amount_total
                 continue
             if invoice.type in ('out_invoice',
                                 'out_refund') and country_code != 'IT':
+                sum_amounts['ignored'] += invoice.amount_total
                 continue
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
@@ -256,6 +261,7 @@ class AccountVatCommunication(orm.Model):
                             if tax.payability:
                                 tax_payability = tax.payability
                 if tax_nature == 'FC':
+                    sum_amounts['ignored'] += invoice.amount_total
                     continue
                 if not invoice_tax.tax_code_id and not tax_nature:
                     raise orm.except_orm(
@@ -289,11 +295,15 @@ class AccountVatCommunication(orm.Model):
                 inv_line[taxcode_base_id]['amount_tax'] += invoice_tax.amount
                 inv_line[taxcode_base_id]['amount_total'] += round(
                     invoice_tax.base + invoice_tax.amount, 2)
+                sum_amounts['taxable'] += invoice_tax.base
+                sum_amounts['tax'] += invoice_tax.amount
+                sum_amounts['total'] += round(
+                    invoice_tax.base + invoice_tax.amount, 2)
             if inv_line:
                 comm_lines[invoice_id] = {}
                 comm_lines[invoice_id]['partner_id'] = invoice.partner_id.id
                 comm_lines[invoice_id]['taxes'] = inv_line
-        return comm_lines
+        return comm_lines, sum_amounts
 
     def load_DTE_DTR(self, cr, uid, commitment, commitment_line_model,
                      dte_dtr_id, context=None):
@@ -314,9 +324,9 @@ class AccountVatCommunication(orm.Model):
         else:
             return
 
-        comm_lines = self.load_invoices(cr, uid,
-                                        commitment, commitment_line_model,
-                                        dte_dtr_id, where, {}, context)
+        comm_lines, sum_amounts = self.load_invoices(
+            cr, uid, commitment, commitment_line_model,
+            dte_dtr_id, where, {}, context)
         if comm_lines:
             for line_id in commitment_line_model.search(
                 cr, uid, [('commitment_id', '=', commitment.id),
@@ -424,12 +434,12 @@ class AccountVatCommunication(orm.Model):
                                context=None):
         """Return DatiFatturaHeader: may be empty"""
         res = {}
-        if not commitment.progressivo_telematico:
-            res['xml_ProgressivoInvio'] = str(self.set_progressivo_telematico(
-                cr, uid, commitment, context))
-        else:
-            res['xml_ProgressivoInvio'] = str(
-                commitment.progressivo_telematico)
+        # if not commitment.progressivo_telematico:
+        #     res['xml_ProgressivoInvio']=str(self.set_progressivo_telematico(
+        #         cr, uid, commitment, context))
+        # else:
+        #     res['xml_ProgressivoInvio'] = str(
+        #         commitment.progressivo_telematico)
         if commitment.codice_carica and commitment.soggetto_codice_fiscale:
             res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
             res['xml_Carica'] = commitment.codice_carica
@@ -564,14 +574,15 @@ class commitment_line(orm.AbstractModel):
         else:
             address = partner
 
-        if partner.individual and partner.fiscalcode:
-            res = {'xml_CodiceFiscale': partner.fiscalcode}
-        else:
-            res = {'xml_CodiceFiscale': partner.vat and partner.vat[2:] or ''}
+        res = {}
         if partner.vat:
             vat = partner.vat
             res['xml_IdPaese'] = vat and vat[0:2] or ''
             res['xml_IdCodice'] = vat and vat[2:] or ''
+        if partner.individual and partner.fiscalcode:
+            res['xml_CodiceFiscale'] = partner.fiscalcode
+        elif res['xml_IdPaese'] == 'IT':
+            res['xml_CodiceFiscale'] = res['xml_IdCodice']
 
         if partner.individual:
             if release.major_version == '6.1':
