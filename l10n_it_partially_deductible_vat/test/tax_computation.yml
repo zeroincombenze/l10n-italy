@@ -53,7 +53,7 @@
     Compute the total tax.
 -
     !python {model: account.invoice}: |
-        self.button_compute(cr, uid, [ref("account_invoice_customer1")])  
+        self.button_compute(cr, uid, [ref("account_invoice_customer1")])
 -
     Then I verify the amount.
     123.57 + 123.57 = 247.14
