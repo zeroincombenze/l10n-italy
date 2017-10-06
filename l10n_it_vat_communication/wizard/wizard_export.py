@@ -179,8 +179,9 @@ class WizardVatCommunication(orm.TransientModel):
             IdPaese = fields['xml_IdPaese']
         CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
             IdCodice = fields['xml_IdCodice']
-        CedentePrestatore.IdentificativiFiscali.CodiceFiscale = \
-            CodiceFiscaleType(fields['xml_CodiceFiscale'])
+        if fields.get('xml_CodiceFiscale'):
+            CedentePrestatore.IdentificativiFiscali.CodiceFiscale = \
+                CodiceFiscaleType(fields['xml_CodiceFiscale'])
         CedentePrestatore.AltriDatiIdentificativi = \
             self.get_name(cr, uid, fields, dte_dtr_id, partner_type, context)
         return CedentePrestatore
@@ -373,8 +374,8 @@ class WizardVatCommunication(orm.TransientModel):
                 #     commitment.progressivo_telematico)
                 progr_invio = commitment_model.set_progressivo_telematico(
                     cr, uid, commitment, context)
-                file_name = 'IT%sDF%s' % (commitment.soggetto_codice_fiscale,
-                                          progr_invio)
+                file_name = 'IT%s_DF_%s.xml' % (
+                    commitment.soggetto_codice_fiscale, progr_invio)
                 vat_communication_xml = communication.toDOM().toprettyxml(
                     encoding="latin1")
 
