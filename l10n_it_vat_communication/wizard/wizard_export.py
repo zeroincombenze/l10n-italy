@@ -74,7 +74,7 @@ class WizardVatCommunication(orm.TransientModel):
         fields = commitment_model.get_xml_fattura_header(
             cr, uid, commitment, context)
         header = (DatiFatturaHeaderType())
-        header.ProgressivoInvio = fields['xml_ProgressivoInvio']
+        # header.ProgressivoInvio = fields['xml_ProgressivoInvio']
         if 'xml_CodiceFiscale' in fields:
             header.Dichiarante = (DichiaranteType())
             header.Dichiarante.Carica = fields['xml_Carica']
