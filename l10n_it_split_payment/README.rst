@@ -71,6 +71,8 @@ Usage
 
 -----
 
+-----
+
 =====
 
 To use this module, you need to select the correct fiscal position in invoices
