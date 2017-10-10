@@ -14,6 +14,7 @@
 =========================
 
 Period End VAT Statement
+========================
 
 This module helps to register the VAT statement of period end.
 
@@ -47,13 +48,19 @@ Installation
 
 
 
+
 Configuration
 -------------
 
 
 
 
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -68,8 +75,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -81,12 +90,14 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
+
+
 
 
 
 
 ### Contributors
+
 
 
 
@@ -103,6 +114,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

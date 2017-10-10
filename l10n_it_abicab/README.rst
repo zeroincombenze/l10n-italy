@@ -14,6 +14,7 @@
 =================
 
 Base Bank ABI/CAB codes
+=======================
 
 This module add to res.bank the ABI/CAB data (bank identification numbers).
 
@@ -24,13 +25,19 @@ Installation
 
 
 
+
 Configuration
 -------------
 
 
 
 
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -45,8 +52,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -57,12 +66,14 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
+
+
 
 
 
 
 ### Contributors
+
 
 
 
@@ -75,6 +86,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

@@ -14,6 +14,7 @@
 =========================
 
 Italian Localization - VAT Registries
+=====================================
 
 Law: http://goo.gl/b4y9Hx
 
@@ -23,8 +24,10 @@ Installation
 
 
 
+
 Configuration
 -------------
+
 
 
 
@@ -66,6 +69,10 @@ Usage
 
 -----
 
+-----
+
+-----
+
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -78,8 +85,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -98,12 +107,14 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
+
+
 
 
 
 
 ### Contributors
+
 
 
 
@@ -116,6 +127,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 

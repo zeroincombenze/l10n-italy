@@ -14,11 +14,13 @@
 =================
 
 Italian Localization - DDT: Documento di trasporto
+==================================================
 
 This modules extends stock_picking_package_preparation module adding DDT data
 
 Installation
 ------------
+
 
 
 
@@ -29,7 +31,12 @@ Configuration
 
 
 
+
 Usage
+-----
+
+-----
+
 -----
 
 -----
@@ -116,8 +123,10 @@ Known issues / Roadmap
 
 
 
+
 Bug Tracker
 -----------
+
 
 
 
@@ -129,12 +138,14 @@ Credits
 
 
 
-[![Odoo Italia Associazione]]
+
+
 
 
 
 
 ### Contributors
+
 
 
 
@@ -150,6 +161,8 @@ Credits
 ### Funders
 
 ### Maintainer
+
+
 
 
 
