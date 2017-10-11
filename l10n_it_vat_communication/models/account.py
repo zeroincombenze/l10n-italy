@@ -76,6 +76,38 @@ class AccountVatCommunication(orm.Model):
             }),
         'attachment_ids': fields.one2many(
             'ir.attachment', 'res_id', 'Attachments',),
+        'dte_amount_total': fields.float(
+            'Total sales',
+            help='Total amount of sale invoices in Communication',
+            digits_compute=dp.get_precision('Account')),
+        'dte_amount_taxable': fields.float(
+            'Total taxable sales',
+            help='Total taxables of sale invoices in Communication',
+            digits_compute=dp.get_precision('Account')),
+        'dte_amount_tax': fields.float(
+            'Total tax sales',
+            help='Total taxes of sale invoices in Communication',
+            digits_compute=dp.get_precision('Account')),
+        'dte_amount_discarded': fields.float(
+            'Total discarded sales',
+            help='Total amount discarded from sale invoices',
+            digits_compute=dp.get_precision('Account')),
+        'dtr_amount_total': fields.float(
+            'Total purchases',
+            help='Total amount of purchase invoices in Communication',
+            digits_compute=dp.get_precision('Account')),
+        'dtr_amount_taxable': fields.float(
+            'Total taxable purchases',
+            help='Total taxables of purchase invoices in Communication',
+            digits_compute=dp.get_precision('Account')),
+        'dtr_amount_tax': fields.float(
+            'Total tax purchases',
+            help='Total taxes of purchase invoices in Communication',
+            digits_compute=dp.get_precision('Account')),
+        'dtr_amount_discarded': fields.float(
+            'Total discarded purchases',
+            help='Total amount discarded from purchase invoices',
+            digits_compute=dp.get_precision('Account')),
     }
 
     _defaults = {
@@ -206,18 +238,24 @@ class AccountVatCommunication(orm.Model):
         invoice_model = self.pool['account.invoice']
         account_tax_model = self.pool['account.tax']
         sum_amounts = {}
-        for f in ('total', 'taxable', 'tax', 'ignored'):
+        for f in ('total', 'taxable', 'tax', 'discarded'):
             sum_amounts[f] = 0.0
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
             country_code = self.get_country_code(cr, uid, invoice.partner_id)
             if country_code not in EU_COUNTRIES:
-                sum_amounts['ignored'] += invoice.amount_total
+                if invoice.type[-7:] == '_refund':
+                    sum_amounts['discarded'] -= invoice.amount_total
+                else:
+                    sum_amounts['discarded'] += invoice.amount_total
                 continue
             if invoice.type in ('out_invoice',
                                 'out_refund') and country_code != 'IT':
-                sum_amounts['ignored'] += invoice.amount_total
+                if invoice.type[-7:] == '_refund':
+                    sum_amounts['discarded'] -= invoice.amount_total
+                else:
+                    sum_amounts['discarded'] += invoice.amount_total
                 continue
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
@@ -229,13 +267,22 @@ class AccountVatCommunication(orm.Model):
                         continue
                     taxcode_base_id = invoice_tax.tax_code_id.id
                     taxcode_vat_id = False
-                    # for tax in invoice_tax.tax_code_id.tax_ids:
-                    for tax_id in account_tax_model.search(
-                            cr, uid, [('tax_code_id', '=', taxcode_base_id)]):
+                    where = [('tax_code_id', '=', taxcode_base_id)]
+                else:
+                    if invoice_tax.base_code_id.exclude_from_registries:
+                        continue
+                    taxcode_base_id = invoice_tax.base_code_id.id
+                    taxcode_vat_id = invoice_tax.tax_code_id.id
+                    where = [('base_code_id', '=', taxcode_base_id)]
+                # for tax in invoice_tax.tax_code_id.tax_ids:
+                for tax_id in account_tax_model.search(
+                        cr, uid, where):
                         tax = account_tax_model.browse(cr, uid, tax_id)
                         if tax and not tax.parent_id:
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
+                            if tax.non_taxable_nature:
+                                tax_nature = tax.non_taxable_nature
                             if tax.payability:
                                 tax_payability = tax.payability
                         else:
@@ -247,28 +294,19 @@ class AccountVatCommunication(orm.Model):
                             taxcode_base_id = invoice_tax.tax_code_id.id
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
-                else:
-                    if invoice_tax.base_code_id.exclude_from_registries:
-                        continue
-                    taxcode_base_id = invoice_tax.base_code_id.id
-                    taxcode_vat_id = invoice_tax.tax_code_id.id
-                    for tax_id in account_tax_model.search(
-                            cr, uid, [('base_code_id', '=', taxcode_base_id)]):
-                        tax = account_tax_model.browse(cr, uid, tax_id)
-                        if tax and not tax.parent_id:
-                            if tax.non_taxable_nature:
-                                tax_nature = tax.non_taxable_nature
-                            if tax.payability:
-                                tax_payability = tax.payability
-                if tax_nature == 'FC':
-                    sum_amounts['ignored'] += invoice.amount_total
-                    continue
-                if not invoice_tax.tax_code_id and not tax_nature:
+                if (not tax_rate and not tax_nature) or \
+                        (tax_rate and tax_nature):
                     raise orm.except_orm(
                         _('Error!'),
                         _('Invalid tax %s nature for invoice %s') % (
                             invoice_tax.name,
                             invoice.number))
+                if tax_nature == 'FC':
+                    if invoice.type[-7:] == '_refund':
+                        sum_amounts['discarded'] -= invoice.amount_total
+                    else:
+                        sum_amounts['discarded'] += invoice.amount_total
+                    continue
                 if taxcode_base_id not in inv_line:
                     inv_line[taxcode_base_id] = {}
                     inv_line[taxcode_base_id]['amount_taxable'] = 0.0
@@ -295,10 +333,16 @@ class AccountVatCommunication(orm.Model):
                 inv_line[taxcode_base_id]['amount_tax'] += invoice_tax.amount
                 inv_line[taxcode_base_id]['amount_total'] += round(
                     invoice_tax.base + invoice_tax.amount, 2)
-                sum_amounts['taxable'] += invoice_tax.base
-                sum_amounts['tax'] += invoice_tax.amount
-                sum_amounts['total'] += round(
-                    invoice_tax.base + invoice_tax.amount, 2)
+                if invoice.type[-7:] == '_refund':
+                    sum_amounts['taxable'] -= invoice_tax.base
+                    sum_amounts['tax'] -= invoice_tax.amount
+                    sum_amounts['total'] -= round(
+                        invoice_tax.base + invoice_tax.amount, 2)
+                else:
+                    sum_amounts['taxable'] += invoice_tax.base
+                    sum_amounts['tax'] += invoice_tax.amount
+                    sum_amounts['total'] += round(
+                        invoice_tax.base + invoice_tax.amount, 2)
             if inv_line:
                 comm_lines[invoice_id] = {}
                 comm_lines[invoice_id]['partner_id'] = invoice.partner_id.id
@@ -365,29 +409,39 @@ class AccountVatCommunication(orm.Model):
                     commitment_line_model.write(cr, uid, ids, line)
                 else:
                     commitment_line_model.create(cr, uid, line)
+        return sum_amounts
 
     def load_DTE(self, cr, uid, commitment, context=None):
         """Read all sale invoices in periods"""
         context = context or {}
         commitment_DTE_line_model = self.pool[
             'account.vat.communication.dte.line']
-        self.load_DTE_DTR(
+        sum_amounts = self.load_DTE_DTR(
             cr, uid, commitment, commitment_DTE_line_model, 'DTE', context)
+        return sum_amounts
 
     def load_DTR(self, cr, uid, commitment, context=None):
         """Read all purchase invoices in periods"""
         context = context or {}
         commitment_DTR_line_model = self.pool[
             'account.vat.communication.dtr.line']
-        self.load_DTE_DTR(
+        sum_amounts = self.load_DTE_DTR(
             cr, uid, commitment, commitment_DTR_line_model, 'DTR', context)
+        return sum_amounts
 
     def compute_amounts(self, cr, uid, ids, context=None):
         context = {} if context is None else context
 
         for commitment in self.browse(cr, uid, ids, context):
-            self.load_DTE(cr, uid, commitment, context)
-            self.load_DTR(cr, uid, commitment, context)
+            dte_sum_amounts = self.load_DTE(cr, uid, commitment, context)
+            dtr_sum_amounts = self.load_DTR(cr, uid, commitment, context)
+            vals = {}
+            for t in ('total', 'taxable', 'tax', 'discarded'):
+                f = 'dte_amount_' + t
+                vals[f] = dte_sum_amounts[t]
+                f = 'dtr_amount_' + t
+                vals[f] = dtr_sum_amounts[t]
+            self.write(cr, uid, [commitment.id], vals)
         return True
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,

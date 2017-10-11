@@ -302,7 +302,7 @@ class WizardVatCommunication(orm.TransientModel):
                     riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
-            invoices.append(invoice)
+                invoices.append(invoice)
             if dte_dtr_id == 'DTE':
                 partner.DatiFatturaBodyDTE = invoices
             else:
