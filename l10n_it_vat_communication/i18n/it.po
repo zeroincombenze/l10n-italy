@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 05:52+0000\n"
-"PO-Revision-Date: 2017-10-04 05:52+0000\n"
+"POT-Creation-Date: 2017-10-11 13:02+0000\n"
+"PO-Revision-Date: 2017-10-11 13:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,14 +46,15 @@ msgid "Amount"
 msgstr "Importo"
 
 #. module: l10n_it_vat_communication
+#: view:account.vat.communication:0
+#: field:account.vat.communication,attachment_ids:0
+msgid "Attachments"
+msgstr "Allegati"
+
+#. module: l10n_it_vat_communication
 #: field:account.vat.communication,company_id:0
 msgid "Azienda"
 msgstr "Azienda"
-
-#. module: l10n_it_vat_communication
-#: selection:account.vat.communication,codice_carica:0
-msgid "Azienda PF (Ditta indivisuale/Professionista/eccetera)"
-msgstr "Azienda PF (Ditta indivisuale/Professionista/eccetera)"
 
 #. module: l10n_it_vat_communication
 #: help:account.vat.communication,soggetto_codice_fiscale:0
@@ -68,8 +69,8 @@ msgid "Cancel"
 msgstr "Cancella"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:643
-#: code:addons/l10n_it_vat_communication/models/account.py:780
+#: code:addons/l10n_it_vat_communication/models/account.py:725
+#: code:addons/l10n_it_vat_communication/models/account.py:870
 #, python-format
 msgid "Check VAT for partner %s!"
 msgstr "Controlla PI e/o CF di %s!"
@@ -77,7 +78,7 @@ msgstr "Controlla PI e/o CF di %s!"
 #. module: l10n_it_vat_communication
 #: help:account.journal,rev_charge:0
 msgid "Check if reverse charge EU invoices journal"
-msgstr "Controlla il sezione delle autofatture"
+msgstr "Controlla se registro reverse charge UE"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication,codice_carica:0
@@ -128,6 +129,11 @@ msgid "Custode giudiziario"
 msgstr "Custode giudiziario"
 
 #. module: l10n_it_vat_communication
+#: field:wizard.vat.communication,target:0
+msgid "Customers/Suppliers"
+msgstr "Clienti/Fornitori"
+
+#. module: l10n_it_vat_communication
 #: field:account.vat.communication.dte.line,xml_TipoDocumento:0
 #: field:account.vat.communication.dtr.line,xml_TipoDocumento:0
 msgid "Document type"
@@ -152,23 +158,22 @@ msgid "Error"
 msgstr "Errore"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:174
-#: code:addons/l10n_it_vat_communication/models/account.py:248
-#: code:addons/l10n_it_vat_communication/models/account.py:431
-#: code:addons/l10n_it_vat_communication/models/account.py:442
-#: code:addons/l10n_it_vat_communication/models/account.py:473
-#: code:addons/l10n_it_vat_communication/models/account.py:506
-#: code:addons/l10n_it_vat_communication/models/account.py:526
-#: code:addons/l10n_it_vat_communication/models/account.py:624
-#: code:addons/l10n_it_vat_communication/models/account.py:642
-#: code:addons/l10n_it_vat_communication/models/account.py:779
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:94
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:105
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:114
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:130
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:139
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:172
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:370
+#: code:addons/l10n_it_vat_communication/models/account.py:212
+#: code:addons/l10n_it_vat_communication/models/account.py:300
+#: code:addons/l10n_it_vat_communication/models/account.py:513
+#: code:addons/l10n_it_vat_communication/models/account.py:524
+#: code:addons/l10n_it_vat_communication/models/account.py:555
+#: code:addons/l10n_it_vat_communication/models/account.py:595
+#: code:addons/l10n_it_vat_communication/models/account.py:705
+#: code:addons/l10n_it_vat_communication/models/account.py:724
+#: code:addons/l10n_it_vat_communication/models/account.py:869
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:95
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:106
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:115
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:131
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:140
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:175
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:371
 #, python-format
 msgid "Error!"
 msgstr "Errore!"
@@ -201,36 +206,35 @@ msgid "Header"
 msgstr "Intestazione"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:95
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:106
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:131
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:140
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:173
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:371
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:96
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:107
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:132
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:141
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:176
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:372
 #, python-format
 msgid "Internal error: invalid partner selector"
 msgstr "Errore interno: selezione partner non valida"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:443
-#: code:addons/l10n_it_vat_communication/models/account.py:474
-#: code:addons/l10n_it_vat_communication/models/account.py:527
+#: code:addons/l10n_it_vat_communication/models/account.py:525
+#: code:addons/l10n_it_vat_communication/models/account.py:556
+#: code:addons/l10n_it_vat_communication/models/account.py:596
 #, python-format
 msgid "Internal error: no DTE neither DTR selected"
 msgstr "Errore interno: ne clienti ne fornitori selezionati"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:250
+#: code:addons/l10n_it_vat_communication/models/account.py:301
 #, python-format
 msgid "Invalid tax %s nature for invoice %s"
 msgstr "Natura di codice IVA %s di fattura %s non valida"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:507
-#: code:addons/l10n_it_vat_communication/models/account.py:625
+#: code:addons/l10n_it_vat_communication/models/account.py:706
 #, python-format
-msgid "Invalid type %s for invoice %s"
-msgstr "Tipo %s di fattura %s non valido"
+msgid "Invalid type %s (%s) for invoice %s"
+msgstr "Tipo fattura %s (%s) non valido per %s"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication.dte.line,invoice_id:0
@@ -261,22 +265,28 @@ msgid "Liquidatore di DI"
 msgstr "Liquidatore di DI"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:432
+#: code:addons/l10n_it_vat_communication/models/account.py:514
 #, python-format
 msgid "Missed company VAT number"
 msgstr "Azienda senza partita IVA"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:193
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:116
 #, python-format
-msgid "Missed country code in partner"
-msgstr "Manca codice nazione in cliente/fornitore"
+msgid "Missed company zip code"
+msgstr "Manca CAP"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:115
+#: code:addons/l10n_it_vat_communication/models/account.py:231
 #, python-format
-msgid "Missed zip code"
-msgstr "Manca CAP"
+msgid "Missed country code in partner %s"
+msgstr "Manca nazione in cliente/fornitore %s"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,tax_nature:0
+#: field:account.vat.communication.dtr.line,tax_nature:0
+msgid "Non taxable nature"
+msgstr "Natura Non Imponibile"
 
 #. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
@@ -311,11 +321,6 @@ msgstr "Il period %s è già associato alla comunicazione"
 #: field:account.vat.communication,period_ids:0
 msgid "Periods"
 msgstr "Periodi contabili"
-
-#. module: l10n_it_vat_communication
-#: field:account.vat.communication,progressivo_telematico:0
-msgid "Progressivo telematico"
-msgstr "Progressivo telematico"
 
 #. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
@@ -398,8 +403,13 @@ msgstr "Imposta stato bozza"
 
 #. module: l10n_it_vat_communication
 #: view:wizard.vat.communication:0
-msgid "Start Export"
-msgstr "Inizio esportazione"
+msgid "Start Export Customer Invoices"
+msgstr "Inizia esportazione fatture clienti"
+
+#. module: l10n_it_vat_communication
+#: view:wizard.vat.communication:0
+msgid "Start Export Supplier Invoices"
+msgstr "Inizia esportazione fatture fornitori"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication,state:0
@@ -417,6 +427,12 @@ msgstr "IVA"
 #: field:account.vat.communication.dtr.line,amount_tax:0
 msgid "Tax amount"
 msgstr "Importo IVA"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,xml_Detraibile:0
+#: field:account.vat.communication.dtr.line,xml_Detraibile:0
+msgid "Tax deductible"
+msgstr "IVA detraibile"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication.dte.line,xml_Aliquota:0
@@ -443,6 +459,86 @@ msgid "Taxable amount"
 msgstr "Imponibile/Importo"
 
 #. module: l10n_it_vat_communication
+#: help:account.vat.communication,dtr_amount_discarded:0
+msgid "Total amount discarded from purchase invoices"
+msgstr "Totale importi scartati da fatture di acquisto"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dte_amount_discarded:0
+msgid "Total amount discarded from sale invoices"
+msgstr "Totale importi scartati da fatture di vendita"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dtr_amount_total:0
+msgid "Total amount of purchase invoices in Communication"
+msgstr "Ammontare degli acquisti in Comunicazione"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dte_amount_total:0
+msgid "Total amount of sale invoices in Communication"
+msgstr "Ammontare delle vendite in Comunicazione"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dtr_amount_discarded:0
+msgid "Total discarded purchases"
+msgstr "Ammontare acquisti scartato"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dte_amount_discarded:0
+msgid "Total discarded sales"
+msgstr "Ammontare vendite scartato"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dtr_amount_total:0
+msgid "Total purchases"
+msgstr "Ammontare acquisti"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dte_amount_total:0
+msgid "Total sales"
+msgstr "Ammontare vendite"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dtr_amount_tax:0
+msgid "Total tax purchases"
+msgstr "IVA totale acquisti"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dte_amount_tax:0
+msgid "Total tax sales"
+msgstr "IVA totale vendite"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dtr_amount_taxable:0
+msgid "Total taxable purchases"
+msgstr "Imponibile/importi acquisti"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication,dte_amount_taxable:0
+msgid "Total taxable sales"
+msgstr "Imponibile/importi vendite"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dtr_amount_taxable:0
+msgid "Total taxables of purchase invoices in Communication"
+msgstr "Totale imponibile/importi degli acquisti in Comunicazione"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dte_amount_taxable:0
+msgid "Total taxables of sale invoices in Communication"
+msgstr "Total imponibile/importi delle vendite in Comunicazione"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dtr_amount_tax:0
+msgid "Total taxes of purchase invoices in Communication"
+msgstr "Totale IVA da acquisti in Comunicazione"
+
+#. module: l10n_it_vat_communication
+#: help:account.vat.communication,dte_amount_tax:0
+msgid "Total taxes of sale invoices in Communication"
+msgstr "Totale IVA da vendite in Comunicazione"
+
+#. module: l10n_it_vat_communication
 #: selection:account.vat.communication,codice_carica:0
 msgid "Tutore di minore"
 msgstr "Tutore di minore"
@@ -463,7 +559,7 @@ msgid "VAT commitment"
 msgstr "Comunicazione IVA"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:174
+#: code:addons/l10n_it_vat_communication/models/account.py:212
 #, python-format
 msgid "VAT communication sequence not set!"
 msgstr "Enumeratore invio telematico non impostato!"
@@ -474,10 +570,22 @@ msgid "VAT communications"
 msgstr "Comunicazioni IVA"
 
 #. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,tax_nodet_rate:0
+#: field:account.vat.communication.dtr.line,tax_nodet_rate:0
+msgid "VAT non deductible rate"
+msgstr "Perc.IVA non detraibile"
+
+#. module: l10n_it_vat_communication
 #: field:account.vat.communication.dte.line,xml_IdCodice:0
 #: field:account.vat.communication.dtr.line,xml_IdCodice:0
 msgid "VAT number"
 msgstr "Partita IVA"
+
+#. module: l10n_it_vat_communication
+#: field:account.vat.communication.dte.line,tax_payability:0
+#: field:account.vat.communication.dtr.line,tax_payability:0
+msgid "VAT payability"
+msgstr "Esigibilità IVA"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication.dte.line,tax_rate:0
@@ -538,16 +646,6 @@ msgid "add.period.to.vat.commitment"
 msgstr "add.period.to.vat.commitment"
 
 #. module: l10n_it_vat_communication
-#: model:ir.model,name:l10n_it_vat_communication.model_add_period_to_vat_communication
-msgid "add.period.to.vat.communication"
-msgstr "add.period.to.vat.communication"
-
-#. module: l10n_it_vat_communication
-#: model:ir.model,name:l10n_it_vat_communication.model_add_period_to_vat_statement
-msgid "add.period.to.vat.statement"
-msgstr "add.period.to.vat.statement"
-
-#. module: l10n_it_vat_communication
 #: selection:wizard.vat.communication,state:0
 msgid "create"
 msgstr "create"
@@ -563,11 +661,6 @@ msgstr "get"
 #, python-format
 msgid "remove.period.from.vat.commitment"
 msgstr "remove.period.from.vat.commitment"
-
-#. module: l10n_it_vat_communication
-#: model:ir.model,name:l10n_it_vat_communication.model_remove_period_from_vat_statement
-msgid "remove.period.from.vat.statement"
-msgstr "remove.period.from.vat.statement"
 
 #. module: l10n_it_vat_communication
 #: field:wizard.vat.communication,state:0

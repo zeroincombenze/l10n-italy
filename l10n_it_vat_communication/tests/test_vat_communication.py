@@ -19,19 +19,29 @@ class TestCommunication(TransactionCase):
     def env789(self, model):
         """Return model pool"""
         if release.major_version in ('6.1', '7.0'):
-            # Return model pool [7.0]
+            # Return model pool [6.1 / 7.0]
             return self.registry(model)
-        # Return model pool [8.0]
+        # Return model pool [+8.0]
         return self.env[model]
 
     def ref789(self, model):
-        """Return reference id [7.0]"""
-        return self.ref(model)
+        """Return reference id"""
+        if release.major_version in ('6.1', '7.0'):
+            # Return reference id [6.1 / 7.0]
+            return self.ref(model)
+        # Return reference id [+8.0]
+        return self.env.ref(model).id
 
     def write789(self, model, id, values):
         """Write existent record [7.0]"""
-        model_pool = self.registry(model)
-        return model_pool.write(self.cr, self.uid, [id], values)
+        if release.major_version in ('6.1', '7.0'):
+            # Write existent record [6.1 / 7.0]
+            model_pool = self.registry(model)
+            return model_pool.write(self.cr, self.uid, [id], values)
+        # Write existent record [+8.0]
+        model_pool = self.env[model]
+        obj = model_pool.search([('id', '=', id)])
+        return obj.write(values)
 
     def write_ref(self, xid, values):
         """Browse and write existent record"""
@@ -39,10 +49,15 @@ class TestCommunication(TransactionCase):
         return obj.write(values)
 
     def create789(self, model, values):
-        """Create a new record for test [7.0]"""
-        return self.env789(model).create(self.cr,
-                                         self.uid,
-                                         values)
+        """Create a new record for test"""
+        if release.major_version in ('6.1', '7.0'):
+            # Create a new record for test [6.1 / 7.0]
+            return self.env789(model).create(self.cr,
+                                             self.uid,
+                                             values)
+        # Create a new record for test [+8.0]
+        model_pool = self.env[model]
+        return model_pool.create(values).id
 
     #
     # Because other modules have created invoices and other data, there is no
