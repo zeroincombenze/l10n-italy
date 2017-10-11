@@ -92,6 +92,8 @@ Usage
 
 -----
 
+-----
+
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
 
 
@@ -168,3 +170,4 @@ Odoo Italia Associazione distribuisce il codice esclusivamente con licenza [AGPL
 
 [//]: # (end addons)
 
+[![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)
