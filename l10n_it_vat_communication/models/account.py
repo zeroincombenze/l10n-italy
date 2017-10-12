@@ -225,10 +225,6 @@ class AccountVatCommunication(orm.Model):
             address = partner
         code = partner.vat and partner.vat[0:2]
         if not code:
-            if release.major_version == '6.1':
-                raise orm.except_orm(
-                    'Warning',
-                    _('Missed country code in partner %s') % partner.name)
             code = 'IT'
         return address.country_id.code or code
 
@@ -243,32 +239,37 @@ class AccountVatCommunication(orm.Model):
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
-            country_code = self.get_country_code(cr, uid, invoice.partner_id)
-            if country_code not in EU_COUNTRIES:
-                if invoice.type[-7:] == '_refund':
-                    sum_amounts['discarded'] -= invoice.amount_total
-                else:
-                    sum_amounts['discarded'] += invoice.amount_total
-                continue
-            if invoice.type in ('out_invoice',
-                                'out_refund') and country_code != 'IT':
-                if invoice.type[-7:] == '_refund':
-                    sum_amounts['discarded'] -= invoice.amount_total
-                else:
-                    sum_amounts['discarded'] += invoice.amount_total
-                continue
+            # country_code = self.get_country_code(cr, uid, invoice.partner_id)
+            # if country_code not in EU_COUNTRIES:
+            #     if invoice.type[-7:] == '_refund':
+            #         sum_amounts['discarded'] -= invoice.amount_total
+            #     else:
+            #         sum_amounts['discarded'] += invoice.amount_total
+            #     continue
+            # if invoice.type in ('out_invoice',
+            #                     'out_refund') and country_code != 'IT':
+            #     if invoice.type[-7:] == '_refund':
+            #         sum_amounts['discarded'] -= invoice.amount_total
+            #     else:
+            #         sum_amounts['discarded'] += invoice.amount_total
+            #     continue
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
                 tax_payability = 'I'
                 tax_rate = 0.0
                 tax_nodet_rate = 0.0
+                tax_type = ''
                 if invoice_tax.tax_code_id:
+                    if invoice_tax.tax_code_id.notprintable:
+                        continue
                     if invoice_tax.tax_code_id.exclude_from_registries:
                         continue
                     taxcode_base_id = invoice_tax.tax_code_id.id
                     taxcode_vat_id = False
                     where = [('tax_code_id', '=', taxcode_base_id)]
                 else:
+                    if invoice_tax.base_code_id.notprintable:
+                        continue
                     if invoice_tax.base_code_id.exclude_from_registries:
                         continue
                     taxcode_base_id = invoice_tax.base_code_id.id
@@ -285,6 +286,8 @@ class AccountVatCommunication(orm.Model):
                                 tax_nature = tax.non_taxable_nature
                             if tax.payability:
                                 tax_payability = tax.payability
+                            if tax.type_tax_use:
+                                tax_type = tax.type_tax_use
                         else:
                             if tax.type == 'percent' and \
                                     tax.amount > tax_nodet_rate:
@@ -294,8 +297,14 @@ class AccountVatCommunication(orm.Model):
                             taxcode_base_id = invoice_tax.tax_code_id.id
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
-                if (not tax_rate and not tax_nature) or \
-                        (tax_rate and tax_nature):
+                if (tax_type == 'sale' and tax_rate and tax_nature) or \
+                    (tax_type == 'sale' and
+                     tax_rate == 0.0 and not tax_nature) or \
+                    (tax_type == 'purchase' and
+                     tax_rate and tax_nature and tax_nature != 'N6') or \
+                    (tax_type == 'purchase' and
+                     tax_rate == 0.0 and (not tax_nature or
+                                          tax_nature == 'N6')):
                     raise orm.except_orm(
                         _('Error!'),
                         _('Invalid tax %s nature for invoice %s') % (
@@ -352,8 +361,20 @@ class AccountVatCommunication(orm.Model):
     def load_DTE_DTR(self, cr, uid, commitment, commitment_line_model,
                      dte_dtr_id, context=None):
         journal_model = self.pool['account.journal']
-        exclude_journal_ids = journal_model.search(
-            cr, uid, [('rev_charge', '=', True)])
+
+        if release.major_version == '6.1':
+            exclude_journal_ids = []
+            fiscal_position_model = self.pool['account.fiscal.position']
+            fiscal_position_ids = fiscal_position_model.search(
+                cr, uid, [('journal_auto_invoice_id', '!=', False)],
+                context=context)
+            for fiscal_position in fiscal_position_model.browse(
+                    cr, uid, fiscal_position_ids, context):
+                exclude_journal_ids.append(fiscal_position.sale_journal_id.id)
+        else:
+            exclude_journal_ids = journal_model.search(
+                cr, uid, [('rev_charge', '=', True)])
+
         period_ids = [x.id for x in commitment.period_ids]
         company_id = commitment.company_id.id
         # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
@@ -635,8 +656,10 @@ class commitment_line(orm.AbstractModel):
             res['xml_IdCodice'] = vat and vat[2:] or ''
         if partner.individual and partner.fiscalcode:
             res['xml_CodiceFiscale'] = partner.fiscalcode
-        elif res['xml_IdPaese'] == 'IT':
+        elif res.get('xml_IdPaese', '') == 'IT':
             res['xml_CodiceFiscale'] = res['xml_IdCodice']
+        elif not partner.vat:
+            res['xml_CodiceFiscale'] = '99999999999'
 
         if partner.individual:
             if release.major_version == '6.1':
@@ -653,11 +676,15 @@ class commitment_line(orm.AbstractModel):
 
         res['xml_Nazione'] = address.country_id.code or res[
             'xml_IdPaese'] or 'IT'
-        res['xml_Indirizzo'] = address.street
+        res['xml_Indirizzo'] = address.street.replace(
+            u"'", '').replace(u"’", '')
 
         if res.get('xml_IdPaese', '') == 'IT' and address.zip:
             res['xml_CAP'] = address.zip.replace('x', '0').replace('%', '0')
-        res['xml_Comune'] = address.city
+        res['xml_Comune'] = address.city or ' '
+        if not address.city:
+            _logger.error(
+                u'Partner {0} has no city on address'.format(partner.name))
         if res['xml_Nazione'] == 'IT':
             if release.major_version == '6.1':
                 res['xml_Provincia'] = address.province.code
@@ -690,16 +717,27 @@ class commitment_line(orm.AbstractModel):
         doctype = invoice.type
         country_code = self.pool['account.vat.communication'].get_country_code(
             cr, uid, invoice.partner_id)
-        if country_code == 'IT':
-            if doctype in ('out_invoice', 'in_invoice'):
-                if invoice.amount_total >= 0:
-                    return 'TD01'
-                else:
-                    return 'TD04'
-            elif doctype in ('out_refund', 'in_refund'):
-                return 'TD04'
-        elif doctype == 'in_invoice':
+        if doctype == 'out_invoice' and \
+                not invoice.partner_id.vat and \
+                not invoice.partner_id.fiscalcode:
+            if invoice.amount_total >= 0:
+                return 'TD07'
+            else:
+                return 'TD08'
+        elif doctype == 'out_refund' and \
+                not invoice.partner_id.vat and \
+                not invoice.partner_id.fiscalcode:
+            return 'TD08'
+        elif country_code != 'IT' and country_code in EU_COUNTRIES and \
+                doctype == 'in_invoice':
             return 'TD11'
+        elif doctype in ('out_invoice', 'in_invoice'):
+            if invoice.amount_total >= 0:
+                return 'TD01'
+            else:
+                return 'TD04'
+        elif doctype in ('out_refund', 'in_refund'):
+            return 'TD04'
         else:
             raise orm.except_orm(
                 _('Error!'),
@@ -718,11 +756,11 @@ class commitment_DTE_line(orm.Model):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
 
-            if len(fields.get('xml_IdCodice', '')) < 2 and \
-                    not fields.get('xml_CodiceFiscale', ''):
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Check VAT for partner %s!' % line.partner_id.name))
+            # if len(fields.get('xml_IdCodice', '')) < 2 and \
+            #         not fields.get('xml_CodiceFiscale', ''):
+            #     raise orm.except_orm(
+            #         _(u'Error!'),
+            #         _(u'Check VAT for partner %s!' % line.partner_id.name))
 
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
@@ -801,13 +839,19 @@ class commitment_DTE_line(orm.Model):
             store=False,
             select=True,
             readonly=True),
-        'xml_TipoDocumento': fields.function(
-            _xml_tipodocumento,
+        'xml_TipoDocumento': fields.selection([
+            ('TD01', 'fattura'),
+            ('TD04', 'nota di credito'),
+            ('TD05', 'nota di debito'),
+            ('TD07', 'fattura semplificata'),
+            ('TD08', 'nota di credito semplificata'),
+            ('TD10', 'fattura di acquisto intracomunitario beni'),
+            ('TD11', 'fattura di acquisto intracomunitario servizi'),
+            ],
             string="Document type",
-            help="Values: TD01=invoice, TD04=refund",
-            type="char",
+            # type="char",
             multi=False,
-            store=False,
+            # store=False,
             select=True,
             readonly=True),
         'xml_ImponibileImporto': fields.function(
@@ -863,11 +907,11 @@ class commitment_DTR_line(orm.Model):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
 
-            if len(fields.get('xml_IdCodice', '')) < 2 and \
-                    not fields.get('xml_CodiceFiscale', ''):
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Check VAT for partner %s!') % line.partner_id.name)
+            # if len(fields.get('xml_IdCodice', '')) < 2 and \
+            #         not fields.get('xml_CodiceFiscale', ''):
+            #     raise orm.except_orm(
+            #         _('Error!'),
+            #         _('Check VAT for partner %s!') % line.partner_id.name)
 
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
@@ -946,13 +990,19 @@ class commitment_DTR_line(orm.Model):
             store=False,
             select=True,
             readonly=True),
-        'xml_TipoDocumento': fields.function(
-            _xml_tipodocumento,
+        'xml_TipoDocumento': fields.selection([
+            ('TD01', 'fattura'),
+            ('TD04', 'nota di credito'),
+            ('TD05', 'nota di debito'),
+            ('TD07', 'fattura semplificata'),
+            ('TD08', 'nota di credito semplificata'),
+            ('TD10', 'fattura di acquisto intracomunitario beni'),
+            ('TD11', 'fattura di acquisto intracomunitario servizi'),
+            ],
             string="Document type",
-            help="Values: TD01=invoice, TD04=refund",
-            type="char",
+            # type="char",
             multi=False,
-            store=False,
+            # store=False,
             select=True,
             readonly=True),
         'xml_ImponibileImporto': fields.function(
