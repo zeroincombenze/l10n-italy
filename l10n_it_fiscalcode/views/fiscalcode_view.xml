@@ -11,20 +11,26 @@
                     <field name="name"
                            on_change="onchange_name(name, splitmode)" />
                 </field>
-                <xpath expr="//field[@name='category_id']" position="before">
+                <xpath expr="//field[@name='category_id']" position="after">
                     <group attrs="{'invisible': [('individual', '=', False), 
                                                  ('is_company', '=', True)]}">
-                        <field name="lastname" colspan="1" />
-                        <field name="firstname" colspan="1" />
-                        <field name="splitmode" colspan="1"
-                               on_change="onchange_splitmode(splitmode, name)" />
+                        <field name="lastname" col="2" />
+                        <field name="firstname" col="2" />
+                        <table><tr>
+                        <td><field name="splitmode" invisible="1"
+                                   on_change="onchange_splitmode(splitmode, name)" />
+                        </td>
+                        <td><field name="split_next"
+                                   on_change="onchange_split_next(splitmode, name)" />
+                        </td>
+                        </tr></table>
                     </group>
                 </xpath>
                 <xpath expr="//div[@name='vat_info']" position="after">
                     <label for="fiscalcode" />
                     <div name="fiscalcode_info">
                         <field name="fiscalcode" class="oe_inline"
-                               on_change="onchange_fiscalcode(fiscalcode)"  />
+                               on_change="onchange_fiscalcode(fiscalcode, country_id)"  />
                         <field name="individual" colspan="1" />
                     </div>
                 </xpath>

@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
+[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
 [![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
-[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0)
-[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0)
-[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg)](https://github.com/OCA/l10n-italy/tree/8.0)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/dev)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg)](http://wiki.zeroincombenze.org/en/Odoo/8.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg)](http://erp8.zeroincombenze.it)
+[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0)
+[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0)
+[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg)](https://github.com/OCA/l10n-italy/tree/7.0)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/dev)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
@@ -37,19 +37,20 @@ Funzione | Status | Note
 Fatture clienti e fornitori detraibili | :white_check_mark: | Fatture ordinarie
 Fatture fornitori indetraibili | :white_check_mark: | Tutte le percentuali di indetraibilità
 Fatture a privati senza Partita IVA| :white_check_mark: | Necessario codice fiscale
-Fatture semplificata | :x: | In fase di rilascio
+Fatture semplificata | :white_check_mark: | Per clienti senza PI ne CF
 Fatture senza IVA | :white_check_mark: | Fatture esenti, NI, escluse, eccetera
 Escludi importi Fuori Campo IVA | :white_check_mark: | Totale fattura in Comunicazione può essere diverso da registrazione
 Escludi CAP e provincia no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
 Escludi CF no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
+Controlli dati anagrafici | :white_check_mark: | Check di validazione
 IVA differita | :white_check_mark: | Da codice imposte
 IVA da split-payment | :white_check_mark: | Da codice imposte
 Ignora autofatture | :white_check_mark: | Esclusione tramite sezionale
 Identificazione Reverse Charge | :white_check_mark: | Da codice imposte
-Ignora di vendita fatture UE | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
-Ignora fatture extra-UE | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
-Fatture intra-UE beni | :x: | In fase di rilascio
-Fatture intra-UE servizi | :white_check_mark: | Tutte le fatture EU (provvisoriamente)
+Fatture vendita UE | :white_check_mark: | Inserite in spesometro
+Fatture vendita extra-UE | :white_check_mark: | Inserite in spesometro
+Fatture acq. intra-UE beni | :x: | In fase di rilascio
+Fatture acq. intra-UE servizi | :white_check_mark: | Tutte le fatture EU (provvisoriamente)
 Rettifica dichiarazione | :x: | In fase di rilascio
 Nomenclatura del file | :white_check_mark: |
 Dimensioni del file | :x: | Nessuna verifica anche futura
@@ -88,12 +89,6 @@ Configuration
 
 
 Usage
------
-
------
-
------
-
 -----
 
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI

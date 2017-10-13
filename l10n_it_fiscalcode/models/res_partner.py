@@ -12,6 +12,15 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
+SPLIT_MODE = [('LF', 'Last/First'),
+              ('FL', 'First/Last'),
+              ('LFM', 'Last/First Middle'),
+              ('L2F', 'Last last/First'),
+              ('L2FM', 'Last last/First Middle'),
+              ('FML', 'First middle/Last'),
+              ('FL2', 'First/Last last'),
+              ('FML2', 'First Middle/Last last')]
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -107,16 +116,9 @@ class ResPartner(models.Model):
     individual = fields.Boolean(
         'Individual', default=False,
         help="If checked the C.F. is referred to a Individual Person")
-    splitmode = fields.Selection([
-        ('LF', 'Last/First'),
-        ('FL', 'First/Last'),
-        ('LFM', 'Last/First Middle'),
-        ('L2F', 'Last last/First'),
-        ('L2FM', 'Last last/First Middle'),
-        ('FML', 'First middle/Last'),
-        ('FL2', 'First/Last last'),
-        ('FML2', 'First Middle/Last last')],
-        'First Last format', default='LF')
+    splitmode = fields.Selection(SPLIT_MODE,
+                                 'First Last format',
+                                 default='LF')
     firstname = fields.Char('First Name',
                             compute='_split_first_name',
                             store=True,
@@ -125,18 +127,28 @@ class ResPartner(models.Model):
                            compute='_split_last_name',
                            store=True,
                            readonly=True)
+    split_next = fields.Boolean(
+        'Change format name',
+        default=False,
+        help="Check for change first/last name format")
 
     _constraints = [
         (check_fiscalcode,
          "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
     ]
 
-    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, context=None):
+    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, country_id,
+                            context=None):
         name = 'fiscalcode'
         if fiscalcode:
-            if len(fiscalcode) == 11:
-                res_partner_pool = self.pool.get('res.partner')
-                chk = res_partner_pool.simple_vat_check(
+            country_model = self.pool.get('res.country')
+            if country_id and country_model.browse(
+                    cr, uid, country_id).code != 'IT':
+                return {'value': {name: fiscalcode,
+                                  'individual': True}}
+            elif len(fiscalcode) == 11:
+                res_partner_model = self.pool.get('res.partner')
+                chk = res_partner_model.simple_vat_check(
                     cr, uid, 'it', fiscalcode)
                 if not chk:
                     return {'value': {name: False},
@@ -170,7 +182,9 @@ class ResPartner(models.Model):
         lastname, firstname = self._split_last_first_name(
             cr, uid, name=name, splitmode=splitmode)
         res = {'value': {'firstname': firstname,
-                         'lastname': lastname}}
+                         'lastname': lastname,
+                         'splitmode': splitmode,
+                         'split_next': False}}
         return res
 
     def onchange_splitmode(self, cr, uid, ids, splitmode, name,
@@ -178,8 +192,16 @@ class ResPartner(models.Model):
         lastname, firstname = self._split_last_first_name(
             cr, uid, name=name, splitmode=splitmode)
         res = {'value': {'firstname': firstname,
-                         'lastname': lastname}}
+                         'lastname': lastname,
+                         'splitmode': splitmode,
+                         'split_next': False}}
         return res
+
+    def onchange_split_next(self, cr, uid, ids, splitmode, name, context=None):
+        i = [i for i, x in enumerate(SPLIT_MODE) if x[0] == splitmode][0]
+        i = (i + 1) % len(SPLIT_MODE)
+        splitmode = SPLIT_MODE[i][0]
+        return self.onchange_splitmode(cr, uid, ids, splitmode, name, context)
 
     def _default_splitmode(self, cr, uid, partner=None, context=None):
         return 'LF'
