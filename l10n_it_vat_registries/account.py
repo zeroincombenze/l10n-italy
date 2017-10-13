@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2013 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2013 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -26,9 +26,6 @@ class account_tax_code(orm.Model):
     _inherit = "account.tax.code"
 
     _columns = {
-        'is_base': fields.boolean(
-            'Is base',
-            help="This tax code is used for base amounts (field used by VAT registries)"),
-        'exclude_from_registries': fields.boolean(
-            'Exclude from VAT registries'),
+        'is_base': fields.boolean('Is base', help="This tax code is used for base amounts (field used by VAT registries)"),
+        'exclude_from_registries': fields.boolean('Exclude from VAT registries'),
     }

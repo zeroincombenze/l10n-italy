@@ -46,20 +46,16 @@ addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_fiscal_year_closing](account_fiscal_year_closing/) | 1.1.1 | 1.0 | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 3.2.7.5 | 0.1 | Account Invoice entry Date
-[l10n_it_account](l10n_it_account/) | 2.20.44.42 | 0.2 | Italian Localisation
-[l10n_it_base](l10n_it_base/) | 2.1.0.3 | 0.1 | Italian Localisation - Base
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.1.0 | :x: | Period End VAT Statement
+[l10n_it_account](l10n_it_account/) | 3.22.46.44 | 0.2 | Italian Localisation
+[l10n_it_ade](l10n_it_ade/) | 6.1.1.3.2 | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
+[l10n_it_base](l10n_it_base/) | 3.1.0.3 | 0.1 | Italian Localisation - Base
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 2.0.1.0 | 0.1 | Italy - Partially Deductible VAT
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 2.9.24.23 | 1.3 | Ricevute Bancarie
-[l10n_it_sale](l10n_it_sale/) | 3.9.19.20 | 0.2 | Italian Localisation - Sale
+[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 2.10.24.24 | 1.3 | Ricevute Bancarie
+[l10n_it_sale](l10n_it_sale/) | 3.10.20.22 | 0.2 | Italian Localisation - Sale
+[l10n_it_vat_communication](l10n_it_vat_communication/) | 6.1.0.4.1 | :x: | Comunicazione periodica IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 2.0.4.5 | 0.2 | Italian Localisation - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 3.0.1.0 | 0.2 | Management of withholding tax
-
-
-Unported addons
----------------
-addon | version | OCA version | summary
---- | --- | --- | ---
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 2.1.4.1 (unported) | :x: | Period End VAT Statement
 
 [//]: # (end addons)
 

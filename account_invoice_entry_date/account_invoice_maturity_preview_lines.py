@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2013 ISA s.r.l. (<http://www.isa.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -31,15 +31,16 @@ class account_invoice_maturity_preview_lines(orm.TransientModel):
 
     _columns = {
         'date': fields.function(_get_void,
-                                type="char", string="Date"),
+                                  type="char", string="Date"),
         'amount': fields.function(_get_void,
                                   type="float", string="Amount"),
         'currency_name': fields.function(_get_void,
-                                         type="char", string="Currency"),
+                                  type="char", string="Currency"),
         'pay_overv_date': fields.function(_get_void,
-                                          type="char", string="Date"),
+                                  type="char", string="Date"),
         'pay_overv_amount': fields.function(_get_void,
-                                            type="float", string="Amount"),
+                                  type="float", string="Amount"),
         'pay_overv_currency': fields.function(_get_void,
-                                              type="char", string="Currency"),
+                                  type="char", string="Currency"),
     }
+

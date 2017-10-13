@@ -15,5 +15,4 @@
 # [2017: odoo-italia] Electronic VAT statement
 from . import report
 from . import wizard
-# from . import models
-from . import bindings
+from . import models

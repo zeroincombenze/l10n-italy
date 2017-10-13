@@ -1,12 +1,11 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010-2013 Odoo Italian Community
-#    http://www.odoo-italia.org>
+#    Copyright (C) 2010-2013 OpenERP Italian Community
+#    http://www.openerp-italia.org>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-# published by
+#    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -21,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Base',
-    'version': '2.1.0.3',
+    'version': '3.1.0.3',
     'category': 'Localisation/Italy',
     'description': """Italian Localization module - Base version
 
@@ -45,8 +44,8 @@ Funcionalities:
     ],
     "init_xml": [],
     "data": [
-        'partner/partner_view.xml',
-        "security/ir.model.access.csv",
+        'views/partner_view.xml',
+        'security/ir.model.access.csv',
         'data/res.country.csv',
     ],
     "active": False,

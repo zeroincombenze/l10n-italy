@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2011 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import fields, osv
 from openerp.tools.translate import _
 
 
-class wizard_registro_iva(orm.TransientModel):
+class wizard_registro_iva(osv.osv_memory):
 
     def _get_period(self, cr, uid, context=None):
         ctx = dict(context or {}, account_period_prefer_normal=True)
@@ -32,21 +32,14 @@ class wizard_registro_iva(orm.TransientModel):
 
     _name = "wizard.registro.iva"
     _columns = {
-        'period_ids': fields.many2many(
-            'account.period', 'registro_iva_periods_rel', 'period_id',
-            'registro_id', 'Periods',
-            help='Select periods you want retrieve documents from', required=True),
+        'period_ids': fields.many2many('account.period', 'registro_iva_periods_rel', 'period_id', 'registro_id', 'Periods', help='Select periods you want retrieve documents from', required=True),
         'type': fields.selection([
             ('customer', 'Customer Invoices'),
             ('supplier', 'Supplier Invoices'),
             ('corrispettivi', 'Corrispettivi'),
-            #    ('generale', 'Registro generale'),
+        #    ('generale', 'Registro generale'),
         ], 'Layout', required=True),
-        'journal_ids': fields.many2many(
-            'account.journal', 'registro_iva_journals_rel', 'journal_id',
-            'registro_id', 'Journals',
-            help='Select journals you want retrieve documents from',
-            required=True),
+        'journal_ids': fields.many2many('account.journal', 'registro_iva_journals_rel', 'journal_id', 'registro_id', 'Journals', help='Select journals you want retrieve documents from', required=True),
         'tax_sign': fields.float('Tax amount sign',
                                  help="Use -1 you have negative tax amounts and you want to print them prositive"),
         'message': fields.char('Message', size=64, readonly=True),
@@ -61,22 +54,19 @@ class wizard_registro_iva(orm.TransientModel):
     }
 
     def print_registro(self, cr, uid, ids, context=None):
-        context = {} if context is None else context
-        wizard = self.browse(cr, uid, ids)[0]
+        context = context or self.pool['res.users'].context_get(cr, uid)
+        wizard = self.browse(cr, uid, ids, context)[0]
         move_obj = self.pool.get('account.move')
         obj_model_data = self.pool.get('ir.model.data')
         move_ids = move_obj.search(cr, uid, [
             ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('period_id', 'in', [p.id for p in wizard.period_ids]),
             ('state', '=', 'posted'),
-        ], order='date, name')
+        ], order='date, name', context=context)
         if not move_ids:
-            self.write(cr, uid, ids, {'message': _(
-                'No documents found in the current selection')})
-            model_data_ids = obj_model_data.search(cr, uid, [(
-                'model', '=', 'ir.ui.view'), ('name', '=', 'wizard_registro_iva')])
-            resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=[
-                'res_id'])[0]['res_id']
+            self.write(cr, uid, ids, {'message': _('No documents found in the current selection')}, context)
+            model_data_ids = obj_model_data.search(cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'wizard_registro_iva')], context=context)
+            resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
             return {
                 'name': _('No documents'),
                 'res_id': ids[0],
@@ -88,12 +78,16 @@ class wizard_registro_iva(orm.TransientModel):
                 'type': 'ir.actions.act_window',
                 'target': 'new',
             }
-        datas = {'ids': move_ids}
-        datas['model'] = 'account.move'
-        datas['fiscal_page_base'] = wizard.fiscal_page_base
-        datas['period_ids'] = [p.id for p in wizard.period_ids]
-        datas['layout'] = wizard['type']
-        datas['tax_sign'] = wizard['tax_sign']
+
+        datas = {
+            'ids': move_ids,
+            'model': 'account.move',
+            'fiscal_page_base': wizard.fiscal_page_base,
+            'period_ids': [p.id for p in wizard.period_ids],
+            'layout': wizard['type'],
+            'tax_sign': wizard['tax_sign'],
+        }
+
         res = {
             'type': 'ir.actions.report.xml',
             'datas': datas,
@@ -104,23 +98,21 @@ class wizard_registro_iva(orm.TransientModel):
             res['report_name'] = 'registro_iva_acquisti'
         elif wizard['type'] == 'corrispettivi':
             res['report_name'] = 'registro_iva_corrispettivi'
-        # elif wizard['type'] == 'generale':
+        #elif wizard['type'] == 'generale':
         #    res['report_name'] = 'registro_generale'
         return res
 
     def _get_journal(self, cr, uid, j_type, context=None):
-        context = {} if context is None else context
+        if context is None:
+            context = {}
         journal_obj = self.pool['account.journal']
         res = []
         if j_type == 'supplier':
-            res = journal_obj.search(cr, uid, [('type', 'in', [
-                'purchase', 'purchase_refund'])])
+            res = journal_obj.search(cr, uid, [('type', 'in', ['purchase', 'purchase_refund'])], context=context)
         elif j_type == 'customer' or j_type == 'corrispettivi':
-            res = journal_obj.search(cr, uid, [('type', 'in', [
-                'sale', 'sale_refund'])])
+            res = journal_obj.search(cr, uid, [('type', 'in', ['sale', 'sale_refund'])], context=context)
         else:
-            res = journal_obj.search(cr, uid, [('type', 'in', [
-                'sale', 'sale_refund', 'purchase', 'purchase_refund'])])
+            res = journal_obj.search(cr, uid, [('type', 'in', ['sale', 'sale_refund', 'purchase', 'purchase_refund'])], context=context)
         return res
 
     def on_type_changed(self, cr, uid, ids, j_type, context=None):
@@ -130,6 +122,7 @@ class wizard_registro_iva(orm.TransientModel):
                 res['value'] = {'tax_sign': -1}
             else:
                 res['value'] = {'tax_sign': 1}
-            res['value'].update({'journal_ids': self._get_journal(
-                cr, uid, j_type, context=context)})
+            res['value'].update({'journal_ids': self._get_journal(cr, uid, j_type, context=context)})
         return res
+
+

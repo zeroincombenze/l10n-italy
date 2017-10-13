@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Odoo, Open Source Management Solution
+# OpenERP, Open Source Management Solution
 #    Copyright (C) 2012-2014 Didotech (<http://www.didotech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -30,15 +30,13 @@ class stock_partial_picking(orm.TransientModel):
         'tracking_code': fields.char('Pack', size=64),
         'ddt_in_reference': fields.char('In DDT', size=32),
         'ddt_in_date': fields.date('In DDT Date'),
-        'type': fields.selection([('out', 'Sending Goods'), (
-            'in', 'Getting Goods'), ('internal', 'Internal')],
-            'Shipping Type', required=True,),
+        'type': fields.selection([('out', 'Sending Goods'), ('in', 'Getting Goods'), ('internal', 'Internal')],
+                                 'Shipping Type', required=True,),
 
     }
 
     def save_partial(self, cr, uid, ids, context=None):
-        res = super(stock_partial_picking, self).save_partial(
-            cr, uid, ids, context=None)
+        res = super(stock_partial_picking, self).save_partial(cr, uid, ids, context=None)
         partial = self.browse(cr, uid, ids[0], context=context)
 
         vals = {}
@@ -52,14 +50,13 @@ class stock_partial_picking(orm.TransientModel):
         return res
 
     def default_get(self, cr, uid, fields, context=None):
-        context = {} if context is None else context
-        res = super(stock_partial_picking, self).default_get(
-            cr, uid, fields, context=context)
+        if context is None:
+            context = {}
+        res = super(stock_partial_picking, self).default_get(cr, uid, fields, context=context)
         picking_ids = context.get('active_ids', [])
 
         picking_id, = picking_ids
-        picking = self.pool['stock.picking'].browse(
-            cr, uid, picking_id, context)
+        picking = self.pool['stock.picking'].browse(cr, uid, picking_id, context)
         if 'type' in fields:
             res.update(type=picking.type)
         if 'ddt_in_date':
@@ -74,8 +71,7 @@ class stock_partial_picking(orm.TransientModel):
     def do_partial(self, cr, uid, ids, context=None):
         if not context:
             context = {}
-        result = super(stock_partial_picking, self).do_partial(
-            cr, uid, ids, context)
+        result = super(stock_partial_picking, self).do_partial(cr, uid, ids, context)
         partial = self.browse(cr, uid, ids, context=context)[0]
         vals = {}
         if partial.ddt_in_reference:
@@ -87,18 +83,12 @@ class stock_partial_picking(orm.TransientModel):
             )
         if vals:
             if result.get('res_id', False) or context.get('active_id', False):
-                self.pool['stock.picking'].write(cr, uid, result.get(
-                    'res_id', False) or context.get(
-                    'active_id', False), vals, context)
-                move_ids = self.pool['stock.move'].search(cr, uid, [(
-                    'picking_id', '=', result.get(
-                        'res_id', False) or context.get(
-                        'active_id', False))], context=context)
+                self.pool['stock.picking'].write(cr, uid, result.get('res_id', False) or context.get('active_id', False), vals, context)
+                move_ids = self.pool['stock.move'].search(cr, uid, [('picking_id', '=', result.get('res_id', False) or context.get('active_id', False))], context=context)
                 move_vals = {
                     'date': partial.ddt_in_date,
                 }
-                self.pool['stock.move'].write(
-                    cr, uid, move_ids, move_vals, context)
+                self.pool['stock.move'].write(cr, uid, move_ids, move_vals, context)
 
         if result.get('res_id', False) != context.get('active_id', False):
             context.update({
@@ -107,7 +97,7 @@ class stock_partial_picking(orm.TransientModel):
                 'old_result': result
             })
 
-        if context.get('no_auto_ddt', False) or partial.type == 'in':
+        if context.get('no_auto_ddt', False) or partial.type in ['in', 'internal']:
             return result
         else:
             return {
@@ -120,3 +110,4 @@ class stock_partial_picking(orm.TransientModel):
                 'target': 'new',
                 'context': context,
             }
+

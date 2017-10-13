@@ -6,8 +6,8 @@
 #    Web site: http://www.andreacometa.it
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2012 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2012 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,18 +24,17 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from osv import fields, osv
 
 
-class res_partner(orm.Model):
+class res_partner(osv.osv):
 
     _name = "res.partner"
     _inherit = "res.partner"
 
     _columns = {
         'group_riba': fields.boolean("Group Ri.Ba.",
-                                     help="Group Ri.Ba. by customer while issuing"),
+            help="Group Ri.Ba. by customer while issuing"),
     }
-
 
 res_partner()

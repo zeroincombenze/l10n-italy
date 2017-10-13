@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (C) 2011-2013 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    
+#    Copyright (C) 2011-2013 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>). 
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -24,17 +24,14 @@
     'name': 'Italian Localisation - VAT Registries',
     'version': '2.0.4.5',
     'category': 'Localisation/Italy',
-    'description': """Accounting reports for Italian localization - VAT
-    Registries\nhttp:
-        //wiki.odoo-italia.org/doku.php/moduli/l10n_it_tax_journal""",
-    'author': 'Odoo Italian Community',
-    'website': 'http://www.odoo-italia.org',
+    'description': """Accounting reports for Italian localization - VAT Registries\nhttp://wiki.openerp-italia.org/doku.php/moduli/l10n_it_tax_journal""",
+    'author': 'OpenERP Italian Community',
+    'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": [
         'report_webkit',
-        'account',
-        'l10n_it_bbone',
-        # 'l10n_it_partially_deductible_vat'
+        'l10n_it_base',
+        'l10n_it_partially_deductible_vat'
     ],
     "data": [
         'reports.xml',
@@ -45,8 +42,8 @@
         'demo/account_tax.xml',
     ],
     'test': [
-        'test/tax_computation.yml',
-        'test/report_registries.yml',
+         'test/tax_computation.yml',
+         'test/report_registries.yml',
     ],
     "active": False,
     "installable": True

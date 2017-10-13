@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2010 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>).
 #    Copyright (C) 2014 Didotech SRL (<http://didotech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@
 
 {
     'name': 'Italian Localisation - Sale',
-    'version': '3.9.19.20',
+    'version': '3.10.20.22',
     'category': 'Localisation/Italy',
-    'description': """Odoo Italian Localization - Sale version
+    'description': """OpenERP Italian Localization - Sale version
 
 Functionalities:
 
@@ -32,34 +32,35 @@ Functionalities:
 - CIG, CUP nella conferma ordine cliente
 
 """,
-    'author': 'Odoo Italian Community',
-    'website': 'http://www.odoo-italia.org',
+    'author': 'OpenERP Italian Community',
+    'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": [
-        'stock',
+        'stock', 
         'sale',
         'sale_journal',
-        'account',
+        'account', 
         'delivery',
         'c2c_sequence_fy',       # ricomincia da 0 le sequenze ogni anno
         'invoice_immediate',     # fattura accompagnatoria
         'sale_order_confirm',
         'core_extended',
-        'stock_picking_filter',
-        # for have date from and date to on picking filter for ddt date
+        'stock_picking_filter',  # for have date from and date to on picking filter for ddt date
         'sequence_recovery',
     ],
     "data": [
         'wizard/assign_ddt.xml',
         'wizard/confirmation_view.xml',
         'wizard/stock_partial_picking.xml',
-        'stock/picking_view.xml',
-        'stock/sequence.xml',
-        'stock/stock_journal_view.xml',
-        'sale/sale_order_view.xml',
-        'stock/goods_description_data.xml',
-        'stock/carriage_condition_data.xml',
-        'stock/transportation_condition_data.xml',
+        'views/picking_view.xml',
+        'views/stock_journal_view.xml',
+        'views/sale_order_view.xml',
+        'views/stock_journal_view.xml',
+        'views/delivery_grid_view.xml',
+        'data/sequence.xml',
+        'data/goods_description_data.xml',
+        'data/carriage_condition_data.xml',
+        'data/transportation_condition_data.xml',
     ],
     "demo": [],
     "test": [],

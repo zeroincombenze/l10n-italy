@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
-#    Associazione Odoo Italia (<http://www.odoo-italia.org>)
+#    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -52,73 +52,48 @@ class account_tax(orm.Model):
         if tax_code.tax_ids:
             if not self._have_same_rate(tax_code.tax_ids):
                 raise orm.except_orm(_('Error'),
-                                     _(
-                                         'The taxes %s have different rates') % str(tax_code.tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.tax_ids))
             return tax_code.tax_ids[0]
         if tax_code.ref_tax_ids:
             if not self._have_same_rate(tax_code.ref_tax_ids):
                 raise orm.except_orm(_('Error'),
-                                     _(
-                                         'The taxes %s have different rates') % str(tax_code.ref_tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.ref_tax_ids))
             return tax_code.ref_tax_ids[0]
         raise orm.except_orm(_('Error'),
-                             _('No taxes associated to tax code %s') % str(
-                                 tax_code.name))
+                             _('No taxes associated to tax code %s') % str(tax_code.name))
 
     def get_account_tax_by_base_code(self, tax_code):
         if tax_code.base_tax_ids:
             if not self._have_same_rate(tax_code.base_tax_ids):
                 raise orm.except_orm(_('Error'),
-                                     _(
-                                         'The taxes %s have different rates') % str(tax_code.base_tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.base_tax_ids))
             return tax_code.base_tax_ids[0]
         if tax_code.ref_base_tax_ids:
             if not self._have_same_rate(tax_code.ref_base_tax_ids):
                 raise orm.except_orm(_('Error'),
-                                     _(
-                                         'The taxes %s have different rates') % str(tax_code.ref_base_tax_ids))
+                                     _('The taxes %s have different rates') % str(tax_code.ref_base_tax_ids))
             return tax_code.ref_base_tax_ids[0]
         raise orm.except_orm(_('Error'),
-                             _('No taxes associated to tax code %s') % str(
-                                 tax_code.name))
+                             _('No taxes associated to tax code %s') % str(tax_code.name))
 
-    def compute_all(
-            self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None,
-            partner=None, force_excluded=False, context=None):
-        res = super(account_tax, self).compute_all(
-            cr, uid, taxes, price_unit, quantity, address_id, product, partner,
-            force_excluded)
-        precision = 2  # è sempre 2 per quanto viene addebitato, anche se
-        # impostato diversamente in 'Account', per legge
+    def compute_all(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None, force_excluded=False, context=None):
+        res = super(account_tax, self).compute_all(cr, uid, taxes, price_unit, quantity, address_id, product, partner, force_excluded)
+        precision = 2  # è sempre 2 per quanto viene addebitato, anche se impostato diversamente in 'Account', per legge
         tax_list = res['taxes']
         totalex = res['total']
         if len(tax_list) == 2:
             for tax in tax_list:
-                if tax.get('balance', False):
-                    # Calcolo di imponibili per l'IVA parzialmente detraibile
+                if tax.get('balance', False):  # Calcolo di imponibili per l'IVA parzialmente detraibile
                     ind_tax = tax_list[abs(tax_list.index(tax) - 1)]
                     ind_tax_obj = self.browse(cr, uid, ind_tax['id'])
-                    base_ind = float(Decimal(str(
-                        totalex * ind_tax_obj.amount)).quantize(Decimal(
-                            '1.' + precision * '0'), rounding=ROUND_HALF_UP))
-                    base_ded = float(Decimal(str(totalex - base_ind)).quantize(
-                        Decimal(
-                            '1.' + precision * '0'), rounding=ROUND_HALF_UP))
-                    tax_total = float(Decimal(str(tax['balance'])).quantize(
-                        Decimal(
-                            '1.' + precision * '0'), rounding=ROUND_HALF_UP))
+                    base_ind = float(Decimal(str(totalex * ind_tax_obj.amount)).quantize(Decimal('1.' + precision * '0'), rounding=ROUND_HALF_UP))
+                    base_ded = float(Decimal(str(totalex - base_ind)).quantize(Decimal('1.' + precision * '0'), rounding=ROUND_HALF_UP))
+                    tax_total = float(Decimal(str(tax['balance'])).quantize(Decimal('1.' + precision * '0'), rounding=ROUND_HALF_UP))
                     if tax_total > tax['amount'] + ind_tax['amount']:
-                        rounding_amount = tax_total - (tax['amount'] + ind_tax[
-                            'amount'])
+                        rounding_amount = tax_total - (tax['amount'] + ind_tax['amount'])
                         ind_tax['amount'] += rounding_amount
-                    ind_tax['price_unit'] = round(
-                        base_ind / quantity, self.pool.get(
-                            'decimal.precision').precision_get(
-                            cr, uid, 'Product Price'))
-                    tax['price_unit'] = round(
-                        base_ded / quantity, self.pool.get(
-                            'decimal.precision').precision_get(
-                            cr, uid, 'Product Price'))
+                    ind_tax['price_unit'] = round(base_ind / quantity, self.pool.get('decimal.precision').precision_get(cr, uid, 'Product Price'))
+                    tax['price_unit'] = round(base_ded / quantity, self.pool.get('decimal.precision').precision_get(cr, uid, 'Product Price'))
         return res
 
 
@@ -173,17 +148,14 @@ class account_invoice_tax(orm.Model):
         grouped_base = {}
         for inv_tax in tax_grouped.values():
             if inv_tax['tax_code_id']:
-                main_tax = tax_obj.get_main_tax(
-                    tax_obj.get_account_tax_by_tax_code(
-                        tax_code_obj.browse(cr, uid, inv_tax['tax_code_id'])))
+                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_tax_code(
+                    tax_code_obj.browse(cr, uid, inv_tax['tax_code_id'])))
             elif inv_tax['base_code_id']:
-                main_tax = tax_obj.get_main_tax(
-                    tax_obj.get_account_tax_by_base_code(
-                        tax_code_obj.browse(cr, uid, inv_tax['base_code_id'])))
+                main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
+                    tax_code_obj.browse(cr, uid, inv_tax['base_code_id'])))
             else:
                 raise orm.except_orm(_('Error'),
-                                     _(
-                                         'No tax codes for invoice tax %s') % inv_tax['name'])
+                                     _('No tax codes for invoice tax %s') % inv_tax['name'])
             if not grouped_base.get(main_tax.amount, False):
                 grouped_base[main_tax.amount] = 0
             grouped_base[main_tax.amount] += inv_tax['base']
@@ -195,8 +167,7 @@ class account_invoice_tax(orm.Model):
         return real_total - invoice_total
 
     def compute(self, cr, uid, invoice_id, context=None):
-        tax_grouped = super(account_invoice_tax, self).compute(
-            cr, uid, invoice_id, context)
+        tax_grouped = super(account_invoice_tax, self).compute(cr, uid, invoice_id, context)
         inv_obj = self.pool.get('account.invoice')
         tax_obj = self.pool.get('account.tax')
         tax_code_obj = self.pool.get('account.tax.code')
@@ -215,12 +186,9 @@ class account_invoice_tax(orm.Model):
                 tax = tax_obj.get_main_tax(ded_tax)
                 for inv_tax_2 in tax_grouped.values():
                     # parte indetraibile
-                    if inv_tax_2['base_code_id'] and not inv_tax_2[
-                            'tax_code_id']:
-                        main_tax = tax_obj.get_main_tax(
-                            tax_obj.get_account_tax_by_base_code(
-                                tax_code_obj.browse(cr, uid, inv_tax_2[
-                                    'base_code_id'])))
+                    if inv_tax_2['base_code_id'] and not inv_tax_2['tax_code_id']:
+                        main_tax = tax_obj.get_main_tax(tax_obj.get_account_tax_by_base_code(
+                            tax_code_obj.browse(cr, uid, inv_tax_2['base_code_id'])))
                         # Se hanno la stessa tassa
                         # (Il get_account_tax_by* potrebbe in generale ritornare una qualunque
                         # delle N imposte associate al tax_code. Per la parte indetraibile, il
@@ -228,32 +196,23 @@ class account_invoice_tax(orm.Model):
                         if main_tax.id == tax.id:
                             # se risulta un'eccedenza, la tolgo dalla parte detraibile
                             if tax_difference < 0:
-                                inv_tax['amount'] = inv_tax[
-                                    'amount'] + tax_difference
+                                inv_tax['amount'] = inv_tax['amount'] + tax_difference
                             # se risulta una mancanza, la aggiungo alla parte indetraibile
                             elif tax_difference > 0:
-                                inv_tax_2['amount'] = inv_tax_2[
-                                    'amount'] + tax_difference
+                                inv_tax_2['amount'] = inv_tax_2['amount'] + tax_difference
                             # calcolo l'importo del tax.code relativo all'imposta (la parte indetraibile non lo muove)
                             if invoice.type in ('out_invoice', 'in_invoice'):
-                                inv_tax['tax_amount'] = cur_obj.compute(
-                                    cr, uid, invoice.currency_id.id,
-                                    company_currency,
-                                    inv_tax['amount'] * main_tax['tax_sign'],
-                                    context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                                inv_tax['tax_amount'] = cur_obj.compute(cr, uid, invoice.currency_id.id, company_currency,
+                                                                        inv_tax['amount'] * main_tax['tax_sign'],
+                                                                        context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
                             else:
-                                inv_tax['tax_amount'] = cur_obj.compute(
-                                    cr, uid, invoice.currency_id.id,
-                                    company_currency,
-                                    inv_tax['amount'] * main_tax['ref_tax_sign'],
-                                    context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
+                                inv_tax['tax_amount'] = cur_obj.compute(cr, uid, invoice.currency_id.id, company_currency,
+                                                                        inv_tax['amount'] * main_tax['ref_tax_sign'],
+                                                                        context={'date': invoice.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
 
-                            inv_tax['amount'] = cur_obj.round(
-                                cr, uid, cur, inv_tax['amount'])
-                            inv_tax['tax_amount'] = cur_obj.round(
-                                cr, uid, cur, inv_tax['tax_amount'])
-                            inv_tax_2['amount'] = cur_obj.round(
-                                cr, uid, cur, inv_tax_2['amount'])
+                            inv_tax['amount'] = cur_obj.round(cr, uid, cur, inv_tax['amount'])
+                            inv_tax['tax_amount'] = cur_obj.round(cr, uid, cur, inv_tax['tax_amount'])
+                            inv_tax_2['amount'] = cur_obj.round(cr, uid, cur, inv_tax_2['amount'])
         return tax_grouped
 
 
@@ -262,11 +221,8 @@ class account_tax_code(orm.Model):
     _inherit = 'account.tax.code'
 
     _columns = {
-        'base_tax_ids': fields.one2many(
-            'account.tax', 'base_code_id', 'Base Taxes'),
+        'base_tax_ids': fields.one2many('account.tax', 'base_code_id', 'Base Taxes'),
         'tax_ids': fields.one2many('account.tax', 'tax_code_id', 'Taxes'),
-        'ref_base_tax_ids': fields.one2many(
-            'account.tax', 'ref_base_code_id', 'Ref Base Taxes'),
-        'ref_tax_ids': fields.one2many(
-            'account.tax', 'ref_tax_code_id', 'Ref Taxes'),
+        'ref_base_tax_ids': fields.one2many('account.tax', 'ref_base_code_id', 'Ref Base Taxes'),
+        'ref_tax_ids': fields.one2many('account.tax', 'ref_tax_code_id', 'Ref Taxes'),
     }

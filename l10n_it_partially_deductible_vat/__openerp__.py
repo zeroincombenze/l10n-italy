@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011
-#    Associazione Odoo Italia (<http://www.odoo-italia.org>)
+#    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -29,14 +29,14 @@
         'account',
         'l10n_it_account'
     ],
-    "author": "Odoo Italian Community",
+    "author": "OpenERP Italian Community",
     "description": """
     Calcoli aggiuntivi per la gestione dell'IVA parzialmente detraibile. Senza questo modulo non è possibile calcolare correttamente imponibili, imposte e conti imposte relativi all'IVA parzialmente detraibile.
     La configurazione dell'IVA parzialmente detraibile deve essere quella utilizzata dal modulo 'l10n_it', anche se non viene usato tale modulo.
     """,
     "license": "AGPL-3",
     "category": "Localisation/Italy",
-    'website': 'http://www.odoo-italia.org/',
+    'website': 'http://www.openerp-italia.org/',
     'data': [],
     'demo': [],
     'installable': True,

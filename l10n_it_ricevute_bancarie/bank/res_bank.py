@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012
-#    Associazione Odoo Italia (<http://www.odoo-italia.org>)
+#    Associazione OpenERP Italia (<http://www.openerp-italia.org>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,35 +20,27 @@
 #
 #############################################################################
 
-from openerp.osv import fields, orm
+from osv import fields, osv
 
 
-class res_bank(orm.Model):
+class res_bank(osv.osv):
     _inherit = "res.bank"
     _columns = {
         'abi': fields.char('ABI', size=5),
         'cab': fields.char('CAB', size=5),
-        'province': fields.many2one(
-            'res.province', string='Provincia', ondelete='restrict'),
+        'province': fields.many2one('res.province', string='Provincia', ondelete='restrict'),
     }
 
-    def name_search(
-            self, cr, uid, name='', args=None, operator='ilike', context=None,
-            limit=None):
+    def name_search(self, cr, uid, name='', args=None, operator='ilike', context=None, limit=None):
         if not args:
             args = []
         context = context or self.pool['res.users'].context_get(cr, uid)
         if name:
             abi_cab = name.split(' ')
-            if len(abi_cab) == 2 and abi_cab[0].isdigit() and abi_cab[
-                    1].isdigit():
-                ids = self.search(cr, uid, [('abi', '=', abi_cab[0]), (
-                    'cab', '=', abi_cab[1])], limit=limit, context=context)
+            if len(abi_cab) == 2 and abi_cab[0].isdigit() and abi_cab[1].isdigit():
+                ids = self.search(cr, uid, [('abi', '=', abi_cab[0]), ('cab', '=', abi_cab[1])], limit=limit, context=context)
             else:
-                ids = self.search(cr, uid, ['|', '|', ('abi', '=', name), (
-                    'cab', '=', name), (
-                    'name', 'like', name)] + args, limit=limit,
-                    context=context)
+                ids = self.search(cr, uid, ['|', '|', ('abi', '=', name), ('cab', '=', name), ('name', 'like', name)] + args, limit=limit, context=context)
         else:
             ids = self.search(cr, uid, args, limit=limit, context=context)
         return self.name_get(cr, uid, ids, context=context)
@@ -57,15 +49,14 @@ class res_bank(orm.Model):
         res = []
         for bank in self.browse(cr, uid, ids, context=context):
             if bank.abi and bank.cab:
-                name = u"[{abi} {cab}] {name}".format(
-                    abi=bank.abi, cab=bank.cab, name=bank.name)
+                name = u"[{abi} {cab}] {name}".format(abi=bank.abi, cab=bank.cab, name=bank.name)
             else:
                 name = bank.name
             res.append((bank.id, name))
         return res
 
 
-class res_partner_bank(orm.Model):
+class res_partner_bank(osv.osv):
     _inherit = "res.partner.bank"
     _columns = {
         'bank_abi': fields.char('ABI', size=5),
@@ -73,11 +64,9 @@ class res_partner_bank(orm.Model):
     }
 
     def onchange_bank_id(self, cr, uid, ids, bank_id, context=None):
-        result = super(res_partner_bank, self).onchange_bank_id(
-            cr, uid, ids, bank_id, context=context)
+        result = super(res_partner_bank, self).onchange_bank_id(cr, uid, ids, bank_id, context=context)
         if bank_id:
-            bank = self.pool.get('res.bank').browse(
-                cr, uid, bank_id, context=context)
+            bank = self.pool.get('res.bank').browse(cr, uid, bank_id, context=context)
             result['value']['bank_abi'] = bank.abi
             result['value']['bank_cab'] = bank.cab
         return result

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010-2013 Associazione Odoo Italia
+#    Copyright (C) 2010-2013 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,9 +21,9 @@
 
 {
     'name': 'Italian Localisation',
-    'version': '2.20.44.42',
+    'version': '3.22.46.44',
     'category': 'Localisation/Italy',
-    'description': """This module customizes Odoo in order to fit italian laws and mores - Account version
+    'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
 
 Functionalities:
 
@@ -32,7 +32,7 @@ Functionalities:
 - CIG on invoice
 
 """,
-    'author': 'Odoo Italian Community, Didotech srl',
+    'author': 'OpenERP Italian Community, Didotech srl',
     'website': 'http://www.openerp-italia.org, http://www.didotech.com',
     'license': 'AGPL-3',
     'depends': [
@@ -40,7 +40,7 @@ Functionalities:
         'base_vat',
         'account_chart',
         'base_iban',
-        'l10n_it_bbone',
+        'l10n_it_base',
         'account_voucher',
         'sale_order_confirm',
         'account_invoice_entry_date',  # not possible for use of a field defined here invoice_supplier_number
