@@ -289,14 +289,22 @@ class AccountVatCommunication(orm.Model):
                             if tax.type_tax_use:
                                 tax_type = tax.type_tax_use
                         else:
-                            if tax.type == 'percent' and \
-                                    tax.amount > tax_nodet_rate:
-                                tax_nodet_rate = tax.amount
-                            tax = account_tax_model.browse(cr, uid,
-                                                           tax.parent_id.id)
-                            taxcode_base_id = invoice_tax.tax_code_id.id
-                            if tax.amount > tax_rate:
-                                tax_rate = tax.amount
+                            if release.major_version == '6.1':
+                                tax_rate = 0
+                                for child in account_tax_model.browse(
+                                        cr, uid, tax.parent_id.id).child_ids:
+                                    if child.type == 'percent':
+                                        tax_rate += child.amount
+                                tax_nodet_rate = 1 - (tax.amount / tax_rate)
+                            else:
+                                if tax.type == 'percent' and \
+                                        tax.amount > tax_nodet_rate:
+                                    tax_nodet_rate = tax.amount
+                                tax = account_tax_model.browse(
+                                    cr, uid, tax.parent_id.id)
+                                taxcode_base_id = invoice_tax.tax_code_id.id
+                                if tax.amount > tax_rate:
+                                    tax_rate = tax.amount
                 if (tax_type == 'sale' and tax_rate and tax_nature) or \
                     (tax_type == 'sale' and
                      tax_rate == 0.0 and not tax_nature) or \
@@ -315,6 +323,9 @@ class AccountVatCommunication(orm.Model):
                         sum_amounts['discarded'] -= invoice.amount_total
                     else:
                         sum_amounts['discarded'] += invoice.amount_total
+                    _logger.info(_('Invoice %s (%d), discarded tax line %s' %
+                                   (invoice.number, invoice.id,
+                                    invoice_tax.name)))
                     continue
                 if taxcode_base_id not in inv_line:
                     inv_line[taxcode_base_id] = {}
@@ -676,8 +687,13 @@ class commitment_line(orm.AbstractModel):
 
         res['xml_Nazione'] = address.country_id.code or res[
             'xml_IdPaese'] or 'IT'
-        res['xml_Indirizzo'] = address.street.replace(
-            u"'", '').replace(u"’", '')
+        if address.street:
+            res['xml_Indirizzo'] = address.street.replace(
+                u"'", '').replace(u"’", '')
+        else:
+            _logger.error(
+                u'Partner {0} has no street on address'.format(partner.name))
+            res['xml_Indirizzo'] = ' '
 
         if res.get('xml_IdPaese', '') == 'IT' and address.zip:
             res['xml_CAP'] = address.zip.replace('x', '0').replace('%', '0')
@@ -839,19 +855,13 @@ class commitment_DTE_line(orm.Model):
             store=False,
             select=True,
             readonly=True),
-        'xml_TipoDocumento': fields.selection([
-            ('TD01', 'fattura'),
-            ('TD04', 'nota di credito'),
-            ('TD05', 'nota di debito'),
-            ('TD07', 'fattura semplificata'),
-            ('TD08', 'nota di credito semplificata'),
-            ('TD10', 'fattura di acquisto intracomunitario beni'),
-            ('TD11', 'fattura di acquisto intracomunitario servizi'),
-            ],
+        'xml_TipoDocumento': fields.function(
+            _xml_tipodocumento,
             string="Document type",
-            # type="char",
+            help="Values: TD01=invoice, TD04=refund",
+            type="char",
             multi=False,
-            # store=False,
+            store=False,
             select=True,
             readonly=True),
         'xml_ImponibileImporto': fields.function(
@@ -990,19 +1000,13 @@ class commitment_DTR_line(orm.Model):
             store=False,
             select=True,
             readonly=True),
-        'xml_TipoDocumento': fields.selection([
-            ('TD01', 'fattura'),
-            ('TD04', 'nota di credito'),
-            ('TD05', 'nota di debito'),
-            ('TD07', 'fattura semplificata'),
-            ('TD08', 'nota di credito semplificata'),
-            ('TD10', 'fattura di acquisto intracomunitario beni'),
-            ('TD11', 'fattura di acquisto intracomunitario servizi'),
-            ],
+        'xml_TipoDocumento': fields.function(
+            _xml_tipodocumento,
             string="Document type",
-            # type="char",
+            help="Values: TD01=invoice, TD04=refund",
+            type="char",
             multi=False,
-            # store=False,
+            store=False,
             select=True,
             readonly=True),
         'xml_ImponibileImporto': fields.function(

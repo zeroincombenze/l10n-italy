@@ -38,6 +38,7 @@ Funzione | Status | Note
 Controllo validità CF Italia | :white_check_mark: | Verifica carattere di controllo
 Accetta Partita IVA | :white_check_mark: | Per aziende controllate
 Genera CF da dati | :white_check_mark: |
+Campo libero per partner esteri | :white_check_mark: |
 
 
 Installation

@@ -12,6 +12,15 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
+SPLIT_MODE = [('LF', 'Last/First'),
+              ('FL', 'First/Last'),
+              ('LFM', 'Last/First Middle'),
+              ('L2F', 'Last last/First'),
+              ('L2FM', 'Last last/First Middle'),
+              ('FML', 'First middle/Last'),
+              ('FL2', 'First/Last last'),
+              ('FML2', 'First Middle/Last last')]
+
 
 class ResPartner(orm.Model):
     _inherit = 'res.partner'
@@ -108,14 +117,7 @@ class ResPartner(orm.Model):
         'individual': fields.boolean(
             'Individual',
             help="If checked the C.F. is referred to a Individual Person"),
-        'splitmode': fields.selection([('LF', 'Last/First'),
-                                       ('FL', 'First/Last'),
-                                       ('LFM', 'Last/First Middle'),
-                                       ('L2F', 'Last last/First'),
-                                       ('L2FM', 'Last last/First Middle'),
-                                       ('FML', 'First middle/Last'),
-                                       ('FL2', 'First/Last last'),
-                                       ('FML2', 'First Middle/Last last')],
+        'splitmode': fields.selection(SPLIT_MODE,
                                       "First Last format"),
         'firstname': fields.function(
             _split_first_name,
@@ -133,6 +135,9 @@ class ResPartner(orm.Model):
             select=True,
             readonly=True,
             fnct_inv=_set_last_first_name),
+        'split_next': fields.boolean(
+            'Change format name',
+            help="Check for change first/last name format"),
     }
 
     _defaults = {
@@ -147,12 +152,18 @@ class ResPartner(orm.Model):
     #      'The fiscal code must be unique per company !'),
     # ]
 
-    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, context=None):
+    def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, country_id,
+                            context=None):
         name = 'fiscalcode'
         if fiscalcode:
-            if len(fiscalcode) == 11:
-                res_partner_pool = self.pool.get('res.partner')
-                chk = res_partner_pool.simple_vat_check(
+            country_model = self.pool.get('res.country')
+            if country_id and country_model.browse(
+                    cr, uid, country_id).code != 'IT':
+                return {'value': {name: fiscalcode,
+                                  'individual': True}}
+            elif len(fiscalcode) == 11:
+                res_partner_model = self.pool.get('res.partner')
+                chk = res_partner_model.simple_vat_check(
                     cr, uid, 'it', fiscalcode)
                 if not chk:
                     return {'value': {name: False},
@@ -186,7 +197,9 @@ class ResPartner(orm.Model):
         lastname, firstname = self._split_last_first_name(
             cr, uid, name=name, splitmode=splitmode)
         res = {'value': {'firstname': firstname,
-                         'lastname': lastname}}
+                         'lastname': lastname,
+                         'splitmode': splitmode,
+                         'split_next': False}}
         return res
 
     def onchange_splitmode(self, cr, uid, ids, splitmode, name,
@@ -194,8 +207,16 @@ class ResPartner(orm.Model):
         lastname, firstname = self._split_last_first_name(
             cr, uid, name=name, splitmode=splitmode)
         res = {'value': {'firstname': firstname,
-                         'lastname': lastname}}
+                         'lastname': lastname,
+                         'splitmode': splitmode,
+                         'split_next': False}}
         return res
+
+    def onchange_split_next(self, cr, uid, ids, splitmode, name, context=None):
+        i = [i for i, x in enumerate(SPLIT_MODE) if x[0] == splitmode][0]
+        i = (i + 1) % len(SPLIT_MODE)
+        splitmode = SPLIT_MODE[i][0]
+        return self.onchange_splitmode(cr, uid, ids, splitmode, name, context)
 
     def _default_splitmode(self, cr, uid, partner=None, context=None):
         return 'LF'
