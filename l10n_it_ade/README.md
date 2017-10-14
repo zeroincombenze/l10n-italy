@@ -26,8 +26,6 @@ Questo modulo non ha funzioni specifice per l'utente finale. Serve come base
 per i moduli che generano file xml in formato stabilito dall'Agenzia delle
 Entrate, come FatturaPA o Liquidazione IVA elettronica.
 
-Attenzione! Questo modulo è incompatibile con i moduli l10n_it_fatturapa di OCA
-versioni [7-11].0.2.0.0
 Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
 xml; come conseguenza nasce un conflitto tra moduli diversi con lo stesso
@@ -39,7 +37,7 @@ dipendere da questo modulo.
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'autore.
 
-Schemi
+### Schemi
 
 Il modulo rende disponibili i seguenti schemi:
 
@@ -52,6 +50,24 @@ Per aggiungere nuovi schemi o modificare o aggiornare gli schemi gestiti:
 
 - Aggiungere o modificare gli schemi nella directory ./data
 - Eseguire da una macchina CentOS lo script ./pyxbgen.sh -u
+
+
+
+### Funzionalità & Certificati
+
+Funzione | Status | Note
+--- | --- | ---
+Definizione sezionale autofatture | :white_check_mark: |
+Definizione sezionale corrispettivi | :white_check_mark: | Funzionalità modulo OCA duplicata
+Definizione sezionale avvisi di parcella | :white_check_mark: | Necessario per modulo RA
+
+
+Logo | Ente/Certificato | Data inizio | Da fine | Note
+--- | --- | --- | --- | ---
+[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2017 | Validazione contro schema xml
+[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 05-10-2017 | 31-12-2017 | File accettati da portale fatturaPA Agenzia delle Entrate
+[FatturaPA](http://www.fatturapa.gov.it/export/fatturazione/it/fattura_PA.htm) | 22-09-2017 | 31-12-2017 | [![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
+
 
 
 Installation
@@ -74,20 +90,6 @@ Configuration
 
 
 Usage
------
-
------
-
------
-
------
-
------
-
------
-
------
-
 -----
 
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI

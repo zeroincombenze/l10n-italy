@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-11 13:02+0000\n"
-"PO-Revision-Date: 2017-10-11 13:02+0000\n"
+"POT-Creation-Date: 2017-10-14 13:40+0000\n"
+"PO-Revision-Date: 2017-10-14 13:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,13 +67,6 @@ msgstr "CF del soggetto che presenta la comunicazione se PF o DI o con la specif
 #: view:wizard.vat.communication:0
 msgid "Cancel"
 msgstr "Cancella"
-
-#. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:725
-#: code:addons/l10n_it_vat_communication/models/account.py:870
-#, python-format
-msgid "Check VAT for partner %s!"
-msgstr "Controlla PI e/o CF di %s!"
 
 #. module: l10n_it_vat_communication
 #: help:account.journal,rev_charge:0
@@ -159,21 +152,19 @@ msgstr "Errore"
 
 #. module: l10n_it_vat_communication
 #: code:addons/l10n_it_vat_communication/models/account.py:212
-#: code:addons/l10n_it_vat_communication/models/account.py:300
-#: code:addons/l10n_it_vat_communication/models/account.py:513
-#: code:addons/l10n_it_vat_communication/models/account.py:524
-#: code:addons/l10n_it_vat_communication/models/account.py:555
-#: code:addons/l10n_it_vat_communication/models/account.py:595
-#: code:addons/l10n_it_vat_communication/models/account.py:705
-#: code:addons/l10n_it_vat_communication/models/account.py:724
-#: code:addons/l10n_it_vat_communication/models/account.py:869
+#: code:addons/l10n_it_vat_communication/models/account.py:317
+#: code:addons/l10n_it_vat_communication/models/account.py:549
+#: code:addons/l10n_it_vat_communication/models/account.py:560
+#: code:addons/l10n_it_vat_communication/models/account.py:591
+#: code:addons/l10n_it_vat_communication/models/account.py:631
+#: code:addons/l10n_it_vat_communication/models/account.py:763
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:95
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:106
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:115
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:131
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:140
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:175
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:371
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:369
 #, python-format
 msgid "Error!"
 msgstr "Errore!"
@@ -211,27 +202,27 @@ msgstr "Intestazione"
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:132
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:141
 #: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:176
-#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:372
+#: code:addons/l10n_it_vat_communication/wizard/wizard_export.py:370
 #, python-format
 msgid "Internal error: invalid partner selector"
 msgstr "Errore interno: selezione partner non valida"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:525
-#: code:addons/l10n_it_vat_communication/models/account.py:556
-#: code:addons/l10n_it_vat_communication/models/account.py:596
+#: code:addons/l10n_it_vat_communication/models/account.py:561
+#: code:addons/l10n_it_vat_communication/models/account.py:592
+#: code:addons/l10n_it_vat_communication/models/account.py:632
 #, python-format
 msgid "Internal error: no DTE neither DTR selected"
 msgstr "Errore interno: ne clienti ne fornitori selezionati"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:301
+#: code:addons/l10n_it_vat_communication/models/account.py:318
 #, python-format
 msgid "Invalid tax %s nature for invoice %s"
 msgstr "Natura di codice IVA %s di fattura %s non valida"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:706
+#: code:addons/l10n_it_vat_communication/models/account.py:764
 #, python-format
 msgid "Invalid type %s (%s) for invoice %s"
 msgstr "Tipo fattura %s (%s) non valido per %s"
@@ -241,6 +232,12 @@ msgstr "Tipo fattura %s (%s) non valido per %s"
 #: field:account.vat.communication.dtr.line,invoice_id:0
 msgid "Invoice"
 msgstr "Fattura"
+
+#. module: l10n_it_vat_communication
+#: code:addons/l10n_it_vat_communication/models/account.py:327
+#, python-format
+msgid "Invoice %s (%d), discarded tax line %s"
+msgstr "Invoice %s (%d), discarded tax line %s"
 
 #. module: l10n_it_vat_communication
 #: code:_description:0
@@ -265,7 +262,7 @@ msgid "Liquidatore di DI"
 msgstr "Liquidatore di DI"
 
 #. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:514
+#: code:addons/l10n_it_vat_communication/models/account.py:550
 #, python-format
 msgid "Missed company VAT number"
 msgstr "Azienda senza partita IVA"
@@ -275,12 +272,6 @@ msgstr "Azienda senza partita IVA"
 #, python-format
 msgid "Missed company zip code"
 msgstr "Manca CAP"
-
-#. module: l10n_it_vat_communication
-#: code:addons/l10n_it_vat_communication/models/account.py:231
-#, python-format
-msgid "Missed country code in partner %s"
-msgstr "Manca nazione in cliente/fornitore %s"
 
 #. module: l10n_it_vat_communication
 #: field:account.vat.communication.dte.line,tax_nature:0

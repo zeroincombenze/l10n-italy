@@ -46,6 +46,8 @@ Controlli dati anagrafici | :white_check_mark: | Check di validazione
 IVA differita | :white_check_mark: | Da codice imposte
 IVA da split-payment | :white_check_mark: | Da codice imposte
 Ignora autofatture | :white_check_mark: | Esclusione tramite sezionale
+Ignora corrispettivi | :white_check_mark: | Esclusione tramite sezionale
+Ignora avvisi di parcella | :white_check_mark: | Esclusione tramite sezionale
 Identificazione Reverse Charge | :white_check_mark: | Da codice imposte
 Fatture vendita UE | :white_check_mark: | Inserite in spesometro
 Fatture vendita extra-UE | :white_check_mark: | Inserite in spesometro

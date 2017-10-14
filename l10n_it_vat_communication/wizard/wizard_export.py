@@ -175,10 +175,11 @@ class WizardVatCommunication(orm.TransientModel):
                 _('Error!'),
                 _('Internal error: invalid partner selector'))
 
-        CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
-            IdPaese = fields['xml_IdPaese']
-        CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
-            IdCodice = fields['xml_IdCodice']
+        if fields.get('xml_IdPaese') and fields.get('xml_IdCodice'):
+            CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
+                IdPaese = fields['xml_IdPaese']
+            CedentePrestatore.IdentificativiFiscali.IdFiscaleIVA.\
+                IdCodice = fields['xml_IdCodice']
         if fields.get('xml_CodiceFiscale'):
             CedentePrestatore.IdentificativiFiscali.CodiceFiscale = \
                 CodiceFiscaleType(fields['xml_CodiceFiscale'])
@@ -212,7 +213,7 @@ class WizardVatCommunication(orm.TransientModel):
             partner.IdentificativiFiscali.IdFiscaleIVA.\
                 IdCodice = fields['xml_IdCodice']
 
-            if fields['xml_IdPaese'] == 'IT' and fields.get(
+            if fields.get('xml_IdPaese') == 'IT' and fields.get(
                     'xml_CodiceFiscale'):
                 partner.IdentificativiFiscali.\
                     CodiceFiscale = CodiceFiscaleType(
@@ -237,14 +238,11 @@ class WizardVatCommunication(orm.TransientModel):
                 cr, uid, commitment, partner_id, dte_dtr_id, context)
 
             # Missed mandatory data: skip record
-            if 'xml_IdPaese' not in fields and \
-                    'xml_CodiceFiscale' not in fields:
-                continue
-            elif not fields.get('xml_IdCodice', False) and \
-                    not fields.get('xml_CodiceFiscale', False):
-                # Corrispettivi
-                continue
-
+            # if not fields.get('xml_IdPaese') and \
+            #         not fields.get('xml_IdCodice') and \
+            #         not fields.get('xml_CodiceFiscale', False):
+            #     # Corrispettivi
+            #     continue
             # TODO: StabileOrganizzazione
             # TODO: RappresentanteFiscale
 
