@@ -384,7 +384,11 @@ class AccountVatCommunication(orm.Model):
                 exclude_journal_ids.append(fiscal_position.sale_journal_id.id)
         else:
             exclude_journal_ids = journal_model.search(
-                cr, uid, [('rev_charge', '=', True)])
+                cr, uid, ['|',
+                          ('rev_charge', '=', True),
+                          ('anom_sale_receipts', '=', True),
+                          ('proforma', '=', True),
+                          ])
 
         period_ids = [x.id for x in commitment.period_ids]
         company_id = commitment.company_id.id

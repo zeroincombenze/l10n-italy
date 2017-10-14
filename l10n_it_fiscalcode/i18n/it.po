@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-26 14:09+0000\n"
-"PO-Revision-Date: 2017-09-26 14:09+0000\n"
+"POT-Creation-Date: 2017-10-14 13:37+0000\n"
+"PO-Revision-Date: 2017-10-14 13:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,17 @@ msgstr "Annulla"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:49
 #, python-format
 msgid "Cataster code is missing"
-msgstr "Codice Catastale assente"
+msgstr "Codice catastale assente"
+
+#. module: l10n_it_fiscalcode
+#: field:res.partner,split_next:0
+msgid "Change format name"
+msgstr "Cambia formato nome/cognome"
+
+#. module: l10n_it_fiscalcode
+#: help:res.partner,split_next:0
+msgid "Check for change first/last name format"
+msgstr "Clicca per cambiare il formato nome/cognome"
 
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,birth_city:0
@@ -66,7 +76,7 @@ msgstr "Errore"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:65
 #, python-format
 msgid "Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one"
-msgstr "Il codice fiscale esistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
+msgstr "Il codice fiscale sistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
@@ -86,7 +96,7 @@ msgstr "Nome nome/Cognome cognome"
 #. module: l10n_it_fiscalcode
 #: field:res.partner,firstname:0
 msgid "First Name"
-msgstr "Nome"
+msgstr "Nome battesimo"
 
 #. module: l10n_it_fiscalcode
 #: selection:res.partner,splitmode:0
@@ -96,7 +106,7 @@ msgstr "Nome nome/Cognome"
 #. module: l10n_it_fiscalcode
 #: field:wizard.compute.fc,fiscalcode_firstname:0
 msgid "First name"
-msgstr "Nome"
+msgstr "Nome di battesimo"
 
 #. module: l10n_it_fiscalcode
 #: selection:res.partner,splitmode:0
@@ -117,7 +127,7 @@ msgstr "Codice Fiscale"
 #. module: l10n_it_fiscalcode
 #: help:res.partner,individual:0
 msgid "If checked the C.F. is referred to a Individual Person"
-msgstr "Se selezionato il Cofice Fiscale farà riferimento a quello di una Persona Fisica"
+msgstr "Se selezionato il Codice Fiscale farà riferimento ad una Persona Fisica"
 
 #. module: l10n_it_fiscalcode
 #: field:res.partner,individual:0
@@ -168,7 +178,7 @@ msgstr "Maschio"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:47
 #, python-format
 msgid "One or more fields are missing"
-msgstr "Manca(no) uno o più valori"
+msgstr "Mancano uno o più campi"
 
 #. module: l10n_it_fiscalcode
 #: code:_description:0
@@ -190,5 +200,5 @@ msgstr "Cognome"
 #. module: l10n_it_fiscalcode
 #: constraint:res.partner:0
 msgid "The fiscal code doesn't seem to be correct."
-msgstr "The fiscal code doesn't seem to be correct."
+msgstr "Il Codice Fiscale non sembra corretto per una Persona Fisica."
 

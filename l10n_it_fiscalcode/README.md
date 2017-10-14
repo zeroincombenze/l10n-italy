@@ -39,6 +39,7 @@ Controllo validità CF Italia | :white_check_mark: | Verifica carattere di contr
 Accetta Partita IVA | :white_check_mark: | Per aziende controllate
 Genera CF da dati | :white_check_mark: |
 Campo libero per partner esteri | :white_check_mark: |
+Separazione cognome e nome | :white_check_mark:  |
 
 
 Installation
@@ -61,20 +62,6 @@ Configuration
 
 
 Usage
------
-
------
-
------
-
------
-
------
-
------
-
------
-
 -----
 
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
