@@ -52,11 +52,11 @@ class account_journal(orm.Model):
                              'rev_charge': False,
                              'proforma': False}}
         elif name == 'proforma' and proforma:
-            if type != 'purchase':
+            if type not in ('purchase', 'sale'):
                 return {'value': {name: False},
                         'warning': {
                     'title': 'Invalid setting!',
-                    'message': 'Journal type must be purchase'}
+                    'message': 'Journal type must be sale or purchase'}
                 }
             res = {'value': {name: True,
                              'rev_charge': False,

@@ -614,6 +614,10 @@ class AccountVatCommunication(orm.Model):
                                                              context)
         res['xml_Data'] = invoice.date_invoice
         if invoice.type in ('in_invoice', 'in_refund'):
+            if not invoice.supplier_invoice_number:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Missed supplier invoice number %s') % (invoice.number))
             res['xml_Numero'] = invoice.supplier_invoice_number[-20:]
             res['xml_DataRegistrazione'] = invoice.registration_date
         else:
@@ -682,29 +686,40 @@ class commitment_line(orm.AbstractModel):
                     res['xml_Nome'] = partner.fiscalcode_firstname
                     res['xml_Cognome'] = partner.fiscalcode_surname
                 else:
-                    res['xml_Denominazione'] = partner.name[:80]
+                    res['xml_Denominazione'] = partner.name
             else:
                 res['xml_Nome'] = partner.firstname
                 res['xml_Cognome'] = partner.lastname
         else:
-            res['xml_Denominazione'] = partner.name[:80]
+            res['xml_Denominazione'] = partner.name
+            if not partner.vat:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Partner %s without VAT number') % (partner.name))
 
-        res['xml_Nazione'] = address.country_id.code or res[
-            'xml_IdPaese'] or 'IT'
+        res['xml_Nazione'] = address.country_id.code or res.get(
+            'xml_IdPaese') or 'IT'
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')
         else:
-            _logger.error(
-                u'Partner {0} has no street on address'.format(partner.name))
-            res['xml_Indirizzo'] = ' '
+            raise orm.except_orm(
+                _('Error!'),
+                _('Partner %s without street on address') % (partner.name))
 
-        if res.get('xml_IdPaese', '') == 'IT' and address.zip:
-            res['xml_CAP'] = address.zip.replace('x', '0').replace('%', '0')
+        if res.get('xml_IdPaese', '') == 'IT':
+            if address.zip:
+                res['xml_CAP'] = address.zip.replace('x', '0').replace('%',
+                                                                       '0')
+            if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Partner %s has wrong zip code') % (partner.name))
         res['xml_Comune'] = address.city or ' '
         if not address.city:
-            _logger.error(
-                u'Partner {0} has no city on address'.format(partner.name))
+            raise orm.except_orm(
+                _('Error!'),
+                _('Partner %s without city on address') % (partner.name))
         if res['xml_Nazione'] == 'IT':
             if release.major_version == '6.1':
                 res['xml_Provincia'] = address.province.code
@@ -712,6 +727,10 @@ class commitment_line(orm.AbstractModel):
                 res['xml_Provincia'] = partner.state_id.code
             if not res['xml_Provincia']:
                 del res['xml_Provincia']
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Partner %s without province on address') % (
+                        partner.name))
         return res
 
     def _dati_line(self, cr, uid, line, args, context=None):

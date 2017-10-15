@@ -13,6 +13,7 @@ import logging
 # import pdb
 _logger = logging.getLogger(__name__)
 try:
+    from unidecode import unidecode
     from openerp.addons.l10n_it_ade.bindings.dati_fattura_v_2_0 import (
         DatiFattura,
         VersioneType,
@@ -68,13 +69,19 @@ class WizardVatCommunication(orm.TransientModel):
         'state': lambda *a: 'create',
     }
 
+    def str60Latin(self, s):
+        # t = s.encode('latin-1', 'ignore')
+        return unidecode(s)[:60]
+
+    def str80Latin(self, s):
+        return unidecode(s)[:80]
+
     def get_dati_fattura_header(self, cr, uid,
                                 commitment_model, commitment, context=None):
         context = context or {}
         fields = commitment_model.get_xml_fattura_header(
             cr, uid, commitment, context)
         header = (DatiFatturaHeaderType())
-        # header.ProgressivoInvio = fields['xml_ProgressivoInvio']
         if 'xml_CodiceFiscale' in fields:
             header.Dichiarante = (DichiaranteType())
             header.Dichiarante.Carica = fields['xml_Carica']
@@ -106,15 +113,31 @@ class WizardVatCommunication(orm.TransientModel):
                     _('Error!'),
                     _('Internal error: invalid partner selector'))
 
-        sede.Indirizzo = fields['xml_Indirizzo']
-        sede.Comune = fields['xml_Comune']
-        if 'xml_CAP' in fields:
+        if fields.get('xml_Indirizzo'):
+            sede.Indirizzo = self.str60Latin(fields['xml_Indirizzo'])
+        else:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Missed address %s %s %S' %
+                  (fields.get('xml_Denominazione'),
+                   fields.get('xml_Nome'),
+                   fields.get('xml_Cognome'))))
+        if fields.get('xml_Comune'):
+            sede.Comune = self.str60Latin(fields['xml_Comune'])
+        else:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Missed city %s %s %S' %
+                  (fields.get('xml_Denominazione'),
+                   fields.get('xml_Nome'),
+                   fields.get('xml_Cognome'))))
+        if fields.get('xml_CAP') and fields['xml_Nazione'] == 'IT':
             sede.CAP = fields['xml_CAP']
         elif selector == 'company':
             raise orm.except_orm(
                 _('Error!'),
                 _('Missed company zip code'))
-        if 'xml_Provincia' in fields and fields['xml_Nazione'] == 'IT':
+        if fields.get('xml_Provincia') and fields['xml_Nazione'] == 'IT':
             sede.Provincia = fields['xml_Provincia']
 
         sede.Nazione = fields['xml_Nazione']
@@ -141,11 +164,13 @@ class WizardVatCommunication(orm.TransientModel):
                     _('Internal error: invalid partner selector'))
 
         if 'xml_Denominazione' in fields:
-            AltriDatiIdentificativi.Denominazione = fields['xml_Denominazione']
+            AltriDatiIdentificativi.Denominazione = self.str80Latin(
+                fields['xml_Denominazione'])
         else:
-            AltriDatiIdentificativi.Nome = fields['xml_Nome']
-            AltriDatiIdentificativi.Cognome = fields['xml_Cognome']
-
+            AltriDatiIdentificativi.Nome = self.str60Latin(
+                fields['xml_Nome'])
+            AltriDatiIdentificativi.Cognome = self.str60Latin(
+                fields['xml_Cognome'])
         AltriDatiIdentificativi.Sede = self.get_sede(
             cr, uid, fields, dte_dtr_id, selector, context=context)
         return AltriDatiIdentificativi
@@ -301,6 +326,7 @@ class WizardVatCommunication(orm.TransientModel):
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
                 invoices.append(invoice)
+
             if dte_dtr_id == 'DTE':
                 partner.DatiFatturaBodyDTE = invoices
             else:
