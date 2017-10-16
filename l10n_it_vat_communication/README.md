@@ -42,7 +42,7 @@ Fatture senza IVA | :white_check_mark: | Fatture esenti, NI, escluse, eccetera
 Escludi importi Fuori Campo IVA | :white_check_mark: | Totale fattura in Comunicazione può essere diverso da registrazione
 Escludi CAP e provincia no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
 Escludi CF no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
-Controlli dati anagrafici | 
+Controlli dati anagrafici | :white_check_mark: | Controlli Agenzia Entrate
 Conversione ISO-Latin1 | :white_check_mark: | Evita rifiuto partner stranieri
 IVA differita | :white_check_mark: | Da codice imposte
 IVA da split-payment | :white_check_mark: | Da codice imposte
