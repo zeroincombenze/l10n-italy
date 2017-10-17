@@ -63,15 +63,10 @@ Consider using the mass_editing module
 Usage
 -----
 
------
 
------
 
------
 
------
 
------
 
 =====
 

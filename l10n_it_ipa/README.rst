@@ -44,15 +44,10 @@ Nothing special is needed to install this module.
 Usage
 -----
 
------
 
------
 
------
 
------
 
------
 
 Known issues / Roadmap
 ----------------------
