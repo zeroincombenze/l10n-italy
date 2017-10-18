@@ -113,6 +113,16 @@ class WizardVatCommunication(orm.TransientModel):
                     _('Error!'),
                     _('Internal error: invalid partner selector'))
 
+        if fields.get('xml_Nazione'):
+            sede.Nazione = fields['xml_Nazione']
+        else:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Unknow country of %s %s %S' %
+                  (fields.get('xml_Denominazione'),
+                   fields.get('xml_Nome'),
+                   fields.get('xml_Cognome'))))
+
         if fields.get('xml_Indirizzo'):
             sede.Indirizzo = self.str60Latin(fields['xml_Indirizzo'])
         else:
@@ -139,8 +149,6 @@ class WizardVatCommunication(orm.TransientModel):
                 _('Missed company zip code'))
         if fields.get('xml_Provincia') and fields['xml_Nazione'] == 'IT':
             sede.Provincia = fields['xml_Provincia']
-
-        sede.Nazione = fields['xml_Nazione']
         return sede
 
     def get_name(self, cr, uid, fields, dte_dtr_id, selector, context=None):

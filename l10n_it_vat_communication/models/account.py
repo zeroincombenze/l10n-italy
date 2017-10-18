@@ -224,8 +224,8 @@ class AccountVatCommunication(orm.Model):
         else:
             address = partner
         code = partner.vat and partner.vat[0:2]
-        if not code:
-            code = 'IT'
+        # if not code:
+        #     code = 'IT'
         return address.country_id.code or code
 
     def load_invoices(self, cr, uid, commitment, commitment_line_model,
@@ -239,20 +239,6 @@ class AccountVatCommunication(orm.Model):
         for invoice_id in invoice_model.search(cr, uid, where):
             inv_line = {}
             invoice = invoice_model.browse(cr, uid, invoice_id)
-            # country_code = self.get_country_code(cr, uid, invoice.partner_id)
-            # if country_code not in EU_COUNTRIES:
-            #     if invoice.type[-7:] == '_refund':
-            #         sum_amounts['discarded'] -= invoice.amount_total
-            #     else:
-            #         sum_amounts['discarded'] += invoice.amount_total
-            #     continue
-            # if invoice.type in ('out_invoice',
-            #                     'out_refund') and country_code != 'IT':
-            #     if invoice.type[-7:] == '_refund':
-            #         sum_amounts['discarded'] -= invoice.amount_total
-            #     else:
-            #         sum_amounts['discarded'] += invoice.amount_total
-            #     continue
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
                 tax_payability = 'I'
@@ -318,11 +304,14 @@ class AccountVatCommunication(orm.Model):
                         _('Invalid tax %s nature for invoice %s') % (
                             invoice_tax.name,
                             invoice.number))
-                if tax_nature == 'FC':
+                if tax_nature == 'FC' or (tax_nature == 'N2' and
+                                          not invoice.partner_id.vat):
                     if invoice.type[-7:] == '_refund':
-                        sum_amounts['discarded'] -= invoice.amount_total
+                        sum_amounts['discarded'] -= round(
+                            invoice_tax.base + invoice_tax.amount, 2)
                     else:
-                        sum_amounts['discarded'] += invoice.amount_total
+                        sum_amounts['discarded'] += round(
+                            invoice_tax.base + invoice_tax.amount, 2)
                     _logger.info(_('Invoice %s (%d), discarded tax line %s' %
                                    (invoice.number, invoice.id,
                                     invoice_tax.name)))
@@ -384,10 +373,10 @@ class AccountVatCommunication(orm.Model):
                 exclude_journal_ids.append(fiscal_position.sale_journal_id.id)
         else:
             exclude_journal_ids = journal_model.search(
-                cr, uid, ['|',
+                cr, uid, ['|', '|',
                           ('rev_charge', '=', True),
-                          ('anom_sale_receipts', '=', True),
                           ('proforma', '=', True),
+                          ('anom_sale_receipts', '=', True),
                           ])
 
         period_ids = [x.id for x in commitment.period_ids]
@@ -673,14 +662,15 @@ class commitment_line(orm.AbstractModel):
             vat = partner.vat
             res['xml_IdPaese'] = vat and vat[0:2] or ''
             res['xml_IdCodice'] = vat and vat[2:] or ''
-        if partner.individual and partner.fiscalcode:
+        if (partner.individual or
+                not partner.is_company) and partner.fiscalcode:
             res['xml_CodiceFiscale'] = partner.fiscalcode
         elif res.get('xml_IdPaese', '') == 'IT':
             res['xml_CodiceFiscale'] = res['xml_IdCodice']
         elif not partner.vat:
             res['xml_CodiceFiscale'] = '99999999999'
 
-        if partner.individual:
+        if partner.individual or not partner.is_company:
             if release.major_version == '6.1':
                 if partner.fiscalcode_firstname and partner.fiscalcode_surname:
                     res['xml_Nome'] = partner.fiscalcode_firstname
@@ -690,6 +680,10 @@ class commitment_line(orm.AbstractModel):
             else:
                 res['xml_Nome'] = partner.firstname
                 res['xml_Cognome'] = partner.lastname
+            if not res.get('xml_Cognome') or not res.get('xml_Nome'):
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Invalid First or Last name %s') % (partner.name))
         else:
             res['xml_Denominazione'] = partner.name
             if not partner.vat:
@@ -697,8 +691,11 @@ class commitment_line(orm.AbstractModel):
                     _('Error!'),
                     _('Partner %s without VAT number') % (partner.name))
 
-        res['xml_Nazione'] = address.country_id.code or res.get(
-            'xml_IdPaese') or 'IT'
+        res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
+        if not res.get('xml_Nazione'):
+            raise orm.except_orm(
+                _('Error!'),
+                _('Unknow country of %s') % partner.name)
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')

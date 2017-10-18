@@ -80,9 +80,9 @@ class TestCommunication(TransactionCase):
                     'city': 'Torino',
                     'vat': COMPANY_IT_VAT,
                     })
-        # country_IT = ref789(self, 'base.it')
-        # self.write789(model, self.company_IT_id,
-        #               {'state_id': ''})
+        country_IT = self.ref789('base.it')
+        self.write789(model, self.company_IT_id,
+                      {'country_id': country_IT})
 
     def test_vat_communication(self):
         self.setup_company()
