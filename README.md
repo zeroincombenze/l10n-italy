@@ -62,8 +62,8 @@ addon | version | OCA version | summary
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 (unported) | :repeat: | Italian Localisation - CRM
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 (unported) | :repeat: | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 (unported) | :repeat: | Italian Localisation - Corrispettivi
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | :repeat: | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 (unported) | :repeat: | Electronic invoices emission
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.0.1.0 (unported) | 10.0.1.0.0 | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.0.1.1 (unported) | 10.0.1.0.0 | Electronic invoices emission
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 (unported) | :repeat: | Italy - Partially Deductible VAT
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 (unported) | :repeat: | Italian Localisation - Prima Nota Cassa
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.0.1.4 (unported) | 10.0.0.1.4 | Ricevute Bancarie
