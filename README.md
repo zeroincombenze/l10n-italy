@@ -37,7 +37,7 @@ addon | version | OCA version | summary
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 | :repeat: | Italian Localisation - Corrispettivi
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 7.0.2.1.0 | 0.1 | Electronic invoices
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.2.0.1 | 7.0.0.1.1 | Electronic invoices emission
-[l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.0 | :x: | Italy - Fiscal localization by zeroincombenze(R)
+[l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.1 | :x: | Italy - Fiscal localization by zeroincombenze(R)
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 7.0.0.2.1 | 0.1 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 7.0.1.0.0 | 1.0 | IPA Code (IndicePA)
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 | :repeat: | Italy - Partially Deductible VAT
@@ -50,7 +50,7 @@ addon | version | OCA version | summary
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | :repeat: | Split Payment
 [l10n_it_vat_communication](l10n_it_vat_communication/) | 7.0.0.1.9 | :x: | Comunicazione periodica IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 0.2 | :repeat: | Italian Localisation - VAT Registries
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 0.2 | :repeat: | Italian Localisation - Withholding tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 7.0.0.2.1 | 0.2 | Italian Localisation - Withholding tax
 
 
 Unported addons
