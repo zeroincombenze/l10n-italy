@@ -7,6 +7,9 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+
 Purchase Invoices with Withholding Tax
 ======================================
 
@@ -14,7 +17,6 @@ No more info
 
 
 Ritenute d'acconto sulle fatture fornitore
-==========================================
 
 Configurare i campi associati all'azienda:
  - Termine di pagamento della ritenuta d'acconto
@@ -99,7 +101,6 @@ Credits
 This module has been financially supported by
 
 * Agile Business Group sagl <http://www.agilebg.com>
-* Domsense srl <http://www.domsense.com>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
 ### Maintainer
