@@ -31,7 +31,7 @@ addon | version | OCA version | summary
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
 [l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
 [l10n_it_ade](l10n_it_ade/) | 7.0.0.1.6 | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
-[l10n_it_base](l10n_it_base/) | 7.0.0.2.10 | 0.1 | Italian Localisation - Base
+[l10n_it_base](l10n_it_base/) | 7.0.0.2.11 | 0.1 | Italian Localisation - Base
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 | :repeat: | Italian Localisation - CRM
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 | :repeat: | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 | :repeat: | Italian Localisation - Corrispettivi

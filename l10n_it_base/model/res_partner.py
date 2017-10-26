@@ -339,8 +339,8 @@ class res_config_settings(orm.TransientModel):
             for i, x in enumerate(w):
                 if x[0] == tbl_f:
                     if x[0] == 'zip':
-                        l = int(len(getattr(self, 'zip')) / 2) + 1
-                        tofind = getattr(self, 'zip')[0:l] + '%'
+                        y = int(len(getattr(self, 'zip')) / 2) + 1
+                        tofind = getattr(self, 'zip')[0:y] + '%'
                         tofind = tofind.replace('%%', '%')
                         y = (x[0], x[1], tofind)
                         w[i] = y
