@@ -28,7 +28,6 @@ from datetime import datetime
 from lxml import etree
 import shutil
 import os
-# import pdb
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):

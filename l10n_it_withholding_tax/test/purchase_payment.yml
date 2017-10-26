@@ -5,7 +5,6 @@
     withholding_payment_term_id: account.account_payment_term
     withholding_account_id: a_witholding
     withholding_journal_id: account.miscellaneous_journal
-    authority_partner_id: tax_authority
 -
   In order to test account invoice I create a new supplier invoice
 -

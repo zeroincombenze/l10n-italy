@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Italy - Fiscal localization by zeroincombenze(R)',
-    'version': '7.0.0.2.0',
+    'version': '7.0.0.2.1',
     'category': 'Localization/Account Charts',
     'description': """
 Italian fiscal and legal localization

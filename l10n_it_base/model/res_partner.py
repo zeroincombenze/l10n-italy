@@ -22,7 +22,6 @@
 #
 from openerp.osv import orm
 from openerp.osv import fields
-# import pdb  # debug
 # from tndb import tndb
 
 
