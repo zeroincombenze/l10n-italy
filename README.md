@@ -12,6 +12,8 @@
 
 
 
+
+
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Odoo Italia Modules
@@ -37,7 +39,7 @@ Available addons
 addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.0 | :repeat: | Account invoice report grouped by DDT
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.0.1.2 | 10.0.1.1.0 | Period End VAT Statement
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.0.1.2 | 10.0.1.2.0 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | :repeat: | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.0.1 | :repeat: | Italian Localization - Account
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | :repeat: | Ateco codes
