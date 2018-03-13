@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Chart Template -->
+        <record id="transfer_account" model="account.account.template">
+            <field name="code">183</field>
+            <field name="name">conto di trasferimento</field>
+            <field name="reconcile" eval='True'/>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        </record>
+        <record id="l10n_chart_it_zeroincombenze" model="account.chart.template">
+            <field name="name">Italy - Piano dei conti Zeroincombenze(R)</field>
+            <field name="cash_account_code_prefix">180</field>
+            <field name="bank_account_code_prefix">180</field>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="transfer_account_id" ref="transfer_account"/>
+        </record>
+        <record id="transfer_account" model="account.account.template">
+            <field name="chart_template_id" ref="l10n_chart_it_zeroincombenze"/>
+        </record>
+
+        <!-- Account Tags  -->
+        <record id="tag_01" model="account.account.tag">
+            <field name="name">22v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_02" model="account.account.tag">
+            <field name="name">22a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_03" model="account.account.tag">
+            <field name="name">10v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_04" model="account.account.tag">
+            <field name="name">10a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_05" model="account.account.tag">
+            <field name="name">4v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_06" model="account.account.tag">
+            <field name="name">4a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_07" model="account.account.tag">
+            <field name="name">a17a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_08" model="account.account.tag">
+            <field name="name">a17v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_09" model="account.account.tag">
+            <field name="name">a17c2a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_10" model="account.account.tag">
+            <field name="name">a17c2v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_11" model="account.account.tag">
+            <field name="name">a17c6a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_12" model="account.account.tag">
+            <field name="name">a17c6v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_13" model="account.account.tag">
+            <field name="name">a17c6ata</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_14" model="account.account.tag">
+            <field name="name">a17c6atv</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_15" model="account.account.tag">
+            <field name="name">a17c6ba</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_16" model="account.account.tag">
+            <field name="name">a17c6bv</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_17" model="account.account.tag">
+            <field name="name">a17c6ca</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_18" model="account.account.tag">
+            <field name="name">a17c6cv</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_19" model="account.account.tag">
+            <field name="name">a38a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_20" model="account.account.tag">
+            <field name="name">a38v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_21" model="account.account.tag">
+            <field name="name">a41a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_22" model="account.account.tag">
+            <field name="name">a41v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_23" model="account.account.tag">
+            <field name="name">a7a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_24" model="account.account.tag">
+            <field name="name">a7v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_25" model="account.account.tag">
+            <field name="name">a7ta</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_26" model="account.account.tag">
+            <field name="name">a7tv</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_27" model="account.account.tag">
+            <field name="name">a8aa</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_28" model="account.account.tag">
+            <field name="name">a8av</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_29" model="account.account.tag">
+            <field name="name">a8c2a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_30" model="account.account.tag">
+            <field name="name">a8c2v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_31" model="account.account.tag">
+            <field name="name">a9a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_32" model="account.account.tag">
+            <field name="name">a9v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_33" model="account.account.tag">
+            <field name="name">a10a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_34" model="account.account.tag">
+            <field name="name">a10v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_35" model="account.account.tag">
+            <field name="name">a15a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_36" model="account.account.tag">
+            <field name="name">a15v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_37" model="account.account.tag">
+            <field name="name">a1a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_38" model="account.account.tag">
+            <field name="name">a1v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_39" model="account.account.tag">
+            <field name="name">a13a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_40" model="account.account.tag">
+            <field name="name">a13v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_41" model="account.account.tag">
+            <field name="name">a2v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_42" model="account.account.tag">
+            <field name="name">a2a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_43" model="account.account.tag">
+            <field name="name">22s</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_44" model="account.account.tag">
+            <field name="name">22c</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_45" model="account.account.tag">
+            <field name="name">a10c5a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_46" model="account.account.tag">
+            <field name="name">a10c5v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_47" model="account.account.tag">
+            <field name="name">l41a36a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_48" model="account.account.tag">
+            <field name="name">l41a36v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_49" model="account.account.tag">
+            <field name="name">l41a37a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_50" model="account.account.tag">
+            <field name="name">l41a37v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_51" model="account.account.tag">
+            <field name="name">l244a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_52" model="account.account.tag">
+            <field name="name">l244v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_53" model="account.account.tag">
+            <field name="name">l98a27a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_54" model="account.account.tag">
+            <field name="name">l98a27v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_55" model="account.account.tag">
+            <field name="name">l190a1a</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_56" model="account.account.tag">
+            <field name="name">l190a1v</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_57" model="account.account.tag">
+            <field name="name">22v INC</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_58" model="account.account.tag">
+            <field name="name">10vINC</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_59" model="account.account.tag">
+            <field name="name">4vINC</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_60" model="account.account.tag">
+            <field name="name">22a0</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_61" model="account.account.tag">
+            <field name="name">10a0</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_62" model="account.account.tag">
+            <field name="name">4a0</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_63" model="account.account.tag">
+            <field name="name">2250</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_64" model="account.account.tag">
+            <field name="name">2220</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_65" model="account.account.tag">
+            <field name="name">2280</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_66" model="account.account.tag">
+            <field name="name">2270</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_67" model="account.account.tag">
+            <field name="name">1050</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_68" model="account.account.tag">
+            <field name="name">450</field>
+            <field name="applicability">taxes</field>
+        </record>
+</odoo>
