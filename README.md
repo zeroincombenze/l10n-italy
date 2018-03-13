@@ -38,6 +38,12 @@
 
 
 
+
+
+
+
+
+
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Odoo Italia Modules
@@ -70,6 +76,7 @@ addon | version | OCA version | summary
 [l10n_it_abicab](l10n_it_abicab/) | 9.0.1.0.0 | :repeat: | Base Bank ABI/CAB codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 9.0.0.1.0 | :repeat: | Import base_location entries (provinces) from Geonames
 [l10n_it_ddt](l10n_it_ddt/) | 9.0.1.0.0 | :repeat: | Documento di Trasporto
+[l10n_it_fiscal](l10n_it_fiscal/) | 9.0.0.2.0 | :x: | Italy - Fiscal localization by zeroincombenze(R)
 [l10n_it_rea](l10n_it_rea/) | 9.0.0.1.0 | :repeat: | Manage fields for Economic Administrative catalogue
 
 
