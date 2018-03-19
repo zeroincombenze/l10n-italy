@@ -34,6 +34,8 @@
 
 
 
+
+
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Odoo Italia Modules
@@ -66,7 +68,7 @@ addon | version | OCA version | summary
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | :repeat: | Import base_location entries (provinces) from Geonames
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | :repeat: | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.2.3 | 10.0.1.2.4 | Documento di Trasporto
-[l10n_it_fiscal](l10n_it_fiscal/) | 10.0.0.2.1 | :x: | Italy - Fiscal localization by zeroincombenze(R)
+[l10n_it_fiscal](l10n_it_fiscal/) | 10.0.0.2.0 | :x: | Italy - Fiscal localization by zeroincombenze(R)
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.0.0 | :repeat: | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.1.0.0 | :repeat: | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | :repeat: | Pec Mail
