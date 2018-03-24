@@ -17,7 +17,7 @@ Italian modules for Odoo (formerly OpenERP) 8.0
 
 
 [//]: # (addons)
-__unported__/account_invoice_sequential_dates is in __unported__ but is marked installable.
+__unported__/l10n_it_base is in __unported__ but is marked installable.
 [//]: # (end addons)
 
 
