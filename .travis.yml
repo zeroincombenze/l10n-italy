@@ -21,7 +21,7 @@ before_install:
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-  - travis_install_env
+  - travis_install_env oca
 
 install:
   # - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
