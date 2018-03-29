@@ -18,7 +18,7 @@ addons:
       # - unixodbc-dev
 
 before_install:
-  - export TRAVIS_DEBUG_MODE="1"
+  # - export TRAVIS_DEBUG_MODE="1"
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
