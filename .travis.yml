@@ -13,15 +13,25 @@ addons:
   postgresql: "9.2" # minimal postgresql version for the daterange method
   apt:
     packages:
-      - expect-dev  # provides unbuffer utility
-      - python-lxml  # because pip installation is slow
-      - unixodbc-dev
+      - expect-dev
+      - python-lxml
+      # - unixodbc-dev
+
+before_install:
+  - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --depth=1
+  - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
+  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - pip install -q os0 z0lib
+  - ${HOME}/tools/clodoo/manage_odoo requirements -b'.'
+
+install:
+  # - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  # - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  # - travis_install_nightly
 
 env:
   global:
   - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
-  - TRANSIFEX_USER='transbot@odoo-community.org'
-  - secure: ABaQffZycmzdJs9Slg4OLC8K+wnmpkS5R7bEIOAgsZYMYnOntZz6SzhF8/TOqI2hdUyvxgyVLhUlZdLrgogUgG/V2QjdmIErE6+x4iHECgQ4iXvhqtTpN2S/SVyjVP+7QE8Ugnth/tykWxXpgMpkuA6xnGC2HU8r/s4261tys4g=
 
   matrix:
   - LINT_CHECK="0"
@@ -32,16 +42,6 @@ env:
 
 virtualenv:
   system_site_packages: true
-
-before_install:
-  - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --depth=1
-  - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
-  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-
-install:
-  # - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
-  # - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-  - travis_install_nightly
 
 script:
   - travis_run_tests
