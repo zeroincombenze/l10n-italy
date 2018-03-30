@@ -38,7 +38,7 @@ env:
   - LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="odoo/odoo"
   - TESTS="1" ODOO_REPO="OCA/OCB"
-  - TESTS="1" ODOO_REPO="zeroincombenze/OCB"
+  - TESTS="0" ODOO_REPO="zeroincombenze/OCB"
 
 virtualenv:
   system_site_packages: true
