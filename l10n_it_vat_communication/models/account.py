@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
+#    Copyright (C) 2017-2018 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017-2018 Didotech srl <http://www.didotech.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # [2017: SHS-AV s.r.l.] First version
+# [2018: SHS-AV s.r.l.] Spesometro light
 #
 import logging
 from openerp.osv import fields, orm
@@ -662,6 +663,12 @@ class commitment_line(orm.AbstractModel):
             vat = partner.vat
             res['xml_IdPaese'] = vat and vat[0:2] or ''
             res['xml_IdCodice'] = vat and vat[2:] or ''
+        res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
+        if not res.get('xml_Nazione'):
+            raise orm.except_orm(
+                _('Error!'),
+                _('Unknow country of %s') % partner.name)
+
         if (partner.individual or
                 not partner.is_company) and partner.fiscalcode:
             res['xml_CodiceFiscale'] = partner.fiscalcode
@@ -691,11 +698,6 @@ class commitment_line(orm.AbstractModel):
                     _('Error!'),
                     _('Partner %s without VAT number') % (partner.name))
 
-        res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
-        if not res.get('xml_Nazione'):
-            raise orm.except_orm(
-                _('Error!'),
-                _('Unknow country of %s') % partner.name)
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')
@@ -740,6 +742,7 @@ class commitment_line(orm.AbstractModel):
             # Load data during export xml
             if res['xml_Detraibile'] == 0:
                 res['xml_Deducibile'] = "SI"
+                del res['xml_Detraibile']
             if line.tax_nature:
                 res['xml_Natura'] = line.tax_nature
             if line.tax_payability:

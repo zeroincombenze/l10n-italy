@@ -10,7 +10,6 @@ from openerp.osv import fields, orm
 from openerp.tools.translate import _
 # from openerp import release
 import logging
-# import pdb
 _logger = logging.getLogger(__name__)
 try:
     from unidecode import unidecode
