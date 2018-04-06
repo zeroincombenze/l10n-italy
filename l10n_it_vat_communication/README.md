@@ -12,6 +12,7 @@
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 
+
 Italian Localization - Spesometro2017/18
 ========================================
 
@@ -46,10 +47,10 @@ Fatture a privati senza Partita IVA| :white_check_mark: | Necessario codice fisc
 Fatture semplificata | :white_check_mark: | Per clienti senza PI ne CF
 Fatture senza IVA | :white_check_mark: | Fatture esenti, NI, escluse, eccetera
 Escludi importi Fuori Campo IVA | :white_check_mark: | Totale fattura in Comunicazione può essere diverso da registrazione
-Escludi CAP e provincia no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
-Escludi CF no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
+Controlla CAP e provincia Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
+Converti CF no Italia in comunicazione | :white_check_mark: | Da nazione, oppure da partita IVA oppure Italia
 Controlli dati anagrafici | :white_check_mark: | Controlli Agenzia Entrate
-Conversione ISO-Latin1 | :white_check_mark: | Evita rifiuto partner stranieri
+Conversione utf-8 | :white_check_mark: | Lo Spesometro 2017 richiedeva ISO-Latin1
 IVA differita | :white_check_mark: | Da codice imposte
 IVA da split-payment | :white_check_mark: | Da codice imposte
 Ignora autofatture | :white_check_mark: | Esclusione tramite sezionale
@@ -68,7 +69,7 @@ Logo | Ente/Certificato | Data inizio | Da fine | Note
 --- | --- | --- | --- | ---
 [![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2018 | Validazione contro schema xml
 [![DesktopTelematico](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/DesktopTelematico.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/DesktopTelematico.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/schede/comunicazioni/dati+fatture+%28c.d.+nuovo+spesometro%29/software+di+controllo+dati+fatture+%28c.d.+nuovo+spesometro%29) | 01-03-2018 | 31-12-2018 | Controllo tramite s/ Agenzia delle Entrate
-[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 05-10-2017 | 31-12-2017 | File accettati da portale fatturaPA Agenzia delle Entrate
+[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 05-10-2017 | 31-12-2018 | File accettati da portale fatturaPA Agenzia delle Entrate
 
 
 Installation
