@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                  Associazione Odoo Italia <http://www.odoo-italia.org>
+# Copyright 2017-2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+#                       Associazione Odoo Italia <http://www.odoo-italia.org>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
     "name": "Base xml Agenzia delle Entrate",
-    "version": "8.0.0.1.6",
+    "version": "8.0.0.1.7",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
@@ -51,7 +51,7 @@ Schemi
 Il modulo rende disponibili i seguenti schemi:
 
 * Liquidazione IVA elettronica versione 1.0
-* Comunicazione clienti e fornitori (spesometro 2017) versione 2.0
+* Comunicazione clienti e fornitori (spesometro 2018) versione 2.1
 * FatturaPA versione 1.2
 """,
     "license": "AGPL-3",

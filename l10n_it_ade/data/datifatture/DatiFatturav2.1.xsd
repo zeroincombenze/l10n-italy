@@ -15,7 +15,7 @@
       <xs:documentation>XML schema fatture emesse e ricevute ex D.Lgs. 127/205 (art.1, c.3) 2.1</xs:documentation>
     </xs:annotation>
   </xs:element>  
-  
+
   <!-- =================================================================== -->
   <!-- TIPI                                                                -->
   <!-- =================================================================== -->
@@ -31,23 +31,23 @@
     </xs:sequence>
     <xs:attribute name="versione" type="VersioneType" use="required" />
   </xs:complexType>  
-  
+
   <xs:complexType name="DatiFatturaHeaderType">
     <xs:sequence>
-      <xs:element name="ProgressivoInvio" type="String10Type"                minOccurs="0" />
-      <xs:element name="Dichiarante"      type="DichiaranteType"             minOccurs="0" />
-      <xs:element name="IdSistema"        type="CodiceFiscaleType"           minOccurs="0" />
+      <xs:element name="ProgressivoInvio" type="String10Type"      minOccurs="0" />
+      <xs:element name="Dichiarante"      type="DichiaranteType"   minOccurs="0" />
+      <xs:element name="IdSistema"        type="CodiceFiscaleType" minOccurs="0" />
       <xs:element name="SpazioDatiFattura" type="xs:normalizedString" minOccurs="0" />
     </xs:sequence>
-  </xs:complexType>     
-  
+  </xs:complexType>
+
   <xs:complexType name="DichiaranteType">
     <xs:sequence>
       <xs:element name="CodiceFiscale"             type="CodiceFiscaleType" />
       <xs:element name="Carica"                    type="CaricaType"        />
     </xs:sequence>
   </xs:complexType>  
-  
+
   <xs:complexType name="DTEType">
     <xs:sequence>
       <xs:element name="CedentePrestatoreDTE"      type="CedentePrestatoreDTEType"                                     />
@@ -78,7 +78,7 @@
       <xs:element name="AltriDatiIdentificativi" type="AltriDatiIdentificativiITType" minOccurs="0" />
     </xs:sequence>   
   </xs:complexType>  
-  
+
   <xs:annotation><xs:documentation>Blocco relativo ai dati del Cedente / Prestatore</xs:documentation></xs:annotation>
   <xs:complexType name="CedentePrestatoreDTRType">
     <xs:sequence>
@@ -87,7 +87,7 @@
       <xs:element name="DatiFatturaBodyDTR"      type="DatiFatturaBodyDTRType"           maxOccurs="1000" />
     </xs:sequence>   
   </xs:complexType>  
-  
+
   <xs:complexType name="CessionarioCommittenteDTEType">
     <xs:annotation><xs:documentation>Blocco relativo ai dati del Cessionario / Committente</xs:documentation></xs:annotation>
     <xs:sequence>
@@ -440,12 +440,12 @@
       <xs:maxLength value="1" />
       <xs:enumeration value="D">
         <xs:annotation>
-          <xs:documentation>esigibilit‡ differita</xs:documentation>
+          <xs:documentation>esigibilit√† differita</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="I">
         <xs:annotation>
-          <xs:documentation>esigibilit‡ immediata</xs:documentation>
+          <xs:documentation>esigibilit√† immediata</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="S">
