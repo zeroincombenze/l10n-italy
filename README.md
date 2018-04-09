@@ -8,7 +8,11 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg)](http://erp10.zeroincombenze.it)
 
 
-[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
+
+
+
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 Odoo Italia Modules
 ===================
@@ -27,6 +31,7 @@ addon | version | OCA version | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.0.1.2 | 10.0.1.4.2 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | :repeat: | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.0.1 | 10.0.1.1.2 | Italian Localization - Account
+[l10n_it_ade](l10n_it_ade/) | 10.0.0.1.6 | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | :repeat: | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | :repeat: | Import base_location entries (provinces) from Geonames
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | :repeat: | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
@@ -62,17 +67,15 @@ addon | version | OCA version | summary
 [//]: # (end addons)
 
 
-[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Moduli Odoo Italia
-==================
 
 Differenze rispetto localizzazione ufficiale Odoo/OCA
 
 Descrizione | Odoo Italia | OCA
 --- | --- | ---
-Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0) | [![Coverage Status](https://coveralls.io/repos/OCA/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/r/OCA/l10n-italy?branch=7.0)
-Test compatibilità OCA e Odoo | :x: | [Errore import decimal precision](https://github.com/OCA/OCB/issues/629)
+Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0) | [![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy/branch/10.0)
+Test compatibilità OCA e Odoo | :white_check_mark: | :white_check_mark:
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca CAP, città e provincia](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Ricerca città
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia italia e estero (compatibile con OCA-Italy) | Ricerca provincia Italia (non compatibile con OCA)
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [Dati comuni italiani 2014](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) | Dati comuni 2013
