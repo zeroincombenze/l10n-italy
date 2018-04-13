@@ -37,5 +37,5 @@
         "security/ir.model.access.csv",
     ],
     'demo': ["demo/riba_demo.xml"],
-    'installable': False,
+    'installable': True,
 }
