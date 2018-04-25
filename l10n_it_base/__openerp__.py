@@ -22,7 +22,7 @@
 ##############################################################################
 {
     'name': 'Italian Localisation - Base',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.1.1',
     'category': 'Localisation/Italy',
     'description': """Italian Localisation module - Base version
 
@@ -36,11 +36,10 @@ Funcionalities:
     'license': 'AGPL-3',
     "depends": ['base'],
     "data": [
-        'view/res_config_view.xml',
+        'views/res_config_view.xml',
+        'views/res_partner_view.xml',
+        'data/res.city.csv',
+        # 'data/res.country.state.csv',
     ],
-    "qweb": [],
-    "demo": [],
-    "test": [],
-    "active": False,
     'installable': True
 }

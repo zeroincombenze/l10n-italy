@@ -14,7 +14,7 @@
 # [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "8.0.3.0.3",
+    "version": "8.0.3.0.4",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
@@ -73,8 +73,8 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
-        'reports.xml',
-        'views/report_vatperiodendstatement.xml',
+        # 'reports.xml',
+        # 'views/report_vatperiodendstatement.xml',
         'views/config.xml',
         'views/account_view.xml',
     ],

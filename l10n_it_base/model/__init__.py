@@ -23,3 +23,5 @@
 ##############################################################################
 
 from . import res_config
+from . import res_city
+from . import res_partner
