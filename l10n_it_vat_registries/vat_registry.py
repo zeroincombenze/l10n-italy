@@ -41,7 +41,7 @@ class Parser(report_sxw.rml_parse):
                 move_line.tax_code_id.exclude_from_registries and
                 move_line.tax_amount
             ):
-                # eslcudo i conti imposta in base alla natura della
+                # escludo i conti imposta in base alla natura della
                 # stampa e al tipo conto imposta
                 if (
                     (

@@ -39,6 +39,7 @@ Funcionalities:
         'views/res_config_view.xml',
         'views/res_partner_view.xml',
         'data/res.city.csv',
+        'security/ir.model.access.csv',
         # 'data/res.country.state.csv',
     ],
     'installable': True
