@@ -224,7 +224,7 @@ class AccountVatCommunication(orm.Model):
                 cr, uid, address_id, context=None)
         else:
             address = partner
-        code = partner.vat and partner.vat[0:2]
+        code = partner.vat and partner.vat[0:2].upper()
         return address.country_id.code or code
 
     def load_invoices(self, cr, uid, commitment, commitment_line_model,
@@ -235,9 +235,9 @@ class AccountVatCommunication(orm.Model):
         sum_amounts = {}
         for f in ('total', 'taxable', 'tax', 'discarded'):
             sum_amounts[f] = 0.0
-        for invoice_id in invoice_model.search(cr, uid, where):
+        for invoice_id in invoice_model.search(cr, uid, where, context=context):
             inv_line = {}
-            invoice = invoice_model.browse(cr, uid, invoice_id)
+            invoice = invoice_model.browse(cr, uid, invoice_id, context)
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
                 tax_payability = 'I'

@@ -5,28 +5,24 @@
 #                Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 #                Odoo-Italia.org Community
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp.osv import fields, orm
-from openerp.addons.l10n_it_ade.bindings.vat_settlement_v_1_0 import (
-    Fornitura,
-    # Intestazione,
-    Intestazione_IVP_Type,
-    # Comunicazione,
-    Comunicazione_IVP_Type,
-    Frontespizio_IVP_Type,
-    DatiContabili_IVP_Type,
-    CTD_ANON
-)
 import base64
-import logging
 import datetime
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+import logging
 
+from openerp.addons.l10n_it_ade.bindings.vat_settlement_v_1_0 import (CTD_ANON,  # Intestazione,; Comunicazione,
+                                                                      Comunicazione_IVP_Type,
+                                                                      DatiContabili_IVP_Type,
+                                                                      Fornitura,
+                                                                      Frontespizio_IVP_Type,
+                                                                      Intestazione_IVP_Type)
+from openerp.osv import fields, orm
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-identificativo_software = 'Odoo.8.0.3.0.2'
+identificativo_software = 'Odoo.8.0.3.0.3'
 
 
 class WizardVatSettlement(orm.TransientModel):
@@ -65,7 +61,6 @@ class WizardVatSettlement(orm.TransientModel):
                                                DEFAULT_SERVER_DATE_FORMAT)
         return date_start, date_stop
 
-
     def get_taxable(self, cr, uid, statement, type, context=None):
         """
         :param cr:
@@ -79,12 +74,12 @@ class WizardVatSettlement(orm.TransientModel):
         if type == 'credit':
             credit_line_pool = self.pool.get('statement.credit.account.line')
             for credit_line in statement.credit_vat_account_line_ids:
-                if credit_line.amount <> 0.0:
+                if credit_line.amount != 0.0:
                     base_amount += credit_line.base_amount
         elif type == 'debit':
             debit_line_pool = self.pool.get('statement.debit.account.line')
             for debit_line in statement.debit_vat_account_line_ids:
-                if debit_line.amount <> 0.0:
+                if debit_line.amount != 0.0:
                     base_amount += debit_line.base_amount
         return base_amount
 
@@ -119,7 +114,7 @@ class WizardVatSettlement(orm.TransientModel):
         module_pool = self.pool.get('ir.module.module')
         company_pool = self.pool.get('res.company')
         ids = module_pool.search(
-                cr, uid, [('name', '=', 'account_vat_period_end_statement')])
+            cr, uid, [('name', '=', 'account_vat_period_end_statement')])
         if len(ids) == 0:
             _logger.info('Invalid software signature.')
             _logger.info('Please contact antoniomaria.vigliotti@gmail.com '
@@ -127,7 +122,7 @@ class WizardVatSettlement(orm.TransientModel):
             identificativo_software = ''
         else:
             ver = module_pool.browse(cr, uid,
-                ids[0]).installed_version
+                                     ids[0]).installed_version
             identificativo_software = 'Odoo' + ver
             identificativo_software = identificativo_software.upper()
 
@@ -305,7 +300,7 @@ class WizardVatSettlement(orm.TransientModel):
             vat_settlement_xml = settlement.toDOM().toprettyxml(encoding="latin1")
 
             # fn_name = 'LiquidazioneIVA-%05d.xml' % progressivo_telematico
-            fn_name = 'IT%s_LI_%05d.xml'  % (vat, progressivo_telematico)
+            fn_name = 'IT%s_LI_%05d.xml' % (vat, progressivo_telematico)
             attach_vals = {
                 'name': fn_name,
                 'datas_fname': fn_name,
@@ -314,10 +309,10 @@ class WizardVatSettlement(orm.TransientModel):
                 'res_id': statement.id
             }
             statement_pool.write(cr, uid, [statement.id],
-                {'progressivo_telematico': progressivo_telematico})
+                                 {'progressivo_telematico': progressivo_telematico})
             vat_settlement_attachment_out_id = self.pool[
                 'account.vat.settlement.attachment'].create(cr,
-                    uid, attach_vals, context={})
+                                                            uid, attach_vals, context={})
 
         view_rec = model_data_obj.get_object_reference(
             cr, uid, 'account_vat_period_end_statement',
