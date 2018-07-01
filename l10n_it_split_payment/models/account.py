@@ -14,7 +14,6 @@ class AccountFiscalPosition(models.Model):
 
     split_payment = fields.Boolean('Split Payment')
 
-
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
@@ -37,9 +36,18 @@ class AccountInvoice(models.Model):
         super(AccountInvoice, self)._compute_amount()
         self.amount_sp = 0
         if self.fiscal_position_id.split_payment:
-            self.amount_sp = self.amount_tax
-            self.amount_tax = 0
-        self.amount_total = self.amount_untaxed + self.amount_tax
+            self.amount_sp = - self.amount_tax
+            # self.amount_tax = 0
+            self.amount_net_pay = self.amount_total + self.amount_sp
+        # self.amount_total = self.amount_untaxed + self.amount_tax
+
+    def reconcile_sp_invoice(self, invoice):
+        reconcile_model = self.env['account.move.line.reconcile']
+        move_line_model = self.env['account.move.line']
+        ids = invoice.get_receivable_line_ids()
+        reconcile_model.with_context(
+                        active_ids=ids
+                    ).trans_rec_reconcile_full()
 
     def _build_debit_line(self):
         if not self.company_id.sp_account_id:
@@ -52,13 +60,37 @@ class AccountInvoice(models.Model):
             'account_id': self.company_id.sp_account_id.id,
             'journal_id': self.journal_id.id,
             'date': self.date_invoice,
-            'debit': self.amount_sp,
+            'date_maturity': self.date_invoice,
+            'debit': abs(self.amount_sp),
             'credit': 0,
             'tax_line_id': self.company_id.sp_tax_id.id,
             }
         if self.type == 'out_refund':
             vals['debit'] = 0
-            vals['credit'] = self.amount_sp
+            vals['credit'] = abs(self.amount_sp)
+        return vals
+
+    def _build_credit_line(self, invoice):
+        move_line_pool = self.env['account.move.line']
+        ids = invoice.get_receivable_line_ids()
+        if ids:
+            account_id = move_line_pool.browse(ids[0]).account_id
+        else:
+            account_id = self.company_id.sp_account_id
+        vals = {
+            'name': _('Split Payment Write Off'),
+            'partner_id': self.partner_id.id,
+            'account_id': account_id.id,
+            'journal_id': self.journal_id.id,
+            'date': self.date_invoice,
+            'date_maturity': self.date_invoice,
+            'credit': abs(self.amount_sp),
+            'debit': 0,
+            'tax_line_id': self.company_id.sp_tax_id.id,
+            }
+        if self.type == 'out_refund':
+            vals['credit'] = 0
+            vals['debit'] = abs(self.amount_sp)
         return vals
 
     @api.multi
@@ -128,13 +160,19 @@ class AccountInvoice(models.Model):
                 if invoice.move_id.state == 'posted':
                     posted = True
                     invoice.move_id.state = 'draft'
-                self._compute_split_payments()
+                # self._compute_split_payments()
                 line_model = self.env['account.move.line']
                 write_off_line_vals = invoice._build_debit_line()
                 write_off_line_vals['move_id'] = invoice.move_id.id
                 line_model.with_context(
                     check_move_validity=False
                 ).create(write_off_line_vals)
+                write_off_line_vals = invoice._build_credit_line(invoice)
+                write_off_line_vals['move_id'] = invoice.move_id.id
+                line_model.with_context(
+                    check_move_validity=False
+                ).create(write_off_line_vals)
                 if posted:
                     invoice.move_id.state = 'posted'
+                self.reconcile_sp_invoice(invoice)
         return res
