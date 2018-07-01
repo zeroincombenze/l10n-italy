@@ -17,7 +17,8 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition', string='Carriage Condition')
+        'stock.picking.carriage_condition',
+        string='Carriage Condition')
     goods_description_id = fields.Many2one(
         'stock.picking.goods_description',
         string='Description of Goods')

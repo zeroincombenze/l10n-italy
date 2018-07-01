@@ -5,6 +5,8 @@
 from odoo import api, models
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
+from odoo.exceptions import Warning as UserError
+
 import time
 
 
@@ -16,11 +18,7 @@ class ReportRegistroIva(models.AbstractModel):
         # docids required by caller but not used
         # see addons/account/report/account_balance.py
 
-        lang_code = self._context.get('company_id',
-                                      self.env.user.company_id.partner_id.lang)
-        lang = self.env['res.lang']
-        lang_id = lang._lang_get(lang_code)
-        date_format = lang_id.date_format
+        date_format = data['form']['date_format']
 
         docargs = {
             'doc_ids': data['ids'],
@@ -61,53 +59,30 @@ class ReportRegistroIva(models.AbstractModel):
         return self.env['account.invoice'].search([
             ('move_id', '=', move.id)])
 
-    def _tax_amounts_by_tax_id(self, move, registry_type):
-        res = {}
+    def _get_move_line(self, move, data):
+        return [move_line for move_line in move.line_ids]
 
-        for move_line in move.line_ids:
+    def _tax_amounts_by_tax_id(self, move, move_lines, registry_type):
+
+        def _parse_tax(tax, move_line, registry_type, res):
             set_cee_absolute_value = False
-            if not(move_line.tax_line_id or move_line.tax_ids):
-                continue
-
-            if move_line.tax_ids and len(move_line.tax_ids) != 1:
-                    raise Exception(
-                        _("Move line %s has too many base taxes")
-                        % move_line.name)
-
-            if move_line.tax_ids:
-                tax = move_line.tax_ids[0]
-                is_base = True
-            else:
-                tax = move_line.tax_line_id
-                is_base = False
-
-            if (
-                (registry_type == 'customer' and tax.cee_type == 'sale') or
-                (registry_type == 'supplier' and tax.cee_type == 'purchase')
-            ):
-                set_cee_absolute_value = True
-
-            elif tax.cee_type:
-                continue
-
-            if tax.parent_tax_ids and len(tax.parent_tax_ids) == 1:
+            tax_id = tax.id
+            if not move_line.tax_line_id and \
+                    tax.parent_tax_ids and \
+                    len(tax.parent_tax_ids) == 1:
                 # we group by main tax
                 tax = tax.parent_tax_ids[0]
-
             if tax.exclude_from_registries:
-                continue
-
-            if not res.get(tax.id):
-                res[tax.id] = {
-                    'name': tax.name,
-                    'base': 0,
-                    'tax': 0,
-                }
+                return 0.0, tax.id, tax.exclude_from_registries
+            if ((registry_type == 'customer' and tax.cee_type == 'sale') or
+                (registry_type == 'supplier' and
+                    tax.cee_type == 'purchase')):
+                set_cee_absolute_value = True
+            elif tax.cee_type:
+                return 0.0, tax.id, tax.exclude_from_registries
             tax_amount = move_line.debit - move_line.credit
-
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
-
             if (
                 'receivable' in move.move_type or
                 ('payable_refund' == move.move_type and tax_amount > 0)
@@ -115,16 +90,56 @@ class ReportRegistroIva(models.AbstractModel):
                 # otherwise refund would be positive and invoices
                 # negative.
                 # We also check payable_refund as it normaly is < 0, but
-                # it can be > 0 in case of reverse charge with VAT integration
+                # it can be > 0 in case of reverse charge
+                # with VAT integration
                 tax_amount = -tax_amount
+            return tax_amount, tax_id, tax.exclude_from_registries
 
-            if is_base:
-                # recupero il valore dell'imponibile
-                res[tax.id]['base'] += tax_amount
-            else:
-                # recupero il valore dell'imposta
+        res = {}
+
+        for move_line in move_lines:
+            if not(move_line.tax_line_id or move_line.tax_ids):
+                continue
+            # if move_line.tax_ids and len(move_line.tax_ids) != 1:
+            #         raise UserError(
+            #             _("Move line %s has too many base taxes")
+            #             % move_line.name)
+            if move_line.tax_line_id:
+                tax = move_line.tax_line_id
+                tax_amount, tax_id, exclude = _parse_tax(tax,
+                                                         move_line,
+                                                         registry_type,
+                                                         res)
+                if exclude:
+                    continue
+                if tax_id not in res:
+                    res[tax.id] = {
+                        'name': tax.name,
+                        'base': 0,
+                        'tax': 0,
+                    }
                 res[tax.id]['tax'] += tax_amount
-
+            else:
+                is_base = True
+                for move_line_tax in (move_line.tax_ids):
+                    tax = move_line_tax
+                    # if tax.tax_group_id and not tax.parent_tax_ids:
+                    #     continue
+                    tax_amount, tax_id, exclude = _parse_tax(tax,
+                                                             move_line,
+                                                             registry_type,
+                                                             res)
+                    if exclude:
+                        continue
+                    if tax_id not in res:
+                        res[tax.id] = {
+                            'name': tax.name,
+                            'base': 0,
+                            'tax': 0,
+                        }
+                    if is_base and res[tax.id]['tax'] >= 0:
+                        res[tax.id]['base'] += tax_amount
+                        is_base = False
         return res
 
     def _get_tax_lines(self, move, data):
@@ -151,12 +166,18 @@ class ReportRegistroIva(models.AbstractModel):
         else:
             invoice_type = "FA"
 
+        move_lines = self._get_move_line(move, data)
+
         amounts_by_tax_id = self._tax_amounts_by_tax_id(
-            move, data['registry_type'])
+            move,
+            move_lines,
+            data['registry_type'])
+
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)
             tax_item = {
-                'tax_code_name': tax._get_tax_name(),
+                # 'tax_code_name': tax._get_tax_name(),
+                'tax_code_name': amounts_by_tax_id[tax_id]['name'],
                 'base': amounts_by_tax_id[tax_id]['base'],
                 'tax': amounts_by_tax_id[tax_id]['tax'],
                 'index': index,

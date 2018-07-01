@@ -17,15 +17,24 @@ git:
 
 addons:
   apt:
-#    sources:
+    sources:
+      - pov-wkhtmltopdf
 #    Search your sources alias here:
 #      https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
     packages:
+      - python-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - zlib1g-dev
+      - python-ldap
+      - python-psycopg2
+      - python-simplejson
       - expect-dev
-      - python-lxml
+      - python-setuptools
 
 before_install:
   - export TRAVIS_DEBUG_MODE="1"
+  - pip install urllib3[secure] --upgrade; true
 # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
@@ -40,6 +49,7 @@ install:
   # - cp ${HOME}/maintainer-quality-tools/cfg/.coveragerc .
   # - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   # - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  # - export INCLUDE=$(getaddons.py -m ${HOME}/build/${ODOO_REPO}/odoo/addons ${HOME}/build/${ODOO_REPO}/addons)
 
 env:
   global:
@@ -65,3 +75,4 @@ script:
 
 after_success:
   - travis_after_tests_success
+

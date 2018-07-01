@@ -18,7 +18,7 @@ class ResPartner(models.Model):
          ('SM', 'Multiple Members')], 'Member Type')
     rea_liquidation_state = fields.Selection(
         [('LS', 'In liquidation'),
-         ('LN', 'Not in liquidation')], 'Liquidation State')
+         ('LN', 'Active')], 'Liquidation State')
 
     _sql_constraints = [
         ('rea_code_uniq', 'unique (rea_code, company_id)',

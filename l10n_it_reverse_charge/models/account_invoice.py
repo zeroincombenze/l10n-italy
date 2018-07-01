@@ -89,10 +89,16 @@ class AccountInvoice(models.Model):
 
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
-        if self.type == 'in_invoice':
-            credit = self.amount_tax
-        else:
-            debit = self.amount_tax
+        for tax in self.tax_line_ids:
+            if tax.tax_id.non_taxable_nature == 'N6':
+                if self.type == 'in_invoice':
+                    credit += tax.amount
+                else:
+                    debit += tax.amount
+        # if self.type == 'in_invoice':
+        #     credit = self.amount_tax
+        # else:
+        #     debit = self.amount_tax
 
         return {
             'name': self.number,
@@ -104,16 +110,29 @@ class AccountInvoice(models.Model):
 
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
-        if self.type == 'in_invoice':
-            if amount:
+        if amount:
+            if self.type == 'in_invoice':
                 debit = amount
             else:
-                debit = self.amount_tax
-        else:
-            if amount:
                 credit = amount
-            else:
-                credit = self.amount_tax
+        else:
+            for tax in self.tax_line_ids:
+                if tax.tax_id.non_taxable_nature == 'N6':
+                    if self.type == 'in_invoice':
+                        debit += tax.amount
+                    else:
+                        credit += tax.amount
+        # if self.type == 'in_invoice':
+        #     if amount:
+        #         debit = amount
+        #     else:
+        #         debit = self.amount_tax
+        # else:
+        #     if amount:
+        #         credit = amount
+        #     else:
+        #         credit = self.amount_tax
+
         return {
             'name': self.number,
             'debit': debit,
@@ -229,6 +248,7 @@ class AccountInvoice(models.Model):
         rc_type = self.fiscal_position_id.rc_type_id
         move_line_model = self.env['account.move.line']
         rc_invoice = self.rc_self_invoice_id
+
         rc_payment_credit_line_data = self.rc_payment_credit_line_vals(
             rc_invoice)
 

@@ -22,8 +22,8 @@ class AccountTax(models.Model):
     def _get_tax_name(self):
         self.ensure_one()
         name = self.name
-        if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
-            name = self.parent_tax_ids[0].name
+        # if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
+        #     name = self.parent_tax_ids[0].name
         return name
 
     def _compute_totals_tax(self, data):
@@ -45,9 +45,15 @@ class AccountTax(models.Model):
         tax = self.env['account.tax'].with_context(context).browse(self.id)
         tax_name = tax._get_tax_name()
         if not tax.children_tax_ids:
-            return (
-                tax_name, abs(tax.base_balance), abs(tax.balance),
-                abs(tax.balance), 0
+            base_balance = tax.base_balance
+            tax_balance = tax.balance
+            if base_balance >= 0 and tax_balance < 0:
+                base_balance = 0
+            if data['registry_type'] == 'supplier':
+                return (tax_name, -base_balance,
+                        -tax_balance, -tax_balance, 0)
+            return (tax_name, base_balance,
+                    tax_balance, tax_balance, 0
             )
         else:
             base_balance = tax.base_balance
@@ -69,7 +75,7 @@ class AccountTax(models.Model):
                 ):
                     # Prendo la parte di competenza di ogni registro e lo
                     # sommo sempre
-                    child_balance = abs(child_balance)
+                    child_balance = child_balance
 
                 elif child.cee_type:
                     continue
@@ -79,7 +85,10 @@ class AccountTax(models.Model):
                     deductible += child_balance
                 else:
                     undeductible += child_balance
-            return (
-                tax_name, abs(base_balance), abs(tax_balance), abs(deductible),
-                abs(undeductible)
-            )
+            if base_balance >= 0 and tax_balance < 0:
+                base_balance = 0
+            if data['registry_type'] == 'supplier':
+                return (tax_name, -base_balance,
+                        -tax_balance, -deductible, -undeductible)
+            return (tax_name, base_balance,
+                    tax_balance, deductible, undeductible)

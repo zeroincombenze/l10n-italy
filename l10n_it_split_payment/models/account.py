@@ -54,6 +54,7 @@ class AccountInvoice(models.Model):
             'date': self.date_invoice,
             'debit': self.amount_sp,
             'credit': 0,
+            'tax_line_id': self.company_id.sp_tax_id.id,
             }
         if self.type == 'out_refund':
             vals['debit'] = 0
@@ -70,6 +71,21 @@ class AccountInvoice(models.Model):
             "FROM account_move_line l, account_invoice i "
             "WHERE i.id = %s AND l.move_id = i.move_id "
             "AND l.account_id = i.account_id"
+        )
+        self._cr.execute(query, (self.id,))
+        return [row[0] for row in self._cr.fetchall()]
+
+    @api.multi
+    def get_vat_spl_line_ids(self):
+        # return the move line ids with the split payment 
+        if not self.id:
+            return []
+        query = ("""select id,name from account_move_line
+            where invoice_id=%d and tax_line_id in
+                (select x.tax_dest_id
+                from account_fiscal_position f, account_fiscal_position_tax x
+                where x.position_id = f.id and f.split_payment = true);""" %
+                self.id
         )
         self._cr.execute(query, (self.id,))
         return [row[0] for row in self._cr.fetchall()]

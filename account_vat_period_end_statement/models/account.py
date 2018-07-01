@@ -47,7 +47,10 @@ class AccountVatPeriodEndStatement(models.Model):
             authority_amount = (
                 debit_vat_amount - credit_vat_amount - generic_vat_amount -
                 statement.previous_credit_vat_amount +
-                statement.previous_debit_vat_amount)
+                statement.previous_debit_vat_amount -
+                statement.tax_credit_amount +
+                statement.interests_debit_vat_amount
+            )
             statement.authority_vat_amount = authority_amount
 
     @api.multi
@@ -67,13 +70,16 @@ class AccountVatPeriodEndStatement(models.Model):
         precision = self.env.user.company_id.currency_id.decimal_places
         for statement in self:
             residual = 0.0
-            if not statement.move_id:
-                statement.residual = 0.0
-                statement.reconciled = False
-                return
-            for line in statement.move_id.line_ids:
-                if line.account_id.id == statement.authority_vat_account_id.id:
-                    residual += line.amount_residual
+            if statement.move_id.exists():
+                if not statement.move_id:
+                    statement.residual = 0.0
+                    statement.reconciled = False
+                    return
+                for line in statement.move_id.line_ids:
+                    authority_vat_account_id = (
+                        statement.authority_vat_account_id.id)
+                    if line.account_id.id == authority_vat_account_id:
+                        residual += line.amount_residual
             statement.residual = abs(residual)
             if float_is_zero(statement.residual, precision_digits=precision):
                 statement.reconciled = True
@@ -85,14 +91,15 @@ class AccountVatPeriodEndStatement(models.Model):
     def _compute_lines(self):
         for statement in self:
             payment_lines = []
-            for line in statement.move_id.line_ids:
-                payment_lines.extend(filter(None, [
-                    rp.credit_move_id.id for rp in line.matched_credit_ids
-                ]))
-                payment_lines.extend(filter(None, [
-                    rp.debit_move_id.id for rp in line.matched_debit_ids
-                ]))
-            self.payment_ids = self.env['account.move.line'].browse(
+            if statement.move_id.exists():
+                for line in statement.move_id.line_ids:
+                    payment_lines.extend(filter(None, [
+                        rp.credit_move_id.id for rp in line.matched_credit_ids
+                    ]))
+                    payment_lines.extend(filter(None, [
+                        rp.debit_move_id.id for rp in line.matched_debit_ids
+                    ]))
+            statement.payment_ids = self.env['account.move.line'].browse(
                 list(set(payment_lines)))
 
     @api.model
@@ -151,6 +158,35 @@ class AccountVatPeriodEndStatement(models.Model):
         })
     previous_debit_vat_amount = fields.Float(
         'Previous Debits VAT Amount',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        }, digits=dp.get_precision('Account'))
+    interests_debit_vat_account_id = fields.Many2one(
+        'account.account', 'Due interests',
+        help='Due interests for three-monthly statments',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        })
+    interests_debit_vat_amount = fields.Float(
+        'Due interests Amount',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        }, digits=dp.get_precision('Account'))
+    tax_credit_account_id = fields.Many2one(
+        'account.account', 'Tax credits',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        })
+    tax_credit_amount = fields.Float(
+        'Tax credits Amount',
         states={
             'confirmed': [('readonly', True)],
             'paid': [('readonly', True)],
@@ -263,6 +299,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def statement_draft(self):
         for statement in self:
             if statement.move_id:
+                statement.move_id.button_cancel()
                 statement.move_id.unlink()
             statement.state = 'draft'
 
@@ -348,6 +385,25 @@ class AccountVatPeriodEndStatement(models.Model):
                         statement.previous_credit_vat_amount)
                 lines_to_create.append((0, 0, previous_credit_vat_data))
 
+            if statement.tax_credit_amount:
+                tax_credit_vat_data = {
+                    'name': _('Tax Credits'),
+                    'account_id': statement.tax_credit_account_id.id,
+                    'move_id': move_id,
+                    'journal_id': statement.journal_id.id,
+                    'debit': 0.0,
+                    'credit': 0.0,
+                    'date': statement.date,
+                    'company_id': statement.company_id.id,
+                }
+                if statement.tax_credit_amount < 0:
+                    tax_credit_vat_data['debit'] = math.fabs(
+                        statement.tax_credit_amount)
+                else:
+                    tax_credit_vat_data['credit'] = math.fabs(
+                        statement.tax_credit_amount)
+                lines_to_create.append((0, 0, tax_credit_vat_data))
+
             if statement.previous_debit_vat_amount:
                 previous_debit_vat_data = {
                     'name': _('Previous Debits VAT'),
@@ -366,6 +422,25 @@ class AccountVatPeriodEndStatement(models.Model):
                     previous_debit_vat_data['credit'] = math.fabs(
                         statement.previous_debit_vat_amount)
                 lines_to_create.append((0, 0, previous_debit_vat_data))
+
+            if statement.interests_debit_vat_amount:
+                interests_data = {
+                    'name': _('Due interests'),
+                    'account_id': statement.interests_debit_vat_account_id.id,
+                    'move_id': move_id,
+                    'journal_id': statement.journal_id.id,
+                    'debit': 0.0,
+                    'credit': 0.0,
+                    'date': statement.date,
+                    'company_id': statement.company_id.id,
+                }
+                if statement.interests_debit_vat_amount > 0:
+                    interests_data['debit'] = math.fabs(
+                        statement.interests_debit_vat_amount)
+                else:
+                    interests_data['credit'] = math.fabs(
+                        statement.interests_debit_vat_amount)
+                lines_to_create.append((0, 0, interests_data))
 
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_data = {
@@ -414,14 +489,13 @@ class AccountVatPeriodEndStatement(models.Model):
                 lines_to_create.append((0, 0, end_debit_vat_data))
 
             move.line_ids = lines_to_create
+            move.post()
             statement.state = 'confirmed'
 
         return True
 
     @api.multi
     def compute_amounts(self):
-        statement_generic_account_line_model = self.env[
-            'statement.generic.account.line']
         decimal_precision_obj = self.env['decimal.precision']
         debit_line_model = self.env['statement.debit.account.line']
         credit_line_model = self.env['statement.credit.account.line']
@@ -442,44 +516,8 @@ class AccountVatPeriodEndStatement(models.Model):
                         {'previous_credit_vat_amount': (
                             - prev_statement.authority_vat_amount)})
 
-            credit_line_ids = []
-            debit_line_ids = []
-            tax_model = self.env['account.tax']
-            debit_taxes = tax_model.search([
-                ('vat_statement_account_id', '!=', False),
-                ('type_tax_use', '=', 'sale'),
-            ])
-            for debit_tax in debit_taxes:
-                total = 0.0
-                for period in statement.date_range_ids:
-                    total += debit_tax._compute_totals_tax({
-                        'from_date': period.date_start,
-                        'to_date': period.date_end,
-                        'registry_type': 'customer',
-                    })[3]  # position 3 is deductible part
-                debit_line_ids.append({
-                    'account_id': debit_tax.vat_statement_account_id.id,
-                    'tax_id': debit_tax.id,
-                    'amount': total,
-                })
-
-            credit_taxes = tax_model.search([
-                ('vat_statement_account_id', '!=', False),
-                ('type_tax_use', '=', 'purchase'),
-            ])
-            for credit_tax in credit_taxes:
-                total = 0.0
-                for period in statement.date_range_ids:
-                    total += credit_tax._compute_totals_tax({
-                        'from_date': period.date_start,
-                        'to_date': period.date_end,
-                        'registry_type': 'supplier',
-                    })[3]  # position 3 is deductible part
-                credit_line_ids.append({
-                    'account_id': credit_tax.vat_statement_account_id.id,
-                    'tax_id': credit_tax.id,
-                    'amount': total,
-                })
+            credit_line_ids, debit_line_ids = self._get_credit_debit_lines(
+                statement)
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -495,29 +533,78 @@ class AccountVatPeriodEndStatement(models.Model):
             interest_amount = 0.0
             # if exits Delete line with interest
             acc_id = self.get_account_interest().id
-            domain = [
-                ('account_id', '=', acc_id),
-                ('statement_id', '=', statement.id),
-                ]
-            lines = statement_generic_account_line_model.search(domain)
-            if lines:
-                lines.unlink()
+            statement.interests_debit_vat_account_id = None
+            statement.interests_debit_vat_amount = interest_amount
 
             # Compute interest
             if statement.interest and statement.authority_vat_amount > 0:
-                interest_amount = (-1 * round(
+                interest_amount = round(
                     statement.authority_vat_amount *
                     (float(statement.interest_percent) / 100),
-                    decimal_precision_obj.precision_get('Account')))
+                    decimal_precision_obj.precision_get('Account'))
             # Add line with interest
             if interest_amount:
-                val = {
-                    'statement_id': statement.id,
-                    'account_id': acc_id,
-                    'amount': interest_amount,
-                    }
-                statement_generic_account_line_model.create(val)
+                statement.interests_debit_vat_account_id = acc_id
+                statement.interests_debit_vat_amount = interest_amount
         return True
+
+    def _set_debit_lines(self, debit_tax, debit_line_ids, statement):
+        total = 0.0
+        for period in statement.date_range_ids:
+            total += debit_tax._compute_totals_tax({
+                'from_date': period.date_start,
+                'to_date': period.date_end,
+                'registry_type': 'customer',
+            })[3]  # position 3 is deductible part
+        debit_line_ids.append({
+            'account_id': debit_tax.vat_statement_account_id.id,
+            'tax_id': debit_tax.id,
+            'amount': total,
+        })
+
+    def _set_credit_lines(self, credit_tax, credit_line_ids, statement):
+        total = 0.0
+        for period in statement.date_range_ids:
+            total += credit_tax._compute_totals_tax({
+                'from_date': period.date_start,
+                'to_date': period.date_end,
+                'registry_type': 'supplier',
+            })[3]  # position 3 is deductible part
+        credit_line_ids.append({
+            'account_id': credit_tax.vat_statement_account_id.id,
+            'tax_id': credit_tax.id,
+            'amount': total,
+        })
+
+    def _get_credit_debit_lines(self, statement):
+        credit_line_ids = []
+        debit_line_ids = []
+        tax_model = self.env['account.tax']
+        taxes = tax_model.search([
+            ('vat_statement_account_id', '!=', False),
+            ('type_tax_use', 'in', ['sale', 'purchase']),
+        ])
+        for tax in taxes:
+            # se ho una tassa padre con figli cee_type, condidero le figlie
+            if any(tax_ch for tax_ch in tax.children_tax_ids
+                   if tax_ch.cee_type in ('sale', 'purchase')):
+
+                for tax_ch in tax.children_tax_ids:
+                    if tax_ch.cee_type == 'sale':
+                        self._set_debit_lines(tax_ch,
+                                              debit_line_ids,
+                                              statement)
+                    elif tax_ch.cee_type == 'purchase':
+                        self._set_credit_lines(tax_ch,
+                                               credit_line_ids,
+                                               statement)
+
+            elif tax.type_tax_use == 'sale':
+                self._set_debit_lines(tax, debit_line_ids, statement)
+            elif tax.type_tax_use == 'purchase':
+                self._set_credit_lines(tax, credit_line_ids, statement)
+
+        return credit_line_ids, debit_line_ids
 
     @api.onchange('authority_partner_id')
     def on_change_partner_id(self):

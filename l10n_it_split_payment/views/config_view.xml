@@ -14,6 +14,7 @@
                         <div>
                             <label for="sp_account_id"/>
                             <field name="sp_account_id" class="oe_inline"/>
+                            <field name="sp_tax_id" class="oe_inline"/>
                         </div>
                     </div>
                 </group>
