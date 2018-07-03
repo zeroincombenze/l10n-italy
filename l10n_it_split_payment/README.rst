@@ -1,62 +1,91 @@
 |Build Status| |license lgpl| |Coverage Status| |codecov| |OCA project| |Tech Doc| |Help| |try it|
 
-|en|
+|br|
 
-===========================
-Split Payment Sale Invoices
-===========================
+=====================================
+|icon| Split Payment in Sale Invoices
+=====================================
 
 Module to generate Split Payment accounting entries on sale invoices.
 
-|it|
+|br|
 
-================================
-Fatture clienti in split-payment
-================================
+===========================================================
+|it| Fatture clienti in split-payment (scissione pagamenti)
+===========================================================
 
 Il modulo permette di emettere fatture e note credito
 a clienti in regime di split-payment.
+
+::
+
+    Destinatari:
+
+Il modulo serve alle aziende che devono emettere fatture nei confronti di 
+Enti pubblici (PA), aziende partecipate in appalto con PA o
+nei confronti aziende quotate in borsa.
+
+
+::
+
+    Normativa:
+
+La normativa di legge è `(Articolo 17 ter) <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200001700000300&articolo=Articolo%2017%20ter>`__
+e successive modificazioni
+
+
+::
+
+    Funzionalità & Differenze da OCA:
+
+===============================================   ======   ====   ==========================================
+Funzione                                          Status   OCA    Note
+===============================================   ======   ====   ==========================================
+Fattura con split payment                          |ok|    |ok|   Richiede modifica report di stampa
+Nota Credito con split payment                     |ok|    |ok|   Richiede modifica report di stampa
+Cancellazione fattura/NC                           |ok|    |ok|   Prima occore cancellare la riconciliazione
+===============================================   ======   ====   ==========================================
+
+|br|
+
+::
+
+    Note di implementazione:
+
 L'IVA viene calcolata e inserita in fattura ma il credito risultante
 dal totale da pagare è detratto dell'IVA.
 
+Nella stampa della fattura si può riportare il totale comprensivo di IVA
+*amount_total*, l'IVA *amount_tax* (nella versione OCA questo campo è a zero), l'importo
+dell'IVA in split payment *amount_sp* con il segno negativo (nella versione OCA
+il segno è positivo) e il netto a pagare *amount_net_pay*
+
 La registrazione contabile contiene le righe di storno
 dell'IVA (riconciliata con il credito cliente) e la riga
-di IVA in regime di split payment.
-
-`(Articolo 17 ter) <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200001700000300&articolo=Articolo%2017%20ter>`__
-
-
-Funzionalità, Certificati & Differenze da OCA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-  =================================   ======   ====   ==========================================
-  Funzione                            Status   OCA    Note
-  =================================   ======   ====   ==========================================
-  Fattura con split payment [IVA]_.    |ok|    |ok|   Richiede modifica report di stampa
-  Nota Credito con split payment       |ok|    |ok|   Richiede modifica report di stampa
-  Cancellazione fattura/NC             |ok|    |ok|   Prima occore cancellare la riconciliazione
-  =================================   ======   ====   ==========================================
+di IVA in regime di split payment in modo da evidenziare questi dati nella
+liquidazione dell'IVA.
 
 
-.. [IVA] La registrazione della fattura differisce dal modulo OCA. Vedi esempio a seguito.
+Esempio di registrazione fattura con split payment:
 
+::
 
-Registrazione fattura con split payment
+    =========================   =====   =====   ============================================
+    Conto                       Dare    Avere   Note
+    =========================   =====   =====   ============================================
+    Crediti vs. clienti           122           Modulo OCA registra 100
+    Conto di ricavo                       100
+    IVA                                    22   Può essere il conto IVA a debito
+    IVA in scissione               22           Conto per evidenziare l'IVA in split payment
+    Crediti vs. clienti                    22   Riga riconciliata (no esiste in OCA)
+    =========================   =====   =====   ============================================
 
-  =========================   =====   =====   =========================================
-  Conto                       Dare    Avere   Note
-  =========================   =====   =====   =========================================
-  Crediti vs. clienti           122       .   Modulo OCA registra 100
-  Conto di ricavo                 .     100
-  IVA                             .      22
-  Storno IVA split payment       22       .
-  Crediti vs. clienti             .      22   Riga riconciliata (assente in modulo OCA)
-  =========================   =====   =====   =========================================
+----------------
 
+|br|
 
-
-Installation
-============
+|en| Installation
+=================
 
 These instruction are just an example to remember what you have to do:
 ::
@@ -69,53 +98,75 @@ These instruction are just an example to remember what you have to do:
     $ mv $ODOO\_DIR/l10n-italy/l10n\_it\_split\_payment/ $BACKUP\_DIR/
     $ mv /tmp/l10n-italy/l10n\_it\_split\_payment/ $ODOO\_DIR/
 
+----------------
 
+|br|
 
-Configuration
-=============
+|it| Configuration/Configurazione
+=================================
 
-To configure this module, you need to:
+|menu| Contabilità > Configurazione > Contabilità > Posizioni fiscali: Inserire posizione fiscale split payment
 
-* go to Accounting, Configuration, Settings and configure 'Split Payment Write-off account' (like 'IVA n/debito sospesa SP'). Write-off account should be different from standard debit VAT, in order to separately add it in VAT statement.
-* configure the fiscal position (Accounting, Configuration, Accounting, Fiscal Positions) used for split payment, setting 'Split Payment' flag. In fiscal position, map standard VAT with SP VAT, like the following:
+|image10|
 
-.. figure:: static/fiscal_position.png
-   :alt: Fiscal position
-   :width: 600 px
+|menu| Contabilità > Configurazione > Contabilità > Codici IVA: Inserire un codice IVA split payment
 
+|image11|
 
--------------------------------------------------------------------------------
+|menu| Contabilità > Configurazione > Contabilità > Codici IVA: Inserire un codice IVA storno split payment
 
-IVA al 22% SPL is configured like the following:
+|image12|
 
+|menu| Contabilità > Configurazione > Configurazione: Impostare dati split payment
 
-.. figure:: static/SP.png
-   :alt: 22SPL
-   :width: 600 px
+|image13|
 
-.. figure:: static/SP2.png
-   :alt: 22SPL
-   :width: 600 px
+----------------
 
+|br|
 
-Usage
-=====
+|it| Usage/Utilizzo
+===================
 
-For furthermore information, please visit
-http://wiki.zeroincombenze.org/it/Odoo/10.0/man/FI
+In crezione fattura o nota di accredito, impostare la posizione fiscale di split payment.
+Si consiglia di impostare la posizione fiscale in anagrafica clienti.
 
+|image14|
 
-Bug Tracker
-===========
+|br|
 
-Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/l10n-italy/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
+Per ulteriori informazioni vedere
+`Guida utente Odoo <http://wiki.zeroincombenze.org/it/Odoo/10.0/man/FI/>`__
 
+----------------
 
-Credits
-=======
+|br|
+
+|it| Known issues / Roadmap
+---------------------------
+
+|warning| Questo modulo rimpiazza il modulo OCA. Leggete attentamente il
+paragrafo relativo alle funzionalità e differenze.
+
+|warning| Questo modulo richiede `l10n_it_ade <l10n_it_ade/>`__ che non esiste
+nella repository OCA e contiene le stesse definizioni del modulo OCA
+*l10n_it_fiscal_document_type* che è quidni incompatbile.
+
+----------------
+
+|br|
+
+|en| Bug Tracker
+================
+
+Have a bug? Please visit https://odoo-italia.org/index.php/kunena/home
+
+----------------
+
+|br|
+
+|en| Credits
+============
 
 Contributors
 ------------
@@ -123,31 +174,27 @@ Contributors
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
-* Antonio Maria Vigliotti antoniomaria.vigliotti@gmail.com
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 Funders
 -------
 
 This module has been financially supported by
 
--  Agile BG https://www.agilebg.com/
--  SHS-AV s.r.l. https://www.zeroincombenze.it/
+* `Agile BG <https://www.agilebg.com/>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Maintainer
 ----------
 
 |Odoo Italia Associazione|
 
-| Odoo Italia is a nonprofit organization whose develops Italian
-Localization for
-| Odoo.
+Odoo Italia is a nonprofit organization whose develops Italian
+Localization for Odoo.
 
 To contribute to this module, please visit https://odoo-italia.org/.
 
 --------------
-
-**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
-(formerly OpenERP, formerly TinyERP)
 
 **Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
 (formerly OpenERP, formerly TinyERP)
@@ -165,6 +212,12 @@ and deploy on local server.
 
 |chat with us|
 
+.. |icon| image:: /l10n_it_split_payment/static/description/icon.png
+.. |image10| image:: /l10n_it_split_payment/static/description/fiscal_position.png
+.. |image11| image:: /l10n_it_split_payment/static/description/SP.png
+.. |image12| image:: /l10n_it_split_payment/static/description/SP2.png
+.. |image13| image:: /l10n_it_split_payment/static/description/config.png
+.. |image14| image:: /l10n_it_split_payment/static/description/invoice.png
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
    :target: https://travis-ci.org/zeroincombenze/l10n-italy
 .. |license lgpl| raw:: html
@@ -207,7 +260,19 @@ and deploy on local server.
 .. |No| raw:: html
 
    <i class="fa fa-minus-circle" style="font-size:24px;color:red"></i>
+
+.. |menu| raw:: html
+
+   <i class="fa fa-ellipsis-v" style="font-size:18px"></i>
+
 .. |hand right| raw:: html
 
    <i class="fa fa-hand-o-right" style="font-size:12px"></i>
 
+.. |warning| raw:: html
+
+    <i class="fa fa-warning" style="font-size:24px;color:orange"></i>
+
+.. |br| raw:: html
+
+    <br/>

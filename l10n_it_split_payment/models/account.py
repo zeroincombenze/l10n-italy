@@ -133,7 +133,7 @@ class AccountInvoice(models.Model):
         def _revaluate_amount(receivable_line, db_cr, vat_assigned):
             receivable_line_amount = receivable_line[db_cr] - (
                                      invoice.amount_tax * 
-                                     receivable_line.debit /
+                                     receivable_line[db_cr] /
                                      invoice.amount_total)
             if not vat_assigned:
                 receivable_line_amount += invoice.amount_tax
@@ -158,7 +158,7 @@ class AccountInvoice(models.Model):
                                               vat_assigned)
                 elif invoice.type == 'out_refund' and receivable_line.credit:
                     diff += _revaluate_amount(receivable_line,
-                                              'debit',
+                                              'credit',
                                               vat_assigned)
                 vat_assigned = True
             if diff:
