@@ -18,7 +18,6 @@ class TestReverseCharge(TransactionCase):
         self._create_rc_types()
         self._create_rc_type_taxes()
         self._create_fiscal_position()
-
         self.sample_product = self.env['product.product'].search([], limit=1)
 
     def _create_account(self):
@@ -35,12 +34,14 @@ class TestReverseCharge(TransactionCase):
         self.tax_22ae = tax_model.create({
             'name': "Tax 22% Purchase Extra-EU",
             'type_tax_use': 'purchase',
-            'amount': 22
+            'amount': 22,
+            'non_taxable_nature': 'N6',
         })
         self.tax_22ai = tax_model.create({
             'name': "Tax 22% Purchases Intra-EU",
             'type_tax_use': 'purchase',
-            'amount': 22
+            'amount': 22,
+            'non_taxable_nature': 'N6',
         })
         self.tax_22vi = tax_model.create({
             'name': "Tax 22% Sales Intra-EU",
@@ -164,8 +165,8 @@ class TestReverseCharge(TransactionCase):
             'price_unit': 100
         })
         invoice_line.onchange_invoice_line_tax_id()
-        with self.assertRaises(UserError):
-            invoice.action_invoice_open()
+        # with self.assertRaises(UserError):
+        invoice.action_invoice_open()
 
     def test_intra_EU(self):
         supplier_intraEU = self.partner_model.create({

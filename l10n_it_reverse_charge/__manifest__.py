@@ -16,6 +16,7 @@
     'depends': [
         'account_accountant',
         'account_cancel',
+        'l10n_it_ade',
     ],
     'data': [
         'security/ir.model.access.csv',

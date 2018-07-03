@@ -16,7 +16,11 @@ class AccountInvoiceLine(models.Model):
     @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
         fposition = self.invoice_id.fiscal_position_id
-        self.rc = True if fposition.rc_type_id else False
+        self.rc = False
+        for tax in self.invoice_line_tax_ids:
+            if tax.non_taxable_nature == 'N6':
+                self.rc = True
+                break
 
     rc = fields.Boolean("RC")
 

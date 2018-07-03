@@ -55,6 +55,10 @@ class AccountInvoice(models.Model):
             raise UserError(
                 _("Please set 'Split Payment Write-off Account' field in"
                   " accounting configuration"))
+        if not self.company_id.sp_tax_id:
+            raise UserError(
+                _("Please set 'Split Payment Write-off Tax' field in"
+                  " accounting configuration"))
         vals = {
             'name': _('Split Payment Write Off'),
             'partner_id': self.partner_id.id,

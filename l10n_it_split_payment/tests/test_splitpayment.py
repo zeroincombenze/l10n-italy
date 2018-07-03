@@ -6,6 +6,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
+from odoo.tools.translate import _
+from __builtin__ import AssertionError
 
 
 class TestSP(AccountTestUsers):
@@ -32,6 +34,7 @@ class TestSP(AccountTestUsers):
                 self.env.ref('account.data_account_type_current_assets').id
             )
         ], limit=1)
+        self.company.sp_tax_id = self.tax22
         account_user_type = self.env.ref(
             'account.data_account_type_receivable')
         self.a_recv = self.account_model.sudo(self.account_manager.id).create(
@@ -92,23 +95,31 @@ class TestSP(AccountTestUsers):
         self.assertEqual(invoice.amount_total, 122)
         self.assertEqual(invoice.residual, 100)
         self.assertEqual(invoice.amount_tax, 22)
-        vat_line_count = 0
-        credit_line_count = 0
+        test_res = {
+            self.a_recv.id: {'debit': 122, 'credit': 22},
+            self.company.sp_account_id.id: {'debit': 22, 'credit': 22},
+        }
         for line in invoice.move_id.line_ids:
-            if line.account_id.id == self.company.sp_account_id.id:
-                vat_line_count += 1
-                if line.debit:
-                    self.assertEqual(line.debit, 22)
+            print '*** Acc="%s" id=%d Db=%8.2f Cr=%8.2f' % (line.account.name, line.account.id, line.debit, line.credit)
+            if line.account_id.id in test_res:
+                print '*** Found id=%d in test result' % line.account.id
+                if line.debit == test_res[line.account_id.id]['debit']:
+                    print '*** Found valid line as debit %8.2f' % line.debit
+                    test_res[line.account_id.id]['debit'] = -1
+                elif line.credit == test_res[line.account_id.id]['credit']:
+                    print '*** Found valid line as credit %8.2f' % line.credit
+                    test_res[line.account_id.id]['credit'] = -1
                 else:
-                    self.assertEqual(line.credit, 22)
-            if line.account_id.id == self.a_recv.id:
-                credit_line_count += 1
-                if line.name == _('Split Payment Write Off'):
-                    self.assertEqual(line.credit, 22)
-                else:
-                    self.assertEqual(line.debit, 122)
-        self.assertEqual(vat_line_count, 2)
-        self.assertEqual(credit_line_count, 2)
+                    raise AssertionError('Invalid invoice line!')
+            else:
+                print '*** Acc="%s" non in test' % line.account.name
+        print '*** Result test: %s' % test_res
+        for id in test_res:
+            print '*** check for id=%d non in test_res %s' % (id, test_res[id])
+            if test_res[id]['debit'] != -1:
+                raise AssertionError('Debit invoice line not found!')
+            elif test_res[id]['credit'] != -1:
+                raise AssertionError('Credit invoice line not found!')
         invoice.action_cancel()
 
         invoice2 = self.invoice_model.create({
