@@ -50,7 +50,7 @@ Funzionalità, Certificati & Differenze da OCA
 
 
 Installation
-------------
+============
 
 These instruction are just an example to remember what you have to do:
 ::
@@ -65,7 +65,7 @@ These instruction are just an example to remember what you have to do:
 
 
 Configuration
--------------
+=============
 
 |it|
 
@@ -160,15 +160,16 @@ Il 'Conto transitorio autofattura' va configurato come segue:
     | width
     | 600 px
 
+
 Usage
------
+=====
 
 For furthermore information, please visit
 http://wiki.zeroincombenze.org/it/Odoo/10.0/man/FI
 
 
 Bug Tracker
------------
+===========
 
 Bugs are tracked on `GitHub
 Issues <https://github.com/OCA/l10n-italy/issues>`__. In case of
@@ -178,10 +179,10 @@ welcomed feedback.
 
 
 Credits
--------
+=======
 
 Contributors
-~~~~~~~~~~~~
+------------
 
 -  Davide Corio
 -  Alex Comba alex.comba@agilebg.com
@@ -189,7 +190,7 @@ Contributors
 -  Antonio Maria Vigliotti antoniomaria.vigliotti@gmail.com
 
 Funders
-~~~~~~~
+-------
 
 This module has been financially supported by
 
@@ -197,7 +198,7 @@ This module has been financially supported by
 -  SHS-AV s.r.l. https://www.zeroincombenze.it/
 
 Maintainer
-~~~~~~~~~~
+----------
 
 |Odoo Italia Associazione|
 
@@ -212,22 +213,17 @@ To contribute to this module, please visit https://odoo-italia.org/.
 **Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
 (formerly OpenERP, formerly TinyERP)
 
-| **OCA**, or the `Odoo Community
-Association <http://odoo-community.org/>`__, is a nonprofit organization
-whose
-| mission is to support the collaborative development of Odoo features
-and
-| promote its widespread use.
+**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
+is a nonprofit organization whose mission is to support
+the collaborative development of Odoo features and promote its widespread use.
 
-| **zeroincombenze®** is a trademark of `SHS-AV
-s.r.l. <http://www.shs-av.com/>`__
-| which distributes and promotes **Odoo** ready-to-use on its own cloud
-infrastructure.
-| `Zeroincombenze®
-distribution <http://wiki.zeroincombenze.org/en/Odoo>`__
-| is mainly designed for Italian law and markeplace.
-| Everytime, every Odoo DB and customized code can be deployed on local
-server too.
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <http://www.shs-av.com/>`__
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+`Zeroincombenze® distribution <http://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed for Italian law and markeplace.
+Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
+and deploy on local server.
+
 
 |chat with us|
 

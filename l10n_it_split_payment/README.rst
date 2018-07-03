@@ -23,7 +23,7 @@ La registrazione contabile contiene le righe di storno
 dell'IVA (riconciliata con il credito cliente) e la riga
 di IVA in regime di split payment.
 
-Law: http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200001700000300&articolo=Articolo%2017%20ter (Articolo 17 ter)
+`(Articolo 17 ter) <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200001700000300&articolo=Articolo%2017%20ter>`__
 
 
 Funzionalità, Certificati & Differenze da OCA
@@ -56,7 +56,7 @@ Registrazione fattura con split payment
 
 
 Installation
-------------
+============
 
 These instruction are just an example to remember what you have to do:
 ::
@@ -99,7 +99,7 @@ IVA al 22% SPL is configured like the following:
 
 
 Usage
------
+=====
 
 For furthermore information, please visit
 http://wiki.zeroincombenze.org/it/Odoo/10.0/man/FI
@@ -125,8 +125,16 @@ Contributors
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Antonio Maria Vigliotti antoniomaria.vigliotti@gmail.com
 
+Funders
+-------
+
+This module has been financially supported by
+
+-  Agile BG https://www.agilebg.com/
+-  SHS-AV s.r.l. https://www.zeroincombenze.it/
+
 Maintainer
-~~~~~~~~~~
+----------
 
 |Odoo Italia Associazione|
 
@@ -141,22 +149,19 @@ To contribute to this module, please visit https://odoo-italia.org/.
 **Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
 (formerly OpenERP, formerly TinyERP)
 
-| **OCA**, or the `Odoo Community
-Association <http://odoo-community.org/>`__, is a nonprofit organization
-whose
-| mission is to support the collaborative development of Odoo features
-and
-| promote its widespread use.
+**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
+(formerly OpenERP, formerly TinyERP)
 
-| **zeroincombenze®** is a trademark of `SHS-AV
-s.r.l. <http://www.shs-av.com/>`__
-| which distributes and promotes **Odoo** ready-to-use on its own cloud
-infrastructure.
-| `Zeroincombenze®
-distribution <http://wiki.zeroincombenze.org/en/Odoo>`__
-| is mainly designed for Italian law and markeplace.
-| Everytime, every Odoo DB and customized code can be deployed on local
-server too.
+**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
+is a nonprofit organization whose mission is to support
+the collaborative development of Odoo features and promote its widespread use.
+
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <http://www.shs-av.com/>`__
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+`Zeroincombenze® distribution <http://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed for Italian law and markeplace.
+Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
+and deploy on local server.
 
 |chat with us|
 
