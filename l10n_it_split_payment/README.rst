@@ -16,14 +16,14 @@ Fatture clienti in split-payment
 
 Il modulo permette di emettere fatture e note credito
 a clienti in regime di split-payment.
-L'IVA viene calcolata, inserita in ma il credito risultante
+L'IVA viene calcolata e inserita in fattura ma il credito risultante
 dal totale da pagare è detratto dell'IVA.
 
 La registrazione contabile contiene le righe di storno
 dell'IVA (riconciliata con il credito cliente) e la riga
 di IVA in regime di split payment.
 
-Law: http://goo.gl/1riAwt (Articolo 17 ter)
+Law: http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200001700000300&articolo=Articolo%2017%20ter (Articolo 17 ter)
 
 
 Funzionalità, Certificati & Differenze da OCA

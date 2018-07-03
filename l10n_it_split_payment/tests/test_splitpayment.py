@@ -100,9 +100,9 @@ class TestSP(AccountTestUsers):
             self.company.sp_account_id.id: {'debit': 22, 'credit': 22},
         }
         for line in invoice.move_id.line_ids:
-            print '*** Acc="%s" id=%d Db=%8.2f Cr=%8.2f' % (line.account.name, line.account.id, line.debit, line.credit)
+            print '*** Acc="%s" id=%d Db=%8.2f Cr=%8.2f' % (line.account_id.name, line.account_id.id, line.debit, line.credit)
             if line.account_id.id in test_res:
-                print '*** Found id=%d in test result' % line.account.id
+                print '*** Found id=%d in test result' % line.account_id.id
                 if line.debit == test_res[line.account_id.id]['debit']:
                     print '*** Found valid line as debit %8.2f' % line.debit
                     test_res[line.account_id.id]['debit'] = -1
@@ -112,7 +112,7 @@ class TestSP(AccountTestUsers):
                 else:
                     raise AssertionError('Invalid invoice line!')
             else:
-                print '*** Acc="%s" non in test' % line.account.name
+                print '*** Acc="%s" non in test' % line.account_id.name
         print '*** Result test: %s' % test_res
         for id in test_res:
             print '*** check for id=%d non in test_res %s' % (id, test_res[id])
