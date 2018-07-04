@@ -88,6 +88,8 @@ These instruction are just an example to remember what you have to do:
     sudo service odoo-server restart -i l10n_it_ade -d MYDB
 
 From UI: go to Setup > Module > Install
+[//]: # (install)
+[//]: # (end install)
 
 
 Configuration
