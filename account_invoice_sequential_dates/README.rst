@@ -159,8 +159,8 @@ and deploy on local server.
 .. |icon| image:: /l10n_it_split_payment/static/description/icon.png
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0
    :target: https://travis-ci.org/zeroincombenze/l10n-italy
-.. |license agpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: https://www.gnu.org/licenses/agpl.html
+.. |license agpl| image:: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
+   :target: https://www.gnu.org/licenses/agpl-3.0
    :alt: License: AGPL-3
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0
    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
