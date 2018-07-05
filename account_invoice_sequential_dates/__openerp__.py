@@ -8,7 +8,7 @@
     'category': 'Tools',
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
+    # 'license': 'AGPL-3',
     "depends": [
         'account',
         'account_invoice_entry_date',

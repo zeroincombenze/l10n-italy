@@ -2,11 +2,11 @@
 
 |br|
 
-=======================================
-|icon| Account Invoice Sequential Dates
-=======================================
+================================
+Account Invoice Sequential Dates
+================================
 
-This module customizes Odoo in order to make invoices with consistent dates
+|en| This module check for invoices to avoid wrong date sequence.
 
 |br|
 
@@ -27,7 +27,7 @@ Tutte le aziende che emettono fatture in Italia.
 
     Normativa:
 
-La normativa di legge è il DPR 633
+La normativa di legge è il `DPR 633 art. 23 <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200002300000000&articolo=Articolo%2023>`__
 
 
 ::
@@ -159,10 +159,9 @@ and deploy on local server.
 .. |icon| image:: /l10n_it_split_payment/static/description/icon.png
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0
    :target: https://travis-ci.org/zeroincombenze/l10n-italy
-.. |license agpl| raw:: html
-
-    <a href="https://www.gnu.org/licenses/agpl.html"><img src="https://img.shields.io/badge/licence-AGPL--blue.svg"/></a>
-
+.. |license agpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: https://www.gnu.org/licenses/agpl.html
+   :alt: License: AGPL-3
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0
    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
 .. |codecov| raw:: html
