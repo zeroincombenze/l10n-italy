@@ -5,7 +5,7 @@
 #
 {
     "name": "Base xml Agenzia delle Entrate",
-    "version": "8.0.0.1.7",
+    "version": "8.0.0.1.8",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
@@ -59,8 +59,11 @@ Il modulo rende disponibili i seguenti schemi:
         'account',
         ],
     "data": [
+        'security/ir.model.access.csv',
+        'data/codici_carica_data.xml',
         'views/account_tax_view.xml',
         'views/account_journal.xml',
+        'views/codice_carica_view.xml',
         ],
     'installable': True,
     "external_dependencies": {

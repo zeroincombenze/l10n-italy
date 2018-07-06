@@ -3,22 +3,27 @@
 #    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
 #    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
 #    Copyright (C) 2013-15 LinkIt Spa <http://http://www.linkgroup.it>
-#    Copyright (C) 2013-17 Associazione Odoo Italia
+#    Copyright (C) 2013-18 Associazione Odoo Italia
 #                          <http://www.odoo-italia.org>
 #    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
-#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017-18 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import logging
 import math
+from datetime import date
 
-from openerp.addons.decimal_precision import decimal_precision as dp
+try:
+    from openerp.addons.decimal_precision import decimal_precision as dp
+except:
+    import decimal_precision as dp
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 try:
+    from openerp.addons.l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)
@@ -415,24 +420,8 @@ class AccountVatPeriodEndStatement(orm.Model):
                         size=16, required=True,
                         help="CF del soggetto che presenta la comunicazione "
                         "se PF o DI o con la specifica carica"),
-        'codice_carica': fields.selection([
-            ('0', 'Azienda PF (Ditta indivisuale/Professionista/eccetera)'),
-            ('1', 'Legale rappresentante, socio amministratore'),
-            ('2', 'Rappresentante di minore,interdetto,eccetera'),
-            ('3', 'Curatore fallimentare'),
-            ('4', 'Commissario liquidatore'),
-            ('5', 'Custode giudiziario'),
-            ('6', 'Rappresentante fiscale di soggetto non residente'),
-            ('7', 'Erede'),
-            ('8', 'Liquidatore'),
-            ('9', 'Obbligato di soggetto estinto'),
-            ('10', 'Rappresentante fiscale art. 44c3 DLgs 331/93'),
-            ('11', 'Tutore di minore'),
-            ('12', 'Liquidatore di DI'),
-            ('13', 'Amministratore di condominio'),
-            ('14', 'Pubblica Amministrazione'),
-            ('15', 'Commissario PA'), ],
-            'Codice carica',),
+        'codice_carica': fields.many2one(
+            'italy.ade.codice.carica', 'Codice carica'),
         # 'progressivo_telematico':
         #     fields.integer('Progressivo telematico', readonly=True),
         'incaricato_trasmissione_codice_fiscale':
@@ -477,6 +466,57 @@ class AccountVatPeriodEndStatement(orm.Model):
         'soggetto_codice_fiscale': _get_default_soggetto_codice_fiscale,
         'name': 'Liquidazione periodica'
     }
+
+    def create(self, cr, uid, vals, context=None):
+        res = super(AccountVatPeriodEndStatement, self).create(
+            cr, uid, vals, context)
+        if 'company_id' in vals:
+            sequence_ids = self.search_sequence(cr, uid, vals['company_id'],
+                                                context=None)
+            if not sequence_ids:
+                self.create_sequence(cr, uid, vals['company_id'], context)
+        return res
+
+    def search_sequence(self, cr, uid, company_id, context=None):
+        return self.pool['ir.sequence'].search(
+            cr, uid, [
+                ('name', '=', 'VAT statement'),
+                ('company_id', '=', company_id)
+            ])
+
+    def create_sequence(self, cr, uid, company_id, context=None):
+        """ Create new no_gap entry sequence for progressivo_telematico
+        """
+        # Company sent own statement, so set next number as the nth quarter
+        next_number = int((date.today().toordinal() - 
+                           date(2017, 7, 1).toordinal()) / 90) + 1
+        sequence_model = self.pool['ir.sequence']
+        vals = {
+            'name' : 'VAT statement',
+            'implementation': 'no_gap',
+            'company_id': company_id,
+            'prefix': '',
+            'number_increment': 1,
+            'number_next': next_number,
+            'number_next_actual': next_number,
+        }
+        return [sequence_model.create(cr, uid, vals)]
+
+    def set_progressivo_telematico(self, cr, uid, statement, context=None):
+        context = context or {}
+        sequence_model = self.pool['ir.sequence']
+        company_id = statement.company_id.id
+        sequence_ids = self.search_sequence(cr, uid, company_id,
+                                                context=None)
+        if not sequence_ids:
+            sequence_ids = self.create_sequence(cr, uid, company_id,
+                                                context=context)
+        if len(sequence_ids) != 1:
+            raise orm.except_orm(
+                _('Error!'), _('VAT statement sequence not set!'))
+        number = int(sequence_model.next_by_id(
+            cr, uid, sequence_ids[0], context=context))
+        return number
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):
         if not context:
@@ -729,7 +769,7 @@ class AccountVatPeriodEndStatement(orm.Model):
               'ref_base_code_id'
         - left is id of account.tax.code record
         """
-        context = {} if context is None else context
+        context = context or {}
         tax_pool = self.pool.get('account.tax')
         tax_ids = tax_pool.search(
             cr, uid, [('company_id', '=', company_id)])
@@ -1021,24 +1061,6 @@ class AccountVatPeriodEndStatement(orm.Model):
                       ' deleting Vat Period End Statement')
                 )
         return super(AccountVatPeriodEndStatement, self).action_cancel(cr, uid, ids, context)
-
-    def set_progressivo_telematico(self, cr, uid, statement, context=None):
-        context = context or {}
-        company_id = statement.company_id
-        sequence_model = self.pool['ir.sequence']
-        sequence_ids = sequence_model.search(
-            cr, uid, [
-                ('name', '=', 'vat_statement'),
-                ('company_id', '=', company_id.id)
-            ])
-        if len(sequence_ids) != 1:
-            raise orm.except_orm(
-                _('Error!'), _('VAT statement sequence not set!'))
-        number = sequence_model.next_by_id(
-            cr, uid, sequence_ids[0], context=context)
-        # self.write(cr, uid, statement.id, {'progressivo_telematico': number})
-        return number
-
 
 class StatementDebitAccountLine(orm.Model):
     _name = 'statement.debit.account.line'

@@ -8,15 +8,18 @@
 # [2018: SHS-AV s.r.l.] Spesometro light
 #
 import logging
+from datetime import date
+
+try:
+    from openerp.addons.decimal_precision import decimal_precision as dp
+except:
+    import decimal_precision as dp
+import openerp.release as release
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-import openerp.release as release
+
 _logger = logging.getLogger(__name__)
 try:
-    if release.major_version in ('6.1', '7.0'):
-        import decimal_precision as dp
-    else:
-        import openerp.addons.decimal_precision as dp
     from openerp.addons.l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
@@ -27,29 +30,21 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
                 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
-z = '0'
-for i, x in enumerate(ade.ADE_LEGALS['codice_carica']):
-    if ade.ADE_LEGALS['codice_carica'][i][0] == z:
-        j = ade.ADE_LEGALS['codice_carica'][i].index(z)
-        del ade.ADE_LEGALS['codice_carica'][j]
-        break
-
 
 class AccountVatCommunication(orm.Model):
 
     _name = "account.vat.communication"
     _columns = {
-        'company_id': fields.many2one('res.company', 'Azienda', required=True),
-        'progressivo_telematico':
-            fields.integer('Progressivo telematico', readonly=True),
+        'company_id': fields.many2one('res.company', 'Company'),
+        # 'progressivo_telematico':
+        #    fields.integer('Progressivo telematico', readonly=True),
         'soggetto_codice_fiscale':
             fields.char('Codice fiscale dichiarante',
                         size=16, required=True,
                         help="CF del soggetto che presenta la comunicazione "
                              "se PF o DI o con la specifica carica"),
-        'codice_carica': fields.selection(
-            ade.ADE_LEGALS['codice_carica'],
-            'Codice carica',),
+        'codice_carica': fields.many2one(
+            'italy.ade.codice.carica', 'Codice carica'),
         'state': fields.selection([
             ('draft', 'Draft'),
             ('open', 'Open'),
@@ -122,28 +117,52 @@ class AccountVatCommunication(orm.Model):
         res = super(AccountVatCommunication, self).create(
             cr, uid, vals, context)
         if 'company_id' in vals:
-            sequence_ids = self.pool['ir.sequence'].search(
-                cr, uid, [
-                    ('name', '=', 'vat_communication'),
-                    ('company_id', '=', vals['company_id'])
-                ])
+            sequence_ids = self.search_sequence(cr, uid, vals['company_id'],
+                                                context=None)
             if not sequence_ids:
-                self.create_sequence(cr, uid, vals, context)
+                self.create_sequence(cr, uid, vals['company_id'], context)
         return res
 
-    def create_sequence(self, cr, uid, vals, context=None):
+    def search_sequence(self, cr, uid, company_id, context=None):
+        return self.pool['ir.sequence'].search(
+            cr, uid, [
+                ('name', '=', 'VAT communication'),
+                ('company_id', '=', company_id)
+            ])
+
+    def create_sequence(self, cr, uid, company_id, context=None):
         """ Create new no_gap entry sequence for progressivo_telematico
         """
-        seq = {
-            'name': 'vat_communication',
+        # Company sent own communication, so set next number as the nth quarter
+        next_number = int((date.today().toordinal() - 
+                           date(2017, 7, 1).toordinal()) / 90) + 1
+        sequence_model = self.pool['ir.sequence']
+        vals = {
+            'name' : 'VAT communication',
             'implementation': 'no_gap',
+            'company_id': company_id,
             'prefix': '',
-            'number_increment': 1
+            'number_increment': 1,
+            'number_next': next_number,
+            'number_next_actual': next_number,
         }
-        if 'company_id' in vals:
-            seq['company_id'] = vals['company_id']
-            return self.pool['ir.sequence'].create(cr, uid, seq)
-        return False
+        return [sequence_model.create(cr, uid, vals)]
+
+    def set_progressivo_telematico(self, cr, uid, communication, context=None):
+        context = context or {}
+        sequence_model = self.pool['ir.sequence']
+        company_id = communication.company_id.id
+        sequence_ids = self.search_sequence(cr, uid, company_id,
+                                                context=None)
+        if not sequence_ids:
+            sequence_ids = self.create_sequence(cr, uid, company_id,
+                                                context=context)
+        if len(sequence_ids) != 1:
+            raise orm.except_orm(
+                _('Error!'), _('VAT communication sequence not set!'))
+        number = int(sequence_model.next_by_id(
+            cr, uid, sequence_ids[0], context=context))
+        return number
 
     def test_open(self, cr, uid, ids, *args):
         return True
@@ -199,23 +218,6 @@ class AccountVatCommunication(orm.Model):
                         tax_tree[type][basevat][left] = False
         return tax_tree
 
-    def set_progressivo_telematico(self, cr, uid, commitment, context=None):
-        context = context or {}
-        company_id = commitment.company_id
-        sequence_model = self.pool['ir.sequence']
-        sequence_ids = sequence_model.search(
-            cr, uid, [
-                ('name', '=', 'vat_communication'),
-                ('company_id', '=', company_id.id)
-            ])
-        if len(sequence_ids) != 1:
-            raise orm.except_orm(
-                _('Error!'), _('VAT communication sequence not set!'))
-        number = sequence_model.next_by_id(
-            cr, uid, sequence_ids[0], context=context)
-        self.write(cr, uid, commitment.id, {'progressivo_telematico': number})
-        return number
-
     def get_country_code(self, cr, uid, partner):
         if release.major_version == '6.1':
             address_id = self.pool['res.partner'].address_get(
@@ -263,33 +265,33 @@ class AccountVatCommunication(orm.Model):
                 # for tax in invoice_tax.tax_code_id.tax_ids:
                 for tax_id in account_tax_model.search(
                         cr, uid, where):
-                        tax = account_tax_model.browse(cr, uid, tax_id)
-                        if tax and not tax.parent_id:
+                    tax = account_tax_model.browse(cr, uid, tax_id)
+                    if tax and not tax.parent_id:
+                        if tax.amount > tax_rate:
+                            tax_rate = tax.amount
+                        if tax.non_taxable_nature:
+                            tax_nature = tax.non_taxable_nature
+                        if tax.payability:
+                            tax_payability = tax.payability
+                        if tax.type_tax_use:
+                            tax_type = tax.type_tax_use
+                    else:
+                        if release.major_version == '6.1':
+                            tax_rate = 0
+                            for child in account_tax_model.browse(
+                                    cr, uid, tax.parent_id.id).child_ids:
+                                if child.type == 'percent':
+                                    tax_rate += child.amount
+                            tax_nodet_rate = 1 - (tax.amount / tax_rate)
+                        else:
+                            if tax.type == 'percent' and \
+                                    tax.amount > tax_nodet_rate:
+                                tax_nodet_rate = tax.amount
+                            tax = account_tax_model.browse(
+                                cr, uid, tax.parent_id.id)
+                            taxcode_base_id = invoice_tax.tax_code_id.id
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
-                            if tax.non_taxable_nature:
-                                tax_nature = tax.non_taxable_nature
-                            if tax.payability:
-                                tax_payability = tax.payability
-                            if tax.type_tax_use:
-                                tax_type = tax.type_tax_use
-                        else:
-                            if release.major_version == '6.1':
-                                tax_rate = 0
-                                for child in account_tax_model.browse(
-                                        cr, uid, tax.parent_id.id).child_ids:
-                                    if child.type == 'percent':
-                                        tax_rate += child.amount
-                                tax_nodet_rate = 1 - (tax.amount / tax_rate)
-                            else:
-                                if tax.type == 'percent' and \
-                                        tax.amount > tax_nodet_rate:
-                                    tax_nodet_rate = tax.amount
-                                tax = account_tax_model.browse(
-                                    cr, uid, tax.parent_id.id)
-                                taxcode_base_id = invoice_tax.tax_code_id.id
-                                if tax.amount > tax_rate:
-                                    tax_rate = tax.amount
                 if (tax_type == 'sale' and tax_rate and tax_nature) or \
                     (tax_type == 'sale' and
                      tax_rate == 0.0 and not tax_nature) or \
@@ -638,13 +640,20 @@ class AccountVatCommunication(orm.Model):
         commitment_line_model = self.pool['account.vat.communication.line']
         model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
         line_model = self.pool[model_name]
-        commitment_line = line_model.browse(cr, uid, line_id)
+        CommitmentLine = line_model.browse(cr, uid, line_id)
         return commitment_line_model._dati_line(
-            cr, uid, commitment_line, {'xml': True}, context)
+            cr, uid, CommitmentLine, {'xml': True}, context)
 
 
-class commitment_line(orm.AbstractModel):
+class CommitmentLine(orm.AbstractModel):
     _name = 'account.vat.communication.line'
+
+    def _get_error(self, error, context):
+        if context.get('no_except', False):
+            return error
+        else:
+            raise orm.except_orm(_('Error!'), error)
+        return False
 
     def _dati_partner(self, cr, uid, partner, args, context=None):
         if release.major_version == '6.1':
@@ -655,57 +664,31 @@ class commitment_line(orm.AbstractModel):
         else:
             address = partner
 
-        res = {}
+        res = {'xml_Error': ''}
         if partner.vat:
             vat = partner.vat.replace(' ', '')
-            res['xml_IdPaese'] = vat and vat[0:2] or ''
+            res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
             res['xml_IdCodice'] = vat and vat[2:] or ''
-            res['xml_IdPaese'] = res['xml_IdPaese'].upper()
-            if len(res['xml_IdPaese']):
-                if len(res['xml_IdCodice']) < 1 or \
-                        len(res['xml_IdCodice']) > 28:
-                    raise orm.except_orm(
-                        _('Error!'),
-                        _('Invalid vat size of %s id %d') % (
-                            partner.name, partner.id))
-                if res['xml_IdPaese'][0] < 'A' or \
-                        res['xml_IdPaese'][0] > 'z' or \
-                        res['xml_IdPaese'][1] < 'A' or \
-                        res['xml_IdPaese'][1] > 'z':
-                    raise orm.except_orm(
-                        _('Error!'),
-                        _('Invalid iso-country in vat of %s %d') % (
-                            partner.name, partner.id))
         res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
         if not res.get('xml_Nazione'):
-            raise orm.except_orm(
-                _('Error!'),
-                _('Unknow country of %s') % partner.name)
-        if res['xml_Nazione'] == 'IT' and \
-                not partner.vat and \
-                not partner.fiscalcode:
-            raise orm.except_orm(
-                _('Error!'),
-                _('Partner %s %d without fiscal identification') % (
-                    partner.name, partner.id))
+            self._get_error(_('Unknow country of %s') % partner.name, context)
 
-        if partner.fiscalcode:
+        if (partner.individual or
+                not partner.is_company) and partner.fiscalcode:
             r = self.pool['account.vat.communication'].onchange_fiscalcode(
                 cr, uid, partner.id,
                 partner.fiscalcode, None,
                 country_id=partner.country_id,
                 context=context)
             if 'warning' in r:
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Invalid fiscalcode of %s') % partner.name)
-            if res.get('xml_Nazione', '') == 'IT':
-                if partner.fiscalcode != res.get('xml_IdCodice'):
-                    res['xml_CodiceFiscale'] = partner.fiscalcode.replace(' ',
-                                                                          '')
-            elif not partner.vat:
-                res['xml_CodiceFiscale'] = '99999999999'
-        elif not partner.vat and res.get('xml_Nazione', '') != 'IT':
+                res['xml_Error'] += self._get_error(
+                    _('Invalid fiscalcode of %s') % partner.name, context)
+            if res.get('xml_Nazione', '') == 'IT' and \
+                    partner.fiscalcode != res.get('xml_IdCodice'):
+                res['xml_CodiceFiscale'] = partner.fiscalcode.replace(' ', '')
+        elif res.get('xml_IdPaese', '') == 'IT':
+            pass
+        elif not partner.vat:
             res['xml_CodiceFiscale'] = '99999999999'
 
         if partner.individual or not partner.is_company:
@@ -719,10 +702,9 @@ class commitment_line(orm.AbstractModel):
                 res['xml_Nome'] = partner.firstname
                 res['xml_Cognome'] = partner.lastname
             if not res.get('xml_Cognome') or not res.get('xml_Nome'):
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Invalid First or Last name %s %d') % (
-                        partner.name, partner.id))
+                res['xml_Error'] += self._get_error(
+                    _('Invalid First or Last name %s') % (partner.name),
+                    context)
         else:
             res['xml_Denominazione'] = partner.name
             if not partner.vat and \
@@ -834,20 +816,23 @@ class commitment_line(orm.AbstractModel):
                                                             invoice.number))
 
 
-class commitment_DTE_line(orm.Model):
+class CommitmentDTELine(orm.Model):
     _name = 'account.vat.communication.dte.line'
     _inherit = 'account.vat.communication.line'
 
     def _xml_dati_partner(self, cr, uid, ids, fname, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
+            ctx = context.copy()
+            ctx['no_except'] = True
             fields = self._dati_partner(cr, uid, line.partner_id, args,
-                                        context=context)
-
+                                        context=ctx)
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
                 if fields.get(f, ''):
                     result[f] = fields[f]
+                else:
+                    result[f] = False
             res[line.id] = result
         return res
 
@@ -896,6 +881,15 @@ class commitment_DTE_line(orm.Model):
             'Taxable amount', digits_compute=dp.get_precision('Account')),
         'amount_tax': fields.float(
             'Tax amount', digits_compute=dp.get_precision('Account')),
+        'xml_Error': fields.function(
+            _xml_dati_partner,
+            string="Error",
+            type="char",
+            multi=True,
+            store=False,
+            select=True,
+            readonly=True
+        ),
         'xml_IdPaese': fields.function(
             _xml_dati_partner,
             string="Country",
@@ -971,7 +965,7 @@ class commitment_DTE_line(orm.Model):
     }
 
 
-class commitment_DTR_line(orm.Model):
+class CommitmentDTRLine(orm.Model):
     _name = 'account.vat.communication.dtr.line'
     _inherit = 'account.vat.communication.line'
 
@@ -1033,6 +1027,15 @@ class commitment_DTR_line(orm.Model):
             'Taxable amount', digits_compute=dp.get_precision('Account')),
         'amount_tax': fields.float(
             'Tax amount', digits_compute=dp.get_precision('Account')),
+        'xml_Error': fields.function(
+            _xml_dati_partner,
+            string="Error",
+            type="char",
+            multi=True,
+            store=False,
+            select=True,
+            readonly=True
+        ),
         'xml_IdPaese': fields.function(
             _xml_dati_partner,
             string="Country",

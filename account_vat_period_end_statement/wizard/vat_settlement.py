@@ -9,20 +9,21 @@ import base64
 import datetime
 import logging
 
+from openerp.osv import fields, orm
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+
 from openerp.addons.l10n_it_ade.bindings.vat_settlement_v_1_0 import (CTD_ANON,  # Intestazione,; Comunicazione,
                                                                       Comunicazione_IVP_Type,
                                                                       DatiContabili_IVP_Type,
                                                                       Fornitura,
                                                                       Frontespizio_IVP_Type,
                                                                       Intestazione_IVP_Type)
-from openerp.osv import fields, orm
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 codice_fornitura = 'IVP17'
-identificativo_software = 'Odoo.8.0.3.0.3'
+identificativo_software = 'Odoo.8.0.3.0.4'
 
 
 class WizardVatSettlement(orm.TransientModel):
@@ -98,7 +99,7 @@ class WizardVatSettlement(orm.TransientModel):
 
     def export_vat_settlemet(self, cr, uid, ids, context=None):
         # TODO: insert period verification
-        context = {} if context is None else context
+        context = context or {}
         model_data_obj = self.pool['ir.model.data']
         statement_debit_account_line_obj = \
             self.pool['statement.debit.account.line']
@@ -133,17 +134,9 @@ class WizardVatSettlement(orm.TransientModel):
                                                uid,
                                                statement_ids,
                                                context=context):
-            ids = statement_pool.search(
-                cr, uid, [],
-                order='progressivo_telematico desc',
-                limit=1,
-                context=context)
-            if len(ids):
-                progressivo_telematico = statement_pool.browse(
-                    cr, uid,
-                    ids[0]).progressivo_telematico + 1
-            else:
-                progressivo_telematico = 1
+
+            progressivo_telematico = statement_pool.set_progressivo_telematico(
+                cr, uid, statement, context)
 
             company_id = statement.company_id.id
             company = company_pool.browse(cr, uid, company_id, context=context)
@@ -156,23 +149,40 @@ class WizardVatSettlement(orm.TransientModel):
             settlement.Intestazione.CodiceFornitura = codice_fornitura
 
             _logger.debug(settlement.Intestazione.toDOM().toprettyxml(
-                encoding="latin1"))
+                encoding="UTF-8"))
+
+            if statement.type[0:3] != 'xml':
+                _logger.info('No electronic statement type!')
+                raise orm.except_orm(
+                    'Error!',
+                    'No electronic statement type!')
+            if not statement.period_ids:
+                _logger.info('No period defined!')
+                raise orm.except_orm(
+                    'Error!',
+                    'No period defined!')
+            if not statement.incaricato_trasmissione_codice_fiscale or \
+                    not statement.incaricato_trasmissione_data_impegno:
+                _logger.info(
+                    'Manca CF o data impegno incaricato alla trasmissione!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'Manca CF o data impegno incaricato alla trasmissione!')
 
             settlement.Comunicazione = (Comunicazione_IVP_Type())
             settlement.Comunicazione.Frontespizio = (Frontespizio_IVP_Type())
 
             settlement.Comunicazione.Frontespizio.FirmaDichiarazione = "1"
             settlement.Comunicazione.Frontespizio.CodiceFiscale = \
+                statement.soggetto_codice_fiscale
+            settlement.Comunicazione.Frontespizio.CFIntermediario = \
                 statement.incaricato_trasmissione_codice_fiscale
-            if statement.incaricato_trasmissione_codice_fiscale:
-                settlement.Comunicazione.Frontespizio.CFIntermediario = \
-                    statement.incaricato_trasmissione_codice_fiscale
-                settlement.Comunicazione.Frontespizio.ImpegnoPresentazione = "1"
-                if statement.incaricato_trasmissione_data_impegno:
-                    settlement.Comunicazione.Frontespizio.DataImpegno = \
-                        self.italian_date(
-                            statement.incaricato_trasmissione_data_impegno)
-                settlement.Comunicazione.Frontespizio.FirmaIntermediario = "1"
+            if statement.incaricato_trasmissione_data_impegno:
+                settlement.Comunicazione.Frontespizio.DataImpegno = \
+                    self.italian_date(
+                        statement.incaricato_trasmissione_data_impegno)
+            settlement.Comunicazione.Frontespizio.FirmaIntermediario = "1"
+            settlement.Comunicazione.Frontespizio.ImpegnoPresentazione = "1"
 
             if statement.codice_carica:
                 if statement.codice_carica != '0':
@@ -199,7 +209,7 @@ class WizardVatSettlement(orm.TransientModel):
                     IdentificativoProdSoftware = identificativo_software
             _logger.debug(
                 settlement.Comunicazione.Frontespizio.toDOM().toprettyxml(
-                    encoding="latin1"))
+                    encoding="UTF-8"))
 
             settlement.Comunicazione.DatiContabili = (DatiContabili_IVP_Type())
 
@@ -218,8 +228,15 @@ class WizardVatSettlement(orm.TransientModel):
                 modulo.Mese = str(date_stop.month)
             else:
                 if date_start.month in (1, 4, 7, 10) and \
-                        date_stop.month in (3, 6, 9, 11):
+                        date_stop.month in (3, 6, 9, 12):
                     modulo.Trimestre = trimestre[str(date_stop.month)]
+                else:
+                    _logger.info(
+                        'Undetermined quarter/month!')
+                    raise orm.except_orm(
+                        'Error!',
+                        "Undetermined quarter/month!")
+
             # TODO: Per aziende supposte al controllo antimafia (i subfornitori), per il momento non valorizziamo
             # modulo.Subfornitura = "0"
             # TODO: facultativo: Vittime del terremoto, per il momento non valorizziamo
@@ -292,14 +309,13 @@ class WizardVatSettlement(orm.TransientModel):
 
             settlement.Comunicazione.DatiContabili.Modulo.append(modulo)
 
-            _logger.debug(settlement.Comunicazione.DatiContabili.toDOM().toprettyxml(encoding="latin1"))
+            _logger.debug(settlement.Comunicazione.DatiContabili.toDOM().toprettyxml(encoding="UTF-8"))
 
             settlement.Comunicazione.identificativo = \
                 "%05d" % progressivo_telematico
 
-            vat_settlement_xml = settlement.toDOM().toprettyxml(encoding="latin1")
+            vat_settlement_xml = settlement.toDOM().toprettyxml(encoding="UTF-8")
 
-            # fn_name = 'LiquidazioneIVA-%05d.xml' % progressivo_telematico
             fn_name = 'IT%s_LI_%05d.xml' % (vat, progressivo_telematico)
             attach_vals = {
                 'name': fn_name,

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-25 12:38+0000\n"
-"PO-Revision-Date: 2018-06-25 14:49+0200\n"
+"POT-Creation-Date: 2018-07-06 10:03+0000\n"
+"PO-Revision-Date: 2018-07-06 12:09+0200\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Periodo contabile"
 #. module: account_vat_period_end_statement
 #: field:account.tax.code,vat_statement_account_id:0
 msgid "Account used for VAT statement"
-msgstr "Conto utilizzato per la liquidazione IVA"
+msgstr "Conto IVA di liquidazione"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -65,11 +65,6 @@ msgstr "Aggiungi"
 #: model:ir.actions.act_window,name:account_vat_period_end_statement.action_add_period
 msgid "Add period"
 msgstr "Aggiungi periodo"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Amministratore di condominio"
-msgstr "Amministratore di condominio"
 
 #. module: account_vat_period_end_statement
 #: field:statement.credit.account.line,amount:0
@@ -94,11 +89,6 @@ msgstr "Attachment"
 #: field:account.vat.period.end.statement,authority_vat_amount:0
 msgid "Authority VAT Amount"
 msgstr "Importo IVA Erario"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Azienda PF (Ditta indivisuale/Professionista/eccetera)"
-msgstr "Azienda PF (Ditta indivisuale/Professionista/eccetera)"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,residual:0
@@ -152,16 +142,6 @@ msgid "Codice fiscale dichiarante"
 msgstr "Codice fiscale dichiarante"
 
 #. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Commissario PA"
-msgstr "Commissario PA"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Commissario liquidatore"
-msgstr "Commissario liquidatore"
-
-#. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_res_company
 msgid "Companies"
 msgstr "Aziende"
@@ -212,8 +192,8 @@ msgstr "Righe conti di credito"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,credit_vat_account_line_ids:0
-#: code:addons/account_vat_period_end_statement/models/account.py:560
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:560
+#: code:addons/account_vat_period_end_statement/models/account.py:601
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:601
 #, python-format
 msgid "Credit VAT"
 msgstr "IVA a credito"
@@ -224,23 +204,13 @@ msgid "Credit VAT from previous periods"
 msgstr "IVA a credito da periodi precedenti"
 
 #. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Curatore fallimentare"
-msgstr "Curatore fallimentare"
-
-#. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:26
 #: code:addons/account_vat_period_end_statement/wizard/remove_period.py:56
 #: code:addons/l10n-italy/account_vat_period_end_statement/wizard/add_period.py:26
 #: code:addons/l10n-italy/account_vat_period_end_statement/wizard/remove_period.py:56
 #, python-format
 msgid "Current statement not found"
-msgstr "Liquidazione corrente non trovata"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Custode giudiziario"
-msgstr "Custode giudiziario"
+msgstr "Liquidazione non trovata"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,incaricato_trasmissione_data_impegno:0
@@ -264,8 +234,8 @@ msgstr "Righe conti di debito"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,debit_vat_account_line_ids:0
-#: code:addons/account_vat_period_end_statement/models/account.py:541
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:541
+#: code:addons/account_vat_period_end_statement/models/account.py:582
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:582
 #, python-format
 msgid "Debit VAT"
 msgstr "IVA a debito"
@@ -291,26 +261,21 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:526
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:526
+#: code:addons/account_vat_period_end_statement/models/account.py:567
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:567
 #, python-format
 msgid "Encoding error"
 msgstr "Encoding error"
 
 #. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Erede"
-msgstr "Erede"
-
-#. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:652
+#: code:addons/account_vat_period_end_statement/models/account.py:693
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:137
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:148
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:26
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:60
 #: code:addons/account_vat_period_end_statement/wizard/remove_period.py:56
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:652
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:693
 #: code:addons/l10n-italy/account_vat_period_end_statement/report/vat_period_end_statement.py:137
 #: code:addons/l10n-italy/account_vat_period_end_statement/report/vat_period_end_statement.py:148
 #: code:addons/l10n-italy/account_vat_period_end_statement/report/vat_period_end_statement.py:187
@@ -322,19 +287,21 @@ msgid "Error"
 msgstr "Errore"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:678
-#: code:addons/account_vat_period_end_statement/models/account.py:1009
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:678
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1009
+#: code:addons/account_vat_period_end_statement/models/account.py:719
+#: code:addons/account_vat_period_end_statement/models/account.py:1050
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:719
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1050
 #, python-format
 msgid "Error VAT Configuration!"
 msgstr "Errore configurazione IVA!"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:495
-#: code:addons/account_vat_period_end_statement/models/account.py:1018
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:495
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1018
+#: code:addons/account_vat_period_end_statement/models/account.py:516
+#: code:addons/account_vat_period_end_statement/models/account.py:535
+#: code:addons/account_vat_period_end_statement/models/account.py:1059
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:516
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:535
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1059
 #, python-format
 msgid "Error!"
 msgstr "Errore!"
@@ -373,7 +340,7 @@ msgstr "Followers"
 #. module: account_vat_period_end_statement
 #: view:account.vat.settlement.attachment:account_vat_period_end_statement.view_vat_settlement_attachment_form
 msgid "History"
-msgstr "History"
+msgstr "Storia"
 
 #. module: account_vat_period_end_statement
 #: help:account.vat.settlement.attachment,message_summary:0
@@ -477,21 +444,6 @@ msgid "Legal Notice"
 msgstr "Legal Notice"
 
 #. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Legale rappresentante, socio amministratore"
-msgstr "Legale rappresentante, socio amministratore"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Liquidatore"
-msgstr "Liquidatore"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Liquidatore di DI"
-msgstr "Liquidatore di DI"
-
-#. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,type:0
 msgid "Liquidazione annuale"
 msgstr "Liquidazione annuale"
@@ -529,18 +481,18 @@ msgid "No base code found for tax code %s"
 msgstr "Nessun codice imponibile trovato per il codice imposta %s"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:526
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:526
+#: code:addons/account_vat_period_end_statement/models/account.py:567
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:567
 #, python-format
 msgid "No period found or more than one period found for the given date."
-msgstr "No period found or more than one period found for the given date."
+msgstr "Nessun periodo trovato per la data inserita."
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:149
 #: code:addons/l10n-italy/account_vat_period_end_statement/report/vat_period_end_statement.py:149
 #, python-format
 msgid "Not every tax linked to tax code %s is linked to the same base code"
-msgstr "Not every tax linked to tax code %s is linked to the same base code"
+msgstr "Non tutte le imposte collegate al codice imposta %s sono collegate allo stesso codice imponibile"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,incaricato_trasmissione_numero_CAF:0
@@ -548,13 +500,8 @@ msgid "Numero CAF intermediario"
 msgstr "Numero CAF intermediario"
 
 #. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Obbligato di soggetto estinto"
-msgstr "Obbligato di soggetto estinto"
-
-#. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:617
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:617
+#: code:addons/account_vat_period_end_statement/models/account.py:658
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:658
 #, python-format
 msgid "Other VAT Credits / Debits"
 msgstr "Altri Crediti / Debiti per IVA"
@@ -624,8 +571,8 @@ msgstr "Periodi"
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: field:account.vat.period.end.statement,previous_credit_vat_account_id:0
-#: code:addons/account_vat_period_end_statement/models/account.py:579
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:579
+#: code:addons/account_vat_period_end_statement/models/account.py:620
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:620
 #, python-format
 msgid "Previous Credits VAT"
 msgstr "IVA crediti precedenti"
@@ -638,8 +585,8 @@ msgstr "Importo IVA crediti precedenti"
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: field:account.vat.period.end.statement,previous_debit_vat_account_id:0
-#: code:addons/account_vat_period_end_statement/models/account.py:598
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:598
+#: code:addons/account_vat_period_end_statement/models/account.py:639
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:639
 #, python-format
 msgid "Previous Debits VAT"
 msgstr "IVA debiti precedenti"
@@ -653,31 +600,6 @@ msgstr "Importo IVA debiti precedenti"
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Print Options"
 msgstr "Opzioni di stampa"
-
-#. module: account_vat_period_end_statement
-#: field:account.vat.period.end.statement,progressivo_telematico:0
-msgid "Progressivo telematico"
-msgstr "Progressivo telematico"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Pubblica Amministrazione"
-msgstr "Pubblica Amministrazione"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Rappresentante di minore,interdetto,eccetera"
-msgstr "Rappresentante di minore,interdetto,eccetera"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Rappresentante fiscale art. 44c3 DLgs 331/93"
-msgstr "Rappresentante fiscale art. 44c3 DLgs 331/93"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Rappresentante fiscale di soggetto non residente"
-msgstr "Rappresentante fiscale di soggetto non residente"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -714,7 +636,7 @@ msgstr "Set VAT account to compute VAT amount.Please, leave empty if no VAT amou
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Set to draft"
-msgstr "Imposta a bozza"
+msgstr "Trasforma in bozza"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,show_zero:0
@@ -739,7 +661,7 @@ msgstr "Stato"
 #. module: account_vat_period_end_statement
 #: field:account.vat.settlement.attachment,message_summary:0
 msgid "Summary"
-msgstr "Summary"
+msgstr "Riepilogo"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -752,8 +674,8 @@ msgid "Tax Authority Partner"
 msgstr "Partner Erario"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:633
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:633
+#: code:addons/account_vat_period_end_statement/models/account.py:674
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:674
 #, python-format
 msgid "Tax Authority VAT"
 msgstr "IVA Erario"
@@ -772,15 +694,15 @@ msgid "Tax Code"
 msgstr "Codice imposta"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:679
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:679
+#: code:addons/account_vat_period_end_statement/models/account.py:720
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:720
 #, python-format
 msgid "Tax child use %s different from parent use %s"
 msgstr "Tax child use %s different from parent use %s"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:1010
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1010
+#: code:addons/account_vat_period_end_statement/models/account.py:1051
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1051
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Il conto per gli interessi IVA deve essere configurato"
@@ -796,8 +718,8 @@ msgid "The accounts containing the debit VAT amount to write-off"
 msgstr "I conti contenenti l'IVA a debito da stornare"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:653
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:653
+#: code:addons/account_vat_period_end_statement/models/account.py:694
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:694
 #, python-format
 msgid "The payment term %s does not have due dates"
 msgstr "Il termine di pagamento %s non ha date di scadenza"
@@ -819,11 +741,6 @@ msgstr ""
 "liquidazione elettronica per generare file xml da inviare\n"
 "Liquidazione ordinaria: calcola IVA periodo\n"
 "Liquidazione annuale per riepilogo annuale"
-
-#. module: account_vat_period_end_statement
-#: selection:account.vat.period.end.statement,codice_carica:0
-msgid "Tutore di minore"
-msgstr "Tutore di minore"
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/report/vat_period_end_statement.py:187
@@ -856,8 +773,8 @@ msgstr "Liquidazioni IVA"
 #: field:account.period,e_vat_statement_id:0
 #: field:account.period,vat_statement_id:0
 #: field:account.period,y_vat_statement_id:0
-#: code:addons/account_vat_period_end_statement/models/account.py:530
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:530
+#: code:addons/account_vat_period_end_statement/models/account.py:571
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:571
 #: field:statement.credit.account.line,statement_id:0
 #: field:statement.debit.account.line,statement_id:0
 #: field:statement.generic.account.line,statement_id:0
@@ -871,6 +788,13 @@ msgid "VAT statement move"
 msgstr "Movimento liquidazione IVA"
 
 #. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:516
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:516
+#, python-format
+msgid "VAT statement sequence not set!"
+msgstr "VAT statement sequence not set!"
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.menu,name:account_vat_period_end_statement.menu_account_vat_period_end_statement
 msgid "VAT statements"
 msgstr "Liquidazioni IVA"
@@ -878,7 +802,7 @@ msgstr "Liquidazioni IVA"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_account_vat_settlement_attachment
 msgid "Vat Settlement Export File"
-msgstr "Vat Settlement Export File"
+msgstr "Comunicazione elettronica per AdE"
 
 #. module: account_vat_period_end_statement
 #: view:res.company:account_vat_period_end_statement.view_vat_period_end_statement_company_form
@@ -893,15 +817,15 @@ msgid "Vat statement"
 msgstr "Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:496
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:496
+#: code:addons/account_vat_period_end_statement/models/account.py:536
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:536
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Non è possibile eliminare una liquidazione confermata o pagata"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:1019
-#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1019
+#: code:addons/account_vat_period_end_statement/models/account.py:1060
+#: code:addons/l10n-italy/account_vat_period_end_statement/models/account.py:1060
 #, python-format
 msgid "You should delete VAT Settlement before deleting Vat Period End Statement"
 msgstr "You should delete VAT Settlement before deleting Vat Period End Statement"
@@ -909,7 +833,7 @@ msgstr "You should delete VAT Settlement before deleting Vat Period End Statemen
 #. module: account_vat_period_end_statement
 #: view:wizard.vat.settlement:account_vat_period_end_statement.wizard_export_vat_settlement_form_view
 msgid "Your download is ready"
-msgstr "Your download is ready"
+msgstr "La tua liquidazione è pronta"
 
 #. module: account_vat_period_end_statement
 #: selection:wizard.vat.settlement,state:0
