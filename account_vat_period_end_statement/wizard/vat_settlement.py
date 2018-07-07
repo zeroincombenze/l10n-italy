@@ -140,10 +140,6 @@ class WizardVatSettlement(orm.TransientModel):
 
             company_id = statement.company_id.id
             company = company_pool.browse(cr, uid, company_id, context=context)
-            if company.partner_id.vat[:2].lower() == 'it':
-                vat = company.partner_id.vat[2:]
-            else:
-                vat = company.partner_id.vat
             settlement = Fornitura()
             settlement.Intestazione = (Intestazione_IVP_Type())
             settlement.Intestazione.CodiceFornitura = codice_fornitura
@@ -161,6 +157,45 @@ class WizardVatSettlement(orm.TransientModel):
                 raise orm.except_orm(
                     'Error!',
                     'No period defined!')
+            if not statement.soggetto_codice_fiscale:
+                _logger.info(
+                    'Manca CF del contribuente!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'Manca CF del contribuente!')
+            if len(statement.soggetto_codice_fiscale) != 11:
+                _logger.info(
+                    'Il CF del dichiarante deve essere una PI di 11 cifre!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'Il CF del dichiarante deve essere una PI di 11 cifre!')
+            if statement.soggetto_codice_fiscale != \
+                    company.partner_id.vat[2:] and \
+                    statement.soggetto_codice_fiscale != \
+                    company.partner_id.fiscalcode:
+                _logger.info(
+                    'CF contrinuente diverso da CF azienda!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'CF contrinuente diverso da CF azienda!')
+            if not statement.dichiarante_codice_fiscale:
+                _logger.info(
+                    'Manca CF del dichiarante!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'Manca CF del dichiarante!')
+            if len(statement.dichiarante_codice_fiscale) != 16:
+                _logger.info(
+                    'Il dichiarante deve essere PF con CF di 16 caratteri!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'Il dichiarante deve essere PF con CF di 16 caratteri!!')
+            if not statement.codice_carica:
+                _logger.info(
+                    'Manca codice carica del dichiarante!')
+                raise orm.except_orm(
+                    'Errore!',
+                    'Manca codice carica del dichiarante!')
             if not statement.incaricato_trasmissione_codice_fiscale or \
                     not statement.incaricato_trasmissione_data_impegno:
                 _logger.info(
@@ -184,20 +219,18 @@ class WizardVatSettlement(orm.TransientModel):
             settlement.Comunicazione.Frontespizio.FirmaIntermediario = "1"
             settlement.Comunicazione.Frontespizio.ImpegnoPresentazione = "1"
 
-            if statement.codice_carica:
-                if statement.codice_carica != '0':
-                    settlement.Comunicazione.Frontespizio.CFDichiarante = \
-                        statement.soggetto_codice_fiscale
+            if statement.dichiarante_codice_fiscale:
+                settlement.Comunicazione.Frontespizio.CFDichiarante = \
+                    statement.dichiarante_codice_fiscale
+                if statement.codice_carica:
                     settlement.Comunicazione.Frontespizio.CodiceCaricaDichiarante = \
-                        statement.codice_carica
-                elif not statement.incaricato_trasmissione_codice_fiscale:
-                    settlement.Comunicazione.Frontespizio.CodiceFiscale = \
-                        statement.soggetto_codice_fiscale
+                        statement.codice_carica.code
             date_start, date_stop = self.get_date_start_stop(statement,
                                                              context=context)
             settlement.Comunicazione.Frontespizio.AnnoImposta = str(
                 date_stop.year)
-            settlement.Comunicazione.Frontespizio.PartitaIVA = vat
+            settlement.Comunicazione.Frontespizio.PartitaIVA = \
+                statement.soggetto_codice_fiscale
 
             # settlement.Comunicazione.Frontespizio.PIVAControllante
             # settlement.Comunicazione.Frontespizio.UltimoMese = str(date_period_end.month)
@@ -316,7 +349,8 @@ class WizardVatSettlement(orm.TransientModel):
 
             vat_settlement_xml = settlement.toDOM().toprettyxml(encoding="UTF-8")
 
-            fn_name = 'IT%s_LI_%05d.xml' % (vat, progressivo_telematico)
+            fn_name = 'IT%s_LI_%05d.xml' % (statement.soggetto_codice_fiscale,
+                                            progressivo_telematico)
             attach_vals = {
                 'name': fn_name,
                 'datas_fname': fn_name,

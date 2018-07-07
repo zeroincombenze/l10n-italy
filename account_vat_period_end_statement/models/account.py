@@ -12,7 +12,7 @@
 #
 import logging
 import math
-from datetime import date
+from datetime import date, datetime
 
 try:
     from openerp.addons.decimal_precision import decimal_precision as dp
@@ -20,6 +20,7 @@ except:
     import decimal_precision as dp
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 _logger = logging.getLogger(__name__)
 try:
@@ -250,7 +251,14 @@ class AccountVatPeriodEndStatement(orm.Model):
     def _get_default_soggetto_codice_fiscale(self, cr, uid, context=None):
         user = self.pool.get('res.users').browse(cr, uid, uid, context)
         company = user.company_id.partner_id
-        if company.fiscalcode:
+        if company.vat:
+            return company.vat[2:]
+        return ''
+
+    def _get_default_dichiarante_codice_fiscale(self, cr, uid, context=None):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id.partner_id
+        if company.fiscalcode and len(company.fiscalcode) == 16:
             return company.fiscalcode
         return ''
 
@@ -326,7 +334,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]}),
         'authority_vat_account_id': fields.many2one(
-            'account.account', 'Tax Authority VAT Account', required=True,
+            'account.account', 'Tax Authority VAT Account',
             states={
                 'confirmed': [('readonly', True)],
                 'paid': [('readonly', True)],
@@ -416,19 +424,26 @@ class AccountVatPeriodEndStatement(orm.Model):
             readonly=True),
         'show_zero': fields.boolean('Show zero amount lines'),
         'soggetto_codice_fiscale':
-            fields.char('Codice fiscale dichiarante',
-                        size=16, required=True,
-                        help="CF del soggetto che presenta la comunicazione "
-                        "se PF o DI o con la specifica carica"),
+            fields.char(
+                'Codice fiscale contribuente',
+                size=16, required=True,
+                help="CF del soggetto a cui riferiscono i dati "
+                     "della liquidazione."),
+        'dichiarante_codice_fiscale':
+            fields.char(
+                'Codice fiscale dichiarante',
+                size=16,
+                help="CF del soggetto responabile della trasmissione;"
+                     "PF con la specifica carica se il contribuente "
+                     "è persona giuridica"),
         'codice_carica': fields.many2one(
-            'italy.ade.codice.carica', 'Codice carica'),
-        # 'progressivo_telematico':
-        #     fields.integer('Progressivo telematico', readonly=True),
+            'italy.ade.codice.carica', 'Codice carica',
+            help="Codice carica responsabile trasmissione"),
         'incaricato_trasmissione_codice_fiscale':
-            fields.char('Codice Fiscale Incaricato',
-                        size=16,
-                        help="CF intermediario "
-                             "che effettua la trasmissione telematica"),
+            fields.char(
+                'Codice Fiscale Incaricato',
+                size=16,
+                help="CF intermediario che trasmette la comuicazione"),
         'incaricato_trasmissione_numero_CAF':
             fields.integer('Numero CAF intermediario',
                            size=5,
@@ -464,6 +479,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         'type': 'xml',
         'journal_id': _get_default_journal,
         'soggetto_codice_fiscale': _get_default_soggetto_codice_fiscale,
+        'dichiarante_codice_fiscale': _get_default_dichiarante_codice_fiscale,
         'name': 'Liquidazione periodica'
     }
 
@@ -782,6 +798,26 @@ class AccountVatPeriodEndStatement(orm.Model):
                     tax_tree = self.link_tax_code(tax_child, tax, tax_tree)
         return tax_tree
 
+    def get_date_start_stop(self, statement, context=None):
+        date_start = False
+        date_stop = False
+        for period in statement.period_ids:
+            if not date_start:
+                date_start = period.date_start
+            else:
+                if period.date_start < date_start:
+                    date_start = period.date_start
+            if not date_stop:
+                date_stop = period.date_stop
+            else:
+                if period.date_stop > date_stop:
+                    date_stop = period.date_stop
+        date_start = datetime.strptime(date_start,
+                                       DEFAULT_SERVER_DATE_FORMAT)
+        date_stop = datetime.strptime(date_stop,
+                                      DEFAULT_SERVER_DATE_FORMAT)
+        return date_start, date_stop
+
     def compute_amount_dbt_crd(self, cr, uid, statement, company_id,
                                tax_tree, show_zero=None, context=None):
         context = context or {}
@@ -909,7 +945,25 @@ class AccountVatPeriodEndStatement(orm.Model):
         for statement in self.browse(cr, uid, ids, context):
             # Actual company_id
             company_id = statement.company_id.id
-            statement.write({'previous_debit_vat_amount': 0.0})
+            date_start, date_stop = self.get_date_start_stop(statement,
+                                                             context=context)
+            name = False
+            if date_start and date_stop:
+                if date_start.month == date_stop.month:
+                    name = 'Mese %d %d' % (date_stop.month, date_stop.year)
+                else:
+                    if date_start.month in (1, 4, 7, 10) and \
+                            date_stop.month in (3, 6, 9, 12):
+                        name = '%d° Trimestre %d' % (int(date_stop.month/3),
+                                                     date_stop.year)
+                    else:
+                        name = False
+            if name:
+                statement.write({'name': name,
+                                 'date': date_stop,
+                                 'previous_debit_vat_amount': 0.0})
+            else:
+                statement.write({'previous_debit_vat_amount': 0.0})
             type = statement.type
             prev_statement_ids = self.search(cr, uid, [(
                 'date', '<', statement.date),
@@ -1005,8 +1059,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             country_model = self.pool.get('res.country')
             if country_id and country_model.browse(
                     cr, uid, country_id, context).code != 'IT':
-                return {'value': {name: fiscalcode,
-                                  'individual': True}}
+                return {'value': {name: fiscalcode}}
             elif len(fiscalcode) == 11:
                 res_partner_model = self.pool.get('res.partner')
                 chk = res_partner_model.simple_vat_check(
@@ -1035,8 +1088,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                                 'message': 'Fiscal code could be %s' % (value)}
                             }
                 individual = True
-            return {'value': {name: fiscalcode,
-                              'individual': individual}}
+            return {'value': {name: fiscalcode}}
         return {'value': {'individual': False}}
 
     def get_account_interest(self, cr, uid, ids, context=None):

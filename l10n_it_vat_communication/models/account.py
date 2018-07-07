@@ -33,6 +33,13 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
 
 class AccountVatCommunication(orm.Model):
 
+    def _get_default_soggetto_codice_fiscale(self, cr, uid, context=None):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id.partner_id
+        if company.vat:
+            return company.vat[2:]
+        return ''
+
     _name = "account.vat.communication"
     _columns = {
         'company_id': fields.many2one('res.company', 'Company'),
@@ -111,6 +118,7 @@ class AccountVatCommunication(orm.Model):
             self.pool['res.company']._company_default_get(
                 cr, uid, 'account.vat.communication', context=c),
         'state': 'draft',
+        'soggetto_codice_fiscale': _get_default_soggetto_codice_fiscale,
     }
 
     def create(self, cr, uid, vals, context=None):
