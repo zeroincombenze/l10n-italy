@@ -879,6 +879,12 @@ class AccountVatPeriodEndStatement(orm.Model):
                             dbt_crd = 'credit'
                         else:
                             dbt_crd = dbt_crd_tax_code.vat_statement_type
+                        if dbt_crd == 'debit':
+                            type_sign = 1
+                        elif dbt_crd == 'credit':
+                            type_sign = -1
+                        else:
+                            type_sign = 0
                         if left_id and right_id:
                             break
                 if left_id and right_id:
@@ -903,7 +909,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             if basevat_id == 'tax_code_id':
                 rec[basevat_id] = left_id
                 rec['amount'] = \
-                    total * dbt_crd_tax_code.vat_statement_sign
+                    total * type_sign
                 if right_id:
                     if vatbase not in rec:
                         rec[vatbase_id] = right_id
@@ -912,7 +918,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             elif basevat_id == 'base_code_id':
                 rec[basevat_id] = left_id
                 rec['base_amount'] = \
-                    total * dbt_crd_tax_code.vat_statement_sign
+                    total * type_sign
                 if right_id:
                     if vatbase not in rec:
                         rec[vatbase_id] = right_id
@@ -1189,11 +1195,11 @@ class AccountTaxCode(orm.Model):
                  "Please, leave empty if no VAT amount record"),
         'vat_statement_type': fields.selection(
             [('credit', 'Credit'), ('debit', 'Debit')], 'Type',
-            help="This establish whether amount will "
-                 "be loaded as debit or credit"),
+            help="This value is ignored if vat code type is sale or purchase;"
+                 "Set this value id vat code type is both"),
         'vat_statement_sign': fields.integer(
             'Sign used in statement',
-            help="If tax code period sum is usually negative, set '-1' here"),
+            help="Do not use: value is deprecated."),
     }
     _defaults = {
         'vat_statement_type': 'debit',

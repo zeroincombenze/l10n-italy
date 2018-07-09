@@ -12,7 +12,7 @@ from datetime import date
 
 try:
     from openerp.addons.decimal_precision import decimal_precision as dp
-except:
+except BaseException:
     import decimal_precision as dp
 import openerp.release as release
 from openerp.osv import fields, orm
@@ -43,15 +43,15 @@ class AccountVatCommunication(orm.Model):
     _name = "account.vat.communication"
     _columns = {
         'company_id': fields.many2one('res.company', 'Company'),
-        # 'progressivo_telematico':
-        #    fields.integer('Progressivo telematico', readonly=True),
         'soggetto_codice_fiscale':
-            fields.char('Codice fiscale dichiarante',
-                        size=16, required=True,
-                        help="CF del soggetto che presenta la comunicazione "
-                             "se PF o DI o con la specifica carica"),
+            fields.char(
+                'Codice fiscale contribuente',
+                size=16, required=True,
+                help="CF del soggetto a cui riferiscono i dati "
+                     "della liquidazione."),
         'codice_carica': fields.many2one(
-            'italy.ade.codice.carica', 'Codice carica'),
+            'italy.ade.codice.carica', 'Codice carica',
+            help="Codice carica responsabile trasmissione"),
         'state': fields.selection([
             ('draft', 'Draft'),
             ('open', 'Open'),
@@ -161,7 +161,7 @@ class AccountVatCommunication(orm.Model):
         sequence_model = self.pool['ir.sequence']
         company_id = communication.company_id.id
         sequence_ids = self.search_sequence(cr, uid, company_id,
-                                                context=None)
+                                            context=None)
         if not sequence_ids:
             sequence_ids = self.create_sequence(cr, uid, company_id,
                                                 context=context)
@@ -300,19 +300,29 @@ class AccountVatCommunication(orm.Model):
                             taxcode_base_id = invoice_tax.tax_code_id.id
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
-                if (tax_type == 'sale' and tax_rate and tax_nature) or \
-                    (tax_type == 'sale' and
-                     tax_rate == 0.0 and not tax_nature) or \
-                    (tax_type == 'purchase' and
-                     tax_rate and tax_nature and tax_nature != 'N6') or \
-                    (tax_type == 'purchase' and
-                     tax_rate == 0.0 and (not tax_nature or
-                                          tax_nature == 'N6')):
-                    raise orm.except_orm(
-                        _('Error!'),
-                        _('Invalid tax %s nature for invoice %s') % (
-                            invoice_tax.name,
-                            invoice.number))
+                if tax_type in ('sale', 'purchase'):
+                    if tax_rate == 0.0 and not tax_nature:
+                        raise orm.except_orm(
+                            _('Error!'),
+                            _('00400 - '
+                              'Invalid tax %s nature for invoice %s') % (
+                                  invoice_tax.name,
+                                  invoice.number))
+                    elif tax_rate and tax_nature and tax_nature != 'N6':
+                        raise orm.except_orm(
+                            _('Error!'),
+                            _('00401 - '
+                              'Invalid tax %s nature for invoice %s') % (
+                                  invoice_tax.name,
+                                  invoice.number))
+                    if tax_payability == 'S' and tax_nature == 'N6':
+                        raise orm.except_orm(
+                            _('Error!'),
+                            _('00420 - '
+                              'Wrong tax %s nature/payment for invoice %s') % (
+                                  invoice_tax.name,
+                                  invoice.number))
+
                 if tax_nature == 'FC' or (tax_nature == 'N2' and
                                           not invoice.partner_id.vat):
                     if invoice.type[-7:] == '_refund':

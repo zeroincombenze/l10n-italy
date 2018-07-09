@@ -327,20 +327,21 @@ class WizardVatCommunication(orm.TransientModel):
         partner_ids = commitment_model.get_partner_list(
             cr, uid, commitment, dte_dtr_id, context)
         for partner_id in partner_ids:
-            fields = commitment_model.get_xml_cessionario_cedente(
+            fields_partner = commitment_model.get_xml_cessionario_cedente(
                 cr, uid, commitment, partner_id, dte_dtr_id, context)
             _logger.debug('partner_id=%d %s VAT=%s%s CF=%s' % (
                 partner_id,
-                fields.get('xml_Denominazione'),
-                fields.get('xml_IdPaese'), fields.get('xml_IdCodice'),
-                fields.get('xml_CodiceFiscale')))
+                fields_partner.get('xml_Denominazione'),
+                fields_partner.get('xml_IdPaese'),
+                fields_partner.get('xml_IdCodice'),
+                fields_partner.get('xml_CodiceFiscale')))
 
             if dte_dtr_id == 'DTE':
                 partner = self.get_cessionario_committente(
-                    cr, uid, fields, dte_dtr_id, context)
+                    cr, uid, fields_partner, dte_dtr_id, context)
             else:
                 partner = self.get_cedente_prestatore(
-                    cr, uid, fields, dte_dtr_id, context
+                    cr, uid, fields_partner, dte_dtr_id, context
                 )
 
             invoices = []
@@ -371,6 +372,16 @@ class WizardVatCommunication(orm.TransientModel):
                 # _logger.debug('invoice_id=%d %s' % (
                 #     invoice_id,
                 #     fields.get('xml_Numero')))
+
+                if dte_dtr_id == 'DTR' and \
+                        fields['xml_TipoDocumento'] != 'TD12' and \
+                        not fields_partner.get('xml_IdPaese') and \
+                        not fields_partner.get('xml_IdCodice') and \
+                        not fields_partner.get('xml_CodiceFiscale'):
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Error 00464: Partner id %d without fiscal data' % (
+                            partner_id)))
 
                 dati_riepilogo = []
                 line_ids = commitment_model.get_riepilogo_list(
@@ -465,8 +476,6 @@ class WizardVatCommunication(orm.TransientModel):
                     raise orm.except_orm(
                         _('Error!'),
                         _('Internal error: invalid partner selector'))
-                # file_name = 'Comunicazine_IVA-{}.xml'.format(
-                #     commitment.progressivo_telematico)
                 progr_invio = commitment_model.set_progressivo_telematico(
                     cr, uid, commitment, context)
                 _logger.debug('Progressivo invio %d' % progr_invio)
