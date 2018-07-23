@@ -5,7 +5,7 @@
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp import fields, models, api
+from openerp import api, models
 
 
 class ResPartner(models.Model):
@@ -14,8 +14,6 @@ class ResPartner(models.Model):
     def _build_where_city(self, level=None):
         level = level or 0
         where = []
-        # if self.country_id:
-        #     where.append(('country_id', '=', self.country_id.id))
         if self.zip:
             zip = '%s%s' % (self.zip[0: len(self.zip) - level],
                             '%' * level)
@@ -29,8 +27,7 @@ class ResPartner(models.Model):
         where.append(('code', '=', state_code))
         return where
 
-    @api.onchange('country_id', 'zip', 'state_id')
-    def on_change_addrflds(self):
+    def _onchange_addrflds(self):
         where = self._build_where_city()
         if where:
             city_ids = self.env['res.city'].search(where)
@@ -47,3 +44,15 @@ class ResPartner(models.Model):
                 stateid_ids = self.env['res.country.state'].search(where)
                 if stateid_ids:
                     self.state_id = stateid_ids[0]
+
+    @api.onchange('country_id')
+    def onchange_country(self):
+        return self._onchange_addrflds()
+
+    @api.onchange('zip')
+    def onchange_zip(self):
+        return self._onchange_addrflds()
+
+    @api.onchange('state_id')
+    def onchange_state_id(self):
+        return self._onchange_addrflds()
