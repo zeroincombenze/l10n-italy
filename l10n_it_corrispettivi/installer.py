@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import fields, osv
 
 class corrispettivi_config_data(osv.osv_memory):
     _name = 'corrispettivi.config.data'
@@ -39,7 +39,8 @@ class corrispettivi_config_data(osv.osv_memory):
                 'padding': 3,
                 'prefix': 'COJ/%(year)s/',
                 })
-            journal_id = self.pool.get('account.journal').create(cr, uid, {
+            # journal_id = self.pool.get('account.journal').create(cr, uid, {
+            self.pool.get('account.journal').create(cr, uid, {
                 'code': 'COJ',
                 'name': 'Sezionale Corrispettivi',
                 'type': 'sale',
@@ -48,7 +49,8 @@ class corrispettivi_config_data(osv.osv_memory):
                 'default_credit_account_id': o.default_credit_account_id.id,
                 'default_debit_account_id': o.default_debit_account_id.id,
                 })
-            partner_id = self.pool.get('res.partner').create(cr, uid, {
+            # partner_id = self.pool.get('res.partner').create(cr, uid, {
+            self.pool.get('res.partner').create(cr, uid, {
                 'name': 'Corrispettivi',
                 'ref': 'COJ',
                 'customer': False,
@@ -57,4 +59,3 @@ class corrispettivi_config_data(osv.osv_memory):
                 })
 
 corrispettivi_config_data()
-

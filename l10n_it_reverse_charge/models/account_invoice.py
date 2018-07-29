@@ -15,7 +15,7 @@ class AccountInvoiceLine(models.Model):
 
     @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
-        fposition = self.invoice_id.fiscal_position_id
+        # fposition = self.invoice_id.fiscal_position_id
         self.rc = False
         for tax in self.invoice_line_tax_ids:
             if tax.non_taxable_nature == 'N6':

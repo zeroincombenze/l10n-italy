@@ -23,7 +23,7 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-import decimal_precision as dp
+from openerp import decimal_precision as dp
 
 class res_company(orm.Model):
     _inherit = 'res.company'
@@ -38,7 +38,7 @@ class res_company(orm.Model):
             help="Journal used for registration of witholding amounts to be paid"),
         'authority_partner_id': fields.many2one('res.partner', 'Tax Authority Partner'),
         }
-    
+
 class account_config_settings(orm.TransientModel):
     _inherit = 'account.config.settings'
     _columns = {
@@ -91,7 +91,7 @@ class account_config_settings(orm.TransientModel):
         return res
 
 class account_invoice(orm.Model):
-    
+
     def _net_pay(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for invoice in self.browse(cr, uid, ids, context):
@@ -108,11 +108,11 @@ class account_invoice(orm.Model):
 
 class account_voucher(orm.Model):
     _inherit = "account.voucher"
-    
+
     _columns = {
         'withholding_move_ids': fields.many2many('account.move', 'voucher_withholding_move_rel', 'voucher_id', 'move_id', 'Withholding Tax Entries', readonly=True),
         }
-        
+
     def reconcile_withholding_move(self, cr, uid, invoice, wh_move, context=None):
         line_pool=self.pool.get('account.move.line')
         rec_ids = []
@@ -123,12 +123,12 @@ class account_voucher(orm.Model):
             if wh_line.account_id.type == 'payable' and invoice.company_id.withholding_account_id and invoice.company_id.withholding_account_id.id != wh_line.account_id.id and not wh_line.reconcile_id:
                 rec_ids.append(wh_line.id)
         return line_pool.reconcile_partial(cr, uid, rec_ids, type='auto', context=context)
-    
+
     def action_move_line_create(self, cr, uid, ids, context=None):
         res = super(account_voucher,self).action_move_line_create(cr, uid, ids, context)
         inv_pool = self.pool.get('account.invoice')
         move_pool = self.pool.get('account.move')
-        tax_pool = self.pool.get('account.tax')
+        # ax_pool = self.pool.get('account.tax')
         curr_pool = self.pool.get('res.currency')
         term_pool = self.pool.get('account.payment.term')
         priod_obj = self.pool.get('account.period')
@@ -150,7 +150,7 @@ class account_voucher(orm.Model):
                         raise orm.except_orm(_('Error'), _('The company does not have an associated Tax Authority partner') )
                     # compute the new amount proportionally to paid amount
                     new_line_amount = curr_pool.round(cr, uid, voucher.company_id.currency_id, ((amounts_by_invoice[invoice.id]['allocated'] + amounts_by_invoice[invoice.id]['write-off']) / invoice.net_pay) * invoice.withholding_amount)
-                    
+
                     # compute the due date
                     due_list = term_pool.compute(
                         cr, uid, invoice.company_id.withholding_payment_term_id.id, new_line_amount,
@@ -163,7 +163,7 @@ class account_voucher(orm.Model):
                         raise orm.except_orm(_('Error'),
                             _('The payment term %s does not have due dates')
                             % invoice.company_id.withholding_payment_term_id.name)
-                            
+
                     period_ids = priod_obj.find(cr, uid, dt=voucher.date, context=context)
                     new_move = {
                         'journal_id': invoice.company_id.withholding_journal_id.id,
@@ -194,10 +194,10 @@ class account_voucher(orm.Model):
 
     def cancel_voucher(self, cr, uid, ids, context=None):
         res = super(account_voucher,self).cancel_voucher(cr, uid, ids, context)
-        reconcile_pool = self.pool.get('account.move.reconcile')
+        # reconcile_pool = self.pool.get('account.move.reconcile')
         move_pool = self.pool.get('account.move')
         for voucher in self.browse(cr, uid, ids, context=context):
-            recs = []
+            # recs = []
             for move in voucher.withholding_move_ids:
                 move_pool.button_cancel(cr, uid, [move.id])
                 move_pool.unlink(cr, uid, [move.id])

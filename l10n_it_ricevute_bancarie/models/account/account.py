@@ -236,6 +236,7 @@ class AccountInvoice(models.Model):
                         ))
         super(AccountInvoice, self).action_cancel()
 
+    @ api.one
     def copy(self, default=None):
         self.ensure_one()
         # Delete Due Cost Line of invoice when copying

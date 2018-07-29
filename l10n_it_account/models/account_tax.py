@@ -53,8 +53,7 @@ class AccountTax(models.Model):
                 return (tax_name, -base_balance,
                         -tax_balance, -tax_balance, 0)
             return (tax_name, base_balance,
-                    tax_balance, tax_balance, 0
-            )
+                    tax_balance, tax_balance, 0)
         else:
             base_balance = tax.base_balance
 

@@ -44,11 +44,10 @@ class AccountInvoice(models.Model):
 
     def reconcile_sp_invoice(self, invoice):
         reconcile_model = self.env['account.move.line.reconcile']
-        move_line_model = self.env['account.move.line']
+        # move_line_model = self.env['account.move.line']
         ids = invoice.get_receivable_line_ids()
         reconcile_model.with_context(
-                        active_ids=ids
-                    ).trans_rec_reconcile_full()
+            active_ids=ids).trans_rec_reconcile_full()
 
     def _build_debit_line(self):
         if not self.company_id.sp_account_id:
@@ -122,8 +121,7 @@ class AccountInvoice(models.Model):
                 (select x.tax_dest_id
                 from account_fiscal_position f, account_fiscal_position_tax x
                 where x.position_id = f.id and f.split_payment = true);""" %
-                self.id
-        )
+                self.id)
         self._cr.execute(query, (self.id,))
         return [row[0] for row in self._cr.fetchall()]
 
@@ -132,9 +130,9 @@ class AccountInvoice(models.Model):
 
         def _revaluate_amount(receivable_line, db_cr, vat_assigned):
             receivable_line_amount = receivable_line[db_cr] - (
-                                     invoice.amount_tax * 
-                                     receivable_line[db_cr] /
-                                     invoice.amount_total)
+                invoice.amount_tax * 
+                receivable_line[db_cr] /
+                invoice.amount_total)
             if not vat_assigned:
                 receivable_line_amount += invoice.amount_tax
             diff = receivable_line[db_cr] - receivable_line_amount
