@@ -254,6 +254,7 @@ and deploy on local server.
    :target: https://odoo-italia.org
 .. |chat with us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+.. |ok| image:: https://www.gnu.org/licenses/lgpl.html"><img src="https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
 .. |ok| raw:: html
 
    <i class="fa fa-check-square" style="font-size:24px;color:green"></i>
