@@ -19,50 +19,50 @@
 <data noupdate="0">
     <!-- carriage conditions -->
     <record id="carriage_condition_PF" model="stock.picking.carriage_condition">
-        <field name="name">Carriage Paid</field>
+        <field name="name">Porto Franco (DDP)</field>
     </record>
     <record id="carriage_condition_PA" model="stock.picking.carriage_condition">
-        <field name="name">Carriage Forward</field>
+        <field name="name">Porto Assegnato (EXW)</field>
     </record>
     <record id="carriage_condition_PAF" model="stock.picking.carriage_condition">
-        <field name="name">Charged in Invoice</field>
+        <field name="name">Addebito in fattura (DDU)</field>
     </record>
 
     <!-- goods descriptions -->
     <record id="goods_description_CAR" model="stock.picking.goods_description">
-        <field name="name">Box</field>
+        <field name="name">Scatola/Cartone</field>
     </record>
     <record id="goods_description_BAN" model="stock.picking.goods_description">
-        <field name="name">Pallet</field>
+        <field name="name">Bancale/Pallet</field>
     </record>
     <record id="goods_description_SFU" model="stock.picking.goods_description">
-        <field name="name">Bulk</field>
+        <field name="name">Sfuso</field>
     </record>
     <record id="goods_description_CBA" model="stock.picking.goods_description">
-        <field name="name">Box-Pallet</field>
+        <field name="name">Cartoni su Bancale</field>
     </record>
 
     <!-- trasportation reasons -->
     <record id="transportation_reason_VEN" model="stock.picking.transportation_reason">
-        <field name="name">Sale</field>
+        <field name="name">Vendita</field>
         <field name="to_be_invoiced">1</field>
     </record>
     <record id="transportation_reason_VIS" model="stock.picking.transportation_reason">
-        <field name="name">Goods on approval</field>
+        <field name="name">Conto Visione</field>
     </record>
     <record id="transportation_reason_RES" model="stock.picking.transportation_reason">
-        <field name="name">Returned</field>
+        <field name="name">Reso Merce</field>
     </record>
 
     <!-- trasportation methods -->
     <record id="transportation_method_MIT" model="stock.picking.transportation_method">
-        <field name="name">Sender</field>
+        <field name="name">Mittente</field>
     </record>
     <record id="transportation_method_DES" model="stock.picking.transportation_method">
-        <field name="name">Recipient</field>
+        <field name="name">Destinatario</field>
     </record>
     <record id="transportation_method_COR" model="stock.picking.transportation_method">
-        <field name="name">Carrier</field>
+        <field name="name">Corriere</field>
     </record>
 
 </data>
