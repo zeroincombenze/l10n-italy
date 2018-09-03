@@ -46,5 +46,6 @@ Funzionalità
         'data/res.country.state.csv',
         'data/res.city.csv',
     ],
+    # "test": ['test/res_partner.yml'],
     'installable': True
 }

@@ -17,27 +17,53 @@
         </field>
     </record>
 
-    <!--
-    <record model="ir.ui.view" id="view_company_form_inherit_zip">
-        <field name="name">company.form.zip</field>
-        <field name="model">res.company</field>
-        <field name="inherit_id" ref="base.view_company_form"/>
+    <record model="ir.ui.view" id="view_partner_form_inherit_zip">
+        <field name="name">partner.form.20.zip</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <data>
-                <field name="zip" position="replace"/>
-                <field name="city" position="replace"/>
-                <field name="state_id" position="replace"/>
-                <field name="street2" position="after">
-                    <div class="zi_custom_address">
-                        <field name="zip" placeholder="ZIP" style="width: 28%%" select="1"
-                               on_change="_onchange_addrflds()" />
-                        <field name="city" placeholder="City" style="width: 70%%" select="1" />
-                        <field name="state_id" placeholder="District" style="width: 80%%" select="1" options='{"no_open": True}'
-                               on_change="_onchange_addrflds()" />
-                    </div>
-                </field>
-            </data>
+            <field name="zip" position="replace" />
+            <field name="city" position="before">
+                <field name="zip" placeholder="ZIP"
+                    style="width: 20%%" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_partner_form_inherit_city">
+        <field name="name">partner.form.30.city</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="city" position="replace">
+                <field name="city" placeholder="City"
+                    style="width: 50%%" />
+            </field>
+            <field name="state_id" position="replace">
+                <field name="state_id" placeholder="Province"
+                     style="width: 27%%"
+                     domain="[('country_id', '=', country_id)]"
+                     options='{"no_open": True}' />
+            </field>
+        </field>
+    </record>
+
+    <!--
+    <record model="ir.ui.view" id="view_partner_form_inherit_addr">
+        <field name="name">partner.form.90.addr</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='buttons']" position="inside">
+                <button name="button_complete_addr" type="object"
+                        attrs="{'invisible':[('zip', '!=', False), ('state_id', '!=', False) ]}"
+                        string="Complete address"/>
+            </xpath>
         </field>
     </record>
     -->
