@@ -154,7 +154,7 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: view:wizard.registro.iva:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,message:0

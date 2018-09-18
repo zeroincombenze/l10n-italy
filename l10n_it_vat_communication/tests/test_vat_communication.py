@@ -39,8 +39,8 @@ class TestCommunication(TransactionCase):
             model_pool = self.registry(args[0])
             return model_pool.search(self.cr, self.uid, args[1], kwargs)
         # Search record ids [+8.0]
-        model_pool = self.registry(args[0])
-        return model_pool.search(args[1], kwargs)
+        model_pool = self.env[args[0]]
+        return model_pool.search(args[1], kwargs)._ids
 
     def write789(self, model, id, values):
         """Write existent record [7.0]"""

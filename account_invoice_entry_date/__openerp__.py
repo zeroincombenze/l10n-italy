@@ -29,7 +29,7 @@ move created while confirming (supplier) invoice""",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends": ['account', ],
-    "data": ['invoice_view.xml'],
+    "data": ['views/account_invoice_view.xml'],
     "demo": [],
     "active": False,
     "installable": True

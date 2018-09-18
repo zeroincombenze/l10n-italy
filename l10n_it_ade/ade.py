@@ -11,13 +11,16 @@ Programs use these constants have to add follow line:
 from l10n_it_ade.ade import ADE_LEGALS
 
 There is a class for general purpose named 'res.italy.ade'
+
+**************** DEPRECATED **********************************
+
 """
-from openerp.osv import orm
+from openerp.osv import orm, fields
 
 
 ADE_LEGALS = {
     'codice_carica': [
-        ('0', 'Azienda PF (Ditta indivisuale/Professionista/eccetera)'),
+        # ('0', 'Azienda PF (Ditta indivisuale/Professionista/eccetera)'),
         ('1', 'Legale rappresentante, socio amministratore'),
         ('2', 'Rappresentante di minore,interdetto,eccetera'),
         ('3', 'Curatore fallimentare'),
@@ -46,5 +49,27 @@ ADE_LEGALS = {
 }
 
 
-class AdE(orm.AbstractModel):
-    _name = 'res.italy.ade'
+def reduce_selection(main_selection, exclusion_list):
+    reduced_list = []
+    for i, item in enumerate(main_selection):
+        if main_selection[i][0] not in exclusion_list:
+            reduced_list.append(item)
+    return reduced_list
+
+
+class AdECodiceCarica(orm.Model):
+    _name = 'italy.ade.codice.carica'
+    _description = 'Codice Carica'
+
+    _columns = {
+        'code': fields.char(string='Code', size=2,
+                            help='Code assigned by Tax Authority'),
+        'name': fields.char(string='Name'),
+        'help': fields.char(string='Help'),
+        'scope': fields.char(string='Scope',
+                             help='Reserved to specific scope'),
+        'active': fields.boolean(string='Active')
+    }
+    _default = {
+        'active': True
+    }

@@ -22,7 +22,6 @@
 -
   !record {model: res.partner, id: partner_1}:
     name: 'Prima Infanzia s.r.l.'
-    vat: 'IT01234560017'
     street: 'Via I Maggio, 11'
     city: 'Maddaloni'
 -
@@ -69,7 +68,6 @@
 -
   !record {model: res.partner, id: partner_2}:
     name: 'Secondamano s.r.l.'
-    vat: 'IT01250630504'
     zip: '10060'
     city: 'San Secondo'
 -

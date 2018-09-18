@@ -18,7 +18,7 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: view:wizard.compute.fc:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:49

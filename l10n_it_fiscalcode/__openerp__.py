@@ -22,12 +22,16 @@
     'name': 'Italian Localisation - Fiscal Code',
     'version': '7.0.0.2.1',
     'category': 'Localisation/Italy',
-    'description': """
+    'description': """(en)
+This module extends the functionality of partner to fit italian laws and mores
+and to allow you to computation Fiscal code computation for partner
 
-Functionalities:
 
-- Fiscal code computation for partner
+(it)
+Modulo che gestisce il codice fiscale. Permette di calcolare il codice fiscale e
+verifica la validità del codice fiscale inserito, se soggetto italiano.
 
+Fornisce anche la separazione del cognome/nome per la gestione della comunicazione IVA.
 """,
     'author': "Odoo Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',

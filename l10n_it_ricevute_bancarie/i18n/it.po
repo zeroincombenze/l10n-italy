@@ -668,7 +668,7 @@ msgstr "Fattura"
 #: view:riba.accreditation:0 view:riba.distinta:0 view:riba.emissione:0
 #: view:riba.file.export:0 view:riba.unsolved:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:account.move.line:0

@@ -21,7 +21,7 @@
         </field>
     </record>
 
-<!--
+    <!--
     <record model="ir.ui.view" id="view_company_form_inherit_zip">
         <field name="name">company.form.zip</field>
         <field name="model">res.company</field>

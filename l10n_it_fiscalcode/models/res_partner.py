@@ -5,7 +5,6 @@
 import logging
 from openerp.osv import fields, orm
 
-
 _logger = logging.getLogger(__name__)
 try:
     import codicefiscale
@@ -15,10 +14,10 @@ except ImportError as err:
 SPLIT_MODE = [('LF', 'Last/First'),
               ('FL', 'First/Last'),
               ('LFM', 'Last/First Middle'),
-              ('L2F', 'Last last/First'),
-              ('L2FM', 'Last last/First Middle'),
               ('FML', 'First middle/Last'),
+              ('L2F', 'Last last/First'),
               ('FL2', 'First/Last last'),
+              ('L2FM', 'Last last/First Middle'),
               ('FML2', 'First Middle/Last last')]
 
 
@@ -26,7 +25,6 @@ class ResPartner(orm.Model):
     _inherit = 'res.partner'
 
     def check_fiscalcode(self, cr, uid, ids, context=None):
-
         for partner in self.browse(cr, uid, ids):
             if not partner.fiscalcode:
                 return True
@@ -47,6 +45,22 @@ class ResPartner(orm.Model):
                     del fields[i]
                     break
         return fields
+
+    def _split_last_name(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for partner in self.browse(cr, uid, ids, context=context):
+            lastname, firstname = self._split_last_first_name(
+                cr, uid, partner=partner)
+            res[partner.id] = lastname
+        return res
+
+    def _split_first_name(self, cr, uid, ids, fname, arg, context=None):
+        res = {}
+        for partner in self.browse(cr, uid, ids, context=context):
+            lastname, firstname = self._split_last_first_name(
+                cr, uid, partner=partner)
+            res[partner.id] = firstname
+        return res
 
     def _split_last_first_name(self, cr, uid, partner=None,
                                name=None, splitmode=None):
@@ -91,22 +105,6 @@ class ResPartner(orm.Model):
                 return '%s %s' % (f[0], f[1]), '%s %s' % (f[2], f[3])
         return '', ''
 
-    def _split_last_name(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for partner in self.browse(cr, uid, ids, context=context):
-            lastname, firstname = self._split_last_first_name(
-                cr, uid, partner=partner)
-            res[partner.id] = lastname
-        return res
-
-    def _split_first_name(self, cr, uid, ids, fname, arg, context=None):
-        res = {}
-        for partner in self.browse(cr, uid, ids, context=context):
-            lastname, firstname = self._split_last_first_name(
-                cr, uid, partner=partner)
-            res[partner.id] = firstname
-        return res
-
     def _set_last_first_name(self, cr, uid, partner_id, name, value, arg,
                              context=None):
         return True
@@ -136,7 +134,7 @@ class ResPartner(orm.Model):
             readonly=True,
             fnct_inv=_set_last_first_name),
         'split_next': fields.boolean(
-            'Change format name',
+            '◒ ⇔ ◓',
             help="Check for change first/last name format"),
     }
 

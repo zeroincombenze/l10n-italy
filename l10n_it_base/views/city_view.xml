@@ -8,9 +8,10 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="City">
+                <field name="country_id"/>
                 <field name="name"/>
                 <field name="zip"/>
-                <field name="province_id"/>
+                <field name="state_id"/>
             </tree>
         </field>
     </record>
@@ -24,7 +25,7 @@
                 <group col="2">
                     <field name="name" select="1" colspan="2"/>
                     <field name="zip"/>
-                    <field name="province_id" select="1"/>
+                    <field name="state_id" select="1"/>
                     <field name="phone_prefix"/>
                     <field name="istat_code"/>
                     <field name="cadaster_code"/>

@@ -7,7 +7,6 @@ import logging
 from openerp.osv import fields, orm, osv
 from openerp.tools.translate import _
 
-
 _logger = logging.getLogger(__name__)
 try:
     from codicefiscale import build

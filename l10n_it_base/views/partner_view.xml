@@ -2,76 +2,80 @@
 <openerp>
 <data>
 
-    <record model="ir.ui.view" id="view_partner_form_inherit_country_id">
-        <field name="name">partner.form.country_id</field>
+    <record model="ir.ui.view" id="view_partner_form_inherit_country">
+        <field name="name">partner.form.10.country</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <data>
-                <field name="country_id" position="replace"/>
-                <field name="street" position="before">
-                    <field name="country_id" placeholder="Country"
-                           class="oe_no_button"
-                           on_change="on_change_country(country_id, zip, city, state_id, province, region)"
-                           options='{"no_open": True}'
-                           select="1"/>
-                </field>
-            </data>
+            <field name="country_id" position="replace" />
+            <field name="street" position="before">
+                <field name="country_id" placeholder="Country"
+                       on_change="on_change_country(country_id, zip, city, state_id, False, region)"
+                       options="{'no_open': True}" />
+            </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_partner_form_inherit_province">
-        <field name="name">partner.form.province</field>
+    <record model="ir.ui.view" id="view_partner_form_inherit_zip">
+        <field name="name">partner.form.20.zip</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='buttons']" position="inside">
-                 <button name="button_complete_addr" type="object"
-                         attrs="{'invisible':[('zip', '!=', False), ('state_id', '!=', False) ]}"
-                         string="Complete address"/>
-            </xpath>
-            <field name="state_id" position="replace"/>
-            <field name="city" position="after">
-                <div class="province_format">
-                    <field name="state_id" placeholder="Province" style="width: 38%%"
-                           domain="[('country_id', '=', country_id)]"
-                           on_change="on_change_state(country_id, zip, city, state_id, province, region)"
-                           class="oe_no_button"
-                           options='{"no_open": True}' />
-                    <field name="province" placeholder="Province" style="width: 19%%"
-                           readonly="1"
-                           on_change="on_change_province(country_id, zip, city, state_id, province, region)"
-                           select="2"/>
-                    <field name="region" placeholder="Region" style="width: 41%%"
-                           domain="[('country_id', '=', country_id)]"
-                           on_change="on_change_region(country_id, zip, city, state_id, province, region)"/>
-                </div>
+            <field name="zip" position="replace" />
+            <field name="city" position="before">
+                <field name="zip" placeholder="ZIP"
+                    style="width: 20%%"
+                    on_change="on_change_zip(country_id, zip, city, state_id, False, region)" />
             </field>
         </field>
     </record>
 
     <record model="ir.ui.view" id="view_partner_form_inherit_city">
-        <field name="name">partner.form.city</field>
+        <field name="name">partner.form.30.city</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="zip" position="replace"/>
-            <field name="city" position="replace"/>
-            <field name="street2" position="after">
-                <div class="zi_custom_address">
-                    <field name="zip" placeholder="ZIP" style="width: 20%%"
-                           select="1"
-                           on_change="on_change_zip(country_id, zip, city, state_id, province, region)"/>
-                    <field name="city" placeholder="City" style="width: 79%%"
-                           select="1"
-                           on_change="on_change_city(country_id, zip, city, state_id, province, region)"/>
-                </div>
+            <field name="city" position="replace">
+                <field name="city" placeholder="City"
+                    style="width: 50%%"
+                    on_change="on_change_city(country_id, zip, city, state_id, False, region)" />
             </field>
+            <field name="state_id" position="replace">
+                <field name="state_id" placeholder="Province"
+                     style="width: 27%%"
+                     domain="[('country_id', '=', country_id)]"
+                     on_change="on_change_state(country_id, zip, city, state_id, False, region)"
+                     options='{"no_open": True}' />
+            </field>
+            <field name="state_id" position="after">
+                    <field name="region" placeholder="Region"
+                           domain="[('country_id', '=', country_id)]"
+                           on_change="on_change_region(country_id, zip, city, state_id, False, region)"
+                           options='{"no_open": True}' />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_partner_form_inherit_addr">
+        <field name="name">partner.form.90.addr</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='buttons']" position="inside">
+                <button name="button_complete_addr" type="object"
+                        attrs="{'invisible':[('zip', '!=', False), ('state_id', '!=', False) ]}"
+                        string="Complete address"/>
+            </xpath>
         </field>
     </record>
 
 </data>
 </openerp>
+

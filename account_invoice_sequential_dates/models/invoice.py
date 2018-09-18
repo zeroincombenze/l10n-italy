@@ -15,6 +15,8 @@ class account_invoice(orm.Model):
     def _check_4_inv_date(self, cr, uid, ids, context=None):
         res = True
         for obj_inv in self.browse(cr, uid, ids, context=context):
+            if obj_inv.journal_id.proforma:
+                continue
             inv_type = obj_inv.type
             if inv_type == 'in_invoice' or inv_type == 'in_refund':
                 date_invoice = obj_inv.registration_date

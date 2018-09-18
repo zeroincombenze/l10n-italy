@@ -196,7 +196,7 @@ msgstr "Pronto per la stampa"
 #. module: account_central_journal
 #: view:wizard.central.journal.report:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: account_central_journal
 #: report:addons/account_central_journal/report/central_journal_report.mako:135

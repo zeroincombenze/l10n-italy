@@ -15,19 +15,20 @@
 # [2017: odoo-italia] Electronic VAT statement
 {
     "name": "Period End VAT Statement",
-    "version": "7.0.4.0.1",
+    "version": "7.0.4.0.5",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
-    "depends": ["l10n_it_ade",
-                "base",
-                "account_voucher",
-                "report_webkit",
-                "l10n_it_vat_registries",
-                "l10n_it_fiscalcode",
-                ],
-    "author":  "Agile Business Group,"
-               " Odoo Italia Associazione"
-               " Odoo Community Association (OCA)",
+    "depends": [
+        "l10n_it_ade",
+        "base",
+        "account_voucher",
+        "report_webkit",
+        "l10n_it_vat_registries",
+        "l10n_it_fiscalcode",
+    ],
+    "author": "Agile Business Group,"
+              " Odoo Italia Associazione,"
+              " Odoo Community Association (OCA)",
     'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
     "description": """(en)
 
@@ -36,7 +37,9 @@ Period End VAT Statement
 
 This module evaluates VAT to pay (or on credit) and generates the electronic
 VAT closeout statement as VAT Authority
-http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
+<http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/
+normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/
+provvedimento+27+marzo+2017+liquidazioni+periodiche+iva>
 
 By default, amounts of debit and credit taxes are automatically loaded
 from tax codes of selected periods.
@@ -73,6 +76,7 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
         'wizard/vat_settlement.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
+        'security/security.xml',
         'reports.xml',
         'views/account_view.xml',
         'views/company_view.xml',

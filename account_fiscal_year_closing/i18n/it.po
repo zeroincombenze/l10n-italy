@@ -278,7 +278,7 @@ msgstr "Prego selezionare l'azienda, l'anno fiscale da chiudere e quello da apri
 #. module: account_fiscal_year_closing
 #: selection:account_fiscal_year_closing.fyc,state:0
 msgid "Canceled"
-msgstr "Annullato"
+msgstr "Cancellato"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:340
@@ -457,7 +457,7 @@ msgstr "Controlla che non ci siano movimenti, nell'anno fiscale da chiudere, con
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0 view:fyc.run:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:568

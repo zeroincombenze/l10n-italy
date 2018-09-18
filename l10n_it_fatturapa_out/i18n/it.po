@@ -382,7 +382,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: view:wizard.export.fatturapa:0
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: l10n_it_fatturapa_out
 #: view:account.invoice:0

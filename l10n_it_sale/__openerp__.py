@@ -20,7 +20,7 @@
 #
 {
     'name': 'Italian Localisation - Sale',
-    'version': '0.2',
+    'version': '7.0.0.2.1',
     'category': 'Localisation/Italy',
     'description': """OpenERP Italian Localization - Sale version
 
@@ -35,22 +35,21 @@ Functionalities:
     'license': 'AGPL-3',
     "depends": ['stock', 'sale', 'account', 'delivery'],
     "data": [
+        'security/ir.model.access.csv',
         'wizard/assign_ddt.xml',
-        'stock/picking_view.xml',
-        'stock/carriage_condition_view.xml',
-        'stock/transportation_reason_view.xml',
-        'stock/goods_description_view.xml',
-        'stock/transportation_reason_data.xml',
-        'stock/goods_description_data.xml',
-        'stock/carriage_condition_data.xml',
-        'stock/sequence.xml',
-        'sale/sale_view.xml',
-        "security/ir.model.access.csv",
-        'partner/partner_view.xml',
-        'account/invoice_view.xml',
+        'views/carriage_condition_view.xml',
+        'views/transportation_reason_view.xml',
+        'views/goods_description_view.xml',
+        'views/invoice_view.xml',
+        'views/partner_view.xml',
+        'views/sale_view.xml',
+        'views/picking_view.xml',
+        'data/transportation_reason_data.xml',
+        'data/goods_description_data.xml',
+        'data/carriage_condition_data.xml',
+        'data/sequence.xml',
     ],
     "demo": [],
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -86,7 +86,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
     def checkCreateFiscalYear(self, date_to_check):
         '''
         with this method you can check if a date
-        passed in param dae_to_check , is in
+        passed in param date_to_check , is in
         current fiscal year .
         If not present, it creates a fiscal year and
         a sequence for sale_journal,

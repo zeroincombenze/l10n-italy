@@ -113,5 +113,3 @@ report_sxw.report_sxw(
     'addons/account_vat_period_end_statement/report/'
     'vat_period_end_statement.mako',
     parser=print_vat_period_end_statement)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

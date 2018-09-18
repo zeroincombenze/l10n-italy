@@ -9,7 +9,7 @@
 #
 {
     'name': 'Check invoice date consistency',
-    'version': '7.0.0.1.3',
+    'version': '7.0.0.1.4',
     'category': 'Tools',
     'description': """(en)
 This module check for sequential invoice date because Italian law.
@@ -38,7 +38,10 @@ accavallamento degli esercizi.
               "Odoo Italian Community, Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
-    "depends": ['account', 'account_invoice_entry_date'],
+    "depends": [
+        'account',
+        'account_invoice_entry_date',
+        'l10n_it_ade'],
     'test': ['test/invoice_sequential.yml', ],
     "active": False,
     "installable": False
