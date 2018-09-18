@@ -147,10 +147,3 @@ msgstr "non soggette"
 msgid "regime del margine/IVA non esposta"
 msgstr "regime del margine/IVA non esposta"
 
-#. module: l10n_it_ade
-#: code:_description:0
-#: model:ir.model,name:l10n_it_ade.model_res_italy_ade
-#, python-format
-msgid "res.italy.ade"
-msgstr "res.italy.ade"
-

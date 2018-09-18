@@ -9,8 +9,6 @@ defitions are in this file.
 
 Programs use these constants have to add follow line:
 from l10n_it_ade.ade import ADE_LEGALS
-
-There is a class for general purpose named 'res.italy.ade'
 """
 from openerp.osv import orm, fields
 
