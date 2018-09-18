@@ -1,15 +1,23 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright 2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                  Associazione Odoo Italia <http://www.odoo-italia.org>
+# Copyright 2018 - Associazione Odoo Italia <http://www.odoo-italia.org>
+#
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-
+# Code partially inherited by l10n_it_account of OCA
+#
 from odoo import models, fields
+from openerp.tools.translate import _
 
 
 class AccountTax(models.Model):
     _inherit = 'account.tax'
 
+    nature_id = fields.Many2one(
+        'italy.ade.tax.nature',
+        string='Nature',
+        help='Nature of tax code: may be taxable, out of scope, etc ...')
     non_taxable_nature = fields.Selection([
         ('N1', 'escluse ex art. 15'),
         ('N2', 'non soggette'),
@@ -19,7 +27,7 @@ class AccountTax(models.Model):
         ('N6', 'inversione contabile (acq. in reverse charge)'),
         ('N7', 'IVA assolta in altro stato UE'),
         ('FC', 'FC applicazione IVA'),
-        ], string="Non taxable nature")
+        ], string="Non taxable nature (*DEPRECATED*)")
     payability = fields.Selection([
         ('I', 'Immediate payability'),
         ('D', 'Deferred payability'),

@@ -10,8 +10,8 @@
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
-IT Fiscal Code
-==============
+Italian Fiscal Code
+===================
 
 This module extends the functionality of partner to fit italian laws and mores
 and to allow you to computation Fiscal code computation for partner
@@ -19,10 +19,13 @@ and to allow you to computation Fiscal code computation for partner
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Codice Fiscale
-==============
+Codice Fiscale Italiano
+=======================
 
-Modulo che gestisce il codice fiscale.
+Modulo che gestisce il codice fiscale. Permette di calcolare il codice fiscale e
+verifica la validità del codice fiscale inserito, se soggetto italiano.
+
+Fornisce anche la separazione del cognome/nome per la gestione della comunicazione IVA.
 
 
 Funzionalità & Differenze da OCA:

@@ -1,34 +1,41 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ade
+# 	* l10n_it_ade
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-14 13:33+0000\n"
-"PO-Revision-Date: 2017-10-14 13:33+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2018-09-18 12:34+0000\n"
+"PO-Revision-Date: 2018-09-18 14:46+0200\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 2.0.8\n"
 
 #. module: l10n_it_ade
-#: field:account.journal,anom_sale_receipts:0
-msgid "Anonimous sale receipts journal"
-msgstr "Registro corrispettivi"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_code
+msgid "Code"
+msgstr "Codice"
 
 #. module: l10n_it_ade
-#: help:account.journal,proforma:0
-msgid "Check if this is a Proforma Journal"
-msgstr "Dichiara il registro degli avvisi di parcella"
+#: sql_constraint:italy.ade.tax.nature:0
+msgid "Code already exists!"
+msgstr "Il codice esiste già!"
 
 #. module: l10n_it_ade
-#: help:account.journal,anom_sale_receipts:0
-msgid "Check if this is the Anonimous Sale Receipts Journal"
-msgstr "Dichiara il registro dei corrispettivi"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_create_date
+msgid "Created on"
+msgstr "Creato il"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
@@ -36,23 +43,14 @@ msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
 #. module: l10n_it_ade
-#: code:addons/l10n_it_ade/models/account_tax.py:59
-#: code:addons/l10n_it_ade/models/account_tax.py:63
-#: code:addons/l10n_it_ade/models/account_tax.py:72
-#: code:addons/l10n_it_ade/models/account_tax.py:76
-#, python-format
-msgid "Error"
-msgstr "Errore"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_display_name
+msgid "Display Name"
+msgstr "Nome Visualizzato"
 
 #. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "FC applicazione IVA"
-msgstr "FC applicazione IVA"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "IVA assolta in altro stato UE"
-msgstr "IVA assolta in altro stato UE"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_id
+msgid "ID"
+msgstr "ID"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
@@ -60,38 +58,52 @@ msgid "Immediate payability"
 msgstr "Esigibilità immediata"
 
 #. module: l10n_it_ade
-#: view:account.tax:0
+#: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_form
 msgid "Italy AdE"
 msgstr "Agenzia delle Entrate"
 
 #. module: l10n_it_ade
-#: code:_description:0
-#: model:ir.model,name:l10n_it_ade.model_account_journal
-#, python-format
-msgid "Journal"
-msgstr "Registro"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature___last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_ade
-#: field:account.tax,law_reference:0
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_write_uid
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_write_date
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_law_reference
 msgid "Law reference"
-msgstr "Riferimento legislativo"
+msgstr "Law reference"
 
 #. module: l10n_it_ade
-#: code:addons/l10n_it_ade/models/account_tax.py:59
-#: code:addons/l10n_it_ade/models/account_tax.py:72
-#, python-format
-msgid "No tax %s found"
-msgstr "Codice IVA %s non trovato"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_name
+msgid "Name"
+msgstr "Nome"
 
 #. module: l10n_it_ade
-#: field:account.tax,non_taxable_nature:0
-msgid "Non taxable nature"
-msgstr "Natura Non Imponibile"
+#: model:ir.actions.act_window,name:l10n_it_ade.action_tax_nature
+#: model:ir.ui.menu,name:l10n_it_ade.menu_tax_nature
+#: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_nature_form
+#: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_nature_tree
+msgid "Natura IVA"
+msgstr "Natura IVA"
 
 #. module: l10n_it_ade
-#: field:account.journal,proforma:0
-msgid "Proforma journal"
-msgstr "Registro avvisi di parcella"
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_nature_id
+msgid "Nature"
+msgstr "Natura IVA"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,help:l10n_it_ade.field_account_tax_nature_id
+msgid "Nature of tax code: may be taxable, out of scope, etc ..."
+msgstr "Natura dell'IVA: può essere imponibile, esente, ecc."
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
@@ -99,58 +111,16 @@ msgid "Split payment"
 msgstr "Split payment"
 
 #. module: l10n_it_ade
-#: code:_description:0
 #: model:ir.model,name:l10n_it_ade.model_account_tax
-#, python-format
 msgid "Tax"
 msgstr "Imposta"
 
 #. module: l10n_it_ade
-#: code:addons/l10n_it_ade/models/account_tax.py:63
-#: code:addons/l10n_it_ade/models/account_tax.py:76
-#, python-format
-msgid "Too many tax %s found"
-msgstr "Rilevati troppi codici IVA %s"
+#: model:ir.model,name:l10n_it_ade.model_italy_ade_tax_nature
+msgid "Tax Italian NAture"
+msgstr "Tax Italian NAture"
 
 #. module: l10n_it_ade
-#: field:account.tax,payability:0
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_payability
 msgid "VAT payability"
-msgstr "Esigibilità IVA"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "escluse ex art. 15"
-msgstr "escluse ex art. 15"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "esenti"
-msgstr "esenti"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "inversione contabile (acq. in reverse charge)"
-msgstr "inversione contabile (acq. in reverse charge)"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "non imponibili"
-msgstr "non imponibili"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "non soggette"
-msgstr "non soggette"
-
-#. module: l10n_it_ade
-#: selection:account.tax,non_taxable_nature:0
-msgid "regime del margine/IVA non esposta"
-msgstr "regime del margine/IVA non esposta"
-
-#. module: l10n_it_ade
-#: code:_description:0
-#: model:ir.model,name:l10n_it_ade.model_res_italy_ade
-#, python-format
-msgid "res.italy.ade"
-msgstr "res.italy.ade"
-
+msgstr "VAT payability"

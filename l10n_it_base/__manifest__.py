@@ -37,7 +37,7 @@ Funzionalità
     'maintainer': 'Antonio Maria Vigliotti',
     'website': 'https://odoo-italia.org/',
     'license': 'LGPL-3',
-    "depends": ['base'],
+    "depends": ['base', 'sale'],
     "data": [
         'security/ir.model.access.csv',
         # 'views/res_config_view.xml',
