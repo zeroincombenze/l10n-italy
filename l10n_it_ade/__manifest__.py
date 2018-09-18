@@ -20,6 +20,7 @@
         'account',
         ],
     "data": [
+        'security/ir.model.access.csv',
         'data/italy.ade.tax.nature.csv',
         'views/account_tax_view.xml',
         'views/tax_nature_view.xml',

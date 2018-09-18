@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2014-2018 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-#    Copyright (C) 2016      Andrea Gallina (Apulia Software)
-#    Copyright (C) 2018      Antonio Vigliotti <https://www.zeroincombenze.it>
+#    Copyright 2016      Andrea Gallina (Apulia Software)
+#    Copyright 2018      Antonio Vigliotti <https://www.zeroincombenze.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 import logging
@@ -16,10 +16,10 @@ except ImportError as err:
 SPLIT_MODE = [('LF', 'Last/First'),
               ('FL', 'First/Last'),
               ('LFM', 'Last/First Middle'),
-              ('L2F', 'Last last/First'),
-              ('L2FM', 'Last last/First Middle'),
               ('FML', 'First middle/Last'),
+              ('L2F', 'Last last/First'),
               ('FL2', 'First/Last last'),
+              ('L2FM', 'Last last/First Middle'),
               ('FML2', 'First Middle/Last last')]
 
 
@@ -73,7 +73,7 @@ class ResPartner(models.Model):
     @api.multi
     def _split_last_first_name(self, partner=None, name=None, splitmode=None):
         if partner:
-            if not partner.individual and partner.is_company:
+            if not partner.individual and partner.company_type == 'company':
                 return '', ''
             name = partner.name
             if not splitmode:
@@ -130,7 +130,7 @@ class ResPartner(models.Model):
                            store=True,
                            readonly=True)
     split_next = fields.Boolean(
-        'First<->Last',
+        '◒ ⇔ ◓',
         default=False,
         help="Check for change first/last name format")
 
@@ -198,5 +198,6 @@ class ResPartner(models.Model):
         self.splitmode = SPLIT_MODE[i][0]
         self.onchange_splitmode()
 
+    @api.multi
     def _default_splitmode(self):
         return 'LF'
