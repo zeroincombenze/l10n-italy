@@ -51,7 +51,8 @@ class ResPartner(orm.Model):
         for partner in self.browse(cr, uid, ids, context=context):
             lastname, firstname = self._split_last_first_name(
                 cr, uid, partner=partner)
-            res[partner.id] = lastname
+            if lastname:
+                res[partner.id] = lastname
         return res
 
     def _split_first_name(self, cr, uid, ids, fname, arg, context=None):
@@ -59,7 +60,8 @@ class ResPartner(orm.Model):
         for partner in self.browse(cr, uid, ids, context=context):
             lastname, firstname = self._split_last_first_name(
                 cr, uid, partner=partner)
-            res[partner.id] = firstname
+            if firstname:
+                res[partner.id] = firstname
         return res
 
     def _split_last_first_name(self, cr, uid, partner=None,
@@ -134,7 +136,7 @@ class ResPartner(orm.Model):
             readonly=True,
             fnct_inv=_set_last_first_name),
         'split_next': fields.boolean(
-            '◒ ⇔ ◓',
+            'Θ ⇔ Φ',
             help="Check for change first/last name format"),
     }
 
@@ -177,16 +179,17 @@ class ResPartner(orm.Model):
                     'message': 'Fiscal code len must be 11 or 16'}
                 }
             else:
+                individual = True
                 fiscalcode = fiscalcode.upper()
                 chk = codicefiscale.control_code(fiscalcode[0:15])
                 if chk != fiscalcode[15]:
                     value = fiscalcode[0:15] + chk
-                    return {'value': {name: value},
+                    return {'value': {name: value,
+                                      'individual': individual},
                             'warning': {
                                 'title': 'Invalid fiscalcode!',
                                 'message': 'Fiscal code could be %s' % (value)}
                             }
-                individual = True
             return {'value': {name: fiscalcode,
                               'individual': individual}}
         return {'value': {'individual': False}}
@@ -194,20 +197,26 @@ class ResPartner(orm.Model):
     def onchange_name(self, cr, uid, ids, name, splitmode, context=None):
         lastname, firstname = self._split_last_first_name(
             cr, uid, name=name, splitmode=splitmode)
-        res = {'value': {'firstname': firstname,
-                         'lastname': lastname,
-                         'splitmode': splitmode,
-                         'split_next': False}}
+        value = {'splitmode': splitmode,
+                 'split_next': False}
+        if firstname:
+            value['firstname'] = firstname
+        if lastname:
+            value['lastname'] = lastname
+        res = {'value': value}
         return res
 
     def onchange_splitmode(self, cr, uid, ids, splitmode, name,
                            context=None):
         lastname, firstname = self._split_last_first_name(
             cr, uid, name=name, splitmode=splitmode)
-        res = {'value': {'firstname': firstname,
-                         'lastname': lastname,
-                         'splitmode': splitmode,
-                         'split_next': False}}
+        value = {'splitmode': splitmode,
+                 'split_next': False}
+        if firstname:
+            value['firstname'] = firstname
+        if lastname:
+            value['lastname'] = lastname
+        res = {'value': value}
         return res
 
     def onchange_split_next(self, cr, uid, ids, splitmode, name, context=None):
