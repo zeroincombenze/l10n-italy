@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-13 09:40+0000\n"
-"PO-Revision-Date: 2016-12-13 09:40+0000\n"
+"POT-Creation-Date: 2018-09-20 17:01+0000\n"
+"PO-Revision-Date: 2018-09-20 17:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,14 @@ msgstr ""
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,help:l10n_it_split_payment.field_account_config_settings_sp_account_id
+#: model:ir.model.fields,help:l10n_it_split_payment.field_account_config_settings_sp_tax_id
 #: model:ir.model.fields,help:l10n_it_split_payment.field_res_company_sp_account_id
+#: model:ir.model.fields,help:l10n_it_split_payment.field_res_company_sp_tax_id
 msgid "Account used to write off the VAT amount"
 msgstr "Account utilizzato per ammortizzare l'importo dell'IVA"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:111
+#: code:addons/l10n_it_split_payment/models/account.py:182
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
 msgstr "Non è possibile gestire le fatture dei fornitori con la scissione dei pagamenti"
@@ -43,15 +45,27 @@ msgid "Fiscal Position"
 msgstr "Posizione Fiscale"
 
 #. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:141
+#, python-format
+msgid "Importo + IVA split-payment"
+msgstr "Importo + IVA split-payment"
+
+#. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:47
+#: code:addons/l10n_it_split_payment/models/account.py:55
 #, python-format
 msgid "Please set 'Split Payment Write-off Account' field in accounting configuration"
 msgstr "Impostare il campo 'Conto Storno Scissione Pagamenti' nella configurazione della contabilità"
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:59
+#, python-format
+msgid "Please set 'Split Payment Write-off Tax' field in accounting configuration"
+msgstr "Please set 'Split Payment Write-off Tax' field in accounting configuration"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_fiscal_position_split_payment
@@ -62,7 +76,9 @@ msgid "Split Payment"
 msgstr "Scissione Pagamenti"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:50
+#: code:addons/l10n_it_split_payment/models/account.py:62
+#: code:addons/l10n_it_split_payment/models/account.py:85
+#: code:addons/l10n_it_split_payment/tests/test_splitpayment.py:151
 #, python-format
 msgid "Split Payment Write Off"
 msgstr "Storno Scissione Pagamenti"
@@ -76,6 +92,12 @@ msgstr "Conto Storno Scissione Pagamenti"
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_config_settings_sp_account_id
 msgid "Split Payment Write-off account"
 msgstr "Conto Storno Scissione Pagamenti"
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_config_settings_sp_tax_id
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_company_sp_tax_id
+msgid "Split Payment Write-off tax"
+msgstr "Split Payment Write-off tax"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_config_settings

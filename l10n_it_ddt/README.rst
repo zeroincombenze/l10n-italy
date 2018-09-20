@@ -116,7 +116,9 @@ Credits
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Andrea Cometa <a.cometa@apuliasoftware.it>
 * Alessandro Camilli <alessandrocamilli@openforce.it>
+* Antonio Maria Vigliotti <info@shs-av.com>
 
 ### Funders
 

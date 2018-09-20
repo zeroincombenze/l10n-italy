@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_ade
+#	* l10n_it_ade
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 12:34+0000\n"
-"PO-Revision-Date: 2018-09-18 14:46+0200\n"
-"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail>\n"
+"POT-Creation-Date: 2018-09-20 16:58+0000\n"
+"PO-Revision-Date: 2018-09-20 16:58+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: it\n"
-"X-Generator: Poedit 2.0.8\n"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_code
@@ -43,14 +41,29 @@ msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
 #. module: l10n_it_ade
+#: model:ir.ui.menu,name:l10n_it_ade.menu_ade
+msgid "Definizioni AdE"
+msgstr "Definizioni AdE"
+
+#. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_display_name
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "FC applicazione IVA"
+msgstr "FC applicazione IVA"
+
+#. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "IVA assolta in altro stato UE"
+msgstr "IVA assolta in altro stato UE"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
@@ -106,6 +119,11 @@ msgid "Nature of tax code: may be taxable, out of scope, etc ..."
 msgstr "Natura dell'IVA: può essere imponibile, esente, ecc."
 
 #. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_non_taxable_nature
+msgid "Non taxable nature (*DEPRECATED*)"
+msgstr "Non taxable nature (*DEPRECATED*)"
+
+#. module: l10n_it_ade
 #: selection:account.tax,payability:0
 msgid "Split payment"
 msgstr "Split payment"
@@ -124,3 +142,34 @@ msgstr "Tax Italian NAture"
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_payability
 msgid "VAT payability"
 msgstr "VAT payability"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "escluse ex art. 15"
+msgstr "escluse ex art. 15"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "esenti"
+msgstr "esenti"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "inversione contabile (acq. in reverse charge)"
+msgstr "inversione contabile (acq. in reverse charge)"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "non imponibili"
+msgstr "non imponibili"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "non soggette"
+msgstr "non soggette"
+
+#. module: l10n_it_ade
+#: selection:account.tax,non_taxable_nature:0
+msgid "regime del margine/IVA non esposta"
+msgstr "regime del margine/IVA non esposta"
+

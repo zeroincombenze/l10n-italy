@@ -1,122 +1,143 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_base
-# 
-# Translators:
-# Paolo Valier, 2016
-# Alex Comba <alex.comba@agilebg.com>, 2015
-# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
-# Massimiliano Casa <mcasa@cantiericasa.com>, 2015
-# Paolo Valier, 2016
-# Paolo Valier, 2016
+#	* l10n_it_base
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-italy (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2016-04-29 19:56+0000\n"
-"Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/language/it/)\n"
+"POT-Creation-Date: 2018-09-20 16:58+0000\n"
+"PO-Revision-Date: 2018-09-20 16:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_base
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "Accounting"
-msgstr "Contabilità"
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_zip
+msgid "CAP"
+msgstr "CAP"
 
 #. module: l10n_it_base
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "Apply"
-msgstr "Applica"
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_cadaster_code
+msgid "Cadaster Code"
+msgstr "Cadaster Code"
 
 #. module: l10n_it_base
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "Cancel"
-msgstr "Annulla"
+#: model:ir.actions.act_window,name:l10n_it_base.action_city
+#: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
+msgid "Cities"
+msgstr "Cities"
 
 #. module: l10n_it_base
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "Communication"
-msgstr "Comunicazione"
+#: model:ir.model,name:l10n_it_base.model_res_city
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_name
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_city
+#: model:ir.ui.view,arch_db:l10n_it_base.view_res_city_form
+#: model:ir.ui.view,arch_db:l10n_it_base.view_res_city_tree
+msgid "City"
+msgstr "Città"
 
 #. module: l10n_it_base
-#: model:ir.actions.act_window,name:l10n_it_base.action_l10n_it_config
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "Configure Italian Localization"
-msgstr "Configura Localizzazione Italiana"
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_zip
+msgid "City's ZIP code. (Country dependent)."
+msgstr "City's ZIP code. (Country dependent)."
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,create_uid:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_country_id
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_country
+msgid "Country"
+msgstr "Nazione"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_country_id
+msgid "Country encoded by ISO-3166."
+msgstr "Country encoded by ISO-3166."
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_create_uid
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,create_date:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_create_date
 msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,display_name:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome Visualizzato"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,id:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_state_id
+msgid "District"
+msgstr "District"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_base
-#: help:l10n_it.config.settings,module_l10n_it_fiscalcode:0
-msgid ""
-"Install l10n_it_fiscalcode module for fiscal\n"
-"code management"
-msgstr "Installa modulo l10n_it_fiscalcode per la\ngestione del codice fiscale"
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_istat_code
+msgid "ISTAT code"
+msgstr "ISTAT code"
 
 #. module: l10n_it_base
-#: help:l10n_it.config.settings,module_l10n_it_pec:0
-msgid "Install l10n_it_pec module for pec mail management"
-msgstr "Installa il modulo l10n_it_pec per la gestione della mail pec"
-
-#. module: l10n_it_base
-#: model:ir.ui.menu,name:l10n_it_base.menu_account_config
-msgid "Italian Localization"
-msgstr "Localizzazione Italiana"
-
-#. module: l10n_it_base
-#: field:l10n_it.config.settings,__last_update:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city___last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,write_uid:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_write_uid
 msgid "Last Updated by"
-msgstr "Ultima Modifica di"
+msgstr "Ultima modifica di"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,write_date:0
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_write_date
 msgid "Last Updated on"
-msgstr "Data ultimo aggiornamento"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_base
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "Partner Profile"
-msgstr "Profilo Partner"
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_nuts
+msgid "NUTS"
+msgstr "NUTS"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,module_l10n_it_pec:0
-msgid "Use Pec Mail in Partner Profile"
-msgstr "Usa Mail Pec nel Profilo Partner"
+#: model:ir.model,name:l10n_it_base.model_res_partner
+msgid "Partner"
+msgstr "Partner"
 
 #. module: l10n_it_base
-#: field:l10n_it.config.settings,module_l10n_it_fiscalcode:0
-msgid "Use fiscal code in Partner Profile"
-msgstr "Usa il codice fiscale nel profilo del partner "
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_city
+msgid "Province"
+msgstr "Province"
 
 #. module: l10n_it_base
-#: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
-msgid "or"
-msgstr "o"
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_phone_prefix
+msgid "Telephone Prefix"
+msgstr "Telephone Prefix"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_state_id
+msgid "Upper administration (Province, District or Federal State)."
+msgstr "Upper administration (Province, District or Federal State)."
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_name
+msgid "Use \".\" (dot) to search with abbreviation"
+msgstr "Use \".\" (dot) to search with abbreviation"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_web_site
+msgid "Web Site"
+msgstr "Web Site"
+
+#. module: l10n_it_base
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_zip
+msgid "ZIP"
+msgstr "CAP"
+

@@ -11,7 +11,10 @@ try:
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)
-
+try:
+    from six import string_types
+except ImportError as err:
+    _logger.debug(err)
 
 SPLIT_MODE = [('LF', 'Last/First'),
               ('FL', 'First/Last'),
@@ -57,18 +60,22 @@ class ResPartner(models.Model):
         return fields
 
     @api.multi
+    @api.depends('name', 'individual')
     def _split_last_name(self):
         for partner in self:
             lastname, firstname = self._split_last_first_name(
                 partner=partner)
-            partner.lastname = lastname
+            if lastname:
+                partner.lastname = lastname
 
     @api.multi
+    @api.depends('name', 'individual')
     def _split_first_name(self):
         for partner in self:
             lastname, firstname = self._split_last_first_name(
                 partner=partner)
-            partner.firstname = firstname
+            if firstname:
+                partner.firstname = firstname
 
     @api.multi
     def _split_last_first_name(self, partner=None, name=None, splitmode=None):
@@ -83,8 +90,8 @@ class ResPartner(models.Model):
                     splitmode = self._default_splitmode()
         elif not splitmode:
             splitmode = self._default_splitmode()
-        if not isinstance(name, basestring) or \
-                not isinstance(splitmode, basestring):
+        if not isinstance(name, string_types) or \
+                not isinstance(splitmode, string_types):
             return '', ''
         f = self._join_lastname_particle(name.split(' '))
         if len(f) == 1:
@@ -163,6 +170,7 @@ class ResPartner(models.Model):
                     'message': 'Fiscal code len must be 11 or 16'}
                 }
             else:
+                self.individual = True
                 self.fiscalcode = self.fiscalcode.upper()
                 chk = codicefiscale.control_code(self.fiscalcode[0:15])
                 if chk != self.fiscalcode[15]:
@@ -172,31 +180,26 @@ class ResPartner(models.Model):
                                 'title': 'Invalid fiscalcode!',
                                 'message': 'Fiscal code could be %s' % (value)}
                             }
-                self.individual = True
-        self.individual = False
+        else:
+            self.individual = False
 
-    @api.onchange('name')
+    @api.onchange('splitmode', 'name')
     def onchange_name(self):
         lastname, firstname = self._split_last_first_name(
             name=self.name, splitmode=self.splitmode)
-        self.firstname = firstname
-        self.lastname = lastname
+        if firstname:
+            self.firstname = firstname
+        if lastname:
+            self.lastname = lastname
         self.split_next = False
 
-    @api.onchange('splitmode')
-    def onchange_splitmode(self):
-        lastname, firstname = self._split_last_first_name(
-            name=self.name, splitmode=self.splitmode)
-        self.firstname = firstname
-        self.lastname = lastname
-        self.split_next = False
 
     @api.onchange('split_next')
     def onchange_split_next(self):
         i = [i for i, x in enumerate(SPLIT_MODE) if x[0] == self.splitmode][0]
         i = (i + 1) % len(SPLIT_MODE)
         self.splitmode = SPLIT_MODE[i][0]
-        self.onchange_splitmode()
+        self.onchange_name()
 
     @api.multi
     def _default_splitmode(self):

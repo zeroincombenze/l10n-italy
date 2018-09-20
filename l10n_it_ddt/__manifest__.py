@@ -14,9 +14,9 @@
     'version': '10.0.1.5.1',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
-    'author': 'Davide Corio, Odoo Community Association (OCA),'
-              'Agile Business Group, Francesco Apruzzese, '
-              'Openforce di Camilli Alessandro',
+    'author': 'Odoo Community Association (OCA),'
+              'Odoo Italia Associazione,'
+              '*Dettaglio autori in documentazione*',
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': [

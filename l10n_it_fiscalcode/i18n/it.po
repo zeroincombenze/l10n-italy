@@ -1,26 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_fiscalcode
-# 
-# Translators:
-# Andrea Gallina <4everamd@gmail.com>, 2016
-# Andrea Gallina <4everamd@gmail.com>, 2016
-# Hotellook, 2014
-# Paolo Valier, 2016
-# Paolo Valier, 2016
+#	* l10n_it_fiscalcode
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-italy (10.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2016-12-17 15:12+0000\n"
-"Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/language/it/)\n"
+"POT-Creation-Date: 2018-09-20 16:59+0000\n"
+"PO-Revision-Date: 2018-09-20 16:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_cadastre_code
@@ -36,6 +29,12 @@ msgstr "Variazione codice catastale"
 #: model:ir.ui.view,arch_db:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Cancel"
 msgstr "Annulla"
+
+#. module: l10n_it_fiscalcode
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_partner_split_next
+#: model:ir.model.fields,help:l10n_it_fiscalcode.field_res_users_split_next
+msgid "Check for change first/last name format"
+msgstr "Check for change first/last name format"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_birth_city
@@ -86,15 +85,12 @@ msgstr "Data di nascita"
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_province_display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome Visualizzato"
 
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:153
 #, python-format
-msgid ""
-"Existing fiscal code %(partner_fiscalcode)s is different from the computed "
-"one (%(compute)s). If you want to use the computed one, remove the existing "
-"onepartner_fiscalcode"
+msgid "Existing fiscal code %(partner_fiscalcode)s is different from the computed one (%(compute)s). If you want to use the computed one, remove the existing onepartner_fiscalcode"
 msgstr "Il codice fiscale esistente %(partner_fiscalcode)s risulta differente da quello calcolato (%(compute)s). Se si vuole usare il valore calcolato, rimuovere prima quello esistente"
 
 #. module: l10n_it_fiscalcode
@@ -103,9 +99,41 @@ msgid "Female"
 msgstr "Femmina"
 
 #. module: l10n_it_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_splitmode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_splitmode
+msgid "First Last format"
+msgstr "First Last format"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First Middle/Last last"
+msgstr "First Middle/Last last"
+
+#. module: l10n_it_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_firstname
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_firstname
+msgid "First Name"
+msgstr "First Name"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First middle/Last"
+msgstr "First middle/Last"
+
+#. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_fiscalcode_firstname
 msgid "First name"
 msgstr "Nome"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First/Last"
+msgstr "First/Last"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "First/Last last"
+msgstr "First/Last last"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_fiscalcode
@@ -154,16 +182,42 @@ msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_fiscalcode
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner_lastname
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_users_lastname
+msgid "Last Name"
+msgstr "Last Name"
+
+#. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_write_uid
 msgid "Last Updated by"
-msgstr "Ultima Modifica di"
+msgstr "Ultima modifica di"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_write_date
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc_write_date
 msgid "Last Updated on"
-msgstr "Data ultimo aggiornamento"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last last/First"
+msgstr "Last last/First"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last last/First Middle"
+msgstr "Last last/First Middle"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last/First"
+msgstr "Last/First"
+
+#. module: l10n_it_fiscalcode
+#: selection:res.partner,splitmode:0
+msgid "Last/First Middle"
+msgstr "Last/First Middle"
 
 #. module: l10n_it_fiscalcode
 #: selection:wizard.compute.fc,sex:0
@@ -260,3 +314,4 @@ msgstr "res.city.it.code.distinct"
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_province
 msgid "res.city.it.code.province"
 msgstr "res.city.it.code.province"
+

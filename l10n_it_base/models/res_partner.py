@@ -14,9 +14,9 @@ class ResPartner(models.Model):
     def _build_where_city(self, level=None):
         level = level or 0
         where = []
-        if self.country_id:
-            where.append(('country_id', '=', self.country_id.id))
         if self.zip:
+            if self.country_id:
+                where.append(('country_id', '=', self.country_id.id))
             zip = '%s%s' % (self.zip[0: len(self.zip) - level],
                             '%' * level)
             where.append(('zip', '=ilike', zip))
