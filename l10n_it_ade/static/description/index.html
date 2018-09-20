@@ -1,0 +1,58 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#162832;">Tax Authority Definitions/Definizioni Agenzia delle Entrate</h2>
+        <div class="oe_span6 text-center">
+            <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+            <p class="oe_mt16" align="justify">This module has no any specific function for End-user.
+It contains various tax data for Italian account. Inside there are xml schema files used by FatturaPA, eInvoice and VAT settlement.
+            </p><p>
+This module requires PyXB 1.2.4
+http://pyxb.sourceforge.net/
+            </p>
+        </div>
+        <div class="oe_span6 text-center">
+            <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+            <p class="oe_mt16" align="justify">Questo modulo non ha funzioni specifiche per l'utente finale.
+Contiene dati e definizioni per la fiscalit&agrave; italiana.
+All'interno sono presenti gli schemi xml nei formati stabiliti dall'Agenzia
+delle Entrate usati da FatturaPA, fattura elettronica, Liquidazione IVA
+ elettronica e Comunicazione IVA.
+            </p><p align="justify">
+Attenzione! Questo modulo &egrave; incompatibile con i seguenti moduli OCA:
+            </p><p align="justify">
+l10n_it_fatturapa versioni [7-11].0.2.0.0
+            </p><p align="justify">
+Dallo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche dipendono tutti i file
+xml da inviare all'AdE; se moduli diversi richiamano lo stesso schema
+dell'Agenzia delle Entrate nasce un conflitto che genera l'errore:
+</p><p align="justify">
+<b>name CryptoBinary used for multiple values in typeBinding</b>
+            </p><p align="justify">
+Tutti i moduli che generano file xml destinati all'Agenzia delle Entrate <b>devono</b>
+dipendere da questo modulo. Questo &egrave; il motivo del conflitto con i moduli OCA.
+            </p><p align="justify">
+Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
+l'autore.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Schemi</h3>
+        <div class="oe_span6 text-center">
+            <p align="justify">
+* Liquidazione IVA elettronica versione 1.0
+            </p>
+        </div>
+        <div class="oe_span6 text-center">
+            <p align="justify">
+* Comunicazione clienti e fornitori (spesometro 2018) versione 2.1
+            </p><p align="justify">
+* FatturaPA versione 1.2
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_separator">
+</section>

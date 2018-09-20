@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-20 15:54+0000\n"
+"PO-Revision-Date: 2018-09-20 15:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_zip
+msgid "CAP"
+msgstr "CAP"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_cadaster_code
+msgid "Cadaster Code"
+msgstr "Cadaster Code"
+
+#. module: l10n_it_base
+#: model:ir.actions.act_window,name:l10n_it_base.action_city
+#: model:ir.ui.menu,name:l10n_it_base.menu_cities
+msgid "Cities"
+msgstr "Cities"
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_city
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_name
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_city
+#: model:ir.ui.view,arch_db:l10n_it_base.view_res_city_form
+#: model:ir.ui.view,arch_db:l10n_it_base.view_res_city_tree
+msgid "City"
+msgstr "Città"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_zip
+msgid "City's ZIP code. (Country dependent)."
+msgstr "City's ZIP code. (Country dependent)."
+
+#. module: l10n_it_base
+#: model:ir.model,name:l10n_it_base.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_country_id
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_country
+msgid "Country"
+msgstr "Nazione"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_country_id
+msgid "Country encoded by ISO-3166."
+msgstr "Country encoded by ISO-3166."
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_base
+#: model:ir.ui.menu,name:l10n_it_base.menu_geolocalizzation
+msgid "Definizioni geografiche"
+msgstr "Definizioni geografiche"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_display_name
+msgid "Display Name"
+msgstr "Visualizza Nome"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_state_id
+msgid "District"
+msgstr "District"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_istat_code
+msgid "ISTAT code"
+msgstr "ISTAT code"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city___last_update
+msgid "Last Modified on"
+msgstr "Data di ultima modifica"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_write_uid
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_write_date
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_nuts
+msgid "NUTS"
+msgstr "NUTS"
+
+#. module: l10n_it_base
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_city
+msgid "Province"
+msgstr "Province"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_phone_prefix
+msgid "Telephone Prefix"
+msgstr "Telephone Prefix"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_state_id
+msgid "Upper administration (Province, District or Federal State)."
+msgstr "Upper administration (Province, District or Federal State)."
+
+#. module: l10n_it_base
+#: model:ir.model.fields,help:l10n_it_base.field_res_city_name
+msgid "Use \".\" (dot) to search with abbreviation"
+msgstr "Use \".\" (dot) to search with abbreviation"
+
+#. module: l10n_it_base
+#: model:ir.model.fields,field_description:l10n_it_base.field_res_city_web_site
+msgid "Web Site"
+msgstr "Web Site"
+
+#. module: l10n_it_base
+#: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_zip
+msgid "ZIP"
+msgstr "CAP"
+
