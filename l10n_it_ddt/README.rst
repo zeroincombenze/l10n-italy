@@ -118,6 +118,7 @@ Credits
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Andrea Cometa <a.cometa@apuliasoftware.it>
+* Antonio Maria Vigliotti <info@shs-av.com>
 
 ### Funders
 

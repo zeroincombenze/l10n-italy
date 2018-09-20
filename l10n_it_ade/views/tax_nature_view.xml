@@ -32,8 +32,8 @@
     </record>
 
     <menuitem id="menu_tax_nature" name="Natura IVA"
-              action="action_tax_nature" parent="account.account_account_menu"
-              groups="account.group_account_manager" sequence="40"/>
+              action="action_tax_nature" parent="menu_ade"
+              groups="account.group_account_manager"/>
 </data>
 </openerp>
 
