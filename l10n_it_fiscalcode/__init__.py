@@ -19,5 +19,6 @@
 #
 ##############################################################################
 
-from . import model
+from . import models
 from . import wizard
+from .post_install import set_default_splitmode
