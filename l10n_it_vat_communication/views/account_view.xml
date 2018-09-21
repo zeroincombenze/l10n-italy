@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!--
+    <!--
 <record id="view_account_vat_communication" model="ir.ui.view">
     <field name="name">account.vat.communication.form</field>
     <field name="model">account.vat.communication</field>
@@ -144,13 +144,14 @@
 </record>
 -->
 
-<record id="action_account_vat_communication" model="ir.actions.act_window">
-    <field name="name">Vat Communication</field>
-    <field name="res_model">account.vat.communication</field>
-</record>
+    <record id="action_account_vat_communication" model="ir.actions.act_window">
+        <field name="name">Vat Communication</field>
+        <field name="res_model">account.vat.communication</field>
+    </record>
 
-<menuitem id="menu_account_vat_communication" action="action_account_vat_communication"
-          name="VAT communications" parent="account.menu_account_end_year_treatments"/>
+    <menuitem id="menu_account_vat_communication" name="VAT communications"
+              action="action_account_vat_communication"
+              parent="multibase_plus.menu_fiscal_report"/>
 
 </odoo>
 

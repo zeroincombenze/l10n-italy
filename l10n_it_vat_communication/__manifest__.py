@@ -14,7 +14,7 @@
         "l10n_it_fiscalcode",
         "account_invoice_entry_date",
         "l10n_it_vat_registries",
-        # 'l10n_it_account'
+        "multibase_plus",
     ],
     "author": "SHS-AV s.r.l.,"
     " Odoo Italia Associazione",

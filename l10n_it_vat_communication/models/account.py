@@ -76,7 +76,7 @@ class AccountVatCommunication(models.Model):
             'confirmed': [('readonly', True)]
         })
     attachment_ids = fields.One2many(
-        'ir.attachment', 'res_id', 'Attachments',),
+        'ir.attachment', 'res_id', 'Attachments',)
     dte_amount_total = fields.Float(
         'Total sales',
         help='Total amount of sale invoices in Communication',
