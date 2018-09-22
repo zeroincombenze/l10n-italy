@@ -21,7 +21,7 @@
 
 {
     'name': 'Account Invoice entry Date',
-    'version': '8.0.0.1.0',
+    'version': '9.0.0.1.1',
     'category': 'Generic Modules/Accounting',
     'description': """This module allows to specify the date to be used by the
 move created while confirming (supplier) invoice""",
@@ -29,7 +29,7 @@ move created while confirming (supplier) invoice""",
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['account'],
-    'data': ['views/account_view.xml'],
+    'data': ['views/account_invoice_view.xml'],
     'active': False,
-    'installable': False
+    'installable': True
 }
