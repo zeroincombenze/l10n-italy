@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
+[![Build Status](https://travis-ci.org/zeroincombenze/tools.svg?branch=11.0)](https://travis-ci.org/zeroincombenze/tools)
 [![license lgpl](https://img.shields.io/badge/licence-LGPL--3-7379c3.svg)](https://www.gnu.org/licenses/lgpl.html)
-[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0)
-[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0)
-[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-10.svg)](https://github.com/OCA/l10n-italy/tree/10.0)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg)](http://wiki.zeroincombenze.org/en/Odoo/10.0/dev)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg)](http://wiki.zeroincombenze.org/en/Odoo/10.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg)](https://erp10.zeroincombenze.it)
+[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/tools/badge.svg?branch=11.0)](https://coveralls.io/github/zeroincombenze/tools?branch=11.0)
+[![codecov](https://codecov.io/gh/zeroincombenze/tools/branch/11.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/tools/branch/11.0)
+[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-11.svg)](https://github.com/OCA/tools/tree/11.0)
+[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-11.svg)](http://wiki.zeroincombenze.org/en/Odoo/11.0/dev)
+[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-11.svg)](http://wiki.zeroincombenze.org/en/Odoo/11.0/man/FI)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-11.svg)](https://erp11.zeroincombenze.it)
 
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
@@ -29,7 +29,6 @@ Fornisce anche la separazione del cognome/nome per la gestione della comunicazio
 
 
 Funzionalità & Differenze da OCA:
----------------------------------
 
 Funzione                         | Status | OCA  | Note
 Calcola codice fiscale           | :white_check_mark: | :white_check_mark: |
@@ -38,7 +37,7 @@ Verifica Partita IVA come codice fiscale  | :white_check_mark: | :x: |
 
 
 Installation
-============
+------------
 
 To install this module, you need to:
 
@@ -46,22 +45,23 @@ Install Python Depends `codicefiscale <https://pypi.python.org/pypi/codicefiscal
 
 
 Configuration
-=============
+-------------
 
 Usage
+-----
+
 =====
 
 Known issues / Roadmap
-======================
+----------------------
 
 Bug Tracker
-===========
+-----------
 
 Credits
-=======
+-------
 
-Contributors
-------------
+### Contributors
 
 * Davide Corio <davide.corio@abstract.it>
 * Luca Subiaco <subluca@gmail.com>
@@ -77,15 +77,13 @@ Contributors
 * Alex Comba <alex.comba@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Funders
-=======
+### Funders
 
 This module has been financially supported by
 
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
-Maintainer
-----------
+### Maintainer
 
 [![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
 
@@ -112,6 +110,8 @@ is mainly designed for Italian law and markeplace.
 Users can download from [Zeroincombenze® distribution](https://github.com/zeroincombenze/OCB) and deploy on local server.
 
 [//]: # (end copyright)
+
+
 
 
 

@@ -7,14 +7,14 @@
 #
 # Code partially inherited by l10n_it_codice_carica OCA
 #
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 
 
 class ItalyAdeTaxNature(models.Model):
     _name = 'italy.ade.tax.nature'
-    _description = 'Tax Italian NAture'
+    _description = 'Tax Italian Nature'
 
-    _sql_constraints = [('code', 
+    _sql_constraints = [('code',
                          'unique(code)',
                          'Code already exists!')]
 

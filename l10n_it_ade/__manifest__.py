@@ -9,7 +9,7 @@
 #
 {
     "name": "Base xml Agenzia delle Entrate",
-    "version": "11.0.0.1.9",
+    "version": "11.0.0.1.10",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
@@ -18,13 +18,14 @@
     "license": "LGPL-3",
     "depends": [
         'account',
-        ],
+    ],
     "data": [
         'security/ir.model.access.csv',
+        'views/ir_ui_menu.xml',
         'data/italy.ade.tax.nature.csv',
         'views/account_tax_view.xml',
         'views/tax_nature_view.xml',
-        ],
+    ],
     'installable': True,
     "external_dependencies": {
         "python": ["pyxb"],

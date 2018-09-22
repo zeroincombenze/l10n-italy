@@ -60,18 +60,22 @@ class ResPartner(models.Model):
         return fields
 
     @api.multi
+    @api.depends('name', 'individual')
     def _split_last_name(self):
         for partner in self:
             lastname, firstname = self._split_last_first_name(
                 partner=partner)
-            partner.lastname = lastname
+            if lastname:
+                partner.lastname = lastname
 
     @api.multi
+    @api.depends('name', 'individual')
     def _split_first_name(self):
         for partner in self:
             lastname, firstname = self._split_last_first_name(
                 partner=partner)
-            partner.firstname = firstname
+            if firstname:
+                partner.firstname = firstname
 
     @api.multi
     def _split_last_first_name(self, partner=None, name=None, splitmode=None):
@@ -126,11 +130,11 @@ class ResPartner(models.Model):
                                  default='LF')
     firstname = fields.Char('First Name',
                             compute='_split_first_name',
-                            store=True,
+                            # store=True,
                             readonly=True)
     lastname = fields.Char('Last Name',
                            compute='_split_last_name',
-                           store=True,
+                           # store=True,
                            readonly=True)
     split_next = fields.Boolean(
         '◒ ⇔ ◓',
@@ -179,20 +183,14 @@ class ResPartner(models.Model):
         else:
             self.individual = False
 
-    @api.onchange('name')
+    @api.onchange('splitmode', 'name')
     def onchange_name(self):
         lastname, firstname = self._split_last_first_name(
             name=self.name, splitmode=self.splitmode)
-        self.firstname = firstname
-        self.lastname = lastname
-        self.split_next = False
-
-    @api.onchange('splitmode')
-    def onchange_splitmode(self):
-        lastname, firstname = self._split_last_first_name(
-            name=self.name, splitmode=self.splitmode)
-        self.firstname = firstname
-        self.lastname = lastname
+        if firstname:
+            self.firstname = firstname
+        if lastname:
+            self.lastname = lastname
         self.split_next = False
 
     @api.onchange('split_next')
@@ -200,7 +198,7 @@ class ResPartner(models.Model):
         i = [i for i, x in enumerate(SPLIT_MODE) if x[0] == self.splitmode][0]
         i = (i + 1) % len(SPLIT_MODE)
         self.splitmode = SPLIT_MODE[i][0]
-        self.onchange_splitmode()
+        self.onchange_name()
 
     @api.multi
     def _default_splitmode(self):
