@@ -21,9 +21,10 @@
 ##############################################################################
 
 import time
+
 from openerp import fields, models
-from openerp.tools.translate import _
 from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 
 class AccountInvoice(models.Model):
@@ -36,7 +37,7 @@ class AccountInvoice(models.Model):
             'paid': [('readonly', True)],
             'open': [('readonly', True)],
             'close': [('readonly', True)]
-            },
+        },
         select=True,
         help="Keep empty to use the current date",
         copy=False)
@@ -56,7 +57,7 @@ class AccountInvoice(models.Model):
                 ('date_stop', '>=', date_stop),
                 ('company_id', '=', invoice.company_id.id),
                 ('special', '!=', True),
-                ])
+            ])
         if period_ids:
             period_id = period_ids[0]
         else:
@@ -127,9 +128,9 @@ class AccountInvoice(models.Model):
                 period_id, date_start, date_stop = self._get_period_from_dates(
                     cr, uid, inv)
 
-                sql = "update account_move_line set period_id="+str(
+                sql = "update account_move_line set period_id=" + str(
                     period_id
-                    ) + ",date='" + mov_date + "' where move_id = " + str(
+                ) + ",date='" + mov_date + "' where move_id = " + str(
                     inv.move_id.id)
 
                 cr.execute(sql)

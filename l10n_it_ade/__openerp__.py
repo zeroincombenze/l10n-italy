@@ -22,7 +22,8 @@
     "data": [
         'security/ir.model.access.csv',
         'data/italy.ade.tax.nature.csv',
-        'data/codici_carica_data.xml',
+        'data/italy.ade.codice.carica.xml',
+        'views/ir_ui_menu.xml',
         'views/account_tax_view.xml',
         'views/account_journal.xml',
         'views/codice_carica_view.xml',

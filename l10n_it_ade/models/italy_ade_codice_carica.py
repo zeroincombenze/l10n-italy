@@ -10,17 +10,15 @@
 from openerp import fields, models
 
 
-class ItalyAdeTaxNature(models.Model):
-    _name = 'italy.ade.tax.nature'
-    _description = 'Tax Italian Nature'
+class AdECodiceCarica(models.Model):
+    _name = 'italy.ade.codice.carica'
+    _description = 'Codice Carica'
 
-    _sql_constraints = [('code',
-                         'unique(code)',
-                         'Code already exists!')]
-
-    code = fields.Char(string='Code',
-                       size=2)
+    code = fields.Char(string='Code', size=2,
+                       help='Code assigned by Tax Authority')
     name = fields.Char(string='Name')
     help = fields.Char(string='Help')
+    scope = fields.Char(string='Scope',
+                        help='Reserved to specific scope')
     active = fields.Boolean(string='Active',
                             default=True)

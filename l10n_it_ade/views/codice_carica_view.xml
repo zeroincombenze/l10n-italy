@@ -37,10 +37,6 @@
         <field name="view_id" ref="view_codice_carica_tree"/>
     </record>
 
-    <menuitem id="menu_ade" name="Definizioni AdE"
-              parent="account.menu_finance_configuration"
-              groups="account.group_account_manager" sequence="45"/>
-
     <menuitem id="menu_ade_codice_carica" name="Codici Carica"
               action="action_ade_codice_carica" parent="menu_ade"
               groups="account.group_account_manager" sequence="45"/>
