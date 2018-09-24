@@ -130,11 +130,11 @@ class ResPartner(models.Model):
                                  default='LF')
     firstname = fields.Char('First Name',
                             compute='_split_first_name',
-                            store=True,
+                            # store=True,
                             readonly=True)
     lastname = fields.Char('Last Name',
                            compute='_split_last_name',
-                           store=True,
+                           # store=True,
                            readonly=True)
     split_next = fields.Boolean(
         '◒ ⇔ ◓',
@@ -192,7 +192,6 @@ class ResPartner(models.Model):
         if lastname:
             self.lastname = lastname
         self.split_next = False
-
 
     @api.onchange('split_next')
     def onchange_split_next(self):

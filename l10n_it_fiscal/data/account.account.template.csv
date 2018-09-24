@@ -180,17 +180,17 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 152160,152160,Crediti inesigibili o in sofferenza,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152170,152170,Clienti c/corrispettivi da emettere,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152180,152180,Crediti commerciali diversi,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152200,152200,Effetti attivi commerciali,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152210,152210,Effetti all'incasso,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152220,152220,Effetti allo sconto,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152230,152230,Effetti insoluti e protestati,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+152200,152200,Effetti attivi commerciali,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+152210,152210,Effetti all'incasso,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+152220,152220,Effetti allo sconto,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+152230,152230,Effetti insoluti e protestati,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152300,152300,Crediti v/clienti Italia (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152310,152310,Crediti v/clienti UE (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152320,152320,Crediti v/clienti Extra-UE (+!12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
-152400,152400,Cambiali attive (+12M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152410,152410,Effetti all'incasso (+12M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152420,152420,Effetti allo sconto (+12M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152430,152430,Effetti insoluti o protestati( credito +12M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+152400,152400,Cambiali attive (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+152410,152410,Effetti all'incasso (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+152420,152420,Effetti allo sconto (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+152430,152430,Effetti insoluti o protestati( credito +12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152500,152500,Crediti v/Imprese Controllate ( a breve ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
 152550,152550,Crediti v/Imprese Controllate (+12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
 152600,152600,Crediti v/Imprese Collegate ( a breve ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
@@ -202,16 +202,16 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 152900,152900,Altri Crediti ( Entro 12 Mesi ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
 152950,152950,Altri Crediti (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
 153010,153010,IVA n/credito ,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153020,153020,Crediti IVA c/erario,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153030,153030,IVA n/credito in sosp. ,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153040,153040,Crediti per rimborsi IVA,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153050,153050,Integr. IVA da c/acquisti UE (L.427/93),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153060,153060,Imposte c/acconto IVA,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153100,153100,Crediti tributari,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+153020,153020,Crediti IVA c/erario,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153030,153030,IVA n/credito in sosp. ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153040,153040,Crediti per rimborsi IVA,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153050,153050,Integr. IVA da c/acquisti UE (L.427/93),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153060,153060,Imposte c/acconto IVA,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153100,153100,Crediti tributari,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153110,153110,Crediti per ritenute subite,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
-153120,153120,Crediti per rit. Int.Attivi Bancari,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153140,153140,Crediti per rimborsi IRES/IRAP,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153150,153150,Imposte c/acconto  IRES/IRAP,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+153120,153120,Crediti per rit. Int.Attivi Bancari,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153140,153140,Crediti per rimborsi IRES/IRAP,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153150,153150,Imposte c/acconto  IRES/IRAP,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153200,153200,Crediti v/dipendenti,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
 153250,153250,Personale c/acconti,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
 153300,153300,Crediti verso INAIL,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
@@ -226,12 +226,12 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 153510,153510,Crediti v/fornitori c/anticipi,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 153520,153520,Crediti v/Amministratori,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 153530,153530,Note Credito da ricevere,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
-154100,154100,Crediti tributari ( +12 M ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-154300,154300,Crediti verso INAIL (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-154310,154310,Crediti v/istituti previdenziali (+ 12 M ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-154330,154330,Crediti v/compagnie assicurative (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-154400,154400,Crediti per depositi cauzionali ( +  12 M ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-154450,154450,Obbligazionisti c/sottoscrizioni (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+154100,154100,Crediti tributari ( +12 M ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+154300,154300,Crediti verso INAIL (+ 12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+154310,154310,Crediti v/istituti previdenziali (+ 12 M ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+154330,154330,Crediti v/compagnie assicurative (+ 12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+154400,154400,Crediti per depositi cauzionali ( +  12 M ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+154450,154450,Obbligazionisti c/sottoscrizioni (+ 12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 180010,180010,Denaro in Cassa,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 180020,180020,C/C Postali,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 180030,180030,Assegni,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
@@ -285,7 +285,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 220540,220540,Fondo rischi di collaudo,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 220550,220550,Fondo rischi di garanzia,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 220560,220560,Fondo per rischi e oneri futuri,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-230010,230010,Debiti per TFR,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+230010,230010,Debiti per TFR,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 240100,240100,Banche c/c passivi locali,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 240200,240200,Banche c/c passivi regionali,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 240203,240203,C.R.Fossano (passivo),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
@@ -332,19 +332,19 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 250120,250120,Debiti v/fornitori Extra-UE,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250140,250140,Debiti per Carburanti,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250150,250150,Fornitori Fatture da ricevere ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-250180,250180,Debiti da liquidare ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-250190,250190,Bolla doganale,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-250200,250200,Cambiali passive ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
+250180,250180,Debiti da liquidare ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+250190,250190,Bolla doganale,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+250200,250200,Cambiali passive ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250300,250300,Debiti v/fornitori Italia (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250310,250310,Debiti v/fornitori UE (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250320,250320,Debiti v/fornitori Extra-UE (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-250400,250400,Cambiali passive (+12M),account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260010,260010,IVA n/debito ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260020,260020,Erario c/IVA ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260030,260030,IVA n/deb. in sospensione,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260040,260040,IVA su corrispettivi,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260050,260050,IVA autofatture da c/acquisti UE,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260100,260100,Debiti per imposte ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
+250400,250400,Cambiali passive (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+260010,260010,IVA n/debito ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260020,260020,Erario c/IVA ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260030,260030,IVA n/deb. in sospensione,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260040,260040,IVA su corrispettivi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260050,260050,IVA autofatture da c/acquisti UE,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260100,260100,Debiti per imposte ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 260110,260110,Debiti per ritenute da versare ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 260200,260200,Personale c/retribuzioni ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
 260210,260210,Personale c/liquidazioni ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
@@ -361,9 +361,9 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 260420,260420,Debiti v/clienti c/anticipi,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
 260430,260430,Debiti v/Amministratori,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
 260440,260440,Note Credito da Emettere,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260450,260450,Arrotondamenti p. su stipendi,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-290010,290010,Ratei passivi ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-290020,290020,Risconti passivi ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
+260450,260450,Arrotondamenti p. su stipendi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+290010,290010,Ratei passivi ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+290020,290020,Risconti passivi ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 410010,410010,"Rischi assunti dall'impresa, Fideiussioni",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 410020,410020,"Rischi assunti dall'impresa, Avalli",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 410030,410030,"Rischi assunti dall'impresa, Altre garanzie personali",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze

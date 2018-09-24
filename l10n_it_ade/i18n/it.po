@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ade
+# 	* l10n_it_ade
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-20 16:58+0000\n"
-"PO-Revision-Date: 2018-09-20 16:58+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2018-09-22 13:29+0000\n"
+"PO-Revision-Date: 2018-09-22 15:29+0200\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 2.0.8\n"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_code
@@ -54,6 +56,11 @@ msgstr "Nome Visualizzato"
 #: selection:account.tax,non_taxable_nature:0
 msgid "FC applicazione IVA"
 msgstr "FC applicazione IVA"
+
+#. module: l10n_it_ade
+#: model:ir.ui.menu,name:l10n_it_ade.menu_fiscal_report
+msgid "Fiscal Statements"
+msgstr "Fiscal Statements"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_id
@@ -135,8 +142,8 @@ msgstr "Imposta"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_italy_ade_tax_nature
-msgid "Tax Italian NAture"
-msgstr "Tax Italian NAture"
+msgid "Tax Italian Nature"
+msgstr "Natura IVA Italia"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_payability
@@ -172,4 +179,3 @@ msgstr "non soggette"
 #: selection:account.tax,non_taxable_nature:0
 msgid "regime del margine/IVA non esposta"
 msgstr "regime del margine/IVA non esposta"
-

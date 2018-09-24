@@ -1,9 +1,9 @@
 id,description,chart_template_id:id,name,sequence,amount,amount_type,type_tax_use,price_include,account_id/id,refund_account_id/id,tag_ids/id,children_tax_ids/id
 22v,22v,l10n_chart_it_zeroincombenze,IVA 22% su vendite,1,22,percent,sale,False,260010,260010,tag_01,
-22a,22a,l10n_chart_it_zeroincombenze,IVA 22% da acquisti,2,22,percent,purchase,False,153010,153010,tag_02,
+22a,22a,l10n_chart_it_zeroincombenze,IVA 22% da acquisti,1,22,percent,purchase,False,153010,153010,tag_02,
 10v,10v,l10n_chart_it_zeroincombenze,IVA 10% su vendite,3,10,percent,sale,False,260010,260010,tag_03,
-10a,10a,l10n_chart_it_zeroincombenze,IVA 10% da acquisti,4,10,percent,purchase,False,153010,153010,tag_04,
-4v,4v,l10n_chart_it_zeroincombenze,IVA 4% su vendite,5,4,percent,sale,False,260010,260010,tag_05,
+10a,10a,l10n_chart_it_zeroincombenze,IVA 10% da acquisti,3,10,percent,purchase,False,153010,153010,tag_04,
+4v,4v,l10n_chart_it_zeroincombenze,IVA 4% su vendite,6,4,percent,sale,False,260010,260010,tag_05,
 4a,4a,l10n_chart_it_zeroincombenze,IVA 4% da acquisti,6,4,percent,purchase,False,153010,153010,tag_06,
 a17a,a17a,l10n_chart_it_zeroincombenze,Acq.FC IVA Art.17 DPR633,21,,percent,purchase,False,,,tag_07,
 a17v,a17v,l10n_chart_it_zeroincombenze,Vend.FC IVA Art.17 DPR633,22,,percent,sale,False,,,tag_08,

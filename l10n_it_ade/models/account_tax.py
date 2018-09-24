@@ -7,8 +7,7 @@
 #
 # Code partially inherited by l10n_it_account of OCA
 #
-from odoo import models, fields
-from openerp.tools.translate import _
+from odoo import fields, models
 
 
 class AccountTax(models.Model):
@@ -27,12 +26,12 @@ class AccountTax(models.Model):
         ('N6', 'inversione contabile (acq. in reverse charge)'),
         ('N7', 'IVA assolta in altro stato UE'),
         ('FC', 'FC applicazione IVA'),
-        ], string="Non taxable nature (*DEPRECATED*)")
+    ], string="Non taxable nature (*DEPRECATED*)")
     payability = fields.Selection([
         ('I', 'Immediate payability'),
         ('D', 'Deferred payability'),
         ('S', 'Split payment'),
-        ], string="VAT payability",
+    ], string="VAT payability",
         default='I')
     law_reference = fields.Char(
         'Law reference', size=128)

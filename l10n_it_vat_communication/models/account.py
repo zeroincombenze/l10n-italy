@@ -7,7 +7,8 @@
 import logging
 
 import odoo.release as release
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError, Warning
 from odoo.addons import decimal_precision as dp
 from odoo.tools.translate import _
 
@@ -34,17 +35,20 @@ class AccountVatCommunication(models.Model):
         return eu_group
 
     # def _get_default_soggetto_codice_fiscale(self, cr, uid, context=None):
-    #     user = self.pool.get('res.users').browse(cr, uid, uid, context)
-    #     company = user.company_id.partner_id
-    #     if company.vat:
-    #         return company.vat[2:]
-    #     return ''
+
+    @api.model
+    def _get_default_soggetto_codice_fiscale(self):
+        if self.company_id.vat:
+            return self.company_id.vat[2:]
+        return False
 
     _name = "account.vat.communication"
-    company_id = fields.Many2one('res.company', 'Company')
+    company_id = fields.Many2one('res.company', string='Company',
+                                 default=lambda self: self.env.user.company_id)
     soggetto_codice_fiscale = fields.Char(
         'Codice fiscale contribuente',
         size=16, required=True,
+        default=_get_default_soggetto_codice_fiscale,
         help="CF del soggetto a cui riferiscono i dati "
         "della liquidazione.")
     codice_carica = fields.Many2one(
@@ -54,61 +58,62 @@ class AccountVatCommunication(models.Model):
         ('draft', 'Draft'),
         ('open', 'Open'),
         ('confirmed', 'Confirmed'), ],
-        'State', readonly=True)
+        'State', readonly=True,
+        default='draft')
     # 'period_ids': fields.one2many(
     #     'account.period', 'vat_commitment_id', 'Periods'),
-    account_vat_communication_dte_line_ids = fields.One2many(
-        'account.vat.communication.dte.line', 'commitment_id',
-        'Sale invoices',
-        help='Sale invoices to export in VAT communication',
-        states={
-            'draft': [('readonly', False)],
-            'open': [('readonly', False)],
-            'confirmed': [('readonly', True)]
-        })
-    account_vat_communication_dtr_line_ids = fields.One2many(
-        'account.vat.communication.dtr.line', 'commitment_id',
-        'Purchase invoices',
-        help='Purchase invoices to export in VAT communication',
-        states={
-            'draft': [('readonly', False)],
-            'open': [('readonly', False)],
-            'confirmed': [('readonly', True)]
-        })
+    # account_vat_communication_dte_line_ids = fields.One2many(
+    #     'account.vat.communication.dte.line', 'commitment_id',
+    #     'Sale invoices',
+    #     help='Sale invoices to export in VAT communication',
+    #     states={
+    #         'draft': [('readonly', False)],
+    #         'open': [('readonly', False)],
+    #         'confirmed': [('readonly', True)]
+    #     })
+    # account_vat_communication_dtr_line_ids = fields.One2many(
+    #     'account.vat.communication.dtr.line', 'commitment_id',
+    #     'Purchase invoices',
+    #     help='Purchase invoices to export in VAT communication',
+    #     states={
+    #         'draft': [('readonly', False)],
+    #         'open': [('readonly', False)],
+    #         'confirmed': [('readonly', True)]
+    #     })
     attachment_ids = fields.One2many(
         'ir.attachment', 'res_id', 'Attachments',)
     dte_amount_total = fields.Float(
         'Total sales',
         help='Total amount of sale invoices in Communication',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dte_amount_taxable = fields.Float(
         'Total taxable sales',
         help='Total taxables of sale invoices in Communication',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dte_amount_tax = fields.Float(
         'Total tax sales',
         help='Total taxes of sale invoices in Communication',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dte_amount_discarded = fields.Float(
         'Total discarded sales',
         help='Total amount discarded from sale invoices',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dtr_amount_total = fields.Float(
         'Total purchases',
         help='Total amount of purchase invoices in Communication',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dtr_amount_taxable = fields.Float(
         'Total taxable purchases',
         help='Total taxables of purchase invoices in Communication',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dtr_amount_tax = fields.Float(
         'Total tax purchases',
         help='Total taxes of purchase invoices in Communication',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     dtr_amount_discarded = fields.Float(
         'Total discarded purchases',
         help='Total amount discarded from purchase invoices',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     # _defaults = {
     #     'company_id': lambda self, cr, uid, c:
     #         self.pool['res.company']._company_default_get(
@@ -161,7 +166,7 @@ class AccountVatCommunication(models.Model):
     #         sequence_ids = self.create_sequence(cr, uid, company_id,
     #                                             context=context)
     #     if len(sequence_ids) != 1:
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'), _('VAT communication sequence not set!'))
     #     number = int(sequence_model.next_by_id(
     #         cr, uid, sequence_ids[0], context=context))
@@ -297,21 +302,21 @@ class AccountVatCommunication(models.Model):
     #                             tax_rate = tax.amount
     #             if tax_type in ('sale', 'purchase'):
     #                 if tax_rate == 0.0 and not tax_nature:
-    #                     raise orm.except_orm(
+    #                     raise UserError(
     #                         _('Error!'),
     #                         _('00400 - '
     #                           'Invalid tax %s nature for invoice %s') % (
     #                               invoice_tax.name,
     #                               invoice.number))
     #                 elif tax_rate and tax_nature and tax_nature != 'N6':
-    #                     raise orm.except_orm(
+    #                     raise UserError(
     #                         _('Error!'),
     #                         _('00401 - '
     #                           'Invalid tax %s nature for invoice %s') % (
     #                               invoice_tax.name,
     #                               invoice.number))
     #                 if tax_payability == 'S' and tax_nature == 'N6':
-    #                     raise orm.except_orm(
+    #                     raise UserError(
     #                         _('Error!'),
     #                         _('00420 - '
     #                           'Wrong tax %s nature/payment for invoice %s') % (
@@ -483,46 +488,36 @@ class AccountVatCommunication(models.Model):
     #         self.write(cr, uid, [commitment.id], vals)
     #     return True
 
-    # def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
-    #                         country_id=None, context=None):
-    #     name = name or 'fiscalcode'
-    #     if fiscalcode:
-    #         country_model = self.pool.get('res.country')
-    #         if country_id and country_model.browse(
-    #                 cr, uid, country_id).code != 'IT':
-    #             return {'value': {name: fiscalcode,
-    #                               'individual': True}}
-    #         elif len(fiscalcode) == 11:
-    #             res_partner_model = self.pool.get('res.partner')
-    #             chk = res_partner_model.simple_vat_check(
-    #                 cr, uid, 'it', fiscalcode)
-    #             if not chk:
-    #                 return {'value': {name: False},
-    #                         'warning': {
-    #                     'title': 'Invalid fiscalcode!',
-    #                     'message': 'Invalid vat number'}
-    #                 }
-    #             individual = False
-    #         elif len(fiscalcode) != 16:
-    #             return {'value': {name: False},
-    #                     'warning': {
-    #                 'title': 'Invalid len!',
-    #                 'message': 'Fiscal code len must be 11 or 16'}
-    #             }
-    #         else:
-    #             fiscalcode = fiscalcode.upper()
-    #             chk = codicefiscale.control_code(fiscalcode[0:15])
-    #             if chk != fiscalcode[15]:
-    #                 value = fiscalcode[0:15] + chk
-    #                 return {'value': {name: value},
-    #                         'warning': {
-    #                             'title': 'Invalid fiscalcode!',
-    #                             'message': 'Fiscal code could be %s' % (value)}
-    #                         }
-    #             individual = True
-    #         return {'value': {name: fiscalcode,
-    #                           'individual': individual}}
-    #     return {'value': {'individual': False}}
+
+    @api.onchange('soggetto_codice_fiscale')
+    def onchange_fiscalcode(self):
+        name = 'soggetto_codice_fiscale'
+        if self.soggetto_codice_fiscale:
+            if len(self.soggetto_codice_fiscale) == 11:
+                res_partner_model = self.env['res.partner']
+                chk = res_partner_model.simple_vat_check('it', self.soggetto_codice_fiscale)
+                if not chk:
+                    return {'value': {name: False},
+                            'warning': {
+                        'title': 'Invalid fiscalcode!',
+                        'message': 'Invalid vat number'}
+                    }
+            elif len(self.soggetto_codice_fiscale) != 16:
+                return {'value': {name: False},
+                        'warning': {
+                    'title': 'Invalid len!',
+                    'message': 'Fiscal code len must be 11 or 16'}
+                }
+            else:
+                self.soggetto_codice_fiscale = self.soggetto_codice_fiscale.upper()
+                chk = codicefiscale.control_code(self.soggetto_codice_fiscale[0:15])
+                if chk != self.soggetto_codice_fiscale[15]:
+                    value = self.soggetto_codice_fiscale[0:15] + chk
+                    return {'value': {name: value},
+                            'warning': {
+                                'title': 'Invalid fiscalcode!',
+                                'message': 'Fiscal code could be %s' % (value)}
+                            }
 
     # #
     # # INTERNAL INTERFACE TO XML EXPORT CODE
@@ -546,7 +541,7 @@ class AccountVatCommunication(models.Model):
     #     res = line_model._dati_partner(
     #         cr, uid, commitment.company_id.partner_id, None, context)
     #     if res['xml_IdPaese'] != 'IT':
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Missed company VAT number'))
     #     return res
@@ -557,7 +552,7 @@ class AccountVatCommunication(models.Model):
     #     This function has to be used for CessionarioCommittente or
     #     CedentePrestatore iteration"""
     #     if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Internal error: no DTE neither DTR selected'))
     #     model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
@@ -588,7 +583,7 @@ class AccountVatCommunication(models.Model):
     #     This function has to be used for CessionarioCommittente or
     #     CedentePrestatore sub-iteration"""
     #     if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Internal error: no DTE neither DTR selected'))
     #     model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
@@ -616,7 +611,7 @@ class AccountVatCommunication(models.Model):
     #     res['xml_Data'] = invoice.date_invoice
     #     if invoice.type in ('in_invoice', 'in_refund'):
     #         if not invoice.supplier_invoice_number:
-    #             raise orm.except_orm(
+    #             raise UserError(
     #                 _('Error!'),
     #                 _('Missed supplier invoice number %s, id=%d') % (
     #                     invoice.number, invoice.id))
@@ -633,7 +628,7 @@ class AccountVatCommunication(models.Model):
     #     This function has to be used for CessionarioCommittente or
     #     CedentePrestatore sub-sub-iteration"""
     #     if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Internal error: no DTE neither DTR selected'))
     #     model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
@@ -658,14 +653,14 @@ class AccountVatCommunication(models.Model):
     #         cr, uid, CommitmentLine, {'xml': True}, context)
 
 
-# class CommitmentLine(models.AbstractModel):
-    # _name = 'account.vat.communication.line'
+class CommitmentLine(models.AbstractModel):
+    _name = 'account.vat.communication.line'
 
     # def _get_error(self, error, context):
     #     if context.get('no_except', False):
     #         return error
     #     else:
-    #         raise orm.except_orm(_('Error!'), error)
+    #         raise UserError(_('Error!'), error)
     #     return False
 
     # def _dati_partner(self, cr, uid, partner, args, context=None):
@@ -724,20 +719,20 @@ class AccountVatCommunication(models.Model):
     #                 res['xml_Nazione'] == 'IT':
     #                 # or
     #                 # res['xml_Nazione'] in EU_COUNTRIES):
-    #             raise orm.except_orm(
+    #             raise UserError(
     #                 _('Error!'),
     #                 _('Partner %s %d without VAT number') % (
     #                     partner.name, partner.id))
     #     if not res.get('xml_CodiceFiscale') and \
     #             not res.get('xml_IdPaese') and \
     #             not res.get('xml_IdCodice'):
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Partner %s %d without fiscal data') % (
     #                 partner.name, partner.id))
     #     # if res.get('xml_IdPaese') and \
     #     #         res.get('xml_IdPaese') !=res['xml_Nazione']:
-    #     #     raise orm.except_orm(
+    #     #     raise UserError(
     #     #         _('Error!'),
     #     #         _('Partner %s %d vat country differs from country') % (
     #     #             partner.name, partner.id))
@@ -746,7 +741,7 @@ class AccountVatCommunication(models.Model):
     #         res['xml_Indirizzo'] = address.street.replace(
     #             u"'", '').replace(u"’", '')
     #     else:
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Partner %s without street on address') % (partner.name))
 
@@ -755,12 +750,12 @@ class AccountVatCommunication(models.Model):
     #             res['xml_CAP'] = address.zip.replace('x', '0').replace('%',
     #                                                                    '0')
     #         if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
-    #             raise orm.except_orm(
+    #             raise UserError(
     #                 _('Error!'),
     #                 _('Partner %s has wrong zip code') % (partner.name))
     #     res['xml_Comune'] = address.city or ' '
     #     if not address.city:
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Partner %s without city on address') % (partner.name))
     #     if res['xml_Nazione'] == 'IT':
@@ -770,7 +765,7 @@ class AccountVatCommunication(models.Model):
     #             res['xml_Provincia'] = partner.state_id.code
     #         if not res['xml_Provincia']:
     #             del res['xml_Provincia']
-    #             raise orm.except_orm(
+    #             raise UserError(
     #                 _('Error!'),
     #                 _('Partner %s without province on address') % (
     #                     partner.name))
@@ -822,15 +817,15 @@ class AccountVatCommunication(models.Model):
     #     elif doctype in ('out_refund', 'in_refund'):
     #         return 'TD04'
     #     else:
-    #         raise orm.except_orm(
+    #         raise UserError(
     #             _('Error!'),
     #             _('Invalid type %s (%s) for invoice %s') % (doctype,
     #                                                         country_code,
     #                                                         invoice.number))
 
-    # class CommitmentDTELine(orm.Model):
-    # _name = 'account.vat.communication.dte.line'
-    # _inherit = 'account.vat.communication.line'
+class CommitmentDTELine(models.Model):
+    _name = 'account.vat.communication.dte.line'
+    _inherit = 'account.vat.communication.line'
 
     # def _xml_dati_partner(self, cr, uid, ids, fname, args, context=None):
     #     res = {}
@@ -862,17 +857,16 @@ class AccountVatCommunication(models.Model):
     #                                            context=context)
     #     return res
 
-    # _columns = {
-    #     'commitment_id': fields.many2one(
-    #         'account.vat.communication', 'VAT commitment'),
-    #     'invoice_id': fields.many2one(
-    #         'account.invoice', 'Invoice'),
-    #     'tax_id': fields.many2one(
+    commitment_id = fields.Many2one(
+        'account.vat.communication', 'VAT commitment')
+    invoice_id = fields.Many2one(
+        'account.invoice', 'Invoice')
+    #     'tax_id': fields.Many2one(
     #         'account.tax.code', 'VAT code'),
-    #     'partner_id': fields.many2one(
-    #         'res.partner', 'Partner',
-    #         readony=True),
-    #     'tax_vat_id': fields.many2one(
+    partner_id = fields.Many2one(
+        'res.partner', 'Partner',
+        readony=True)
+    #     'tax_vat_id': fields.Many2one(
     #         'account.tax.code', 'VAT code',
     #         readony=True),
     #     'tax_rate': fields.float(
@@ -888,11 +882,11 @@ class AccountVatCommunication(models.Model):
     #         'VAT payability',
     #         readony=True),
     #     'amount_total': fields.float(
-    #         'Amount', digits_compute=dp.get_precision('Account')),
+    #         'Amount', digits=dp.get_precision('Account')),
     #     'amount_taxable': fields.float(
-    #         'Taxable amount', digits_compute=dp.get_precision('Account')),
+    #         'Taxable amount', digits=dp.get_precision('Account')),
     #     'amount_tax': fields.float(
-    #         'Tax amount', digits_compute=dp.get_precision('Account')),
+    #         'Tax amount', digits=dp.get_precision('Account')),
     #     'xml_Error': fields.function(
     #         _xml_dati_partner,
     #         string="Error",
@@ -976,9 +970,9 @@ class AccountVatCommunication(models.Model):
     #         readonly=True),
     # }
 
-    # class CommitmentDTRLine(orm.Model):
-    # _name = 'account.vat.communication.dtr.line'
-    # _inherit = 'account.vat.communication.line'
+class CommitmentDTRLine(models.Model):
+    _name = 'account.vat.communication.dtr.line'
+    _inherit = 'account.vat.communication.line'
 
     # def _xml_dati_partner(self, cr, uid, ids, fname, args, context=None):
     #     res = {}
@@ -1007,17 +1001,16 @@ class AccountVatCommunication(models.Model):
     #                                            context=context)
     #     return res
 
-    # _columns = {
-    #     'commitment_id': fields.many2one(
-    #         'account.vat.communication', 'VAT commitment'),
-    #     'invoice_id': fields.many2one(
-    #         'account.invoice', 'Invoice'),
-    #     'tax_id': fields.many2one(
+    commitment_id = fields.Many2one(
+        'account.vat.communication', 'VAT commitment')
+    invoice_id = fields.Many2one(
+        'account.invoice', 'Invoice')
+    #     'tax_id': fields.Many2one(
     #         'account.tax.code', 'VAT code'),
-    #     'partner_id': fields.many2one(
-    #         'res.partner', 'Partner',
-    #         readony=True),
-    #     'tax_vat_id': fields.many2one(
+    partner_id = fields.Many2one(
+        'res.partner', 'Partner',
+        readony=True)
+    #     'tax_vat_id': fields.Many2one(
     #         'account.tax.code', 'VAT code',
     #         readony=True),
     #     'tax_rate': fields.float(
@@ -1033,11 +1026,11 @@ class AccountVatCommunication(models.Model):
     #         'VAT payability',
     #         readony=True),
     #     'amount_total': fields.float(
-    #         'Amount', digits_compute=dp.get_precision('Account')),
+    #         'Amount', digits=dp.get_precision('Account')),
     #     'amount_taxable': fields.float(
-    #         'Taxable amount', digits_compute=dp.get_precision('Account')),
+    #         'Taxable amount', digits=dp.get_precision('Account')),
     #     'amount_tax': fields.float(
-    #         'Tax amount', digits_compute=dp.get_precision('Account')),
+    #         'Tax amount', digits=dp.get_precision('Account')),
     #     'xml_Error': fields.function(
     #         _xml_dati_partner,
     #         string="Error",
@@ -1119,11 +1112,4 @@ class AccountVatCommunication(models.Model):
     #         store=False,
     #         select=True,
     #         readonly=True),
-    # }
-
-# class AccountPeriod(models.Model):
-    # _inherit = "account.period"
-    # _columns = {
-    #     'vat_commitment_id': fields.many2one(
-    #         'account.vat.communication', "VAT commitment"),
     # }
