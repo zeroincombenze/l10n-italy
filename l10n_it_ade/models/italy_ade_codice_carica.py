@@ -10,9 +10,13 @@
 from openerp import fields, models
 
 
-class AdECodiceCarica(models.Model):
+class ItalyAdeCodiceCarica(models.Model):
     _name = 'italy.ade.codice.carica'
     _description = 'Codice Carica'
+
+    _sql_constraints = [('code',
+                         'unique(code)',
+                         'Code already exists!')]
 
     code = fields.Char(string='Code', size=2,
                        help='Code assigned by Tax Authority')
