@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-#
 # Copyright 2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-# Copyright 2018 - Associazione Odoo Italia <http://www.odoo-italia.org>
-#
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#                  Associazione Odoo Italia <http://www.odoo-italia.org>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # Code partially inherited by l10n_it_account of OCA
 #
@@ -21,9 +19,12 @@
     ],
     "data": [
         'security/ir.model.access.csv',
-        'views/ir_ui_menu.xml',
         'data/italy.ade.tax.nature.csv',
+        'data/italy.ade.codice.carica.xml',
+        'views/ir_ui_menu.xml',
         'views/account_tax_view.xml',
+        # 'views/account_journal.xml',
+        'views/codice_carica_view.xml',
         'views/tax_nature_view.xml',
     ],
     'installable': True,

@@ -6,5 +6,9 @@
               groups="account.group_account_user"
               sequence="45"/>
 
+    <menuitem id="menu_ade" name="Tax Authority Definitions"
+              parent="account.account_account_menu"
+              groups="account.group_account_manager" sequence="45"/>
+
 </odoo>
 
