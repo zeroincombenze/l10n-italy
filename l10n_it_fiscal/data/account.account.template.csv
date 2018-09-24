@@ -1,188 +1,188 @@
 id,code,name,parent_id:id,user_type:id,type,reconcile,note
 0,0,Azienda,,account.data_account_type_view,view,FALSE,
-1,1,ATTIVO ,0,account.data_account_type_view,view,TRUE,AA
-10,10,CREDITI VERSO SOCI PER VERSAMENTI ANCORA DOVUTI,1,account.data_account_type_view,view,TRUE,AA0000
+1,1,ATTIVO ,0,account.data_account_type_view,view,FALSE,AA
+10,10,CREDITI VERSO SOCI PER VERSAMENTI ANCORA DOVUTI,1,account.data_account_type_view,view,FALSE,AA0000
 101000,101000,"Crediti verso soci per versamenti ancora dovuti, parte richiamata",10,account.data_account_type_asset,other,TRUE,AA0000 - Vanno indicati i crediti verso soci evidenziando la quota richiamata.
 101001,101001,Crediti richiamati verso socio A?,10,account.data_account_type_asset,other,TRUE,
 102000,102000,"Crediti verso soci per versamenti ancora dovuti, parte da richiamare",10,account.data_account_type_asset,other,TRUE,AA0000b - Vanno indicati i crediti verso soci evidenziando la quota da richiamare.
 102001,102001,Crediti non richiamati verso socio A?,10,account.data_account_type_asset,other,TRUE,
-12,12,IMMOBILIZZAZIONI,1,account.data_account_type_view,view,TRUE,AB0000
-121,121,IMMOBILIZZAZIONI IMMATERIALI ,12,account.data_account_type_view,view,TRUE,AB01
-121100,121100,Spese di Impianto e di Ampliamento,121,account.data_account_type_asset,other,TRUE,AB0101 - Costi che a varia natura sono serviti per la costruzione dell'azienda.
-121110,121110,Costituzione Società,121,account.data_account_type_asset,other,TRUE,
-121120,121120,Modifica Statuto Sociale,121,account.data_account_type_asset,other,TRUE,
-121130,121130,Avviamento impianti e Produzione,121,account.data_account_type_asset,other,TRUE,
-121140,121140,Trasformazione Società,121,account.data_account_type_asset,other,TRUE,AB0101d - Costi relativi ad ampliamento della società intesa come espansione in settore o mercato o per finalità non precedentemente perseguite.
-121150,121150,Spese Ristrutturaz. in Economia,121,account.data_account_type_asset,other,TRUE,AB0101e - Costi di avviamento degli impianti di produzione
-121200,121200,Ricerca Sviluppo e Pubblicità,121,account.data_account_type_asset,other,TRUE,
-121210,121210,Spese di ricerca e sviluppo,121,account.data_account_type_asset,other,TRUE,AB0102 - Inserire qui i costi di sviluppo del software ed i costi pubblicitari a sostegno dello sviluppo aziendale
-121220,121220,Spese di Pubblicità,121,account.data_account_type_asset,other,TRUE,
-121300,121300,Spese di brevetto industriale e diritti su opere dell'ingegno,121,account.data_account_type_asset,other,TRUE,AB0103- Inserire qui i costi sostenuti per brevettare un'opera o per l'utilizzo di un brevetto industriale
-121310,121310,Brevetti,121,account.data_account_type_asset,other,TRUE,
-121320,121320,Diritti su Opere dell'Ingegno,121,account.data_account_type_asset,other,TRUE,
-121330,121330,Diritti su Programmi Software,121,account.data_account_type_asset,other,TRUE,
-121400,121400,"Concessione licenze, marchi e simili",121,account.data_account_type_asset,other,TRUE,AB0104
-121410,121410,Concessioni,121,account.data_account_type_asset,other,TRUE,
-121420,121420,Licenze,121,account.data_account_type_asset,other,TRUE,
-121430,121430,Marchi di fabbrica,121,account.data_account_type_asset,other,TRUE,
-121440,121440,Programmi Software e Licenze,121,account.data_account_type_asset,other,TRUE,
-121500,121500,Spese di Avviamento,121,account.data_account_type_asset,other,TRUE,
-121510,121510,Avviamento ,121,account.data_account_type_asset,other,TRUE,AB0105
-121600,121600,Immobilizzazioni imm.li in corso e acconti,121,account.data_account_type_asset,other,TRUE,AB0106
-121620,121620,Acconti a Fornitori su Immobilizzazioni,121,account.data_account_type_asset,other,TRUE,
-121630,121630,Caparre su Immobilizzazioni,121,account.data_account_type_asset,other,TRUE,
-121640,121640,Altre immobilizzazioni immateriali,121,account.data_account_type_asset,other,TRUE,AB0107
-121700,121700,Altre Immobilizzazioni ,121,account.data_account_type_asset,other,TRUE,
-121710,121710,Indennità Perdita Avviamento,121,account.data_account_type_asset,other,TRUE,
-121720,121720,Spese Plur.li su Beni di Terzi,121,account.data_account_type_asset,other,TRUE,
-121730,121730,Altre spese  Pluriennali,121,account.data_account_type_asset,other,TRUE,
-121740,121740,Spese Manut.da Ammortiz.su Beni di Proprietà,121,account.data_account_type_asset,other,TRUE,
-121750,121750,Spese di Manutenzione su beni di Terzi,121,account.data_account_type_asset,other,TRUE,
-122,122,FA IMMOBILIZZAZIONI IMMATERIALI ,12,account.data_account_type_view,view,TRUE,AB02
-122100,122100,FA Costi di Impianto e di Ampliamento,122,account.data_account_type_asset,other,TRUE,AB0101 - Costi che a varia natura sono serviti per la costruzione dell'azienda.
-122110,122110,FA Costituzione Società,122,account.data_account_type_asset,other,TRUE,
-122120,122120,FA Modifica Statuto Sociale,122,account.data_account_type_asset,other,TRUE,
-122130,122130,FA Avviamento impianti e Produzione,122,account.data_account_type_asset,other,TRUE,
-122140,122140,FA Trasformazione Società,122,account.data_account_type_asset,other,TRUE,AB0101d - Costi relativi ad ampliamento della società intesa come espansione in settore o mercato o per finalità non precedentemente perseguite.
-122150,122150,FA Spese Ristrutturaz. in Economia,122,account.data_account_type_asset,other,TRUE,AB0101e - Costi di avviamento degli impianti di produzione
-122200,122200,FA Ricerca Sviluppo e Pubblicità,122,account.data_account_type_asset,other,TRUE,
-122210,122210,FA Costi di ricerca e sviluppo,122,account.data_account_type_asset,other,TRUE,AB0102 - Inserire qui i costi di sviluppo del software ed i costi pubblicitari a sostegno dello sviluppo aziendale
-122220,122220,FA Costi di Pubblicità,122,account.data_account_type_asset,other,TRUE,
-122300,122300,FA Costi di brevetto industriale e diritti su opere dell'ingegno,122,account.data_account_type_asset,other,TRUE,AB0103- Inserire qui i costi sostenuti per brevettare un'opera o per l'utilizzo di un brevetto industriale
-122310,122310,FA Brevetti,122,account.data_account_type_asset,other,TRUE,
-122320,122320,FA Diritti su Opere dell'Ingegno,122,account.data_account_type_asset,other,TRUE,
-122330,122330,FA Diritti su Programmi Software,122,account.data_account_type_asset,other,TRUE,
-122400,122400,"FA Concessione licenze, marchi e simili",122,account.data_account_type_asset,other,TRUE,AB0104
-122410,122410,FA Concessioni,122,account.data_account_type_asset,other,TRUE,
-122420,122420,FA Licenze,122,account.data_account_type_asset,other,TRUE,
-122430,122430,FA Marchi di fabbrica,122,account.data_account_type_asset,other,TRUE,
-122440,122440,FA Programmi Software e Licenze,122,account.data_account_type_asset,other,TRUE,
-122500,122500,FA Costi di Avviamento,122,account.data_account_type_asset,other,TRUE,
-122510,122510,FA Avviamento ,122,account.data_account_type_asset,other,TRUE,AB0105
-122600,122600,FA Immobilizzazioni imm.li in corso e acconti,122,account.data_account_type_asset,other,TRUE,AB0106
-122620,122620,FA Acconti a Fornitori su Immobilizzazioni,122,account.data_account_type_asset,other,TRUE,
-122630,122630,FA Caparre su Immobilizzazioni,122,account.data_account_type_asset,other,TRUE,
-122640,122640,FA Altre immobilizzazioni immateriali,122,account.data_account_type_asset,other,TRUE,AB0107
-122700,122700,FA Altre Immobilizzazioni ,122,account.data_account_type_asset,other,TRUE,
-122710,122710,FA Indennità Perdita Avviamento,122,account.data_account_type_asset,other,TRUE,
-122720,122720,FA Costi Plur.li su Beni di Terzi,122,account.data_account_type_asset,other,TRUE,
-122730,122730,FA Altri costi  Pluriennali,122,account.data_account_type_asset,other,TRUE,
-122740,122740,FA Spese Manut.da Ammortiz.su Beni di Proprietà,122,account.data_account_type_asset,other,TRUE,
-122750,122750,FA Spese di Manutenzione su beni di Terzi,122,account.data_account_type_asset,other,TRUE,
-123,123,IMMOBILIZZAZIONI MATERIALI ,12,account.data_account_type_view,view,TRUE,AB03
-123100,123100,Terreni e Fabbricati,123,account.data_account_type_asset,other,TRUE,
-123110,123110,Terreni senza Costruzioni,123,account.data_account_type_asset,other,TRUE,
-123120,123120,Terreni ad Util.ne Industriale,123,account.data_account_type_asset,other,TRUE,
-123130,123130,Terreni ad Util.ne Agricola,123,account.data_account_type_asset,other,TRUE,
-123140,123140,Terreni da Costruzione,123,account.data_account_type_asset,other,TRUE,
-123150,123150,Altri terreni,123,account.data_account_type_asset,other,TRUE,
-123160,123160,Fabbricati  ,123,account.data_account_type_asset,other,TRUE,
-123170,123170,Fabb.ti Indust.li e Infrastrutture,123,account.data_account_type_asset,other,TRUE,
-123180,123180,Fabbricati Industriali,123,account.data_account_type_asset,other,TRUE,
-123200,123200,Impianti  e Macchinari,123,account.data_account_type_asset,other,TRUE,
-123210,123210,Impianti generici vari,123,account.data_account_type_asset,other,TRUE,
-123220,123220,Impianti Specifici,123,account.data_account_type_asset,other,TRUE,
-123230,123230,Macchinari Operatori e Impianti,123,account.data_account_type_asset,other,TRUE,
-123240,123240,Impianti Generali,123,account.data_account_type_asset,other,TRUE,
-123300,123300,Attrezzature Industriali e Commerciali,123,account.data_account_type_asset,other,TRUE,
-123310,123310,Attrezzatura,123,account.data_account_type_asset,other,TRUE,
-123320,123320,Attrezzature Varie e Minute ,123,account.data_account_type_asset,other,TRUE,"Conto cespiti specie II da duplicare (con cifra finale non 0) e con la descrizione precisa della categoria di cespite;  vanno inseriti  mobili, arredi, dotazioni di laboratorio e di mense, servizi sanitari e assistenziali."
-123330,123330,Autovetture,123,account.data_account_type_asset,other,TRUE,
-123340,123340,Automezzi,123,account.data_account_type_asset,other,TRUE,
-123350,123350,Mezzi di Trasporto Interni,123,account.data_account_type_asset,other,TRUE,
-123360,123360,Imballaggi durevoli da riutilizzare,123,account.data_account_type_asset,other,TRUE,
-123370,123370,Macchine Ufficio Ordinarie,123,account.data_account_type_asset,other,TRUE,
-123380,123380,Macchine Ufficio Elettroniche,123,account.data_account_type_asset,other,TRUE,
-123382,123382,Telefono Cellulare,123,account.data_account_type_asset,other,TRUE,
-123390,123390,Mobili e Arredi Ufficio,123,account.data_account_type_asset,other,TRUE,
-123400,123400,Altri Beni,123,account.data_account_type_asset,other,TRUE,
-123410,123410,Beni in Concessione,123,account.data_account_type_asset,other,TRUE,
-123420,123420,Beni Gratuitamente Devolvibili,123,account.data_account_type_asset,other,TRUE,
-123430,123430,Altri Beni Materiali,123,account.data_account_type_asset,other,TRUE,
-123500,123500,Immoliz.ni Materiali in Corso e Acconti,123,account.data_account_type_asset,other,TRUE,
-123510,123510,Immobil. Materiali in Corso,123,account.data_account_type_asset,other,TRUE,
-123520,123520,Acconti a Fornitori su Acquisti,123,account.data_account_type_asset,other,TRUE,
-124,124,FA IMMOBILIZZAZIONI MATERIALI ,12,account.data_account_type_view,view,TRUE,
-124100,124100,FA Terreni e Fabbricati,124,account.data_account_type_asset,other,TRUE,
-124110,124110,FA Terreni senza Costruzioni,124,account.data_account_type_asset,other,TRUE,
-124120,124120,FA Terreni ad Util.ne Industriale,124,account.data_account_type_asset,other,TRUE,
-124130,124130,FA Terreni ad Util.ne Agricola,124,account.data_account_type_asset,other,TRUE,
-124140,124140,FA Terreni da Costruzione,124,account.data_account_type_asset,other,TRUE,
-124150,124150,FA Altri terreni,124,account.data_account_type_asset,other,TRUE,
-124160,124160,FA Fabbricati  ,124,account.data_account_type_asset,other,TRUE,
-124170,124170,FA Fabb.ti Indust.li e Infrastrutture,124,account.data_account_type_asset,other,TRUE,
-124180,124180,FA Fabbricati Industriali,124,account.data_account_type_asset,other,TRUE,
-124200,124200,FA Impianti  e Macchinari,124,account.data_account_type_asset,other,TRUE,
-124210,124210,FA Impianti generici vari,124,account.data_account_type_asset,other,TRUE,
-124220,124220,FA Impianti Specifici,124,account.data_account_type_asset,other,TRUE,
-124230,124230,FA Macchinari Operatori e Impianti,124,account.data_account_type_asset,other,TRUE,
-124240,124240,FA Impianti Generali,124,account.data_account_type_asset,other,TRUE,
-124300,124300,FA Attrezzature Industriali e Commerciali,124,account.data_account_type_asset,other,TRUE,
-124310,124310,FA Attrezzatura,124,account.data_account_type_asset,other,TRUE,
-124320,124320,FA Attrezzature Varie e Minute ,124,account.data_account_type_asset,other,TRUE,"Conto cespiti specie II da duplicare (con cifra finale non 0) e con la descrizione precisa della categoria di cespite;  vanno inseriti  mobili, arredi, dotazioni di laboratorio e di mense, servizi sanitari e assistenziali."
-124330,124330,FA Autovetture,124,account.data_account_type_asset,other,TRUE,
-124340,124340,FA Automezzi,124,account.data_account_type_asset,other,TRUE,
-124350,124350,FA Mezzi di Trasporto Interni,124,account.data_account_type_asset,other,TRUE,
-124360,124360,FA Imballaggi durevoli da riutilizzare,124,account.data_account_type_asset,other,TRUE,
-124370,124370,FA Macchine Ufficio Ordinarie,124,account.data_account_type_asset,other,TRUE,
-124380,124380,FA Macchine Ufficio Elettroniche,124,account.data_account_type_asset,other,TRUE,
-124382,124382,FA Telefono Cellulare,124,account.data_account_type_asset,other,TRUE,
-124390,124390,FA Mobili e Arredi Uffcio,124,account.data_account_type_asset,other,TRUE,
-124400,124400,FA Altri Beni,124,account.data_account_type_asset,other,TRUE,
-124410,124410,FA Beni in Concessione,124,account.data_account_type_asset,other,TRUE,
-124420,124420,FA Beni Gratuitamente Devolvibili,124,account.data_account_type_asset,other,TRUE,
-124430,124430,FA Altri Beni Materiali,124,account.data_account_type_asset,other,TRUE,
-124500,124500,FA Immoliz.ni Materiali in Corso e Acconti,124,account.data_account_type_asset,other,TRUE,
-124510,124510,FA Immobil. Materiali in Corso,124,account.data_account_type_asset,other,TRUE,
-124520,124520,FA Acconti a Fornitori su Acquisti,124,account.data_account_type_asset,other,TRUE,
-125,125,IMMOBILIZZAZIONI FINANZIARIE ,12,account.data_account_type_view,view,TRUE,
-125100,125100,Partecipazioni in Imprese Controllate,125,account.data_account_type_asset,other,TRUE,
-125200,125200,Partecipazioni in Imprese Collegate,125,account.data_account_type_asset,other,TRUE,
-125300,125300,Partecipazioni in Controllanti,125,account.data_account_type_asset,other,TRUE,
-125400,125400,Partecipazioni in Altre Imprese,125,account.data_account_type_asset,other,TRUE,
-125500,125500,Crediti Finanziari in Imprese Controllate ( a breve ),125,account.data_account_type_asset,other,TRUE,
-125550,125550,Crediti Finanziari in Imprese Controllate (+12 M),125,account.data_account_type_asset,other,TRUE,
-125600,125600,Crediti fin. in Imprese Collegate ( a breve),125,account.data_account_type_asset,other,TRUE,
-125650,125650,Crediti fin. in Imprese Collegate (+ 12 M),125,account.data_account_type_asset,other,TRUE,
-125700,125700,Crediti fin. v/Controllanti ( a breve ),125,account.data_account_type_asset,other,TRUE,
-125750,125750,Crediti fin. v/Controllanti (+ 12 M),125,account.data_account_type_asset,other,TRUE,
-125800,125800,Crediti fin. v/Altre Imprese ( a breve ),125,account.data_account_type_asset,other,TRUE,
-125850,125850,Crediti fin. v/Altre Imprese (+12 M),125,account.data_account_type_asset,other,TRUE,
-125900,125900,Altri Crediti Finanziari ( Entro 12 Mesi ),125,account.data_account_type_asset,other,TRUE,
-125950,125950,Altri Crediti Finanziari (+ 12 M),125,account.data_account_type_asset,other,TRUE,
-126000,126000,Titoli,125,account.data_account_type_asset,other,TRUE,
-126100,126100,Titoli di Stato,125,account.data_account_type_asset,other,TRUE,
-126200,126200,Titoli diversi,125,account.data_account_type_asset,other,TRUE,
-126300,126300,Azioni sociali,125,account.data_account_type_asset,other,TRUE,
-15,15,ATTIVO CIRCOLANTE,1,account.data_account_type_view,view,TRUE,AC
-151,151,RIMANENZE ,15,account.data_account_type_view,view,TRUE,AC01
-151100,151100,Materie prime e di consumo,151,account.data_account_type_asset,other,TRUE,AC0101
-151110,151110,Mat.di Consumo per Officina e Stab.,151,account.data_account_type_asset,other,TRUE,
-151120,151120,Materie Sussidiarie,151,account.data_account_type_asset,other,TRUE,
-151130,151130,Altri Materiali di Consumo,151,account.data_account_type_asset,other,TRUE,
-151140,151140,Imballaggi  ,151,account.data_account_type_asset,other,TRUE,
-151150,151150,Merci in esposizione,151,account.data_account_type_asset,other,TRUE,
-151170,151170,Combustibili,151,account.data_account_type_asset,other,TRUE,
-151180,151180,Materiali per Manutenz.ne e Riparaz.ne,151,account.data_account_type_asset,other,TRUE,
-151190,151190,Cancelleria e Stampati da utilizzare,151,account.data_account_type_asset,other,TRUE,
-151200,151200,Prodotti in  Lavorazione,151,account.data_account_type_asset,other,TRUE,AC0102
-151210,151210,Prodotti in Corso di Lavorazione  ,151,account.data_account_type_asset,other,TRUE,
-151250,151250,Semilavorati,151,account.data_account_type_asset,other,TRUE,
-151300,151300,Lavori in corso su ordinazione,151,account.data_account_type_asset,other,TRUE,AC0103
-151320,151320,Lav. in corso su ordin.  a breve termine,151,account.data_account_type_asset,other,TRUE,
-151340,151340,Studi in corso,151,account.data_account_type_asset,other,TRUE,
-151360,151360,Prestaz. di servizi in corso,151,account.data_account_type_asset,other,TRUE,
-151380,151380,Commesse a lungo termine,151,account.data_account_type_asset,other,TRUE,
-151400,151400,Prodotti finiti e Merci,151,account.data_account_type_asset,other,TRUE,AC0104
-151410,151410,Beni per produzione servizi,151,account.data_account_type_asset,other,TRUE,
-151420,151420,Prodotti intermedi,151,account.data_account_type_asset,other,TRUE,
-151430,151430,Cascami e sottoprodotti,151,account.data_account_type_asset,other,TRUE,
-151440,151440,Merci da vendere,151,account.data_account_type_asset,other,TRUE,
-151500,151500,Fornitori c/acconti,151,account.data_account_type_asset,other,TRUE,AC0105
-151510,151510,Acconti fornit. su materie prime,151,account.data_account_type_asset,other,TRUE,
-151520,151520,Acconti fornit. su materie sussidiarie,151,account.data_account_type_asset,other,TRUE,
-151530,151530,Acconti fornit. su materiali di consumo,151,account.data_account_type_asset,other,TRUE,
-152,152,CREDITI COMMERCIALI ,1,account.data_account_type_view,view,TRUE,AC02
+12,12,IMMOBILIZZAZIONI,1,account.data_account_type_view,view,FALSE,AB0000
+121,121,IMMOBILIZZAZIONI IMMATERIALI ,12,account.data_account_type_view,view,FALSE,AB01
+121100,121100,Spese di Impianto e di Ampliamento,121,account.data_account_type_asset,other,FALSE,AB0101 - Costi che a varia natura sono serviti per la costruzione dell'azienda.
+121110,121110,Costituzione Società,121,account.data_account_type_asset,other,FALSE,
+121120,121120,Modifica Statuto Sociale,121,account.data_account_type_asset,other,FALSE,
+121130,121130,Avviamento impianti e Produzione,121,account.data_account_type_asset,other,FALSE,
+121140,121140,Trasformazione Società,121,account.data_account_type_asset,other,FALSE,AB0101d - Costi relativi ad ampliamento della società intesa come espansione in settore o mercato o per finalità non precedentemente perseguite.
+121150,121150,Spese Ristrutturaz. in Economia,121,account.data_account_type_asset,other,FALSE,AB0101e - Costi di avviamento degli impianti di produzione
+121200,121200,Ricerca Sviluppo e Pubblicità,121,account.data_account_type_asset,other,FALSE,
+121210,121210,Spese di ricerca e sviluppo,121,account.data_account_type_asset,other,FALSE,AB0102 - Inserire qui i costi di sviluppo del software ed i costi pubblicitari a sostegno dello sviluppo aziendale
+121220,121220,Spese di Pubblicità,121,account.data_account_type_asset,other,FALSE,
+121300,121300,Spese di brevetto industriale e diritti su opere dell'ingegno,121,account.data_account_type_asset,other,FALSE,AB0103- Inserire qui i costi sostenuti per brevettare un'opera o per l'utilizzo di un brevetto industriale
+121310,121310,Brevetti,121,account.data_account_type_asset,other,FALSE,
+121320,121320,Diritti su Opere dell'Ingegno,121,account.data_account_type_asset,other,FALSE,
+121330,121330,Diritti su Programmi Software,121,account.data_account_type_asset,other,FALSE,
+121400,121400,"Concessione licenze, marchi e simili",121,account.data_account_type_asset,other,FALSE,AB0104
+121410,121410,Concessioni,121,account.data_account_type_asset,other,FALSE,
+121420,121420,Licenze,121,account.data_account_type_asset,other,FALSE,
+121430,121430,Marchi di fabbrica,121,account.data_account_type_asset,other,FALSE,
+121440,121440,Programmi Software e Licenze,121,account.data_account_type_asset,other,FALSE,
+121500,121500,Spese di Avviamento,121,account.data_account_type_asset,other,FALSE,
+121510,121510,Avviamento ,121,account.data_account_type_asset,other,FALSE,AB0105
+121600,121600,Immobilizzazioni imm.li in corso e acconti,121,account.data_account_type_asset,other,FALSE,AB0106
+121620,121620,Acconti a Fornitori su Immobilizzazioni,121,account.data_account_type_asset,other,FALSE,
+121630,121630,Caparre su Immobilizzazioni,121,account.data_account_type_asset,other,FALSE,
+121640,121640,Altre immobilizzazioni immateriali,121,account.data_account_type_asset,other,FALSE,AB0107
+121700,121700,Altre Immobilizzazioni ,121,account.data_account_type_asset,other,FALSE,
+121710,121710,Indennità Perdita Avviamento,121,account.data_account_type_asset,other,FALSE,
+121720,121720,Spese Plur.li su Beni di Terzi,121,account.data_account_type_asset,other,FALSE,
+121730,121730,Altre spese  Pluriennali,121,account.data_account_type_asset,other,FALSE,
+121740,121740,Spese Manut.da Ammortiz.su Beni di Proprietà,121,account.data_account_type_asset,other,FALSE,
+121750,121750,Spese di Manutenzione su beni di Terzi,121,account.data_account_type_asset,other,FALSE,
+122,122,FA IMMOBILIZZAZIONI IMMATERIALI ,12,account.data_account_type_view,view,FALSE,AB02
+122100,122100,FA Costi di Impianto e di Ampliamento,122,account.data_account_type_asset,other,FALSE,AB0101 - Costi che a varia natura sono serviti per la costruzione dell'azienda.
+122110,122110,FA Costituzione Società,122,account.data_account_type_asset,other,FALSE,
+122120,122120,FA Modifica Statuto Sociale,122,account.data_account_type_asset,other,FALSE,
+122130,122130,FA Avviamento impianti e Produzione,122,account.data_account_type_asset,other,FALSE,
+122140,122140,FA Trasformazione Società,122,account.data_account_type_asset,other,FALSE,AB0101d - Costi relativi ad ampliamento della società intesa come espansione in settore o mercato o per finalità non precedentemente perseguite.
+122150,122150,FA Spese Ristrutturaz. in Economia,122,account.data_account_type_asset,other,FALSE,AB0101e - Costi di avviamento degli impianti di produzione
+122200,122200,FA Ricerca Sviluppo e Pubblicità,122,account.data_account_type_asset,other,FALSE,
+122210,122210,FA Costi di ricerca e sviluppo,122,account.data_account_type_asset,other,FALSE,AB0102 - Inserire qui i costi di sviluppo del software ed i costi pubblicitari a sostegno dello sviluppo aziendale
+122220,122220,FA Costi di Pubblicità,122,account.data_account_type_asset,other,FALSE,
+122300,122300,FA Costi di brevetto industriale e diritti su opere dell'ingegno,122,account.data_account_type_asset,other,FALSE,AB0103- Inserire qui i costi sostenuti per brevettare un'opera o per l'utilizzo di un brevetto industriale
+122310,122310,FA Brevetti,122,account.data_account_type_asset,other,FALSE,
+122320,122320,FA Diritti su Opere dell'Ingegno,122,account.data_account_type_asset,other,FALSE,
+122330,122330,FA Diritti su Programmi Software,122,account.data_account_type_asset,other,FALSE,
+122400,122400,"FA Concessione licenze, marchi e simili",122,account.data_account_type_asset,other,FALSE,AB0104
+122410,122410,FA Concessioni,122,account.data_account_type_asset,other,FALSE,
+122420,122420,FA Licenze,122,account.data_account_type_asset,other,FALSE,
+122430,122430,FA Marchi di fabbrica,122,account.data_account_type_asset,other,FALSE,
+122440,122440,FA Programmi Software e Licenze,122,account.data_account_type_asset,other,FALSE,
+122500,122500,FA Costi di Avviamento,122,account.data_account_type_asset,other,FALSE,
+122510,122510,FA Avviamento ,122,account.data_account_type_asset,other,FALSE,AB0105
+122600,122600,FA Immobilizzazioni imm.li in corso e acconti,122,account.data_account_type_asset,other,FALSE,AB0106
+122620,122620,FA Acconti a Fornitori su Immobilizzazioni,122,account.data_account_type_asset,other,FALSE,
+122630,122630,FA Caparre su Immobilizzazioni,122,account.data_account_type_asset,other,FALSE,
+122640,122640,FA Altre immobilizzazioni immateriali,122,account.data_account_type_asset,other,FALSE,AB0107
+122700,122700,FA Altre Immobilizzazioni ,122,account.data_account_type_asset,other,FALSE,
+122710,122710,FA Indennità Perdita Avviamento,122,account.data_account_type_asset,other,FALSE,
+122720,122720,FA Costi Plur.li su Beni di Terzi,122,account.data_account_type_asset,other,FALSE,
+122730,122730,FA Altri costi  Pluriennali,122,account.data_account_type_asset,other,FALSE,
+122740,122740,FA Spese Manut.da Ammortiz.su Beni di Proprietà,122,account.data_account_type_asset,other,FALSE,
+122750,122750,FA Spese di Manutenzione su beni di Terzi,122,account.data_account_type_asset,other,FALSE,
+123,123,IMMOBILIZZAZIONI MATERIALI ,12,account.data_account_type_view,view,FALSE,AB03
+123100,123100,Terreni e Fabbricati,123,account.data_account_type_asset,other,FALSE,
+123110,123110,Terreni senza Costruzioni,123,account.data_account_type_asset,other,FALSE,
+123120,123120,Terreni ad Util.ne Industriale,123,account.data_account_type_asset,other,FALSE,
+123130,123130,Terreni ad Util.ne Agricola,123,account.data_account_type_asset,other,FALSE,
+123140,123140,Terreni da Costruzione,123,account.data_account_type_asset,other,FALSE,
+123150,123150,Altri terreni,123,account.data_account_type_asset,other,FALSE,
+123160,123160,Fabbricati  ,123,account.data_account_type_asset,other,FALSE,
+123170,123170,Fabb.ti Indust.li e Infrastrutture,123,account.data_account_type_asset,other,FALSE,
+123180,123180,Fabbricati Industriali,123,account.data_account_type_asset,other,FALSE,
+123200,123200,Impianti  e Macchinari,123,account.data_account_type_asset,other,FALSE,
+123210,123210,Impianti generici vari,123,account.data_account_type_asset,other,FALSE,
+123220,123220,Impianti Specifici,123,account.data_account_type_asset,other,FALSE,
+123230,123230,Macchinari Operatori e Impianti,123,account.data_account_type_asset,other,FALSE,
+123240,123240,Impianti Generali,123,account.data_account_type_asset,other,FALSE,
+123300,123300,Attrezzature Industriali e Commerciali,123,account.data_account_type_asset,other,FALSE,
+123310,123310,Attrezzatura,123,account.data_account_type_asset,other,FALSE,
+123320,123320,Attrezzature Varie e Minute ,123,account.data_account_type_asset,other,FALSE,"Conto cespiti specie II da duplicare (con cifra finale non 0) e con la descrizione precisa della categoria di cespite;  vanno inseriti  mobili, arredi, dotazioni di laboratorio e di mense, servizi sanitari e assistenziali."
+123330,123330,Autovetture,123,account.data_account_type_asset,other,FALSE,
+123340,123340,Automezzi,123,account.data_account_type_asset,other,FALSE,
+123350,123350,Mezzi di Trasporto Interni,123,account.data_account_type_asset,other,FALSE,
+123360,123360,Imballaggi durevoli da riutilizzare,123,account.data_account_type_asset,other,FALSE,
+123370,123370,Macchine Ufficio Ordinarie,123,account.data_account_type_asset,other,FALSE,
+123380,123380,Macchine Ufficio Elettroniche,123,account.data_account_type_asset,other,FALSE,
+123382,123382,Telefono Cellulare,123,account.data_account_type_asset,other,FALSE,
+123390,123390,Mobili e Arredi Ufficio,123,account.data_account_type_asset,other,FALSE,
+123400,123400,Altri Beni,123,account.data_account_type_asset,other,FALSE,
+123410,123410,Beni in Concessione,123,account.data_account_type_asset,other,FALSE,
+123420,123420,Beni Gratuitamente Devolvibili,123,account.data_account_type_asset,other,FALSE,
+123430,123430,Altri Beni Materiali,123,account.data_account_type_asset,other,FALSE,
+123500,123500,Immoliz.ni Materiali in Corso e Acconti,123,account.data_account_type_asset,other,FALSE,
+123510,123510,Immobil. Materiali in Corso,123,account.data_account_type_asset,other,FALSE,
+123520,123520,Acconti a Fornitori su Acquisti,123,account.data_account_type_asset,other,FALSE,
+124,124,FA IMMOBILIZZAZIONI MATERIALI ,12,account.data_account_type_view,view,FALSE,
+124100,124100,FA Terreni e Fabbricati,124,account.data_account_type_asset,other,FALSE,
+124110,124110,FA Terreni senza Costruzioni,124,account.data_account_type_asset,other,FALSE,
+124120,124120,FA Terreni ad Util.ne Industriale,124,account.data_account_type_asset,other,FALSE,
+124130,124130,FA Terreni ad Util.ne Agricola,124,account.data_account_type_asset,other,FALSE,
+124140,124140,FA Terreni da Costruzione,124,account.data_account_type_asset,other,FALSE,
+124150,124150,FA Altri terreni,124,account.data_account_type_asset,other,FALSE,
+124160,124160,FA Fabbricati  ,124,account.data_account_type_asset,other,FALSE,
+124170,124170,FA Fabb.ti Indust.li e Infrastrutture,124,account.data_account_type_asset,other,FALSE,
+124180,124180,FA Fabbricati Industriali,124,account.data_account_type_asset,other,FALSE,
+124200,124200,FA Impianti  e Macchinari,124,account.data_account_type_asset,other,FALSE,
+124210,124210,FA Impianti generici vari,124,account.data_account_type_asset,other,FALSE,
+124220,124220,FA Impianti Specifici,124,account.data_account_type_asset,other,FALSE,
+124230,124230,FA Macchinari Operatori e Impianti,124,account.data_account_type_asset,other,FALSE,
+124240,124240,FA Impianti Generali,124,account.data_account_type_asset,other,FALSE,
+124300,124300,FA Attrezzature Industriali e Commerciali,124,account.data_account_type_asset,other,FALSE,
+124310,124310,FA Attrezzatura,124,account.data_account_type_asset,other,FALSE,
+124320,124320,FA Attrezzature Varie e Minute ,124,account.data_account_type_asset,other,FALSE,"Conto cespiti specie II da duplicare (con cifra finale non 0) e con la descrizione precisa della categoria di cespite;  vanno inseriti  mobili, arredi, dotazioni di laboratorio e di mense, servizi sanitari e assistenziali."
+124330,124330,FA Autovetture,124,account.data_account_type_asset,other,FALSE,
+124340,124340,FA Automezzi,124,account.data_account_type_asset,other,FALSE,
+124350,124350,FA Mezzi di Trasporto Interni,124,account.data_account_type_asset,other,FALSE,
+124360,124360,FA Imballaggi durevoli da riutilizzare,124,account.data_account_type_asset,other,FALSE,
+124370,124370,FA Macchine Ufficio Ordinarie,124,account.data_account_type_asset,other,FALSE,
+124380,124380,FA Macchine Ufficio Elettroniche,124,account.data_account_type_asset,other,FALSE,
+124382,124382,FA Telefono Cellulare,124,account.data_account_type_asset,other,FALSE,
+124390,124390,FA Mobili e Arredi Uffcio,124,account.data_account_type_asset,other,FALSE,
+124400,124400,FA Altri Beni,124,account.data_account_type_asset,other,FALSE,
+124410,124410,FA Beni in Concessione,124,account.data_account_type_asset,other,FALSE,
+124420,124420,FA Beni Gratuitamente Devolvibili,124,account.data_account_type_asset,other,FALSE,
+124430,124430,FA Altri Beni Materiali,124,account.data_account_type_asset,other,FALSE,
+124500,124500,FA Immoliz.ni Materiali in Corso e Acconti,124,account.data_account_type_asset,other,FALSE,
+124510,124510,FA Immobil. Materiali in Corso,124,account.data_account_type_asset,other,FALSE,
+124520,124520,FA Acconti a Fornitori su Acquisti,124,account.data_account_type_asset,other,FALSE,
+125,125,IMMOBILIZZAZIONI FINANZIARIE ,12,account.data_account_type_view,view,FALSE,
+125100,125100,Partecipazioni in Imprese Controllate,125,account.data_account_type_asset,other,FALSE,
+125200,125200,Partecipazioni in Imprese Collegate,125,account.data_account_type_asset,other,FALSE,
+125300,125300,Partecipazioni in Controllanti,125,account.data_account_type_asset,other,FALSE,
+125400,125400,Partecipazioni in Altre Imprese,125,account.data_account_type_asset,other,FALSE,
+125500,125500,Crediti Finanziari in Imprese Controllate ( a breve ),125,account.data_account_type_asset,other,FALSE,
+125550,125550,Crediti Finanziari in Imprese Controllate (+12 M),125,account.data_account_type_asset,other,FALSE,
+125600,125600,Crediti fin. in Imprese Collegate ( a breve),125,account.data_account_type_asset,other,FALSE,
+125650,125650,Crediti fin. in Imprese Collegate (+ 12 M),125,account.data_account_type_asset,other,FALSE,
+125700,125700,Crediti fin. v/Controllanti ( a breve ),125,account.data_account_type_asset,other,FALSE,
+125750,125750,Crediti fin. v/Controllanti (+ 12 M),125,account.data_account_type_asset,other,FALSE,
+125800,125800,Crediti fin. v/Altre Imprese ( a breve ),125,account.data_account_type_asset,other,FALSE,
+125850,125850,Crediti fin. v/Altre Imprese (+12 M),125,account.data_account_type_asset,other,FALSE,
+125900,125900,Altri Crediti Finanziari ( Entro 12 Mesi ),125,account.data_account_type_asset,other,FALSE,
+125950,125950,Altri Crediti Finanziari (+ 12 M),125,account.data_account_type_asset,other,FALSE,
+126000,126000,Titoli,125,account.data_account_type_asset,other,FALSE,
+126100,126100,Titoli di Stato,125,account.data_account_type_asset,other,FALSE,
+126200,126200,Titoli diversi,125,account.data_account_type_asset,other,FALSE,
+126300,126300,Azioni sociali,125,account.data_account_type_asset,other,FALSE,
+15,15,ATTIVO CIRCOLANTE,1,account.data_account_type_view,view,FALSE,AC
+151,151,RIMANENZE ,15,account.data_account_type_view,view,FALSE,AC01
+151100,151100,Materie prime e di consumo,151,account.data_account_type_asset,other,FALSE,AC0101
+151110,151110,Mat.di Consumo per Officina e Stab.,151,account.data_account_type_asset,other,FALSE,
+151120,151120,Materie Sussidiarie,151,account.data_account_type_asset,other,FALSE,
+151130,151130,Altri Materiali di Consumo,151,account.data_account_type_asset,other,FALSE,
+151140,151140,Imballaggi  ,151,account.data_account_type_asset,other,FALSE,
+151150,151150,Merci in esposizione,151,account.data_account_type_asset,other,FALSE,
+151170,151170,Combustibili,151,account.data_account_type_asset,other,FALSE,
+151180,151180,Materiali per Manutenz.ne e Riparaz.ne,151,account.data_account_type_asset,other,FALSE,
+151190,151190,Cancelleria e Stampati da utilizzare,151,account.data_account_type_asset,other,FALSE,
+151200,151200,Prodotti in  Lavorazione,151,account.data_account_type_asset,other,FALSE,AC0102
+151210,151210,Prodotti in Corso di Lavorazione  ,151,account.data_account_type_asset,other,FALSE,
+151250,151250,Semilavorati,151,account.data_account_type_asset,other,FALSE,
+151300,151300,Lavori in corso su ordinazione,151,account.data_account_type_asset,other,FALSE,AC0103
+151320,151320,Lav. in corso su ordin.  a breve termine,151,account.data_account_type_asset,other,FALSE,
+151340,151340,Studi in corso,151,account.data_account_type_asset,other,FALSE,
+151360,151360,Prestaz. di servizi in corso,151,account.data_account_type_asset,other,FALSE,
+151380,151380,Commesse a lungo termine,151,account.data_account_type_asset,other,FALSE,
+151400,151400,Prodotti finiti e Merci,151,account.data_account_type_asset,other,FALSE,AC0104
+151410,151410,Beni per produzione servizi,151,account.data_account_type_asset,other,FALSE,
+151420,151420,Prodotti intermedi,151,account.data_account_type_asset,other,FALSE,
+151430,151430,Cascami e sottoprodotti,151,account.data_account_type_asset,other,FALSE,
+151440,151440,Merci da vendere,151,account.data_account_type_asset,other,FALSE,
+151500,151500,Fornitori c/acconti,151,account.data_account_type_asset,other,FALSE,AC0105
+151510,151510,Acconti fornit. su materie prime,151,account.data_account_type_asset,other,FALSE,
+151520,151520,Acconti fornit. su materie sussidiarie,151,account.data_account_type_asset,other,FALSE,
+151530,151530,Acconti fornit. su materiali di consumo,151,account.data_account_type_asset,other,FALSE,
+152,152,CREDITI COMMERCIALI ,1,account.data_account_type_view,view,FALSE,AC02
 152100,152100,Crediti v/clienti Italia,152,account.data_account_type_receivable,receivable,TRUE,AC0201
 152110,152110,Crediti v/clienti UE,152,account.data_account_type_receivable,receivable,TRUE,AC0201
 152120,152120,Clienti v/clienti Extra-UE,152,account.data_account_type_receivable,receivable,TRUE,AC0201
@@ -192,17 +192,17 @@ id,code,name,parent_id:id,user_type:id,type,reconcile,note
 152160,152160,Crediti inesigibili o in sofferenza,152,account.data_account_type_receivable,receivable,TRUE,
 152170,152170,Clienti c/corrispettivi da emettere,152,account.data_account_type_receivable,receivable,TRUE,
 152180,152180,Crediti commerciali diversi,152,account.data_account_type_asset,other,TRUE,
-152200,152200,Effetti attivi commerciali,152,account.data_account_type_asset,other,TRUE,
-152210,152210,Effetti all'incasso,152,account.data_account_type_asset,other,TRUE,
-152220,152220,Effetti allo sconto,152,account.data_account_type_asset,other,TRUE,
-152230,152230,Effetti insoluti e protestati,152,account.data_account_type_asset,other,TRUE,
+152200,152200,Effetti attivi commerciali,152,account.data_account_type_receivable,other,TRUE,
+152210,152210,Effetti all'incasso,152,account.data_account_type_receivable,other,TRUE,
+152220,152220,Effetti allo sconto,152,account.data_account_type_receivable,other,TRUE,
+152230,152230,Effetti insoluti e protestati,152,account.data_account_type_receivable,other,TRUE,
 152300,152300,Crediti v/clienti Italia (+12M),152,account.data_account_type_receivable,receivable,TRUE,
 152310,152310,Crediti v/clienti UE (+12M),152,account.data_account_type_receivable,receivable,TRUE,
 152320,152320,Crediti v/clienti Extra-UE (+!12M),152,account.data_account_type_receivable,receivable,TRUE,
-152400,152400,Cambiali attive (+12M),152,account.data_account_type_asset,other,TRUE,
-152410,152410,Effetti all'incasso (+12M),152,account.data_account_type_asset,other,TRUE,
-152420,152420,Effetti allo sconto (+12M),152,account.data_account_type_asset,other,TRUE,
-152430,152430,Effetti insoluti o protestati( credito +12M),152,account.data_account_type_asset,other,TRUE,
+152400,152400,Cambiali attive (+12M),152,account.data_account_type_receivable,other,TRUE,
+152410,152410,Effetti all'incasso (+12M),152,account.data_account_type_receivable,other,TRUE,
+152420,152420,Effetti allo sconto (+12M),152,account.data_account_type_receivable,other,TRUE,
+152430,152430,Effetti insoluti o protestati( credito +12M),152,account.data_account_type_receivable,other,TRUE,
 152500,152500,Crediti v/Imprese Controllate ( a breve ),152,account.data_account_type_asset,other,TRUE,
 152550,152550,Crediti v/Imprese Controllate (+12 M),152,account.data_account_type_asset,other,TRUE,
 152600,152600,Crediti v/Imprese Collegate ( a breve ),152,account.data_account_type_asset,other,TRUE,
@@ -213,18 +213,18 @@ id,code,name,parent_id:id,user_type:id,type,reconcile,note
 152850,152850,Crediti v/Altre Imprese ( +12 M ),152,account.data_account_type_asset,other,TRUE,
 152900,152900,Altri Crediti ( Entro 12 Mesi ),152,account.data_account_type_asset,other,TRUE,
 152950,152950,Altri Crediti (+ 12 M),152,account.data_account_type_asset,other,TRUE,
-153,153,CREDITI DIVERSI  CHE NON COSTITUISCONO IMMOBILIZZAZIONI,1,account.data_account_type_view,view,TRUE,AC03
-153010,153010,IVA n/credito ,153,account.data_account_type_asset,other,TRUE,
-153020,153020,Crediti IVA c/erario,153,account.data_account_type_asset,other,TRUE,
-153030,153030,IVA n/credito in sosp. ,153,account.data_account_type_asset,other,TRUE,
-153040,153040,Crediti per rimborsi IVA,153,account.data_account_type_asset,other,TRUE,
-153050,153050,Integr. IVA da c/acquisti UE (L.427/93),153,account.data_account_type_asset,other,TRUE,
-153060,153060,Imposte c/acconto IVA,153,account.data_account_type_asset,other,TRUE,
-153100,153100,Crediti tributari,153,account.data_account_type_asset,other,TRUE,
+153,153,CREDITI DIVERSI  CHE NON COSTITUISCONO IMMOBILIZZAZIONI,1,account.data_account_type_view,view,FALSE,AC03
+153010,153010,IVA n/credito ,153,account.data_account_type_asset,other,FALSE,
+153020,153020,Crediti IVA c/erario,153,account.data_account_type_asset,other,FALSE,
+153030,153030,IVA n/credito in sosp. ,153,account.data_account_type_asset,other,FALSE,
+153040,153040,Crediti per rimborsi IVA,153,account.data_account_type_asset,other,FALSE,
+153050,153050,Integr. IVA da c/acquisti UE (L.427/93),153,account.data_account_type_asset,other,FALSE,
+153060,153060,Imposte c/acconto IVA,153,account.data_account_type_asset,other,FALSE,
+153100,153100,Crediti tributari,153,account.data_account_type_asset,other,FALSE,
 153110,153110,Crediti per ritenute subite,153,account.data_account_type_receivable,receivable,TRUE,
-153120,153120,Crediti per rit. Int.Attivi Bancari,153,account.data_account_type_asset,other,TRUE,
-153140,153140,Crediti per rimborsi IRES/IRAP,153,account.data_account_type_asset,other,TRUE,
-153150,153150,Imposte c/acconto  IRES/IRAP,153,account.data_account_type_asset,other,TRUE,
+153120,153120,Crediti per rit. Int.Attivi Bancari,153,account.data_account_type_asset,other,FALSE,
+153140,153140,Crediti per rimborsi IRES/IRAP,153,account.data_account_type_asset,other,FALSE,
+153150,153150,Imposte c/acconto  IRES/IRAP,153,account.data_account_type_asset,other,FALSE,
 153200,153200,Crediti v/dipendenti,153,account.data_account_type_asset,other,TRUE,
 153250,153250,Personale c/acconti,153,account.data_account_type_asset,other,TRUE,
 153300,153300,Crediti verso INAIL,153,account.data_account_type_asset,other,TRUE,
@@ -239,132 +239,132 @@ id,code,name,parent_id:id,user_type:id,type,reconcile,note
 153510,153510,Crediti v/fornitori c/anticipi,153,account.data_account_type_receivable,receivable,TRUE,
 153520,153520,Crediti v/Amministratori,153,account.data_account_type_receivable,receivable,TRUE,
 153530,153530,Note Credito da ricevere,153,account.data_account_type_receivable,receivable,TRUE,
-154100,154100,Crediti tributari ( +12 M ),153,account.data_account_type_asset,other,TRUE,
-154300,154300,Crediti verso INAIL (+ 12 M),153,account.data_account_type_asset,other,TRUE,
-154310,154310,Crediti v/istituti previdenziali (+ 12 M ),153,account.data_account_type_asset,other,TRUE,
-154330,154330,Crediti v/compagnie assicurative (+ 12 M),153,account.data_account_type_asset,other,TRUE,
-154400,154400,Crediti per depositi cauzionali ( +  12 M ),153,account.data_account_type_asset,other,TRUE,
-154450,154450,Obbligazionisti c/sottoscrizioni (+ 12 M),153,account.data_account_type_asset,other,TRUE,
-180,180,TOTALE DISPONIBILITA LIQUIDE ,1,account.data_account_type_view,view,TRUE,AC04
-180010,180010,Denaro in Cassa,180,account.data_account_type_cash,liquidity,TRUE,
-180020,180020,C/C Postali,180,account.data_account_type_bank,liquidity,TRUE,
-180030,180030,Assegni,180,account.data_account_type_cash,liquidity,TRUE,
-180040,180040,Valori bollati in cassa,180,account.data_account_type_cash,liquidity,TRUE,
-180100,180100,Banche e c/c locali,180,account.data_account_type_bank,liquidity,TRUE,
-180200,180200,Banche e c/c regionali,180,account.data_account_type_bank,liquidity,TRUE,
-180203,180203,C.R.Fossano (attivo),180,account.data_account_type_bank,liquidity,TRUE,
-180204,180204,C.R.Savigliano (attivo),180,account.data_account_type_bank,liquidity,TRUE,
-180300,180300,Banche e c/c nazionali,180,account.data_account_type_bank,liquidity,TRUE,
-180301,180301,Unicredit Banca (attivo),180,account.data_account_type_bank,liquidity,TRUE,
-180302,180302,Banca Intesa San Paolo (attivo),180,account.data_account_type_bank,liquidity,TRUE,
-180303,180303,Monte dei Paschi Siena (attivo),180,account.data_account_type_bank,liquidity,TRUE,
-180304,180304,BNL Paribas (attivo),180,account.data_account_type_bank,liquidity,TRUE,
-180400,180400,Banche e c/c on-line,180,account.data_account_type_bank,liquidity,TRUE,
-19,19,RATEI E RISCONTI ATTIVI ,1,account.data_account_type_view,view,TRUE,
-190110,190110,Ratei attivi,19,account.data_account_type_asset,other,TRUE,
-190120,190120,Risconti attivi,19,account.data_account_type_asset,other,TRUE,
-2,2,PASSIVO ,0,account.data_account_type_view,view,TRUE,P
-21,21,PATRIMONIO NETTO ,2,account.data_account_type_view,view,TRUE,PA
-211010,211010,Capitale sociale,21,account.data_account_type_liability,other,TRUE,PA01
-211020,211020,Patrimonio Netto ,21,account.data_account_type_liability,other,TRUE,
-211030,211030,Quote sottoscritte,21,account.data_account_type_liability,other,TRUE,
-211040,211040,Azioni di Risparmio,21,account.data_account_type_liability,other,TRUE,
-212010,212010,Riserva da sovrapprezzo azioni,21,account.data_account_type_liability,other,TRUE,PA02
-213010,213010,Riserva di rivalutazione,21,account.data_account_type_liability,other,TRUE,PA03
-214010,214010,Riserva legale,21,account.data_account_type_liability,other,TRUE,PA04
-215010,215010,Riserve statutarie,21,account.data_account_type_liability,other,TRUE,PA05
-216010,216010,Riserva per azioni proprie in portafoglio,21,account.data_account_type_liability,other,TRUE,PA06
-217000,217000,Altre riserve,21,account.data_account_type_liability,other,TRUE,PA07
-217010,217010,Altre riserve: riserva straordinaria o facoltativa,21,account.data_account_type_liability,other,TRUE,PA07
-217020,217020,Altre riserve:  riserva per rinnovamento impianti e macchinari,21,account.data_account_type_liability,other,TRUE,PA07
-217030,217030,Altre riserve: riserva ammortamento anticipato,21,account.data_account_type_liability,other,TRUE,PA07
-217040,217040,Altre riserve: riserva per acquisto azioni proprie,21,account.data_account_type_liability,other,TRUE,PA07
-217050,217050,Altre riserve: riserva da deroghe ex art. 2423 cod. civ,21,account.data_account_type_liability,other,TRUE,PA07
-217060,217060,Altre riserve: riserva azioni (quote) della societa controllante,21,account.data_account_type_liability,other,TRUE,PA07
-217070,217070,Altre riserve: riserva non distribuibile da rivalutazione delle partecipazioni,21,account.data_account_type_liability,other,TRUE,PA07
-217080,217080,Altre riserve: versamenti in conto aumento di capitale,21,account.data_account_type_liability,other,TRUE,PA07
-217090,217090,Altre riserve: versamenti in conto futuro aumento di capitale,21,account.data_account_type_liability,other,TRUE,PA07
-217100,217100,Altre riserve: versamenti in conto capitale,21,account.data_account_type_liability,other,TRUE,PA07
-217110,217110,Altre riserve: versamenti a copertura perdite,21,account.data_account_type_liability,other,TRUE,PA07
-217120,217120,Altre riserve: riserva per utili su cambi,21,account.data_account_type_liability,other,TRUE,PA07
-217130,217130,"Altre riserve: Riserve da condono fiscale, ex L.289 del 27/12/2002",21,account.data_account_type_liability,other,TRUE,PA07
-218010,218010,Utili (perdite) portati a nuovo,21,account.data_account_type_liability,other,TRUE,PA08
-219010,219010,Utile (perdita) d'esercizio ,21,account.data_account_type_liability,other,TRUE,PA09
-219020,219020,"Utile (perdita) d'esercizio, copertura parziale perdita d'esercizio ",21,account.data_account_type_liability,other,TRUE,PA09
-219030,219030,"Utile (perdita) d'esercizio, utile (perdita) residua",21,account.data_account_type_liability,other,TRUE,PA09
-22,22,FONDI PER RISCHI E ONERI ,2,account.data_account_type_view,view,TRUE,PB
-220100,220100,Fondo per trattamento di quiescenza,22,account.data_account_type_liability,other,TRUE,PB01
-220200,220200,Fondo imposte presunte,22,account.data_account_type_liability,other,TRUE,PB02
-220300,220300,Fondo imposte differite,22,account.data_account_type_liability,other,TRUE,PB03
-220400,220400,Fondo manutenzioni programmate,22,account.data_account_type_liability,other,TRUE,PB04
-220510,220510,Fondo rischi su cambi,22,account.data_account_type_liability,other,TRUE,PB05
-220520,220520,Fondo per concorsi a premio,22,account.data_account_type_liability,other,TRUE,PB05
-220530,220530,Fondo di auto-assicurazione,22,account.data_account_type_liability,other,TRUE,PB05
-220540,220540,Fondo rischi di collaudo,22,account.data_account_type_liability,other,TRUE,PB05
-220550,220550,Fondo rischi di garanzia,22,account.data_account_type_liability,other,TRUE,PB05
-220560,220560,Fondo per rischi e oneri futuri,22,account.data_account_type_liability,other,TRUE,PB05
-23,23,TRATTAMENTO FINE RAPPORTO LAVORO SUBORDINATO,2,account.data_account_type_view,view,TRUE,PC
-230010,230010,Debiti per TFR,23,account.data_account_type_liability,other,TRUE,
-24,24,DEBITI FINANZIARI ,2,account.data_account_type_view,view,TRUE,PD
-240100,240100,Banche c/c passivi locali,24,account.data_account_type_liability,other,TRUE,
-240200,240200,Banche c/c passivi regionali,24,account.data_account_type_liability,other,TRUE,
-240203,240203,C.R.Fossano (passivo),24,account.data_account_type_liability,other,TRUE,
-240204,240204,C.R.Savigliano (passivo),24,account.data_account_type_liability,other,TRUE,
-240300,240300,Banche c/c passivi nazionali,24,account.data_account_type_liability,other,TRUE,
-240301,240301,Unicredit Banca (passivo),24,account.data_account_type_liability,other,TRUE,
-240302,240302,Banca Intesa San Paolo (passivo),24,account.data_account_type_liability,other,TRUE,
-240303,240303,Monte dei Paschi Siena (passivo),24,account.data_account_type_liability,other,TRUE,
-240304,240304,BNL Paribas (passivo),24,account.data_account_type_liability,other,TRUE,
-240400,240400,Banche c/c passivi on-line,24,account.data_account_type_liability,other,TRUE,
-240500,240500,Banche c/sovvenzioni ,24,account.data_account_type_liability,other,TRUE,
-241100,241100,Banche c/RIBA all'incasso ,24,account.data_account_type_liability,other,TRUE,
-242100,242100,Banche c/cambiali all'incasso ,24,account.data_account_type_liability,other,TRUE,
-243100,243100,Banche c/anticipi su fatture ,24,account.data_account_type_liability,other,TRUE,
-245100,245100,Obbligazioni ordinarie,24,account.data_account_type_liability,other,TRUE,
-245110,245110,Obbligazioni ordinarie (+ 12 M),24,account.data_account_type_liability,other,TRUE,
-245120,245120,Obbligazioni indicizzate,24,account.data_account_type_liability,other,TRUE,
-245130,245130,Obbligazioni indicizzate (+ 12 M ),24,account.data_account_type_liability,other,TRUE,
-245140,245140,Altre obbligazioni,24,account.data_account_type_liability,other,TRUE,
-245150,245150,Altre obbligazioni (+ 12 M),24,account.data_account_type_liability,other,TRUE,
-246000,246000,Mutui passivi ,24,account.data_account_type_liability,other,TRUE,
-246010,246010,Aperture di credito con garanzia reale,24,account.data_account_type_liability,other,TRUE,
-246020,246020,Altri debiti con garanzia reale ( a breve ),24,account.data_account_type_liability,other,TRUE,
-246030,246030,Altri debiti con garanzia reale (+ 12 M),24,account.data_account_type_liability,other,TRUE,
-247100,247100,Debiti v/altri finanziatori ,24,account.data_account_type_liability,other,TRUE,
-247110,247110,Debiti v/soci,24,account.data_account_type_liability,other,TRUE,
-247120,247120,Soci c/finanziamento infruttifero,24,account.data_account_type_liability,other,TRUE,
-247130,247130,Debiti v/società finanziarie,24,account.data_account_type_liability,other,TRUE,
-247140,247140,Depositi di dipendenti,24,account.data_account_type_liability,other,TRUE,
-247500,247500,Debiti Finanziari in Imprese Controllate ( a breve ),24,account.data_account_type_liability,other,TRUE,
-247550,247550,Debiti Finanziari in Imprese Controllate (+12 M),24,account.data_account_type_liability,other,TRUE,
-247600,247600,Debiti fin. in Imprese Collegate ( a breve),24,account.data_account_type_liability,other,TRUE,
-247650,247650,Debiti fin. in Imprese Collegate (+ 12 M),24,account.data_account_type_liability,other,TRUE,
-247700,247700,Debiti fin. v/Controllanti ( a breve ),24,account.data_account_type_liability,other,TRUE,
-247750,247750,Debiti fin. v/Controllanti (+ 12 M),24,account.data_account_type_liability,other,TRUE,
-247800,247800,Debiti fin. v/Altre Imprese ( a breve ),24,account.data_account_type_liability,other,TRUE,
-247850,247850,Debiti fin. v/Altre Imprese ( +12 M ),24,account.data_account_type_liability,other,TRUE,
-247900,247900,Altri Debiti Finanziari ( Entro 12 Mesi ),24,account.data_account_type_liability,other,TRUE,
-247950,247950,Altri Debiti Finanziari (+ 12 M),24,account.data_account_type_liability,other,TRUE,
-25,25,DEBITI COMMERCIALI ,2,account.data_account_type_view,view,TRUE,PD
+154100,154100,Crediti tributari ( +12 M ),153,account.data_account_type_asset,other,FALSE,
+154300,154300,Crediti verso INAIL (+ 12 M),153,account.data_account_type_asset,other,FALSE,
+154310,154310,Crediti v/istituti previdenziali (+ 12 M ),153,account.data_account_type_asset,other,FALSE,
+154330,154330,Crediti v/compagnie assicurative (+ 12 M),153,account.data_account_type_asset,other,FALSE,
+154400,154400,Crediti per depositi cauzionali ( +  12 M ),153,account.data_account_type_asset,other,FALSE,
+154450,154450,Obbligazionisti c/sottoscrizioni (+ 12 M),153,account.data_account_type_asset,other,FALSE,
+180,180,TOTALE DISPONIBILITA LIQUIDE ,1,account.data_account_type_view,view,FALSE,AC04
+180010,180010,Denaro in Cassa,180,account.data_account_type_cash,liquidity,FALSE,
+180020,180020,C/C Postali,180,account.data_account_type_bank,liquidity,FALSE,
+180030,180030,Assegni,180,account.data_account_type_cash,liquidity,FALSE,
+180040,180040,Valori bollati in cassa,180,account.data_account_type_cash,liquidity,FALSE,
+180100,180100,Banche e c/c locali,180,account.data_account_type_bank,liquidity,FALSE,
+180200,180200,Banche e c/c regionali,180,account.data_account_type_bank,liquidity,FALSE,
+180203,180203,C.R.Fossano (attivo),180,account.data_account_type_bank,liquidity,FALSE,
+180204,180204,C.R.Savigliano (attivo),180,account.data_account_type_bank,liquidity,FALSE,
+180300,180300,Banche e c/c nazionali,180,account.data_account_type_bank,liquidity,FALSE,
+180301,180301,Unicredit Banca (attivo),180,account.data_account_type_bank,liquidity,FALSE,
+180302,180302,Banca Intesa San Paolo (attivo),180,account.data_account_type_bank,liquidity,FALSE,
+180303,180303,Monte dei Paschi Siena (attivo),180,account.data_account_type_bank,liquidity,FALSE,
+180304,180304,BNL Paribas (attivo),180,account.data_account_type_bank,liquidity,FALSE,
+180400,180400,Banche e c/c on-line,180,account.data_account_type_bank,liquidity,FALSE,
+19,19,RATEI E RISCONTI ATTIVI ,1,account.data_account_type_view,view,FALSE,
+190110,190110,Ratei attivi,19,account.data_account_type_asset,other,FALSE,
+190120,190120,Risconti attivi,19,account.data_account_type_asset,other,FALSE,
+2,2,PASSIVO ,0,account.data_account_type_view,view,FALSE,P
+21,21,PATRIMONIO NETTO ,2,account.data_account_type_view,view,FALSE,PA
+211010,211010,Capitale sociale,21,account.data_account_type_liability,other,FALSE,PA01
+211020,211020,Patrimonio Netto ,21,account.data_account_type_liability,other,FALSE,
+211030,211030,Quote sottoscritte,21,account.data_account_type_liability,other,FALSE,
+211040,211040,Azioni di Risparmio,21,account.data_account_type_liability,other,FALSE,
+212010,212010,Riserva da sovrapprezzo azioni,21,account.data_account_type_liability,other,FALSE,PA02
+213010,213010,Riserva di rivalutazione,21,account.data_account_type_liability,other,FALSE,PA03
+214010,214010,Riserva legale,21,account.data_account_type_liability,other,FALSE,PA04
+215010,215010,Riserve statutarie,21,account.data_account_type_liability,other,FALSE,PA05
+216010,216010,Riserva per azioni proprie in portafoglio,21,account.data_account_type_liability,other,FALSE,PA06
+217000,217000,Altre riserve,21,account.data_account_type_liability,other,FALSE,PA07
+217010,217010,Altre riserve: riserva straordinaria o facoltativa,21,account.data_account_type_liability,other,FALSE,PA07
+217020,217020,Altre riserve:  riserva per rinnovamento impianti e macchinari,21,account.data_account_type_liability,other,FALSE,PA07
+217030,217030,Altre riserve: riserva ammortamento anticipato,21,account.data_account_type_liability,other,FALSE,PA07
+217040,217040,Altre riserve: riserva per acquisto azioni proprie,21,account.data_account_type_liability,other,FALSE,PA07
+217050,217050,Altre riserve: riserva da deroghe ex art. 2423 cod. civ,21,account.data_account_type_liability,other,FALSE,PA07
+217060,217060,Altre riserve: riserva azioni (quote) della societa controllante,21,account.data_account_type_liability,other,FALSE,PA07
+217070,217070,Altre riserve: riserva non distribuibile da rivalutazione delle partecipazioni,21,account.data_account_type_liability,other,FALSE,PA07
+217080,217080,Altre riserve: versamenti in conto aumento di capitale,21,account.data_account_type_liability,other,FALSE,PA07
+217090,217090,Altre riserve: versamenti in conto futuro aumento di capitale,21,account.data_account_type_liability,other,FALSE,PA07
+217100,217100,Altre riserve: versamenti in conto capitale,21,account.data_account_type_liability,other,FALSE,PA07
+217110,217110,Altre riserve: versamenti a copertura perdite,21,account.data_account_type_liability,other,FALSE,PA07
+217120,217120,Altre riserve: riserva per utili su cambi,21,account.data_account_type_liability,other,FALSE,PA07
+217130,217130,"Altre riserve: Riserve da condono fiscale, ex L.289 del 27/12/2002",21,account.data_account_type_liability,other,FALSE,PA07
+218010,218010,Utili (perdite) portati a nuovo,21,account.data_account_type_liability,other,FALSE,PA08
+219010,219010,Utile (perdita) d'esercizio ,21,account.data_account_type_liability,other,FALSE,PA09
+219020,219020,"Utile (perdita) d'esercizio, copertura parziale perdita d'esercizio ",21,account.data_account_type_liability,other,FALSE,PA09
+219030,219030,"Utile (perdita) d'esercizio, utile (perdita) residua",21,account.data_account_type_liability,other,FALSE,PA09
+22,22,FONDI PER RISCHI E ONERI ,2,account.data_account_type_view,view,FALSE,PB
+220100,220100,Fondo per trattamento di quiescenza,22,account.data_account_type_liability,other,FALSE,PB01
+220200,220200,Fondo imposte presunte,22,account.data_account_type_liability,other,FALSE,PB02
+220300,220300,Fondo imposte differite,22,account.data_account_type_liability,other,FALSE,PB03
+220400,220400,Fondo manutenzioni programmate,22,account.data_account_type_liability,other,FALSE,PB04
+220510,220510,Fondo rischi su cambi,22,account.data_account_type_liability,other,FALSE,PB05
+220520,220520,Fondo per concorsi a premio,22,account.data_account_type_liability,other,FALSE,PB05
+220530,220530,Fondo di auto-assicurazione,22,account.data_account_type_liability,other,FALSE,PB05
+220540,220540,Fondo rischi di collaudo,22,account.data_account_type_liability,other,FALSE,PB05
+220550,220550,Fondo rischi di garanzia,22,account.data_account_type_liability,other,FALSE,PB05
+220560,220560,Fondo per rischi e oneri futuri,22,account.data_account_type_liability,other,FALSE,PB05
+23,23,TRATTAMENTO FINE RAPPORTO LAVORO SUBORDINATO,2,account.data_account_type_view,view,FALSE,PC
+230010,230010,Debiti per TFR,23,account.data_account_type_payable,other,TRUE,
+24,24,DEBITI FINANZIARI ,2,account.data_account_type_view,view,FALSE,PD
+240100,240100,Banche c/c passivi locali,24,account.data_account_type_liability,other,FALSE,
+240200,240200,Banche c/c passivi regionali,24,account.data_account_type_liability,other,FALSE,
+240203,240203,C.R.Fossano (passivo),24,account.data_account_type_liability,other,FALSE,
+240204,240204,C.R.Savigliano (passivo),24,account.data_account_type_liability,other,FALSE,
+240300,240300,Banche c/c passivi nazionali,24,account.data_account_type_liability,other,FALSE,
+240301,240301,Unicredit Banca (passivo),24,account.data_account_type_liability,other,FALSE,
+240302,240302,Banca Intesa San Paolo (passivo),24,account.data_account_type_liability,other,FALSE,
+240303,240303,Monte dei Paschi Siena (passivo),24,account.data_account_type_liability,other,FALSE,
+240304,240304,BNL Paribas (passivo),24,account.data_account_type_liability,other,FALSE,
+240400,240400,Banche c/c passivi on-line,24,account.data_account_type_liability,other,FALSE,
+240500,240500,Banche c/sovvenzioni ,24,account.data_account_type_liability,other,FALSE,
+241100,241100,Banche c/RIBA all'incasso ,24,account.data_account_type_liability,other,FALSE,
+242100,242100,Banche c/cambiali all'incasso ,24,account.data_account_type_liability,other,FALSE,
+243100,243100,Banche c/anticipi su fatture ,24,account.data_account_type_liability,other,FALSE,
+245100,245100,Obbligazioni ordinarie,24,account.data_account_type_liability,other,FALSE,
+245110,245110,Obbligazioni ordinarie (+ 12 M),24,account.data_account_type_liability,other,FALSE,
+245120,245120,Obbligazioni indicizzate,24,account.data_account_type_liability,other,FALSE,
+245130,245130,Obbligazioni indicizzate (+ 12 M ),24,account.data_account_type_liability,other,FALSE,
+245140,245140,Altre obbligazioni,24,account.data_account_type_liability,other,FALSE,
+245150,245150,Altre obbligazioni (+ 12 M),24,account.data_account_type_liability,other,FALSE,
+246000,246000,Mutui passivi ,24,account.data_account_type_liability,other,FALSE,
+246010,246010,Aperture di credito con garanzia reale,24,account.data_account_type_liability,other,FALSE,
+246020,246020,Altri debiti con garanzia reale ( a breve ),24,account.data_account_type_liability,other,FALSE,
+246030,246030,Altri debiti con garanzia reale (+ 12 M),24,account.data_account_type_liability,other,FALSE,
+247100,247100,Debiti v/altri finanziatori ,24,account.data_account_type_liability,other,FALSE,
+247110,247110,Debiti v/soci,24,account.data_account_type_liability,other,FALSE,
+247120,247120,Soci c/finanziamento infruttifero,24,account.data_account_type_liability,other,FALSE,
+247130,247130,Debiti v/società finanziarie,24,account.data_account_type_liability,other,FALSE,
+247140,247140,Depositi di dipendenti,24,account.data_account_type_liability,other,FALSE,
+247500,247500,Debiti Finanziari in Imprese Controllate ( a breve ),24,account.data_account_type_liability,other,FALSE,
+247550,247550,Debiti Finanziari in Imprese Controllate (+12 M),24,account.data_account_type_liability,other,FALSE,
+247600,247600,Debiti fin. in Imprese Collegate ( a breve),24,account.data_account_type_liability,other,FALSE,
+247650,247650,Debiti fin. in Imprese Collegate (+ 12 M),24,account.data_account_type_liability,other,FALSE,
+247700,247700,Debiti fin. v/Controllanti ( a breve ),24,account.data_account_type_liability,other,FALSE,
+247750,247750,Debiti fin. v/Controllanti (+ 12 M),24,account.data_account_type_liability,other,FALSE,
+247800,247800,Debiti fin. v/Altre Imprese ( a breve ),24,account.data_account_type_liability,other,FALSE,
+247850,247850,Debiti fin. v/Altre Imprese ( +12 M ),24,account.data_account_type_liability,other,FALSE,
+247900,247900,Altri Debiti Finanziari ( Entro 12 Mesi ),24,account.data_account_type_liability,other,FALSE,
+247950,247950,Altri Debiti Finanziari (+ 12 M),24,account.data_account_type_liability,other,FALSE,
+25,25,DEBITI COMMERCIALI ,2,account.data_account_type_view,view,FALSE,PD
 250100,250100,Debiti v/fornitori Italia,25,account.data_account_type_payable,payable,TRUE,
 250110,250110,Debiti v/fornitori UE,25,account.data_account_type_payable,payable,TRUE,
 250120,250120,Debiti v/fornitori Extra-UE,25,account.data_account_type_payable,payable,TRUE,
 250140,250140,Debiti per Carburanti,25,account.data_account_type_payable,payable,TRUE,
 250150,250150,Fornitori Fatture da ricevere ,25,account.data_account_type_payable,payable,TRUE,
 250180,250180,Debiti da liquidare ,25,account.data_account_type_liability,other,TRUE,
-250190,250190,Bolla doganale,25,account.data_account_type_liability,other,TRUE,
-250200,250200,Cambiali passive ,25,account.data_account_type_liability,other,TRUE,
+250190,250190,Bolla doganale,25,account.data_account_type_payable,other,TRUE,
+250200,250200,Cambiali passive ,25,account.data_account_type_payable,other,TRUE,
 250300,250300,Debiti v/fornitori Italia (+12M),25,account.data_account_type_payable,payable,TRUE,
 250310,250310,Debiti v/fornitori UE (+12M),25,account.data_account_type_payable,payable,TRUE,
 250320,250320,Debiti v/fornitori Extra-UE (+12M),25,account.data_account_type_payable,payable,TRUE,
-250400,250400,Cambiali passive (+12M),25,account.data_account_type_liability,other,TRUE,
-26,26,DEBITI DIVERSI ,2,account.data_account_type_view,view,TRUE,
-260010,260010,IVA n/debito ,26,account.data_account_type_liability,other,TRUE,
-260020,260020,Erario c/IVA ,26,account.data_account_type_liability,other,TRUE,
-260030,260030,IVA n/deb. in sospensione,26,account.data_account_type_liability,other,TRUE,
-260040,260040,IVA su corrispettivi,26,account.data_account_type_liability,other,TRUE,
-260050,260050,IVA autofatture da c/acquisti UE,26,account.data_account_type_liability,other,TRUE,
-260100,260100,Debiti per imposte ,26,account.data_account_type_liability,other,TRUE,
+250400,250400,Cambiali passive (+12M),25,account.data_account_type_payable,other,TRUE,
+26,26,DEBITI DIVERSI ,2,account.data_account_type_view,view,FALSE,
+260010,260010,IVA n/debito ,26,account.data_account_type_liability,other,FALSE,
+260020,260020,Erario c/IVA ,26,account.data_account_type_liability,other,FALSE,
+260030,260030,IVA n/deb. in sospensione,26,account.data_account_type_liability,other,FALSE,
+260040,260040,IVA su corrispettivi,26,account.data_account_type_liability,other,FALSE,
+260050,260050,IVA autofatture da c/acquisti UE,26,account.data_account_type_liability,other,FALSE,
+260100,260100,Debiti per imposte ,26,account.data_account_type_liability,other,FALSE,
 260110,260110,Debiti per ritenute da versare ,26,account.data_account_type_payable,payable,TRUE,
 260200,260200,Personale c/retribuzioni ,26,account.data_account_type_liability,other,TRUE,
 260210,260210,Personale c/liquidazioni ,26,account.data_account_type_liability,other,TRUE,
@@ -377,10 +377,10 @@ id,code,name,parent_id:id,user_type:id,type,reconcile,note
 260420,260420,Debiti v/clienti c/anticipi,26,account.data_account_type_liability,other,TRUE,
 260430,260430,Debiti v/Amministratori,26,account.data_account_type_liability,other,TRUE,
 260440,260440,Note Credito da Emettere,26,account.data_account_type_liability,other,TRUE,
-260450,260450,Arrotondamenti p. su stipendi,26,account.data_account_type_liability,other,TRUE,
-29,29,RATEI E RISCONTI PASSIVI ,2,account.data_account_type_view,view,TRUE,PE
-290010,290010,Ratei passivi ,29,account.data_account_type_liability,other,TRUE,
-290020,290020,Risconti passivi ,29,account.data_account_type_liability,other,TRUE,
+260450,260450,Arrotondamenti p. su stipendi,26,account.data_account_type_liability,other,FALSE,
+29,29,RATEI E RISCONTI PASSIVI ,2,account.data_account_type_view,view,FALSE,PE
+290010,290010,Ratei passivi ,29,account.data_account_type_liability,other,FALSE,
+290020,290020,Risconti passivi ,29,account.data_account_type_liability,other,FALSE,
 4,4,CONTI D'ORDINE,0,account.data_account_type_view,view,TRUE,
 41,41,RISCHI ASSUNTI DALL'IMPRESA,4,account.data_account_type_view,view,TRUE,
 410010,410010,"Rischi assunti dall'impresa, Fideiussioni",41,account.data_account_type_expense,other,TRUE,
