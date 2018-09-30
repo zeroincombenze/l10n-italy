@@ -464,7 +464,7 @@ msgstr "Fattura di vendita da esportare nella comunicazione IVA"
 #. module: l10n_it_vat_communication
 #: view:account.vat.communication:0
 msgid "Set to draft"
-msgstr "Imposta stato bozza"
+msgstr "Imposta a bozza"
 
 #. module: l10n_it_vat_communication
 #: view:wizard.vat.communication:0

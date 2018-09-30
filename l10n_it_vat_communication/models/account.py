@@ -274,6 +274,8 @@ class AccountVatCommunication(orm.Model):
                 for tax_id in account_tax_model.search(
                         cr, uid, where):
                     tax = account_tax_model.browse(cr, uid, tax_id)
+                    if tax.type_tax_use:
+                        tax_type = tax.type_tax_use
                     if tax and not tax.parent_id:
                         if tax.amount > tax_rate:
                             tax_rate = tax.amount
@@ -281,8 +283,6 @@ class AccountVatCommunication(orm.Model):
                             tax_nature = tax.non_taxable_nature
                         if tax.payability:
                             tax_payability = tax.payability
-                        if tax.type_tax_use:
-                            tax_type = tax.type_tax_use
                     else:
                         if release.major_version == '6.1':
                             tax_rate = 0

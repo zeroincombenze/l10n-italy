@@ -18,7 +18,7 @@ msgstr ""
 #. module: l10n_it_ade
 #: field:account.journal,anom_sale_receipts:0
 msgid "Anonimous sale receipts journal"
-msgstr "Registro corrispettivi"
+msgstr "Sezionale Corrispettivi"
 
 #. module: l10n_it_ade
 #: help:account.journal,proforma:0
@@ -69,7 +69,7 @@ msgstr "Agenzia delle Entrate"
 #: model:ir.model,name:l10n_it_ade.model_account_journal
 #, python-format
 msgid "Journal"
-msgstr "Registro"
+msgstr "Sezionale"
 
 #. module: l10n_it_ade
 #: field:account.tax,law_reference:0
@@ -146,4 +146,5 @@ msgstr "non soggette"
 #: selection:account.tax,non_taxable_nature:0
 msgid "regime del margine/IVA non esposta"
 msgstr "regime del margine/IVA non esposta"
+
 

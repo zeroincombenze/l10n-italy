@@ -7,31 +7,8 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '8.0.0.1.3',
+    'version': '8.0.0.2.14',
     'category': 'Localisation/Italy',
-    'description': """(en)
-Italian Localization module - Base version
-
-Italian Localization - Base version
------------------------------------
-
- Funcionalities:
-
-- Italian cities
-- Titles
-- Provinces (districts) and Regions
-
-(it)
-Localizzazione italiana - Versione base
----------------------------------------
-
-Funzionalità
-
-- Comuni italiani (aggiornati al 2008)
-- Titoli
-- Province e regioni
-- Automatistmi su res.partner.address
-""",
     'author': "Odoo Italian Community,Odoo Community Association (OCA),"
               "SHS-AV s.r.l.",
     'maintainer': 'Antonio Maria Vigliotti',

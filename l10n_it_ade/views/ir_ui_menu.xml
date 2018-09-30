@@ -3,7 +3,7 @@
 <data>
 
     <menuitem id="menu_fiscal_report" name="Fiscal Statements"
-              parent="account.menu_finance_reports"
+              parent="account.menu_finance_periodical_processing"
               groups="account.group_account_user"
               sequence="45"/>
 
