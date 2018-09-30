@@ -489,12 +489,12 @@ class AccountVatCommunication(orm.Model):
         return True
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
-                            country_id=None, context=None):
+                            country=None, context=None):
         name = name or 'fiscalcode'
         if fiscalcode:
             country_model = self.pool.get('res.country')
-            if country_id and country_model.browse(
-                    cr, uid, country_id).code != 'IT':
+            if country and country_model.browse(
+                    cr, uid, country.id).code != 'IT':
                 return {'value': {name: fiscalcode,
                                   'individual': True}}
             elif len(fiscalcode) == 11:
