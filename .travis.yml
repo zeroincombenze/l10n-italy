@@ -10,7 +10,7 @@ cache:
     - $HOME/.cache/pip
 
 python:
-  - "2.7"
+  - "3.4"
 
 virtualenv:
   system_site_packages: true
@@ -29,15 +29,19 @@ addons:
       - libxml2-dev
       - libxslt1-dev
       - zlib1g-dev
+      - python-simplejson
+      - nodejs
+      - npm
       - python-ldap
       - python-psycopg2
-      - python-simplejson
+      - build-essential
       - expect-dev
+      - libffi-dev
+      - libssl-dev
       - python-setuptools
 
 before_install:
   - export TRAVIS_DEBUG_MODE="1"
-  - pip install urllib3[secure] --upgrade; true
 # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}

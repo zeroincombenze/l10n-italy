@@ -5,7 +5,7 @@
 [![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-11.svg)](https://github.com/OCA/tools/tree/11.0)
 [![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-11.svg)](http://wiki.zeroincombenze.org/en/Odoo/11.0/dev)
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-11.svg)](http://wiki.zeroincombenze.org/en/Odoo/11.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-11.svg)](https://erp11.zeroincombenze.it)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-11.svg)](https://odoo11.odoo-italia.org)
 
 
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)

@@ -6,7 +6,7 @@
 #
 # This free software is released under GNU Affero GPL3
 # author: Antonio M. Vigliotti - antoniomaria.vigliotti@gmail.com
-# (C) 2017-2017 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
+# (C) 2017-2018 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
 #
 THIS=$(basename "$0")
 TDIR=$(readlink -f $(dirname $0))
@@ -29,14 +29,16 @@ if [ -z "$Z0LIBDIR" ]; then
   exit 2
 fi
 
-__version__=0.1.5.5
+__version__=0.1.5.6
+
+excl="DatiFatturaMessaggi,FatturaPA_versione_1.1,FatturaPA_versione_1.2,MessaggiTypes"
 
 
 OPTOPTS=(h        k        l        n           O       p          q            u       V           v           x)
 OPTDEST=(opt_help opt_keep opt_list opt_dry_run opt_OCA opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
 OPTACTI=(1        1        "1>"     1           1       1          0            "1>"    "*"         1           "=>")
-OPTDEFL=(1        0        0        0           0       0          -1            0       ""         -1           "DatiFatturaMessaggi,FatturaPA_versione_1.1,MessaggiTypes")
-OPTMETA=("help"   ""       ""       ""          ""      ""         "silent"     ""      "version"   "verbose"   "module")
+OPTDEFL=(1        0        0        0           0       0          -1            0       ""         -1          "$excl")
+OPTMETA=("help"   ""       ""       ""          ""      ""         "silent"     ""      "version"   "verbose"   "file")
 OPTHELP=("this help"\
  "keep temporary files"\
  "list xml schemas and module names"\
@@ -63,16 +65,15 @@ if [ "$opt_version" ]; then
   exit 0
 fi
 if [ $opt_help -gt 0 ]; then
-  print_help "Agenzia delle Entrate pyxb generator\nEsegui questa app nella directory binding"\
-  "(C) 2017 by zeroincombenze(R)\nhttp://wiki.zeroincombenze.org/en/Linux/dev\nAuthor: antoniomaria.vigliotti@gmail.com"
+  print_help "Agenzia delle Entrate pyxb generator\nPer generare file .py usare switch -u"\
+  "(C) 2017-2018 by zeroincombenze(R)\nhttp://wiki.zeroincombenze.org/en/Linux/dev\nAuthor: antoniomaria.vigliotti@gmail.com"
   exit 0
 fi
-XSD_FILES=("fornituraIvp_2017_v1.xsd" "FatturaPA_versione_1.2.xsd" "FatturaPA_versione_1.1.xsd" "DatiFatturav2.1.xsd" "DatiFatturaMessaggiv2.0.xsd" "MessaggiTypes_v1.1.xsd")
-MOD_NAMES=("vat_settlement_v_1_0"     "fatturapa_v_1_2"            "fatturapa_v_1_1"            "dati_fattura_v_2_1"  "messaggi_fattura_v_2_0"      "MessaggiTypes_v_1_1")
+XSD_FILES=("fornituraIvp_2017_v1.xsd" "FatturaPA_versione_1.2.xsd" "FatturaPA_versione_1.1.xsd" "DatiFatturav2.1.xsd" "DatiFatturaMessaggiv2.0.xsd" "MessaggiTypes_v1.1.xsd" "Fattura_VFPR12.xsd" "Fattura_VFSM10.xsd")
+MOD_NAMES=("vat_settlement_v_1_0"     "fatturapa_v_1_2"            "fatturapa_v_1_1"            "dati_fattura_v_2_1"  "messaggi_fattura_v_2_0"      "MessaggiTypes_v_1_1"    "fatturapa_v_1_2"    "fatturapa_v_1_0")
 bin_path=${PATH//:/ }
 for x in $TDIR $TDIR/.. $bin_path; do
   if [ -e $x/pyxbgen ]; then
-    # [ $opt_verbose -ne 0 ] && echo "PYXBGEN=$x/pyxbgen"
     PYXBGEN=$x/pyxbgen
     break
   fi
@@ -84,9 +85,20 @@ OCA_binding=
 if [ $opt_OCA -ne 0 ]; then OCA_binding="OCA"; fi
 BINDINGS=$TDIR/bindings
 SCHEMAS=../data
+VALID_COLOR="\e[0;92;40m"
+INVALID_COLOR="\e[0;31;40m"
+NOP_COLOR="\e[0m"
 if [ $opt_list -eq 0 ]; then
-  rm -fR $BINDINGS
+   if [ "$PWD" != "$TDIR" ]; then
+     [ $opt_verbose -ne 0 ] && echo "\$ cd $TDIR"
+     cd $TDIR
+   fi
+   [ -d $BINDINGS.bak -a  $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS.bak"
+   [ -d $BINDINGS.bak ] && rm -fR $BINDINGS.bak
+   [ $opt_verbose -ne 0 ] && echo "\$ mv $BINDINGS $BINDINGS.bak"
+   mv $BINDINGS $BINDINGS.bak
 fi
+[ $opt_verbose -ne 0 ] && echo "\$ mkdir -p $BINDINGS"
 mkdir -p $BINDINGS
 pushd $BINDINGS ?>/dev/null
 [ $opt_verbose -ne 0 ] && echo "\$ cd $PWD"
@@ -95,8 +107,14 @@ for d in $SCHEMAS/*; do
   if [ -d $d ]; then
     x=$(basename $d)
     if [ "$x" != "common" ]; then
-      if [ ! -L $d/xmldsig-core-schema.xsd ]; then
-        ln -s $SCHEMAS/common/xmldsig-core-schema.xsd $SCHEMAS/$x/
+      [ $opt_verbose -ne 0 ] && echo "# analyzing directory $d ..."
+      if [ -L $d/xmldsig-core-schema.xsd ]; then
+        [ $opt_verbose -ne 0 ] && echo "\$ rm -f $d/xmldsig-core-schema.xsd"
+        rm -f $d/xmldsig-core-schema.xsd
+      fi
+      if [ ! -f $d/xmldsig-core-schema.xsd ]; then
+        [ $opt_verbose -ne 0 ] && echo "\$ cp $SCHEMAS/common/xmldsig-core-schema.xsd $SCHEMAS/$x/"
+        cp $SCHEMAS/common/xmldsig-core-schema.xsd $SCHEMAS/$x/
       fi
     fi
     p=$d
@@ -106,12 +124,10 @@ for d in $SCHEMAS/*; do
         break
       fi
     done
-    [ $opt_verbose -ne 0 ] && echo ".. reading directory $p"
+    [ $opt_verbose -ne 0 ] && echo "# searching for schemas into directory $p ..."
     for f in $p/*.xsd; do
       fn=$(basename $f)
-      if [[ $fn =~ $exclude ]]; then
-        :
-      else
+      if [[ ! $fn =~ $exclude || $opt_list -ne 0 ]]; then
         # [ $opt_verbose -ne 0 ] && echo ".... parsing file $fn"
         jy=0
         while ((jy<${#XSD_FILES[*]})); do
@@ -119,10 +135,19 @@ for d in $SCHEMAS/*; do
           mdn="${MOD_NAMES[jy]}"
           if [ "$fn" == "$xsd" ]; then
             grp=${mdn:0: -6}
+            if [[ $fn =~ $exclude ]]; then
+              info="deprecated"
+              TEXT_COLOR="$INVALID_COLOR"
+            else
+              info=""
+              TEXT_COLOR="$VALID_COLOR"
+            fi
+            _xsd=$(printf "%-30.30s" "$xsd")
+            _mdn=$(printf "%-20.20s" "$mdn")
             if [ $opt_list -ne 0 ]; then
-              echo "Found schema $xsd, module $mdn ($grp)"
+              echo -e "Found schema $TEXT_COLOR$_xsd$NOP_COLOR module $_mdn (by $grp) $info"
             elif [[ $grpl =~ $grp ]]; then
-              echo "Schema $xsd conflict with prior schema $grp"
+              echo "Schema $_xsd conflict with prior schema by $grp"
             else
               grpl="$grpl $grp"
               mdl="$mdl $mdn"
@@ -142,9 +167,10 @@ if [ $opt_list -eq 0 ]; then
   [ $opt_dry_run -ne 0 ] || eval "$cmd"
   i=./__init__.py
   if [ $opt_dry_run -eq 0 ]; then
-    echo "# -*- coding: utf-8 -*-" >$i
-    echo "# Copyright 2017 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>">>$i
-    echo "#                  Associazione Odoo Italia <http://www.odoo-italia.org>">>$i
+    echo " # flake8: noqa" >$i
+    echo "# -*- coding: utf-8 -*-" >>$i
+    echo "# Copyright 2017-2018 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>">>$i
+    echo "#                       Associazione Odoo Italia <http://www.odoo-italia.org>">>$i
     echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$i
     echo "#">>$i
     echo "# Generated $(date '+%a %Y-%m-%d %H:%M:%S') by pyxbgen.sh $__version__">>$i
