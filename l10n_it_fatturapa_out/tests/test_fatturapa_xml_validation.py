@@ -21,6 +21,7 @@
 
 import base64
 import tempfile
+from openerp.release import release
 from openerp import workflow
 import openerp.tests.common as test_common
 from openerp.modules.module import get_module_resource
@@ -28,10 +29,61 @@ from datetime import datetime
 from lxml import etree
 import shutil
 import os
-# import pdb
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
+    def env612(self, model):
+        """Return model pool"""
+        if release.major_version in ('6.1', '7.0'):
+            # Return model pool [6.1 / 7.0]
+            return self.registry(model)
+        # Return model pool [+8.0]
+        return self.env[model]
+
+    def ref612(self, model):
+        """Return reference id"""
+        if release.major_version in ('6.1', '7.0'):
+            # Return reference id [6.1 / 7.0]
+            return self.ref(model)
+        # Return reference id [+8.0]
+        return self.env.ref(model).id
+
+    def search612(self,  *args, **kwargs):
+        """Search record ids - Syntax search(model, *args, **kwargs)"""
+        if release.major_version in ('6.1', '7.0'):
+            # Search record ids [6.1 / 7.0]
+            model_pool = self.registry(args[0])
+            return model_pool.search(self.cr, self.uid, args[1], kwargs)
+        # Search record ids [+8.0]
+        model_pool = self.env[args[0]]
+        return model_pool.search(args[1], kwargs)._ids
+
+    def write612(self, model, id, values):
+        """Write existent record [7.0]"""
+        if release.major_version in ('6.1', '7.0'):
+            # Write existent record [6.1 / 7.0]
+            model_pool = self.registry(model)
+            return model_pool.write(self.cr, self.uid, [id], values)
+        # Write existent record [+8.0]
+        model_pool = self.env[model]
+        obj = model_pool.search([('id', '=', id)])
+        return obj.write(values)
+
+    def write_ref(self, xid, values):
+        """Browse and write existent record"""
+        obj = self.browse_ref(xid)
+        return obj.write(values)
+
+    def create612(self, model, values):
+        """Create a new record for test"""
+        if release.major_version in ('6.1', '7.0'):
+            # Create a new record for test [6.1 / 7.0]
+            return self.env612(model).create(self.cr,
+                                             self.uid,
+                                             values)
+        # Create a new record for test [+8.0]
+        model_pool = self.env[model]
+        return model_pool.create(values).id
 
     def getFilePath(self, filepath):
         with open(filepath) as test_data:
@@ -51,8 +103,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         return self.getFilePath(new_file)
 
     def getFile(self, filename):
-        path = get_module_resource('l10n_it_fatturapa_out',
-                                   'tests', 'data', filename)
+        path = get_module_resource(
+            'l10n_it_fatturapa_out', 'tests', 'data', filename)
         return self.getFilePath(path)
 
     def setUp(self):
@@ -61,6 +113,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.data_model = self.registry('ir.model.data')
         self.attach_model = self.registry('fatturapa.attachment.out')
         self.invoice_model = self.registry('account.invoice')
+        self.company_model = self.registry('res.companyany')
         self.fatturapa_attach = self.registry('fatturapa.attachments')
         self.context = {}
         self.maxDiff = None
@@ -68,6 +121,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.company.sp_account_id = self.env.ref('account.ova')
         self.company.sp_journal_id = self.env.ref(
             'account.miscellaneous_journal')
+        self.company.email = 'info@yourcompany.com'
 
     def AttachFileAtInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -190,11 +244,17 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         test_fatt_content = test_fatt_data.decode('base64')
         test_fatt = etree.fromstring(test_fatt_content, parser)
         xml = etree.fromstring(xml_content, parser)
+        fd = open('/opt/odoo/tmp/tmp_test_fatt.log', 'w')
+        fd.write(etree.tostring(test_fatt))
+        fd.close()
+        fd = open('/opt/odoo/tmp/tmp_test_xml.log', 'w')
+        fd.write(etree.tostring(xml))
+        fd.close()
         self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
     def test_0_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-01-07')
+        self.checkCreateFiscalYear('2018-01-07')
         # self.context['fiscalyear_id'] = self.fiscalyear_id
         self.set_sequences(1, 13)
         invoice_id = self.confirm_invoice('fatturapa_invoice_0')
@@ -210,7 +270,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
@@ -220,7 +280,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_2_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(3, 15)
         invoice_id = self.confirm_invoice('fatturapa_invoice_2', attach=True)
         res = self.run_wizard(invoice_id)
@@ -230,7 +290,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_3_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(4, 16)
         invoice_id = self.confirm_invoice('fatturapa_invoice_3')
         res = self.run_wizard(invoice_id)
@@ -240,7 +300,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_4_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(5, 17)
         invoice_id = self.confirm_invoice('fatturapa_invoice_4')
         res = self.run_wizard(invoice_id)

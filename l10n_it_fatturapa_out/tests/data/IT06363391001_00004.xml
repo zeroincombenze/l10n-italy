@@ -11,7 +11,7 @@
             <CodiceDestinatario>79SRAK</CodiceDestinatario>
             <ContattiTrasmittente>
                 <Telefono>06543534343</Telefono>
-                <Email>info@yourcompany.example.com</Email>
+                <Email>info@yourcompany.com</Email>
             </ContattiTrasmittente>
         </DatiTrasmissione>
         <CedentePrestatore>
@@ -21,7 +21,7 @@
                     <IdCodice>06363391001</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
-                    <Denominazione>YourCompany</Denominazione>
+                    <Denominazione>Your Company</Denominazione>
                 </Anagrafica>
                 <RegimeFiscale>RF01</RegimeFiscale>
             </DatiAnagrafici>
@@ -34,7 +34,7 @@
             </Sede>
             <Contatti>
                 <Telefono>06543534343</Telefono>
-                <Email>info@yourcompany.example.com</Email>
+                <Email>info@yourcompany.com</Email>
             </Contatti>
         </CedentePrestatore>
         <CessionarioCommittente>
@@ -62,8 +62,8 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2017-06-15</Data>
-                <Numero>SAJ/2017/016</Numero>
+                <Data>2018-06-15</Data>
+                <Numero>SAJ/2018/016</Numero>
                 <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
@@ -98,7 +98,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2017-07-31</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2018-07-31</DataScadenzaPagamento>
                 <ImportoPagamento>14.00</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>

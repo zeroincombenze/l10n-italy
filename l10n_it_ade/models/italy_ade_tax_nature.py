@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-# Copyright 2018 - Associazione Odoo Italia <http://www.odoo-italia.org>
+# Copyright 2018    - Associazione Odoo Italia <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #

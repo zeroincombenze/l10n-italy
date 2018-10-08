@@ -20,7 +20,7 @@ from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 try:
-    from openerp.addons.l10n_it_ade import ade
+    # from openerp.addons.l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)
@@ -277,6 +277,7 @@ class AccountVatCommunication(orm.Model):
                     if tax.type_tax_use:
                         tax_type = tax.type_tax_use
                     if tax and not tax.parent_id:
+                        # Parent code
                         if tax.amount > tax_rate:
                             tax_rate = tax.amount
                         if tax.non_taxable_nature:
@@ -284,6 +285,7 @@ class AccountVatCommunication(orm.Model):
                         if tax.payability:
                             tax_payability = tax.payability
                     else:
+                        # Child code
                         if release.major_version == '6.1':
                             tax_rate = 0
                             for child in account_tax_model.browse(
@@ -291,10 +293,21 @@ class AccountVatCommunication(orm.Model):
                                 if child.type == 'percent':
                                     tax_rate += child.amount
                             tax_nodet_rate = 1 - (tax.amount / tax_rate)
-                        else:
+                        elif release.major_version == '7.0':
                             if tax.type == 'percent' and \
                                     tax.amount > tax_nodet_rate:
                                 tax_nodet_rate = tax.amount
+                            tax = account_tax_model.browse(
+                                cr, uid, tax.parent_id.id)
+                            taxcode_base_id = invoice_tax.tax_code_id.id
+                            if tax.amount > tax_rate:
+                                tax_rate = tax.amount
+                        elif release.major_version == '8.0':
+                            if tax.type == 'percent':
+                                if tax.nondeductible: 
+                                    tax_nodet_rate = tax.amount
+                                else:
+                                    tax_nodet_rate = 1 - tax.amount
                             tax = account_tax_model.browse(
                                 cr, uid, tax.parent_id.id)
                             taxcode_base_id = invoice_tax.tax_code_id.id

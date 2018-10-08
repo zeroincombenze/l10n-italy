@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017-2018 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>
-#                       Associazione Odoo Italia <http://www.odoo-italia.org>
+#
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # Generated Tue 2018-04-03 07:37:58 by pyxbgen.sh 0.1.5.5
