@@ -29,18 +29,19 @@ if [ -z "$Z0LIBDIR" ]; then
   exit 2
 fi
 
-__version__=0.1.5.6
+__version__=0.1.5.7
 
 excl="DatiFatturaMessaggi,FatturaPA_versione_1.1,FatturaPA_versione_1.2,MessaggiTypes"
 
 
-OPTOPTS=(h        k        l        n           O       p          q            u       V           v           x)
-OPTDEST=(opt_help opt_keep opt_list opt_dry_run opt_OCA opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
-OPTACTI=(1        1        "1>"     1           1       1          0            "1>"    "*"         1           "=>")
-OPTDEFL=(1        0        0        0           0       0          -1            0       ""         -1          "$excl")
-OPTMETA=("help"   ""       ""       ""          ""      ""         "silent"     ""      "version"   "verbose"   "file")
+OPTOPTS=(h        b          k        l        n           O       p          q            u       V           v           x)
+OPTDEST=(opt_help opt_branch opt_keep opt_list opt_dry_run opt_OCA opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
+OPTACTI=(1        "="        1        "1>"     1           1       1          0            "1>"    "*"         1           "=>")
+OPTDEFL=(1        ""         0        0        0           0       0          -1            0       ""         -1          "$excl")
+OPTMETA=("help"   "ver"      ""       ""       ""          ""      ""         "silent"     ""      "version"   "verbose"   "file")
 OPTHELP=("this help"\
  "keep temporary files"\
+ "odoo branch; may be 6.1 7.0 8.0 9.0 10.0 11.0 or 12.0"\
  "list xml schemas and module names"\
  "do nothing (dry-run)"\
  "OCA compatible (convert numeric type to string)"\
@@ -78,6 +79,18 @@ for x in $TDIR $TDIR/.. $bin_path; do
     break
   fi
 done
+TOPEP8=$(which topep8 2>/dev/null)
+if [ -z "$TOPEP8" ]; then
+  TOPEP8=$(which autopep8 2>/dev/null)
+  [ -n "$TOPEP8" ] && TOTEP8="$TOPEP8 -i"
+else
+  TOTEP8="$TOPEP8 -AeL"
+  [ -n "$odoo branch" ] && TOTEP8="$TOPEP8 -b$odoo branch"
+fi
+if [ -z "$TOPEP8" -a $opt_nopep8 -eq 0 ]; then
+  echo "topep8/autopep8 not found!"
+  echo "Operations will be executed with switch -p"
+fi
 cmd=
 mdl=
 grpl=
@@ -186,8 +199,8 @@ if [ $opt_list -eq 0 ]; then
     [ $opt_dry_run -ne 0 -a $opt_keep -ne 0 ] || cp $fn $fn.bak
     [ $opt_dry_run -ne 0 ] || eval $TDIR/pyxbgen.py $fn $SCHEMAS "$OCA_binding"
     if [ $opt_nopep8 -eq 0 ]; then
-      [ $opt_verbose -ne 0 ] && echo "\$ autopep8 $fn -i"
-      [ $opt_dry_run -ne 0 ] || autopep8 $fn -i
+      [ $opt_verbose -ne 0 ] && echo "\$ $TOPEP8 $fn"
+      [ $opt_dry_run -ne 0 ] || $TOPEP8 $fn
     fi
   done
 fi

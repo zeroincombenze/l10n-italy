@@ -21,6 +21,6 @@ class ItalyAdeTaxNature(models.Model):
     code = fields.Char(string='Code',
                        size=2)
     name = fields.Char(string='Name')
-    help = fields.Char(string='Help')
+    help = fields.Text(string='Help')
     active = fields.Boolean(string='Active',
                             default=True)

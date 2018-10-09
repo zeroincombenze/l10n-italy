@@ -8,8 +8,8 @@
 # Code partially inherited by l10n_it_account of OCA
 #
 from openerp import fields, models
-from openerp.tools.translate import _
 from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 
 class AccountTax(models.Model):

@@ -7,8 +7,6 @@
 #
 from openerp.osv import fields, orm
 
-# from l10n_it_ade.ade import ADE_LEGALS
-
 
 class AccountJournal(orm.Model):
     _inherit = "account.journal"
@@ -71,7 +69,7 @@ class AccountJournal(orm.Model):
                              'rev_charge': False,
                              'anom_sale_receipts': False,
                              'einvoice': False}}
-        elif name == 'einvoice' and proforma:
+        elif name == 'einvoice' and einvoice:
             if type not in ('purchase', 'sale'):
                 return {'value': {name: False},
                         'warning': {
@@ -81,7 +79,7 @@ class AccountJournal(orm.Model):
             res = {'value': {name: True,
                              'rev_charge': False,
                              'anom_sale_receipts': False,
-                             'proforma': False,}}
+                             'proforma': False}}
         else:
             res = {'value': {name: False}}
         return res
