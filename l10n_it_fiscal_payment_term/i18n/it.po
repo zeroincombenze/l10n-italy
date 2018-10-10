@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fiscal_payment_term
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-10 06:38+0000\n"
+"PO-Revision-Date: 2018-10-10 06:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fiscal_payment_term
+#: field:fatturapa.payment_method,code:0
+#: field:fatturapa.payment_term,code:0
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_fiscal_payment_term
+#: field:fatturapa.payment_method,name:0
+#: field:fatturapa.payment_term,name:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: l10n_it_fiscal_payment_term
+#: code:_description:0
+#: field:account.payment.term,fatturapa_pm_id:0
+#: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_method
+#, python-format
+msgid "FatturaPA Payment Method"
+msgstr "FatturaPA Payment Method"
+
+#. module: l10n_it_fiscal_payment_term
+#: code:_description:0
+#: field:account.payment.term,fatturapa_pt_id:0
+#: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_term
+#, python-format
+msgid "FatturaPA Payment Term"
+msgstr "FatturaPA Payment Term"
+
+#. module: l10n_it_fiscal_payment_term
+#: view:account.payment.term:0
+msgid "Fiscal"
+msgstr "Fiscale"
+
+#. module: l10n_it_fiscal_payment_term
+#: view:fatturapa.payment_method:0
+#: model:ir.actions.act_window,name:l10n_it_fiscal_payment_term.action_fatturapa_payment_method
+#: model:ir.ui.menu,name:l10n_it_fiscal_payment_term.menu_fatturapa_payment_method
+msgid "Fiscal Payment Methods"
+msgstr "Fiscal Payment Methods"
+
+#. module: l10n_it_fiscal_payment_term
+#: view:fatturapa.payment_term:0
+#: model:ir.actions.act_window,name:l10n_it_fiscal_payment_term.action_fatturapa_payment_term
+#: model:ir.ui.menu,name:l10n_it_fiscal_payment_term.menu_fatturapa_payment_term
+msgid "Fiscal Payment Terms"
+msgstr "Fiscal Payment Terms"
+
+#. module: l10n_it_fiscal_payment_term
+#: code:_description:0
+#: model:ir.model,name:l10n_it_fiscal_payment_term.model_account_payment_term
+#, python-format
+msgid "Payment Term"
+msgstr "Termine di pagamento"
+
