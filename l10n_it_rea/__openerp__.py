@@ -1,29 +1,13 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Alessio Gerace <alessio.gerace@agilebg.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2014 Associazione Odoo Italia <http://www.odoo-italia.org>
+# Copyright 2015 Alessio Gerace <alessio.gerace@agilebg.com>
 {
     'name': 'REA Register',
-    'version': '0.1',
+    'version': '7.0.0.1.1',
     'category': 'Localisation/Italy',
     'summary': 'Manage fields for  Economic Administrative catalogue',
     'author': 'Agile Business Group, Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
+    'website': 'https://odoo-italia.org',
     'description': """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
@@ -66,12 +50,10 @@ To contribute to this module, please visit http://odoo-community.org.
 """,
     'license': 'AGPL-3',
     "depends": [
-        'l10n_it_base', 'account'
+        'account'
     ],
     "data": [
-        'partner_view.xml',
+        'views/partner_view.xml',
     ],
-    "test": [],
-    "demo": [],
     "installable": True
 }

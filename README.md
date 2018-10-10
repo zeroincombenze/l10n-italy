@@ -2,7 +2,7 @@
 [![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
 [![Coverage Status](https://coveralls.io/repos/github/Odoo-Italia-Associazione/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/github/Odoo-Italia-Associazione/l10n-italy?branch=7.0)
 [![codecov](https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/7.0)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://odoo7.odoo-italia.org)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://odoo11.odoo-italia.org)
 
 
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
@@ -27,21 +27,20 @@ addon | version | summary
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | DDT report using Webkit Library
 [l10n_it_abicab](l10n_it_abicab/) | 1.0 | Italian Localisation - Base Bank ABI/CAB codes
-[l10n_it_ade](l10n_it_ade/) | 7.0.0.1.9 | Codice con le definizioni dei file xml Agenzia delle Entrate
-[l10n_it_base](l10n_it_base/) | 7.0.0.2.13 | Italian Localisation - Base
+[l10n_it_ade](l10n_it_ade/) | 7.0.0.1.10 | Codice con le definizioni dei file xml Agenzia delle Entrate
+[l10n_it_base](l10n_it_base/) | 7.0.0.2.14 | Italian Localisation - Base
 [l10n_it_base_crm](l10n_it_base_crm/) | 0.1 | Italian Localisation - CRM
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 | Italian Localisation - Bill of Entry
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 | Italian Localisation - Corrispettivi
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 7.0.2.1.0 | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.2.0.1 | Electronic invoices emission
 [l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.1 | Italy - Fiscal localization by zeroincombenze(R)
+[l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 7.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 7.0.0.2.1 | Italian Localisation - Fiscal Code
-[l10n_it_ipa](l10n_it_ipa/) | 7.0.1.0.0 | IPA Code (IndicePA)
+[l10n_it_ipa](l10n_it_ipa/) | 7.0.1.0.1 | IPA Code (IndicePA)
 [l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 | Italy - Partially Deductible VAT
 [l10n_it_pec](l10n_it_pec/) | 0.1 | Pec Mail
 [l10n_it_pec_messages](l10n_it_pec_messages/) | 1.0 | Pec Messages
 [l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 | Italian Localisation - Prima Nota Cassa
-[l10n_it_rea](l10n_it_rea/) | 0.1 | Manage fields for Economic Administrative catalogue
+[l10n_it_rea](l10n_it_rea/) | 7.0.0.1.1 | Manage fields for Economic Administrative catalogue
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 | Ricevute Bancarie
 [l10n_it_sale](l10n_it_sale/) | 7.0.0.2.1 | Italian Localisation - Sale
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
@@ -59,6 +58,8 @@ addon | version | summary
 [l10n_it_fatturapa_in_notifications](__unported__/l10n_it_fatturapa_in_notifications/) | deprecated | Supplier electronic invoices notifications
 [l10n_it_fatturapa_notifications](__unported__/l10n_it_fatturapa_notifications/) | deprecated | Electronic invoices notifications
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.4 (unported) | Check invoice date consistency
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 7.0.2.1.0 (unported) | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.2.0.1 (unported) | Electronic invoices emission
 
 [//]: # (end addons)
 

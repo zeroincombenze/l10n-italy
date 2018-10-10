@@ -5,7 +5,6 @@
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://erp7.zeroincombenze.it)
 
 
-
 [![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
@@ -15,11 +14,8 @@ FatturaPA
 =========
 
 This module allows you to generate the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-to be sent to the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+which will be sent to the SdI (Exchange System by Italian Tax Authority)
 
-:no_entry: This module replaces l10n_it_fatturapa version [7-11].0.2.0.0 by OCA.
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
@@ -28,65 +24,107 @@ FatturaPA
 =========
 
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-per essere spdicta al sistema di interscambio SDI
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+da trasmettere al sistema di interscambio SdI.
 
-:warning: Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
-come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
-ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
+:warning: Lo schema di definizione dei file xml, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
+moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
+segnalato dall'errore:
 
 :heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
 
-Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
-essere sostituiti con i moduli di Odoo Italia Associazione per funzionare
-correttamente.
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate *devono* dichiare il modulo
+[l10n_it_ade](../l10n_it_ade) come dipendenza.
+
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'autore.
+l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
-Certificati
 
-Ente/Certificato | Data inizio | Da fine | Note
---- | --- | --- | ---
-[FatturaPA](http://www.fatturapa.gov.it/export/fatturazione/it/fattura_PA.htm) | 22-09-2017 | 31-12-2017 | [![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
+### Funzionalità & Certificati
+
+Funzione | Status | Note
+--- | --- | ---
+Emissione FatturaPa 1.2 | :white_check_mark: | Fatture elettronica per PA
+Azienda da fattura | :white_check_mark: | Versione OCA utilizza azienda da utente
+
+
+
+Logo | Ente/Certificato | Data inizio | Da fine | Note
+--- | --- | --- | --- | ---
+[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2018 | Validazione contro schema xml
+[![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md) | [FatturaPA](https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni) | 22-09-2017 | 31-12-2017 | File accettati da portale fatturaPA Agenzia delle Entrate
+
+
+
 
 
 
 Installation
 ------------
 
-:warning: Since version [7-8].0.4.0.0 of this module, definition schemas are
-moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
-informations.
+:warning: This module replaces l10n_it_fatturapa by OCA.
+Since version [7-11].0.2 of this module, definition schemas are
+moved into module l10n_it_ade. Please, read above about conflict and
+read [l10n_it_ade](../l10n_it_ade) documentation for furthermore informations.
 
-:warning: A partire dalla versione [7-8].0.4.0.0 di questo modulo, gli schemi
-di definizione sono stati spostati nel modulo l10n_it_ade. Per ulteriori
-informazioni, leggete i documenti relativi al modulo l10n_it_ade.
+:warning: Questo modulo sostituisce l10n_it_fatturapa di OCA.
+A partire dalla versione [7-11].0.2 di questo modulo, gli schemi
+di definizione sono stati spostati nel modulo l10n_it_ade. Leggi sopra
+come evitare conflitti e per ulteriori informazioni, leggi i documenti relativi
+al modulo [l10n_it_ade](../l10n_it_ade).
 
-This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
+:no_entry: This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
+
+
+These instruction are just an example to remember what you have to do:
+
+    pip install PyXB==1.2.4
+    git clone https://github.com/zeroincombenze/l10n-italy
+    cp -R l10n-italy/l10n_it_ade ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -i l10n_it_fatturapa -d MYDB
+
+From UI: go to Setup > Module > Install
+
 
 
 Configuration
 -------------
 
-* Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the electronic invoices. IPA code is mandatory, EORI code is not.
-* Configure payment terms filling the fatturaPA fields related to payment terms and payment methods.
-* Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
-* Configure FatturaPA data in Accounting Configuration. Note that a sequence 'fatturaPA' is already loaded by the module and selectable.
+
+* Configurazione > Configurazione > Contabilità > Fattura PA :point_right: Impostare i vari parametri
+* Contabilità > Configurazione > Sezionali > Sezionali :point_right: Impostare sezionale fattura elettronica
+* Contabilità > Configurazione > Imposte > Imposte :point_right: Impostare natura codici IVA
+* Contabilità > Clienti > Clienti :point_right: Impostare IPA, EORI (se necessario), nazione, partita IVA, codice fiscale
 
 
 Usage
 -----
 
+For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
+
+
 Known issues / Roadmap
 ----------------------
 
-:no_entry: Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA versioni [7-11].0.2.0.0.
+:ticket: This module replaces l10n_it_fatturapa OCA module; PR have to be issued.
+
+In order to use this module avoiding conflicts you have to use:
+
+:warning: [l10n_it_base](../l10n_it_base) replacing OCA module
+
+:warning: [l10n_it_ade](../l10n_it_ade) module does not exist in OCA repository
+
+:warning: [l10n_it_fiscalcode](../l10n_it_fiscalcode) replacing OCA module
+
 
 
 Bug Tracker
 -----------
+
+Have a bug? Please visit https://odoo-italia.org/index.php/kunena/home
+
 
 Credits
 -------
@@ -104,6 +142,7 @@ Credits
 
 Questo modulo è stato sviluppato con il contributo di
 
+* Agile BG <https://www.agilebg.com/>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
 
@@ -145,5 +184,6 @@ Odoo Italia Associazione distribuisce il codice esclusivamente con licenza [AGPL
 [//]: # (addons)
 
 [//]: # (end addons)
+
 
 

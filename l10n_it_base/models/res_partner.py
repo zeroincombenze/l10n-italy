@@ -474,63 +474,40 @@ class res_partner(orm.Model):
     }
 
     def on_change_country(self, cr, uid, ids,
-                          country_id, zip, city, state_id, province, region,
-                          context=None):
+                          country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
-                               province, region, context=context)
+                               context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'country_id', country_id,
                                       context=context)
 
     def on_change_zip(self, cr, uid, ids,
-                      country_id, zip, city, state_id, province, region,
-                      context=None):
+                      country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
-                               province, region, context=context)
+                               context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'zip', zip,
                                       context=context)
 
     def on_change_state(self, cr, uid, ids,
-                        country_id, zip, city, state_id, province, region,
-                        context=None):
+                        country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
-                               province, region, context=context)
+                               context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'state_id', state_id,
                                       context=context)
 
-    def on_change_province(self, cr, uid, ids,
-                           country_id, zip, city, state_id, province, region,
-                           context=None):
-        context = self.new_ctx(country_id, zip, city, state_id,
-                               province, region, context=context)
-        config_obj = self.pool.get('res.config.settings')
-        return config_obj.fill_geoloc(cr, uid, ids, 'province_id', province,
-                                      context=context)
-
-    def on_change_region(self, cr, uid, ids,
-                         country_id, zip, city, state_id, province, region,
-                         context=None):
-        context = self.new_ctx(country_id, zip, city, state_id,
-                               province, region, context=context)
-        config_obj = self.pool.get('res.config.settings')
-        return config_obj.fill_geoloc(cr, uid, ids, 'region_id', region,
-                                      context=context)
-
     def on_change_city(self, cr, uid, ids,
-                       country_id, zip, city, state_id, province, region,
-                       context=None):
+                       country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
-                               province, region, context=context)
+                               context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'city', city,
                                       context=context)
 
     def new_ctx(self,
-                country_id, zip, city, state_id, province_id, region_id,
-                context=None):
-        context = {} if context is None else context
+                country_id, zip, city, state_id, context=None):
+        context = context or {}
         if country_id:
             if isinstance(country_id, (int, long)):
                 context['country_id'] = country_id
@@ -545,16 +522,6 @@ class res_partner(orm.Model):
                 context['state_id'] = state_id
             else:
                 context['state_id'] = state_id.id
-        if province_id:
-            if isinstance(province_id, (int, long)):
-                context['province_id'] = province_id
-            else:
-                context['province_id'] = province_id.id
-        if region_id:
-            if isinstance(region_id, (int, long)):
-                context['region_id'] = region_id
-            else:
-                context['region_id'] = region_id.id
         return context
 
     def _set_vals_city_data(self, cr, uid, vals):
@@ -562,8 +529,6 @@ class res_partner(orm.Model):
                                vals.get('zip', None),
                                vals.get('city', None),
                                vals.get('state_id', None),
-                               vals.get('province', None),
-                               vals.get('region', None),
                                context={'DoWrite': True})
         config_obj = self.pool.get('res.config.settings')
         for f in ('city', 'zip'):
@@ -593,8 +558,6 @@ class res_partner(orm.Model):
                                partner.zip,
                                partner.city,
                                partner.state_id,
-                               partner.province,
-                               partner.region,
                                context={'DoFill': True})
         config_obj = self.pool.get('res.config.settings')
         res = config_obj.fill_geoloc(cr, uid, [],

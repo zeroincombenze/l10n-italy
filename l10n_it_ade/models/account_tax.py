@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2017-2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-# Copyright 2017-2018 - Associazione Odoo Italia <http://www.odoo-italia.org>
+# Copyright 2017-19 - Associazione Odoo Italia <https://www.odoo-italia.org>
+# Copyright 2017-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
@@ -27,26 +27,26 @@ class AccountTax(orm.Model):
             ('N6', 'inversione contabile (acq. in reverse charge)'),
             ('N7', 'IVA assolta in altro stato UE'),
             ('FC', 'FC applicazione IVA'),
-            ], string="Non taxable nature (*DEPRECATED*)"),
+        ], string="Non taxable nature (*DEPRECATED*)"),
         'payability': fields.selection([
             ('I', 'Immediate payability'),
             ('D', 'Deferred payability'),
             ('S', 'Split payment'),
-            ], string="VAT payability"),
+        ], string="VAT payability"),
         'law_reference': fields.char(
             'Law reference', size=128),
     }
 
-    # _defaults = {
-    #     'payability': 'I',
-    # }
+    _defaults = {
+        'payability': 'I',
+    }
 
     def get_tax_by_invoice_tax(self, cr, uid, invoice_tax, context=None):
         if ' - ' in invoice_tax:
             tax_descr = invoice_tax.split(' - ')[0]
             tax_ids = self.search(cr, uid, [
                 ('description', '=', tax_descr),
-                ], context=context)
+            ], context=context)
             if not tax_ids:
                 raise orm.except_orm(
                     _('Error'), _('No tax %s found') %
@@ -59,7 +59,7 @@ class AccountTax(orm.Model):
             tax_name = invoice_tax
             tax_ids = self.search(cr, uid, [
                 ('name', '=', tax_name),
-                ], context=context)
+            ], context=context)
             if not tax_ids:
                 raise orm.except_orm(
                     _('Error'), _('No tax %s found') %

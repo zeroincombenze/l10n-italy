@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* l10n_it_fiscalcode
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-14 13:37+0000\n"
-"PO-Revision-Date: 2017-10-14 13:37+0000\n"
+"POT-Creation-Date: 2018-10-10 03:59+0000\n"
+"PO-Revision-Date: 2018-10-10 03:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,18 +18,13 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: view:wizard.compute.fc:0
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:49
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:48
 #, python-format
 msgid "Cataster code is missing"
 msgstr "Codice catastale assente"
-
-#. module: l10n_it_fiscalcode
-#: field:res.partner,split_next:0
-msgid "Change format name"
-msgstr "Cambia formato nome/cognome"
 
 #. module: l10n_it_fiscalcode
 #: help:res.partner,split_next:0
@@ -65,15 +60,15 @@ msgid "Date of birth"
 msgstr "Data di nascita"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:47
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:49
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:64
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:46
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:48
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:63
 #, python-format
 msgid "Error"
 msgstr "Errore"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:65
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:64
 #, python-format
 msgid "Existing fiscal code %s is different from the computed one (%s). If you want to use the computed one, remove the existing one"
 msgstr "Il codice fiscale sistente %s è diverso da quello calcolato (%s). Se si vuole usare quello calcolato, rimuovere quello esistente."
@@ -175,7 +170,7 @@ msgid "Male"
 msgstr "Maschio"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:47
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:46
 #, python-format
 msgid "One or more fields are missing"
 msgstr "Mancano uno o più campi"
@@ -201,4 +196,9 @@ msgstr "Cognome"
 #: constraint:res.partner:0
 msgid "The fiscal code doesn't seem to be correct."
 msgstr "Il Codice Fiscale non sembra corretto per una Persona Fisica."
+
+#. module: l10n_it_fiscalcode
+#: field:res.partner,split_next:0
+msgid "Θ ⇔ Φ"
+msgstr "Θ ⇔ Φ"
 

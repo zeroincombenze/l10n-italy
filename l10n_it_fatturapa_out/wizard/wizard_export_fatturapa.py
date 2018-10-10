@@ -70,17 +70,18 @@ class WizardExportFatturapa(orm.TransientModel):
         super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
 
     def saveAttachment(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-
-        number = self.number
-
-        user_obj = self.pool['res.users']
-        company = user_obj.browse(cr, uid, uid).company_id
-
+        context = context or {}
+        if 'company_id' in context:
+            company_model = self.pool['res.company']
+            company = company_model.browse(cr, uid, context['company_id'])
+        else:
+            user_model = self.pool['res.users']
+            company = user_model.browse(cr, uid, uid).company_id
         if not company.vat:
             raise orm.except_orm(
                 _('Error!'), _('Company TIN not set.'))
+
+        number = self.number
         attach_obj = self.pool['fatturapa.attachment.out']
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
@@ -88,21 +89,23 @@ class WizardExportFatturapa(orm.TransientModel):
             'datas': base64.encodestring(self.fatturapa.toxml("latin1")),
         }
         attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
-
         return attach_id
 
     def setProgressivoInvio(self, cr, uid, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
+        if 'company_id' in context:
+            company_model = self.pool['res.company']
+            company = company_model.browse(cr, uid, context['company_id'])
+        else:
+            user_model = self.pool['res.users']
+            company = user_model.browse(cr, uid, uid).company_id
 
-        user_obj = self.pool['res.users']
-        company = user_obj.browse(cr, uid, uid).company_id
-        sequence_obj = self.pool['ir.sequence']
+        sequence_model = self.pool['ir.sequence']
         fatturapa_sequence = company.fatturapa_sequence_id
         if not fatturapa_sequence:
             raise orm.except_orm(
                 _('Error!'), _('FatturaPA sequence not configured.'))
-        self.number = number = sequence_obj.next_by_id(
+        self.number = number = sequence_model.next_by_id(
             cr, uid, fatturapa_sequence.id, context=context)
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ProgressivoInvio = number
@@ -737,12 +740,13 @@ class WizardExportFatturapa(orm.TransientModel):
         self.setAttachments(
             cr, uid, inv, FatturaElettronicaBody, context=context)
 
-    def getPartnerId(self, cr, uid, invoice_ids, context=None):
+    def getPartnerCompanyId(self, cr, uid, invoice_ids, context=None):
         if context is None:
             context = {}
 
         invoice_model = self.pool['account.invoice']
         partner = False
+        company = False
 
         invoices = invoice_model.browse(cr, uid, invoice_ids, context=context)
 
@@ -753,8 +757,14 @@ class WizardExportFatturapa(orm.TransientModel):
                 raise orm.except_orm(
                     _('Error!'),
                     _('Invoices must belong to the same partner'))
+            if not company:
+                company = invoice.company_id
+            if invoice.company_id != company:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Invoices must belong to the same company'))
 
-        return partner
+        return company, partner
 
     def exportFatturaPA(self, cr, uid, ids, context=None):
         if context is None:
@@ -762,22 +772,21 @@ class WizardExportFatturapa(orm.TransientModel):
 
         # self.setNameSpace()
 
-        model_data_obj = self.pool['ir.model.data']
-        invoice_obj = self.pool['account.invoice']
+        model_data_model = self.pool['ir.model.data']
+        invoice_model = self.pool['account.invoice']
 
         self.fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = context.get('active_ids', False)
-        partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
-
-        user_obj = self.pool['res.users']
-        company = user_obj.browse(cr, uid, uid).company_id
+        company, partner = self.getPartnerCompanyId(cr, uid, invoice_ids,
+                                                    context=context)
         context_partner = context.copy()
-        context_partner.update({'lang': partner.lang})
+        context_partner.update({'lang': partner.lang,
+                                'company_id': company.id})
         try:
             self.setFatturaElettronicaHeader(cr, uid, company,
                                              partner, context=context_partner)
             for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(
+                inv = invoice_model.browse(
                     cr, uid, invoice_id, context=context_partner)
                 if inv.fatturapa_attachment_out_id:
                     raise orm.except_orm(
@@ -789,20 +798,19 @@ class WizardExportFatturapa(orm.TransientModel):
                     cr, uid, inv, invoice_body, context=context_partner)
                 self.fatturapa.FatturaElettronicaBody.append(invoice_body)
                 # TODO DatiVeicoli
-
-            self.setProgressivoInvio(cr, uid, context=context)
+            self.setProgressivoInvio(cr, uid, context=context_partner)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise orm.except_orm(
                 _("XML SDI validation error"),
                 (unicode(e)))
 
-        attach_id = self.saveAttachment(cr, uid, context=context)
+        attach_id = self.saveAttachment(cr, uid, context=context_partner)
 
         for invoice_id in invoice_ids:
-            inv = invoice_obj.browse(cr, uid, invoice_id)
+            inv = invoice_model.browse(cr, uid, invoice_id)
             inv.write({'fatturapa_attachment_out_id': attach_id})
 
-        view_rec = model_data_obj.get_object_reference(
+        view_rec = model_data_model.get_object_reference(
             cr, uid, 'l10n_it_fatturapa_out',
             'view_fatturapa_out_attachment_form')
         if view_rec:

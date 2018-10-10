@@ -50,29 +50,6 @@ class fatturapa_document_type(orm.Model):
         'code': fields.char('Code', size=4),
     }
 
-
-class fatturapa_payment_term(orm.Model):
-    # _position = ['2.4.1']
-    _name = "fatturapa.payment_term"
-    _description = 'FatturaPA Payment Term'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=4),
-    }
-
-
-class fatturapa_payment_method(orm.Model):
-    # _position = ['2.4.2.2']
-    _name = "fatturapa.payment_method"
-    _description = 'FatturaPA Payment Method'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=4),
-    }
-
-
 #  used in fatturaPa import
 class fatturapa_payment_data(orm.Model):
     # _position = ['2.4.2.2']
@@ -127,19 +104,6 @@ class fatturapa_payment_detail(orm.Model):
         'payment_data_id': fields.many2one(
             'fatturapa.payment.data', 'Related payments Data',
             ondelete='cascade', select=True),
-    }
-
-
-#  used in fatturaPa export
-class account_payment_term(orm.Model):
-    # _position = ['2.4.2.2']
-    _inherit = 'account.payment.term'
-
-    _columns = {
-        'fatturapa_pt_id': fields.many2one(
-            'fatturapa.payment_term', string="FatturaPA Payment Term"),
-        'fatturapa_pm_id': fields.many2one(
-            'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
 
 

@@ -21,6 +21,7 @@
 
 import base64
 import tempfile
+import openerp.release as release
 import netsvc
 import openerp.tests.common as test_common
 from openerp import addons
@@ -31,6 +32,44 @@ import os
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
+
+    def env612(self, model):
+        """Return model pool"""
+        if int(release.major_version.split('.')[0]) < 8:
+            return self.registry(model)
+        return self.env[model]
+
+    def ref612(self, model):
+        """Return reference id"""
+        if int(release.major_version.split('.')[0]) < 8:
+            return self.ref(model)
+        return self.env.ref(model).id
+
+    def search612(self, model, *args):
+        """Search record ids - Syntax search(model, *args)
+        Warning! On Odoo 7.0 result may fail!"""
+        return self.registry(model).search(self.cr, self.uid, *args)
+
+    def browse612(self, model, id):
+        return self.registry(model).browse(self.cr, self.uid, id)
+
+    def write612(self, model, id, values):
+        """Write existent record [7.0]"""
+        if int(release.major_version.split('.')[0]) < 8:
+            return self.registry(model).write(self.cr, self.uid, [id], values)
+        return self.env[model].search([('id', '=', id)]).write(values)
+
+    def write_ref(self, xid, values):
+        """Browse and write existent record"""
+        return self.browse_ref(xid).write(values)
+
+    def create612(self, model, values):
+        """Create a new record for test"""
+        if int(release.major_version.split('.')[0]) < 8:
+            return self.env612(model).create(self.cr,
+                                             self.uid,
+                                             values)
+        return self.env612(model).create(values).id
 
     def getFilePath(self, filepath):
         with open(filepath) as test_data:
@@ -71,6 +110,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             cr, uid, 'account', 'ova')[1]
         self.company = self.company_model.browse(cr, uid, company_id)
         self.company.write({'sp_account_id': account_ova_id})
+        # self.company.write({'email': 'info@yourcompany.com'})
 
     def attachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -194,11 +234,17 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         test_fatt_content = test_fatt_data.decode('base64')
         test_fatt = etree.fromstring(test_fatt_content, parser)
         xml = etree.fromstring(xml_content, parser)
+        fd = open('/opt/odoo/tmp/tmp_test_fatt.log', 'w')       # debug
+        fd.write(etree.tostring(test_fatt))                     # debug
+        fd.close()                                              # debug
+        fd = open('/opt/odoo/tmp/tmp_test_xml.log', 'w')        # debug
+        fd.write(etree.tostring(xml))                           # debug
+        fd.close()                                              # debug
         self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
     def test_0_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-01-07')
+        self.checkCreateFiscalYear('2018-01-07')
         # self.context['fiscalyear_id'] = self.fiscalyear_id
         self.set_sequences(1, 13)
         invoice_id = self.confirm_invoice('fatturapa_invoice_0')
@@ -214,29 +260,27 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
-
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
 
     def test_2_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(3, 15)
         invoice_id = self.confirm_invoice('fatturapa_invoice_2', attach=True)
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
         xml_content = attachment.datas.decode('base64')
-
         self.check_content(xml_content, 'IT06363391001_00003.xml')
 
     def test_3_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(4, 16)
         invoice_id = self.confirm_invoice('fatturapa_invoice_3')
         res = self.run_wizard(invoice_id)
@@ -246,7 +290,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_4_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(5, 17)
         invoice_id = self.confirm_invoice('fatturapa_invoice_4')
         res = self.run_wizard(invoice_id)

@@ -8,7 +8,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.13',
+    'version': '7.0.0.2.14',
     'category': 'Localisation/Italy',
     'description': """(en)
 
@@ -31,7 +31,8 @@ Funzionalità
 
 - Comuni italiani (aggiornati al 2014)
 - Titoli
-- Province e regioni aggiornati
+- Province
+- Automatistmi su res.partner.address
 """,
     'author': "Odoo Italian Community,Odoo Community Association (OCA),"
               "SHS-AV s.r.l.",

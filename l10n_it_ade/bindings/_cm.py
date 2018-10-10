@@ -501,116 +501,116 @@ class ProvincieItaliane (pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     """
                         Elenco delle provincie italiane in vigore, valori ammessi:
 
-                                Agrigento				AG
-                                Alessandria				AL
-                                Ancona					AN
-                                Aosta   				AO
-                                Ascoli Piceno			AP
-                                L'Aquila				AQ
-                                Arezzo					AR
-                                Asti					AT
-                                Avellino				AV
-                                Bari					BA
-                                Bergamo					BG
-                                Biella					BI
-                                Belluno					BL
-                                Benevento				BN
-                                Bologna					BO
-                                Brindisi				BR
-                                Brescia					BS
-                                Barletta-Andria-Trani	BT
-                                Bolzano					BZ
-                                Cagliari				CA
-                                Campobasso				CB
-                                Caserta					CE
-                                Chieti					CH
-                                Carbonia-Iglessias		CI
-                                Caltanissetta			CL
-                                Cuneo					CN
-                                Como					CO
-                                Cremona					CR
-                                Cosenza					CS
-                                Catania					CT
-                                Catanzaro				CZ
-                                Enna					EN
-                                Forlì-Cesena			FC
-                                Ferrara					FE
-                                Foggia					FG
-                                Firenze					FI
-                                Fermo					FM
-                                Frosinone				FR
-                                Genova					GE
-                                Gorizia					GO
-                                Grosseto				GR
-                                Imperia					IM
-                                Isernia					IS
-                                Crotone					KR
-                                Lecco					LC
-                                Lecce					LE
-                                Livorno					LI
-                                Lodi					LO
-                                Latina					LT
-                                Lucca					LU
-                                Monza e Brianza			MB
-                                Macerata				MC
-                                Messina					ME
-                                Milano					MI
-                                Mantova					MN
-                                Modena					MO
-                                Massa e Carrara			MS
-                                Matera					MT
-                                Napoli					NA
-                                Novara					NO
-                                Nuoro					NU
-                                Ogliastra				OG
-                                Oristano				OR
-                                Olbia-Tempio			OT
-                                Palermo					PA
-                                Piacenza				PC
-                                Padova					PD
-                                Pescara					PE
-                                Perugia					PG
-                                Pisa					PI
-                                Pordenone				PN
-                                Prato					PO
-                                Parma					PR
-                                Pistoia					PT
-                                Pesaro e Urbino			PU
-                                Pavia					PV
-                                Potenza					PZ
-                                Ravenna					RA
-                                Reggio Calabria			RC
-                                Reggio Emilia			RE
-                                Ragusa					RG
-                                Rieti					RI
-                                Roma					RM
-                                Rimini					RN
-                                Rovigo					RO
-                                Salerno					SA
-                                iena					SI
-                                Sondrio					SO
-                                La Spezia				SP
-                                Siracusa				SR
-                                Sassari					SS
-                                Savona					SV
-                                Taranto					TA
-                                Teramo					TE
-                                Trento 					TN
-                                Torino					TO
-                                Trapani					TP
-                                Terni					TR
-                                Trieste					TS
-                                Treviso					TV
-                                Udine					UD
-                                Varese					VA
-                                Verbano-Cusio-Ossola	VB
-                                Vercelli				VC
-                                Venezia					VE
-                                Vicenza					VI
-                                Verona					VR
-                                Medio Campidano			VS
-                                Viterbo					VT
-                                Vibo Valentia			VV
+                                Agrigento                AG
+                                Alessandria                AL
+                                Ancona                    AN
+                                Aosta                   AO
+                                Ascoli Piceno            AP
+                                L'Aquila                AQ
+                                Arezzo                    AR
+                                Asti                    AT
+                                Avellino                AV
+                                Bari                    BA
+                                Bergamo                    BG
+                                Biella                    BI
+                                Belluno                    BL
+                                Benevento                BN
+                                Bologna                    BO
+                                Brindisi                BR
+                                Brescia                    BS
+                                Barletta-Andria-Trani    BT
+                                Bolzano                    BZ
+                                Cagliari                CA
+                                Campobasso                CB
+                                Caserta                    CE
+                                Chieti                    CH
+                                Carbonia-Iglessias        CI
+                                Caltanissetta            CL
+                                Cuneo                    CN
+                                Como                    CO
+                                Cremona                    CR
+                                Cosenza                    CS
+                                Catania                    CT
+                                Catanzaro                CZ
+                                Enna                    EN
+                                Forlì-Cesena            FC
+                                Ferrara                    FE
+                                Foggia                    FG
+                                Firenze                    FI
+                                Fermo                    FM
+                                Frosinone                FR
+                                Genova                    GE
+                                Gorizia                    GO
+                                Grosseto                GR
+                                Imperia                    IM
+                                Isernia                    IS
+                                Crotone                    KR
+                                Lecco                    LC
+                                Lecce                    LE
+                                Livorno                    LI
+                                Lodi                    LO
+                                Latina                    LT
+                                Lucca                    LU
+                                Monza e Brianza            MB
+                                Macerata                MC
+                                Messina                    ME
+                                Milano                    MI
+                                Mantova                    MN
+                                Modena                    MO
+                                Massa e Carrara            MS
+                                Matera                    MT
+                                Napoli                    NA
+                                Novara                    NO
+                                Nuoro                    NU
+                                Ogliastra                OG
+                                Oristano                OR
+                                Olbia-Tempio            OT
+                                Palermo                    PA
+                                Piacenza                PC
+                                Padova                    PD
+                                Pescara                    PE
+                                Perugia                    PG
+                                Pisa                    PI
+                                Pordenone                PN
+                                Prato                    PO
+                                Parma                    PR
+                                Pistoia                    PT
+                                Pesaro e Urbino            PU
+                                Pavia                    PV
+                                Potenza                    PZ
+                                Ravenna                    RA
+                                Reggio Calabria            RC
+                                Reggio Emilia            RE
+                                Ragusa                    RG
+                                Rieti                    RI
+                                Roma                    RM
+                                Rimini                    RN
+                                Rovigo                    RO
+                                Salerno                    SA
+                                iena                    SI
+                                Sondrio                    SO
+                                La Spezia                SP
+                                Siracusa                SR
+                                Sassari                    SS
+                                Savona                    SV
+                                Taranto                    TA
+                                Teramo                    TE
+                                Trento                     TN
+                                Torino                    TO
+                                Trapani                    TP
+                                Terni                    TR
+                                Trieste                    TS
+                                Treviso                    TV
+                                Udine                    UD
+                                Varese                    VA
+                                Verbano-Cusio-Ossola    VB
+                                Vercelli                VC
+                                Venezia                    VE
+                                Vicenza                    VI
+                                Verona                    VR
+                                Medio Campidano            VS
+                                Viterbo                    VT
+                                Vibo Valentia            VV
 
                         """
 

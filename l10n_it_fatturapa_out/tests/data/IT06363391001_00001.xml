@@ -62,8 +62,8 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2017-01-07</Data>
-                <Numero>SAJ/2017/013</Numero>
+                <Data>2018-01-07</Data>
+                <Numero>SAJ/2018/013</Numero>
                 <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
@@ -91,13 +91,14 @@
                 <AliquotaIVA>22.00</AliquotaIVA>
                 <ImponibileImporto>14.00</ImponibileImporto>
                 <Imposta>3.08</Imposta>
+                <EsigibilitaIVA>I</EsigibilitaIVA>
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2017-02-28</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2018-02-28</DataScadenzaPagamento>
                 <ImportoPagamento>17.08</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>

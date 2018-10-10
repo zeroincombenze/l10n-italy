@@ -10,59 +10,26 @@
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
     'description': """
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
-
-
 Italian Localization - FatturaPA - Emission
 ===========================================
 
-This module allows you to generate the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
-to be sent to the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+Questo modulo permette di generare il file xml della fatturaPA versione 1.2
+da trasmettere al sistema di interscambio SdI.
 
+Attenzione! Lo schema di definizione dei file xml, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
+moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
+segnalato dall'errore:
 
-Configuration
-=============
+*name CryptoBinary used for multiple values in typeBinding*
 
-See l10n_it_fatturapa
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate *devono* dichiare il modulo
+l10n_it_ade come dipendenza.
 
-
-Usage
-=====
-
- * Fill invoice data you need to export. For instance, in
-   'related documents' TAB, or in 'related documents' section
-   within invoice line.
-
- * Select N invoices and run 'Export FatturaPA' wizard
-
-Credits
-=======
-
-Contributors
-------------
-
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Roberto Onnis <roberto.onnis@innoviu.com>
-* Alessio Gerace <alessio.gerace@agilebg.com>
-
-Maintainer
-----------
-
-.. image:: http://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: http://odoo-community.org
-
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
+Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
+l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 """,
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
@@ -76,7 +43,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
-    "installable": True,
+    "installable": False,
     'external_dependencies': {
         'python': ['unidecode'],
     }

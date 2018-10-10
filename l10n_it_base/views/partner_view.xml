@@ -12,7 +12,7 @@
             <field name="country_id" position="replace" />
             <field name="street" position="before">
                 <field name="country_id" placeholder="Country"
-                       on_change="on_change_country(country_id, zip, city, state_id, False, region)"
+                       on_change="on_change_country(country_id, zip, city, state_id)"
                        options="{'no_open': True}" />
             </field>
         </field>
@@ -29,7 +29,7 @@
             <field name="city" position="before">
                 <field name="zip" placeholder="ZIP"
                     style="width: 20%%"
-                    on_change="on_change_zip(country_id, zip, city, state_id, False, region)" />
+                    on_change="on_change_zip(country_id, zip, city, state_id)" />
             </field>
         </field>
     </record>
@@ -44,20 +44,17 @@
             <field name="city" position="replace">
                 <field name="city" placeholder="City"
                     style="width: 50%%"
-                    on_change="on_change_city(country_id, zip, city, state_id, False, region)" />
+                    on_change="on_change_city(country_id, zip, city, state_id)" />
             </field>
             <field name="state_id" position="replace">
                 <field name="state_id" placeholder="Province"
                      style="width: 27%%"
                      domain="[('country_id', '=', country_id)]"
-                     on_change="on_change_state(country_id, zip, city, state_id, False, region)"
-                     options='{"no_open": True}' />
-            </field>
-            <field name="state_id" position="after">
-                    <field name="region" placeholder="Region"
-                           domain="[('country_id', '=', country_id)]"
-                           on_change="on_change_region(country_id, zip, city, state_id, False, region)"
-                           options='{"no_open": True}' />
+                     on_change="on_change_state(country_id, zip, city, state_id)"
+                     options='{"no_open": True}'/>
+                <field name="region" placeholder="Region"
+                       domain="[('country_id', '=', country_id)]"
+                       options='{"no_open": True}'/>
             </field>
         </field>
     </record>
