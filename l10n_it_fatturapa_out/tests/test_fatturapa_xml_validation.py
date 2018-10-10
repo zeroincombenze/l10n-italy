@@ -5,12 +5,14 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
+import os
+import shutil
 import tempfile
+
+from lxml import etree
+
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 from odoo.modules.module import get_module_resource
-from lxml import etree
-import shutil
-import os
 
 
 class TestFatturaPAXMLValidation(AccountTestUsers):

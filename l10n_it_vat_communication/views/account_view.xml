@@ -1,43 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<record id="view_account_vat_communication" model="ir.ui.view">
-    <field name="name">account.vat.communication.form</field>
-    <field name="model">account.vat.communication</field>
-    <field name="type">form</field>
-    <field name="arch" type="xml">
-        <form string="Vat Communication">
-            <field name="company_id" groups="base.group_multi_company"/>
-            <field name="state" select="1"/>
-            <notebook colspan="4">
-                <page string="Header">
-                    <group colspan="4">
-                        <field name="soggetto_codice_fiscale" colspan="1"/>
-                        <field name="codice_carica" colspan="1"/>
-                    </group>
-                </page>
-            </notebook>
-            <button name="set_draft" states="confirmed,open" string="Set to draft" colspan="2"/>
-        </form>
-    </field>
-</record>
+    <record id="view_account_vat_communication" model="ir.ui.view">
+        <field name="name">account.vat.communication.form</field>
+        <field name="model">account.vat.communication</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Vat Communication">
+                <header>
+                    <button type='action' name="%(action_set_date_range_commitment)d"
+                            string="Set Date Range" />
+                </header>
+                <group colspan="4">
+                    <field name="company_id" colspan="1"
+                           groups="base.group_multi_company"/>
+                    <field name="state" colspan="1"/>
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
+                </group>
+                <notebook colspan="4">
+                    <page string="Header">
+                        <group colspan="4">
+                            <field name="soggetto_codice_fiscale" colspan="1"/>
+                            <field name="codice_carica" colspan="1"/>
+                        </group>
+                        <group colspan="2" string="Sales">
+                            <field name="dte_amount_total"/>
+                            <field name="dte_amount_taxable"/>
+                            <field name="dte_amount_tax"/>
+                            <field name="dte_amount_discarded"/>
+                        </group>
+                        <group colspan="2" string="Purchases">
+                            <field name="dtr_amount_total"/>
+                            <field name="dtr_amount_taxable"/>
+                            <field name="dtr_amount_tax"/>
+                            <field name="dtr_amount_discarded"/>
+                        </group>
+                    </page>
+                    <page string="Sale invoices">
+                        <field name="account_vat_communication_dte_line_ids" nolabel="1">
+                            <tree editable="bottom" string="Sale invoice Lines">
+                                <field name="invoice_id" />
+                                <field name="partner_id" />
+                            </tree>
+                            <form>
+                                <field name="invoice_id" />
+                                <field name="partner_id" />
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Purchase invoices">
+                        <field name="account_vat_communication_dtr_line_ids" nolabel="1">
+                            <tree editable="bottom" string="Purchase invoice Lines">
+                                <field name="invoice_id" />
+                                <field name="partner_id" />
+                            </tree>
+                            <form>
+                                <field name="invoice_id" />
+                                <field name="partner_id" />
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+                <button name="set_draft" states="confirmed,open" string="Set to draft" colspan="2"/>
+            </form>
+        </field>
+    </record>
 
-    <!--
 
-<record id="view_account_vat_communication_tree" model="ir.ui.view">
-    <field name="name">account.vat.communication.tree</field>
-    <field name="model">account.vat.communication</field>
-    <field name="type">tree</field>
-    <field name="arch" type="xml">
-        <tree string="Vat Communication">
-            <field name="soggetto_codice_fiscale" />
-            <field name="codice_carica" />
-            <field name="state" />
-            <field name="company_id" groups="base.group_multi_company"/>
-        </tree>
-    </field>
-</record>
--->
+    <record id="view_account_vat_communication_tree" model="ir.ui.view">
+        <field name="name">account.vat.communication.tree</field>
+        <field name="model">account.vat.communication</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Vat Communication">
+                <field name="soggetto_codice_fiscale" />
+                <field name="codice_carica" />
+                <field name="state" />
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
 
     <record id="action_account_vat_communication" model="ir.actions.act_window">
         <field name="name">Vat Communication</field>
@@ -45,9 +88,8 @@
     </record>
 
     <menuitem id="menu_account_vat_communication" name="VAT communications"
-        action="action_account_vat_communication"
-        groups="account.group_account_manager"
-        parent="l10n_it_ade.menu_fiscal_report"/>
+              action="action_account_vat_communication"
+              groups="account.group_account_manager"
+              parent="l10n_it_ade.menu_fiscal_report"/>
 
 </odoo>
-

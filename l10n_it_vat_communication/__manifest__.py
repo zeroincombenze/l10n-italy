@@ -29,5 +29,5 @@
         'python': ['pyxb', 'unidecode'],
     },
     'demo': [],
-    'installable': True,
+    'installable': False,
 }

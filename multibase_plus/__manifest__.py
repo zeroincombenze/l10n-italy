@@ -11,7 +11,7 @@
 
     'category': 'Base',
     'license': 'LGPL-3',
-    'version': '10.0.0.1.2',
+    'version': '10.0.0.1.3',
 
     'depends': ['base',
                 'account',

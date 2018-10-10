@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
 
     <record id="view_codice_carica_tree" model="ir.ui.view">
         <field name="name">view.codice.carica.tree</field>
@@ -41,6 +40,5 @@
               action="action_ade_codice_carica" parent="menu_ade"
               groups="account.group_account_manager" sequence="45"/>
 
-</data>
-</openerp>
+</odoo>
 

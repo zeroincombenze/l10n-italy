@@ -1,0 +1,65 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#162832;">Government Electronic Invoice/FatturaPA</h2>
+        <div class="oe_span6 text-center">
+            <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+            <p class="oe_mt16" align="justify">Base module to handle FatturaPA data.
+<a href="http://fatturapa.gov.it">Italian Government Website</a>
+            </p><p>
+This module requires <a href="http://pyxb.sourceforge.net/">PyXB 1.2.4</a>
+            </p>
+        </div>
+        <div class="oe_span6 text-center">
+            <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+            <p class="oe_mt16" align="justify">Modulo base per la gestione della fattura elettronica e <a href="http://fatturapa.gov.it">FatturaPA.</a>
+            </p><p align="justify">
+<span class="fa fa-exclamation-triangle" style="color: orange"/> Lo schema di definizione dei file xml, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche &egrave; base per tutti i file
+xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
+moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
+segnalato dall'errore:
+            </p><p align="justify">
+<span class="fa fa-exclamation"/> <b>name CryptoBinary used for multiple values in typeBinding</b>
+            </p><p align="justify">
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate <b>devono</b> dichiare il modulo
+l10n_it_ade come dipendenza.
+            </p><p align="justify">
+Per maggiori informazioni visitare il sito <a href="https://odoo-italia.org/">Odoo Italia Associazione</a>
+o contattare l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_separator">
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" align="left">
+            <p class="oe_mt16">Credits:</p>
+            <p class="oe_mt16">
+            <ul>
+                <li>Davide Corio &lt;davide.corio@abstract.it&gt;</li>
+                <li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
+                <li>Roberto Onnis &lt;roberto.onnis@innoviu.com&gt;</li>
+                <li>Alessio Gerace &lt;alessio.gerace@agilebg.com&gt;</li>
+                <li>Antonio Maria Vigliotti &lt;info@shs-av.com&gt;</li>
+            </ul>
+            </p>
+        </div>
+        <div class="oe_span12" align="left">
+            <p class="oe_mt16">Funders:</p>
+            <p class="oe_mt16">
+            <ul>
+                <li><a href="http://www.agilebg.com/">Agile Business Group sagl</a></li>
+                <li><a href="http://www.innoviu.com/">Innoviu</a></li>
+                <li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+                <li><a href="https://odoo-community.org/">Odoo Community Association (OCA)</a></li>
+                <li><a href="https://odoo-italia.org/">Odoo Italia Associazione</a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+</section>

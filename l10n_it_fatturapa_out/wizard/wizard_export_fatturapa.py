@@ -7,9 +7,6 @@ import base64
 import logging
 
 from odoo import models
-from odoo.tools.translate import _
-from odoo.exceptions import UserError
-
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
@@ -38,6 +35,7 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
 )
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -228,14 +226,14 @@ class WizardExportFatturapa(models.TransientModel):
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
-                )
+            )
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
             Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
-            )
+        )
 
     def _setPubAdministrationRef(self, CedentePrestatore, company):
         if company.fatturapa_pub_administration_ref:
@@ -530,7 +528,7 @@ class WizardExportFatturapa(models.TransientModel):
                 AliquotaIVA='%.2f' % tax.amount,
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
-                )
+            )
             if tax.amount == 0.0:
                 if not tax.kind_id:
                     raise UserError(
@@ -574,14 +572,14 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice.payment_term_id.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
-                    )
+                )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
                     if invoice.partner_bank_id.acc_number:
                         DettaglioPagamento.IBAN = (
                             ''.join(invoice.partner_bank_id.acc_number.split())
-                            )
+                        )
                     if invoice.partner_bank_id.bank_bic:
                         DettaglioPagamento.BIC = (
                             invoice.partner_bank_id.bank_bic)
@@ -687,4 +685,4 @@ class WizardExportFatturapa(models.TransientModel):
             'view_mode': 'form',
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
-            }
+        }

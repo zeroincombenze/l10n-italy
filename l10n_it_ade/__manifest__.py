@@ -19,13 +19,15 @@
     ],
     "data": [
         'security/ir.model.access.csv',
-        'data/italy.ade.tax.nature.csv',
-        'data/italy.ade.codice.carica.xml',
+        'data/italy_ade_tax_nature.xml',
+        'data/italy_ade_codice_carica.xml',
+        'data/italy_ade_invoice_type.xml',
         'views/ir_ui_menu.xml',
         'views/account_tax_view.xml',
-        # 'views/account_journal.xml',
+        'views/account_journal.xml',
         'views/codice_carica_view.xml',
         'views/tax_nature_view.xml',
+        'views/invoice_type_view.xml',
     ],
     'installable': True,
     "external_dependencies": {

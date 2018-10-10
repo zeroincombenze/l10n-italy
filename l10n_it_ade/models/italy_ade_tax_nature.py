@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                  Associazione Odoo Italia <http://www.odoo-italia.org>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-# Code partially inherited by l10n_it_codice_carica OCA
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-from odoo import _, api, fields, models
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+#
+from odoo import fields, models
 
 
 class ItalyAdeTaxNature(models.Model):
@@ -19,6 +19,6 @@ class ItalyAdeTaxNature(models.Model):
     code = fields.Char(string='Code',
                        size=2)
     name = fields.Char(string='Name')
-    help = fields.Char(string='Help')
+    help = fields.Text(string='Help')
     active = fields.Boolean(string='Active',
                             default=True)

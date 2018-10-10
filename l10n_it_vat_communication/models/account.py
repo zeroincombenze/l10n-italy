@@ -60,26 +60,28 @@ class AccountVatCommunication(models.Model):
         ('confirmed', 'Confirmed'), ],
         'State', readonly=True,
         default='draft')
+    date_start = fields.Date('From date')
+    date_stop = fields.Date('To date')
     # 'period_ids': fields.one2many(
     #     'account.period', 'vat_commitment_id', 'Periods'),
-    # account_vat_communication_dte_line_ids = fields.One2many(
-    #     'account.vat.communication.dte.line', 'commitment_id',
-    #     'Sale invoices',
-    #     help='Sale invoices to export in VAT communication',
-    #     states={
-    #         'draft': [('readonly', False)],
-    #         'open': [('readonly', False)],
-    #         'confirmed': [('readonly', True)]
-    #     })
-    # account_vat_communication_dtr_line_ids = fields.One2many(
-    #     'account.vat.communication.dtr.line', 'commitment_id',
-    #     'Purchase invoices',
-    #     help='Purchase invoices to export in VAT communication',
-    #     states={
-    #         'draft': [('readonly', False)],
-    #         'open': [('readonly', False)],
-    #         'confirmed': [('readonly', True)]
-    #     })
+    account_vat_communication_dte_line_ids = fields.One2many(
+        'account.vat.communication.dte.line', 'commitment_id',
+        'Sale invoices',
+        help='Sale invoices to export in VAT communication',
+        states={
+            'draft': [('readonly', False)],
+            'open': [('readonly', False)],
+            'confirmed': [('readonly', True)]
+        })
+    account_vat_communication_dtr_line_ids = fields.One2many(
+        'account.vat.communication.dtr.line', 'commitment_id',
+        'Purchase invoices',
+        help='Purchase invoices to export in VAT communication',
+        states={
+            'draft': [('readonly', False)],
+            'open': [('readonly', False)],
+            'confirmed': [('readonly', True)]
+        })
     attachment_ids = fields.One2many(
         'ir.attachment', 'res_id', 'Attachments',)
     dte_amount_total = fields.Float(
@@ -237,17 +239,16 @@ class AccountVatCommunication(models.Model):
     #     code = partner.vat and partner.vat[0:2].upper()
     #     return address.country_id.code or code
 
-    # def load_invoices(self, cr, uid, commitment, commitment_line_model,
-    #                   dte_dtr_id, where, comm_lines, context=None):
-    #     """Read all in/out invoices and return amount and fiscal parts"""
-    #     invoice_model = self.pool['account.invoice']
-    #     account_tax_model = self.pool['account.tax']
-    #     sum_amounts = {}
-    #     for f in ('total', 'taxable', 'tax', 'discarded'):
-    #         sum_amounts[f] = 0.0
-    #     for invoice_id in invoice_model.search(cr, uid, where, context=context):
-    #         inv_line = {}
-    #         invoice = invoice_model.browse(cr, uid, invoice_id, context)
+    def load_invoices(self, commitment, commitment_line_model,
+                      dte_dtr_id, where, comm_lines):
+        """Read all in/out invoices and return amount and fiscal parts"""
+        invoice_model = self.env['account.invoice']
+        # account_tax_model = self.pool['account.tax']
+        sum_amounts = {}
+        for f in ('total', 'taxable', 'tax', 'discarded'):
+            sum_amounts[f] = 0.0
+        for invoice in invoice_model.browse(invoice_model.search(where)):
+            inv_line = {}
     #         for invoice_tax in invoice.tax_line:
     #             tax_nature = False
     #             tax_payability = 'I'
@@ -371,50 +372,39 @@ class AccountVatCommunication(models.Model):
     #                 sum_amounts['tax'] += invoice_tax.amount
     #                 sum_amounts['total'] += round(
     #                     invoice_tax.base + invoice_tax.amount, 2)
-    #         if inv_line:
-    #             comm_lines[invoice_id] = {}
-    #             comm_lines[invoice_id]['partner_id'] = invoice.partner_id.id
-    #             comm_lines[invoice_id]['taxes'] = inv_line
-    #     return comm_lines, sum_amounts
+            if inv_line:
+                comm_lines[invoice_id] = {}
+                comm_lines[invoice_id]['partner_id'] = invoice.partner_id.id
+                comm_lines[invoice_id]['taxes'] = inv_line
+        return comm_lines, sum_amounts
 
-    # def load_DTE_DTR(self, cr, uid, commitment, commitment_line_model,
-    #                  dte_dtr_id, context=None):
-    #     journal_model = self.pool['account.journal']
-
-    #     if release.major_version == '6.1':
-    #         exclude_journal_ids = []
-    #         fiscal_position_model = self.pool['account.fiscal.position']
-    #         fiscal_position_ids = fiscal_position_model.search(
-    #             cr, uid, [('journal_auto_invoice_id', '!=', False)],
-    #             context=context)
-    #         for fiscal_position in fiscal_position_model.browse(
-    #                 cr, uid, fiscal_position_ids, context):
-    #             exclude_journal_ids.append(fiscal_position.sale_journal_id.id)
-    #     else:
-    #         exclude_journal_ids = journal_model.search(
-    #             cr, uid, ['|', '|',
-    #                       ('rev_charge', '=', True),
-    #                       ('proforma', '=', True),
-    #                       ('anom_sale_receipts', '=', True),
-    #                       ])
+    def load_DTE_DTR(self, commitment, commitment_line_model, dte_dtr_id):
+        journal_model = self.env['account.journal']
+        exclude_journal_ids = journal_model.search(
+            ['|', '|',
+             ('rev_charge', '=', True),
+             ('proforma', '=', True),
+             ('anom_sale_receipts', '=', True),
+            ])
 
     #     period_ids = [x.id for x in commitment.period_ids]
-    #     company_id = commitment.company_id.id
-    #     # tax_tree = self.build_tax_tree(cr, uid, company_id, context)
-    #     where = [('company_id', '=', company_id),
-    #              ('period_id', 'in', period_ids),
-    #              ('journal_id', 'not in', exclude_journal_ids),
-    #              ('state', 'in', ('open', 'paid'))]
-    #     if dte_dtr_id == 'DTE':
-    #         where.append(('type', 'in', ['out_invoice', 'out_refund']))
-    #     elif dte_dtr_id == 'DTR':
-    #         where.append(('type', 'in', ['in_invoice', 'in_refund']))
-    #     else:
-    #         return
+        company_id = commitment.company_id.id
+        return 0        #debug
+        where = [('company_id', '=', company_id),
+                 ('registration_date', '>=', commitment.date_start),
+                 ('registration_date', '<=', commitment.date_stop),
+                 ('journal_id', 'not in', exclude_journal_ids),
+                 ('state', 'in', ('open', 'paid'))]
+        if dte_dtr_id == 'DTE':
+            where.append(('type', 'in', ['out_invoice', 'out_refund']))
+        elif dte_dtr_id == 'DTR':
+            where.append(('type', 'in', ['in_invoice', 'in_refund']))
+        else:
+            return
 
-    #     comm_lines, sum_amounts = self.load_invoices(
-    #         cr, uid, commitment, commitment_line_model,
-    #         dte_dtr_id, where, {}, context)
+        comm_lines, sum_amounts = self.load_invoices(
+            commitment, commitment_line_model,
+            dte_dtr_id, where, {})
     #     if comm_lines:
     #         for line_id in commitment_line_model.search(
     #             cr, uid, [('commitment_id', '=', commitment.id),
@@ -453,40 +443,39 @@ class AccountVatCommunication(models.Model):
     #                 commitment_line_model.write(cr, uid, ids, line)
     #             else:
     #                 commitment_line_model.create(cr, uid, line)
-    #     return sum_amounts
+        return sum_amounts
 
-    # def load_DTE(self, cr, uid, commitment, context=None):
-    #     """Read all sale invoices in periods"""
-    #     context = context or {}
-    #     commitment_DTE_line_model = self.pool[
-    #         'account.vat.communication.dte.line']
-    #     sum_amounts = self.load_DTE_DTR(
-    #         cr, uid, commitment, commitment_DTE_line_model, 'DTE', context)
-    #     return sum_amounts
+    @api.model
+    def load_DTE(self, commitment):
+        """Read all sale invoices in periods"""
+        commitment_DTE_line_model = self.env[
+             'account.vat.communication.dte.line']
+        sum_amounts = self.load_DTE_DTR(
+            commitment, commitment_DTE_line_model, 'DTE')
+        return sum_amounts
 
-    # def load_DTR(self, cr, uid, commitment, context=None):
-    #     """Read all purchase invoices in periods"""
-    #     context = context or {}
-    #     commitment_DTR_line_model = self.pool[
-    #         'account.vat.communication.dtr.line']
-    #     sum_amounts = self.load_DTE_DTR(
-    #         cr, uid, commitment, commitment_DTR_line_model, 'DTR', context)
-    #     return sum_amounts
+    @api.model
+    def load_DTR(self, commitment):
+        """Read all purchase invoices in periods"""
+        commitment_DTR_line_model = self.env[
+            'account.vat.communication.dtr.line']
+        sum_amounts = self.load_DTE_DTR(
+            commitment, commitment_DTR_line_model, 'DTR')
+        return sum_amounts
 
-    # def compute_amounts(self, cr, uid, ids, context=None):
-    #     context = {} if context is None else context
-
-    #     for commitment in self.browse(cr, uid, ids, context):
-    #         dte_sum_amounts = self.load_DTE(cr, uid, commitment, context)
-    #         dtr_sum_amounts = self.load_DTR(cr, uid, commitment, context)
-    #         vals = {}
-    #         for t in ('total', 'taxable', 'tax', 'discarded'):
-    #             f = 'dte_amount_' + t
-    #             vals[f] = dte_sum_amounts[t]
-    #             f = 'dtr_amount_' + t
-    #             vals[f] = dtr_sum_amounts[t]
-    #         self.write(cr, uid, [commitment.id], vals)
-    #     return True
+    @api.multi
+    def compute_amounts(self):
+        for commitment in self:
+            dte_sum_amounts = self.load_DTE(commitment)
+            dtr_sum_amounts = self.load_DTR(commitment)
+            vals = {}
+            for t in ('total', 'taxable', 'tax', 'discarded'):
+                f = 'dte_amount_' + t
+                vals[f] = dte_sum_amounts[t]
+                f = 'dtr_amount_' + t
+                vals[f] = dtr_sum_amounts[t]
+            self.write(vals)
+        return True
 
 
     @api.onchange('soggetto_codice_fiscale')

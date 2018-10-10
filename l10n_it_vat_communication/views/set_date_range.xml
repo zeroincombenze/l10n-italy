@@ -9,8 +9,8 @@
                 <field name="state" invisible="1"/>
                 <group states="init">
                     <field name="date_range_id"/>
-                    <field name="from_date"/>
-                    <field name="to_date"/>
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
                 </group>
                 <group states="done" colspan="4">
                     <label string="All the invoice of date range are loaded"/>
