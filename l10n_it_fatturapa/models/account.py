@@ -1,22 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+# Copyright 2014    Davide Corio <davide.corio@lsweb.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 from openerp.osv import fields, orm
 
@@ -44,28 +33,6 @@ class fatturapa_document_type(orm.Model):
     # _position = ['2.1.1.1']
     _name = "fatturapa.document_type"
     _description = 'FatturaPA Document Type'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=4),
-    }
-
-
-class fatturapa_payment_term(orm.Model):
-    # _position = ['2.4.1']
-    _name = "fatturapa.payment_term"
-    _description = 'FatturaPA Payment Term'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=4),
-    }
-
-
-class fatturapa_payment_method(orm.Model):
-    # _position = ['2.4.2.2']
-    _name = "fatturapa.payment_method"
-    _description = 'FatturaPA Payment Method'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -127,19 +94,6 @@ class fatturapa_payment_detail(orm.Model):
         'payment_data_id': fields.many2one(
             'fatturapa.payment.data', 'Related payments Data',
             ondelete='cascade', select=True),
-    }
-
-
-#  used in fatturaPa export
-class account_payment_term(orm.Model):
-    # _position = ['2.4.2.2']
-    _inherit = 'account.payment.term'
-
-    _columns = {
-        'fatturapa_pt_id': fields.many2one(
-            'fatturapa.payment_term', string="FatturaPA Payment Term"),
-        'fatturapa_pm_id': fields.many2one(
-            'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
 
 

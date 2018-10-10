@@ -137,7 +137,7 @@ Credits
 * Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
-* Alessio Gerace
+* Alessio Gerace <alessio.gerace@agilebg.com>
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 
@@ -146,6 +146,7 @@ Credits
 Questo modulo è stato sviluppato con il contributo di
 
 * Agile BG <https://www.agilebg.com/>
+* Innoviu <https://www.innoviu.com/>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
 

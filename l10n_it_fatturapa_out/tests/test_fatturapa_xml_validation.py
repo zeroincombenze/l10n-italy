@@ -21,7 +21,7 @@
 
 import base64
 import tempfile
-from openerp.release import release
+import openerp.release as release
 from openerp import workflow
 import openerp.tests.common as test_common
 from openerp.modules.module import get_module_resource
@@ -32,58 +32,44 @@ import os
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
+
     def env612(self, model):
         """Return model pool"""
-        if release.major_version in ('6.1', '7.0'):
-            # Return model pool [6.1 / 7.0]
+        if int(release.major_version.split('.')[0]) < 8:
             return self.registry(model)
-        # Return model pool [+8.0]
         return self.env[model]
 
     def ref612(self, model):
         """Return reference id"""
-        if release.major_version in ('6.1', '7.0'):
-            # Return reference id [6.1 / 7.0]
+        if int(release.major_version.split('.')[0]) < 8:
             return self.ref(model)
-        # Return reference id [+8.0]
         return self.env.ref(model).id
 
-    def search612(self,  *args, **kwargs):
-        """Search record ids - Syntax search(model, *args, **kwargs)"""
-        if release.major_version in ('6.1', '7.0'):
-            # Search record ids [6.1 / 7.0]
-            model_pool = self.registry(args[0])
-            return model_pool.search(self.cr, self.uid, args[1], kwargs)
-        # Search record ids [+8.0]
-        model_pool = self.env[args[0]]
-        return model_pool.search(args[1], kwargs)._ids
+    def search612(self, model, *args):
+        """Search record ids - Syntax search(model, *args)
+        Warning! On Odoo 7.0 result may fail!"""
+        return self.registry(model).search(self.cr, self.uid, *args)
+
+    def browse612(self, model, id):
+        return self.registry(model).browse(self.cr, self.uid, id)
 
     def write612(self, model, id, values):
         """Write existent record [7.0]"""
-        if release.major_version in ('6.1', '7.0'):
-            # Write existent record [6.1 / 7.0]
-            model_pool = self.registry(model)
-            return model_pool.write(self.cr, self.uid, [id], values)
-        # Write existent record [+8.0]
-        model_pool = self.env[model]
-        obj = model_pool.search([('id', '=', id)])
-        return obj.write(values)
+        if int(release.major_version.split('.')[0]) < 8:
+            return self.registry(model).write(self.cr, self.uid, [id], values)
+        return self.env[model].search([('id', '=', id)]).write(values)
 
     def write_ref(self, xid, values):
         """Browse and write existent record"""
-        obj = self.browse_ref(xid)
-        return obj.write(values)
+        return self.browse_ref(xid).write(values)
 
     def create612(self, model, values):
         """Create a new record for test"""
-        if release.major_version in ('6.1', '7.0'):
-            # Create a new record for test [6.1 / 7.0]
+        if int(release.major_version.split('.')[0]) < 8:
             return self.env612(model).create(self.cr,
                                              self.uid,
                                              values)
-        # Create a new record for test [+8.0]
-        model_pool = self.env[model]
-        return model_pool.create(values).id
+        return self.env612(model).create(values).id
 
     def getFilePath(self, filepath):
         with open(filepath) as test_data:
