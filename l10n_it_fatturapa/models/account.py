@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014    Davide Corio <davide.corio@lsweb.it>
+# Copyright 2014    - Davide Corio <davide.corio@lsweb.it>
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 # Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-
 from openerp.osv import fields, orm
 
 RELATED_DOCUMENT_TYPES = {
@@ -18,7 +17,7 @@ RELATED_DOCUMENT_TYPES = {
 }
 
 
-class fatturapa_format(orm.Model):
+class FatturapaFormat(orm.Model):
     # _position = ['1.1.3']
     _name = "fatturapa.format"
     _description = 'FatturaPA Format'
@@ -29,7 +28,8 @@ class fatturapa_format(orm.Model):
     }
 
 
-class fatturapa_document_type(orm.Model):
+# TODO: remove
+class FatturapaDocumentType(orm.Model):
     # _position = ['2.1.1.1']
     _name = "fatturapa.document_type"
     _description = 'FatturaPA Document Type'
@@ -41,7 +41,7 @@ class fatturapa_document_type(orm.Model):
 
 
 #  used in fatturaPa import
-class fatturapa_payment_data(orm.Model):
+class FatturapaPaymentData(orm.Model):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment.data"
     _description = 'FatturaPA Payment Data'
@@ -61,7 +61,7 @@ class fatturapa_payment_data(orm.Model):
     }
 
 
-class fatturapa_payment_detail(orm.Model):
+class FatturapaPaymentDetail(orm.Model):
     # _position = ['2.4.2']
     _name = "fatturapa.payment.detail"
     _columns = {
@@ -73,10 +73,10 @@ class fatturapa_payment_detail(orm.Model):
         'payment_due_date': fields.date('Payment due Date'),
         'payment_amount': fields.float('Payment Amount'),
         'post_office_code': fields.char('Post Office Code', size=20),
-        'recepit_name': fields.char("Recepit payment partner contact"),
-        'recepit_surname': fields.char("Recepit payment partner contact"),
-        'recepit_cf': fields.char("Recepit payment partner contact"),
-        'recepit_title': fields.char("Recepit payment partner contact"),
+        'recepit_name': fields.char("Recepit payment partner firstname"),
+        'recepit_surname': fields.char("Recepit payment partner lastname"),
+        'recepit_cf': fields.char("Recepit payment partner fiscalnumber"),
+        'recepit_title': fields.char("Recepit payment partner title"),
         'payment_bank_name': fields.char("Bank name"),
         'payment_bank_iban': fields.char("IBAN"),
         'payment_bank_abi': fields.char("ABI"),
@@ -97,10 +97,10 @@ class fatturapa_payment_detail(orm.Model):
     }
 
 
-class fatturapa_fiscal_position(orm.Model):
+class FatturapaFiscalPosition(orm.Model):
     # _position = ['2.1.1.7.7', '2.2.1.14']
     _name = "fatturapa.fiscal_position"
-    _description = 'FatturaPA Fiscal Position'
+    _description = 'Electronic Invoice Fiscal Position'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -108,7 +108,7 @@ class fatturapa_fiscal_position(orm.Model):
     }
 
 
-class welfare_fund_type(orm.Model):
+class WelfareFundType(orm.Model):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
     _description = 'welfare fund type'
@@ -119,7 +119,7 @@ class welfare_fund_type(orm.Model):
     }
 
 
-class welfare_fund_data_line(orm.Model):
+class WelfareFundDataLine(orm.Model):
     # _position = ['2.1.1.7']
     _name = "welfare.fund.data.line"
     _description = 'FatturaPA Welfare Fund Data'
@@ -127,6 +127,7 @@ class welfare_fund_data_line(orm.Model):
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
+        # FIXME
         'fund_nature': fields.selection([
             ('N1', 'escluse ex art. 15'),
             ('N2', 'non soggette'),
@@ -149,7 +150,7 @@ class welfare_fund_data_line(orm.Model):
     }
 
 
-class discount_rise_price(orm.Model):
+class DiscountRisePrice(orm.Model):
     # _position = ['2.1.1.8', '2.2.1.10']
     _name = "discount.rise.price"
     _description = 'FatturaPA Discount Rise Price Data'
@@ -166,7 +167,7 @@ class discount_rise_price(orm.Model):
     }
 
 
-class fatturapa_related_document_type(orm.Model):
+class FatturapaRelatedDocumentType(orm.Model):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_document_type'
     _description = 'FatturaPA Related Document Type'
@@ -185,7 +186,7 @@ class fatturapa_related_document_type(orm.Model):
         'name': fields.char('DocumentID', size=20, required=True),
         'lineRef': fields.integer('LineRef'),
         'invoice_line_id': fields.many2one(
-            'account.invoice.line', 'Related Invoice Line',
+            'account.invoice.line', 'Related Invoice Lines',
             ondelete='cascade', select=True),
         'invoice_id': fields.many2one(
             'account.invoice', 'Related Invoice',
@@ -198,18 +199,17 @@ class fatturapa_related_document_type(orm.Model):
     }
 
     def create(self, cr, uid, vals, context=None):
-        if not context:
-            context = {}
+        context = context or {}
         if vals.get('invoice_line_id'):
-            line_obj = self.pool.get('account.invoice.line')
+            line_obj = self.pool['account.invoice.line']
             line = line_obj.browse(
                 cr, uid, vals['invoice_line_id'], context=context)
             vals['lineRef'] = line.sequence
-        return super(fatturapa_related_document_type, self).\
-            create(cr, uid, vals, context)
+        return super(FatturapaRelatedDocumentType,
+                     self).create(cr, uid, vals, context)
 
 
-class faturapa_activity_progress(orm.Model):
+class FaturapaActivityProgress(orm.Model):
     # _position = ['2.1.7']
     _name = "faturapa.activity.progress"
 
@@ -221,7 +221,7 @@ class faturapa_activity_progress(orm.Model):
     }
 
 
-class fattura_attachments(orm.Model):
+class FatturaAttachments(orm.Model):
     # _position = ['2.5']
     _name = "fatturapa.attachments"
     _description = "FatturaPA attachments"
@@ -238,7 +238,7 @@ class fattura_attachments(orm.Model):
     }
 
 
-class fatturapa_related_ddt(orm.Model):
+class FatturapaRelatedDdt(orm.Model):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_ddt'
     _description = 'FatturaPA Related DdT'
@@ -263,11 +263,11 @@ class fatturapa_related_ddt(orm.Model):
             line = line_obj.browse(
                 cr, uid, vals['invoice_line_id'], context=context)
             vals['lineRef'] = line.sequence
-        return super(fatturapa_related_ddt, self).\
-            create(cr, uid, vals, context)
+        return super(FatturapaRelatedDdt,
+                     self).create(cr, uid, vals, context)
 
 
-class account_invoice_line(orm.Model):
+class AccountInvoiceLine(orm.Model):
     # _position = ['2.2.1']
     _inherit = "account.invoice.line"
 
@@ -281,10 +281,16 @@ class account_invoice_line(orm.Model):
             'Related DdT'
         ),
         'admin_ref': fields.char('Administration ref.', size=20),
+        # TODO
+        # 'discount_rise_price_ids': fields.one2many(
+        #     'discount.rise.price', 'invoice_line_id',
+        #     'Discount and Rise Price Details'
+        # ),
+        # 'ftpa_line_number': fields.integer("Line number", readonly=True)
     }
 
 
-class faturapa_summary_data(orm.Model):
+class FaturapaSummaryData(orm.Model):
     # _position = ['2.2.2']
     _name = "faturapa.summary.data"
     _columns = {
@@ -314,7 +320,7 @@ class faturapa_summary_data(orm.Model):
     }
 
 
-class account_invoice(orm.Model):
+class AccountInvoice(orm.Model):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
     _inherit = "account.invoice"
     _columns = {
@@ -330,7 +336,7 @@ class account_invoice(orm.Model):
         #  1.6
         'sender': fields.selection(
             [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender'),
-        #  2.1.1.1
+        #  2.1.1.1 FIXME: see new version
         'doc_type': fields.many2one(
             'fatturapa.document_type', string="Document Type"),
         #  2.1.1.5
@@ -353,12 +359,12 @@ class account_invoice(orm.Model):
             'welfare.fund.data.line', 'invoice_id',
             'Welfare Fund'
         ),
-        #  2.1.1.8
+        #  2.1.1.8 FIXME
         'discount_rise_price_ids': fields.one2many(
             'discount.rise.price', 'invoice_id',
             'Discount and Rise Price Details'
         ),
-        #  2.1.2 - 2.1.6
+        #  2.1.2 - 2.1.6 FIXME
         'related_documents': fields.one2many(
             'fatturapa.related_document_type', 'invoice_id',
             'Related Documents'

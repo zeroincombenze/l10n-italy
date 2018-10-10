@@ -21,7 +21,7 @@
 from openerp.osv import fields, orm
 
 
-class res_company(orm.Model):
+class ResCompany(orm.Model):
     _inherit = 'res.company'
     _columns = {
         'fatturapa_fiscal_position_id': fields.many2one(
@@ -74,7 +74,7 @@ class res_company(orm.Model):
     }
 
 
-class account_config_settings(orm.TransientModel):
+class AccountConfigSettings(orm.TransientModel):
     _inherit = 'account.config.settings'
     _columns = {
         'fatturapa_fiscal_position_id': fields.related(
@@ -167,7 +167,7 @@ class account_config_settings(orm.TransientModel):
     }
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
-        res = super(account_config_settings, self).onchange_company_id(
+        res = super(AccountConfigSettings, self).onchange_company_id(
             cr, uid, ids, company_id, context=context)
         if company_id:
             company = self.pool.get('res.company').browse(
