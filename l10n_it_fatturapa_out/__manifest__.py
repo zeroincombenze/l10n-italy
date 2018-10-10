@@ -22,7 +22,7 @@
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'external_dependencies': {
         'python': ['unidecode'],
     }

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
@@ -7,7 +6,10 @@ import base64
 import logging
 
 from odoo import models
-from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from odoo.tools.translate import _
+from odoo.exceptions import UserError
+
+from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,
@@ -35,10 +37,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
 )
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
-from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
-
 try:
     from unidecode import unidecode
     from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
