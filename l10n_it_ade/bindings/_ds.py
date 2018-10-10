@@ -6,10 +6,9 @@
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 from __future__ import unicode_literals
-
-import io
 import logging
-
+import io
+import sys
 _logger = logging.getLogger(__name__)
 try:
     import pyxb

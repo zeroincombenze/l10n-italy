@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-08 16:12+0000\n"
-"PO-Revision-Date: 2018-10-08 16:12+0000\n"
+"POT-Creation-Date: 2018-10-10 03:54+0000\n"
+"PO-Revision-Date: 2018-10-10 03:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,26 +17,55 @@ msgstr ""
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_active
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_active
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_active
 msgid "Active"
 msgstr "Attivo"
 
 #. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_anom_sale_receipts
+msgid "Anonimous sale receipts journal"
+msgstr "Sezionale Corrispettivi"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,help:l10n_it_ade.field_account_journal_rev_charge
+msgid "Check if reverse charge EU invoices journal"
+msgstr "Check if reverse charge EU invoices journal"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,help:l10n_it_ade.field_account_journal_einvoice
+msgid "Check if this is a E-Invoice Journal"
+msgstr "Check if this is a E-Invoice Journal"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,help:l10n_it_ade.field_account_journal_proforma
+msgid "Check if this is a Proforma Journal"
+msgstr "Dichiara il registro degli avvisi di parcella"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,help:l10n_it_ade.field_account_journal_anom_sale_receipts
+msgid "Check if this is the Anonimous Sale Receipts Journal"
+msgstr "Dichiara il registro dei corrispettivi"
+
+#. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_code
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_code
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_code
 msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_ade
 #: sql_constraint:italy.ade.codice.carica:0
+#: sql_constraint:italy.ade.invoice.type:0
 #: sql_constraint:italy.ade.tax.nature:0
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_codice_carica_code
+#: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_invoice_type_code
 msgid "Code assigned by Tax Authority"
-msgstr "Codice assegnato da Agenzia delle Entrate"
+msgstr "Codice assegnato dall'Agenzia delle Entrate"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_italy_ade_codice_carica
@@ -61,15 +90,17 @@ msgstr "Codici carica"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_create_uid
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_create_date
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_create_date
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Data di creazione"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
@@ -78,9 +109,15 @@ msgstr "Esigibilità differita"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_display_name
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_display_name
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_display_name
 msgid "Display Name"
 msgstr "Visualizza Nome"
+
+#. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_einvoice
+msgid "E-Invoice journal"
+msgstr "E-Invoice journal"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
@@ -90,16 +127,18 @@ msgstr "FC applicazione IVA"
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_fiscal_report
 msgid "Fiscal Statements"
-msgstr "Fiscal Statements"
+msgstr "Comunicazioni Fiscali"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_help
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_help
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_help
 msgid "Help"
 msgstr "Aiuto"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_id
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_id
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_id
 msgid "ID"
 msgstr "ID"
@@ -120,30 +159,39 @@ msgid "Italy AdE"
 msgstr "Agenzia delle Entrate"
 
 #. module: l10n_it_ade
+#: model:ir.model,name:l10n_it_ade.model_account_journal
+msgid "Journal"
+msgstr "Sezionale"
+
+#. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica___last_update
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type___last_update
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature___last_update
 msgid "Last Modified on"
-msgstr "Data di ultima modifica"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_write_uid
 msgid "Last Updated by"
 msgstr "Ultima modifica di"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_write_date
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_write_date
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_law_reference
 msgid "Law reference"
-msgstr "Law reference"
+msgstr "Riferimento legislativo"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_name
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_name
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_name
 msgid "Name"
 msgstr "Nome"
@@ -171,12 +219,24 @@ msgid "Non taxable nature (*DEPRECATED*)"
 msgstr "Non taxable nature (*DEPRECATED*)"
 
 #. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_proforma
+msgid "Proforma journal"
+msgstr "Registro avvisi di parcella"
+
+#. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_codice_carica_scope
+#: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_invoice_type_scope
 msgid "Reserved to specific scope"
 msgstr "Riservato per uno specifico scopo"
 
 #. module: l10n_it_ade
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_rev_charge
+msgid "Reverse Charge Journal"
+msgstr "Reverse Charge Journal"
+
+#. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_scope
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_scope
 msgid "Scope"
 msgstr "Scopo"
 
@@ -193,7 +253,7 @@ msgstr "Imposta"
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_ade
 msgid "Tax Authority Definitions"
-msgstr "Tax Authority Definitions"
+msgstr "Definizioni da Agenzia delle Entrate"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_italy_ade_tax_nature
@@ -203,12 +263,29 @@ msgstr "Natura IVA Italia"
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_tax_nature
 msgid "Tax Nature"
-msgstr "Tax Nature"
+msgstr "Natura dell'IVA"
+
+#. module: l10n_it_ade
+#: model:ir.actions.act_window,name:l10n_it_ade.action_ade_tipo_fattura
+#: model:ir.ui.menu,name:l10n_it_ade.menu_ade_tipo_fattura
+msgid "Tipi Fattura"
+msgstr "Tipi Fattura"
+
+#. module: l10n_it_ade
+#: model:ir.model,name:l10n_it_ade.model_italy_ade_invoice_type
+msgid "Tipo Fattura Fiscale"
+msgstr "Tipo Fattura Fiscale"
+
+#. module: l10n_it_ade
+#: model:ir.ui.view,arch_db:l10n_it_ade.view_tipo_fattura_form
+#: model:ir.ui.view,arch_db:l10n_it_ade.view_tipo_fattura_tree
+msgid "Tipo fattura"
+msgstr "Tipo fattura"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_payability
 msgid "VAT payability"
-msgstr "VAT payability"
+msgstr "Esigibilità IVA"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0

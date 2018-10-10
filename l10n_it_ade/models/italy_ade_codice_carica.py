@@ -20,7 +20,7 @@ class ItalyAdeCodiceCarica(models.Model):
     code = fields.Char(string='Code', size=2,
                        help='Code assigned by Tax Authority')
     name = fields.Char(string='Name')
-    help = fields.Char(string='Help')
+    help = fields.Text(string='Help')
     scope = fields.Char(string='Scope',
                         help='Reserved to specific scope')
     active = fields.Boolean(string='Active',

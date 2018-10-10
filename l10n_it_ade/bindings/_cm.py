@@ -6,10 +6,9 @@
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
 from __future__ import unicode_literals
-
-import io
 import logging
-
+import io
+import sys
 _logger = logging.getLogger(__name__)
 try:
     import pyxb
@@ -90,7 +89,7 @@ def CreateFromDOM(node, default_namespace=None):
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}Identificativo_Type
-class IdentificativoType (pyxb.binding.datatypes.string):
+class Identificativo_Type (pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
@@ -101,18 +100,16 @@ class IdentificativoType (pyxb.binding.datatypes.string):
     _Documentation = None
 
 
-IdentificativoType._CF_pattern = pyxb.binding.facets.CF_pattern()
-IdentificativoType._CF_pattern.addPattern(
+Identificativo_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+Identificativo_Type._CF_pattern.addPattern(
     pattern='[0-9]{4}[1-9]|[0-9]{3}[1-9][0-9]|[0-9]{2}[1-9][0-9]{2}|[0-9][1-9][0-9]{3}|[1-9][0-9]{4}')
-IdentificativoType._InitializeFacetMap(Identificativo_Type._CF_pattern)
+Identificativo_Type._InitializeFacetMap(Identificativo_Type._CF_pattern)
 Namespace.addCategoryObject(
-    'typeBinding', 'Identificativo_Type', IdentificativoType)
+    'typeBinding', 'Identificativo_Type', Identificativo_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoAN_Type
-
-
-class DatoANType (pyxb.binding.datatypes.string):
+class DatoAN_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice costituito da caratteri alfanumerici maiuscoli e dai caratteri: punto, virgola, apice, trattino, spazio, barra semplice, °, ^, ampersand, parentesi aperta e chiusa, doppie virgolette, barra rovesciata, la barra dritta, il più, le maiuscole accentate e la Ü. Tali caratteri non sono ammesi come primo carattere tranne: i numeri da 0 a 9, i caratteri maiuscoli da A a Z, il meno e le dopppie virgolette."""
 
@@ -122,17 +119,15 @@ class DatoANType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice costituito da caratteri alfanumerici maiuscoli e dai caratteri: punto, virgola, apice, trattino, spazio, barra semplice, \xb0, ^, ampersand, parentesi aperta e chiusa, doppie virgolette, barra rovesciata, la barra dritta, il pi\xf9, le maiuscole accentate e la \xdc. Tali caratteri non sono ammesi come primo carattere tranne: i numeri da 0 a 9, i caratteri maiuscoli da A a Z, il meno e le dopppie virgolette.'
 
 
-DatoANType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoANType._CF_pattern.addPattern(
+DatoAN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoAN_Type._CF_pattern.addPattern(
     pattern='([0-9A-Z\\-]|"){1}([ 0-9A-Z&]|\'|\\-|\\.|,|/|\xb0|\\^|\\(|\\)|\xc0|\xc8|\xc9|\xcc|\xd2|\xd9|\xdc|"|\\\\|\\||\\+)*')
-DatoANType._InitializeFacetMap(DatoAN_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoAN_Type', DatoANType)
+DatoAN_Type._InitializeFacetMap(DatoAN_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoAN_Type', DatoAN_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoNU_Type
-
-
-class DatoNUType (pyxb.binding.datatypes.string):
+class DatoNU_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica numeri naturali positivi e negativi con al massimo 16 cifre."""
 
@@ -142,19 +137,17 @@ class DatoNUType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica numeri naturali positivi e negativi con al massimo 16 cifre.'
 
 
-DatoNUType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+DatoNU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoNUType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoNUType._CF_pattern.addPattern(pattern='(\\-[1-9]|[1-9])[0-9]*')
-DatoNUType._InitializeFacetMap(DatoNU_Type._CF_maxLength,
-                                DatoNUType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoNU_Type', DatoNUType)
+DatoNU_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoNU_Type._CF_pattern.addPattern(pattern='(\\-[1-9]|[1-9])[0-9]*')
+DatoNU_Type._InitializeFacetMap(DatoNU_Type._CF_maxLength,
+                                DatoNU_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoNU_Type', DatoNU_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoPC_Type
-
-
-class DatoPCType (pyxb.binding.datatypes.string):
+class DatoPC_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che esprime una percentuale e dunque consente valori positivi non superiori a 100, con al massimo 2 cifre decimali. Il separatore decimale previsto è la virgola."""
 
@@ -164,20 +157,18 @@ class DatoPCType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che esprime una percentuale e dunque consente valori positivi non superiori a 100, con al massimo 2 cifre decimali. Il separatore decimale previsto \xe8 la virgola.'
 
 
-DatoPCType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+DatoPC_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoPCType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoPCType._CF_pattern.addPattern(
+DatoPC_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoPC_Type._CF_pattern.addPattern(
     pattern='[0-9]?[0-9](,\\d{1,3})?|100(,0{1,3})?')
-DatoPCType._InitializeFacetMap(DatoPC_Type._CF_maxLength,
-                                DatoPCType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoPC_Type', DatoPCType)
+DatoPC_Type._InitializeFacetMap(DatoPC_Type._CF_maxLength,
+                                DatoPC_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoPC_Type', DatoPC_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoQU_Type
-
-
-class DatoQUType (pyxb.binding.datatypes.string):
+class DatoQU_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica numeri positivi con al massimo 5 cifre decimali. La lunghezza massima prevista è di 16 caratteri, il separatore decimale previsto è la virgola."""
 
@@ -187,19 +178,17 @@ class DatoQUType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica numeri positivi con al massimo 5 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
 
 
-DatoQUType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+DatoQU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoQUType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoQUType._CF_pattern.addPattern(pattern='[0-9]+(,[0-9]{1,5})?')
-DatoQUType._InitializeFacetMap(DatoQU_Type._CF_maxLength,
-                                DatoQUType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoQU_Type', DatoQUType)
+DatoQU_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoQU_Type._CF_pattern.addPattern(pattern='[0-9]+(,[0-9]{1,5})?')
+DatoQU_Type._InitializeFacetMap(DatoQU_Type._CF_maxLength,
+                                DatoQU_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoQU_Type', DatoQU_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoVP_Type
-
-
-class DatoVPType (pyxb.binding.datatypes.string):
+class DatoVP_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista è di 16 caratteri, il separatore decimale previsto è la virgola."""
 
@@ -209,19 +198,17 @@ class DatoVPType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
 
 
-DatoVPType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+DatoVP_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoVPType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoVPType._CF_pattern.addPattern(pattern='[0-9]+,[0-9]{2}')
-DatoVPType._InitializeFacetMap(DatoVP_Type._CF_maxLength,
-                                DatoVPType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoVP_Type', DatoVPType)
+DatoVP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoVP_Type._CF_pattern.addPattern(pattern='[0-9]+,[0-9]{2}')
+DatoVP_Type._InitializeFacetMap(DatoVP_Type._CF_maxLength,
+                                DatoVP_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoVP_Type', DatoVP_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoN1_Type
-
-
-class DatoN1Type (pyxb.binding.datatypes.string):
+class DatoN1_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica i numeri naturali da 1 a 9."""
 
@@ -231,19 +218,17 @@ class DatoN1Type (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica i numeri naturali da 1 a 9.'
 
 
-DatoN1Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+DatoN1_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
-DatoN1Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoN1Type._CF_pattern.addPattern(pattern='[1-9]')
-DatoN1Type._InitializeFacetMap(DatoN1_Type._CF_maxLength,
-                                DatoN1Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoN1_Type', DatoN1Type)
+DatoN1_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoN1_Type._CF_pattern.addPattern(pattern='[1-9]')
+DatoN1_Type._InitializeFacetMap(DatoN1_Type._CF_maxLength,
+                                DatoN1_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoN1_Type', DatoN1_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoNP_Type
-
-
-class DatoNPType (pyxb.binding.datatypes.string):
+class DatoNP_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica numeri naturali positivi con al massimo 16 cifre."""
 
@@ -253,16 +238,14 @@ class DatoNPType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica numeri naturali positivi con al massimo 16 cifre.'
 
 
-DatoNPType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoNPType._CF_pattern.addPattern(pattern='[1-9]{1}[0-9]*')
-DatoNPType._InitializeFacetMap(DatoNP_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoNP_Type', DatoNPType)
+DatoNP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoNP_Type._CF_pattern.addPattern(pattern='[1-9]{1}[0-9]*')
+DatoNP_Type._InitializeFacetMap(DatoNP_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoNP_Type', DatoNP_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoPI_Type
-
-
-class DatoPIType (pyxb.binding.datatypes.string):
+class DatoPI_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica la partita IVA rispettandone i vincoli di struttura. """
 
@@ -272,19 +255,17 @@ class DatoPIType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica la partita IVA rispettandone i vincoli di struttura. '
 
 
-DatoPIType._CF_length = pyxb.binding.facets.CF_length(
+DatoPI_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(11))
-DatoPIType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoPIType._CF_pattern.addPattern(pattern='[0-7][0-9]{10}')
-DatoPIType._InitializeFacetMap(DatoPI_Type._CF_length,
-                                DatoPIType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoPI_Type', DatoPIType)
+DatoPI_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoPI_Type._CF_pattern.addPattern(pattern='[0-7][0-9]{10}')
+DatoPI_Type._InitializeFacetMap(DatoPI_Type._CF_length,
+                                DatoPI_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoPI_Type', DatoPI_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoCN_Type
-
-
-class DatoCNType (pyxb.binding.datatypes.string):
+class DatoCN_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica un codice fiscale numerico rispettandone i vincoli di struttura."""
 
@@ -294,19 +275,17 @@ class DatoCNType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un codice fiscale numerico rispettandone i vincoli di struttura.'
 
 
-DatoCNType._CF_length = pyxb.binding.facets.CF_length(
+DatoCN_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(11))
-DatoCNType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoCNType._CF_pattern.addPattern(pattern='[0-9]{11}')
-DatoCNType._InitializeFacetMap(DatoCN_Type._CF_length,
-                                DatoCNType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoCN_Type', DatoCNType)
+DatoCN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoCN_Type._CF_pattern.addPattern(pattern='[0-9]{11}')
+DatoCN_Type._InitializeFacetMap(DatoCN_Type._CF_length,
+                                DatoCN_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoCN_Type', DatoCN_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoCF_Type
-
-
-class DatoCFType (pyxb.binding.datatypes.string):
+class DatoCF_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica un codice fiscale provvisorio o alfanumerico rispettandone i vincoli di struttura."""
 
@@ -316,17 +295,15 @@ class DatoCFType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un codice fiscale provvisorio o alfanumerico rispettandone i vincoli di struttura.'
 
 
-DatoCFType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoCFType._CF_pattern.addPattern(
+DatoCF_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoCF_Type._CF_pattern.addPattern(
     pattern='[0-9]{11}|[A-Z]{6}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1}')
-DatoCFType._InitializeFacetMap(DatoCF_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoCF_Type', DatoCFType)
+DatoCF_Type._InitializeFacetMap(DatoCF_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoCF_Type', DatoCF_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoCB_Type
-
-
-class DatoCBType (pyxb.binding.datatypes.byte):
+class DatoCB_Type (pyxb.binding.datatypes.byte):
 
     """Tipo semplice che consente esclusivamente i valori 0 e 1."""
 
@@ -336,16 +313,14 @@ class DatoCBType (pyxb.binding.datatypes.byte):
     _Documentation = 'Tipo semplice che consente esclusivamente i valori 0 e 1.'
 
 
-DatoCBType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoCBType._CF_pattern.addPattern(pattern='[01]')
-DatoCBType._InitializeFacetMap(DatoCB_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoCB_Type', DatoCBType)
+DatoCB_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoCB_Type._CF_pattern.addPattern(pattern='[01]')
+DatoCB_Type._InitializeFacetMap(DatoCB_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoCB_Type', DatoCB_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoCB12_Type
-
-
-class DatoCB12Type (pyxb.binding.datatypes.byte):
+class DatoCB12_Type (pyxb.binding.datatypes.byte):
 
     """Tipo semplice che consente esclusivamente 12 caratteri con i valori 0 e 1."""
 
@@ -355,16 +330,14 @@ class DatoCB12Type (pyxb.binding.datatypes.byte):
     _Documentation = 'Tipo semplice che consente esclusivamente 12 caratteri con i valori 0 e 1.'
 
 
-DatoCB12Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoCB12Type._CF_pattern.addPattern(pattern='[10]{12}')
-DatoCB12Type._InitializeFacetMap(DatoCB12_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoCB12_Type', DatoCB12Type)
+DatoCB12_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoCB12_Type._CF_pattern.addPattern(pattern='[10]{12}')
+DatoCB12_Type._InitializeFacetMap(DatoCB12_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoCB12_Type', DatoCB12_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoDT_Type
-
-
-class DatoDTType (pyxb.binding.datatypes.string):
+class DatoDT_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica una data nel formato ggmmaaaa. La data indicata non deve essere successiva alla data corrente."""
 
@@ -374,20 +347,18 @@ class DatoDTType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica una data nel formato ggmmaaaa. La data indicata non deve essere successiva alla data corrente.'
 
 
-DatoDTType._CF_length = pyxb.binding.facets.CF_length(
+DatoDT_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(8))
-DatoDTType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoDTType._CF_pattern.addPattern(
+DatoDT_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoDT_Type._CF_pattern.addPattern(
     pattern='(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12)(\\d{4}))|(([0][1-9]|[12][0-9]|30)(0[469]|11)(\\d{4}))|((0[1-9]|1[0-9]|2[0-8])(02)(\\d{4}))|((29)(02)([02468][048]00))|((29)(02)([13579][26]00))|((29)(02)([0-9][0-9][0][48]))|((29)(02)([0-9][0-9][2468][048]))|((29)(02)([0-9][0-9][13579][26])))')
-DatoDTType._InitializeFacetMap(DatoDT_Type._CF_length,
-                                DatoDTType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoDT_Type', DatoDTType)
+DatoDT_Type._InitializeFacetMap(DatoDT_Type._CF_length,
+                                DatoDT_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoDT_Type', DatoDT_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoDA_Type
-
-
-class DatoDAType (pyxb.binding.datatypes.string):
+class DatoDA_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica un anno nel formato aaaa. Sono ammessi anni dal 1800 al 2099."""
 
@@ -397,19 +368,17 @@ class DatoDAType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un anno nel formato aaaa. Sono ammessi anni dal 1800 al 2099.'
 
 
-DatoDAType._CF_length = pyxb.binding.facets.CF_length(
+DatoDA_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
-DatoDAType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoDAType._CF_pattern.addPattern(pattern='(18|19|20)[0-9]{2}')
-DatoDAType._InitializeFacetMap(DatoDA_Type._CF_length,
-                                DatoDAType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoDA_Type', DatoDAType)
+DatoDA_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoDA_Type._CF_pattern.addPattern(pattern='(18|19|20)[0-9]{2}')
+DatoDA_Type._InitializeFacetMap(DatoDA_Type._CF_length,
+                                DatoDA_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoDA_Type', DatoDA_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoDN_Type
-
-
-class DatoDNType (pyxb.binding.datatypes.string):
+class DatoDN_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica una data nel formato ggmmaaaa."""
 
@@ -419,20 +388,18 @@ class DatoDNType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica una data nel formato ggmmaaaa.'
 
 
-DatoDNType._CF_length = pyxb.binding.facets.CF_length(
+DatoDN_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(8))
-DatoDNType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoDNType._CF_pattern.addPattern(
+DatoDN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoDN_Type._CF_pattern.addPattern(
     pattern='(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12)(\\d{4}))|(([0][1-9]|[12][0-9]|30)(0[469]|11)(\\d{4}))|((0[1-9]|1[0-9]|2[0-8])(02)(\\d{4}))|((29)(02)([02468][048]00))|((29)(02)([13579][26]00))|((29)(02)([0-9][0-9][0][48]))|((29)(02)([0-9][0-9][2468][048]))|((29)(02)([0-9][0-9][13579][26])))')
-DatoDNType._InitializeFacetMap(DatoDN_Type._CF_length,
-                                DatoDNType._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoDN_Type', DatoDNType)
+DatoDN_Type._InitializeFacetMap(DatoDN_Type._CF_length,
+                                DatoDN_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoDN_Type', DatoDN_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoD6_Type
-
-
-class DatoD6Type (pyxb.binding.datatypes.string):
+class DatoD6_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica una data nel formato mmaaaa."""
 
@@ -442,20 +409,18 @@ class DatoD6Type (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica una data nel formato mmaaaa.'
 
 
-DatoD6Type._CF_length = pyxb.binding.facets.CF_length(
+DatoD6_Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(6))
-DatoD6Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoD6Type._CF_pattern.addPattern(
+DatoD6_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoD6_Type._CF_pattern.addPattern(
     pattern='((0[0-9])|(1[0-2]))((19|20)[0-9][0-9])')
-DatoD6Type._InitializeFacetMap(DatoD6_Type._CF_length,
-                                DatoD6Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoD6_Type', DatoD6Type)
+DatoD6_Type._InitializeFacetMap(DatoD6_Type._CF_length,
+                                DatoD6_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoD6_Type', DatoD6_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoEM_Type
-
-
-class DatoEMType (pyxb.binding.datatypes.string):
+class DatoEM_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica un elemento di tipo email"""
 
@@ -465,17 +430,15 @@ class DatoEMType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un elemento di tipo email'
 
 
-DatoEMType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoEMType._CF_pattern.addPattern(
+DatoEM_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoEM_Type._CF_pattern.addPattern(
     pattern='[a-zA-Z0-9._%\\-\'"?^~=]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,4}')
-DatoEMType._InitializeFacetMap(DatoEM_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoEM_Type', DatoEMType)
+DatoEM_Type._InitializeFacetMap(DatoEM_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoEM_Type', DatoEM_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoGA_Type
-
-
-class DatoGAType (pyxb.binding.datatypes.string):
+class DatoGA_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica il numero di giorni in un anno e va da 1 a 365"""
 
@@ -485,23 +448,21 @@ class DatoGAType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica il numero di giorni in un anno e va da 1 a 365'
 
 
-DatoGAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
+DatoGA_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(3))
-DatoGAType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoGAType._CF_pattern.addPattern(
+DatoGA_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoGA_Type._CF_pattern.addPattern(
     pattern='[1-9]|([1-9][0-9])|([12][0-9][0-9])|(3[0-5][0-9])|(36[0-5])')
-DatoGAType._CF_minLength = pyxb.binding.facets.CF_minLength(
+DatoGA_Type._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
-DatoGAType._InitializeFacetMap(DatoGA_Type._CF_maxLength,
-                                DatoGAType._CF_pattern,
-                                DatoGAType._CF_minLength)
-Namespace.addCategoryObject('typeBinding', 'DatoGA_Type', DatoGAType)
+DatoGA_Type._InitializeFacetMap(DatoGA_Type._CF_maxLength,
+                                DatoGA_Type._CF_pattern,
+                                DatoGA_Type._CF_minLength)
+Namespace.addCategoryObject('typeBinding', 'DatoGA_Type', DatoGA_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoTL_Type
-
-
-class DatoTLType (pyxb.binding.datatypes.string):
+class DatoTL_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica un elemento di tipo telefono"""
 
@@ -511,16 +472,14 @@ class DatoTLType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un elemento di tipo telefono'
 
 
-DatoTLType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoTLType._CF_pattern.addPattern(pattern='[0-9]*')
-DatoTLType._InitializeFacetMap(DatoTL_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoTL_Type', DatoTLType)
+DatoTL_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoTL_Type._CF_pattern.addPattern(pattern='[0-9]*')
+DatoTL_Type._InitializeFacetMap(DatoTL_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoTL_Type', DatoTL_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoCP_Type
-
-
-class DatoCPType (pyxb.binding.datatypes.string):
+class DatoCP_Type (pyxb.binding.datatypes.string):
 
     """Tipo semplice che identifica un elemento di tipo cap"""
 
@@ -530,15 +489,13 @@ class DatoCPType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un elemento di tipo cap'
 
 
-DatoCPType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoCPType._CF_pattern.addPattern(pattern='[0-9]{5}')
-DatoCPType._InitializeFacetMap(DatoCP_Type._CF_pattern)
-Namespace.addCategoryObject('typeBinding', 'DatoCP_Type', DatoCPType)
+DatoCP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoCP_Type._CF_pattern.addPattern(pattern='[0-9]{5}')
+DatoCP_Type._InitializeFacetMap(DatoCP_Type._CF_pattern)
+Namespace.addCategoryObject('typeBinding', 'DatoCP_Type', DatoCP_Type)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}ProvincieItaliane
-
-
 class ProvincieItaliane (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """
@@ -891,8 +848,6 @@ Namespace.addCategoryObject(
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}ProvincieCroate
-
-
 class ProvincieCroate (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
@@ -916,8 +871,6 @@ Namespace.addCategoryObject('typeBinding', 'ProvincieCroate', ProvincieCroate)
 
 # Atomic simple type:
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}Estero
-
-
 class Estero (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
@@ -936,9 +889,7 @@ Namespace.addCategoryObject('typeBinding', 'Estero', Estero)
 
 # Union simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}PR_Type
 # superclasses pyxb.binding.datatypes.anySimpleType
-
-
-class PRType (pyxb.binding.basis.STD_union):
+class PR_Type (pyxb.binding.basis.STD_union):
 
     """Tipo semplice costituito dalle sigle delle provincie italiane in vigore."""
 
@@ -950,128 +901,126 @@ class PRType (pyxb.binding.basis.STD_union):
     _MemberTypes = (ProvincieItaliane, )
 
 
-PRType._CF_pattern = pyxb.binding.facets.CF_pattern()
-PRType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=PRType)
-PRType.AG = 'AG'                                 # originally ProvincieItaliane.AG
-PRType.AL = 'AL'                                 # originally ProvincieItaliane.AL
-PRType.AN = 'AN'                                 # originally ProvincieItaliane.AN
-PRType.AO = 'AO'                                 # originally ProvincieItaliane.AO
-PRType.AP = 'AP'                                 # originally ProvincieItaliane.AP
-PRType.AQ = 'AQ'                                 # originally ProvincieItaliane.AQ
-PRType.AR = 'AR'                                 # originally ProvincieItaliane.AR
-PRType.AT = 'AT'                                 # originally ProvincieItaliane.AT
-PRType.AV = 'AV'                                 # originally ProvincieItaliane.AV
-PRType.BA = 'BA'                                 # originally ProvincieItaliane.BA
-PRType.BG = 'BG'                                 # originally ProvincieItaliane.BG
-PRType.BI = 'BI'                                 # originally ProvincieItaliane.BI
-PRType.BL = 'BL'                                 # originally ProvincieItaliane.BL
-PRType.BN = 'BN'                                 # originally ProvincieItaliane.BN
-PRType.BO = 'BO'                                 # originally ProvincieItaliane.BO
-PRType.BR = 'BR'                                 # originally ProvincieItaliane.BR
-PRType.BS = 'BS'                                 # originally ProvincieItaliane.BS
-PRType.BT = 'BT'                                 # originally ProvincieItaliane.BT
-PRType.BZ = 'BZ'                                 # originally ProvincieItaliane.BZ
-PRType.CA = 'CA'                                 # originally ProvincieItaliane.CA
-PRType.CB = 'CB'                                 # originally ProvincieItaliane.CB
-PRType.CE = 'CE'                                 # originally ProvincieItaliane.CE
-PRType.CH = 'CH'                                 # originally ProvincieItaliane.CH
-PRType.CI = 'CI'                                 # originally ProvincieItaliane.CI
-PRType.CL = 'CL'                                 # originally ProvincieItaliane.CL
-PRType.CN = 'CN'                                 # originally ProvincieItaliane.CN
-PRType.CO = 'CO'                                 # originally ProvincieItaliane.CO
-PRType.CR = 'CR'                                 # originally ProvincieItaliane.CR
-PRType.CS = 'CS'                                 # originally ProvincieItaliane.CS
-PRType.CT = 'CT'                                 # originally ProvincieItaliane.CT
-PRType.CZ = 'CZ'                                 # originally ProvincieItaliane.CZ
-PRType.EN = 'EN'                                 # originally ProvincieItaliane.EN
-PRType.FC = 'FC'                                 # originally ProvincieItaliane.FC
-PRType.FE = 'FE'                                 # originally ProvincieItaliane.FE
-PRType.FG = 'FG'                                 # originally ProvincieItaliane.FG
-PRType.FI = 'FI'                                 # originally ProvincieItaliane.FI
-PRType.FM = 'FM'                                 # originally ProvincieItaliane.FM
-PRType.FR = 'FR'                                 # originally ProvincieItaliane.FR
-PRType.GE = 'GE'                                 # originally ProvincieItaliane.GE
-PRType.GO = 'GO'                                 # originally ProvincieItaliane.GO
-PRType.GR = 'GR'                                 # originally ProvincieItaliane.GR
-PRType.IM = 'IM'                                 # originally ProvincieItaliane.IM
-PRType.IS = 'IS'                                 # originally ProvincieItaliane.IS
-PRType.KR = 'KR'                                 # originally ProvincieItaliane.KR
-PRType.LC = 'LC'                                 # originally ProvincieItaliane.LC
-PRType.LE = 'LE'                                 # originally ProvincieItaliane.LE
-PRType.LI = 'LI'                                 # originally ProvincieItaliane.LI
-PRType.LO = 'LO'                                 # originally ProvincieItaliane.LO
-PRType.LT = 'LT'                                 # originally ProvincieItaliane.LT
-PRType.LU = 'LU'                                 # originally ProvincieItaliane.LU
-PRType.MB = 'MB'                                 # originally ProvincieItaliane.MB
-PRType.MC = 'MC'                                 # originally ProvincieItaliane.MC
-PRType.ME = 'ME'                                 # originally ProvincieItaliane.ME
-PRType.MI = 'MI'                                 # originally ProvincieItaliane.MI
-PRType.MN = 'MN'                                 # originally ProvincieItaliane.MN
-PRType.MO = 'MO'                                 # originally ProvincieItaliane.MO
-PRType.MS = 'MS'                                 # originally ProvincieItaliane.MS
-PRType.MT = 'MT'                                 # originally ProvincieItaliane.MT
-PRType.NA = 'NA'                                 # originally ProvincieItaliane.NA
-PRType.NO = 'NO'                                 # originally ProvincieItaliane.NO
-PRType.NU = 'NU'                                 # originally ProvincieItaliane.NU
-PRType.OG = 'OG'                                 # originally ProvincieItaliane.OG
-PRType.OR = 'OR'                                 # originally ProvincieItaliane.OR
-PRType.OT = 'OT'                                 # originally ProvincieItaliane.OT
-PRType.PA = 'PA'                                 # originally ProvincieItaliane.PA
-PRType.PC = 'PC'                                 # originally ProvincieItaliane.PC
-PRType.PD = 'PD'                                 # originally ProvincieItaliane.PD
-PRType.PE = 'PE'                                 # originally ProvincieItaliane.PE
-PRType.PG = 'PG'                                 # originally ProvincieItaliane.PG
-PRType.PI = 'PI'                                 # originally ProvincieItaliane.PI
-PRType.PN = 'PN'                                 # originally ProvincieItaliane.PN
-PRType.PO = 'PO'                                 # originally ProvincieItaliane.PO
-PRType.PR = 'PR'                                 # originally ProvincieItaliane.PR
-PRType.PT = 'PT'                                 # originally ProvincieItaliane.PT
-PRType.PU = 'PU'                                 # originally ProvincieItaliane.PU
-PRType.PV = 'PV'                                 # originally ProvincieItaliane.PV
-PRType.PZ = 'PZ'                                 # originally ProvincieItaliane.PZ
-PRType.RA = 'RA'                                 # originally ProvincieItaliane.RA
-PRType.RC = 'RC'                                 # originally ProvincieItaliane.RC
-PRType.RE = 'RE'                                 # originally ProvincieItaliane.RE
-PRType.RG = 'RG'                                 # originally ProvincieItaliane.RG
-PRType.RI = 'RI'                                 # originally ProvincieItaliane.RI
-PRType.RM = 'RM'                                 # originally ProvincieItaliane.RM
-PRType.RN = 'RN'                                 # originally ProvincieItaliane.RN
-PRType.RO = 'RO'                                 # originally ProvincieItaliane.RO
-PRType.SA = 'SA'                                 # originally ProvincieItaliane.SA
-PRType.SI = 'SI'                                 # originally ProvincieItaliane.SI
-PRType.SO = 'SO'                                 # originally ProvincieItaliane.SO
-PRType.SP = 'SP'                                 # originally ProvincieItaliane.SP
-PRType.SR = 'SR'                                 # originally ProvincieItaliane.SR
-PRType.SS = 'SS'                                 # originally ProvincieItaliane.SS
-PRType.SV = 'SV'                                 # originally ProvincieItaliane.SV
-PRType.TA = 'TA'                                 # originally ProvincieItaliane.TA
-PRType.TE = 'TE'                                 # originally ProvincieItaliane.TE
-PRType.TN = 'TN'                                 # originally ProvincieItaliane.TN
-PRType.TO = 'TO'                                 # originally ProvincieItaliane.TO
-PRType.TP = 'TP'                                 # originally ProvincieItaliane.TP
-PRType.TR = 'TR'                                 # originally ProvincieItaliane.TR
-PRType.TS = 'TS'                                 # originally ProvincieItaliane.TS
-PRType.TV = 'TV'                                 # originally ProvincieItaliane.TV
-PRType.UD = 'UD'                                 # originally ProvincieItaliane.UD
-PRType.VA = 'VA'                                 # originally ProvincieItaliane.VA
-PRType.VB = 'VB'                                 # originally ProvincieItaliane.VB
-PRType.VC = 'VC'                                 # originally ProvincieItaliane.VC
-PRType.VE = 'VE'                                 # originally ProvincieItaliane.VE
-PRType.VI = 'VI'                                 # originally ProvincieItaliane.VI
-PRType.VR = 'VR'                                 # originally ProvincieItaliane.VR
-PRType.VS = 'VS'                                 # originally ProvincieItaliane.VS
-PRType.VT = 'VT'                                 # originally ProvincieItaliane.VT
-PRType.VV = 'VV'                                 # originally ProvincieItaliane.VV
-PRType._InitializeFacetMap(PR_Type._CF_pattern,
-                            PRType._CF_enumeration)
-Namespace.addCategoryObject('typeBinding', 'PR_Type', PRType)
+PR_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+PR_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=PR_Type)
+PR_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
+PR_Type.AL = 'AL'                                 # originally ProvincieItaliane.AL
+PR_Type.AN = 'AN'                                 # originally ProvincieItaliane.AN
+PR_Type.AO = 'AO'                                 # originally ProvincieItaliane.AO
+PR_Type.AP = 'AP'                                 # originally ProvincieItaliane.AP
+PR_Type.AQ = 'AQ'                                 # originally ProvincieItaliane.AQ
+PR_Type.AR = 'AR'                                 # originally ProvincieItaliane.AR
+PR_Type.AT = 'AT'                                 # originally ProvincieItaliane.AT
+PR_Type.AV = 'AV'                                 # originally ProvincieItaliane.AV
+PR_Type.BA = 'BA'                                 # originally ProvincieItaliane.BA
+PR_Type.BG = 'BG'                                 # originally ProvincieItaliane.BG
+PR_Type.BI = 'BI'                                 # originally ProvincieItaliane.BI
+PR_Type.BL = 'BL'                                 # originally ProvincieItaliane.BL
+PR_Type.BN = 'BN'                                 # originally ProvincieItaliane.BN
+PR_Type.BO = 'BO'                                 # originally ProvincieItaliane.BO
+PR_Type.BR = 'BR'                                 # originally ProvincieItaliane.BR
+PR_Type.BS = 'BS'                                 # originally ProvincieItaliane.BS
+PR_Type.BT = 'BT'                                 # originally ProvincieItaliane.BT
+PR_Type.BZ = 'BZ'                                 # originally ProvincieItaliane.BZ
+PR_Type.CA = 'CA'                                 # originally ProvincieItaliane.CA
+PR_Type.CB = 'CB'                                 # originally ProvincieItaliane.CB
+PR_Type.CE = 'CE'                                 # originally ProvincieItaliane.CE
+PR_Type.CH = 'CH'                                 # originally ProvincieItaliane.CH
+PR_Type.CI = 'CI'                                 # originally ProvincieItaliane.CI
+PR_Type.CL = 'CL'                                 # originally ProvincieItaliane.CL
+PR_Type.CN = 'CN'                                 # originally ProvincieItaliane.CN
+PR_Type.CO = 'CO'                                 # originally ProvincieItaliane.CO
+PR_Type.CR = 'CR'                                 # originally ProvincieItaliane.CR
+PR_Type.CS = 'CS'                                 # originally ProvincieItaliane.CS
+PR_Type.CT = 'CT'                                 # originally ProvincieItaliane.CT
+PR_Type.CZ = 'CZ'                                 # originally ProvincieItaliane.CZ
+PR_Type.EN = 'EN'                                 # originally ProvincieItaliane.EN
+PR_Type.FC = 'FC'                                 # originally ProvincieItaliane.FC
+PR_Type.FE = 'FE'                                 # originally ProvincieItaliane.FE
+PR_Type.FG = 'FG'                                 # originally ProvincieItaliane.FG
+PR_Type.FI = 'FI'                                 # originally ProvincieItaliane.FI
+PR_Type.FM = 'FM'                                 # originally ProvincieItaliane.FM
+PR_Type.FR = 'FR'                                 # originally ProvincieItaliane.FR
+PR_Type.GE = 'GE'                                 # originally ProvincieItaliane.GE
+PR_Type.GO = 'GO'                                 # originally ProvincieItaliane.GO
+PR_Type.GR = 'GR'                                 # originally ProvincieItaliane.GR
+PR_Type.IM = 'IM'                                 # originally ProvincieItaliane.IM
+PR_Type.IS = 'IS'                                 # originally ProvincieItaliane.IS
+PR_Type.KR = 'KR'                                 # originally ProvincieItaliane.KR
+PR_Type.LC = 'LC'                                 # originally ProvincieItaliane.LC
+PR_Type.LE = 'LE'                                 # originally ProvincieItaliane.LE
+PR_Type.LI = 'LI'                                 # originally ProvincieItaliane.LI
+PR_Type.LO = 'LO'                                 # originally ProvincieItaliane.LO
+PR_Type.LT = 'LT'                                 # originally ProvincieItaliane.LT
+PR_Type.LU = 'LU'                                 # originally ProvincieItaliane.LU
+PR_Type.MB = 'MB'                                 # originally ProvincieItaliane.MB
+PR_Type.MC = 'MC'                                 # originally ProvincieItaliane.MC
+PR_Type.ME = 'ME'                                 # originally ProvincieItaliane.ME
+PR_Type.MI = 'MI'                                 # originally ProvincieItaliane.MI
+PR_Type.MN = 'MN'                                 # originally ProvincieItaliane.MN
+PR_Type.MO = 'MO'                                 # originally ProvincieItaliane.MO
+PR_Type.MS = 'MS'                                 # originally ProvincieItaliane.MS
+PR_Type.MT = 'MT'                                 # originally ProvincieItaliane.MT
+PR_Type.NA = 'NA'                                 # originally ProvincieItaliane.NA
+PR_Type.NO = 'NO'                                 # originally ProvincieItaliane.NO
+PR_Type.NU = 'NU'                                 # originally ProvincieItaliane.NU
+PR_Type.OG = 'OG'                                 # originally ProvincieItaliane.OG
+PR_Type.OR = 'OR'                                 # originally ProvincieItaliane.OR
+PR_Type.OT = 'OT'                                 # originally ProvincieItaliane.OT
+PR_Type.PA = 'PA'                                 # originally ProvincieItaliane.PA
+PR_Type.PC = 'PC'                                 # originally ProvincieItaliane.PC
+PR_Type.PD = 'PD'                                 # originally ProvincieItaliane.PD
+PR_Type.PE = 'PE'                                 # originally ProvincieItaliane.PE
+PR_Type.PG = 'PG'                                 # originally ProvincieItaliane.PG
+PR_Type.PI = 'PI'                                 # originally ProvincieItaliane.PI
+PR_Type.PN = 'PN'                                 # originally ProvincieItaliane.PN
+PR_Type.PO = 'PO'                                 # originally ProvincieItaliane.PO
+PR_Type.PR = 'PR'                                 # originally ProvincieItaliane.PR
+PR_Type.PT = 'PT'                                 # originally ProvincieItaliane.PT
+PR_Type.PU = 'PU'                                 # originally ProvincieItaliane.PU
+PR_Type.PV = 'PV'                                 # originally ProvincieItaliane.PV
+PR_Type.PZ = 'PZ'                                 # originally ProvincieItaliane.PZ
+PR_Type.RA = 'RA'                                 # originally ProvincieItaliane.RA
+PR_Type.RC = 'RC'                                 # originally ProvincieItaliane.RC
+PR_Type.RE = 'RE'                                 # originally ProvincieItaliane.RE
+PR_Type.RG = 'RG'                                 # originally ProvincieItaliane.RG
+PR_Type.RI = 'RI'                                 # originally ProvincieItaliane.RI
+PR_Type.RM = 'RM'                                 # originally ProvincieItaliane.RM
+PR_Type.RN = 'RN'                                 # originally ProvincieItaliane.RN
+PR_Type.RO = 'RO'                                 # originally ProvincieItaliane.RO
+PR_Type.SA = 'SA'                                 # originally ProvincieItaliane.SA
+PR_Type.SI = 'SI'                                 # originally ProvincieItaliane.SI
+PR_Type.SO = 'SO'                                 # originally ProvincieItaliane.SO
+PR_Type.SP = 'SP'                                 # originally ProvincieItaliane.SP
+PR_Type.SR = 'SR'                                 # originally ProvincieItaliane.SR
+PR_Type.SS = 'SS'                                 # originally ProvincieItaliane.SS
+PR_Type.SV = 'SV'                                 # originally ProvincieItaliane.SV
+PR_Type.TA = 'TA'                                 # originally ProvincieItaliane.TA
+PR_Type.TE = 'TE'                                 # originally ProvincieItaliane.TE
+PR_Type.TN = 'TN'                                 # originally ProvincieItaliane.TN
+PR_Type.TO = 'TO'                                 # originally ProvincieItaliane.TO
+PR_Type.TP = 'TP'                                 # originally ProvincieItaliane.TP
+PR_Type.TR = 'TR'                                 # originally ProvincieItaliane.TR
+PR_Type.TS = 'TS'                                 # originally ProvincieItaliane.TS
+PR_Type.TV = 'TV'                                 # originally ProvincieItaliane.TV
+PR_Type.UD = 'UD'                                 # originally ProvincieItaliane.UD
+PR_Type.VA = 'VA'                                 # originally ProvincieItaliane.VA
+PR_Type.VB = 'VB'                                 # originally ProvincieItaliane.VB
+PR_Type.VC = 'VC'                                 # originally ProvincieItaliane.VC
+PR_Type.VE = 'VE'                                 # originally ProvincieItaliane.VE
+PR_Type.VI = 'VI'                                 # originally ProvincieItaliane.VI
+PR_Type.VR = 'VR'                                 # originally ProvincieItaliane.VR
+PR_Type.VS = 'VS'                                 # originally ProvincieItaliane.VS
+PR_Type.VT = 'VT'                                 # originally ProvincieItaliane.VT
+PR_Type.VV = 'VV'                                 # originally ProvincieItaliane.VV
+PR_Type._InitializeFacetMap(PR_Type._CF_pattern,
+                            PR_Type._CF_enumeration)
+Namespace.addCategoryObject('typeBinding', 'PR_Type', PR_Type)
 
 # Union simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}PN_Type
 # superclasses pyxb.binding.datatypes.anySimpleType
-
-
-class PNType (pyxb.binding.basis.STD_union):
+class PN_Type (pyxb.binding.basis.STD_union):
 
     """Tipo semplice costituito dalle sigle delle provincie italiane in vigore,  dalle sigle delle provincie croate di Fiume, Pola e Zara e dalla sigla “EE” che indica un paese estero."""
 
@@ -1083,132 +1032,130 @@ class PNType (pyxb.binding.basis.STD_union):
     _MemberTypes = (ProvincieItaliane, ProvincieCroate, Estero, )
 
 
-PNType._CF_pattern = pyxb.binding.facets.CF_pattern()
-PNType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=PNType)
-PNType.AG = 'AG'                                 # originally ProvincieItaliane.AG
-PNType.AL = 'AL'                                 # originally ProvincieItaliane.AL
-PNType.AN = 'AN'                                 # originally ProvincieItaliane.AN
-PNType.AO = 'AO'                                 # originally ProvincieItaliane.AO
-PNType.AP = 'AP'                                 # originally ProvincieItaliane.AP
-PNType.AQ = 'AQ'                                 # originally ProvincieItaliane.AQ
-PNType.AR = 'AR'                                 # originally ProvincieItaliane.AR
-PNType.AT = 'AT'                                 # originally ProvincieItaliane.AT
-PNType.AV = 'AV'                                 # originally ProvincieItaliane.AV
-PNType.BA = 'BA'                                 # originally ProvincieItaliane.BA
-PNType.BG = 'BG'                                 # originally ProvincieItaliane.BG
-PNType.BI = 'BI'                                 # originally ProvincieItaliane.BI
-PNType.BL = 'BL'                                 # originally ProvincieItaliane.BL
-PNType.BN = 'BN'                                 # originally ProvincieItaliane.BN
-PNType.BO = 'BO'                                 # originally ProvincieItaliane.BO
-PNType.BR = 'BR'                                 # originally ProvincieItaliane.BR
-PNType.BS = 'BS'                                 # originally ProvincieItaliane.BS
-PNType.BT = 'BT'                                 # originally ProvincieItaliane.BT
-PNType.BZ = 'BZ'                                 # originally ProvincieItaliane.BZ
-PNType.CA = 'CA'                                 # originally ProvincieItaliane.CA
-PNType.CB = 'CB'                                 # originally ProvincieItaliane.CB
-PNType.CE = 'CE'                                 # originally ProvincieItaliane.CE
-PNType.CH = 'CH'                                 # originally ProvincieItaliane.CH
-PNType.CI = 'CI'                                 # originally ProvincieItaliane.CI
-PNType.CL = 'CL'                                 # originally ProvincieItaliane.CL
-PNType.CN = 'CN'                                 # originally ProvincieItaliane.CN
-PNType.CO = 'CO'                                 # originally ProvincieItaliane.CO
-PNType.CR = 'CR'                                 # originally ProvincieItaliane.CR
-PNType.CS = 'CS'                                 # originally ProvincieItaliane.CS
-PNType.CT = 'CT'                                 # originally ProvincieItaliane.CT
-PNType.CZ = 'CZ'                                 # originally ProvincieItaliane.CZ
-PNType.EN = 'EN'                                 # originally ProvincieItaliane.EN
-PNType.FC = 'FC'                                 # originally ProvincieItaliane.FC
-PNType.FE = 'FE'                                 # originally ProvincieItaliane.FE
-PNType.FG = 'FG'                                 # originally ProvincieItaliane.FG
-PNType.FI = 'FI'                                 # originally ProvincieItaliane.FI
-PNType.FM = 'FM'                                 # originally ProvincieItaliane.FM
-PNType.FR = 'FR'                                 # originally ProvincieItaliane.FR
-PNType.GE = 'GE'                                 # originally ProvincieItaliane.GE
-PNType.GO = 'GO'                                 # originally ProvincieItaliane.GO
-PNType.GR = 'GR'                                 # originally ProvincieItaliane.GR
-PNType.IM = 'IM'                                 # originally ProvincieItaliane.IM
-PNType.IS = 'IS'                                 # originally ProvincieItaliane.IS
-PNType.KR = 'KR'                                 # originally ProvincieItaliane.KR
-PNType.LC = 'LC'                                 # originally ProvincieItaliane.LC
-PNType.LE = 'LE'                                 # originally ProvincieItaliane.LE
-PNType.LI = 'LI'                                 # originally ProvincieItaliane.LI
-PNType.LO = 'LO'                                 # originally ProvincieItaliane.LO
-PNType.LT = 'LT'                                 # originally ProvincieItaliane.LT
-PNType.LU = 'LU'                                 # originally ProvincieItaliane.LU
-PNType.MB = 'MB'                                 # originally ProvincieItaliane.MB
-PNType.MC = 'MC'                                 # originally ProvincieItaliane.MC
-PNType.ME = 'ME'                                 # originally ProvincieItaliane.ME
-PNType.MI = 'MI'                                 # originally ProvincieItaliane.MI
-PNType.MN = 'MN'                                 # originally ProvincieItaliane.MN
-PNType.MO = 'MO'                                 # originally ProvincieItaliane.MO
-PNType.MS = 'MS'                                 # originally ProvincieItaliane.MS
-PNType.MT = 'MT'                                 # originally ProvincieItaliane.MT
-PNType.NA = 'NA'                                 # originally ProvincieItaliane.NA
-PNType.NO = 'NO'                                 # originally ProvincieItaliane.NO
-PNType.NU = 'NU'                                 # originally ProvincieItaliane.NU
-PNType.OG = 'OG'                                 # originally ProvincieItaliane.OG
-PNType.OR = 'OR'                                 # originally ProvincieItaliane.OR
-PNType.OT = 'OT'                                 # originally ProvincieItaliane.OT
-PNType.PA = 'PA'                                 # originally ProvincieItaliane.PA
-PNType.PC = 'PC'                                 # originally ProvincieItaliane.PC
-PNType.PD = 'PD'                                 # originally ProvincieItaliane.PD
-PNType.PE = 'PE'                                 # originally ProvincieItaliane.PE
-PNType.PG = 'PG'                                 # originally ProvincieItaliane.PG
-PNType.PI = 'PI'                                 # originally ProvincieItaliane.PI
-PNType.PN = 'PN'                                 # originally ProvincieItaliane.PN
-PNType.PO = 'PO'                                 # originally ProvincieItaliane.PO
-PNType.PR = 'PR'                                 # originally ProvincieItaliane.PR
-PNType.PT = 'PT'                                 # originally ProvincieItaliane.PT
-PNType.PU = 'PU'                                 # originally ProvincieItaliane.PU
-PNType.PV = 'PV'                                 # originally ProvincieItaliane.PV
-PNType.PZ = 'PZ'                                 # originally ProvincieItaliane.PZ
-PNType.RA = 'RA'                                 # originally ProvincieItaliane.RA
-PNType.RC = 'RC'                                 # originally ProvincieItaliane.RC
-PNType.RE = 'RE'                                 # originally ProvincieItaliane.RE
-PNType.RG = 'RG'                                 # originally ProvincieItaliane.RG
-PNType.RI = 'RI'                                 # originally ProvincieItaliane.RI
-PNType.RM = 'RM'                                 # originally ProvincieItaliane.RM
-PNType.RN = 'RN'                                 # originally ProvincieItaliane.RN
-PNType.RO = 'RO'                                 # originally ProvincieItaliane.RO
-PNType.SA = 'SA'                                 # originally ProvincieItaliane.SA
-PNType.SI = 'SI'                                 # originally ProvincieItaliane.SI
-PNType.SO = 'SO'                                 # originally ProvincieItaliane.SO
-PNType.SP = 'SP'                                 # originally ProvincieItaliane.SP
-PNType.SR = 'SR'                                 # originally ProvincieItaliane.SR
-PNType.SS = 'SS'                                 # originally ProvincieItaliane.SS
-PNType.SV = 'SV'                                 # originally ProvincieItaliane.SV
-PNType.TA = 'TA'                                 # originally ProvincieItaliane.TA
-PNType.TE = 'TE'                                 # originally ProvincieItaliane.TE
-PNType.TN = 'TN'                                 # originally ProvincieItaliane.TN
-PNType.TO = 'TO'                                 # originally ProvincieItaliane.TO
-PNType.TP = 'TP'                                 # originally ProvincieItaliane.TP
-PNType.TR = 'TR'                                 # originally ProvincieItaliane.TR
-PNType.TS = 'TS'                                 # originally ProvincieItaliane.TS
-PNType.TV = 'TV'                                 # originally ProvincieItaliane.TV
-PNType.UD = 'UD'                                 # originally ProvincieItaliane.UD
-PNType.VA = 'VA'                                 # originally ProvincieItaliane.VA
-PNType.VB = 'VB'                                 # originally ProvincieItaliane.VB
-PNType.VC = 'VC'                                 # originally ProvincieItaliane.VC
-PNType.VE = 'VE'                                 # originally ProvincieItaliane.VE
-PNType.VI = 'VI'                                 # originally ProvincieItaliane.VI
-PNType.VR = 'VR'                                 # originally ProvincieItaliane.VR
-PNType.VS = 'VS'                                 # originally ProvincieItaliane.VS
-PNType.VT = 'VT'                                 # originally ProvincieItaliane.VT
-PNType.VV = 'VV'                                 # originally ProvincieItaliane.VV
-PNType.FU = 'FU'                                 # originally ProvincieCroate.FU
-PNType.PL = 'PL'                                 # originally ProvincieCroate.PL
-PNType.ZA = 'ZA'                                 # originally ProvincieCroate.ZA
-PNType.EE = 'EE'                                 # originally Estero.EE
-PNType._InitializeFacetMap(PN_Type._CF_pattern,
-                            PNType._CF_enumeration)
-Namespace.addCategoryObject('typeBinding', 'PN_Type', PNType)
+PN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+PN_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=PN_Type)
+PN_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
+PN_Type.AL = 'AL'                                 # originally ProvincieItaliane.AL
+PN_Type.AN = 'AN'                                 # originally ProvincieItaliane.AN
+PN_Type.AO = 'AO'                                 # originally ProvincieItaliane.AO
+PN_Type.AP = 'AP'                                 # originally ProvincieItaliane.AP
+PN_Type.AQ = 'AQ'                                 # originally ProvincieItaliane.AQ
+PN_Type.AR = 'AR'                                 # originally ProvincieItaliane.AR
+PN_Type.AT = 'AT'                                 # originally ProvincieItaliane.AT
+PN_Type.AV = 'AV'                                 # originally ProvincieItaliane.AV
+PN_Type.BA = 'BA'                                 # originally ProvincieItaliane.BA
+PN_Type.BG = 'BG'                                 # originally ProvincieItaliane.BG
+PN_Type.BI = 'BI'                                 # originally ProvincieItaliane.BI
+PN_Type.BL = 'BL'                                 # originally ProvincieItaliane.BL
+PN_Type.BN = 'BN'                                 # originally ProvincieItaliane.BN
+PN_Type.BO = 'BO'                                 # originally ProvincieItaliane.BO
+PN_Type.BR = 'BR'                                 # originally ProvincieItaliane.BR
+PN_Type.BS = 'BS'                                 # originally ProvincieItaliane.BS
+PN_Type.BT = 'BT'                                 # originally ProvincieItaliane.BT
+PN_Type.BZ = 'BZ'                                 # originally ProvincieItaliane.BZ
+PN_Type.CA = 'CA'                                 # originally ProvincieItaliane.CA
+PN_Type.CB = 'CB'                                 # originally ProvincieItaliane.CB
+PN_Type.CE = 'CE'                                 # originally ProvincieItaliane.CE
+PN_Type.CH = 'CH'                                 # originally ProvincieItaliane.CH
+PN_Type.CI = 'CI'                                 # originally ProvincieItaliane.CI
+PN_Type.CL = 'CL'                                 # originally ProvincieItaliane.CL
+PN_Type.CN = 'CN'                                 # originally ProvincieItaliane.CN
+PN_Type.CO = 'CO'                                 # originally ProvincieItaliane.CO
+PN_Type.CR = 'CR'                                 # originally ProvincieItaliane.CR
+PN_Type.CS = 'CS'                                 # originally ProvincieItaliane.CS
+PN_Type.CT = 'CT'                                 # originally ProvincieItaliane.CT
+PN_Type.CZ = 'CZ'                                 # originally ProvincieItaliane.CZ
+PN_Type.EN = 'EN'                                 # originally ProvincieItaliane.EN
+PN_Type.FC = 'FC'                                 # originally ProvincieItaliane.FC
+PN_Type.FE = 'FE'                                 # originally ProvincieItaliane.FE
+PN_Type.FG = 'FG'                                 # originally ProvincieItaliane.FG
+PN_Type.FI = 'FI'                                 # originally ProvincieItaliane.FI
+PN_Type.FM = 'FM'                                 # originally ProvincieItaliane.FM
+PN_Type.FR = 'FR'                                 # originally ProvincieItaliane.FR
+PN_Type.GE = 'GE'                                 # originally ProvincieItaliane.GE
+PN_Type.GO = 'GO'                                 # originally ProvincieItaliane.GO
+PN_Type.GR = 'GR'                                 # originally ProvincieItaliane.GR
+PN_Type.IM = 'IM'                                 # originally ProvincieItaliane.IM
+PN_Type.IS = 'IS'                                 # originally ProvincieItaliane.IS
+PN_Type.KR = 'KR'                                 # originally ProvincieItaliane.KR
+PN_Type.LC = 'LC'                                 # originally ProvincieItaliane.LC
+PN_Type.LE = 'LE'                                 # originally ProvincieItaliane.LE
+PN_Type.LI = 'LI'                                 # originally ProvincieItaliane.LI
+PN_Type.LO = 'LO'                                 # originally ProvincieItaliane.LO
+PN_Type.LT = 'LT'                                 # originally ProvincieItaliane.LT
+PN_Type.LU = 'LU'                                 # originally ProvincieItaliane.LU
+PN_Type.MB = 'MB'                                 # originally ProvincieItaliane.MB
+PN_Type.MC = 'MC'                                 # originally ProvincieItaliane.MC
+PN_Type.ME = 'ME'                                 # originally ProvincieItaliane.ME
+PN_Type.MI = 'MI'                                 # originally ProvincieItaliane.MI
+PN_Type.MN = 'MN'                                 # originally ProvincieItaliane.MN
+PN_Type.MO = 'MO'                                 # originally ProvincieItaliane.MO
+PN_Type.MS = 'MS'                                 # originally ProvincieItaliane.MS
+PN_Type.MT = 'MT'                                 # originally ProvincieItaliane.MT
+PN_Type.NA = 'NA'                                 # originally ProvincieItaliane.NA
+PN_Type.NO = 'NO'                                 # originally ProvincieItaliane.NO
+PN_Type.NU = 'NU'                                 # originally ProvincieItaliane.NU
+PN_Type.OG = 'OG'                                 # originally ProvincieItaliane.OG
+PN_Type.OR = 'OR'                                 # originally ProvincieItaliane.OR
+PN_Type.OT = 'OT'                                 # originally ProvincieItaliane.OT
+PN_Type.PA = 'PA'                                 # originally ProvincieItaliane.PA
+PN_Type.PC = 'PC'                                 # originally ProvincieItaliane.PC
+PN_Type.PD = 'PD'                                 # originally ProvincieItaliane.PD
+PN_Type.PE = 'PE'                                 # originally ProvincieItaliane.PE
+PN_Type.PG = 'PG'                                 # originally ProvincieItaliane.PG
+PN_Type.PI = 'PI'                                 # originally ProvincieItaliane.PI
+PN_Type.PN = 'PN'                                 # originally ProvincieItaliane.PN
+PN_Type.PO = 'PO'                                 # originally ProvincieItaliane.PO
+PN_Type.PR = 'PR'                                 # originally ProvincieItaliane.PR
+PN_Type.PT = 'PT'                                 # originally ProvincieItaliane.PT
+PN_Type.PU = 'PU'                                 # originally ProvincieItaliane.PU
+PN_Type.PV = 'PV'                                 # originally ProvincieItaliane.PV
+PN_Type.PZ = 'PZ'                                 # originally ProvincieItaliane.PZ
+PN_Type.RA = 'RA'                                 # originally ProvincieItaliane.RA
+PN_Type.RC = 'RC'                                 # originally ProvincieItaliane.RC
+PN_Type.RE = 'RE'                                 # originally ProvincieItaliane.RE
+PN_Type.RG = 'RG'                                 # originally ProvincieItaliane.RG
+PN_Type.RI = 'RI'                                 # originally ProvincieItaliane.RI
+PN_Type.RM = 'RM'                                 # originally ProvincieItaliane.RM
+PN_Type.RN = 'RN'                                 # originally ProvincieItaliane.RN
+PN_Type.RO = 'RO'                                 # originally ProvincieItaliane.RO
+PN_Type.SA = 'SA'                                 # originally ProvincieItaliane.SA
+PN_Type.SI = 'SI'                                 # originally ProvincieItaliane.SI
+PN_Type.SO = 'SO'                                 # originally ProvincieItaliane.SO
+PN_Type.SP = 'SP'                                 # originally ProvincieItaliane.SP
+PN_Type.SR = 'SR'                                 # originally ProvincieItaliane.SR
+PN_Type.SS = 'SS'                                 # originally ProvincieItaliane.SS
+PN_Type.SV = 'SV'                                 # originally ProvincieItaliane.SV
+PN_Type.TA = 'TA'                                 # originally ProvincieItaliane.TA
+PN_Type.TE = 'TE'                                 # originally ProvincieItaliane.TE
+PN_Type.TN = 'TN'                                 # originally ProvincieItaliane.TN
+PN_Type.TO = 'TO'                                 # originally ProvincieItaliane.TO
+PN_Type.TP = 'TP'                                 # originally ProvincieItaliane.TP
+PN_Type.TR = 'TR'                                 # originally ProvincieItaliane.TR
+PN_Type.TS = 'TS'                                 # originally ProvincieItaliane.TS
+PN_Type.TV = 'TV'                                 # originally ProvincieItaliane.TV
+PN_Type.UD = 'UD'                                 # originally ProvincieItaliane.UD
+PN_Type.VA = 'VA'                                 # originally ProvincieItaliane.VA
+PN_Type.VB = 'VB'                                 # originally ProvincieItaliane.VB
+PN_Type.VC = 'VC'                                 # originally ProvincieItaliane.VC
+PN_Type.VE = 'VE'                                 # originally ProvincieItaliane.VE
+PN_Type.VI = 'VI'                                 # originally ProvincieItaliane.VI
+PN_Type.VR = 'VR'                                 # originally ProvincieItaliane.VR
+PN_Type.VS = 'VS'                                 # originally ProvincieItaliane.VS
+PN_Type.VT = 'VT'                                 # originally ProvincieItaliane.VT
+PN_Type.VV = 'VV'                                 # originally ProvincieItaliane.VV
+PN_Type.FU = 'FU'                                 # originally ProvincieCroate.FU
+PN_Type.PL = 'PL'                                 # originally ProvincieCroate.PL
+PN_Type.ZA = 'ZA'                                 # originally ProvincieCroate.ZA
+PN_Type.EE = 'EE'                                 # originally Estero.EE
+PN_Type._InitializeFacetMap(PN_Type._CF_pattern,
+                            PN_Type._CF_enumeration)
+Namespace.addCategoryObject('typeBinding', 'PN_Type', PN_Type)
 
 # Union simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}PE_Type
 # superclasses pyxb.binding.datatypes.anySimpleType
-
-
-class PEType (pyxb.binding.basis.STD_union):
+class PE_Type (pyxb.binding.basis.STD_union):
 
     """Tipo semplice costituito dalle sigle delle provincie italiane in vigore e dalla sigla “EE” che indica un paese estero."""
 
@@ -1220,130 +1167,128 @@ class PEType (pyxb.binding.basis.STD_union):
     _MemberTypes = (ProvincieItaliane, Estero, )
 
 
-PEType._CF_pattern = pyxb.binding.facets.CF_pattern()
-PEType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=PEType)
-PEType.AG = 'AG'                                 # originally ProvincieItaliane.AG
-PEType.AL = 'AL'                                 # originally ProvincieItaliane.AL
-PEType.AN = 'AN'                                 # originally ProvincieItaliane.AN
-PEType.AO = 'AO'                                 # originally ProvincieItaliane.AO
-PEType.AP = 'AP'                                 # originally ProvincieItaliane.AP
-PEType.AQ = 'AQ'                                 # originally ProvincieItaliane.AQ
-PEType.AR = 'AR'                                 # originally ProvincieItaliane.AR
-PEType.AT = 'AT'                                 # originally ProvincieItaliane.AT
-PEType.AV = 'AV'                                 # originally ProvincieItaliane.AV
-PEType.BA = 'BA'                                 # originally ProvincieItaliane.BA
-PEType.BG = 'BG'                                 # originally ProvincieItaliane.BG
-PEType.BI = 'BI'                                 # originally ProvincieItaliane.BI
-PEType.BL = 'BL'                                 # originally ProvincieItaliane.BL
-PEType.BN = 'BN'                                 # originally ProvincieItaliane.BN
-PEType.BO = 'BO'                                 # originally ProvincieItaliane.BO
-PEType.BR = 'BR'                                 # originally ProvincieItaliane.BR
-PEType.BS = 'BS'                                 # originally ProvincieItaliane.BS
-PEType.BT = 'BT'                                 # originally ProvincieItaliane.BT
-PEType.BZ = 'BZ'                                 # originally ProvincieItaliane.BZ
-PEType.CA = 'CA'                                 # originally ProvincieItaliane.CA
-PEType.CB = 'CB'                                 # originally ProvincieItaliane.CB
-PEType.CE = 'CE'                                 # originally ProvincieItaliane.CE
-PEType.CH = 'CH'                                 # originally ProvincieItaliane.CH
-PEType.CI = 'CI'                                 # originally ProvincieItaliane.CI
-PEType.CL = 'CL'                                 # originally ProvincieItaliane.CL
-PEType.CN = 'CN'                                 # originally ProvincieItaliane.CN
-PEType.CO = 'CO'                                 # originally ProvincieItaliane.CO
-PEType.CR = 'CR'                                 # originally ProvincieItaliane.CR
-PEType.CS = 'CS'                                 # originally ProvincieItaliane.CS
-PEType.CT = 'CT'                                 # originally ProvincieItaliane.CT
-PEType.CZ = 'CZ'                                 # originally ProvincieItaliane.CZ
-PEType.EN = 'EN'                                 # originally ProvincieItaliane.EN
-PEType.FC = 'FC'                                 # originally ProvincieItaliane.FC
-PEType.FE = 'FE'                                 # originally ProvincieItaliane.FE
-PEType.FG = 'FG'                                 # originally ProvincieItaliane.FG
-PEType.FI = 'FI'                                 # originally ProvincieItaliane.FI
-PEType.FM = 'FM'                                 # originally ProvincieItaliane.FM
-PEType.FR = 'FR'                                 # originally ProvincieItaliane.FR
-PEType.GE = 'GE'                                 # originally ProvincieItaliane.GE
-PEType.GO = 'GO'                                 # originally ProvincieItaliane.GO
-PEType.GR = 'GR'                                 # originally ProvincieItaliane.GR
-PEType.IM = 'IM'                                 # originally ProvincieItaliane.IM
-PEType.IS = 'IS'                                 # originally ProvincieItaliane.IS
-PEType.KR = 'KR'                                 # originally ProvincieItaliane.KR
-PEType.LC = 'LC'                                 # originally ProvincieItaliane.LC
-PEType.LE = 'LE'                                 # originally ProvincieItaliane.LE
-PEType.LI = 'LI'                                 # originally ProvincieItaliane.LI
-PEType.LO = 'LO'                                 # originally ProvincieItaliane.LO
-PEType.LT = 'LT'                                 # originally ProvincieItaliane.LT
-PEType.LU = 'LU'                                 # originally ProvincieItaliane.LU
-PEType.MB = 'MB'                                 # originally ProvincieItaliane.MB
-PEType.MC = 'MC'                                 # originally ProvincieItaliane.MC
-PEType.ME = 'ME'                                 # originally ProvincieItaliane.ME
-PEType.MI = 'MI'                                 # originally ProvincieItaliane.MI
-PEType.MN = 'MN'                                 # originally ProvincieItaliane.MN
-PEType.MO = 'MO'                                 # originally ProvincieItaliane.MO
-PEType.MS = 'MS'                                 # originally ProvincieItaliane.MS
-PEType.MT = 'MT'                                 # originally ProvincieItaliane.MT
-PEType.NA = 'NA'                                 # originally ProvincieItaliane.NA
-PEType.NO = 'NO'                                 # originally ProvincieItaliane.NO
-PEType.NU = 'NU'                                 # originally ProvincieItaliane.NU
-PEType.OG = 'OG'                                 # originally ProvincieItaliane.OG
-PEType.OR = 'OR'                                 # originally ProvincieItaliane.OR
-PEType.OT = 'OT'                                 # originally ProvincieItaliane.OT
-PEType.PA = 'PA'                                 # originally ProvincieItaliane.PA
-PEType.PC = 'PC'                                 # originally ProvincieItaliane.PC
-PEType.PD = 'PD'                                 # originally ProvincieItaliane.PD
-PEType.PE = 'PE'                                 # originally ProvincieItaliane.PE
-PEType.PG = 'PG'                                 # originally ProvincieItaliane.PG
-PEType.PI = 'PI'                                 # originally ProvincieItaliane.PI
-PEType.PN = 'PN'                                 # originally ProvincieItaliane.PN
-PEType.PO = 'PO'                                 # originally ProvincieItaliane.PO
-PEType.PR = 'PR'                                 # originally ProvincieItaliane.PR
-PEType.PT = 'PT'                                 # originally ProvincieItaliane.PT
-PEType.PU = 'PU'                                 # originally ProvincieItaliane.PU
-PEType.PV = 'PV'                                 # originally ProvincieItaliane.PV
-PEType.PZ = 'PZ'                                 # originally ProvincieItaliane.PZ
-PEType.RA = 'RA'                                 # originally ProvincieItaliane.RA
-PEType.RC = 'RC'                                 # originally ProvincieItaliane.RC
-PEType.RE = 'RE'                                 # originally ProvincieItaliane.RE
-PEType.RG = 'RG'                                 # originally ProvincieItaliane.RG
-PEType.RI = 'RI'                                 # originally ProvincieItaliane.RI
-PEType.RM = 'RM'                                 # originally ProvincieItaliane.RM
-PEType.RN = 'RN'                                 # originally ProvincieItaliane.RN
-PEType.RO = 'RO'                                 # originally ProvincieItaliane.RO
-PEType.SA = 'SA'                                 # originally ProvincieItaliane.SA
-PEType.SI = 'SI'                                 # originally ProvincieItaliane.SI
-PEType.SO = 'SO'                                 # originally ProvincieItaliane.SO
-PEType.SP = 'SP'                                 # originally ProvincieItaliane.SP
-PEType.SR = 'SR'                                 # originally ProvincieItaliane.SR
-PEType.SS = 'SS'                                 # originally ProvincieItaliane.SS
-PEType.SV = 'SV'                                 # originally ProvincieItaliane.SV
-PEType.TA = 'TA'                                 # originally ProvincieItaliane.TA
-PEType.TE = 'TE'                                 # originally ProvincieItaliane.TE
-PEType.TN = 'TN'                                 # originally ProvincieItaliane.TN
-PEType.TO = 'TO'                                 # originally ProvincieItaliane.TO
-PEType.TP = 'TP'                                 # originally ProvincieItaliane.TP
-PEType.TR = 'TR'                                 # originally ProvincieItaliane.TR
-PEType.TS = 'TS'                                 # originally ProvincieItaliane.TS
-PEType.TV = 'TV'                                 # originally ProvincieItaliane.TV
-PEType.UD = 'UD'                                 # originally ProvincieItaliane.UD
-PEType.VA = 'VA'                                 # originally ProvincieItaliane.VA
-PEType.VB = 'VB'                                 # originally ProvincieItaliane.VB
-PEType.VC = 'VC'                                 # originally ProvincieItaliane.VC
-PEType.VE = 'VE'                                 # originally ProvincieItaliane.VE
-PEType.VI = 'VI'                                 # originally ProvincieItaliane.VI
-PEType.VR = 'VR'                                 # originally ProvincieItaliane.VR
-PEType.VS = 'VS'                                 # originally ProvincieItaliane.VS
-PEType.VT = 'VT'                                 # originally ProvincieItaliane.VT
-PEType.VV = 'VV'                                 # originally ProvincieItaliane.VV
-PEType.EE = 'EE'                                 # originally Estero.EE
-PEType._InitializeFacetMap(PE_Type._CF_pattern,
-                            PEType._CF_enumeration)
-Namespace.addCategoryObject('typeBinding', 'PE_Type', PEType)
+PE_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+PE_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
+    value_datatype=PE_Type)
+PE_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
+PE_Type.AL = 'AL'                                 # originally ProvincieItaliane.AL
+PE_Type.AN = 'AN'                                 # originally ProvincieItaliane.AN
+PE_Type.AO = 'AO'                                 # originally ProvincieItaliane.AO
+PE_Type.AP = 'AP'                                 # originally ProvincieItaliane.AP
+PE_Type.AQ = 'AQ'                                 # originally ProvincieItaliane.AQ
+PE_Type.AR = 'AR'                                 # originally ProvincieItaliane.AR
+PE_Type.AT = 'AT'                                 # originally ProvincieItaliane.AT
+PE_Type.AV = 'AV'                                 # originally ProvincieItaliane.AV
+PE_Type.BA = 'BA'                                 # originally ProvincieItaliane.BA
+PE_Type.BG = 'BG'                                 # originally ProvincieItaliane.BG
+PE_Type.BI = 'BI'                                 # originally ProvincieItaliane.BI
+PE_Type.BL = 'BL'                                 # originally ProvincieItaliane.BL
+PE_Type.BN = 'BN'                                 # originally ProvincieItaliane.BN
+PE_Type.BO = 'BO'                                 # originally ProvincieItaliane.BO
+PE_Type.BR = 'BR'                                 # originally ProvincieItaliane.BR
+PE_Type.BS = 'BS'                                 # originally ProvincieItaliane.BS
+PE_Type.BT = 'BT'                                 # originally ProvincieItaliane.BT
+PE_Type.BZ = 'BZ'                                 # originally ProvincieItaliane.BZ
+PE_Type.CA = 'CA'                                 # originally ProvincieItaliane.CA
+PE_Type.CB = 'CB'                                 # originally ProvincieItaliane.CB
+PE_Type.CE = 'CE'                                 # originally ProvincieItaliane.CE
+PE_Type.CH = 'CH'                                 # originally ProvincieItaliane.CH
+PE_Type.CI = 'CI'                                 # originally ProvincieItaliane.CI
+PE_Type.CL = 'CL'                                 # originally ProvincieItaliane.CL
+PE_Type.CN = 'CN'                                 # originally ProvincieItaliane.CN
+PE_Type.CO = 'CO'                                 # originally ProvincieItaliane.CO
+PE_Type.CR = 'CR'                                 # originally ProvincieItaliane.CR
+PE_Type.CS = 'CS'                                 # originally ProvincieItaliane.CS
+PE_Type.CT = 'CT'                                 # originally ProvincieItaliane.CT
+PE_Type.CZ = 'CZ'                                 # originally ProvincieItaliane.CZ
+PE_Type.EN = 'EN'                                 # originally ProvincieItaliane.EN
+PE_Type.FC = 'FC'                                 # originally ProvincieItaliane.FC
+PE_Type.FE = 'FE'                                 # originally ProvincieItaliane.FE
+PE_Type.FG = 'FG'                                 # originally ProvincieItaliane.FG
+PE_Type.FI = 'FI'                                 # originally ProvincieItaliane.FI
+PE_Type.FM = 'FM'                                 # originally ProvincieItaliane.FM
+PE_Type.FR = 'FR'                                 # originally ProvincieItaliane.FR
+PE_Type.GE = 'GE'                                 # originally ProvincieItaliane.GE
+PE_Type.GO = 'GO'                                 # originally ProvincieItaliane.GO
+PE_Type.GR = 'GR'                                 # originally ProvincieItaliane.GR
+PE_Type.IM = 'IM'                                 # originally ProvincieItaliane.IM
+PE_Type.IS = 'IS'                                 # originally ProvincieItaliane.IS
+PE_Type.KR = 'KR'                                 # originally ProvincieItaliane.KR
+PE_Type.LC = 'LC'                                 # originally ProvincieItaliane.LC
+PE_Type.LE = 'LE'                                 # originally ProvincieItaliane.LE
+PE_Type.LI = 'LI'                                 # originally ProvincieItaliane.LI
+PE_Type.LO = 'LO'                                 # originally ProvincieItaliane.LO
+PE_Type.LT = 'LT'                                 # originally ProvincieItaliane.LT
+PE_Type.LU = 'LU'                                 # originally ProvincieItaliane.LU
+PE_Type.MB = 'MB'                                 # originally ProvincieItaliane.MB
+PE_Type.MC = 'MC'                                 # originally ProvincieItaliane.MC
+PE_Type.ME = 'ME'                                 # originally ProvincieItaliane.ME
+PE_Type.MI = 'MI'                                 # originally ProvincieItaliane.MI
+PE_Type.MN = 'MN'                                 # originally ProvincieItaliane.MN
+PE_Type.MO = 'MO'                                 # originally ProvincieItaliane.MO
+PE_Type.MS = 'MS'                                 # originally ProvincieItaliane.MS
+PE_Type.MT = 'MT'                                 # originally ProvincieItaliane.MT
+PE_Type.NA = 'NA'                                 # originally ProvincieItaliane.NA
+PE_Type.NO = 'NO'                                 # originally ProvincieItaliane.NO
+PE_Type.NU = 'NU'                                 # originally ProvincieItaliane.NU
+PE_Type.OG = 'OG'                                 # originally ProvincieItaliane.OG
+PE_Type.OR = 'OR'                                 # originally ProvincieItaliane.OR
+PE_Type.OT = 'OT'                                 # originally ProvincieItaliane.OT
+PE_Type.PA = 'PA'                                 # originally ProvincieItaliane.PA
+PE_Type.PC = 'PC'                                 # originally ProvincieItaliane.PC
+PE_Type.PD = 'PD'                                 # originally ProvincieItaliane.PD
+PE_Type.PE = 'PE'                                 # originally ProvincieItaliane.PE
+PE_Type.PG = 'PG'                                 # originally ProvincieItaliane.PG
+PE_Type.PI = 'PI'                                 # originally ProvincieItaliane.PI
+PE_Type.PN = 'PN'                                 # originally ProvincieItaliane.PN
+PE_Type.PO = 'PO'                                 # originally ProvincieItaliane.PO
+PE_Type.PR = 'PR'                                 # originally ProvincieItaliane.PR
+PE_Type.PT = 'PT'                                 # originally ProvincieItaliane.PT
+PE_Type.PU = 'PU'                                 # originally ProvincieItaliane.PU
+PE_Type.PV = 'PV'                                 # originally ProvincieItaliane.PV
+PE_Type.PZ = 'PZ'                                 # originally ProvincieItaliane.PZ
+PE_Type.RA = 'RA'                                 # originally ProvincieItaliane.RA
+PE_Type.RC = 'RC'                                 # originally ProvincieItaliane.RC
+PE_Type.RE = 'RE'                                 # originally ProvincieItaliane.RE
+PE_Type.RG = 'RG'                                 # originally ProvincieItaliane.RG
+PE_Type.RI = 'RI'                                 # originally ProvincieItaliane.RI
+PE_Type.RM = 'RM'                                 # originally ProvincieItaliane.RM
+PE_Type.RN = 'RN'                                 # originally ProvincieItaliane.RN
+PE_Type.RO = 'RO'                                 # originally ProvincieItaliane.RO
+PE_Type.SA = 'SA'                                 # originally ProvincieItaliane.SA
+PE_Type.SI = 'SI'                                 # originally ProvincieItaliane.SI
+PE_Type.SO = 'SO'                                 # originally ProvincieItaliane.SO
+PE_Type.SP = 'SP'                                 # originally ProvincieItaliane.SP
+PE_Type.SR = 'SR'                                 # originally ProvincieItaliane.SR
+PE_Type.SS = 'SS'                                 # originally ProvincieItaliane.SS
+PE_Type.SV = 'SV'                                 # originally ProvincieItaliane.SV
+PE_Type.TA = 'TA'                                 # originally ProvincieItaliane.TA
+PE_Type.TE = 'TE'                                 # originally ProvincieItaliane.TE
+PE_Type.TN = 'TN'                                 # originally ProvincieItaliane.TN
+PE_Type.TO = 'TO'                                 # originally ProvincieItaliane.TO
+PE_Type.TP = 'TP'                                 # originally ProvincieItaliane.TP
+PE_Type.TR = 'TR'                                 # originally ProvincieItaliane.TR
+PE_Type.TS = 'TS'                                 # originally ProvincieItaliane.TS
+PE_Type.TV = 'TV'                                 # originally ProvincieItaliane.TV
+PE_Type.UD = 'UD'                                 # originally ProvincieItaliane.UD
+PE_Type.VA = 'VA'                                 # originally ProvincieItaliane.VA
+PE_Type.VB = 'VB'                                 # originally ProvincieItaliane.VB
+PE_Type.VC = 'VC'                                 # originally ProvincieItaliane.VC
+PE_Type.VE = 'VE'                                 # originally ProvincieItaliane.VE
+PE_Type.VI = 'VI'                                 # originally ProvincieItaliane.VI
+PE_Type.VR = 'VR'                                 # originally ProvincieItaliane.VR
+PE_Type.VS = 'VS'                                 # originally ProvincieItaliane.VS
+PE_Type.VT = 'VT'                                 # originally ProvincieItaliane.VT
+PE_Type.VV = 'VV'                                 # originally ProvincieItaliane.VV
+PE_Type.EE = 'EE'                                 # originally Estero.EE
+PE_Type._InitializeFacetMap(PE_Type._CF_pattern,
+                            PE_Type._CF_enumeration)
+Namespace.addCategoryObject('typeBinding', 'PE_Type', PE_Type)
 
 # Complex type
 # {urn:www.agenziaentrate.gov.it:specificheTecniche:common}Documento_Type
 # with content type EMPTY
-
-
-class DocumentoType (pyxb.binding.basis.complexTypeDefinition):
+class Documento_Type (pyxb.binding.basis.complexTypeDefinition):
     """Documento trasmesso"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_EMPTY
@@ -1357,7 +1302,7 @@ class DocumentoType (pyxb.binding.basis.complexTypeDefinition):
 
     # Attribute identificativo uses Python identifier identificativo
     __identificativo = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(
-        None, 'identificativo'), 'identificativo', '__urnwww_agenziaentrate_gov_itspecificheTecnichecommon_Documento_Type_identificativo', IdentificativoType, required=True)
+        None, 'identificativo'), 'identificativo', '__urnwww_agenziaentrate_gov_itspecificheTecnichecommon_Documento_Type_identificativo', Identificativo_Type, required=True)
     __identificativo._DeclarationLocation = pyxb.utils.utility.Location(
         '../data/common/fornitura_v3.xsd', 25, 2)
     __identificativo._UseLocation = pyxb.utils.utility.Location(
@@ -1374,10 +1319,10 @@ class DocumentoType (pyxb.binding.basis.complexTypeDefinition):
     })
 
 
-Namespace.addCategoryObject('typeBinding', 'Documento_Type', DocumentoType)
+Namespace.addCategoryObject('typeBinding', 'Documento_Type', Documento_Type)
 
 
-Documento = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Documento'), DocumentoType, abstract=pyxb.binding.datatypes.boolean(
+Documento = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Documento'), Documento_Type, abstract=pyxb.binding.datatypes.boolean(
     1), location=pyxb.utils.utility.Location('../data/common/fornitura_v3.xsd', 20, 1))
 Namespace.addCategoryObject(
     'elementBinding', Documento.name().localName(), Documento)

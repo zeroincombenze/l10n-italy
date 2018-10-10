@@ -6,12 +6,9 @@
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 from __future__ import unicode_literals
-
-import io
 import logging
-
-from . import _ds as _ImportedBinding__ds
-
+import io
+import sys
 _logger = logging.getLogger(__name__)
 try:
     import pyxb
@@ -33,6 +30,8 @@ _PyXBVersion = '1.2.4'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
+# Import bindings for namespaces imported into schema
+from . import _ds as _ImportedBinding__ds
 try:
     import pyxb.binding.datatypes
 except ImportError as err:
