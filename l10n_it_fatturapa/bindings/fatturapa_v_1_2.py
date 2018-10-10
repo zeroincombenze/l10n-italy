@@ -1,14 +1,14 @@
-# flake8: noqa
-# -*- coding: utf-8 -*-
-# PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2016-12-12 16:50:59.495555
-# by PyXB version 1.2.5 using Python 2.7.12.final.0
-# By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-# Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
-
+#
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+#
 from __future__ import unicode_literals
-import logging
+
 import io
+import logging
+
 from . import _ds as _ImportedBinding__ds
 
 _logger = logging.getLogger(__name__)
@@ -112,6 +112,8 @@ class CodiceDestinatarioType (pyxb.binding.datatypes.string):
         55,
         2)
     _Documentation = None
+
+
 CodiceDestinatarioType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceDestinatarioType._CF_pattern.addPattern(pattern='[A-Z0-9]{6,7}')
 CodiceDestinatarioType._InitializeFacetMap(CodiceDestinatarioType._CF_pattern)
@@ -137,6 +139,8 @@ class CodiceType (pyxb.binding.datatypes.string):
         66,
         2)
     _Documentation = None
+
+
 CodiceType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
 CodiceType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
@@ -165,6 +169,8 @@ class FormatoTrasmissioneType (
         72,
         2)
     _Documentation = None
+
+
 FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
 FormatoTrasmissioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -203,6 +209,8 @@ class CausalePagamentoType (
         161,
         2)
     _Documentation = None
+
+
 CausalePagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=CausalePagamentoType, enum_prefix=None)
 CausalePagamentoType.A = CausalePagamentoType._CF_enumeration.addEnumeration(
@@ -285,6 +293,8 @@ class TipoScontoMaggiorazioneType (
         193,
         2)
     _Documentation = None
+
+
 TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
 TipoScontoMaggiorazioneType._CF_enumeration = (
@@ -323,6 +333,8 @@ class Art73Type (
         212,
         2)
     _Documentation = None
+
+
 Art73Type._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
 Art73Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -352,6 +364,8 @@ class TipoCassaType (
         224,
         2)
     _Documentation = None
+
+
 TipoCassaType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoCassaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -423,6 +437,8 @@ class TipoDocumentoType (
         383,
         2)
     _Documentation = None
+
+
 TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -465,6 +481,8 @@ class TipoRitenutaType (
         418,
         2)
     _Documentation = None
+
+
 TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoRitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -498,6 +516,8 @@ class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
         449,
         2)
     _Documentation = None
+
+
 RiferimentoNumeroLineaType._CF_maxInclusive = (
     pyxb.binding.facets.CF_maxInclusive(
         value_datatype=RiferimentoNumeroLineaType,
@@ -534,6 +554,8 @@ class SoggettoEmittenteType (
         495,
         2)
     _Documentation = None
+
+
 SoggettoEmittenteType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
 SoggettoEmittenteType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -571,6 +593,8 @@ class RegimeFiscaleType (
         537,
         2)
     _Documentation = None
+
+
 RegimeFiscaleType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 RegimeFiscaleType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -640,6 +664,8 @@ class CondizioniPagamentoType (
         767,
         2)
     _Documentation = None
+
+
 CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
@@ -684,6 +710,8 @@ class ModalitaPagamentoType (
         813,
         2)
     _Documentation = None
+
+
 ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 ModalitaPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -751,11 +779,11 @@ ModalitaPagamentoType.MP20 = (
 ModalitaPagamentoType.MP21 = (
     ModalitaPagamentoType._CF_enumeration.addEnumeration(
         unicode_value='MP21', tag='MP21')
-    )
+)
 ModalitaPagamentoType.MP22 = (
     ModalitaPagamentoType._CF_enumeration.addEnumeration(
         unicode_value='MP22', tag='MP22')
-    )
+)
 ModalitaPagamentoType._InitializeFacetMap(
     ModalitaPagamentoType._CF_length,
     ModalitaPagamentoType._CF_enumeration)
@@ -781,6 +809,8 @@ class IBANType (pyxb.binding.datatypes.string):
         928,
         2)
     _Documentation = None
+
+
 IBANType._CF_pattern = pyxb.binding.facets.CF_pattern()
 IBANType._CF_pattern.addPattern(
     pattern='[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{11,30}')
@@ -804,6 +834,8 @@ class BICType (pyxb.binding.datatypes.string):
         933,
         2)
     _Documentation = None
+
+
 BICType._CF_pattern = pyxb.binding.facets.CF_pattern()
 BICType._CF_pattern.addPattern(
     pattern='[A-Z]{6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3}){0,1}')
@@ -829,6 +861,8 @@ class RitenutaType (
         1005,
         2)
     _Documentation = None
+
+
 RitenutaType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
 RitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
@@ -859,6 +893,8 @@ class EsigibilitaIVAType (
         1029,
         2)
     _Documentation = None
+
+
 EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
@@ -898,6 +934,8 @@ class NaturaType (
         1050,
         2)
     _Documentation = None
+
+
 NaturaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=NaturaType, enum_prefix=None)
 NaturaType.N1 = NaturaType._CF_enumeration.addEnumeration(
@@ -934,6 +972,8 @@ class CodiceFiscaleType (pyxb.binding.datatypes.string):
         1089,
         2)
     _Documentation = None
+
+
 CodiceFiscaleType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscaleType._CF_pattern.addPattern(pattern='[A-Z0-9]{11,16}')
 CodiceFiscaleType._InitializeFacetMap(CodiceFiscaleType._CF_pattern)
@@ -960,6 +1000,8 @@ class CodiceFiscalePFType (pyxb.binding.datatypes.string):
         1094,
         2)
     _Documentation = None
+
+
 CodiceFiscalePFType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscalePFType._CF_pattern.addPattern(pattern='[A-Z0-9]{16}')
 CodiceFiscalePFType._InitializeFacetMap(CodiceFiscalePFType._CF_pattern)
@@ -985,6 +1027,8 @@ class CodEORIType (pyxb.binding.datatypes.string):
         1099,
         2)
     _Documentation = None
+
+
 CodEORIType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(13))
 CodEORIType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
@@ -1012,6 +1056,8 @@ class SocioUnicoType (
         1105,
         2)
     _Documentation = None
+
+
 SocioUnicoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=SocioUnicoType, enum_prefix=None)
 SocioUnicoType.SU = SocioUnicoType._CF_enumeration.addEnumeration(
@@ -1041,16 +1087,18 @@ class StatoLiquidazioneType (
         1119,
         2)
     _Documentation = None
+
+
 StatoLiquidazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=StatoLiquidazioneType, enum_prefix=None)
 StatoLiquidazioneType.LS = (
     StatoLiquidazioneType._CF_enumeration.addEnumeration(
         unicode_value='LS', tag='LS')
-    )
+)
 StatoLiquidazioneType.LN = (
     StatoLiquidazioneType._CF_enumeration.addEnumeration(
         unicode_value='LN', tag='LN')
-    )
+)
 StatoLiquidazioneType._InitializeFacetMap(
     StatoLiquidazioneType._CF_enumeration)
 Namespace.addCategoryObject(
@@ -1078,28 +1126,30 @@ class TipoCessionePrestazioneType (
         1133,
         2)
     _Documentation = None
+
+
 TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
 TipoCessionePrestazioneType._CF_enumeration = (
     pyxb.binding.facets.CF_enumeration(
         value_datatype=TipoCessionePrestazioneType, enum_prefix=None)
-    )
+)
 TipoCessionePrestazioneType.SC = (
     TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
         unicode_value='SC', tag='SC')
-    )
+)
 TipoCessionePrestazioneType.PR = (
     TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
         unicode_value='PR', tag='PR')
-    )
+)
 TipoCessionePrestazioneType.AB = (
     TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
         unicode_value='AB', tag='AB')
-    )
+)
 TipoCessionePrestazioneType.AC = (
     TipoCessionePrestazioneType._CF_enumeration.addEnumeration(
         unicode_value='AC', tag='AC')
-    )
+)
 TipoCessionePrestazioneType._InitializeFacetMap(
     TipoCessionePrestazioneType._CF_length,
     TipoCessionePrestazioneType._CF_enumeration)
@@ -1125,6 +1175,8 @@ class TitoloType (pyxb.binding.datatypes.normalizedString):
         1158,
         2)
     _Documentation = None
+
+
 TitoloType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TitoloType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{2,10})')
 TitoloType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
@@ -1150,6 +1202,8 @@ class String10Type (pyxb.binding.datatypes.normalizedString):
         1164,
         2)
     _Documentation = None
+
+
 String10Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,10})')
 String10Type._InitializeFacetMap(String10Type._CF_pattern)
@@ -1172,6 +1226,8 @@ class String15Type (pyxb.binding.datatypes.normalizedString):
         1169,
         2)
     _Documentation = None
+
+
 String15Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,15})')
 String15Type._InitializeFacetMap(String15Type._CF_pattern)
@@ -1194,6 +1250,8 @@ class String20Type (pyxb.binding.datatypes.normalizedString):
         1174,
         2)
     _Documentation = None
+
+
 String20Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
 String20Type._InitializeFacetMap(String20Type._CF_pattern)
@@ -1216,6 +1274,8 @@ class String35Type (pyxb.binding.datatypes.normalizedString):
         1179,
         2)
     _Documentation = None
+
+
 String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
 String35Type._InitializeFacetMap(String35Type._CF_pattern)
@@ -1238,6 +1298,8 @@ class String60Type (pyxb.binding.datatypes.normalizedString):
         1184,
         2)
     _Documentation = None
+
+
 String60Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,60})')
 String60Type._InitializeFacetMap(String60Type._CF_pattern)
@@ -1260,6 +1322,8 @@ class String80Type (pyxb.binding.datatypes.normalizedString):
         1189,
         2)
     _Documentation = None
+
+
 String80Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,80})')
 String80Type._InitializeFacetMap(String80Type._CF_pattern)
@@ -1282,6 +1346,8 @@ class String100Type (pyxb.binding.datatypes.normalizedString):
         1194,
         2)
     _Documentation = None
+
+
 String100Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,100})')
 String100Type._InitializeFacetMap(String100Type._CF_pattern)
@@ -1304,6 +1370,8 @@ class String60LatinType (pyxb.binding.datatypes.normalizedString):
         1199,
         2)
     _Documentation = None
+
+
 String60LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60LatinType._CF_pattern.addPattern(
     pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,60}')
@@ -1330,6 +1398,8 @@ class String80LatinType (pyxb.binding.datatypes.normalizedString):
         1204,
         2)
     _Documentation = None
+
+
 String80LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80LatinType._CF_pattern.addPattern(
     pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,80}')
@@ -1357,6 +1427,8 @@ class String100LatinType (pyxb.binding.datatypes.normalizedString):
         1209,
         2)
     _Documentation = None
+
+
 String100LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100LatinType._CF_pattern.addPattern(
     pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,100}')
@@ -1384,6 +1456,8 @@ class String200LatinType (pyxb.binding.datatypes.normalizedString):
         1214,
         2)
     _Documentation = None
+
+
 String200LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String200LatinType._CF_pattern.addPattern(
     pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,200}')
@@ -1411,6 +1485,8 @@ class String1000LatinType (pyxb.binding.datatypes.normalizedString):
         1219,
         2)
     _Documentation = None
+
+
 String1000LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String1000LatinType._CF_pattern.addPattern(
     pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,1000}')
@@ -1437,6 +1513,8 @@ class ProvinciaType (pyxb.binding.datatypes.string):
         1224,
         2)
     _Documentation = None
+
+
 ProvinciaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ProvinciaType._CF_pattern.addPattern(pattern='[A-Z]{2}')
 ProvinciaType._InitializeFacetMap(ProvinciaType._CF_pattern)
@@ -1459,6 +1537,8 @@ class NazioneType (pyxb.binding.datatypes.string):
         1229,
         2)
     _Documentation = None
+
+
 NazioneType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NazioneType._CF_pattern.addPattern(pattern='[A-Z]{2}')
 NazioneType._InitializeFacetMap(NazioneType._CF_pattern)
@@ -1481,6 +1561,8 @@ class DivisaType (pyxb.binding.datatypes.string):
         1234,
         2)
     _Documentation = None
+
+
 DivisaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DivisaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
 DivisaType._InitializeFacetMap(DivisaType._CF_pattern)
@@ -1503,6 +1585,8 @@ class TipoResaType (pyxb.binding.datatypes.string):
         1239,
         2)
     _Documentation = None
+
+
 TipoResaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TipoResaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
 TipoResaType._InitializeFacetMap(TipoResaType._CF_pattern)
@@ -1525,6 +1609,8 @@ class NumeroCivicoType (pyxb.binding.datatypes.normalizedString):
         1244,
         2)
     _Documentation = None
+
+
 NumeroCivicoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,8})')
 NumeroCivicoType._InitializeFacetMap(NumeroCivicoType._CF_pattern)
@@ -1552,6 +1638,8 @@ class BolloVirtualeType (
         1249,
         2)
     _Documentation = None
+
+
 BolloVirtualeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=BolloVirtualeType, enum_prefix=None)
 BolloVirtualeType.SI = BolloVirtualeType._CF_enumeration.addEnumeration(
@@ -1579,6 +1667,8 @@ class TelFaxType (pyxb.binding.datatypes.normalizedString):
         1254,
         2)
     _Documentation = None
+
+
 TelFaxType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TelFaxType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{5,12})')
 TelFaxType._InitializeFacetMap(TelFaxType._CF_pattern)
@@ -1601,6 +1691,8 @@ class EmailType (pyxb.binding.datatypes.string):
         1259,
         2)
     _Documentation = None
+
+
 EmailType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(7))
 EmailType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
@@ -1629,6 +1721,8 @@ class PesoType (pyxb.binding.datatypes.decimal):
         1267,
         2)
     _Documentation = None
+
+
 PesoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 PesoType._CF_pattern.addPattern(pattern='[0-9]{1,4}\\.[0-9]{1,2}')
 PesoType._InitializeFacetMap(PesoType._CF_pattern)
@@ -1652,6 +1746,8 @@ class Amount8DecimalType (pyxb.binding.datatypes.string):
         1272,
         2)
     _Documentation = None
+
+
 Amount8DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount8DecimalType._CF_pattern.addPattern(
     pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2,8}')
@@ -1679,6 +1775,8 @@ class Amount2DecimalType (pyxb.binding.datatypes.string):
         1277,
         2)
     _Documentation = None
+
+
 Amount2DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount2DecimalType._CF_pattern.addPattern(
     pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2}')
@@ -1705,6 +1803,8 @@ class RateType (pyxb.binding.datatypes.string):
         1282,
         2)
     _Documentation = None
+
+
 # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive
 # (value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.00'))
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
@@ -1731,6 +1831,8 @@ class RiferimentoFaseType (pyxb.binding.datatypes.integer):
         1288,
         2)
     _Documentation = None
+
+
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=RiferimentoFaseType,
     value=pyxb.binding.datatypes.integer(999))
@@ -1761,6 +1863,8 @@ class NumeroColliType (pyxb.binding.datatypes.integer):
         1294,
         2)
     _Documentation = None
+
+
 NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
 NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
@@ -1786,6 +1890,8 @@ class NumeroLineaType (pyxb.binding.datatypes.integer):
         1300,
         2)
     _Documentation = None
+
+
 NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
 NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
@@ -1811,6 +1917,8 @@ class CAPType (pyxb.binding.datatypes.string):
         1306,
         2)
     _Documentation = None
+
+
 CAPType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CAPType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 CAPType._InitializeFacetMap(CAPType._CF_pattern)
@@ -1833,6 +1941,8 @@ class ABIType (pyxb.binding.datatypes.string):
         1311,
         2)
     _Documentation = None
+
+
 ABIType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ABIType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 ABIType._InitializeFacetMap(ABIType._CF_pattern)
@@ -1855,6 +1965,8 @@ class CABType (pyxb.binding.datatypes.string):
         1316,
         2)
     _Documentation = None
+
+
 CABType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CABType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 CABType._InitializeFacetMap(CABType._CF_pattern)
@@ -1878,16 +1990,18 @@ class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
         1321,
         2)
     _Documentation = None
+
+
 GiorniTerminePagamentoType._CF_maxInclusive = (
     pyxb.binding.facets.CF_maxInclusive(
         value_datatype=GiorniTerminePagamentoType,
         value=pyxb.binding.datatypes.integer(999))
-    )
+)
 GiorniTerminePagamentoType._CF_minInclusive = (
     pyxb.binding.facets.CF_minInclusive(
         value_datatype=GiorniTerminePagamentoType,
         value=pyxb.binding.datatypes.integer(0))
-    )
+)
 GiorniTerminePagamentoType._InitializeFacetMap(
     GiorniTerminePagamentoType._CF_maxInclusive,
     GiorniTerminePagamentoType._CF_minInclusive)
@@ -1913,6 +2027,8 @@ class QuantitaType (pyxb.binding.datatypes.string):
         1327,
         2)
     _Documentation = None
+
+
 QuantitaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 QuantitaType._CF_pattern.addPattern(pattern='[0-9]{1,12}\\.[0-9]{2,8}')
 QuantitaType._InitializeFacetMap(QuantitaType._CF_pattern)
@@ -1935,6 +2051,8 @@ class DataFatturaType (pyxb.binding.datatypes.date):
         1332,
         2)
     _Documentation = None
+
+
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=DataFatturaType,
     value=pyxb.binding.datatypes.date('1970-01-01'))
@@ -2115,6 +2233,8 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.FatturaElettronicaHeaderType = (
     FatturaElettronicaHeaderType)
 Namespace.addCategoryObject(
@@ -2256,6 +2376,8 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.FatturaElettronicaBodyType = FatturaElettronicaBodyType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -2426,6 +2548,8 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiTrasmissioneType = DatiTrasmissioneType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -2496,6 +2620,8 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.IdFiscaleType = IdFiscaleType
 Namespace.addCategoryObject('typeBinding', 'IdFiscaleType', IdFiscaleType)
 
@@ -2564,6 +2690,8 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.ContattiTrasmittenteType = ContattiTrasmittenteType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -2820,6 +2948,8 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiGeneraliType = DatiGeneraliType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -3107,6 +3237,8 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiGeneraliDocumentoType = DatiGeneraliDocumentoType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -3231,6 +3363,8 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiRitenutaType = DatiRitenutaType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -3309,6 +3443,8 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiBolloType = DatiBolloType
 Namespace.addCategoryObject('typeBinding', 'DatiBolloType', DatiBolloType)
 
@@ -3505,6 +3641,8 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiCassaPrevidenzialeType = DatiCassaPrevidenzialeType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -3595,6 +3733,8 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.ScontoMaggiorazioneType = ScontoMaggiorazioneType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -3650,6 +3790,8 @@ class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiSALType = DatiSALType
 Namespace.addCategoryObject('typeBinding', 'DatiSALType', DatiSALType)
 
@@ -3823,6 +3965,8 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiDocumentiCorrelatiType = DatiDocumentiCorrelatiType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -3917,6 +4061,8 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiDDTType = DatiDDTType
 Namespace.addCategoryObject('typeBinding', 'DatiDDTType', DatiDDTType)
 
@@ -4226,6 +4372,8 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiTrasportoType = DatiTrasportoType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -4376,6 +4524,8 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.IndirizzoType = IndirizzoType
 Namespace.addCategoryObject('typeBinding', 'IndirizzoType', IndirizzoType)
 
@@ -4454,6 +4604,8 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.FatturaPrincipaleType = FatturaPrincipaleType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -4620,6 +4772,8 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.CedentePrestatoreType = CedentePrestatoreType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -4833,6 +4987,8 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiAnagraficiCedenteType = DatiAnagraficiCedenteType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -4965,6 +5121,8 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.AnagraficaType = AnagraficaType
 Namespace.addCategoryObject('typeBinding', 'AnagraficaType', AnagraficaType)
 
@@ -5083,6 +5241,8 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiAnagraficiVettoreType = DatiAnagraficiVettoreType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -5218,6 +5378,8 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.IscrizioneREAType = IscrizioneREAType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -5307,6 +5469,8 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.ContattiType = ContattiType
 Namespace.addCategoryObject('typeBinding', 'ContattiType', ContattiType)
 
@@ -5361,6 +5525,8 @@ class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.RappresentanteFiscaleType = RappresentanteFiscaleType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -5460,6 +5626,8 @@ class DatiAnagraficiRappresentanteType (
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiAnagraficiRappresentanteType = (
     DatiAnagraficiRappresentanteType)
 Namespace.addCategoryObject(
@@ -5583,6 +5751,8 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.CessionarioCommittenteType = CessionarioCommittenteType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -5701,6 +5871,8 @@ class RappresentanteFiscaleCessionarioType (
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.RappresentanteFiscaleCessionarioType = (
     RappresentanteFiscaleCessionarioType)
 Namespace.addCategoryObject('typeBinding',
@@ -5799,6 +5971,8 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiAnagraficiCessionarioType = (
     DatiAnagraficiCessionarioType)
 Namespace.addCategoryObject(
@@ -5880,6 +6054,8 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiBeniServiziType = DatiBeniServiziType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -5958,6 +6134,8 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiVeicoliType = DatiVeicoliType
 Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
 
@@ -6034,6 +6212,8 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiPagamentoType = DatiPagamentoType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -6544,6 +6724,8 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DettaglioPagamentoType = DettaglioPagamentoType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -6604,6 +6786,8 @@ class TerzoIntermediarioSoggettoEmittenteType (
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.TerzoIntermediarioSoggettoEmittenteType = (
     TerzoIntermediarioSoggettoEmittenteType)
 Namespace.addCategoryObject('typeBinding',
@@ -6703,6 +6887,8 @@ class DatiAnagraficiTerzoIntermediarioType (
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiAnagraficiTerzoIntermediarioType = (
     DatiAnagraficiTerzoIntermediarioType)
 Namespace.addCategoryObject('typeBinding',
@@ -6849,6 +7035,8 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.AllegatiType = AllegatiType
 Namespace.addCategoryObject('typeBinding', 'AllegatiType', AllegatiType)
 
@@ -7221,6 +7409,8 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DettaglioLineeType = DettaglioLineeType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -7296,6 +7486,8 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.CodiceArticoloType = CodiceArticoloType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -7417,6 +7609,8 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.AltriDatiGestionaliType = AltriDatiGestionaliType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -7621,6 +7815,8 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
 
     })
+
+
 _module_typeBindings.DatiRiepilogoType = DatiRiepilogoType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -7743,6 +7939,8 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __versione.name(): __versione
     })
+
+
 _module_typeBindings.FatturaElettronicaType = FatturaElettronicaType
 Namespace.addCategoryObject(
     'typeBinding',
@@ -8019,6 +8217,8 @@ def _BuildAutomaton():
         fac.UpdateInstruction(cc_2, True)]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 FatturaElettronicaHeaderType._Automaton = _BuildAutomaton()
 
 
@@ -8242,6 +8442,8 @@ def _BuildAutomaton_():
         fac.UpdateInstruction(cc_2, True)]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 FatturaElettronicaBodyType._Automaton = _BuildAutomaton_()
 
 
@@ -8483,6 +8685,8 @@ def _BuildAutomaton_2():
         fac.UpdateInstruction(cc_1, True)]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiTrasmissioneType._Automaton = _BuildAutomaton_2()
 
 
@@ -8562,6 +8766,8 @@ def _BuildAutomaton_3():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 IdFiscaleType._Automaton = _BuildAutomaton_3()
 
 
@@ -8665,6 +8871,8 @@ def _BuildAutomaton_4():
         fac.UpdateInstruction(cc_1, True)]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 ContattiTrasmittenteType._Automaton = _BuildAutomaton_4()
 
 
@@ -9196,6 +9404,8 @@ def _BuildAutomaton_5():
         fac.UpdateInstruction(cc_8, True)]))
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiGeneraliType._Automaton = _BuildAutomaton_5()
 
 
@@ -9767,6 +9977,8 @@ def _BuildAutomaton_6():
         fac.UpdateInstruction(cc_7, True)]))
     st_11._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiGeneraliDocumentoType._Automaton = _BuildAutomaton_6()
 
 
@@ -9914,6 +10126,8 @@ def _BuildAutomaton_7():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiRitenutaType._Automaton = _BuildAutomaton_7()
 
 
@@ -9993,6 +10207,8 @@ def _BuildAutomaton_8():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiBolloType._Automaton = _BuildAutomaton_8()
 
 
@@ -10331,6 +10547,8 @@ def _BuildAutomaton_9():
         fac.UpdateInstruction(cc_3, True)]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiCassaPrevidenzialeType._Automaton = _BuildAutomaton_9()
 
 
@@ -10470,6 +10688,8 @@ def _BuildAutomaton_10():
         fac.UpdateInstruction(cc_1, True)]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 ScontoMaggiorazioneType._Automaton = _BuildAutomaton_10()
 
 
@@ -10515,6 +10735,8 @@ def _BuildAutomaton_11():
     transitions = []
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiSALType._Automaton = _BuildAutomaton_11()
 
 
@@ -10855,6 +11077,8 @@ def _BuildAutomaton_12():
         fac.UpdateInstruction(cc_5, True)]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiDocumentiCorrelatiType._Automaton = _BuildAutomaton_12()
 
 
@@ -10980,6 +11204,8 @@ def _BuildAutomaton_13():
         fac.UpdateInstruction(cc_0, True)]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiDDTType._Automaton = _BuildAutomaton_13()
 
 
@@ -11721,6 +11947,8 @@ def _BuildAutomaton_14():
         fac.UpdateInstruction(cc_12, True)]))
     st_12._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 DatiTrasportoType._Automaton = _BuildAutomaton_14()
 
 
@@ -11963,6 +12191,8 @@ def _BuildAutomaton_15():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 IndirizzoType._Automaton = _BuildAutomaton_15()
 
 
@@ -12042,6 +12272,8 @@ def _BuildAutomaton_16():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 FatturaPrincipaleType._Automaton = _BuildAutomaton_16()
 
 
@@ -12317,6 +12549,8 @@ def _BuildAutomaton_17():
         fac.UpdateInstruction(cc_3, True)]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 CedentePrestatoreType._Automaton = _BuildAutomaton_17()
 
 
@@ -12677,6 +12911,8 @@ def _BuildAutomaton_18():
     transitions = []
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiAnagraficiCedenteType._Automaton = _BuildAutomaton_18()
 
 
@@ -12886,6 +13122,8 @@ def _BuildAutomaton_19():
         fac.UpdateInstruction(cc_1, True)]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 AnagraficaType._Automaton = _BuildAutomaton_19()
 
 
@@ -13058,6 +13296,8 @@ def _BuildAutomaton_20():
         fac.UpdateInstruction(cc_1, True)]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiAnagraficiVettoreType._Automaton = _BuildAutomaton_20()
 
 
@@ -13267,6 +13507,8 @@ def _BuildAutomaton_21():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 IscrizioneREAType._Automaton = _BuildAutomaton_21()
 
 
@@ -13418,6 +13660,8 @@ def _BuildAutomaton_22():
         fac.UpdateInstruction(cc_2, True)]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
+
+
 ContattiType._Automaton = _BuildAutomaton_22()
 
 
@@ -13463,6 +13707,8 @@ def _BuildAutomaton_23():
     transitions = []
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RappresentanteFiscaleType._Automaton = _BuildAutomaton_23()
 
 
@@ -13589,6 +13835,8 @@ def _BuildAutomaton_24():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiAnagraficiRappresentanteType._Automaton = _BuildAutomaton_24()
 
 
@@ -13762,6 +14010,8 @@ def _BuildAutomaton_25():
         fac.UpdateInstruction(cc_1, True)]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 CessionarioCommittenteType._Automaton = _BuildAutomaton_25()
 
 
@@ -13909,6 +14159,8 @@ def _BuildAutomaton_26():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 RappresentanteFiscaleCessionarioType._Automaton = _BuildAutomaton_26()
 
 
@@ -14046,6 +14298,8 @@ def _BuildAutomaton_27():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiAnagraficiCessionarioType._Automaton = _BuildAutomaton_27()
 
 
@@ -14129,6 +14383,8 @@ def _BuildAutomaton_28():
     ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiBeniServiziType._Automaton = _BuildAutomaton_28()
 
 
@@ -14208,6 +14464,8 @@ def _BuildAutomaton_29():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiVeicoliType._Automaton = _BuildAutomaton_29()
 
 
@@ -14289,6 +14547,8 @@ def _BuildAutomaton_30():
     ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiPagamentoType._Automaton = _BuildAutomaton_30()
 
 
@@ -15460,6 +15720,8 @@ def _BuildAutomaton_31():
         fac.UpdateInstruction(cc_18, True)]))
     st_20._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DettaglioPagamentoType._Automaton = _BuildAutomaton_31()
 
 
@@ -15505,6 +15767,8 @@ def _BuildAutomaton_32():
     transitions = []
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 TerzoIntermediarioSoggettoEmittenteType._Automaton = _BuildAutomaton_32()
 
 
@@ -15642,6 +15906,8 @@ def _BuildAutomaton_33():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiAnagraficiTerzoIntermediarioType._Automaton = _BuildAutomaton_33()
 
 
@@ -15868,6 +16134,8 @@ def _BuildAutomaton_34():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 AllegatiType._Automaton = _BuildAutomaton_34()
 
 
@@ -16588,6 +16856,8 @@ def _BuildAutomaton_35():
         fac.UpdateInstruction(cc_10, True)]))
     st_15._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DettaglioLineeType._Automaton = _BuildAutomaton_35()
 
 
@@ -16667,6 +16937,8 @@ def _BuildAutomaton_36():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 CodiceArticoloType._Automaton = _BuildAutomaton_36()
 
 
@@ -16856,6 +17128,8 @@ def _BuildAutomaton_37():
         fac.UpdateInstruction(cc_2, True)]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 AltriDatiGestionaliType._Automaton = _BuildAutomaton_37()
 
 
@@ -17210,6 +17484,8 @@ def _BuildAutomaton_38():
         fac.UpdateInstruction(cc_4, True)]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 DatiRiepilogoType._Automaton = _BuildAutomaton_38()
 
 
@@ -17337,4 +17613,6 @@ def _BuildAutomaton_39():
         fac.UpdateInstruction(cc_0, True)]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
+
+
 FatturaElettronicaType._Automaton = _BuildAutomaton_39()

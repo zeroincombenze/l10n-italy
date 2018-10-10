@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_account_config_settings" model="ir.ui.view">
+        <field name="name">view_account_config_settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='rounding_method']" position="after">
+                <!-- <h2>Italian Tax Authority</h2>  -->
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+                        <label string="Split Payment"/>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <field name="sp_account_id" class="oe_inline"/>
+                                <field name="sp_tax_id" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

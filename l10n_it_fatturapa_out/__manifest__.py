@@ -1,8 +1,11 @@
-# -*- coding: utf-8 -*-
-# Copyright 2014 Davide Corio
-# Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
+#
+# Copyright 2014    Davide Corio
+# Copyright 2015-16 Lorenzo Battistini - Agile Business Group
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-
+#
 {
     'name': 'Italian Localization - FatturaPA - Emission',
     'version': '11.0.1.0.0',
@@ -22,7 +25,7 @@
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'external_dependencies': {
         'python': ['unidecode'],
     }

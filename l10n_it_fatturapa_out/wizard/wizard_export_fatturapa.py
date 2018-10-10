@@ -7,7 +7,7 @@ import base64
 import logging
 
 from odoo import models
-from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,
