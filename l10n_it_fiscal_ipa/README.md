@@ -7,33 +7,21 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://erp7.zeroincombenze.it)
 
-
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Purchase Invoices with Withholding Tax
-======================================
+IPA Code
+========
 
-No more info
-
-
-Ritenute d'acconto sulle fatture fornitore
-
-Configurare i campi associati all'azienda:
- - Termine di pagamento della ritenuta d'acconto
- - Conto di debito per le ritenute da versare
- - Sezionale che conterrà le registrazioni legate alla ritenuta
-
-L'importo della ritenuta d'acconto non è calcolato ma inserito manualmente.
+This module adds IPA (IndicePA) field to partner, used by http://fatturapa.gov.it
 
 
-### Funzionalità & Certificati
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Funzione | Status | Note
---- | --- | ---
-Registrazione avvisi di parcella | :white_check_mark: | No in registri IVA
-Trasformazione avvisi di parcella in fattura | :white_check_mark: | Con un tasto
-Registrazione importo ritenuta d'acconto | :white_check_mark: | Importo manuale
-Registrazione scadenza RA al pagamento | :white_check_mark: | Su conto RA con dettaglio per fornitore
+Codice IPA
+==========
+
+Gestione Codice Identitifcativo Pubblica Amministrazione per emissione http://fatturapa.gov.it
+
 
 
 Installation
@@ -42,10 +30,8 @@ Installation
 These instruction are just an example to remember what you have to do:
 
     git clone https://github.com/zeroincombenze/l10n-italy
-    for module in l10n_it_ade account_voucher_cash_basis account_invoice_entry_date l10n_it_withholding_tax; do
-        mv ODOO_DIR/l10n-italy/$module BACKUP_DIR/
-        cp -R l10n-italy/$module ODOO_DIR/l10n-italy/
-    sudo service odoo-server restart -i l10n_it_ade,l10n_it_withholding_tax -d MYDB
+    cp -R l10n-italy/l10n_it_ade ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -i l10n_it_ipa -d MYDB
 
 From UI: go to Setup > Module > Install
 
@@ -53,16 +39,7 @@ From UI: go to Setup > Module > Install
 Configuration
 -------------
 
-:it:
-
-* Contabilità > Varie > Termini di pagamento :point_right: Inserire termine di pagamento RA (al 15 del mese)
-* Contabilità > Sezionali > Sezionali :point_right: Inserire sezionale avvisi di parcella
-* Contabilità > Sezionali > Sezionali :point_right: Inserire sezionale avvisi ritenute d'acconto (se diverso da varie)
-* Contabilità > Conti > Conti :point_right: Conto RA da pagare, tipo debito
-* Configurazione > Configurazione > Contabilità :point_right: Impostare termini di pagamento ritenute
-* Configurazione > Configurazione > Contabilità :point_right: Impostare termini conto ritenute
-* Configurazione > Configurazione > Contabilità :point_right: Impostare sezionale ritenute
-* Contabilità > Fornitori > Fatture Fornitori > Quando presente RA marcare il flag ed inserire importo
+:mute:
 
 
 Usage
@@ -71,14 +48,13 @@ Usage
 For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
 
 
-
 Known issues / Roadmap
 ----------------------
 
-:ticket: This module replaces OCA module; PR have to be issued.
+:ticket: This module replace OCA module; PR will be issued
 In order to use this module you have to use:
 
-:warning: Use [l10n_it_ade](l10n_it_ade/) module does not exist in OCA repository
+* [l10n_it_base](l10n_it_base/) replaces OCA module
 
 
 Bug Tracker
@@ -86,22 +62,24 @@ Bug Tracker
 
 Have a bug? Please visit https://odoo-italia.org/index.php/kunena/home
 
-
 Credits
 -------
 
 ### Contributors
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Paolo Chiara <p.chiara@isa.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Luigi Di Naro <luigi.dinaro@ktec.it>
+* Alex Comba <alex.comba@agilebg.com>
+* Antonio Maria Vigliotti <info@shs-av.co>
+
 
 ### Funders
 
 This module has been financially supported by
 
-* Agile Business Group sagl <http://www.agilebg.com>
+* KTec S.r.l. <http://www.ktec.it/">
+* Agile Business Group sagl <http://www.agilebg.com/>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+
 
 ### Maintainer
 
@@ -111,7 +89,6 @@ Odoo Italia is a nonprofit organization whose develops Italian Localization for
 Odoo.
 
 To contribute to this module, please visit <https://odoo-italia.org/>.
-
 
 
 [//]: # (copyright)
@@ -135,7 +112,6 @@ Users can download from [Zeroincombenze® distribution](https://github.com/zeroi
 [//]: # (addons)
 
 [//]: # (end addons)
-
 
 
 

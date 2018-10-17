@@ -22,14 +22,10 @@
 
 {
     'name': 'Split Payment',
-    'version': '8.0.1.0.0',
+    'version': '7.0.1.0.0',
     'category': 'Localization/Italy',
     'summary': 'Split Payment',
     'description': """
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
-
 ====================================
 Italian Localization - split payment
 ====================================
