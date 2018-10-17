@@ -23,10 +23,10 @@
 IPA Code
 =========
 
-This module adds IPA (IndicePA) code and Recipient Code fields to partner
+This module adds IPA (IndicePA) code and Recipient Code fields to partner.
+It is used by Italian Electronic Invoice.
+
 http://www.indicepa.gov.it
-
-
 
 
 |it|
@@ -36,6 +36,9 @@ Codice IPA (IndicePA)
 
 Questo modulo permette di inserire il codice IPA (IndicePA) e il Codice Destinatario
 nell'anagrafica cliente.
+
+Questi dati sono indispensabili per la gestione della Fattura Elettronica B2B e
+per la FatturaPA.
 
 http://www.indicepa.gov.it
 
@@ -151,7 +154,5 @@ To contribute to this module, please visit https://odoo-italia.org/.
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-   
-
 ''',
 }
