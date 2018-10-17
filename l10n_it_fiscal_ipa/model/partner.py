@@ -1,32 +1,23 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 KTec S.r.l.
-#    (<http://www.ktec.it>).
+# Copyright 2014    KTec S.r.l.
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
 from openerp.osv import fields, orm
 
 
 class ResPartner(orm.Model):
     _inherit = 'res.partner'
     _columns = {
-        'ipa_code': fields.char('IPA Code', size=128),
-        }
+        'ipa_code': fields.char('IPA Code',
+                                size=128),
+        'codice_destinatario': fields.char(
+            "Recipient Code",
+            help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
+                 "hanno accreditato un canale; qualora il destinatario non abbia "
+                 "accreditato un canale presso Sdi e riceva via PEC le fatture, "
+                 "l'elemento deve essere valorizzato con tutti zeri ('0000000'). ")
+    }
