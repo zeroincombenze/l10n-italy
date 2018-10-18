@@ -1,0 +1,211 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_withholding_tax
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-24 15:14+0000\n"
+"PO-Revision-Date: 2017-10-24 15:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_withholding_tax
+#: code:_description:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_voucher
+#, python-format
+msgid "Accounting Voucher"
+msgstr "Scadenza contabile"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:138
+#, python-format
+msgid "Can't handle withholding tax with voucher of type other than payment"
+msgstr "Can't handle withholding tax with voucher of type other than payment"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account_invoice.py:224
+#, python-format
+msgid "Cannot reconcile invoices %s"
+msgstr "Cannot reconcile invoices %s"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account_invoice.py:213
+#, python-format
+msgid "Cannot unreconcile invoices %s"
+msgstr "Cannot unreconcile invoices %s"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account_invoice.py:98
+#, python-format
+msgid "Cannot validate invoice %d"
+msgstr "Cannot validate invoice %d"
+
+#. module: l10n_it_withholding_tax
+#: code:_description:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_res_company
+#, python-format
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_withholding_tax
+#: view:account.config.settings:0
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:137
+#: code:addons/l10n_it_withholding_tax/models/account.py:142
+#: code:addons/l10n_it_withholding_tax/models/account.py:147
+#: code:addons/l10n_it_withholding_tax/models/account.py:152
+#: code:addons/l10n_it_withholding_tax/models/account.py:177
+#: code:addons/l10n_it_withholding_tax/models/account.py:183
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account_journal.py:24
+#, python-format
+msgid "Error!"
+msgstr "Errore!"
+
+#. module: l10n_it_withholding_tax
+#: code:_description:0
+#: view:account.invoice:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice
+#, python-format
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_withholding_tax
+#: code:_description:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_journal
+#, python-format
+msgid "Journal"
+msgstr "Registro"
+
+#. module: l10n_it_withholding_tax
+#: help:account.config.settings,withholding_journal_id:0
+#: help:res.company,withholding_journal_id:0
+msgid "Journal used for registration of witholding amounts to be paid"
+msgstr "Sezionale per le registrazioni delle ritenute d'acconto da pagare"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,net_pay:0
+msgid "Net Pay"
+msgstr "Netto a Pagare"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account_journal.py:25
+#, python-format
+msgid "No purchase journal found for company_id: %d!"
+msgstr "Nessun registro acquisti per l'azienda: %d!"
+
+#. module: l10n_it_withholding_tax
+#: help:account.config.settings,withholding_account_id:0
+#: help:res.company,withholding_account_id:0
+msgid "Payable account used for amount due to tax authority"
+msgstr "Conto Ritenute d'Acconto da pagare"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:205
+#, python-format
+msgid "Payable withholding - "
+msgstr "Payable withholding - "
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,proforma:0
+msgid "Proforma"
+msgstr "Proposta di parcella"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:148
+#, python-format
+msgid "The company does not have an associated Withholding Payment Term"
+msgstr "Nessun termine di pagamento RA associato all'azienda"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:143
+#, python-format
+msgid "The company does not have an associated Withholding account"
+msgstr "Nessun conto delle RA associato all'azienda"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:153
+#, python-format
+msgid "The company does not have an associated Withholding journal"
+msgstr "Nessun sezionale RA associato all'azienda"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:184
+#, python-format
+msgid "The payment term %s does not have due dates"
+msgstr "La forma di pagamento %s non ha date di pagamento"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:178
+#, python-format
+msgid "The payment term %s has too many due dates"
+msgstr "La forma di pagamento %s ha troppe date di pagamento"
+
+#. module: l10n_it_withholding_tax
+#: help:res.company,withholding_payment_term_id:0
+msgid "The withholding tax will have to be paid within this term"
+msgstr "La ritenuta d'acconto deve avere una forma di pagamento associata"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,has_withholding:0
+msgid "With withholding tax"
+msgstr "Con ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: field:account.voucher,withholding_move_ids:0
+msgid "Withholding Tax Entries"
+msgstr "Voci di Ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: field:account.config.settings,withholding_account_id:0
+#: field:res.company,withholding_account_id:0
+msgid "Withholding account"
+msgstr "Conto RA da pagare"
+
+#. module: l10n_it_withholding_tax
+#: field:account.invoice,withholding_amount:0
+msgid "Withholding amount"
+msgstr "Totale Ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: field:account.config.settings,withholding_journal_id:0
+#: field:res.company,withholding_journal_id:0
+msgid "Withholding journal"
+msgstr "Sezionale Ritenute d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: field:account.config.settings,withholding_payment_term_id:0
+#: field:res.company,withholding_payment_term_id:0
+msgid "Withholding tax Payment Term"
+msgstr "Forma Pagamento Ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: view:account.voucher:0
+msgid "Withholding tax entries"
+msgstr "Voci Ritenute d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: view:account.config.settings:0
+msgid "Witholding Tax"
+msgstr "Ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: code:_description:0
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_config_settings
+#, python-format
+msgid "account.config.settings"
+msgstr "account.config.settings"
+

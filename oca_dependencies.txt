@@ -1,0 +1,7 @@
+partner-contact
+account-invoicing
+account-financial-tools
+webkit-tools
+account-payment
+stock-logistics-workflow
+l10n-italy-supplemental https://github.com/zeroincombenze/l10n-italy-supplemental.git

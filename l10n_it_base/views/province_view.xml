@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<openerp>
+<data>
+
+    <record id="view_res_province_tree" model="ir.ui.view">
+        <field name="name">res.province.tree</field>
+        <field name="model">res.province</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Province">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="region"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_province_form" model="ir.ui.view">
+        <field name="name">res.province.form</field>
+        <field name="model">res.province</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Province">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="region" select="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_province" model="ir.actions.act_window">
+        <field name="name">Provinces</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.province</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_localisation" name="Localisation" parent="base.menu_base_config"/>
+    <menuitem action="action_province" id="menu_province_partner" parent="base.menu_localisation"/>
+
+</data>
+</openerp>
