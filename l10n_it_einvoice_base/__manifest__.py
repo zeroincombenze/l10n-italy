@@ -20,7 +20,7 @@
         'account',
         'l10n_it_fiscalcode',
         'document',
-        'l10n_it_ipa',
+        'l10n_it_fiscal_ipa',
         'l10n_it_rea',
         'base_iban',
         'l10n_it_ade',

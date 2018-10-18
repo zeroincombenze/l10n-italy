@@ -13,7 +13,7 @@
     'website': 'http://www.agilebg.com',
     'license': 'LGPL-3',
     "depends": [
-        'l10n_it_fatturapa',
+        'l10n_it_einvoice_base',
         'l10n_it_split_payment',
         ],
     "data": [
