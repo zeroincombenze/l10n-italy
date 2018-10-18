@@ -14,7 +14,9 @@
 IPA Code
 =========
 
-This module adds IPA (IndicePA) code and Recipient Code fields to partner
+This module adds IPA (IndicePA) code and Recipient Code fields to partner,
+used by Italian Electronic Invoice.
+
 http://www.indicepa.gov.it
 
 
@@ -25,10 +27,14 @@ http://www.indicepa.gov.it
 Codice IPA (IndicePA)
 ======================
 
-Questo modulo permette di inserire il codice IPA (IndicePA) e il Codice Destinatario
+Questo modulo permette l'inseriento del codice IPA (IndicePA) e del Codice Destinatario
 nell'anagrafica cliente.
 
+Questi dati sono indispensabili per la gestione della Fattura Elettronica B2B e
+per la FatturaPA.
+
 http://www.indicepa.gov.it
+
 
 
 Features / Funzioni
@@ -54,8 +60,9 @@ OCA Differences / Differenze da OCA
 +--------------------------------------+-------------+-------------------+--------------------------------+
 | IPA Code                             | This Module | This Module       |                                |
 +--------------------------------------+-------------+-------------------+--------------------------------+
-| Recipient Code /C odice Destinatario | This Module | l10n_it_fatturapa | |warning| Different deployment |
+| Recipient Code / Codice Destinatario | This Module | l10n_it_fatturapa | |warning| Different deployment |
 +--------------------------------------+-------------+-------------------+--------------------------------+
+
 
 
 
@@ -148,7 +155,7 @@ Authors
 
 * `KTec S.r.l. <https://www.ktec.it/>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors
 -------------
