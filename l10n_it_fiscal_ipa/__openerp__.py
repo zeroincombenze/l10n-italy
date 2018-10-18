@@ -54,7 +54,7 @@ Features / Funzioni
 +-------------------------------------------------+----------+----------------------------------------------+
 | Parter: IPA Code / Codice IPA                   | |check|  | Per FatturaPA                                |
 +-------------------------------------------------+----------+----------------------------------------------+
-| Partner: Destination Code / Codice Destinatario | |check|  | EInvoice / Per Fattura Elettronica           |
+| Partner: Recipient Code / Codice Destinatario   | |check|  | EInvoice / Per Fattura Elettronica B2B       |
 +-------------------------------------------------+----------+----------------------------------------------+
 
 
