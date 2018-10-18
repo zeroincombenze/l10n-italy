@@ -41,7 +41,7 @@
         'demo/account_tax.xml',
         'demo/res_partner.xml',
     ],
-    'installable': True,
+    'installable': False,
     'external_dependencies': {
         'python': [
             'pyxb',  # pyxb 1.2.4
