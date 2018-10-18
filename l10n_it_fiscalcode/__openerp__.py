@@ -37,9 +37,9 @@
         ],
     'qweb': [],
     'demo': [],
-    'test': [
-        'test/fiscalcode.yml',
-        ],
+    # 'test': [
+    #     'test/fiscalcode.yml',
+    #    ],
     'post_init_hook': 'set_default_splitmode',
     'installable': True
 }
