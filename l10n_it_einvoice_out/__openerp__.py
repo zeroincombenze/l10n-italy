@@ -1,11 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 KTec S.r.l.
-#    (<http://www.ktec.it>).
-#
-#    Copyright (C) 2014 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#    Copyright (C) 2014 Davide Corio
+#    Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,5 +18,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from . import partner
+{
+    'name': 'Italian Localization - FatturaPA - Emission',
+    'version': '8.0.0.1.1',
+    'category': 'Localization/Italy',
+    'summary': 'Electronic invoices emission',
+    'author': 'Davide Corio, Agile Business Group, Innoviu',
+    'website': 'http://www.agilebg.com',
+    'license': 'AGPL-3',
+    "depends": [
+        'l10n_it_einvoice_base',
+        'l10n_it_split_payment',
+        ],
+    "data": [
+        'wizard/wizard_export_fatturapa_view.xml',
+        'views/attachment_view.xml',
+        'views/account_view.xml',
+        'security/ir.model.access.csv',
+    ],
+    "test": [],
+    'installable': False,
+    'external_dependencies': {
+        'python': ['unidecode'],
+    }
+}
