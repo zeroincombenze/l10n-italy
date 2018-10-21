@@ -8,10 +8,35 @@ Odoo 10.0 (formerly OpenERP)
 
 |en|
 
+l10n-italy
+===========
+
+Italian Localization
 
 
 
 |it|
+
+l10n-italy
+===========
+
+Localizzazione Italiana
+
+La localizzazione italiana comprende moduli per la gestione delle principali
+incombenze fiscali che le imprese italiane devono gestire.
+
+Sono coperte le aree:
+
+* Stampa registri IVA
+* Stampa libro giornale
+* Registrazione fatture fornitori con RA
+* FatturaPA
+* Fattura Elettronica B2B (in fase di sviluppo)
+* Gestione DdT
+* Data di registrazione fatture fornitori
+* Gestione Ricevute Bancarie
+* Split payment
+* Documenti con Reverse Charge
 
 
 Avaiable Addons / Moduli disponibili
@@ -44,7 +69,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_invoice_entry_date           | 10.0.0.1.0 | 10.0.8.0.0 | Account Invoice entry Date                         |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base                | 10.0.2.0.1 | |no_check| | Electronic invoices                                |
+| l10n_it_einvoice_base                | 10.0.2.0.1 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa                    | |no_check| | 10.0.1.1.0 | Electronic invoices                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -127,6 +152,23 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_ipa                          | |no_check| | 10.0.1.0.0 | IPA Code (IndicePA)                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 
+OCA Differences / Differenze da OCA
+------------------------------------
+
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Ricerca per CAP, città e provincia   | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Dati comuni/province italiane        | 2014             | 2013            |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Codici IVA completi                  | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+
 
 
 |en|
@@ -169,8 +211,8 @@ Installation / Installazione
 
 
 
-Maintainers
------------
+Maintainers / Manutezione
+-------------------------
 
 |Odoo Italia Associazione|
 
@@ -199,7 +241,7 @@ and deploy on local server.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-20
+Last Update / Ultimo aggiornamento: 2018-10-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
