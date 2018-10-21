@@ -1,56 +1,45 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
-#    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+# Copyright 2014    - Davide Corio <davide.corio@lsweb.it>
+# Copyright 2015    - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 import base64
+import logging
+
+from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (AllegatiType,
+                                                                 AnagraficaType,
+                                                                 CedentePrestatoreType,
+                                                                 CessionarioCommittenteType,
+                                                                 ContattiTrasmittenteType,
+                                                                 ContattiType,
+                                                                 DatiAnagraficiCedenteType,
+                                                                 DatiAnagraficiCessionarioType,
+                                                                 DatiBeniServiziType,
+                                                                 DatiDocumentiCorrelatiType,
+                                                                 DatiGeneraliDocumentoType,
+                                                                 DatiGeneraliType,
+                                                                 DatiPagamentoType,
+                                                                 DatiRiepilogoType,
+                                                                 DatiTrasmissioneType,
+                                                                 DettaglioLineeType,
+                                                                 DettaglioPagamentoType,
+                                                                 FatturaElettronica,
+                                                                 FatturaElettronicaBodyType,
+                                                                 FatturaElettronicaHeaderType,
+                                                                 IdFiscaleType,
+                                                                 IndirizzoType,
+                                                                 IscrizioneREAType,
+                                                                 ScontoMaggiorazioneType)
+from openerp.addons.l10n_it_einvoice_base.models.account import (
+    RELATED_DOCUMENT_TYPES)
 from openerp.osv import orm
 from openerp.tools.translate import _
-from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
-    FatturaElettronica,
-    FatturaElettronicaHeaderType,
-    DatiTrasmissioneType,
-    IdFiscaleType,
-    ContattiTrasmittenteType,
-    CedentePrestatoreType,
-    AnagraficaType,
-    IndirizzoType,
-    IscrizioneREAType,
-    CessionarioCommittenteType,
-    DatiAnagraficiCedenteType,
-    DatiAnagraficiCessionarioType,
-    FatturaElettronicaBodyType,
-    DatiGeneraliType,
-    DettaglioLineeType,
-    DatiBeniServiziType,
-    DatiRiepilogoType,
-    DatiGeneraliDocumentoType,
-    DatiDocumentiCorrelatiType,
-    ContattiType,
-    DatiPagamentoType,
-    DettaglioPagamentoType,
-    AllegatiType,
-    ScontoMaggiorazioneType
-)
-from openerp.addons.l10n_it_fatturapa.models.account import (
-    RELATED_DOCUMENT_TYPES)
-import logging
+
 _logger = logging.getLogger(__name__)
 
 try:
@@ -62,7 +51,7 @@ except ImportError as err:
 
 class WizardExportFatturapa(orm.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export EInvoice"
 
     def __init__(self, cr, uid, **kwargs):
         self.fatturapa = False
@@ -82,14 +71,13 @@ class WizardExportFatturapa(orm.TransientModel):
                 _('Error!'), _('Company TIN not set.'))
 
         number = self.number
-        attach_obj = self.pool['fatturapa.attachment.out']
+        attach_model = self.pool['fatturapa.attachment.out']
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
-            'datas': base64.encodestring(self.fatturapa.toxml("latin1")),
+            'datas': base64.encodestring(self.fatturapa.toxml("UTF-8")),
         }
-        attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
-        return attach_id
+        return attach_model.create(cr, uid, attach_vals, context=context)
 
     def setProgressivoInvio(self, cr, uid, context=None):
         context = context or {}
@@ -109,7 +97,19 @@ class WizardExportFatturapa(orm.TransientModel):
             cr, uid, fatturapa_sequence.id, context=context)
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ProgressivoInvio = number
-        return True
+        return number
+
+    def _wep_phone_number(self, phone):
+        """"Remove trailing +39 abd all no numeric chars"""
+        if phone[0:3] == '+39':
+            phone = phone[3:]
+        elif phone[0] == '+':
+            phone = '00' + phone[1:]
+        wep_phone = ''
+        for i in range(len(phone)):
+            if phone[i].is_digit():
+                wep_phone += phone[i]
+        return wep_phone
 
     def _setIdTrasmittente(self, cr, uid, company, context=None):
         if context is None:
@@ -283,7 +283,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
-                )
+            )
 
     def _setContatti(self, cr, uid, CedentePrestatore,
                      company, context=None):
@@ -293,7 +293,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
-            )
+        )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
                                  company, context=None):
@@ -622,7 +622,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
-                )
+            )
             if tax.amount == 0.0:
                 if not tax.non_taxable_nature:
                     raise orm.except_orm(
@@ -675,7 +675,7 @@ class WizardExportFatturapa(orm.TransientModel):
                         invoice.payment_term.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
-                    )
+                )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
@@ -811,18 +811,18 @@ class WizardExportFatturapa(orm.TransientModel):
             inv.write({'fatturapa_attachment_out_id': attach_id})
 
         view_rec = model_data_model.get_object_reference(
-            cr, uid, 'l10n_it_fatturapa_out',
+            cr, uid, 'l10n_it_einvoice_out',
             'view_fatturapa_out_attachment_form')
         if view_rec:
             view_id = view_rec and view_rec[1] or False
 
         return {
             'view_type': 'form',
-            'name': "Export FatturaPA",
+            'name': "Export EInvoice",
             'view_id': [view_id],
             'res_id': attach_id,
             'view_mode': 'form',
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             'context': context
-            }
+        }

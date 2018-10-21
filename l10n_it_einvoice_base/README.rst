@@ -14,10 +14,16 @@
 EInvoice + FatturaPA
 =====================
 
-This module allows you to generate the fatturaPA XML file version 1.2
-which will be sent to the SdI (Exchange System by Italian Tax Authority)
+This module manage infrastructure to manage Italian E Invoice and FatturaPA
+as per send to the SdI (Exchange System by Italian Tax Authority)
 
+|warning| This module may be conflict with OCA modules with error:
 
+*name CryptoBinary used for multiple values in typeBinding*
+
+Please, do not mix OCA module and OIA modules.
+
+|halt| Do not install this module: it is in development status; official release will be avaiable on 2018-10-22
 
 
 |it|
@@ -25,8 +31,8 @@ which will be sent to the SdI (Exchange System by Italian Tax Authority)
 Fattura Elettronica + FatturaPA
 ================================
 
-Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-da trasmettere al sistema di interscambio SdI.
+Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
+Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
 
 |warning| Lo schema di definizione dei file xml, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
@@ -43,7 +49,7 @@ dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
-
+|halt| Non installare questo modulo: è in fase di svilupp; il rilascio è previsto per lunedì 22-10-2018
 
 Features / Funzioni
 --------------------
@@ -54,8 +60,6 @@ Features / Funzioni
 | Emissione FatturaPA     | |check|  | Genera file .xml versione 1.2                |
 +-------------------------+----------+----------------------------------------------+
 | Emissione Fattura B2B   | |check|  | Genera file .xml versione 1.2                |
-+-------------------------+----------+----------------------------------------------+
-| Dati azienda da fattura | |check|  | Versione OCA utilizza dati azienda da utente |
 +-------------------------+----------+----------------------------------------------+
 
 
@@ -68,48 +72,56 @@ Certifications / Certificazioni
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
 | |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2017   | Validazione contro schema xml          |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
-| |DesktopTelematico|  | `Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                                   | 01-06-2017    | 31-12-2017   | Controllo tramite Desktop telematico   |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
 | |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2017   | Controllo tramite Desktop telematico   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
-
 
 
 
 |en|
 
 
-Installation
-=============
+Installation / Installazione
+=============================
 
-These instruction are just an example to remember what you have to do.
-Installation is based on `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__
-Deployment is ODOO_DIR/REPOSITORY_DIR/MODULE_DIR where:
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is based on:       | L'installazione è basata su:             |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is         | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| **/opt/odoo/7.0/l10n-italy/**                                              |
++----------------------------------------------------------------------------+
 
-| ODOO_DIR is root Odoo directory, i.e. /opt/odoo/7.0
-| REPOSITORY_DIR is downloaded git repository directory, currently is: l10n-italy
-| MODULE_DIR is module directory, currently is: l10n_it_einvoice_base
-| MYDB is the database name
 |
 
 ::
 
-    pip install codicefiscale
-    pip install pyxb==1.2.4
-    pip install unidecode
     cd $HOME
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
     odoo_install_repository l10n-italy -b 7.0 -O zero
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
+
+|
 
 From UI: go to:
 
 |menu| Setting > Modules > Update Modules List
 
-|menu| Setting > Local Modules |right_do| Select l10n_it_einvoice_base > Install
+|menu| Setting > Local Modules |right_do| Select **l10n_it_einvoice_base** > Install
 
 |warning| If your Odoo instance crashes, you can do following instruction
 to recover installation status:
@@ -121,15 +133,16 @@ to recover installation status:
 
 
 
-
-
 Known issues / Roadmap
 =======================
 
-|warning| Questo modulo rimpiazza il modulo OCA. Leggete attentamente il
-paragrafo relativo alle funzionalità e differenze.
+Please, do not mix the following OCA and OIA module:
 
+:warning: l10n_it_base replacing OCA module
 
+:warning: l10n_it_ade module does not exist in OCA repository
+
+:warning: l10n_it_fiscalcode replacing OCA module
 
 
 
@@ -154,39 +167,32 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
+Credits / Riconoscimenti
+=========================
 
-Credits
-========
+Authors / Autori
+-----------------
 
-Authors
---------
 
+* `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
+Contributors / Contributi
+--------------------------
 
-Contributors
--------------
 
+* Davide Corio <davide.corio@abstract.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-
-Funders
---------
-
-The development of this module has been financially supported by:
-
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-
-
-Maintainers
-------------
+Maintainers / Manutezione
+--------------------------
 
 |Odoo Italia Associazione|
 
 This module is maintained by the Odoo Italia Associazione.
 
 To contribute to this module, please visit https://odoo-italia.org/.
-
 
 
 
@@ -199,15 +205,18 @@ To contribute to this module, please visit https://odoo-italia.org/.
 is a nonprofit organization whose mission is to support
 the collaborative development of Odoo features and promote its widespread use.
 
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <http://www.shs-av.com/>`__
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <http://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed for Italian law and markeplace.
 
 Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
 and deploy on local server.
 
 
+|
+
+Last Update / Ultimo aggiornamento: 2018-10-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -224,18 +233,21 @@ and deploy on local server.
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
+.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
-.. |Tech Doc| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
-    :target: http://wiki.zeroincombenze.org/en/Odoo/7.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
-.. |Help| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
-    :target: http://wiki.zeroincombenze.org/it/Odoo/7.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
+.. |OCA Codecov Status| image:: badge-oca-codecov
+    :target: oca-codecov-URL
+    :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
@@ -249,11 +261,15 @@ and deploy on local server.
 .. |right_do| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/right_do.png
 .. |exclamation| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
+.. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
+.. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-   
+
 

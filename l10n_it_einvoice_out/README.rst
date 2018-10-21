@@ -1,54 +1,25 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2014    - Davide Corio
-# Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-#
-{
-    'name': 'Italian Localization - FatturaPA',
-    'summary': 'FatturaPA + Electronic Invoice',
-    'version': '7.0.2.1.0',
-    'category': 'Localization/Italy',
-    'author': 'Odoo Community Association (OCA),Odoo Italia Associazione',
-    'website': 'http://www.odoo-italia.org',
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_it_ade',
-        'account',
-        'l10n_it_base',
-        'l10n_it_fiscalcode',
-        'document',
-        'l10n_it_fiscal_ipa',
-        'l10n_it_rea',
-        'base_iban',
-        'l10n_it_fiscal_payment_term'
-    ],
-    'data': [
-        'data/fatturapa_data.xml',
-        'data/welfare.fund.type.csv',
-        'views/account_view.xml',
-        'views/company_view.xml',
-        'views/partner_view.xml',
-        'security/ir.model.access.csv'
-    ],
-    'demo': ['demo/account_invoice_fatturapa.xml'],
-    'installable': True,
-    'description': '''|en|
+|Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_einvoice_out/static/src/img/icon.png
+
+====================================
+|icon| EInvoice + FatturaPA Emission
+====================================
+
+.. contents::
+
+
+|en|
 
 EInvoice + FatturaPA
 =====================
 
-This module manage infrastructure to manage Italian E Invoice and FatturaPA
-as per send to the SdI (Exchange System by Italian Tax Authority)
+This module allows you to generate the fatturaPA XML file version 1.2
+which will be sent to the SdI (Exchange System by Italian Tax Authority)
 
-|warning| This module may be conflict with OCA modules with error:
+http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
 
-*name CryptoBinary used for multiple values in typeBinding*
-
-Please, do not mix OCA module and OIA modules.
+|warning| Read carefully note of module l10n_it_einvoice_base before install this module
 
 |halt| Do not install this module: it is in development status; official release will be avaiable on 2018-10-22
 
@@ -58,8 +29,8 @@ Please, do not mix OCA module and OIA modules.
 Fattura Elettronica + FatturaPA
 ================================
 
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
-Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
+Questo modulo permette di generare il file xml della fatturaPA versione 1.2
+da trasmettere al sistema di interscambio SdI.
 
 |warning| Lo schema di definizione dei file xml, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
@@ -88,25 +59,113 @@ Features / Funzioni
 +-------------------------+----------+----------------------------------------------+
 | Emissione Fattura B2B   | |check|  | Genera file .xml versione 1.2                |
 +-------------------------+----------+----------------------------------------------+
+| Dati azienda da fattura | |check|  | Versione OCA utilizza dati azienda da utente |
++-------------------------+----------+----------------------------------------------+
 
 
+OCA Differences / Differenze da OCA
+------------------------------------
 
-Certifications / Certificazioni
---------------------------------
++--------------------------------------+---------------------+-------------------------+--------------------------------+
+| Description / Descrizione            | Odoo Italia         | OCA                     | Notes / Note                   |
++--------------------------------------+---------------------+-------------------------+--------------------------------+
+| Company / Azienda                    | By User / Da Utente | By Invoice / Da Fattura | Different layout               |
++--------------------------------------+---------------------+-------------------------+--------------------------------+
 
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
-| Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                   |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2017   | Validazione contro schema xml          |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
-| |DesktopTelematico|  | `Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                                   | 01-06-2017    | 31-12-2017   | Controllo tramite Desktop telematico   |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2017   | Controllo tramite Desktop telematico   |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------+
 
 
 
 |en|
+
+
+Installation / Installazione
+=============================
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is based on:       | L'installazione è basata su:             |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is         | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| **/opt/odoo/7.0/l10n-italy/**                                              |
++----------------------------------------------------------------------------+
+
+|
+
+::
+
+    cd $HOME
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    export PATH=$HOME/dev:$PATH
+    odoo_install_repository l10n-italy -b 7.0 -O zero
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
+
+
+|
+
+From UI: go to:
+
+|menu| Setting > Modules > Update Modules List
+
+|menu| Setting > Local Modules |right_do| Select **l10n_it_einvoice_out** > Install
+
+|warning| If your Odoo instance crashes, you can do following instruction
+to recover installation status:
+
+``run_odoo_debug 7.0 -um l10n_it_einvoice_out -s -d MYDB``
+
+
+
+
+Usage / Uso
+============
+
+|menu| Configurazione > Configurazione > Contabilità > Fattura PA |do_right| Impostare i vari parametri
+|menu| Contabilità > Configurazione > Sezionali > Sezionali |do_right| Impostare sezionale fattura elettronica
+|menu| Contabilità > Configurazione > Imposte > Imposte |do_right| Impostare natura codici IVA
+|menu| Contabilità > Configurazione > Management > Termini di pagamento |do_right| Collegare i terminii di pagamento con i relativi termini fiscali
+|menu| Contabilità > Clienti > Clienti |do_right| Impostare IPA, EORI (se necessario), nazione, partita IVA, codice fiscale
+
+
+
+Known issues / Roadmap
+=======================
+
+|warning| Questo modulo rimpiazza il modulo OCA. Leggete attentamente il
+paragrafo relativo alle funzionalità e differenze.
+
+
+
+
+Issue Tracker
+==============
+
+Bug reports are welcome! You can use the issue tracker to report bugs,
+and/or submit pull requests on `GitHub Issues
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+
+In case of trouble, please check there if your issue has already been reported.
+
+
+Proposals for enhancement
+--------------------------
+
+If you have a proposal to change this module, you may want to send an email to
+<moderatore@odoo-italia.org> for initial feedback.
+An Enhancement Proposal may be submitted if your idea gains ground.
+
 
 
 
@@ -137,6 +196,25 @@ Maintainers / Manutezione
 This module is maintained by the Odoo Italia Associazione.
 
 To contribute to this module, please visit https://odoo-italia.org/.
+
+
+
+----------------
+
+**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
+(formerly OpenERP)
+
+**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
+is a nonprofit organization whose mission is to support
+the collaborative development of Odoo features and promote its widespread use.
+
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed for Italian law and markeplace.
+
+Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
+and deploy on local server.
 
 
 |
@@ -188,6 +266,8 @@ Last Update / Ultimo aggiornamento: 2018-10-21
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
 .. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
 .. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
@@ -195,5 +275,4 @@ Last Update / Ultimo aggiornamento: 2018-10-21
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
 
-''',
-}
+

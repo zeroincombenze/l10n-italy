@@ -1,8 +1,8 @@
 Fattura Elettronica + FatturaPA
 ===============================
 
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
-Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
+Questo modulo permette di generare il file xml della fatturaPA versione 1.2
+da trasmettere al sistema di interscambio SdI.
 
 |warning| Lo schema di definizione dei file xml, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file

@@ -2,37 +2,53 @@
 <openerp>
 <data noupdate="1">
 
-    <record id="tax_code_purchase_22" model="account.tax.code">
+    <record id="tax_vat_22a" model="account.tax.code">
         <field name="name">IVA a credito 22%</field>
     </record>
 
-    <record id="tax_base_code_purchase_22" model="account.tax.code">
-        <field name="name">IVA a credito 22% (imponibile)</field>
+    <record id="tax_base_22a" model="account.tax.code">
+        <field name="name">Imponibile IVA a credito 22%</field>
     </record>
 
-    <record id="tax_22" model="account.tax">
-        <field name="name">22% ftPA</field>
-        <field name="description">22</field>
+    <record id="tax_22a" model="account.tax">
+        <field name="name">22% acquisti</field>
+        <field name="description">22% acq.</field>
         <field name="amount">0.22</field>
-        <field name="base_code_id" ref="tax_base_code_purchase_22"></field>
-        <field name="tax_code_id" ref="tax_code_purchase_22"></field>
+        <field name="base_code_id" ref="tax_base_22a"></field>
+        <field name="tax_code_id" ref="tax_vat_22a"></field>
+    </record>
+
+    <record id="tax_vat_22v" model="account.tax.code">
+        <field name="name">IVA a debito 22%</field>
+    </record>
+
+    <record id="tax_base_22v" model="account.tax.code">
+        <field name="name">Imponibile IVA a debito 22%</field>
+    </record>
+
+    <record id="tax_22v" model="account.tax">
+        <field name="name">22% vendite</field>
+        <field name="description">22% vend.</field>
+        <field name="amount">0.22</field>
+        <field name="base_code_id" ref="tax_base_22v"></field>
+        <field name="tax_code_id" ref="tax_vat_22v"></field>
     </record>
 
 
-    <record id="tax_code_purchase_22_SP" model="account.tax.code">
+    <record id="tax_vat_22a_SP" model="account.tax.code">
         <field name="name">IVA a credito 22% (SPLIT PAYMENT)</field>
     </record>
 
-    <record id="tax_base_code_purchase_22_SP" model="account.tax.code">
+    <record id="tax_base_22a_SP" model="account.tax.code">
         <field name="name">IVA a credito 22% (SPLIT PAYMENT) (imponibile)</field>
     </record>
 
-    <record id="tax_22_SP" model="account.tax">
+    <record id="tax_22a_SP" model="account.tax">
         <field name="name">SP22%</field>
         <field name="description">22 Split Payment</field>
         <field name="amount">0.22</field>
-        <field name="base_code_id" ref="tax_base_code_purchase_22_SP"></field>
-        <field name="tax_code_id" ref="tax_code_purchase_22_SP"></field>
+        <field name="base_code_id" ref="tax_base_22a_SP"></field>
+        <field name="tax_code_id" ref="tax_vat_22a_SP"></field>
         <field name="payability">S</field>
     </record>
 
@@ -191,7 +207,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -203,7 +219,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -223,7 +239,7 @@
         <field name="date_invoice" eval="'2018-06-15'"/>
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
         <field name="comment">prima riga
-               seconda riga</field>
+seconda riga</field>
     </record>
 
     <record id="fatturapa_invoice_1_line_0" model="account.invoice.line">
@@ -231,7 +247,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -243,7 +259,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -271,7 +287,7 @@
         <field name="date_invoice" eval="'2018-06-15'"/>
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
         <field name="comment">prima riga
-               seconda riga</field>
+seconda riga</field>
     </record>
 
     <record id="fatturapa_invoice_2_line_0" model="account.invoice.line">
@@ -279,7 +295,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -292,7 +308,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -327,7 +343,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22_SP')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22a_SP')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -339,7 +355,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22_SP')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22a_SP')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -366,7 +382,7 @@
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
         <field name="discount" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
