@@ -21,20 +21,18 @@ http://www.indicepa.gov.it
 
 
 
-
 |it|
 
 Codice IPA (IndicePA)
 ======================
 
-Questo modulo permette l'inseriento del codice IPA (IndicePA) e del Codice Destinatario
+Questo modulo permette l'inserimento del codice IPA (IndicePA) e del Codice Destinatario
 nell'anagrafica cliente.
 
 Questi dati sono indispensabili per la gestione della Fattura Elettronica B2B e
 per la FatturaPA.
 
 http://www.indicepa.gov.it
-
 
 
 Features / Funzioni
@@ -47,7 +45,6 @@ Features / Funzioni
 +-------------------------------------------------+----------+----------------------------------------------+
 | Partner: Recipient Code / Codice Destinatario   | |check|  | EInvoice / Per Fattura Elettronica B2B       |
 +-------------------------------------------------+----------+----------------------------------------------+
-
 
 
 OCA Differences / Differenze da OCA
@@ -66,35 +63,45 @@ OCA Differences / Differenze da OCA
 
 
 
-
 |en|
 
 
-Installation
-=============
+Installation / Installazione
+=============================
 
-These instruction are just an example to remember what you have to do.
-Installation is based on `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__
-Deployment is ODOO_DIR/REPOSITORY_DIR/MODULE_DIR where:
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is based on:       | L'installazione è basata su:             |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is         | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| **/opt/odoo/10.0/l10n-italy/**                                             |
++----------------------------------------------------------------------------+
 
-| ODOO_DIR is root Odoo directory, i.e. /opt/odoo/10.0
-| REPOSITORY_DIR is downloaded git repository directory, currently is: l10n-italy
-| MODULE_DIR is module directory, currently is: l10n_it_fiscal_ipa
-| MYDB is the database name
 |
 
 ::
 
-    pip install codicefiscale
-    pip install unidecode
-    pip install pyxb==1.2.4
     cd $HOME
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
     odoo_install_repository l10n-italy -b 10.0 -O zero
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
+
+|
 
 From UI: go to:
 
@@ -115,13 +122,11 @@ to recover installation status:
 
 
 
-
 Known issues / Roadmap
 =======================
 
 |warning| Questo modulo rimpiazza il modulo OCA. Leggete attentamente il
 paragrafo relativo alle funzionalità e differenze.
-
 
 
 
@@ -147,20 +152,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
+Credits / Riconoscimenti
+=========================
 
-Credits
-========
-
-Authors
---------
+Authors / Autori
+-----------------
 
 
 * `KTec S.r.l. <https://www.ktec.it/>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-Contributors
--------------
+Contributors / Contributi
+--------------------------
 
 
 * Luigi Di Naro <luigi.dinaro@ktec.it>
@@ -168,15 +172,14 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Maintainers
-------------
+Maintainers / Manutenimento
+----------------------------
 
 |Odoo Italia Associazione|
 
 This module is maintained by the Odoo Italia Associazione.
 
 To contribute to this module, please visit https://odoo-italia.org/.
-
 
 
 
@@ -189,15 +192,18 @@ To contribute to this module, please visit https://odoo-italia.org/.
 is a nonprofit organization whose mission is to support
 the collaborative development of Odoo features and promote its widespread use.
 
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <http://www.shs-av.com/>`__
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <http://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed for Italian law and markeplace.
 
 Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
 and deploy on local server.
 
 
+|
+
+Last Update / Ultimo aggiornamento: 2018-10-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -214,18 +220,21 @@ and deploy on local server.
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-10.svg
+.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-10.svg
     :target: https://github.com/OCA/l10n-italy/tree/10.0
     :alt: OCA
-.. |Tech Doc| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: http://wiki.zeroincombenze.org/en/Odoo/10.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
     :alt: Technical Documentation
-.. |Help| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: http://wiki.zeroincombenze.org/it/Odoo/10.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
+.. |OCA Codecov Status| image:: badge-oca-codecov
+    :target: oca-codecov-URL
+    :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
@@ -239,11 +248,13 @@ and deploy on local server.
 .. |right_do| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/right_do.png
 .. |exclamation| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
+.. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
+.. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-   
+
 

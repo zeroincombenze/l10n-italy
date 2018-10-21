@@ -8,11 +8,11 @@
 #
 {
     'name': 'IPA Code (IndicePA)',
+    'summary': 'IPA Code and Destination Code in Partner Record',
     'version': '10.0.1.1.0',
     'category': 'Localisation/Italy',
     'author': 'KTec S.r.l, Odoo Community Association (OCA), Odoo Italia Associazione',
     'website': 'http://www.ktec.it',
-    'summary': 'IPA Code and Destination Code in Partner Record',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': ['view/partner_view.xml'],

@@ -26,7 +26,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
 
     def getAttacment(self, name):
         path = get_module_resource(
-            'l10n_it_fatturapa_out',
+            'l10n_it_einvoice_out',
             'tests', 'data', 'attah_base.pdf'
         )
         currDir = os.path.dirname(path)
@@ -35,7 +35,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         return self.getFilePath(new_file)
 
     def getFile(self, filename):
-        path = get_module_resource('l10n_it_fatturapa_out',
+        path = get_module_resource('l10n_it_einvoice_out',
                                    'tests', 'data', filename)
         return self.getFilePath(path)
 
@@ -70,12 +70,12 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
         self.product_uom_unit = self.env.ref('product.product_uom_unit')
         self.product_product_10 = self.env.ref('product.product_product_10')
         self.product_order_01 = self.env.ref('product.product_order_01')
-        self.tax_22 = self.env.ref('l10n_it_fatturapa.tax_22')
-        self.tax_22_SP = self.env.ref('l10n_it_fatturapa.tax_22_SP')
+        self.tax_22 = self.env.ref('l10n_it_einvoice_base.tax_22')
+        self.tax_22_SP = self.env.ref('l10n_it_einvoice_base.tax_22_SP')
         self.res_partner_fatturapa_0 = self.env.ref(
-            'l10n_it_fatturapa.res_partner_fatturapa_0')
+            'l10n_it_einvoice_base.res_partner_fatturapa_0')
         self.fiscal_position_sp = self.env.ref(
-            'l10n_it_fatturapa.fiscal_position_sp')
+            'l10n_it_einvoice_base.fiscal_position_sp')
         company = self.env.ref('base.main_company')
         company.sp_account_id = self.env['account.account'].search([
             (
@@ -101,7 +101,7 @@ class TestFatturaPAXMLValidation(AccountTestUsers):
     def set_sequences(self, file_number, invoice_number, dt):
         seq_pool = self.env['ir.sequence']
         seq_id = self.data_model.xmlid_to_res_id(
-            'l10n_it_fatturapa.seq_fatturapa')
+            'l10n_it_einvoice_base.seq_fatturapa')
         ftpa_seq = seq_pool.browse(seq_id)
         ftpa_seq.write({
             'implementation': 'no_gap',
