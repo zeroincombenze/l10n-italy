@@ -53,11 +53,21 @@ OCA Differences / Differenze da OCA
 +--------------------------------------+-------------+-------------------+--------------------------------+
 | Description / Descrizione            | Odoo Italia | OCA               | Notes / Note                   |
 +--------------------------------------+-------------+-------------------+--------------------------------+
+| Validation chesks / Validazioni      | |check|     | |no_check|        |                                |
++--------------------------------------+-------------+-------------------+--------------------------------+
 | Partner view / Vista cliente         | This Module | This Module       | Different layout               |
 +--------------------------------------+-------------+-------------------+--------------------------------+
 | IPA Code                             | This Module | This Module       |                                |
 +--------------------------------------+-------------+-------------------+--------------------------------+
 | Recipient Code / Codice Destinatario | This Module | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------+-------------------+--------------------------------+
+| Is PA / Pubbblica Amministrazione?   | This Module | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------+-------------------+--------------------------------+
+| EInvoice / Soggetto Fattura E.       | This Module | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------+-------------------+--------------------------------+
+| EORI Code / Codice EORI              | This Module | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------+-------------------+--------------------------------+
+| License Code / Codice Licenza        | This Module | l10n_it_fatturapa | |warning| Different deployment |
 +--------------------------------------+-------------+-------------------+--------------------------------+
 
 
@@ -172,8 +182,8 @@ Contributors / Contributi
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Maintainers / Manutenimento
-----------------------------
+Maintainers / Manutezione
+--------------------------
 
 |Odoo Italia Associazione|
 
@@ -203,7 +213,7 @@ and deploy on local server.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-20
+Last Update / Ultimo aggiornamento: 2018-10-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -250,6 +260,8 @@ Last Update / Ultimo aggiornamento: 2018-10-20
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
 .. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
 .. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png

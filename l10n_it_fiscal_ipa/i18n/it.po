@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-20 19:48+0000\n"
-"PO-Revision-Date: 2018-10-20 19:48+0000\n"
+"POT-Creation-Date: 2018-10-21 15:31+0000\n"
+"PO-Revision-Date: 2018-10-21 15:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_fiscal_ipa.view_partner_ipa_form
 msgid "0000000"
 msgstr "0000000"
+
+#. module: l10n_it_fiscal_ipa
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_partner_eori_code
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_users_eori_code
+msgid "EORI Code"
+msgstr "EORI Code"
 
 #. module: l10n_it_fiscal_ipa
 #: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_partner_ipa_code
@@ -38,9 +44,45 @@ msgid "Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno accred
 msgstr "Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che hanno accreditato un canale; qualora il destinatario non abbia accreditato un canale presso Sdi e riceva via PEC le fatture, l'elemento deve essere valorizzato con tutti zeri ('0000000'). "
 
 #. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:49
+#, python-format
+msgid "Il partner %s è una PA: deve avere il codice IPA di 6 caratteri"
+msgstr "Il partner %s è una PA: deve avere il codice IPA di 6 caratteri"
+
+#. module: l10n_it_fiscal_ipa
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_partner_license_number
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_users_license_number
+msgid "License Code"
+msgstr "License Code"
+
+#. module: l10n_it_fiscal_ipa
 #: model:ir.model,name:l10n_it_fiscal_ipa.model_res_partner
 msgid "Partner"
-msgstr "Soggetto"
+msgstr "Partner"
+
+#. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:43
+#, python-format
+msgid "Partner %s dichiarato sia PA che Fattura B2B!"
+msgstr "Partner %s dichiarato sia PA che Fattura B2B!"
+
+#. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:55
+#, python-format
+msgid "Partner %s, soggetto a Fattura Elettronica ma senza P.IVA ne codice fiscale"
+msgstr "Partner %s, soggetto a Fattura Elettronica ma senza P.IVA ne codice fiscale"
+
+#. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:63
+#, python-format
+msgid "Partner %s, soggetto a Fattura Elettronica: deve avere il codice destinatario di 7 caratteri eventualmente valorizzato con 0000000"
+msgstr "Partner %s, soggetto a Fattura Elettronica: deve avere il codice destinatario di 7 caratteri eventualmente valorizzato con 0000000"
+
+#. module: l10n_it_fiscal_ipa
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_partner_is_pa
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_users_is_pa
+msgid "Public administration"
+msgstr "Public administration"
 
 #. module: l10n_it_fiscal_ipa
 #: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_partner_codice_destinatario
@@ -49,7 +91,13 @@ msgid "Recipient Code"
 msgstr "Recipient Code"
 
 #. module: l10n_it_fiscal_ipa
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_partner_electronic_invoice_subjected
+#: model:ir.model.fields,field_description:l10n_it_fiscal_ipa.field_res_users_electronic_invoice_subjected
+msgid "Subjected to electronic invoice"
+msgstr "Subjected to electronic invoice"
+
+#. module: l10n_it_fiscal_ipa
 #: model:ir.ui.view,arch_db:l10n_it_fiscal_ipa.view_partner_ipa_form
 msgid "Tax Authority"
-msgstr "Agenza delle Entrate"
+msgstr "Erario"
 

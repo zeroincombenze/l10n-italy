@@ -42,7 +42,9 @@ class TestAdeCodiceCarica(test_common.SingleTransactionCase):
         return self.registry(model).search(self.cr, self.uid, *args)
 
     def browse612(self, model, id):
-        return self.registry(model).browse(self.cr, self.uid, id)
+        if int(release.major_version.split('.')[0]) < 8:
+            return self.registry(model).browse(self.cr, self.uid, id)
+        return self.registry(model).browse(id)
 
     def write612(self, model, id, values):
         """Write existent record [7.0]"""

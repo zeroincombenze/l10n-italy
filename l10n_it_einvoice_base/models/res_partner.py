@@ -2,14 +2,19 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models
+from odoo import fields, models, _
+
+
+class AccountFiscalPosition(models.Model):
+    _inherit = 'account.fiscal.position'
+
+    regime_fiscale = fields.Many2one(
+        'fatturapa.fiscal_position', string='Regime Fiscale')
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    eori_code = fields.Char('EORI Code', size=20)
-    license_number = fields.Char('License Code', size=20)
     # 1.2.6 RiferimentoAmministrazione
     pa_partner_code = fields.Char('PA Code for partner', size=20)
     # 1.2.1.4
@@ -25,3 +30,11 @@ class ResPartner(models.Model):
     register_fiscalpos = fields.Many2one(
         'fatturapa.fiscal_position',
         string="Register Fiscal Position")
+    # 1.1.6
+    pec_destinatario = fields.Char(
+        "PEC destinatario",
+        help="Indirizzo PEC al quale inviare la fattura elettronica. "
+             "Da valorizzare "
+             "SOLO nei casi in cui l'elemento informativo "
+             "<CodiceDestinatario> vale '0000000'"
+    )

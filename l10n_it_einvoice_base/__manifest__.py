@@ -24,6 +24,7 @@
         'l10n_it_rea',
         'base_iban',
         'l10n_it_ade',
+        'l10n_it_pec',
         # 'l10n_it_esigibilita_iva',
         # 'l10n_it_fiscal_payment_term',
         # 'l10n_it_split_payment',
@@ -35,7 +36,8 @@
         'data/welfare.fund.type.csv',
         'views/account_view.xml',
         'views/company_view.xml',
-        'views/partner_view.xml',
+        'views/regime_fiscale_view.xml',
+        'views/fiscal_postion_view.xml',
         'security/ir.model.access.csv',
     ],
     "demo": [
