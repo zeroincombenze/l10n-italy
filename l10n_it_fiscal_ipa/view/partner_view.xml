@@ -11,8 +11,21 @@
                 <page string="Tax Authority" col="4" name="tax_authority"
                       attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}">
                     <group>
-                        <field name="ipa_code" placeholder="IPA123" />
-                        <field name="codice_destinatario" placeholder="0000000" />
+                        <field name="electronic_invoice_subjected"
+                               on_change="check_codice_destinatario(
+                                          vat, fiscalcode, is_pa, ipa_code, electronic_invoice_subjected, codice_destinatario)" />
+                        <field name="codice_destinatario" placeholder="0000000"
+                               on_change="check_codice_destinatario(
+                                          vat, fiscalcode, is_pa, ipa_code, electronic_invoice_subjected, codice_destinatario)" />
+                        <field name="pec_destinatario" placeholder="nome@pec.it" />
+                        <field name="is_pa"
+                               on_change="onchange_electronic_invoice_subjected(
+                                          vat, fiscalcode, is_pa, ipa_code, electronic_invoice_subjected, codice_destinatario)" />
+                        <field name="ipa_code" placeholder="IPA123"
+                               on_change="check_codice_destinatario(
+                                          vat, fiscalcode, is_pa, ipa_code, electronic_invoice_subjected, codice_destinatario)" />
+                        <field name="eori_code"/>
+                        <field name="license_number"/>
                     </group>
                 </page>
             </xpath>

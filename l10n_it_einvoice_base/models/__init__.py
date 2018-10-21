@@ -20,5 +20,5 @@
 
 from . import account
 from . import company
-from . import partner
+from . import res_partner
 # from . import account_tax

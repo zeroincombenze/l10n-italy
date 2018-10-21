@@ -234,12 +234,12 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         test_fatt_content = test_fatt_data.decode('base64')
         test_fatt = etree.fromstring(test_fatt_content, parser)
         xml = etree.fromstring(xml_content, parser)
-        fd = open('/opt/odoo/tmp/tmp_test_fatt.log', 'w')       # debug
-        fd.write(etree.tostring(test_fatt))                     # debug
-        fd.close()                                              # debug
-        fd = open('/opt/odoo/tmp/tmp_test_xml.log', 'w')        # debug
-        fd.write(etree.tostring(xml))                           # debug
-        fd.close()                                              # debug
+        # fd = open('/opt/odoo/tmp/tmp_test_fatt.log', 'w')       # debug
+        # fd.write(etree.tostring(test_fatt))                     # debug
+        # fd.close()                                              # debug
+        # fd = open('/opt/odoo/tmp/tmp_test_xml.log', 'w')        # debug
+        # fd.write(etree.tostring(xml))                           # debug
+        # fd.close()                                              # debug
         self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
 
     def test_0_xml_export(self):
