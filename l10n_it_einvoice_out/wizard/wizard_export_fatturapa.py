@@ -54,9 +54,9 @@ class WizardExportFatturapa(models.TransientModel):
     _description = "Export EInvoice"
 
     def saveAttachment(self, fatturapa, number):
-        if 'company_id' in self.context:
+        if 'company_id' in self.env.context:
             company_model = self.env['res.company']
-            company = company_model.browse(self.context['company_id'])
+            company = company_model.browse(self.env.context['company_id'])
         else:
             company = self.env.user.company_id
 
@@ -72,9 +72,9 @@ class WizardExportFatturapa(models.TransientModel):
         return attach_model.create(attach_vals)
 
     def setProgressivoInvio(self, fatturapa):
-        if 'company_id' in self.context:
+        if 'company_id' in self.env.context:
             company_model = self.env['res.company']
-            company = company_model.browse(self.context['company_id'])
+            company = company_model.browse(self.env.context['company_id'])
         else:
             company = self.env.user.company_id
 
@@ -94,16 +94,21 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(msg)
         return number
 
+
+    def _string2codeset(self, text):
+        return text.encode('latin', 'ignore').decode('latin')
+
     def _wep_phone_number(self, phone):
         """"Remove trailing +39 abd all no numeric chars"""
-        if phone[0:3] == '+39':
-            phone = phone[3:]
-        elif phone[0] == '+':
-            phone = '00' + phone[1:]
         wep_phone = ''
-        for i in range(len(phone)):
-            if phone[i].isdigit():
-                wep_phone += phone[i]
+        if phone:
+            if phone[0:3] == '+39':
+                phone = phone[3:]
+            elif phone[0] == '+':
+                phone = '00' + phone[1:]
+            for i in range(len(phone)):
+                if phone[i].isdigit():
+                    wep_phone += phone[i]
         return wep_phone
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -152,7 +157,7 @@ class WizardExportFatturapa(models.TransientModel):
             code = partner.codice_destinatario
             if code == '0000000':
                 if not partner.pec_destinatario and \
-                        not partner.ec_mail:
+                        not partner.pec_mail:
                     raise UserError(_(
                         "Partner %s without PEC"
                     ) % partner.name)
@@ -170,7 +175,6 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Company Telephone number not set.'))
         Telefono = self._wep_phone_number(company.phone)
-
         if not company.email:
             raise UserError(
                 _('Email address not set.'))
@@ -278,8 +282,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
+            Telefono=self._wep_phone_number(company.partner_id.phone) or None,
+            Fax=self._wep_phone_number(company.partner_id.fax) or None,
             Email=company.partner_id.email or None
         )
 
@@ -533,7 +537,7 @@ class WizardExportFatturapa(models.TransientModel):
             AliquotaIVA = '%.2f' % (aliquota)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                Descrizione=line.name,
+                Descrizione=self._string2codeset(line.name),
                 PrezzoUnitario='%.2f' % line.price_unit,
                 Quantita='%.2f' % line.quantity,
                 UnitaMisura=line.uom_id and (
@@ -697,9 +701,12 @@ class WizardExportFatturapa(models.TransientModel):
         model_data_obj = self.env['ir.model.data']
         invoice_obj = self.env['account.invoice']
 
-        fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = self.env.context.get('active_ids', False)
         company, partner = self.getPartnerCompanyId(invoice_ids)
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
         context_partner = self.env.context.copy()
         context_partner.update({'lang': partner.lang})
         try:

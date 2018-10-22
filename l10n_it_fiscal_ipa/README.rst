@@ -1,6 +1,6 @@
 |Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_fiscal_ipa/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/Odoo-Italia-Associazione/l10n-italy/10.0/l10n_it_fiscal_ipa/static/description/icon.png
 
 ==========================
 |icon| IPA Code (IndicePA)
@@ -50,25 +50,27 @@ Features / Funzioni
 OCA Differences / Differenze da OCA
 ------------------------------------
 
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia | OCA               | Notes / Note                   |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Validation chesks / Validazioni      | |check|     | |no_check|        |                                |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Partner view / Vista cliente         | This Module | This Module       | Different layout               |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| IPA Code                             | This Module | This Module       |                                |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Recipient Code / Codice Destinatario | This Module | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Is PA / Pubbblica Amministrazione?   | This Module | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| EInvoice / Soggetto Fattura E.       | This Module | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| EORI Code / Codice EORI              | This Module | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| License Code / Codice Licenza        | This Module | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------+-------------------+--------------------------------+
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| Description / Descrizione            | Odoo Italia                   | OCA               | Notes / Note                   |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| Validation checks / Validazioni      | |check|                       | |no_check|        |                                |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| Partner view / Vista cliente         | This Module                   | This Module       | Different layout               |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| IPA Code                             | This Module                   | This Module       |                                |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| Recipient Code / Codice Destinatario | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| Is PA / Pubbblica Amministrazione?   | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| EInvoice / Soggetto Fattura E.       | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| EORI Code / Codice EORI              | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| License Code / Codice Licenza        | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
+| PEC                                  | PEC destinatario o PEC legale | PEC destinatario  | |warning| Different deployment |
++--------------------------------------+-------------------------------+-------------------+--------------------------------+
 
 
 
@@ -104,7 +106,7 @@ Installation / Installazione
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
-    odoo_install_repository l10n-italy -b 10.0 -O zero
+    odoo_install_repository l10n-italy -b 10.0 -O oia
     for pkg in os0 z0lib; do
         pip install $pkg -U
     done
@@ -146,7 +148,7 @@ Issue Tracker
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+<https://github.com/Odoo-Italia-Associazione/l10n-italy/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
 
@@ -202,13 +204,20 @@ To contribute to this module, please visit https://odoo-italia.org/.
 is a nonprofit organization whose mission is to support
 the collaborative development of Odoo features and promote its widespread use.
 
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
-is mainly designed for Italian law and markeplace.
+**Odoo Italia Associazione**, or the `Associazione Odoo Italia <https://www.odoo-italia.org/>`__
+is the nonprofit Italian Community Association whose mission
+is to support the collaborative development of Odoo designed for Italian law and markeplace.
+Since 2017 Odoo Italia Associazione issues modules for Italian localization not developed by OCA
+or available only with `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
+Odoo Italia Associazione distributes code under `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
+or `LGPL <https://www.gnu.org/licenses/lgpl.html>`__ free license.
 
-Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server.
+`Odoo Italia Associazione <https://www.odoo-italia.org/>`__ è un'Associazione senza fine di lucro
+che dal 2017 rilascia moduli per la localizzazione italiana non sviluppati da OCA
+o disponibili solo con `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
+
+Odoo Italia Associazione distribuisce il codice esclusivamente con licenza `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
+o `LGPL <https://www.gnu.org/licenses/lgpl.html>`__
 
 
 |
@@ -218,17 +227,17 @@ Last Update / Ultimo aggiornamento: 2018-10-21
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+.. |Build Status| image:: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy.svg?branch=10.0
+    :target: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/Odoo-Italia-Associazione/l10n-italy/badge.svg?branch=10.0
+    :target: https://coveralls.io/github/Odoo-Italia-Associazione/l10n-italy?branch=10.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/10.0
     :alt: Codecov
 .. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-10.svg
     :target: https://github.com/OCA/l10n-italy/tree/10.0
@@ -240,7 +249,7 @@ Last Update / Ultimo aggiornamento: 2018-10-21
     :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
     :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
-    :target: https://erp10.zeroincombenze.it
+    :target: https://odoo10.odoo-italia.org
     :alt: Try Me
 .. |OCA Codecov Status| image:: badge-oca-codecov
     :target: oca-codecov-URL

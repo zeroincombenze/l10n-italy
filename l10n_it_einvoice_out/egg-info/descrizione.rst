@@ -19,4 +19,5 @@ dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
-|halt| Non installare questo modulo: è in fase di svilupp; il rilascio è previsto per lunedì 22-10-2018
+|halt| Non utilizzare ancora questo modulo in produzione: alpha release soggetta
+ad ulteriori modifiche
