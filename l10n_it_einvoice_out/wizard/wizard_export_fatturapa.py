@@ -687,8 +687,7 @@ class WizardExportFatturapa(models.TransientModel):
             if not company:
                 company = invoice.company_id
             if invoice.company_id != company:
-                raise orm.except_orm(
-                    _('Error!'),
+                raise UserError(
                     _('Invoices must belong to the same company'))
 
         return company, partner

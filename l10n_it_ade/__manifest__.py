@@ -6,10 +6,10 @@
 # Code partially inherited by l10n_it_account of OCA
 #
 {
-    "name": "Base xml Agenzia delle Entrate",
+    "name": "Agenzia delle Entrate",
     "version": "10.0.0.1.10",
     "category": "Localization/Italy",
-    "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
+    "summary": "Codice e definizioni come da Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
               " Odoo Italia Associazione",
     "maintainer": "Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>",
