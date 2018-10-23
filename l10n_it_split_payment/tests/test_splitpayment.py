@@ -4,10 +4,9 @@
 # Copyright 2016  Alessio Gerace - Agile Business Group
 # Copyright 2018  Antonio M. Vigliotti - SHS-AV s.r.l.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+#
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 from odoo.tools.translate import _
-from __builtin__ import AssertionError
 
 
 class TestSP(AccountTestUsers):
