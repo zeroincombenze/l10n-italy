@@ -8,8 +8,6 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from __builtin__ import AssertionError
-
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 from odoo.tools.translate import _
 
