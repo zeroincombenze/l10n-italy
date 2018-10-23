@@ -8,10 +8,10 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
-    'name': 'Italian Localization - Fiscal payment term',
+    'name': 'Fiscal payment term',
     'version': '10.0.1.0.0',
     'category': 'Localization/Italy',
-    'summary': 'Electronic invoices payment',
+    'summary': 'Electronic invoices Payment Term',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA)',
     'website': 'http://www.odoo-italia.org',

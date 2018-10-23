@@ -1,29 +1,29 @@
 |Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_esigibilita_iva/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_fiscal_payment_term/static/description/icon.png
 
-======================
-|icon| Esigibilità IVA
-======================
+==========================
+|icon| Fiscal payment term
+==========================
 
 .. contents::
 
 
 |en|
 
-VAT collectability
-===================
+Italian Fiscal Payment Terms
+=============================
 
-E-Invoice and FatturaPA VAT Payment time as per
+E-Invoice and FatturaPA Payment Terms as per
 `Italian Government Website <http://fatturapa.gov.it>`__
 
 
 |it|
 
-Esigibilità IVA 
-=================
+Termini di Pagamento Fiscali 
+==============================
 
-Esigibilità IVA per Comunicazioni Fiscali, Fattura Elettronica e FatturaPA come da 
+Termini di pagamento fiscali per Fattura Elettronica e FatturaPA come da 
 `Disposizioni governative FatturaPA <http://fatturapa.gov.it>`__
 
 
@@ -76,12 +76,12 @@ From UI: go to:
 
 |menu| Apps > Update Apps List
 
-|menu| Setting > Apps |right_do| Select **l10n_it_esigibilita_iva** > Install
+|menu| Setting > Apps |right_do| Select **l10n_it_fiscal_payment_term** > Install
 
 |warning| If your Odoo instance crashes, you can do following instruction
 to recover installation status:
 
-``run_odoo_debug 10.0 -um l10n_it_esigibilita_iva -s -d MYDB``
+``run_odoo_debug 10.0 -um l10n_it_fiscal_payment_term -s -d MYDB``
 
 Upgrade / Aggiornamento
 ------------------------
@@ -145,14 +145,16 @@ Authors / Autori
 -----------------
 
 
-* `Open Force <https://www.openforce.it/>`__
+* `Agile BG <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Contributi
 --------------------------
 
 
-* Alessandro Camilli <alessandrocamilli@openforce.it>
+* Davide Corio
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alessio Gerace <alessio.gerace@agilebg.com>
 * Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 Maintainers / Manutezione

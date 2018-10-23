@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_italy_ade_codice_carica,access_italy_ade_codice_carica,model_italy_ade_codice_carica,account.group_account_manager,1,1,1,0
-access_italy_ade_tax_nature,access_italy_ade_tax_nature,model_italy_ade_tax_nature,account.group_account_manager,1,1,1,0
-access_italy_ade_invoice_type,access_italy_ade_invoice_type,model_italy_ade_invoice_type,account.group_account_manager,1,1,1,0
+access_italy_ade_codice_carica,italy.ade.codice.carica,model_italy_ade_codice_carica,account.group_account_manager,1,1,1,1
+access_italy_ade_tax_nature,italy.ade.tax.nature,model_italy_ade_tax_nature,account.group_account_manager,1,1,1,1
+access_italy_ade_invoice_type,italy.ade.invoice.type,model_italy_ade_invoice_type,account.group_account_manager,1,1,1,1

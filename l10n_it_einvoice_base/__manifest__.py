@@ -26,7 +26,7 @@
         'l10n_it_ade',
         'l10n_it_pec',
         # 'l10n_it_esigibilita_iva',
-        # 'l10n_it_fiscal_payment_term',
+        'l10n_it_fiscal_payment_term',
         # 'l10n_it_split_payment',
         # 'l10n_it_fiscal_document_type',
         # 'partner_firstname',
