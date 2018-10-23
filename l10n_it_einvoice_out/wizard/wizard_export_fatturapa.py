@@ -1,40 +1,42 @@
-# -*- coding: utf-8 -*-
-# Copyright 2014 Davide Corio
-# Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
+#
+# Copyright 2014    - Davide Corio
+# Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+#
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-
+#
 import base64
 import logging
 
 from odoo import models
-from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
-    FatturaElettronica,
-    FatturaElettronicaHeaderType,
-    DatiTrasmissioneType,
-    IdFiscaleType,
-    ContattiTrasmittenteType,
-    CedentePrestatoreType,
-    AnagraficaType,
-    IndirizzoType,
-    IscrizioneREAType,
-    CessionarioCommittenteType,
-    DatiAnagraficiCedenteType,
-    DatiAnagraficiCessionarioType,
-    FatturaElettronicaBodyType,
-    DatiGeneraliType,
-    DettaglioLineeType,
-    DatiBeniServiziType,
-    DatiRiepilogoType,
-    DatiGeneraliDocumentoType,
-    DatiDocumentiCorrelatiType,
-    ContattiType,
-    DatiPagamentoType,
-    DettaglioPagamentoType,
-    AllegatiType,
-    ScontoMaggiorazioneType
-)
-from odoo.addons.l10n_it_fatturapa.models.account import (
+from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (AllegatiType,
+                                                              AnagraficaType,
+                                                              CedentePrestatoreType,
+                                                              CessionarioCommittenteType,
+                                                              ContattiTrasmittenteType,
+                                                              ContattiType,
+                                                              DatiAnagraficiCedenteType,
+                                                              DatiAnagraficiCessionarioType,
+                                                              DatiBeniServiziType,
+                                                              DatiDocumentiCorrelatiType,
+                                                              DatiGeneraliDocumentoType,
+                                                              DatiGeneraliType,
+                                                              DatiPagamentoType,
+                                                              DatiRiepilogoType,
+                                                              DatiTrasmissioneType,
+                                                              DettaglioLineeType,
+                                                              DettaglioPagamentoType,
+                                                              FatturaElettronica,
+                                                              FatturaElettronicaBodyType,
+                                                              FatturaElettronicaHeaderType,
+                                                              IdFiscaleType,
+                                                              IndirizzoType,
+                                                              IscrizioneREAType,
+                                                              ScontoMaggiorazioneType)
+from odoo.addons.l10n_it_einvoice_base.models.account import (
     RELATED_DOCUMENT_TYPES)
+from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
@@ -48,37 +50,67 @@ except ImportError as err:
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export EInvoice"
 
     def saveAttachment(self, fatturapa, number):
-
-        company = self.env.user.company_id
+        if 'company_id' in self.env.context:
+            company_model = self.env['res.company']
+            company = company_model.browse(self.env.context['company_id'])
+        else:
+            company = self.env.user.company_id
 
         if not company.vat:
             raise UserError(
                 _('Company TIN not set.'))
-        attach_obj = self.env['fatturapa.attachment.out']
+        attach_model = self.env['fatturapa.attachment.out']
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
             'datas': base64.encodestring(fatturapa.toxml("UTF-8")),
         }
-        return attach_obj.create(attach_vals)
+        return attach_model.create(attach_vals)
 
     def setProgressivoInvio(self, fatturapa):
+        if 'company_id' in self.env.context:
+            company_model = self.env['res.company']
+            company = company_model.browse(self.env.context['company_id'])
+        else:
+            company = self.env.user.company_id
 
-        company = self.env.user.company_id
         fatturapa_sequence = company.fatturapa_sequence_id
         if not fatturapa_sequence:
             raise UserError(
                 _('FatturaPA sequence not configured.'))
         number = fatturapa_sequence.next_by_id()
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            ProgressivoInvio = number
+        try:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+                ProgressivoInvio = number
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
+            msg = _(
+                'FatturaElettronicaHeader.DatiTrasmissione.'
+                'ProgressivoInvio:\n%s'
+            ) % unicode(e)
+            raise UserError(msg)
         return number
 
-    def _setIdTrasmittente(self, company, fatturapa):
 
+    def _string2codeset(self, text):
+        return text.encode('latin', 'ignore').decode('latin')
+
+    def _wep_phone_number(self, phone):
+        """"Remove trailing +39 abd all no numeric chars"""
+        wep_phone = ''
+        if phone:
+            if phone[0:3] == '+39':
+                phone = phone[3:]
+            elif phone[0] == '+':
+                phone = '00' + phone[1:]
+            for i in range(len(phone)):
+                if phone[i].isdigit():
+                    wep_phone += phone[i]
+        return wep_phone
+
+    def _setIdTrasmittente(self, company, fatturapa):
         if not company.country_id:
             raise UserError(
                 _('Company Country not set.'))
@@ -98,31 +130,50 @@ class WizardExportFatturapa(models.TransientModel):
 
         return True
 
-    def _setFormatoTrasmissione(self, fatturapa):
-
-        # TODO: gestire i privati
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            FormatoTrasmissione = 'FPA12'
+    def _setFormatoTrasmissione(self, partner, fatturapa):
+        if partner.is_pa:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+                FormatoTrasmissione = 'FPA12'
+        else:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
+                FormatoTrasmissione = 'FPR12'
 
         return True
 
     def _setCodiceDestinatario(self, partner, fatturapa):
-        code = partner.ipa_code
-        if not code:
-            raise UserError(
-                _('IPA Code not set on partner form.'))
+        pec_destinatario = None
+        if partner.is_pa:
+            if not partner.ipa_code:
+                raise UserError(_(
+                    "Partner %s is PA but has not IPA code"
+                ) % partner.name)
+            code = partner.ipa_code
+        else:
+            if not partner.codice_destinatario:
+                raise UserError(_(
+                    "Partner %s without Recipient Code"
+                ) % partner.name)
+            code = partner.codice_destinatario
+            if code == '0000000':
+                if not partner.pec_destinatario and \
+                        not partner.pec_mail:
+                    raise UserError(_(
+                        "Partner %s without PEC"
+                    ) % partner.name)
+                pec_destinatario = partner.pec_destinatario or partner.pec_mail
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             CodiceDestinatario = code.upper()
+        if pec_destinatario:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
+                PECDestinatario = pec_destinatario
 
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
-
         if not company.phone:
             raise UserError(
                 _('Company Telephone number not set.'))
-        Telefono = company.phone
-
+        Telefono = self._wep_phone_number(company.phone)
         if not company.email:
             raise UserError(
                 _('Email address not set.'))
@@ -137,7 +188,7 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
             DatiTrasmissioneType())
         self._setIdTrasmittente(company, fatturapa)
-        self._setFormatoTrasmissione(fatturapa)
+        self._setFormatoTrasmissione(partner, fatturapa)
         self._setCodiceDestinatario(partner, fatturapa)
         self._setContattiTrasmittente(company, fatturapa)
 
@@ -230,8 +281,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setContatti(self, CedentePrestatore, company):
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
+            Telefono=self._wep_phone_number(company.partner_id.phone) or None,
+            Fax=self._wep_phone_number(company.partner_id.fax) or None,
             Email=company.partner_id.email or None
         )
 
@@ -485,7 +536,7 @@ class WizardExportFatturapa(models.TransientModel):
             AliquotaIVA = '%.2f' % (aliquota)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                Descrizione=line.name,
+                Descrizione=self._string2codeset(line.name),
                 PrezzoUnitario='%.2f' % line.price_unit,
                 Quantita='%.2f' % line.quantity,
                 UnitaMisura=line.uom_id and (
@@ -617,10 +668,11 @@ class WizardExportFatturapa(models.TransientModel):
         self.setDatiPagamento(inv, FatturaElettronicaBody)
         self.setAttachments(inv, FatturaElettronicaBody)
 
-    def getPartnerId(self, invoice_ids):
+    def getPartnerCompanyId(self, invoice_ids):
 
         invoice_model = self.env['account.invoice']
         partner = False
+        company = False
 
         invoices = invoice_model.browse(invoice_ids)
 
@@ -631,20 +683,28 @@ class WizardExportFatturapa(models.TransientModel):
                 raise UserError(
                     _('Invoices must belong to the same partner'))
 
+            if not company:
+                company = invoice.company_id
+            if invoice.company_id != company:
+                raise UserError(
+                    _('Invoices must belong to the same company'))
+
+        return company, partner
+
         return partner
 
     def exportFatturaPA(self):
 
         # self.setNameSpace()
-
         model_data_obj = self.env['ir.model.data']
         invoice_obj = self.env['account.invoice']
 
-        fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = self.env.context.get('active_ids', False)
-        partner = self.getPartnerId(invoice_ids)
-
-        company = self.env.user.company_id
+        company, partner = self.getPartnerCompanyId(invoice_ids)
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
         context_partner = self.env.context.copy()
         context_partner.update({'lang': partner.lang})
         try:
@@ -675,11 +735,11 @@ class WizardExportFatturapa(models.TransientModel):
             inv.write({'fatturapa_attachment_out_id': attach.id})
 
         view_id = model_data_obj.xmlid_to_res_id(
-            'l10n_it_fatturapa_out.view_fatturapa_out_attachment_form')
+            'l10n_it_einvoice_out.view_fatturapa_out_attachment_form')
 
         return {
             'view_type': 'form',
-            'name': "Export FatturaPA",
+            'name': "Export EInvoice",
             'view_id': [view_id],
             'res_id': attach.id,
             'view_mode': 'form',
