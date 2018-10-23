@@ -89,7 +89,7 @@ class WizardExportFatturapa(models.TransientModel):
             msg = _(
                 'FatturaElettronicaHeader.DatiTrasmissione.'
                 'ProgressivoInvio:\n%s'
-            ) % unicode(e)
+            ) % e
             raise UserError(msg)
         return number
 
@@ -725,8 +725,7 @@ class WizardExportFatturapa(models.TransientModel):
 
             number = self.setProgressivoInvio(fatturapa)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
-            raise UserError(
-                (unicode(e)))
+            raise UserError(e)
 
         attach = self.saveAttachment(fatturapa, number)
 
