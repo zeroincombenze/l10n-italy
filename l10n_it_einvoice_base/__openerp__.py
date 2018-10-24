@@ -25,6 +25,7 @@
         'l10n_it_fiscal_ipa',
         'l10n_it_rea',
         'base_iban',
+        'l10n_it_fiscal_payment_term',
     ],
     "data": [
         'security/ir.model.access.csv',
