@@ -10,4 +10,4 @@ as per send to the SdI (Exchange System by Italian Tax Authority)
 
 Please, do not mix OCA module and OIA modules.
 
-|halt| Do not install this module: it is in development status; official release will be avaiable on 2018-10-22
+|halt| Do not install this module: it is still in development status.
