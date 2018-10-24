@@ -17,7 +17,7 @@
         <field name="name">view.tax.nature.form</field>
         <field name="model">italy.ade.tax.nature</field>
         <field name="arch" type="xml">
-            <form string="Natura IVA">
+            <form string="Tax Nature">
                 <group>
                     <field name="code"/>
                     <field name="name"/>
@@ -29,7 +29,7 @@
     </record>
 
     <record id="action_tax_nature" model="ir.actions.act_window">
-        <field name="name">Natura IVA</field>
+        <field name="name">Tax Nature</field>
         <field name="res_model">italy.ade.tax.nature</field>
         <field name="view_id" ref="view_tax_nature_tree"/>
     </record>

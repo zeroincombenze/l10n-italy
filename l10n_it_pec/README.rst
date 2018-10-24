@@ -82,6 +82,25 @@ to recover installation status:
 
 ``run_odoo_debug 10.0 -um l10n_it_pec -s -d MYDB``
 
+Upgrade / Aggiornamento
+------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| When you want upgrade and you   | Per aggiornare, se avete installato con  |
+| installed using above           | le istruzioni di cui sopra:              |
+| statements:                     |                                          |
++---------------------------------+------------------------------------------+
+
+::
+
+    cd /opt/odoo/10.0/l10n-italy/
+    git pull origin 10.0
+    # Adjust following statements as per your system
+    sudo systemctl restart odoo
+
+
 
 
 
@@ -175,7 +194,7 @@ o `LGPL <https://www.gnu.org/licenses/lgpl.html>`__
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-21
+Last Update / Ultimo aggiornamento: 2018-10-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

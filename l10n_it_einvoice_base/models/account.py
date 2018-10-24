@@ -113,7 +113,7 @@ class WelfareFundDataLine(models.Model):
 
     name = fields.Many2one(
         'welfare.fund.type', string="Welfare Fund Type")
-    kind_id = fields.Many2one('italy.ade.tax.nature', string="Non taxable nature")
+    tax_nature_id = fields.Many2one('italy.ade.tax.nature', string="Non taxable nature")
     welfare_rate_tax = fields.Float('Welfare Rate tax')
     welfare_amount_tax = fields.Float('Welfare Amount tax')
     welfare_taxable = fields.Float('Welfare Taxable')
