@@ -1,22 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+# Copyright 2014    Davide Corio <davide.corio@lsweb.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 from openerp.osv import fields, orm
 
@@ -51,6 +40,8 @@ class fatturapa_document_type(orm.Model):
     }
 
 #  used in fatturaPa import
+
+
 class fatturapa_payment_data(orm.Model):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment.data"
@@ -83,10 +74,10 @@ class fatturapa_payment_detail(orm.Model):
         'payment_due_date': fields.date('Payment due Date'),
         'payment_amount': fields.float('Payment Amount'),
         'post_office_code': fields.char('Post Office Code', size=20),
-        'recepit_name': fields.char("Recepit payment partner contact"),
-        'recepit_surname': fields.char("Recepit payment partner contact"),
-        'recepit_cf': fields.char("Recepit payment partner contact"),
-        'recepit_title': fields.char("Recepit payment partner contact"),
+        'recepit_name': fields.char("Recepit payment partner firstname"),
+        'recepit_surname': fields.char("Recepit payment partner lastname"),
+        'recepit_cf': fields.char("Recepit payment partner fiscalnumber"),
+        'recepit_title': fields.char("Recepit payment partner title"),
         'payment_bank_name': fields.char("Bank name"),
         'payment_bank_iban': fields.char("IBAN"),
         'payment_bank_abi': fields.char("ABI"),
@@ -137,14 +128,8 @@ class welfare_fund_data_line(orm.Model):
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
-        'fund_nature': fields.selection([
-            ('N1', 'escluse ex art. 15'),
-            ('N2', 'non soggette'),
-            ('N3', 'non imponibili'),
-            ('N4', 'esenti'),
-            ('N5', 'regime del margine'),
-            ('N6', 'inversione contabile (reverse charge)'),
-        ], string="Non taxable nature"),
+        'tax_nature_id': fields.many2one(
+            'italy.ade.tax.nature', string="Non taxable nature"),
         'welfare_rate_tax': fields.float('Welfare Rate tax'),
         'welfare_amount_tax': fields.float('Welfare Amount tax'),
         'welfare_taxable': fields.float('Welfare Taxable'),
@@ -169,6 +154,9 @@ class discount_rise_price(orm.Model):
             [('SC', 'Discount'), ('MG', 'Rise Price')], 'Type'),
         'percentage': fields.float('Percentage'),
         'amount': fields.float('Amount'),
+        'invoice_line_id': fields.many2one(
+            'account.invoice.line', 'Related Invoice',
+            ondelete='cascade', index=True),
         'invoice_id': fields.many2one(
             'account.invoice.line', 'Related Invoice',
             ondelete='cascade', select=True
@@ -215,8 +203,8 @@ class fatturapa_related_document_type(orm.Model):
             line = line_obj.browse(
                 cr, uid, vals['invoice_line_id'], context=context)
             vals['lineRef'] = line.sequence
-        return super(fatturapa_related_document_type, self).\
-            create(cr, uid, vals, context)
+        return super(fatturapa_related_document_type,
+             self).create(cr, uid, vals, context)
 
 
 class faturapa_activity_progress(orm.Model):
@@ -273,8 +261,8 @@ class fatturapa_related_ddt(orm.Model):
             line = line_obj.browse(
                 cr, uid, vals['invoice_line_id'], context=context)
             vals['lineRef'] = line.sequence
-        return super(fatturapa_related_ddt, self).\
-            create(cr, uid, vals, context)
+        return super(fatturapa_related_ddt,
+            self).create(cr, uid, vals, context)
 
 
 class account_invoice_line(orm.Model):
@@ -291,6 +279,11 @@ class account_invoice_line(orm.Model):
             'Related DdT'
         ),
         'admin_ref': fields.char('Administration ref.', size=20),
+        'discount_rise_price_ids': fields.one2many(
+            'discount.rise.price', 'invoice_line_id',
+            'Discount and Rise Price Details'
+        ),
+        'ftpa_line_number': fields.integer("Line number", readonly=True)
     }
 
 
@@ -307,7 +300,7 @@ class faturapa_summary_data(orm.Model):
             ('N5', 'regime del margine'),
             ('N6', 'inversione contabile (reverse charge)'),
         ], string="Non taxable nature"),
-        'incidental charges': fields.float('Incidental Charges'),
+        'incidental charges': fields.float('Incidental charges'),
         'rounding': fields.float('Rounding'),
         'amount_untaxed': fields.float('Amount untaxed'),
         'amount_tax': fields.float('Amount tax'),
@@ -340,7 +333,7 @@ class account_invoice(orm.Model):
         #  1.6
         'sender': fields.selection(
             [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender'),
-        #  2.1.1.1
+        #  2.1.1.1 FIXME
         'doc_type': fields.many2one(
             'fatturapa.document_type', string="Document Type"),
         #  2.1.1.5
@@ -363,7 +356,7 @@ class account_invoice(orm.Model):
             'welfare.fund.data.line', 'invoice_id',
             'Welfare Fund'
         ),
-        #  2.1.1.8
+        #  2.1.1.8 FIXME
         'discount_rise_price_ids': fields.one2many(
             'discount.rise.price', 'invoice_id',
             'Discount and Rise Price Details'
@@ -397,6 +390,7 @@ class account_invoice(orm.Model):
         'transport_date': fields.date('Transport Date'),
         'delivery_address': fields.text('Delivery Address'),
         'delivery_datetime': fields.datetime('Delivery Date Time'),
+        'ftpa_incoterms': fields.char(string="Incoterms"),
         #  2.1.10
         'related_invoice_code': fields.char('Related invoice code'),
         'related_invoice_date': fields.date('Related invoice date'),
@@ -419,6 +413,51 @@ class account_invoice(orm.Model):
             'fatturapa.attachments', 'invoice_id',
             'FatturaPA attachments'
         ),
+
+        # 1.2.3
+        'efatt_stabile_organizzazione_indirizzo': fields.char(
+            string="Indirizzo Organizzazione",
+            help="Blocco da valorizzare nei casi di cedente / prestatore non "
+                 "residente, con stabile organizzazione in Italia. Indirizzo "
+                 "della stabile organizzazione in Italia (nome della via, piazza "
+                 "etc.)",
+            readonly=True),
+        'efatt_stabile_organizzazione_civico': fields.char(
+            string="Civico Organizzazione",
+            help="Numero civico riferito all'indirizzo (non indicare se già "
+                 "presente nell'elemento informativo indirizzo)",
+            readonly=True),
+        'efatt_stabile_organizzazione_cap': fields.char(
+            string="CAP Organizzazione",
+            help="Codice Avviamento Postale",
+            readonly=True),
+        'efatt_stabile_organizzazione_comune': fields.char(
+            string="Comune Organizzazione",
+            help="Comune relativo alla stabile organizzazione in Italia",
+            readonly=True),
+        'efatt_stabile_organizzazione_provincia': fields.char(
+            string="Provincia Organizzazione",
+            help="Sigla della provincia di appartenenza del comune indicato "
+                 "nell'elemento informativo 1.2.3.4 <Comune>. Da valorizzare se "
+                 "l'elemento informativo 1.2.3.6 <Nazione> è uguale a IT",
+            readonly=True),
+        'efatt_stabile_organizzazione_nazione': fields.char(
+            string="Nazione Organizzazione",
+            help="Codice della nazione espresso secondo lo standard "
+                 "ISO 3166-1 alpha-2 code",
+            readonly=True),
+        # 2.1.1.10
+        'efatt_rounding': fields.float(
+            "Arrotondamento", readonly=True,
+            help="Eventuale arrotondamento sul totale documento (ammette anche il "
+                 "segno negativo)"),
+        'art73': fields.boolean(
+            'Art73', readonly=True,
+            help="Indica se il documento è stato emesso secondo modalità e "
+                 "termini stabiliti con decreto ministeriale ai sensi "
+                 "dell'articolo 73 del DPR 633/72 (ciò consente al "
+                 "cedente/prestatore l'emissione nello stesso anno di più "
+                 "documenti aventi stesso numero)")
     }
     _defaults = {
         'virtual_stamp': False

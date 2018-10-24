@@ -81,6 +81,6 @@ class ResPartner(orm.Model):
                     'warning': {
                         'title': 'Invalid values!',
                         'message': 'Partner senza codice destinatario '
-                                    'di 7 caratteri o 0000000'}
+                                   'di 7 caratteri o 0000000'}
                 }
         return {'value': vals}

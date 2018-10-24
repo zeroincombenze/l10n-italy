@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data>
+<data noupdate="0">
+
     <record model="italy.ade.tax.nature" id="n1">
         <field name="code">N1</field>
         <field name="name">Escluse ex art. 15</field>
@@ -49,5 +50,6 @@
         <field name="help">Operazione esclusa dell'IVA: attenzione! Operazione esclusa da comunicazioni fiscali</field>
         <field name="active">True</field>
     </record>
+
 </data>
 </openerp>

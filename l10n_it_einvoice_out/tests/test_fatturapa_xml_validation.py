@@ -1,34 +1,25 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
-#    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+# Copyright 2014    Davide Corio <davide.corio@lsweb.it>
+# Copyright 2015    Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 import base64
+import os
+import shutil
 import tempfile
-import openerp.release as release
+from datetime import datetime
+
+from lxml import etree
+
 import netsvc
+import openerp.release as release
 import openerp.tests.common as test_common
 from openerp import addons
-from datetime import datetime
-from lxml import etree
-import shutil
-import os
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
@@ -71,6 +62,17 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
                                              values)
         return self.env612(model).create(values).id
 
+    def workflow612(self, model, action, id):
+        if int(release.major_version.split('.')[0]) < 8:
+            wf_service = netsvc.LocalService("workflow")
+            wf_service.trg_validate(
+                self.uid, model, id, action, self.cr
+            )
+        else:
+            workflow.trg_validate(
+                self.uid, model, id, action, self.cr
+            )
+
     def getFilePath(self, filepath):
         with open(filepath) as test_data:
             with tempfile.TemporaryFile() as out:
@@ -100,8 +102,8 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         self.data_model = self.registry('ir.model.data')
         self.attach_model = self.registry('fatturapa.attachment.out')
         self.invoice_model = self.registry('account.invoice')
-        self.fatturapa_attach = self.registry('fatturapa.attachments')
         self.company_model = self.registry('res.company')
+        self.fatturapa_attach = self.registry('fatturapa.attachments')
         self.context = {}
         self.maxDiff = None
         company_id = self.data_model.get_object_reference(
@@ -216,10 +218,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             self.attachFileToInvoice(invoice_id, 'test2.pdf')
         self.invoice_model.write(
             cr, uid, invoice_id, {}, context=self.context)
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(
-            uid, 'account.invoice', invoice_id, 'invoice_open', cr
-        )
+        self.workflow612('account.invoice', 'invoice_open', invoice_id)
         return invoice_id
 
     def run_wizard(self, invoice_id):

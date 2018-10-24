@@ -1,15 +1,3 @@
-[![Build Status](https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0)](https://travis-ci.org/zeroincombenze/l10n-italy)
-[![license agpl](https://img.shields.io/badge/licence-AGPL--3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.html)
-[![Coverage Status](https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0)
-[![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0)
-[![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg)](https://github.com/OCA/l10n-italy/tree/7.0)
-[![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/dev)
-[![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://erp7.zeroincombenze.it)
-
-
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
-
 |Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
 .. |icon| image:: https://raw.githubusercontent.com/Odoo-Italia-Associazione/l10n-italy/7.0/account_vat_period_end_statement/static/src/img/icon.png
@@ -26,7 +14,7 @@
 (en)
 
 Period End VAT Statement
-========================
+=========================
 
 This module evaluates VAT to pay (or on credit) and generates the electronic
 VAT closeout statement as VAT Authority
@@ -46,6 +34,7 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
 (it)
 
 Liquidazione IVA periodica
+===========================
 
 Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
 mensili che trimestrali e permette di generare il file della comunicazione
@@ -67,20 +56,31 @@ https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
 
 
 
+
+
+
 |en|
 
 
-Installation
-------------
+Installation / Installazione
+=============================
 
-These instruction are just an example to remember what you have to do.
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is based on:       | L'installazione è basata su:             |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is         | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| **/opt/odoo/7.0/l10n-italy/**                                              |
++----------------------------------------------------------------------------+
 
-Deployment is ODOO_DIR/REPOSITORY_DIR/MODULE_DIR where:
-
-| ODOO_DIR is root Odoo directory, i.e. /opt/odoo/7.0
-| REPOSITORY_DIR is downloaded git repository directory, currently is: l10n-italy
-| MODULE_DIR is module directory, currently is: account_vat_period_end_statement
-| MYDB is the database name
 |
 
 ::
@@ -91,18 +91,42 @@ Deployment is ODOO_DIR/REPOSITORY_DIR/MODULE_DIR where:
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
     odoo_install_repository l10n-italy -b 7.0 -O oia
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
+
+|
 
 From UI: go to:
 
-* Setting > Modules > Update Modules List
-* Setting > Local Modules > Select account_vat_period_end_statement > Install
+|menu| Setting > Modules > Update Modules List
 
-Warning: if your Odoo instance crashes, you can do following instruction
-to recover installation:
+|menu| Setting > Local Modules |right_do| Select **account_vat_period_end_statement** > Install
+
+|warning| If your Odoo instance crashes, you can do following instruction
+to recover installation status:
 
 ``run_odoo_debug 7.0 -um account_vat_period_end_statement -s -d MYDB``
 
+Upgrade / Aggiornamento
+------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| When you want upgrade and you   | Per aggiornare, se avete installato con  |
+| installed using above           | le istruzioni di cui sopra:              |
+| statements:                     |                                          |
++---------------------------------+------------------------------------------+
+
+::
+
+    cd /opt/odoo/7.0/l10n-italy/
+    git pull origin 7.0
+    # Adjust following statements as per your system
+    sudo systemctl restart odoo
 
 
 
@@ -110,16 +134,18 @@ to recover installation:
 
 
 
-|it| Known issues / Roadmap
 
-Warning: Questo modulo rimpiazza il modulo OCA. Leggete attentamente il
+Known issues / Roadmap
+=======================
+
+|warning| Questo modulo rimpiazza il modulo OCA. Leggete attentamente il
 paragrafo relativo alle funzionalità e differenze.
 
 
 
 
-
 Issue Tracker
+==============
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
@@ -129,6 +155,7 @@ In case of trouble, please check there if your issue has already been reported.
 
 
 Proposals for enhancement
+--------------------------
 
 If you have a proposal to change this module, you may want to send an email to
 <moderatore@odoo-italia.org> for initial feedback.
@@ -137,39 +164,22 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
-Configuration
--------------
 
-Usage
------
+Credits / Riconoscimenti
+=========================
 
-Known issues / Roadmap
-----------------------
-
-Bug Tracker
------------
-
-Credits
--------
-
-Authors
+Authors / Autori
+-----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-
-### Contributors
+Contributors / Contributi
+--------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-
-### Funders
-
-The development of this module has been financially supported by:
-
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-
-
-### Maintainer
+Maintainers / Manutezione
+--------------------------
 
 |Odoo Italia Associazione|
 
@@ -179,7 +189,7 @@ To contribute to this module, please visit https://odoo-italia.org/.
 
 
 
-
+----------------
 
 **Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
 (formerly OpenERP)
@@ -192,7 +202,7 @@ the collaborative development of Odoo features and promote its widespread use.
 is the nonprofit Italian Community Association whose mission
 is to support the collaborative development of Odoo designed for Italian law and markeplace.
 Since 2017 Odoo Italia Associazione issues modules for Italian localization not developed by OCA
-or available only with Odoo Proprietary License.
+or available only with `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
 Odoo Italia Associazione distributes code under `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
 or `LGPL <https://www.gnu.org/licenses/lgpl.html>`__ free license.
 
@@ -204,31 +214,40 @@ Odoo Italia Associazione distribuisce il codice esclusivamente con licenza `AGPL
 o `LGPL <https://www.gnu.org/licenses/lgpl.html>`__
 
 
+|
+
+Last Update / Ultimo aggiornamento: 2018-10-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alfa
+.. |Build Status| image:: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy.svg?branch=7.0
     :target: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy
     :alt: github.com
+.. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
+.. |Coverage Status| image:: https://coveralls.io/repos/github/Odoo-Italia-Associazione/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/Odoo-Italia-Associazione/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
+.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
-.. |Tech Doc| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
-    :target: http://wiki.zeroincombenze.org/en/Odoo/7.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
-.. |Help| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
-    :target: http://wiki.zeroincombenze.org/it/Odoo/7.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://odoo7.odoo-italia.org
     :alt: Try Me
+.. |OCA Codecov Status| image:: badge-oca-codecov
+    :target: oca-codecov-URL
+    :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
@@ -236,26 +255,21 @@ o `LGPL <https://www.gnu.org/licenses/lgpl.html>`__
    :target: https://www.facebook.com/groups/openerp.italia/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
    :target: https://www.facebook.com/groups/openerp.italia/
+.. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
+.. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
+.. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
+.. |right_do| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/right_do.png
+.. |exclamation| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png
+.. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
+.. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
+.. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
+.. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
+   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+.. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
+   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+.. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
+   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
 
 
-[//]: # (copyright)
-
-----
-
-**Odoo** is a trademark of [Odoo S.A.](https://www.odoo.com/) (formerly OpenERP, formerly TinyERP)
-
-**OCA**, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
-
-**zeroincombenze®** is a trademark of [SHS-AV s.r.l.](http://www.shs-av.com/)
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
-[Zeroincombenze® distribution of Odoo](http://wiki.zeroincombenze.org/en/Odoo)
-is mainly designed for Italian law and markeplace.
-Users can download from [Zeroincombenze® distribution](https://github.com/zeroincombenze/OCB) and deploy on local server.
-
-[//]: # (end copyright)
-
-
-
-[![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)

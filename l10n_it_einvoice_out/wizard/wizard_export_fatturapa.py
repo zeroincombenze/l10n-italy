@@ -107,7 +107,7 @@ class WizardExportFatturapa(orm.TransientModel):
             phone = '00' + phone[1:]
         wep_phone = ''
         for i in range(len(phone)):
-            if phone[i].is_digit():
+            if phone[i].isdigit():
                 wep_phone += phone[i]
         return wep_phone
 

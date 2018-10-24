@@ -15,7 +15,6 @@ Italian Localization
 
 
 
-
 |it|
 
 l10n-italy
@@ -42,88 +41,86 @@ Sono coperte le aree:
 * Split payment
 
 
-
 Avaiable Addons / Moduli disponibili
 -------------------------------------
 
 +------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                        | Version    | OCA Ver.   | Description / Descrizione                          |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_notifications    | deprecated | 7.0.1.0.0  | Electronic invoices notifications                  |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base_crm                   | 7.0.0.1    | |same|     | Italian Localisation - CRM                         |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in               | deprecated | 7.0.0.1    | Electronic invoices reception                      |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_sale                       | 7.0.0.2.1  | 7.0.0.2    | Italian Localisation - Sale                        |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal                     | 7.0.0.2.1  | |no_check| | Italy - Fiscal localization by zeroincombenze(R)   |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_payment_term        | 7.0.1.0.0  | |no_check| | Electronic invoices payment                        |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_partially_deductible_vat   | 7.0.0.1    | |same|     | Italy - Partially Deductible VAT                   |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_corrispettivi              | 7.0.0.1    | |same|     | Italian Localisation - Corrispettivi               |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| multibase_plus                     | 7.0.0.1.1  | |no_check| | Enhanced Odoo Features                             |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_entry_date         | 7.0.0.1    | |same|     | Account Invoice entry Date                         |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base              | 7.0.2.1.0  | |no_check| | Electronic invoices                                |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa                  | |no_check| | 7.0.0.1    | Electronic invoices                                |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ipa                        | |no_check| | 7.0.1.0    | IPA Code (IndicePA)                                |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_abicab                     | 7.0.1.0    | |same|     | Italian Localisation - Base Bank ABI/CAB codes     |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_split_payment              | 7.0.1.0.0  | 7.0.8.0.1. | Split Payment                                      |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_CEE_balance_generic        | 7.0.0.1    | |same|     | Italy - 4th EU Directive - Consolidation Chart of  |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_ipa                 | 7.0.1.1.0  | |no_check| | IPA Code and Destination Code in Partner Record    |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_DDT_webkit                 | 7.0.1.0    | |same|     | DDT report using Webkit Library                    |
-+------------------------------------+------------+------------+----------------------------------------------------+
 | account_central_journal            | 7.0.3      | |same|     | Account Central Journal                            |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscalcode                 | 7.0.0.2.1  | 7.0.0.1    | Italian Localisation - Fiscal Code                 |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing        | 7.0.1.0    | |same|     | Fiscal Year Closing                                |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_vat_registries             | 7.0.0.2    | |same|     | Italian Localisation - VAT Registries              |
+| account_invoice_entry_date         | 7.0.0.1    | |same|     | Account Invoice entry Date                         |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ricevute_bancarie          | 7.0.1.3    | |same|     | Ricevute Bancarie                                  |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_rea                        | 7.0.0.1.1  | 7.0.0.1    | Manage fields for  Economic Administrative catalog |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_withholding_tax            | 7.0.0.2.1  | 7.0.0.2    | Italian Localisation - Withholding tax             |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_pec                        | 7.0.0.1    | |same|     | Pec Mail                                           |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ade                        | 7.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia del |
+| account_invoice_sequential_dates   | |halt|     | 7.0.0.1    | Check invoice date consistency                     |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | account_vat_period_end_statement   | 7.0.4.0.5  | 7.0.0.3    | Period End VAT Statement                           |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_prima_nota_cassa           | 7.0.0.1    | |same|     | Italian Localisation - Prima Nota Cassa            |
+| l10n_it_CEE_balance_generic        | 7.0.0.1    | |same|     | Italy - 4th EU Directive - Consolidation Chart of  |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out               | 7.0.2.0.1  | |no_check| | Electronic invoices emission                       |
+| l10n_it_DDT_webkit                 | 7.0.1.0    | |same|     | DDT report using Webkit Library                    |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_vat_communication          | 7.0.0.1.12 | |no_check| | Comunicazione periodica IVA                        |
+| l10n_it_abicab                     | 7.0.1.0    | |same|     | Italian Localisation - Base Bank ABI/CAB codes     |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_bill_of_entry              | 7.0.0.1    | |same|     | Italian Localisation - Bill of Entry               |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_sequential_dates   | 7.0.0.1.4  | 7.0.0.1    | Check invoice date consistency                     |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_pec_messages               | 7.0.1.0    | |same|     | Pec Messages                                       |
-+------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out              | |no_check| | 7.0.0.1.1  | Electronic invoices emission                       |
+| l10n_it_ade                        | 7.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia del |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base                       | 7.0.0.2.14 | 7.0.0.1    | Italian Localisation - Base                        |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in_notifications | deprecated | 7.0.1.0.0  | Supplier electronic invoices notifications         |
+| l10n_it_base_crm                   | 7.0.0.1    | |same|     | Italian Localisation - CRM                         |
 +------------------------------------+------------+------------+----------------------------------------------------+
-
+| l10n_it_bill_of_entry              | 7.0.0.1    | |same|     | Italian Localisation - Bill of Entry               |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_corrispettivi              | 7.0.0.1    | |same|     | Italian Localisation - Corrispettivi               |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_einvoice_base              | 7.0.2.1.0  | |no_check| | FatturaPA + Electronic Invoice                     |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_einvoice_out               | 7.0.2.0.1  | |no_check| | Electronic invoices emission                       |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa                  | |no_check| | 7.0.0.1    | Electronic invoices                                |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_in               | |halt|     | 7.0.0.1    | Electronic invoices reception                      |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_in_notifications | |halt|     | 7.0.1.0.0  | Supplier electronic invoices notifications         |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_notifications    | |halt|     | 7.0.1.0.0  | Electronic invoices notifications                  |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_out              | |no_check| | 7.0.0.1.1  | Electronic invoices emission                       |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fiscal                     | 7.0.0.2.1  | |no_check| | Italy - Fiscal localization by zeroincombenze(R)   |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fiscal_ipa                 | 7.0.1.1.0  | |no_check| | IPA Code and Destination Code in Partner Record    |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fiscal_payment_term        | 7.0.1.0.0  | |no_check| | Electronic invoices payment                        |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fiscalcode                 | 7.0.0.2.1  | 7.0.0.1    | Italian Localisation - Fiscal Code                 |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_ipa                        | |no_check| | 7.0.1.0    | IPA Code (IndicePA)                                |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_partially_deductible_vat   | 7.0.0.1    | |same|     | Italy - Partially Deductible VAT                   |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_pec                        | 7.0.0.1    | |same|     | Pec Mail                                           |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_pec_messages               | 7.0.1.0    | |same|     | Pec Messages                                       |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_prima_nota_cassa           | 7.0.0.1    | |same|     | Italian Localisation - Prima Nota Cassa            |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_rea                        | 7.0.0.1.1  | 7.0.0.1    | Manage fields for  Economic Administrative catalog |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_ricevute_bancarie          | 7.0.1.3    | |same|     | Ricevute Bancarie                                  |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_sale                       | 7.0.0.2.1  | 7.0.0.2    | Italian Localisation - Sale                        |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_split_payment              | 7.0.1.0.0  | 7.0.8.0.1. | Split Payment                                      |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_vat_communication          | 7.0.0.1.12 | |no_check| | Comunicazione periodica IVA                        |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_vat_registries             | 7.0.0.2    | |same|     | Italian Localisation - VAT Registries              |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_withholding_tax            | 7.0.0.2.1  | 7.0.0.2    | Italian Localisation - Withholding tax             |
++------------------------------------+------------+------------+----------------------------------------------------+
+| multibase_plus                     | 7.0.0.1.1  | |no_check| | Enhanced Odoo Features                             |
++------------------------------------+------------+------------+----------------------------------------------------+
 
 OCA Differences / Differenze da OCA
 ------------------------------------
@@ -156,7 +153,6 @@ OCA Differences / Differenze da OCA
 
 
 
-
 |en|
 
 
@@ -176,7 +172,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is         | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| **/opt/odoo/7.0/**                                                         |
+| **/opt/odoo/7.0/l10n-italy/**                                              |
 +----------------------------------------------------------------------------+
 
 |
@@ -194,12 +190,30 @@ Installation / Installazione
     done
     sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
+Upgrade / Aggiornamento
+------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| When you want upgrade and you   | Per aggiornare, se avete installato con  |
+| installed using above           | le istruzioni di cui sopra:              |
+| statements:                     |                                          |
++---------------------------------+------------------------------------------+
+
+::
+
+    cd /opt/odoo/7.0/l10n-italy/
+    git pull origin 7.0
+    # Adjust following statements as per your system
+    sudo systemctl restart odoo
 
 
 
 
-Maintainers
------------
+
+Maintainers / Manutezione
+-------------------------
 
 |Odoo Italia Associazione|
 
@@ -226,10 +240,9 @@ Users can download from `Zeroincombenze® distribution <https://github.com/zeroi
 and deploy on local server.
 
 
-
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-19
+Last Update / Ultimo aggiornamento: 2018-10-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -276,11 +289,12 @@ Last Update / Ultimo aggiornamento: 2018-10-19
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
 .. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
 .. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
 

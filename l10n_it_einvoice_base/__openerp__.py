@@ -33,7 +33,11 @@
         'views/company_view.xml',
         'security/ir.model.access.csv'
     ],
-    'demo': ['demo/account_invoice_fatturapa.xml'],
+    'demo': [
+        'demo/account_tax.xml',
+        'demo/res_partner.xml',
+        'demo/account_invoice_fatturapa.xml',
+    ],
     'installable': True,
     'description': '''|en|
 
