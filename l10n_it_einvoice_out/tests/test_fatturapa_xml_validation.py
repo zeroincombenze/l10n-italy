@@ -68,10 +68,10 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             wf_service.trg_validate(
                 self.uid, model, id, action, self.cr
             )
-        else:
-            workflow.trg_validate(
-                self.uid, model, id, action, self.cr
-            )
+        # else:
+        #     workflow.trg_validate(
+        #         self.uid, model, id, action, self.cr
+        #     )
 
     def getFilePath(self, filepath):
         with open(filepath) as test_data:

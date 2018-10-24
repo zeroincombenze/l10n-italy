@@ -39,7 +39,7 @@
         'demo/account_invoice_fatturapa.xml',
     ],
     'installable': True,
-    'description': '''|en|
+    'description': r'''|en|
 
 EInvoice + FatturaPA
 =====================
