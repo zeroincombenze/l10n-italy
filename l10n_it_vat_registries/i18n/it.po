@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_vat_registries
+# * l10n_it_vat_registries
 #
 msgid ""
 msgstr ""
@@ -11,14 +11,16 @@ msgstr ""
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
 msgid "A VAT registry is used to group several journals in one registry."
-msgstr "Un registro è usato per raggruppare diversi sezionali in un unico registro."
+msgstr ""
+"Un registro è usato per raggruppare diversi sezionali in un unico "
+"registro."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -28,7 +30,7 @@ msgstr "CAUS."
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -41,6 +43,8 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_vat_registries
+#: selection:account.tax.registry,layout_type:0
+#: selection:wizard.registro.iva,layout_type:0
 #: selection:account.tax.registry,layout_type:0
 #: selection:wizard.registro.iva,layout_type:0
 msgid "Corrispettivi"
@@ -56,9 +60,11 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_create_date
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Data di creazione"
 
 #. module: l10n_it_vat_registries
+#: selection:account.tax.registry,layout_type:0
+#: selection:wizard.registro.iva,layout_type:0
 #: selection:account.tax.registry,layout_type:0
 #: selection:wizard.registro.iva,layout_type:0
 msgid "Customer Invoices"
@@ -99,7 +105,7 @@ msgstr "Detraibile"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva_display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Visualizza nome"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_exclude_from_registries
@@ -141,7 +147,7 @@ msgstr "Registro IVA"
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_journal
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Registro"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_journal_ids
@@ -149,14 +155,14 @@ msgstr "Sezionale"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.view_account_tax_registry_form
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Journals"
-msgstr "Sezionali"
+msgstr "Registri"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry___last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva___last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_write_uid
@@ -168,12 +174,12 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_write_date
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_fiscal_page_base
 msgid "Last printed page"
-msgstr "Ultima pagina stampata"
+msgstr "Ultima pagina su bollato"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_layout_type
@@ -210,16 +216,19 @@ msgstr "Nome"
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:56
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:69
-#, python-format
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:56
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:69
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato nella presente selezione"
 
 #. module: l10n_it_vat_registries
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:65
-#, python-format
-msgid "No journals found in the current selection.\n"
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:65
+msgid ""
+"No journals found in the current selection.\n"
 "Please load them before to retry!"
-msgstr "Nessun sezionale trovato nella presente selezione.\n"
+msgstr ""
+"Nessun sezionale trovato nella presente selezione.\n"
 "Caricarli prima di riprovare!"
 
 #. module: l10n_it_vat_registries
@@ -248,6 +257,8 @@ msgid "Select journals you want retrieve documents from"
 msgstr "Seleziona i sezionali da cui si vuole prelevare i documenti"
 
 #. module: l10n_it_vat_registries
+#: selection:account.tax.registry,layout_type:0
+#: selection:wizard.registro.iva,layout_type:0
 #: selection:account.tax.registry,layout_type:0
 #: selection:wizard.registro.iva,layout_type:0
 msgid "Supplier Invoices"
@@ -312,8 +323,14 @@ msgstr "Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal_tax_registry_id
-msgid "You can group several journals within 1 registry. In printing wizard, you will be able to select the registry in order to load that group of journals"
-msgstr "È possibile raggruppare più giornali in un unico registro. Nella procedura guidata di stampa è possibile selezionare un registro per caricare quel dato gruppo di giornali."
+msgid ""
+"You can group several journals within 1 registry. In printing wizard, you"
+" will be able to select the registry in order to load that group of "
+"journals"
+msgstr ""
+"È possibile raggruppare più giornali in un unico registro. Nella "
+"procedura guidata di stampa è possibile selezionare un registro per "
+"caricare quel dato gruppo di giornali."
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax_registry

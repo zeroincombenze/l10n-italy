@@ -33,7 +33,8 @@
         ],
     "data": [
         'data/fatturapa_data.xml',
-        'data/welfare.fund.type.csv',
+        'data/fatturapa_fiscal_position.xml',
+        'data/welfare.fund.type.xml',
         'views/account_view.xml',
         'views/company_view.xml',
         'views/regime_fiscale_view.xml',

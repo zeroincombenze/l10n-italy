@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="0">
+<odoo noupdate="0">
 
         <!-- Payment Terms -->
         <record id="fatturapa_TP01" model="fatturapa.payment_term">
@@ -105,5 +104,5 @@
             <field name="code">MP22</field>
             <field name="name">Trattenuta su somme già riscosse</field>
         </record>
-    </data>
+
 </odoo>

@@ -34,5 +34,6 @@
     <menuitem id="menu_fatturapa_payment_method" name="Fiscal Payment Methods"
               action="action_fatturapa_payment_method" parent="l10n_it_ade.menu_ade"
               groups="account.group_account_manager" sequence="45"/>
- 
+
 </odoo>
+

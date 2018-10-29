@@ -61,7 +61,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_abicab                       | 10.0.1.0.0 | |same|     | Base Bank ABI/CAB codes                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_account                      | 10.0.1.0.1 | 10.0.1.2.2 | Italian Localization - Account                     |
+| l10n_it_account                      | 10.0.1.0.1 | 10.0.1.2.3 | Italian Localization - Account                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -87,7 +87,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_corrispettivi_sale           | |no_check| | 10.0.1.0.1 | Modulo per integrare i corrispettivi in odoo con g |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ddt                          | 10.0.1.5.1 | 10.0.1.6.0 | Documento di Trasporto                             |
+| l10n_it_ddt                          | 10.0.1.5.1 | 10.0.1.7.0 | Documento di Trasporto                             |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_base                | 10.0.2.0.1 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -95,9 +95,15 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_esigibilita_iva              | 10.0.1.0.0 | |same|     | Esigibilità IVA                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 10.0.1.1.0 | Electronic invoices                                |
+| l10n_it_fatturapa                    | |no_check| | 10.0.2.1.0 | Electronic invoices                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 10.0.1.0.3 | Electronic invoices emission                       |
+| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.1.0 | Electronic invoices reception                      |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Fattura Elettronica - Purchase integration         |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_out                | |no_check| | 10.0.1.1.0 | Electronic invoices emission                       |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.0 | Bridge module                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal                       | 10.0.0.2.0 | |no_check| | Italy - Fiscal localization by zeroincombenze(R)   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -107,11 +113,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal_payment_term          | 10.0.1.0.0 | |same|     | Electronic invoices Payment Term                   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscalcode                   | 10.0.1.0.2 | 10.0.1.0.1 | Italian Localisation - Fiscal Code                 |
+| l10n_it_fiscalcode                   | 10.0.1.0.2 | 10.0.1.1.0 | Italian Localisation - Fiscal Code                 |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscalcode_invoice           | 10.0.1.0.0 | |same|     | Italian Fiscal Code in invoice PDF                 |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ipa                          | |no_check| | 10.0.1.0.0 | IPA Code (IndicePA)                                |
+| l10n_it_ipa                          | |no_check| | 10.0.2.0.0 | IPA Code (IndicePA)                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_location_nuts                | |no_check| | 10.0.1.0.0 | NUTS specific options for Italy                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -121,7 +127,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_prima_nota_cassa             | |halt|     | |same|     | Italian Localisation - Prima Nota Cassa            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_rea                          | 10.0.1.0.1 | 10.0.1.0.0 | Manage fields for  Economic Administrative catalog |
+| l10n_it_rea                          | 10.0.1.0.1 | 10.0.1.1.0 | Manage fields for  Economic Administrative catalog |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_reverse_charge               | 10.0.1.1.1 | 10.0.1.1.3 | Reverse Charge for Italy                           |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -202,7 +208,7 @@ Installation / Installazione
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
-    odoo_install_repository l10n-italy -b 10.0 -O oia
+    odoo_install_repository l10n-italy -b 10.0 -O zero
     for pkg in os0 z0lib; do
         pip install $pkg -U
     done
@@ -249,40 +255,33 @@ To contribute to this module, please visit https://odoo-italia.org/.
 is a nonprofit organization whose mission is to support
 the collaborative development of Odoo features and promote its widespread use.
 
-**Odoo Italia Associazione**, or the `Associazione Odoo Italia <https://www.odoo-italia.org/>`__
-is the nonprofit Italian Community Association whose mission
-is to support the collaborative development of Odoo designed for Italian law and markeplace.
-Since 2017 Odoo Italia Associazione issues modules for Italian localization not developed by OCA
-or available only with `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
-Odoo Italia Associazione distributes code under `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
-or `LGPL <https://www.gnu.org/licenses/lgpl.html>`__ free license.
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed for Italian law and markeplace.
 
-`Odoo Italia Associazione <https://www.odoo-italia.org/>`__ è un'Associazione senza fine di lucro
-che dal 2017 rilascia moduli per la localizzazione italiana non sviluppati da OCA
-o disponibili solo con `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
-
-Odoo Italia Associazione distribuisce il codice esclusivamente con licenza `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
-o `LGPL <https://www.gnu.org/licenses/lgpl.html>`__
+Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
+and deploy on local server.
 
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-24
+Last Update / Ultimo aggiornamento: 2018-10-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
+    :target: https://travis-ci.org/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-.. |Coverage Status| image:: https://coveralls.io/repos/github/Odoo-Italia-Associazione/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/Odoo-Italia-Associazione/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
 .. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-10.svg
     :target: https://github.com/OCA/l10n-italy/tree/10.0
@@ -294,7 +293,7 @@ Last Update / Ultimo aggiornamento: 2018-10-24
     :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
     :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
-    :target: https://odoo10.odoo-italia.org
+    :target: https://erp10.zeroincombenze.it
     :alt: Try Me
 .. |OCA Codecov Status| image:: badge-oca-codecov
     :target: oca-codecov-URL

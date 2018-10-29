@@ -25,6 +25,9 @@
                 </page>
                 <page string="FatturaPA">
                     <group>
+                        <group string="Fiscal">
+                            <field name="invoice_type_id"></field>
+                        </group>
                         <group string="Results">
                             <field name="fatturapa_attachment_out_id"></field>
                         </group>
@@ -56,5 +59,20 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_account_invoice_filter_fatturapa" model="ir.ui.view">
+        <field name="name">account.invoice.select.fatturapa</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"></field>
+        <field name="arch" type="xml">
+            <filter name="unpaid" position="after">
+                <filter name="einvoice_no" string="FE da emettere" domain="[('fatturapa_attachment_out_id','=',False)]"
+                        help="Fattura B2B o FatturaPA non emesse; da inviare ad Agenzia delle Entrate"/>
+                <filter name="einvoice_si" string="FE emessa" domain="[('fatturapa_attachment_out_id','!=',False)]"
+                        help="Fattura emessa (e inviata) ad Agenzia delle Entrate"/>
+            </filter>
+        </field>
+    </record>
+
 </odoo>
 

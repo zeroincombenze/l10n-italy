@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ddt
+# * l10n_it_ddt
 #
 msgid ""
 msgstr ""
@@ -11,9 +11,9 @@ msgstr ""
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -64,6 +64,8 @@ msgstr "Crea automaticamente il DdT"
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
+#: selection:res.partner,ddt_invoicing_group:0
+#: selection:sale.order,ddt_invoicing_group:0
 msgid "Billing Partner"
 msgstr "Indirizzo di fatturazione"
 
@@ -88,7 +90,7 @@ msgstr "Bulk"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancella"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_carriage_condition
@@ -154,6 +156,8 @@ msgstr "Controlla se il picking è completato"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users_ddt_code_group
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
+#: selection:res.partner,ddt_invoicing_group:0
+#: selection:sale.order,ddt_invoicing_group:0
 msgid "Code group"
 msgstr "Codice Raggruppamento"
 
@@ -164,7 +168,7 @@ msgstr "Azienda"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:277
-#, python-format
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:277
 msgid "Competenza:"
 msgstr "Competenza:"
 
@@ -203,7 +207,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Data di creazione"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.report.xml,name:l10n_it_ddt.action_report_ddt
@@ -234,7 +238,7 @@ msgstr "Data DDT"
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_invoicing
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_invoicing
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:49
 msgid "DDT Invoicing"
 msgstr "Fatturazione DDT"
 
@@ -382,11 +386,11 @@ msgstr "Sconto (%)"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Visualizza nome"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:440
-#, python-format
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:440
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
 
@@ -407,8 +411,12 @@ msgstr "Data di fine"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
-msgid "Fill this field with the value you want to be used as weight. Leave empty to let the system to compute it"
-msgstr "Riempire questo campo con il valore che si vuole usare come peso. Lasciare vuoto per far sì che il sistema lo calcoli"
+msgid ""
+"Fill this field with the value you want to be used as weight. Leave empty"
+" to let the system to compute it"
+msgstr ""
+"Riempire questo campo con il valore che si vuole usare come peso. "
+"Lasciare vuoto per far sì che il sistema lo calcoli"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_weight_manual
@@ -453,7 +461,7 @@ msgstr "ID"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:195
-#, python-format
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:195
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile mettere nel collo un pacco senza dettagli"
 
@@ -485,14 +493,14 @@ msgstr "Fatturato"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:33
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:33
 msgid "Invoices from DDT"
 msgstr "Fatture da DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_journal_id
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Registro"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
@@ -505,7 +513,7 @@ msgstr "Sezionale"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_uid
@@ -531,7 +539,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_method_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_transportation_method
@@ -564,7 +572,7 @@ msgstr "Peso Netto"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:207
-#, python-format
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:207
 msgid "Not every picking is in done status"
 msgstr "Non tutti i picking sono completati"
 
@@ -584,11 +592,13 @@ msgstr "Note"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:37
 msgid "Nothing to invoice"
 msgstr "Non ci sono DDT da fatturare"
 
 #. module: l10n_it_ddt
+#: selection:res.partner,ddt_invoicing_group:0
+#: selection:sale.order,ddt_invoicing_group:0
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
 msgid "One DDT - One Invoice"
@@ -621,7 +631,7 @@ msgstr "Colli"
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Partner"
-msgstr "Partner"
+msgstr "Soggetto"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -634,6 +644,7 @@ msgid "Picking"
 msgstr "Picking"
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:35
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:35
 #, python-format
 msgid "Picking %s already in ddt"
@@ -651,15 +662,20 @@ msgstr "Picking"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:304
-#, python-format
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:304
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definisci un sezionale di vendita per questa azienda."
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:566
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:566
 #, python-format
-msgid "Please define income account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
-msgstr "Definisci un conto di ricavo per questo prodotto: \"%s\" (id:%d) - o per questa categoria: \"%s\"."
+msgid ""
+"Please define income account for this product: \"%s\" (id:%d) - or for "
+"its category: \"%s\"."
+msgstr ""
+"Definisci un conto di ricavo per questo prodotto: \"%s\" (id:%d) - o per "
+"questa categoria: \"%s\"."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason_name
@@ -687,7 +703,7 @@ msgstr "Causali trasporto"
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_DES
 msgid "Recipient"
-msgstr "Recipient"
+msgstr "Destinatario"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -731,11 +747,13 @@ msgstr "Cerca DDT"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:40
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:40
 #, python-format
 msgid "Selected Picking %s have different Partner"
 msgstr "I Picking selezionati %s hanno un Partner differente"
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:46
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:46
 #, python-format
 msgid "Selected Picking %s have different carriage condition"
@@ -743,11 +761,16 @@ msgstr "I Picking selezionati %s hanno condizioni di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:51
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:51
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr "I Picking selezionati %s hanno differenti Descrizioni dell'aspetto esteriore dei beni"
+msgstr ""
+"I Picking selezionati %s hanno differenti Descrizioni dell'aspetto "
+"esteriore dei beni"
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:61
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:56
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:61
 #, python-format
@@ -756,49 +779,52 @@ msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:179
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:179
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
 msgstr "I Picking selezionati sono già collegati al DDT: %s"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
 msgid "Selected Pickings have different Partner"
 msgstr "I Picking selezionati hanno Partner differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:79
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:79
 msgid "Selected Pickings have different carriage condition"
 msgstr "I Picking selezionati hanno il Reso Merce differente"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
 msgid "Selected Pickings have different goods description"
-msgstr "I Picking selezionati hanno una differente Descrizione dell'aspetto esteriore dei beni"
+msgstr ""
+"I Picking selezionati hanno una differente Descrizione dell'aspetto "
+"esteriore dei beni"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
 msgid "Selected Pickings have different parcels"
 msgstr "I Picking selezionati hanno colli differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:155
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:155
 msgid "Selected Pickings have different transportation method"
 msgstr "I Picking selezionati hanno un metodo di trasporto differente"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:129
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:129
 msgid "Selected Pickings have different transportation reason"
 msgstr "I Picking selezionati hanno una Causale di trasporto differente"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:57
-#, python-format
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:57
 msgid "Selected pickings have different destinations"
 msgstr "I Picking selezionati hanno destinazioni differenti"
 
@@ -837,10 +863,12 @@ msgstr "Informazioni spedizione"
 
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
+#: selection:res.partner,ddt_invoicing_group:0
 msgid "Shipping Partner"
 msgstr "Partner di consegna"
 
 #. module: l10n_it_ddt
+#: selection:sale.order,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
 msgid "Shipping Partners"
 msgstr "Partner di consegna"
@@ -884,14 +912,19 @@ msgstr "IVA"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:415
-#, python-format
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:415
 msgid "There is no invoicable line."
 msgstr "Non ci sono righe fatturabili"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_to_be_invoiced
-msgid "This depends on 'To be Invoiced' field of the Reason for Transportation of this DDT"
-msgstr "Questo dipende dal campo 'da fatturare' sulla 'causale del trasporto' di questo DDT"
+msgid ""
+"This depends on 'To be Invoiced' field of the Reason for Transportation "
+"of this DDT"
+msgstr ""
+"Questo dipende dal campo 'da fatturare' sulla 'causale del trasporto' di "
+"questo DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
@@ -936,7 +969,7 @@ msgstr "Tipo DDT"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line_price_unit
 msgid "Unit Price"
-msgstr "Prezzo Unitario"
+msgstr "Prezzo unitario"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt

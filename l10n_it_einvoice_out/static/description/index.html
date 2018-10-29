@@ -5,27 +5,35 @@
     </div>
     <div class="oe_span6 text-center">
         <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
-        <p class="oe_mt16" align="justify"><p>
+        <p class="oe_mt16" align="justify"><p align="justify">
 This module allows you to generate the fatturaPA XML file version 1.2
+which will be sent to the SdI (Exchange System by Italian Tax Authority)
+</p><p align="justify">
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-to be sent to the Exchange System
-</p><p>
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.html
+</p><p align="justify">
+<span class="fa fa-exclamation-triangle" style="color:orange"/> Read carefully note of module l10n_it_einvoice_base before install this module
+</p><p align="justify">
+|<span class="fa fa-minus-circle" style="color:red"/>| Do not use this module on production environment: it is an aplha release
+subjected to update.
 </p></p>
     </div>
     <div class="oe_span6 text-center">
         <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
-        <p class="oe_mt16" align="justify"><p>
+        <p class="oe_mt16" align="justify"><p align="justify">
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-per essere spedita al sistema di interscambio SDI
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-</p><p>
-<span class="fa fa-exclamation-triangle" style="color: orange"/> Leggere attentamente le informazioni di compatibilit&#224; e installazione
-tecnica disponibili nel modulo l10n_it_einvoice_base.
-</p><p>
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'ultimo autore: Antonio M. Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;.
+da trasmettere al sistema di interscambio SdI.
+</p><p align="justify">
+<span class="fa fa-exclamation-triangle" style="color:orange"/> Lo schema di definizione dei file xml, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche &#232; base per tutti i file
+xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
+moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
+segnalato dall'errore:
+</p><p align="justify">
+<span class="fa fa-exclamation" style="color:orange"/> **name CryptoBinary used for multiple values in typeBinding**
+</p><p align="justify">
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
+<a href="../l10n_it_ade">l10n_it_ade</a> 
 </p></p>
     </div>
 </section>

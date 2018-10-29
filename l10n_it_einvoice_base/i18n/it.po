@@ -6,38 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-20 18:53+0000\n"
-"PO-Revision-Date: 2018-10-20 18:53+0000\n"
+"POT-Creation-Date: 2018-10-27 21:12+0000\n"
+"PO-Revision-Date: 2018-10-27 21:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,description:l10n_it_einvoice_base.tax_00_e15
-#: model:account.tax,description:l10n_it_einvoice_base.tax_00_minimi
-#: model:account.tax,description:l10n_it_einvoice_base.tax_00_ni
-#: model:account.tax,description:l10n_it_einvoice_base.tax_00_ns
-#: model:account.tax,description:l10n_it_einvoice_base.tax_00_rc
-msgid "00"
-msgstr "00"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,description:l10n_it_einvoice_base.tax_22
-msgid "22"
-msgstr "22"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,description:l10n_it_einvoice_base.tax_22_SP
-msgid "22 Split Payment"
-msgstr "22 Split Payment"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_22
-msgid "22% ftPA"
-msgstr "22% ftPA"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_bank_abi
@@ -94,7 +70,7 @@ msgstr "Art73"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_ir_attachment_id
 msgid "Attachment"
-msgstr "Attachment"
+msgstr "Allegato"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_name
@@ -114,7 +90,7 @@ msgstr "BIC"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_bank_name
 msgid "Bank name"
-msgstr "Bank name"
+msgstr "Nome banca"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_indirizzo
@@ -152,7 +128,6 @@ msgid "Civico Organizzazione"
 msgstr "Civico Organizzazione"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_code
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_code
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_code
 msgid "Code"
@@ -206,7 +181,6 @@ msgstr "Contract"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_create_uid
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data_create_uid
@@ -223,7 +197,6 @@ msgstr "Creato da"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_create_date
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data_create_date
@@ -235,7 +208,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Data di creazione"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_db_datas
@@ -256,7 +229,7 @@ msgstr "Deferred payability"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_delivery_address
 msgid "Delivery Address"
-msgstr "Indirizzo consegna"
+msgstr "Indirizzo di Consegna"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_delivery_datetime
@@ -266,7 +239,6 @@ msgstr "Delivery Date Time"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_description
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_description
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_name
 msgid "Description"
@@ -285,7 +257,6 @@ msgstr "Discount and Rise Price Details"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_display_name
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data_display_name
@@ -297,7 +268,7 @@ msgstr "Discount and Rise Price Details"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Visualizza nome"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_type
@@ -311,10 +282,9 @@ msgid "DocumentID"
 msgstr "DocumentID"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_eori_code
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_eori_code
-msgid "EORI Code"
-msgstr "EORI Code"
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_invoice_type_id
+msgid "EInvoice Type"
+msgstr "EInvoice Type"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_penalty_date
@@ -336,16 +306,6 @@ msgstr "Electronic Invoice Payment Method"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_fatturapa_summary_ids
 msgid "Electronic Invoice Summary Datas"
 msgstr "Electronic Invoice Summary Datas"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_00_e15
-msgid "Esculso Art. 15"
-msgstr "Esculso Art. 15"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_00_minimi
-msgid "Esente"
-msgstr "Esente"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_rounding
@@ -371,7 +331,6 @@ msgstr "Fattura PA"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_invoice_line_form_fatturapa
-#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_partner_form_einvoice
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_payment_term_form_fatturapa
 msgid "FatturaPA"
 msgstr "FatturaPA"
@@ -380,11 +339,6 @@ msgstr "FatturaPA"
 #: model:ir.model,name:l10n_it_einvoice_base.model_discount_rise_price
 msgid "FatturaPA Discount Rise Price Data"
 msgstr "FatturaPA Discount Rise Price Data"
-
-#. module: l10n_it_einvoice_base
-#: model:ir.model,name:l10n_it_einvoice_base.model_fatturapa_document_type
-msgid "FatturaPA Document Type"
-msgstr "FatturaPA Document Type"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_fatturapa_format
@@ -437,6 +391,7 @@ msgid "File Size"
 msgstr "Dimensione File"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.model,name:l10n_it_einvoice_base.model_account_fiscal_position
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_fiscal_position_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_fiscal_position_id
 msgid "Fiscal Position"
@@ -461,7 +416,6 @@ msgstr "IBAN"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_id
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data_id
@@ -516,11 +470,6 @@ msgid "Intermediary"
 msgstr "Intermediary"
 
 #. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_00_rc
-msgid "Inversione Contabile"
-msgstr "Inversione Contabile"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
@@ -528,7 +477,7 @@ msgstr "Fattura"
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Righe Fattura"
+msgstr "Riga Fattura"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_public
@@ -538,7 +487,6 @@ msgstr "È un documento pubblico"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments___last_update
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data___last_update
@@ -550,12 +498,11 @@ msgstr "È un documento pubblico"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_write_uid
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data_write_uid
@@ -572,7 +519,6 @@ msgstr "Ultima modifica di"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_write_date
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_document_type_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_data_write_date
@@ -584,12 +530,12 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Data ultima modifica"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_law_reference
 msgid "Law reference"
-msgstr "Rif. Normativo"
+msgstr "Law reference"
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,ftpa_withholding_type:0
@@ -601,12 +547,6 @@ msgstr "Legal Person"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_tax_representative
 msgid "Legal Tax Representative"
 msgstr "Legal Tax Representative"
-
-#. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_license_number
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_license_number
-msgid "License Code"
-msgstr "License Code"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_line_ftpa_line_number
@@ -622,7 +562,7 @@ msgstr "LineRef"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_liquidation
 msgid "Liquidation State"
-msgstr "Stato Liquidazione"
+msgstr "Stato di liquidazione"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_max_payment_date
@@ -632,7 +572,7 @@ msgstr "Maximum date for Payment"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_partner
 msgid "Member Type"
-msgstr "Societa' a "
+msgstr "Tipo Socio"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_mimetype
@@ -655,18 +595,8 @@ msgid "Net Weight"
 msgstr "Net Weight"
 
 #. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_00_ni
-msgid "Non Imponibile"
-msgstr "Non Imponibile"
-
-#. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_00_ns
-msgid "Non soggetto Iva"
-msgstr "Non soggetto Iva"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_non_taxable_nature
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_kind_id
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_tax_nature_id
 msgid "Non taxable nature"
 msgstr "Non taxable nature"
 
@@ -691,15 +621,15 @@ msgid "Order Agreement Code"
 msgstr "Order Agreement Code"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_pa_partner_code
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_pa_partner_code
-msgid "PA Code for partner"
-msgstr "PA Code for partner"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_pa_line_code
 msgid "PA Code for this record"
 msgstr "PA Code for this record"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_pa_partner_code
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_pa_partner_code
+msgid "PA partner reference"
+msgstr "PA partner reference"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_res_partner
@@ -709,7 +639,7 @@ msgstr "Soggetto"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_amount
 msgid "Payment Amount"
-msgstr "Imponibile"
+msgstr "Importo pagamento"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_bank
@@ -757,9 +687,14 @@ msgid "Pick up"
 msgstr "Pick up"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_ade_regime_fiscale
+msgid "Posizione Fiscale Fattura Elettronica"
+msgstr "Posizione Fiscale Fattura Elettronica"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_post_office_code
 msgid "Post Office Code"
-msgstr "Post Office Code"
+msgstr "Codice ufficio postale"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_prepayment_discount
@@ -823,7 +758,7 @@ msgstr "Rea Office"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_transport_reason
 msgid "Reason"
-msgstr "Reason"
+msgstr "Motivo"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_name
@@ -854,6 +789,13 @@ msgstr "Reception"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recipient
 msgid "Recipient"
 msgstr "Destinatario"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.actions.act_window,name:l10n_it_einvoice_base.action_ade_regime_fiscale
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_regime_fiscale_form
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_regime_fiscale_tree
+msgid "Regime Fiscale"
+msgstr "Regime Fiscale"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_register_code
@@ -962,11 +904,6 @@ msgid "Rounding"
 msgstr "Rounding"
 
 #. module: l10n_it_einvoice_base
-#: model:account.tax,name:l10n_it_einvoice_base.tax_22_SP
-msgid "SP22%"
-msgstr "SP22%"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_sender
 msgid "Sender"
 msgstr "Sender"
@@ -975,7 +912,7 @@ msgstr "Sender"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_sequence_id
 msgid "Sequence"
-msgstr "Sequence"
+msgstr "Sequenza"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_provincia
@@ -1011,6 +948,11 @@ msgstr "Tax Rapresentative"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_tax_rate
 msgid "Tax Rate"
 msgstr "Tax Rate"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_fiscal_position_regime_fiscale
+msgid "Tax Regime"
+msgstr "Tax Regime"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_fatturapa_attachments_res_model
@@ -1147,7 +1089,7 @@ msgstr "assignee / partner"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_description
 msgid "description"
-msgstr "description"
+msgstr "descrizione"
 
 #. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,non_taxable_nature:0

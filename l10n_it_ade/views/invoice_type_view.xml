@@ -22,6 +22,7 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="help"/>
+                    <field name="scope"/>
                     <field name="active"/>
                 </group>
             </form>
@@ -39,3 +40,4 @@
               groups="account.group_account_manager"/>
 
 </odoo>
+
