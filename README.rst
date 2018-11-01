@@ -149,6 +149,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 
 
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+|OCA project|
+
 
 Getting started / Come iniziare
 ===============================
@@ -159,7 +164,7 @@ Getting started / Come iniziare
 Prerequisites / Prerequisiti
 ----------------------------
 
-* python3
+* python
 * postgresql 9.2+
 
 Installation / Installazione
@@ -174,7 +179,7 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| **`Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__    ** |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is         | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
@@ -237,6 +242,28 @@ Proposals for enhancement
 If you have a proposal to change this module, you may want to send an email to
 <moderatore@odoo-italia.org> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
+
+----------------
+
+**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
+(formerly OpenERP)
+
+**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
+is a nonprofit organization whose mission is to support
+the collaborative development of Odoo features and promote its widespread use.
+
+**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed for Italian law and markeplace.
+
+Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
+and deploy on local server.
+
+
+|chat_with_us|
+
+
 |
 
 Last Update / Ultimo aggiornamento: 2018-11-01

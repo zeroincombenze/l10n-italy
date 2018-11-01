@@ -43,6 +43,11 @@ Certifications / Certificazioni
 | |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2018   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+|OCA project|
+
 
 Getting started / Come iniziare
 ===============================
@@ -53,7 +58,7 @@ Getting started / Come iniziare
 Prerequisites / Prerequisiti
 ----------------------------
 
-* python3
+* python
 * postgresql 9.2+
 
 Installation / Installazione
@@ -121,10 +126,9 @@ From UI: go to:
 Support / Supporto
 ------------------
 
-This module is maintained by the Odoo Italia Associazione and support is supplied
-through its `forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
-|Odoo Italia Associazione|
 
 
 Get involved / Ci mettiamo in gioco
@@ -221,6 +225,11 @@ is mainly designed for Italian law and markeplace.
 
 Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
 and deploy on local server.
+
+
+|chat_with_us|
+
+
 |
 
 Last Update / Ultimo aggiornamento: 2018-11-01
@@ -258,6 +267,9 @@ Last Update / Ultimo aggiornamento: 2018-11-01
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
    :target: https://www.facebook.com/groups/openerp.italia/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
@@ -278,4 +290,5 @@ Last Update / Ultimo aggiornamento: 2018-11-01
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
