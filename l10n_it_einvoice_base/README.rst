@@ -1,63 +1,39 @@
-|Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_base/static/description/icon.png
-
 ===========================
 |icon| EInvoice + FatturaPA
 ===========================
 
+**Infrastructure for Italian Electronic Invoice + FatturaPA**
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_base/static/description/icon.png
+
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+
 .. contents::
 
-
-|en|
-
-EInvoice + FatturaPA
+Overview / Panoramica
 =====================
 
-This module manage infrastructure to manage Italian E Invoice and FatturaPA
+|en| This module manages infrastructure to generate Italian E-Invoice and FatturaPA
 as per send to the SdI (Exchange System by Italian Tax Authority)
 
-|warning| This module may be conflict with some OCA modules with error:
-
-*name CryptoBinary used for multiple values in typeBinding*
-
-Please, do not mix OCA module and OIA modules.
-This module replaces l10n_it_fatturapa of OCA distribution.
 
 |halt| Do not install this module: it is still in development status.
 
-
-|it|
-
-Fattura Elettronica + FatturaPA
-================================
-
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
+|it| Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
 Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
-
-|warning| Lo schema di definizione dei file xml, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
-moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
-segnalato dall'errore:
-
-|exclamation| name CryptoBinary used for multiple values in typeBinding
-
 Tutti i moduli della localizzazione italiana che generano file xml dipendenti
-dallo schema dell'Agenzia delle Entrate devono dichiarare il modulo
-`https://github.com/zeroincombenze/l10n-italy/tree/10.0/l10n_it_ade>`__ come dipendenza.
+dal ur dello schema dell'Agenzia delle Entrate devono dichiarare il modulo
+l10n_it_ade come dipendenza.
 
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
-
-Questo modulo sostituisce il modulo l10n_it_fatturapa della distribuzione OCA.
+Per maggiori informazioni leggete la documentazione del modulo 
+`l10n_it_ade <https://github.com/zeroincombenze/l10n-italy/tree/10.0/l10n_it_ade>`__ oppure visitare il sito
+www.odoo-italia.org o contattare l'ultimo autore:
+Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
 |halt| Non installare questo modulo: è ancora in fase di sviluppo.
 
-
-
 Certifications / Certificazioni
---------------------------------
+-------------------------------
 
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
@@ -68,12 +44,20 @@ Certifications / Certificazioni
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
+Getting started / Come iniziare
+===============================
 
-|en|
+|Try Me|
 
+
+Prerequisites / Prerequisiti
+----------------------------
+
+* python3
+* postgresql 9.2+
 
 Installation / Installazione
-=============================
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -82,16 +66,14 @@ Installation / Installazione
 | example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
 | you have to do on Linux.        | e Debian 8+                              |
 |                                 |                                          |
-| Installation is based on:       | L'installazione è basata su:             |
+| Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
 | `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is         | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| **/opt/odoo/10.0/l10n-italy/**                                             |
+| /opt/odoo/10.0/l10n-italy/                                                 |
 +----------------------------------------------------------------------------+
-
-|
 
 ::
 
@@ -106,24 +88,14 @@ Installation / Installazione
     done
     sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
-
-|
-
 From UI: go to:
 
-|menu| Setting > Activate Developer mode 
-
-|menu| Apps > Update Apps List
-
-|menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Install
-
-|warning| If your Odoo instance crashes, you can do following instruction
-to recover installation status:
-
-``run_odoo_debug 10.0 -um l10n_it_einvoice_base -s -d MYDB``
+* |menu| Setting > Activate Developer mode 
+* |menu| Apps > Update Apps List
+* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Install
 
 Upgrade / Aggiornamento
-------------------------
+-----------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -140,36 +112,23 @@ Upgrade / Aggiornamento
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
+From UI: go to:
+
+* |menu| Setting > Activate Developer mode
+* |menu| Apps > Update Apps List
+* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Update
+
+Support / Supporto
+------------------
+
+This module is maintained by the Odoo Italia Associazione and support is supplied
+through its `forum <https://odoo-italia.org/index.php/kunena/recente>`__
+
+|Odoo Italia Associazione|
 
 
-
-
-
-
-Known issues / Roadmap
-=======================
-
-Please, do not mix the following OCA and OIA module.
-
-|warning| Do not use l10n_it_base module of OCA distribution
-
-|warning| Do not use l10n_it_base module of OCA distribution
-
-|warning| Do not use l10n_it_split_payment module of OCA distribution
-
-|warning| Do not install l10n_it_codici_carica module of OCA distribution
-
-|warning| Do not install l10n_it_fiscal_document_type module of OCA distribution
-
-|warning| Do not install l10n_it_fiscalcode_invoice module of OCA distribution
-
-|warning| Do not install l10n_it_ipa module of OCA distribution
-
-
-
-
-Issue Tracker
-==============
+Get involved / Ci mettiamo in gioco
+===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
@@ -177,47 +136,74 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+Known issues / Roadmap
+----------------------
+
+|en| Please, do not mix the following OCA Italy and OIA module.
+
+This module may be conflict with some OCA modules with error:
+
+|exclamation| name CryptoBinary used for multiple values in typeBinding
+
+
+|it| Si consiglia di non mescolare moduli OCA Italia e moduli OIA.
+
+Lo schema di definizione xml, pubblicato con
+urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+in formato xml da inviare all'Agenzia delle Entrate; come conseguenza
+nasce un conflitto tra moduli diversi che utilizzano uno schema che riferisce 
+all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
+
+|exclamation| name CryptoBinary used for multiple values in typeBinding
+
+* This module replaces l10n_it_fatturapa of OCA distribution.
+* Do not use l10n_it_base module of OCA distribution
+* Do not use l10n_it_split_payment module of OCA distribution
+* Do not use l10n_it_reverse_charge of OCA distribution
+* Do not install l10n_it_codici_carica module of OCA distribution
+* Do not install l10n_it_fiscal_document_type module of OCA distribution
+* Do not install l10n_it_fiscalcode_invoice module of OCA distribution
+* Do not install l10n_it_ipa module of OCA distribution
+* Do not install l10n_it_esigibilita_iva of OCA distribution
 
 Proposals for enhancement
---------------------------
+-------------------------
 
 If you have a proposal to change this module, you may want to send an email to
 <moderatore@odoo-italia.org> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 
-
-
-
-Credits / Riconoscimenti
-=========================
+Credits / Titoli di coda
+========================
 
 Authors / Autori
------------------
+----------------
 
 * `Abstract <https://abstract.it/>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-
-Contributors / Contributi
---------------------------
+Contributors / Contributi da
+----------------------------
 
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
+Acknowledges / Riconoscimenti
+-----------------------------
 
-Maintainers / Manutezione
---------------------------
-
-|Odoo Italia Associazione|
-
-This module is maintained by the Odoo Italia Associazione.
-
-To contribute to this module, please visit https://odoo-italia.org/.
-
-
++-----------------------------------+-------------------------------------------+
+| |en|                              | |it|                                      |
++-----------------------------------+-------------------------------------------+
+| This software inherits from past  | Questo software eredita da versioni       |
+| versions some parts of code. Even | passate alcune parti di codice. Anche     |
+| if people did not actively        | se non hanno partecipato attivamente allo |
+| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
+| acknowledge them for their prior  | persone che precedentemente vi hanno      |
+| contributions.                    | contribuito.                              |
++-----------------------------------+-------------------------------------------+
 
 ----------------
 
@@ -235,11 +221,9 @@ is mainly designed for Italian law and markeplace.
 
 Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
 and deploy on local server.
-
-
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-29
+Last Update / Ultimo aggiornamento: 2018-11-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -268,8 +252,8 @@ Last Update / Ultimo aggiornamento: 2018-10-29
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: badge-oca-codecov
-    :target: oca-codecov-URL
+.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
+    :target: Unknown oca-codecov-URL
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -294,5 +278,4 @@ Last Update / Ultimo aggiornamento: 2018-10-29
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
 

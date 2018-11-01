@@ -4,7 +4,7 @@
         <field name="name">Export EInvoice</field>
         <field name="model">wizard.export.fatturapa</field>
         <field name="arch" type="xml">
-            <form string="Export EInvoice">
+            <form string="Esporta XML Fattura Elettronica">
                 <group col="2" height="500" width="600">
                     <group>
                         <label string="Confirm?"/>
@@ -12,7 +12,7 @@
                     <newline/>
                     <group col="3">
                         <button colspan="1" special="cancel" string="Cancel"/>
-                        <button colspan="1" name="exportFatturaPA" string="Export" type="object" class="oe_highlight"/>
+                        <button colspan="1" name="exportFatturaPA" string="Esporta XML" type="object" class="oe_highlight"/>
                     </group>
                 </group>
                 <footer>
@@ -23,7 +23,7 @@
     </record>
 
     <act_window id="action_wizard_export_fatturapa" key2="client_action_multi"
-        name="Export EInvoice" res_model="wizard.export.fatturapa"
+        name="Esporta XML Fattura Elettronica" res_model="wizard.export.fatturapa"
         src_model="account.invoice" target="new"
         view_id="wizard_export_fatturapa_form_view" view_mode="form"/>
 
