@@ -7,7 +7,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 from openerp import fields, models, api, _
-from openerp.exceptions import  ValidationError
+from openerp.exceptions import ValidationError
 
 
 class ResPartner(models.Model):

@@ -26,6 +26,7 @@
         'l10n_it_rea',
         'base_iban',
         'l10n_it_pec',
+        'l10n_it_fiscal_payment_term',
     ],
     "data": [
         'data/fatturapa_data.xml',
