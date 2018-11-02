@@ -1,6 +1,6 @@
-=====================
-l10n-italy Odoo 10.0 
-=====================
+================================
+|Zeroincombenze| l10n-italy 10.0
+================================
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -35,19 +35,19 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                          | Version    | OCA Ver.   | Description / Descrizione                          |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| account_central_journal              | |halt|     | |same|     | Account Central Journal                            |
+| account_central_journal              | |halt|     | |halt|     | Account Central Journal                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing          | |halt|     | |no_check| | Fiscal Year Closing                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_entry_date           | 10.0.0.1.0 | 10.0.8.0.0 | Account Invoice entry Date                         |
+| account_invoice_entry_date           | 10.0.0.1.0 | |halt|     | Account Invoice entry Date                         |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_invoice_report_ddt_group     | 10.0.0.3.1 | |same|     | Account invoice report grouped by DDT              |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_sequential_dates     | |halt|     | |same|     | Check invoice date consistency                     |
+| account_invoice_sequential_dates     | |halt|     | |halt|     | Check invoice date consistency                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_vat_period_end_statement     | 10.0.1.4.2 | |same|     | Period End VAT Statement                           |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_CEE_balance_generic          | |halt|     | |same|     | Italy - 4th EU Directive - Consolidation Chart of  |
+| l10n_it_CEE_balance_generic          | |halt|     | |halt|     | Italy - 4th EU Directive - Consolidation Chart of  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_abicab                       | 10.0.1.0.0 | |same|     | Base Bank ABI/CAB codes                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -61,11 +61,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base                         | 10.0.0.1.3 | |no_check| | Italian Localisation - Base                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base_crm                     | |halt|     | |same|     | Italian Localisation - CRM                         |
+| l10n_it_base_crm                     | |halt|     | |halt|     | Italian Localisation - CRM                         |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base_location_geonames_impor | 10.0.1.0.0 | |same|     | Import base_location entries (provinces) from Geon |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_bill_of_entry                | |halt|     | |same|     | Italian Localisation - Bill of Entry               |
+| l10n_it_bill_of_entry                | |halt|     | |halt|     | Italian Localisation - Bill of Entry               |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_causali_pagamento            | |no_check| | 10.0.1.0.0 | Aggiunge la tabella delle causali di pagamento da  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -111,11 +111,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_location_nuts                | |no_check| | 10.0.1.0.0 | NUTS specific options for Italy                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_partially_deductible_vat     | |halt|     | |same|     | Italy - Partially Deductible VAT                   |
+| l10n_it_partially_deductible_vat     | |halt|     | |halt|     | Italy - Partially Deductible VAT                   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_pec                          | 10.0.1.0.0 | |same|     | Pec Mail                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_prima_nota_cassa             | |halt|     | |same|     | Italian Localisation - Prima Nota Cassa            |
+| l10n_it_prima_nota_cassa             | |halt|     | |halt|     | Italian Localisation - Prima Nota Cassa            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_rea                          | 10.0.1.0.1 | 10.0.1.1.0 | Manage fields for  Economic Administrative catalog |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -179,7 +179,7 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| **`Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__    ** |
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is         | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
@@ -266,7 +266,7 @@ and deploy on local server.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-01
+Last Update / Ultimo aggiornamento: 2018-11-02
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
