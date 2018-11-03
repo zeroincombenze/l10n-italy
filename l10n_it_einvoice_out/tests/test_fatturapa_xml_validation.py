@@ -41,7 +41,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def getAttacment(self, name):
         path = get_module_resource(
-            'l10n_it_fatturapa_out',
+            'l10n_it_einvoice_out',
             'tests', 'data', 'attah_base.pdf'
         )
         currDir = os.path.dirname(path)
@@ -50,7 +50,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         return self.getFilePath(new_file)
 
     def getFile(self, filename):
-        path = get_module_resource('l10n_it_fatturapa_out',
+        path = get_module_resource('l10n_it_einvoice_out',
                                    'tests', 'data', filename)
         return self.getFilePath(path)
 
@@ -138,7 +138,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         cr, uid = self.cr, self.uid
         seq_pool = self.registry('ir.sequence')
         seq_id = self.data_model.get_object_reference(
-            cr, uid, 'l10n_it_fatturapa', 'seq_fatturapa')
+            cr, uid, 'l10n_it_einvoice_base', 'seq_fatturapa')
         seq_pool.write(cr, uid, [seq_id[1]], {
             'implementation': 'no_gap',
             'number_next_actual': file_number,
@@ -162,7 +162,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         cr, uid = self.cr, self.uid
 
         invoice_id = self.data_model.get_object_reference(
-            cr, uid, 'l10n_it_fatturapa', invoice_xml_id)
+            cr, uid, 'l10n_it_einvoice_base', invoice_xml_id)
         if invoice_id:
             invoice_id = invoice_id and invoice_id[1] or False
         # this  write updates context with

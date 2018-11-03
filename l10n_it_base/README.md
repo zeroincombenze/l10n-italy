@@ -39,8 +39,8 @@ Test compatibilità OCA e Odoo | :white_check_mark: | :white_check_mark:
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [codici IVA completi](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | :x:
 [account_vat_period_end_statement](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_vat_period_end_statement) | :calendar: Normativa IP17,  presentazione della liquidazione IVA in formato xml | :x: Normativa 2016
 [account_invoice_sequential_dates](https://github.com/zeroincombenze/l10n-italy/tree/7.0/account_invoice_sequential_dates) | Validazione fatture vendita e acquisti con accavallamento esercizi fiscali | Validazione fatture di vendita; no accavallamento
-[l10n_it_fatturapa](l10n_it_fatturapa/)| :calendar: FatturaPA v1.2 (normativa 2017) | :x: FatturaPA v1.1 (Normativa 2016)
-[l10n_it_fatturapa](l10n_it_fatturapa/)| :white_check_mark: Compatibile con Spesometro | :x: Incompatibile con Spesometro
+[l10n_it_einvoice_base](l10n_it_fatturapa/)| :calendar: FatturaPA v1.2 (normativa 2017) | :x: FatturaPA v1.1 (Normativa 2016)
+[l10n_it_einvoice_base](l10n_it_fatturapa/)| :white_check_mark: Compatibile con Spesometro | :x: Incompatibile con Spesometro
 [l10n_it_fiscalcode](l10n_it_fiscalcode/)| :white_check_mark: Controllo CF in tempo reale | :x: CF senza controllo
 [l10n_it_fiscalcode](l10n_it_fiscalcode/)| :white_check_mark: Separazione cognome e nome | :x:
 [l10n_it_vat_communication](l10n_it_vat_communication/) | :white_check_mark: | :x: Non disponibile

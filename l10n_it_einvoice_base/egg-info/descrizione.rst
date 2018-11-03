@@ -14,7 +14,7 @@ segnalato dall'errore:
 
 Tutti i moduli della localizzazione italiana che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiarare il modulo
-`{{GIT_URL_ROOT}}/tree/{{branch}}/l10n_it_ade>`__ come dipendenza.
+`l10n_it_ade <{{GIT_URL_ROOT}}/tree/{{branch}}/l10n_it_ade>`__ come dipendenza.
 
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.

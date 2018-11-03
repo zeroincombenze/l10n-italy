@@ -41,7 +41,7 @@ class ResPartner(models.Model):
     @api.multi
     @api.constrains(
         'is_pa', 'ipa_code', 'codice_destinatario',
-        'electronic_invoice_subjected', 'vat', 'fiscalcode'
+        'electronic_invoice_subjected', 'vat'
     )
     def _check_codice_destinatario(self):
         for partner in self:

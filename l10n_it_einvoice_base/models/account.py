@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014    Davide Corio <davide.corio@abstract.it>
+# Copyright 2014    - Davide Corio <davide.corio@lsweb.it>
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 # Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp import api, fields, models
+from openerp import fields, models, api
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',
@@ -15,6 +15,11 @@ RELATED_DOCUMENT_TYPES = {
     'reception': 'DatiRicezione',
     'invoice': 'DatiFattureCollegate',
 }
+# TODO: Use module for classification
+EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
+                'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
+                'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
+                'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
 
 class FatturapaFormat(models.Model):
@@ -25,16 +30,6 @@ class FatturapaFormat(models.Model):
     name = fields.Char('Description', size=128)
     code = fields.Char('Code', size=5)
 
-
-class FatturapaDocumentType(models.Model):
-    # _position = ['2.1.1.1']
-    _name = "fatturapa.document_type"
-    _description = 'FatturaPA Document Type'
-
-    name = fields.Char('Description', size=128)
-    code = fields.Char('Code', size=4)
-
-
 #  used in fatturaPa import
 class FatturapaPaymentData(models.Model):
     # _position = ['2.4.2.2']
@@ -43,7 +38,7 @@ class FatturapaPaymentData(models.Model):
 
     #  2.4.1
     payment_terms = fields.Many2one(
-        'fatturapa.payment_term', string="Fattura Elettronica Payment Method")
+        'fatturapa.payment_term', string="Electronic Invoice Payment Method")
     #  2.4.2
     payment_methods = fields.One2many(
         'fatturapa.payment.detail', 'payment_data_id',
@@ -58,16 +53,16 @@ class FatturapaPaymentDetail(models.Model):
     _name = "fatturapa.payment.detail"
     recipient = fields.Char('Recipient', size=200)
     fatturapa_pm_id = fields.Many2one(
-        'fatturapa.payment_method', string="Fattura Elettronica Payment Method")
+        'fatturapa.payment_method', string="Electronic Invoice Payment Method")
     payment_term_start = fields.Date('Payment Term Start')
     payment_days = fields.Integer('Payment Term Days')
     payment_due_date = fields.Date('Payment due Date')
     payment_amount = fields.Float('Payment Amount')
     post_office_code = fields.Char('Post Office Code', size=20)
-    recepit_name = fields.Char("Nome Quietanzante")
-    recepit_surname = fields.Char("Cognome Quietanzante")
-    recepit_cf = fields.Char("CF Quietanzante")
-    recepit_title = fields.Char("Titolo Quietanzante")
+    recepit_name = fields.Char("Recepit payment partner firstname")
+    recepit_surname = fields.Char("Recepit payment partner lastname")
+    recepit_cf = fields.Char("Recepit payment partner fiscalnumber")
+    recepit_title = fields.Char("Recepit payment partner title")
     payment_bank_name = fields.Char("Bank name")
     payment_bank_iban = fields.Char("IBAN")
     payment_bank_abi = fields.Char("ABI")
@@ -90,7 +85,7 @@ class FatturapaPaymentDetail(models.Model):
 class FatturapaFiscalPosition(models.Model):
     # _position = ['2.1.1.7.7', '2.2.1.14']
     _name = "fatturapa.fiscal_position"
-    _description = 'Fattura Elettronica Fiscal Position'
+    _description = 'Electronic Invoice Fiscal Position'
 
     name = fields.Char('Description', size=128)
     code = fields.Char('Code', size=4)
@@ -112,7 +107,8 @@ class WelfareFundDataLine(models.Model):
 
     name = fields.Many2one(
         'welfare.fund.type', string="Welfare Fund Type")
-    kind_id = fields.Many2one('account.tax.kind', string="Non taxable nature")
+    tax_nature_id = fields.Many2one('italy.ade.tax.nature',
+                                    string="No taxable nature")
     welfare_rate_tax = fields.Float('Welfare Rate tax')
     welfare_amount_tax = fields.Float('Welfare Amount tax')
     welfare_taxable = fields.Float('Welfare Taxable')
@@ -180,7 +176,8 @@ class FatturapaRelatedDocumentType(models.Model):
             line_obj = self.env['account.invoice.line']
             line = line_obj.browse(vals['invoice_line_id'])
             vals['lineRef'] = line.sequence
-        return super(FatturapaRelatedDocumentType, self).create(vals)
+        return super(FatturapaRelatedDocumentType,
+                     self).create(vals)
 
 
 class FaturapaActivityProgress(models.Model):
@@ -229,7 +226,8 @@ class FatturapaRelatedDdt(models.Model):
             line_obj = self.env['account.invoice.line']
             line = line_obj.browse(vals['invoice_line_id'])
             vals['lineRef'] = line.sequence
-        return super(FatturapaRelatedDdt, self).create(vals)
+        return super(FatturapaRelatedDdt,
+                     self).create(vals)
 
 
 class AccountInvoiceLine(models.Model):
@@ -256,15 +254,9 @@ class FaturapaSummaryData(models.Model):
     # _position = ['2.2.2']
     _name = "faturapa.summary.data"
     tax_rate = fields.Float('Tax Rate')
-    non_taxable_nature = fields.Selection([
-        ('N1', 'escluse ex art. 15'),
-        ('N2', 'non soggette'),
-        ('N3', 'non imponibili'),
-        ('N4', 'esenti'),
-        ('N5', 'regime del margine'),
-        ('N6', 'inversione contabile (reverse charge)'),
-        ('N7', 'IVA assolta in altro stato UE')
-    ], string="Non taxable nature")
+    non_taxable_nature = fields.Many2one(
+        'italy.ade.tax.nature',
+        string="No taxable nature")
     incidental_charges = fields.Float('Incidental Charges')
     rounding = fields.Float('Rounding')
     amount_untaxed = fields.Float('Amount untaxed')
@@ -284,6 +276,7 @@ class FaturapaSummaryData(models.Model):
 class AccountInvoice(models.Model):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
     _inherit = "account.invoice"
+    #    domain=lambda self: [('scope', '=', type)])
     protocol_number = fields.Char('Protocol Number', size=64, copy=False)
     # 1.2 -- partner_id
     # 1.3
@@ -295,15 +288,24 @@ class AccountInvoice(models.Model):
         'res.partner', string="Intermediary")
     #  1.6
     sender = fields.Selection(
-        [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender')
+        [('CC', 'assignee / partner'),
+         ('TZ', 'third person')], 'Sender')
+    # 2.1.1.1 FIXME doc_type
+    invoice_type_id = fields.Many2one(
+        'italy.ade.invoice.type', string="Document Type",)
     #  2.1.1.5
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
-        [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
+        [('RT01', 'Natural Person'),
+         ('RT02', 'Legal Person')],
         'Withholding type'
     )
-    #  2.1.1.5.2 2.1.1.5.3 2.1.1.5.4 mapped to l10n_it_withholding_tax fields
-
+    #  2.1.1.5.2 withholding_amount in module
+    #  2.1.1.5.3
+    ftpa_withholding_rate = fields.Float('Withholding rate')
+    #  2.1.1.5.4
+    ftpa_withholding_payment_reason = fields.Char(
+        'Withholding reason', size=2)
     #  2.1.1.6
     virtual_stamp = fields.Boolean('Virtual Stamp', default=False, copy=False)
     stamp_amount = fields.Float('Stamp Amount', copy=False)
@@ -349,7 +351,7 @@ class AccountInvoice(models.Model):
     #  2.2.2
     fatturapa_summary_ids = fields.One2many(
         'faturapa.summary.data', 'invoice_id',
-        'Fattura Elettronica Summary Data', copy=False
+        'Electronic Invoice Summary Datas'
     )
     #  2.3
     vehicle_registration = fields.Date('Vehicle Registration', copy=False)
@@ -357,7 +359,7 @@ class AccountInvoice(models.Model):
     #  2.4
     fatturapa_payments = fields.One2many(
         'fatturapa.payment.data', 'invoice_id',
-        'Fattura Elettronica Payment Data', copy=False
+        'FatturaPA Payment Datas'
     )
     #  2.5
     fatturapa_doc_attachments = fields.One2many(
@@ -409,3 +411,34 @@ class AccountInvoice(models.Model):
              "dell'articolo 73 del DPR 633/72 (ciò consente al "
              "cedente/prestatore l'emissione nello stesso anno di più "
              "documenti aventi stesso numero)", copy=False)
+
+    @api.model
+    def default_get(self, fields):
+        res = super(AccountInvoice, self).default_get(fields)
+        if 'type' in res:
+            einv_type_model = self.env['italy.ade.invoice.type']
+            ids = einv_type_model.search(
+                [('scope', 'like', res['type'])], order='code')
+            if ids:
+                res.update({'invoice_type_id': ids[0].id})
+        return res
+
+    @api.one
+    def set_default_einvoice_type(self):
+        if not self.invoice_type_id:
+            einv_type_model = self.env['italy.ade.invoice.type']
+            scope = 'XX%'
+            if self.partner.country_id:
+                if self.partner.country_id.code == 'IT':
+                    scope = 'IT%'
+                elif self.partner.country_id.code in EU_COUNTRIES:
+                    scope = 'EU%'
+            if self.amount >= 0:
+                scope += self.type
+            else:
+                scope += self.type[0].upper() + self.type[1:]
+            ids = einv_type_model.search(
+                [('scope', 'like', scope)], order='code')
+            if ids:
+                return ids[0].id
+        return False

@@ -1,6 +1,6 @@
 |Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/9.0/l10n_it_einvoice_base/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_einvoice_base/static/description/icon.png
 
 =======================================
 |icon| Italian Localization - FatturaPA
@@ -45,7 +45,7 @@ segnalato dall'errore:
 
 Tutti i moduli della localizzazione italiana che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
-`https://github.com/zeroincombenze/l10n-italy/tree/9.0/l10n_it_ade>`__ come dipendenza.
+`https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_ade>`__ come dipendenza.
 
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
@@ -88,7 +88,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is         | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| **/opt/odoo/9.0/l10n-italy/**                                              |
+| **/opt/odoo/8.0/l10n-italy/**                                              |
 +----------------------------------------------------------------------------+
 
 |
@@ -100,18 +100,16 @@ Installation / Installazione
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
-    odoo_install_repository l10n-italy -b 9.0 -O zero
+    odoo_install_repository l10n-italy -b 8.0 -O zero
     for pkg in os0 z0lib; do
         pip install $pkg -U
     done
-    sudo manage_odoo requirements -b 9.0 -vsy -o /opt/odoo/9.0
+    sudo manage_odoo requirements -b 8.0 -vsy -o /opt/odoo/8.0
 
 
 |
 
 From UI: go to:
-
-|menu| admin > About > Activate Developer mode
 
 |menu| Setting > Modules > Update Modules List
 
@@ -120,7 +118,7 @@ From UI: go to:
 |warning| If your Odoo instance crashes, you can do following instruction
 to recover installation status:
 
-``run_odoo_debug 9.0 -um l10n_it_einvoice_base -s -d MYDB``
+``run_odoo_debug 8.0 -um l10n_it_einvoice_base -s -d MYDB``
 
 Upgrade / Aggiornamento
 ------------------------
@@ -135,8 +133,8 @@ Upgrade / Aggiornamento
 
 ::
 
-    cd /opt/odoo/9.0/l10n-italy/
-    git pull origin 9.0
+    cd /opt/odoo/8.0/l10n-italy/
+    git pull origin 8.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -246,29 +244,29 @@ Last Update / Ultimo aggiornamento: 2018-10-25
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=9.0
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0
     :target: https://travis-ci.org/zeroincombenze/l10n-italy
     :alt: github.com
-.. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=9.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=9.0
+.. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/9.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/9.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-9.svg
-    :target: https://github.com/OCA/l10n-italy/tree/9.0
+.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg
+    :target: https://github.com/OCA/l10n-italy/tree/8.0
     :alt: OCA
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-9.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/9.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/8.0/dev
     :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-9.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/9.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-8.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/8.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-9.svg
-    :target: https://erp9.zeroincombenze.it
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg
+    :target: https://erp8.zeroincombenze.it
     :alt: Try Me
 .. |OCA Codecov Status| image:: badge-oca-codecov
     :target: oca-codecov-URL

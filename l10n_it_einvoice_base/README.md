@@ -66,12 +66,12 @@ Logo | Ente/Certificato | Data inizio | Da fine | Note
 Installation
 ------------
 
-:warning: This module replaces l10n_it_fatturapa by OCA.
+:warning: This module replaces l10n_it_einvoice_base by OCA.
 Since version [7-11].0.2 of this module, definition schemas are
 moved into module l10n_it_ade. Please, read above about conflict and
 read [l10n_it_ade](../l10n_it_ade) documentation for furthermore informations.
 
-:warning: Questo modulo sostituisce l10n_it_fatturapa di OCA.
+:warning: Questo modulo sostituisce l10n_it_einvoice_base di OCA.
 A partire dalla versione [7-11].0.2 di questo modulo, gli schemi
 di definizione sono stati spostati nel modulo l10n_it_ade. Leggi sopra
 come evitare conflitti e per ulteriori informazioni, leggi i documenti relativi
@@ -85,7 +85,7 @@ These instruction are just an example to remember what you have to do:
     pip install PyXB==1.2.4
     git clone https://github.com/zeroincombenze/l10n-italy
     cp -R l10n-italy/l10n_it_ade ODOO_DIR/l10n-italy/
-    sudo service odoo-server restart -i l10n_it_fatturapa -d MYDB
+    sudo service odoo-server restart -i l10n_it_einvoice_base -d MYDB
 
 From UI: go to Setup > Module > Install
 
@@ -111,7 +111,7 @@ For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo
 Known issues / Roadmap
 ----------------------
 
-:ticket: This module replaces l10n_it_fatturapa OCA module; PR have to be issued.
+:ticket: This module replaces l10n_it_einvoice_base OCA module; PR have to be issued.
 
 In order to use this module avoiding conflicts you have to use:
 

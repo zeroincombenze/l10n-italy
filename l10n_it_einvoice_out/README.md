@@ -33,7 +33,7 @@ per essere spedicta al sistema di interscambio SDI
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 :warning: Leggere attentamente le informazioni di compatibilità e installazione
-tecnica disponibili nel modulo l10n_it_fatturapa.
+tecnica disponibili nel modulo l10n_it_einvoice_base.
 
 
 Installation
@@ -73,7 +73,7 @@ Known issues / Roadmap
 
 
 
-:no_entry: Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA versioni [7-11].0.2.0.0.
+:no_entry: Questo modulo sostituisce i moduli l10n_it_einvoice_base di OCA versioni [7-11].0.2.0.0.
 
 
 Bug Tracker

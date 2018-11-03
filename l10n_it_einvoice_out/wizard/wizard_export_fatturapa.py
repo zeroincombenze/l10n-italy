@@ -26,7 +26,7 @@ from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 from openerp.osv import orm
 from openerp.tools.translate import _
 
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
+from openerp.addons.l10n_it_einvoice_base.bindings.fatturapa_v_1_1 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,
@@ -51,14 +51,14 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_1 import (
     DettaglioPagamentoType,
     AllegatiType
 )
-from openerp.addons.l10n_it_fatturapa.models.account import (
+from openerp.addons.l10n_it_einvoice_base.models.account import (
     RELATED_DOCUMENT_TYPES)
 from openerp.tools.translate import _
 
 
 class WizardExportFatturapa(orm.TransientModel):
     _name = "wizard.export.fatturapa"
-    _description = "Export FatturaPA"
+    _description = "Export EInvoice"
 
     def __init__(self, cr, uid, **kwargs):
         self.fatturapa = False
@@ -783,14 +783,14 @@ class WizardExportFatturapa(orm.TransientModel):
             inv.write({'fatturapa_attachment_out_id': attach_id})
 
         view_rec = model_data_obj.get_object_reference(
-            cr, uid, 'l10n_it_fatturapa_out',
+            cr, uid, 'l10n_it_einvoice_out',
             'view_fatturapa_out_attachment_form')
         if view_rec:
             view_id = view_rec and view_rec[1] or False
 
         return {
             'view_type': 'form',
-            'name': "Export FatturaPA",
+            'name': "Export EInvoice",
             'view_id': [view_id],
             'res_id': attach_id,
             'view_mode': 'form',
