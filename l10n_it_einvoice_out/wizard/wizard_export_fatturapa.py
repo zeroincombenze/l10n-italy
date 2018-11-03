@@ -1,27 +1,17 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
-#    Copyright (C) 2015 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+# Copyright 2014    - Davide Corio <davide.corio@lsweb.it>
+# Copyright 2015    - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 import base64
-from openerp.osv import orm
-from openerp.tools.translate import _
+import logging
+
+from openerp import models
 from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
@@ -49,8 +39,11 @@ from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     ScontoMaggiorazioneType
 )
 from openerp.addons.l10n_it_einvoice_base.models.account import (
-    RELATED_DOCUMENT_TYPES)
-import logging
+    RELATED_DOCUMENT_TYPES
+)
+# from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
+
 _logger = logging.getLogger(__name__)
 
 try:
@@ -60,7 +53,7 @@ except ImportError as err:
     _logger.debug(err)
 
 
-class WizardExportFatturapa(orm.TransientModel):
+class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export EInvoice"
 
@@ -82,14 +75,13 @@ class WizardExportFatturapa(orm.TransientModel):
                 _('Error!'), _('Company TIN not set.'))
 
         number = self.number
-        attach_obj = self.pool['fatturapa.attachment.out']
+        attach_model = self.pool['fatturapa.attachment.out']
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
-            'datas': base64.encodestring(self.fatturapa.toxml("latin1")),
+            'datas': base64.encodestring(self.fatturapa.toxml("UTF-8")),
         }
-        attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
-        return attach_id
+        return attach_model.create(cr, uid, attach_vals, context=context)
 
     def setProgressivoInvio(self, cr, uid, context=None):
         context = context or {}
@@ -111,6 +103,19 @@ class WizardExportFatturapa(orm.TransientModel):
             ProgressivoInvio = number
         return True
 
+    def _wep_phone_number(self, phone):
+        """"Remove trailing +39 abd all no numeric chars"""
+        wep_phone = ''
+        if phone:
+            if phone[0:3] == '+39':
+                phone = phone[3:]
+            elif phone[0] == '+':
+                phone = '00' + phone[1:]
+            for i in range(len(phone)):
+                if phone[i].isdigit():
+                    wep_phone += phone[i]
+        return wep_phone
+
     def _setIdTrasmittente(self, cr, uid, company, context=None):
         if context is None:
             context = {}
@@ -125,7 +130,8 @@ class WizardExportFatturapa(orm.TransientModel):
             IdCodice = company.vat[2:]
         if not IdCodice:
             raise orm.except_orm(
-                _('Error'), _('Company does not have fiscal code or VAT'))
+                _('Error'),
+                _('Company does not have fiscal code or VAT'))
 
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             IdTrasmittente = IdFiscaleType(
@@ -133,15 +139,13 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
-    def _setFormatoTrasmissione(self, cr, uid, company, context=None):
-        if context is None:
-            context = {}
-
-        if not company.fatturapa_format_id:
-            raise orm.except_orm(
-                _('Error!'), _('FatturaPA format not set.'))
-        self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            FormatoTrasmissione = company.fatturapa_format_id.code
+    def _setFormatoTrasmissione(self, partner, fatturapa):
+        if partner.is_pa:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+                FormatoTrasmissione = 'FPA12'
+        else:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
+                FormatoTrasmissione = 'FPR12'
 
         return True
 
@@ -176,13 +180,15 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
-    def setDatiTrasmissione(self, cr, uid, company, partner, context=None):
-        if context is None:
-            context = {}
+    def setDatiTrasmissione(self, cr, uid,
+                            company, partner, fatturapa, 
+                            context=None):
+        context = context or {}
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
             DatiTrasmissioneType())
         self._setIdTrasmittente(cr, uid, company, context=context)
-        self._setFormatoTrasmissione(cr, uid, company, context=context)
+        self._setFormatoTrasmissione(cr, uid, partner, fatturapa,
+                                     context=context)
         self._setCodiceDestinatario(cr, uid, partner, context=context)
         self._setContattiTrasmittente(cr, uid, company, context=context)
 
@@ -283,7 +289,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
-                )
+            )
 
     def _setContatti(self, cr, uid, CedentePrestatore,
                      company, context=None):
@@ -293,7 +299,7 @@ class WizardExportFatturapa(orm.TransientModel):
             Telefono=company.partner_id.phone or None,
             Fax=company.partner_id.fax or None,
             Email=company.partner_id.email or None
-            )
+        )
 
     def _setPubAdministrationRef(self, cr, uid, CedentePrestatore,
                                  company, context=None):
@@ -622,7 +628,7 @@ class WizardExportFatturapa(orm.TransientModel):
                 AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,
                 Imposta='%.2f' % tax_line.amount
-                )
+            )
             if tax.amount == 0.0:
                 if not tax.non_taxable_nature:
                     raise orm.except_orm(
@@ -675,7 +681,7 @@ class WizardExportFatturapa(orm.TransientModel):
                         invoice.payment_term.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
-                    )
+                )
                 if invoice.partner_bank_id:
                     DettaglioPagamento.IstitutoFinanziario = (
                         invoice.partner_bank_id.bank_name)
@@ -704,13 +710,14 @@ class WizardExportFatturapa(orm.TransientModel):
                 body.Allegati.append(AttachDoc)
         return True
 
-    def setFatturaElettronicaHeader(self, cr, uid, company,
-                                    partner, context=None):
-        if context is None:
-            context = {}
+    def setFatturaElettronicaHeader(self, cr, uid,
+                                    company, partner, fatturapa,
+                                    context=None):
+        context = context or {}
         self.fatturapa.FatturaElettronicaHeader = (
             FatturaElettronicaHeaderType())
-        self.setDatiTrasmissione(cr, uid, company, partner, context=context)
+        self.setDatiTrasmissione(cr, uid, company, partner, fatturapa,
+                                 context=context)
         self.setCedentePrestatore(cr, uid, company, context=context)
         self.setRappresentanteFiscale(cr, uid, company, context=context)
         self.setCessionarioCommittente(
@@ -775,16 +782,21 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_model = self.pool['ir.model.data']
         invoice_model = self.pool['account.invoice']
 
-        self.fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = context.get('active_ids', False)
         company, partner = self.getPartnerCompanyId(cr, uid, invoice_ids,
                                                     context=context)
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
+
         context_partner = context.copy()
         context_partner.update({'lang': partner.lang,
                                 'company_id': company.id})
         try:
-            self.setFatturaElettronicaHeader(cr, uid, company,
-                                             partner, context=context_partner)
+            self.setFatturaElettronicaHeader(cr, uid, 
+                                             company, partner, fatturapa,
+                                             context=context_partner)
             for invoice_id in invoice_ids:
                 inv = invoice_model.browse(
                     cr, uid, invoice_id, context=context_partner)
@@ -825,4 +837,4 @@ class WizardExportFatturapa(orm.TransientModel):
             'res_model': 'fatturapa.attachment.out',
             'type': 'ir.actions.act_window',
             'context': context
-            }
+        }

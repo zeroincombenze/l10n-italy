@@ -1,10 +1,18 @@
 Known issues / Roadmap
 ======================
 
-Please, do not mix the following OCA and OIA module:
+Please, do not mix the following OCA and OIA module.
 
-:warning: l10n_it_base replacing OCA module
+|warning| Do not use l10n_it_base module of OCA distribution
 
-:warning: l10n_it_ade module does not exist in OCA repository
+|warning| Do not use l10n_it_base module of OCA distribution
 
-:warning: l10n_it_fiscalcode replacing OCA module
+|warning| Do not use l10n_it_split_payment module of OCA distribution
+
+|warning| Do not install l10n_it_codici_carica module of OCA distribution
+
+|warning| Do not install l10n_it_fiscal_document_type module of OCA distribution
+
+|warning| Do not install l10n_it_fiscalcode_invoice module of OCA distribution
+
+|warning| Do not install l10n_it_ipa module of OCA distribution
