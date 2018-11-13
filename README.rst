@@ -1,3 +1,4 @@
+
 ================================
 |Zeroincombenze| l10n-italy 10.0
 ================================
@@ -5,6 +6,7 @@
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
+
 
 Overview / Panoramica
 =====================
@@ -35,7 +37,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                          | Version    | OCA Ver.   | Description / Descrizione                          |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| account_central_journal              | |halt|     | |halt|     | Account Central Journal                            |
+| account_central_journal              | |no_check| | |halt|     | Account Central Journal                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing          | |halt|     | |no_check| | Fiscal Year Closing                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -46,6 +48,8 @@ Avaiable Addons / Moduli disponibili
 | account_invoice_sequential_dates     | |halt|     | |halt|     | Check invoice date consistency                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_vat_period_end_statement     | 10.0.1.4.2 | |same|     | Period End VAT Statement                           |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_eu_trial_balance                | |halt|     | |no_check| | 2013/34/EU - Trial Balance + Financial Statements  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_CEE_balance_generic          | |halt|     | |halt|     | Italy - 4th EU Directive - Consolidation Chart of  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -69,7 +73,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_causali_pagamento            | |no_check| | 10.0.1.0.0 | Aggiunge la tabella delle causali di pagamento da  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_central_journal              | |no_check| | 10.0.0.0.1 | Italian Localization - Account central journal     |
+| l10n_it_central_journal              | 10.0.0.0.1 | |same|     | Italian Localization - Account central journal     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_codici_carica                | |no_check| | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -101,7 +105,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal_ipa                   | 10.0.1.1.0 | |no_check| | IPA Code and Destination Code in Partner Record    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_payment_term          | 10.0.1.0.0 | |same|     | Electronic invoices Payment Term                   |
+| l10n_it_fiscal_payment_term          | 10.0.1.0.0 | |same|     | Electronic & Fiscal invoices payment               |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscalcode                   | 10.0.1.0.2 | 10.0.1.1.0 | Italian Localisation - Fiscal Code                 |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -164,6 +168,7 @@ Getting started / Come iniziare
 Prerequisites / Prerequisiti
 ----------------------------
 
+
 * python
 * postgresql 9.2+
 
@@ -181,7 +186,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
-| Suggested deployment is         | Posizione suggerita per l'installazione: |
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
 | /opt/odoo/10.0/l10n-italy/                                                 |
 +----------------------------------------------------------------------------+
@@ -213,14 +218,14 @@ Upgrade / Aggiornamento
 
 ::
 
-    cd /opt/odoo/10.0/l10n-italy/
-    git pull origin 10.0
+    odoo_install_repository l10n-italy -b 10.0 -O zero -U
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 
 Support / Supporto
 ------------------
+
 
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
@@ -243,22 +248,26 @@ If you have a proposal to change this module, you may want to send an email to
 <moderatore@odoo-italia.org> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
+Credits / Titoli di coda
+========================
+
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
+
+
 ----------------
 
-**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
-(formerly OpenERP)
-
-**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
-is a nonprofit organization whose mission is to support
-the collaborative development of Odoo features and promote its widespread use.
 
 **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
-is mainly designed for Italian law and markeplace.
+is mainly designed to cover Italian law and markeplace.
 
 Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server.
+and deploy on local server or can download from
+`Odoo Italia Associazine repository <https://github.com/Odoo-Italia-Associazione/OCB>`__
 
 
 |chat_with_us|
@@ -266,7 +275,7 @@ and deploy on local server.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-02
+Last Update / Ultimo aggiornamento: 2018-11-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -277,6 +286,9 @@ Last Update / Ultimo aggiornamento: 2018-11-02
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage

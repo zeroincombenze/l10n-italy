@@ -9,9 +9,9 @@
 #
 {
     'name': 'Fiscal payment term',
+    'summary': 'Electronic & Fiscal invoices payment',
     'version': '10.0.1.0.0',
     'category': 'Localization/Italy',
-    'summary': 'Electronic invoices Payment Term',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA)',
     'website': 'http://www.odoo-italia.org',
@@ -22,9 +22,9 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'data/fatturapa_data.xml',
         'views/payment_term_view.xml',
         'views/payment_method_view.xml',
+        'data/fatturapa_data.xml',
     ],
     'installable': True,
 }

@@ -697,8 +697,8 @@ class WizardExportFatturapa(models.TransientModel):
     def exportFatturaPA(self):
 
         # self.setNameSpace()
-        model_data_obj = self.env['ir.model.data']
-        invoice_obj = self.env['account.invoice']
+        model_data_model = self.env['ir.model.data']
+        invoice_model = self.env['account.invoice']
 
         invoice_ids = self.env.context.get('active_ids', False)
         company, partner = self.getPartnerCompanyId(invoice_ids)
@@ -707,12 +707,13 @@ class WizardExportFatturapa(models.TransientModel):
         else:
             fatturapa = FatturaElettronica(versione='FPR12')
         context_partner = self.env.context.copy()
-        context_partner.update({'lang': partner.lang})
+        context_partner.update({'lang': partner.lang,
+                                'company_id': company.id})
         try:
             self.with_context(context_partner).setFatturaElettronicaHeader(
                 company, partner, fatturapa)
             for invoice_id in invoice_ids:
-                inv = invoice_obj.with_context(context_partner).browse(
+                inv = invoice_model.with_context(context_partner).browse(
                     invoice_id)
                 if inv.fatturapa_attachment_out_id:
                     raise UserError(
@@ -732,10 +733,10 @@ class WizardExportFatturapa(models.TransientModel):
         attach = self.saveAttachment(fatturapa, number)
 
         for invoice_id in invoice_ids:
-            inv = invoice_obj.browse(invoice_id)
+            inv = invoice_model.browse(invoice_id)
             inv.write({'fatturapa_attachment_out_id': attach.id})
 
-        view_id = model_data_obj.xmlid_to_res_id(
+        view_id = model_data_model.xmlid_to_res_id(
             'l10n_it_einvoice_out.view_fatturapa_out_attachment_form')
 
         return {
