@@ -40,7 +40,14 @@ class ResPartner(models.Model):
                 where = self._build_where_city(level=2)
                 city_ids = self.env['res.city'].search(where)
             if city_ids:
-                city = self.env['res.city'].browse(city_ids[0].id)
+                found = False
+                for id in city_ids:
+                    city = self.env['res.city'].browse(id.id)
+                    if city.zip and city.zip.find('%') >= 0:
+                        found = True
+                        break
+                if not found:
+                    city = self.env['res.city'].browse(city_ids[0].id)
                 self.city = city.name
                 where = self._build_where_stateid(city.state_id.id)
                 stateid_ids = self.env['res.country.state'].search(where)
