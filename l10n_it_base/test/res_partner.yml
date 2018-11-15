@@ -40,7 +40,7 @@
     assert partner.province.id == CE_id, "Invalid province [1]!"
     assert partner.region.id == province.region.id, "Invalid region [1]!"
 -
-  Test on_change (zip) for res.partner
+  Test onchange (zip) for res.partner
 -
   !python {model: res.partner}: |
     province_obj = self.pool['res.province']
@@ -52,7 +52,7 @@
     state_id = partner.state_id.id
     province = partner.province.id
     region = partner.region.id
-    vals = self.on_change_zip(cr, uid, [ref('partner_1')], country_id, '20022', city, state_id)['value']
+    vals = self.onchange_zip(cr, uid, [ref('partner_1')], country_id, '20022', city, state_id)['value']
     self.write(cr, uid, [ref('partner_1')], vals)
     partner = self.browse(cr, uid, ref('partner_1'))
     assert partner.city == 'Castano Primo', "Invalid city change [1b]!"
@@ -71,7 +71,7 @@
     zip: '10060'
     city: 'San Secondo'
 -
-  Test on_change (city) for res.partner
+  Test onchange (city) for res.partner
 -
   !python {model: res.partner}: |
     province_obj = self.pool['res.province']
@@ -84,7 +84,7 @@
     state_id = False
     province = False
     region = False
-    vals = self.on_change_city(cr, uid, [ref('partner_2')], country_id, zip, 'S. Secondo', state_id)['value']
+    vals = self.onchange_city(cr, uid, [ref('partner_2')], country_id, zip, 'S. Secondo', state_id)['value']
     self.write(cr, uid, [ref('partner_2')], vals)
     partner = self.browse(cr, uid, ref('partner_2'))
     assert partner.city == 'San Secondo di Pinerolo', "Invalid city rewritten [2]!"
@@ -111,7 +111,7 @@
     assert partner.city == 'Terzo', "Invalid city [3]!"
     assert partner.zip == '15010', "Invalid zip [3]!"
 -
-  Test on_change (zip multizone) for res.partner
+  Test onchange (zip multizone) for res.partner
 -
   !python {model: res.partner}: |
     province_obj = self.pool['res.province']
@@ -123,10 +123,10 @@
     state_id = partner.state_id.id
     province = partner.province.id
     region = partner.region.id
-    vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '34147', city, state_id)['value']
+    vals = self.onchange_zip(cr, uid, [ref('partner_3')], country_id, '34147', city, state_id)['value']
     assert vals['zip'] == '34147', "Invalid zip on change [3b]!"
     assert vals['city'] == 'Trieste', "Invalid city on change [3b]!"
-    vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '10121', city, state_id)['value']
+    vals = self.onchange_zip(cr, uid, [ref('partner_3')], country_id, '10121', city, state_id)['value']
     assert vals['zip'] == '10121', "Invalid zip on change [3b]!"
     assert vals['city'] == 'Torino', "Invalid city on change [3b]!"
 -

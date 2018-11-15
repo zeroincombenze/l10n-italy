@@ -1,26 +1,19 @@
-|Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-===========================
-Odoo 7.0 (formerly OpenERP)
-===========================
+===============================
+|Zeroincombenze| l10n-italy 7.0
+===============================
+
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
 
-|en|
 
-l10n-italy
-===========
+Overview / Panoramica
+=====================
 
-Italian Localization
+|en| Italian Localization
 
-
-
-|it|
-
-l10n-italy
-===========
-
-Localizzazione Italiana
+|it| Localizzazione Italiana
 
 La localizzazione italiana comprende moduli per la gestione delle principali
 incombenze fiscali che le imprese italiane devono gestire.
@@ -40,14 +33,13 @@ Sono coperte le aree:
 * Gestione Ricevute Bancarie
 * Split payment
 
-
 Avaiable Addons / Moduli disponibili
--------------------------------------
+------------------------------------
 
 +------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                        | Version    | OCA Ver.   | Description / Descrizione                          |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| account_central_journal            | 7.0.3      | |same|     | Account Central Journal                            |
+| account_central_journal            | 7.0.0.1.0  | 7.0.3      | account_central_journal                            |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing        | 7.0.1.0    | |same|     | Fiscal Year Closing                                |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -71,19 +63,21 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_bill_of_entry              | 7.0.0.1    | |same|     | Italian Localisation - Bill of Entry               |
 +------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_central_journal            | 7.0.3.0.1  | |no_check| | Print Italian Account Central Journal              |
++------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_corrispettivi              | 7.0.0.1    | |same|     | Italian Localisation - Corrispettivi               |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base              | 7.0.2.1.0  | |no_check| | FatturaPA + Electronic Invoice                     |
+| l10n_it_einvoice_base              | 7.0.2.0.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_out               | 7.0.2.0.1  | |no_check| | Electronic invoices emission                       |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa                  | |no_check| | 7.0.0.1    | Electronic invoices                                |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in               | |halt|     | 7.0.0.1    | Electronic invoices reception                      |
+| l10n_it_fatturapa_in               | |no_check| | 7.0.0.1    | Electronic invoices reception                      |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in_notifications | |halt|     | 7.0.1.0.0  | Supplier electronic invoices notifications         |
+| l10n_it_fatturapa_in_notifications | |no_check| | 7.0.1.0.0  | Supplier electronic invoices notifications         |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_notifications    | |halt|     | 7.0.1.0.0  | Electronic invoices notifications                  |
+| l10n_it_fatturapa_notifications    | |no_check| | 7.0.1.0.0  | Electronic invoices notifications                  |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa_out              | |no_check| | 7.0.0.1.1  | Electronic invoices emission                       |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -91,7 +85,7 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal_ipa                 | 7.0.1.1.0  | |no_check| | IPA Code and Destination Code in Partner Record    |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_payment_term        | 7.0.1.0.0  | |no_check| | Electronic invoices payment                        |
+| l10n_it_fiscal_payment_term        | 7.0.1.0.0  | |no_check| | Electronic & Fiscal invoices payment               |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscalcode                 | 7.0.0.2.1  | 7.0.0.1    | Italian Localisation - Fiscal Code                 |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -122,8 +116,9 @@ Avaiable Addons / Moduli disponibili
 | multibase_plus                     | 7.0.0.1.1  | |no_check| | Enhanced Odoo Features                             |
 +------------------------------------+------------+------------+----------------------------------------------------+
 
-OCA Differences / Differenze da OCA
-------------------------------------
+
+OCA comparation / Confronto con OCA
+-----------------------------------
 
 +--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
 | Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                |
@@ -153,11 +148,21 @@ OCA Differences / Differenze da OCA
 
 
 
-|en|
+Getting started / Come iniziare
+===============================
 
+|Try Me|
+
+
+Prerequisites / Prerequisiti
+----------------------------
+
+
+* python
+* postgresql 9.2+
 
 Installation / Installazione
-=============================
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -166,16 +171,14 @@ Installation / Installazione
 | example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
 | you have to do on Linux.        | e Debian 8+                              |
 |                                 |                                          |
-| Installation is based on:       | L'installazione è basata su:             |
+| Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
 | `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
-| Suggested deployment is         | Posizione suggerita per l'installazione: |
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| **/opt/odoo/7.0/l10n-italy/**                                              |
+| /opt/odoo/7.0/l10n-italy/                                                  |
 +----------------------------------------------------------------------------+
-
-|
 
 ::
 
@@ -190,8 +193,9 @@ Installation / Installazione
     done
     sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
+
 Upgrade / Aggiornamento
-------------------------
+-----------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -203,46 +207,64 @@ Upgrade / Aggiornamento
 
 ::
 
-    cd /opt/odoo/7.0/l10n-italy/
-    git pull origin 7.0
+    odoo_install_repository l10n-italy -b 7.0 -O zero -U
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 
+Support / Supporto
+------------------
+
+
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 
-Maintainers / Manutezione
+Get involved / Ci mettiamo in gioco
+===================================
+
+Bug reports are welcome! You can use the issue tracker to report bugs,
+and/or submit pull requests on `GitHub Issues
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+
+In case of trouble, please check there if your issue has already been reported.
+
+Proposals for enhancement
 -------------------------
 
-|Odoo Italia Associazione|
+If you have a proposal to change this module, you may want to send an email to
+<moderatore@odoo-italia.org> for initial feedback.
+An Enhancement Proposal may be submitted if your idea gains ground.
 
-This module is maintained by the Odoo Italia Associazione.
+Credits / Titoli di coda
+========================
 
-To contribute to this module, please visit https://odoo-italia.org/.
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
 ----------------
 
-**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
-(formerly OpenERP)
 
-**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
-is a nonprofit organization whose mission is to support
-the collaborative development of Odoo features and promote its widespread use.
-
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
-is mainly designed for Italian law and markeplace.
+is mainly designed to cover Italian law and markeplace.
 
-Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server.
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+
+
+|chat_with_us|
 
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-24
+Last Update / Ultimo aggiornamento: 2018-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -253,6 +275,9 @@ Last Update / Ultimo aggiornamento: 2018-10-24
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
@@ -271,12 +296,15 @@ Last Update / Ultimo aggiornamento: 2018-10-24
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: badge-oca-codecov
-    :target: oca-codecov-URL
+.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
+    :target: Unknown oca-codecov-URL
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
    :target: https://www.facebook.com/groups/openerp.italia/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
@@ -297,4 +325,5 @@ Last Update / Ultimo aggiornamento: 2018-10-24
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b

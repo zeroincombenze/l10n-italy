@@ -475,32 +475,32 @@ class res_partner(orm.Model):
             size=2, string='Province code'),
     }
 
-    def on_change_country(self, cr, uid, ids,
-                          country_id, zip, city, state_id, context=None):
+    def onchange_country(self, cr, uid, ids,
+                        country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
                                context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'country_id', country_id,
                                       context=context)
 
-    def on_change_zip(self, cr, uid, ids,
-                      country_id, zip, city, state_id, context=None):
+    def onchange_zip(self, cr, uid, ids,
+                    country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
                                context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'zip', zip,
                                       context=context)
 
-    def on_change_state(self, cr, uid, ids,
-                        country_id, zip, city, state_id, context=None):
+    def onchange_state(self, cr, uid, ids,
+                       country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
                                context=context)
         config_obj = self.pool.get('res.config.settings')
         return config_obj.fill_geoloc(cr, uid, ids, 'state_id', state_id,
                                       context=context)
 
-    def on_change_city(self, cr, uid, ids,
-                       country_id, zip, city, state_id, context=None):
+    def onchange_city(self, cr, uid, ids,
+                      country_id, zip, city, state_id, context=None):
         context = self.new_ctx(country_id, zip, city, state_id,
                                context=context)
         config_obj = self.pool.get('res.config.settings')

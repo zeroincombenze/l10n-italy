@@ -15,7 +15,7 @@ Overview / Panoramica
 =====================
 
 |en| Italy Base localization
-=======================
+-----------------------
 
 This module add following data:
 
@@ -23,19 +23,27 @@ This module add following data:
 * Titles
 * Provinces (districts) and Regions
 
+|
 
 |it| Localizzazione italiana di base
-===============================
+-------------------------------
 
-Questo modulo permette fornisce i dati precompilati di:
+Questo modulo fornisce i dati precompilati di:
 
 * Comuni italiani (aggiornati al 2014)
 * Titoli
 * Province e regioni aggiornati
 
-
 Inoltre gestisce alcuni automatistmi durante la compilazione del campi anagrafici.
 
+La videata dell'anagrafica è modificata come da consuetudine italiana:
+
+CAP - Località - Provincia
+
+mentre nella versione origiale di Odoo il CAP è posto dopo la provincia (formato anglosassone).
+
+
+|
 
 Features / Caratteristiche
 --------------------------
@@ -49,14 +57,39 @@ Features / Caratteristiche
 +----------------------------------------------------------------+----------+----------------------------------------------+
 | District from ZIP / Provincia da CAP                           | |check|  | Compila la provincia dal CAP                 |
 +----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for ZIP and distrct / Controllo coerenza CAP e provincia | |check|  | Verifica coerenza di CAP e provincia         |
+| Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
 +----------------------------------------------------------------+----------+----------------------------------------------+
+
+|
+
+Usage / Utilizzo
+----------------
+
+|it| Durante l'inserimento dell'anagrafica rispettare le seguenti regole:
+
+* Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
+* Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
+* Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
+
+|
 
 OCA comparation / Confronto con OCA
 -----------------------------------
 
++----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Description / Descrizione                                      | Odoo Italia  | OCA               | Notes / Note                   |
++----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| City from ZIP / Città da CAP                                   | |check|      | |no_check|        |                                |
++----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| District from ZIP / Provincia da CAP                           | |check|      | |no_check|        |                                |
++----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Check for ZIP and distrct / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
++----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+
 |OCA project|
 
+|
+|
 
 Getting started / Come iniziare
 ===============================
@@ -70,6 +103,8 @@ Prerequisites / Prerequisiti
 
 * python
 * postgresql 9.2+
+
+|
 
 Installation / Installazione
 ----------------------------
@@ -108,6 +143,8 @@ From UI: go to:
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **l10n_it_base** > Install
 
+|
+
 Upgrade / Aggiornamento
 -----------------------
 
@@ -130,6 +167,8 @@ From UI: go to:
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **l10n_it_base** > Update
 
+|
+
 Support / Supporto
 ------------------
 
@@ -138,6 +177,8 @@ Support / Supporto
 and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
+|
+|
 
 Get involved / Ci mettiamo in gioco
 ===================================
@@ -155,6 +196,8 @@ If you have a proposal to change this module, you may want to send an email to
 <moderatore@odoo-italia.org> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
+|
+|
 
 Credits / Titoli di coda
 ========================
@@ -164,6 +207,9 @@ Copyright
 
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
+
+
+|
 
 Authors / Autori
 ----------------
@@ -176,27 +222,29 @@ Contributors / Collaboratori
 ----------------------------
 
 
-Davide Corio <davide.corio@domsense.com>
-Luca Subiaco <subluca@gmail.com>
-Simone Orsi <simone.orsi@domsense.com>
-Mario Riva <mario.riva@domsense.com>
-Mauro Soligo <mauro.soligo@katodo.com>
-Giovanni Barzan <giovanni.barzan@gmail.com>
-Lorenzo Battistini <lorenzo.battistini@domsense.com>
-Roberto Onnis <onnis.roberto@gmail.com>
-Antonio M. Vigliotti <info@shs-av.com>
+* Davide Corio <davide.corio@domsense.com>
+* Luca Subiaco <subluca@gmail.com>
+* Simone Orsi <simone.orsi@domsense.com>
+* Mario Riva <mario.riva@domsense.com>
+* Mauro Soligo <mauro.soligo@katodo.com>
+* Giovanni Barzan <giovanni.barzan@gmail.com>
+* Lorenzo Battistini <lorenzo.battistini@domsense.com>
+* Roberto Onnis <onnis.roberto@gmail.com>
+* Antonio M. Vigliotti <info@shs-av.com>
+
+|
 
 ----------------
 
 
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server or can download from
-`Odoo Italia Associazine repository <https://github.com/Odoo-Italia-Associazione/OCB>`__
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -204,7 +252,7 @@ and deploy on local server or can download from
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-13
+Last Update / Ultimo aggiornamento: 2018-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

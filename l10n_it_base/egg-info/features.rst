@@ -7,5 +7,5 @@
 +----------------------------------------------------------------+----------+----------------------------------------------+
 | District from ZIP / Provincia da CAP                           | |check|  | Compila la provincia dal CAP                 |
 +----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for ZIP and distrct / Controllo coerenza CAP e provincia | |check|  | Verifica coerenza di CAP e provincia         |
+| Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
 +----------------------------------------------------------------+----------+----------------------------------------------+

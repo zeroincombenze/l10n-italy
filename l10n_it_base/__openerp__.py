@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-2011, Odoo Italian Community
-# Copyright 2011-2017, Associazione Odoo Italia <https://odoo-italia.org>
-# Copyright 2014, Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+# Copyright 2010-18 - Associazione Odoo Italia <https://odoo-italia.org>
+# Copyright 2014-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
@@ -10,11 +9,13 @@
     'name': 'Italian Localisation - Base',
     'version': '7.0.0.2.14',
     'category': 'Localisation/Italy',
-    'author': 'Odoo Italian Community,Odoo Community Association (OCA),SHS-AV s.r.l.',
+    'author': 'Odoo Italia Associazione,'
+              'Odoo Community Association (OCA),'
+              'SHS-AV s.r.l.',
     'website': 'https://odoo-italia.org/',
     'license': 'AGPL-3',
     'depends': ['base'],
-    "data": [
+    'data': [
         'security/ir.model.access.csv',
         'views/partner_view.xml',
         'views/company_view.xml',
@@ -28,10 +29,12 @@
     ],
     'test': ['test/res_partner.yml'],
     'installable': True,
-    'description': r'''|en|
+    'description': r'''
+Overview / Panoramica
+=====================
 
-Italy Base localization
-=======================
+|en| Italy Base localization
+-----------------------
 
 This module add following data:
 
@@ -39,20 +42,30 @@ This module add following data:
 * Titles
 * Provinces (districts) and Regions
 
+|
 
-|it|
+|it| Localizzazione italiana di base
+-------------------------------
 
-Localizzazione italiana di base
-===============================
-
-Questo modulo permette fornisce i dati precompilati di:
+Questo modulo fornisce i dati precompilati di:
 
 * Comuni italiani (aggiornati al 2014)
 * Titoli
 * Province e regioni aggiornati
 
-
 Inoltre gestisce alcuni automatistmi durante la compilazione del campi anagrafici.
+
+La videata dell'anagrafica è modificata come da consuetudine italiana:
+
+CAP - Località - Provincia
+
+mentre nella versione origiale di Odoo il CAP è posto dopo la provincia (formato anglosassone).
+
+
+|
+
+Features / Caratteristiche
+--------------------------
 
 +----------------------------------------------------------------+----------+----------------------------------------------+
 | Feature / Funzione                                             |  Status  | Notes / Note                                 |
@@ -63,16 +76,44 @@ Inoltre gestisce alcuni automatistmi durante la compilazione del campi anagrafic
 +----------------------------------------------------------------+----------+----------------------------------------------+
 | District from ZIP / Provincia da CAP                           | |check|  | Compila la provincia dal CAP                 |
 +----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for ZIP and distrct / Controllo coerenza CAP e provincia | |check|  | Verifica coerenza di CAP e provincia         |
+| Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
 +----------------------------------------------------------------+----------+----------------------------------------------+
-Unknown OCA_diff
+
+|
+
+Usage / Utilizo
+---------------
+
+|it| Durante l'inserimento dell'anagrafica rispettare le seguenti regole:
+
+* Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
+* Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
+* Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
+
+|
+|
+
+Support / Supporto
+------------------
 
 
-|en|
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
+|
+|
 
+Credits / Titoli di coda
+========================
+
+Copyright
 ---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
+
+
+|
 
 Authors / Autori
 -----------------
@@ -85,19 +126,33 @@ Contributors / Collaboratori
 ----------------------------
 
 
-Davide Corio <davide.corio@domsense.com>
-Luca Subiaco <subluca@gmail.com>
-Simone Orsi <simone.orsi@domsense.com>
-Mario Riva <mario.riva@domsense.com>
-Mauro Soligo <mauro.soligo@katodo.com>
-Giovanni Barzan <giovanni.barzan@gmail.com>
-Lorenzo Battistini <lorenzo.battistini@domsense.com>
-Roberto Onnis <onnis.roberto@gmail.com>
-Antonio M. Vigliotti <info@shs-av.com>
+* Davide Corio <davide.corio@domsense.com>
+* Luca Subiaco <subluca@gmail.com>
+* Simone Orsi <simone.orsi@domsense.com>
+* Mario Riva <mario.riva@domsense.com>
+* Mauro Soligo <mauro.soligo@katodo.com>
+* Giovanni Barzan <giovanni.barzan@gmail.com>
+* Lorenzo Battistini <lorenzo.battistini@domsense.com>
+* Roberto Onnis <onnis.roberto@gmail.com>
+* Antonio M. Vigliotti <info@shs-av.com>
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-14
+----------------
+
+
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed to cover Italian law and markeplace.
+
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+
+|
+
+Last Update / Ultimo aggiornamento: 2018-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
