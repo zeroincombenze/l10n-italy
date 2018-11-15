@@ -79,7 +79,7 @@
         <field name="tax_code_id" ref="tax_vat_22a"></field>
     </record>
 
-    <record id="tax_22v" model="account.tax">
+    <record id="tax_22av" model="account.tax">
         <field name="name">22% vendite</field>
         <field name="description">22% vend.</field>
         <field name="amount">0.22</field>

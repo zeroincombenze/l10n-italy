@@ -36,7 +36,8 @@ from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (AllegatiType,
                                                                  IscrizioneREAType,
                                                                  ScontoMaggiorazioneType)
 from openerp.addons.l10n_it_einvoice_base.models.account import (
-    RELATED_DOCUMENT_TYPES)
+    RELATED_DOCUMENT_TYPES
+)
 from openerp.osv import orm
 from openerp.tools.translate import _
 
@@ -101,14 +102,15 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def _wep_phone_number(self, phone):
         """"Remove trailing +39 abd all no numeric chars"""
-        if phone[0:3] == '+39':
-            phone = phone[3:]
-        elif phone[0] == '+':
-            phone = '00' + phone[1:]
         wep_phone = ''
-        for i in range(len(phone)):
-            if phone[i].isdigit():
-                wep_phone += phone[i]
+        if phone:
+            if phone[0:3] == '+39':
+                phone = phone[3:]
+            elif phone[0] == '+':
+                phone = '00' + phone[1:]
+            for i in range(len(phone)):
+                if phone[i].isdigit():
+                    wep_phone += phone[i]
         return wep_phone
 
     def _setIdTrasmittente(self, cr, uid, company, context=None):
@@ -125,7 +127,8 @@ class WizardExportFatturapa(orm.TransientModel):
             IdCodice = company.vat[2:]
         if not IdCodice:
             raise orm.except_orm(
-                _('Error'), _('Company does not have fiscal code or VAT'))
+                _('Error'),
+                _('Company does not have fiscal code or VAT'))
 
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             IdTrasmittente = IdFiscaleType(
@@ -133,16 +136,16 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
-    def _setFormatoTrasmissione(self, cr, uid, company, context=None):
-        if context is None:
-            context = {}
+    def _setFormatoTrasmissione(self, cr, uid, partner, fatturapa,
+                                context=None):
+        context = context or {}
 
-        if not company.fatturapa_format_id:
-            raise orm.except_orm(
-                _('Error!'), _('FatturaPA format not set.'))
-        self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            FormatoTrasmissione = company.fatturapa_format_id.code
-
+        if partner.is_pa:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
+                FormatoTrasmissione = 'FPA12'
+        else:
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
+                FormatoTrasmissione = 'FPR12'
         return True
 
     def _setCodiceDestinatario(self, cr, uid, partner, context=None):
@@ -176,13 +179,15 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
-    def setDatiTrasmissione(self, cr, uid, company, partner, context=None):
-        if context is None:
-            context = {}
+    def setDatiTrasmissione(self, cr, uid,
+                            company, partner, fatturapa, 
+                            context=None):
+        context = context or {}
         self.fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
             DatiTrasmissioneType())
         self._setIdTrasmittente(cr, uid, company, context=context)
-        self._setFormatoTrasmissione(cr, uid, company, context=context)
+        self._setFormatoTrasmissione(cr, uid, partner, fatturapa,
+                                     context=context)
         self._setCodiceDestinatario(cr, uid, partner, context=context)
         self._setContattiTrasmittente(cr, uid, company, context=context)
 
@@ -704,13 +709,14 @@ class WizardExportFatturapa(orm.TransientModel):
                 body.Allegati.append(AttachDoc)
         return True
 
-    def setFatturaElettronicaHeader(self, cr, uid, company,
-                                    partner, context=None):
-        if context is None:
-            context = {}
+    def setFatturaElettronicaHeader(self, cr, uid,
+                                    company, partner, fatturapa,
+                                    context=None):
+        context = context or {}
         self.fatturapa.FatturaElettronicaHeader = (
             FatturaElettronicaHeaderType())
-        self.setDatiTrasmissione(cr, uid, company, partner, context=context)
+        self.setDatiTrasmissione(cr, uid, company, partner, fatturapa,
+                                 context=context)
         self.setCedentePrestatore(cr, uid, company, context=context)
         self.setRappresentanteFiscale(cr, uid, company, context=context)
         self.setCessionarioCommittente(
@@ -775,16 +781,20 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_model = self.pool['ir.model.data']
         invoice_model = self.pool['account.invoice']
 
-        self.fatturapa = FatturaElettronica(versione='FPA12')
         invoice_ids = context.get('active_ids', False)
         company, partner = self.getPartnerCompanyId(cr, uid, invoice_ids,
                                                     context=context)
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
         context_partner = context.copy()
         context_partner.update({'lang': partner.lang,
                                 'company_id': company.id})
         try:
-            self.setFatturaElettronicaHeader(cr, uid, company,
-                                             partner, context=context_partner)
+            self.setFatturaElettronicaHeader(cr, uid, 
+                                             company, partner, fatturapa,
+                                             context=context_partner)
             for invoice_id in invoice_ids:
                 inv = invoice_model.browse(
                     cr, uid, invoice_id, context=context_partner)

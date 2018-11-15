@@ -21,7 +21,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -33,7 +33,7 @@
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -61,7 +61,7 @@ seconda riga</field>
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -73,7 +73,7 @@ seconda riga</field>
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -109,7 +109,7 @@ seconda riga</field>
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -122,7 +122,7 @@ seconda riga</field>
         <field name="account_id" ref="account.a_sale"/>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="4.0"/>
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_43"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>
@@ -196,7 +196,7 @@ seconda riga</field>
         <field name="uos_id" ref="product.product_uom_unit"/>
         <field name="price_unit" eval="10.0" />
         <field name="discount" eval="10.0" />
-        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22v')])]"/>
+        <field name="invoice_line_tax_id" eval="[(6,0,[ref('tax_22av')])]"/>
         <field name="product_id" ref="product.product_product_39"/>
         <field name="quantity" eval="1.0" />
         <field name="partner_id" ref="res_partner_fatturapa_0"/>

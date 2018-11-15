@@ -1,0 +1,4 @@
+.. $if branch in '7.0'
+* Innoviu srl <http://www.innoviu.com>
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+.. $fi

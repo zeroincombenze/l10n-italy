@@ -123,9 +123,9 @@
     state_id = partner.state_id.id
     province = partner.province.id
     region = partner.region.id
-    vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '15121', city, state_id)['value']
-    assert vals['zip'] == '15121', "Invalid zip on change [3b]!"
-    assert vals['city'] == 'Alessandria', "Invalid city on change [3b]!"
+    vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '34147', city, state_id)['value']
+    assert vals['zip'] == '34147', "Invalid zip on change [3b]!"
+    assert vals['city'] == 'Trieste', "Invalid city on change [3b]!"
     vals = self.on_change_zip(cr, uid, [ref('partner_3')], country_id, '10121', city, state_id)['value']
     assert vals['zip'] == '10121', "Invalid zip on change [3b]!"
     assert vals['city'] == 'Torino', "Invalid city on change [3b]!"

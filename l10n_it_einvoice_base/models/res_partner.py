@@ -12,8 +12,10 @@ from openerp.osv import fields, orm
 class AccountFiscalPosition(orm.Model):
     _inherit = 'account.fiscal.position'
 
-    regime_fiscale = fields.many2one(
-        'fatturapa.fiscal_position', string='Regime Fiscale')
+    _columns = {
+        'regime_fiscale': fields.many2one(
+            'fatturapa.fiscal_position', string='Regime Fiscale'),
+    }
 
 
 class ResPartner(orm.Model):

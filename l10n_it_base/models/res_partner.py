@@ -360,12 +360,14 @@ class res_config_settings(orm.TransientModel):
                 tofind = value[0:3] + '%'
                 where.append((name, '=like', tofind))
                 city_ids = self.pool['res.city'].search(cr, uid, where)
-            if len(city_ids) != 1:
-                city_ids = []
-            else:
-                city = self.pool['res.city'].browse(cr, uid, city_ids[0])
-                if not city.zip or city.zip.find('%') < 0:
-                    city_ids = []
+            found = False
+            for id in city_ids:
+                city = self.pool['res.city'].browse(cr, uid, id)
+                if city.zip and city.zip.find('%') >= 0:
+                    found = True
+                    break
+            if found:
+                city_ids = [id]
         return city_ids
 
     def _do_search(self, cr, uid):

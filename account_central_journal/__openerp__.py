@@ -1,47 +1,16 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 ISA s.r.l. (<http://www.isa.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
+# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+#                Odoo Italian Community
+#                Odoo Community Association (OCA)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    'name': 'Account Central Journal',
-    'version': '3',
-    'author': "ISA S.r.l.,Odoo Community Association (OCA)",
-    'website': 'http://www.isa.it',
+    'name': "account_central_journal",
+    'summary': """account_central_journal""",
+    'description': """This module was replaced by l10n_it_central_journal
+    """,
+    'author': "SHS-AV s.r.l.",
+    'website': "https://www.zeroincombenze.it/",
     'category': 'Generic Modules/Accounting',
-    'description': """
-Managing the printing of the "Central Journal" """,
-    'depends': [
-        'base',
-        'account',
-        'report_webkit',
-    ],
-    'init_xml': [],
-    'update_xml': [
-        'report/webkit_model.xml',
-        'report/report.xml',
-        'wizard/central_journal_report.xml',
-        'account_view.xml',
-    ],
-    'demo_xml': [],
-    'test': [],
-    'installable': True,
-    'active': False,
-    'certificate': '',
+    'version': '7.0.0.1.0',
+    'installable': True
 }

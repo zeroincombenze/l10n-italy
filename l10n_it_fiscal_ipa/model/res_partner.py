@@ -12,17 +12,17 @@ from openerp.osv import fields, orm
 class ResPartner(orm.Model):
     _inherit = 'res.partner'
     _columns = {
-        'is_pa': fields.boolean("Public administration"),
         'ipa_code': fields.char('IPA Code',
                                 size=128),
-        'electronic_invoice_subjected': fields.boolean(
-            "Subjected to electronic invoice"),
+        'is_pa': fields.boolean("Public administration"),
         'codice_destinatario': fields.char(
             "Recipient Code",
             help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
                  "hanno accreditato un canale; qualora il destinatario non abbia "
                  "accreditato un canale presso Sdi e riceva via PEC le fatture, "
                  "l'elemento deve essere valorizzato con tutti zeri ('0000000'). "),
+        'electronic_invoice_subjected': fields.boolean(
+            "Subjected to electronic invoice"),
         'eori_code': fields.char('EORI Code', size=20),
         'license_number': fields.char('License Code', size=20),
         'pec_destinatario': fields.char(
