@@ -70,7 +70,7 @@ See http://www.zeroincombenze.it/il-piano-dei-conti-2/
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
         'data/account.chart.template.csv',
-        # 'data/account_chart_template_data.yml',
+        'data/account_chart_template_data.yml',
     ],
     'maintainer': 'Antonio Maria Vigliotti',
     'license': 'AGPL-3',

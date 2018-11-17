@@ -1,26 +1,19 @@
-|Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-============================
-Odoo 11.0 (formerly OpenERP)
-============================
+================================
+|Zeroincombenze| l10n-italy 12.0
+================================
+
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
 
-|en|
 
-l10n-italy
-===========
+Overview / Panoramica
+=====================
 
-Italian Localization
+|en| Italian Localization
 
-
-
-|it|
-
-l10n-italy
-===========
-
-Localizzazione Italiana
+|it| Localizzazione Italiana
 
 La localizzazione italiana comprende moduli per la gestione delle principali
 incombenze fiscali che le imprese italiane devono gestire.
@@ -37,53 +30,21 @@ Sono coperte le aree:
 * Gestione Ricevute Bancarie
 * Split payment
 
-
 Avaiable Addons / Moduli disponibili
--------------------------------------
-
-+-----------------------------+------------+------------+----------------------------------------------------+
-| Name / Nome                 | Version    | OCA Ver.   | Description / Descrizione                          |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_entry_date  | 11.0.0.1.0 | |no_check| | Account Invoice entry Date                         |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_abicab              | 11.0.1.0.0 | |no_check| | Base Bank ABI/CAB codes                            |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ade                 | 11.0.0.1.1 | |no_check| | Codice con le definizioni dei file xml Agenzia del |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base                | 11.0.0.1.3 | |no_check| | Italian Localisation - Base                        |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base       | 11.0.2.0.1 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out        | 11.0.1.0.0 | |no_check| | Electronic invoices emission                       |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_esigibilita_iva     | 11.0.1.0.0 | |no_check| | Esigibilità IVA                                    |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal              | 11.0.10.0. | |no_check| | Italy - Fiscal localization by Zeroincombenze(R)   |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_ipa          | 11.0.1.1.0 | |no_check| | IPA Code and Destination Code in Partner Record    |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_payment_term | 11.0.1.0.0 | |no_check| | Electronic invoices Payment Term                   |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscalcode          | 11.0.1.0.2 | |no_check| | Italian Localisation - Fiscal Code                 |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_pec                 | 11.0.1.0.0 | |no_check| | Pec Mail                                           |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_rea                 | 11.0.1.0.1 | |no_check| | Manage fields for  Economic Administrative catalog |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_split_payment       | 11.0.1.0.2 | |no_check| | Split Payment                                      |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_vat_communication   | 11.0.0.1.1 | |no_check| | Comunicazione periodica IVA                        |
-+-----------------------------+------------+------------+----------------------------------------------------+
-| multibase_plus              | 11.0.0.1.2 | |no_check| | Enhanced Odoo Features                             |
-+-----------------------------+------------+------------+----------------------------------------------------+
-
-OCA Differences / Differenze da OCA
 ------------------------------------
+
++----------------+------------+------------+----------------------------------------------------+
+| Name / Nome    | Version    | OCA Ver.   | Description / Descrizione                          |
++----------------+------------+------------+----------------------------------------------------+
+| l10n_it_fiscal | 12.0.10.0. | |no_check| | Italy - Fiscal localization by Zeroincombenze(R)   |
++----------------+------------+------------+----------------------------------------------------+
+
+
+OCA comparation / Confronto con OCA
+-----------------------------------
 
 +--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
 | Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Ricerca per CAP, città e provincia   | |check|          | |no_check|      |                                                                             |
 +--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
 | Dati comuni/province italiane        | 2014             | 2013            |                                                                             |
 +--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
@@ -91,16 +52,24 @@ OCA Differences / Differenze da OCA
 +--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
 | Codici IVA completi                  | |check|          | |no_check|      |                                                                             |
 +--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
 
 
 
-|en|
+Getting started / Come iniziare
+===============================
 
+|Try Me|
+
+
+Prerequisites / Prerequisiti
+----------------------------
+
+
+* python3.5
+* postgresql 9.5+
 
 Installation / Installazione
-=============================
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -109,16 +78,14 @@ Installation / Installazione
 | example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
 | you have to do on Linux.        | e Debian 8+                              |
 |                                 |                                          |
-| Installation is based on:       | L'installazione è basata su:             |
+| Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
 | `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
-| Suggested deployment is         | Posizione suggerita per l'installazione: |
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| **/opt/odoo/11.0/l10n-italy/**                                             |
+| /opt/odoo/12.0/l10n-italy/                                                 |
 +----------------------------------------------------------------------------+
-
-|
 
 ::
 
@@ -127,14 +94,15 @@ Installation / Installazione
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
-    odoo_install_repository l10n-italy -b 11.0 -O oia
+    odoo_install_repository l10n-italy -b 12.0 -O zero
     for pkg in os0 z0lib; do
         pip install $pkg -U
     done
-    sudo manage_odoo requirements -b 11.0 -vsy -o /opt/odoo/11.0
+    sudo manage_odoo requirements -b 12.0 -vsy -o /opt/odoo/12.0
+
 
 Upgrade / Aggiornamento
-------------------------
+-----------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -146,87 +114,104 @@ Upgrade / Aggiornamento
 
 ::
 
-    cd /opt/odoo/11.0/l10n-italy/
-    git pull origin 11.0
+    odoo_install_repository l10n-italy -b 12.0 -O zero -U
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 
+Support / Supporto
+------------------
+
+
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 
-Maintainers / Manutezione
+Get involved / Ci mettiamo in gioco
+===================================
+
+Bug reports are welcome! You can use the issue tracker to report bugs,
+and/or submit pull requests on `GitHub Issues
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+
+In case of trouble, please check there if your issue has already been reported.
+
+Proposals for enhancement
 -------------------------
 
-|Odoo Italia Associazione|
+If you have a proposal to change this module, you may want to send an email to
+<moderatore@odoo-italia.org> for initial feedback.
+An Enhancement Proposal may be submitted if your idea gains ground.
 
-This module is maintained by the Odoo Italia Associazione.
+Credits / Titoli di coda
+========================
 
-To contribute to this module, please visit https://odoo-italia.org/.
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
 ----------------
 
-**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
-(formerly OpenERP)
 
-**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
-is a nonprofit organization whose mission is to support
-the collaborative development of Odoo features and promote its widespread use.
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed to cover Italian law and markeplace.
 
-**Odoo Italia Associazione**, or the `Associazione Odoo Italia <https://www.odoo-italia.org/>`__
-is the nonprofit Italian Community Association whose mission
-is to support the collaborative development of Odoo designed for Italian law and markeplace.
-Since 2017 Odoo Italia Associazione issues modules for Italian localization not developed by OCA
-or available only with `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
-Odoo Italia Associazione distributes code under `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
-or `LGPL <https://www.gnu.org/licenses/lgpl.html>`__ free license.
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
 
-`Odoo Italia Associazione <https://www.odoo-italia.org/>`__ è un'Associazione senza fine di lucro
-che dal 2017 rilascia moduli per la localizzazione italiana non sviluppati da OCA
-o disponibili solo con `Odoo Proprietary License <https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html>`__
 
-Odoo Italia Associazione distribuisce il codice esclusivamente con licenza `AGPL <https://www.gnu.org/licenses/agpl-3.0.html>`__
-o `LGPL <https://www.gnu.org/licenses/lgpl.html>`__
+|chat_with_us|
 
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-24
+Last Update / Ultimo aggiornamento: 2018-11-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy.svg?branch=11.0
-    :target: https://travis-ci.org/Odoo-Italia-Associazione/l10n-italy
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0
+    :target: https://travis-ci.org/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-.. |Coverage Status| image:: https://coveralls.io/repos/github/Odoo-Italia-Associazione/l10n-italy/badge.svg?branch=11.0
-    :target: https://coveralls.io/github/Odoo-Italia-Associazione/l10n-italy?branch=11.0
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=12.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=12.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/11.0/graph/badge.svg
-    :target: https://codecov.io/gh/Odoo-Italia-Associazione/l10n-italy/branch/11.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-11.svg
-    :target: https://github.com/OCA/l10n-italy/tree/11.0
+.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-12.svg
+    :target: https://github.com/OCA/l10n-italy/tree/12.0
     :alt: OCA
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-11.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/11.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
     :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-11.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/11.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-11.svg
-    :target: https://odoo11.odoo-italia.org
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
+    :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: badge-oca-codecov
-    :target: oca-codecov-URL
+.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
+    :target: Unknown oca-codecov-URL
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
    :target: https://www.facebook.com/groups/openerp.italia/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
@@ -247,4 +232,5 @@ Last Update / Ultimo aggiornamento: 2018-10-24
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
