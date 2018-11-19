@@ -63,7 +63,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ateco                        | 10.0.1.0.0 | |same|     | Ateco codes                                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base                         | 10.0.0.1.3 | |no_check| | Italian Localisation - Base                        |
+| l10n_it_base                         | 10.0.0.2.1 | |no_check| | Italian Localisation - Base                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base_crm                     | |halt|     | |halt|     | Italian Localisation - CRM                         |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -156,7 +156,20 @@ Avaiable Addons / Moduli disponibili
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-|OCA project|
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Ricerca per CAP, città e provincia   | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Dati comuni/province italiane        | 2014             | 2013            |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Codici IVA completi                  | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+
 
 
 Getting started / Come iniziare
@@ -227,8 +240,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 
@@ -244,9 +256,11 @@ In case of trouble, please check there if your issue has already been reported.
 Proposals for enhancement
 -------------------------
 
-If you have a proposal to change this module, you may want to send an email to
-<moderatore@odoo-italia.org> for initial feedback.
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 Credits / Titoli di coda
 ========================
@@ -260,14 +274,14 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 ----------------
 
 
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server or can download from
-`Odoo Italia Associazine repository <https://github.com/Odoo-Italia-Associazione/OCB>`__
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -275,7 +289,7 @@ and deploy on local server or can download from
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-13
+Last Update / Ultimo aggiornamento: 2018-11-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
