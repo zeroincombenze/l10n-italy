@@ -57,7 +57,7 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ade                        | 7.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia del |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base                       | 7.0.0.2.14 | 7.0.0.1    | Italian Localisation - Base                        |
+| l10n_it_base                       | 7.0.0.2.15 | 7.0.0.1    | Italian Localisation - Base                        |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base_crm                   | 7.0.0.1    | |same|     | Italian Localisation - CRM                         |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -216,8 +216,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 
@@ -233,9 +232,11 @@ In case of trouble, please check there if your issue has already been reported.
 Proposals for enhancement
 -------------------------
 
-If you have a proposal to change this module, you may want to send an email to
-<moderatore@odoo-italia.org> for initial feedback.
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 Credits / Titoli di coda
 ========================
@@ -264,7 +265,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-15
+Last Update / Ultimo aggiornamento: 2018-11-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
