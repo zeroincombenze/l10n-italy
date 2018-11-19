@@ -1,3 +1,4 @@
+
 ===============================
 |Zeroincombenze| l10n-italy 9.0
 ===============================
@@ -5,6 +6,7 @@
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
+
 
 Overview / Panoramica
 =====================
@@ -29,14 +31,13 @@ Sono coperte le aree:
 * Split payment
 * Documenti con Reverse Charge
 
-
 Avaiable Addons / Moduli disponibili
 ------------------------------------
 
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                          | Version    | OCA Ver.   | Description / Descrizione                          |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| account_central_journal              | |halt|     | |halt|     | Account Central Journal                            |
+| account_central_journal              | |no_check| | |halt|     | Account Central Journal                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing          | |halt|     | |halt|     | Fiscal Year Closing                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -56,13 +57,15 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |halt|     | Ateco codes                                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base                         | 9.0.0.1.3  | |halt|     | Italian Localisation - Base                        |
+| l10n_it_base                         | 9.0.8.0.0. | |halt|     | Italian Localisation - Base                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base_crm                     | |halt|     | |halt|     | Italian Localisation - CRM                         |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_base_location_geonames_impor | 9.0.0.1.0  | |same|     | Import base_location entries (provinces) from Geon |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_bill_of_entry                | |halt|     | |halt|     | Italian Localisation - Bill of Entry               |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_central_journal              | |halt|     | |no_check| | Account Central Journal                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_corrispettivi                | |halt|     | |halt|     | Italian Localisation - Corrispettivi               |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -106,11 +109,23 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 
 
-
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-|OCA project|
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Ricerca per CAP, città e provincia   | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Dati comuni/province italiane        | 2014             | 2013            |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Codici IVA completi                  | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                             |
++--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
+
 
 
 Getting started / Come iniziare
@@ -122,9 +137,9 @@ Getting started / Come iniziare
 Prerequisites / Prerequisiti
 ----------------------------
 
+
 * python
 * postgresql 9.2+
-
 
 Installation / Installazione
 ----------------------------
@@ -140,7 +155,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
-| Suggested deployment is         | Posizione suggerita per l'installazione: |
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
 | /opt/odoo/9.0/l10n-italy/                                                  |
 +----------------------------------------------------------------------------+
@@ -159,7 +174,6 @@ Installation / Installazione
     sudo manage_odoo requirements -b 9.0 -vsy -o /opt/odoo/9.0
 
 
-
 Upgrade / Aggiornamento
 -----------------------
 
@@ -173,19 +187,16 @@ Upgrade / Aggiornamento
 
 ::
 
-    cd /opt/odoo/9.0/l10n-italy/
-    git pull origin 9.0
+    odoo_install_repository l10n-italy -b 9.0 -O zero -U
     # Adjust following statements as per your system
     sudo systemctl restart odoo
-
 
 
 Support / Supporto
 ------------------
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 
@@ -198,41 +209,43 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
-
 Proposals for enhancement
 -------------------------
 
-If you have a proposal to change this module, you may want to send an email to
-<moderatore@odoo-italia.org> for initial feedback.
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+Credits / Titoli di coda
+========================
+
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
 ----------------
 
-**Odoo** is a trademark of `Odoo S.A. <https://www.odoo.com/>`__
-(formerly OpenERP)
 
-**OCA**, or the `Odoo Community Association <http://odoo-community.org/>`__,
-is a nonprofit organization whose mission is to support
-the collaborative development of Odoo features and promote its widespread use.
-
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
-is mainly designed for Italian law and markeplace.
+is mainly designed to cover Italian law and markeplace.
 
-Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server.
-
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
 
 
-
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-03
+Last Update / Ultimo aggiornamento: 2018-11-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -243,6 +256,9 @@ Last Update / Ultimo aggiornamento: 2018-11-03
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=9.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=9.0
     :alt: Coverage

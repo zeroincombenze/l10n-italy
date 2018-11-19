@@ -1,18 +1,10 @@
 Fattura Elettronica + FatturaPA
-===============================
+-------------------------------
 
 Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
 Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
 
-|warning| Lo schema di definizione dei file xml, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
-moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
-segnalato dall'errore:
-
-|exclamation| name CryptoBinary used for multiple values in typeBinding
-
-Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+Per evitare conflitti i moduli della localizzazione italiana che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiarare il modulo
 `l10n_it_ade <{{GIT_URL_ROOT}}/tree/{{branch}}/l10n_it_ade>`__ come dipendenza.
 
