@@ -6,7 +6,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 
 
 class ResPartner(models.Model):
@@ -86,3 +86,16 @@ class ResPartner(models.Model):
     @api.onchange('city')
     def onchange_city(self):
         return self._onchange_addrflds()
+
+    @api.onchange('vat')
+    def onchange_vat(self):
+        res = {}
+        if self.vat:
+            ids = self.search([('vat', '=', self.vat)])
+            if ids:
+                name = self.browse(ids[0].id).name
+                res['warning'] = {
+                    'title': _('Warning'),
+                    'message': _('Found another partner with same vat: '
+                                 '%s' % name)}
+        return res

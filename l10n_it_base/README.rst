@@ -40,7 +40,7 @@ La videata dell'anagrafica è modificata come da consuetudine italiana:
 
 CAP - Località - Provincia
 
-mentre nella versione origiale di Odoo il CAP è posto dopo la provincia (formato anglosassone).
+mentre nella versione originale di Odoo il CAP è posto dopo la provincia come nel formato anglosassone.
 
 
 |
@@ -59,6 +59,9 @@ Features / Caratteristiche
 +----------------------------------------------------------------+----------+----------------------------------------------+
 | Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
 +----------------------------------------------------------------+----------+----------------------------------------------+
+| Check for duplicate vat / Controllo partita IVA duplicata      | |check|  | Controllo non bloccante                      |
++----------------------------------------------------------------+----------+----------------------------------------------+
+
 
 |
 
@@ -85,6 +88,8 @@ OCA comparation / Confronto con OCA
 | District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
 +-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
 | Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Check for duplicate vat / Controllo partita IVA duplicata       | |check|      | |no_check|        |                                |
 +-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
 
 |OCA project|

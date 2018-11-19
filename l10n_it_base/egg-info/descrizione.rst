@@ -13,4 +13,4 @@ La videata dell'anagrafica è modificata come da consuetudine italiana:
 
 CAP - Località - Provincia
 
-mentre nella versione originale di Odoo il CAP è posto dopo la provincia (formato anglosassone).
+mentre nella versione originale di Odoo il CAP è posto dopo la provincia come nel formato anglosassone.
