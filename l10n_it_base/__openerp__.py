@@ -7,7 +7,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.14',
+    'version': '7.0.0.2.15',
     'category': 'Localisation/Italy',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA),'

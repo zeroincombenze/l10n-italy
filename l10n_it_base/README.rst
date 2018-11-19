@@ -70,21 +70,22 @@ Usage / Utilizzo
 * Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
 * Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
 * Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
+* Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
 
 |
 
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-+----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Description / Descrizione                                      | Odoo Italia  | OCA               | Notes / Note                   |
-+----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| City from ZIP / Città da CAP                                   | |check|      | |no_check|        |                                |
-+----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| District from ZIP / Provincia da CAP                           | |check|      | |no_check|        |                                |
-+----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for ZIP and distrct / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
-+----------------------------------------------------------------+--------------+-------------------+--------------------------------+
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Description / Descrizione                                       | Odoo Italia  | OCA               | Notes / Note                   |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| City from ZIP / Città da CAP                                    | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
 
 |OCA project|
 
@@ -173,8 +174,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 |
@@ -192,9 +192,11 @@ In case of trouble, please check there if your issue has already been reported.
 Proposals for enhancement
 -------------------------
 
-If you have a proposal to change this module, you may want to send an email to
-<moderatore@odoo-italia.org> for initial feedback.
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 |
 |
@@ -232,6 +234,7 @@ Contributors / Collaboratori
 * Roberto Onnis <onnis.roberto@gmail.com>
 * Antonio M. Vigliotti <info@shs-av.com>
 
+
 |
 
 ----------------
@@ -252,7 +255,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-15
+Last Update / Ultimo aggiornamento: 2018-11-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
