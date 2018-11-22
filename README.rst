@@ -41,6 +41,8 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                          | Version    | OCA Ver.   | Description / Descrizione                          |
 +--------------------------------------+------------+------------+----------------------------------------------------+
+| account_central_journal              | 8.0.0.1.0  | |no_check| | account_central_journal                            |
++--------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing          | |halt|     | |halt|     | Fiscal Year Closing                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_invoice_entry_date           | 8.0.0.1.0  | |same|     | Account Invoice entry Date                         |
@@ -79,9 +81,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ddt_delivery                 | 8.0.1.0.0  | |same|     | Copy carrier from picking and from sale order      |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base                | 8.0.2.0.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
+| l10n_it_einvoice_base                | 8.0.2.1.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out                 | |halt|     | |no_check| | Electronic invoices emission                       |
+| l10n_it_einvoice_out                 | 8.0.2.0.0  | |no_check| | Electronic invoices emission                       |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_esigibilita_iva              | |no_check| | 8.0.1.0.0  | Esigibilità IVA                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -273,7 +275,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-19
+Last Update / Ultimo aggiornamento: 2018-11-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -291,9 +293,9 @@ Last Update / Ultimo aggiornamento: 2018-11-19
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg
+.. |OCA project| image:: Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/8.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg
@@ -305,8 +307,8 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg
     :target: https://erp8.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
-    :target: Unknown oca-codecov-URL
+.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -329,10 +331,10 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b

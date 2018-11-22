@@ -1,10 +1,10 @@
 
-==================================
-|icon| Italian Localisation - Base
-==================================
+==============================
+|icon| account_central_journal
+==============================
 
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_base/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/account_central_journal/static/description/icon.png
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -14,83 +14,19 @@
 Overview / Panoramica
 =====================
 
-|en| Italy Base localization
------------------------
-
-This module add following data:
-
-* Italian cities
-* Titles
-* Provinces (districts) and Regions
+|en| Account Central Journal (deprecated)
 
 |
 
-|it| Localizzazione italiana di base
--------------------------------
+|it| Stampa libro giornale fiscale (versione in disuso).
 
-Questo modulo fornisce i dati precompilati di:
+Questo modulo non è più utilizzato ed è stato sostituito da l10n_it_central_journal.
 
-* Comuni italiani (aggiornati al 2014)
-* Titoli
-* Province e regioni aggiornati
-
-Inoltre gestisce alcuni automatistmi durante la compilazione del campi anagrafici.
-
-La videata dell'anagrafica è modificata come da consuetudine italiana:
-
-CAP - Località - Provincia
-
-mentre nella versione originale di Odoo il CAP è posto dopo la provincia come nel formato anglosassone.
-
-
-|
-
-Features / Caratteristiche
---------------------------
-
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Feature / Funzione                                             |  Status  | Notes / Note                                 |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| City from ZIP / Città da CAP                                   | |check|  | Propone città da CAP; città modificabile     |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Multizone ZIP  / CAP Multizona                                 | |check|  | Riconoscimento CAP multizona                 |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| District from ZIP / Provincia da CAP                           | |check|  | Compila la provincia dal CAP                 |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for duplicate vat / Controllo partita IVA duplicata      | |check|  | Controllo non bloccante                      |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-
-
-|
-
-Usage / Utilizzo
-----------------
-
-|it| Durante l'inserimento dell'anagrafica rispettare le seguenti regole:
-
-* Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
-* Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
-* Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
-* Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
 
 |
 
 OCA comparation / Confronto con OCA
 -----------------------------------
-
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia  | OCA               | Notes / Note                   |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| City from ZIP / Città da CAP                                    | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for duplicate vat / Controllo partita IVA duplicata       | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
 
 |OCA project|
 
@@ -147,7 +83,7 @@ Installation / Installazione
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **l10n_it_base** > Install
+* |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Install
 
 |
 
@@ -171,7 +107,7 @@ Upgrade / Aggiornamento
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **l10n_it_base** > Update
+* |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Update
 
 |
 
@@ -222,21 +158,15 @@ Authors / Autori
 ----------------
 
 
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `Innoviu srl <http://www.innoviu.com>`__
-* `Abstract <https://www.abstract.it>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+* `Link It Spa <http://www.linkgroup.it>,`__
 
 Contributors / Collaboratori
 ----------------------------
 
 
+* Diego Milani <dmilani@linkgroup.it>
 * Davide Corio <davide.corio@abstract.it>
-* Mauro Soligo <mauro.soligo@katodo.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Roberto Onnis <roberto.onnis@innoviu.com>
-* Antonio M. Vigliotti <info@shs-av.com>
-
 
 Acknowledges / Riconoscimenti
 -----------------------------
@@ -252,10 +182,8 @@ Acknowledges / Riconoscimenti
 | contributions.                    | contribuito.                              |
 +-----------------------------------+-------------------------------------------+
 
-* Luca Subiaco <subluca@gmail.com>
-* Simone Orsi <simone.orsi@domsense.com>
-* Mario Riva <mario.riva@domsense.com>
-* Giovanni Barzan <giovanni.barzan@gmail.com>
+Daniele Arcangeli <d.arcangeli@isa.it>
+Alessandro Camilli <a.camilli@yahoo.it>
 
 |
 
@@ -277,7 +205,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-22
+Last Update / Ultimo aggiornamento: 2018-11-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -295,9 +223,9 @@ Last Update / Ultimo aggiornamento: 2018-11-22
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
+.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-8.svg
     :target: https://github.com/OCA/l10n-italy/tree/8.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg
@@ -309,8 +237,8 @@ Last Update / Ultimo aggiornamento: 2018-11-22
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg
     :target: https://erp8.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
+.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
+    :target: Unknown oca-codecov-URL
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -333,10 +261,10 @@ Last Update / Ultimo aggiornamento: 2018-11-22
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
+   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
+   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
+   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
