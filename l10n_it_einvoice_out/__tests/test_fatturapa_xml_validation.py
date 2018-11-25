@@ -18,7 +18,7 @@ from lxml import etree
 
 import openerp.release as release
 import openerp.tests.common as test_common
-import netsvc
+from openerp import netsvc
 from openerp.modules.module import get_module_resource
 
 
