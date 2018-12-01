@@ -31,7 +31,7 @@
     'installable': True,
     'external_dependencies': {
         'python': ['pyxb'],
-    }
+    },
     'description': r'''
 Overview / Panoramica
 =====================
