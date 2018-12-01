@@ -1,8 +1,10 @@
 
 ==============================
-|icon| account_central_journal
+|icon| Account Central Journal
 ==============================
 
+
+**Print Italian Account Central Journal**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_central_journal/static/src/img/icon.png
 
@@ -16,16 +18,26 @@ Overview / Panoramica
 
 |en| Account Central Journal (deprecated)
 
+|
+
 |it| Stampa libro giornale fiscale (versione in disuso).
 
 Questo modulo non è più utilizzato ed è stato sostituito da l10n_it_central_journal.
 
 
+|
+
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-|OCA project|
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 
+|
+|
 
 Getting started / Come iniziare
 ===============================
@@ -39,6 +51,8 @@ Prerequisites / Prerequisiti
 
 * python
 * postgresql 9.2+
+
+|
 
 Installation / Installazione
 ----------------------------
@@ -77,6 +91,8 @@ From UI: go to:
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Install
 
+|
+
 Upgrade / Aggiornamento
 -----------------------
 
@@ -99,14 +115,17 @@ From UI: go to:
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Update
 
+|
+
 Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
+|
+|
 
 Get involved / Ci mettiamo in gioco
 ===================================
@@ -120,10 +139,14 @@ In case of trouble, please check there if your issue has already been reported.
 Proposals for enhancement
 -------------------------
 
-If you have a proposal to change this module, you may want to send an email to
-<moderatore@odoo-italia.org> for initial feedback.
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+|
+|
 
 Credits / Titoli di coda
 ========================
@@ -133,6 +156,9 @@ Copyright
 
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
+
+
+|
 
 Authors / Autori
 ----------------
@@ -147,17 +173,19 @@ Contributors / Collaboratori
 Daniele Arcangeli <d.arcangeli@isa.it>
 Alessandro Camilli <a.camilli@yahoo.it>
 
+|
+
 ----------------
 
 
-**zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-Users can download from `Zeroincombenze® distribution <https://github.com/zeroincombenze/OCB>`__
-and deploy on local server or can download from
-`Odoo Italia Associazine repository <https://github.com/Odoo-Italia-Associazione/OCB>`__
+|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
+La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -165,7 +193,7 @@ and deploy on local server or can download from
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-14
+Last Update / Ultimo aggiornamento: 2018-12-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -183,9 +211,9 @@ Last Update / Ultimo aggiornamento: 2018-11-14
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
+.. |OCA project| image:: Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
@@ -197,8 +225,8 @@ Last Update / Ultimo aggiornamento: 2018-11-14
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
-    :target: Unknown oca-codecov-URL
+.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -221,10 +249,10 @@ Last Update / Ultimo aggiornamento: 2018-11-14
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b

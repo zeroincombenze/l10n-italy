@@ -1,3 +1,3 @@
-Stampa libro giornale fiscale (versione in disuso).
+Stampa libro giornale fiscale.
 
-Questo modulo non è più utilizzato ed è stato sostituito da l10n_it_central_journal.
+Questo modulo in alcune versioni è chiamato account_central_journal.

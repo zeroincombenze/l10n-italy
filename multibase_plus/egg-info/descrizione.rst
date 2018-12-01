@@ -1,14 +1,1 @@
-Caratteristiche Aggiuntive per Odoo
-===================================
-
-Caratteristiche disponibili per ogni versione:
-
-+-----------------------------------------+-------+-------+-------+-------+-------+-------+
-| Caratteristiche                         |  6.1  |  7.0  |  8.0  |  9.0  | 10.0  | 11.0  |
-+-----------------------------------------+-------+-------+-------+-------+-------+-------+
-| Rif. cliente in vista Ordini di vendita |   no  |   no  |   no  |   no  |  YES  |   no  |
-+-----------------------------------------+-------+-------+-------+-------+-------+-------+
-| Note Credito in menù fatturazione       |       |       |       |       |  YES  |       |
-+-----------------------------------------+-------+-------+-------+-------+-------+-------+
-| Raggruppamento fatture per Azienda      |   no  |   no  |   no  |  YES  |  YES  |   no  |
-+-----------------------------------------+-------+-------+-------+-------+-------+-------+
+Questo modulo aggiunge varie caratteristiche utili che rendono l'interfaccia dell'installazione indipendente dalla versione di Odoo.

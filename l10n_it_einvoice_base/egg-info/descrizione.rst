@@ -10,7 +10,7 @@ In anagrafica clienti è disponibile una nuova linguetta ove inserire i dati per
 
     Destinatari:
 
-Il modulo è destinato a tutte le aziende che dal 2019 dovarnno emettere fattura elettronica
+Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
 
 
 ::

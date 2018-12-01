@@ -1,14 +1,1 @@
-Odoo Features Plus
-==================
-
-Table of features available on all Odoo versions:
-
-+-----------------------------------+-------+-------+-------+-------+-------+-------+
-| Features                          |  6.1  |  7.0  |  8.0  |  9.0  | 10.0  | 11.0  |
-+-----------------------------------+-------+-------+-------+-------+-------+-------+
-| Customer ref in Sale Order tree   |   no  |   no  |   no  |   no  |  YES  |   no  |
-+-----------------------------------+-------+-------+-------+-------+-------+-------+
-| Refund (credit note) invoice menu |       |       |       |       |  YES  |       |
-+-----------------------------------+-------+-------+-------+-------+-------+-------+
-| Invoice group by company          |   no  |   no  |   no  |  YES  |  YES  |   no  |
-+-----------------------------------+-------+-------+-------+-------+-------+-------+
+This module add various useful features to Odoo instance in order to make installation interface indipendent by version.

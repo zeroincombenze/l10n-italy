@@ -1,1 +1,1 @@
-Account Central Journal (deprecated)
+Account Central Journal (modulo rimpiazzato)
