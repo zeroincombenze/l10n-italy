@@ -1,35 +1,16 @@
-# -*- coding: utf-8 -*-
-#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-#
-# [2017: SHS-AV s.r.l.] First version
-{
-    'name': 'Comunicazione periodica IVA',
-    'version': '7.0.0.1.12',
-    'category': 'Generic Modules/Accounting',
-    'author': 'SHS-AV s.r.l., Odoo Italia Associazione',
-    'website': 'https://odoo-italia.org',
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_it_ade',
-        'l10n_it_fiscalcode',
-        'account_invoice_entry_date',
-        'l10n_it_vat_registries',
-        # 'l10n_it_account'
-    ],
-    'data': ['views/add_period.xml',
-             'views/remove_period.xml',
-             'views/account_view.xml',
-             'views/wizard_export_view.xml',
-             'security/ir.model.access.csv',
-             'communication_workflow.xml',
-             ],
-    'installable': True,
-    'external_dependencies': {
-        'python': ['pyxb', 'unidecode'],
-    },
-    'description': r'''
+
+==================================
+|icon| Comunicazione periodica IVA
+==================================
+
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_vat_communication/static/src/img/icon.png
+
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+
+.. contents::
+
+
 Overview / Panoramica
 =====================
 
@@ -107,6 +88,7 @@ Features / Caratteristiche
 
 
 |
+|
 
 Certifications / Certificazioni
 -------------------------------
@@ -124,8 +106,8 @@ Certifications / Certificazioni
 
 |
 
-Usage / Utilizo
----------------
+Usage / Utilizzo
+----------------
 
 * |menu| Contabilità > Configurazione > Sezionali > Sezionali :point_right: Impostare sezionali autofatture
 * |menu| Contabilità > Configurazione > Imposte > Imposte :point_right: Impostare natura codici IVA
@@ -134,6 +116,95 @@ Usage / Utilizo
 * |menu| Contabilità > Elaborazione periodica > Fine periodo > Comunicazione :point_right: Gestione Comunicazione e scarico file xml
 
 |
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+
+|
+|
+
+Getting started / Come iniziare
+===============================
+
+|Try Me|
+
+
+Prerequisites / Prerequisiti
+----------------------------
+
+
+* python
+* postgresql 9.2+
+
+|
+
+Installation / Installazione
+----------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is built with:     | L'installazione è costruita con:         |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| /opt/odoo/7.0/l10n-italy/                                                  |
++----------------------------------------------------------------------------+
+
+::
+
+    cd $HOME
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    export PATH=$HOME/dev:$PATH
+    odoo_install_repository l10n-italy -b 7.0 -O zero
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
+
+From UI: go to:
+
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_vat_communication** > Install
+
+|
+
+Upgrade / Aggiornamento
+-----------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| When you want upgrade and you   | Per aggiornare, se avete installato con  |
+| installed using above           | le istruzioni di cui sopra:              |
+| statements:                     |                                          |
++---------------------------------+------------------------------------------+
+
+::
+
+    odoo_install_repository l10n-italy -b 7.0 -O zero -U
+    # Adjust following statements as per your system
+    sudo systemctl restart odoo
+
+From UI: go to:
+
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_vat_communication** > Update
+
 |
 
 Support / Supporto
@@ -142,6 +213,40 @@ Support / Supporto
 
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
+
+|
+|
+
+Get involved / Ci mettiamo in gioco
+===================================
+
+Bug reports are welcome! You can use the issue tracker to report bugs,
+and/or submit pull requests on `GitHub Issues
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+
+In case of trouble, please check there if your issue has already been reported.
+
+|
+
+Known issues / Roadmap
+----------------------
+
+|en| Please, do not mix the following OCA Italy and OIA module.
+
+|it| Si consiglia di non mescolare moduli OCA Italia e moduli OIA.
+
+* This module replaces l10n_it_base of OCA distribution.
+* Do not use l10n_it_split_payment module of OCA distribution
+* Do not use l10n_it_reverse_charge of OCA distribution
+
+Proposals for enhancement
+-------------------------
+
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
+An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 |
 |
@@ -155,10 +260,11 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
+
 |
 
 Authors / Autori
------------------
+----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 * `Didotech srl <http://www.didotech.com>`__
@@ -182,6 +288,10 @@ is mainly designed to cover Italian law and markeplace.
 |it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
 La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+
+
+|chat_with_us|
+
 
 |
 
@@ -248,6 +358,3 @@ Last Update / Ultimo aggiornamento: 2018-12-01
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
-''',
-    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
-}

@@ -1,35 +1,16 @@
-# -*- encoding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    http://www.openerp-italia.org>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-{
-    'name': 'Account Invoice entry Date',
-    'version': '7.0.0.1',
-    'category': 'Generic Modules/Accounting',
-    'author': 'Odoo Italian Community,Odoo Community Association (OCA)',
-    'website': 'http://www.odoo-italia.org',
-    'license': 'AGPL-3',
-    'depends': ['account'],
-    'data': ['views/account_invoice_view.xml'],
-    'installable': True,
-    'description': r'''
+
+=================================
+|icon| Account Invoice entry Date
+=================================
+
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_invoice_entry_date/static/src/img/icon.png
+
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+
+.. contents::
+
+
 Overview / Panoramica
 =====================
 
@@ -42,6 +23,95 @@ move created while confirming (supplier) invoice
 
 
 |
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+
+|
+|
+
+Getting started / Come iniziare
+===============================
+
+|Try Me|
+
+
+Prerequisites / Prerequisiti
+----------------------------
+
+
+* python
+* postgresql 9.2+
+
+|
+
+Installation / Installazione
+----------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is built with:     | L'installazione è costruita con:         |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| /opt/odoo/7.0/l10n-italy/                                                  |
++----------------------------------------------------------------------------+
+
+::
+
+    cd $HOME
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    export PATH=$HOME/dev:$PATH
+    odoo_install_repository l10n-italy -b 7.0 -O zero
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
+
+From UI: go to:
+
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **account_invoice_entry_date** > Install
+
+|
+
+Upgrade / Aggiornamento
+-----------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| When you want upgrade and you   | Per aggiornare, se avete installato con  |
+| installed using above           | le istruzioni di cui sopra:              |
+| statements:                     |                                          |
++---------------------------------+------------------------------------------+
+
+::
+
+    odoo_install_repository l10n-italy -b 7.0 -O zero -U
+    # Adjust following statements as per your system
+    sudo systemctl restart odoo
+
+From UI: go to:
+
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **account_invoice_entry_date** > Update
+
 |
 
 Support / Supporto
@@ -50,6 +120,27 @@ Support / Supporto
 
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
+
+|
+|
+
+Get involved / Ci mettiamo in gioco
+===================================
+
+Bug reports are welcome! You can use the issue tracker to report bugs,
+and/or submit pull requests on `GitHub Issues
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+
+In case of trouble, please check there if your issue has already been reported.
+
+Proposals for enhancement
+-------------------------
+
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
+An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 |
 |
@@ -63,10 +154,11 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
+
 |
 
 Authors / Autori
------------------
+----------------
 
 * ISA s.r.l. <http://www.isa.it>
 
@@ -106,6 +198,10 @@ is mainly designed to cover Italian law and markeplace.
 |it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
 La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+
+
+|chat_with_us|
+
 
 |
 
@@ -172,6 +268,3 @@ Last Update / Ultimo aggiornamento: 2018-12-01
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
-''',
-    'active': False,
-}
