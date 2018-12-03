@@ -1,19 +1,11 @@
-Il modulo controlla che la data fattura clienti o la data di registrazione
-della fattura fornitore sia sequenziale e conforme alla normativa italiana.
+Questo modulo controlla la sequenza delle date della fattura per onorare la
+legge fiscale italiana.
 
-Il modulo controlla la data fattura cliente o la data di registrazione della
-fattura fornitore per il sezionale e l'anno fiscale.
-Durante l'accavallamento degli esercizi è possibile registrare sia fatture
-nell'anno corrente che nell'esercizio precedente.
+Come il modulo OCA è controllata la sequenza delle date della fatture di
+vendita.
+Inoltre è verificata la sequenza della date di registrazione delle fatture
+di acquisto (queste funzione non è [ancora] implementata nel modulo OCA).
 
-::
-
-    Destinatari:
-
-Tutte le aziende che emettono fatture in Italia.
-
-::
-
-    Normativa:
-
-La normativa di legge è il `DPR 633 art. 23 <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200002300000000&articolo=Articolo%2023>`__
+Il controllo è effettuato sull'anno fiscale e permette la registrazione
+contestuale di fatture su 2 anni fiscali diversi durante il periodo di
+accavallamento degli esercizi.

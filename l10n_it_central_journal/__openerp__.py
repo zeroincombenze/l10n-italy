@@ -9,7 +9,7 @@
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #
 {
-    'name': 'Italian Localization - Account central journal',
+    'name': 'Italy: Account central journal',
     'version': '8.0.2.0.1',
     'category': 'Localization/Italy',
     'author': 'Link It Spa, Odoo Community Association (OCA)',

@@ -1,10 +1,12 @@
 
-=====================================
-|icon| Italian Localization - Account
-=====================================
+=====================
+|icon| multibase_plus
+=====================
 
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_account/static/description/icon.png
+**Enhanced Odoo Features**
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/multibase_plus/static/description/icon.png
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -14,15 +16,30 @@
 Overview / Panoramica
 =====================
 
-|en| Accounting-related modules helpers.
-
-Used by modules like l10n_it_vat_registries and account_vat_period_end_statement
+|en| This module add various useful features to Odoo instance in order to make installation interface indipendent by version.
 
 |
 
-|it| Modulo di servizio contabile.
+|it| Questo modulo aggiunge varie caratteristiche utili che rendono l'interfaccia dell'installazione indipendente dalla versione di Odoo.
 
-Usato da module come l10n_it_vat_registries e account_vat_period_end_statement
+
+|
+
+Features / Caratteristiche
+--------------------------
+
++-------------------------------------+------------+------------+------------+------------+---------+------------+--------+
+| Features                            | 6.1        | 7.0        | 8.0        | 9.0        | 10.0    | 11.0       | 12.0   |
++-------------------------------------+------------+------------+------------+------------+---------+------------+--------+
+| Customer ref in Sale Order tree     | |no_check| | |no_check| | |no_check| | |no_check| | |check| | |no_check| | |info| |
++-------------------------------------+------------+------------+------------+------------+---------+------------+--------+
+| Supplier ref in Purchase Order tree | |no_check| | |no_check| | |check|    | |no_check| | |check| | |no_check| | |info| |
++-------------------------------------+------------+------------+------------+------------+---------+------------+--------+
+| Refund (credit note) invoice menu   | |same|     | |same|     | |same|     | |same|     | |check| | |same|     | |info| |
++-------------------------------------+------------+------------+------------+------------+---------+------------+--------+
+| Invoice group by company            | |no_check| | |no_check| | |no_check| | |check|    | |check| | |no_check| | |info| |
++-------------------------------------+------------+------------+------------+------------+---------+------------+--------+
+
 
 |
 
@@ -88,7 +105,7 @@ Installation / Installazione
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **l10n_it_account** > Install
+* |menu| Setting > Local Modules |right_do| Select **multibase_plus** > Install
 
 |
 
@@ -112,7 +129,7 @@ Upgrade / Aggiornamento
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **l10n_it_account** > Update
+* |menu| Setting > Local Modules |right_do| Select **multibase_plus** > Update
 
 |
 
@@ -162,14 +179,12 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `Abstract <https://www.abstract.it>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
 Contributors / Collaboratori
 ----------------------------
 
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 

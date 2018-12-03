@@ -1,0 +1,1 @@
+.. $set sommario Data registrazione fatture fornitori

@@ -1,0 +1,2 @@
+.. $set summary Print account central journal
+.. $set sommario Stampa libro giornale fiscale

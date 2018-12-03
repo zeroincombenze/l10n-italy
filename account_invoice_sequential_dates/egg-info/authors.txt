@@ -1,2 +1,1 @@
-* Apulia Software srl <info@apuliasoftware.it>
-* SHS-AV s.r.l. <https://www.zeroincombenze.it>
+* Odoo Community
