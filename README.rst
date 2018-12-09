@@ -89,17 +89,17 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_esigibilita_iva              | 10.0.1.0.0 | |same|     | Esigibilità IVA                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 10.0.2.2.2 | Electronic invoices                                |
+| l10n_it_fatturapa                    | |no_check| | 10.0.2.2.2 | Fatture elettroniche                               |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.2.1 | Electronic invoices reception                      |
+| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.2.2 | Ricezione fatture elettroniche                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Fattura Elettronica - Purchase integration         |
+| l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 10.0.1.2.3 | Electronic invoices emission                       |
+| l10n_it_fatturapa_out                | |no_check| | 10.0.1.2.4 | Emissione fatture elettroniche                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.2 | Bridge module                                      |
+| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_pec                | |no_check| | 10.0.1.2.0 | Send electronic invoices via PEC                   |
+| l10n_it_fatturapa_pec                | |no_check| | 10.0.1.2.0 | Invio fatture elettroniche tramite PEC             |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal                       | 10.0.0.2.0 | |no_check| | Italy - Fiscal localization by zeroincombenze(R)   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -131,13 +131,13 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ricevute_bancarie            | 10.0.1.1.0 | 10.0.1.2.0 | Ricevute Bancarie                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_sdi_channel                  | |no_check| | 10.0.1.1.0 | Add channel to send-receice xml files to SdI.      |
+| l10n_it_sdi_channel                  | |no_check| | 10.0.1.1.0 | Aggiunge il canale di invio/ricezione dei file XML |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_split_payment                | 10.0.1.0.2 | 10.0.1.1.0 | Split Payment                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_vat_communication            | |halt|     | |no_check| | Comunicazione periodica IVA                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_vat_registries               | 10.0.1.2.2 | |same|     | Italian Localization - VAT Registries              |
+| l10n_it_vat_registries               | 10.0.1.2.2 | 10.0.1.2.3 | Italian Localization - VAT Registries              |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_vat_registries_cash_basis    | 10.0.1.0.0 | |same|     | Italian Localization - VAT Registries - Cash Basis |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -291,7 +291,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-03
+Last Update / Ultimo aggiornamento: 2018-12-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

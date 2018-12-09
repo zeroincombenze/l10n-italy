@@ -37,6 +37,20 @@ subjected to update.
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
 da trasmettere al sistema di interscambio SdI.
 
+::
+
+    Destinatari:
+
+Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+
+
+::
+
+    Normativa:
+
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
+
+
 |warning| Lo schema di definizione dei file xml, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
 xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
@@ -60,9 +74,6 @@ ad ulteriori modifiche
 Features / Caratteristiche
 --------------------------
 
-Features / Funzioni
--------------------
-
 +--------------------------------------+----------+----------------------------------------------+
 | Feature / Funzione                   |  Status  | Notes / Note                                 |
 +--------------------------------------+----------+----------------------------------------------+
@@ -82,9 +93,6 @@ Features / Funzioni
 Certifications / Certificazioni
 -------------------------------
 
-Certifications / Certificazioni
--------------------------------
-
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
@@ -98,9 +106,6 @@ Certifications / Certificazioni
 
 Usage / Utilizzo
 ----------------
-
-Usage / Uso
-===========
 
 |menu| Configurazione > Configurazione > Contabilità > Fattura PA |do_right| Impostare i vari parametri
 
@@ -273,18 +278,25 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
+* `Davide Corio`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Innoviu srl <http://www.innoviu.com>`__
+* `Odoo Italia Network`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Collaboratori
 ----------------------------
 
-* Davide Corio <davide.corio@abstract.it>
+* Davide Corio
 * Roberto Onnis <roberto.onnis@innoviu.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
+Translations by / Traduzioni a cura di
+--------------------------------------
+
+* Sergio Zanchetta <https://github.com/primes2h>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
@@ -307,7 +319,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-03
+Last Update / Ultimo aggiornamento: 2018-12-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
