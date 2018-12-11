@@ -210,7 +210,7 @@ class FatturaAttachments(models.Model):
 class FatturapaRelatedDdt(models.Model):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_ddt'
-    _description = 'E-invoice Related DDT'
+    _description = 'E-invoice Related DdT'
 
     name = fields.Char('Document ID', size=20, required=True)
     date = fields.Date('Date')
