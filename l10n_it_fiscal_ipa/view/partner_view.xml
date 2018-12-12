@@ -7,14 +7,17 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[last()]" position="after">
-                <page string="Tax Authority" col="4" name="tax_authority"
-                      attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}">
+                <page name="fatturapa" string="Electronic Invoice" groups="account.group_account_invoice"
+                      attrs="{'invisible': [('is_company','=',False)]}">
                     <group>
-                        <field name="electronic_invoice_subjected" />
-                        <field name="codice_destinatario" placeholder="0000000" />
-                        <field name="pec_destinatario" placeholder="nome@pec.it" />
+                        <field name="electronic_invoice_subjected"/>
+                        <field name="codice_destinatario" placeholder="0000000"
+                            attrs="{'invisible': ['|',('electronic_invoice_subjected', '=', False)]}"/>
+                        <field name="pec_destinatario" placeholder="nome@pec.it"
+                        	attrs="{'invisible': ['|',('electronic_invoice_subjected', '=', False)]}"/>
                         <field name="is_pa" />
-                        <field name="ipa_code" placeholder="IPA123" />
+                        <field name="ipa_code" placeholder="IPA123"
+                        	attrs="{'invisible': [('is_pa','=', False)]}"/>
                         <field name="eori_code"/>
                         <field name="license_number"/>
                     </group>

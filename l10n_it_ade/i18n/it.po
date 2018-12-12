@@ -4,16 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 20:24+0000\n"
-"PO-Revision-Date: 2018-10-26 20:24+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-12-12 21:41+0000\n"
+"PO-Revision-Date: 2018-12-12 21:41+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it/)\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 2.3.4\n"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_active
@@ -25,27 +26,27 @@ msgstr "Attivo"
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_anom_sale_receipts
 msgid "Anonimous sale receipts journal"
-msgstr "Sezionale Corrispettivi"
+msgstr "Registro corrispettivi"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_rev_charge
 msgid "Check if reverse charge EU invoices journal"
-msgstr "Check if reverse charge EU invoices journal"
+msgstr "Seleziona se registro fatture con inversione contabile"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_einvoice
 msgid "Check if this is a E-Invoice Journal"
-msgstr "Check if this is a E-Invoice Journal"
+msgstr "Seleziona se registro e-fatture"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_proforma
 msgid "Check if this is a Proforma Journal"
-msgstr "Dichiara il registro degli avvisi di parcella"
+msgstr "Selezione se registro avvisi di parcella"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_anom_sale_receipts
 msgid "Check if this is the Anonimous Sale Receipts Journal"
-msgstr "Dichiara il registro dei corrispettivi"
+msgstr "Seleziona se registro corrispettivi"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_code
@@ -58,12 +59,10 @@ msgstr "Codice"
 #: sql_constraint:italy.ade.codice.carica:0
 #: sql_constraint:italy.ade.invoice.type:0
 #: sql_constraint:italy.ade.tax.nature:0
-#: sql_constraint:italy.ade.codice.carica:0
-#: sql_constraint:italy.ade.invoice.type:0
-#: sql_constraint:italy.ade.tax.nature:0
-#: sql_constraint:italy.ade.codice.carica:0
-#: sql_constraint:italy.ade.invoice.type:0
-#: sql_constraint:italy.ade.tax.nature:0
+#: sql_constraint:italy.ade.codice.carica sql_constraint:italy.ade.invoice.type
+#: sql_constraint:italy.ade.tax.nature
+#: sql_constraint:italy.ade.codice.carica sql_constraint:italy.ade.invoice.type
+#: sql_constraint:italy.ade.tax.nature
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
 
@@ -110,8 +109,8 @@ msgstr "Data di creazione"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
-#: selection:account.tax,payability:0
-#: selection:account.tax,payability:0
+#: selection:account.tax,payability
+#: selection:account.tax,payability
 msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
@@ -125,12 +124,12 @@ msgstr "Visualizza nome"
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_einvoice
 msgid "E-Invoice journal"
-msgstr "E-Invoice journal"
+msgstr "Registro e-fatture"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "FC applicazione IVA"
 msgstr "FC applicazione IVA"
 
@@ -155,15 +154,15 @@ msgstr "ID"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "IVA assolta in altro stato UE"
 msgstr "IVA assolta in altro stato UE"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
-#: selection:account.tax,payability:0
-#: selection:account.tax,payability:0
+#: selection:account.tax,payability
+#: selection:account.tax,payability
 msgid "Immediate payability"
 msgstr "Esigibilità immediata"
 
@@ -209,7 +208,7 @@ msgstr "Data ultima modifica"
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_law_reference
 msgid "Law reference"
-msgstr "Law reference"
+msgstr "Riferimento legislativo"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_name
@@ -252,7 +251,7 @@ msgstr "Riservato per uno specifico scopo"
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_rev_charge
 msgid "Reverse Charge Journal"
-msgstr "Reverse Charge Journal"
+msgstr "Registro inversione contabile"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_scope
@@ -262,10 +261,10 @@ msgstr "Scopo"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
-#: selection:account.tax,payability:0
-#: selection:account.tax,payability:0
+#: selection:account.tax,payability
+#: selection:account.tax,payability
 msgid "Split payment"
-msgstr "Split payment"
+msgstr "Scissione pagamenti"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_account_tax
@@ -275,7 +274,7 @@ msgstr "Imposta"
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_ade
 msgid "Tax Authority Definitions"
-msgstr "Tax Authority Definitions"
+msgstr "Definizioni dell'Agenzia delle Entrate"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_italy_ade_tax_nature
@@ -301,43 +300,44 @@ msgstr "Esigibilità IVA"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "escluse ex art. 15"
 msgstr "escluse ex art. 15"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "esenti"
 msgstr "esenti"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "inversione contabile (acq. in reverse charge)"
 msgstr "inversione contabile (acq. in reverse charge)"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "non imponibili"
 msgstr "non imponibili"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "non soggette"
 msgstr "non soggette"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
-#: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "regime del margine/IVA non esposta"
 msgstr "regime del margine/IVA non esposta"
+
 

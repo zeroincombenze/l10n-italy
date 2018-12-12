@@ -83,9 +83,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ddt                          | 10.0.1.5.1 | 10.0.1.7.1 | Documento di Trasporto                             |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base                | 10.0.2.1.1 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
+| l10n_it_einvoice_base                | 10.0.2.1.2 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out                 | 10.0.1.0.0 | |no_check| | Electronic invoices emission                       |
+| l10n_it_einvoice_out                 | 10.0.1.0.2 | |no_check| | Electronic invoices emission                       |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_esigibilita_iva              | 10.0.1.0.0 | |same|     | Esigibilità IVA                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -291,7 +291,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-11
+Last Update / Ultimo aggiornamento: 2018-12-12
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -4,16 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-10 03:55+0000\n"
-"PO-Revision-Date: 2018-10-10 03:55+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-12-12 21:41+0000\n"
+"PO-Revision-Date: 2018-12-12 21:41+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it/)\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 2.3.4\n"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_zip
@@ -23,13 +24,13 @@ msgstr "CAP"
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_cadaster_code
 msgid "Cadaster Code"
-msgstr "Cadaster Code"
+msgstr "Codice catastale"
 
 #. module: l10n_it_base
 #: model:ir.actions.act_window,name:l10n_it_base.action_city
 #: model:ir.ui.menu,name:l10n_it_base.menu_city_partner
 msgid "Cities"
-msgstr "Cities"
+msgstr "Città"
 
 #. module: l10n_it_base
 #: model:ir.model,name:l10n_it_base.model_res_city
@@ -43,7 +44,7 @@ msgstr "Città"
 #. module: l10n_it_base
 #: model:ir.model.fields,help:l10n_it_base.field_res_city_zip
 msgid "City's ZIP code. (Country dependent)."
-msgstr "City's ZIP code. (Country dependent)."
+msgstr "Cap della città (dipende dalla nazione)"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_country_id
@@ -54,7 +55,7 @@ msgstr "Nazione"
 #. module: l10n_it_base
 #: model:ir.model.fields,help:l10n_it_base.field_res_city_country_id
 msgid "Country encoded by ISO-3166."
-msgstr "Country encoded by ISO-3166."
+msgstr "Codifica nazione ISO-3166"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_create_uid
@@ -74,7 +75,14 @@ msgstr "Visualizza nome"
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_state_id
 msgid "District"
-msgstr "District"
+msgstr "Distretto/provincia"
+
+#. module: l10n_it_base
+#: code:addons/l10n_it_base/models/res_partner.py:100
+#: code:addons/l10n_it_base/models/res_partner.py:100
+#, python-format
+msgid "Found another partner with same vat: %s"
+msgstr "Trovato un altro soggetto con la stessa partita IVA: %s"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_id
@@ -84,7 +92,7 @@ msgstr "ID"
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_istat_code
 msgid "ISTAT code"
-msgstr "ISTAT code"
+msgstr "Codice ISTAT"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city___last_update
@@ -119,25 +127,34 @@ msgstr "Provincia"
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_phone_prefix
 msgid "Telephone Prefix"
-msgstr "Telephone Prefix"
+msgstr "Prefisso telefonico"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,help:l10n_it_base.field_res_city_state_id
 msgid "Upper administration (Province, District or Federal State)."
-msgstr "Upper administration (Province, District or Federal State)."
+msgstr ""
+"Unità amministrativa di livello superiore (provincia, distretto o stato "
+"federale)"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,help:l10n_it_base.field_res_city_name
 msgid "Use \".\" (dot) to search with abbreviation"
-msgstr "Use \".\" (dot) to search with abbreviation"
+msgstr "Utilizza “.” (il punto) per le abbreviazioni"
+
+#. module: l10n_it_base
+#: code:addons/l10n_it_base/models/res_partner.py:99
+#: code:addons/l10n_it_base/models/res_partner.py:99
+msgid "Warning"
+msgstr "Attenzione"
 
 #. module: l10n_it_base
 #: model:ir.model.fields,field_description:l10n_it_base.field_res_city_web_site
 msgid "Web Site"
-msgstr "Web Site"
+msgstr "Sito web"
 
 #. module: l10n_it_base
 #: model:ir.ui.view,arch_db:l10n_it_base.view_partner_form_inherit_zip
 msgid "ZIP"
 msgstr "CAP"
+
 

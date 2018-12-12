@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-09 17:55+0000\n"
-"PO-Revision-Date: 2018-12-09 17:55+0000\n"
+"POT-Creation-Date: 2018-12-12 21:41+0000\n"
+"PO-Revision-Date: 2018-12-12 21:41+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it/)\n"
 "Language: it_IT\n"
@@ -22,24 +22,30 @@ msgid "ABI"
 msgstr "ABI"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:67
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:67
+msgid "ASN.1 structure is not parsable in DER."
+msgstr "ASN.1 structure is not parsable in DER."
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_provincia
 msgid ""
 "Acronym of the Province to which the municipality indicated in the "
 "information element 1.2.3.4 <Comune> belongs. Must be filled if the "
 "information element 1.2.3.6 <Nazione> is equal to IT"
 msgstr ""
-"Acronym of the Province to which the municipality indicated in the "
-"information element 1.2.3.4 <Comune> belongs. Must be filled if the "
-"information element 1.2.3.6 <Nazione> is equal to IT"
+"Sigla della provincia a cui appartiene il comune indicato nell'elemento "
+"informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo "
+"1.2.3.6 <Nazione> è uguale a IT"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_fatturapa_activity_progress
 msgid "Activity Progress"
-msgstr "Activity Progress"
+msgstr "Stato avanzamento lavori"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_line_admin_ref
-msgid "Administration ref."
+msgid "Admin. ref."
 msgstr "Rif. ammin."
 
 #. module: l10n_it_einvoice_base
@@ -66,18 +72,37 @@ msgstr "Importo imponibile"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_penalty_amount
 msgid "Amount of Penalty"
-msgstr "Importo della sazione"
+msgstr "Importo della sanzione"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:42
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:42
+#, python-format
+msgid "An error with command 'openssl asn1parse' occurred: %s."
+msgstr "An error with command 'openssl asn1parse' occurred: %s."
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_art73
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_art73
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_art73
 msgid "Art. 73"
 msgstr "Art. 73"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_art73
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_art73
-msgid "Art73"
-msgstr "Art73"
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:60
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:60
+#, python-format
+msgid "As a Public Administration, partner %s IPA Code must be 6 characters long."
+msgstr ""
+"Il soggetto %s, pubblica amministrazione, deve avere un codice IPA lungo "
+"6 caratteri."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:67
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:67
+#, python-format
+msgid "As a natural person, partner %s must have Name and Surname."
+msgstr "Il soggetto %s, persona fisica, deve avere nome e cognome."
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,sender:0
@@ -200,6 +225,44 @@ msgid "Created on"
 msgstr "Data di creazione"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:88
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:88
+#, python-format
+msgid "Customer %s: ZIP is needed for XML generation."
+msgstr "Cliente %s: per la generazione dell'XML è necessario il CAP."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:92
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:92
+#, python-format
+msgid "Customer %s: city is needed for XML generation."
+msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
+#, python-format
+msgid "Customer %s: country is needed for XML generation."
+msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:84
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:84
+#, python-format
+msgid "Customer %s: street is needed for XML generation."
+msgstr "Cliente %s: per la generazione dell'XML è necessario l'indirizzo."
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sender_partner
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_fatturapa_sender_partner
+msgid ""
+"Data of Third-Party Issuer Intermediary who emits the invoice on behalf "
+"of the seller/provider"
+msgstr ""
+"Dati relativi al terzo intermediario soggetto emittente che emette la "
+"fattura per conto del cedente/prestatore"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_db_datas
 msgid "Database Data"
 msgstr "Dati Database"
@@ -291,8 +354,8 @@ msgstr "Dati pagamento e-fattura"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_fatturapa_related_ddt
-msgid "E-invoice Related DDT"
-msgstr "DDT relativo alla e-fattura"
+msgid "E-invoice Related DdT"
+msgstr "DdT relativo alla e-fattura"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_fatturapa_related_document_type
@@ -313,6 +376,18 @@ msgstr "Allegati e-fattura"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_penalty_date
 msgid "Effective Date of Penalty"
 msgstr "Data effettiva della sanzione"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_fattura_pa_payables
+msgid "Electronic Bill"
+msgstr "Fattura elettronica"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_fattura_pa_receivables
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_account_config_settings
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_invoice_line_form_fatturapa
+msgid "Electronic Invoice"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_fatturapa_doc_attachments
@@ -341,18 +416,6 @@ msgid "Electronic Invoice Summary Data"
 msgstr "Dati riepilogo fattura elettronica"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_fattura_pa_payables
-#: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_fattura_pa_receivables
-#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_account_config_settings
-msgid "Fattura PA"
-msgstr "Fattura PA"
-
-#. module: l10n_it_einvoice_base
-#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_invoice_line_form_fatturapa
-msgid "FatturaPA"
-msgstr "FatturaPA"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_datas
 msgid "File Content"
 msgstr "Contenuto File"
@@ -377,8 +440,8 @@ msgstr "Posizione Fiscale"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_fiscal_position_id
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_fatturapa_fiscal_position_id
-msgid "Fiscal position used by FatturaPA"
-msgstr "Posizione fiscale in e-Fattura"
+msgid "Fiscal position used by electronic invoice"
+msgstr "Posizione fiscale usata dalla fattura elettronica"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_format
@@ -426,6 +489,19 @@ msgstr "Condizioni di consegna"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_index_content
 msgid "Indexed Content"
 msgstr "Contenuto Indicizzato"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_art73
+msgid ""
+"Indicates whether the document has been issued according to methods and "
+"terms laid down in a ministerial decree under the terms of Article 73 of "
+"Italian Presidential Decree 633/72 (this enables the company to issue in "
+"the same year several documents with same number)"
+msgstr ""
+"Indicates whether the document has been issued according to methods and "
+"terms laid down in a ministerial decree under the terms of Article 73 of "
+"Italian Presidential Decree 633/72 (this enables the company to issue in "
+"the same year several documents with same number)"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_art73
@@ -635,20 +711,41 @@ msgid "Organization ZIP"
 msgstr "CAP organizzazione"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_pa_line_code
-msgid "PA Code for this Record"
-msgstr "PA Code for this Record"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_pa_partner_code
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_pa_partner_code
-msgid "PA partner reference"
-msgstr "Riferimento amministrazione PA"
+msgid "PA Code for Partner"
+msgstr "Codice PA del soggetto"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_pa_line_code
+msgid "PA Code for this Record"
+msgstr "Codice PA per questa registrazione"
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:61
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:61
+#, python-format
+msgid "Parsing PEM to DER file %s."
+msgstr "Parsing PEM to DER file %s."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_res_partner
 msgid "Partner"
 msgstr "Soggetto"
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:75
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:75
+#, python-format
+msgid "Partner %s Addressee Code must be 7 characters long."
+msgstr "Il codice destinatario del soggetto %s deve essere lungo 7 caratteri."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:80
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:80
+#, python-format
+msgid "Partner %s must have VAT Number or Fiscal Code."
+msgstr "Il soggetto %s deve avere una partita IVA o un codice fiscale."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_amount
@@ -713,7 +810,9 @@ msgstr "Posizione Fiscale Fattura Elettronica"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_rounding
 msgid "Possible total amount rounding on the document (negative sign allowed)"
-msgstr "Possible total amount rounding on the document (negative sign allowed)"
+msgstr ""
+"Eventuale arrotondamento sull'importo totale del documento (è ammesso il "
+"segno negativo)"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_post_office_code
@@ -723,7 +822,13 @@ msgstr "Codice ufficio postale"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_prepayment_discount
 msgid "Prepayment Discount"
-msgstr "Prepayment Discount"
+msgstr "Sconto pagamento anticipato"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_ftpa_preview_link
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_ir_attachment_ftpa_preview_link
+msgid "Preview link"
+msgstr "Collegamento di anteprima"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_register
@@ -743,35 +848,31 @@ msgid "Public Administration Reference Code"
 msgstr "Codice di riferimento pubblica amministrazione"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_office
-msgid "REA office"
-msgstr "REA office"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_rea_capital
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_capital
-msgid "Rea Capital"
+msgid "REA Capital"
 msgstr "Capitale sociale"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_rea_partner
-msgid "Rea Copartner"
+msgid "REA Copartner"
 msgstr "Unipersonale?"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_rea_liquidation
-msgid "Rea Liquidation"
+msgid "REA Liquidation"
 msgstr "Attiva/In liquidazione"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_rea_number
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_number
-msgid "Rea Number"
+msgid "REA Number"
 msgstr "Numero REA"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_rea_office
-msgid "Rea Office"
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_office
+msgid "REA Office"
 msgstr "Ufficio REA"
 
 #. module: l10n_it_einvoice_base
@@ -780,24 +881,24 @@ msgid "Reason"
 msgstr "Motivo"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_name
-msgid "Recepit Partner Firstname"
-msgstr "Recepit Partner Firstname"
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_cf
+msgid "Receipt Issuer FC"
+msgstr "Receipt Issuer FC"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_cf
-msgid "Recepit Partner Fiscalnumber"
-msgstr "Recepit Partner Fiscalnumber"
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_name
+msgid "Receipt Issuer Name"
+msgstr "Receipt Issuer Name"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_surname
-msgid "Recepit Partner Lastname"
-msgstr "Recepit Partner Lastname"
+msgid "Receipt Issuer Surname"
+msgstr "Receipt Issuer Surname"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_recepit_title
-msgid "Recepit Partner Title"
-msgstr "Recepit Partner Title"
+msgid "Receipt Issuer Title"
+msgstr "Receipt Issuer Title"
 
 #. module: l10n_it_einvoice_base
 #: selection:fatturapa.related_document_type,type:0
@@ -818,12 +919,6 @@ msgid "Regime Fiscale"
 msgstr "Regime Fiscale"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_register_code
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_register_code
-msgid "Register Code"
-msgstr "Numero di iscrizione"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_register_fiscalpos
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_register_fiscalpos
 msgid "Register Fiscal Position"
@@ -840,6 +935,12 @@ msgstr "Provincia iscrizione"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_register_regdate
 msgid "Register Registration Date"
 msgstr "Register Registration Date"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_register_code
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_register_code
+msgid "Register Registration Number"
+msgstr "Register Registration Number"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_ftpa_related_ddts
@@ -897,22 +998,22 @@ msgstr "Dati pagamenti collegati"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_res_field
 msgid "Resource Field"
-msgstr "Resource Field"
+msgstr "Campo risorsa"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_res_id
 msgid "Resource ID"
-msgstr "ID Risorsa"
+msgstr "ID risorsa"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_res_model
 msgid "Resource Model"
-msgstr "Resource Model"
+msgstr "Modello risorsa"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_res_name
 msgid "Resource Name"
-msgstr "Nome Risorsa"
+msgstr "Nome risorsa"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_efatt_rounding
@@ -923,7 +1024,7 @@ msgstr "Rounding"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_sender
 msgid "Sender"
-msgstr "Sender"
+msgstr "Mittente"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sequence_id
@@ -932,10 +1033,43 @@ msgid "Sequence"
 msgstr "Sequenza"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/company.py:68
+#: code:addons/l10n_it_einvoice_base/models/company.py:68
+#, python-format
+msgid "Sequence %s already used by journal %s. Please select another one."
+msgstr "Sequence %s already used by journal %s. Please select another one."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/company.py:61
+#: code:addons/l10n_it_einvoice_base/models/company.py:61
+#, python-format
+msgid "Sequence %s can't use subsequences."
+msgstr "Sequence %s can't use subsequences."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:87
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:87
+#, python-format
+msgid "Signed Xml file %s."
+msgstr "Signed Xml file %s."
+
+#. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:93
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:93
+msgid "Signed Xml file not decryptable."
+msgstr "Signed Xml file not decryptable."
+
+#. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,payability:0
 #: selection:faturapa.summary.data,payability
 msgid "Split payment"
 msgstr "Scissione pagamenti"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_stabile_organizzazione
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_stabile_organizzazione
+msgid "Stable Organization"
+msgstr "Stabile organizzazione"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_stamp_amount
@@ -955,6 +1089,11 @@ msgid ""
 msgstr ""
 "Street number of the address (no need to specify if already present in "
 "the address field)"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_electronic_invoice_subjected
+msgid "Subjected to Electronic Invoice"
+msgstr "Subjected to Electronic Invoice"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_subjected_withholding
@@ -985,7 +1124,17 @@ msgstr "Rappresentante fiscale"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_fatturapa_attachments_res_model
 msgid "The database object this attachment will be attached to."
-msgstr "The database object this attachment will be attached to."
+msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_stabile_organizzazione
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_fatturapa_stabile_organizzazione
+msgid ""
+"The fields must be entered only when the seller/provider is non-resident,"
+" with a stable organization in Italy"
+msgstr ""
+"The fields must be entered only when the seller/provider is non-resident,"
+" with a stable organization in Italy"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_indirizzo
@@ -999,9 +1148,30 @@ msgstr ""
 "in Italy (street name, square, etc.)"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_tax_representative
+msgid ""
+"The fields must be entered only when the seller/provider makes use of a "
+"tax representative in Italy"
+msgstr ""
+"The fields must be entered only when the seller/provider makes use of a "
+"tax representative in Italy"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_fatturapa_attachments_res_id
 msgid "The record id this is attached to."
-msgstr "The record id this is attached to."
+msgstr "L'ID del record a cui questo è collegato."
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sequence_id
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_fatturapa_sequence_id
+msgid ""
+"The univocal progressive of the file is represented by an alphanumeric "
+"sequence of maximum length 5, its values are included in 'A'-'Z' and "
+"'0'-'9'"
+msgstr ""
+"The univocal progressive of the file is represented by an alphanumeric "
+"sequence of maximum length 5, its values are included in 'A'-'Z' and "
+"'0'-'9'"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sender_partner
@@ -1035,24 +1205,6 @@ msgstr "Tipo"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_url
 msgid "Url"
 msgstr "Url"
-
-#. module: l10n_it_einvoice_base
-#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_tax_representative
-msgid ""
-"Used when a foreign company needs to send invoices to anItalian PA and "
-"has a tax representative in Italy"
-msgstr ""
-"Used when a foreign company needs to send invoices to anItalian PA and "
-"has a tax representative in Italy"
-
-#. module: l10n_it_einvoice_base
-#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sender_partner
-msgid ""
-"Used when company sends invoices to a third party and they send invoices "
-"to SDI"
-msgstr ""
-"Used when company sends invoices to a third party and they send invoices "
-"to SDI"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_welfare_Iva_tax
@@ -1131,8 +1283,8 @@ msgid ""
 "You can either upload a file from your computer or copy/paste an internet"
 " link to your file."
 msgstr ""
-"You can either upload a file from your computer or copy/paste an internet"
-" link to your file."
+"È possibile caricare un file dal computer oppure fare copia/incolla di un"
+" collegamento Internet nel file."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_cap
@@ -1160,28 +1312,8 @@ msgid "faturapa.summary.data"
 msgstr "faturapa.summary.data"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sequence_id
-#: model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_fatturapa_sequence_id
-msgid ""
-"il progressivo univoco del file è rappresentato da una stringa "
-"alfanumerica di lunghezza massima di 5 caratteri e con valori ammessi da "
-"“A” a “Z” e da “0” a “9”."
-msgstr ""
-"il progressivo univoco del file è rappresentato da una stringa "
-"alfanumerica di lunghezza massima di 5 caratteri e con valori ammessi da "
-"“A” a “Z” e da “0” a “9”."
-
-#. module: l10n_it_einvoice_base
-#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_art73
-msgid ""
-"indicates whether the document has been issued in accordance with the "
-"terms and conditions established by ministerial decree in accordance with"
-" Article 73 of Presidential Decree633/72 (this allows the company to "
-"issue the same year more documents with the same number)"
-msgstr ""
-"indicates whether the document has been issued in accordance with the "
-"terms and conditions established by ministerial decree in accordance with"
-" Article 73 of Presidential Decree633/72 (this allows the company to "
-"issue the same year more documents with the same number)"
+#: model:ir.model,name:l10n_it_einvoice_base.model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
 
 

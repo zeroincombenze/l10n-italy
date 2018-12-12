@@ -6,7 +6,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from odoo import api, fields, models
+from odoo import fields, models, api
 import odoo.addons.decimal_precision as dp
 
 RELATED_DOCUMENT_TYPES = {
@@ -61,10 +61,10 @@ class FatturapaPaymentDetail(models.Model):
     payment_due_date = fields.Date('Payment Due Date')
     payment_amount = fields.Float('Payment Amount')
     post_office_code = fields.Char('Post Office Code', size=20)
-    recepit_name = fields.Char("Recepit Partner Firstname")
-    recepit_surname = fields.Char("Recepit Partner Lastname")
-    recepit_cf = fields.Char("Recepit Partner Fiscalnumber")
-    recepit_title = fields.Char("Recepit Partner Title")
+    recepit_name = fields.Char("Receipt Issuer Name")
+    recepit_surname = fields.Char("Receipt Issuer Surname")
+    recepit_cf = fields.Char("Receipt Issuer FC")
+    recepit_title = fields.Char("Receipt Issuer Title")
     payment_bank_name = fields.Char("Bank Name")
     payment_bank_iban = fields.Char("IBAN")
     payment_bank_abi = fields.Char("ABI")
@@ -244,7 +244,7 @@ class AccountInvoiceLine(models.Model):
         'fatturapa.related_ddt', 'invoice_line_id',
         'Related DdT', copy=False
     )
-    admin_ref = fields.Char('Administration ref.', size=20, copy=False)
+    admin_ref = fields.Char('Admin. ref.', size=20, copy=False)
     discount_rise_price_ids = fields.One2many(
         'discount.rise.price', 'invoice_line_id',
         'Discount or Supplement Details', copy=False
@@ -411,6 +411,9 @@ class AccountInvoice(models.Model):
              "terms of Article 73 of Italian Presidential Decree 633/72 (this "
              "enables the seller/provider to issue in the same year several "
              "documents with same number)", copy=False)
+    electronic_invoice_subjected = fields.Boolean(
+        'Subjected to Electronic Invoice',
+        related='partner_id.electronic_invoice_subjected', readonly=True)
 
     @api.model
     def default_get(self, fields):

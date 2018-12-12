@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem name="Fattura PA" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
-    <menuitem name="Fattura PA" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
+    <menuitem name="Electronic Invoice" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
+    <menuitem name="Electronic Bill" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
 
     <record id="customer_invoice_lines_not_editable" model="ir.ui.view">
         <field name="name">customer_invoice_lines_not_editable</field>
@@ -30,7 +30,7 @@
         <field name="inherit_id" ref="account.view_invoice_line_form"></field>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <separator string="FatturaPA"></separator>
+                <separator string="Electronic Invoice"></separator>
                 <div id="admin_ref">
                     <group>
                         <field name="admin_ref"/>

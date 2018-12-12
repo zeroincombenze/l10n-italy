@@ -8,5 +8,5 @@
 #
 from . import account
 from . import company
+from . import ir_attachment
 from . import res_partner
-# from . import ir_attachment
