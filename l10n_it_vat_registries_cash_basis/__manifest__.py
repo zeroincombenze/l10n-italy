@@ -18,6 +18,6 @@
         'account_tax_cash_basis'],
     "data": [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }
