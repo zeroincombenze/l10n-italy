@@ -20,6 +20,10 @@
                             <field name="fatturapa_sequence_id" required="1" class="oe_inline"/>
                         </div>
                         <div>
+                            <label for="einvoice_sender_id"/>
+                            <field name="einvoice_sender_id" class="oe_inline"/>
+                        </div>
+                        <div>
                             <label for="fatturapa_art73"/>
                             <field name="fatturapa_art73" class="oe_inline"/>
                         </div>

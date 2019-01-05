@@ -13,6 +13,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, float_is_zero
 from odoo.tools.misc import formatLang
+# from bs4 import BeautifulSoup
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -95,6 +96,17 @@ class StockPickingPackagePreparation(models.Model):
                 ddt.transportation_reason_id.to_be_invoiced or False
 
     def _default_ddt_type(self):
+        # TODO: FIX in separate module
+        # signature = BeautifulSoup(self.env.user.signature).get_text()
+        signature = self.env.user.signature
+        if signature:
+            a = signature.find('>')
+            b = signature.find('<', a)
+            signature = signature[a + 1:b]
+            res = self.env['stock.ddt.type'].search([('name', 'ilike', signature)],
+                                                    limit=1)
+            if res:
+                return res
         return self.env['stock.ddt.type'].search([], limit=1)
 
     ddt_type_id = fields.Many2one(

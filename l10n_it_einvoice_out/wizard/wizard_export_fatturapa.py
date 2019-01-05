@@ -44,7 +44,7 @@ from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     RappresentanteFiscaleType,
     ScontoMaggiorazioneType,
     TerzoIntermediarioSoggettoEmittenteType,)
-from odoo.addons.l10n_it_einvoice_base.models.account import (
+from odoo.addons.l10n_it_einvoice_base.models.account_invoice import (
     RELATED_DOCUMENT_TYPES)
 
 _logger = logging.getLogger(__name__)

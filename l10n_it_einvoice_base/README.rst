@@ -31,14 +31,48 @@ Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
 Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
 
 In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".
-Selezionare "Soggetto a fattura elettronica" se il cliente è soggetto alla fatturazione elettronica.
-Se soggetto alla fatturazione elettronica occorre compilare il "Codice destinatario" o la "PEC".
-Ai fini della fattura elettronica è obbligatoria la partita IVA.
-Per fatturare un privato inserire il valore "0000000" nel codice destinatario e i codice fiscale.
+Le casistiche previste sono:
 
-Per la PA impostare "Pubblica Amministrazione" e compilare il "Codice ufficio".
+::
 
-Configurare le imposte riguardo a "Natura non imponibile", "Riferimento legisltativo" ed "Esigibilità IVA"
+    Fattura elettronica a soggetto IVA
+
+Si tratta della casistica più comune. Selezionare "Soggetto a fattura elettronica"
+e compilare il "Codice destinatario" o la "PEC".
+La partita IVA è un dato obligatorio ai fini dell'invio.
+L'eventuale invio di una fattura in formato PDF è una fattura di cortesia e non
+ha valore legale.
+
+::
+
+    Fattura elettronica a PA
+
+Questa casistica è attiva già dal 2016. Impostare "Pubblica Amministrazione"
+e compilare il "Codice ufficio".
+
+::
+
+    Fattura elettronica a privato senza partita IVA
+
+La legge non prevede l'obbligo di emissione della fattura elettronica ma è
+ammessa l'emissione a condizione che venga inviata una fattura in formato PDF
+al cliente. Inserire il valore "0000000" nel codice destinatario
+e il codice fiscale.
+
+::
+
+    Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
+
+Casistica in cui un cliente con partita IVA non ha fornito
+ne il proprio Codice Destinatario ne la propria PEC. Si riconduce al caso
+precedente, inserendo il valore "0000000" nel codice destinatario ed il
+codice fiscale. Anche in questo caso è obbligatorio inviare una fattura in
+formato PDF al cliente.
+
+::
+
+Configurare le imposte riguardo a "Natura non imponibile",
+"Riferimento legisltativo" ed "Esigibilità IVA"
 
 Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
 
@@ -54,6 +88,7 @@ Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura
     Normativa:
 
 Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
+
 
 |
 |
@@ -280,7 +315,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-12
+Last Update / Ultimo aggiornamento: 2019-01-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

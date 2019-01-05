@@ -14,9 +14,10 @@
     'author': 'KTec S.r.l, Odoo Community Association (OCA), Odoo Italia Associazione',
     'website': 'http://www.ktec.it',
     'license': 'LGPL-3',
-    'depends': ['base'],
+    'depends': [
+        'base',
+        'l10n_it_fiscalcode'
+    ],
     'data': ['view/partner_view.xml'],
-    'demo': [],
-    'test': [],
     'installable': True,
 }

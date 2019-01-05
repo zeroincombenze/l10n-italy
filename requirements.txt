@@ -1,3 +1,5 @@
 codicefiscale
 unidecode
 pyxb==1.2.4
+pycryptodome
+pkcs7

@@ -6,15 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-12 21:41+0000\n"
-"PO-Revision-Date: 2018-12-12 21:41+0000\n"
+"POT-Creation-Date: 2019-01-04 11:37+0000\n"
+"PO-Revision-Date: 2019-01-04 11:37+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
-"Language-Team: Zeroincombenze (https://www.zeroincombenze.it/)\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"Generated-By: Babel 1.3\n"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_sender_url
+msgid "3th Party Sender URL to connect"
+msgstr "3th Party Sender URL to connect"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_bank_abi
@@ -22,7 +27,6 @@ msgid "ABI"
 msgstr "ABI"
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:67
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:67
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:67
 msgid "ASN.1 structure is not parsable in DER."
@@ -40,6 +44,11 @@ msgstr ""
 "1.2.3.6 <Nazione> è uguale a IT"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_active
+msgid "Active"
+msgstr "Attivo"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_fatturapa_activity_progress
 msgid "Activity Progress"
 msgstr "Stato avanzamento lavori"
@@ -51,8 +60,7 @@ msgstr "Rif. ammin."
 
 #. module: l10n_it_einvoice_base
 #: selection:fatturapa.related_document_type,type:0
-#: selection:fatturapa.related_document_type,type
-#: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type:0
 msgid "Agreement"
 msgstr "Convenzione"
 
@@ -79,7 +87,6 @@ msgstr "Importo della sanzione"
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:42
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:42
-#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:42
 #, python-format
 msgid "An error with command 'openssl asn1parse' occurred: %s."
 msgstr "An error with command 'openssl asn1parse' occurred: %s."
@@ -94,7 +101,6 @@ msgstr "Art. 73"
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:60
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:60
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:60
 #, python-format
 msgid "As a Public Administration, partner %s IPA Code must be 6 characters long."
 msgstr ""
@@ -104,15 +110,13 @@ msgstr ""
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:67
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:67
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:67
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
 msgstr "Il soggetto %s, persona fisica, deve avere nome e cognome."
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,sender:0
-#: selection:account.invoice,sender
-#: selection:account.invoice,sender
+#: selection:account.invoice,sender:0
 msgid "Assignee / Partner"
 msgstr "Cessionario / Committente"
 
@@ -162,6 +166,26 @@ msgid "Checksum/SHA1"
 msgstr "Checksum/SHA1"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_client_id
+msgid "Client ID"
+msgstr "Client ID"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_client_id
+msgid "Client ID assigned by 3th Party Sender"
+msgstr "Client ID assigned by 3th Party Sender"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_client_key
+msgid "Client key"
+msgstr "Client key"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_client_key
+msgid "Client key assigned by 3th Party Sender"
+msgstr "Client key assigned by 3th Party Sender"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_fiscal_position_code
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_format_code
 msgid "Code"
@@ -174,8 +198,19 @@ msgstr "Aziende"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_company_id
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_company_id
 msgid "Company"
 msgstr "Azienda"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_sender_company_id
+msgid "Company ID"
+msgstr "Company ID"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_sender_company_id
+msgid "Company Identification assigned by 3th Party Sender"
+msgstr "Company Identification assigned by 3th Party Sender"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_compression
@@ -189,8 +224,7 @@ msgstr "Configurazione"
 
 #. module: l10n_it_einvoice_base
 #: selection:fatturapa.related_document_type,type:0
-#: selection:fatturapa.related_document_type,type
-#: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
 msgstr "Contratto"
 
@@ -210,6 +244,7 @@ msgstr "Codice della nazione espresso secondo lo standard ISO 3166-1 alpha-2 cod
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_create_uid
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_create_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_create_uid
 msgid "Created by"
@@ -226,13 +261,13 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_create_date
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_create_date
 msgid "Created on"
 msgstr "Data di creazione"
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:88
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:88
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:88
 #, python-format
@@ -242,7 +277,6 @@ msgstr "Cliente %s: per la generazione dell'XML è necessario il CAP."
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:92
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:92
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:92
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
@@ -250,13 +284,11 @@ msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:84
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:84
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:84
 #, python-format
@@ -286,15 +318,14 @@ msgstr "Data"
 
 #. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,payability:0
-#: selection:faturapa.summary.data,payability
-#: selection:faturapa.summary.data,payability
+#: selection:faturapa.summary.data,payability:0
 msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_delivery_address
 msgid "Delivery Address"
-msgstr "Indirizzo di consegna"
+msgstr "Indirizzo consegna"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_delivery_datetime
@@ -312,8 +343,7 @@ msgstr "Descrizione"
 
 #. module: l10n_it_einvoice_base
 #: selection:discount.rise.price,name:0
-#: selection:discount.rise.price,name
-#: selection:discount.rise.price,name
+#: selection:discount.rise.price,name:0
 msgid "Discount"
 msgstr "Sconto"
 
@@ -333,6 +363,7 @@ msgstr "Dettagli sconto o maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_display_name
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_display_name
 msgid "Display Name"
@@ -349,6 +380,13 @@ msgstr "ID documento"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_type
 msgid "Document Type"
 msgstr "Tipo documento"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model,name:l10n_it_einvoice_base.model_italy_ade_sender
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_einvoice_sender_id
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_einvoice_sender_id
+msgid "E-Invoice Sender Channel"
+msgstr "E-Invoice Sender Channel"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_discount_rise_price
@@ -462,6 +500,16 @@ msgid "Format"
 msgstr "Formato"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_name
+msgid "Give a unique name for Sender Channel"
+msgstr "Give a unique name for Sender Channel"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_hub_ip_addr
+msgid "Hub IP Address"
+msgstr "Hub IP Address"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_bank_iban
 msgid "IBAN"
 msgstr "IBAN"
@@ -477,15 +525,20 @@ msgstr "IBAN"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_id
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_hub_ip_addr
+msgid "IP Address to connect"
+msgstr "IP Address to connect"
+
+#. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,payability:0
-#: selection:faturapa.summary.data,payability
-#: selection:faturapa.summary.data,payability
+#: selection:faturapa.summary.data,payability:0
 msgid "Immediate payability"
 msgstr "Esigibilità immediata"
 
@@ -566,6 +619,7 @@ msgstr "Numero riga"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data___last_update
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type___last_update
 msgid "Last Modified on"
@@ -582,6 +636,7 @@ msgstr "Data ultima modifica"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_write_uid
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_write_uid
 msgid "Last Updated by"
@@ -598,6 +653,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_write_date
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_type_write_date
 msgid "Last Updated on"
@@ -610,8 +666,7 @@ msgstr "Riferimento legislativo"
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,ftpa_withholding_type:0
-#: selection:account.invoice,ftpa_withholding_type
-#: selection:account.invoice,ftpa_withholding_type
+#: selection:account.invoice,ftpa_withholding_type:0
 msgid "Legal Person"
 msgstr "Persona giuridica"
 
@@ -664,10 +719,15 @@ msgstr "Nome"
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,ftpa_withholding_type:0
-#: selection:account.invoice,ftpa_withholding_type
-#: selection:account.invoice,ftpa_withholding_type
+#: selection:account.invoice,ftpa_withholding_type:0
 msgid "Natural Person"
 msgstr "Persona fisica"
+
+#. module: l10n_it_einvoice_base
+#: selection:italy.ade.sender,method:0
+#: selection:italy.ade.sender,method:0
+msgid "Nessun Invio"
+msgstr "Nessun Invio"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_net_weight
@@ -676,9 +736,13 @@ msgstr "Peso netto"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_non_taxable_nature
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_tax_nature_id
 msgid "No taxable nature"
 msgstr "Natura base non imponibile"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_tax_nature_id
+msgid "Non taxable nature"
+msgstr "Natura esenzione"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_number_items
@@ -687,8 +751,7 @@ msgstr "Numero di righe"
 
 #. module: l10n_it_einvoice_base
 #: selection:fatturapa.related_document_type,type:0
-#: selection:fatturapa.related_document_type,type
-#: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type:0
 msgid "Order"
 msgstr "Ordine"
 
@@ -741,7 +804,6 @@ msgstr "Codice PA per questa registrazione"
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:61
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:61
-#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:61
 #, python-format
 msgid "Parsing PEM to DER file %s."
 msgstr "Parsing PEM to DER file %s."
@@ -754,13 +816,11 @@ msgstr "Soggetto"
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:75
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:75
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:75
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
 msgstr "Il codice destinatario del soggetto %s deve essere lungo 7 caratteri."
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/res_partner.py:80
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:80
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:80
 #, python-format
@@ -820,7 +880,7 @@ msgstr "Fase dello stato avanzamento lavori"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_pickup_datetime
 msgid "Pick up"
-msgstr "Consegna"
+msgstr "Prelievo"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_ade_regime_fiscale
@@ -922,8 +982,7 @@ msgstr "Receipt Issuer Title"
 
 #. module: l10n_it_einvoice_base
 #: selection:fatturapa.related_document_type,type:0
-#: selection:fatturapa.related_document_type,type
-#: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type:0
 msgid "Reception"
 msgstr "Entrata merce"
 
@@ -991,8 +1050,7 @@ msgstr "Tipo documenti collegati"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_invoice_id
-#: selection:fatturapa.related_document_type,type
-#: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type:0
 msgid "Related Invoice"
 msgstr "Fattura collegata"
 
@@ -1049,29 +1107,61 @@ msgid "Sender"
 msgstr "Mittente"
 
 #. module: l10n_it_einvoice_base
+#: model:ir.actions.act_window,name:l10n_it_einvoice_base.action_sender_channel
+#: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_sender
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_sender_form
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_sender_tree
+msgid "Sender Channel"
+msgstr "Sender Channel"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_name
+msgid "Sender Channel Name"
+msgstr "Sender Channel Name"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_einvoice_sender_id
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_einvoice_sender_id
+msgid "Sender Channel used to send e-Invoices"
+msgstr "Sender Channel used to send e-Invoices"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_sender_url
+msgid "Sender url"
+msgstr "Sender url"
+
+#. module: l10n_it_einvoice_base
+#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_method
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_method
+msgid "Sending Method"
+msgstr "Sending Method"
+
+#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_sequence_id
 msgid "Sequence"
 msgstr "Sequenza"
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/company.py:68
-#: code:addons/l10n_it_einvoice_base/models/company.py:68
-#: code:addons/l10n_it_einvoice_base/models/company.py:68
+#: code:addons/l10n_it_einvoice_base/models/company.py:72
+#: code:addons/l10n_it_einvoice_base/models/company.py:72
 #, python-format
 msgid "Sequence %s already used by journal %s. Please select another one."
 msgstr "Sequence %s already used by journal %s. Please select another one."
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/company.py:61
-#: code:addons/l10n_it_einvoice_base/models/company.py:61
-#: code:addons/l10n_it_einvoice_base/models/company.py:61
+#: code:addons/l10n_it_einvoice_base/models/company.py:65
+#: code:addons/l10n_it_einvoice_base/models/company.py:65
 #, python-format
 msgid "Sequence %s can't use subsequences."
 msgstr "Sequence %s can't use subsequences."
 
 #. module: l10n_it_einvoice_base
-#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:87
+#: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_company_id
+msgid "Set company, if specific company channel"
+msgstr "Set company, if specific company channel"
+
+#. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:87
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:87
 #, python-format
@@ -1081,14 +1171,12 @@ msgstr "Signed Xml file %s."
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:93
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:93
-#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:93
 msgid "Signed Xml file not decryptable."
 msgstr "Signed Xml file not decryptable."
 
 #. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,payability:0
-#: selection:faturapa.summary.data,payability
-#: selection:faturapa.summary.data,payability
+#: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
 
@@ -1129,8 +1217,7 @@ msgstr "Subjected to Withholding"
 
 #. module: l10n_it_einvoice_base
 #: selection:discount.rise.price,name:0
-#: selection:discount.rise.price,name
-#: selection:discount.rise.price,name
+#: selection:discount.rise.price,name:0
 msgid "Supplement"
 msgstr "Maggiorazione"
 
@@ -1209,10 +1296,27 @@ msgstr "Terzo/Trasmittente"
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,sender:0
-#: selection:account.invoice,sender
-#: selection:account.invoice,sender
+#: selection:account.invoice,sender:0
 msgid "Third Person"
 msgstr "Soggetto terzo"
+
+#. module: l10n_it_einvoice_base
+#: selection:italy.ade.sender,method:0
+#: selection:italy.ade.sender,method:0
+msgid "Tramite FTP"
+msgstr "Tramite FTP"
+
+#. module: l10n_it_einvoice_base
+#: selection:italy.ade.sender,method:0
+#: selection:italy.ade.sender,method:0
+msgid "Tramite JSON"
+msgstr "Tramite JSON"
+
+#. module: l10n_it_einvoice_base
+#: selection:italy.ade.sender,method:0
+#: selection:italy.ade.sender,method:0
+msgid "Tramite PEC"
+msgstr "Tramite PEC"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_transport_date

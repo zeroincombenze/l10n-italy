@@ -35,7 +35,8 @@ class ResPartner(models.Model):
 
     @api.onchange('electronic_invoice_subjected')
     def onchange_electronic_invoice_subjected(self):
-        if self.vat and not self.codice_destinatario:
+        if ((self.vat or self.l10n_it_fiscalcode) and
+                not self.codice_destinatario):
             self.codice_destinatario = '0000000'
 
     @api.multi

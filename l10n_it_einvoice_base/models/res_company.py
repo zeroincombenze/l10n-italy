@@ -49,6 +49,10 @@ class ResCompany(models.Model):
         help='The fields must be entered only when the seller/provider is '
              'non-resident, with a stable organization in Italy'
         )
+    einvoice_sender_id = fields.Many2one(
+        'italy.ade.sender', 'E-Invoice Sender Channel',
+        help="Sender Channel used to send e-Invoices",
+        )
 
     @api.multi
     @api.constrains(
@@ -137,6 +141,11 @@ class AccountConfigSettings(models.TransientModel):
         help='The fields must be entered only when the seller/provider is '
              'non-resident, with a stable organization in Italy'
         )
+    einvoice_sender_id = fields.Many2one(
+        related='company_id.einvoice_sender_id',
+        string='E-Invoice Sender Channel',
+        help="Sender Channel used to send e-Invoices",
+        )
 
     @api.onchange('company_id')
     def onchange_company_id(self):
@@ -190,6 +199,10 @@ class AccountConfigSettings(models.TransientModel):
                 company.fatturapa_stabile_organizzazione and
                 company.fatturapa_stabile_organizzazione.id or False
                 )
+            self.einvoice_sender_id = (
+                company.einvoice_sender_id and
+                company.einvoice_sender_id.id or False
+                )
         else:
             self.fatturapa_fiscal_position_id = False
             self.fatturapa_sequence_id = False
@@ -203,4 +216,5 @@ class AccountConfigSettings(models.TransientModel):
             self.fatturapa_tax_representative = False
             self.fatturapa_sender_partner = False
             self.fatturapa_stabile_organizzazione = False
+            self.einvoice_sender_id = False
         return res

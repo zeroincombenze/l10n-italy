@@ -109,8 +109,7 @@ class WelfareFundDataLine(models.Model):
 
     name = fields.Many2one(
         'welfare.fund.type', string="Welfare Fund Type")
-    tax_nature_id = fields.Many2one('italy.ade.tax.nature',
-                                    string="No taxable nature")
+    tax_nature_id = fields.Many2one('italy.ade.tax.nature', string="Non taxable nature")
     welfare_rate_tax = fields.Float('Welfare Tax Rate')
     welfare_amount_tax = fields.Float('Welfare Tax Amount')
     welfare_taxable = fields.Float('Welfare Taxable')
@@ -178,8 +177,7 @@ class FatturapaRelatedDocumentType(models.Model):
             line_obj = self.env['account.invoice.line']
             line = line_obj.browse(vals['invoice_line_id'])
             vals['lineRef'] = line.sequence
-        return super(FatturapaRelatedDocumentType,
-                     self).create(vals)
+        return super(FatturapaRelatedDocumentType, self).create(vals)
 
 
 class FaturapaActivityProgress(models.Model):
@@ -228,8 +226,7 @@ class FatturapaRelatedDdt(models.Model):
             line_obj = self.env['account.invoice.line']
             line = line_obj.browse(vals['invoice_line_id'])
             vals['lineRef'] = line.sequence
-        return super(FatturapaRelatedDdt,
-                     self).create(vals)
+        return super(FatturapaRelatedDdt, self).create(vals)
 
 
 class AccountInvoiceLine(models.Model):
@@ -289,16 +286,14 @@ class AccountInvoice(models.Model):
         'res.partner', string="Intermediary")
     #  1.6
     sender = fields.Selection(
-        [('CC', 'Assignee / Partner'),
-         ('TZ', 'Third Person')], 'Sender')
-    # 2.1.1.1 FIXME doc_type
+        [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
+    # 2.1.1.1 doc_type
     invoice_type_id = fields.Many2one(
         'italy.ade.invoice.type', string="Document Type",)
     #  2.1.1.5
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
-        [('RT01', 'Natural Person'),
-         ('RT02', 'Legal Person')],
+        [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
         'Withholding Type'
     )
     #  2.1.1.5.2 withholding_amount in module

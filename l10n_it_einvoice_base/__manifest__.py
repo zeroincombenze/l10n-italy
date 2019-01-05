@@ -32,16 +32,21 @@
         'data/fatturapa_fiscal_position.xml',
         'data/fatturapa_data.xml',
         'data/welfare.fund.type.xml',
-        'views/account_view.xml',
+        'data/italy_ade_sender_data.xml',
+        'views/account_invoice_view.xml',
         'views/company_view.xml',
         'views/regime_fiscale_view.xml',
         'views/fiscal_position_view.xml',
+        'views/fetchmail_view.xml',
+        'views/mail_server_view.xml',
+        'views/sender_view.xml',
     ],
-    # "demo": [
-    #     'demo/account_tax.xml',
-    #     'demo/res_partner.xml',
-    #     'demo/account_invoice_fatturapa.xml',
-    # ],
+    "demo": [
+        'demo/account_account.xml',
+        'demo/account_tax.xml',
+        'demo/res_partner.xml',
+        'demo/account_invoice_fatturapa.xml',
+    ],
     'installable': True,
     'external_dependencies': {
         'python': [
