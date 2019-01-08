@@ -1,0 +1,25 @@
+<odoo>
+
+    <template id="report_saleorder">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="style" t-value="res_company.report_model_style.origin or 'odoo'"/>
+                <t t-if="style == 'odoo_based'" t-call="base_multireport.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                <t t-if="style == 'vg7'" t-call="base_multireport.report_saleorder_document_vg7" t-lang="doc.partner_id.lang"/>
+                <t t-if="style == 'odoo'" t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <!--inherits the default sales report and override its name and file-->
+    <report
+           id="base_multireport.report_sale_order"
+           model="sale.order"
+           string="Quotation / Order"
+           report_type="qweb-pdf"
+           name="base_multireport.report_saleorder"
+           file="base_multireport.report_saleorder"
+           />
+
+</odoo>
+

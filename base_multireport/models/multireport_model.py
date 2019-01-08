@@ -6,14 +6,14 @@
 from openerp import fields, models
 
 
-class MultireportReport(models.Model):
-    _name = "multireport.report"
-    _description = "Multi Report Document"
+class MultireportModel(models.Model):
+    _name = "multireport.model"
+    _description = "Multi Report Document Model"
 
     name = fields.Char(
-        'Name of report',
+        'Name of model',
         required=True,
-        help="Give a unique name for this report")
+        help="Give a unique name for this report model")
     template_id = fields.Many2one(
         'multireport.template',
         'Report Template',

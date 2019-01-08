@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="mr_odoo" model="multireport.style">
+            <field name="name">Original Odoo</field>
+            <field name="origin">odoo</field>
+        </record>
+        <record id="mr_style_odoo" model="multireport.style">
+            <field name="name">Odoo based</field>
+            <field name="origin">odoo_based</field>
+        </record>
+        <record id="mr_style_vg7" model="multireport.style">
+            <field name="name">VG7</field>
+            <field name="origin">vg7</field>
+        </record>
+
+        <record id="base.main_company" model="res.company">
+            <field name="report_model_style" ref="base_multireport.mr_style_odoo"/>
+        </record>
+    </data>
+</openerp>

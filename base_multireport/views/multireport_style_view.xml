@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_multireport_style_tree" model="ir.ui.view">
+        <field name="name">view.multireport.style.tree</field>
+        <field name="model">multireport.style</field>
+        <field name="arch" type="xml">
+            <tree string="Report Style">
+                <field name="name"/>
+                <field name="origin"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_multireport_style_form" model="ir.ui.view">
+        <field name="name">view.multireport.style.form</field>
+        <field name="model">multireport.style</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Type">
+                <group>
+                    <field name="name"/>
+                    <field name="origin"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_multireport_style" model="ir.actions.act_window">
+        <field name="name">Multireport Styles</field>
+        <field name="res_model">multireport.style</field>
+        <field name="view_id" ref="view_multireport_style_tree"/>
+    </record>
+
+    <menuitem id="menu_multireport_style" name="Multi-Report Style"
+              action="action_multireport_style"
+              parent="report.reporting_menuitem"
+              groups="base.group_no_one"/>
+
+</odoo>
+

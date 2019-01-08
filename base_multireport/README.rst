@@ -4,7 +4,7 @@
 ============================
 
 
-**Manage dcocuments multiple reports**
+**Manage document multiple reports**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/base_multireport/static/description/icon.png
 
@@ -221,7 +221,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-01-02
+Last Update / Ultimo aggiornamento: 2019-01-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

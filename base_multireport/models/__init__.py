@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                Odoo Italian Community
-#                Odoo Community Association (OCA)
+# Copyright 2016-2019 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+#                     Odoo Italian Community
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-# from . import account_invoice
-# from . import base_rule_multireport
-from . import res_company
+from . import report
+# from . import multireport_selection_rules
 from . import multireport_template
-from . import multireport_report
+from . import multireport_model
+from . import multireport_style
+from . import res_company
+from . import stock_picking_package_preparation

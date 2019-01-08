@@ -13,8 +13,15 @@
                 'sale',
                 'purchase'],
     'data': [
-        # 'views/res_company_view.xml',
+        'security/ir.model.access.csv',
+        'data/multireport_style.xml',
+        'views/multireport_style_view.xml',
         'views/config_view.xml',
+        'report/multireport_ddt.xml',
+        'report_ddt/report_ddt.xml',
+        'report/multireport_sale_order.xml',
+        'report_sale_order/report_sale_order.xml',
+        'report_sale_order/report_sale_order_vg7.xml',
     ],
     'installable': True,
 }
