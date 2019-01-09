@@ -600,10 +600,10 @@ class WizardExportFatturapa(models.TransientModel):
         # TipoCessionePrestazione not handled
 
         line_no = 1
-        price_precision = self.env['decimal.precision'].precision_get(
-            'Product Price')
-        uom_precision = self.env['decimal.precision'].precision_get(
-            'Product Unit of Measure')
+        price_precision = max(2, self.env['decimal.precision'].precision_get(
+            'Product Price'))
+        uom_precision = max(2, self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure'))
         for line in invoice.invoice_line_ids:
             if not line.invoice_line_tax_ids:
                 raise UserError(

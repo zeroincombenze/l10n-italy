@@ -63,7 +63,23 @@
         <menuitem id="menu_base_rule_multireport"
             action="action_base_rule_multireport"
             parent="account.menu_configuration_misc"
+            sequence="90"
         />
+
+        <!-- 
+        <record id="action_show_reports" model="ir.ui.view">
+            <field name="name">Odoo Reports</field>
+            <field name="res_model">ir.ui.view</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_show_reports"
+            action="action_show_reports"
+            parent="account.menu_configuration_misc"
+            sequence="60"
+        />
+        -->
 
     </data>
 </openerp>

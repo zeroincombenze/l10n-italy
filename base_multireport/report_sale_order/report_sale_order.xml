@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
 <template id="report_saleorder_document">
-    <t t-call="report.external_layout">
+    <t t-call="base_multireport.external_layout">
         <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
         <div class="page">
             <div class="oe_structure"/>
             <div class="row">
                 <div class="col-xs-6">
-                    <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
-                    <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
+                    <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Indirizzo di spedizione e fatturazione:</strong>
+                    <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Indirizzo di fatturazione:</strong>
                     <div t-field="doc.partner_invoice_id"
                         t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
-                    <p t-if="doc.partner_invoice_id.vat">VAT: <span t-field="doc.partner_invoice_id.vat"/></p>
+                    <p t-if="doc.partner_invoice_id.vat">P.IVA: <span t-field="doc.partner_invoice_id.vat"/></p>
                     <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
-                        <strong>Shipping address:</strong>
+                        <strong>Indirizzo di spedizione:</strong>
                         <div t-field="doc.partner_shipping_id"
                             t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
-                        <p t-if="doc.partner_shipping_id.vat">VAT: <span t-field="doc.partner_shipping_id.vat"/></p>
+                        <p t-if="doc.partner_shipping_id.vat">P:IVA: <span t-field="doc.partner_shipping_id.vat"/></p>
                     </div>
                 </div>
                 <div class="col-xs-5 col-xs-offset-1">
@@ -26,27 +27,27 @@
             </div>
 
             <h2>
-                <span t-if="doc.state not in ['draft','sent']">Order # </span>
-                <span t-if="doc.state in ['draft','sent']">PREVENTIVO N. </span>
+                <span t-if="doc.state not in ['draft','sent']">Ordine N.</span>
+                <span t-if="doc.state in ['draft','sent']">Preventivo N.</span>
                 <span t-field="doc.name"/>
             </h2>
 
             <div class="row mt32 mb32" id="informations">
                 <div t-if="doc.client_order_ref" class="col-xs-3">
-                    <strong>Your Reference:</strong>
+                    <strong>Vs. riferimento:</strong>
                     <p t-field="doc.client_order_ref"/>
                 </div>
                 <div t-if="doc.date_order" class="col-xs-3">
-                    <strong t-if="doc.state not in ['draft','sent']">Date Ordered:</strong>
-                    <strong t-if="doc.state in ['draft','sent']">Quotation Date:</strong>
+                    <strong t-if="doc.state not in ['draft','sent']">Data ordine:</strong>
+                    <strong t-if="doc.state in ['draft','sent']">Date preventivo:</strong>
                     <p t-field="doc.date_order"/>
                 </div>
                 <div t-if="doc.user_id.name" class="col-xs-3">
-                    <strong>Salesperson:</strong>
+                    <strong>Commerciale:</strong>
                     <p t-field="doc.user_id"/>
                 </div>
                 <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
-                    <strong>Payment Terms:</strong>
+                    <strong>Termini di pagamento:</strong>
                     <p t-field="doc.payment_term_id"/>
                 </div>
             </div>
@@ -58,13 +59,13 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th>Description</th>
-                            <th class="text-right">Quantity</th>
-                            <th class="text-right">Unit Price</th>
-                            <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
-                            <th class="text-right">Taxes</th>
-                            <th class="text-right" groups="sale.group_show_price_subtotal">Price</th>
-                            <th class="text-right price_tax_included" groups="sale.group_show_price_total">Total Price</th>
+                            <th>Descrizione</th>
+                            <th class="text-right">Quantità</th>
+                            <th class="text-right">Prezzo unitario</th>
+                            <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Sc.(%)</th>
+                            <th class="text-right">C.IVA</th>
+                            <th class="text-right" groups="sale.group_show_price_subtotal">Prezzo</th>
+                            <th class="text-right price_tax_included" groups="sale.group_show_price_total">Totale riga</th>
                         </tr>
                    </thead>
                    <tbody class="sale_tbody">
@@ -109,7 +110,7 @@
                             <t t-if="(layout_category_size > 1 or page_size > 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
                                 <tr class="text-right">
                                     <td colspan="6">
-                                        <strong>Subtotal: </strong>
+                                        <strong>Imponibile: </strong>
                                         <t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['lines'])"/>
                                         <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
                                     </td>
@@ -129,7 +130,7 @@
                 <div class="col-xs-4 pull-right">
                     <table class="table table-condensed">
                         <tr class="border-black">
-                            <td><strong>Total Without Taxes</strong></td>
+                            <td><strong>Imponibile</strong></td>
                             <td class="text-right">
                                 <span t-field="doc.amount_untaxed"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
@@ -145,7 +146,7 @@
                             </tr>
                         </t>
                         <tr class="border-black">
-                            <td><strong>Total</strong></td>
+                            <td><strong>Totale</strong></td>
                             <td class="text-right">
                                 <span t-field="doc.amount_total"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
@@ -160,7 +161,7 @@
                 <span t-field="doc.payment_term_id.note"/>
             </p>
             <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
-                <strong>Fiscal Position Remark:</strong>
+                <strong>Note fiscali:</strong>
                 <span t-field="doc.fiscal_position_id.note"/>
             </p>
             <div class="oe_structure"/>

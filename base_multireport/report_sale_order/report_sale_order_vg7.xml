@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!-- See sale_report.xml in sale module -->
-<!-- 
+<!--
 <record id="base_multireport.report_sale_order" model="ir.actions.report.xml">
-    <field name="paperformat_id" ref="report_saleorder_document.vg7_paperformat"/>
+    <field name="paperformat_id" ref="base_multireport.paperformat_vg7"/>
 </record>
 -->
- 
+
 <template id="report_saleorder_document_vg7">
-    <t t-call="report.external_layout">
+    <t t-call="base_multireport.external_layout">
         <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
         <div class="page">
             <div class="oe_structure"/>

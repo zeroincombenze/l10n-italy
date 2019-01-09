@@ -11,11 +11,10 @@
         </t>
     </template>
 
-    <!--inherits the default sales report and override its name and file-->
     <report
            id="base_multireport.report_sale_order"
            model="sale.order"
-           string="Quotation / Order"
+           string="Preventivo / Ordine (personalizzato)"
            report_type="qweb-pdf"
            name="base_multireport.report_saleorder"
            file="base_multireport.report_saleorder"

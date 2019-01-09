@@ -15,8 +15,5 @@
             <field name="origin">vg7</field>
         </record>
 
-        <record id="base.main_company" model="res.company">
-            <field name="report_model_style" ref="base_multireport.mr_style_odoo"/>
-        </record>
     </data>
 </openerp>

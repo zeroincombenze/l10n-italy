@@ -17,10 +17,23 @@
         <field name="model">multireport.style</field>
         <field name="arch" type="xml">
             <form string="Invoice Type">
+                <sheet>
                 <group>
                     <field name="name"/>
                     <field name="origin"/>
+                    <!-- <notebook colspan="4">  -->
+                        <!-- <page name="default" string="Default Setting"> -->
+                            <field name="custom_header" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>/>
+                            <field name="pdf_watermark" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                            <field name="pdf_watermark_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                            <field name="pdf_ending_page" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                        <!-- </page>
+                        <page name="sale_order" string="Sale Order">  -->
+                            <field name="pdf_watermark_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                        <!-- </page>  -->
+                    <!--  </notebook>  -->
                 </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -34,6 +47,7 @@
     <menuitem id="menu_multireport_style" name="Multi-Report Style"
               action="action_multireport_style"
               parent="report.reporting_menuitem"
+              sequence="90"
               groups="base.group_no_one"/>
 
 </odoo>

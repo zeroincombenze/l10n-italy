@@ -22,3 +22,22 @@ class MultireportStyle(models.Model):
         required=True,
         help="Original report",
         default='odoo')
+    pdf_watermark = fields.Binary(
+        'Watermark PDF',
+        help='Upload your company letterhead PDF to form the background '
+             'of every page of your reports.')
+    pdf_watermark_expression = fields.Char(
+        'Watermark expression',
+        help='An expression yielding the base64 '
+             'encoded data to be used as watermark. \n'
+             'You have access to variables `env` and `docs`')
+    pdf_ending_page = fields.Binary(
+        'Ending Page PDF',
+        help='Here you can upload a PDF document that contain '
+             'some specific content. '
+             'This document will be appended to the printed report')
+    pdf_watermark_sale_order = fields.Binary(
+        'Sale Order Watermark PDF',
+        help='Specific background for Sale Orders')
+    # TODO: in template
+    custom_header = fields.Boolean('Custom Header')
