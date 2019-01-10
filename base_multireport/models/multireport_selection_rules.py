@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                Odoo Italian Community
-#                Odoo Community Association (OCA)
+# Copyright 2016-19 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields, models
 from odoo import api
@@ -29,18 +27,17 @@ class MultireportSelectionRules(models.Model):
         help="Brief name of document to print")
     model_id = fields.Many2one(
         'ir.model', 'Related Document Model',
-        required=True,
-        domain=[('osv_memory', '=', False)],
+        # domain=[('osv_memory', '=', False)],
+        domain=[('transient', '=', False)],
         help="Model to apply this rule")
-    model = fields.related(
-        'model_id', 'model', type="char", string='Model')
-    reportname = fields.Char(
-        'Internal report name',
-        readonly=True,
-        help="Set the report name formatted as module.reportname;"
-             " i.e: 'account.report_invoice' like"
-             " Odoo standard report name."
-             " This field is applied if action is 'report'.")
+    model_name = fields.Char(
+        'Related Document Model',
+        help="Model to apply this rule (no matches if exists)")
+    report_id = fields.Many2one(
+        'ir.ui.view', 'Report to print',
+        domain=[('type', '=', 'qweb'),
+                ('inherit_id', '=', False)],
+        help="Report to print if action is 'report'")
     purpose = fields.Char(
         'Purpose',
         help="Report purpose: why, when use this report.")
@@ -65,9 +62,9 @@ class MultireportSelectionRules(models.Model):
              " like Italian 'Fattura Accompagnatoria'.")
     partner_id = fields.Many2one(
         'res.partner',
-        'If customer',
-        help="Apply rule only if invoice of customer;"
-             " may be useful to print specific model for customer.")
+        'If partner',
+        help="Apply rule only if document of partner;"
+             " may be useful to print specific model for partner.")
     lang = fields.Selection(
         _lang_get,
         'If language',
@@ -79,30 +76,14 @@ class MultireportSelectionRules(models.Model):
         help="Apply rule only if fiscal position matches"
              " invoice position; may be useful to print"
              " models to satisfy some fiscal law.")
-    section_id = fields.many2one(
-        'crm.case.section',
-        'If sales team',
-        help="Apply rule only if sales team matches"
-             " invoice position; may be useful to print"
-             " models to customize sale documents.")
+    # section_id = fields.many2one(
+    #     'crm.case.section',
+    #     'If sales team',
+    #     help="Apply rule only if sales team matches"
+    #          " invoice position; may be useful to print"
+    #          " models to customize sale documents.")
     since_date = fields.Date('From date')
     until_date = fields.Date('To date')
     active = fields.Boolean(
         'Active',
         help="Rule is evaluated only if is active.")
-
-
-class Report(models.Model):
-    _inherit = "report"
-
-    @api.noguess
-    def get_action(self, docids, report_name, data=None):
-        rule_model = self.env['multireport.selection.rules']
-        for rule in rule_model.search([('active', '=', True)],
-                                      order='sequence'):
-            if rule.action == 'odoo':
-                break
-            elif rule.reportname:
-                report_name = rule.reportname
-                break
-        return super(Report, self).get_action(docids, report_name, data=data)

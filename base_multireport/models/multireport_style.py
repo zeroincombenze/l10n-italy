@@ -11,7 +11,7 @@ class MultireportStyle(models.Model):
     _description = "Multi Report Document Style"
 
     name = fields.Char(
-        'Name of model',
+        'Name of Style',
         required=True,
         help="Give a unique name for this report style")
     origin = fields.Selection(
@@ -39,5 +39,14 @@ class MultireportStyle(models.Model):
     pdf_watermark_sale_order = fields.Binary(
         'Sale Order Watermark PDF',
         help='Specific background for Sale Orders')
+    pdf_watermark_stock_picking_package_preparation = fields.Binary(
+        'Packing List Watermark PDF',
+        help='Specific background for Packing List')
+    pdf_watermark_account_invoice = fields.Binary(
+        'Sale Invoice Watermark PDF',
+        help='Specific background for Sale Invoices')
+    pdf_watermark_purchase_order = fields.Binary(
+        'Purchase Order Watermark PDF',
+        help='Specific background for Purchase Orders')
     # TODO: in template
     custom_header = fields.Boolean('Custom Header')

@@ -18,37 +18,56 @@
         <field name="arch" type="xml">
             <form string="Invoice Type">
                 <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="origin"/>
-                    <!-- <notebook colspan="4">  -->
-                        <!-- <page name="default" string="Default Setting"> -->
+                    <group>
+                        <field name="name"/>
+                        <field name="origin"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page name="default" string="Default Setting">
+                            <group>
                             <field name="custom_header" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>/>
                             <field name="pdf_watermark" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             <field name="pdf_watermark_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             <field name="pdf_ending_page" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                        <!-- </page>
-                        <page name="sale_order" string="Sale Order">  -->
+                        </group>
+                    </page>
+                    <page name="sale_order" string="Sale Order">
+                        <group>
                             <field name="pdf_watermark_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                        <!-- </page>  -->
-                    <!--  </notebook>  -->
-                </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                        </group>
+                    </page>
+                    <page name="packing_list" string="Packing List">
+                        <group>
+                            <field name="pdf_watermark_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                        </group>
+                    </page>
+                    <page name="account_invoice" string="Account Invoice">
+                        <group>
+                            <field name="pdf_watermark_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                        </group>
+                    </page>
+                    <page name="purchase_order" string="Purchase Order">
+                        <group>
+                            <field name="pdf_watermark_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
 
-    <record id="action_multireport_style" model="ir.actions.act_window">
-        <field name="name">Multireport Styles</field>
-        <field name="res_model">multireport.style</field>
-        <field name="view_id" ref="view_multireport_style_tree"/>
-    </record>
+<record id="action_multireport_style" model="ir.actions.act_window">
+    <field name="name">Multireport Styles</field>
+    <field name="res_model">multireport.style</field>
+    <field name="view_id" ref="view_multireport_style_tree"/>
+</record>
 
-    <menuitem id="menu_multireport_style" name="Multi-Report Style"
-              action="action_multireport_style"
-              parent="report.reporting_menuitem"
-              sequence="90"
-              groups="base.group_no_one"/>
+<menuitem id="menu_multireport_style" name="Multi-Report Style"
+          action="action_multireport_style"
+          parent="report.reporting_menuitem"
+          sequence="90"
+          groups="base.group_no_one"/>
 
 </odoo>
 

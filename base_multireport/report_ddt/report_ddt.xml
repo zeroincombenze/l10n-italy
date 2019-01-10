@@ -82,7 +82,7 @@
         </template>
 
         <template id="report_ddt">
-            <t t-call="report.external_layout">
+            <t t-call="base_multireport.external_layout">
                 <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
                 <div class="page">
                     <div class="row">

@@ -14,14 +14,14 @@ class MultireportTemplate(models.Model):
         'Name of report template',
         required=True,
         help="Give a unique name for this report template")
-    header_name = fields.Many2one(
+    header_id = fields.Many2one(
         'ir.ui.view', 'Related header',
         required=True,
         domain=[('type', '=', 'qweb'),
                 ('inherit_id', '=', False),
                 ('name', 'like', 'header')],
         help="Name of header associated to this template")
-    footer_name = fields.Many2one(
+    footer_id = fields.Many2one(
         'ir.ui.view', 'Related footer',
         required=True,
         domain=[('type', '=', 'qweb'),
