@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="mr_t" model="multireport.template">
+            <field name="name">Odoo template (read-only)</field>
+            <field name="header_id" ref="report.external_layout_header"/>
+            <field name="footer_id" ref="report.external_layout_footer"/>
+        </record>
+        <record id="mr_t_odoo" model="multireport.template">
+            <field name="name">Odoo based template</field>
+            <field name="header_id" ref="report.external_layout_header"/>
+            <field name="footer_id" ref="report.external_layout_footer"/>
+        </record>
+        <record id="mr_t_vg7" model="multireport.template">
+            <field name="name">VG7 template</field>
+            <field name="header_id" ref="report.external_layout_header"/>
+            <field name="footer_id" ref="report.external_layout_footer"/>
+        </record>
+
+    </data>
+</openerp>

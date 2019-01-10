@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_multireport_model_tree" model="ir.ui.view">
+        <field name="name">view.multireport.model.tree</field>
+        <field name="model">multireport.model</field>
+        <field name="arch" type="xml">
+            <tree string="Report Model">
+                <field name="name"/>
+                <field name="template_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_multireport_model_form" model="ir.ui.view">
+        <field name="name">view.multireport.model.form</field>
+        <field name="model">multireport.model</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Type">
+                <group>
+                    <field name="name"/>
+                    <field name="template_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_multireport_model" model="ir.actions.act_window">
+        <field name="name">Multireport Model</field>
+        <field name="res_model">multireport.model</field>
+        <field name="view_id" ref="view_multireport_model_tree"/>
+    </record>
+
+    <menuitem id="menu_multireport_model" name="Multi-Report Model"
+              action="action_multireport_model"
+              parent="report.reporting_menuitem"
+              sequence="70"
+              groups="base.group_no_one"/>
+
+</odoo>
