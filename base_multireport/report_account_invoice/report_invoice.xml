@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="report_invoice_document">
-        <t t-call="base_multireport.report.external_layout">
+        <t t-call="base_multireport.external_layout">
             <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
             <div class="page">
                 <div class="row">
@@ -162,11 +162,15 @@
     <template id="account_invoice_report_duplicate" inherit_id="base_multireport.report_invoice_document" primary="True">
         <xpath expr="//h2" position="replace">
             <h2>
-                <span>Duplicate</span>
-                <span t-if="o.type == 'out_refund'">refund</span>
-                <span t-if="o.type == 'out_invoice'">invoice</span>
+                <span t-if="o.type == 'out_refund'">Nota Credito di cortesia</span>
+                <span t-if="o.type == 'out_invoice'">Fattura di cortesia</span>
                 <span t-field="o.number"/>
             </h2>
+        </xpath>
+         <xpath expr="//p[last()]" position="after">
+            <div>
+                <p>Documento non valido ai fini fiscali. Segue fattura elettronica in formato XML</p>
+            </div>
         </xpath>
     </template>
 
