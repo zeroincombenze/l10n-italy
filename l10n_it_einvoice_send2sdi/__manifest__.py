@@ -9,6 +9,7 @@
     "depends": [
         'l10n_it_einvoice_base',
         'l10n_it_split_payment',
+        'l10n_it_einvoice_in',
         'l10n_it_einvoice_out',
     ],
     "data": [

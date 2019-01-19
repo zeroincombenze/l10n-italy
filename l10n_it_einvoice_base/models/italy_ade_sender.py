@@ -18,7 +18,7 @@ class ItalyEinvoiceSender(models.Model):
          ('FTP', 'Tramite FTP'),
          ('JSON', 'Tramite JSON'),
         ],
-        'Sending Method',
+        'SDI channel',
         help="Sending Method")
     company_id = fields.Many2one(
         'res.company', 'Company',

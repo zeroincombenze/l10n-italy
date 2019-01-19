@@ -30,3 +30,8 @@ class AccountInvoice(models.Model):
         for record in self:
             record.fatturapa_state = fatturapa_attachment_state_mapping.get(
                 record.fatturapa_attachment_out_id.state)
+
+    @api.multi
+    def send_einvoice(self):
+        for record in self:
+            record.fatturapa_attachment_out_id.send_einvoice()

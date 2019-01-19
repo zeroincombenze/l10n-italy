@@ -7,8 +7,10 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
+import re
 import base64
 import logging
+from xml.sax.saxutils import escape
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
@@ -58,6 +60,31 @@ except ImportError as err:
 
 PAYTYPE_BNK_CUSTOMER = ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21')
 PAYTYPE_BNK_COMPANY = ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')
+XML_ESCAPE = {
+    # u'\n': u'&#10;',
+    u'\n': u' ',
+    u'\r': u' ',
+    u'€': u'&euro;',
+    u'©': u'&copy',
+    u'®': u'&reg',
+    # u'à': u'&agrave;',
+    # u'á': u'&aacute;',
+    # u'è': u'&egrave;',
+    # u'é': u'&eacute;',
+    # u'ì': u'&igrave;',
+    # u'í': u'&iacute;',
+    # u'ò': u'&ograve;',
+    # u'ó': u'&oacute;',
+    # u'ù': u'&ugrave;',
+    # u'ú': u'&uacute;',
+    # u'°': u'&deg;',
+    u'«': u'&laquo;',
+    u'»': u'&raquo;',
+    u'Ø': u'&Oslash;',
+    u'ø': u'&oslash;',
+    u'ß': u'&szlig;',
+}
+IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
 
 
 class WizardExportFatturapa(models.TransientModel):
@@ -140,6 +167,11 @@ class WizardExportFatturapa(models.TransientModel):
                     wep_phone += phone[i]
         return wep_phone
 
+    def _wep_text(self, text):
+        """"Do xml escape to avoid error StringLatinType"""
+        # text.encode('latin', 'ignore').decode('latin')
+        return escape(text, XML_ESCAPE)
+
     def _setIdTrasmittente(self, company, fatturapa):
         if not company.country_id:
             raise UserError(
@@ -179,19 +211,23 @@ class WizardExportFatturapa(models.TransientModel):
                 ) % partner.name)
             code = partner.ipa_code
         else:
-            if not partner.codice_destinatario:
+            if not partner.vat and not partner.fiscalcode:
                 raise UserError(_(
-                    "Partner %s is not PA but does not have Addressee "
+                    "Partner %s is not PA but does not have vat number neither fiscal code"
                     "Code."
                 ) % partner.name)
+            if not partner.codice_destinatario:
+                raise UserError(_(
+                    "Partner %s is not PA but does not have Addressee Code."
+                ) % partner.name)
             code = partner.codice_destinatario
-            if code == '0000000':
-                if not partner.pec_destinatario and \
-                        not partner.pec_mail:
-                    raise UserError(_(
-                        "Partner %s without PEC."
-                    ) % partner.name)
-                pec_destinatario = partner.pec_destinatario or partner.pec_mail
+            # if code == '0000000':
+            #     if not partner.pec_destinatario and \
+            #             not partner.pec_mail:
+            #         raise UserError(_(
+            #             "Partner %s without PEC."
+            #         ) % partner.name)
+            #     pec_destinatario = partner.pec_destinatario or partner.pec_mail
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             CodiceDestinatario = code.upper()
         if pec_destinatario:
@@ -261,6 +297,9 @@ class WizardExportFatturapa(models.TransientModel):
         if not company.city:
             raise UserError(
                 _('Your company City is not set.'))
+        if not company.partner_id.state_id:
+            raise UserError(
+                _('Province not set.'))
         if not company.country_id:
             raise UserError(
                 _('Your company Country is not set.'))
@@ -493,6 +532,15 @@ class WizardExportFatturapa(models.TransientModel):
                 company.fatturapa_sender_partner, fatturapa)
         return True
 
+    def setTipoDocumento(self, invoice):
+        if invoice.invoice_type_id:
+            TipoDocumento = invoice.invoice_type_id.code
+        elif invoice.type == 'out_refund':
+            TipoDocumento = 'TD04'
+        else:
+            TipoDocumento = 'TD01'
+        return TipoDocumento
+
     def setDatiGeneraliDocumento(self, invoice, body):
 
         # TODO DatiSAL
@@ -502,12 +550,7 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Invoice does not have a number.'))
 
-        if invoice.invoice_type_id:
-            TipoDocumento = invoice.invoice_type_id.code
-        elif invoice.type == 'out_refund':
-            TipoDocumento = 'TD04'
-        else:
-            TipoDocumento = 'TD01'
+        TipoDocumento = self.setTipoDocumento(invoice)
         ImportoTotaleDocumento = invoice.amount_total
         # /!\ OCA split payment has total_amount w/o VAT e amount_sp positive
         # OIA split payment has total_amount with VTA and amount_sp negative
@@ -531,8 +574,9 @@ class WizardExportFatturapa(models.TransientModel):
                     continue
                 # Remove non latin chars, but go back to unicode string,
                 # as expected by String200LatinType
-                causale = causale.encode(
-                    'latin', 'ignore').decode('latin')
+                # causale = causale.encode(
+                #    'latin', 'ignore').decode('latin')
+                causale = self._wep_text(causale),
                 body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 
         if invoice.company_id.fatturapa_art73:
@@ -621,7 +665,7 @@ class WizardExportFatturapa(models.TransientModel):
                 # see https://tinyurl.com/ycem923t
                 # and '&#10;' would not be correctly visualized anyway
                 # (for example firefox replaces '&#10;' with space
-                Descrizione=line.name.replace('\n', ' '),
+                Descrizione=self._wep_text(line.name),
                 PrezzoUnitario=('%.' + str(
                     price_precision
                 ) + 'f') % prezzo_unitario,
@@ -695,7 +739,12 @@ class WizardExportFatturapa(models.TransientModel):
 
         return True
 
-    def setDatiBanca(self, DettaglioPagamento, bank_id):
+    def setDatiBanca(self, DettaglioPagamento, bank_id, company=None):
+        if not bank_id and company:
+            for bank in company.partner_id.bank_ids:
+                if bank.acc_number and IBAN_PATTERN.match(bank.acc_number):
+                    bank_id = bank
+                    break
         if bank_id:
             if bank_id.bank_name:
                 DettaglioPagamento.IstitutoFinanziario = (
@@ -724,14 +773,25 @@ class WizardExportFatturapa(models.TransientModel):
                 invoice.payment_term_id.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
             payment_line_ids = invoice.get_receivable_line_ids()
+            TipoDocumento = self.setTipoDocumento(invoice)
             credit_amount = 0.0
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
                 # OIA split-payment management
-                if move_line.credit > 0.0:
-                    credit_amount = move_line.credit
-                    continue
-                ImportoPagamento = '%.2f' % (move_line.debit - credit_amount)
+                if TipoDocumento == 'TD04':
+                    if move_line.debit > 0.0:
+                        credit_amount = move_line.credit
+                        continue
+                else:
+                    if move_line.credit > 0.0:
+                        credit_amount = move_line.credit
+                        continue
+                if TipoDocumento == 'TD04':
+                    ImportoPagamento = '%.2f' % (move_line.credit - 
+                                                 credit_amount)
+                else:
+                    ImportoPagamento = '%.2f' % (move_line.debit - 
+                                                 credit_amount)
                 credit_amount = 0.0
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
@@ -757,8 +817,7 @@ class WizardExportFatturapa(models.TransientModel):
                         invoice.company_id.partner_id.bank_ids
                 ):
                     DettaglioPagamento = self.setDatiBanca(
-                        DettaglioPagamento,
-                        invoice.company_id.partner_id.bank_ids[0])
+                        DettaglioPagamento, None, company = invoice.company_id)
                 DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
             body.DatiPagamento.append(DatiPagamento)
         return True

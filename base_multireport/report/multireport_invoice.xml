@@ -13,7 +13,7 @@
     <report
            id="base_multireport.account_invoices"
            model="account.invoice"
-           string="Fattura (perosnalizzata)"
+           string="Fattura (personalizzata)"
            report_type="qweb-pdf"
            name="base_multireport.report_invoice"
            file="base_multireport.report_invoice"
