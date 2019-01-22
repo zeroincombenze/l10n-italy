@@ -33,21 +33,25 @@
                     </page>
                     <page name="sale_order" string="Sale Order">
                         <group>
+                            <field name="description_mode_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             <field name="pdf_watermark_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                         </group>
                     </page>
                     <page name="packing_list" string="Packing List">
                         <group>
+                            <field name="description_mode_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             <field name="pdf_watermark_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                         </group>
                     </page>
                     <page name="account_invoice" string="Account Invoice">
                         <group>
+                            <field name="description_mode_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             <field name="pdf_watermark_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                         </group>
                     </page>
                     <page name="purchase_order" string="Purchase Order">
                         <group>
+                            <field name="description_mode_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             <field name="pdf_watermark_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                         </group>
                     </page>

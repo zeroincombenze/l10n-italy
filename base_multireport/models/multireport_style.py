@@ -50,3 +50,39 @@ class MultireportStyle(models.Model):
         help='Specific background for Purchase Orders')
     # TODO: in template
     custom_header = fields.Boolean('Custom Header')
+    description_mode_sale_order = fields.Selection(
+        [('as_is', 'As is'),
+         ('line1', 'Only first line'),
+         ('nocode', 'No code'),
+         ('nocode1', 'No code & Only first line'),
+         ],
+        'Description line print',
+        help="Which content is printed in document",
+        default='as_is')
+    description_mode_stock_picking_package_preparation = fields.Selection(
+        [('as_is', 'As is'),
+         ('line1', 'Only first line'),
+         ('nocode', 'No code'),
+         ('nocode1', 'No code & Only first line'),
+         ],
+        'Description line print',
+        help="Which content is printed in document",
+        default='as_is')
+    description_mode_account_invoice = fields.Selection(
+        [('as_is', 'As is'),
+         ('line1', 'Only first line'),
+         ('nocode', 'No code'),
+         ('nocode1', 'No code & Only first line'),
+         ],
+        'Description line print',
+        help="Which content is printed in document",
+        default='as_is')
+    description_mode_purchase_order = fields.Selection(
+        [('as_is', 'As is'),
+         ('line1', 'Only first line'),
+         ('nocode', 'No code'),
+         ('nocode1', 'No code & Only first line'),
+         ],
+        'Description line print',
+        help="Which content is printed in document",
+        default='as_is')
