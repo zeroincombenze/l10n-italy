@@ -36,7 +36,7 @@
         <field name="name">Bancale/Pallet</field>
     </record>
     <record id="goods_description_SFU" model="stock.picking.goods_description">
-        <field name="name">Sfuso</field>
+        <field name="name">Sfuso a vista</field>
     </record>
     <record id="goods_description_CBA" model="stock.picking.goods_description">
         <field name="name">Cartoni su Bancale</field>
@@ -53,7 +53,13 @@
     <record id="transportation_reason_RES" model="stock.picking.transportation_reason">
         <field name="name">Reso Merce</field>
     </record>
-<!-- c/lavorazione -->
+    <record id="transportation_reason_CL" model="stock.picking.transportation_reason">
+        <field name="name">Conto Lavoro</field>
+    </record>
+    <record id="transportation_reason_RCL" model="stock.picking.transportation_reason">
+        <field name="name">Reso da Conto Lavoro</field>
+    </record>
+
 
     <!-- trasportation methods -->
     <record id="transportation_method_MIT" model="stock.picking.transportation_method">

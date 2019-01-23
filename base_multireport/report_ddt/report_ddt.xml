@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         <h6>Date</h6>
-                        <div class="signature" t-field="ddt.date"></div>
+                        <div class="signature" t-field="ddt.date_done"></div>
                     </td>
                     <td>
                         <h6>Pick up time</h6>
@@ -96,10 +96,11 @@
                             <h2>Destinatario</h2>
                             <div t-field="o.partner_shipping_id"
                                 t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
-                            <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div>
+                            <!-- <div t-if="o.partner_shipping_id">VAT number: <span t-field="o.partner_shipping_id.vat"/></div> -->
+                            <div t-if="o.partner_shipping_id">Telefono: <span t-field="o.partner_shipping_id.phone"/></div>
                         </div>
                     </div>
-                    <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
+                    <h1>DDT number: <span t-field="o.ddt_number"/> del <span t-field="o.date" t-options="{'widget': 'date'}"/></h1>
                     <table class="table table-condensed">
                         <t t-set="has_serial_number" t-value="o.line_ids.filtered('move_id.lot_ids')" groups="stock.group_production_lot"/>
                         <thead>

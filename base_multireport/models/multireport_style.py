@@ -50,6 +50,7 @@ class MultireportStyle(models.Model):
         help='Specific background for Purchase Orders')
     # TODO: in template
     custom_header = fields.Boolean('Custom Header')
+    no_header_logo = fields.Boolean('No Header Logo')
     description_mode_sale_order = fields.Selection(
         [('as_is', 'As is'),
          ('line1', 'Only first line'),
@@ -86,3 +87,35 @@ class MultireportStyle(models.Model):
         'Description line print',
         help="Which content is printed in document",
         default='as_is')
+    header_sale_order = fields.Selection(
+        [('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Heaser Print Mode',
+        help="Which content is printed in document",
+        default='standard')
+    header_stock_picking_package_preparation = fields.Selection(
+        [('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Heaser Print Mode',
+        help="Which content is printed in document",
+        default='standard')
+    header_account_invoice = fields.Selection(
+        [('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Heaser Print Mode',
+        help="Which content is printed in document",
+        default='standard')
+    header_purchase_order = fields.Selection(
+        [('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Heaser Print Mode',
+        help="Which content is printed in document",
+        default='standard')

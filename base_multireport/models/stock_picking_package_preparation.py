@@ -34,6 +34,9 @@ class StockPickingPackagePreparation(models.Model):
         new_pdf.write(pdf_content)
         return pdf_content.getvalue()
 
+    def get_header_mode(self):
+        return self.company_id.report_model_style.header_stock_picking_package_preparation
+
 
 class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
