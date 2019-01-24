@@ -1,29 +1,17 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+# Copyright 2014    - Davide Corio
+# Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 #
-#    Copyright (C) 2014 Davide Corio <davide.corio@lsweb.it>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
 from openerp.osv import fields, orm
 
 
 class FatturaPAAttachment(orm.Model):
     _name = "fatturapa.attachment.out"
-    _description = "FatturaPA Export File"
+    _description = "E-invoice Export File"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
 
@@ -33,4 +21,20 @@ class FatturaPAAttachment(orm.Model):
         'out_invoice_ids': fields.one2many(
             'account.invoice', 'fatturapa_attachment_out_id',
             string="Out Invoices", readonly=True),
+        'has_pdf_invoice_print': fields.boolean(
+            help="True if all the invoices have a printed "
+                 "report attached in the XML, False otherwise.",
+            compute='_compute_has_pdf_invoice_print', store=True),
+        'invoice_partner_id': fields.many2one(
+            'res.partner', string='Customer', store=True,
+            compute='_compute_invoice_partner_id'),
+    }
+
+
+class FatturaAttachments(orm.Model):
+    _inherit = "fatturapa.attachments"
+
+    _columns = {
+        'is_pdf_invoice_print': fields.boolean(
+            help="This attachment contains the PDF report of the linked invoice"),
     }

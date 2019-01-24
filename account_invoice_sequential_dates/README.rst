@@ -17,6 +17,7 @@ Overview / Panoramica
 |en| This module check for sequential invoice date because Italian law.
 
 Like OCA module, out_invoice dates are checked.
+
 Also in_invoice registration date are checked (this function is not [yet]
 implemented in OCA module).
 
@@ -207,7 +208,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-01
+Last Update / Ultimo aggiornamento: 2019-01-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

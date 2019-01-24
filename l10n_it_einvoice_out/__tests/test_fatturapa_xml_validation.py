@@ -296,3 +296,4 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00005.xml')
+

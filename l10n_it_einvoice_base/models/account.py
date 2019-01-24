@@ -7,6 +7,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 from openerp.osv import fields, orm
+import decimal_precision as dp
+
 
 RELATED_DOCUMENT_TYPES = {
     'order': 'DatiOrdineAcquisto',
@@ -25,7 +27,7 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
 class FatturapaFormat(orm.Model):
     # _position = ['1.1.3']
     _name = "fatturapa.format"
-    _description = 'FatturaPA Format'
+    _description = 'E-invoice Format'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -36,7 +38,7 @@ class FatturapaFormat(orm.Model):
 class FatturapaPaymentData(orm.Model):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment.data"
-    _description = 'FatturaPA Payment Data'
+    _description = 'E-invoice Payment Data'
 
     _columns = {
         #  2.4.1
@@ -59,17 +61,17 @@ class FatturapaPaymentDetail(orm.Model):
     _columns = {
         'recipient': fields.char('Recipient', size=200),
         'fatturapa_pm_id': fields.many2one(
-            'fatturapa.payment_method', string="FatturaPA Payment Method"),
+            'fatturapa.payment_method', string="Electronic Invoice Payment Method"),
         'payment_term_start': fields.date('Payment Term Start'),
         'payment_days': fields.integer('Payment Term Days'),
-        'payment_due_date': fields.date('Payment due Date'),
+        'payment_due_date': fields.date('Payment Due Date'),
         'payment_amount': fields.float('Payment Amount'),
         'post_office_code': fields.char('Post Office Code', size=20),
-        'recepit_name': fields.char("Recepit payment partner firstname"),
-        'recepit_surname': fields.char("Recepit payment partner lastname"),
-        'recepit_cf': fields.char("Recepit payment partner fiscalnumber"),
-        'recepit_title': fields.char("Recepit payment partner title"),
-        'payment_bank_name': fields.char("Bank name"),
+        'recepit_name': fields.char("Receipt Issuer Name"),
+        'recepit_surname': fields.char("Receipt Issuer Surname"),
+        'recepit_cf': fields.char("Receipt Issuer FC"),
+        'recepit_title': fields.char("Receipt Issuer Title"),
+        'payment_bank_name': fields.char("Bank Name"),
         'payment_bank_iban': fields.char("IBAN"),
         'payment_bank_abi': fields.char("ABI"),
         'payment_bank_cab': fields.char("CAB"),
@@ -77,10 +79,10 @@ class FatturapaPaymentDetail(orm.Model):
         'payment_bank': fields.many2one(
             'res.partner.bank', string="Payment Bank"),
         'prepayment_discount': fields.float('Prepayment Discount'),
-        'max_payment_date': fields.date('Maximum date for Payment'),
-        'penalty_amount': fields.float('Amount of Penality'),
-        'penalty_date': fields.date('Effective date of Penality'),
-        'payment_code': fields.char('Payment code'),
+        'max_payment_date': fields.date('Maximum Date for Payment'),
+        'penalty_amount': fields.float('Amount of Penalty'),
+        'penalty_date': fields.date('Effective Date of Penalty'),
+        'payment_code': fields.char('Payment Code'),
         'account_move_line_id': fields.many2one(
             'account.move.line', string="Payment Line"),
         'payment_data_id': fields.many2one(
@@ -114,20 +116,20 @@ class WelfareFundType(orm.Model):
 class WelfareFundDataLine(orm.Model):
     # _position = ['2.1.1.7']
     _name = "welfare.fund.data.line"
-    _description = 'FatturaPA Welfare Fund Data'
+    _description = 'E-invoice Welfare Fund Data'
 
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
         'tax_nature_id': fields.many2one(
-            'italy.ade.tax.nature', string="No taxable nature"),
-        'welfare_rate_tax': fields.float('Welfare Rate tax'),
-        'welfare_amount_tax': fields.float('Welfare Amount tax'),
+            'italy.ade.tax.nature', string="Non taxable nature"),
+        'welfare_rate_tax': fields.float('Welfare Tax Rate'),
+        'welfare_amount_tax': fields.float('Welfare Tax Amount'),
         'welfare_taxable': fields.float('Welfare Taxable'),
-        'welfare_Iva_tax': fields.float('Welfare tax'),
+        'welfare_Iva_tax': fields.float('VAT Tax Rate'),
         'subjected_withholding': fields.char(
-            'Subjected at Withholding', size=2),
-        'pa_line_code': fields.char('PA Code for this record', size=20),
+            'Subjected to Withholding', size=2),
+        'pa_line_code': fields.char('PA Code for this Record', size=20),
         'invoice_id': fields.many2one(
             'account.invoice', 'Related Invoice',
             ondelete='cascade', select=True
@@ -138,16 +140,17 @@ class WelfareFundDataLine(orm.Model):
 class DiscountRisePrice(orm.Model):
     # _position = ['2.1.1.8', '2.2.1.10']
     _name = "discount.rise.price"
-    _description = 'FatturaPA Discount Rise Price Data'
+    _description = 'E-invoice Discount Supplement Data'
 
     _columns = {
         'name': fields.selection(
-            [('SC', 'Discount'), ('MG', 'Rise Price')], 'Type'),
+            [('SC', 'Discount'), ('MG', 'Supplement')], 'Type'),
         'percentage': fields.float('Percentage'),
-        'amount': fields.float('Amount'),
+        'amount': fields.float('Amount',
+                               digits_compute=dp.get_precision('Discount')),
         'invoice_line_id': fields.many2one(
             'account.invoice.line', 'Related Invoice',
-            ondelete='cascade', index=True),
+            ondelete='cascade', select=True),
         'invoice_id': fields.many2one(
             'account.invoice.line', 'Related Invoice',
             ondelete='cascade', select=True
@@ -158,7 +161,7 @@ class DiscountRisePrice(orm.Model):
 class FatturapaRelatedDocumentType(orm.Model):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_document_type'
-    _description = 'FatturaPA Related Document Type'
+    _description = 'E-invoice Related Document Type'
 
     _columns = {
         'type': fields.selection(
@@ -171,8 +174,8 @@ class FatturapaRelatedDocumentType(orm.Model):
             ],
             'Document Type', required=True
         ),
-        'name': fields.char('DocumentID', size=20, required=True),
-        'lineRef': fields.integer('LineRef'),
+        'name': fields.char('Document ID', size=20, required=True),
+        'lineRef': fields.integer('Line Ref.'),
         'invoice_line_id': fields.many2one(
             'account.invoice.line', 'Related Invoice Line',
             ondelete='cascade', select=True),

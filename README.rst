@@ -39,13 +39,13 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | Name / Nome                        | Version    | OCA Ver.   | Description / Descrizione                          |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| account_central_journal            | 7.0.0.1.0  | 7.0.3      | account_central_journal                            |
+| account_central_journal            | 7.0.3.0.2  | 7.0.3      | Print Italian Account Central Journal              |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | account_fiscal_year_closing        | 7.0.1.0    | |same|     | Fiscal Year Closing                                |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | account_invoice_entry_date         | 7.0.0.1    | |same|     | Account Invoice entry Date                         |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_sequential_dates   | |halt|     | 7.0.0.1    | Check invoice date consistency                     |
+| account_invoice_sequential_dates   | 7.0.0.1.4  | 7.0.0.1    | Check invoice date consistency                     |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | account_vat_period_end_statement   | 7.0.4.0.5  | 7.0.0.3    | Period End VAT Statement                           |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -63,11 +63,9 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_bill_of_entry              | 7.0.0.1    | |same|     | Italian Localisation - Bill of Entry               |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_central_journal            | 7.0.3.0.1  | |no_check| | Print Italian Account Central Journal              |
-+------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_corrispettivi              | 7.0.0.1    | |same|     | Italian Localisation - Corrispettivi               |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base              | 7.0.2.0.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
+| l10n_it_einvoice_base              | 7.0.2.1.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_out               | 7.0.2.0.1  | |no_check| | Electronic invoices emission                       |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -113,38 +111,34 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_withholding_tax            | 7.0.0.2.1  | 7.0.0.2    | Italian Localisation - Withholding tax             |
 +------------------------------------+------------+------------+----------------------------------------------------+
-| multibase_plus                     | 7.0.0.1.1  | |no_check| | Enhanced Odoo Features                             |
+| multibase_plus                     | 7.0.0.1.2  | |no_check| | Enhanced Odoo Features                             |
 +------------------------------------+------------+------------+----------------------------------------------------+
 
 
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Test compatibilità OCA e Odoo        | |no_check|       | |check|         | `Errore import decimal precision <https://github.com/OCA/OCB/issues/629>`__ |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Ricerca per CAP, città e provincia   | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Province italiane e estere           | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Dati comuni/province italiane        | 2014             | 2013            |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Codici IVA completi                  | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Dichiaritivi fiscali                 | 2018             | 2017            |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Controllo date                       | Per anno fiscale | No anno fiscale | Versione OCA non permette l'accavallamento numerazioni a inizio anno        |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Controllo date fatture emesse        | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| FatturaPA                            | v1.2             | v1.1            |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
-| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                             |
-+--------------------------------------+------------------+-----------------+-----------------------------------------------------------------------------+
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                       |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Test compatibilità OCA e Odoo        | |no_check|       | |check|         | `Errore import decimal precision <https://github.com/OCA/OCB/issues/629>`__        |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Gestione evoluta anagrafiche         | |check|          | |no_check|      | `l10n_it_base <https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_base> |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Codici IVA completi                  | |check|          | |no_check|      |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Dichiaritivi fiscali                 | 2018             | 2017            |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Controllo date                       | Per anno fiscale | No anno fiscale | Versione OCA non permette l'accavallamento numerazioni a inizio anno               |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Controllo date fatture emesse        | |check|          | |no_check|      |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| FatturaPA                            | v1.2             | v1.1            |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 
 
 
@@ -265,7 +259,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-19
+Last Update / Ultimo aggiornamento: 2019-01-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -283,9 +277,9 @@ Last Update / Ultimo aggiornamento: 2018-11-19
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
+.. |OCA project| image:: Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
@@ -297,8 +291,8 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
-    :target: Unknown oca-codecov-URL
+.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -321,10 +315,10 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b

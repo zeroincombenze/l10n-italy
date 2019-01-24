@@ -27,3 +27,4 @@ try:
     from . import wizard_export_fatturapa
 except ImportError:
     _logger.debug('Cannot `import pyxb`.')  # Avoid init error if not installed
+

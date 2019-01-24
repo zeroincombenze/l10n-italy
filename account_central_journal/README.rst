@@ -16,14 +16,14 @@
 Overview / Panoramica
 =====================
 
-|en| Account Central Journal (deprecated)
+|en| Account Central Journal (modulo rimpiazzato)
+
 
 |
 
-|it| Stampa libro giornale fiscale (versione in disuso).
+|it| Stampa libro giornale fiscale.
 
-Questo modulo non è più utilizzato ed è stato sostituito da l10n_it_central_journal.
-
+Questo modulo in alcune versioni è chiamato account_central_journal.
 
 |
 
@@ -170,8 +170,8 @@ Contributors / Collaboratori
 ----------------------------
 
 
-Daniele Arcangeli <d.arcangeli@isa.it>
-Alessandro Camilli <a.camilli@yahoo.it>
+* Daniele Arcangeli <d.arcangeli@isa.it>
+* Alessandro Camilli <a.camilli@yahoo.it>
 
 |
 
@@ -193,7 +193,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-01
+Last Update / Ultimo aggiornamento: 2019-01-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
