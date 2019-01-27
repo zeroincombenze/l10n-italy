@@ -113,6 +113,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def getCompany(self, DatiAnagrafici):
         companies = []
+        vat = ''
         if DatiAnagrafici:
             company_model = self.env['res.company']
             if DatiAnagrafici.IdFiscaleIVA:
@@ -122,7 +123,11 @@ class WizardImportFatturapa(models.TransientModel):
                 )
                 where = [('vat', '=', vat)]
                 companies = company_model.search(where)
-        if not companies:
+        if not vat:
+            self.log_inconsistency(
+                _('E-Invoice without VAT number'))
+            return self.env.user.company_id
+        if not companies and vat:
             raise UserError(
                 _("VAT number %s of customer invoice "
                   "is not the same of the current company" % vat))

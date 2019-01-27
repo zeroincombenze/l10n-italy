@@ -112,20 +112,6 @@ Magazzino →  Prodotti
 
 |
 
-Usage / Utilizzo
-----------------
-
-Se il fornitore specifica un codice noto nell'XML, questo verrà usato dal sistema per recuperare il prodotto corretto da usare nella riga fattura, impostando il conto e l'imposta collegati.
-
-|menu| Contabilità > Acquisti > Fattura elettronica
-
- * Caricare un file XML
- * Visualizzare il contenuto della fattura facendo clic su "Mostra anteprima"
- * Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura già (automaticamente) creata
-
-
-|
-
 OCA comparation / Confronto con OCA
 -----------------------------------
 
@@ -302,7 +288,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-01-25
+Last Update / Ultimo aggiornamento: 2019-01-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
