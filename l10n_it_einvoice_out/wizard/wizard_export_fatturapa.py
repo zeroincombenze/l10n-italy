@@ -449,7 +449,6 @@ class WizardExportFatturapa(models.TransientModel):
                     Cognome=partner.lastname,
                     Nome=partner.firstname
                 )
-
         eori_code = self._get_partner_field(partner, parent, 'eori_code')
         if eori_code:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -731,7 +730,7 @@ class WizardExportFatturapa(models.TransientModel):
                         line.invoice_line_tax_ids[0].name)
                 DettaglioLinea.Natura = line.invoice_line_tax_ids[
                     0
-                ].non_taxable_nature
+                ].nature_id.code
             if line.admin_ref:
                 DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
             if line.product_id:
@@ -762,10 +761,10 @@ class WizardExportFatturapa(models.TransientModel):
                 Imposta='%.2f' % tax_line.amount
                 )
             if tax.amount == 0.0:
-                if not tax.non_taxable_nature:
+                if not tax.nature_id:
                     raise UserError(
                         _("No 'nature' field for tax %s") % tax.name)
-                riepilogo.Natura = tax.non_taxable_nature
+                riepilogo.Natura = tax.nature_id.code
                 if not tax.law_reference:
                     raise UserError(
                         _("No 'law reference' field for tax %s.") % tax.name)
@@ -829,10 +828,10 @@ class WizardExportFatturapa(models.TransientModel):
                         credit_amount = move_line.credit
                         continue
                 if TipoDocumento == 'TD04':
-                    ImportoPagamento = '%.2f' % (move_line.credit - 
+                    ImportoPagamento = '%.2f' % (move_line.credit -
                                                  credit_amount)
                 else:
-                    ImportoPagamento = '%.2f' % (move_line.debit - 
+                    ImportoPagamento = '%.2f' % (move_line.debit -
                                                  credit_amount)
                 credit_amount = 0.0
                 DettaglioPagamento = DettaglioPagamentoType(

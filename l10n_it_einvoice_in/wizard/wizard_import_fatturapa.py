@@ -111,6 +111,23 @@ class WizardImportFatturapa(models.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
 
+    def getCompany(self, DatiAnagrafici):
+        companies = []
+        if DatiAnagrafici:
+            company_model = self.env['res.company']
+            if DatiAnagrafici.IdFiscaleIVA:
+                vat = "%s%s" % (
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice
+                )
+                where = [('vat', '=', vat)]
+                companies = company_model.search(where)
+        if not companies:
+            raise UserError(
+                _("VAT number %s of customer invoice "
+                  "is not the same of the current company" % vat))
+        return companies[0]
+
     def getPartnerBase(self, DatiAnagrafici):
         if not DatiAnagrafici:
             return False
@@ -122,11 +139,17 @@ class WizardImportFatturapa(models.TransientModel):
                 DatiAnagrafici.IdFiscaleIVA.IdPaese,
                 DatiAnagrafici.IdFiscaleIVA.IdCodice
             )
-        partners = partner_model.search([
-            '|',
-            ('vat', '=', vat or 0),
-            ('fiscalcode', '=', cf or 0),
-        ])
+        where = []
+        partners = []
+        if vat:
+            where.append(('vat', '=', vat))
+        if cf:
+            where.append(('fiscalcode', '=', cf))
+        if where:
+            partners = partner_model.search(where)
+        if not partners and vat:
+            where = [('vat', '=', vat)]
+            partners = partner_model.search(where)
         commercial_partner = False
         if len(partners) > 1:
             for partner in partners:
@@ -166,13 +189,11 @@ class WizardImportFatturapa(models.TransientModel):
                 'eori_code': DatiAnagrafici.Anagrafica.CodEORI or '',
                 'country_id': country_id,
             }
-            if DatiAnagrafici.Anagrafica.Nome:
-                vals['firstname'] = DatiAnagrafici.Anagrafica.Nome
-            if DatiAnagrafici.Anagrafica.Cognome:
-                vals['lastname'] = DatiAnagrafici.Anagrafica.Cognome
             if DatiAnagrafici.Anagrafica.Denominazione:
                 vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
-
+            else:
+                vals['name'] = '%s %s' % (DatiAnagrafici.Anagrafica.Cognome,
+                                          DatiAnagrafici.Anagrafica.Nome)
             return partner_model.create(vals).id
 
     def getCedPrest(self, cedPrest):
@@ -262,70 +283,59 @@ class WizardImportFatturapa(models.TransientModel):
             partner_model.browse(partner_id).write(vals)
         return partner_id
 
-    def _prepare_generic_line_data(self, line):
-        retLine = {}
+    def get_tax(self, company_id, AliquotaIVA, Natura):
         account_tax_model = self.env['account.tax']
-        # check if a default tax exists and generate def_purchase_tax object
-        ir_values = self.env['ir.values']
-        company_id = self.env['res.company']._company_default_get(
-            'account.invoice.line').id
-        supplier_taxes_ids = ir_values.get_default(
+        ir_values_model = self.env['ir.values']
+        AliquotaIVA_fp = float(AliquotaIVA)
+        supplier_taxes_ids = ir_values_model.get_default(
             'product.product', 'supplier_taxes_id', company_id=company_id)
         def_purchase_tax = False
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
-        if float(line.AliquotaIVA) == 0.0 and line.Natura:
-            account_taxes = account_tax_model.search(
-                [
-                    ('type_tax_use', '=', 'purchase'),
-                    ('nature_id.code', '=', line.Natura),
-                    ('amount', '=', 0.0),
-                ])
-            if not account_taxes:
-                raise UserError(
-                    _('No tax with percentage '
-                      '%s and nature %s found. Please configure this tax.')
-                    % (line.AliquotaIVA, line.Natura))
-            if len(account_taxes) > 1:
-                raise UserError(
-                    _('Too many taxes with percentage '
-                      '%s and nature %s found.')
-                    % (line.AliquotaIVA, line.Natura))
+        where = []
+        where.append(('company_id', '=', company_id))
+        where.append(('type_tax_use', '=', 'purchase'))
+        where.append(('amount', '=', AliquotaIVA_fp))
+        if Natura:
+            where.append(('nature_id.code', '=', Natura))
+        account_taxes = account_tax_model.search(where, order="sequence")
+        if not account_taxes:
+            raise UserError(
+                _('No tax with percentage '
+                  '%s and nature %s found. Please configure this tax.')
+                % (AliquotaIVA, Natura))
+        if len(account_taxes) > 1:
+            self.log_inconsistency(
+                _('Too many taxes with percentage '
+                  '%s and nature %s found.')
+                % (AliquotaIVA, Natura))
+        if def_purchase_tax and def_purchase_tax.amount == AliquotaIVA_fp:
+            account_tax_id = def_purchase_tax.id
         else:
-            account_taxes = account_tax_model.search(
-                [
-                    ('type_tax_use', '=', 'purchase'),
-                    ('amount', '=', float(line.AliquotaIVA)),
-                    ('price_include', '=', False),
-                    # partially deductible VAT must be set by user
-                    ('children_tax_ids', '=', False),
-                ]
-            )
-            if not account_taxes:
+            account_tax_id = account_taxes[0].id
+        return account_tax_id
+
+    def get_natura(self, Natura):
+        if Natura:
+            tax_nature_ids = self.env['italy.ade.tax.nature'].search([
+                ('code', '=', Natura)
+            ])
+            if not tax_nature_ids:
                 self.log_inconsistency(
-                    _(
-                        "XML contains tax with percentage '%s' "
-                        "but it does not exist in your system"
-                    ) % line.AliquotaIVA
+                    _("Tax kind %s not found") % Natura
                 )
-            # check if there are multiple taxes with
-            # same percentage
-            if len(account_taxes) > 1:
-                # just logging because this is an usual case: see split payment
-                _logger.warning(_(
-                    "Line '%s': Too many taxes with percentage equals "
-                    "to '%s'.\nFix it if required"
-                ) % (line.Descrizione, line.AliquotaIVA))
-                # if there are multiple taxes with same percentage
-                # and there is a default tax with this percentage,
-                # set taxes list equal to supplier_taxes_id, loaded before
-                if (
-                    def_purchase_tax and
-                    def_purchase_tax.amount == (float(line.AliquotaIVA))
-                ):
-                    account_taxes = def_purchase_tax
-        if account_taxes:
-            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
+                return False
+            else:
+                return tax_nature_ids[0].id
+        return False
+
+    def _prepare_generic_line_data(self, line):
+        retLine = {}
+        company_id = self.env['res.company']._company_default_get(
+            'account.invoice.line').id
+        account_tax = self.get_tax(company_id, line.AliquotaIVA, line.Natura)
+        if account_tax:
+            retLine['invoice_line_tax_ids'] = [(6, 0, [account_tax])]
         return retLine
 
     def get_line_product(self, line, partner):
@@ -468,18 +478,7 @@ class WizardImportFatturapa(models.TransientModel):
             line.AliquotaIVA and (float(line.AliquotaIVA) / 100) or None)
         Ritenuta = line.Ritenuta or ''
         Natura = line.Natura or False
-        tax_nature_id = False
-        if Natura:
-            kind = self.env['italy.ade.tax.nature'].search([
-                ('code', '=', Natura)
-            ])
-            if not kind:
-                self.log_inconsistency(
-                    _("Tax kind %s not found") % Natura
-                )
-            else:
-                tax_nature_id = kind[0].id
-
+        tax_nature_id = self.get_natura(Natura)
         RiferimentoAmministrazione = line.RiferimentoAmministrazione or ''
         WelfareTypeModel = self.env['welfare.fund.type']
         if not TipoCassa:
@@ -791,7 +790,10 @@ class WizardImportFatturapa(models.TransientModel):
         PaymentTermsModel = self.env['fatturapa.payment_term']
         SummaryDatasModel = self.env['faturapa.summary.data']
 
-        company = self.env.user.company_id
+        # company = self.env.user.company_id
+        company = self.getCompany(
+                fatt.FatturaElettronicaHeader.CessionarioCommittente.
+                DatiAnagrafici)
         partner = partner_model.browse(partner_id)
         pay_acc_id = partner.property_account_payable_id.id
         # currency 2.1.1.2
@@ -810,7 +812,9 @@ class WizardImportFatturapa(models.TransientModel):
                 )
             )
         purchase_journal = self.get_purchase_journal(company)
+        # purchase_journal = invoice_model._default_journal()
         credit_account_id = purchase_journal.default_credit_account_id.id
+        # credit_account_id = invoice_model._default_account()
         invoice_lines = []
         comment = ''
         # 2.1.1
@@ -899,6 +903,8 @@ class WizardImportFatturapa(models.TransientModel):
         e_invoice_line_ids = []
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
             if self.e_invoice_detail_level == '2':
+                if (partner.e_invoice_default_account_id):
+                    credit_account_id = partner.e_invoice_default_account_id.id
                 invoice_line_data = self._prepareInvoiceLine(
                     credit_account_id, line, wt_found)
                 product = self.get_line_product(line, partner)
@@ -913,7 +919,8 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
         invoice = invoice_model.create(invoice_data)
-        invoice._onchange_invoice_line_wt_ids()
+        # TODO: check from Cesare
+        # invoice._onchange_invoice_line_wt_ids()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
@@ -1050,7 +1057,7 @@ class WizardImportFatturapa(models.TransientModel):
             for summary in Summary_datas:
                 summary_line = {
                     'tax_rate': summary.AliquotaIVA or 0.0,
-                    'non_taxable_nature': summary.Natura or False,
+                    'non_taxable_nature': self.get_natura(summary.Natura),
                     'incidental_charges': summary.SpeseAccessorie or 0.0,
                     'rounding': summary.Arrotondamento or 0.0,
                     'amount_untaxed': summary.ImponibileImporto or 0.0,
@@ -1193,6 +1200,9 @@ class WizardImportFatturapa(models.TransientModel):
                 raise UserError(
                     _("File is linked to bills yet."))
             fatt = self.get_invoice_obj(fatturapa_attachment)
+            # company_id = self.getCompany(
+            #     fatt.FatturaElettronicaHeader.CessionarioCommittente.
+            #     DatiAnagrafici)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(cedentePrestatore)

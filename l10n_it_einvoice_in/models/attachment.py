@@ -32,6 +32,7 @@ class FatturaPAAttachmentIn(models.Model):
     )
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
+    uid = fields.Char('Uid', size=255)
 
     @api.onchange('datas_fname')
     def onchagne_datas_fname(self):
@@ -62,8 +63,8 @@ class FatturaPAAttachmentIn(models.Model):
     def _compute_registered(self):
         for att in self:
             if (
-                att.in_invoice_ids
-                and len(att.in_invoice_ids) == att.invoices_number
+                att.in_invoice_ids and
+                len(att.in_invoice_ids) == att.invoices_number
             ):
                 att.registered = True
             else:

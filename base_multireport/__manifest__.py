@@ -11,7 +11,8 @@
     'website': 'https://www.zeroincombenze.it/',
     'depends': ['account',
                 'sale',
-                'purchase'],
+                'purchase',
+                'l10n_it_fiscalcode'],
     'data': [
         'security/ir.model.access.csv',
         'data/multireport_style.xml',

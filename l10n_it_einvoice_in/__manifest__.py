@@ -11,7 +11,7 @@
 #
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '10.0.1.3.0',
+    'version': '10.0.1.3.1',
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
     'author': 'Agile Business Group, Innoviu, '
@@ -28,10 +28,10 @@
     "data": [
         'views/account_view.xml',
         'views/partner_view.xml',
+        # 'views/company_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
         'security/ir.model.access.csv',
         'wizard/link_to_existing_invoice.xml',
-        # 'views/company_view.xml',
     ],
     "installable": True
 }

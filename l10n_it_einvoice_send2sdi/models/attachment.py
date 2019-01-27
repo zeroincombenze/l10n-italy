@@ -29,6 +29,114 @@ evolve_stato_mapping = {
     "Notifica di scarto": 'rejected'
 }
 
+evolve_stati = [
+    "In attesa di risposta dopo aver inviato il documento",
+    "Ricevuta di consegna",
+    "Notifica di mancata consegna",
+    "Il documento non ha superato i controlli di validazione",
+    "Notifica di scarto"
+]
+
+class FatturaPAAttachmentIn(models.Model):
+
+    _inherit = "fatturapa.attachment.in"
+
+    @api.multi
+    def import_xml_invoice(self):
+
+        send_channel = self.env.user.company_id.einvoice_sender_id
+
+        headers = Evolve.header(send_channel)
+        url = send_channel.sender_url + 'Cerca'
+
+        data = {
+            'IdAzienda': int(send_channel.sender_company_id),
+            'IdArchivio': 2,
+            'Filtri': [
+                {
+                    'NomeCampo': 'DataDownload',
+                    'Criterio': 'nullo',
+                }
+            ]
+        }
+
+        _logger.info(json.dumps(data,
+                        ensure_ascii=False))
+
+        response = requests.post(url,
+                                 headers=headers,
+                                 data=json.dumps(data,
+                                                 ensure_ascii=False))
+
+        try:
+            documenti = response.json()
+            _logger.info(response.text)
+        except:
+            return
+
+        for value in documenti['Documenti']:
+
+            documento = Evolve.parse_documento(value)
+
+            self.import_xml_invoice_single(documento, send_channel, headers)
+
+    # Import singolo documento
+    def import_xml_invoice_single(self, documento, send_channel, headers):
+
+        attach_model = self.env['fatturapa.attachment.in']
+
+        attachments = attach_model.search([('uid', '=', documento["Uid"])])
+        if (len(attachments)>0):
+            return
+
+        data = {
+            'Documento': {
+                'IdAzienda': int(send_channel.sender_company_id),
+                'IdArchivio': 2,
+                'CampiDinamici': [
+                    {
+                        'Nome': 'Uid',
+                        'Valore': documento["Uid"]
+                    }
+                ]
+            },
+            'Recupera': 2
+        }
+
+        url = send_channel.sender_url + 'Recupera'
+
+        _logger.info(json.dumps(data,
+                        ensure_ascii=False))
+
+        response = requests.post(url,
+                                 headers=headers,
+                                 data=json.dumps(data,
+                                                 ensure_ascii=False))
+
+        try:
+            documenti = response.json()
+        except:
+            _logger.info(response.text)
+            return
+
+        documento = Evolve.parse_documento(documenti["Documenti"][0])
+
+        # Recupero il file xml
+        for file in documenti["Files"]:
+            if file["Nome"] == documento["NomeFile"]:
+                filein = file
+                break
+
+        attach_vals = {
+            'name': filein["Nome"],
+            'datas_fname': filein["Nome"],
+            'datas': filein["Bytes"],
+            'uid': documento["Uid"]
+        }
+
+        attach_model.create(attach_vals)
+
+
 class FatturaPAAttachmentOut(models.Model):
 
     _inherit = "fatturapa.attachment.out"
@@ -193,24 +301,6 @@ class FatturaPAAttachmentOut(models.Model):
             send_channel = company.einvoice_sender_id
         return send_channel
 
-    # Header alla chiamata Evolve
-    def header(self, send_channel):
-        now = datetime.datetime.now(pytz.timezone(
-            'Europe/Rome')).strftime("%Y-%m-%d %H.%M.%S")
-        aes = AES.new(os0.b(send_channel.client_key),
-                      AES.MODE_CBC,
-                      os0.b(send_channel.client_key[:16]))
-        pad_text = PKCS7Encoder().encode(now)
-        # print now
-        headers = {
-            'Content-Type': "application/json",
-            # 'Host': send_channel.hub_ip_addr,
-            'From': send_channel.client_id,
-            'Authorization': "Bearer " + b64encode(aes.encrypt(pad_text))
-        }
-        _logger.info(headers)
-        return headers
-
     @api.multi
     def send_verify_via_json(self, send_channel, invoice):
 
@@ -231,7 +321,7 @@ class FatturaPAAttachmentOut(models.Model):
             _logger.info(json.dumps(data,
                             ensure_ascii=False))
 
-            headers = self.header(send_channel)
+            headers = Evolve.header(send_channel)
             url = send_channel.sender_url + 'Cerca'
 
             response = requests.post(url,
@@ -247,11 +337,12 @@ class FatturaPAAttachmentOut(models.Model):
                 att.last_sdi_response = response.text
                 return
 
-            documenti = self.parse_evolve_verify(data['Documenti'])
+            documenti = Evolve.parse_documenti_verify(data['Documenti'])
 
             _logger.info(documenti)
 
-            for k in evolve_stato_mapping.keys():
+            # Warnibg: order test is important, depend from evolve_stati
+            for k in evolve_stati:
                 _logger.info("Elaborazione " + k)
                 if k in documenti:
                     att.state = evolve_stato_mapping[k]
@@ -366,7 +457,7 @@ class FatturaPAAttachmentOut(models.Model):
             }
 
             # Header
-            headers = self.header(send_channel)
+            headers = Evolve.header(send_channel)
             url = send_channel.sender_url + 'Salva'
             response = requests.post(url,
                                      headers=headers,
@@ -382,7 +473,7 @@ class FatturaPAAttachmentOut(models.Model):
 
             if data['EsitoChiamata'] == 0:
                 n = len(data['Documenti']) - 1
-                stato = self.parse_evolve_documento(data['Documenti'][n])
+                stato = Evolve.parse_documento(data['Documenti'][n])
 
                 if stato["StatoInvioSdi"] == "Importato":
                     att.state = 'sent'
@@ -468,3 +559,50 @@ class FatturaPAAttachmentOut(models.Model):
         if not server:
             raise UserError(_(
                 "No incoming PEC server found. Please configure it."))
+
+
+class Evolve():
+
+    @staticmethod
+    def parse_documenti_verify(self, data):
+
+        ret = {}
+
+        for evolvedoc in data:
+            documento = Evolve.parse_documento(evolvedoc)
+
+            # if not (ret.has_key(documento["StatoFattura"])):
+            if "StatoFattura"in ret:
+                ret[documento["StatoFattura"]] = []
+
+            ret[documento["StatoFattura"]].append(documento)
+
+        return ret
+
+    @staticmethod
+    def parse_documento(data):
+
+        ret = {}
+
+        for campodinamico in data["CampiDinamici"]:
+            ret[campodinamico["Nome"]] = campodinamico["Valore"]
+
+        return ret
+
+    @staticmethod
+    def header(send_channel):
+        now = datetime.datetime.now(pytz.timezone(
+            'Europe/Rome')).strftime("%Y-%m-%d %H.%M.%S")
+        aes = AES.new(os0.b(send_channel.client_key),
+                      AES.MODE_CBC,
+                      os0.b(send_channel.client_key[:16]))
+        pad_text = PKCS7Encoder().encode(now)
+        # print now
+        headers = {
+            'Content-Type': "application/json",
+            # 'Host': send_channel.hub_ip_addr,
+            'From': send_channel.client_id,
+            'Authorization': "Bearer " + b64encode(aes.encrypt(pad_text))
+        }
+        _logger.info(headers)
+        return headers

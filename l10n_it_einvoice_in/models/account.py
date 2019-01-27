@@ -67,13 +67,15 @@ class AccountInvoiceLine(models.Model):
 
     fatturapa_attachment_in_id = fields.Many2one(
         'fatturapa.attachment.in', 'E-bill Import File',
-        readonly=True, related='invoice_id.fatturapa_attachment_in_id')
+        readonly=True,
+        related='invoice_id.fatturapa_attachment_in_id')
 
 
 class DiscountRisePrice(models.Model):
     _inherit = "discount.rise.price"
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-bill Line', readonly=True
+        'einvoice.line',
+        'Related E-bill Line', readonly=True
     )
 
 

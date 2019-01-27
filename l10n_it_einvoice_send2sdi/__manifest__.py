@@ -14,7 +14,8 @@
     ],
     "data": [
         'views/account.xml',
-        'views/attachment_view.xml'
+        'views/attachment_view.xml',
+        'data/ir_cron.xml'
     ],
     'installable': True,
     'external_dependencies': {

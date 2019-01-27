@@ -84,10 +84,8 @@
         <field name="context">{'search_default_to_register': True}</field>
         <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
     </record>
-    <!--
     <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
                           parent="l10n_it_einvoice_base.menu_fattura_pa_payables"></menuitem>
-    -->
     <!-- Extend purchase invoice line -->
     <record id="view_invoice_line_form_fatturapa_in" model="ir.ui.view">
         <field name="name">account.invoice.line.fatturapa.in</field>

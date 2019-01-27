@@ -410,11 +410,6 @@ msgid "Ending Page PDF"
 msgstr "Ending Page PDF"
 
 #. module: base_multireport
-#: model:ir.actions.report.xml,name:base_multireport.account_invoices
-msgid "Fattura (perosnalizzata)"
-msgstr "Fattura (perosnalizzata)"
-
-#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.account_invoice_report_duplicate
 msgid "Fattura di cortesia"
 msgstr "Fattura di cortesia"

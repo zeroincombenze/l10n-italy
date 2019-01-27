@@ -18,6 +18,13 @@ class Partner(models.Model):
              "If filled in, generated bill lines will use this product when "
              "no other possible product is found."
     )
+    e_invoice_default_account_id = fields.Many2one(
+        comodel_name='account.account',
+        string='E-bill Default Account',
+        help="Used by electronic invoice XML import. "
+             "If filled in, generated bill lines will use this account when "
+             "no other possible product is found."
+    )
     e_invoice_detail_level = fields.Selection([
         ('0', 'Minimum'),
         # ('1', 'Aliquote'),
