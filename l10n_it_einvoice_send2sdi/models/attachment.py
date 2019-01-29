@@ -1,3 +1,4 @@
+import os
 import logging
 import re
 from lxml import etree
@@ -43,11 +44,10 @@ class FatturaPAAttachmentIn(models.Model):
 
     @api.multi
     def import_xml_invoice(self):
-
         send_channel = self.env.user.company_id.einvoice_sender_id
 
         headers = Evolve.header(send_channel)
-        url = send_channel.sender_url + 'Cerca'
+        url = os.path.join(send_channel.sender_url, 'Cerca')
 
         data = {
             'IdAzienda': int(send_channel.sender_company_id),
@@ -75,9 +75,7 @@ class FatturaPAAttachmentIn(models.Model):
             return
 
         for value in documenti['Documenti']:
-
             documento = Evolve.parse_documento(value)
-
             self.import_xml_invoice_single(documento, send_channel, headers)
 
     # Import singolo documento
@@ -103,7 +101,7 @@ class FatturaPAAttachmentIn(models.Model):
             'Recupera': 2
         }
 
-        url = send_channel.sender_url + 'Recupera'
+        url = os.path.join(send_channel.sender_url, 'Recupera')
 
         _logger.info(json.dumps(data,
                         ensure_ascii=False))
@@ -116,6 +114,10 @@ class FatturaPAAttachmentIn(models.Model):
         try:
             documenti = response.json()
         except:
+            _logger.info(response.text)
+            return
+
+        if 'Documenti' not in documenti:
             _logger.info(response.text)
             return
 
