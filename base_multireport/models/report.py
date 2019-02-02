@@ -147,8 +147,6 @@ class Report(models.Model):
         return pdf_content.getvalue()
 
     def get_header_mode(self):
-        import pdb
-        pdb.set_trace()
         model = document.__class__.__name__
         hdr_mode = 'header_%s' % model
         return self.company_id.report_model_style[hdr_mode] 

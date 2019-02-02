@@ -53,10 +53,10 @@ class FatturaPAAttachmentIn(models.Model):
             'IdAzienda': int(send_channel.sender_company_id),
             'IdArchivio': 2,
             'Filtri': [
-                {
-                    'NomeCampo': 'DataDownload',
-                    'Criterio': 'nullo',
-                }
+                # {
+                #  'NomeCampo': 'DataDownload',
+                #  'Criterio': 'nullo',
+                # }
             ]
         }
 
@@ -72,6 +72,9 @@ class FatturaPAAttachmentIn(models.Model):
             documenti = response.json()
             _logger.info(response.text)
         except:
+            return
+        if documenti['EsitoChiamata'] != 0:
+            _logger.info(documenti)
             return
 
         for value in documenti['Documenti']:
@@ -116,9 +119,8 @@ class FatturaPAAttachmentIn(models.Model):
         except:
             _logger.info(response.text)
             return
-
-        if 'Documenti' not in documenti:
-            _logger.info(response.text)
+        if documenti['EsitoChiamata'] != 0:
+            _logger.info(documenti)
             return
 
         documento = Evolve.parse_documento(documenti["Documenti"][0])
@@ -136,7 +138,10 @@ class FatturaPAAttachmentIn(models.Model):
             'uid': documento["Uid"]
         }
 
-        attach_model.create(attach_vals)
+        try:
+            attach_model.create(attach_vals)
+        except BaseException:
+            _logger.info('Error creating XML attachment')
 
 
 class FatturaPAAttachmentOut(models.Model):
@@ -335,6 +340,11 @@ class FatturaPAAttachmentOut(models.Model):
                 data = response.json()
                 _logger.info(response.text)
             except:
+                att.state = 'sender_error'
+                att.last_sdi_response = response.text
+                return
+
+            if data['EsitoChiamata'] != 0:
                 att.state = 'sender_error'
                 att.last_sdi_response = response.text
                 return
@@ -566,7 +576,7 @@ class FatturaPAAttachmentOut(models.Model):
 class Evolve():
 
     @staticmethod
-    def parse_documenti_verify(self, data):
+    def parse_documenti_verify(data):
 
         ret = {}
 

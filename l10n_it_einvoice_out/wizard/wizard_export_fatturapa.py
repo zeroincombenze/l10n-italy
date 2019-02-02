@@ -85,6 +85,7 @@ XML_ESCAPE = {
     u'ß': u'&szlig;',
 }
 IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
+INHERITED_FLDS = ['codice_destinatario',]
 
 
 class WizardExportFatturapa(models.TransientModel):
@@ -170,21 +171,63 @@ class WizardExportFatturapa(models.TransientModel):
     def _wep_text(self, text):
         """"Do xml escape to avoid error StringLatinType"""
         # text.encode('latin', 'ignore').decode('latin')
-        return escape(text, XML_ESCAPE)
+        if text:
+            return escape(unidecode(text), XML_ESCAPE)
+        return text
 
     def __wep_vat(self, vat):
-        return vat.replace(' ', '').replace('.', '').replace('-', '').encode(
-            'utf-8').upper().decode('utf-8')
+        if vat:
+            return vat.replace(' ', '').replace('.', '').replace('-', '').encode(
+                'utf-8').upper().decode('utf-8')
+        return vat
 
-    def _get_partner_field(self, partner, parent, field):
+    def _split_vat_n_country(self, vat):
+        if vat:
+            vat = self.__wep_vat(vat)
+            if vat[0:3] != 'IT9':
+                country_code = vat[0:2]
+                vat_number = vat[2:]
+        else:
+            country_code = ''
+            vat_number = ''
+        return country_code, vat_number
+
+    def _get_partner_field(self, partner, parent, field, mode=None):
+        """Select field from <invoice address> or <parent>
+        Order refers to a <customer> and an <invoice address>.
+        <invoice address> should be child of <customer>, when they differ.
+        Invoice get <invoice address> from order so here we have:
+        - partner is <invoice address> of order (child of <customer>)
+        - parent is <customers>  of order (parent of <invoice address>)
+
+        <invoice address> may not have some data, i.e. vat number while
+        <parent> contains all customer information.
+
+        Usually, the behavior of this funciotn is fallback:
+        return value from <invoice address> field, if present,
+        otherwise return <parent> field with the same name.
+
+        When mode in <type_inv_addr> field of <invoice address> is
+        'FR' (Fiscal Representative) or 'SO' (Stable Organization),
+        some fields are not inherited from <parent>
+        """
+        mode = mode or 'fallback'
+        inherit = False
+        if field in INHERITED_FLDS or mode == 'fallback':
+            inherit = True
         value = False
         if field == 'company_type':
             if partner.name:
                 value = partner[field] or (parent and parent[field])
             else:
                 value = (parent and parent[field]) or 'company'
+        elif mode == 'parent':
+            value = parent and parent[field] or False
         elif field in partner:
-            value = partner[field] or (parent and parent[field])
+            if inherit:
+                value = partner[field] or (parent and parent[field])
+            else:
+                value = partner[field]
         return value
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -235,7 +278,8 @@ class WizardExportFatturapa(models.TransientModel):
                     "Partner %s is not PA but does not have Addressee Code."
                 ) % partner.name)
             vat = self._get_partner_field(partner, parent, 'vat')
-            fiscalcode = self._get_partner_field(partner, parent, 'fiscalcode')
+            fiscalcode = self.__wep_vat(
+                self._get_partner_field(partner, parent, 'fiscalcode'))
             if code not in ('000000', 'XXXXXXX') and \
                     not vat and not fiscalcode:
                 raise UserError(_(
@@ -416,14 +460,15 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         vat = self._get_partner_field(partner, parent, 'vat')
-        fiscalcode = self._get_partner_field(partner, parent, 'fiscalcode')
+        fiscalcode = self.__wep_vat(
+            self._get_partner_field(partner, parent, 'fiscalcode'))
         if vat:
-            vat = self.__wep_vat(vat)
-            if vat[0:3] != 'IT9':
+            country_code, vat_number = self._split_vat_n_country(vat)
+            if country_code and vat_number:
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                     DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                        IdPaese=vat[0:2],
-                        IdCodice=vat[2:])
+                        IdPaese=country_code,
+                        IdCodice=vat_number)
         else:
             vat = ''
         if fiscalcode:
@@ -514,19 +559,26 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setSedeCessionario(self, partner, parent, fatturapa):
 
-        country_id = self._get_partner_field(partner, parent, 'country_id')
+        mode = partner.type_inv_addr
+        mode = mode if mode != 'SO' else 'parent'
+        country_id = self._get_partner_field(partner, parent,
+                                             'country_id', mode=mode)
         if not country_id:
             raise UserError(
                 _('Customer country is not set.'))
-        street = self._get_partner_field(partner, parent, 'street')
-        zip = self._get_partner_field(partner, parent, 'zip')
-        city = self._get_partner_field(partner, parent, 'city')
-        state_id = self._get_partner_field(partner, parent, 'state_id')
+        street = self._get_partner_field(partner, parent,
+                                         'street', mode=mode)
+        zip = self._get_partner_field(partner, parent,
+                                      'zip', mode=mode)
+        city = self._get_partner_field(partner, parent,
+                                       'city', mode=mode)
+        state_id = self._get_partner_field(partner, parent,
+                                           'state_id', mode=mode)
         if not street:
             raise UserError(
                 _('Customer street is not set.'))
         codice_destinatario = self._get_partner_field(
-            partner, parent, 'codice_destinatario')
+            partner, parent, 'codice_destinatario', mode=mode)
         if codice_destinatario != 'XXXXXXX' and not zip:
             raise UserError(
                 _('Customer ZIP is not set.'))
@@ -555,6 +607,111 @@ class WizardExportFatturapa(models.TransientModel):
                 Nazione=country_id.code))
         return True
 
+    def _setCessionarioStabileOrganizzazione(self, partner, parent, fatturapa):
+        mode = 'SO'
+        country_id = self._get_partner_field(partner, parent,
+                                             'country_id', mode=mode)
+        if not country_id:
+            raise UserError(
+                _('Customer Stabile Organization country is not set.'))
+        country_code = country_id.code
+        street = self._get_partner_field(partner, parent,
+                                         'street', mode=mode)
+        zip = self._get_partner_field(partner, parent,
+                                      'zip', mode=mode)
+        city = self._get_partner_field(partner, parent,
+                                       'city', mode=mode)
+        state_id = self._get_partner_field(partner, parent,
+                                           'state_id', mode=mode)
+        if not street:
+            raise UserError(
+                _('Customer Stabile Organization street is not set.'))
+        if not zip:
+            raise UserError(
+                _('Customer Stabile Organization ZIP is not set.'))
+        if not city:
+            raise UserError(
+                _('Customer Stabile Organization city is not set.'))
+        if not state_id:
+            raise UserError(
+                _('Customer Stabile Organization province is not set.'))
+
+        zip = zip
+        province = state_id.code
+        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            StabileOrganizzazione = (IndirizzoType(Indirizzo=street,
+                                                   CAP=zip,
+                                                   Comune=city,
+                                                   Provincia=province,
+                                                   Nazione=country_code))
+        return True
+
+    def _setCessionarioRappresentanteFiscale(self, partner, parent, fatturapa):
+        mode = 'FR'
+        company_type = self._get_partner_field(
+            partner, parent, 'company_type', mode=mode)
+        if company_type == 'company':
+            name = self._get_partner_field(
+                partner, parent, 'name', mode=mode)
+            if not name:
+                raise UserError(
+                    _('Customer Fiscal Representative name is not set.'))
+        elif company_type == 'person':
+            lastname = self._get_partner_field(
+                partner, parent, 'lastname', mode=mode)
+            firstname = self._get_partner_field(
+                partner, parent, 'firstname', mode=mode)
+            if not lastname or not firstname:
+                raise UserError(
+                    _('Customer Stabile Organization must have '
+                      'name and surname.'))
+        country_id = self._get_partner_field(partner, parent,
+                                             'country_id', mode=mode)
+        if not country_id:
+            raise UserError(
+                _('Customer Stabile Organization country is not set.'))
+        vat = self._get_partner_field(
+            partner, parent, 'vat', mode=mode)
+        if not vat:
+            raise UserError(
+                _('Customer Stabile Organization vat is not set.'))
+        country_code, vat_number = self._split_vat_n_country(vat)
+        if country_code != country_id.code:
+            raise UserError(
+                _('Customer Stabile Organization vat country'
+                  ' is different from from address country.'))
+        # fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #     RappresentanteFiscale = RappresentanteFiscaleType()
+        # fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #     RappresentanteFiscale.\
+        #         DatiAnagrafici = DatiAnagraficiRappresentanteType()
+        # if company_type == 'company': 
+        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #         RappresentanteFiscale.Anagrafica(Denominazione=nome)
+        # else:
+        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #         RappresentanteFiscale.Anagrafica(Nome=firstname,
+        #                                          Cognome=lastname,)
+        # if partner.vat:
+        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #         RappresentanteFiscale.DatiAnagrafici.IdFiscaleIVA = \
+        #             IdFiscaleType(country_code, IdCodice=vat_number)
+        # fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
+        #     DatiAnagrafici.Anagrafica = AnagraficaType(
+        #         Denominazione=partner.name)
+        # fiscalcode = self.__wep_vat(
+        #     self._get_partner_field(partner, parent, 'fiscalcode', mode=mode))
+        # if fiscalcode:
+        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #         RappresentanteFiscale.DatiAnagrafici.CodiceFiscale = fiscalcode
+        # eori_code = self._get_partner_field(
+        #     partner, parent, 'eori_code', mode=mode)
+        # if eori_code:
+        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+        #         RappresentanteFiscale.DatiAnagrafici.CodEORI = eori_code
+
+        return True
+
     def setRappresentanteFiscale(self, company, fatturapa):
         if company.fatturapa_tax_representative:
             self._setDatiAnagraficiRappresentanteFiscale(
@@ -566,6 +723,15 @@ class WizardExportFatturapa(models.TransientModel):
             CessionarioCommittenteType())
         self._setDatiAnagraficiCessionario(partner, parent, fatturapa)
         self._setSedeCessionario(partner, parent, fatturapa)
+        mode = partner.type_inv_addr
+        if mode == 'SO':
+            self._setCessionarioStabileOrganizzazione(partner,
+                                                      parent,
+                                                      fatturapa)
+        elif mode == 'FR':
+            self._setCessionarioRappresentanteFiscale(partner,
+                                                      parent,
+                                                      fatturapa)
 
     def setTerzoIntermediarioOSoggettoEmittente(self, company, fatturapa):
         if company.fatturapa_sender_partner:
@@ -613,10 +779,6 @@ class WizardExportFatturapa(models.TransientModel):
             for causale in caus_list:
                 if not causale:
                     continue
-                # Remove non latin chars, but go back to unicode string,
-                # as expected by String200LatinType
-                # causale = causale.encode(
-                #    'latin', 'ignore').decode('latin')
                 causale = self._wep_text(causale)
                 body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 

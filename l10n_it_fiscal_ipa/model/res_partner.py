@@ -33,6 +33,12 @@ class ResPartner(models.Model):
         help="Indirizzo PEC al quale inviare la fattura elettronica, "
              "se diversa da PEC legale. Viene utilizzata solo "
              "se il codice destinatario vale '0000000'")
+    type_inv_addr = fields.Selection(
+        [('0', 'Simple'),
+         ('SO', 'Stable Organization'),
+         ('FR', 'Fiscal Representative')],
+        'Type of Invoice Address',
+        default='0')
 
     @api.onchange('electronic_invoice_subjected')
     def onchange_electronic_invoice_subjected(self):
