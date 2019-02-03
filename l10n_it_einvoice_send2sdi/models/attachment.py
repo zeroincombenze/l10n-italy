@@ -584,7 +584,7 @@ class Evolve():
             documento = Evolve.parse_documento(evolvedoc)
 
             # if not (ret.has_key(documento["StatoFattura"])):
-            if "StatoFattura"in ret:
+            if "StatoFattura" not in ret:
                 ret[documento["StatoFattura"]] = []
 
             ret[documento["StatoFattura"]].append(documento)
