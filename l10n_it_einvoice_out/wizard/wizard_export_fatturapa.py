@@ -44,6 +44,7 @@ from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IndirizzoType,
     IscrizioneREAType,
     RappresentanteFiscaleType,
+    RappresentanteFiscaleCessionarioType,
     ScontoMaggiorazioneType,
     TerzoIntermediarioSoggettoEmittenteType,)
 from odoo.addons.l10n_it_einvoice_base.models.account_invoice import (
@@ -457,11 +458,15 @@ class WizardExportFatturapa(models.TransientModel):
             company)
 
     def _setDatiAnagraficiCessionario(self, partner, parent, fatturapa):
+        mode = partner.type_inv_addr
+        mode = mode if mode not in ('SO','FR') else 'parent'
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-        vat = self._get_partner_field(partner, parent, 'vat')
+        vat = self._get_partner_field(
+            partner, parent, 'vat', mode=mode)
         fiscalcode = self.__wep_vat(
-            self._get_partner_field(partner, parent, 'fiscalcode'))
+            self._get_partner_field(
+                partner, parent, 'fiscalcode', mode=mode))
         if vat:
             country_code, vat_number = self._split_vat_n_country(vat)
             if country_code and vat_number:
@@ -478,12 +483,13 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = vat[2:]
 
-        company_type = self._get_partner_field(partner, parent, 'company_type')
+        company_type = self._get_partner_field(
+            partner, parent, 'company_type', mode=mode)
         if company_type == 'company':
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Denominazione=self._get_partner_field(
-                        partner, parent, 'name'))
+                        partner, parent, 'name', mode=mode))
         elif company_type == 'person':
             if not partner.lastname or not partner.firstname:
                 raise UserError(
@@ -494,7 +500,8 @@ class WizardExportFatturapa(models.TransientModel):
                     Cognome=partner.lastname,
                     Nome=partner.firstname
                 )
-        eori_code = self._get_partner_field(partner, parent, 'eori_code')
+        eori_code = self._get_partner_field(
+            partner, parent, 'eori_code', mode=mode)
         if eori_code:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica.CodEORI = eori_code
@@ -560,7 +567,7 @@ class WizardExportFatturapa(models.TransientModel):
     def _setSedeCessionario(self, partner, parent, fatturapa):
 
         mode = partner.type_inv_addr
-        mode = mode if mode != 'SO' else 'parent'
+        mode = mode if mode not in ('SO','FR') else 'parent'
         country_id = self._get_partner_field(partner, parent,
                                              'country_id', mode=mode)
         if not country_id:
@@ -577,8 +584,11 @@ class WizardExportFatturapa(models.TransientModel):
         if not street:
             raise UserError(
                 _('Customer street is not set.'))
-        codice_destinatario = self._get_partner_field(
-            partner, parent, 'codice_destinatario', mode=mode)
+        if mode == 'parent':
+            codice_destinatario = 'XXXXXXX'
+        else:
+            codice_destinatario = self._get_partner_field(
+                partner, parent, 'codice_destinatario', mode=mode)
         if codice_destinatario != 'XXXXXXX' and not zip:
             raise UserError(
                 _('Customer ZIP is not set.'))
@@ -680,36 +690,20 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Customer Stabile Organization vat country'
                   ' is different from from address country.'))
-        # fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #     RappresentanteFiscale = RappresentanteFiscaleType()
-        # fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #     RappresentanteFiscale.\
-        #         DatiAnagrafici = DatiAnagraficiRappresentanteType()
-        # if company_type == 'company': 
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.Anagrafica(Denominazione=nome)
-        # else:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.Anagrafica(Nome=firstname,
-        #                                          Cognome=lastname,)
-        # if partner.vat:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.DatiAnagrafici.IdFiscaleIVA = \
-        #             IdFiscaleType(country_code, IdCodice=vat_number)
-        # fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
-        #     DatiAnagrafici.Anagrafica = AnagraficaType(
-        #         Denominazione=partner.name)
-        # fiscalcode = self.__wep_vat(
-        #     self._get_partner_field(partner, parent, 'fiscalcode', mode=mode))
-        # if fiscalcode:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.DatiAnagrafici.CodiceFiscale = fiscalcode
-        # eori_code = self._get_partner_field(
-        #     partner, parent, 'eori_code', mode=mode)
-        # if eori_code:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.DatiAnagrafici.CodEORI = eori_code
-
+        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            RappresentanteFiscale = RappresentanteFiscaleCessionarioType()
+        if company_type == 'company': 
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                RappresentanteFiscale.Denominazione=name
+        else:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                RappresentanteFiscale(Nome=firstname,
+                                      Cognome=lastname,)
+        if partner.vat:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                RappresentanteFiscale.IdFiscaleIVA = IdFiscaleType(
+                    IdPaese=country_code,
+                    IdCodice=vat_number)
         return True
 
     def setRappresentanteFiscale(self, company, fatturapa):

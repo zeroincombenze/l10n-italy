@@ -92,7 +92,7 @@ class MultireportStyle(models.Model):
          ('logo', 'Only logo'),
          ('no_header', 'No print Header'),
          ],
-        'Heaser Print Mode',
+        'Header Print Mode',
         help="Which content is printed in document",
         default='standard')
     header_stock_picking_package_preparation = fields.Selection(
@@ -100,7 +100,7 @@ class MultireportStyle(models.Model):
          ('logo', 'Only logo'),
          ('no_header', 'No print Header'),
          ],
-        'Heaser Print Mode',
+        'Header Print Mode',
         help="Which content is printed in document",
         default='standard')
     header_account_invoice = fields.Selection(
@@ -108,7 +108,7 @@ class MultireportStyle(models.Model):
          ('logo', 'Only logo'),
          ('no_header', 'No print Header'),
          ],
-        'Heaser Print Mode',
+        'Header Print Mode',
         help="Which content is printed in document",
         default='standard')
     header_purchase_order = fields.Selection(
@@ -116,6 +116,6 @@ class MultireportStyle(models.Model):
          ('logo', 'Only logo'),
          ('no_header', 'No print Header'),
          ],
-        'Heaser Print Mode',
+        'Header Print Mode',
         help="Which content is printed in document",
         default='standard')

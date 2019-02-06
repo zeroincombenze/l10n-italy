@@ -66,6 +66,8 @@ class Report(models.Model):
     def get_pdf(self, docids, report_name, html=None, data=None):
         result = super(Report, self).get_pdf(
             docids, report_name, html=html, data=data)
+        if not docids:
+            return result
         report = self._get_report_from_name(report_name)
         recs = self.env[report.model].browse(docids)
         reportname, company, report_model_style, pdf_report = self.env[

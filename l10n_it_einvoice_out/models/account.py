@@ -21,7 +21,7 @@ class AccountInvoice(models.Model):
 
     has_pdf_invoice_print = fields.Boolean(
         related='fatturapa_attachment_out_id.has_pdf_invoice_print',
-        readonly=True)
+        readonly=True, copy=False)
 
     def preventive_checks(self):
         # hook for preventive checks. Override and raise exception, in case

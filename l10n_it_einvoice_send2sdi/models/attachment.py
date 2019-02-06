@@ -26,7 +26,7 @@ evolve_stato_mapping = {
     "In attesa di risposta dopo aver inviato il documento": 'sent',
     "Ricevuta di consegna": 'validated',
     "Notifica di mancata consegna": 'validated',
-    "Il documento non ha superato i controlli di validazione": 'validated',
+    "Il documento non ha superato i controlli di validazione": 'rejected',
     "Notifica di scarto": 'rejected'
 }
 

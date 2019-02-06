@@ -22,8 +22,8 @@
     'data': ['security/ir.model.access.csv',
              'views/set_date_range.xml',
              'views/account_view.xml',
-    #          'views/wizard_export_view.xml',
-    #          'communication_workflow.xml',
+             #          'views/wizard_export_view.xml',
+             #          'communication_workflow.xml',
              ],
     'external_dependencies': {
         'python': ['pyxb', 'unidecode'],
