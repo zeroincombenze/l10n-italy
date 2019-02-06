@@ -96,6 +96,8 @@ class ReportRegistroIva(models.AbstractModel):
             return tax_amount, tax_id, tax.exclude_from_registries
 
         res = {}
+        # import pdb
+        # pdb.set_trace()
 
         for move_line in move_lines:
             if not(move_line.tax_line_id or move_line.tax_ids):
