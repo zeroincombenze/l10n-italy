@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="view_tax_nature_tree" model="ir.ui.view">
         <field name="name">view.tax.nature.tree</field>
         <field name="model">italy.ade.tax.nature</field>
@@ -37,6 +36,5 @@
     <menuitem id="menu_tax_nature" name="Tax Nature"
               action="action_tax_nature" parent="menu_ade"
               groups="account.group_account_manager"/>
-
 </odoo>
 

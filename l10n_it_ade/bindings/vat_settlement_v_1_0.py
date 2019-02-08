@@ -5,6 +5,8 @@
 # Generated 2017-10-03 10:08:19.850342 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp
+from . import _cm as _ImportedBinding__cm
+from . import _ds as _ImportedBinding__ds
 from __future__ import unicode_literals
 import logging
 import io
@@ -31,12 +33,10 @@ if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
 # Import bindings for namespaces imported into schema
-from . import _ds as _ImportedBinding__ds
 try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-from . import _cm as _ImportedBinding__cm
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(

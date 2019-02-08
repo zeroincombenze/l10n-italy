@@ -146,7 +146,6 @@ class ResPartner(models.Model):
          "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
     ]
 
-
     @api.onchange('fiscalcode')
     def onchange_fiscalcode(self):
         name = 'fiscalcode'

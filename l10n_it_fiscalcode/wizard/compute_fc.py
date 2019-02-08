@@ -35,7 +35,7 @@ class WizardComputeFc(models.TransientModel):
     sex = fields.Selection([
         ('M', 'Male'),
         ('F', 'Female'),
-        ], "Sex")
+    ], "Sex")
 
     @api.multi
     @api.onchange('birth_city')

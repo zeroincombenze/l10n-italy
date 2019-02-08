@@ -14,7 +14,7 @@ class ResCity(models.Model):
 
     country_id = fields.Many2one('res.country',
                                  'Country',
-                                help='Country encoded by ISO-3166.')
+                                 help='Country encoded by ISO-3166.')
     name = fields.Char('City',
                        size=64,
                        help='Use "." (dot) to search with abbreviation',

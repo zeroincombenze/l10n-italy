@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="view_tipo_fattura_tree" model="ir.ui.view">
         <field name="name">view.tipo.fattura.tree</field>
         <field name="model">italy.ade.invoice.type</field>
@@ -39,6 +38,5 @@
     <menuitem id="menu_ade_tipo_fattura" name="Tipi Fattura"
               action="action_ade_tipo_fattura" parent="menu_ade"
               groups="account.group_account_manager" sequence="45"/>
-
 </odoo>
 
