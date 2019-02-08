@@ -62,7 +62,8 @@ class ReportRegistroIva(models.AbstractModel):
     def _get_move_line(self, move, data):
         return [move_line for move_line in move.line_ids]
 
-    def _tax_amounts_by_tax_id(self, move, move_lines, registry_type):
+    def _tax_amounts_by_tax_id(self, move, move_lines, registry_type,
+                               split_payment=None):
 
         def _parse_tax(tax, move_line, registry_type, res):
             set_cee_absolute_value = False
@@ -83,29 +84,22 @@ class ReportRegistroIva(models.AbstractModel):
             tax_amount = move_line.debit - move_line.credit
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
-            if (
-                'receivable' in move.move_type or
-                ('payable_refund' == move.move_type and tax_amount > 0)
-            ):
-                # otherwise refund would be positive and invoices
-                # negative.
-                # We also check payable_refund as it normaly is < 0, but
-                # it can be > 0 in case of reverse charge
-                # with VAT integration
+            if 'receivable' in move.move_type:
                 tax_amount = -tax_amount
             return tax_amount, tax_id, tax.exclude_from_registries
 
         res = {}
-        # import pdb
-        # pdb.set_trace()
+        split_payment = split_payment or {}
+        if split_payment:
+            res[split_payment['sp_tax_id'].id] = {
+                'name': split_payment['sp_tax_id'].name,
+                'base': 0,
+                'tax': 0,
+            }
 
         for move_line in move_lines:
             if not(move_line.tax_line_id or move_line.tax_ids):
                 continue
-            # if move_line.tax_ids and len(move_line.tax_ids) != 1:
-            #         raise UserError(
-            #             _("Move line %s has too many base taxes")
-            #             % move_line.name)
             if move_line.tax_line_id:
                 tax = move_line.tax_line_id
                 tax_amount, tax_id, exclude = _parse_tax(tax,
@@ -121,12 +115,12 @@ class ReportRegistroIva(models.AbstractModel):
                         'tax': 0,
                     }
                 res[tax.id]['tax'] += tax_amount
+                if split_payment:
+                    res[split_payment['sp_tax_id'].id]['tax'] -= tax_amount
             else:
                 is_base = True
                 for move_line_tax in (move_line.tax_ids):
                     tax = move_line_tax
-                    # if tax.tax_group_id and not tax.parent_tax_ids:
-                    #     continue
                     tax_amount, tax_id, exclude = _parse_tax(tax,
                                                              move_line,
                                                              registry_type,
@@ -139,14 +133,13 @@ class ReportRegistroIva(models.AbstractModel):
                             'base': 0,
                             'tax': 0,
                         }
-                    if is_base and res[tax.id]['tax'] >= 0:
+                    if is_base:
                         res[tax.id]['base'] += tax_amount
                         is_base = False
         return res
 
     def _get_tax_lines(self, move, data):
         """
-
         Args:
             move: the account.move representing the invoice
 
@@ -163,17 +156,36 @@ class ReportRegistroIva(models.AbstractModel):
         # sono più codici IVA
         index = 0
         invoice = self._get_invoice_from_move(move)
-        if 'refund' in move.move_type:
+        if 'refund' in invoice.type:
             invoice_type = "NC"
         else:
-            invoice_type = "FA"
+            invoice_type = "FT"
+        if (invoice.fiscal_position_id and
+                invoice.fiscal_position_id.split_payment):
+            if not invoice.company_id.sp_account_id:
+                raise UserError(
+                    _("Please set 'Split Payment Write-off Account' field in"
+                      " accounting configuration"))
+            if not invoice.company_id.sp_tax_id:
+                raise UserError(
+                    _("Please set 'Split Payment Write-off Tax' field in"
+                      " accounting configuration"))
+            split_payment_params = {
+                'sp_account_id': invoice.company_id.sp_account_id,
+                'sp_tax_id': invoice.company_id.sp_tax_id,
+            }
+        else:
+            split_payment_params = {}
 
         move_lines = self._get_move_line(move, data)
 
+        # import pdb
+        # pdb.set_trace()
         amounts_by_tax_id = self._tax_amounts_by_tax_id(
             move,
             move_lines,
-            data['registry_type'])
+            data['registry_type'],
+            split_payment=split_payment_params)
 
         for tax_id in amounts_by_tax_id:
             tax = self.env['account.tax'].browse(tax_id)

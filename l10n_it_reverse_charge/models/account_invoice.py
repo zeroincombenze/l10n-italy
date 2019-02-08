@@ -94,7 +94,7 @@ class AccountInvoice(models.Model):
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
         for tax in self.tax_line_ids:
-            if tax.tax_id.non_taxable_nature == 'N6':
+            if tax.tax_id.nature_id.code == 'N6':
                 if self.type == 'in_invoice':
                     credit += tax.amount
                 else:
@@ -121,7 +121,7 @@ class AccountInvoice(models.Model):
                 credit = amount
         else:
             for tax in self.tax_line_ids:
-                if tax.tax_id.non_taxable_nature == 'N6':
+                if tax.tax_id.nature_id.code == 'N6':
                     if self.type == 'in_invoice':
                         debit += tax.amount
                     else:
@@ -297,6 +297,7 @@ class AccountInvoice(models.Model):
                 for tax_mapping in rc_type.tax_ids:
                     if tax_mapping.purchase_tax_id == line_tax[0]:
                         tax_id = tax_mapping.sale_tax_id.id
+                        break
                 if not tax_id:
                     raise UserError(_("Tax code used is not a RC tax.\nCan't "
                                       "find tax mapping"))
@@ -365,6 +366,9 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def invoice_validate(self):
+        """Invoice validation is called to validate purchase invoice and then
+        sale self-invoice
+        """
         self.ensure_one()
         res = super(AccountInvoice, self).invoice_validate()
         fp = self.fiscal_position_id

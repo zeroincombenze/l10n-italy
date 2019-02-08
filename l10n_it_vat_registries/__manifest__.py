@@ -9,7 +9,7 @@
 
 {
     'name': 'Italian Localization - VAT Registries',
-    'version': '10.0.1.2.3',
+    'version': '10.0.1.3.0',
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Srl",

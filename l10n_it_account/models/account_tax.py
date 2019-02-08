@@ -43,17 +43,29 @@ class AccountTax(models.Model):
             context['vat_registry_journal_ids'] = data['journal_ids']
 
         tax = self.env['account.tax'].with_context(context).browse(self.id)
+        if 'payability' in tax and tax.payability == 'S':
+            split_payment = True
+        else:
+            split_payment = False
         tax_name = tax._get_tax_name()
-        if not tax.children_tax_ids:
+        if tax.parent_tax_ids:
+            return (tax_name, 0, 0, 0, 0)
+        elif not tax.children_tax_ids:
             base_balance = tax.base_balance
             tax_balance = tax.balance
+            undeductible = 0
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
+            if tax.nature_id.code == 'N6':
+                undeductible = tax_balance
             if data['registry_type'] == 'supplier':
                 return (tax_name, -base_balance,
-                        -tax_balance, -tax_balance, 0)
+                        -tax_balance, -tax_balance, -undeductible)
+            if split_payment and data['registry_type'] == 'customer':
+                return (tax_name, base_balance,
+                        tax_balance, 0, tax_balance)
             return (tax_name, base_balance,
-                    tax_balance, tax_balance, 0)
+                    tax_balance, tax_balance, undeductible)
         else:
             base_balance = tax.base_balance
 
@@ -86,8 +98,13 @@ class AccountTax(models.Model):
                     undeductible += child_balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
+            if tax.nature_id.code == 'N6':
+                undeductible = tax_balance
             if data['registry_type'] == 'supplier':
                 return (tax_name, -base_balance,
                         -tax_balance, -deductible, -undeductible)
+            if split_payment and data['registry_type'] == 'customer':
+                return (tax_name, base_balance,
+                    tax_balance, undeductible, deductible)
             return (tax_name, base_balance,
                     tax_balance, deductible, undeductible)
