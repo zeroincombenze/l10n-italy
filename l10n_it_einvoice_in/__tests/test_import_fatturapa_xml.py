@@ -27,7 +27,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             'payment_term': self.env.ref('account.account_payment_term').id,
             'rate_ids': [(0, 0, {'tax': 20.0})],
             'causale_pagamento_id':
-                self.env.ref('l10n_it_causali_pagamento.a').id,
+                self.env.ref('l10n_it_withholding_tax_causali.a').id,
         })
 
     def setUp(self):

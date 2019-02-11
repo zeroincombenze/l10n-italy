@@ -48,30 +48,30 @@ class AccountTax(models.Model):
         else:
             split_payment = False
         tax_name = tax._get_tax_name()
+        deductible = 0
+        undeductible = 0
         if tax.parent_tax_ids:
             return (tax_name, 0, 0, 0, 0)
         elif not tax.children_tax_ids:
             base_balance = tax.base_balance
-            tax_balance = tax.balance
-            undeductible = 0
+            deductible = tax_balance = tax.balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
             if tax.nature_id.code == 'N6':
                 undeductible = tax_balance
+                deductible = 0
             if data['registry_type'] == 'supplier':
                 return (tax_name, -base_balance,
-                        -tax_balance, -tax_balance, -undeductible)
+                        -tax_balance, -deductible, -undeductible)
             if split_payment and data['registry_type'] == 'customer':
                 return (tax_name, base_balance,
                         tax_balance, 0, tax_balance)
             return (tax_name, base_balance,
-                    tax_balance, tax_balance, undeductible)
+                    tax_balance, deductible, undeductible)
         else:
             base_balance = tax.base_balance
 
             tax_balance = 0
-            deductible = 0
-            undeductible = 0
             for child in tax.children_tax_ids:
                 child_balance = child.balance
                 if (
@@ -100,6 +100,7 @@ class AccountTax(models.Model):
                 base_balance = 0
             if tax.nature_id.code == 'N6':
                 undeductible = tax_balance
+                deductible = 0
             if data['registry_type'] == 'supplier':
                 return (tax_name, -base_balance,
                         -tax_balance, -deductible, -undeductible)

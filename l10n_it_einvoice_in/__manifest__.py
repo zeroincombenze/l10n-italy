@@ -20,6 +20,7 @@
                'l10n_it_fatturapa_in',
     'license': 'LGPL-3',
     "depends": [
+        'account',
         'l10n_it_einvoice_base',
         'l10n_it_fiscal_ipa',
         'l10n_it_causali_pagamento',

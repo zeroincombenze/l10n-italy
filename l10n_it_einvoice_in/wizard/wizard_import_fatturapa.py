@@ -1186,8 +1186,6 @@ class WizardImportFatturapa(models.TransientModel):
                 )
 
     def get_invoice_obj(self, fatturapa_attachment):
-        import pdb
-        pdb.set_trace()
         xml_string = fatturapa_attachment.get_xml_string()
         return fatturapa_v_1_2.CreateFromDocument(xml_string)
 
