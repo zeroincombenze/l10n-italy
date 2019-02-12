@@ -56,21 +56,24 @@ class ResCompany(orm.Model):
             selection=[
                 ('SU', 'Unique Member'),
                 ('SM', 'Multiple Members'),
-                ],
+            ],
             string='Member Type'),
         'fatturapa_rea_liquidation': fields.related(
             'partner_id', 'rea_liquidation_state', type='selection',
             selection=[
                 ('LS', 'In liquidation'),
                 ('LN', 'Not in liquidation'),
-                ],
+            ],
             string='Liquidation State'),
         'fatturapa_tax_representative': fields.many2one(
             'res.partner', 'Legal Tax Representative'
-            ),
+        ),
         'fatturapa_sender_partner': fields.many2one(
             'res.partner', 'Third Party/Sender'
-            ),
+        ),
+        'einvoice_email': fields.char(
+            'E-Invoice email', help="Alternative E-Invoice email, if not set company email is used"
+        )
     }
 
 
@@ -164,6 +167,12 @@ class AccountConfigSettings(orm.TransientModel):
             help="Used when company sends invoices to a third party and they "
                  "send invoices to SDI"
             ),
+        'einvoice_email': fields.related(
+            'company_id', 'einvoice_email',
+            type='char',
+            string='E-Invoice email',
+            help="Alternative E-Invoice email, if not set company email is used"
+        )
     }
 
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):

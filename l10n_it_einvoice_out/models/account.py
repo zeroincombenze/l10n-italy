@@ -7,12 +7,17 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     fatturapa_attachment_out_id = fields.Many2one(
-        'fatturapa.attachment.out', 'FatturaPA Export File',
+        'fatturapa.attachment.out', 'E-Fattura Export File',
         readonly=True)
+
+    @api.one
+    def copy(self, defaults):
+        defaults['fatturapa_attachment_out_id'] = None
+        return super(AccountInvoice, self).copy(defaults)

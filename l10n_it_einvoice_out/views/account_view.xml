@@ -24,7 +24,7 @@
                         </field>
                     </group>
                 </page>
-                <page string="FatturaPA">
+                <page string="E-Invoice">
                     <group>
                         <group string="Fiscal">
                             <field name="invoice_type_id"></field>
@@ -34,7 +34,7 @@
                         </group>
                     </group>
                 </page>
-                <page string="FatturaPA attachments">
+                <page string="E-Invoice attachments">
                     <group string="Attachments">
                         <field name="fatturapa_doc_attachments" nolabel="1" >
                             <tree string="Attachments">

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
-    <menuitem name="Fattura PA" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
-    <menuitem name="Fattura PA" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
+    <menuitem name="Electronic Invoice" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
+    <menuitem name="Electronic Bill" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
+
     <record id="view_payment_term_form_fatturapa" model="ir.ui.view">
         <field name="name">account.payment.term.fatturapa</field>
         <field name="model">account.payment.term</field>
@@ -44,7 +45,7 @@
         <field name="inherit_id" ref="account.view_invoice_line_form"></field>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <separator string="FatturaPA"></separator>
+                <separator string="E-Invoice"></separator>
                 <div id="admin_ref">
                     <group>
                         <field name="admin_ref"/>
