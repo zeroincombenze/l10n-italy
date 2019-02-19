@@ -90,7 +90,7 @@ XML_ESCAPE = {
     u'ß': u'&szlig;',
 }
 IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
-INHERITED_FLDS = ['codice_destinatario',]
+INHERITED_FLDS = ['codice_destinatario', 'name']
 
 
 class WizardExportFatturapa(models.TransientModel):
