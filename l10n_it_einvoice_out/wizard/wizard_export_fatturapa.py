@@ -88,7 +88,7 @@ XML_ESCAPE = {
     u'ß': u'&szlig;',
 }
 IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
-INHERITED_FLDS = ['codice_destinatario',]
+INHERITED_FLDS = ['codice_destinatario', 'name']
 
 
 class WizardExportFatturapa(models.TransientModel):
@@ -180,8 +180,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def __wep_vat(self, vat):
         if vat:
-            return vat.replace(' ', '').replace('.', '').replace('-', '').encode(
-                'utf-8').upper().decode('utf-8')
+            return vat.replace(
+                ' ', '').replace('.', '').replace('-', '').upper()
         return vat
 
     def _split_vat_n_country(self, vat):
@@ -372,7 +372,7 @@ class WizardExportFatturapa(models.TransientModel):
         CedentePrestatore.Sede = IndirizzoType(
             Indirizzo=company.street,
             CAP=company.zip,
-            Comune=company.city,
+            Comune=company.city[:60],
             Provincia=company.partner_id.state_id.code,
             Nazione=company.country_id.code)
         return True

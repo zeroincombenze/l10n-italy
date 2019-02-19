@@ -1,1 +1,0 @@
-Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.

@@ -179,8 +179,6 @@ class ReportRegistroIva(models.AbstractModel):
 
         move_lines = self._get_move_line(move, data)
 
-        # import pdb
-        # pdb.set_trace()
         amounts_by_tax_id = self._tax_amounts_by_tax_id(
             move,
             move_lines,
