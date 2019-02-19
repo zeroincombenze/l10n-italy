@@ -43,6 +43,7 @@ from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IndirizzoType,
     IscrizioneREAType,
     RappresentanteFiscaleType,
+    RappresentanteFiscaleCessionarioType,
     ScontoMaggiorazioneType,
     TerzoIntermediarioSoggettoEmittenteType,)
 from openerp.addons.l10n_it_einvoice_base.models.account import (
@@ -56,16 +57,19 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
-
+E = _('Error!')
+CODE_NONE_IT = '0000000'
+CODE_NONE_EU = 'XXXXXXX'
 PAYTYPE_BNK_CUSTOMER = ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21')
 PAYTYPE_BNK_COMPANY = ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')
 XML_ESCAPE = {
-    # u'\n': u'&#10;',
+    u'\'': u' ',
     u'\n': u' ',
     u'\r': u' ',
-    u'€': u'&euro;',
-    u'©': u'&copy',
-    u'®': u'&reg',
+    u'\t': u' ',
+    u'€': u'EUR',
+    u'©': u'(C)',
+    u'®': u'(R)',
     # u'à': u'&agrave;',
     # u'á': u'&aacute;',
     # u'è': u'&egrave;',
@@ -84,12 +88,15 @@ XML_ESCAPE = {
     u'ß': u'&szlig;',
 }
 IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
-E = _('Error!')
+INHERITED_FLDS = ['codice_destinatario',]
 
 
 class WizardExportFatturapa(orm.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export E-invoice"
+
+    def __init__(self, cr, uid, **kwargs):
+        super(WizardExportFatturapa, self).__init__(cr, uid, **kwargs)
 
     def saveAttachment(self, cr, uid, fatturapa, number, context=None):
         context = context or {}
@@ -160,16 +167,20 @@ class WizardExportFatturapa(orm.TransientModel):
             for i in range(len(phone)):
                 if phone[i].isdigit():
                     wep_phone += phone[i]
-        return wep_phone
+        return wep_phone.strip()
 
     def _wep_text(self, text):
         """"Do xml escape to avoid error StringLatinType"""
         # text.encode('latin', 'ignore').decode('latin')
-        return escape(text, XML_ESCAPE)
+        if text:
+            return escape(unidecode(text), XML_ESCAPE).strip()
+        return text
 
     def __wep_vat(self, vat):
-        return vat.replace(' ', '').replace('.', '').replace('-', '').encode(
-            'utf-8').upper().decode('utf-8')
+        if vat:
+            return vat.replace(
+                ' ', '').replace('.', '').replace('-', '').upper()
+        return vat
 
     def _get_partner_field(self, cr, uid, partner, parent, field):
         value = False
@@ -187,7 +198,6 @@ class WizardExportFatturapa(orm.TransientModel):
         return value
 
     def _setIdTrasmittente(self, cr, uid, company, fatturapa, context=None):
-        context = context or {}
         if not company.country_id:
             raise orm.except_orm(E,
                 _('Company Country not set.'))
@@ -222,6 +232,19 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def _setCodiceDestinatario(self, cr, uid, partner, parent, fatturapa,
                                context=None):
+        """
+        Nota sito agenzia entrate:
+        Il Codice Destinatario a 7 caratteri, che può essere utilizzato solo per fatture elettroniche destinate ai
+        soggetti privati, potrà essere reperito attraverso un nuovo servizio reso disponibile entro il
+        9 di Gennaio 2017 sul sito www.fatturapa.gov.it, pagina Strumenti – Gestire il canale.
+        Il codice potrà essere richiesto solo dai quei soggetti titolari di un canale di trasmissione già accreditato
+        presso il Sistema di Interscambio per ricevere le fatture elettroniche. É possibile richiedere più codici fino
+        a un massimo di 100. Per i soggetti che invece intendano ricevere le fatture elettroniche attraverso il canale
+         PEC, è previsto l’uso del codice destinatario standard ‘0000000’ purché venga indicata la casella PEC di
+        ricezione in fattura nel campo PecDestinatario. Vale la pena ricordare che per le fatture elettroniche
+        destinate ad Amministrazioni pubbliche si continua a prevedere l’uso del codice univoco ufficio a 6 caratteri,
+        purché sia censito su indice delle Pubbliche Amministrazioni (www.indicepa.gov.it )
+        """
         context = context or {}
         pec_destinatario = None
         if self._get_partner_field(cr, uid, partner, parent, 'is_pa'):
@@ -259,7 +282,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def _setContattiTrasmittente(self, cr, uid, company, fatturapa,
                                  context=None):
-        context = context or {}
+        # context = context or {}
         if not company.phone:
             raise orm.except_orm(E,
                 _('Company Telephone number not set.'))
@@ -289,7 +312,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def _setDatiAnagraficiCedente(self, cr, uid, CedentePrestatore,
                                   company, context=None):
-        context = context or {}
+        # context = context or {}
         if not company.vat:
             raise orm.except_orm(E,
                 _('Company TIN not set.'))
@@ -338,12 +361,12 @@ class WizardExportFatturapa(orm.TransientModel):
         if not company.country_id:
             raise orm.except_orm(E,
                 _('Your company Country is not set.'))
-        # FIXME: manage address number in <NumeroCivico>
+        # TODO: manage address number in <NumeroCivico>
         # see https://github.com/OCA/partner-contact/pull/96
         CedentePrestatore.Sede = IndirizzoType(
             Indirizzo=company.street,
             CAP=company.zip,
-            Comune=company.city,
+            Comune=company.city[:60],
             Provincia=company.partner_id.state_id.code,
             Nazione=company.country_id.code)
         return True
@@ -508,7 +531,6 @@ class WizardExportFatturapa(orm.TransientModel):
         if partner.eori_code:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
                 DatiAnagrafici.Anagrafica.CodEORI = partner.eori_code
-
         return True
 
     def _setTerzoIntermediarioOSoggettoEmittente(
@@ -584,7 +606,7 @@ class WizardExportFatturapa(orm.TransientModel):
             IndirizzoType(
                 Indirizzo=street,
                 CAP=zip,
-                Comune=city,
+                Comune=city[:60],
                 Provincia=province,
                 Nazione=country_id.code))
         return True
@@ -625,8 +647,9 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def setDatiGeneraliDocumento(self, cr, uid, invoice, body, context=None):
         context = context or {}
-
         # TODO DatiSAL
+
+        # TODO DatiDDT
 
         body.DatiGenerali = DatiGeneraliType()
         if not invoice.number:
@@ -726,7 +749,6 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def setDettaglioLinee(self, cr, uid, invoice, body, context=None):
         context = context or {}
-
         body.DatiBeniServizi = DatiBeniServiziType()
         # TipoCessionePrestazione not handled
 
@@ -822,7 +844,6 @@ class WizardExportFatturapa(orm.TransientModel):
             # el.remove(el.find('Arrotondamento'))
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
-
         return True
 
     def setDatiBanca(self, DettaglioPagamento, bank_id, company=None):
@@ -922,7 +943,6 @@ class WizardExportFatturapa(orm.TransientModel):
         self, cr, uid, inv, FatturaElettronicaBody, context=None
     ):
         context = context or {}
-
         self.setDatiGeneraliDocumento(
             cr, uid, inv, FatturaElettronicaBody, context=context)
         self.setRelatedDocumentTypes(cr, uid, inv, FatturaElettronicaBody,
@@ -940,7 +960,6 @@ class WizardExportFatturapa(orm.TransientModel):
 
     def getPartnerCompanyId(self, cr, uid, invoice_ids, context=None):
         context = context or {}
-
         invoice_model = self.pool['account.invoice']
         partner = False
         parent = False
@@ -973,8 +992,6 @@ class WizardExportFatturapa(orm.TransientModel):
         return res
 
     def exportFatturaPA(self, cr, uid, ids, context=None):
-        # import pdb
-        # pdb.set_trace()
         context = context or {}
         model_data_model = self.pool['ir.model.data']
         invoice_model = self.pool['account.invoice']
@@ -1017,7 +1034,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     (unicode(e)))
 
         attach_id = self.saveAttachment(cr, uid, fatturapa, number,
-                                     context=context_partner)
+                                        context=context_partner)
         # attachments |= attach
 
         for invoice_id in invoice_ids:
@@ -1040,4 +1057,3 @@ class WizardExportFatturapa(orm.TransientModel):
             'type': 'ir.actions.act_window',
             'context': context
         }
-

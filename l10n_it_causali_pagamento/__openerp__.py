@@ -12,7 +12,7 @@
     'author': "Agile Business Group,"
         "Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'account',
     ],

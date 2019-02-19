@@ -27,7 +27,7 @@ Sono coperte le aree:
 * Registrazione fatture fornitori con RA
 * Registrazione proposte di parcella da professionisti
 * FatturaPA
-* Fattura Elettronica B2B (in fase di sviluppo)
+* Fattura Elettronica B2B
 * Gestione DdT
 * Data di registrazione fatture fornitori
 * Gestione Ricevute Bancarie
@@ -63,9 +63,13 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_bill_of_entry              | 7.0.0.1    | |same|     | Italian Localisation - Bill of Entry               |
 +------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_causali_pagamento          | 7.0.1.0.0  | |no_check| | Aggiunge la tabella delle causali di pagamento da  |
++------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_corrispettivi              | 7.0.0.1    | |same|     | Italian Localisation - Corrispettivi               |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_base              | 7.0.2.1.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
++------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_einvoice_in                | |halt|     | |no_check| | Ricezione fatture elettroniche                     |
 +------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_out               | 7.0.2.0.1  | |no_check| | Electronic invoices emission                       |
 +------------------------------------+------------+------------+----------------------------------------------------+
@@ -121,6 +125,8 @@ OCA comparation / Confronto con OCA
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                       |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Coverage                             | |Codecov Status| | | OCA Codecov | |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Test compatibilità OCA e Odoo        | |no_check|       | |check|         | `Errore import decimal precision <https://github.com/OCA/OCB/issues/629>`__        |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Gestione evoluta anagrafiche         | |check|          | |no_check|      | `l10n_it_base <https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_base> |
@@ -135,7 +141,7 @@ OCA comparation / Confronto con OCA
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Controllo date fatture emesse        | |check|          | |no_check|      |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
-| FatturaPA                            | v1.2             | v1.1            |                                                                                    |
+| FatturaPA                            | v1.2.1           | v1.2.1          |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
@@ -259,7 +265,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-01-18
+Last Update / Ultimo aggiornamento: 2019-02-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

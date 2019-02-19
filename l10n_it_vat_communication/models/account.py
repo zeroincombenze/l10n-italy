@@ -538,7 +538,7 @@ class AccountVatCommunication(orm.Model):
         res = {}
         if commitment.codice_carica and commitment.soggetto_codice_fiscale:
             res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
-            res['xml_Carica'] = commitment.codice_carica
+            res['xml_Carica'] = commitment.codice_carica.code
         return res
 
     def get_xml_company(
@@ -696,7 +696,7 @@ class CommitmentLine(orm.AbstractModel):
             r = self.pool['account.vat.communication'].onchange_fiscalcode(
                 cr, uid, partner.id,
                 partner.fiscalcode, None,
-                country_id=partner.country_id,
+                country=partner.country_id,
                 context=context)
             if 'warning' in r:
                 res['xml_Error'] += self._get_error(

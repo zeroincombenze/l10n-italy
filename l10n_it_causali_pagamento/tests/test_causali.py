@@ -4,20 +4,12 @@
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-import base64
-import os
-import shutil
-import tempfile
-from datetime import datetime
-
-from lxml import etree
-
 import openerp.tests.common as test_common
 from openerp import workflow
-from openerp.modules.module import get_module_resource
+# from openerp.modules.module import get_module_resource
 import openerp.release as release
 
-CAUSALE_CODE = 'Z'
+CAUSALE_CODE = '?'
 CAUSALE_NAME = 'Please, do not use this record!'
 CAUSALE_NAME2 = 'Please, delete this record!'
 
@@ -80,10 +72,8 @@ class TestCausali(test_common.TransactionCase):
         rec = self.browse612(model_name, self.codice_carica_id)
         self.assertEqual(rec.name, CAUSALE_NAME2)
 
-        # rec = self.browse612(model_name,
-        #                      self.ref612('l10n_it_causali_pagamento.b'))
-        # name = rec.name_get()
-        # self.assertEqual(name, [(
-        #     rec.causale_b.id,
-        #     u"B - Utilizzazione economica, da parte dell'autore ..."
-        #)])
+        name = self.env.ref('l10n_it_causali_pagamento.b').name_get()
+        self.assertEqual(name, [(
+            self.env.ref('l10n_it_causali_pagamento.b').id,
+            u"B - Utilizzazione economica, da parte dell'autore ..."
+        )])

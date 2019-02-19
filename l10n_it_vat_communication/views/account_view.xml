@@ -96,12 +96,12 @@
                                 <field name="amount_total" sum="Total Amount"/>
                                 <field name="amount_taxable" sum="Untaxed Amount"/>
                                 <field name="amount_tax"  sum="Tax Amount"/>
-                                <field name="xml_Aliquota" />
-                                <field name="xml_Detraibile" />
                                 <!--
-                                  <field name="tax_rate" />
-                                  <field name="tax_nodet_rate" />
+                                  <field name="xml_Aliquota" />
+                                  <field name="xml_Detraibile" />
                                   -->
+                                <field name="tax_rate" />
+                                <field name="tax_nodet_rate" />
                                 <field name="tax_nature" />
                                 <field name="tax_payability" />
                                 <field name="xml_Error" />
@@ -117,12 +117,12 @@
                                 <field name="amount_total"/>
                                 <field name="amount_taxable"/>
                                 <field name="amount_tax"/>
-                                <field name="xml_Aliquota" readonly="1" />
-                                <field name="xml_Detraibile" readonly="1" />
                                 <!--
-                                  <field name="tax_rate" readonly="1" />
-                                  <field name="tax_nodet_rate" readonly="1" />
+                                  <field name="xml_Aliquota" readonly="1" />
+                                  <field name="xml_Detraibile" readonly="1" />
                                   -->
+                                <field name="tax_rate" readonly="1" />
+                                <field name="tax_nodet_rate" readonly="1" />
                                 <field name="tax_nature" readonly="1" />
                                 <field name="tax_payability" />
                                 <field name="xml_Error" />
