@@ -36,11 +36,12 @@
                             <field name="account_receivable_id"/>
                             <field name="account_payable_id"/>
                             <field name="journal_id"/>
-                            <field name="payment_term"/>
                         </group>
                         <group>
                             <field name="active"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                            <field name="payment_term"/>
+                            <field name="causale_pagamento_id"/>
                         </group>
                     </group>
                     <field name="comment"/>

@@ -3,7 +3,6 @@
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
 from odoo import models, fields, api, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
@@ -21,7 +20,7 @@ class AccountPartialReconcile(models.Model):
         ml_ids = []
         if vals.get('debit_move_id'):
             ml_ids.append(vals.get('debit_move_id'))
-        if vals.get('debit_move_id'):
+        if vals.get('credit_move_id'):
             ml_ids.append(vals.get('credit_move_id'))
         for ml in self.env['account.move.line'].browse(ml_ids):
             domain = [('move_id', '=', ml.move_id.id)]
@@ -96,12 +95,12 @@ class AccountPartialReconcile(models.Model):
             p_date_maturity = False
             payment_lines = wt_st.withholding_tax_id.payment_term.compute(
                 amount_wt,
-                rec_line_statement.date or False)
+                rec_line_payment.date or False)
             if payment_lines and payment_lines[0]:
                 p_date_maturity = payment_lines[0][0][0]
             wt_move_vals = {
                 'statement_id': wt_st.id,
-                'date': rec_line_statement.date,
+                'date': rec_line_payment.date,
                 'partner_id': rec_line_statement.partner_id.id,
                 'reconcile_partial_id': self.id,
                 'payment_line_id': rec_line_payment.id,
@@ -109,7 +108,7 @@ class AccountPartialReconcile(models.Model):
                 'withholding_tax_id': wt_st.withholding_tax_id.id,
                 'account_move_id': rec_line_payment.move_id.id or False,
                 'date_maturity':
-                    p_date_maturity or rec_line_statement.date_maturity,
+                    p_date_maturity or rec_line_payment.date_maturity,
                 'amount': amount_wt
             }
             wt_move_vals = self._prepare_wt_move(wt_move_vals)
@@ -241,6 +240,39 @@ class account_payment(models.Model):
         return rec
 
 
+class account_register_payments(models.TransientModel):
+    _inherit = "account.register.payments"
+
+    @api.model
+    def get_amount_residual(self, invoice):
+        amount_residual = 0
+        if invoice.withholding_tax_amount:
+            coeff_net = invoice.residual / invoice.amount_total
+            amount_residual = invoice.amount_net_pay * coeff_net
+            return amount_residual
+        return False
+
+    @api.model
+    def default_get(self, fields):
+        rec = super(account_register_payments, self).default_get(fields)
+        context = dict(self._context or {})
+        active_model = context.get('active_model')
+        active_ids = context.get('active_ids')
+        invoices = self.env[active_model].browse(active_ids)
+        total_amount = 0
+        for inv in invoices:
+            # Recompute residual amount only in case of WT
+            # in the other case the standard amount(residual)
+            # will be used
+            amount_residual = self.get_amount_residual(inv)
+            if inv.type in ['out_invoice', 'in_refund']:
+                total_amount += amount_residual or inv.residual
+            else:
+                total_amount -= amount_residual or inv.residual
+        rec['amount'] = abs(total_amount)
+        return rec
+
+
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
@@ -276,6 +308,34 @@ class AccountMoveLine(models.Model):
                 wt_move.unlink()
 
         return super(AccountMoveLine, self).remove_move_reconcile()
+
+    @api.multi
+    def prepare_move_lines_for_reconciliation_widget(
+            self, target_currency=False, target_date=False):
+        """
+        Net amount for invoices with withholding tax
+        """
+        res = super(
+            AccountMoveLine, self
+        ).prepare_move_lines_for_reconciliation_widget(
+            target_currency, target_date)
+        for dline in res:
+            if 'id' in dline and dline['id']:
+                line = self.browse(dline['id'])
+                if line.withholding_tax_amount:
+                    dline['debit'] = (
+                        line.debit - line.withholding_tax_amount if line.debit
+                        else 0
+                    )
+                    dline['credit'] = (
+                        line.credit - line.withholding_tax_amount
+                        if line.credit else 0
+                    )
+                    dline['name'] += (
+                        _(' (Net to pay: %s)')
+                        % (dline['debit'] or dline['credit'])
+                    )
+        return res
 
 
 class AccountFiscalPosition(models.Model):
@@ -424,14 +484,19 @@ class AccountInvoice(models.Model):
         """
         wt_statement_obj = self.env['withholding.tax.statement']
         for inv_wt in self.withholding_tax_line_ids:
+            wt_base_amount = inv_wt.base
+            wt_tax_amount = inv_wt.tax
+            if self.type in ['in_refund', 'out_refund']:
+                wt_base_amount = -1 * wt_base_amount
+                wt_tax_amount = -1 * wt_tax_amount
             val = {
                 'date': self.move_id.date,
                 'move_id': self.move_id.id,
                 'invoice_id': self.id,
                 'partner_id': self.partner_id.id,
                 'withholding_tax_id': inv_wt.withholding_tax_id.id,
-                'base': inv_wt.base,
-                'tax': inv_wt.tax,
+                'base': wt_base_amount,
+                'tax': wt_tax_amount,
             }
             wt_statement_obj.create(val)
 
@@ -470,14 +535,14 @@ class AccountInvoiceWithholdingTax(models.Model):
             (1 - (line.discount or 0.0) / 100.0)
         return price_unit
 
-    @api.depends('base', 'tax')
+    @api.depends('base', 'tax', 'invoice_id.amount_untaxed')
     def _compute_coeff(self):
         for inv_wt in self:
             if inv_wt.invoice_id.amount_untaxed:
-                inv_wt.base_coeff = round(
-                    inv_wt.base / inv_wt.invoice_id.amount_untaxed, 5)
+                inv_wt.base_coeff = \
+                    inv_wt.base / inv_wt.invoice_id.amount_untaxed
             if inv_wt.base:
-                inv_wt.tax_coeff = round(inv_wt.tax / inv_wt.base, 5)
+                inv_wt.tax_coeff = inv_wt.tax / inv_wt.base
 
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  ondelete="cascade")

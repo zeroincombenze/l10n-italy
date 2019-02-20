@@ -471,7 +471,26 @@ class WizardImportFatturapa(models.TransientModel):
             res.append(val)
         return res
 
-    def _prepareWelfareLine(self, invoice_id, line):
+    def _prepareWelfareLine(self, credit_account_id, line, wt_found=False):
+        retLine = self._prepare_generic_line_data(line)
+        AlCassa = line.AlCassa or 0
+        retLine.update({
+            'name': 'Cassa previdenziale %d%%' % AlCassa,
+            'sequence': 999,
+            'account_id': credit_account_id,
+        })
+        ImportoContributoCassa = (
+            line.ImportoContributoCassa and
+            float(line.ImportoContributoCassa) or None)
+        if ImportoContributoCassa:
+            retLine['price_unit'] = float(line.ImportoContributoCassa)
+        retLine['quantity'] = 1
+        if wt_found and line.Ritenuta:
+            retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
+
+        return retLine
+
+    def _prepareWelfareData(self, invoice_id, line):
         TipoCassa = line.TipoCassa or False
         AlCassa = line.AlCassa and (float(line.AlCassa) / 100) or None
         ImportoContributoCassa = (
@@ -921,22 +940,33 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_lines.append(invoice_line_id)
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
-        invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
-        invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
-        invoice = invoice_model.create(invoice_data)
-        # TODO: check from Cesare
-        # invoice._onchange_invoice_line_wt_ids()
-        invoice.write(invoice._convert_to_write(invoice._cache))
-        invoice_id = invoice.id
-
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale
         if Walfares and self.e_invoice_detail_level == '2':
             for walfareLine in Walfares:
-                WalferLineVals = self._prepareWelfareLine(
-                    invoice_id, walfareLine)
-                WelfareFundLineModel.create(WalferLineVals)
+                invoice_line_data = self._prepareWelfareLine(
+                    credit_account_id, walfareLine, wt_found)
+                invoice_line_id = invoice_line_model.create(
+                    invoice_line_data).id
+                invoice_lines.append(invoice_line_id)
+        invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
+        invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
+        invoice = invoice_model.create(invoice_data)
+        if wt_found:
+            invoice._onchange_invoice_line_wt_ids()
+            invoice._amount_withholding_tax()
+        invoice.write(invoice._convert_to_write(invoice._cache))
+        invoice_id = invoice.id
+
+        # # 2.1.1.7
+        # Walfares = FatturaBody.DatiGenerali.\
+        #     DatiGeneraliDocumento.DatiCassaPrevidenziale
+        # if Walfares and self.e_invoice_detail_level == '2':
+        #     for walfareLine in Walfares:
+        #         WalferLineVals = self._prepareWelfareLine(
+        #             invoice_id, walfareLine)
+        #         WelfareFundLineModel.create(WalferLineVals)
 
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
