@@ -49,16 +49,17 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <p>Number</p>
+                                            <p>Pos.</p>
                                         </th>
                                         <th>
                                             <p>Invoice Number</p>
-                                        </th>
-                                        <th>
                                             <p>Invoice Date</p>
                                         </th>
                                         <th>
                                             <p>Customer</p>
+                                        </th>
+                                        <th>
+                                            <p>TIN</p>
                                         </th>
                                         <th>
                                             <p>IBAN</p>
@@ -79,12 +80,14 @@
                                         </td>
                                         <td>
                                             <p><span t-field="line.invoice_number" /></p>
-                                        </td>
-                                        <td>
                                             <p><span t-field="line.invoice_date" /></p>
                                         </td>
                                         <td>
                                             <p><span t-field="line.partner_id" /></p>
+                                            <p><span t-field="line.partner_id.zip"/> <span t-field="line.partner_id.city"/> (<span t-field="line.partner_id.state_id.code"/>)</p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.partner_id.vat" /></p>
                                         </td>
                                         <td>
                                             <p><span t-field="line.iban" /></p>

@@ -6,7 +6,7 @@
 #
 # This free software is released under GNU Affero GPL3
 # author: Antonio M. Vigliotti - antoniomaria.vigliotti@gmail.com
-# (C) 2017-2017 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
+# (C) 2017-2019 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
 #
 import os
 import sys
@@ -16,7 +16,7 @@ __version__ = '0.1.5.2'
 
 def wash_source(lines, kind):
     lineno = 0
-    # TODO: patch fatturapa for OCA compatiblity, may not work in the future
+    # TODO: patch fatturapa for OCA compatibility, may not work in the future
     RULES = ('RateType',
              'PesoType',
              'QuantitaType',
@@ -178,6 +178,21 @@ def robust_source(lines, model):
                 lines[lineno] = lines[lineno].replace(ABSCMNDIR, RELCMNDIR)
         lineno += 1
 
+def correct_future(lines):
+    binding_line = ''
+    lineno = 0
+    state = -1
+    while lineno < len(lines):
+        if state < 0 and lines[lineno].find('_ImportedBinding__') >= 0:
+            binding_line = lines[lineno]
+            del lines[lineno]
+            lineno -= 1
+        elif state < 0 and lines[lineno].find('import') >= 0:
+            state = lineno
+        elif state >= 0 and binding_line:
+            lines.insert(lineno, binding_line)
+            binding_line = ''
+        lineno += 1
 
 def main(args):
     try:
@@ -185,13 +200,19 @@ def main(args):
         source = fd.read()
         fd.close()
         lines = source.split('\n')
-        robust_source(lines, args[1])
-        wash_source(lines, args[2])
+        if args[1] == '-3':
+            correct_future(lines)
+        else:
+            robust_source(lines, args[1])
+            if len(args) <= 2:
+                wash_source(lines, '')
+            else:
+                wash_source(lines, args[2])
         fd = open(args[0], 'w')
         fd.write(''.join('%s\n' % l for l in lines))
         fd.close()
     except BaseException:
-        pass
+        print "**** Error *****"
 
 
 if __name__ == '__main__':

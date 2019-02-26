@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./_cm.py
 # PyXB bindings for NM:6d05a298a781c71d177aab761a79c5e637d7f467
-# Generated 2019-02-24 18:54:53.683389 by PyXB version 1.2.5 using Python 2.7.5.final.0
+# Generated 2019-02-25 07:50:11.727334 by PyXB version 1.2.6 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
 from __future__ import unicode_literals
@@ -21,10 +21,10 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:40873596-385d-11e9-8247-96000015ac23')
+    'urn:uuid:8f81a408-38c9-11e9-a049-96000015ac23')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
@@ -273,12 +273,12 @@ class DatoPIType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica la partita IVA rispettandone i vincoli di struttura. '
 
 
-DatoPIType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(11))
 DatoPIType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoPIType._CF_pattern.addPattern(pattern='[0-7][0-9]{10}')
-DatoPIType._InitializeFacetMap(DatoPI_Type._CF_length,
-                               DatoPIType._CF_pattern)
+DatoPIType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(11))
+DatoPIType._InitializeFacetMap(DatoPI_Type._CF_pattern,
+                               DatoPIType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DatoPI_Type', DatoPIType)
 _module_typeBindings.DatoPI_Type = DatoPIType
 
@@ -295,12 +295,12 @@ class DatoCNType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un codice fiscale numerico rispettandone i vincoli di struttura.'
 
 
-DatoCNType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(11))
 DatoCNType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoCNType._CF_pattern.addPattern(pattern='[0-9]{11}')
-DatoCNType._InitializeFacetMap(DatoCN_Type._CF_length,
-                               DatoCNType._CF_pattern)
+DatoCNType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(11))
+DatoCNType._InitializeFacetMap(DatoCN_Type._CF_pattern,
+                               DatoCNType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DatoCN_Type', DatoCNType)
 _module_typeBindings.DatoCN_Type = DatoCNType
 
@@ -375,13 +375,13 @@ class DatoDTType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica una data nel formato ggmmaaaa. La data indicata non deve essere successiva alla data corrente.'
 
 
-DatoDTType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(8))
 DatoDTType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoDTType._CF_pattern.addPattern(
     pattern='(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12)(\\d{4}))|(([0][1-9]|[12][0-9]|30)(0[469]|11)(\\d{4}))|((0[1-9]|1[0-9]|2[0-8])(02)(\\d{4}))|((29)(02)([02468][048]00))|((29)(02)([13579][26]00))|((29)(02)([0-9][0-9][0][48]))|((29)(02)([0-9][0-9][2468][048]))|((29)(02)([0-9][0-9][13579][26])))')
-DatoDTType._InitializeFacetMap(DatoDT_Type._CF_length,
-                               DatoDTType._CF_pattern)
+DatoDTType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(8))
+DatoDTType._InitializeFacetMap(DatoDT_Type._CF_pattern,
+                               DatoDTType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DatoDT_Type', DatoDTType)
 _module_typeBindings.DatoDT_Type = DatoDTType
 
@@ -398,12 +398,12 @@ class DatoDAType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica un anno nel formato aaaa. Sono ammessi anni dal 1800 al 2099.'
 
 
-DatoDAType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 DatoDAType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoDAType._CF_pattern.addPattern(pattern='(18|19|20)[0-9]{2}')
-DatoDAType._InitializeFacetMap(DatoDA_Type._CF_length,
-                               DatoDAType._CF_pattern)
+DatoDAType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
+DatoDAType._InitializeFacetMap(DatoDA_Type._CF_pattern,
+                               DatoDAType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DatoDA_Type', DatoDAType)
 _module_typeBindings.DatoDA_Type = DatoDAType
 
@@ -420,13 +420,13 @@ class DatoDNType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica una data nel formato ggmmaaaa.'
 
 
-DatoDNType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(8))
 DatoDNType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoDNType._CF_pattern.addPattern(
     pattern='(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12)(\\d{4}))|(([0][1-9]|[12][0-9]|30)(0[469]|11)(\\d{4}))|((0[1-9]|1[0-9]|2[0-8])(02)(\\d{4}))|((29)(02)([02468][048]00))|((29)(02)([13579][26]00))|((29)(02)([0-9][0-9][0][48]))|((29)(02)([0-9][0-9][2468][048]))|((29)(02)([0-9][0-9][13579][26])))')
-DatoDNType._InitializeFacetMap(DatoDN_Type._CF_length,
-                               DatoDNType._CF_pattern)
+DatoDNType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(8))
+DatoDNType._InitializeFacetMap(DatoDN_Type._CF_pattern,
+                               DatoDNType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DatoDN_Type', DatoDNType)
 _module_typeBindings.DatoDN_Type = DatoDNType
 
@@ -443,13 +443,13 @@ class DatoD6Type (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica una data nel formato mmaaaa.'
 
 
-DatoD6Type._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(6))
 DatoD6Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoD6Type._CF_pattern.addPattern(
     pattern='((0[0-9])|(1[0-2]))((19|20)[0-9][0-9])')
-DatoD6Type._InitializeFacetMap(DatoD6_Type._CF_length,
-                               DatoD6Type._CF_pattern)
+DatoD6Type._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(6))
+DatoD6Type._InitializeFacetMap(DatoD6_Type._CF_pattern,
+                               DatoD6Type._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DatoD6_Type', DatoD6Type)
 _module_typeBindings.DatoD6_Type = DatoD6Type
 
@@ -486,16 +486,16 @@ class DatoGAType (pyxb.binding.datatypes.string):
     _Documentation = 'Tipo semplice che identifica il numero di giorni in un anno e va da 1 a 365'
 
 
-DatoGAType._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoGAType._CF_pattern.addPattern(
-    pattern='[1-9]|([1-9][0-9])|([12][0-9][0-9])|(3[0-5][0-9])|(36[0-5])')
 DatoGAType._CF_minLength = pyxb.binding.facets.CF_minLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(1))
 DatoGAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(3))
-DatoGAType._InitializeFacetMap(DatoGA_Type._CF_pattern,
-                               DatoGAType._CF_minLength,
-                               DatoGAType._CF_maxLength)
+DatoGAType._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoGAType._CF_pattern.addPattern(
+    pattern='[1-9]|([1-9][0-9])|([12][0-9][0-9])|(3[0-5][0-9])|(36[0-5])')
+DatoGAType._InitializeFacetMap(DatoGA_Type._CF_minLength,
+                               DatoGAType._CF_maxLength,
+                               DatoGAType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoGA_Type', DatoGAType)
 _module_typeBindings.DatoGA_Type = DatoGAType
 

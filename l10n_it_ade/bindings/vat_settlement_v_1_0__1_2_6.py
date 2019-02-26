@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./vat_settlement_v_1_0.py
 # PyXB bindings for NM:4f059617657cbf045796906b94fd6da476500108
-# Generated 2019-02-24 18:54:53.683842 by PyXB version 1.2.5 using Python 2.7.5.final.0
+# Generated 2019-02-25 07:50:11.727872 by PyXB version 1.2.6 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp
 from __future__ import unicode_literals
@@ -23,10 +23,10 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:40873596-385d-11e9-8247-96000015ac23')
+    'urn:uuid:8f81a408-38c9-11e9-a049-96000015ac23')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)

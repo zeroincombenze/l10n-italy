@@ -35,7 +35,7 @@ gen_init() {
     local mdl="${1//,/ }"
     local i=./__init__.py
     if [ $opt_dry_run -eq 0 ]; then
-      echo " # flake8: noqa" >$i
+      echo "# flake8: noqa">$i
       echo "# -*- coding: utf-8 -*-" >>$i
       echo "# Copyright 2017-2019 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>">>$i
       echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$i
@@ -44,7 +44,11 @@ gen_init() {
       echo "# by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>">>$i
       echo "#">>$i
       for m in $mdl; do
-        echo "from . import $m">>$i
+        if [ "$opt_mod" == "." ]; then
+          echo "from . import $m">>$i
+        else
+          echo "import odoo.addons.${opt_mod}.bindings.$m">>$i
+        fi
       done
     fi
 }
@@ -52,7 +56,8 @@ gen_init() {
 create_hook() {
     local fn=$1
     if [ $opt_dry_run -eq 0 ]; then
-      echo "# -*- coding: utf-8 -*-">$fn
+      echo "# flake8: noqa">$fn
+      echo "# -*- coding: utf-8 -*-">>$fn
       echo "# Copyright 2017-2019 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>">>$fn
       echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$fn
       echo "#">>$fn
@@ -60,7 +65,11 @@ create_hook() {
       stmt="if"
       for v in 1.2.4 1.2.5 1.2.6; do
         echo "$stmt pyxb.__version__ == '$v':">>$fn
-        echo "    from ${fn:0: -3}__${v//./_} import *">>$fn
+        if [ "$opt_mod" == "." ]; then
+          echo "    from ${fn:0: -3}__${v//./_} import *">>$fn
+        else
+          echo "    from odoo.addons.${opt_mod}.${fn:0: -3}__${v//./_} import *">>$fn
+        fi
         stmt="elif"
       done
       echo "else:">>$fn
@@ -72,11 +81,11 @@ create_hook() {
 excl="DatiFatturaMessaggi,Fattura_VFSM10.xsd,FatturaPA_versione_1.1,FatturaPA_versione_1.2,MessaggiTypes"
 
 
-OPTOPTS=(h        b          K        k        l        I         m        n           O       p          q            u       V           v           x)
-OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_dry_run opt_OCA opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
-OPTACTI=(1        "="        1        1        "1>"     "=>"      1        1           1       1          0            "1>"    "*"         1           "=>")
-OPTDEFL=(1        ""         0        0        0        ""        0        0           0       0          -1            0       ""         -1          "$excl")
-OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       ""          ""      ""         "silent"     ""      "version"   "verbose"   "file")
+OPTOPTS=(h        b          K        k        l        I         M        m       n           O       p          q            u       V           v           x)
+OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_mod opt_dry_run opt_OCA opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
+OPTACTI=(1        "="        1        1        "1>"     "=>"      1        "="     1           1       1          0            "1>"    "*"         1           "=>")
+OPTDEFL=(1        ""         0        0        0        ""        0        "."     0           0       0          -1            0       ""         -1          "$excl")
+OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       "name"  ""          ""      ""         "silent"     ""      "version"   "verbose"   "file")
 OPTHELP=("this help"\
  "odoo branch for topep8; may be 6.1 7.0 8.0 9.0 10.0 11.0 or 12.0"\
  "keep binding directory, if found"\
@@ -84,6 +93,7 @@ OPTHELP=("this help"\
  "list xml schemas and module names"\
  "generate __init__.py with modules list"\
  "multi version (append pyxb version to file names)"\
+ "odoo module name (def='.')"\
  "do nothing (dry-run)"\
  "OCA compatible (convert numeric type to string)"\
  "do not apply pep8"\
@@ -133,10 +143,10 @@ done
 TOPEP8=$(which topep8 2>/dev/null)
 if [ -z "$TOPEP8" ]; then
   TOPEP8=$(which autopep8 2>/dev/null)
-  [ -n "$TOPEP8" ] && TOPEP8="$TOPEP8 -AeL"
+  [ -n "$TOPEP8" ] && TOPEP8="$TOPEP8 -eL"
 else
-  TOPEP8="$TOPEP8 -AeL"
-  [ -n "$odoo branch" ] && TOPEP8="$TOPEP8 -b$odoo branch"
+  TOPEP8="$TOPEP8 -eL"
+  [ -n "$opt_branch" ] && TOPEP8="$TOPEP8 -b$opt_branch"
 fi
 if [ -z "$TOPEP8" -a $opt_nopep8 -eq 0 ]; then
   echo "topep8/autopep8 not found!"
@@ -246,7 +256,7 @@ for d in $SCHEMAS/*; do
 done
 cmd="$PYXBGEN_BIN $cmd --archive-to-file=./ade.wxs"
 if [ $opt_list -eq 0 ]; then
-  pyxb_ver=$(pip show pyxb|grep "Version"|grep -Eo "[0-9.]+")
+  pyxb_ver=$(pip show pyxb 2>/dev/null|grep "^Version"|grep -Eo "[0-9.]+")
   [ $opt_verbose -ne 0 ] && echo "\$ $cmd"
   [ $opt_dry_run -ne 0 ] || eval $cmd
   echo "$(readlink -f $0) -I ${mdl// /,}"
@@ -263,7 +273,14 @@ if [ $opt_list -eq 0 ]; then
       if [ $opt_nopep8 -eq 0 ]; then
         [ $opt_verbose -ne 0 ] && echo "\$ $TOPEP8 $fn"
         [ $opt_dry_run -ne 0 ] || eval $TOPEP8 $fn
+        [ $opt_verbose -ne 0 ] && echo "\$ oca-autopep8 -i $fn"
+        [ $opt_dry_run -ne 0 ] || oca-autopep8 -i $fn
       fi
+      # [ $opt_verbose -ne 0 ] && echo "\$ sed -e \"s|/opt/odoo/tmp/|../|\" -i $fn"
+      # [ $opt_dry_run -ne 0 ] || sed -e "s|/opt/odoo/tmp/|../|" -i $fn
+      # read -p "Press RET to continue"       #debug
+      [ $opt_verbose -ne 0 ] && echo "\$ $PYXBGEN_PY $fn -3"
+      [ $opt_dry_run -ne 0 ] || eval $PYXBGEN_PY $fn -3
       if [ $opt_mult -gt 0 ]; then
         if [ ${fn: -3} == ".py" ]; then
           tgt="${fn:0: -3}__${pyxb_ver//./_}${fn: -3}"

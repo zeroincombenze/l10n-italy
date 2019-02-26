@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./dati_fattura_v_2_1.py
 # PyXB bindings for NM:c8403c44c9a54a32bd3b5aec75a6504db99822c4
-# Generated 2019-02-24 18:54:53.684727 by PyXB version 1.2.5 using Python 2.7.5.final.0
+# Generated 2019-02-25 07:50:11.728060 by PyXB version 1.2.6 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0
 from __future__ import unicode_literals
@@ -22,10 +22,10 @@ except ImportError as err:
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:40873596-385d-11e9-8247-96000015ac23')
+    'urn:uuid:8f81a408-38c9-11e9-a049-96000015ac23')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
@@ -143,14 +143,14 @@ class NazioneITType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumerati
     _Documentation = None
 
 
-NazioneITType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(2))
 NazioneITType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=NazioneITType, enum_prefix=None)
 NazioneITType.IT = NazioneITType._CF_enumeration.addEnumeration(
     unicode_value='IT', tag='IT')
-NazioneITType._InitializeFacetMap(NazioneITType._CF_length,
-                                  NazioneITType._CF_enumeration)
+NazioneITType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(2))
+NazioneITType._InitializeFacetMap(NazioneITType._CF_enumeration,
+                                  NazioneITType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'NazioneITType', NazioneITType)
 _module_typeBindings.NazioneITType = NazioneITType
 
@@ -269,8 +269,6 @@ class TipoDocumentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     _Documentation = None
 
 
-TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=TipoDocumentoType, enum_prefix=None)
 TipoDocumentoType.TD01 = TipoDocumentoType._CF_enumeration.addEnumeration(
@@ -289,8 +287,10 @@ TipoDocumentoType.TD11 = TipoDocumentoType._CF_enumeration.addEnumeration(
     unicode_value='TD11', tag='TD11')
 TipoDocumentoType.TD12 = TipoDocumentoType._CF_enumeration.addEnumeration(
     unicode_value='TD12', tag='TD12')
-TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_length,
-                                      TipoDocumentoType._CF_enumeration)
+TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(4))
+TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_enumeration,
+                                      TipoDocumentoType._CF_length)
 Namespace.addCategoryObject(
     'typeBinding', 'TipoDocumentoType', TipoDocumentoType)
 _module_typeBindings.TipoDocumentoType = TipoDocumentoType
@@ -308,12 +308,12 @@ class DataFatturaType (pyxb.binding.datatypes.date):
     _Documentation = None
 
 
-DataFatturaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
-    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=DataFatturaType, value=pyxb.binding.datatypes.date('1970-01-01'))
-DataFatturaType._InitializeFacetMap(DataFatturaType._CF_whiteSpace,
-                                    DataFatturaType._CF_minInclusive)
+DataFatturaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
+    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive,
+                                    DataFatturaType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 _module_typeBindings.DataFatturaType = DataFatturaType
 
@@ -330,15 +330,15 @@ class PosizioneType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-PosizioneType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(9999999))
-PosizioneType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
-    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 PosizioneType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(1))
-PosizioneType._InitializeFacetMap(PosizioneType._CF_maxInclusive,
+PosizioneType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
+    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+PosizioneType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
+    value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(9999999))
+PosizioneType._InitializeFacetMap(PosizioneType._CF_minInclusive,
                                   PosizioneType._CF_whiteSpace,
-                                  PosizioneType._CF_minInclusive)
+                                  PosizioneType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'PosizioneType', PosizioneType)
 _module_typeBindings.PosizioneType = PosizioneType
 
@@ -355,15 +355,15 @@ class CaricaType (pyxb.binding.datatypes.integer):
     _Documentation = None
 
 
-CaricaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(15))
-CaricaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
-    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 CaricaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
     value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(1))
-CaricaType._InitializeFacetMap(CaricaType._CF_maxInclusive,
+CaricaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
+    value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+CaricaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
+    value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(15))
+CaricaType._InitializeFacetMap(CaricaType._CF_minInclusive,
                                CaricaType._CF_whiteSpace,
-                               CaricaType._CF_minInclusive)
+                               CaricaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'CaricaType', CaricaType)
 _module_typeBindings.CaricaType = CaricaType
 
@@ -479,14 +479,14 @@ class VersioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeratio
     _Documentation = None
 
 
-VersioneType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(5))
 VersioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=VersioneType, enum_prefix=None)
 VersioneType.DAT20 = VersioneType._CF_enumeration.addEnumeration(
     unicode_value='DAT20', tag='DAT20')
-VersioneType._InitializeFacetMap(VersioneType._CF_length,
-                                 VersioneType._CF_enumeration)
+VersioneType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(5))
+VersioneType._InitializeFacetMap(VersioneType._CF_enumeration,
+                                 VersioneType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'VersioneType', VersioneType)
 _module_typeBindings.VersioneType = VersioneType
 
@@ -536,14 +536,14 @@ class DeducibileType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumerat
     _Documentation = None
 
 
-DeducibileType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(2))
 DeducibileType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
     value_datatype=DeducibileType, enum_prefix=None)
 DeducibileType.SI = DeducibileType._CF_enumeration.addEnumeration(
     unicode_value='SI', tag='SI')
-DeducibileType._InitializeFacetMap(DeducibileType._CF_length,
-                                   DeducibileType._CF_enumeration)
+DeducibileType._CF_length = pyxb.binding.facets.CF_length(
+    value=pyxb.binding.datatypes.nonNegativeInteger(2))
+DeducibileType._InitializeFacetMap(DeducibileType._CF_enumeration,
+                                   DeducibileType._CF_length)
 Namespace.addCategoryObject('typeBinding', 'DeducibileType', DeducibileType)
 _module_typeBindings.DeducibileType = DeducibileType
 
@@ -595,13 +595,13 @@ class RateType (pyxb.binding.datatypes.decimal):
 
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
-RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(
     value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
+    value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._InitializeFacetMap(RateType._CF_pattern,
-                             RateType._CF_maxInclusive,
-                             RateType._CF_whiteSpace)
+                             RateType._CF_whiteSpace,
+                             RateType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType
 
