@@ -12,9 +12,9 @@ from openerp.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
-    def setDatiGeneraliDocumento(self, invoice, body):
+    def setDatiGeneraliDocumento(self, cr, uid, invoice, body, context=None):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
-            invoice, body)
+            cr, uid, invoice, body)
         if invoice.tax_stamp:
             if not invoice.company_id.tax_stamp_product_id:
                 raise UserError(_(

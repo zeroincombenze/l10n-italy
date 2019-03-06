@@ -25,10 +25,9 @@ Sono coperte le aree:
 * Liquidazione IVA Elettronica
 * Comunicazione IVA Elettronica (ex Spesometro)
 * Registrazione fatture fornitori con RA
-* Registrazione proposte di parcella da professionisti
 * Emissione parcelle attive
 * FatturaPA
-* Fattura Elettronica B2B (in fase di sviluppo)
+* Fattura Elettronica B2B
 * Gestione DdT
 * Data di registrazione fatture fornitori
 * Gestione Ricevute Bancarie
@@ -57,6 +56,8 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_account                      | 8.0.1.0.0  | |same|     | Italian Localization - Account                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_account_stamp                | |no_check| | 8.0.1.0.0  | Tax stamp automatic management                     |
++--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 8.0.1.0.0  | Italian Localisation - Natura delle aliquote IVA   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ade                          | 8.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia del |
@@ -71,7 +72,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_bill_of_entry                | |halt|     | |halt|     | Italian Localisation - Bill of Entry               |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_central_journal              | 8.0.2.0.1  | 8.0.2.0.0  | Italian Localization - Account central journal     |
+| l10n_it_causali_pagamento            | 8.0.1.0.0  | |same|     | Aggiunge la tabella delle causali di pagamento da  |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_central_journal              | 8.0.2.0.1  | 8.0.2.0.0  | Italy: Account central journal                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_codici_carica                | |no_check| | 8.0.1.0.0  | Aggiunge la tabella dei codici carica da usare nei |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -83,25 +86,35 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_base                | 8.0.2.1.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out                 | 8.0.2.0.0  | |no_check| | Electronic invoices emission                       |
+| l10n_it_einvoice_in                  | |halt|     | |no_check| | Electronic invoices reception                      |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_einvoice_out                 | 8.0.3.2.1  | |no_check| | Electronic invoices emission                       |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_einvoice_stamp               | 8.0.1.0.1  | |no_check| | Tax stamp automatic management                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_esigibilita_iva              | |no_check| | 8.0.1.0.0  | Esigibilità IVA                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 8.0.2.1.0  | Electronic invoices                                |
+| l10n_it_fatturapa                    | |no_check| | 8.0.2.2.3  | Electronic invoices                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 8.0.2.0.0  | Electronic invoices emission                       |
+| l10n_it_fatturapa_in                 | |no_check| | 8.0.1.1.3  | Electronic invoices reception                      |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_out                | |no_check| | 8.0.3.1.0  | Electronic invoices emission                       |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_out_stamp          | |no_check| | 8.0.1.0.0  | Modulo ponte tra emissione fatture elettroniche e  |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_fatturapa_pec                | |no_check| | 8.0.1.2.0  | Send electronic invoices via PEC                   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal                       | 8.0.0.2    | |no_check| | Italy - Fiscal localization by zeroincombenze(R)   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_document_type         | |no_check| | 8.0.0.1.0  | Italian Localization - Tipi di documento fiscali p |
+| l10n_it_fiscal_document_type         | |no_check| | 8.0.1.1.0  | Italian Localization - Tipi di documento fiscale p |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscal_ipa                   | 8.0.1.1.0  | |no_check| | IPA Code and Destination Code in Partner Record    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_payment_term          | 8.0.1.0.0  | |no_check| | Electronic invoices payment                        |
+| l10n_it_fiscal_payment_term          | 8.0.1.0.0  | 8.0.0.0.0  | Electronic invoices payment                        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fiscalcode                   | 8.0.0.2.0  | 8.0.0.1.0  | Italian Localisation - Fiscal Code                 |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ipa                          | |no_check| | 8.0.1.0.0  | IPA Code (IndicePA)                                |
+| l10n_it_ipa                          | |no_check| | 8.0.2.0.0  | IPA Code (IndicePA)                                |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_partially_deductible_vat     | |halt|     | |halt|     | Italy - Partially Deductible VAT                   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -117,6 +130,8 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ricevute_bancarie            | 8.0.1.3.0  | |same|     | Ricevute Bancarie                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_sdi_channel                  | |no_check| | 8.0.1.1.0  | Aggiunge il canale di invio/ricezione dei file XML |
++--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_sepa_bonifici                | |no_check| | 8.0.1.0.0  | Banking SEPA Italian Credit Transfer CBI           |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_split_payment                | 8.0.1.0.0  | |same|     | Split Payment                                      |
@@ -127,9 +142,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_withholding_tax              | 8.0.3.0.0  | |same|     | Italian Withholding Tax                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_withholding_tax_causali      | |no_check| | 8.0.1.0.0  | Causali pagamento per ritenute d'acconto           |
++--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_withholding_tax_payment      | 8.0.2.0.0  | |same|     | Italian Withholding Tax Payment                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| multibase_plus                       | 8.0.0.1.1  | |no_check| | Enhanced Odoo Features                             |
+| multibase_plus                       | 8.0.0.1.2  | |no_check| | Enhanced Odoo Features                             |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 
 
@@ -139,19 +156,15 @@ OCA comparation / Confronto con OCA
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                       |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
+| Coverage                             | |Codecov Status| | | OCA Codecov | |                                                                                    |
++--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Gestione evoluta anagrafiche         | |check|          | |no_check|      | `l10n_it_base <https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_base> |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Piano dei conti evoluto              | |check|          | |no_check|      |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Codici IVA completi                  | |check|          | |no_check|      |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
-| Dichiaritivi fiscali                 | 2018             | 2017            |                                                                                    |
-+--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
-| Controllo date                       | Per anno fiscale | No anno fiscale | Versione OCA non permette l'accavallamento numerazioni a inizio anno               |
-+--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
-| Controllo date fatture emesse        | |check|          | |no_check|      |                                                                                    |
-+--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
-| FatturaPA                            | v1.2             | v1.1            |                                                                                    |
+| FatturaPA                            | v1.2.1           | v1.2.1          |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
 | Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                                    |
 +--------------------------------------+------------------+-----------------+------------------------------------------------------------------------------------+
@@ -275,7 +288,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-22
+Last Update / Ultimo aggiornamento: 2019-02-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
