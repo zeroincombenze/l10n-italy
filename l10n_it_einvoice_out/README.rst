@@ -26,8 +26,6 @@ http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
 
 |warning| Read carefully note of module l10n_it_einvoice_base before install this module
 
-|halt| Do not use this module on production environment: it is an aplha release
-subjected to update.
 
 |
 
