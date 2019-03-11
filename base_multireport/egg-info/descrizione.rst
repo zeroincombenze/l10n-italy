@@ -1,7 +1,7 @@
 Gestisci modelli di stampa multipli
 ----------------------------------------
 
-Installate questo modulo per stampare modelli multipli di documenti basati su:
+Installare questo modulo per stampare modelli multipli di documenti basati su:
 
 * Sezionale (utile per gestire le fatture accompagnatorie)
 * Partner (alcuni partner posso avare documenti persolizzati)
@@ -11,6 +11,5 @@ Installate questo modulo per stampare modelli multipli di documenti basati su:
 * Posizione fiscale
 * Team
 
-Potete anche costruire un vostro modulo di fattura personalizzata da aggiungere
+Si può anche costruire un modulo di fattura personalizzata da aggiungere
 alla lista dei modelli.
-Trovate un esempio di fattura in questo modulo.
