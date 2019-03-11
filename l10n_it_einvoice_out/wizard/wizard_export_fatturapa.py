@@ -190,6 +190,9 @@ class WizardExportFatturapa(models.TransientModel):
             if vat[0:3] != 'IT9':
                 country_code = vat[0:2]
                 vat_number = vat[2:]
+            else:
+                country_code = ''
+                vat_number = ''
         else:
             country_code = ''
             vat_number = ''

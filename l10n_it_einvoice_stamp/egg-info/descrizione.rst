@@ -1,11 +1,8 @@
 Bollo su Fattura Elettronica
 ----------------------------
 
-This module supports Italian Tax Stamp in invoices.
+Questo modulo gestisce il bollo virtuale in fattura.
 
-Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes' (exemption taxes) under 'Tax stamp' section.
+Viene creato un prodotoo 'Tax Stamp 2 euro' utilizzato per l'addebito al cliente.
 
-For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
-
-Also set income/expense accounts.
-Typically income = 'Debiti per bolli' and expense = 'Valori bollati'.
+Se in fattura è abilitato il bollo viene inserito l'apposito tag nella fattura eletronica.

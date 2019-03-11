@@ -8,5 +8,5 @@ Features / Funzioni
 +------------------------------------------------------+----------+----------------------------------------------+
 | Codice Carica                                        | |check|  | Codifica codice carica come da AdE           |
 +------------------------------------------------------+----------+----------------------------------------------+
-| Tax Nature / Natura fiscael dell'IVA                 | |check|  | Codifica natura fiscale dell'IVA come da AdE |
+| Tax Nature / Natura fiscale dell'IVA                 | |check|  | Codifica natura fiscale dell'IVA come da AdE |
 +------------------------------------------------------+----------+----------------------------------------------+

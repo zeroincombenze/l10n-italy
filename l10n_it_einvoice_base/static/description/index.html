@@ -16,7 +16,7 @@ as per send to the SdI (Exchange System by Italian Tax Authority)</p>
                 <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
             </p>
             <p class="oe_mt16" align="justify">Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
-Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
+Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di interscambio SdI.
 </p><p align="justify">
 In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".
 Le casistiche previste sono:
@@ -59,8 +59,35 @@ formato PDF al cliente.
 </p><p align="justify">
 ::
 </p><p align="justify">
+    Fattura elettronica a rappresentante fiscale in Italia
+</p><p align="justify">
+Casistica di aziende estere con rappresentanza fiscale in Italia.
+Inserire nei contatti un indirizzo di fatturazione di tipo "Rappresentante fiscale"
+con la partita IVA italiana ed i dati per la fatturazione elettronica.
+La fattura va emessa al rappresentante fiscale.
+</p><p align="justify">
+::
+</p><p align="justify">
+    Fattura elettronica a stabile organizzazione
+</p><p align="justify">
+Casistica di aziende estere con stabile organizzazione in Italia.
+Inserire nei contatti un indirizzo di fatturazione di tipo "Stabile organizzazione"
+con la partita IVA italiana ed i dati per la fatturazione elettronica.
+La fattura va emessa alla stabile organizzazione.
+</p><p align="justify">
+::
+</p><p align="justify">
+    Fattura elettronica a soggetto estero
+</p><p align="justify">
+Inserire il valore XXXXXXX nel codice destinatario. Il file XML viene generato
+con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
+Anche in questo caso &#232; obbligatorio inviare una fattura in
+formato PDF al cliente.
+</p><p align="justify">
+::
+</p><p align="justify">
 Configurare le imposte riguardo a "Natura non imponibile",
-"Riferimento legisltativo" ed "Esigibilit&#224; IVA"
+"Riferimento legislativo" ed "Esigibilit&#224; IVA"
 </p><p align="justify">
 Configurare i dati della fattura elettronica nella configurazione della contabilit&#224;, dove necessario
 </p><p align="justify">

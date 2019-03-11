@@ -81,11 +81,11 @@ create_hook() {
 excl="DatiFatturaMessaggi,Fattura_VFSM10.xsd,FatturaPA_versione_1.1,FatturaPA_versione_1.2,MessaggiTypes"
 
 
-OPTOPTS=(h        b          K        k        l        I         M        m       n           O       p          q            u       V           v           x)
-OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_mod opt_dry_run opt_OCA opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
-OPTACTI=(1        "="        1        1        "1>"     "=>"      1        "="     1           1       1          0            "1>"    "*"         1           "=>")
-OPTDEFL=(1        ""         0        0        0        ""        0        "."     0           0       0          -1            0       ""         -1          "$excl")
-OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       "name"  ""          ""      ""         "silent"     ""      "version"   "verbose"   "file")
+OPTOPTS=(h        b          K        k        l        I         M        m       n           o        p          q            u       V           v           x)
+OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_mod opt_dry_run opt_odoo opt_nopep8 opt_verbose  opt_uri opt_version opt_verbose opt_exclude)
+OPTACTI=(1        "="        1        1        "1>"     "=>"      1        "="     1           "=>"     1          0            "1>"    "*"         1           "=>")
+OPTDEFL=(1        ""         0        0        0        ""        0        "."     0           ""       0          -1            0       ""         -1          "$excl")
+OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       "name"  ""          "path"   ""         "silent"     ""      "version"   "verbose"   "file")
 OPTHELP=("this help"\
  "odoo branch for topep8; may be 6.1 7.0 8.0 9.0 10.0 11.0 or 12.0"\
  "keep binding directory, if found"\
@@ -93,9 +93,9 @@ OPTHELP=("this help"\
  "list xml schemas and module names"\
  "generate __init__.py with modules list"\
  "multi version (append pyxb version to file names)"\
+ "copy file to module path (i.e. ~/10.0/l10n-italy/l10n_it_ade/"\
  "odoo module name (def='.')"\
  "do nothing (dry-run)"\
- "OCA compatible (convert numeric type to string)"\
  "do not apply pep8"\
  "silent mode"\
  "execute uri Agenzia delle Entrate"\
@@ -157,11 +157,18 @@ if [ -n "$opt_ginit" ]; then
   gen_init "$opt_ginit"
   exit 0
 fi
-cmd=
-mdl=
+pyxbgen_ver=$($PYXBGEN_BIN --version|grep -Eo "[0-9.]+")
+pyxb_ver=$(pip show pyxb 2>/dev/null|grep "^Version"|grep -Eo "[0-9.]+")
+if [ "$pyxbgen_ver" != "$pyxb_ver" ]; then
+  echo "Version mismatch"
+  echo "pyxb version is $pyxb_ver  "
+  echo "$PYXBGEN_PY version is $pyxbgen_ver"
+  exit 1
+fi
+echo "PYXB generator $__version__ by pyxb $pyxb_ver"
+FMLIST=
+MDL=
 grpl=
-OCA_binding=
-if [ $opt_OCA -ne 0 ]; then OCA_binding="OCA"; fi
 BINDINGS=$TDIR/bindings
 SCHEMAS=../data
 VALID_COLOR="\e[0;92;40m"
@@ -170,6 +177,25 @@ NOP_COLOR="\e[0m"
 if [ "$PWD" != "$TDIR" ]; then
   [ $opt_verbose -ne 0 ] && echo "\$ cd $TDIR"
   cd $TDIR
+fi
+if [ -n "$opt_odoo" ]; then
+  if [ ! -d $opt_odoo ]; then
+    echo "Invalid path $opt_odoo!"
+    exit 1
+  fi
+  for f in pyxbgen.sh pyxbgen.py z0librc; do
+    echo "\$ cp $f $opt_odoo"
+    cp $f $opt_odoo
+  done
+  for f in pyxbgen pyxbdump pyxbwsdl; do
+    if [ -f $opt_odoo/$f ]; then
+      echo "\$ rm -f $opt_odoo/$f"
+      rm -f $opt_odoo/$f
+    fi
+  done
+  echo "\$ cp bindings/* $opt_odoo/bindings/"
+  cp bindings/* $opt_odoo/bindings/
+  exit 0
 fi
 if [ $opt_list -eq 0 ]; then
    if [ -d $BINDINGS.bak -a ! -f $BINDINGS.bak/_ds.py  -a ! -f $BINDINGS.bak/_cm.py ]; then
@@ -243,8 +269,8 @@ for d in $SCHEMAS/*; do
             else
               [[ $grpl =~ $grp ]] && echo "Schema $_xsd may conflict with prior schema by $grp"
               grpl="$grpl $grp"
-              mdl="$mdl $mdn"
-              cmd="-u $f -m $mdn $cmd"
+              MDL="$MDL $mdn"
+              FMLIST="-u $f -m $mdn $FMLIST"
             fi
             break
           fi
@@ -254,22 +280,21 @@ for d in $SCHEMAS/*; do
     done
   fi
 done
-cmd="$PYXBGEN_BIN $cmd --archive-to-file=./ade.wxs"
+cmd="$PYXBGEN_BIN $FMLIST --archive-to-file=./ade.wxs"
 if [ $opt_list -eq 0 ]; then
-  pyxb_ver=$(pip show pyxb 2>/dev/null|grep "^Version"|grep -Eo "[0-9.]+")
   [ $opt_verbose -ne 0 ] && echo "\$ $cmd"
   [ $opt_dry_run -ne 0 ] || eval $cmd
-  echo "$(readlink -f $0) -I ${mdl// /,}"
-  gen_init "$mdl"
-  for f in _cm _ds $mdl; do
+  echo "$(readlink -f $0) -I ${MDL// /,}"
+  gen_init "$MDL"
+  for f in _cm _ds $MDL; do
     fn=$f.py
     if [ ! -f $fn ]; then
       echo "File $fn not found!"
-      echo "Cannot execute $PYXBGEN_PY $fn $SCHEMAS $OCA_binding"
+      echo "Cannot execute $PYXBGEN_PY $fn $SCHEMAS $FMLIST"
     else
-      [ $opt_verbose -ne 0 ] && echo "\$ $PYXBGEN_PY $fn $SCHEMAS $OCA_binding"
+      [ $opt_verbose -ne 0 ] && echo "\$ $PYXBGEN_PY $fn $SCHEMAS \"$FMLIST\""
       [ $opt_dry_run -ne 0 -a $opt_keep -ne 0 ] || cp $fn $fn.bak
-      [ $opt_dry_run -ne 0 ] || eval $PYXBGEN_PY $fn $SCHEMAS "$OCA_binding"
+      [ $opt_dry_run -ne 0 ] || eval $PYXBGEN_PY $fn $SCHEMAS "$FMLIST"
       if [ $opt_nopep8 -eq 0 ]; then
         [ $opt_verbose -ne 0 ] && echo "\$ $TOPEP8 $fn"
         [ $opt_dry_run -ne 0 ] || eval $TOPEP8 $fn

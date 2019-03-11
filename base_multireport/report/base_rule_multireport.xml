@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+
         <report
             id="account_invoice"
             model="account.invoice"
@@ -21,5 +21,5 @@
             attachment_use="False"
             attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
         />
-    </data>
-</openerp>
+
+</odoo>

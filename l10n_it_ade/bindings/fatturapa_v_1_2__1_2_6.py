@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 # ./fatturapa_v_1_2.py
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2019-02-25 07:50:11.728229 by PyXB version 1.2.6 using Python 2.7.5.final.0
+# Generated
+# 2019-03-07 08:00:44.783900 by PyXB version 1.2.6 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 from __future__ import unicode_literals
-from . import _ds as _ImportedBinding__ds
 import logging
 import io
+import sys
 _logger = logging.getLogger(__name__)
 try:
     import pyxb
@@ -20,9 +21,10 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
+
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
-    'urn:uuid:8f81a408-38c9-11e9-a049-96000015ac23')
+    'urn:uuid:b0f6aa7c-40a6-11e9-880a-96000015ac23')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
@@ -30,15 +32,19 @@ _PyXBVersion = '1.2.6'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
+
 # A holder for module-level binding classes so we can access them from
 # inside class definitions where property names may conflict.
 _module_typeBindings = pyxb.utils.utility.Object()
 
 # Import bindings for namespaces imported into schema
+from . import _ds as _ImportedBinding__ds
 try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
+
+SCHEMA_FILE = '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd'
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
@@ -46,7 +52,6 @@ Namespace = pyxb.namespace.NamespaceForURI(
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 _Namespace_ds = _ImportedBinding__ds.Namespace
 _Namespace_ds.configureCategories(['typeBinding', 'elementBinding'])
-
 
 def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
     """Parse the given XML and use the document element to create a
@@ -69,7 +74,8 @@ def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
 
     if pyxb.XMLStyle_saxer != pyxb._XMLStyle:
         dom = pyxb.utils.domutils.StringToDOM(xml_text)
-        return CreateFromDOM(dom.documentElement, default_namespace=default_namespace)
+        return CreateFromDOM(
+            dom.documentElement, default_namespace=default_namespace)
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     saxer = pyxb.binding.saxer.make_parser(
@@ -93,15 +99,16 @@ def CreateFromDOM(node, default_namespace=None):
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, default_namespace)
 
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceDestinatarioType
-class CodiceDestinatarioType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceDestinatarioType
+class CodiceDestinatarioType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CodiceDestinatarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 55, 2)
+        SCHEMA_FILE, 55, 2)
     _Documentation = None
 
 
@@ -112,39 +119,38 @@ Namespace.addCategoryObject(
     'typeBinding', 'CodiceDestinatarioType', CodiceDestinatarioType)
 _module_typeBindings.CodiceDestinatarioType = CodiceDestinatarioType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceType
-
-
-class CodiceType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceType
+class CodiceType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 66, 2)
+        SCHEMA_FILE, 66, 2)
     _Documentation = None
 
 
-CodiceType._CF_minLength = pyxb.binding.facets.CF_minLength(
-    value=pyxb.binding.datatypes.nonNegativeInteger(1))
 CodiceType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(28))
-CodiceType._InitializeFacetMap(CodiceType._CF_minLength,
-                               CodiceType._CF_maxLength)
+CodiceType._CF_minLength = pyxb.binding.facets.CF_minLength(
+    value=pyxb.binding.datatypes.nonNegativeInteger(1))
+CodiceType._InitializeFacetMap(CodiceType._CF_maxLength,
+                               CodiceType._CF_minLength)
 Namespace.addCategoryObject('typeBinding', 'CodiceType', CodiceType)
 _module_typeBindings.CodiceType = CodiceType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FormatoTrasmissioneType
-
-
-class FormatoTrasmissioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FormatoTrasmissioneType
+class FormatoTrasmissioneType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FormatoTrasmissioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 72, 2)
+        SCHEMA_FILE, 72, 2)
     _Documentation = None
 
 
@@ -156,23 +162,26 @@ FormatoTrasmissioneType.FPR12 = FormatoTrasmissioneType._CF_enumeration.addEnume
     unicode_value='FPR12', tag='FPR12')
 FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(5))
-FormatoTrasmissioneType._InitializeFacetMap(FormatoTrasmissioneType._CF_enumeration,
-                                            FormatoTrasmissioneType._CF_length)
+FormatoTrasmissioneType._InitializeFacetMap(
+    FormatoTrasmissioneType._CF_enumeration,
+    FormatoTrasmissioneType._CF_length)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'FormatoTrasmissioneType', FormatoTrasmissioneType)
 _module_typeBindings.FormatoTrasmissioneType = FormatoTrasmissioneType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CausalePagamentoType
-
-
-class CausalePagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CausalePagamentoType
+class CausalePagamentoType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CausalePagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 161, 2)
+        SCHEMA_FILE, 161, 2)
     _Documentation = None
 
 
@@ -237,17 +246,17 @@ Namespace.addCategoryObject(
     'typeBinding', 'CausalePagamentoType', CausalePagamentoType)
 _module_typeBindings.CausalePagamentoType = CausalePagamentoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoScontoMaggiorazioneType
-
-
-class TipoScontoMaggiorazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoScontoMaggiorazioneType
+class TipoScontoMaggiorazioneType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'TipoScontoMaggiorazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 193, 2)
+        SCHEMA_FILE, 193, 2)
     _Documentation = None
 
 
@@ -259,22 +268,25 @@ TipoScontoMaggiorazioneType.MG = TipoScontoMaggiorazioneType._CF_enumeration.add
     unicode_value='MG', tag='MG')
 TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
-TipoScontoMaggiorazioneType._InitializeFacetMap(TipoScontoMaggiorazioneType._CF_enumeration,
-                                                TipoScontoMaggiorazioneType._CF_length)
+TipoScontoMaggiorazioneType._InitializeFacetMap(
+    TipoScontoMaggiorazioneType._CF_enumeration,
+    TipoScontoMaggiorazioneType._CF_length)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'TipoScontoMaggiorazioneType', TipoScontoMaggiorazioneType)
 _module_typeBindings.TipoScontoMaggiorazioneType = TipoScontoMaggiorazioneType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Art73Type
-
-
-class Art73Type (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Art73Type
+class Art73Type(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Art73Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 212, 2)
+        SCHEMA_FILE, 212, 2)
     _Documentation = None
 
 
@@ -289,16 +301,16 @@ Art73Type._InitializeFacetMap(Art73Type._CF_enumeration,
 Namespace.addCategoryObject('typeBinding', 'Art73Type', Art73Type)
 _module_typeBindings.Art73Type = Art73Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCassaType
-
-
-class TipoCassaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCassaType
+class TipoCassaType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoCassaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 224, 2)
+        SCHEMA_FILE, 224, 2)
     _Documentation = None
 
 
@@ -355,16 +367,16 @@ TipoCassaType._InitializeFacetMap(TipoCassaType._CF_enumeration,
 Namespace.addCategoryObject('typeBinding', 'TipoCassaType', TipoCassaType)
 _module_typeBindings.TipoCassaType = TipoCassaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoDocumentoType
-
-
-class TipoDocumentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoDocumentoType
+class TipoDocumentoType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoDocumentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 383, 2)
+        SCHEMA_FILE, 383, 2)
     _Documentation = None
 
 
@@ -392,16 +404,16 @@ Namespace.addCategoryObject(
     'typeBinding', 'TipoDocumentoType', TipoDocumentoType)
 _module_typeBindings.TipoDocumentoType = TipoDocumentoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoRitenutaType
-
-
-class TipoRitenutaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoRitenutaType
+class TipoRitenutaType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoRitenutaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 423, 2)
+        SCHEMA_FILE, 423, 2)
     _Documentation = None
 
 
@@ -415,21 +427,19 @@ TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_enumeration,
                                      TipoRitenutaType._CF_length)
-Namespace.addCategoryObject(
-    'typeBinding', 'TipoRitenutaType', TipoRitenutaType)
+Namespace.addCategoryObject('typeBinding', 'TipoRitenutaType', TipoRitenutaType)
 _module_typeBindings.TipoRitenutaType = TipoRitenutaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoNumeroLineaType
-
-
-class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoNumeroLineaType
+class RiferimentoNumeroLineaType(pyxb.binding.datatypes.integer):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RiferimentoNumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 454, 2)
+        SCHEMA_FILE, 454, 2)
     _Documentation = None
 
 
@@ -437,23 +447,26 @@ RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusiv
     value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_minInclusive,
-                                               RiferimentoNumeroLineaType._CF_maxInclusive)
+RiferimentoNumeroLineaType._InitializeFacetMap(
+    RiferimentoNumeroLineaType._CF_minInclusive,
+    RiferimentoNumeroLineaType._CF_maxInclusive)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'RiferimentoNumeroLineaType', RiferimentoNumeroLineaType)
 _module_typeBindings.RiferimentoNumeroLineaType = RiferimentoNumeroLineaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SoggettoEmittenteType
-
-
-class SoggettoEmittenteType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SoggettoEmittenteType
+class SoggettoEmittenteType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'SoggettoEmittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 500, 2)
+        SCHEMA_FILE, 500, 2)
     _Documentation = None
 
 
@@ -471,16 +484,16 @@ Namespace.addCategoryObject(
     'typeBinding', 'SoggettoEmittenteType', SoggettoEmittenteType)
 _module_typeBindings.SoggettoEmittenteType = SoggettoEmittenteType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RegimeFiscaleType
-
-
-class RegimeFiscaleType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RegimeFiscaleType
+class RegimeFiscaleType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RegimeFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 542, 2)
+        SCHEMA_FILE, 542, 2)
     _Documentation = None
 
 
@@ -530,17 +543,17 @@ Namespace.addCategoryObject(
     'typeBinding', 'RegimeFiscaleType', RegimeFiscaleType)
 _module_typeBindings.RegimeFiscaleType = RegimeFiscaleType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CondizioniPagamentoType
-
-
-class CondizioniPagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CondizioniPagamentoType
+class CondizioniPagamentoType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CondizioniPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 767, 2)
+        SCHEMA_FILE, 767, 2)
     _Documentation = None
 
 
@@ -556,24 +569,27 @@ CondizioniPagamentoType.TP02 = CondizioniPagamentoType._CF_enumeration.addEnumer
     unicode_value='TP02', tag='TP02')
 CondizioniPagamentoType.TP03 = CondizioniPagamentoType._CF_enumeration.addEnumeration(
     unicode_value='TP03', tag='TP03')
-CondizioniPagamentoType._InitializeFacetMap(CondizioniPagamentoType._CF_minLength,
-                                            CondizioniPagamentoType._CF_maxLength,
-                                            CondizioniPagamentoType._CF_enumeration)
+CondizioniPagamentoType._InitializeFacetMap(
+    CondizioniPagamentoType._CF_minLength,
+    CondizioniPagamentoType._CF_maxLength,
+    CondizioniPagamentoType._CF_enumeration)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'CondizioniPagamentoType', CondizioniPagamentoType)
 _module_typeBindings.CondizioniPagamentoType = CondizioniPagamentoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ModalitaPagamentoType
-
-
-class ModalitaPagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ModalitaPagamentoType
+class ModalitaPagamentoType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'ModalitaPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 813, 2)
+        SCHEMA_FILE, 813, 2)
     _Documentation = None
 
 
@@ -631,36 +647,33 @@ Namespace.addCategoryObject(
     'typeBinding', 'ModalitaPagamentoType', ModalitaPagamentoType)
 _module_typeBindings.ModalitaPagamentoType = ModalitaPagamentoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IBANType
-
-
-class IBANType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IBANType
+class IBANType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IBANType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 928, 2)
+        SCHEMA_FILE, 928, 2)
     _Documentation = None
 
 
 IBANType._CF_pattern = pyxb.binding.facets.CF_pattern()
-IBANType._CF_pattern.addPattern(
-    pattern='[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{11,30}')
+IBANType._CF_pattern.addPattern(pattern='[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{11,30}')
 IBANType._InitializeFacetMap(IBANType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'IBANType', IBANType)
 _module_typeBindings.IBANType = IBANType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BICType
-
-
-class BICType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BICType
+class BICType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'BICType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 933, 2)
+        SCHEMA_FILE, 933, 2)
     _Documentation = None
 
 
@@ -671,16 +684,16 @@ BICType._InitializeFacetMap(BICType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'BICType', BICType)
 _module_typeBindings.BICType = BICType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RitenutaType
-
-
-class RitenutaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RitenutaType
+class RitenutaType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RitenutaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1005, 2)
+        SCHEMA_FILE, 1005, 2)
     _Documentation = None
 
 
@@ -695,17 +708,16 @@ RitenutaType._InitializeFacetMap(RitenutaType._CF_enumeration,
 Namespace.addCategoryObject('typeBinding', 'RitenutaType', RitenutaType)
 _module_typeBindings.RitenutaType = RitenutaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EsigibilitaIVAType
-
-
-class EsigibilitaIVAType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EsigibilitaIVAType
+class EsigibilitaIVAType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'EsigibilitaIVAType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EsigibilitaIVAType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1029, 2)
+        SCHEMA_FILE, 1029, 2)
     _Documentation = None
 
 
@@ -724,20 +736,22 @@ EsigibilitaIVAType.S = EsigibilitaIVAType._CF_enumeration.addEnumeration(
 EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_minLength,
                                        EsigibilitaIVAType._CF_maxLength,
                                        EsigibilitaIVAType._CF_enumeration)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'EsigibilitaIVAType', EsigibilitaIVAType)
 _module_typeBindings.EsigibilitaIVAType = EsigibilitaIVAType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NaturaType
-
-
-class NaturaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple
+# type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NaturaType
+class NaturaType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NaturaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1050, 2)
+        SCHEMA_FILE, 1050, 2)
     _Documentation = None
 
 
@@ -761,16 +775,15 @@ NaturaType._InitializeFacetMap(NaturaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'NaturaType', NaturaType)
 _module_typeBindings.NaturaType = NaturaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscaleType
-
-
-class CodiceFiscaleType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscaleType
+class CodiceFiscaleType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1089, 2)
+        SCHEMA_FILE, 1089, 2)
     _Documentation = None
 
 
@@ -781,17 +794,16 @@ Namespace.addCategoryObject(
     'typeBinding', 'CodiceFiscaleType', CodiceFiscaleType)
 _module_typeBindings.CodiceFiscaleType = CodiceFiscaleType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscalePFType
-
-
-class CodiceFiscalePFType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscalePFType
+class CodiceFiscalePFType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CodiceFiscalePFType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1094, 2)
+        SCHEMA_FILE, 1094, 2)
     _Documentation = None
 
 
@@ -802,38 +814,37 @@ Namespace.addCategoryObject(
     'typeBinding', 'CodiceFiscalePFType', CodiceFiscalePFType)
 _module_typeBindings.CodiceFiscalePFType = CodiceFiscalePFType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodEORIType
-
-
-class CodEORIType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodEORIType
+class CodEORIType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodEORIType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1099, 2)
+        SCHEMA_FILE, 1099, 2)
     _Documentation = None
 
 
-CodEORIType._CF_minLength = pyxb.binding.facets.CF_minLength(
-    value=pyxb.binding.datatypes.nonNegativeInteger(13))
 CodEORIType._CF_maxLength = pyxb.binding.facets.CF_maxLength(
     value=pyxb.binding.datatypes.nonNegativeInteger(17))
-CodEORIType._InitializeFacetMap(CodEORIType._CF_minLength,
-                                CodEORIType._CF_maxLength)
+CodEORIType._CF_minLength = pyxb.binding.facets.CF_minLength(
+    value=pyxb.binding.datatypes.nonNegativeInteger(13))
+CodEORIType._InitializeFacetMap(CodEORIType._CF_maxLength,
+                                CodEORIType._CF_minLength)
 Namespace.addCategoryObject('typeBinding', 'CodEORIType', CodEORIType)
 _module_typeBindings.CodEORIType = CodEORIType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SocioUnicoType
-
-
-class SocioUnicoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SocioUnicoType
+class SocioUnicoType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SocioUnicoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1105, 2)
+        SCHEMA_FILE, 1105, 2)
     _Documentation = None
 
 
@@ -847,17 +858,17 @@ SocioUnicoType._InitializeFacetMap(SocioUnicoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'SocioUnicoType', SocioUnicoType)
 _module_typeBindings.SocioUnicoType = SocioUnicoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}StatoLiquidazioneType
-
-
-class StatoLiquidazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}StatoLiquidazioneType
+class StatoLiquidazioneType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'StatoLiquidazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1119, 2)
+        SCHEMA_FILE, 1119, 2)
     _Documentation = None
 
 
@@ -867,23 +878,22 @@ StatoLiquidazioneType.LS = StatoLiquidazioneType._CF_enumeration.addEnumeration(
     unicode_value='LS', tag='LS')
 StatoLiquidazioneType.LN = StatoLiquidazioneType._CF_enumeration.addEnumeration(
     unicode_value='LN', tag='LN')
-StatoLiquidazioneType._InitializeFacetMap(
-    StatoLiquidazioneType._CF_enumeration)
+StatoLiquidazioneType._InitializeFacetMap(StatoLiquidazioneType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding', 'StatoLiquidazioneType', StatoLiquidazioneType)
 _module_typeBindings.StatoLiquidazioneType = StatoLiquidazioneType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCessionePrestazioneType
-
-
-class TipoCessionePrestazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCessionePrestazioneType
+class TipoCessionePrestazioneType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'TipoCessionePrestazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1133, 2)
+        SCHEMA_FILE, 1133, 2)
     _Documentation = None
 
 
@@ -899,22 +909,24 @@ TipoCessionePrestazioneType.AC = TipoCessionePrestazioneType._CF_enumeration.add
     unicode_value='AC', tag='AC')
 TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(2))
-TipoCessionePrestazioneType._InitializeFacetMap(TipoCessionePrestazioneType._CF_enumeration,
-                                                TipoCessionePrestazioneType._CF_length)
+TipoCessionePrestazioneType._InitializeFacetMap(
+    TipoCessionePrestazioneType._CF_enumeration,
+    TipoCessionePrestazioneType._CF_length)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'TipoCessionePrestazioneType', TipoCessionePrestazioneType)
 _module_typeBindings.TipoCessionePrestazioneType = TipoCessionePrestazioneType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TitoloType
-
-
-class TitoloType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TitoloType
+class TitoloType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TitoloType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1158, 2)
+        SCHEMA_FILE, 1158, 2)
     _Documentation = None
 
 
@@ -927,16 +939,15 @@ TitoloType._InitializeFacetMap(TitoloType._CF_pattern,
 Namespace.addCategoryObject('typeBinding', 'TitoloType', TitoloType)
 _module_typeBindings.TitoloType = TitoloType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String10Type
-
-
-class String10Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String10Type
+class String10Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String10Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1164, 2)
+        SCHEMA_FILE, 1164, 2)
     _Documentation = None
 
 
@@ -946,16 +957,15 @@ String10Type._InitializeFacetMap(String10Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String10Type', String10Type)
 _module_typeBindings.String10Type = String10Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String15Type
-
-
-class String15Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String15Type
+class String15Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String15Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1169, 2)
+        SCHEMA_FILE, 1169, 2)
     _Documentation = None
 
 
@@ -965,16 +975,15 @@ String15Type._InitializeFacetMap(String15Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String15Type', String15Type)
 _module_typeBindings.String15Type = String15Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String20Type
-
-
-class String20Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String20Type
+class String20Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String20Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1174, 2)
+        SCHEMA_FILE, 1174, 2)
     _Documentation = None
 
 
@@ -984,16 +993,15 @@ String20Type._InitializeFacetMap(String20Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String20Type', String20Type)
 _module_typeBindings.String20Type = String20Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String35Type
-
-
-class String35Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String35Type
+class String35Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String35Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1179, 2)
+        SCHEMA_FILE, 1179, 2)
     _Documentation = None
 
 
@@ -1003,16 +1011,15 @@ String35Type._InitializeFacetMap(String35Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String35Type', String35Type)
 _module_typeBindings.String35Type = String35Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60Type
-
-
-class String60Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60Type
+class String60Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String60Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1184, 2)
+        SCHEMA_FILE, 1184, 2)
     _Documentation = None
 
 
@@ -1022,16 +1029,15 @@ String60Type._InitializeFacetMap(String60Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String60Type', String60Type)
 _module_typeBindings.String60Type = String60Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80Type
-
-
-class String80Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80Type
+class String80Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String80Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1189, 2)
+        SCHEMA_FILE, 1189, 2)
     _Documentation = None
 
 
@@ -1041,16 +1047,15 @@ String80Type._InitializeFacetMap(String80Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String80Type', String80Type)
 _module_typeBindings.String80Type = String80Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100Type
-
-
-class String100Type (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100Type
+class String100Type(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String100Type')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1194, 2)
+        SCHEMA_FILE, 1194, 2)
     _Documentation = None
 
 
@@ -1060,16 +1065,15 @@ String100Type._InitializeFacetMap(String100Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String100Type', String100Type)
 _module_typeBindings.String100Type = String100Type
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60LatinType
-
-
-class String60LatinType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60LatinType
+class String60LatinType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String60LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1199, 2)
+        SCHEMA_FILE, 1199, 2)
     _Documentation = None
 
 
@@ -1081,16 +1085,15 @@ Namespace.addCategoryObject(
     'typeBinding', 'String60LatinType', String60LatinType)
 _module_typeBindings.String60LatinType = String60LatinType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80LatinType
-
-
-class String80LatinType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80LatinType
+class String80LatinType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String80LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1204, 2)
+        SCHEMA_FILE, 1204, 2)
     _Documentation = None
 
 
@@ -1102,17 +1105,15 @@ Namespace.addCategoryObject(
     'typeBinding', 'String80LatinType', String80LatinType)
 _module_typeBindings.String80LatinType = String80LatinType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100LatinType
-
-
-class String100LatinType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100LatinType
+class String100LatinType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'String100LatinType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String100LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1209, 2)
+        SCHEMA_FILE, 1209, 2)
     _Documentation = None
 
 
@@ -1124,17 +1125,15 @@ Namespace.addCategoryObject(
     'typeBinding', 'String100LatinType', String100LatinType)
 _module_typeBindings.String100LatinType = String100LatinType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String200LatinType
-
-
-class String200LatinType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String200LatinType
+class String200LatinType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'String200LatinType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String200LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1214, 2)
+        SCHEMA_FILE, 1214, 2)
     _Documentation = None
 
 
@@ -1146,17 +1145,16 @@ Namespace.addCategoryObject(
     'typeBinding', 'String200LatinType', String200LatinType)
 _module_typeBindings.String200LatinType = String200LatinType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String1000LatinType
-
-
-class String1000LatinType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String1000LatinType
+class String1000LatinType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'String1000LatinType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1219, 2)
+        SCHEMA_FILE, 1219, 2)
     _Documentation = None
 
 
@@ -1168,16 +1166,15 @@ Namespace.addCategoryObject(
     'typeBinding', 'String1000LatinType', String1000LatinType)
 _module_typeBindings.String1000LatinType = String1000LatinType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ProvinciaType
-
-
-class ProvinciaType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ProvinciaType
+class ProvinciaType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ProvinciaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1224, 2)
+        SCHEMA_FILE, 1224, 2)
     _Documentation = None
 
 
@@ -1187,16 +1184,15 @@ ProvinciaType._InitializeFacetMap(ProvinciaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'ProvinciaType', ProvinciaType)
 _module_typeBindings.ProvinciaType = ProvinciaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NazioneType
-
-
-class NazioneType (pyxb.binding.datatypes.string):
+# Atomic simple
+# type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NazioneType
+class NazioneType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1229, 2)
+        SCHEMA_FILE, 1229, 2)
     _Documentation = None
 
 
@@ -1206,16 +1202,15 @@ NazioneType._InitializeFacetMap(NazioneType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'NazioneType', NazioneType)
 _module_typeBindings.NazioneType = NazioneType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DivisaType
-
-
-class DivisaType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DivisaType
+class DivisaType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DivisaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1234, 2)
+        SCHEMA_FILE, 1234, 2)
     _Documentation = None
 
 
@@ -1225,16 +1220,15 @@ DivisaType._InitializeFacetMap(DivisaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DivisaType', DivisaType)
 _module_typeBindings.DivisaType = DivisaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoResaType
-
-
-class TipoResaType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoResaType
+class TipoResaType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoResaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1239, 2)
+        SCHEMA_FILE, 1239, 2)
     _Documentation = None
 
 
@@ -1244,36 +1238,34 @@ TipoResaType._InitializeFacetMap(TipoResaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TipoResaType', TipoResaType)
 _module_typeBindings.TipoResaType = TipoResaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroCivicoType
-
-
-class NumeroCivicoType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroCivicoType
+class NumeroCivicoType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroCivicoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1244, 2)
+        SCHEMA_FILE, 1244, 2)
     _Documentation = None
 
 
 NumeroCivicoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,8})')
 NumeroCivicoType._InitializeFacetMap(NumeroCivicoType._CF_pattern)
-Namespace.addCategoryObject(
-    'typeBinding', 'NumeroCivicoType', NumeroCivicoType)
+Namespace.addCategoryObject('typeBinding', 'NumeroCivicoType', NumeroCivicoType)
 _module_typeBindings.NumeroCivicoType = NumeroCivicoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BolloVirtualeType
-
-
-class BolloVirtualeType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BolloVirtualeType
+class BolloVirtualeType(
+    pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'BolloVirtualeType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1249, 2)
+        SCHEMA_FILE, 1249, 2)
     _Documentation = None
 
 
@@ -1286,16 +1278,15 @@ Namespace.addCategoryObject(
     'typeBinding', 'BolloVirtualeType', BolloVirtualeType)
 _module_typeBindings.BolloVirtualeType = BolloVirtualeType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TelFaxType
-
-
-class TelFaxType (pyxb.binding.datatypes.normalizedString):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TelFaxType
+class TelFaxType(pyxb.binding.datatypes.normalizedString):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TelFaxType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1254, 2)
+        SCHEMA_FILE, 1254, 2)
     _Documentation = None
 
 
@@ -1305,16 +1296,15 @@ TelFaxType._InitializeFacetMap(TelFaxType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TelFaxType', TelFaxType)
 _module_typeBindings.TelFaxType = TelFaxType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EmailType
-
-
-class EmailType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EmailType
+class EmailType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EmailType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1259, 2)
+        SCHEMA_FILE, 1259, 2)
     _Documentation = None
 
 
@@ -1327,19 +1317,20 @@ EmailType._CF_pattern.addPattern(pattern='.+@.+[.]+.+')
 EmailType._InitializeFacetMap(EmailType._CF_minLength,
                               EmailType._CF_maxLength,
                               EmailType._CF_pattern)
+
+
 Namespace.addCategoryObject('typeBinding', 'EmailType', EmailType)
 _module_typeBindings.EmailType = EmailType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}PesoType
-
-
-class PesoType (pyxb.binding.datatypes.decimal):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}PesoType
+class PesoType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'PesoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1267, 2)
+        SCHEMA_FILE, 1267, 2)
     _Documentation = None
 
 
@@ -1349,17 +1340,15 @@ PesoType._InitializeFacetMap(PesoType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'PesoType', PesoType)
 _module_typeBindings.PesoType = PesoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount8DecimalType
-
-
-class Amount8DecimalType (pyxb.binding.datatypes.decimal):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount8DecimalType
+class Amount8DecimalType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'Amount8DecimalType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Amount8DecimalType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1272, 2)
+        SCHEMA_FILE, 1272, 2)
     _Documentation = None
 
 
@@ -1371,17 +1360,15 @@ Namespace.addCategoryObject(
     'typeBinding', 'Amount8DecimalType', Amount8DecimalType)
 _module_typeBindings.Amount8DecimalType = Amount8DecimalType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount2DecimalType
-
-
-class Amount2DecimalType (pyxb.binding.datatypes.decimal):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount2DecimalType
+class Amount2DecimalType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'Amount2DecimalType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Amount2DecimalType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1277, 2)
+        SCHEMA_FILE, 1277, 2)
     _Documentation = None
 
 
@@ -1393,39 +1380,39 @@ Namespace.addCategoryObject(
     'typeBinding', 'Amount2DecimalType', Amount2DecimalType)
 _module_typeBindings.Amount2DecimalType = Amount2DecimalType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RateType
-
-
-class RateType (pyxb.binding.datatypes.decimal):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RateType
+class RateType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RateType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1282, 2)
+        SCHEMA_FILE, 1282, 2)
     _Documentation = None
 
 
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
-RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
-    value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
-RateType._InitializeFacetMap(RateType._CF_pattern,
-                             RateType._CF_maxInclusive)
+# Follow statement ignored due conversion decimal > string
+# RateType._CF_maxInclusive =
+# pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
+# RateType._InitializeFacetMap(RateType._CF_pattern,
+#    RateType._CF_maxInclusive)
+RateType._InitializeFacetMap(RateType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoFaseType
-
-
-class RiferimentoFaseType (pyxb.binding.datatypes.integer):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoFaseType
+class RiferimentoFaseType(pyxb.binding.datatypes.integer):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RiferimentoFaseType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1288, 2)
+        SCHEMA_FILE, 1288, 2)
     _Documentation = None
 
 
@@ -1434,21 +1421,20 @@ RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
 RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_minInclusive,
-                                        RiferimentoFaseType._CF_maxInclusive)
+   RiferimentoFaseType._CF_maxInclusive)
 Namespace.addCategoryObject(
     'typeBinding', 'RiferimentoFaseType', RiferimentoFaseType)
 _module_typeBindings.RiferimentoFaseType = RiferimentoFaseType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroColliType
-
-
-class NumeroColliType (pyxb.binding.datatypes.integer):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroColliType
+class NumeroColliType(pyxb.binding.datatypes.integer):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroColliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1294, 2)
+        SCHEMA_FILE, 1294, 2)
     _Documentation = None
 
 
@@ -1457,20 +1443,19 @@ NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
 NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
 NumeroColliType._InitializeFacetMap(NumeroColliType._CF_minInclusive,
-                                    NumeroColliType._CF_maxInclusive)
+   NumeroColliType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroColliType', NumeroColliType)
 _module_typeBindings.NumeroColliType = NumeroColliType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroLineaType
-
-
-class NumeroLineaType (pyxb.binding.datatypes.integer):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroLineaType
+class NumeroLineaType(pyxb.binding.datatypes.integer):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1300, 2)
+        SCHEMA_FILE, 1300, 2)
     _Documentation = None
 
 
@@ -1479,20 +1464,19 @@ NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(
 NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
 NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_minInclusive,
-                                    NumeroLineaType._CF_maxInclusive)
+   NumeroLineaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroLineaType', NumeroLineaType)
 _module_typeBindings.NumeroLineaType = NumeroLineaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CAPType
-
-
-class CAPType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CAPType
+class CAPType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CAPType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1306, 2)
+        SCHEMA_FILE, 1306, 2)
     _Documentation = None
 
 
@@ -1502,16 +1486,15 @@ CAPType._InitializeFacetMap(CAPType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CAPType', CAPType)
 _module_typeBindings.CAPType = CAPType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ABIType
-
-
-class ABIType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ABIType
+class ABIType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ABIType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1311, 2)
+        SCHEMA_FILE, 1311, 2)
     _Documentation = None
 
 
@@ -1521,16 +1504,15 @@ ABIType._InitializeFacetMap(ABIType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'ABIType', ABIType)
 _module_typeBindings.ABIType = ABIType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CABType
-
-
-class CABType (pyxb.binding.datatypes.string):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CABType
+class CABType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CABType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1316, 2)
+        SCHEMA_FILE, 1316, 2)
     _Documentation = None
 
 
@@ -1540,17 +1522,16 @@ CABType._InitializeFacetMap(CABType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CABType', CABType)
 _module_typeBindings.CABType = CABType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}GiorniTerminePagamentoType
-
-
-class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}GiorniTerminePagamentoType
+class GiorniTerminePagamentoType(pyxb.binding.datatypes.integer):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'GiorniTerminePagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1321, 2)
+        SCHEMA_FILE, 1321, 2)
     _Documentation = None
 
 
@@ -1558,22 +1539,24 @@ GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusiv
     value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
 GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(
     value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
-GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_minInclusive,
-                                               GiorniTerminePagamentoType._CF_maxInclusive)
+GiorniTerminePagamentoType._InitializeFacetMap(
+    GiorniTerminePagamentoType._CF_minInclusive,
+    GiorniTerminePagamentoType._CF_maxInclusive)
+
+
 Namespace.addCategoryObject(
     'typeBinding', 'GiorniTerminePagamentoType', GiorniTerminePagamentoType)
 _module_typeBindings.GiorniTerminePagamentoType = GiorniTerminePagamentoType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}QuantitaType
-
-
-class QuantitaType (pyxb.binding.datatypes.decimal):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}QuantitaType
+class QuantitaType(pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'QuantitaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1327, 2)
+        SCHEMA_FILE, 1327, 2)
     _Documentation = None
 
 
@@ -1583,16 +1566,15 @@ QuantitaType._InitializeFacetMap(QuantitaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'QuantitaType', QuantitaType)
 _module_typeBindings.QuantitaType = QuantitaType
 
-# Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DataFatturaType
-
-
-class DataFatturaType (pyxb.binding.datatypes.date):
+# Atomic simple type:
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DataFatturaType
+class DataFatturaType(pyxb.binding.datatypes.date):
 
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DataFatturaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1332, 2)
+        SCHEMA_FILE, 1332, 2)
     _Documentation = None
 
 
@@ -1602,10 +1584,9 @@ DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 _module_typeBindings.DataFatturaType = DataFatturaType
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY
-
-
-class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY
+class FatturaElettronicaHeaderType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -1613,49 +1594,55 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaElettronicaHeaderType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 23, 2)
+        SCHEMA_FILE, 23, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element DatiTrasmissione uses Python identifier DatiTrasmissione
-    __DatiTrasmissione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiTrasmissione'), 'DatiTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_DatiTrasmissione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 25, 6), )
+    __DatiTrasmissione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiTrasmissione'), 'DatiTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_DatiTrasmissione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 25, 6), )
 
     DatiTrasmissione = property(
         __DatiTrasmissione.value, __DatiTrasmissione.set, None, None)
 
     # Element CedentePrestatore uses Python identifier CedentePrestatore
-    __CedentePrestatore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CedentePrestatore'), 'CedentePrestatore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CedentePrestatore', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 26, 6), )
+    __CedentePrestatore = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CedentePrestatore'), 'CedentePrestatore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CedentePrestatore', False, pyxb.utils.utility.Location(SCHEMA_FILE, 26, 6), )
 
     CedentePrestatore = property(
         __CedentePrestatore.value, __CedentePrestatore.set, None, None)
 
     # Element RappresentanteFiscale uses Python identifier RappresentanteFiscale
-    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_RappresentanteFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 27, 6), )
+    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_RappresentanteFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 27, 6), )
 
     RappresentanteFiscale = property(
         __RappresentanteFiscale.value, __RappresentanteFiscale.set, None, None)
 
     # Element CessionarioCommittente uses Python identifier CessionarioCommittente
-    __CessionarioCommittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'), 'CessionarioCommittente',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CessionarioCommittente', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 28, 6), )
+    __CessionarioCommittente = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CessionarioCommittente'), 'CessionarioCommittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CessionarioCommittente', False, pyxb.utils.utility.Location(SCHEMA_FILE, 28, 6), )
 
     CessionarioCommittente = property(
         __CessionarioCommittente.value, __CessionarioCommittente.set, None, None)
 
     # Element TerzoIntermediarioOSoggettoEmittente uses Python identifier TerzoIntermediarioOSoggettoEmittente
-    __TerzoIntermediarioOSoggettoEmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente'), 'TerzoIntermediarioOSoggettoEmittente',
-                                                                                     '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_TerzoIntermediarioOSoggettoEmittente', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 29, 6), )
+    __TerzoIntermediarioOSoggettoEmittente = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TerzoIntermediarioOSoggettoEmittente'), 'TerzoIntermediarioOSoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_TerzoIntermediarioOSoggettoEmittente', False, pyxb.utils.utility.Location(SCHEMA_FILE, 29, 6), )
 
     TerzoIntermediarioOSoggettoEmittente = property(
         __TerzoIntermediarioOSoggettoEmittente.value, __TerzoIntermediarioOSoggettoEmittente.set, None, None)
 
     # Element SoggettoEmittente uses Python identifier SoggettoEmittente
-    __SoggettoEmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'SoggettoEmittente'), 'SoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_SoggettoEmittente', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 30, 6), )
+    __SoggettoEmittente = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'SoggettoEmittente'), 'SoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_SoggettoEmittente', False, pyxb.utils.utility.Location(SCHEMA_FILE, 30, 6), )
 
     SoggettoEmittente = property(
         __SoggettoEmittente.value, __SoggettoEmittente.set, None, None)
@@ -1665,7 +1652,8 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
         __CedentePrestatore.name(): __CedentePrestatore,
         __RappresentanteFiscale.name(): __RappresentanteFiscale,
         __CessionarioCommittente.name(): __CessionarioCommittente,
-        __TerzoIntermediarioOSoggettoEmittente.name(): __TerzoIntermediarioOSoggettoEmittente,
+        __TerzoIntermediarioOSoggettoEmittente.name(
+            ): __TerzoIntermediarioOSoggettoEmittente,
         __SoggettoEmittente.name(): __SoggettoEmittente
     })
     _AttributeMap.update({
@@ -1678,8 +1666,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'FatturaElettronicaHeaderType', FatturaElettronicaHeaderType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaBodyType with content type ELEMENT_ONLY
-class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaBodyType with content type ELEMENT_ONLY
+class FatturaElettronicaBodyType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaBodyType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -1687,50 +1676,55 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaElettronicaBodyType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 33, 2)
+        SCHEMA_FILE, 33, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element DatiGenerali uses Python identifier DatiGenerali
-    __DatiGenerali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiGenerali'), 'DatiGenerali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiGenerali', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 35, 6), )
+    __DatiGenerali = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiGenerali'), 'DatiGenerali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiGenerali', False, pyxb.utils.utility.Location(SCHEMA_FILE, 35, 6), )
 
-    DatiGenerali = property(__DatiGenerali.value,
-                            __DatiGenerali.set, None, None)
+    DatiGenerali = property(
+        __DatiGenerali.value, __DatiGenerali.set, None, None)
 
     # Element DatiBeniServizi uses Python identifier DatiBeniServizi
-    __DatiBeniServizi = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiBeniServizi'), 'DatiBeniServizi', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiBeniServizi', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 36, 6), )
+    __DatiBeniServizi = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiBeniServizi'), 'DatiBeniServizi', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiBeniServizi', False, pyxb.utils.utility.Location(SCHEMA_FILE, 36, 6), )
 
     DatiBeniServizi = property(
         __DatiBeniServizi.value, __DatiBeniServizi.set, None, None)
 
     # Element DatiVeicoli uses Python identifier DatiVeicoli
-    __DatiVeicoli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiVeicoli'), 'DatiVeicoli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiVeicoli', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 37, 6), )
+    __DatiVeicoli = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiVeicoli'), 'DatiVeicoli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiVeicoli', False, pyxb.utils.utility.Location(SCHEMA_FILE, 37, 6), )
 
     DatiVeicoli = property(__DatiVeicoli.value, __DatiVeicoli.set, None, None)
 
     # Element DatiPagamento uses Python identifier DatiPagamento
-    __DatiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiPagamento'), 'DatiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiPagamento', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 38, 6), )
+    __DatiPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiPagamento'), 'DatiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiPagamento', True, pyxb.utils.utility.Location(SCHEMA_FILE, 38, 6), )
 
-    DatiPagamento = property(__DatiPagamento.value,
-                             __DatiPagamento.set, None, None)
+    DatiPagamento = property(
+        __DatiPagamento.value, __DatiPagamento.set, None, None)
 
     # Element Allegati uses Python identifier Allegati
-    __Allegati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Allegati'), 'Allegati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_Allegati', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 39, 6), )
+    __Allegati = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Allegati'), 'Allegati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_Allegati', True, pyxb.utils.utility.Location(SCHEMA_FILE, 39, 6), )
 
     Allegati = property(__Allegati.value, __Allegati.set, None, None)
 
     _ElementMap.update({
-        __DatiGenerali.name(): __DatiGenerali,
-        __DatiBeniServizi.name(): __DatiBeniServizi,
-        __DatiVeicoli.name(): __DatiVeicoli,
-        __DatiPagamento.name(): __DatiPagamento,
-        __Allegati.name(): __Allegati
+        __DatiGenerali.name() : __DatiGenerali,
+        __DatiBeniServizi.name() : __DatiBeniServizi,
+        __DatiVeicoli.name() : __DatiVeicoli,
+        __DatiPagamento.name() : __DatiPagamento,
+        __Allegati.name() : __Allegati
     })
     _AttributeMap.update({
 
@@ -1742,8 +1736,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'FatturaElettronicaBodyType', FatturaElettronicaBodyType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasmissioneType with content type ELEMENT_ONLY
-class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasmissioneType with content type ELEMENT_ONLY
+class DatiTrasmissioneType(pyxb.binding.basis.complexTypeDefinition):
     """Blocco relativo ai dati di trasmissione della Fattura Elettronica"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -1751,49 +1746,55 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiTrasmissioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 42, 2)
+        SCHEMA_FILE, 42, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdTrasmittente uses Python identifier IdTrasmittente
-    __IdTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdTrasmittente'), 'IdTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_IdTrasmittente', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 47, 6), )
+    __IdTrasmittente = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdTrasmittente'), 'IdTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_IdTrasmittente', False, pyxb.utils.utility.Location(SCHEMA_FILE, 47, 6), )
 
-    IdTrasmittente = property(__IdTrasmittente.value,
-                              __IdTrasmittente.set, None, None)
+    IdTrasmittente = property(
+        __IdTrasmittente.value, __IdTrasmittente.set, None, None)
 
     # Element ProgressivoInvio uses Python identifier ProgressivoInvio
-    __ProgressivoInvio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ProgressivoInvio'), 'ProgressivoInvio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ProgressivoInvio', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 48, 6), )
+    __ProgressivoInvio = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ProgressivoInvio'), 'ProgressivoInvio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ProgressivoInvio', False, pyxb.utils.utility.Location(SCHEMA_FILE, 48, 6), )
 
     ProgressivoInvio = property(
         __ProgressivoInvio.value, __ProgressivoInvio.set, None, None)
 
     # Element FormatoTrasmissione uses Python identifier FormatoTrasmissione
-    __FormatoTrasmissione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'FormatoTrasmissione'), 'FormatoTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_FormatoTrasmissione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 49, 6), )
+    __FormatoTrasmissione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'FormatoTrasmissione'), 'FormatoTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_FormatoTrasmissione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 49, 6), )
 
     FormatoTrasmissione = property(
         __FormatoTrasmissione.value, __FormatoTrasmissione.set, None, None)
 
     # Element CodiceDestinatario uses Python identifier CodiceDestinatario
-    __CodiceDestinatario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceDestinatario'), 'CodiceDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_CodiceDestinatario', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 50, 6), )
+    __CodiceDestinatario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceDestinatario'), 'CodiceDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_CodiceDestinatario', False, pyxb.utils.utility.Location(SCHEMA_FILE, 50, 6), )
 
     CodiceDestinatario = property(
         __CodiceDestinatario.value, __CodiceDestinatario.set, None, None)
 
     # Element ContattiTrasmittente uses Python identifier ContattiTrasmittente
-    __ContattiTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ContattiTrasmittente'), 'ContattiTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ContattiTrasmittente', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 51, 6), )
+    __ContattiTrasmittente = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ContattiTrasmittente'), 'ContattiTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ContattiTrasmittente', False, pyxb.utils.utility.Location(SCHEMA_FILE, 51, 6), )
 
     ContattiTrasmittente = property(
         __ContattiTrasmittente.value, __ContattiTrasmittente.set, None, None)
 
     # Element PECDestinatario uses Python identifier PECDestinatario
-    __PECDestinatario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PECDestinatario'), 'PECDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_PECDestinatario', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 52, 6), )
+    __PECDestinatario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'PECDestinatario'), 'PECDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_PECDestinatario', False, pyxb.utils.utility.Location(SCHEMA_FILE, 52, 6), )
 
     PECDestinatario = property(
         __PECDestinatario.value, __PECDestinatario.set, None, None)
@@ -1816,28 +1817,31 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiTrasmissioneType', DatiTrasmissioneType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IdFiscaleType with content type ELEMENT_ONLY
-class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IdFiscaleType with content type ELEMENT_ONLY
+class IdFiscaleType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IdFiscaleType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IdFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 60, 2)
+        SCHEMA_FILE, 60, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element IdPaese uses Python identifier IdPaese
-    __IdPaese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdPaese'), 'IdPaese', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdPaese', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 62, 6), )
+    __IdPaese = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdPaese'), 'IdPaese', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdPaese', False, pyxb.utils.utility.Location(SCHEMA_FILE, 62, 6), )
 
     IdPaese = property(__IdPaese.value, __IdPaese.set, None, None)
 
     # Element IdCodice uses Python identifier IdCodice
-    __IdCodice = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdCodice'), 'IdCodice', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdCodice', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 63, 6), )
+    __IdCodice = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdCodice'), 'IdCodice', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdCodice', False, pyxb.utils.utility.Location(SCHEMA_FILE, 63, 6), )
 
     IdCodice = property(__IdCodice.value, __IdCodice.set, None, None)
 
@@ -1854,8 +1858,9 @@ _module_typeBindings.IdFiscaleType = IdFiscaleType
 Namespace.addCategoryObject('typeBinding', 'IdFiscaleType', IdFiscaleType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiTrasmittenteType with content type ELEMENT_ONLY
-class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiTrasmittenteType with content type ELEMENT_ONLY
+class ContattiTrasmittenteType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiTrasmittenteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -1863,26 +1868,28 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'ContattiTrasmittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 87, 2)
+        SCHEMA_FILE, 87, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element Telefono uses Python identifier Telefono
-    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Telefono', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 89, 6), )
+    __Telefono = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Telefono', False, pyxb.utils.utility.Location(SCHEMA_FILE, 89, 6), )
 
     Telefono = property(__Telefono.value, __Telefono.set, None, None)
 
     # Element Email uses Python identifier Email
-    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Email', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 90, 6), )
+    __Email = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Email', False, pyxb.utils.utility.Location(SCHEMA_FILE, 90, 6), )
 
     Email = property(__Email.value, __Email.set, None, None)
 
     _ElementMap.update({
-        __Telefono.name(): __Telefono,
-        __Email.name(): __Email
+        __Telefono.name() : __Telefono,
+        __Email.name() : __Email
     })
     _AttributeMap.update({
 
@@ -1894,8 +1901,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'ContattiTrasmittenteType', ContattiTrasmittenteType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliType with content type ELEMENT_ONLY
-class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliType with content type ELEMENT_ONLY
+class DatiGeneraliType(pyxb.binding.basis.complexTypeDefinition):
     """
                                 Blocco relativo ai Dati Generali della Fattura Elettronica
                         """
@@ -1904,76 +1912,89 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiGeneraliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 93, 2)
+        SCHEMA_FILE, 93, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element DatiGeneraliDocumento uses Python identifier DatiGeneraliDocumento
-    __DatiGeneraliDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiGeneraliDocumento'), 'DatiGeneraliDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiGeneraliDocumento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 100, 6), )
+    __DatiGeneraliDocumento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiGeneraliDocumento'), 'DatiGeneraliDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiGeneraliDocumento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 100, 6), )
 
+    
     DatiGeneraliDocumento = property(
         __DatiGeneraliDocumento.value, __DatiGeneraliDocumento.set, None, None)
 
+    
     # Element DatiOrdineAcquisto uses Python identifier DatiOrdineAcquisto
-    __DatiOrdineAcquisto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiOrdineAcquisto'), 'DatiOrdineAcquisto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiOrdineAcquisto', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 101, 6), )
+    __DatiOrdineAcquisto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiOrdineAcquisto'), 'DatiOrdineAcquisto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiOrdineAcquisto', True, pyxb.utils.utility.Location(SCHEMA_FILE, 101, 6), )
 
     DatiOrdineAcquisto = property(
         __DatiOrdineAcquisto.value, __DatiOrdineAcquisto.set, None, None)
 
     # Element DatiContratto uses Python identifier DatiContratto
-    __DatiContratto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiContratto'), 'DatiContratto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiContratto', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 102, 6), )
+    __DatiContratto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiContratto'), 'DatiContratto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiContratto', True, pyxb.utils.utility.Location(SCHEMA_FILE, 102, 6), )
 
-    DatiContratto = property(__DatiContratto.value,
-                             __DatiContratto.set, None, None)
+    DatiContratto = property(
+        __DatiContratto.value, __DatiContratto.set, None, None)
 
     # Element DatiConvenzione uses Python identifier DatiConvenzione
-    __DatiConvenzione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiConvenzione'), 'DatiConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiConvenzione', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 103, 6), )
+    __DatiConvenzione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiConvenzione'), 'DatiConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiConvenzione', True, pyxb.utils.utility.Location(SCHEMA_FILE, 103, 6), )
 
     DatiConvenzione = property(
         __DatiConvenzione.value, __DatiConvenzione.set, None, None)
 
     # Element DatiRicezione uses Python identifier DatiRicezione
-    __DatiRicezione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiRicezione'), 'DatiRicezione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiRicezione', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 104, 6), )
+    __DatiRicezione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiRicezione'), 'DatiRicezione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiRicezione', True, pyxb.utils.utility.Location(SCHEMA_FILE, 104, 6), )
 
-    DatiRicezione = property(__DatiRicezione.value,
-                             __DatiRicezione.set, None, None)
+    DatiRicezione = property(
+        __DatiRicezione.value, __DatiRicezione.set, None, None)
 
     # Element DatiFattureCollegate uses Python identifier DatiFattureCollegate
-    __DatiFattureCollegate = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiFattureCollegate'), 'DatiFattureCollegate', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiFattureCollegate', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 105, 6), )
+    __DatiFattureCollegate = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiFattureCollegate'), 'DatiFattureCollegate', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiFattureCollegate', True, pyxb.utils.utility.Location(SCHEMA_FILE, 105, 6), )
 
     DatiFattureCollegate = property(
         __DatiFattureCollegate.value, __DatiFattureCollegate.set, None, None)
 
     # Element DatiSAL uses Python identifier DatiSAL
-    __DatiSAL = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiSAL'), 'DatiSAL', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiSAL', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 106, 6), )
+    __DatiSAL = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiSAL'), 'DatiSAL', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiSAL', True, pyxb.utils.utility.Location(SCHEMA_FILE, 106, 6), )
 
     DatiSAL = property(__DatiSAL.value, __DatiSAL.set, None, None)
 
     # Element DatiDDT uses Python identifier DatiDDT
-    __DatiDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiDDT'), 'DatiDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiDDT', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 107, 6), )
+    __DatiDDT = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiDDT'), 'DatiDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiDDT', True, pyxb.utils.utility.Location(SCHEMA_FILE, 107, 6), )
 
     DatiDDT = property(__DatiDDT.value, __DatiDDT.set, None, None)
 
     # Element DatiTrasporto uses Python identifier DatiTrasporto
-    __DatiTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiTrasporto'), 'DatiTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiTrasporto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 108, 6), )
+    __DatiTrasporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiTrasporto'), 'DatiTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiTrasporto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 108, 6), )
 
-    DatiTrasporto = property(__DatiTrasporto.value,
-                             __DatiTrasporto.set, None, None)
+    DatiTrasporto = property(
+        __DatiTrasporto.value, __DatiTrasporto.set, None, None)
 
     # Element FatturaPrincipale uses Python identifier FatturaPrincipale
-    __FatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'FatturaPrincipale'), 'FatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_FatturaPrincipale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 109, 6), )
+    __FatturaPrincipale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'FatturaPrincipale'), 'FatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_FatturaPrincipale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 109, 6), )
 
+    
     FatturaPrincipale = property(
         __FatturaPrincipale.value, __FatturaPrincipale.set, None, None)
 
@@ -1995,12 +2016,12 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
 
 
 _module_typeBindings.DatiGeneraliType = DatiGeneraliType
-Namespace.addCategoryObject(
-    'typeBinding', 'DatiGeneraliType', DatiGeneraliType)
+Namespace.addCategoryObject('typeBinding', 'DatiGeneraliType', DatiGeneraliType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliDocumentoType with content type ELEMENT_ONLY
-class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliDocumentoType with content type ELEMENT_ONLY
+class DatiGeneraliDocumentoType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliDocumentoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2008,86 +2029,99 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiGeneraliDocumentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 112, 2)
+        SCHEMA_FILE, 112, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
 
     # Element TipoDocumento uses Python identifier TipoDocumento
-    __TipoDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoDocumento'), 'TipoDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_TipoDocumento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 114, 6), )
+    __TipoDocumento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoDocumento'), 'TipoDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_TipoDocumento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 114, 6), )
 
-    TipoDocumento = property(__TipoDocumento.value,
-                             __TipoDocumento.set, None, None)
+    TipoDocumento = property(
+        __TipoDocumento.value, __TipoDocumento.set, None, None)
 
     # Element Divisa uses Python identifier Divisa
-    __Divisa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Divisa'), 'Divisa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Divisa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 115, 6), )
+    __Divisa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Divisa'), 'Divisa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Divisa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 115, 6), )
 
     Divisa = property(__Divisa.value, __Divisa.set, None, None)
 
     # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Data', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 116, 6), )
+    __Data = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Data', False, pyxb.utils.utility.Location(SCHEMA_FILE, 116, 6), )
 
     Data = property(__Data.value, __Data.set, None, None)
 
     # Element Numero uses Python identifier Numero
-    __Numero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Numero'), 'Numero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Numero', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 117, 6), )
+    __Numero = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Numero'), 'Numero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Numero', False, pyxb.utils.utility.Location(SCHEMA_FILE, 117, 6), )
 
     Numero = property(__Numero.value, __Numero.set, None, None)
 
     # Element DatiRitenuta uses Python identifier DatiRitenuta
-    __DatiRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiRitenuta'), 'DatiRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiRitenuta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 118, 6), )
+    __DatiRitenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiRitenuta'), 'DatiRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiRitenuta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 118, 6), )
 
-    DatiRitenuta = property(__DatiRitenuta.value,
-                            __DatiRitenuta.set, None, None)
+    DatiRitenuta = property(
+        __DatiRitenuta.value, __DatiRitenuta.set, None, None)
 
     # Element DatiBollo uses Python identifier DatiBollo
-    __DatiBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiBollo'), 'DatiBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiBollo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 119, 6), )
+    __DatiBollo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiBollo'), 'DatiBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiBollo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 119, 6), )
 
     DatiBollo = property(__DatiBollo.value, __DatiBollo.set, None, None)
 
+    
     # Element DatiCassaPrevidenziale uses Python identifier DatiCassaPrevidenziale
-    __DatiCassaPrevidenziale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'), 'DatiCassaPrevidenziale',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiCassaPrevidenziale', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 120, 6), )
+    __DatiCassaPrevidenziale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiCassaPrevidenziale'), 'DatiCassaPrevidenziale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiCassaPrevidenziale', True, pyxb.utils.utility.Location(SCHEMA_FILE, 120, 6), )
 
     DatiCassaPrevidenziale = property(
         __DatiCassaPrevidenziale.value, __DatiCassaPrevidenziale.set, None, None)
 
     # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
-    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 121, 6), )
+    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ScontoMaggiorazione', True, pyxb.utils.utility.Location(SCHEMA_FILE, 121, 6), )
 
     ScontoMaggiorazione = property(
         __ScontoMaggiorazione.value, __ScontoMaggiorazione.set, None, None)
 
     # Element ImportoTotaleDocumento uses Python identifier ImportoTotaleDocumento
-    __ImportoTotaleDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'), 'ImportoTotaleDocumento',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ImportoTotaleDocumento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 122, 6), )
+    __ImportoTotaleDocumento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoTotaleDocumento'), 'ImportoTotaleDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ImportoTotaleDocumento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 122, 6), )
 
     ImportoTotaleDocumento = property(
         __ImportoTotaleDocumento.value, __ImportoTotaleDocumento.set, None, None)
 
     # Element Arrotondamento uses Python identifier Arrotondamento
-    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Arrotondamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 123, 6), )
+    __Arrotondamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Arrotondamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 123, 6), )
 
-    Arrotondamento = property(__Arrotondamento.value,
-                              __Arrotondamento.set, None, None)
+    Arrotondamento = property(
+        __Arrotondamento.value, __Arrotondamento.set, None, None)
 
     # Element Causale uses Python identifier Causale
-    __Causale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Causale'), 'Causale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Causale', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 124, 6), )
+    __Causale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Causale'), 'Causale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Causale', True, pyxb.utils.utility.Location(SCHEMA_FILE, 124, 6), )
 
     Causale = property(__Causale.value, __Causale.set, None, None)
 
     # Element Art73 uses Python identifier Art73
-    __Art73 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Art73'), 'Art73', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Art73', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 125, 6), )
+    __Art73 = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Art73'), 'Art73', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Art73', False, pyxb.utils.utility.Location(SCHEMA_FILE, 125, 6), )
 
     Art73 = property(__Art73.value, __Art73.set, None, None)
 
@@ -2115,96 +2149,113 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiGeneraliDocumentoType', DatiGeneraliDocumentoType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRitenutaType with content type ELEMENT_ONLY
-class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRitenutaType with content type ELEMENT_ONLY
+class DatiRitenutaType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRitenutaType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiRitenutaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 128, 2)
+        SCHEMA_FILE, 128, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element TipoRitenuta uses Python identifier TipoRitenuta
-    __TipoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoRitenuta'), 'TipoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_TipoRitenuta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 130, 6), )
+    __TipoRitenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoRitenuta'), 'TipoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_TipoRitenuta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 130, 6), )
 
-    TipoRitenuta = property(__TipoRitenuta.value,
-                            __TipoRitenuta.set, None, None)
+    
+    TipoRitenuta = property(
+        __TipoRitenuta.value, __TipoRitenuta.set, None, None)
 
+    
     # Element ImportoRitenuta uses Python identifier ImportoRitenuta
-    __ImportoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ImportoRitenuta'), 'ImportoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_ImportoRitenuta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 131, 6), )
+    __ImportoRitenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoRitenuta'), 'ImportoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_ImportoRitenuta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 131, 6), )
 
+    
     ImportoRitenuta = property(
         __ImportoRitenuta.value, __ImportoRitenuta.set, None, None)
 
+    
     # Element AliquotaRitenuta uses Python identifier AliquotaRitenuta
-    __AliquotaRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaRitenuta'), 'AliquotaRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_AliquotaRitenuta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 132, 6), )
+    __AliquotaRitenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaRitenuta'), 'AliquotaRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_AliquotaRitenuta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 132, 6), )
 
+    
     AliquotaRitenuta = property(
         __AliquotaRitenuta.value, __AliquotaRitenuta.set, None, None)
 
+    
     # Element CausalePagamento uses Python identifier CausalePagamento
-    __CausalePagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CausalePagamento'), 'CausalePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_CausalePagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 133, 6), )
+    __CausalePagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CausalePagamento'), 'CausalePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_CausalePagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 133, 6), )
 
+    
     CausalePagamento = property(
         __CausalePagamento.value, __CausalePagamento.set, None, None)
 
     _ElementMap.update({
-        __TipoRitenuta.name(): __TipoRitenuta,
-        __ImportoRitenuta.name(): __ImportoRitenuta,
-        __AliquotaRitenuta.name(): __AliquotaRitenuta,
-        __CausalePagamento.name(): __CausalePagamento
+        __TipoRitenuta.name() : __TipoRitenuta,
+        __ImportoRitenuta.name() : __ImportoRitenuta,
+        __AliquotaRitenuta.name() : __AliquotaRitenuta,
+        __CausalePagamento.name() : __CausalePagamento
     })
     _AttributeMap.update({
-
+        
     })
 
 
 _module_typeBindings.DatiRitenutaType = DatiRitenutaType
-Namespace.addCategoryObject(
-    'typeBinding', 'DatiRitenutaType', DatiRitenutaType)
+Namespace.addCategoryObject('typeBinding', 'DatiRitenutaType', DatiRitenutaType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBolloType with content type ELEMENT_ONLY
-class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBolloType with content type ELEMENT_ONLY
+class DatiBolloType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBolloType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiBolloType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 136, 2)
+        SCHEMA_FILE, 136, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element BolloVirtuale uses Python identifier BolloVirtuale
-    __BolloVirtuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'BolloVirtuale'), 'BolloVirtuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_BolloVirtuale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 138, 6), )
+    __BolloVirtuale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'BolloVirtuale'), 'BolloVirtuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_BolloVirtuale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 138, 6), )
 
-    BolloVirtuale = property(__BolloVirtuale.value,
-                             __BolloVirtuale.set, None, None)
+    
+    BolloVirtuale = property(
+        __BolloVirtuale.value, __BolloVirtuale.set, None, None)
 
+    
     # Element ImportoBollo uses Python identifier ImportoBollo
-    __ImportoBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ImportoBollo'), 'ImportoBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_ImportoBollo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 139, 6), )
+    __ImportoBollo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoBollo'), 'ImportoBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_ImportoBollo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 139, 6), )
 
-    ImportoBollo = property(__ImportoBollo.value,
-                            __ImportoBollo.set, None, None)
+    
+    ImportoBollo = property(
+        __ImportoBollo.value, __ImportoBollo.set, None, None)
 
     _ElementMap.update({
-        __BolloVirtuale.name(): __BolloVirtuale,
-        __ImportoBollo.name(): __ImportoBollo
+        __BolloVirtuale.name() : __BolloVirtuale,
+        __ImportoBollo.name() : __ImportoBollo
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2212,8 +2263,9 @@ _module_typeBindings.DatiBolloType = DatiBolloType
 Namespace.addCategoryObject('typeBinding', 'DatiBolloType', DatiBolloType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY
-class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY
+class DatiCassaPrevidenzialeType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2221,74 +2273,97 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiCassaPrevidenzialeType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 142, 2)
+        SCHEMA_FILE, 142, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element TipoCassa uses Python identifier TipoCassa
-    __TipoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoCassa'), 'TipoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_TipoCassa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 144, 6), )
+    __TipoCassa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoCassa'), 'TipoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_TipoCassa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 144, 6), )
 
+    
     TipoCassa = property(__TipoCassa.value, __TipoCassa.set, None, None)
 
+    
     # Element AlCassa uses Python identifier AlCassa
-    __AlCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AlCassa'), 'AlCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AlCassa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 145, 6), )
+    __AlCassa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AlCassa'), 'AlCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AlCassa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 145, 6), )
 
+    
     AlCassa = property(__AlCassa.value, __AlCassa.set, None, None)
 
+    
     # Element ImportoContributoCassa uses Python identifier ImportoContributoCassa
-    __ImportoContributoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'), 'ImportoContributoCassa',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImportoContributoCassa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 146, 6), )
+    __ImportoContributoCassa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoContributoCassa'), 'ImportoContributoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImportoContributoCassa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 146, 6), )
 
+    
     ImportoContributoCassa = property(
         __ImportoContributoCassa.value, __ImportoContributoCassa.set, None, None)
 
+    
     # Element ImponibileCassa uses Python identifier ImponibileCassa
-    __ImponibileCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ImponibileCassa'), 'ImponibileCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImponibileCassa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 147, 6), )
+    __ImponibileCassa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImponibileCassa'), 'ImponibileCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImponibileCassa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 147, 6), )
 
+    
     ImponibileCassa = property(
         __ImponibileCassa.value, __ImponibileCassa.set, None, None)
 
+    
     # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AliquotaIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 148, 6), )
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AliquotaIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 148, 6), )
 
+    
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
+    
     # Element Ritenuta uses Python identifier Ritenuta
-    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Ritenuta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 149, 6), )
+    __Ritenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Ritenuta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 149, 6), )
 
+    
     Ritenuta = property(__Ritenuta.value, __Ritenuta.set, None, None)
 
+    
     # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Natura', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 150, 6), )
+    __Natura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Natura', False, pyxb.utils.utility.Location(SCHEMA_FILE, 150, 6), )
 
+    
     Natura = property(__Natura.value, __Natura.set, None, None)
 
+    
     # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
-    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione',
-                                                                           '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 151, 6), )
+    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 151, 6), )
 
+    
     RiferimentoAmministrazione = property(
         __RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
 
     _ElementMap.update({
-        __TipoCassa.name(): __TipoCassa,
-        __AlCassa.name(): __AlCassa,
-        __ImportoContributoCassa.name(): __ImportoContributoCassa,
-        __ImponibileCassa.name(): __ImponibileCassa,
-        __AliquotaIVA.name(): __AliquotaIVA,
-        __Ritenuta.name(): __Ritenuta,
-        __Natura.name(): __Natura,
-        __RiferimentoAmministrazione.name(): __RiferimentoAmministrazione
+        __TipoCassa.name() : __TipoCassa,
+        __AlCassa.name() : __AlCassa,
+        __ImportoContributoCassa.name() : __ImportoContributoCassa,
+        __ImponibileCassa.name() : __ImponibileCassa,
+        __AliquotaIVA.name() : __AliquotaIVA,
+        __Ritenuta.name() : __Ritenuta,
+        __Natura.name() : __Natura,
+        __RiferimentoAmministrazione.name() : __RiferimentoAmministrazione
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2297,8 +2372,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiCassaPrevidenzialeType', DatiCassaPrevidenzialeType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ScontoMaggiorazioneType with content type ELEMENT_ONLY
-class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ScontoMaggiorazioneType with content type ELEMENT_ONLY
+class ScontoMaggiorazioneType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ScontoMaggiorazioneType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2306,36 +2382,44 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'ScontoMaggiorazioneType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 154, 2)
+        SCHEMA_FILE, 154, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Tipo uses Python identifier Tipo
-    __Tipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Tipo'), 'Tipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Tipo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 156, 6), )
+    __Tipo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Tipo'), 'Tipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Tipo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 156, 6), )
 
+    
     Tipo = property(__Tipo.value, __Tipo.set, None, None)
 
+    
     # Element Percentuale uses Python identifier Percentuale
-    __Percentuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Percentuale'), 'Percentuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Percentuale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 157, 6), )
+    __Percentuale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Percentuale'), 'Percentuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Percentuale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 157, 6), )
 
+    
     Percentuale = property(__Percentuale.value, __Percentuale.set, None, None)
 
+    
     # Element Importo uses Python identifier Importo
-    __Importo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Importo'), 'Importo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Importo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 158, 6), )
+    __Importo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Importo'), 'Importo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Importo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 158, 6), )
 
+    
     Importo = property(__Importo.value, __Importo.set, None, None)
 
     _ElementMap.update({
-        __Tipo.name(): __Tipo,
-        __Percentuale.name(): __Percentuale,
-        __Importo.name(): __Importo
+        __Tipo.name() : __Tipo,
+        __Percentuale.name() : __Percentuale,
+        __Importo.name() : __Importo
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2344,31 +2428,34 @@ Namespace.addCategoryObject(
     'typeBinding', 'ScontoMaggiorazioneType', ScontoMaggiorazioneType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiSALType with content type ELEMENT_ONLY
-class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiSALType with content type ELEMENT_ONLY
+class DatiSALType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiSALType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiSALType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 438, 2)
+        SCHEMA_FILE, 438, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element RiferimentoFase uses Python identifier RiferimentoFase
-    __RiferimentoFase = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoFase'), 'RiferimentoFase', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiSALType_RiferimentoFase', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 440, 6), )
+    __RiferimentoFase = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoFase'), 'RiferimentoFase', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiSALType_RiferimentoFase', False, pyxb.utils.utility.Location(SCHEMA_FILE, 440, 6), )
 
+    
     RiferimentoFase = property(
         __RiferimentoFase.value, __RiferimentoFase.set, None, None)
 
     _ElementMap.update({
-        __RiferimentoFase.name(): __RiferimentoFase
+        __RiferimentoFase.name() : __RiferimentoFase
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2376,8 +2463,9 @@ _module_typeBindings.DatiSALType = DatiSALType
 Namespace.addCategoryObject('typeBinding', 'DatiSALType', DatiSALType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY
-class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY
+class DatiDocumentiCorrelatiType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2385,66 +2473,86 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiDocumentiCorrelatiType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 443, 2)
+        SCHEMA_FILE, 443, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element RiferimentoNumeroLinea uses Python identifier RiferimentoNumeroLinea
-    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 445, 6), )
+    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location(SCHEMA_FILE, 445, 6), )
 
+    
     RiferimentoNumeroLinea = property(
         __RiferimentoNumeroLinea.value, __RiferimentoNumeroLinea.set, None, None)
 
+    
     # Element IdDocumento uses Python identifier IdDocumento
-    __IdDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdDocumento'), 'IdDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_IdDocumento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 446, 6), )
+    __IdDocumento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdDocumento'), 'IdDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_IdDocumento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 446, 6), )
 
+    
     IdDocumento = property(__IdDocumento.value, __IdDocumento.set, None, None)
 
+    
     # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_Data', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 447, 6), )
+    __Data = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_Data', False, pyxb.utils.utility.Location(SCHEMA_FILE, 447, 6), )
 
+    
     Data = property(__Data.value, __Data.set, None, None)
 
+    
     # Element NumItem uses Python identifier NumItem
-    __NumItem = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumItem'), 'NumItem', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_NumItem', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 448, 6), )
+    __NumItem = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumItem'), 'NumItem', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_NumItem', False, pyxb.utils.utility.Location(SCHEMA_FILE, 448, 6), )
 
+    
     NumItem = property(__NumItem.value, __NumItem.set, None, None)
 
+    
     # Element CodiceCommessaConvenzione uses Python identifier CodiceCommessaConvenzione
-    __CodiceCommessaConvenzione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'), 'CodiceCommessaConvenzione',
-                                                                          '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCommessaConvenzione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 449, 6), )
+    __CodiceCommessaConvenzione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceCommessaConvenzione'), 'CodiceCommessaConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCommessaConvenzione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 449, 6), )
 
+    
     CodiceCommessaConvenzione = property(
         __CodiceCommessaConvenzione.value, __CodiceCommessaConvenzione.set, None, None)
 
+    
     # Element CodiceCUP uses Python identifier CodiceCUP
-    __CodiceCUP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceCUP'), 'CodiceCUP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCUP', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 450, 6), )
+    __CodiceCUP = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceCUP'), 'CodiceCUP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCUP', False, pyxb.utils.utility.Location(SCHEMA_FILE, 450, 6), )
 
+    
     CodiceCUP = property(__CodiceCUP.value, __CodiceCUP.set, None, None)
 
+    
     # Element CodiceCIG uses Python identifier CodiceCIG
-    __CodiceCIG = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceCIG'), 'CodiceCIG', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCIG', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 451, 6), )
+    __CodiceCIG = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceCIG'), 'CodiceCIG', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCIG', False, pyxb.utils.utility.Location(SCHEMA_FILE, 451, 6), )
 
+    
     CodiceCIG = property(__CodiceCIG.value, __CodiceCIG.set, None, None)
 
     _ElementMap.update({
-        __RiferimentoNumeroLinea.name(): __RiferimentoNumeroLinea,
-        __IdDocumento.name(): __IdDocumento,
-        __Data.name(): __Data,
-        __NumItem.name(): __NumItem,
-        __CodiceCommessaConvenzione.name(): __CodiceCommessaConvenzione,
-        __CodiceCUP.name(): __CodiceCUP,
-        __CodiceCIG.name(): __CodiceCIG
+        __RiferimentoNumeroLinea.name() : __RiferimentoNumeroLinea,
+        __IdDocumento.name() : __IdDocumento,
+        __Data.name() : __Data,
+        __NumItem.name() : __NumItem,
+        __CodiceCommessaConvenzione.name() : __CodiceCommessaConvenzione,
+        __CodiceCUP.name() : __CodiceCUP,
+        __CodiceCIG.name() : __CodiceCIG
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2453,45 +2561,54 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiDocumentiCorrelatiType', DatiDocumentiCorrelatiType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDDTType with content type ELEMENT_ONLY
-class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDDTType with content type ELEMENT_ONLY
+class DatiDDTType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDDTType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiDDTType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 460, 2)
+        SCHEMA_FILE, 460, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element NumeroDDT uses Python identifier NumeroDDT
-    __NumeroDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroDDT'), 'NumeroDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_NumeroDDT', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 462, 6), )
+    __NumeroDDT = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroDDT'), 'NumeroDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_NumeroDDT', False, pyxb.utils.utility.Location(SCHEMA_FILE, 462, 6), )
 
+    
     NumeroDDT = property(__NumeroDDT.value, __NumeroDDT.set, None, None)
 
+    
     # Element DataDDT uses Python identifier DataDDT
-    __DataDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataDDT'), 'DataDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_DataDDT', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 463, 6), )
+    __DataDDT = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataDDT'), 'DataDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_DataDDT', False, pyxb.utils.utility.Location(SCHEMA_FILE, 463, 6), )
 
+    
     DataDDT = property(__DataDDT.value, __DataDDT.set, None, None)
 
+    
     # Element RiferimentoNumeroLinea uses Python identifier RiferimentoNumeroLinea
-    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 464, 6), )
+    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location(SCHEMA_FILE, 464, 6), )
 
+    
     RiferimentoNumeroLinea = property(
         __RiferimentoNumeroLinea.value, __RiferimentoNumeroLinea.set, None, None)
 
     _ElementMap.update({
-        __NumeroDDT.name(): __NumeroDDT,
-        __DataDDT.name(): __DataDDT,
-        __RiferimentoNumeroLinea.name(): __RiferimentoNumeroLinea
+        __NumeroDDT.name() : __NumeroDDT,
+        __DataDDT.name() : __DataDDT,
+        __RiferimentoNumeroLinea.name() : __RiferimentoNumeroLinea
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2499,122 +2616,161 @@ _module_typeBindings.DatiDDTType = DatiDDTType
 Namespace.addCategoryObject('typeBinding', 'DatiDDTType', DatiDDTType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasportoType with content type ELEMENT_ONLY
-class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasportoType with content type ELEMENT_ONLY
+class DatiTrasportoType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasportoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiTrasportoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 467, 2)
+        SCHEMA_FILE, 467, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element DatiAnagraficiVettore uses Python identifier DatiAnagraficiVettore
-    __DatiAnagraficiVettore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagraficiVettore'), 'DatiAnagraficiVettore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DatiAnagraficiVettore', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 469, 6), )
+    __DatiAnagraficiVettore = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagraficiVettore'), 'DatiAnagraficiVettore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DatiAnagraficiVettore', False, pyxb.utils.utility.Location(SCHEMA_FILE, 469, 6), )
 
+    
     DatiAnagraficiVettore = property(
         __DatiAnagraficiVettore.value, __DatiAnagraficiVettore.set, None, None)
 
+    
     # Element MezzoTrasporto uses Python identifier MezzoTrasporto
-    __MezzoTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'MezzoTrasporto'), 'MezzoTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_MezzoTrasporto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 470, 6), )
+    __MezzoTrasporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'MezzoTrasporto'), 'MezzoTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_MezzoTrasporto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 470, 6), )
 
-    MezzoTrasporto = property(__MezzoTrasporto.value,
-                              __MezzoTrasporto.set, None, None)
+    
+    MezzoTrasporto = property(
+        __MezzoTrasporto.value, __MezzoTrasporto.set, None, None)
 
+    
     # Element CausaleTrasporto uses Python identifier CausaleTrasporto
-    __CausaleTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CausaleTrasporto'), 'CausaleTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_CausaleTrasporto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 471, 6), )
+    __CausaleTrasporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CausaleTrasporto'), 'CausaleTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_CausaleTrasporto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 471, 6), )
 
+    
     CausaleTrasporto = property(
         __CausaleTrasporto.value, __CausaleTrasporto.set, None, None)
 
+    
     # Element NumeroColli uses Python identifier NumeroColli
-    __NumeroColli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroColli'), 'NumeroColli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_NumeroColli', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 472, 6), )
+    __NumeroColli = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroColli'), 'NumeroColli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_NumeroColli', False, pyxb.utils.utility.Location(SCHEMA_FILE, 472, 6), )
 
+    
     NumeroColli = property(__NumeroColli.value, __NumeroColli.set, None, None)
 
+    
     # Element Descrizione uses Python identifier Descrizione
-    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_Descrizione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 473, 6), )
+    __Descrizione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_Descrizione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 473, 6), )
 
+    
     Descrizione = property(__Descrizione.value, __Descrizione.set, None, None)
 
+    
     # Element UnitaMisuraPeso uses Python identifier UnitaMisuraPeso
-    __UnitaMisuraPeso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'UnitaMisuraPeso'), 'UnitaMisuraPeso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_UnitaMisuraPeso', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 474, 6), )
+    __UnitaMisuraPeso = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'UnitaMisuraPeso'), 'UnitaMisuraPeso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_UnitaMisuraPeso', False, pyxb.utils.utility.Location(SCHEMA_FILE, 474, 6), )
 
+    
     UnitaMisuraPeso = property(
         __UnitaMisuraPeso.value, __UnitaMisuraPeso.set, None, None)
 
+    
     # Element PesoLordo uses Python identifier PesoLordo
-    __PesoLordo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PesoLordo'), 'PesoLordo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoLordo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 475, 6), )
+    __PesoLordo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'PesoLordo'), 'PesoLordo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoLordo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 475, 6), )
 
+    
     PesoLordo = property(__PesoLordo.value, __PesoLordo.set, None, None)
 
+    
     # Element PesoNetto uses Python identifier PesoNetto
-    __PesoNetto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PesoNetto'), 'PesoNetto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoNetto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 476, 6), )
+    __PesoNetto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'PesoNetto'), 'PesoNetto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoNetto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 476, 6), )
 
+    
     PesoNetto = property(__PesoNetto.value, __PesoNetto.set, None, None)
 
+    
     # Element DataOraRitiro uses Python identifier DataOraRitiro
-    __DataOraRitiro = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataOraRitiro'), 'DataOraRitiro', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraRitiro', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 477, 6), )
+    __DataOraRitiro = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataOraRitiro'), 'DataOraRitiro', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraRitiro', False, pyxb.utils.utility.Location(SCHEMA_FILE, 477, 6), )
 
-    DataOraRitiro = property(__DataOraRitiro.value,
-                             __DataOraRitiro.set, None, None)
+    
+    DataOraRitiro = property(
+        __DataOraRitiro.value, __DataOraRitiro.set, None, None)
 
+    
     # Element DataInizioTrasporto uses Python identifier DataInizioTrasporto
-    __DataInizioTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataInizioTrasporto'), 'DataInizioTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataInizioTrasporto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 478, 6), )
+    __DataInizioTrasporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataInizioTrasporto'), 'DataInizioTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataInizioTrasporto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 478, 6), )
 
+    
     DataInizioTrasporto = property(
         __DataInizioTrasporto.value, __DataInizioTrasporto.set, None, None)
 
+    
     # Element TipoResa uses Python identifier TipoResa
-    __TipoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoResa'), 'TipoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_TipoResa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 479, 6), )
+    __TipoResa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoResa'), 'TipoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_TipoResa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 479, 6), )
 
+    
     TipoResa = property(__TipoResa.value, __TipoResa.set, None, None)
 
+    
     # Element IndirizzoResa uses Python identifier IndirizzoResa
-    __IndirizzoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IndirizzoResa'), 'IndirizzoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_IndirizzoResa', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 480, 6), )
+    __IndirizzoResa = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IndirizzoResa'), 'IndirizzoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_IndirizzoResa', False, pyxb.utils.utility.Location(SCHEMA_FILE, 480, 6), )
 
-    IndirizzoResa = property(__IndirizzoResa.value,
-                             __IndirizzoResa.set, None, None)
+    
+    IndirizzoResa = property(
+        __IndirizzoResa.value, __IndirizzoResa.set, None, None)
 
+    
     # Element DataOraConsegna uses Python identifier DataOraConsegna
-    __DataOraConsegna = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataOraConsegna'), 'DataOraConsegna', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraConsegna', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 481, 6), )
+    __DataOraConsegna = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataOraConsegna'), 'DataOraConsegna', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraConsegna', False, pyxb.utils.utility.Location(SCHEMA_FILE, 481, 6), )
 
+    
     DataOraConsegna = property(
         __DataOraConsegna.value, __DataOraConsegna.set, None, None)
 
     _ElementMap.update({
-        __DatiAnagraficiVettore.name(): __DatiAnagraficiVettore,
-        __MezzoTrasporto.name(): __MezzoTrasporto,
-        __CausaleTrasporto.name(): __CausaleTrasporto,
-        __NumeroColli.name(): __NumeroColli,
-        __Descrizione.name(): __Descrizione,
-        __UnitaMisuraPeso.name(): __UnitaMisuraPeso,
-        __PesoLordo.name(): __PesoLordo,
-        __PesoNetto.name(): __PesoNetto,
-        __DataOraRitiro.name(): __DataOraRitiro,
-        __DataInizioTrasporto.name(): __DataInizioTrasporto,
-        __TipoResa.name(): __TipoResa,
-        __IndirizzoResa.name(): __IndirizzoResa,
-        __DataOraConsegna.name(): __DataOraConsegna
+        __DatiAnagraficiVettore.name() : __DatiAnagraficiVettore,
+        __MezzoTrasporto.name() : __MezzoTrasporto,
+        __CausaleTrasporto.name() : __CausaleTrasporto,
+        __NumeroColli.name() : __NumeroColli,
+        __Descrizione.name() : __Descrizione,
+        __UnitaMisuraPeso.name() : __UnitaMisuraPeso,
+        __PesoLordo.name() : __PesoLordo,
+        __PesoNetto.name() : __PesoNetto,
+        __DataOraRitiro.name() : __DataOraRitiro,
+        __DataInizioTrasporto.name() : __DataInizioTrasporto,
+        __TipoResa.name() : __TipoResa,
+        __IndirizzoResa.name() : __IndirizzoResa,
+        __DataOraConsegna.name() : __DataOraConsegna
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2623,66 +2779,84 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiTrasportoType', DatiTrasportoType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IndirizzoType with content type ELEMENT_ONLY
-class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IndirizzoType with content type ELEMENT_ONLY
+class IndirizzoType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IndirizzoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IndirizzoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 484, 2)
+        SCHEMA_FILE, 484, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Indirizzo uses Python identifier Indirizzo
-    __Indirizzo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Indirizzo'), 'Indirizzo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Indirizzo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 486, 6), )
+    __Indirizzo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Indirizzo'), 'Indirizzo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Indirizzo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 486, 6), )
 
+    
     Indirizzo = property(__Indirizzo.value, __Indirizzo.set, None, None)
 
+    
     # Element NumeroCivico uses Python identifier NumeroCivico
-    __NumeroCivico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroCivico'), 'NumeroCivico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_NumeroCivico', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 487, 6), )
+    __NumeroCivico = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroCivico'), 'NumeroCivico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_NumeroCivico', False, pyxb.utils.utility.Location(SCHEMA_FILE, 487, 6), )
 
-    NumeroCivico = property(__NumeroCivico.value,
-                            __NumeroCivico.set, None, None)
+    
+    NumeroCivico = property(
+        __NumeroCivico.value, __NumeroCivico.set, None, None)
 
+    
     # Element CAP uses Python identifier CAP
-    __CAP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CAP'), 'CAP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_CAP', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 488, 6), )
+    __CAP = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CAP'), 'CAP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_CAP', False, pyxb.utils.utility.Location(SCHEMA_FILE, 488, 6), )
 
+    
     CAP = property(__CAP.value, __CAP.set, None, None)
 
+    
     # Element Comune uses Python identifier Comune
-    __Comune = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Comune'), 'Comune', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Comune', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 489, 6), )
+    __Comune = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Comune'), 'Comune', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Comune', False, pyxb.utils.utility.Location(SCHEMA_FILE, 489, 6), )
 
+    
     Comune = property(__Comune.value, __Comune.set, None, None)
 
+    
     # Element Provincia uses Python identifier Provincia
-    __Provincia = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Provincia'), 'Provincia', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Provincia', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 490, 6), )
+    __Provincia = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Provincia'), 'Provincia', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Provincia', False, pyxb.utils.utility.Location(SCHEMA_FILE, 490, 6), )
 
+    
     Provincia = property(__Provincia.value, __Provincia.set, None, None)
 
+    
     # Element Nazione uses Python identifier Nazione
-    __Nazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Nazione'), 'Nazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Nazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 491, 6), )
+    __Nazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Nazione'), 'Nazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Nazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 491, 6), )
 
+    
     Nazione = property(__Nazione.value, __Nazione.set, None, None)
 
     _ElementMap.update({
-        __Indirizzo.name(): __Indirizzo,
-        __NumeroCivico.name(): __NumeroCivico,
-        __CAP.name(): __CAP,
-        __Comune.name(): __Comune,
-        __Provincia.name(): __Provincia,
-        __Nazione.name(): __Nazione
+        __Indirizzo.name() : __Indirizzo,
+        __NumeroCivico.name() : __NumeroCivico,
+        __CAP.name() : __CAP,
+        __Comune.name() : __Comune,
+        __Provincia.name() : __Provincia,
+        __Nazione.name() : __Nazione
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2690,8 +2864,9 @@ _module_typeBindings.IndirizzoType = IndirizzoType
 Namespace.addCategoryObject('typeBinding', 'IndirizzoType', IndirizzoType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaPrincipaleType with content type ELEMENT_ONLY
-class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaPrincipaleType with content type ELEMENT_ONLY
+class FatturaPrincipaleType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaPrincipaleType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2699,31 +2874,36 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaPrincipaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 494, 2)
+        SCHEMA_FILE, 494, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element NumeroFatturaPrincipale uses Python identifier NumeroFatturaPrincipale
-    __NumeroFatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'), 'NumeroFatturaPrincipale',
-                                                                        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_NumeroFatturaPrincipale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 496, 6), )
+    __NumeroFatturaPrincipale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroFatturaPrincipale'), 'NumeroFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_NumeroFatturaPrincipale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 496, 6), )
 
+    
     NumeroFatturaPrincipale = property(
         __NumeroFatturaPrincipale.value, __NumeroFatturaPrincipale.set, None, None)
 
+    
     # Element DataFatturaPrincipale uses Python identifier DataFatturaPrincipale
-    __DataFatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataFatturaPrincipale'), 'DataFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_DataFatturaPrincipale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 497, 6), )
+    __DataFatturaPrincipale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataFatturaPrincipale'), 'DataFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_DataFatturaPrincipale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 497, 6), )
 
+    
     DataFatturaPrincipale = property(
         __DataFatturaPrincipale.value, __DataFatturaPrincipale.set, None, None)
 
     _ElementMap.update({
-        __NumeroFatturaPrincipale.name(): __NumeroFatturaPrincipale,
-        __DataFatturaPrincipale.name(): __DataFatturaPrincipale
+        __NumeroFatturaPrincipale.name() : __NumeroFatturaPrincipale,
+        __DataFatturaPrincipale.name() : __DataFatturaPrincipale
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2732,72 +2912,92 @@ Namespace.addCategoryObject(
     'typeBinding', 'FatturaPrincipaleType', FatturaPrincipaleType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CedentePrestatoreType with content type ELEMENT_ONLY
-class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CedentePrestatoreType with content type ELEMENT_ONLY
+class CedentePrestatoreType(pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati del Cedente / Prestatore
-                        """
+
+
+				Blocco relativo ai dati del Cedente / Prestatore
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CedentePrestatoreType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 515, 2)
+        SCHEMA_FILE, 515, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_DatiAnagrafici', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 522, 6), )
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_DatiAnagrafici', False, pyxb.utils.utility.Location(SCHEMA_FILE, 522, 6), )
 
-    DatiAnagrafici = property(__DatiAnagrafici.value,
-                              __DatiAnagrafici.set, None, None)
+    
+    DatiAnagrafici = property(
+        __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
+    
     # Element Sede uses Python identifier Sede
-    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Sede', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 523, 6), )
+    __Sede = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Sede', False, pyxb.utils.utility.Location(SCHEMA_FILE, 523, 6), )
 
+    
     Sede = property(__Sede.value, __Sede.set, None, None)
 
+    
     # Element StabileOrganizzazione uses Python identifier StabileOrganizzazione
-    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_StabileOrganizzazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 524, 6), )
+    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_StabileOrganizzazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 524, 6), )
 
+    
     StabileOrganizzazione = property(
         __StabileOrganizzazione.value, __StabileOrganizzazione.set, None, None)
 
+    
     # Element IscrizioneREA uses Python identifier IscrizioneREA
-    __IscrizioneREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IscrizioneREA'), 'IscrizioneREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_IscrizioneREA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 525, 6), )
+    __IscrizioneREA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IscrizioneREA'), 'IscrizioneREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_IscrizioneREA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 525, 6), )
 
-    IscrizioneREA = property(__IscrizioneREA.value,
-                             __IscrizioneREA.set, None, None)
+    
+    IscrizioneREA = property(
+        __IscrizioneREA.value, __IscrizioneREA.set, None, None)
 
+    
     # Element Contatti uses Python identifier Contatti
-    __Contatti = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Contatti'), 'Contatti', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Contatti', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 526, 6), )
+    __Contatti = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Contatti'), 'Contatti', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Contatti', False, pyxb.utils.utility.Location(SCHEMA_FILE, 526, 6), )
 
+    
     Contatti = property(__Contatti.value, __Contatti.set, None, None)
 
+    
     # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
-    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione',
-                                                                           '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 527, 6), )
+    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 527, 6), )
 
+    
     RiferimentoAmministrazione = property(
         __RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
 
     _ElementMap.update({
-        __DatiAnagrafici.name(): __DatiAnagrafici,
-        __Sede.name(): __Sede,
-        __StabileOrganizzazione.name(): __StabileOrganizzazione,
-        __IscrizioneREA.name(): __IscrizioneREA,
-        __Contatti.name(): __Contatti,
-        __RiferimentoAmministrazione.name(): __RiferimentoAmministrazione
+        __DatiAnagrafici.name() : __DatiAnagrafici,
+        __Sede.name() : __Sede,
+        __StabileOrganizzazione.name() : __StabileOrganizzazione,
+        __IscrizioneREA.name() : __IscrizioneREA,
+        __Contatti.name() : __Contatti,
+        __RiferimentoAmministrazione.name() : __RiferimentoAmministrazione
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2806,8 +3006,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'CedentePrestatoreType', CedentePrestatoreType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCedenteType with content type ELEMENT_ONLY
-class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCedenteType with content type ELEMENT_ONLY
+class DatiAnagraficiCedenteType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCedenteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2815,78 +3016,101 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiCedenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 530, 2)
+        SCHEMA_FILE, 530, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 532, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_IdFiscaleIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 532, 6), )
 
-    IdFiscaleIVA = property(__IdFiscaleIVA.value,
-                            __IdFiscaleIVA.set, None, None)
+    
+    IdFiscaleIVA = property(
+        __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
+    
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_CodiceFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 533, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_CodiceFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 533, 6), )
 
-    CodiceFiscale = property(__CodiceFiscale.value,
-                             __CodiceFiscale.set, None, None)
+    
+    CodiceFiscale = property(
+        __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
+    
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_Anagrafica', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 534, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_Anagrafica', False, pyxb.utils.utility.Location(SCHEMA_FILE, 534, 6), )
 
+    
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
+    
     # Element AlboProfessionale uses Python identifier AlboProfessionale
-    __AlboProfessionale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AlboProfessionale'), 'AlboProfessionale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_AlboProfessionale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 535, 6), )
+    __AlboProfessionale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AlboProfessionale'), 'AlboProfessionale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_AlboProfessionale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 535, 6), )
 
+    
     AlboProfessionale = property(
         __AlboProfessionale.value, __AlboProfessionale.set, None, None)
 
+    
     # Element ProvinciaAlbo uses Python identifier ProvinciaAlbo
-    __ProvinciaAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ProvinciaAlbo'), 'ProvinciaAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_ProvinciaAlbo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 536, 6), )
+    __ProvinciaAlbo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ProvinciaAlbo'), 'ProvinciaAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_ProvinciaAlbo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 536, 6), )
 
-    ProvinciaAlbo = property(__ProvinciaAlbo.value,
-                             __ProvinciaAlbo.set, None, None)
+    
+    ProvinciaAlbo = property(
+        __ProvinciaAlbo.value, __ProvinciaAlbo.set, None, None)
 
+    
     # Element NumeroIscrizioneAlbo uses Python identifier NumeroIscrizioneAlbo
-    __NumeroIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroIscrizioneAlbo'), 'NumeroIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_NumeroIscrizioneAlbo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 537, 6), )
+    __NumeroIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroIscrizioneAlbo'), 'NumeroIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_NumeroIscrizioneAlbo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 537, 6), )
 
+    
     NumeroIscrizioneAlbo = property(
         __NumeroIscrizioneAlbo.value, __NumeroIscrizioneAlbo.set, None, None)
 
+    
     # Element DataIscrizioneAlbo uses Python identifier DataIscrizioneAlbo
-    __DataIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataIscrizioneAlbo'), 'DataIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_DataIscrizioneAlbo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 538, 6), )
+    __DataIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataIscrizioneAlbo'), 'DataIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_DataIscrizioneAlbo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 538, 6), )
 
+    
     DataIscrizioneAlbo = property(
         __DataIscrizioneAlbo.value, __DataIscrizioneAlbo.set, None, None)
 
+    
     # Element RegimeFiscale uses Python identifier RegimeFiscale
-    __RegimeFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RegimeFiscale'), 'RegimeFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_RegimeFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 539, 6), )
+    __RegimeFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RegimeFiscale'), 'RegimeFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_RegimeFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 539, 6), )
 
-    RegimeFiscale = property(__RegimeFiscale.value,
-                             __RegimeFiscale.set, None, None)
+    
+    RegimeFiscale = property(
+        __RegimeFiscale.value, __RegimeFiscale.set, None, None)
 
     _ElementMap.update({
-        __IdFiscaleIVA.name(): __IdFiscaleIVA,
-        __CodiceFiscale.name(): __CodiceFiscale,
-        __Anagrafica.name(): __Anagrafica,
-        __AlboProfessionale.name(): __AlboProfessionale,
-        __ProvinciaAlbo.name(): __ProvinciaAlbo,
-        __NumeroIscrizioneAlbo.name(): __NumeroIscrizioneAlbo,
-        __DataIscrizioneAlbo.name(): __DataIscrizioneAlbo,
-        __RegimeFiscale.name(): __RegimeFiscale
+        __IdFiscaleIVA.name() : __IdFiscaleIVA,
+        __CodiceFiscale.name() : __CodiceFiscale,
+        __Anagrafica.name() : __Anagrafica,
+        __AlboProfessionale.name() : __AlboProfessionale,
+        __ProvinciaAlbo.name() : __ProvinciaAlbo,
+        __NumeroIscrizioneAlbo.name() : __NumeroIscrizioneAlbo,
+        __DataIscrizioneAlbo.name() : __DataIscrizioneAlbo,
+        __RegimeFiscale.name() : __RegimeFiscale
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2895,61 +3119,78 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiAnagraficiCedenteType', DatiAnagraficiCedenteType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AnagraficaType with content type ELEMENT_ONLY
-class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AnagraficaType with content type ELEMENT_ONLY
+class AnagraficaType(pyxb.binding.basis.complexTypeDefinition):
     """
-                                Il campo Denominazione è in alternativa ai campi Nome e Cognome
-                        """
+
+
+				Il campo Denominazione è in alternativa ai campi Nome e Cognome
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AnagraficaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 638, 2)
+        SCHEMA_FILE, 638, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Denominazione uses Python identifier Denominazione
-    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Denominazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 647, 10), )
+    __Denominazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Denominazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 647, 10), )
 
-    Denominazione = property(__Denominazione.value,
-                             __Denominazione.set, None, None)
+    
+    Denominazione = property(
+        __Denominazione.value, __Denominazione.set, None, None)
 
+    
     # Element Nome uses Python identifier Nome
-    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Nome', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 650, 10), )
+    __Nome = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Nome', False, pyxb.utils.utility.Location(SCHEMA_FILE, 650, 10), )
 
+    
     Nome = property(__Nome.value, __Nome.set, None, None)
 
+    
     # Element Cognome uses Python identifier Cognome
-    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Cognome', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 651, 10), )
+    __Cognome = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Cognome', False, pyxb.utils.utility.Location(SCHEMA_FILE, 651, 10), )
 
+    
     Cognome = property(__Cognome.value, __Cognome.set, None, None)
 
+    
     # Element Titolo uses Python identifier Titolo
-    __Titolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Titolo'), 'Titolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Titolo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 654, 6), )
+    __Titolo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Titolo'), 'Titolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Titolo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 654, 6), )
 
+    
     Titolo = property(__Titolo.value, __Titolo.set, None, None)
 
+    
     # Element CodEORI uses Python identifier CodEORI
-    __CodEORI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodEORI'), 'CodEORI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_CodEORI', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 655, 6), )
+    __CodEORI = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodEORI'), 'CodEORI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_CodEORI', False, pyxb.utils.utility.Location(SCHEMA_FILE, 655, 6), )
 
+    
     CodEORI = property(__CodEORI.value, __CodEORI.set, None, None)
 
     _ElementMap.update({
-        __Denominazione.name(): __Denominazione,
-        __Nome.name(): __Nome,
-        __Cognome.name(): __Cognome,
-        __Titolo.name(): __Titolo,
-        __CodEORI.name(): __CodEORI
+        __Denominazione.name() : __Denominazione,
+        __Nome.name() : __Nome,
+        __Cognome.name() : __Cognome,
+        __Titolo.name() : __Titolo,
+        __CodEORI.name() : __CodEORI
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -2957,8 +3198,9 @@ _module_typeBindings.AnagraficaType = AnagraficaType
 Namespace.addCategoryObject('typeBinding', 'AnagraficaType', AnagraficaType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiVettoreType with content type ELEMENT_ONLY
-class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiVettoreType with content type ELEMENT_ONLY
+class DatiAnagraficiVettoreType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiVettoreType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -2966,46 +3208,57 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiVettoreType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 658, 2)
+        SCHEMA_FILE, 658, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_IdFiscaleIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 660, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_IdFiscaleIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 660, 6), )
 
-    IdFiscaleIVA = property(__IdFiscaleIVA.value,
-                            __IdFiscaleIVA.set, None, None)
+    
+    IdFiscaleIVA = property(
+        __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
+    
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_CodiceFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 661, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_CodiceFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 661, 6), )
 
-    CodiceFiscale = property(__CodiceFiscale.value,
-                             __CodiceFiscale.set, None, None)
+    
+    CodiceFiscale = property(
+        __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
+    
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_Anagrafica', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 662, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_Anagrafica', False, pyxb.utils.utility.Location(SCHEMA_FILE, 662, 6), )
 
+    
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
+    
     # Element NumeroLicenzaGuida uses Python identifier NumeroLicenzaGuida
-    __NumeroLicenzaGuida = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroLicenzaGuida'), 'NumeroLicenzaGuida', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_NumeroLicenzaGuida', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 663, 6), )
+    __NumeroLicenzaGuida = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroLicenzaGuida'), 'NumeroLicenzaGuida', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_NumeroLicenzaGuida', False, pyxb.utils.utility.Location(SCHEMA_FILE, 663, 6), )
 
+    
     NumeroLicenzaGuida = property(
         __NumeroLicenzaGuida.value, __NumeroLicenzaGuida.set, None, None)
 
     _ElementMap.update({
-        __IdFiscaleIVA.name(): __IdFiscaleIVA,
-        __CodiceFiscale.name(): __CodiceFiscale,
-        __Anagrafica.name(): __Anagrafica,
-        __NumeroLicenzaGuida.name(): __NumeroLicenzaGuida
+        __IdFiscaleIVA.name() : __IdFiscaleIVA,
+        __CodiceFiscale.name() : __CodiceFiscale,
+        __Anagrafica.name() : __Anagrafica,
+        __NumeroLicenzaGuida.name() : __NumeroLicenzaGuida
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3014,60 +3267,75 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiAnagraficiVettoreType', DatiAnagraficiVettoreType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IscrizioneREAType with content type ELEMENT_ONLY
-class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IscrizioneREAType with content type ELEMENT_ONLY
+class IscrizioneREAType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IscrizioneREAType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IscrizioneREAType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 666, 2)
+        SCHEMA_FILE, 666, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Ufficio uses Python identifier Ufficio
-    __Ufficio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Ufficio'), 'Ufficio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_Ufficio', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 668, 6), )
+    __Ufficio = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Ufficio'), 'Ufficio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_Ufficio', False, pyxb.utils.utility.Location(SCHEMA_FILE, 668, 6), )
 
+    
     Ufficio = property(__Ufficio.value, __Ufficio.set, None, None)
 
+    
     # Element NumeroREA uses Python identifier NumeroREA
-    __NumeroREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroREA'), 'NumeroREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_NumeroREA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 669, 6), )
+    __NumeroREA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroREA'), 'NumeroREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_NumeroREA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 669, 6), )
 
+    
     NumeroREA = property(__NumeroREA.value, __NumeroREA.set, None, None)
 
+    
     # Element CapitaleSociale uses Python identifier CapitaleSociale
-    __CapitaleSociale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CapitaleSociale'), 'CapitaleSociale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_CapitaleSociale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 670, 6), )
+    __CapitaleSociale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CapitaleSociale'), 'CapitaleSociale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_CapitaleSociale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 670, 6), )
 
+    
     CapitaleSociale = property(
         __CapitaleSociale.value, __CapitaleSociale.set, None, None)
 
+    
     # Element SocioUnico uses Python identifier SocioUnico
-    __SocioUnico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'SocioUnico'), 'SocioUnico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_SocioUnico', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 671, 6), )
+    __SocioUnico = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'SocioUnico'), 'SocioUnico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_SocioUnico', False, pyxb.utils.utility.Location(SCHEMA_FILE, 671, 6), )
 
+    
     SocioUnico = property(__SocioUnico.value, __SocioUnico.set, None, None)
 
+    
     # Element StatoLiquidazione uses Python identifier StatoLiquidazione
-    __StatoLiquidazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'StatoLiquidazione'), 'StatoLiquidazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_StatoLiquidazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 672, 6), )
+    __StatoLiquidazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'StatoLiquidazione'), 'StatoLiquidazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_StatoLiquidazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 672, 6), )
 
+    
     StatoLiquidazione = property(
         __StatoLiquidazione.value, __StatoLiquidazione.set, None, None)
 
     _ElementMap.update({
-        __Ufficio.name(): __Ufficio,
-        __NumeroREA.name(): __NumeroREA,
-        __CapitaleSociale.name(): __CapitaleSociale,
-        __SocioUnico.name(): __SocioUnico,
-        __StatoLiquidazione.name(): __StatoLiquidazione
+        __Ufficio.name() : __Ufficio,
+        __NumeroREA.name() : __NumeroREA,
+        __CapitaleSociale.name() : __CapitaleSociale,
+        __SocioUnico.name() : __SocioUnico,
+        __StatoLiquidazione.name() : __StatoLiquidazione
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3076,44 +3344,53 @@ Namespace.addCategoryObject(
     'typeBinding', 'IscrizioneREAType', IscrizioneREAType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiType with content type ELEMENT_ONLY
-class ContattiType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiType with content type ELEMENT_ONLY
+class ContattiType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ContattiType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 675, 2)
+        SCHEMA_FILE, 675, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Telefono uses Python identifier Telefono
-    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Telefono', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 677, 6), )
+    __Telefono = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Telefono', False, pyxb.utils.utility.Location(SCHEMA_FILE, 677, 6), )
 
+    
     Telefono = property(__Telefono.value, __Telefono.set, None, None)
 
+    
     # Element Fax uses Python identifier Fax
-    __Fax = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Fax'), 'Fax', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Fax', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 678, 6), )
+    __Fax = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Fax'), 'Fax', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Fax', False, pyxb.utils.utility.Location(SCHEMA_FILE, 678, 6), )
 
+    
     Fax = property(__Fax.value, __Fax.set, None, None)
 
+    
     # Element Email uses Python identifier Email
-    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Email', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 679, 6), )
+    __Email = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Email', False, pyxb.utils.utility.Location(SCHEMA_FILE, 679, 6), )
 
+    
     Email = property(__Email.value, __Email.set, None, None)
 
     _ElementMap.update({
-        __Telefono.name(): __Telefono,
-        __Fax.name(): __Fax,
-        __Email.name(): __Email
+        __Telefono.name() : __Telefono,
+        __Fax.name() : __Fax,
+        __Email.name() : __Email
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3121,34 +3398,39 @@ _module_typeBindings.ContattiType = ContattiType
 Namespace.addCategoryObject('typeBinding', 'ContattiType', ContattiType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleType with content type ELEMENT_ONLY
-class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleType with content type ELEMENT_ONLY
+class RappresentanteFiscaleType(pyxb.binding.basis.complexTypeDefinition):
     """
-                        Blocco relativo ai dati del Rappresentante Fiscale
-                """
+
+
+			Blocco relativo ai dati del Rappresentante Fiscale
+		"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RappresentanteFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 682, 2)
+        SCHEMA_FILE, 682, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleType_DatiAnagrafici', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 689, 6), )
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleType_DatiAnagrafici', False, pyxb.utils.utility.Location(SCHEMA_FILE, 689, 6), )
 
-    DatiAnagrafici = property(__DatiAnagrafici.value,
-                              __DatiAnagrafici.set, None, None)
+    
+    DatiAnagrafici = property(
+        __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
     _ElementMap.update({
-        __DatiAnagrafici.name(): __DatiAnagrafici
+        __DatiAnagrafici.name() : __DatiAnagrafici
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3157,8 +3439,10 @@ Namespace.addCategoryObject(
     'typeBinding', 'RappresentanteFiscaleType', RappresentanteFiscaleType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY
-class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY
+class DatiAnagraficiRappresentanteType(
+    pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3166,38 +3450,46 @@ class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiRappresentanteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 692, 2)
+        SCHEMA_FILE, 692, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 694, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_IdFiscaleIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 694, 6), )
 
-    IdFiscaleIVA = property(__IdFiscaleIVA.value,
-                            __IdFiscaleIVA.set, None, None)
+    
+    IdFiscaleIVA = property(
+        __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
+    
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_CodiceFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 695, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_CodiceFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 695, 6), )
 
-    CodiceFiscale = property(__CodiceFiscale.value,
-                             __CodiceFiscale.set, None, None)
+    
+    CodiceFiscale = property(
+        __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
+    
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_Anagrafica', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 696, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_Anagrafica', False, pyxb.utils.utility.Location(SCHEMA_FILE, 696, 6), )
 
+    
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     _ElementMap.update({
-        __IdFiscaleIVA.name(): __IdFiscaleIVA,
-        __CodiceFiscale.name(): __CodiceFiscale,
-        __Anagrafica.name(): __Anagrafica
+        __IdFiscaleIVA.name() : __IdFiscaleIVA,
+        __CodiceFiscale.name() : __CodiceFiscale,
+        __Anagrafica.name() : __Anagrafica
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3206,8 +3498,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiAnagraficiRappresentanteType', DatiAnagraficiRappresentanteType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CessionarioCommittenteType with content type ELEMENT_ONLY
-class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CessionarioCommittenteType with content type ELEMENT_ONLY
+class CessionarioCommittenteType(pyxb.binding.basis.complexTypeDefinition):
     """Blocco relativo ai dati del Cessionario / Committente"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3215,46 +3508,57 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'CessionarioCommittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 699, 2)
+        SCHEMA_FILE, 699, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 704, 6), )
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location(SCHEMA_FILE, 704, 6), )
 
-    DatiAnagrafici = property(__DatiAnagrafici.value,
-                              __DatiAnagrafici.set, None, None)
+    
+    DatiAnagrafici = property(
+        __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
+    
     # Element Sede uses Python identifier Sede
-    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_Sede', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 705, 6), )
+    __Sede = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_Sede', False, pyxb.utils.utility.Location(SCHEMA_FILE, 705, 6), )
 
+    
     Sede = property(__Sede.value, __Sede.set, None, None)
 
+    
     # Element StabileOrganizzazione uses Python identifier StabileOrganizzazione
-    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_StabileOrganizzazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 706, 3), )
+    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_StabileOrganizzazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 706, 3), )
 
+    
     StabileOrganizzazione = property(
         __StabileOrganizzazione.value, __StabileOrganizzazione.set, None, None)
 
+    
     # Element RappresentanteFiscale uses Python identifier RappresentanteFiscale
-    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_RappresentanteFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 707, 6), )
+    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_RappresentanteFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 707, 6), )
 
+    
     RappresentanteFiscale = property(
         __RappresentanteFiscale.value, __RappresentanteFiscale.set, None, None)
 
     _ElementMap.update({
-        __DatiAnagrafici.name(): __DatiAnagrafici,
-        __Sede.name(): __Sede,
-        __StabileOrganizzazione.name(): __StabileOrganizzazione,
-        __RappresentanteFiscale.name(): __RappresentanteFiscale
+        __DatiAnagrafici.name() : __DatiAnagrafici,
+        __Sede.name() : __Sede,
+        __StabileOrganizzazione.name() : __StabileOrganizzazione,
+        __RappresentanteFiscale.name() : __RappresentanteFiscale
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3263,8 +3567,10 @@ Namespace.addCategoryObject(
     'typeBinding', 'CessionarioCommittenteType', CessionarioCommittenteType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleCessionarioType with content type ELEMENT_ONLY
-class RappresentanteFiscaleCessionarioType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleCessionarioType with content type ELEMENT_ONLY
+class RappresentanteFiscaleCessionarioType(
+    pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleCessionarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3272,45 +3578,56 @@ class RappresentanteFiscaleCessionarioType (pyxb.binding.basis.complexTypeDefini
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'RappresentanteFiscaleCessionarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 710, 2)
+        SCHEMA_FILE, 710, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 712, 3), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 712, 3), )
 
-    IdFiscaleIVA = property(__IdFiscaleIVA.value,
-                            __IdFiscaleIVA.set, None, None)
+    
+    IdFiscaleIVA = property(
+        __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
+    
     # Element Denominazione uses Python identifier Denominazione
-    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Denominazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 715, 10), )
+    __Denominazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Denominazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 715, 10), )
 
-    Denominazione = property(__Denominazione.value,
-                             __Denominazione.set, None, None)
+    
+    Denominazione = property(
+        __Denominazione.value, __Denominazione.set, None, None)
 
+    
     # Element Nome uses Python identifier Nome
-    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Nome', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 718, 10), )
+    __Nome = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Nome', False, pyxb.utils.utility.Location(SCHEMA_FILE, 718, 10), )
 
+    
     Nome = property(__Nome.value, __Nome.set, None, None)
 
+    
     # Element Cognome uses Python identifier Cognome
-    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Cognome', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 719, 10), )
+    __Cognome = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Cognome', False, pyxb.utils.utility.Location(SCHEMA_FILE, 719, 10), )
 
+    
     Cognome = property(__Cognome.value, __Cognome.set, None, None)
 
     _ElementMap.update({
-        __IdFiscaleIVA.name(): __IdFiscaleIVA,
-        __Denominazione.name(): __Denominazione,
-        __Nome.name(): __Nome,
-        __Cognome.name(): __Cognome
+        __IdFiscaleIVA.name() : __IdFiscaleIVA,
+        __Denominazione.name() : __Denominazione,
+        __Nome.name() : __Nome,
+        __Cognome.name() : __Cognome
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3319,8 +3636,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'RappresentanteFiscaleCessionarioType', RappresentanteFiscaleCessionarioType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY
-class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY
+class DatiAnagraficiCessionarioType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3328,38 +3646,46 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiCessionarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 724, 2)
+        SCHEMA_FILE, 724, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 726, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 726, 6), )
 
-    IdFiscaleIVA = property(__IdFiscaleIVA.value,
-                            __IdFiscaleIVA.set, None, None)
+    
+    IdFiscaleIVA = property(
+        __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
+    
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_CodiceFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 727, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_CodiceFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 727, 6), )
 
-    CodiceFiscale = property(__CodiceFiscale.value,
-                             __CodiceFiscale.set, None, None)
+    
+    CodiceFiscale = property(
+        __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
+    
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_Anagrafica', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 728, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_Anagrafica', False, pyxb.utils.utility.Location(SCHEMA_FILE, 728, 6), )
 
+    
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     _ElementMap.update({
-        __IdFiscaleIVA.name(): __IdFiscaleIVA,
-        __CodiceFiscale.name(): __CodiceFiscale,
-        __Anagrafica.name(): __Anagrafica
+        __IdFiscaleIVA.name() : __IdFiscaleIVA,
+        __CodiceFiscale.name() : __CodiceFiscale,
+        __Anagrafica.name() : __Anagrafica
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3368,42 +3694,50 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiAnagraficiCessionarioType', DatiAnagraficiCessionarioType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBeniServiziType with content type ELEMENT_ONLY
-class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBeniServiziType with content type ELEMENT_ONLY
+class DatiBeniServiziType(pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
-                        """
+
+
+				Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiBeniServiziType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 731, 2)
+        SCHEMA_FILE, 731, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element DettaglioLinee uses Python identifier DettaglioLinee
-    __DettaglioLinee = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DettaglioLinee'), 'DettaglioLinee', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DettaglioLinee', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 738, 6), )
+    __DettaglioLinee = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DettaglioLinee'), 'DettaglioLinee', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DettaglioLinee', True, pyxb.utils.utility.Location(SCHEMA_FILE, 738, 6), )
 
-    DettaglioLinee = property(__DettaglioLinee.value,
-                              __DettaglioLinee.set, None, None)
+    
+    DettaglioLinee = property(
+        __DettaglioLinee.value, __DettaglioLinee.set, None, None)
 
+    
     # Element DatiRiepilogo uses Python identifier DatiRiepilogo
-    __DatiRiepilogo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiRiepilogo'), 'DatiRiepilogo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DatiRiepilogo', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 739, 6), )
+    __DatiRiepilogo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiRiepilogo'), 'DatiRiepilogo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DatiRiepilogo', True, pyxb.utils.utility.Location(SCHEMA_FILE, 739, 6), )
 
-    DatiRiepilogo = property(__DatiRiepilogo.value,
-                             __DatiRiepilogo.set, None, None)
+    
+    DatiRiepilogo = property(
+        __DatiRiepilogo.value, __DatiRiepilogo.set, None, None)
 
     _ElementMap.update({
-        __DettaglioLinee.name(): __DettaglioLinee,
-        __DatiRiepilogo.name(): __DatiRiepilogo
+        __DettaglioLinee.name() : __DettaglioLinee,
+        __DatiRiepilogo.name() : __DatiRiepilogo
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3412,43 +3746,51 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiBeniServiziType', DatiBeniServiziType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiVeicoliType with content type ELEMENT_ONLY
-class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiVeicoliType with content type ELEMENT_ONLY
+class DatiVeicoliType(pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati dei Veicoli della Fattura
-                                Elettronica (da indicare nei casi di cessioni tra Paesi
-                                membri di mezzi di trasporto nuovi, in base all'art. 38,
-                                comma 4 del dl 331 del 1993)
-                        """
+
+
+				Blocco relativo ai dati dei Veicoli della Fattura
+				Elettronica (da indicare nei casi di cessioni tra Paesi
+				membri di mezzi di trasporto nuovi, in base all'art. 38,
+				comma 4 del dl 331 del 1993)
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiVeicoliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 742, 2)
+        SCHEMA_FILE, 742, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_Data', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 752, 6), )
+    __Data = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_Data', False, pyxb.utils.utility.Location(SCHEMA_FILE, 752, 6), )
 
+    
     Data = property(__Data.value, __Data.set, None, None)
 
+    
     # Element TotalePercorso uses Python identifier TotalePercorso
-    __TotalePercorso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TotalePercorso'), 'TotalePercorso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_TotalePercorso', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 753, 6), )
+    __TotalePercorso = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TotalePercorso'), 'TotalePercorso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_TotalePercorso', False, pyxb.utils.utility.Location(SCHEMA_FILE, 753, 6), )
 
-    TotalePercorso = property(__TotalePercorso.value,
-                              __TotalePercorso.set, None, None)
+    
+    TotalePercorso = property(
+        __TotalePercorso.value, __TotalePercorso.set, None, None)
 
     _ElementMap.update({
-        __Data.name(): __Data,
-        __TotalePercorso.name(): __TotalePercorso
+        __Data.name() : __Data,
+        __TotalePercorso.name() : __TotalePercorso
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3456,41 +3798,49 @@ _module_typeBindings.DatiVeicoliType = DatiVeicoliType
 Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiPagamentoType with content type ELEMENT_ONLY
-class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiPagamentoType with content type ELEMENT_ONLY
+class DatiPagamentoType(pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati di Pagamento della Fattura	Elettronica
-                        """
+
+
+				Blocco relativo ai dati di Pagamento della Fattura	Elettronica
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 756, 2)
+        SCHEMA_FILE, 756, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element CondizioniPagamento uses Python identifier CondizioniPagamento
-    __CondizioniPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CondizioniPagamento'), 'CondizioniPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_CondizioniPagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 763, 6), )
+    __CondizioniPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CondizioniPagamento'), 'CondizioniPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_CondizioniPagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 763, 6), )
 
+    
     CondizioniPagamento = property(
         __CondizioniPagamento.value, __CondizioniPagamento.set, None, None)
 
+    
     # Element DettaglioPagamento uses Python identifier DettaglioPagamento
-    __DettaglioPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DettaglioPagamento'), 'DettaglioPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_DettaglioPagamento', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 764, 6), )
+    __DettaglioPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DettaglioPagamento'), 'DettaglioPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_DettaglioPagamento', True, pyxb.utils.utility.Location(SCHEMA_FILE, 764, 6), )
 
+    
     DettaglioPagamento = property(
         __DettaglioPagamento.value, __DettaglioPagamento.set, None, None)
 
     _ElementMap.update({
-        __CondizioniPagamento.name(): __CondizioniPagamento,
-        __DettaglioPagamento.name(): __DettaglioPagamento
+        __CondizioniPagamento.name() : __CondizioniPagamento,
+        __DettaglioPagamento.name() : __DettaglioPagamento
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3499,8 +3849,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiPagamentoType', DatiPagamentoType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioPagamentoType with content type ELEMENT_ONLY
-class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioPagamentoType with content type ELEMENT_ONLY
+class DettaglioPagamentoType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioPagamentoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3508,179 +3859,243 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DettaglioPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 788, 2)
+        SCHEMA_FILE, 788, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element Beneficiario uses Python identifier Beneficiario
-    __Beneficiario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Beneficiario'), 'Beneficiario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_Beneficiario', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 790, 6), )
+    __Beneficiario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Beneficiario'), 'Beneficiario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_Beneficiario', False, pyxb.utils.utility.Location(SCHEMA_FILE, 790, 6), )
 
-    Beneficiario = property(__Beneficiario.value,
-                            __Beneficiario.set, None, None)
+    
+    Beneficiario = property(
+        __Beneficiario.value, __Beneficiario.set, None, None)
 
+    
     # Element ModalitaPagamento uses Python identifier ModalitaPagamento
-    __ModalitaPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ModalitaPagamento'), 'ModalitaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ModalitaPagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 791, 6), )
+    __ModalitaPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ModalitaPagamento'), 'ModalitaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ModalitaPagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 791, 6), )
 
+    
     ModalitaPagamento = property(
         __ModalitaPagamento.value, __ModalitaPagamento.set, None, None)
 
+    
     # Element DataRiferimentoTerminiPagamento uses Python identifier DataRiferimentoTerminiPagamento
-    __DataRiferimentoTerminiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'), 'DataRiferimentoTerminiPagamento',
-                                                                                '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataRiferimentoTerminiPagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 792, 6), )
+    __DataRiferimentoTerminiPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataRiferimentoTerminiPagamento'), 'DataRiferimentoTerminiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataRiferimentoTerminiPagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 792, 6), )
 
+    
     DataRiferimentoTerminiPagamento = property(
         __DataRiferimentoTerminiPagamento.value, __DataRiferimentoTerminiPagamento.set, None, None)
 
+    
     # Element GiorniTerminiPagamento uses Python identifier GiorniTerminiPagamento
-    __GiorniTerminiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'), 'GiorniTerminiPagamento',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_GiorniTerminiPagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 793, 6), )
+    __GiorniTerminiPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'GiorniTerminiPagamento'), 'GiorniTerminiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_GiorniTerminiPagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 793, 6), )
 
+    
     GiorniTerminiPagamento = property(
         __GiorniTerminiPagamento.value, __GiorniTerminiPagamento.set, None, None)
 
+    
     # Element DataScadenzaPagamento uses Python identifier DataScadenzaPagamento
-    __DataScadenzaPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataScadenzaPagamento'), 'DataScadenzaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataScadenzaPagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 794, 6), )
+    __DataScadenzaPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataScadenzaPagamento'), 'DataScadenzaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataScadenzaPagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 794, 6), )
 
+    
     DataScadenzaPagamento = property(
         __DataScadenzaPagamento.value, __DataScadenzaPagamento.set, None, None)
 
+    
     # Element ImportoPagamento uses Python identifier ImportoPagamento
-    __ImportoPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ImportoPagamento'), 'ImportoPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ImportoPagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 795, 6), )
+    __ImportoPagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoPagamento'), 'ImportoPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ImportoPagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 795, 6), )
 
+    
     ImportoPagamento = property(
         __ImportoPagamento.value, __ImportoPagamento.set, None, None)
 
+    
     # Element CodUfficioPostale uses Python identifier CodUfficioPostale
-    __CodUfficioPostale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodUfficioPostale'), 'CodUfficioPostale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodUfficioPostale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 796, 6), )
+    __CodUfficioPostale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodUfficioPostale'), 'CodUfficioPostale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodUfficioPostale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 796, 6), )
 
+    
     CodUfficioPostale = property(
         __CodUfficioPostale.value, __CodUfficioPostale.set, None, None)
 
+    
     # Element CognomeQuietanzante uses Python identifier CognomeQuietanzante
-    __CognomeQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CognomeQuietanzante'), 'CognomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CognomeQuietanzante', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 797, 6), )
+    __CognomeQuietanzante = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CognomeQuietanzante'), 'CognomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CognomeQuietanzante', False, pyxb.utils.utility.Location(SCHEMA_FILE, 797, 6), )
 
+    
     CognomeQuietanzante = property(
         __CognomeQuietanzante.value, __CognomeQuietanzante.set, None, None)
 
+    
     # Element NomeQuietanzante uses Python identifier NomeQuietanzante
-    __NomeQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NomeQuietanzante'), 'NomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_NomeQuietanzante', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 798, 6), )
+    __NomeQuietanzante = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NomeQuietanzante'), 'NomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_NomeQuietanzante', False, pyxb.utils.utility.Location(SCHEMA_FILE, 798, 6), )
 
+    
     NomeQuietanzante = property(
         __NomeQuietanzante.value, __NomeQuietanzante.set, None, None)
 
+    
     # Element CFQuietanzante uses Python identifier CFQuietanzante
-    __CFQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CFQuietanzante'), 'CFQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CFQuietanzante', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 799, 6), )
+    __CFQuietanzante = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CFQuietanzante'), 'CFQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CFQuietanzante', False, pyxb.utils.utility.Location(SCHEMA_FILE, 799, 6), )
 
-    CFQuietanzante = property(__CFQuietanzante.value,
-                              __CFQuietanzante.set, None, None)
+    
+    CFQuietanzante = property(
+        __CFQuietanzante.value, __CFQuietanzante.set, None, None)
 
+    
     # Element TitoloQuietanzante uses Python identifier TitoloQuietanzante
-    __TitoloQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TitoloQuietanzante'), 'TitoloQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_TitoloQuietanzante', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 800, 6), )
+    __TitoloQuietanzante = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TitoloQuietanzante'), 'TitoloQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_TitoloQuietanzante', False, pyxb.utils.utility.Location(SCHEMA_FILE, 800, 6), )
 
+    
     TitoloQuietanzante = property(
         __TitoloQuietanzante.value, __TitoloQuietanzante.set, None, None)
 
+    
     # Element IstitutoFinanziario uses Python identifier IstitutoFinanziario
-    __IstitutoFinanziario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IstitutoFinanziario'), 'IstitutoFinanziario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IstitutoFinanziario', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 801, 6), )
+    __IstitutoFinanziario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IstitutoFinanziario'), 'IstitutoFinanziario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IstitutoFinanziario', False, pyxb.utils.utility.Location(SCHEMA_FILE, 801, 6), )
 
+    
     IstitutoFinanziario = property(
         __IstitutoFinanziario.value, __IstitutoFinanziario.set, None, None)
 
+    
     # Element IBAN uses Python identifier IBAN
-    __IBAN = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IBAN'), 'IBAN', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IBAN', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 802, 6), )
+    __IBAN = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IBAN'), 'IBAN', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IBAN', False, pyxb.utils.utility.Location(SCHEMA_FILE, 802, 6), )
 
+    
     IBAN = property(__IBAN.value, __IBAN.set, None, None)
 
+    
     # Element ABI uses Python identifier ABI
-    __ABI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ABI'), 'ABI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ABI', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 803, 6), )
+    __ABI = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ABI'), 'ABI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ABI', False, pyxb.utils.utility.Location(SCHEMA_FILE, 803, 6), )
 
+    
     ABI = property(__ABI.value, __ABI.set, None, None)
 
+    
     # Element CAB uses Python identifier CAB
-    __CAB = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CAB'), 'CAB', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CAB', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 804, 6), )
+    __CAB = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CAB'), 'CAB', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CAB', False, pyxb.utils.utility.Location(SCHEMA_FILE, 804, 6), )
 
+    
     CAB = property(__CAB.value, __CAB.set, None, None)
 
+    
     # Element BIC uses Python identifier BIC
-    __BIC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'BIC'), 'BIC', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_BIC', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 805, 6), )
+    __BIC = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'BIC'), 'BIC', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_BIC', False, pyxb.utils.utility.Location(SCHEMA_FILE, 805, 6), )
 
+    
     BIC = property(__BIC.value, __BIC.set, None, None)
 
+    
     # Element ScontoPagamentoAnticipato uses Python identifier ScontoPagamentoAnticipato
-    __ScontoPagamentoAnticipato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'), 'ScontoPagamentoAnticipato',
-                                                                          '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ScontoPagamentoAnticipato', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 806, 6), )
+    __ScontoPagamentoAnticipato = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ScontoPagamentoAnticipato'), 'ScontoPagamentoAnticipato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ScontoPagamentoAnticipato', False, pyxb.utils.utility.Location(SCHEMA_FILE, 806, 6), )
 
+    
     ScontoPagamentoAnticipato = property(
         __ScontoPagamentoAnticipato.value, __ScontoPagamentoAnticipato.set, None, None)
 
+    
     # Element DataLimitePagamentoAnticipato uses Python identifier DataLimitePagamentoAnticipato
-    __DataLimitePagamentoAnticipato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'), 'DataLimitePagamentoAnticipato',
-                                                                              '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataLimitePagamentoAnticipato', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 807, 6), )
+    __DataLimitePagamentoAnticipato = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataLimitePagamentoAnticipato'), 'DataLimitePagamentoAnticipato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataLimitePagamentoAnticipato', False, pyxb.utils.utility.Location(SCHEMA_FILE, 807, 6), )
 
+    
     DataLimitePagamentoAnticipato = property(
         __DataLimitePagamentoAnticipato.value, __DataLimitePagamentoAnticipato.set, None, None)
 
+    
     # Element PenalitaPagamentiRitardati uses Python identifier PenalitaPagamentiRitardati
-    __PenalitaPagamentiRitardati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'), 'PenalitaPagamentiRitardati',
-                                                                           '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_PenalitaPagamentiRitardati', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 808, 6), )
+    __PenalitaPagamentiRitardati = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'PenalitaPagamentiRitardati'), 'PenalitaPagamentiRitardati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_PenalitaPagamentiRitardati', False, pyxb.utils.utility.Location(SCHEMA_FILE, 808, 6), )
 
+    
     PenalitaPagamentiRitardati = property(
         __PenalitaPagamentiRitardati.value, __PenalitaPagamentiRitardati.set, None, None)
 
+    
     # Element DataDecorrenzaPenale uses Python identifier DataDecorrenzaPenale
-    __DataDecorrenzaPenale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataDecorrenzaPenale'), 'DataDecorrenzaPenale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataDecorrenzaPenale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 809, 6), )
+    __DataDecorrenzaPenale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataDecorrenzaPenale'), 'DataDecorrenzaPenale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataDecorrenzaPenale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 809, 6), )
 
+    
     DataDecorrenzaPenale = property(
         __DataDecorrenzaPenale.value, __DataDecorrenzaPenale.set, None, None)
 
+    
     # Element CodicePagamento uses Python identifier CodicePagamento
-    __CodicePagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodicePagamento'), 'CodicePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodicePagamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 810, 6), )
+    __CodicePagamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodicePagamento'), 'CodicePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodicePagamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 810, 6), )
 
+    
     CodicePagamento = property(
         __CodicePagamento.value, __CodicePagamento.set, None, None)
 
     _ElementMap.update({
-        __Beneficiario.name(): __Beneficiario,
-        __ModalitaPagamento.name(): __ModalitaPagamento,
-        __DataRiferimentoTerminiPagamento.name(): __DataRiferimentoTerminiPagamento,
-        __GiorniTerminiPagamento.name(): __GiorniTerminiPagamento,
-        __DataScadenzaPagamento.name(): __DataScadenzaPagamento,
-        __ImportoPagamento.name(): __ImportoPagamento,
-        __CodUfficioPostale.name(): __CodUfficioPostale,
-        __CognomeQuietanzante.name(): __CognomeQuietanzante,
-        __NomeQuietanzante.name(): __NomeQuietanzante,
-        __CFQuietanzante.name(): __CFQuietanzante,
-        __TitoloQuietanzante.name(): __TitoloQuietanzante,
-        __IstitutoFinanziario.name(): __IstitutoFinanziario,
-        __IBAN.name(): __IBAN,
-        __ABI.name(): __ABI,
-        __CAB.name(): __CAB,
-        __BIC.name(): __BIC,
-        __ScontoPagamentoAnticipato.name(): __ScontoPagamentoAnticipato,
-        __DataLimitePagamentoAnticipato.name(): __DataLimitePagamentoAnticipato,
-        __PenalitaPagamentiRitardati.name(): __PenalitaPagamentiRitardati,
-        __DataDecorrenzaPenale.name(): __DataDecorrenzaPenale,
-        __CodicePagamento.name(): __CodicePagamento
+        __Beneficiario.name() : __Beneficiario,
+        __ModalitaPagamento.name() : __ModalitaPagamento,
+        __DataRiferimentoTerminiPagamento.name(
+            ) : __DataRiferimentoTerminiPagamento,
+        __GiorniTerminiPagamento.name() : __GiorniTerminiPagamento,
+        __DataScadenzaPagamento.name() : __DataScadenzaPagamento,
+        __ImportoPagamento.name() : __ImportoPagamento,
+        __CodUfficioPostale.name() : __CodUfficioPostale,
+        __CognomeQuietanzante.name() : __CognomeQuietanzante,
+        __NomeQuietanzante.name() : __NomeQuietanzante,
+        __CFQuietanzante.name() : __CFQuietanzante,
+        __TitoloQuietanzante.name() : __TitoloQuietanzante,
+        __IstitutoFinanziario.name() : __IstitutoFinanziario,
+        __IBAN.name() : __IBAN,
+        __ABI.name() : __ABI,
+        __CAB.name() : __CAB,
+        __BIC.name() : __BIC,
+        __ScontoPagamentoAnticipato.name() : __ScontoPagamentoAnticipato,
+        __DataLimitePagamentoAnticipato.name(
+            ) : __DataLimitePagamentoAnticipato,
+        __PenalitaPagamentiRitardati.name() : __PenalitaPagamentiRitardati,
+        __DataDecorrenzaPenale.name() : __DataDecorrenzaPenale,
+        __CodicePagamento.name() : __CodicePagamento
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3689,36 +4104,42 @@ Namespace.addCategoryObject(
     'typeBinding', 'DettaglioPagamentoType', DettaglioPagamentoType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TerzoIntermediarioSoggettoEmittenteType with content type ELEMENT_ONLY
-class TerzoIntermediarioSoggettoEmittenteType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TerzoIntermediarioSoggettoEmittenteType with content type ELEMENT_ONLY
+class TerzoIntermediarioSoggettoEmittenteType(
+    pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati del Terzo Intermediario che
-                                emette fattura elettronica per conto del
-                                Cedente/Prestatore
-                        """
+
+
+				Blocco relativo ai dati del Terzo Intermediario che
+				emette fattura elettronica per conto del
+				Cedente/Prestatore
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'TerzoIntermediarioSoggettoEmittenteType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 938, 2)
+        SCHEMA_FILE, 938, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 947, 6), )
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location(SCHEMA_FILE, 947, 6), )
 
-    DatiAnagrafici = property(__DatiAnagrafici.value,
-                              __DatiAnagrafici.set, None, None)
+    
+    DatiAnagrafici = property(
+        __DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
     _ElementMap.update({
-        __DatiAnagrafici.name(): __DatiAnagrafici
+        __DatiAnagrafici.name() : __DatiAnagrafici
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3727,8 +4148,10 @@ Namespace.addCategoryObject(
     'typeBinding', 'TerzoIntermediarioSoggettoEmittenteType', TerzoIntermediarioSoggettoEmittenteType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY
-class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY
+class DatiAnagraficiTerzoIntermediarioType(
+    pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -3736,38 +4159,46 @@ class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefini
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'DatiAnagraficiTerzoIntermediarioType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 950, 2)
+        SCHEMA_FILE, 950, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 952, 6), )
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 952, 6), )
 
-    IdFiscaleIVA = property(__IdFiscaleIVA.value,
-                            __IdFiscaleIVA.set, None, None)
+    
+    IdFiscaleIVA = property(
+        __IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
+    
     # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_CodiceFiscale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 953, 6), )
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_CodiceFiscale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 953, 6), )
 
-    CodiceFiscale = property(__CodiceFiscale.value,
-                             __CodiceFiscale.set, None, None)
+    
+    CodiceFiscale = property(
+        __CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
+    
     # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_Anagrafica', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 954, 6), )
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_Anagrafica', False, pyxb.utils.utility.Location(SCHEMA_FILE, 954, 6), )
 
+    
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     _ElementMap.update({
-        __IdFiscaleIVA.name(): __IdFiscaleIVA,
-        __CodiceFiscale.name(): __CodiceFiscale,
-        __Anagrafica.name(): __Anagrafica
+        __IdFiscaleIVA.name() : __IdFiscaleIVA,
+        __CodiceFiscale.name() : __CodiceFiscale,
+        __Anagrafica.name() : __Anagrafica
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3776,64 +4207,81 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiAnagraficiTerzoIntermediarioType', DatiAnagraficiTerzoIntermediarioType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AllegatiType with content type ELEMENT_ONLY
-class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AllegatiType with content type ELEMENT_ONLY
+class AllegatiType(pyxb.binding.basis.complexTypeDefinition):
     """
-                                Blocco relativo ai dati di eventuali allegati
-                        """
+
+
+				Blocco relativo ai dati di eventuali allegati
+			"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AllegatiType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 957, 2)
+        SCHEMA_FILE, 957, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element NomeAttachment uses Python identifier NomeAttachment
-    __NomeAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NomeAttachment'), 'NomeAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_NomeAttachment', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 964, 6), )
+    __NomeAttachment = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NomeAttachment'), 'NomeAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_NomeAttachment', False, pyxb.utils.utility.Location(SCHEMA_FILE, 964, 6), )
 
-    NomeAttachment = property(__NomeAttachment.value,
-                              __NomeAttachment.set, None, None)
+    
+    NomeAttachment = property(
+        __NomeAttachment.value, __NomeAttachment.set, None, None)
 
+    
     # Element AlgoritmoCompressione uses Python identifier AlgoritmoCompressione
-    __AlgoritmoCompressione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AlgoritmoCompressione'), 'AlgoritmoCompressione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_AlgoritmoCompressione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 965, 6), )
+    __AlgoritmoCompressione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AlgoritmoCompressione'), 'AlgoritmoCompressione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_AlgoritmoCompressione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 965, 6), )
 
+    
     AlgoritmoCompressione = property(
         __AlgoritmoCompressione.value, __AlgoritmoCompressione.set, None, None)
 
+    
     # Element FormatoAttachment uses Python identifier FormatoAttachment
-    __FormatoAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'FormatoAttachment'), 'FormatoAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_FormatoAttachment', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 966, 6), )
+    __FormatoAttachment = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'FormatoAttachment'), 'FormatoAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_FormatoAttachment', False, pyxb.utils.utility.Location(SCHEMA_FILE, 966, 6), )
 
+    
     FormatoAttachment = property(
         __FormatoAttachment.value, __FormatoAttachment.set, None, None)
 
+    
     # Element DescrizioneAttachment uses Python identifier DescrizioneAttachment
-    __DescrizioneAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DescrizioneAttachment'), 'DescrizioneAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_DescrizioneAttachment', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 967, 6), )
+    __DescrizioneAttachment = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DescrizioneAttachment'), 'DescrizioneAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_DescrizioneAttachment', False, pyxb.utils.utility.Location(SCHEMA_FILE, 967, 6), )
 
+    
     DescrizioneAttachment = property(
         __DescrizioneAttachment.value, __DescrizioneAttachment.set, None, None)
 
+    
     # Element Attachment uses Python identifier Attachment
-    __Attachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Attachment'), 'Attachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_Attachment', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 968, 6), )
+    __Attachment = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Attachment'), 'Attachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_Attachment', False, pyxb.utils.utility.Location(SCHEMA_FILE, 968, 6), )
 
+    
     Attachment = property(__Attachment.value, __Attachment.set, None, None)
 
     _ElementMap.update({
-        __NomeAttachment.name(): __NomeAttachment,
-        __AlgoritmoCompressione.name(): __AlgoritmoCompressione,
-        __FormatoAttachment.name(): __FormatoAttachment,
-        __DescrizioneAttachment.name(): __DescrizioneAttachment,
-        __Attachment.name(): __Attachment
+        __NomeAttachment.name() : __NomeAttachment,
+        __AlgoritmoCompressione.name() : __AlgoritmoCompressione,
+        __FormatoAttachment.name() : __FormatoAttachment,
+        __DescrizioneAttachment.name() : __DescrizioneAttachment,
+        __Attachment.name() : __Attachment
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3841,145 +4289,192 @@ _module_typeBindings.AllegatiType = AllegatiType
 Namespace.addCategoryObject('typeBinding', 'AllegatiType', AllegatiType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioLineeType with content type ELEMENT_ONLY
-class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioLineeType with content type ELEMENT_ONLY
+class DettaglioLineeType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioLineeType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'DettaglioLineeType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DettaglioLineeType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 971, 2)
+        SCHEMA_FILE, 971, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element NumeroLinea uses Python identifier NumeroLinea
-    __NumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'NumeroLinea'), 'NumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_NumeroLinea', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 973, 6), )
+    __NumeroLinea = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroLinea'), 'NumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_NumeroLinea', False, pyxb.utils.utility.Location(SCHEMA_FILE, 973, 6), )
 
+    
     NumeroLinea = property(__NumeroLinea.value, __NumeroLinea.set, None, None)
 
+    
     # Element TipoCessionePrestazione uses Python identifier TipoCessionePrestazione
-    __TipoCessionePrestazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'), 'TipoCessionePrestazione',
-                                                                        '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_TipoCessionePrestazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 974, 6), )
+    __TipoCessionePrestazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoCessionePrestazione'), 'TipoCessionePrestazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_TipoCessionePrestazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 974, 6), )
 
+    
     TipoCessionePrestazione = property(
         __TipoCessionePrestazione.value, __TipoCessionePrestazione.set, None, None)
 
+    
     # Element CodiceArticolo uses Python identifier CodiceArticolo
-    __CodiceArticolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceArticolo'), 'CodiceArticolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_CodiceArticolo', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 975, 6), )
+    __CodiceArticolo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceArticolo'), 'CodiceArticolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_CodiceArticolo', True, pyxb.utils.utility.Location(SCHEMA_FILE, 975, 6), )
 
-    CodiceArticolo = property(__CodiceArticolo.value,
-                              __CodiceArticolo.set, None, None)
+    
+    CodiceArticolo = property(
+        __CodiceArticolo.value, __CodiceArticolo.set, None, None)
 
+    
     # Element Descrizione uses Python identifier Descrizione
-    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Descrizione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 976, 6), )
+    __Descrizione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Descrizione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 976, 6), )
 
+    
     Descrizione = property(__Descrizione.value, __Descrizione.set, None, None)
 
+    
     # Element Quantita uses Python identifier Quantita
-    __Quantita = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Quantita'), 'Quantita', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Quantita', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 977, 6), )
+    __Quantita = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Quantita'), 'Quantita', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Quantita', False, pyxb.utils.utility.Location(SCHEMA_FILE, 977, 6), )
 
+    
     Quantita = property(__Quantita.value, __Quantita.set, None, None)
 
+    
     # Element UnitaMisura uses Python identifier UnitaMisura
-    __UnitaMisura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'UnitaMisura'), 'UnitaMisura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_UnitaMisura', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 978, 6), )
+    __UnitaMisura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'UnitaMisura'), 'UnitaMisura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_UnitaMisura', False, pyxb.utils.utility.Location(SCHEMA_FILE, 978, 6), )
 
+    
     UnitaMisura = property(__UnitaMisura.value, __UnitaMisura.set, None, None)
 
+    
     # Element DataInizioPeriodo uses Python identifier DataInizioPeriodo
-    __DataInizioPeriodo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataInizioPeriodo'), 'DataInizioPeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataInizioPeriodo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 979, 6), )
+    __DataInizioPeriodo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataInizioPeriodo'), 'DataInizioPeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataInizioPeriodo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 979, 6), )
 
+    
     DataInizioPeriodo = property(
         __DataInizioPeriodo.value, __DataInizioPeriodo.set, None, None)
 
+    
     # Element DataFinePeriodo uses Python identifier DataFinePeriodo
-    __DataFinePeriodo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'DataFinePeriodo'), 'DataFinePeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataFinePeriodo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 980, 6), )
+    __DataFinePeriodo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'DataFinePeriodo'), 'DataFinePeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataFinePeriodo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 980, 6), )
 
+    
     DataFinePeriodo = property(
         __DataFinePeriodo.value, __DataFinePeriodo.set, None, None)
 
+    
     # Element PrezzoUnitario uses Python identifier PrezzoUnitario
-    __PrezzoUnitario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PrezzoUnitario'), 'PrezzoUnitario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoUnitario', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 981, 6), )
+    __PrezzoUnitario = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'PrezzoUnitario'), 'PrezzoUnitario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoUnitario', False, pyxb.utils.utility.Location(SCHEMA_FILE, 981, 6), )
 
-    PrezzoUnitario = property(__PrezzoUnitario.value,
-                              __PrezzoUnitario.set, None, None)
+    
+    PrezzoUnitario = property(
+        __PrezzoUnitario.value, __PrezzoUnitario.set, None, None)
 
+    
     # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
-    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 982, 6), )
+    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_ScontoMaggiorazione', True, pyxb.utils.utility.Location(SCHEMA_FILE, 982, 6), )
 
+    
     ScontoMaggiorazione = property(
         __ScontoMaggiorazione.value, __ScontoMaggiorazione.set, None, None)
 
+    
     # Element PrezzoTotale uses Python identifier PrezzoTotale
-    __PrezzoTotale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'PrezzoTotale'), 'PrezzoTotale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoTotale', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 983, 6), )
+    __PrezzoTotale = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'PrezzoTotale'), 'PrezzoTotale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoTotale', False, pyxb.utils.utility.Location(SCHEMA_FILE, 983, 6), )
 
-    PrezzoTotale = property(__PrezzoTotale.value,
-                            __PrezzoTotale.set, None, None)
+    
+    PrezzoTotale = property(
+        __PrezzoTotale.value, __PrezzoTotale.set, None, None)
 
+    
     # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AliquotaIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 984, 6), )
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AliquotaIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 984, 6), )
 
+    
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
+    
     # Element Ritenuta uses Python identifier Ritenuta
-    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Ritenuta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 985, 6), )
+    __Ritenuta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Ritenuta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 985, 6), )
 
+    
     Ritenuta = property(__Ritenuta.value, __Ritenuta.set, None, None)
 
+    
     # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Natura', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 986, 6), )
+    __Natura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Natura', False, pyxb.utils.utility.Location(SCHEMA_FILE, 986, 6), )
 
+    
     Natura = property(__Natura.value, __Natura.set, None, None)
 
+    
     # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
-    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione',
-                                                                           '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 987, 6), )
+    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location(SCHEMA_FILE, 987, 6), )
 
+    
     RiferimentoAmministrazione = property(
         __RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
 
+    
     # Element AltriDatiGestionali uses Python identifier AltriDatiGestionali
-    __AltriDatiGestionali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AltriDatiGestionali'), 'AltriDatiGestionali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AltriDatiGestionali', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 988, 6), )
+    __AltriDatiGestionali = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AltriDatiGestionali'), 'AltriDatiGestionali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AltriDatiGestionali', True, pyxb.utils.utility.Location(SCHEMA_FILE, 988, 6), )
 
+    
     AltriDatiGestionali = property(
         __AltriDatiGestionali.value, __AltriDatiGestionali.set, None, None)
 
     _ElementMap.update({
-        __NumeroLinea.name(): __NumeroLinea,
-        __TipoCessionePrestazione.name(): __TipoCessionePrestazione,
-        __CodiceArticolo.name(): __CodiceArticolo,
-        __Descrizione.name(): __Descrizione,
-        __Quantita.name(): __Quantita,
-        __UnitaMisura.name(): __UnitaMisura,
-        __DataInizioPeriodo.name(): __DataInizioPeriodo,
-        __DataFinePeriodo.name(): __DataFinePeriodo,
-        __PrezzoUnitario.name(): __PrezzoUnitario,
-        __ScontoMaggiorazione.name(): __ScontoMaggiorazione,
-        __PrezzoTotale.name(): __PrezzoTotale,
-        __AliquotaIVA.name(): __AliquotaIVA,
-        __Ritenuta.name(): __Ritenuta,
-        __Natura.name(): __Natura,
-        __RiferimentoAmministrazione.name(): __RiferimentoAmministrazione,
-        __AltriDatiGestionali.name(): __AltriDatiGestionali
+        __NumeroLinea.name() : __NumeroLinea,
+        __TipoCessionePrestazione.name() : __TipoCessionePrestazione,
+        __CodiceArticolo.name() : __CodiceArticolo,
+        __Descrizione.name() : __Descrizione,
+        __Quantita.name() : __Quantita,
+        __UnitaMisura.name() : __UnitaMisura,
+        __DataInizioPeriodo.name() : __DataInizioPeriodo,
+        __DataFinePeriodo.name() : __DataFinePeriodo,
+        __PrezzoUnitario.name() : __PrezzoUnitario,
+        __ScontoMaggiorazione.name() : __ScontoMaggiorazione,
+        __PrezzoTotale.name() : __PrezzoTotale,
+        __AliquotaIVA.name() : __AliquotaIVA,
+        __Ritenuta.name() : __Ritenuta,
+        __Natura.name() : __Natura,
+        __RiferimentoAmministrazione.name() : __RiferimentoAmministrazione,
+        __AltriDatiGestionali.name() : __AltriDatiGestionali
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -3988,39 +4483,44 @@ Namespace.addCategoryObject(
     'typeBinding', 'DettaglioLineeType', DettaglioLineeType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceArticoloType with content type ELEMENT_ONLY
-class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceArticoloType with content type ELEMENT_ONLY
+class CodiceArticoloType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceArticoloType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(
-        Namespace, 'CodiceArticoloType')
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceArticoloType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 991, 2)
+        SCHEMA_FILE, 991, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element CodiceTipo uses Python identifier CodiceTipo
-    __CodiceTipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceTipo'), 'CodiceTipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceTipo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 993, 6), )
+    __CodiceTipo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceTipo'), 'CodiceTipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceTipo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 993, 6), )
 
+    
     CodiceTipo = property(__CodiceTipo.value, __CodiceTipo.set, None, None)
 
+    
     # Element CodiceValore uses Python identifier CodiceValore
-    __CodiceValore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'CodiceValore'), 'CodiceValore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceValore', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 994, 6), )
+    __CodiceValore = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceValore'), 'CodiceValore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceValore', False, pyxb.utils.utility.Location(SCHEMA_FILE, 994, 6), )
 
-    CodiceValore = property(__CodiceValore.value,
-                            __CodiceValore.set, None, None)
+    
+    CodiceValore = property(
+        __CodiceValore.value, __CodiceValore.set, None, None)
 
     _ElementMap.update({
-        __CodiceTipo.name(): __CodiceTipo,
-        __CodiceValore.name(): __CodiceValore
+        __CodiceTipo.name() : __CodiceTipo,
+        __CodiceValore.name() : __CodiceValore
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -4029,8 +4529,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'CodiceArticoloType', CodiceArticoloType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AltriDatiGestionaliType with content type ELEMENT_ONLY
-class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AltriDatiGestionaliType with content type ELEMENT_ONLY
+class AltriDatiGestionaliType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AltriDatiGestionaliType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -4038,46 +4539,57 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'AltriDatiGestionaliType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 997, 2)
+        SCHEMA_FILE, 997, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element TipoDato uses Python identifier TipoDato
-    __TipoDato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'TipoDato'), 'TipoDato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_TipoDato', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 999, 6), )
+    __TipoDato = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoDato'), 'TipoDato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_TipoDato', False, pyxb.utils.utility.Location(SCHEMA_FILE, 999, 6), )
 
+    
     TipoDato = property(__TipoDato.value, __TipoDato.set, None, None)
 
+    
     # Element RiferimentoTesto uses Python identifier RiferimentoTesto
-    __RiferimentoTesto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoTesto'), 'RiferimentoTesto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoTesto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1000, 6), )
+    __RiferimentoTesto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoTesto'), 'RiferimentoTesto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoTesto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1000, 6), )
 
+    
     RiferimentoTesto = property(
         __RiferimentoTesto.value, __RiferimentoTesto.set, None, None)
 
+    
     # Element RiferimentoNumero uses Python identifier RiferimentoNumero
-    __RiferimentoNumero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNumero'), 'RiferimentoNumero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoNumero', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1001, 6), )
+    __RiferimentoNumero = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNumero'), 'RiferimentoNumero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoNumero', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1001, 6), )
 
+    
     RiferimentoNumero = property(
         __RiferimentoNumero.value, __RiferimentoNumero.set, None, None)
 
+    
     # Element RiferimentoData uses Python identifier RiferimentoData
-    __RiferimentoData = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoData'), 'RiferimentoData', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoData', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1002, 6), )
+    __RiferimentoData = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoData'), 'RiferimentoData', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoData', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1002, 6), )
 
+    
     RiferimentoData = property(
         __RiferimentoData.value, __RiferimentoData.set, None, None)
 
     _ElementMap.update({
-        __TipoDato.name(): __TipoDato,
-        __RiferimentoTesto.name(): __RiferimentoTesto,
-        __RiferimentoNumero.name(): __RiferimentoNumero,
-        __RiferimentoData.name(): __RiferimentoData
+        __TipoDato.name() : __TipoDato,
+        __RiferimentoTesto.name() : __RiferimentoTesto,
+        __RiferimentoNumero.name() : __RiferimentoNumero,
+        __RiferimentoData.name() : __RiferimentoData
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -4086,84 +4598,108 @@ Namespace.addCategoryObject(
     'typeBinding', 'AltriDatiGestionaliType', AltriDatiGestionaliType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRiepilogoType with content type ELEMENT_ONLY
-class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRiepilogoType with content type ELEMENT_ONLY
+class DatiRiepilogoType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRiepilogoType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiRiepilogoType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1017, 2)
+        SCHEMA_FILE, 1017, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_AliquotaIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1019, 6), )
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_AliquotaIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1019, 6), )
 
+    
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
+    
     # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Natura', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1020, 6), )
+    __Natura = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Natura', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1020, 6), )
 
+    
     Natura = property(__Natura.value, __Natura.set, None, None)
 
+    
     # Element SpeseAccessorie uses Python identifier SpeseAccessorie
-    __SpeseAccessorie = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'SpeseAccessorie'), 'SpeseAccessorie', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_SpeseAccessorie', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1021, 6), )
+    __SpeseAccessorie = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'SpeseAccessorie'), 'SpeseAccessorie', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_SpeseAccessorie', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1021, 6), )
 
+    
     SpeseAccessorie = property(
         __SpeseAccessorie.value, __SpeseAccessorie.set, None, None)
 
+    
     # Element Arrotondamento uses Python identifier Arrotondamento
-    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Arrotondamento', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1022, 6), )
+    __Arrotondamento = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Arrotondamento', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1022, 6), )
 
-    Arrotondamento = property(__Arrotondamento.value,
-                              __Arrotondamento.set, None, None)
+    
+    Arrotondamento = property(
+        __Arrotondamento.value, __Arrotondamento.set, None, None)
 
+    
     # Element ImponibileImporto uses Python identifier ImponibileImporto
-    __ImponibileImporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'ImponibileImporto'), 'ImponibileImporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_ImponibileImporto', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1023, 6), )
+    __ImponibileImporto = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'ImponibileImporto'), 'ImponibileImporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_ImponibileImporto', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1023, 6), )
 
+    
     ImponibileImporto = property(
         __ImponibileImporto.value, __ImponibileImporto.set, None, None)
 
+    
     # Element Imposta uses Python identifier Imposta
-    __Imposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'Imposta'), 'Imposta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Imposta', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1024, 6), )
+    __Imposta = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'Imposta'), 'Imposta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Imposta', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1024, 6), )
 
+    
     Imposta = property(__Imposta.value, __Imposta.set, None, None)
 
+    
     # Element EsigibilitaIVA uses Python identifier EsigibilitaIVA
-    __EsigibilitaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'EsigibilitaIVA'), 'EsigibilitaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_EsigibilitaIVA', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1025, 6), )
+    __EsigibilitaIVA = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'EsigibilitaIVA'), 'EsigibilitaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_EsigibilitaIVA', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1025, 6), )
 
-    EsigibilitaIVA = property(__EsigibilitaIVA.value,
-                              __EsigibilitaIVA.set, None, None)
+    
+    EsigibilitaIVA = property(
+        __EsigibilitaIVA.value, __EsigibilitaIVA.set, None, None)
 
+    
     # Element RiferimentoNormativo uses Python identifier RiferimentoNormativo
-    __RiferimentoNormativo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNormativo'), 'RiferimentoNormativo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_RiferimentoNormativo', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1026, 6), )
+    __RiferimentoNormativo = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNormativo'), 'RiferimentoNormativo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_RiferimentoNormativo', False, pyxb.utils.utility.Location(SCHEMA_FILE, 1026, 6), )
 
+    
     RiferimentoNormativo = property(
         __RiferimentoNormativo.value, __RiferimentoNormativo.set, None, None)
 
     _ElementMap.update({
-        __AliquotaIVA.name(): __AliquotaIVA,
-        __Natura.name(): __Natura,
-        __SpeseAccessorie.name(): __SpeseAccessorie,
-        __Arrotondamento.name(): __Arrotondamento,
-        __ImponibileImporto.name(): __ImponibileImporto,
-        __Imposta.name(): __Imposta,
-        __EsigibilitaIVA.name(): __EsigibilitaIVA,
-        __RiferimentoNormativo.name(): __RiferimentoNormativo
+        __AliquotaIVA.name() : __AliquotaIVA,
+        __Natura.name() : __Natura,
+        __SpeseAccessorie.name() : __SpeseAccessorie,
+        __Arrotondamento.name() : __Arrotondamento,
+        __ImponibileImporto.name() : __ImponibileImporto,
+        __Imposta.name() : __Imposta,
+        __EsigibilitaIVA.name() : __EsigibilitaIVA,
+        __RiferimentoNormativo.name() : __RiferimentoNormativo
     })
     _AttributeMap.update({
-
+        
     })
 
 
@@ -4172,8 +4708,9 @@ Namespace.addCategoryObject(
     'typeBinding', 'DatiRiepilogoType', DatiRiepilogoType)
 
 
-# Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaType with content type ELEMENT_ONLY
-class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
+# Complex type
+# {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaType with content type ELEMENT_ONLY
+class FatturaElettronicaType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaType with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
@@ -4181,48 +4718,58 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(
         Namespace, 'FatturaElettronicaType')
     _XSDLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 15, 2)
+        SCHEMA_FILE, 15, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-
+    
     # Element FatturaElettronicaHeader uses Python identifier FatturaElettronicaHeader
-    __FatturaElettronicaHeader = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'), 'FatturaElettronicaHeader',
-                                                                         '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaHeader', False, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 17, 6), )
+    __FatturaElettronicaHeader = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'FatturaElettronicaHeader'), 'FatturaElettronicaHeader', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaHeader', False, pyxb.utils.utility.Location(SCHEMA_FILE, 17, 6), )
 
+    
     FatturaElettronicaHeader = property(
         __FatturaElettronicaHeader.value, __FatturaElettronicaHeader.set, None, None)
 
+    
     # Element FatturaElettronicaBody uses Python identifier FatturaElettronicaBody
-    __FatturaElettronicaBody = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'), 'FatturaElettronicaBody',
-                                                                       '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaBody', True, pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 18, 6), )
+    __FatturaElettronicaBody = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            None, 'FatturaElettronicaBody'), 'FatturaElettronicaBody', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaBody', True, pyxb.utils.utility.Location(SCHEMA_FILE, 18, 6), )
 
+    
     FatturaElettronicaBody = property(
         __FatturaElettronicaBody.value, __FatturaElettronicaBody.set, None, None)
 
+    
     # Element {http://www.w3.org/2000/09/xmldsig#}Signature uses Python identifier Signature
-    __Signature = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), 'Signature', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature',
-                                                          False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0), )
+    __Signature = pyxb.binding.content.ElementDeclaration(
+        pyxb.namespace.ExpandedName(
+            _Namespace_ds, 'Signature'), 'Signature', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0), )
 
+    
     Signature = property(__Signature.value, __Signature.set, None, None)
 
+    
     # Attribute versione uses Python identifier versione
-    __versione = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(
-        None, 'versione'), 'versione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_versione', _module_typeBindings.FormatoTrasmissioneType, required=True)
+    __versione = pyxb.binding.content.AttributeUse(
+        pyxb.namespace.ExpandedName(
+            None, 'versione'), 'versione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_versione', _module_typeBindings.FormatoTrasmissioneType, required=True)
     __versione._DeclarationLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 21, 4)
+        SCHEMA_FILE, 21, 4)
     __versione._UseLocation = pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 21, 4)
-
+        SCHEMA_FILE, 21, 4)
+    
     versione = property(__versione.value, __versione.set, None, None)
 
     _ElementMap.update({
-        __FatturaElettronicaHeader.name(): __FatturaElettronicaHeader,
-        __FatturaElettronicaBody.name(): __FatturaElettronicaBody,
-        __Signature.name(): __Signature
+        __FatturaElettronicaHeader.name() : __FatturaElettronicaHeader,
+        __FatturaElettronicaBody.name() : __FatturaElettronicaBody,
+        __Signature.name() : __Signature
     })
     _AttributeMap.update({
-        __versione.name(): __versione
+        __versione.name() : __versione
     })
 
 
@@ -4231,30 +4778,43 @@ Namespace.addCategoryObject(
     'typeBinding', 'FatturaElettronicaType', FatturaElettronicaType)
 
 
-FatturaElettronica = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronica'), FatturaElettronicaType,
-                                                documentation='XML schema fatture destinate a PA e privati in forma ordinaria 1.2', location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 9, 2))
+FatturaElettronica = pyxb.binding.basis.element(
+    pyxb.namespace.ExpandedName(
+        Namespace, 'FatturaElettronica'), FatturaElettronicaType, documentation='XML schema fatture destinate a PA e privati in forma ordinaria 1.2', location=pyxb.utils.utility.Location(SCHEMA_FILE, 9, 2))
 Namespace.addCategoryObject(
     'elementBinding', FatturaElettronica.name().localName(), FatturaElettronica)
 
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione'), DatiTrasmissioneType,
-                                                                    scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 25, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CedentePrestatore'), CedentePrestatoreType,
-                                                                    scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 26, 6)))
+FatturaElettronicaHeaderType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiTrasmissione'), DatiTrasmissioneType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 25, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), RappresentanteFiscaleType,
-                                                                    scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 27, 6)))
+FatturaElettronicaHeaderType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CedentePrestatore'), CedentePrestatoreType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 26, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'), CessionarioCommittenteType,
-                                                                    scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 28, 6)))
+FatturaElettronicaHeaderType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RappresentanteFiscale'), RappresentanteFiscaleType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 27, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente'), TerzoIntermediarioSoggettoEmittenteType,
-                                                                    scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 29, 6)))
+FatturaElettronicaHeaderType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CessionarioCommittente'), CessionarioCommittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 28, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente'), SoggettoEmittenteType,
-                                                                    scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 30, 6)))
+FatturaElettronicaHeaderType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TerzoIntermediarioOSoggettoEmittente'), TerzoIntermediarioSoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 29, 6)))
 
+FatturaElettronicaHeaderType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'SoggettoEmittente'), SoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 30, 6)))
 
 def _BuildAutomaton():
     # Remove this helper function from the namespace after it is invoked
@@ -4263,85 +4823,97 @@ def _BuildAutomaton():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 27, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 27, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 29, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 29, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 30, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 30, 6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiTrasmissione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 25, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiTrasmissione')), pyxb.utils.utility.Location(SCHEMA_FILE, 25, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CedentePrestatore')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 26, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CedentePrestatore')), pyxb.utils.utility.Location(SCHEMA_FILE, 26, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 27, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RappresentanteFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 27, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CessionarioCommittente')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 28, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CessionarioCommittente')), pyxb.utils.utility.Location(SCHEMA_FILE, 28, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TerzoIntermediarioOSoggettoEmittente')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 29, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TerzoIntermediarioOSoggettoEmittente')), pyxb.utils.utility.Location(SCHEMA_FILE, 29, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'SoggettoEmittente')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 30, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaHeaderType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'SoggettoEmittente')), pyxb.utils.utility.Location(SCHEMA_FILE, 30, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -4349,21 +4921,32 @@ def _BuildAutomaton():
 FatturaElettronicaHeaderType._Automaton = _BuildAutomaton()
 
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiGenerali'), DatiGeneraliType,
-                                                                  scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 35, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi'), DatiBeniServiziType,
-                                                                  scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 36, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiVeicoli'), DatiVeicoliType,
-                                                                  scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 37, 6)))
+FatturaElettronicaBodyType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiGenerali'), DatiGeneraliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 35, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiPagamento'), DatiPagamentoType,
-                                                                  scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 38, 6)))
+FatturaElettronicaBodyType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiBeniServizi'), DatiBeniServiziType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 36, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Allegati'), AllegatiType,
-                                                                  scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 39, 6)))
+FatturaElettronicaBodyType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiVeicoli'), DatiVeicoliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 37, 6)))
 
+FatturaElettronicaBodyType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiPagamento'), DatiPagamentoType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 38, 6)))
+
+FatturaElettronicaBodyType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Allegati'), AllegatiType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 39, 6)))
 
 def _BuildAutomaton_():
     # Remove this helper function from the namespace after it is invoked
@@ -4372,78 +4955,88 @@ def _BuildAutomaton_():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 37, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 37, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 38, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 38, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 39, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 39, 6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiGenerali')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 35, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiGenerali')), pyxb.utils.utility.Location(SCHEMA_FILE, 35, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiBeniServizi')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 36, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiBeniServizi')), pyxb.utils.utility.Location(SCHEMA_FILE, 36, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiVeicoli')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 37, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiVeicoli')), pyxb.utils.utility.Location(SCHEMA_FILE, 37, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 38, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 38, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Allegati')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 39, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaBodyType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Allegati')), pyxb.utils.utility.Location(SCHEMA_FILE, 39, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -4451,24 +5044,37 @@ def _BuildAutomaton_():
 FatturaElettronicaBodyType._Automaton = _BuildAutomaton_()
 
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdTrasmittente'), IdFiscaleType,
-                                                            scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 47, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio'), String10Type,
-                                                            scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 48, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione'), FormatoTrasmissioneType,
-                                                            scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 49, 6)))
+DatiTrasmissioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdTrasmittente'), IdFiscaleType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 47, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario'), CodiceDestinatarioType,
-                                                            scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 50, 6)))
+DatiTrasmissioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ProgressivoInvio'), String10Type, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 48, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente'), ContattiTrasmittenteType,
-                                                            scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 51, 6)))
+DatiTrasmissioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'FormatoTrasmissione'), FormatoTrasmissioneType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 49, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PECDestinatario'), EmailType,
-                                                            scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 52, 6)))
+DatiTrasmissioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceDestinatario'), CodiceDestinatarioType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 50, 6)))
 
+DatiTrasmissioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ContattiTrasmittente'), ContattiTrasmittenteType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 51, 6)))
+
+DatiTrasmissioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'PECDestinatario'), EmailType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 52, 6)))
 
 def _BuildAutomaton_2():
     # Remove this helper function from the namespace after it is invoked
@@ -4477,78 +5083,90 @@ def _BuildAutomaton_2():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 51, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 51, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 52, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 52, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdTrasmittente')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 47, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdTrasmittente')), pyxb.utils.utility.Location(SCHEMA_FILE, 47, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ProgressivoInvio')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 48, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ProgressivoInvio')), pyxb.utils.utility.Location(SCHEMA_FILE, 48, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FormatoTrasmissione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 49, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FormatoTrasmissione')), pyxb.utils.utility.Location(SCHEMA_FILE, 49, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceDestinatario')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 50, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceDestinatario')), pyxb.utils.utility.Location(SCHEMA_FILE, 50, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ContattiTrasmittente')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 51, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ContattiTrasmittente')), pyxb.utils.utility.Location(SCHEMA_FILE, 51, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PECDestinatario')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 52, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasmissioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PECDestinatario')), pyxb.utils.utility.Location(SCHEMA_FILE, 52, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -4556,12 +5174,17 @@ def _BuildAutomaton_2():
 DatiTrasmissioneType._Automaton = _BuildAutomaton_2()
 
 
-IdFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdPaese'), NazioneType,
-                                                     scope=IdFiscaleType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 62, 6)))
 
-IdFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdCodice'), CodiceType,
-                                                     scope=IdFiscaleType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 63, 6)))
 
+IdFiscaleType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdPaese'), NazioneType, scope=IdFiscaleType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 62, 6)))
+
+IdFiscaleType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdCodice'), CodiceType, scope=IdFiscaleType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 63, 6)))
 
 def _BuildAutomaton_3():
     # Remove this helper function from the namespace after it is invoked
@@ -4572,20 +5195,24 @@ def _BuildAutomaton_3():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdPaese')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 62, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IdFiscaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdPaese')), pyxb.utils.utility.Location(SCHEMA_FILE, 62, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdCodice')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 63, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IdFiscaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdCodice')), pyxb.utils.utility.Location(SCHEMA_FILE, 63, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
@@ -4595,12 +5222,17 @@ def _BuildAutomaton_3():
 IdFiscaleType._Automaton = _BuildAutomaton_3()
 
 
-ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'), TelFaxType,
-                                                                scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 89, 6)))
 
-ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Email'), EmailType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 90, 6)))
 
+ContattiTrasmittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Telefono'), TelFaxType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 89, 6)))
+
+ContattiTrasmittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Email'), EmailType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 90, 6)))
 
 def _BuildAutomaton_4():
     # Remove this helper function from the namespace after it is invoked
@@ -4609,36 +5241,40 @@ def _BuildAutomaton_4():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 89, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 89, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 90, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 90, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Telefono')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 89, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiTrasmittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Telefono')), pyxb.utils.utility.Location(SCHEMA_FILE, 89, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Email')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 90, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiTrasmittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Email')), pyxb.utils.utility.Location(SCHEMA_FILE, 90, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
 
@@ -4646,36 +5282,57 @@ def _BuildAutomaton_4():
 ContattiTrasmittenteType._Automaton = _BuildAutomaton_4()
 
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento'), DatiGeneraliDocumentoType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 100, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto'), DatiDocumentiCorrelatiType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 101, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiContratto'), DatiDocumentiCorrelatiType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 102, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiGeneraliDocumento'), DatiGeneraliDocumentoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 100, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiConvenzione'), DatiDocumentiCorrelatiType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 103, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiOrdineAcquisto'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 101, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRicezione'), DatiDocumentiCorrelatiType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 104, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiContratto'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 102, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate'), DatiDocumentiCorrelatiType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 105, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiConvenzione'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 103, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiSAL'), DatiSALType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 106, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiRicezione'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 104, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiDDT'), DatiDDTType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 107, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiFattureCollegate'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 105, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiTrasporto'), DatiTrasportoType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 108, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiSAL'), DatiSALType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 106, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale'), FatturaPrincipaleType,
-                                                        scope=DatiGeneraliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 109, 6)))
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiDDT'), DatiDDTType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 107, 6)))
 
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiTrasporto'), DatiTrasportoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 108, 6)))
+
+DatiGeneraliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'FatturaPrincipale'), FatturaPrincipaleType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 109, 6)))
 
 def _BuildAutomaton_5():
     # Remove this helper function from the namespace after it is invoked
@@ -4684,230 +5341,250 @@ def _BuildAutomaton_5():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 101, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 101, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 102, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 102, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 103, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 103, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 104, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 104, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 105, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 105, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 106, 6))
+    cc_5 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 106, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 107, 6))
+    cc_6 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 107, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 108, 6))
+    cc_7 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 108, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 109, 6))
+    cc_8 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 109, 6))
     counters.add(cc_8)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 100, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location(SCHEMA_FILE, 100, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 101, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location(SCHEMA_FILE, 101, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiContratto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 102, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiContratto')), pyxb.utils.utility.Location(SCHEMA_FILE, 102, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiConvenzione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 103, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiConvenzione')), pyxb.utils.utility.Location(SCHEMA_FILE, 103, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiRicezione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 104, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiRicezione')), pyxb.utils.utility.Location(SCHEMA_FILE, 104, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiFattureCollegate')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 105, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiFattureCollegate')), pyxb.utils.utility.Location(SCHEMA_FILE, 105, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiSAL')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 106, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiSAL')), pyxb.utils.utility.Location(SCHEMA_FILE, 106, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiDDT')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 107, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiDDT')), pyxb.utils.utility.Location(SCHEMA_FILE, 107, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiTrasporto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 108, 6))
-    st_8 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiTrasporto')), pyxb.utils.utility.Location(SCHEMA_FILE, 108, 6))
+    st_8 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FatturaPrincipale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 109, 6))
-    st_9 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FatturaPrincipale')), pyxb.utils.utility.Location(SCHEMA_FILE, 109, 6))
+    st_9 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_8, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_9, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_5, True)]))
+        fac.UpdateInstruction(cc_5, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_6, True)]))
+        fac.UpdateInstruction(cc_6, True) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     st_7._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_7, True)]))
+        fac.UpdateInstruction(cc_7, True) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     st_8._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_8, True)]))
+        fac.UpdateInstruction(cc_8, True) ]))
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -4915,42 +5592,67 @@ def _BuildAutomaton_5():
 DatiGeneraliType._Automaton = _BuildAutomaton_5()
 
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDocumento'), TipoDocumentoType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 114, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Divisa'), DivisaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 115, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), DataFatturaType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 116, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoDocumento'), TipoDocumentoType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 114, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Numero'), String20Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 117, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Divisa'), DivisaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 115, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRitenuta'), DatiRitenutaType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 118, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Data'), DataFatturaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 116, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBollo'), DatiBolloType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 119, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Numero'), String20Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 117, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'), DatiCassaPrevidenzialeType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 120, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiRitenuta'), DatiRitenutaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 118, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 121, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiBollo'), DatiBolloType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 119, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'), Amount2DecimalType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 122, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiCassaPrevidenziale'), DatiCassaPrevidenzialeType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 120, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), Amount2DecimalType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 123, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 121, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Causale'), String200LatinType,
-                                                                 scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 124, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoTotaleDocumento'), Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 122, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Art73'), Art73Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 125, 6)))
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Arrotondamento'), Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 123, 6)))
 
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Causale'), String200LatinType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 124, 6)))
+
+DatiGeneraliDocumentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Art73'), Art73Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 125, 6)))
 
 def _BuildAutomaton_6():
     # Remove this helper function from the namespace after it is invoked
@@ -4959,228 +5661,252 @@ def _BuildAutomaton_6():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 118, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 118, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 119, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 119, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 120, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 120, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 121, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 121, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 122, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 122, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 123, 6))
+    cc_5 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 123, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 124, 6))
+    cc_6 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 124, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 125, 6))
+    cc_7 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 125, 6))
     counters.add(cc_7)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoDocumento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 114, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoDocumento')), pyxb.utils.utility.Location(SCHEMA_FILE, 114, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Divisa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 115, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Divisa')), pyxb.utils.utility.Location(SCHEMA_FILE, 115, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Data')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 116, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Data')), pyxb.utils.utility.Location(SCHEMA_FILE, 116, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Numero')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 117, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Numero')), pyxb.utils.utility.Location(SCHEMA_FILE, 117, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiRitenuta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 118, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiRitenuta')), pyxb.utils.utility.Location(SCHEMA_FILE, 118, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiBollo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 119, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiBollo')), pyxb.utils.utility.Location(SCHEMA_FILE, 119, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 120, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location(SCHEMA_FILE, 120, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 121, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 121, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 122, 6))
-    st_8 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location(SCHEMA_FILE, 122, 6))
+    st_8 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Arrotondamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 123, 6))
-    st_9 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Arrotondamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 123, 6))
+    st_9 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Causale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 124, 6))
-    st_10 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Causale')), pyxb.utils.utility.Location(SCHEMA_FILE, 124, 6))
+    st_10 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Art73')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 125, 6))
-    st_11 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiGeneraliDocumentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Art73')), pyxb.utils.utility.Location(SCHEMA_FILE, 125, 6))
+    st_11 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_8, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_9, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_10, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_11, [
-    ]))
+         ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_7._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_8._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_5, True)]))
+        fac.UpdateInstruction(cc_5, True) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     st_9._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_6, True)]))
+        fac.UpdateInstruction(cc_6, True) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     st_10._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_7, True)]))
+        fac.UpdateInstruction(cc_7, True) ]))
     st_11._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -5188,18 +5914,27 @@ def _BuildAutomaton_6():
 DatiGeneraliDocumentoType._Automaton = _BuildAutomaton_6()
 
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoRitenuta'), TipoRitenutaType,
-                                                        scope=DatiRitenutaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 130, 6)))
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta'), Amount2DecimalType,
-                                                        scope=DatiRitenutaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 131, 6)))
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta'), RateType,
-                                                        scope=DatiRitenutaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 132, 6)))
+DatiRitenutaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoRitenuta'), TipoRitenutaType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 130, 6)))
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CausalePagamento'), CausalePagamentoType,
-                                                        scope=DatiRitenutaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 133, 6)))
+DatiRitenutaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoRitenuta'), Amount2DecimalType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 131, 6)))
 
+DatiRitenutaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaRitenuta'), RateType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 132, 6)))
+
+DatiRitenutaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CausalePagamento'), CausalePagamentoType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 133, 6)))
 
 def _BuildAutomaton_7():
     # Remove this helper function from the namespace after it is invoked
@@ -5210,40 +5945,48 @@ def _BuildAutomaton_7():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoRitenuta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 130, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoRitenuta')), pyxb.utils.utility.Location(SCHEMA_FILE, 130, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoRitenuta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 131, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoRitenuta')), pyxb.utils.utility.Location(SCHEMA_FILE, 131, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AliquotaRitenuta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 132, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaRitenuta')), pyxb.utils.utility.Location(SCHEMA_FILE, 132, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CausalePagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 133, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRitenutaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CausalePagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 133, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     st_3._set_transitionSet(transitions)
@@ -5253,12 +5996,17 @@ def _BuildAutomaton_7():
 DatiRitenutaType._Automaton = _BuildAutomaton_7()
 
 
-DatiBolloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'BolloVirtuale'), BolloVirtualeType,
-                                                     scope=DatiBolloType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 138, 6)))
 
-DatiBolloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoBollo'), Amount2DecimalType,
-                                                     scope=DatiBolloType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 139, 6)))
 
+DatiBolloType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'BolloVirtuale'), BolloVirtualeType, scope=DatiBolloType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 138, 6)))
+
+DatiBolloType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoBollo'), Amount2DecimalType, scope=DatiBolloType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 139, 6)))
 
 def _BuildAutomaton_8():
     # Remove this helper function from the namespace after it is invoked
@@ -5269,20 +6017,24 @@ def _BuildAutomaton_8():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'BolloVirtuale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 138, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBolloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'BolloVirtuale')), pyxb.utils.utility.Location(SCHEMA_FILE, 138, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoBollo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 139, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBolloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoBollo')), pyxb.utils.utility.Location(SCHEMA_FILE, 139, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
@@ -5292,30 +6044,47 @@ def _BuildAutomaton_8():
 DatiBolloType._Automaton = _BuildAutomaton_8()
 
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCassa'), TipoCassaType,
-                                                                  scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 144, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'AlCassa'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 145, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'), Amount2DecimalType,
-                                                                  scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 146, 6)))
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoCassa'), TipoCassaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 144, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImponibileCassa'), Amount2DecimalType,
-                                                                  scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 147, 6)))
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AlCassa'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 145, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'AliquotaIVA'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 148, 6)))
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoContributoCassa'), Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 146, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'), RitenutaType,
-                                                                  scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 149, 6)))
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImponibileCassa'), Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 147, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Natura'), NaturaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 150, 6)))
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaIVA'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 148, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type,
-                                                                  scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 151, 6)))
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Ritenuta'), RitenutaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 149, 6)))
 
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Natura'), NaturaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 150, 6)))
+
+DatiCassaPrevidenzialeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoAmministrazione'), String20Type, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 151, 6)))
 
 def _BuildAutomaton_9():
     # Remove this helper function from the namespace after it is invoked
@@ -5324,115 +6093,131 @@ def _BuildAutomaton_9():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 147, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 147, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 149, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 149, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 150, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 150, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 151, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 151, 6))
     counters.add(cc_3)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoCassa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 144, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoCassa')), pyxb.utils.utility.Location(SCHEMA_FILE, 144, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AlCassa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 145, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AlCassa')), pyxb.utils.utility.Location(SCHEMA_FILE, 145, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoContributoCassa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 146, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoContributoCassa')), pyxb.utils.utility.Location(SCHEMA_FILE, 146, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImponibileCassa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 147, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImponibileCassa')), pyxb.utils.utility.Location(SCHEMA_FILE, 147, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 148, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 148, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Ritenuta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 149, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Ritenuta')), pyxb.utils.utility.Location(SCHEMA_FILE, 149, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Natura')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 150, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Natura')), pyxb.utils.utility.Location(SCHEMA_FILE, 150, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 151, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiCassaPrevidenzialeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 151, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -5440,15 +6225,22 @@ def _BuildAutomaton_9():
 DatiCassaPrevidenzialeType._Automaton = _BuildAutomaton_9()
 
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Tipo'), TipoScontoMaggiorazioneType,
-                                                               scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 156, 6)))
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Percentuale'), RateType,
-                                                               scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 157, 6)))
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Importo'), Amount2DecimalType,
-                                                               scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 158, 6)))
+ScontoMaggiorazioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Tipo'), TipoScontoMaggiorazioneType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 156, 6)))
 
+ScontoMaggiorazioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Percentuale'), RateType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 157, 6)))
+
+ScontoMaggiorazioneType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Importo'), Amount2DecimalType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 158, 6)))
 
 def _BuildAutomaton_10():
     # Remove this helper function from the namespace after it is invoked
@@ -5457,48 +6249,54 @@ def _BuildAutomaton_10():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 157, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 157, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 158, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 158, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Tipo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 156, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ScontoMaggiorazioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Tipo')), pyxb.utils.utility.Location(SCHEMA_FILE, 156, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Percentuale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 157, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ScontoMaggiorazioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Percentuale')), pyxb.utils.utility.Location(SCHEMA_FILE, 157, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Importo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 158, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ScontoMaggiorazioneType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Importo')), pyxb.utils.utility.Location(SCHEMA_FILE, 158, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -5506,9 +6304,12 @@ def _BuildAutomaton_10():
 ScontoMaggiorazioneType._Automaton = _BuildAutomaton_10()
 
 
-DatiSALType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoFase'), RiferimentoFaseType,
-                                                   scope=DatiSALType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 440, 6)))
 
+
+DatiSALType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoFase'), RiferimentoFaseType, scope=DatiSALType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 440, 6)))
 
 def _BuildAutomaton_11():
     # Remove this helper function from the namespace after it is invoked
@@ -5519,10 +6320,12 @@ def _BuildAutomaton_11():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiSALType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoFase')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 440, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiSALType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoFase')), pyxb.utils.utility.Location(SCHEMA_FILE, 440, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
     st_0._set_transitionSet(transitions)
@@ -5532,27 +6335,42 @@ def _BuildAutomaton_11():
 DatiSALType._Automaton = _BuildAutomaton_11()
 
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType,
-                                                                  scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 445, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdDocumento'), String20Type,
-                                                                  scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 446, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), pyxb.binding.datatypes.date,
-                                                                  scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 447, 6)))
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 445, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'NumItem'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 448, 6)))
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdDocumento'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 446, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'), String100LatinType,
-                                                                  scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 449, 6)))
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Data'), pyxb.binding.datatypes.date, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 447, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCUP'), String15Type,
-                                                                  scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 450, 6)))
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumItem'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 448, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCIG'), String15Type,
-                                                                  scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 451, 6)))
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceCommessaConvenzione'), String100LatinType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 449, 6)))
 
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceCUP'), String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 450, 6)))
+
+DatiDocumentiCorrelatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceCIG'), String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 451, 6)))
 
 def _BuildAutomaton_12():
     # Remove this helper function from the namespace after it is invoked
@@ -5561,129 +6379,143 @@ def _BuildAutomaton_12():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 445, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 445, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 447, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 447, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 448, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 448, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 449, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 449, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 450, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 450, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 451, 6))
+    cc_5 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 451, 6))
     counters.add(cc_5)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 445, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location(SCHEMA_FILE, 445, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdDocumento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 446, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdDocumento')), pyxb.utils.utility.Location(SCHEMA_FILE, 446, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Data')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 447, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Data')), pyxb.utils.utility.Location(SCHEMA_FILE, 447, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumItem')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 448, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumItem')), pyxb.utils.utility.Location(SCHEMA_FILE, 448, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceCommessaConvenzione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 449, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceCommessaConvenzione')), pyxb.utils.utility.Location(SCHEMA_FILE, 449, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceCUP')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 450, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceCUP')), pyxb.utils.utility.Location(SCHEMA_FILE, 450, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceCIG')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 451, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDocumentiCorrelatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceCIG')), pyxb.utils.utility.Location(SCHEMA_FILE, 451, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_5, True)]))
+        fac.UpdateInstruction(cc_5, True) ]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -5691,15 +6523,22 @@ def _BuildAutomaton_12():
 DatiDocumentiCorrelatiType._Automaton = _BuildAutomaton_12()
 
 
-DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroDDT'), String20Type,
-                                                   scope=DatiDDTType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 462, 6)))
 
-DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDDT'), pyxb.binding.datatypes.date,
-                                                   scope=DatiDDTType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 463, 6)))
 
-DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType,
-                                                   scope=DatiDDTType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 464, 6)))
+DatiDDTType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroDDT'), String20Type, scope=DatiDDTType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 462, 6)))
 
+DatiDDTType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataDDT'), pyxb.binding.datatypes.date, scope=DatiDDTType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 463, 6)))
+
+DatiDDTType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType, scope=DatiDDTType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 464, 6)))
 
 def _BuildAutomaton_13():
     # Remove this helper function from the namespace after it is invoked
@@ -5708,40 +6547,46 @@ def _BuildAutomaton_13():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 464, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 464, 6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroDDT')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 462, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDDTType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroDDT')), pyxb.utils.utility.Location(SCHEMA_FILE, 462, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataDDT')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 463, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDDTType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataDDT')), pyxb.utils.utility.Location(SCHEMA_FILE, 463, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 464, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiDDTType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location(SCHEMA_FILE, 464, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -5749,45 +6594,72 @@ def _BuildAutomaton_13():
 DatiDDTType._Automaton = _BuildAutomaton_13()
 
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore'), DatiAnagraficiVettoreType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 469, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto'), String80LatinType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 470, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto'), String100LatinType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 471, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagraficiVettore'), DatiAnagraficiVettoreType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 469, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroColli'), NumeroColliType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 472, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'MezzoTrasporto'), String80LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 470, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Descrizione'), String100LatinType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 473, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CausaleTrasporto'), String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 471, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso'), String10Type,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 474, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroColli'), NumeroColliType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 472, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoLordo'), PesoType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 475, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Descrizione'), String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 473, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoNetto'), PesoType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 476, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'UnitaMisuraPeso'), String10Type, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 474, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataOraRitiro'), pyxb.binding.datatypes.dateTime,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 477, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'PesoLordo'), PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 475, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto'), pyxb.binding.datatypes.date,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 478, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'PesoNetto'), PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 476, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoResa'), TipoResaType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 479, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataOraRitiro'), pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 477, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IndirizzoResa'), IndirizzoType,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 480, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataInizioTrasporto'), pyxb.binding.datatypes.date, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 478, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataOraConsegna'), pyxb.binding.datatypes.dateTime,
-                                                         scope=DatiTrasportoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 481, 6)))
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoResa'), TipoResaType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 479, 6)))
 
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IndirizzoResa'), IndirizzoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 480, 6)))
+
+DatiTrasportoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataOraConsegna'), pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 481, 6)))
 
 def _BuildAutomaton_14():
     # Remove this helper function from the namespace after it is invoked
@@ -5796,344 +6668,370 @@ def _BuildAutomaton_14():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 469, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 469, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 470, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 470, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 471, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 471, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 472, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 472, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 473, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 473, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 474, 6))
+    cc_5 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 474, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 475, 6))
+    cc_6 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 475, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 476, 6))
+    cc_7 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 476, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 477, 6))
+    cc_8 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 477, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 478, 6))
+    cc_9 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 478, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 479, 6))
+    cc_10 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 479, 6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 480, 6))
+    cc_11 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 480, 6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 481, 6))
+    cc_12 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 481, 6))
     counters.add(cc_12)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 469, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location(SCHEMA_FILE, 469, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'MezzoTrasporto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 470, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'MezzoTrasporto')), pyxb.utils.utility.Location(SCHEMA_FILE, 470, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CausaleTrasporto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 471, 6))
-    st_2 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CausaleTrasporto')), pyxb.utils.utility.Location(SCHEMA_FILE, 471, 6))
+    st_2 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroColli')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 472, 6))
-    st_3 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroColli')), pyxb.utils.utility.Location(SCHEMA_FILE, 472, 6))
+    st_3 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Descrizione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 473, 6))
-    st_4 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Descrizione')), pyxb.utils.utility.Location(SCHEMA_FILE, 473, 6))
+    st_4 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 474, 6))
-    st_5 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location(SCHEMA_FILE, 474, 6))
+    st_5 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PesoLordo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 475, 6))
-    st_6 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PesoLordo')), pyxb.utils.utility.Location(SCHEMA_FILE, 475, 6))
+    st_6 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PesoNetto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 476, 6))
-    st_7 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PesoNetto')), pyxb.utils.utility.Location(SCHEMA_FILE, 476, 6))
+    st_7 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataOraRitiro')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 477, 6))
-    st_8 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataOraRitiro')), pyxb.utils.utility.Location(SCHEMA_FILE, 477, 6))
+    st_8 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataInizioTrasporto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 478, 6))
-    st_9 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataInizioTrasporto')), pyxb.utils.utility.Location(SCHEMA_FILE, 478, 6))
+    st_9 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoResa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 479, 6))
-    st_10 = fac.State(symbol, is_initial=True,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoResa')), pyxb.utils.utility.Location(SCHEMA_FILE, 479, 6))
+    st_10 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IndirizzoResa')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 480, 6))
-    st_11 = fac.State(symbol, is_initial=True,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IndirizzoResa')), pyxb.utils.utility.Location(SCHEMA_FILE, 480, 6))
+    st_11 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataOraConsegna')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 481, 6))
-    st_12 = fac.State(symbol, is_initial=True,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiTrasportoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataOraConsegna')), pyxb.utils.utility.Location(SCHEMA_FILE, 481, 6))
+    st_12 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_5, True)]))
+        fac.UpdateInstruction(cc_5, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_6, True)]))
+        fac.UpdateInstruction(cc_6, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_7, True)]))
+        fac.UpdateInstruction(cc_7, True) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     st_7._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_8, True)]))
+        fac.UpdateInstruction(cc_8, True) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     st_8._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_9, True)]))
+        fac.UpdateInstruction(cc_9, True) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     st_9._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_10, True)]))
+        fac.UpdateInstruction(cc_10, True) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     st_10._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_11, True)]))
+        fac.UpdateInstruction(cc_11, True) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     st_11._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_12, True)]))
+        fac.UpdateInstruction(cc_12, True) ]))
     st_12._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
 
@@ -6141,24 +7039,37 @@ def _BuildAutomaton_14():
 DatiTrasportoType._Automaton = _BuildAutomaton_14()
 
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Indirizzo'), String60LatinType,
-                                                     scope=IndirizzoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 486, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroCivico'), NumeroCivicoType,
-                                                     scope=IndirizzoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 487, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CAP'), CAPType, scope=IndirizzoType,
-                                                     location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 488, 6)))
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Indirizzo'), String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 486, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Comune'), String60LatinType,
-                                                     scope=IndirizzoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 489, 6)))
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroCivico'), NumeroCivicoType, scope=IndirizzoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 487, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Provincia'), ProvinciaType,
-                                                     scope=IndirizzoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 490, 6)))
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CAP'), CAPType, scope=IndirizzoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 488, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nazione'), NazioneType, scope=IndirizzoType,
-                                                     location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 491, 6), unicode_default='IT'))
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Comune'), String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 489, 6)))
 
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Provincia'), ProvinciaType, scope=IndirizzoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 490, 6)))
+
+IndirizzoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Nazione'), NazioneType, scope=IndirizzoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 491, 6), unicode_default='IT'))
 
 def _BuildAutomaton_15():
     # Remove this helper function from the namespace after it is invoked
@@ -6167,76 +7078,88 @@ def _BuildAutomaton_15():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 487, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 487, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 490, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 490, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Indirizzo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 486, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Indirizzo')), pyxb.utils.utility.Location(SCHEMA_FILE, 486, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroCivico')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 487, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroCivico')), pyxb.utils.utility.Location(SCHEMA_FILE, 487, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CAP')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 488, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CAP')), pyxb.utils.utility.Location(SCHEMA_FILE, 488, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Comune')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 489, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Comune')), pyxb.utils.utility.Location(SCHEMA_FILE, 489, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Provincia')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 490, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Provincia')), pyxb.utils.utility.Location(SCHEMA_FILE, 490, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Nazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 491, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IndirizzoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Nazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 491, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     st_5._set_transitionSet(transitions)
@@ -6246,12 +7169,17 @@ def _BuildAutomaton_15():
 IndirizzoType._Automaton = _BuildAutomaton_15()
 
 
-FatturaPrincipaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'), String20Type,
-                                                             scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 496, 6)))
 
-FatturaPrincipaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale'), pyxb.binding.datatypes.date,
-                                                             scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 497, 6)))
 
+FatturaPrincipaleType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroFatturaPrincipale'), String20Type, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 496, 6)))
+
+FatturaPrincipaleType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataFatturaPrincipale'), pyxb.binding.datatypes.date, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 497, 6)))
 
 def _BuildAutomaton_16():
     # Remove this helper function from the namespace after it is invoked
@@ -6262,20 +7190,24 @@ def _BuildAutomaton_16():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 496, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaPrincipaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location(SCHEMA_FILE, 496, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 497, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaPrincipaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location(SCHEMA_FILE, 497, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
@@ -6285,24 +7217,37 @@ def _BuildAutomaton_16():
 FatturaPrincipaleType._Automaton = _BuildAutomaton_16()
 
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiCedenteType,
-                                                             scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 522, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Sede'), IndirizzoType,
-                                                             scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 523, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), IndirizzoType,
-                                                             scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 524, 6)))
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), DatiAnagraficiCedenteType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 522, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IscrizioneREA'), IscrizioneREAType,
-                                                             scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 525, 6)))
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Sede'), IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 523, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Contatti'), ContattiType,
-                                                             scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 526, 6)))
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'StabileOrganizzazione'), IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 524, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type,
-                                                             scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 527, 6)))
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IscrizioneREA'), IscrizioneREAType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 525, 6)))
 
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Contatti'), ContattiType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 526, 6)))
+
+CedentePrestatoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoAmministrazione'), String20Type, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 527, 6)))
 
 def _BuildAutomaton_17():
     # Remove this helper function from the namespace after it is invoked
@@ -6311,100 +7256,112 @@ def _BuildAutomaton_17():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 524, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 524, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 525, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 525, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 526, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 526, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 527, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 527, 6))
     counters.add(cc_3)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 522, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(SCHEMA_FILE, 522, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Sede')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 523, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Sede')), pyxb.utils.utility.Location(SCHEMA_FILE, 523, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 524, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'StabileOrganizzazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 524, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IscrizioneREA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 525, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IscrizioneREA')), pyxb.utils.utility.Location(SCHEMA_FILE, 525, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Contatti')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 526, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Contatti')), pyxb.utils.utility.Location(SCHEMA_FILE, 526, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 527, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CedentePrestatoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 527, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -6412,30 +7369,47 @@ def _BuildAutomaton_17():
 CedentePrestatoreType._Automaton = _BuildAutomaton_17()
 
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 532, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 533, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 534, 6)))
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 532, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlboProfessionale'), String60LatinType,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 535, 6)))
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 533, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo'), ProvinciaType,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 536, 6)))
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 534, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo'), String60Type,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 537, 6)))
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AlboProfessionale'), String60LatinType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 535, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo'), pyxb.binding.datatypes.date,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 538, 6)))
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ProvinciaAlbo'), ProvinciaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 536, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RegimeFiscale'), RegimeFiscaleType,
-                                                                 scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 539, 6)))
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroIscrizioneAlbo'), String60Type, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 537, 6)))
 
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataIscrizioneAlbo'), pyxb.binding.datatypes.date, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 538, 6)))
+
+DatiAnagraficiCedenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RegimeFiscale'), RegimeFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 539, 6)))
 
 def _BuildAutomaton_18():
     # Remove this helper function from the namespace after it is invoked
@@ -6444,129 +7418,145 @@ def _BuildAutomaton_18():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 533, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 533, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 535, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 535, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 536, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 536, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 537, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 537, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 538, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 538, 6))
     counters.add(cc_4)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 532, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 532, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 533, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 533, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 534, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(SCHEMA_FILE, 534, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AlboProfessionale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 535, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AlboProfessionale')), pyxb.utils.utility.Location(SCHEMA_FILE, 535, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ProvinciaAlbo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 536, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ProvinciaAlbo')), pyxb.utils.utility.Location(SCHEMA_FILE, 536, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 537, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location(SCHEMA_FILE, 537, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 538, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location(SCHEMA_FILE, 538, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RegimeFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 539, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCedenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RegimeFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 539, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     st_7._set_transitionSet(transitions)
@@ -6576,21 +7566,32 @@ def _BuildAutomaton_18():
 DatiAnagraficiCedenteType._Automaton = _BuildAutomaton_18()
 
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Denominazione'), String80LatinType,
-                                                      scope=AnagraficaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 647, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nome'), String60LatinType,
-                                                      scope=AnagraficaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 650, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Cognome'), String60LatinType,
-                                                      scope=AnagraficaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 651, 10)))
+AnagraficaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Denominazione'), String80LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 647, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Titolo'), TitoloType,
-                                                      scope=AnagraficaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 654, 6)))
+AnagraficaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Nome'), String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 650, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodEORI'), CodEORIType,
-                                                      scope=AnagraficaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 655, 6)))
+AnagraficaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Cognome'), String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 651, 10)))
 
+AnagraficaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Titolo'), TitoloType, scope=AnagraficaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 654, 6)))
+
+AnagraficaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodEORI'), CodEORIType, scope=AnagraficaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 655, 6)))
 
 def _BuildAutomaton_19():
     # Remove this helper function from the namespace after it is invoked
@@ -6599,70 +7600,80 @@ def _BuildAutomaton_19():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 654, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 654, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 655, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 655, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Denominazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 647, 10))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Denominazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 647, 10))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Nome')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 650, 10))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Nome')), pyxb.utils.utility.Location(SCHEMA_FILE, 650, 10))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Cognome')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 651, 10))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Cognome')), pyxb.utils.utility.Location(SCHEMA_FILE, 651, 10))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Titolo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 654, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Titolo')), pyxb.utils.utility.Location(SCHEMA_FILE, 654, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodEORI')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 655, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AnagraficaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodEORI')), pyxb.utils.utility.Location(SCHEMA_FILE, 655, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -6670,18 +7681,27 @@ def _BuildAutomaton_19():
 AnagraficaType._Automaton = _BuildAutomaton_19()
 
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType,
-                                                                 scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 660, 6)))
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType,
-                                                                 scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 661, 6)))
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType,
-                                                                 scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 662, 6)))
+DatiAnagraficiVettoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 660, 6)))
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida'), String20Type,
-                                                                 scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 663, 6)))
+DatiAnagraficiVettoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 661, 6)))
 
+DatiAnagraficiVettoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 662, 6)))
+
+DatiAnagraficiVettoreType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroLicenzaGuida'), String20Type, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 663, 6)))
 
 def _BuildAutomaton_20():
     # Remove this helper function from the namespace after it is invoked
@@ -6690,57 +7710,65 @@ def _BuildAutomaton_20():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 661, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 661, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 663, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 663, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 660, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 660, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 661, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 661, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 662, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(SCHEMA_FILE, 662, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 663, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiVettoreType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location(SCHEMA_FILE, 663, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -6748,21 +7776,32 @@ def _BuildAutomaton_20():
 DatiAnagraficiVettoreType._Automaton = _BuildAutomaton_20()
 
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ufficio'), ProvinciaType,
-                                                         scope=IscrizioneREAType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 668, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroREA'), String20Type,
-                                                         scope=IscrizioneREAType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 669, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CapitaleSociale'), Amount2DecimalType,
-                                                         scope=IscrizioneREAType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 670, 6)))
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Ufficio'), ProvinciaType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 668, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SocioUnico'), SocioUnicoType,
-                                                         scope=IscrizioneREAType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 671, 6)))
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroREA'), String20Type, scope=IscrizioneREAType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 669, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione'), StatoLiquidazioneType,
-                                                         scope=IscrizioneREAType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 672, 6)))
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CapitaleSociale'), Amount2DecimalType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 670, 6)))
 
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'SocioUnico'), SocioUnicoType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 671, 6)))
+
+IscrizioneREAType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'StatoLiquidazione'), StatoLiquidazioneType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 672, 6)))
 
 def _BuildAutomaton_21():
     # Remove this helper function from the namespace after it is invoked
@@ -6771,68 +7810,78 @@ def _BuildAutomaton_21():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 670, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 670, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 671, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 671, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Ufficio')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 668, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Ufficio')), pyxb.utils.utility.Location(SCHEMA_FILE, 668, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroREA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 669, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroREA')), pyxb.utils.utility.Location(SCHEMA_FILE, 669, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CapitaleSociale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 670, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CapitaleSociale')), pyxb.utils.utility.Location(SCHEMA_FILE, 670, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'SocioUnico')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 671, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'SocioUnico')), pyxb.utils.utility.Location(SCHEMA_FILE, 671, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'StatoLiquidazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 672, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        IscrizioneREAType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'StatoLiquidazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 672, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     st_4._set_transitionSet(transitions)
@@ -6842,15 +7891,22 @@ def _BuildAutomaton_21():
 IscrizioneREAType._Automaton = _BuildAutomaton_21()
 
 
-ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'), TelFaxType,
-                                                    scope=ContattiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 677, 6)))
 
-ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Fax'), TelFaxType, scope=ContattiType,
-                                                    location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 678, 6)))
 
-ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Email'), EmailType, scope=ContattiType,
-                                                    location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 679, 6)))
+ContattiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Telefono'), TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 677, 6)))
 
+ContattiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Fax'), TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 678, 6)))
+
+ContattiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Email'), EmailType, scope=ContattiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 679, 6)))
 
 def _BuildAutomaton_22():
     # Remove this helper function from the namespace after it is invoked
@@ -6859,54 +7915,60 @@ def _BuildAutomaton_22():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 677, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 677, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 678, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 678, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 679, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 679, 6))
     counters.add(cc_2)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Telefono')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 677, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Telefono')), pyxb.utils.utility.Location(SCHEMA_FILE, 677, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Fax')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 678, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Fax')), pyxb.utils.utility.Location(SCHEMA_FILE, 678, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Email')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 679, 6))
-    st_2 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        ContattiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Email')), pyxb.utils.utility.Location(SCHEMA_FILE, 679, 6))
+    st_2 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
 
@@ -6914,9 +7976,12 @@ def _BuildAutomaton_22():
 ContattiType._Automaton = _BuildAutomaton_22()
 
 
-RappresentanteFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiRappresentanteType,
-                                                                 scope=RappresentanteFiscaleType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 689, 6)))
 
+
+RappresentanteFiscaleType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), DatiAnagraficiRappresentanteType, scope=RappresentanteFiscaleType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 689, 6)))
 
 def _BuildAutomaton_23():
     # Remove this helper function from the namespace after it is invoked
@@ -6927,10 +7992,12 @@ def _BuildAutomaton_23():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 689, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        RappresentanteFiscaleType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(SCHEMA_FILE, 689, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
     st_0._set_transitionSet(transitions)
@@ -6940,15 +8007,22 @@ def _BuildAutomaton_23():
 RappresentanteFiscaleType._Automaton = _BuildAutomaton_23()
 
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType,
-                                                                        scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 694, 6)))
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType,
-                                                                        scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 695, 6)))
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 696, 6)))
+DatiAnagraficiRappresentanteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 694, 6)))
 
+DatiAnagraficiRappresentanteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 695, 6)))
+
+DatiAnagraficiRappresentanteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 696, 6)))
 
 def _BuildAutomaton_24():
     # Remove this helper function from the namespace after it is invoked
@@ -6957,39 +8031,45 @@ def _BuildAutomaton_24():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 695, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 695, 6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 694, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiRappresentanteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 694, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 695, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiRappresentanteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 695, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 696, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiRappresentanteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(SCHEMA_FILE, 696, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     st_2._set_transitionSet(transitions)
@@ -6999,18 +8079,27 @@ def _BuildAutomaton_24():
 DatiAnagraficiRappresentanteType._Automaton = _BuildAutomaton_24()
 
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiCessionarioType,
-                                                                  scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 704, 6)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Sede'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 705, 6)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), IndirizzoType,
-                                                                  scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 706, 3)))
+CessionarioCommittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), DatiAnagraficiCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 704, 6)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), RappresentanteFiscaleCessionarioType,
-                                                                  scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 707, 6)))
+CessionarioCommittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Sede'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 705, 6)))
 
+CessionarioCommittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'StabileOrganizzazione'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 706, 3)))
+
+CessionarioCommittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RappresentanteFiscale'), RappresentanteFiscaleCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 707, 6)))
 
 def _BuildAutomaton_25():
     # Remove this helper function from the namespace after it is invoked
@@ -7019,58 +8108,66 @@ def _BuildAutomaton_25():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 706, 3))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 706, 3))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 707, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 707, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 704, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CessionarioCommittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(SCHEMA_FILE, 704, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Sede')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 705, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CessionarioCommittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Sede')), pyxb.utils.utility.Location(SCHEMA_FILE, 705, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 706, 3))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CessionarioCommittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'StabileOrganizzazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 706, 3))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 707, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CessionarioCommittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RappresentanteFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 707, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -7078,18 +8175,27 @@ def _BuildAutomaton_25():
 CessionarioCommittenteType._Automaton = _BuildAutomaton_25()
 
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'IdFiscaleIVA'), IdFiscaleType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 712, 3)))
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Denominazione'), String80LatinType,
-                                                                            scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 715, 10)))
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Nome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 718, 10)))
+RappresentanteFiscaleCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), IdFiscaleType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 712, 3)))
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Cognome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 719, 10)))
+RappresentanteFiscaleCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Denominazione'), String80LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 715, 10)))
 
+RappresentanteFiscaleCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Nome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 718, 10)))
+
+RappresentanteFiscaleCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Cognome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 719, 10)))
 
 def _BuildAutomaton_26():
     # Remove this helper function from the namespace after it is invoked
@@ -7100,40 +8206,48 @@ def _BuildAutomaton_26():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 712, 3))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        RappresentanteFiscaleCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 712, 3))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Denominazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 715, 10))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        RappresentanteFiscaleCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Denominazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 715, 10))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Nome')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 718, 10))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        RappresentanteFiscaleCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Nome')), pyxb.utils.utility.Location(SCHEMA_FILE, 718, 10))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Cognome')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 719, 10))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        RappresentanteFiscaleCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Cognome')), pyxb.utils.utility.Location(SCHEMA_FILE, 719, 10))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     st_3._set_transitionSet(transitions)
@@ -7143,15 +8257,22 @@ def _BuildAutomaton_26():
 RappresentanteFiscaleCessionarioType._Automaton = _BuildAutomaton_26()
 
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType,
-                                                                     scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 726, 6)))
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType,
-                                                                     scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 727, 6)))
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType,
-                                                                     scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 728, 6)))
+DatiAnagraficiCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 726, 6)))
 
+DatiAnagraficiCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 727, 6)))
+
+DatiAnagraficiCessionarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 728, 6)))
 
 def _BuildAutomaton_27():
     # Remove this helper function from the namespace after it is invoked
@@ -7160,44 +8281,50 @@ def _BuildAutomaton_27():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 726, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 726, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 727, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 727, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 726, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 726, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 727, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 727, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 728, 6))
-    st_2 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiCessionarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(SCHEMA_FILE, 728, 6))
+    st_2 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     st_2._set_transitionSet(transitions)
@@ -7207,12 +8334,17 @@ def _BuildAutomaton_27():
 DatiAnagraficiCessionarioType._Automaton = _BuildAutomaton_27()
 
 
-DatiBeniServiziType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DettaglioLinee'), DettaglioLineeType,
-                                                           scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 738, 6)))
 
-DatiBeniServiziType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo'), DatiRiepilogoType,
-                                                           scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 739, 6)))
 
+DatiBeniServiziType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DettaglioLinee'), DettaglioLineeType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 738, 6)))
+
+DatiBeniServiziType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiRiepilogo'), DatiRiepilogoType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 739, 6)))
 
 def _BuildAutomaton_28():
     # Remove this helper function from the namespace after it is invoked
@@ -7223,26 +8355,30 @@ def _BuildAutomaton_28():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DettaglioLinee')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 738, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBeniServiziType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DettaglioLinee')), pyxb.utils.utility.Location(SCHEMA_FILE, 738, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiRiepilogo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 739, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiBeniServiziType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiRiepilogo')), pyxb.utils.utility.Location(SCHEMA_FILE, 739, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -7250,12 +8386,17 @@ def _BuildAutomaton_28():
 DatiBeniServiziType._Automaton = _BuildAutomaton_28()
 
 
-DatiVeicoliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), pyxb.binding.datatypes.date,
-                                                       scope=DatiVeicoliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 752, 6)))
 
-DatiVeicoliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TotalePercorso'), String15Type,
-                                                       scope=DatiVeicoliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 753, 6)))
 
+DatiVeicoliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Data'), pyxb.binding.datatypes.date, scope=DatiVeicoliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 752, 6)))
+
+DatiVeicoliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TotalePercorso'), String15Type, scope=DatiVeicoliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 753, 6)))
 
 def _BuildAutomaton_29():
     # Remove this helper function from the namespace after it is invoked
@@ -7266,20 +8407,24 @@ def _BuildAutomaton_29():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Data')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 752, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiVeicoliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Data')), pyxb.utils.utility.Location(SCHEMA_FILE, 752, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TotalePercorso')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 753, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiVeicoliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TotalePercorso')), pyxb.utils.utility.Location(SCHEMA_FILE, 753, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
@@ -7289,12 +8434,17 @@ def _BuildAutomaton_29():
 DatiVeicoliType._Automaton = _BuildAutomaton_29()
 
 
-DatiPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento'), CondizioniPagamentoType,
-                                                         scope=DatiPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 763, 6)))
 
-DatiPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento'), DettaglioPagamentoType,
-                                                         scope=DatiPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 764, 6)))
 
+DatiPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CondizioniPagamento'), CondizioniPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 763, 6)))
+
+DatiPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DettaglioPagamento'), DettaglioPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 764, 6)))
 
 def _BuildAutomaton_30():
     # Remove this helper function from the namespace after it is invoked
@@ -7305,24 +8455,28 @@ def _BuildAutomaton_30():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CondizioniPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 763, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CondizioniPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 763, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DettaglioPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 764, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DettaglioPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 764, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -7330,69 +8484,112 @@ def _BuildAutomaton_30():
 DatiPagamentoType._Automaton = _BuildAutomaton_30()
 
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Beneficiario'), String200LatinType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 790, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento'), ModalitaPagamentoType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 791, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'), pyxb.binding.datatypes.date,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 792, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Beneficiario'), String200LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 790, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'), GiorniTerminePagamentoType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 793, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ModalitaPagamento'), ModalitaPagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 791, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento'), pyxb.binding.datatypes.date,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 794, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataRiferimentoTerminiPagamento'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 792, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoPagamento'), Amount2DecimalType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 795, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'GiorniTerminiPagamento'), GiorniTerminePagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 793, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale'), String20Type,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 796, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataScadenzaPagamento'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 794, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante'), String60LatinType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 797, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImportoPagamento'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 795, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante'), String60LatinType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 798, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodUfficioPostale'), String20Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 796, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CFQuietanzante'), CodiceFiscalePFType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 799, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CognomeQuietanzante'), String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 797, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante'), TitoloType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 800, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NomeQuietanzante'), String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 798, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario'), String80LatinType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 801, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CFQuietanzante'), CodiceFiscalePFType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 799, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'IBAN'), IBANType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 802, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TitoloQuietanzante'), TitoloType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 800, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'ABI'), ABIType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 803, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IstitutoFinanziario'), String80LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 801, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'CAB'), CABType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 804, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IBAN'), IBANType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 802, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'BIC'), BICType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 805, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ABI'), ABIType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 803, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'), Amount2DecimalType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 806, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CAB'), CABType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 804, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'), pyxb.binding.datatypes.date,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 807, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'BIC'), BICType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 805, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'), Amount2DecimalType,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 808, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ScontoPagamentoAnticipato'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 806, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale'), pyxb.binding.datatypes.date,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 809, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataLimitePagamentoAnticipato'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 807, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodicePagamento'), String60Type,
-                                                              scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 810, 6)))
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'PenalitaPagamentiRitardati'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 808, 6)))
 
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataDecorrenzaPenale'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 809, 6)))
+
+DettaglioPagamentoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodicePagamento'), String60Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 810, 6)))
 
 def _BuildAutomaton_31():
     # Remove this helper function from the namespace after it is invoked
@@ -7401,546 +8598,588 @@ def _BuildAutomaton_31():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 790, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 790, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 792, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 792, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 793, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 793, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 794, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 794, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 796, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 796, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 797, 6))
+    cc_5 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 797, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 798, 6))
+    cc_6 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 798, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 799, 6))
+    cc_7 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 799, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 800, 6))
+    cc_8 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 800, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 801, 6))
+    cc_9 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 801, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 802, 6))
+    cc_10 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 802, 6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 803, 6))
+    cc_11 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 803, 6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 804, 6))
+    cc_12 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 804, 6))
     counters.add(cc_12)
-    cc_13 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 805, 6))
+    cc_13 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 805, 6))
     counters.add(cc_13)
-    cc_14 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 806, 6))
+    cc_14 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 806, 6))
     counters.add(cc_14)
-    cc_15 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 807, 6))
+    cc_15 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 807, 6))
     counters.add(cc_15)
-    cc_16 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 808, 6))
+    cc_16 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 808, 6))
     counters.add(cc_16)
-    cc_17 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 809, 6))
+    cc_17 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 809, 6))
     counters.add(cc_17)
-    cc_18 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 810, 6))
+    cc_18 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 810, 6))
     counters.add(cc_18)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Beneficiario')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 790, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Beneficiario')), pyxb.utils.utility.Location(SCHEMA_FILE, 790, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ModalitaPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 791, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ModalitaPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 791, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataRiferimentoTerminiPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 792, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataRiferimentoTerminiPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 792, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 793, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 793, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 794, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 794, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImportoPagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 795, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImportoPagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 795, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodUfficioPostale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 796, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodUfficioPostale')), pyxb.utils.utility.Location(SCHEMA_FILE, 796, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CognomeQuietanzante')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 797, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CognomeQuietanzante')), pyxb.utils.utility.Location(SCHEMA_FILE, 797, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NomeQuietanzante')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 798, 6))
-    st_8 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NomeQuietanzante')), pyxb.utils.utility.Location(SCHEMA_FILE, 798, 6))
+    st_8 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CFQuietanzante')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 799, 6))
-    st_9 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CFQuietanzante')), pyxb.utils.utility.Location(SCHEMA_FILE, 799, 6))
+    st_9 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TitoloQuietanzante')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 800, 6))
-    st_10 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TitoloQuietanzante')), pyxb.utils.utility.Location(SCHEMA_FILE, 800, 6))
+    st_10 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IstitutoFinanziario')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 801, 6))
-    st_11 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IstitutoFinanziario')), pyxb.utils.utility.Location(SCHEMA_FILE, 801, 6))
+    st_11 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IBAN')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 802, 6))
-    st_12 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IBAN')), pyxb.utils.utility.Location(SCHEMA_FILE, 802, 6))
+    st_12 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ABI')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 803, 6))
-    st_13 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ABI')), pyxb.utils.utility.Location(SCHEMA_FILE, 803, 6))
+    st_13 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CAB')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 804, 6))
-    st_14 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CAB')), pyxb.utils.utility.Location(SCHEMA_FILE, 804, 6))
+    st_14 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_13, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'BIC')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 805, 6))
-    st_15 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'BIC')), pyxb.utils.utility.Location(SCHEMA_FILE, 805, 6))
+    st_15 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_14, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 806, 6))
-    st_16 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location(SCHEMA_FILE, 806, 6))
+    st_16 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_16)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_15, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 807, 6))
-    st_17 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location(SCHEMA_FILE, 807, 6))
+    st_17 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_17)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_16, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 808, 6))
-    st_18 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location(SCHEMA_FILE, 808, 6))
+    st_18 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_18)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_17, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 809, 6))
-    st_19 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location(SCHEMA_FILE, 809, 6))
+    st_19 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_19)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_18, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodicePagamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 810, 6))
-    st_20 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioPagamentoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodicePagamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 810, 6))
+    st_20 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_20)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_8, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_9, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_10, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_11, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_12, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_13, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_14, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_15, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_16, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_17, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_18, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_19, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_20, [
-    ]))
+         ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_5, True)]))
+        fac.UpdateInstruction(cc_5, True) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     st_7._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_6, True)]))
+        fac.UpdateInstruction(cc_6, True) ]))
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     st_8._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_7, True)]))
+        fac.UpdateInstruction(cc_7, True) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     st_9._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_8, True)]))
+        fac.UpdateInstruction(cc_8, True) ]))
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     st_10._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_11, [
-        fac.UpdateInstruction(cc_9, True)]))
+        fac.UpdateInstruction(cc_9, True) ]))
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     st_11._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_10, True)]))
+        fac.UpdateInstruction(cc_10, True) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_10, False)]))
+        fac.UpdateInstruction(cc_10, False) ]))
     st_12._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_11, True)]))
+        fac.UpdateInstruction(cc_11, True) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_11, False)]))
+        fac.UpdateInstruction(cc_11, False) ]))
     st_13._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_12, True)]))
+        fac.UpdateInstruction(cc_12, True) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_12, False)]))
+        fac.UpdateInstruction(cc_12, False) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_12, False)]))
+        fac.UpdateInstruction(cc_12, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_12, False)]))
+        fac.UpdateInstruction(cc_12, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_12, False)]))
+        fac.UpdateInstruction(cc_12, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_12, False)]))
+        fac.UpdateInstruction(cc_12, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_12, False)]))
+        fac.UpdateInstruction(cc_12, False) ]))
     st_14._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_13, True)]))
+        fac.UpdateInstruction(cc_13, True) ]))
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_13, False)]))
+        fac.UpdateInstruction(cc_13, False) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_13, False)]))
+        fac.UpdateInstruction(cc_13, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_13, False)]))
+        fac.UpdateInstruction(cc_13, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_13, False)]))
+        fac.UpdateInstruction(cc_13, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_13, False)]))
+        fac.UpdateInstruction(cc_13, False) ]))
     st_15._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_16, [
-        fac.UpdateInstruction(cc_14, True)]))
+        fac.UpdateInstruction(cc_14, True) ]))
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_14, False)]))
+        fac.UpdateInstruction(cc_14, False) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_14, False)]))
+        fac.UpdateInstruction(cc_14, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_14, False)]))
+        fac.UpdateInstruction(cc_14, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_14, False)]))
+        fac.UpdateInstruction(cc_14, False) ]))
     st_16._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_17, [
-        fac.UpdateInstruction(cc_15, True)]))
+        fac.UpdateInstruction(cc_15, True) ]))
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_15, False)]))
+        fac.UpdateInstruction(cc_15, False) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_15, False)]))
+        fac.UpdateInstruction(cc_15, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_15, False)]))
+        fac.UpdateInstruction(cc_15, False) ]))
     st_17._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_18, [
-        fac.UpdateInstruction(cc_16, True)]))
+        fac.UpdateInstruction(cc_16, True) ]))
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_16, False)]))
+        fac.UpdateInstruction(cc_16, False) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_16, False)]))
+        fac.UpdateInstruction(cc_16, False) ]))
     st_18._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_19, [
-        fac.UpdateInstruction(cc_17, True)]))
+        fac.UpdateInstruction(cc_17, True) ]))
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_17, False)]))
+        fac.UpdateInstruction(cc_17, False) ]))
     st_19._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_20, [
-        fac.UpdateInstruction(cc_18, True)]))
+        fac.UpdateInstruction(cc_18, True) ]))
     st_20._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -7948,9 +9187,12 @@ def _BuildAutomaton_31():
 DettaglioPagamentoType._Automaton = _BuildAutomaton_31()
 
 
-TerzoIntermediarioSoggettoEmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiTerzoIntermediarioType,
-                                                                               scope=TerzoIntermediarioSoggettoEmittenteType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 947, 6)))
 
+
+TerzoIntermediarioSoggettoEmittenteType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DatiAnagrafici'), DatiAnagraficiTerzoIntermediarioType, scope=TerzoIntermediarioSoggettoEmittenteType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 947, 6)))
 
 def _BuildAutomaton_32():
     # Remove this helper function from the namespace after it is invoked
@@ -7961,10 +9203,12 @@ def _BuildAutomaton_32():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TerzoIntermediarioSoggettoEmittenteType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DatiAnagrafici')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 947, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        TerzoIntermediarioSoggettoEmittenteType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DatiAnagrafici')), pyxb.utils.utility.Location(SCHEMA_FILE, 947, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
     st_0._set_transitionSet(transitions)
@@ -7974,15 +9218,22 @@ def _BuildAutomaton_32():
 TerzoIntermediarioSoggettoEmittenteType._Automaton = _BuildAutomaton_32()
 
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 952, 6)))
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType,
-                                                                            scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 953, 6)))
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
-    None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 954, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 952, 6)))
 
+DatiAnagraficiTerzoIntermediarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 953, 6)))
+
+DatiAnagraficiTerzoIntermediarioType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 954, 6)))
 
 def _BuildAutomaton_33():
     # Remove this helper function from the namespace after it is invoked
@@ -7991,44 +9242,50 @@ def _BuildAutomaton_33():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 952, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 952, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 953, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 953, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 952, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiTerzoIntermediarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'IdFiscaleIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 952, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceFiscale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 953, 6))
-    st_1 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiTerzoIntermediarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceFiscale')), pyxb.utils.utility.Location(SCHEMA_FILE, 953, 6))
+    st_1 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Anagrafica')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 954, 6))
-    st_2 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiAnagraficiTerzoIntermediarioType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Anagrafica')), pyxb.utils.utility.Location(SCHEMA_FILE, 954, 6))
+    st_2 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     st_2._set_transitionSet(transitions)
@@ -8038,21 +9295,32 @@ def _BuildAutomaton_33():
 DatiAnagraficiTerzoIntermediarioType._Automaton = _BuildAutomaton_33()
 
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NomeAttachment'), String60LatinType,
-                                                    scope=AllegatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 964, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione'), String10Type,
-                                                    scope=AllegatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 965, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FormatoAttachment'), String10Type,
-                                                    scope=AllegatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 966, 6)))
+AllegatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NomeAttachment'), String60LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 964, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment'), String100LatinType,
-                                                    scope=AllegatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 967, 6)))
+AllegatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AlgoritmoCompressione'), String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 965, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Attachment'), pyxb.binding.datatypes.base64Binary,
-                                                    scope=AllegatiType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 968, 6)))
+AllegatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'FormatoAttachment'), String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 966, 6)))
 
+AllegatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DescrizioneAttachment'), String100LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 967, 6)))
+
+AllegatiType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Attachment'), pyxb.binding.datatypes.base64Binary, scope=AllegatiType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 968, 6)))
 
 def _BuildAutomaton_34():
     # Remove this helper function from the namespace after it is invoked
@@ -8061,79 +9329,89 @@ def _BuildAutomaton_34():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 965, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 965, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 966, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 966, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 967, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 967, 6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NomeAttachment')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 964, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NomeAttachment')), pyxb.utils.utility.Location(SCHEMA_FILE, 964, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 965, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location(SCHEMA_FILE, 965, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FormatoAttachment')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 966, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FormatoAttachment')), pyxb.utils.utility.Location(SCHEMA_FILE, 966, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DescrizioneAttachment')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 967, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DescrizioneAttachment')), pyxb.utils.utility.Location(SCHEMA_FILE, 967, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Attachment')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 968, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AllegatiType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Attachment')), pyxb.utils.utility.Location(SCHEMA_FILE, 968, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     st_4._set_transitionSet(transitions)
@@ -8143,54 +9421,87 @@ def _BuildAutomaton_34():
 AllegatiType._Automaton = _BuildAutomaton_34()
 
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroLinea'), NumeroLineaType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 973, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'), TipoCessionePrestazioneType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 974, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceArticolo'), CodiceArticoloType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 975, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'NumeroLinea'), NumeroLineaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 973, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Descrizione'), String1000LatinType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 976, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoCessionePrestazione'), TipoCessionePrestazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 974, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Quantita'), QuantitaType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 977, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceArticolo'), CodiceArticoloType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 975, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'UnitaMisura'), String10Type,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 978, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Descrizione'), String1000LatinType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 976, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo'), pyxb.binding.datatypes.date,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 979, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Quantita'), QuantitaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 977, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo'), pyxb.binding.datatypes.date,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 980, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'UnitaMisura'), String10Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 978, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario'), Amount8DecimalType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 981, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataInizioPeriodo'), pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 979, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 982, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'DataFinePeriodo'), pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 980, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PrezzoTotale'), Amount8DecimalType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 983, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'PrezzoUnitario'), Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 981, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 984, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 982, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'), RitenutaType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 985, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'PrezzoTotale'), Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 983, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 986, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaIVA'), RateType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 984, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 987, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Ritenuta'), RitenutaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 985, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali'), AltriDatiGestionaliType,
-                                                          scope=DettaglioLineeType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 988, 6)))
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Natura'), NaturaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 986, 6)))
 
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoAmministrazione'), String20Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 987, 6)))
+
+DettaglioLineeType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AltriDatiGestionali'), AltriDatiGestionaliType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 988, 6)))
 
 def _BuildAutomaton_35():
     # Remove this helper function from the namespace after it is invoked
@@ -8199,263 +9510,295 @@ def _BuildAutomaton_35():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 974, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 974, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 975, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 975, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 977, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 977, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 978, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 978, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 979, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 979, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 980, 6))
+    cc_5 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 980, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 982, 6))
+    cc_6 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 982, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 985, 6))
+    cc_7 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 985, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 986, 6))
+    cc_8 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 986, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 987, 6))
+    cc_9 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 987, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 988, 6))
+    cc_10 = fac.CounterCondition(
+        min=0, max=None, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 988, 6))
     counters.add(cc_10)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'NumeroLinea')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 973, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'NumeroLinea')), pyxb.utils.utility.Location(SCHEMA_FILE, 973, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 974, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 974, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceArticolo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 975, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceArticolo')), pyxb.utils.utility.Location(SCHEMA_FILE, 975, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Descrizione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 976, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Descrizione')), pyxb.utils.utility.Location(SCHEMA_FILE, 976, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Quantita')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 977, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Quantita')), pyxb.utils.utility.Location(SCHEMA_FILE, 977, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'UnitaMisura')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 978, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'UnitaMisura')), pyxb.utils.utility.Location(SCHEMA_FILE, 978, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataInizioPeriodo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 979, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataInizioPeriodo')), pyxb.utils.utility.Location(SCHEMA_FILE, 979, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'DataFinePeriodo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 980, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'DataFinePeriodo')), pyxb.utils.utility.Location(SCHEMA_FILE, 980, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PrezzoUnitario')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 981, 6))
-    st_8 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PrezzoUnitario')), pyxb.utils.utility.Location(SCHEMA_FILE, 981, 6))
+    st_8 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 982, 6))
-    st_9 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 982, 6))
+    st_9 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'PrezzoTotale')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 983, 6))
-    st_10 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'PrezzoTotale')), pyxb.utils.utility.Location(SCHEMA_FILE, 983, 6))
+    st_10 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 984, 6))
-    st_11 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 984, 6))
+    st_11 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Ritenuta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 985, 6))
-    st_12 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Ritenuta')), pyxb.utils.utility.Location(SCHEMA_FILE, 985, 6))
+    st_12 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Natura')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 986, 6))
-    st_13 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Natura')), pyxb.utils.utility.Location(SCHEMA_FILE, 986, 6))
+    st_13 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 987, 6))
-    st_14 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location(SCHEMA_FILE, 987, 6))
+    st_14 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AltriDatiGestionali')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 988, 6))
-    st_15 = fac.State(symbol, is_initial=False,
-                      final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DettaglioLineeType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AltriDatiGestionali')), pyxb.utils.utility.Location(SCHEMA_FILE, 988, 6))
+    st_15 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_8, [
-    ]))
+         ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_4, False)]))
+        fac.UpdateInstruction(cc_4, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_5, True)]))
+        fac.UpdateInstruction(cc_5, True) ]))
     transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_5, False)]))
+        fac.UpdateInstruction(cc_5, False) ]))
     st_7._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_9, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_10, [
-    ]))
+         ]))
     st_8._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_6, True)]))
+        fac.UpdateInstruction(cc_6, True) ]))
     transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_6, False)]))
+        fac.UpdateInstruction(cc_6, False) ]))
     st_9._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_11, [
-    ]))
+         ]))
     st_10._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_12, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_13, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_14, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_15, [
-    ]))
+         ]))
     st_11._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_12, [
-        fac.UpdateInstruction(cc_7, True)]))
+        fac.UpdateInstruction(cc_7, True) ]))
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_7, False)]))
+        fac.UpdateInstruction(cc_7, False) ]))
     st_12._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_13, [
-        fac.UpdateInstruction(cc_8, True)]))
+        fac.UpdateInstruction(cc_8, True) ]))
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_8, False)]))
+        fac.UpdateInstruction(cc_8, False) ]))
     st_13._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_14, [
-        fac.UpdateInstruction(cc_9, True)]))
+        fac.UpdateInstruction(cc_9, True) ]))
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_9, False)]))
+        fac.UpdateInstruction(cc_9, False) ]))
     st_14._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_15, [
-        fac.UpdateInstruction(cc_10, True)]))
+        fac.UpdateInstruction(cc_10, True) ]))
     st_15._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -8463,12 +9806,17 @@ def _BuildAutomaton_35():
 DettaglioLineeType._Automaton = _BuildAutomaton_35()
 
 
-CodiceArticoloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceTipo'), String35Type,
-                                                          scope=CodiceArticoloType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 993, 6)))
 
-CodiceArticoloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceValore'), String35Type,
-                                                          scope=CodiceArticoloType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 994, 6)))
 
+CodiceArticoloType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceTipo'), String35Type, scope=CodiceArticoloType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 993, 6)))
+
+CodiceArticoloType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'CodiceValore'), String35Type, scope=CodiceArticoloType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 994, 6)))
 
 def _BuildAutomaton_36():
     # Remove this helper function from the namespace after it is invoked
@@ -8479,20 +9827,24 @@ def _BuildAutomaton_36():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceTipo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 993, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CodiceArticoloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceTipo')), pyxb.utils.utility.Location(SCHEMA_FILE, 993, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'CodiceValore')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 994, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        CodiceArticoloType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'CodiceValore')), pyxb.utils.utility.Location(SCHEMA_FILE, 994, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     st_1._set_transitionSet(transitions)
@@ -8502,18 +9854,27 @@ def _BuildAutomaton_36():
 CodiceArticoloType._Automaton = _BuildAutomaton_36()
 
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDato'), String10Type,
-                                                               scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 999, 6)))
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto'), String60LatinType,
-                                                               scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1000, 6)))
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero'), Amount8DecimalType,
-                                                               scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1001, 6)))
+AltriDatiGestionaliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'TipoDato'), String10Type, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 999, 6)))
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoData'), pyxb.binding.datatypes.date,
-                                                               scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1002, 6)))
+AltriDatiGestionaliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoTesto'), String60LatinType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1000, 6)))
 
+AltriDatiGestionaliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNumero'), Amount8DecimalType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1001, 6)))
+
+AltriDatiGestionaliType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoData'), pyxb.binding.datatypes.date, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1002, 6)))
 
 def _BuildAutomaton_37():
     # Remove this helper function from the namespace after it is invoked
@@ -8522,68 +9883,76 @@ def _BuildAutomaton_37():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1000, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1000, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1001, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1001, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1002, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1002, 6))
     counters.add(cc_2)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'TipoDato')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 999, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'TipoDato')), pyxb.utils.utility.Location(SCHEMA_FILE, 999, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoTesto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1000, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoTesto')), pyxb.utils.utility.Location(SCHEMA_FILE, 1000, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNumero')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1001, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNumero')), pyxb.utils.utility.Location(SCHEMA_FILE, 1001, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoData')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1002, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        AltriDatiGestionaliType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoData')), pyxb.utils.utility.Location(SCHEMA_FILE, 1002, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -8591,30 +9960,47 @@ def _BuildAutomaton_37():
 AltriDatiGestionaliType._Automaton = _BuildAutomaton_37()
 
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1019, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1020, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie'), Amount2DecimalType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1021, 6)))
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'AliquotaIVA'), RateType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1019, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), Amount8DecimalType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1022, 6)))
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Natura'), NaturaType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1020, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImponibileImporto'), Amount2DecimalType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1023, 6)))
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'SpeseAccessorie'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1021, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Imposta'), Amount2DecimalType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1024, 6)))
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Arrotondamento'), Amount8DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1022, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'), EsigibilitaIVAType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1025, 6)))
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'ImponibileImporto'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1023, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo'), String100LatinType,
-                                                         scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1026, 6)))
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'Imposta'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1024, 6)))
 
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'EsigibilitaIVA'), EsigibilitaIVAType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1025, 6)))
+
+DatiRiepilogoType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'RiferimentoNormativo'), String100LatinType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 1026, 6)))
 
 def _BuildAutomaton_38():
     # Remove this helper function from the namespace after it is invoked
@@ -8623,125 +10009,141 @@ def _BuildAutomaton_38():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1020, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1020, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1021, 6))
+    cc_1 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1021, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1022, 6))
+    cc_2 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1022, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1025, 6))
+    cc_3 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1025, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1026, 6))
+    cc_4 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 1026, 6))
     counters.add(cc_4)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'AliquotaIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1019, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'AliquotaIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 1019, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Natura')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1020, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Natura')), pyxb.utils.utility.Location(SCHEMA_FILE, 1020, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'SpeseAccessorie')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1021, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'SpeseAccessorie')), pyxb.utils.utility.Location(SCHEMA_FILE, 1021, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Arrotondamento')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1022, 6))
-    st_3 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Arrotondamento')), pyxb.utils.utility.Location(SCHEMA_FILE, 1022, 6))
+    st_3 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'ImponibileImporto')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1023, 6))
-    st_4 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'ImponibileImporto')), pyxb.utils.utility.Location(SCHEMA_FILE, 1023, 6))
+    st_4 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'Imposta')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1024, 6))
-    st_5 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'Imposta')), pyxb.utils.utility.Location(SCHEMA_FILE, 1024, 6))
+    st_5 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'EsigibilitaIVA')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1025, 6))
-    st_6 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'EsigibilitaIVA')), pyxb.utils.utility.Location(SCHEMA_FILE, 1025, 6))
+    st_6 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'RiferimentoNormativo')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1026, 6))
-    st_7 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        DatiRiepilogoType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'RiferimentoNormativo')), pyxb.utils.utility.Location(SCHEMA_FILE, 1026, 6))
+    st_7 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_3, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_4, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, False)]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, True)]))
+        fac.UpdateInstruction(cc_1, True) ]))
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_1, False)]))
+        fac.UpdateInstruction(cc_1, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_2, True)]))
+        fac.UpdateInstruction(cc_2, True) ]))
     transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_2, False)]))
+        fac.UpdateInstruction(cc_2, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-    ]))
+         ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_7, [
-    ]))
+         ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_3, True)]))
+        fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, False)]))
+        fac.UpdateInstruction(cc_3, False) ]))
     st_6._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_4, True)]))
+        fac.UpdateInstruction(cc_4, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
@@ -8749,15 +10151,22 @@ def _BuildAutomaton_38():
 DatiRiepilogoType._Automaton = _BuildAutomaton_38()
 
 
-FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'), FatturaElettronicaHeaderType,
-                                                              scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 17, 6)))
 
-FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'), FatturaElettronicaBodyType,
-                                                              scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 18, 6)))
 
-FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType,
-                                                              scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0)))
+FatturaElettronicaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'FatturaElettronicaHeader'), FatturaElettronicaHeaderType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 17, 6)))
 
+FatturaElettronicaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            None, 'FatturaElettronicaBody'), FatturaElettronicaBodyType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location(SCHEMA_FILE, 18, 6)))
+
+FatturaElettronicaType._AddElement(
+    pyxb.binding.basis.element(
+        pyxb.namespace.ExpandedName(
+            _Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0)))
 
 def _BuildAutomaton_39():
     # Remove this helper function from the namespace after it is invoked
@@ -8766,45 +10175,53 @@ def _BuildAutomaton_39():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location(
-        '../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 19, 6))
+    cc_0 = fac.CounterCondition(
+        min=0, max=1, metadata=pyxb.utils.utility.Location(SCHEMA_FILE, 19, 6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FatturaElettronicaHeader')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 17, 6))
-    st_0 = fac.State(symbol, is_initial=True,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FatturaElettronicaHeader')), pyxb.utils.utility.Location(SCHEMA_FILE, 17, 6))
+    st_0 = fac.State(
+        symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(
-        None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 18, 6))
-    st_1 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location(SCHEMA_FILE, 18, 6))
+    st_1 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(
-        _Namespace_ds, 'Signature')), pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 19, 6))
-    st_2 = fac.State(symbol, is_initial=False,
-                     final_update=final_update, is_unordered_catenation=False)
+    symbol = pyxb.binding.content.ElementUse(
+        FatturaElettronicaType._UseForTag(
+            pyxb.namespace.ExpandedName(
+                _Namespace_ds, 'Signature')), pyxb.utils.utility.Location(SCHEMA_FILE, 19, 6))
+    st_2 = fac.State(
+        symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_1, [
-    ]))
+         ]))
     transitions.append(fac.Transition(st_2, [
-    ]))
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True)]))
+        fac.UpdateInstruction(cc_0, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 
 
 FatturaElettronicaType._Automaton = _BuildAutomaton_39()
+
+
 

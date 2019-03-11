@@ -231,14 +231,20 @@ class StockPickingPackagePreparation(models.Model):
     def _compute_clean_display_name(self):
         for prep in self:
             name = u''
-            if prep.name:
+            if prep.ddt_number:
+                if prep.name:
+                    name = u'[%s] %s' % (prep.name, prep.ddt_number)
+                else:
+                    name = prep.ddt_number
+            elif prep.partner_id:
+                if prep.name:
+                    name = u'%s - %s' % (prep.partner_id.name, prep.name)
+                else:
+                    name = u'%s' % prep.partner_id.name
+            elif prep.name:
                 name = prep.name
-            if prep.ddt_number and prep.name:
-                name = u'[%s] %s' % (prep.name, prep.ddt_number)
-            if prep.ddt_number and not prep.name:
-                name = prep.ddt_number
-            if not name:
-                name = u'%s - %s' % (prep.partner_id.name, prep.date)
+            else:
+                name = u'%d' % prep.id
             prep.display_name = name
 
     @api.multi
@@ -451,6 +457,11 @@ class StockPickingPackagePreparation(models.Model):
                 raise UserError(
                     _("Document {d} has invoice linked".format(
                         d=ddt.ddt_number)))
+        # TODO: decrement ddt number if last DdT
+        # Unlik just if cancelled
+        #    if not package.ddt_number:
+        #        package.ddt_number = (
+        #            package.ddt_type_id.sequence_id.next_by_id())
         return super(StockPickingPackagePreparation, self).unlink()
 
 

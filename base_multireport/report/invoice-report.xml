@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <template id="account_invoice_multireport.report_invoice_document">
         <t t-call="account_invoice_multireport.external_layout">
             <div class="page">
@@ -171,4 +172,3 @@
     </template>
 
 </odoo>
-

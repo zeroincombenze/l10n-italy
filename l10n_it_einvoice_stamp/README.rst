@@ -21,12 +21,7 @@ Overview / Panoramica
 
 This module supports Italian Tax Stamp in invoices.
 
-Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes' (exemption taxes) under 'Tax stamp' section.
-
-For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
-
-Also set income/expense accounts.
-Typically income = 'Debiti per bolli' and expense = 'Valori bollati'.
+You can find 'Tax Stamp 2 euro' product to configure; this product may be inserted in invoice.
 
 
 |
@@ -34,15 +29,11 @@ Typically income = 'Debiti per bolli' and expense = 'Valori bollati'.
 |it| Bollo su Fattura Elettronica
 ----------------------------
 
-This module supports Italian Tax Stamp in invoices.
+Questo modulo gestisce il bollo virtuale in fattura.
 
-Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes' (exemption taxes) under 'Tax stamp' section.
+Viene creato un prodotoo 'Tax Stamp 2 euro' utilizzato per l'addebito al cliente.
 
-For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
-
-Also set income/expense accounts.
-Typically income = 'Debiti per bolli' and expense = 'Valori bollati'.
-
+Se in fattura è abilitato il bollo viene inserito l'apposito tag nella fattura eletronica.
 
 |
 
@@ -215,7 +206,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-02-02
+Last Update / Ultimo aggiornamento: 2019-03-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
