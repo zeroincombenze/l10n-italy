@@ -70,11 +70,10 @@ class FatturaPAAttachmentIn(models.Model):
 
         try:
             documenti = response.json()
-            _logger.info(response.text)
+            if documenti['EsitoChiamata'] > 0:
+                _logger.info(response.text)
+                return
         except:
-            return
-        if documenti['EsitoChiamata'] != 0:
-            _logger.info(documenti)
             return
 
         for value in documenti['Documenti']:
@@ -116,11 +115,11 @@ class FatturaPAAttachmentIn(models.Model):
 
         try:
             documenti = response.json()
+            if documenti['EsitoChiamata'] > 0:
+                _logger.info(response.text)
+                return
         except:
             _logger.info(response.text)
-            return
-        if documenti['EsitoChiamata'] != 0:
-            _logger.info(documenti)
             return
 
         documento = Evolve.parse_documento(documenti["Documenti"][0])
@@ -338,13 +337,10 @@ class FatturaPAAttachmentOut(models.Model):
 
             try:
                 data = response.json()
-                _logger.info(response.text)
+                if data['EsitoChiamata'] > 0:
+                    _logger.info(response.text)
+                    return
             except:
-                att.state = 'sender_error'
-                att.last_sdi_response = response.text
-                return
-
-            if data['EsitoChiamata'] != 0:
                 att.state = 'sender_error'
                 att.last_sdi_response = response.text
                 return
@@ -360,33 +356,37 @@ class FatturaPAAttachmentOut(models.Model):
                     att.state = evolve_stato_mapping[k]
                     att.last_sdi_response = json.dumps(documenti[k],
                                     ensure_ascii=False)
+
+                    #####################
+                    _logger.info (documenti[k][0])
+                    data = {
+                        'Documento': {
+                            'IdAzienda': int(send_channel.sender_company_id),
+                            'IdArchivio': 1,
+                            'CampiDinamici': [
+                                {
+                                    'Nome': 'Uid',
+                                    'Valore': documenti[k][0]['Uid']
+                                }
+                            ]
+                        },
+                        'Recupera': 0
+                    }
+
+                    url = os.path.join(send_channel.sender_url, 'Recupera')
+
+                    response = requests.post(url,
+                                             headers=headers,
+                                             data=json.dumps(data,
+                                                             ensure_ascii=False))
+
+                    _logger.info("--------------------------")
+                    _logger.info(response.text)
+                    #####################
+
                     return
 
         return
-
-    # Converte i valori restituiti da evolve in un array associativo
-    def parse_evolve_verify(self, data):
-
-        ret = {}
-
-        for evolvedoc in data:
-            documento = self.parse_evolve_documento(evolvedoc)
-
-            if documento["StatoFattura"] not in ret:
-                ret[documento["StatoFattura"]] = []
-
-            ret[documento["StatoFattura"]].append(documento)
-
-        return ret
-
-    def parse_evolve_documento(self, data):
-
-        ret = {}
-
-        for campodinamico in data["CampiDinamici"]:
-            ret[campodinamico["Nome"]] = campodinamico["Valore"]
-
-        return ret
 
     @api.multi
     def send_verify_via_pec(self, send_channel, invoice):
@@ -477,7 +477,9 @@ class FatturaPAAttachmentOut(models.Model):
                                                      ensure_ascii=False))
             try:
                 data = response.json()
-                _logger.info(response.text)
+                if data['EsitoChiamata'] > 0:
+                    _logger.info(response.text)
+                    return
             except:
                 att.state = 'sender_error'
                 att.last_sdi_response = response.text
@@ -583,8 +585,8 @@ class Evolve():
         for evolvedoc in data:
             documento = Evolve.parse_documento(evolvedoc)
 
-            # if not (ret.has_key(documento["StatoFattura"])):
-            if "StatoFattura" not in ret:
+            #if not (ret.has_key(documento["StatoFattura"])):
+            if documento["StatoFattura"] not in ret:
                 ret[documento["StatoFattura"]] = []
 
             ret[documento["StatoFattura"]].append(documento)

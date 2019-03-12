@@ -24,7 +24,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     e_invoice_detail_level = fields.Selection([
         ('0', 'Minimum'),
-        # ('1', 'Aliquote'),
+        ('1', 'Aliquote'),
         ('2', 'Maximum'),
     ], string="E-bills Detail Level",
         help="Minimum level: Bill is created with no lines; "
@@ -44,6 +44,10 @@ class WizardImportFatturapa(models.TransientModel):
         fatturapa_attachment_ids = self.env.context.get('active_ids', False)
         fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
         partners = self.env['res.partner']
+
+        if fatturapa_attachment_ids == False:
+            return res
+
         for fatturapa_attachment_id in fatturapa_attachment_ids:
             fatturapa_attachment = fatturapa_attachment_obj.browse(
                 fatturapa_attachment_id)
@@ -309,11 +313,11 @@ class WizardImportFatturapa(models.TransientModel):
                 _('No tax with percentage '
                   '%s and nature %s found. Please configure this tax.')
                 % (AliquotaIVA, Natura))
-        if len(account_taxes) > 1:
-            self.log_inconsistency(
-                _('Too many taxes with percentage '
-                  '%s and nature %s found.')
-                % (AliquotaIVA, Natura))
+        #if len(account_taxes) > 1:
+        #    self.log_inconsistency(
+        #        _('Too many taxes with percentage '
+        #          '%s and nature %s found.')
+        #        % (AliquotaIVA, Natura))
         if def_purchase_tax and def_purchase_tax.amount == AliquotaIVA_fp:
             account_tax_id = def_purchase_tax.id
         else:
@@ -475,7 +479,7 @@ class WizardImportFatturapa(models.TransientModel):
         retLine = self._prepare_generic_line_data(line)
         AlCassa = line.AlCassa or 0
         retLine.update({
-            'name': 'Cassa previdenziale %d%%' % AlCassa,
+            'name': 'Cassa previdenziale %s%%' % AlCassa,
             'sequence': 999,
             'account_id': credit_account_id,
         })
@@ -882,7 +886,8 @@ class WizardImportFatturapa(models.TransientModel):
             'payment_term_id': False,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
-            'comment': comment
+            'comment': comment,
+            'check_total': FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
         }
 
         # 2.1.1.10
@@ -925,7 +930,14 @@ class WizardImportFatturapa(models.TransientModel):
             invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
         # 2.2.1
         e_invoice_line_ids = []
+        e_invoice_line_ids_2 = {}
+
+        if self.e_invoice_detail_level > '0':
+            if (partner.e_invoice_default_account_id):
+                credit_account = partner.e_invoice_default_account_id
+
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+
             if self.e_invoice_detail_level == '2':
                 if (partner.e_invoice_default_account_id):
                     credit_account_id = partner.e_invoice_default_account_id.id
@@ -938,8 +950,31 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_line_id = invoice_line_model.create(
                     invoice_line_data).id
                 invoice_lines.append(invoice_line_id)
+
+            elif self.e_invoice_detail_level == '1':
+                company_id = self.env['res.company']._company_default_get('account.invoice.line').id
+                account_tax = self.get_tax(company_id, line.AliquotaIVA, line.Natura)
+
+                if account_tax not in e_invoice_line_ids_2:
+                    e_invoice_line_ids_2[account_tax] = float(0)
+
+                e_invoice_line_ids_2[account_tax] += float(line.PrezzoTotale)
+
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
+
+        for (account_tax, price) in e_invoice_line_ids_2.items():
+            invoice_line_data = {
+                "name": credit_account.name,
+                "price_unit": price,
+                "account_id": credit_account.id,
+                "invoice_line_tax_ids": [(6, 0, [account_tax])],
+                "quantity": 1
+            }
+            invoice_line_id = invoice_line_model.create(
+                invoice_line_data).id
+            invoice_lines.append(invoice_line_id)
+
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiCassaPrevidenziale

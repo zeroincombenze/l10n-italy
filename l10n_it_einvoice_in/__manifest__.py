@@ -21,6 +21,7 @@
     'license': 'LGPL-3',
     "depends": [
         'account',
+        'account_invoice_check_total',
         'l10n_it_einvoice_base',
         'l10n_it_fiscal_ipa',
         'l10n_it_causali_pagamento',
