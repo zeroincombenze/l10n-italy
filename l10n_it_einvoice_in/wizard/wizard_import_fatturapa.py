@@ -872,9 +872,9 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_data = {
             'fiscal_document_type_id': docType_id,
             'date_invoice':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
             'reference':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             'account_id': pay_acc_id,
             'type': invtype,
@@ -887,7 +887,8 @@ class WizardImportFatturapa(models.TransientModel):
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment,
-            'check_total': FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+            'check_total': FatturaBody.DatiGenerali.DatiGeneraliDocumento.\
+                           ImportoTotaleDocumento
         }
 
         # 2.1.1.10

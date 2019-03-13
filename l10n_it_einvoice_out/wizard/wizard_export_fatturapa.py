@@ -14,6 +14,7 @@ from xml.sax.saxutils import escape
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
+from odoo.addons.l10n_it_ade.bindings import fatturapa_v_1_2
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
@@ -1089,6 +1090,10 @@ class WizardExportFatturapa(models.TransientModel):
                 res[invoice.partner_id.id] = []
             res[invoice.partner_id.id].append(invoice.id)
         return res
+
+    def get_invoice_obj(self, fatturapa_attachment):
+        xml_string = fatturapa_attachment.get_xml_string()
+        return fatturapa_v_1_2.CreateFromDocument(xml_string)
 
     def exportFatturaPA(self):
         invoice_model = self.env['account.invoice']

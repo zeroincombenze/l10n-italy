@@ -52,6 +52,7 @@
             </form>
         </field>
     </record>
+
     <record id="view_fatturapa_in_attachment_tree" model="ir.ui.view">
         <field name="name">fatturapa.attachment.in.tree</field>
         <field name="model">fatturapa.attachment.in</field>
@@ -60,12 +61,15 @@
                 <field name="name"></field>
                 <field name="create_date"></field>
                 <field name="xml_supplier_id"/>
+                <field name="date_invoice0"/>
+                <field name="invoices_total"/>
                 <field name="invoices_number"/>
                 <field name="registered"/>
                 <field name="in_invoice_ids"/>
             </tree>
         </field>
     </record>
+
     <record id="view_fatturapa_in_attachment_search" model="ir.ui.view">
         <field name="name">fatturapa.attachment.in.search</field>
         <field name="model">fatturapa.attachment.in</field>
@@ -76,6 +80,7 @@
             </search>
         </field>
     </record>
+
     <record id="action_fattura_pa_in" model="ir.actions.act_window">
         <field name="name">Incoming E-bill Files</field>
         <field name="res_model">fatturapa.attachment.in</field>
@@ -84,6 +89,7 @@
         <field name="context">{'search_default_to_register': True}</field>
         <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
     </record>
+
     <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
                           parent="l10n_it_einvoice_base.menu_fattura_pa_payables"></menuitem>
     <!-- Extend purchase invoice line -->
@@ -97,6 +103,7 @@
             </field>
         </field>
     </record>
+
     <!-- Extend purchase invoice  -->
     <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa_in</field>
@@ -294,6 +301,7 @@
             </field>
         </field>
     </record>
+
     <record id="fatturapa_article_code_tree" model="ir.ui.view">
         <field name="name">fatturapa.article.code.tree</field>
         <field name="model">fatturapa.article.code</field>
@@ -304,6 +312,7 @@
             </tree>
         </field>
     </record>
+
     <record id="discount_rise_price_tree" model="ir.ui.view">
         <field name="name">discount.rise.price.tree</field>
         <field name="model">discount.rise.price</field>
@@ -315,6 +324,7 @@
             </tree>
         </field>
     </record>
+
     <record id="einvoice_line_other_data_tree" model="ir.ui.view">
         <field name="name">einvoice.line.other.data.tree</field>
         <field name="model">einvoice.line.other.data</field>
@@ -327,4 +337,5 @@
             </tree>
         </field>
     </record>
+
 </odoo>

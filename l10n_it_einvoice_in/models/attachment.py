@@ -31,41 +31,37 @@ class FatturaPAAttachmentIn(models.Model):
              "any discount and including tax charged to the buyer/ordered"
     )
     registered = fields.Boolean(
-        "Registered", compute="_compute_registered", store=True)
+        "Registered", compute="_compute_xml_data", store=True)
     uid = fields.Char('Uid', size=255)
+    date_invoice0 = fields.Date(
+        'Date Invoice', store=True,
+        compute='_compute_xml_data')
 
     @api.onchange('datas_fname')
-    def onchagne_datas_fname(self):
+    def onchange_datas_fname(self):
         self.name = self.datas_fname
 
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
 
     @api.multi
-    @api.depends('ir_attachment_id.datas')
+    @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
     def _compute_xml_data(self):
+        wizard_model = self.env['wizard.import.fatturapa']
         for att in self:
-            fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(att)
+            fatt = wizard_model.get_invoice_obj(att)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            partner_id = self.env['wizard.import.fatturapa'].getCedPrest(
-                cedentePrestatore)
+            partner_id = wizard_model.getCedPrest(cedentePrestatore)
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
+            att.registered = False
+            if att.in_invoice_ids:
+                att.date_invoice0 = att.in_invoice_ids[0].date_invoice
+                if len(att.in_invoice_ids) == att.invoices_number:
+                    att.registered = True
             att.invoices_total = 0
             for invoice_body in fatt.FatturaElettronicaBody:
                 att.invoices_total += float(
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
-
-    @api.multi
-    @api.depends('in_invoice_ids')
-    def _compute_registered(self):
-        for att in self:
-            if (
-                att.in_invoice_ids and
-                len(att.in_invoice_ids) == att.invoices_number
-            ):
-                att.registered = True
-            else:
-                att.registered = False

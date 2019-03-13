@@ -29,15 +29,31 @@ class FatturaPAAttachment(models.Model):
         compute='_compute_has_pdf_invoice_print', store=True)
     invoice_partner_id = fields.Many2one(
         'res.partner', string='Customer', store=True,
-        compute='_compute_invoice_partner_id')
+        compute='_compute_xml_data')
+    invoices_total = fields.Float(
+        "Invoices Total", compute="_compute_xml_data", store=True)
+    date_invoice0 = fields.Date(
+        'Date Invoice', store=True,
+        compute='_compute_xml_data')
+
+    def get_xml_string(self):
+        return self.ir_attachment_id.get_xml_string()
 
     @api.multi
     @api.depends('out_invoice_ids')
-    def _compute_invoice_partner_id(self):
+    def _compute_xml_data(self):
+        wizard_model = self.env['wizard.export.fatturapa']
         for att in self:
+            fatt = wizard_model.get_invoice_obj(att)
+            cessionario = fatt.FatturaElettronicaHeader.CessionarioCommittente
             partners = att.mapped('out_invoice_ids.partner_id')
             if len(partners) == 1:
                 att.invoice_partner_id = partners.id
+            if att.out_invoice_ids:
+                att.date_invoice0 = att.out_invoice_ids[0].date_invoice
+            att.invoices_total = 0
+            for invoice in att.out_invoice_ids:
+                att.invoices_total += invoice.amount_total
 
     @api.multi
     @api.constrains('datas_fname')
