@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 2.3.4\n"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
@@ -181,7 +181,7 @@ msgstr "<strong>Vs. riferimento:</strong>"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
 msgid "Account Invoice"
-msgstr "Account Invoice"
+msgstr "Fattura"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_active
@@ -308,7 +308,7 @@ msgstr "Data di creazione"
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_custom_header
 msgid "Custom Header"
-msgstr "Custom Header"
+msgstr "Intestazione personalizzata"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt
@@ -338,7 +338,7 @@ msgstr "DdT (personalizzato)"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
 msgid "Default Setting"
-msgstr "Default Setting"
+msgstr "Impostazioni predefinite"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
@@ -366,13 +366,13 @@ msgstr "Sconto (%)"
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_display_name
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_display_name
 msgid "Display Name"
-msgstr "Visualizza nome"
+msgstr "Nome visualizzato"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_selection_rules_form
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_selection_rules_tree
 msgid "Document report selection rules"
-msgstr "Document report selection rules"
+msgstr "Regole selezione impaginazione stampa"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.account_invoice_report_duplicate
@@ -407,7 +407,7 @@ msgstr "Email:"
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_ending_page
 msgid "Ending Page PDF"
-msgstr "Ending Page PDF"
+msgstr "Pagina finale PDF"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.account_invoice_report_duplicate
@@ -448,22 +448,22 @@ msgstr "Ft. di cortesia (personalizzata)"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_model_name
 msgid "Give a unique name for this report model"
-msgstr "Give a unique name for this report model"
+msgstr "Assegnare un nome univoco all'impaginazione"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_name
 msgid "Give a unique name for this report style"
-msgstr "Give a unique name for this report style"
+msgstr "Assegnare un nome univoco allo stile"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_name
 msgid "Give a unique name for this report template"
-msgstr "Give a unique name for this report template"
+msgstr "Assegnare un nome univoco al modello"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Goods Description"
-msgstr "Aspetto dei beni"
+msgstr "Aspetto esteriore dei beni"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
@@ -674,6 +674,7 @@ msgstr "Note"
 #. module: base_multireport
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
+#: selection:multireport.style,origin
 msgid "Odoo based Model"
 msgstr "Odoo based Model"
 
@@ -685,6 +686,7 @@ msgstr "Ordine N."
 #. module: base_multireport
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
+#: selection:multireport.style,origin
 msgid "Original Odoo Model"
 msgstr "Original Odoo Model"
 
@@ -1063,6 +1065,7 @@ msgstr "Partita IVA:"
 #. module: base_multireport
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
+#: selection:multireport.style,origin
 msgid "VG7 Model"
 msgstr "VG7 Model"
 
@@ -1099,12 +1102,14 @@ msgstr "base.config.settings"
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 msgid "company"
-msgstr "company"
+msgstr "azienda"
 
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 msgid "customer"
 msgstr "cliente"
 
@@ -1126,6 +1131,7 @@ msgstr "imponibile"
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 msgid "odoo"
 msgstr "odoo"
 
@@ -1137,6 +1143,7 @@ msgstr "q.tà"
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 msgid "report"
 msgstr "rendiconto"
 

@@ -39,7 +39,7 @@ You can find an customized invoice report example in this module.
 |it| Gestisci modelli di stampa multipli
 -----------------------------------
 
-Installate questo modulo per stampare modelli multipli di documenti basati su:
+Installare questo modulo per stampare modelli multipli di documenti basati su:
 
 * Sezionale (utile per gestire le fatture accompagnatorie)
 * Partner (alcuni partner posso avare documenti persolizzati)
@@ -49,9 +49,8 @@ Installate questo modulo per stampare modelli multipli di documenti basati su:
 * Posizione fiscale
 * Team
 
-Potete anche costruire un vostro modulo di fattura personalizzata da aggiungere
+Si può anche costruire un modulo di fattura personalizzata da aggiungere
 alla lista dei modelli.
-Trovate un esempio di fattura in questo modulo.
 
 
 |
@@ -78,7 +77,7 @@ Prerequisites / Prerequisiti
 ----------------------------
 
 
-* python
+* python2.7+
 * postgresql 9.2+
 
 |
@@ -152,7 +151,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
@@ -221,7 +220,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-01-06
+Last Update / Ultimo aggiornamento: 2019-03-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
