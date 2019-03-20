@@ -3,4 +3,3 @@
 * Innoviu srl <http://www.innoviu.com>
 * Odoo Italia Network
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
-* Didotech srl <http://www.didotech.com>

@@ -7,7 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 
-from openerp import fields, models, api
+from openerp import fields, models
 
 
 class AccountInvoice(models.Model):
@@ -17,7 +17,9 @@ class AccountInvoice(models.Model):
         'fatturapa.attachment.out', 'E-Fattura Export File',
         readonly=True)
 
-    @api.one
-    def copy(self, defaults):
-        defaults['fatturapa_attachment_out_id'] = None
-        return super(AccountInvoice, self).copy(defaults)
+    # @api.one
+    # def copy(self, defaults=None):
+    def copy(self, cr, uid, ids, defaults=None, context=None):
+        defaults = defaults or {}
+        defaults.update({'fatturapa_attachment_out_id': False})
+        return super(AccountInvoice, self).copy(cr, uid, ids, defaults, context)

@@ -3,4 +3,3 @@
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-* Andrei Levin <andrei.levin@didotech.com>
