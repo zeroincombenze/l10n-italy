@@ -58,6 +58,7 @@ msgstr "Righe conti"
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/report/vat_statement.py:108
 #: code:addons/account_vat_period_end_statement/report/vat_statement.py:108
+#: code:addons/account_vat_period_end_statement/report/vat_statement.py:108
 msgid "Account type neither credit and debit !"
 msgstr "Tipo di conto nè di debito nè di credito !"
 
@@ -136,6 +137,7 @@ msgstr "Calcola interessi"
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
 #: selection:account.vat.period.end.statement,state
+#: selection:account.vat.period.end.statement,state
 msgid "Confirmed"
 msgstr "Confermato"
 
@@ -173,6 +175,7 @@ msgstr "Righe conti di credito"
 #: code:addons/account_vat_period_end_statement/models/account.py:352
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_credit_vat_account_line_ids
 #: code:addons/account_vat_period_end_statement/models/account.py:352
+#: code:addons/account_vat_period_end_statement/models/account.py:352
 msgid "Credit VAT"
 msgstr "IVA a credito"
 
@@ -182,6 +185,8 @@ msgid "Credit VAT from previous periods"
 msgstr "IVA a credito da periodi precedenti"
 
 #. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
+#: code:addons/account_vat_period_end_statement/wizard/remove_period.py:48
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
 #: code:addons/account_vat_period_end_statement/wizard/remove_period.py:48
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
@@ -208,6 +213,7 @@ msgstr "Righe conti di debito"
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:333
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_debit_vat_account_line_ids
+#: code:addons/account_vat_period_end_statement/models/account.py:333
 #: code:addons/account_vat_period_end_statement/models/account.py:333
 msgid "Debit VAT"
 msgstr "IVA a debito"
@@ -247,6 +253,7 @@ msgstr "Nome visualizzato"
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
 #: selection:account.vat.period.end.statement,state
+#: selection:account.vat.period.end.statement,state
 msgid "Draft"
 msgstr "Bozza"
 
@@ -255,6 +262,7 @@ msgstr "Bozza"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_interests_debit_vat_account_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:428
 #: code:addons/account_vat_period_end_statement/models/account.py:428
 msgid "Due interests"
 msgstr "Interessi dovuti"
@@ -314,7 +322,7 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_journal_id
 msgid "Journal"
-msgstr "Registro"
+msgstr "Registro sezionale"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement___last_update
@@ -355,6 +363,7 @@ msgstr "Ultima pagina su bollato"
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:447
 #: code:addons/account_vat_period_end_statement/models/account.py:447
+#: code:addons/account_vat_period_end_statement/models/account.py:447
 msgid "Other VAT Credits / Debits"
 msgstr "Altri Crediti / Debiti per IVA"
 
@@ -379,6 +388,7 @@ msgstr "Numero pagina"
 
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
+#: selection:account.vat.period.end.statement,state
 #: selection:account.vat.period.end.statement,state
 msgid "Paid"
 msgstr "Pagato"
@@ -408,6 +418,7 @@ msgstr "Periodo"
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
+#: code:addons/account_vat_period_end_statement/wizard/add_period.py:45
 #, python-format
 msgid "Period %s is associated to statement %s yet"
 msgstr "Il periodo %s è già associato alla liquidazione %s"
@@ -423,6 +434,7 @@ msgstr "Periodi"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_credit_vat_account_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:371
+#: code:addons/account_vat_period_end_statement/models/account.py:371
 msgid "Previous Credits VAT"
 msgstr "IVA crediti precedenti"
 
@@ -435,6 +447,7 @@ msgstr "Importo IVA crediti precedenti"
 #: code:addons/account_vat_period_end_statement/models/account.py:409
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_debit_vat_account_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:409
 #: code:addons/account_vat_period_end_statement/models/account.py:409
 msgid "Previous Debits VAT"
 msgstr "IVA debiti precedenti"
@@ -539,6 +552,7 @@ msgstr "Agenza delle Entrate"
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:463
 #: code:addons/account_vat_period_end_statement/models/account.py:463
+#: code:addons/account_vat_period_end_statement/models/account.py:463
 msgid "Tax Authority VAT"
 msgstr "IVA Erario"
 
@@ -548,6 +562,7 @@ msgid "Tax Authority VAT Account"
 msgstr "Conto IVA Erario"
 
 #. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:390
 #: code:addons/account_vat_period_end_statement/models/account.py:390
 #: code:addons/account_vat_period_end_statement/models/account.py:390
 msgid "Tax Credits"
@@ -566,6 +581,7 @@ msgid "Tax credits Amount"
 msgstr "Importo crediti d'imposta"
 
 #. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:629
 #: code:addons/account_vat_period_end_statement/models/account.py:629
 #: code:addons/account_vat_period_end_statement/models/account.py:629
 msgid "The account for vat interest must be configurated"
@@ -618,6 +634,7 @@ msgstr "Non detraibile"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_statement_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_vat_period_end_statement_company_form
 #: code:addons/account_vat_period_end_statement/models/account.py:321
+#: code:addons/account_vat_period_end_statement/models/account.py:321
 msgid "VAT statement"
 msgstr "Liquidazione IVA"
 
@@ -644,6 +661,7 @@ msgid "Vat statement"
 msgstr "Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:278
 #: code:addons/account_vat_period_end_statement/models/account.py:278
 #: code:addons/account_vat_period_end_statement/models/account.py:278
 msgid "You cannot delete a confirmed or paid statement"

@@ -42,7 +42,9 @@ class FatturaPAAttachmentIn(models.Model):
         self.name = self.datas_fname
 
     def get_xml_string(self):
-        return self.ir_attachment_id.get_xml_string()
+        if self.ir_attachment_id:
+            return self.ir_attachment_id.get_xml_string()
+        return False
 
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
@@ -50,6 +52,8 @@ class FatturaPAAttachmentIn(models.Model):
         wizard_model = self.env['wizard.import.fatturapa']
         for att in self:
             fatt = wizard_model.get_invoice_obj(att)
+            if not fatt:
+                continue
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             partner_id = wizard_model.getCedPrest(cedentePrestatore)
             att.xml_supplier_id = partner_id

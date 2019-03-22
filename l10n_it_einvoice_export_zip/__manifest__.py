@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "installable": True,
     "depends": [
         "l10n_it_einvoice_out",

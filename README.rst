@@ -115,7 +115,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 10.0.1.3.4 | Emissione fatture elettroniche                     |
+| l10n_it_fatturapa_out                | |no_check| | 10.0.1.3.5 | Emissione fatture elettroniche                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -321,7 +321,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-14
+Last Update / Ultimo aggiornamento: 2019-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

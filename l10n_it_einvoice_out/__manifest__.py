@@ -10,7 +10,7 @@
 {
     'name': 'Italian Localization - FatturaPA - Emission',
     'summary': 'Electronic invoices emission',
-    'version': '10.0.1.0.5',
+    'version': '10.0.1.0.6',
     'category': 'Localization/Italy',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA)',

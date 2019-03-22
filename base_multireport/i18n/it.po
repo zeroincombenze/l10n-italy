@@ -448,17 +448,17 @@ msgstr "Ft. di cortesia (personalizzata)"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_model_name
 msgid "Give a unique name for this report model"
-msgstr "Assegnare un nome univoco all'impaginazione"
+msgstr "Assegnamento nome univoco al rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_name
 msgid "Give a unique name for this report style"
-msgstr "Assegnare un nome univoco allo stile"
+msgstr "Assegnamento nome univoco allo stile rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_name
 msgid "Give a unique name for this report template"
-msgstr "Assegnare un nome univoco al modello"
+msgstr "Assegnamento nome univoco al modello del rapporto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
@@ -675,6 +675,7 @@ msgstr "Note"
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin
+#: selection:multireport.style,origin
 msgid "Odoo based Model"
 msgstr "Odoo based Model"
 
@@ -686,6 +687,7 @@ msgstr "Ordine N."
 #. module: base_multireport
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
+#: selection:multireport.style,origin
 #: selection:multireport.style,origin
 msgid "Original Odoo Model"
 msgstr "Original Odoo Model"
@@ -831,7 +833,7 @@ msgstr "Related header"
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_report
 msgid "Report"
-msgstr "Rendiconto"
+msgstr "Rapporto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_model_tree
@@ -1066,6 +1068,7 @@ msgstr "Partita IVA:"
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin
+#: selection:multireport.style,origin
 msgid "VG7 Model"
 msgstr "VG7 Model"
 
@@ -1103,12 +1106,14 @@ msgstr "base.config.settings"
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action
+#: selection:multireport.selection.rules,action
 msgid "company"
 msgstr "azienda"
 
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 #: selection:multireport.selection.rules,action
 msgid "customer"
 msgstr "cliente"
@@ -1132,6 +1137,7 @@ msgstr "imponibile"
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action
+#: selection:multireport.selection.rules,action
 msgid "odoo"
 msgstr "odoo"
 
@@ -1144,8 +1150,9 @@ msgstr "q.tà"
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action
+#: selection:multireport.selection.rules,action
 msgid "report"
-msgstr "rendiconto"
+msgstr "rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_action
