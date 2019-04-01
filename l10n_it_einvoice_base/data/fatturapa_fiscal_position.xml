@@ -12,7 +12,7 @@
     </record>
     <record id="fatturapa_RF03" model="fatturapa.fiscal_position">
         <field name="code">RF03</field>
-        <field name="name">Regime delle nuove iniziative produttive (art. 13, L. 388/2000)</field>
+        <field name="name">Regime delle nuove iniziative produttive (art. 13, L. 388/2000) (non usare)</field>
     </record>
     <record id="fatturapa_RF04" model="fatturapa.fiscal_position">
         <field name="code">RF04</field>
@@ -68,11 +68,15 @@
     </record>
     <record id="fatturapa_RF17" model="fatturapa.fiscal_position">
         <field name="code">RF17</field>
-        <field name="name">IVA per cassa soggetti con volume d’affari inferiore ad euro 200.000 (art. 7, D.L. 185/2008)</field>
+        <field name="name">IVA per cassa soggetti con volume d’affari inferiore ad euro 2.000.000 (art. 32-bis, D.L. 83/2012)</field>
     </record>
     <record id="fatturapa_RF18" model="fatturapa.fiscal_position">
         <field name="code">RF18</field>
         <field name="name">Altro</field>
+    </record>
+    <record id="fatturapa_RF19" model="fatturapa.fiscal_position">
+        <field name="code">RF19</field>
+        <field name="name">Regime gorfettario (art.1, c.54-89, D.L. 190/2014)</field>
     </record>
 
 </odoo>

@@ -74,6 +74,40 @@ class ResCompany(models.Model):
                         " another one."
                     ) % (company.fatturapa_sequence_id.name, journal.name))
 
+    def set_cash_accounting(self):
+        tax_model = self.env['account.tax']
+        where = ['|', ('company_id', '=', False),
+                      ('company_id', '=', self.id)]
+        where.append(('type_tax_use', '=', 'sale'))
+        where.append(('amount', '!=', 0.0))
+        where.append(('nature_id', '=', False))
+        where.append('|')
+        where.append(('payability', '=', 'I'))
+        where.append(('payability', '=', False))
+        for tax in tax_model.search(where):
+            tax_model.write({'payability': 'D'})
+
+    def set_ordinary_vat(self):
+        tax_model = self.env['account.tax']
+        where = ['|', ('company_id', '=', False),
+                      ('company_id', '=', self.id)]
+        where.append(('type_tax_use', '=', 'sale'))
+        where.append(('amount', '!=', 0.0))
+        where.append(('nature_id', '=', False))
+        where.append(('payability', '=', 'D'))
+        for tax in tax_model.search(where):
+            tax_model.write({'payability': 'I'})
+
+    @api.multi
+    def write(self, vals):
+        res = super(ResCompany, self).write(vals)
+        for rec in self:
+            if rec.fatturapa_fiscal_position_id.code == 'RF01':
+                rec.set_ordinary_vat()
+            elif rec.fatturapa_fiscal_position_id.code == 'RF17':
+                rec.set_cash_accounting()
+        return res
+
 
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'

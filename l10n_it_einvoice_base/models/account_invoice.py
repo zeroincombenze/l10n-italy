@@ -98,8 +98,8 @@ class WelfareFundType(models.Model):
     _name = "welfare.fund.type"
     _description = 'Welfare Fund Type'
 
+    code = fields.Char('Code')
     name = fields.Char('Name')
-    description = fields.Char('Description')
 
 
 class WelfareFundDataLine(models.Model):

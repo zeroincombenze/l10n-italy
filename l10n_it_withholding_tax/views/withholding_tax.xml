@@ -13,11 +13,13 @@
                 <tree string="Withholding Tax">
                     <field name="name"/>
                     <field name="code"/>
+                    <field name="wt_types"/>
                     <field name="tax"/>
                     <field name="base"/>
                     <field name="certification"/>
                     <field name="active"/>
                     <field name="comment"/>
+                    <field name="welfare_fund_type_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
@@ -32,6 +34,7 @@
                         <group>
                             <field name="name"/>
                             <field name="code"/>
+                            <field name="wt_types"/>
                             <field name="certification"/>
                             <field name="account_receivable_id"/>
                             <field name="account_payable_id"/>
@@ -42,6 +45,7 @@
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                             <field name="payment_term"/>
                             <field name="causale_pagamento_id"/>
+                            <field name="welfare_fund_type_id" attrs="{'readonly': [('wt_types', '!=', 'cassa')]}"/>
                         </group>
                     </group>
                     <field name="comment"/>

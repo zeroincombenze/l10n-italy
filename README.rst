@@ -51,7 +51,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | account_vat_period_end_statement     | 10.0.1.4.2 | |same|     | Period End VAT Statement                           |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| base_multireport                     | 10.0.0.2.4 | |no_check| | Manage document multiple reports                   |
+| base_multireport                     | 10.0.0.2.5 | |no_check| | Manage document multiple reports                   |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_eu_trial_balance                | |halt|     | |no_check| | 2013/34/EU - Trial Balance + Financial Statements  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -59,7 +59,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_abicab                       | 10.0.1.0.0 | |same|     | Base Bank ABI/CAB codes                            |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_account                      | 10.0.1.0.1 | 10.0.1.2.3 | Italian Localization - Account                     |
+| l10n_it_account                      | 10.0.1.2.4 | 10.0.1.2.3 | Italian Localization - Account                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_account_stamp                | |no_check| | 10.0.1.0.1 | Tax stamp automatic management                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -93,13 +93,15 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_ddt                          | 10.0.1.5.2 | 10.0.1.7.2 | Documento di Trasporto                             |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base                | 10.0.2.1.3 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
+| l10n_it_einvoice_base                | 10.0.2.1.4 | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 10.0.1.0.0 | |no_check| | Esportazione di file XML di fatture elettroniche i |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_in                  | 10.0.1.3.1 | |no_check| | Ricezione fatture elettroniche                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out                 | 10.0.1.0.5 | |no_check| | Electronic invoices emission                       |
+| l10n_it_einvoice_out                 | 10.0.1.0.6 | |no_check| | Electronic invoices emission                       |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 10.0.1.0.0 | |no_check| | Send E-Invoice to customer thought SdI             |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -107,15 +109,15 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_esigibilita_iva              | 10.0.1.0.0 | |same|     | Esigibilità IVA                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 10.0.2.3.8 | Fatture elettroniche                               |
+| l10n_it_fatturapa                    | |no_check| | 10.0.2.4.1 | Fatture elettroniche                               |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa_export_zip         | |no_check| | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.4.8 | Ricezione fatture elettroniche                     |
+| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.4.9 | Ricezione fatture elettroniche                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 10.0.1.3.5 | Emissione fatture elettroniche                     |
+| l10n_it_fatturapa_out                | |no_check| | 10.0.1.4.0 | Emissione fatture elettroniche                     |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e  |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -151,7 +153,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_rea                          | 10.0.1.0.1 | 10.0.1.1.1 | Manage fields for  Economic Administrative catalog |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_reverse_charge               | 10.0.1.2.0 | 10.0.1.1.4 | Reverse Charge for Italy                           |
+| l10n_it_reverse_charge               | 10.0.1.2.0 | 10.0.1.1.6 | Reverse Charge for Italy                           |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                    |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -159,13 +161,15 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_sdi_channel                  | |no_check| | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML |
 +--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_split_payment                | 10.0.1.0.2 | 10.0.1.1.0 | Split Payment                                      |
+| l10n_it_split_payment                | 10.0.1.0.3 | 10.0.1.1.0 | Split Payment                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_vat_registries               | 10.0.1.3.0 | 10.0.1.2.3 | Italian Localization - VAT Registries              |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_vat_registries_cash_basis    | |halt|     | |same|     | Italian Localization - VAT Registries - Cash Basis |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_vat_registries_split_payment | |no_check| | 10.0.1.0.0 | Bridge module to make VAT registries work with Spl |
++--------------------------------------+------------+------------+----------------------------------------------------+
+| l10n_it_website_portal_fatturapa     | |no_check| | 10.0.1.0.0 | Add fatturapa fields and checks in frontend user's |
 +--------------------------------------+------------+------------+----------------------------------------------------+
 | l10n_it_website_portal_fiscalcode    | |no_check| | 10.0.1.0.0 | Add fiscal code to details of frontend user        |
 +--------------------------------------+------------+------------+----------------------------------------------------+
@@ -321,7 +325,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-16
+Last Update / Ultimo aggiornamento: 2019-04-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

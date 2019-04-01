@@ -27,12 +27,10 @@ received through the Exchange System (SdI).
 
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
-|halt| Do not use this module on production environment: it is an aplha release
-subjected to update.
-
 For every supplier, it is possible to set the 'E-bills Detail Level':
 
- - Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill 
+ - Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill
+ - VAT code level: Line are cumulated by VAT code
  - Maximum level: Every line contained in electronic bill will create a line in bill
 
 Moreover, in supplier form you can set the 'E-bill Default Product': this product will be used, during generation of bills, when no other possible product is found. Tax and account of bill line will be set according to what configured in the product.
@@ -82,6 +80,7 @@ Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `no
 Per ciascun fornitore è possibile impostare il "Livello dettaglio e-fatture":
 
  - Livello minimo: la fattura fornitore viene creata senza righe, che dovranno essere create dall'utente in base a quanto indicato nella fattura elettronica
+ - Livello codice IVA: le righe sono cumulate per codice IVA
  - Livello massimo: le righe della fattura fornitore verranno generate a partire da tutte quelle presenti nella fattura elettronica
 
 Nella scheda fornitore è inoltre possibile impostare il "Prodotto predefinito per e-fattura": verrà usato, durante la generazione delle fatture fornitore, quando non sono disponibili altri prodotti adeguati. Il conto e l'imposta della riga fattura verranno impostati in base a quelli configurati nel prodotto.
@@ -89,6 +88,20 @@ Nella scheda fornitore è inoltre possibile impostare il "Prodotto predefinito p
 Tutti i codici prodotto usati dai fornitori possono essere impostati nella relativa scheda, in
 
 Magazzino →  Prodotti
+
+
+|
+
+Usage / Utilizzo
+----------------
+
+Se il fornitore specifica un codice noto nell'XML, questo verrà usato dal sistema per recuperare il prodotto corretto da usare nella riga fattura, impostando il conto e l'imposta collegati.
+
+|menu| Contabilità > Acquisti > Fattura elettronica
+
+Caricare un file XML
+Visualizzare il contenuto della fattura facendo clic su "Mostra anteprima"
+Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura già (automaticamente) creata
 
 
 |
@@ -271,7 +284,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-16
+Last Update / Ultimo aggiornamento: 2019-04-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

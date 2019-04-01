@@ -244,13 +244,13 @@
                         <field name="welfare_fund_ids" nolabel="1" readonly="1">
                             <tree editable="bottom" string="Welfare Fund Details">
                                 <field name="name"></field>
-                                <field name="tax_nature_id"></field>
-                                <field name="welfare_rate_tax" readonly="1"></field>
-                                <field name="welfare_amount_tax"></field>
-                                <field name="welfare_Iva_tax"></field>
-                                <field name="welfare_taxable"></field>
-                                <field name="subjected_withholding"></field>
-                                <field name="pa_line_code"></field>
+                                <field name="tax_nature_id" options="{'no_create': True}"/>
+                                <field name="welfare_rate_tax" readonly="1"/>
+                                <field name="welfare_amount_tax"/>
+                                <field name="welfare_Iva_tax"/>
+                                <field name="welfare_taxable"/>
+                                <field name="subjected_withholding"/>
+                                <field name="pa_line_code"/>
                             </tree>
                         </field>
                     </group>

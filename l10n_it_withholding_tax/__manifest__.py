@@ -10,7 +10,8 @@
               'Odoo Community Association (OCA)',
     'website': 'https://www.odoo-italia.net/',
     'license': 'AGPL-3',
-    "depends": ['account'],
+    "depends": ['account',
+                'l10n_it_causali_pagamento'],
     "data": [
         'views/account.xml',
         'views/withholding_tax.xml',

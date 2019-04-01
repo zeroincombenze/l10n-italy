@@ -9,9 +9,9 @@
             <notebook position="inside">
                 <page string="FatturaPA">
                     <group>
-                        <field name="non_taxable_nature"></field>
-                        <field name="law_reference" attrs="{'required': [('non_taxable_nature', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('non_taxable_nature', '=', False),('type_tax_use', '=', 'purchase')]}"></field>
-                        <field name="payability"></field>
+                        <field name="non_taxable_nature" options="{'no_create': True}"/>
+                        <field name="law_reference" attrs="{'required': [('non_taxable_nature', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('non_taxable_nature', '=', False),('type_tax_use', '=', 'purchase')]}"/>
+                        <field name="payability"/>
                     </group>
                 </page>
             </notebook>
@@ -19,4 +19,3 @@
     </record>
 
 </odoo>
-

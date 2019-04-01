@@ -12,7 +12,7 @@
                     <label for="id" string="Configuration"/>
                     <div>
                         <div>
-                            <label for="fatturapa_fiscal_position_id"/>
+                            <label for="fatturapa_fiscal_position_id" options="{'no_create': True}"/>
                             <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>
                         </div>
                         <div>
@@ -20,7 +20,7 @@
                             <field name="fatturapa_sequence_id" required="1" class="oe_inline"/>
                         </div>
                         <div>
-                            <label for="einvoice_sender_id"/>
+                            <label for="einvoice_sender_id" options="{'no_create': True}"/>
                             <field name="einvoice_sender_id" class="oe_inline"/>
                         </div>
                         <div>

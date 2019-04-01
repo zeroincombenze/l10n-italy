@@ -31,7 +31,7 @@ You can find 'Tax Stamp 2 euro' product to configure; this product may be insert
 
 Questo modulo gestisce il bollo virtuale in fattura.
 
-Viene creato un prodotoo 'Tax Stamp 2 euro' utilizzato per l'addebito al cliente.
+Viene creato un prodotto 'Tax Stamp 2 euro' utilizzato per l'addebito al cliente.
 
 Se in fattura è abilitato il bollo viene inserito l'apposito tag nella fattura eletronica.
 
@@ -206,7 +206,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-16
+Last Update / Ultimo aggiornamento: 2019-03-30
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

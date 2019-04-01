@@ -15,6 +15,7 @@
     'license': 'LGPL-3',
     'depends': [
         'account',
+        'l10n_it_ade',
     ],
     'data': [
         'security/ir.model.access.csv',

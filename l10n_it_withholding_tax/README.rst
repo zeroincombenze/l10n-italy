@@ -29,6 +29,15 @@ Questo modulo permette di calcolare automaticamente i valori delle diverse tipol
 Le ritenute devono collegate alle causali di pagamento fiscali per la gestione della fatturazione eleettronica.
 
 
+Esempi di R.A e causali pagamento:
+
++-------------+------+---+---------------+
+| professioni | 1040 | W | 100% * 20%    |
++-------------+------+---+---------------+
+! enasarco    | 1040 | R |  50% * 15.55% |
++-------------+------+---+---------------+
+
+
 |
 
 Usage / Utilizzo
@@ -213,7 +222,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-16
+Last Update / Ultimo aggiornamento: 2019-04-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

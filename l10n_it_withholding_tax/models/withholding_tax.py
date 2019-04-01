@@ -63,6 +63,13 @@ class WithholdingTax(models.Model):
                                'Rates', required=True)
     causale_pagamento_id = fields.Many2one(
         'causale.pagamento', string="Causale pagamento")
+    welfare_fund_type_id = fields.Many2one(
+        'welfare.fund.type', 'Welfare Fund Type')
+    wt_types = fields.Selection([
+        ('enasarco', 'Enasarco'),
+        ('ritenuta', 'Ritenuta d\'acconto'),
+        ('cassa', 'Cassa previdenziale')],
+        'Withholding tax type', required=True, default='ritenuta')
 
     @api.one
     @api.constrains('rate_ids')
@@ -72,6 +79,8 @@ class WithholdingTax(models.Model):
                 _('Error! Rates are required'))
 
     def compute_tax(self, amount):
+        import pdb
+        pdb.set_trace()
         res = {
             'base': 0,
             'tax': 0

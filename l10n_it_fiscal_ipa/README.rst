@@ -61,8 +61,6 @@ Features / Funzioni
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-OCA Differences / Differenze da OCA
------------------------------------
 
 +--------------------------------------+-------------------------------+-------------------+--------------------------------+
 | Description / Descrizione            | Odoo Italia                   | OCA               | Notes / Note                   |
@@ -255,7 +253,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-16
+Last Update / Ultimo aggiornamento: 2019-04-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

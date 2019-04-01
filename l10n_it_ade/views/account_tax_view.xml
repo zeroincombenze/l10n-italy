@@ -9,7 +9,7 @@
             <notebook position="inside">
                 <page string="Italy AdE">
                     <group>
-                        <field name="nature_id"/>
+                        <field name="nature_id" options="{'no_create': True}"/>
                         <field name="law_reference" attrs="{'required': [('nature_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('nature_id', '=', False),('type_tax_use', '=', 'purchase')]}"/>
                         <field name="payability"/>
                     </group>
@@ -19,4 +19,3 @@
     </record>
 
 </odoo>
-

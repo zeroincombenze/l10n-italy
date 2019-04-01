@@ -19,9 +19,20 @@ class AccountTax(models.Model):
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
 
+    def _get_tax_amount(self):
+        self.ensure_one()
+        res = 0.0
+        if self.amount_type == 'group':
+            for child in self.children_tax_ids:
+                res += child.amount
+        else:
+            res = self.amount
+        return res
+
     def _get_tax_name(self):
         self.ensure_one()
         name = self.name
+        # [antoniov: 2019-07-29]
         # if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
         #     name = self.parent_tax_ids[0].name
         return name
@@ -39,13 +50,19 @@ class AccountTax(models.Model):
             'from_date': data['from_date'],
             'to_date': data['to_date'],
         }
+        registry_type = data.get('registry_type', 'customer')
         if data.get('journal_ids'):
             context['vat_registry_journal_ids'] = data['journal_ids']
 
         tax = self.env['account.tax'].with_context(context).browse(self.id)
         if 'payability' in tax and tax.payability == 'S':
+            deferred_vat = False
             split_payment = True
+        elif 'payability' in tax and tax.payability == 'D':
+            deferred_vat = True
+            split_payment = False
         else:
+            deferred_vat = False
             split_payment = False
         tax_name = tax._get_tax_name()
         deductible = 0
@@ -60,10 +77,10 @@ class AccountTax(models.Model):
             if tax.nature_id.code == 'N6':
                 undeductible = tax_balance
                 deductible = 0
-            if data['registry_type'] == 'supplier':
+            if registry_type == 'supplier':
                 return (tax_name, -base_balance,
                         -tax_balance, -deductible, -undeductible)
-            if split_payment and data['registry_type'] == 'customer':
+            if split_payment and registry_type == 'customer':
                 return (tax_name, base_balance,
                         tax_balance, 0, tax_balance)
             return (tax_name, base_balance,
@@ -76,11 +93,11 @@ class AccountTax(models.Model):
                 child_balance = child.balance
                 if (
                     (
-                        data['registry_type'] == 'customer' and
+                        registry_type == 'customer' and
                         child.cee_type == 'sale'
                     ) or
                     (
-                        data['registry_type'] == 'supplier' and
+                        registry_type == 'supplier' and
                         child.cee_type == 'purchase'
                     )
                 ):
@@ -101,10 +118,10 @@ class AccountTax(models.Model):
             if tax.nature_id.code == 'N6':
                 undeductible = tax_balance
                 deductible = 0
-            if data['registry_type'] == 'supplier':
+            if registry_type == 'supplier':
                 return (tax_name, -base_balance,
                         -tax_balance, -deductible, -undeductible)
-            if split_payment and data['registry_type'] == 'customer':
+            if split_payment and registry_type == 'customer':
                 return (tax_name, base_balance,
                     tax_balance, undeductible, deductible)
             return (tax_name, base_balance,

@@ -514,7 +514,7 @@ class WizardImportFatturapa(models.TransientModel):
                 _('Welfare Fund is not defined.')
             )
         WelfareType = WelfareTypeModel.search(
-            [('name', '=', TipoCassa)]
+            [('code', '=', TipoCassa)]
         )
 
         res = {
