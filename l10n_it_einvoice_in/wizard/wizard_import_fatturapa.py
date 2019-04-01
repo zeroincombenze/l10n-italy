@@ -5,6 +5,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
+from datetime import datetime
 import base64
 import logging
 
@@ -721,6 +722,74 @@ class WizardImportFatturapa(models.TransientModel):
                     val['payment_bank'] = payment_bank_id
                 PaymentModel.create(val)
         return True
+ 
+    def set_payment_term(self, invoice, company, PaymentsData):
+        payment_term_model = self.env['account.payment.term']
+        payment_term = invoice.payment_term_id
+        ctx = dict(self._context, lang=invoice.partner_id.lang)
+        total = invoice.amount_total
+        date_invoice = datetime.strptime(invoice.date_invoice, '%Y-%M-%d')
+        # Evaluate total due in format [(date,amount),...]
+        totlines = invoice.with_context(ctx).payment_term_id.with_context(
+            currency_id=company.currency_id.id).compute(
+                total, invoice.date_invoice)[0]
+        totdue = []
+        if PaymentsData:
+            for dline in PaymentsData[0].DettaglioPagamento:
+                # date = dline.DataRiferimentoTerminiPagamento or date_invoice
+                num_days = dline.GiorniTerminiPagamento or 0
+                due_date = dline.DataScadenzaPagamento or False
+                due_amt = dline.ImportoPagamento or 0.0
+                if num_days == 0 and due_date:
+                    num_days = (due_date - date_invoice).days
+                elif not due_date:
+                    due_date = date_invoice
+                totdue.append([due_date, due_amt, num_days])
+        # No due date: payment is at the same date of invoice
+        if len(totdue) == 1 and totdue[0][0] == date_invoice:
+            invoice.write({
+                'payment_term_id': False,
+                'date_due': date_invoice})
+            return
+        if len(totlines) == len(totdue):
+            valid_due = True
+        else:
+            valid_due = False
+        if valid_due:
+            for i in range(len(totlines)):
+                if (
+                        totlines[i][0] != totdue[i][0] or 
+                        totlines[i][1] != totdue[i][1]):
+                    valid_due = False
+                    break
+        payment_term_found = False
+        if not valid_due:
+            for payment_term in payment_term_model.search([]):
+                if payment_term_found:
+                    break
+                if len(payment_term.line_ids) != len(totdue):
+                    continue
+                for i,payterm_line in enumerate(payment_term.line_ids):
+                    valid = False
+                    if payterm_line.days:
+                        if (payterm_line.days > (totdue[i][2] - 5) and
+                                payterm_line.days < (totdue[i][2] + 5)):
+                            valid = True
+                    elif ('months' in payterm_line and
+                            payterm_line.months and
+                            (payterm_line.months * 30) > (totdue[i][2] - 5) and
+                            (payterm_line.months * 30) > (totdue[i][2] + 5)):
+                        valid = True
+                    if valid:
+                        payment_term_found = payment_term
+                        break
+            if payment_term_found:
+                invoice.write({
+                    'payment_term_id': payment_term_found.id})
+            elif len(totdue) == 1:
+                invoice.write({
+                    'payment_term_id': False,
+                    'date_due': totdue[0][0]})
 
     # TODO sul partner?
     def set_StabileOrganizzazione(self, CedentePrestatore, invoice):
@@ -823,7 +892,6 @@ class WizardImportFatturapa(models.TransientModel):
                 fatt.FatturaElettronicaHeader.CessionarioCommittente.
                 DatiAnagrafici)
         partner = partner_model.browse(partner_id)
-        pay_acc_id = partner.property_account_payable_id.id
         # currency 2.1.1.2
         currency = currency_model.search(
             [
@@ -870,20 +938,20 @@ class WizardImportFatturapa(models.TransientModel):
                 comment += item + '\n'
 
         invoice_data = {
-            'fiscal_document_type_id': docType_id,
+            'invoice_type_id': docType_id,
             'date_invoice':
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
             'reference':
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
-            'account_id': pay_acc_id,
+            'account_id': partner.property_account_payable_id.id,
             'type': invtype,
             'partner_id': partner_id,
             'currency_id': currency[0].id,
             'journal_id': purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
-            'fiscal_position_id': False,
-            'payment_term_id': False,
+            'fiscal_position_id': partner.property_account_position_id.id,
+            'payment_term_id': partner.property_supplier_payment_term_id.id,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment,
@@ -1180,6 +1248,7 @@ class WizardImportFatturapa(models.TransientModel):
                     }
                 ).id
                 self._createPayamentsLine(PayDataId, PaymentLine, partner_id)
+        self.set_payment_term(invoice, company, PaymentsData)
         # 2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:

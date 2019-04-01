@@ -79,8 +79,6 @@ class WithholdingTax(models.Model):
                 _('Error! Rates are required'))
 
     def compute_tax(self, amount):
-        import pdb
-        pdb.set_trace()
         res = {
             'base': 0,
             'tax': 0

@@ -92,14 +92,14 @@ class EInvoiceLine(models.Model):
     name = fields.Char("Description", readonly=True)
     qty = fields.Float(
         "Quantity", readonly=True,
-        digits=dp.get_precision('Product Unit of Measure')
+        digits=(12, 6),
     )
     uom = fields.Char("Unit of measure", readonly=True)
     period_start_date = fields.Date("Period Start Date", readonly=True)
     period_end_date = fields.Date("Period End Date", readonly=True)
     unit_price = fields.Float(
         "Unit Price", readonly=True,
-        digits=dp.get_precision('Product Price')
+        digits=(12, 6),
     )
     discount_rise_price_ids = fields.One2many(
         'discount.rise.price', 'e_invoice_line_id',

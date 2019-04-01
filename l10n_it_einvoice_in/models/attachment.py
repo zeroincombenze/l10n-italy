@@ -69,3 +69,6 @@ class FatturaPAAttachmentIn(models.Model):
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
+                if not att.in_invoice_ids:
+                    att.date_invoice0 = invoice_body.\
+                        DatiGenerali.DatiGeneraliDocumento.Data
