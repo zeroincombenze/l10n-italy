@@ -728,11 +728,13 @@ class WizardImportFatturapa(models.TransientModel):
         payment_term = invoice.payment_term_id
         ctx = dict(self._context, lang=invoice.partner_id.lang)
         total = invoice.amount_total
-        date_invoice = datetime.strptime(invoice.date_invoice, '%Y-%M-%d')
+        date_invoice = datetime.strptime(invoice.date_invoice, '%Y-%m-%d')
         # Evaluate total due in format [(date,amount),...]
         totlines = invoice.with_context(ctx).payment_term_id.with_context(
             currency_id=company.currency_id.id).compute(
-                total, invoice.date_invoice)[0]
+                total, invoice.date_invoice)
+        if totlines:
+            totlines = totlines[0]
         totdue = []
         if PaymentsData:
             for dline in PaymentsData[0].DettaglioPagamento:
@@ -772,13 +774,13 @@ class WizardImportFatturapa(models.TransientModel):
                 for i,payterm_line in enumerate(payment_term.line_ids):
                     valid = False
                     if payterm_line.days:
-                        if (payterm_line.days > (totdue[i][2] - 5) and
-                                payterm_line.days < (totdue[i][2] + 5)):
+                        if (payterm_line.days > (totdue[i][2] - 15) and
+                                payterm_line.days < (totdue[i][2] + 15)):
                             valid = True
                     elif ('months' in payterm_line and
                             payterm_line.months and
-                            (payterm_line.months * 30) > (totdue[i][2] - 5) and
-                            (payterm_line.months * 30) > (totdue[i][2] + 5)):
+                            (payterm_line.months * 30) > (totdue[i][2] - 15) and
+                            (payterm_line.months * 30) > (totdue[i][2] + 15)):
                         valid = True
                     if valid:
                         payment_term_found = payment_term
@@ -790,6 +792,10 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.write({
                     'payment_term_id': False,
                     'date_due': totdue[0][0]})
+            else:
+                self.log_inconsistency(
+                    _('None of payment terms matches due invoice!')
+                )
 
     # TODO sul partner?
     def set_StabileOrganizzazione(self, CedentePrestatore, invoice):
