@@ -6,6 +6,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 from odoo import api, fields, models
+from odoo.tools.translate import _
+from odoo.exceptions import UserError
 
 
 class FatturaPAAttachmentIn(models.Model):
@@ -39,6 +41,10 @@ class FatturaPAAttachmentIn(models.Model):
 
     @api.onchange('datas_fname')
     def onchange_datas_fname(self):
+        if self.search([('name', '=', self.datas_fname)]):
+            raise UserError(
+                    _("File %s already loaded!")
+                    % self.datas_fname)
         self.name = self.datas_fname
 
     def get_xml_string(self):
@@ -72,3 +78,16 @@ class FatturaPAAttachmentIn(models.Model):
                 if not att.in_invoice_ids:
                     att.date_invoice0 = invoice_body.\
                         DatiGenerali.DatiGeneraliDocumento.Data
+
+
+    @api.multi
+    @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
+    def _compute_due_date(self):
+        wizard_model = self.env['wizard.import.fatturapa']
+        for att in self:
+            fatt = wizard_model.get_invoice_obj(att)
+            if not fatt:
+                continue
+            fatt = wizard_model.set_payment_term(invoice,
+                                                 company,
+                                                 PaymentsData)

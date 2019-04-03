@@ -42,14 +42,17 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     distinta_line_ids = fields.One2many(
-        'riba.distinta.move.line', 'move_line_id', "Dettaglio riba")
+        'riba.distinta.move.line', 'move_line_id', "Dettaglio riba",
+        copy=False)
     riba = fields.Boolean(
-        related='invoice_id.payment_term_id.riba', string='RiBa', store=False)
+        related='invoice_id.payment_term_id.riba', string='RiBa',
+        store=False, copy=False)
     unsolved_invoice_ids = fields.Many2many(
         'account.invoice', 'invoice_unsolved_line_rel', 'line_id',
-        'invoice_id', 'Unsolved Invoices')
+        'invoice_id', 'Unsolved Invoices', copy=False)
     iban = fields.Char(
-        related='partner_id.bank_ids.acc_number', string='IBAN', store=False)
+        related='partner_id.bank_ids.acc_number', string='IBAN',
+        store=False, copy=False)
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
@@ -124,9 +127,11 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
     unsolved_move_line_ids = fields.Many2many(
         'account.move.line', 'invoice_unsolved_line_rel', 'invoice_id',
-        'line_id', 'Unsolved journal items')
+        'line_id', 'Unsolved journal items',
+        copy=False)
     is_unsolved = fields.Boolean(
-        "The unsolved is open", compute="_compute_is_unsolved", store=True
+        "The unsolved is open", compute="_compute_is_unsolved", store=True,
+        copy=False
     )
 
     def month_check(self, invoice_date_due, all_date_due):
@@ -237,6 +242,7 @@ class AccountInvoice(models.Model):
         super(AccountInvoice, self).action_cancel()
 
     @ api.one
+    @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
         # Delete Due Cost Line of invoice when copying

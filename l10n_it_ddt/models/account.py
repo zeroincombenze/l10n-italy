@@ -37,7 +37,8 @@ class AccountInvoice(models.Model):
     gross_weight = fields.Float(string="Gross Weight")
     volume = fields.Float('Volume')
     ddt_ids = fields.One2many(
-        'stock.picking.package.preparation', 'invoice_id', string='DDT')
+        'stock.picking.package.preparation', 'invoice_id',
+        string='DDT', copy=False)
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
@@ -59,8 +60,11 @@ class AccountInvoiceLine(models.Model):
 
     ddt_id = fields.Many2one(
         'stock.picking.package.preparation', string='Ddt',
-        related='ddt_line_id.package_preparation_id', store=True)
+        related='ddt_line_id.package_preparation_id',
+        store=True, copy=False)
     ddt_line_id = fields.Many2one(
-        'stock.picking.package.preparation.line', string='Ddt line')
+        'stock.picking.package.preparation.line', string='Ddt line',
+        copy=False)
     ddt_sequence = fields.Integer(
-        string='Ddt sequence', related='ddt_line_id.sequence', store=True)
+        string='Ddt sequence', related='ddt_line_id.sequence',
+        store=True, copy=False)

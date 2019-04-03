@@ -8,7 +8,7 @@ from odoo import models, api, fields, _
 from odoo.exceptions import UserError
 
 
-class WizardAccountInvoiceExport(models.TransientModel):
+class WizardAttachmentInRefresh(models.TransientModel):
     _name = "wizard.attachment.in.refresh"
 
     @api.multi
@@ -17,5 +17,18 @@ class WizardAccountInvoiceExport(models.TransientModel):
         attachments = self.env[self.env.context['active_model']].browse(
             self.env.context['active_ids'])
         attachments._compute_xml_data()
+
+        return True
+
+
+class WizardAttachmentInDuedate(models.TransientModel):
+    _name = "wizard.attachment.in.duedate"
+
+    @api.multi
+    def refresh_duedate(self):
+        self.ensure_one()
+        attachments = self.env[self.env.context['active_model']].browse(
+            self.env.context['active_ids'])
+        attachments._compute_due_date()
 
         return True

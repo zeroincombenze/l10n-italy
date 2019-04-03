@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 from datetime import datetime
@@ -38,19 +35,25 @@ class WizardImportFatturapa(models.TransientModel):
         required=True
     )
 
+    def get_invoice_obj(self, fatturapa_attachment):
+        xml_string = fatturapa_attachment.get_xml_string()
+        if xml_string:
+            return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return False
+
     @api.model
     def default_get(self, fields):
         res = super(WizardImportFatturapa, self).default_get(fields)
         res['e_invoice_detail_level'] = '2'
         fatturapa_attachment_ids = self.env.context.get('active_ids', False)
-        fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
+        fatturapa_attachment_model = self.env['fatturapa.attachment.in']
         partners = self.env['res.partner']
 
         if fatturapa_attachment_ids == False:
             return res
 
         for fatturapa_attachment_id in fatturapa_attachment_ids:
-            fatturapa_attachment = fatturapa_attachment_obj.browse(
+            fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id)
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(
@@ -1326,15 +1329,9 @@ class WizardImportFatturapa(models.TransientModel):
                     % (invoice.amount_untaxed, amount_untaxed)
                 )
 
-    def get_invoice_obj(self, fatturapa_attachment):
-        xml_string = fatturapa_attachment.get_xml_string()
-        if xml_string:
-            return fatturapa_v_1_2.CreateFromDocument(xml_string)
-        return False
-
     @api.multi
     def importFatturaPA(self):
-        fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
+        fatturapa_attachment_model = self.env['fatturapa.attachment.in']
         fatturapa_attachment_ids = self.env.context.get('active_ids', False)
         invoice_model = self.env['account.invoice']
         new_invoices = []
@@ -1342,7 +1339,7 @@ class WizardImportFatturapa(models.TransientModel):
             self.__dict__.update(
                 self.with_context(inconsistencies='').__dict__
             )
-            fatturapa_attachment = fatturapa_attachment_obj.browse(
+            fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id)
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(

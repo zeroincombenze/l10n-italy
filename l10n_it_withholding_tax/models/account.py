@@ -277,11 +277,14 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     withholding_tax_id = fields.Many2one(
-        'withholding.tax', string='Withholding Tax')
-    withholding_tax_base = fields.Float(string='Withholding Tax Base')
-    withholding_tax_amount = fields.Float(string='Withholding Tax Amount')
+        'withholding.tax', string='Withholding Tax', copy=False,)
+    withholding_tax_base = fields.Float(string='Withholding Tax Base',
+                                        copy=False,)
+    withholding_tax_amount = fields.Float(string='Withholding Tax Amount',
+                                          copy=False,)
     withholding_tax_generated_by_move_id = fields.Many2one(
-        'account.move', string='Withholding Tax generated from', readonly=True)
+        'account.move', string='Withholding Tax generated from',
+        readonly=True, copy=False,)
 
     @api.multi
     def remove_move_reconcile(self):
@@ -369,11 +372,11 @@ class AccountInvoice(models.Model):
     withholding_tax = fields.Boolean('Withholding Tax')
     withholding_tax_line_ids = fields.One2many(
         'account.invoice.withholding.tax', 'invoice_id', 'Withholding Tax',
-        readonly=True, states={'draft': [('readonly', False)]})
+        readonly=True, copy=False, states={'draft': [('readonly', False)]})
     withholding_tax_amount = fields.Float(
         compute='_amount_withholding_tax',
         digits=dp.get_precision('Account'), string='Withholding tax',
-        store=True, readonly=True)
+        store=True, readonly=True, copy=False)
     amount_net_pay = fields.Float(
         compute='_amount_withholding_tax',
         digits=dp.get_precision('Account'), string='Net To Pay',

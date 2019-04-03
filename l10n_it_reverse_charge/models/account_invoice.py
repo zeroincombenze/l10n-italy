@@ -22,7 +22,7 @@ class AccountInvoiceLine(models.Model):
                 self.rc = True
                 break
 
-    rc = fields.Boolean("RC")
+    rc = fields.Boolean("RC", copy=False)
 
 
 class AccountInvoice(models.Model):

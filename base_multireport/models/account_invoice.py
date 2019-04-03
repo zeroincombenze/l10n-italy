@@ -10,7 +10,8 @@ class AccountInvoice(models.Model):
     pdf_model = fields.Many2one(
         'multireport.model',
         'Quote/Order Report',
-        help="Select Report to use when printing the Sales Order or Quote"
+        help="Select Report to use when printing the Sales Order or Quote",
+        copy=False
     )
 
     # Override print_quotation method in sale module

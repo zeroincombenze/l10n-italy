@@ -7,7 +7,8 @@ from odoo import fields, api, models, exceptions, _
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
     tax_stamp = fields.Boolean(
-        "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]})
+        "Tax Stamp", readonly=True, copy=False,
+        states={'draft': [('readonly', False)]})
 
     def is_tax_stamp_applicable(self):
         stamp_product_id = self.env.user.with_context(
@@ -149,4 +150,4 @@ class AccountInvoiceLine(models.Model):
 
     is_stamp_line = fields.Boolean(
         related='product_id.is_stamp',
-        readonly=True)
+        readonly=True, copy=False)
