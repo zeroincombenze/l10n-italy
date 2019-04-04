@@ -5,16 +5,6 @@
         <field name="name">fatturapa.attachment.in.form</field>
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
-                <header>
-                    <button name="%(action_wizard_import_fatturapa)d"
-                            type="action"
-                            string="Import E-invoice" class="oe_highlight"
-                            attrs="{'invisible': ['|',('name', '=', False),('registered', '=', True)]}"/>
-                    <button name="%(action_wizard_link_supplier_invoice)d"
-                            type="action"
-                            string="Link to invoice"
-                            attrs="{'invisible': ['|',('name', '=', False),('registered', '=', True)]}"/>
-                </header>
                 <form string="Import e-bill" duplicate="false">
                 <div>
                     <group>
