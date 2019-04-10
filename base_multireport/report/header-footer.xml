@@ -2,6 +2,10 @@
 <odoo>
 
     <template id="external_layout">
+        <link position="after">
+            <link href="/base_multireport/static/src/css/report_qweb_pdf_watermark.css"
+                  rel="stylesheet"/>
+        </link>
         <!-- Multicompany -->
         <t t-if="not o and doc">
             <t t-set="o" t-value="doc"/>

@@ -50,7 +50,7 @@ class Report(models.Model):
         reportname = self.get_reportname(document)
         company = False
         report_model_style = False
-        if hasattr(document, 'compaby_id'):
+        if hasattr(document, 'company_id'):
             company = document.company_id or self.env.user.company_id
             report_model_style = company.report_model_style or None
         if hasattr(document, 'pdf_report'):
@@ -75,12 +75,6 @@ class Report(models.Model):
         recs = self.env[report.model].browse(docids)
         reportname, company, report_model_style, pdf_report = self.env[
             'report'].get_report_attr(recs[0])
-        # company = recs[0].company_id
-        # report_model_style = company.report_model_style or None
-        # if hasattr(recs, 'pdf_report'):
-        #     pdf_report = getattr(recs, 'pdf_report')
-        # else:
-        #    pdf_report = False
         if (not report_model_style or not report_model_style.origin or
                 report_model_style.origin == 'odoo') and not pdf_report:
             return result

@@ -6,14 +6,24 @@
             <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
             <div class="page">
                 <div class="row">
-                    <div name="invoice_address" class="col-xs-5 col-xs-offset-7">
+                    <div class="col-xs-6">
+                        <div t-if="o.partner_shipping_id and o.partner_shipping_id != o.partner_id">
+                            <strong>Indirizzo di spedizione:</strong>
+                            <address t-field="o.partner_shipping_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                            <div t-if="o.partner_shipping_id.phone">Telefono: <span t-field="o.partner_shipping_id.phone"/></div>
+                            <div t-if="not o.partner_shipping_id.phone">Telefono: <span t-field="o.partner_id.phone"/></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-xs-offset-1">
+                        <strong t-if="o.partner_shipping_id and o.partner_shipping_id == o.partner_id">Indirizzo di spedizione e fatturazione:</strong>
+                        <strong t-if="not o.partner_shipping_id or o.partner_shipping_id != o.partner_id">Indirizzo di fatturazione:</strong>
                         <address t-field="o.partner_id"
                                  t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                        <span t-if="o.partner_id.vat">PIVA: <span t-field="o.partner_id.vat"/></span>
-                        <span t-if="o.partner_id.fiscalcode">CF: <span t-field="o.partner_id.fiscalcode"/></span>
+                        <p t-if="o.partner_id.vat">PIVA: <span t-field="o.partner_id.vat"/></p>
+                        <p t-if="o.partner_id.fiscalcode">CF: <span t-field="o.partner_id.fiscalcode"/></p>
                     </div>
                 </div>
-
                 <h2>
                     <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Fattura</span>
                     <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
@@ -73,18 +83,18 @@
                         <tr t-foreach="o.invoice_line_ids" t-as="l">
                             <!-- <td><span t-field="l.name"/></td> -->
                             <td>
-                            <t t-if="(l.sale_line_ids and last_order != l.sale_line_ids.order_id.client_order_ref) or (l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number)">
-                            <p>
-                            <t t-if="l.sale_line_ids and last_order != l.sale_line_ids.order_id.client_order_ref">
-                                <strong>Vs. Ordine: <span t-field="l.sale_line_ids.order_id.client_order_ref"/> - <span t-field="l.sale_line_ids.order_id.date_order" t-options="{'widget': 'date'}"/></strong>
-                                <t t-set="last_order" t-value="l.sale_line_ids.order_id.client_order_ref"/>
-                            </t>
-                            <t t-if="l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number">
-                                <strong>DdT: <span t-field="l.ddt_line_id.package_preparation_id.ddt_number"/> - <span t-field="l.ddt_line_id.package_preparation_id.date" t-options="{'widget': 'date'}"/></strong>
-                                <t t-set="last_ddt" t-value="l.ddt_line_id.package_preparation_id.ddt_number"/>
-                            </t>
-                            </p>
-                            </t>
+                                <t t-if="(l.sale_line_ids and last_order != l.sale_line_ids.order_id.client_order_ref) or (l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number)">
+                                    <p>
+                                        <t t-if="l.sale_line_ids and last_order != l.sale_line_ids.order_id.client_order_ref">
+                                            <strong>Vs. Ordine: <span t-field="l.sale_line_ids.order_id.client_order_ref"/> - <span t-field="l.sale_line_ids.order_id.date_order" t-options="{'widget': 'date'}"/></strong>
+                                            <t t-set="last_order" t-value="l.sale_line_ids.order_id.client_order_ref"/>
+                                        </t>
+                                        <t t-if="l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number">
+                                            <strong>DdT: <span t-field="l.ddt_line_id.package_preparation_id.ddt_number"/> - <span t-field="l.ddt_line_id.package_preparation_id.date" t-options="{'widget': 'date'}"/></strong>
+                                            <t t-set="last_ddt" t-value="l.ddt_line_id.package_preparation_id.ddt_number"/>
+                                        </t>
+                                    </p>
+                                </t>
                             <span t-esc="l.description_2_print()"/></td>
                             <td class="hidden"><span t-field="l.origin"/></td>
                             <td class="text-right" style="vertical-align: bottom;">
@@ -129,6 +139,12 @@
                                 <td><strong>Totale</strong></td>
                                 <td class="text-right">
                                     <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.amount_net_pay != o.amount_total" class="border-black">
+                                <td><strong>Totale a pagare</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_net_pay" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </td>
                             </tr>
                         </table>
@@ -184,7 +200,7 @@
                 <span t-field="o.number"/>
             </h2>
         </xpath>
-         <xpath expr="//p[last()]" position="after">
+        <xpath expr="//p[last()]" position="after">
             <div>
                 <p>Documento non valido ai fini fiscali. L'originale è disponibile all'indirizzo PEC o codice SdI fornito oppure nell'area riservata.</p>
             </div>
@@ -192,3 +208,4 @@
     </template>
 
 </odoo>
+

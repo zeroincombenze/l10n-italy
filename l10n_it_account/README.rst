@@ -14,15 +14,17 @@
 Overview / Panoramica
 =====================
 
-|en| Accounting-related modules helpers.
+|en| Accounting-related modules helpers
+----------------------------------
 
 Used by modules like l10n_it_vat_registries and account_vat_period_end_statement
 
 |
 
-|it| Modulo di servizio contabile.
+|it| Modulo di servizio contabile
+----------------------------
 
-Usato da module come l10n_it_vat_registries e account_vat_period_end_statement
+Usato da moduli come l10n_it_vat_registries e account_vat_period_end_statement.
 
 |
 
@@ -166,12 +168,16 @@ Authors / Autori
 
 * `Abstract <https://www.abstract.it>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
+* `Link It Spa <http://www.linkgroup.it>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Collaboratori
 ----------------------------
 
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 |
 
@@ -193,7 +199,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-30
+Last Update / Ultimo aggiornamento: 2019-04-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
