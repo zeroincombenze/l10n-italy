@@ -772,10 +772,10 @@ class CommitmentLine(orm.AbstractModel):
             if address.zip:
                 res['xml_CAP'] = address.zip.replace('x', '0').replace('%',
                                                                        '0')
-            if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Partner %s has wrong zip code') % (partner.name))
+                if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Partner %s has wrong zip code') % (partner.name))
         res['xml_Comune'] = address.city or ' '
         if not address.city:
             raise orm.except_orm(
