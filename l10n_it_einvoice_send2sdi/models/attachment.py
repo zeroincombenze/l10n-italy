@@ -330,6 +330,11 @@ class FatturaPAAttachmentOut(models.Model):
             headers = Evolve.header(send_channel)
             url = send_channel.sender_url + 'Cerca'
 
+            if send_channel.trace:
+                _logger.info(
+                    '>>> send_verify_via_json(%s)\n'
+                    '>>>     requests.post(%s,\nhdr=%s,\ndata=%s\n)' %
+                    (send_channel.name, url, headers, data))
             response = requests.post(url,
                                      headers=headers,
                                      data=json.dumps(data,
@@ -337,10 +342,16 @@ class FatturaPAAttachmentOut(models.Model):
 
             try:
                 data = response.json()
+                if send_channel.trace:
+                    _logger.info(
+                        '>>>     response.json()=\n%s\n' % data)
                 if data['EsitoChiamata'] > 0:
-                    _logger.info(response.text)
+                    if not send_channel.trace:
+                        _logger.info(response.text)
                     return
             except:
+                if send_channel.trace:
+                    _logger.info('>>>     response.json() failed!')
                 att.state = 'sender_error'
                 att.last_sdi_response = response.text
                 return
@@ -349,7 +360,7 @@ class FatturaPAAttachmentOut(models.Model):
 
             _logger.info(documenti)
 
-            # Warnibg: order test is important, depend from evolve_stati
+            # Warning: order test is important, depend from evolve_stati
             for k in evolve_stati:
                 _logger.info("Elaborazione " + k)
                 if k in documenti:
@@ -375,6 +386,11 @@ class FatturaPAAttachmentOut(models.Model):
 
                     url = os.path.join(send_channel.sender_url, 'Recupera')
 
+                    if send_channel.trace:
+                        _logger.info(
+                            '>>> send_verify_via_json(%s)\n'
+                            '>>>     requests.post(%s,\nhdr=%s,\ndata=%s\n)' %
+                            (send_channel.name, url, headers, data))
                     response = requests.post(url,
                                              headers=headers,
                                              data=json.dumps(data,
@@ -395,9 +411,6 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_verify(self):
         send_channel = self.get_send_channel()
-        # states = self.mapped('state')
-        #if set(states) != set(['sent']):
-        #    raise UserError(_("You can only verify 'Send' files."))
 
         invoice = self.out_invoice_ids
         if len(invoice) > 1:
@@ -413,7 +426,9 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_verify_all(self):
         # Recupero tutte le fatture in modalita send
-        attachments = self.env['fatturapa.attachment.out'].search([('state', '!=', 'ready'), ('state', '!=', 'validated')])
+        attachments = self.env['fatturapa.attachment.out'].search(
+            [('state', '=', 'sent')])
+            # [('state', '!=', 'ready'), ('state', '!=', 'validated')])
         #attachments = self.env['fatturapa.attachment.out'].search([])
 
         for attachment in attachments:
@@ -471,16 +486,27 @@ class FatturaPAAttachmentOut(models.Model):
             # Header
             headers = Evolve.header(send_channel)
             url = send_channel.sender_url + 'Salva'
+            if send_channel.trace:
+                _logger.info(
+                    '>>> send_via_json(%s)\n'
+                    '>>>     requests.post(%s,\nhdr=%s,\ndata=%s\n)' %
+                    (send_channel.name, url, headers, data))
             response = requests.post(url,
                                      headers=headers,
                                      data=json.dumps(data,
                                                      ensure_ascii=False))
             try:
                 data = response.json()
+                if send_channel.trace:
+                    _logger.info(
+                        '>>>     response.json()=\n%s\n' % data)
                 if data['EsitoChiamata'] > 0:
-                    _logger.info(response.text)
+                    if not send_channel.trace:
+                        _logger.info(response.text)
                     return
             except:
+                if send_channel.trace:
+                    _logger.info('>>>     response.json() failed!')
                 att.state = 'sender_error'
                 att.last_sdi_response = response.text
                 return
@@ -496,9 +522,14 @@ class FatturaPAAttachmentOut(models.Model):
                     att.last_sdi_response = response.text
                     return True
                 else:
+                    if send_channel.trace:
+                        _logger.info(
+                            '>>>     response.json() failed: not imported!')
                     att.state = 'sender_error'
                     att.last_sdi_response = response.text
             else:
+                if send_channel.trace:
+                    _logger.info('>>>     response.json() failed: esito != 0!')
                 att.state = 'sender_error'
                 att.last_sdi_response = response.text
 

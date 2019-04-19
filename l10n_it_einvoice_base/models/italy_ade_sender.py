@@ -51,3 +51,9 @@ class ItalyEinvoiceSender(models.Model):
         domain=[('is_fatturapa_pec', '=', True)])
     active = fields.Boolean(string='Active',
                             default=True)
+    trace = fields.Boolean(
+        string='Trace',
+        default=False,
+        help="Trace data in log. Warning! Use this feature with caution; "
+             "all sent data will be recorded in the log file."
+             "This feature must be used only to debug handshake")

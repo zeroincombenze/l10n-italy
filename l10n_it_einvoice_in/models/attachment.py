@@ -80,14 +80,19 @@ class FatturaPAAttachmentIn(models.Model):
                         DatiGenerali.DatiGeneraliDocumento.Data
 
 
+    # @api.multi
+    # @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
+    # def _compute_due_date(self):
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
-    def _compute_due_date(self):
+    def revaluate_due_date(self):
         wizard_model = self.env['wizard.import.fatturapa']
         for att in self:
             fatt = wizard_model.get_invoice_obj(att)
             if not fatt:
                 continue
-            fatt = wizard_model.set_payment_term(invoice,
-                                                 company,
-                                                 PaymentsData)
+            for fattura in fatt.FatturaElettronicaBody: 
+                wizard_model.set_payment_term(
+                    att.in_invoice_ids[0],
+                    att.in_invoice_ids[0].company_id,
+                    fattura.DatiPagamento)
