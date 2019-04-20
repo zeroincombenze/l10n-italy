@@ -425,9 +425,10 @@ class WizardVatCommunication(models.TransientModel):
                             fields['xml_Detraibile'])
                     if fields.get('xml_Deducibile', None) != None:
                         riepilogo.Deducibile = fields['xml_Deducibile']
-                    if fields.get('xml_Natura', False) != False:
+                    if fields.get('xml_Natura', False):
                         riepilogo.Natura = fields['xml_Natura']
-                    riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
+                    if fields.get('xml_EsigibilitaIVA', False):
+                        riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
                     dati_riepilogo.append(riepilogo)
                 invoice.DatiRiepilogo = dati_riepilogo
                 invoices.append(invoice)

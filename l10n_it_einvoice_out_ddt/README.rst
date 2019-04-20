@@ -1,7 +1,7 @@
 
-====================================================================
-|icon| Italian Localization - Fattura elettronica - Integrazione DDT
-====================================================================
+===============================================================================
+|icon| Italian Localization - Fattura elettronica - Integrazione DDT 10.0.1.0.2
+===============================================================================
 
 
 **Modulo ponte tra emissione fatture elettroniche e DDT**
@@ -17,7 +17,7 @@ Overview / Panoramica
 =====================
 
 |en| Delivery info in e-invoice
---------------------------
+-------------------------------
 
 The module allows to choose if and how to fill XML fields related to DDTs,
 in the two cases 'deferred invoice' and 'shipping invoice'.
@@ -26,7 +26,7 @@ in the two cases 'deferred invoice' and 'shipping invoice'.
 |
 
 |it| Dati DdT in e-fattura
----------------------
+--------------------------
 
 Questo modulo consente di scegliere se e come compilare i campi XML relativi ai DDT,
 nei due casi "fattura differita" e "fattura accompagnatoria".
@@ -74,8 +74,9 @@ In the second one, data related to 'shipping invoice', to specify information ab
 OCA comparation / Confronto con OCA
 -----------------------------------
 
+
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
+| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 | Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
@@ -227,9 +228,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -237,7 +238,9 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-31
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-04-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

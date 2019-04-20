@@ -191,6 +191,29 @@
                             </tree>
                         </field>
                     </group>
+                    <group string="Payments">
+                        <field name="fatturapa_payments" nolabel="1" readonly="1">
+                            <tree string="Payments">
+                                <field name="payment_terms"/>
+                            </tree>
+                            <form string="Payments" version="7.0">
+                                <sheet>
+                                    <group>
+                                        <field name="payment_terms"/>
+                                    </group>
+                                    <group string="Payments Details">
+                                        <field name="payment_methods" nolabel="1" readonly="1"/>
+                                        <!-- 
+                                            <tree string="Due Details">
+                                                <field name="payment_due_date"/>
+                                                <field name="payment_amount "/>
+                                            </tree>
+                                        -->
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
                     <group string="Delivery">
                         <group >
                             <field name="delivery_address" readonly="1"/>
@@ -256,23 +279,6 @@
                                 <field name="subjected_withholding"/>
                                 <field name="pa_line_code"/>
                             </tree>
-                        </field>
-                    </group>
-                    <group string="Payments">
-                        <field name="fatturapa_payments" nolabel="1" readonly="1">
-                            <tree string="Payments">
-                                <field name="payment_terms"/>
-                            </tree>
-                            <form string="Payments" version="7.0">
-                                <sheet>
-                                    <group>
-                                        <field name="payment_terms"/>
-                                    </group>
-                                    <group string="Payments Details">
-                                        <field name="payment_methods" nolabel="1" readonly="1"/>
-                                    </group>
-                                </sheet>
-                            </form>
                         </field>
                     </group>
                     <group string="Progress data">

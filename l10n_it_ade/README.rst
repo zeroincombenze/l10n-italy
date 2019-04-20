@@ -1,7 +1,7 @@
 
-============================
-|icon| Agenzia delle Entrate
-============================
+========================================
+|icon| Agenzia delle Entrate 10.0.0.1.10
+========================================
 
 
 **Codice e definizioni come da Agenzia delle Entrate**
@@ -17,7 +17,7 @@ Overview / Panoramica
 =====================
 
 |en| Tax Authority Definitions
-=========================
+==============================
 
 This module has no specific function for End-user.
 
@@ -30,7 +30,7 @@ This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.
 |
 
 |it| Definizioni Agenzia delle Entrate
-=================================
+======================================
 
 Questo modulo non ha funzioni specifiche per l'utente finale.
 Contiene dati e definizioni come stabilito dall'Agenzia delle Entrate
@@ -270,9 +270,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -280,7 +280,9 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-30
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-04-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -2,7 +2,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from datetime import datetime
+from datetime import datetime, date
 import base64
 import logging
 
@@ -725,6 +725,37 @@ class WizardImportFatturapa(models.TransientModel):
                     val['payment_bank'] = payment_bank_id
                 PaymentModel.create(val)
         return True
+
+    def match_best_of_payterms(self, totdue):
+        payment_term_model = self.env['account.payment.term']
+        payment_term_found = False
+        best_prospect = 0
+        for payment_term in payment_term_model.search([]):
+            if len(payment_term.line_ids) != len(totdue):
+                continue
+            prospect = 100
+            for i,payterm_line in enumerate(payment_term.line_ids):
+                if payterm_line.days:
+                    diff = abs(payterm_line.days - totdue[i][2])
+                elif ('months' in payterm_line and payterm_line.months):
+                    diff = abs(payterm_line.months * 30 - totdue[i][2])
+                elif ('weeks' in payterm_line and payterm_line.weeks):
+                    diff = abs(payterm_line.weeks * 7 - totdue[i][2])
+                else:
+                    diff = 100
+                if (payterm_line.payment_days == totdue[i][0].day):
+                    diff -= payterm_line.payment_days
+                    diff = 0 if diff < 0 else diff
+                if (payterm_line.option == 'fix_day_following_month' and
+                        totdue[i][0].day >=30):
+                    diff -= 15
+                    diff = 0 if diff < 0 else diff
+                prospect -= diff
+                prospect = 0 if prospect < 0 else prospect
+            if prospect > best_prospect:
+                best_prospect = prospect
+                payment_term_found = payment_term
+        return payment_term_found, prospect
  
     def set_payment_term(self, invoice, company, PaymentsData):
         payment_term_model = self.env['account.payment.term']
@@ -738,6 +769,9 @@ class WizardImportFatturapa(models.TransientModel):
                 total, invoice.date_invoice)
         if totlines:
             totlines = totlines[0]
+            for i in range(len(totlines)):
+                totlines[i] = (datetime.strptime(totlines[i][0],
+                                                 '%Y-%m-%d'), totlines[i][1])
         totdue = []
         if PaymentsData:
             for dline in PaymentsData[0].DettaglioPagamento:
@@ -749,9 +783,9 @@ class WizardImportFatturapa(models.TransientModel):
                     num_days = (due_date - date_invoice).days
                 elif not due_date:
                     due_date = date_invoice
-                totdue.append([due_date, due_amt, num_days])
+                totdue.append([due_date, eval(due_amt), num_days])
         # No due date: payment is at the same date of invoice
-        if len(totdue) == 1 and totdue[0][0] == date_invoice:
+        if len(totdue) == 1 and totdue[0][0].date() == date_invoice.date():
             invoice.write({
                 'payment_term_id': False,
                 'date_due': date_invoice})
@@ -762,39 +796,25 @@ class WizardImportFatturapa(models.TransientModel):
             valid_due = False
         if valid_due:
             for i in range(len(totlines)):
-                if (
-                        totlines[i][0] != totdue[i][0] or 
+                if (totlines[i][0].date() != totdue[i][0].date() or
                         totlines[i][1] != totdue[i][1]):
                     valid_due = False
                     break
         payment_term_found = False
         if not valid_due:
-            for payment_term in payment_term_model.search([]):
-                if payment_term_found:
-                    break
-                if len(payment_term.line_ids) != len(totdue):
-                    continue
-                for i,payterm_line in enumerate(payment_term.line_ids):
-                    valid = False
-                    if payterm_line.days:
-                        if (payterm_line.days > (totdue[i][2] - 15) and
-                                payterm_line.days < (totdue[i][2] + 15)):
-                            valid = True
-                    elif ('months' in payterm_line and
-                            payterm_line.months and
-                            (payterm_line.months * 30) > (totdue[i][2] - 15) and
-                            (payterm_line.months * 30) > (totdue[i][2] + 15)):
-                        valid = True
-                    if valid:
-                        payment_term_found = payment_term
-                        break
-            if payment_term_found:
+            payment_term_found, prospect = self.match_best_of_payterms(totdue)
+            if payment_term_found and prospect > 95:
                 invoice.write({
-                    'payment_term_id': payment_term_found.id})
+                    'payment_term_id': payment_term_found.id,
+                    'date_due': totdue[-1][0]})
             elif len(totdue) == 1:
                 invoice.write({
                     'payment_term_id': False,
                     'date_due': totdue[0][0]})
+            elif payment_term_found and prospect > 80:
+                invoice.write({
+                    'payment_term_id': payment_term_found.id,
+                    'date_due': totdue[-1][0]})
             else:
                 self.log_inconsistency(
                     _('None of payment terms matches due invoice!')
