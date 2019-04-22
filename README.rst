@@ -43,7 +43,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_check_total          | 10.0.1.0.0 | |no_check| |  Check if the verification total is equal to the bill's total                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_invoice_entry_date           | 10.0.0.1.0 | |halt|     | Account Invoice entry Date                                                       |
+| account_invoice_entry_date           | 10.0.0.1.1 | |halt|     | Account Invoice Entry Dates                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_report_ddt_group     | 10.0.0.3.1 | |same|     | Account invoice report grouped by DDT                                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -301,10 +301,10 @@ Proposals for enhancement
 -------------------------
 
 
-|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
+|en| If you have a proposal to change on oh these modules, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
-|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+|it| Se hai proposte per migliorare uno dei moduli, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 Credits / Titoli di coda
 ========================
@@ -334,7 +334,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2019-04-20
+Last Update / Ultimo aggiornamento: 2019-04-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

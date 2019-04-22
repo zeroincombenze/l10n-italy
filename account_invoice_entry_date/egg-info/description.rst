@@ -1,2 +1,4 @@
-This module allows to specify the date to be used by the
-move created while confirming (supplier) invoice
+Invoice Entry Date
+------------------
+
+This module allows to specify the fiscal entry date in supplier invoices.

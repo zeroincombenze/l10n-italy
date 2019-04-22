@@ -376,8 +376,8 @@ class AccountVatCommunication(models.Model):
                 if period.date_stop > p_stop:
                     p_stop = period.date_stop
         where = [('company_id', '=', company_id),
-                 ('registration_date', '>=', p_start),
-                 ('registration_date', '<=', p_stop),
+                 ('date', '>=', p_start),
+                 ('date', '<=', p_stop),
                  ('journal_id', 'not in', exclude_journal_ids.ids),
                  ('state', 'in', ('open', 'paid'))]
         if dte_dtr_id == 'DTE':
@@ -600,6 +600,7 @@ class AccountVatCommunication(models.Model):
                         invoice.number, invoice.id))
             res['xml_Numero'] = invoice.reference[-20:]
             res['xml_DataRegistrazione'] = invoice.registration_date
+            res['xml_DataContabile'] = invoice.date
         else:
             res['xml_Numero'] = invoice.number[:20]
         return res

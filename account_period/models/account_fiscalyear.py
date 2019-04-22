@@ -21,7 +21,9 @@ class account_fiscalyear(models.Model):
     date_start = fields.Date('Start Date', required=True)
     date_stop = fields.Date('End Date', required=True)
     period_ids = fields.One2many('account.period', 'fiscalyear_id', 'Periods')
-    state = fields.Selection([('draft', 'Open'), ('done', 'Closed')], 'Status', readonly=True, copy=False,
+    state = fields.Selection([('draft', 'Open'),
+                              ('done', 'Closed')],
+                            'Status', readonly=True, copy=False,
                              default='draft')
 
     @api.one

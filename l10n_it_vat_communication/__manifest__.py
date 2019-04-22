@@ -21,7 +21,7 @@
     ],
     "author": "SHS-AV s.r.l.",
     'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
-    'website': 'https://odoo-italia.org',
+    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/software-gestionale/',
     'data': ['security/ir.model.access.csv',
              'wizard/views/add_period.xml',
              'wizard/views/remove_period.xml',

@@ -1,8 +1,10 @@
 
 ============================================
-|icon| Account Invoice entry Date 10.0.0.1.0
+|icon| Account Invoice entry Date 10.0.0.1.1
 ============================================
 
+
+**Account Invoice Entry Dates**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_invoice_entry_date/static/description/icon.png
 
@@ -14,12 +16,21 @@
 Overview / Panoramica
 =====================
 
-|en| This module allows to specify the date to be used by the
-move created while confirming (supplier) invoice
+|en| Invoice Entry Date
+-----------------------
+
+This module allows to specify the fiscal entry date in supplier invoices.
 
 |
 
-|it| Modulo che permette di inserire la data di registrazione nelle fatture fornitori.
+|it| Data registrazione fatture
+-------------------------------
+
+Permette l'inserimento della data di registrazione nelle fatture fornitori.
+
+La data di registrazione è utilizzata (solo) per la stampa dei registri IVA.
+
+Codice è migrato dalla 8.0 con adattamenti alla 10.0
 
 
 |
@@ -163,10 +174,28 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* ISA s.r.l. <http://www.isa.it>
+
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Collaboratori
 ----------------------------
+
+
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
+Acknowledges / Riconoscimenti
+-----------------------------
+
++-----------------------------------+-------------------------------------------+
+| |en|                              | |it|                                      |
++-----------------------------------+-------------------------------------------+
+| This software inherits from past  | Questo software eredita da versioni       |
+| versions some parts of code. Even | passate alcune parti di codice. Anche     |
+| if people did not actively        | se non hanno partecipato attivamente allo |
+| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
+| acknowledge them for their prior  | persone che precedentemente vi hanno      |
+| contributions.                    | contribuito.                              |
++-----------------------------------+-------------------------------------------+
 
 * Paolo Chiara <p.chiara@isa.it>
 * Sergio Corato <info@icstools.it>
@@ -193,7 +222,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-20
+Last Update / Ultimo aggiornamento: 2019-04-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

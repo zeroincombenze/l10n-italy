@@ -35,10 +35,12 @@ class AccountInvoice(models.Model):
             reg_date = inv.registration_date
             if inv.type in ('in_invoice', 'in_refund'):
                 if not inv.registration_date:
-                    if not inv.date_invoice:
-                        reg_date = time.strftime('%Y-%m-%d')
-                    else:
+                    if inv.date:
+                        reg_date = inv.date
+                    elif inv.date_invoice:
                         reg_date = inv.date_invoice
+                    else:
+                        reg_date = time.strftime('%Y-%m-%d')
                 if date_invoice and reg_date and date_invoice > reg_date:
                     raise UserError(
                         _("The invoice date cannot be later than"

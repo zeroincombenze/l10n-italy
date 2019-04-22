@@ -48,7 +48,7 @@
                                 <field name="xml_IdCodice" />
                                 <field name="xml_CodiceFiscale" />
                                 <field name="amount_total" sum="Total Amount"/>
-                                <field name="amount_taxable" sum="Untaxed Amount"/>                                
+                                <field name="amount_taxable" sum="Untaxed Amount"/>
                                 <field name="xml_Aliquota" />
                                 <field name="xml_Detraibile" />
                                 <field name="tax_rate" />

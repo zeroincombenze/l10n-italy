@@ -26,7 +26,7 @@ Account Period
         'security/ir.model.access.csv',
         'views/account_menuitem.xml',
         'views/account_views.xml',
-        'views/account_end_fy.xml'
+        'views/account_end_fy.xml',
     ],
     'qweb': [
     ],
