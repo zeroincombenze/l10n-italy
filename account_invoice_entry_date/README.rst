@@ -1,7 +1,7 @@
 
-=================================
-|icon| Account Invoice entry Date
-=================================
+=========================================
+|icon| Account Invoice entry Date 7.0.0.1
+=========================================
 
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_invoice_entry_date/static/src/img/icon.png
@@ -14,12 +14,21 @@
 Overview / Panoramica
 =====================
 
-|en| This module allows to specify the date to be used by the
-move created while confirming (supplier) invoice
+|en| Invoice Entry Date
+-----------------------
+
+This module allows to specify the fiscal entry date in supplier invoices.
 
 |
 
-|it| Modulo che permette di inserire la data di registrazione nelle fatture fornitori.
+|it| Data registrazione fatture
+-------------------------------
+
+Permette l'inserimento della data di registrazione nelle fatture fornitori.
+
+La data di registrazione è utilizzata (solo) per la stampa dei registri IVA.
+
+Codice è migrato dalla 8.0 con adattamenti alla 10.0
 
 
 |
@@ -27,8 +36,9 @@ move created while confirming (supplier) invoice
 OCA comparation / Confronto con OCA
 -----------------------------------
 
+
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
+| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 | Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
@@ -160,10 +170,14 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* ISA s.r.l. <http://www.isa.it>
+
+* `ISA s.r.l. <http://www.isa.it>`__
+* `ISA s.r.l. <http://www.isa.it>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
 
 Contributors / Collaboratori
 ----------------------------
+
 
 * Paolo Chiara <p.chiara@isa.it>
 * Sergio Corato <info@icstools.it>
@@ -178,9 +192,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -188,7 +202,9 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-16
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-04-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
