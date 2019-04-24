@@ -35,6 +35,14 @@ Il controllo è effettuato sull'anno fiscale e permette la registrazione
 contestuale di fatture su 2 anni fiscali diversi durante il periodo di
 accavallamento degli esercizi.
 
+::
+
+    Normativa:
+
+* `DPR 633 art. 23 <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200002300000000&articolo=Articolo%2023>`__
+
+
+
 |
 
 OCA comparation / Confronto con OCA
@@ -213,7 +221,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-22
+Last Update / Ultimo aggiornamento: 2019-04-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

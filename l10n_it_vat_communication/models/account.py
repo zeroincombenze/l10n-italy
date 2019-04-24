@@ -357,7 +357,7 @@ class AccountVatCommunication(models.Model):
     def load_DTE_DTR(self, commitment, commitment_line_model, dte_dtr_id):
         journal_model = self.env['account.journal']
         exclude_journal_ids = journal_model.search(
-            [
+            [ '|', '|',
              ('rev_charge', '=', True),
              ('proforma', '=', True),
              ('anom_sale_receipts', '=', True),
@@ -479,8 +479,7 @@ class AccountVatCommunication(models.Model):
                                   'individual': True}}
             elif len(fiscalcode) == 11:
                 res_partner_model = self.env['res.partner']
-                chk = res_partner_model.simple_vat_check(
-                    cr, uid, 'it', fiscalcode)
+                chk = res_partner_model.simple_vat_check('it', fiscalcode)
                 if not chk:
                     return {'value': {name: False},
                             'warning': {

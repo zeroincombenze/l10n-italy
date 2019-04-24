@@ -1,6 +1,7 @@
 import os
 import logging
 import re
+from datetime import timedelta
 from lxml import etree
 from base64 import b64decode
 from base64 import b64encode
@@ -427,8 +428,13 @@ class FatturaPAAttachmentOut(models.Model):
     def send_verify_all(self):
         # Recupero tutte le fatture in modalita send
         attachments = self.env['fatturapa.attachment.out'].search(
-            [('state', '=', 'sent')])
-            # [('state', '!=', 'ready'), ('state', '!=', 'validated')])
+            # [('state', '=', 'sent')])
+            # # [('state', '!=', 'ready'), ('state', '!=', 'validated')])
+            ['|', ('state', '=', 'sent'),
+             '&', ('sending_date', '<=', (
+                 datetime.datetime.now() + timedelta(days=95)).strftime(
+                     '%Y-%m-%d')),
+             ('invoice_partner_id.is_pa', '=', True)])
         #attachments = self.env['fatturapa.attachment.out'].search([])
 
         for attachment in attachments:
