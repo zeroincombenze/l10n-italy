@@ -18,7 +18,8 @@ class FatturaPAAttachmentIn(orm.Model):
     def _compute_xml_data(self, cr, uid, ids, name, unknow_none, context={}):
         ret = {}
         for att in self.browse(cr, uid, ids, context):
-            fatt = self.pool.get('wizard.import.fatturapa').get_invoice_obj(cr, uid, att)
+            fatt = self.pool['wizard.import.fatturapa'].get_invoice_obj(
+                cr, uid, att)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             partner_id = self.pool.get('wizard.import.fatturapa').getCedPrest(
                 cr, uid,

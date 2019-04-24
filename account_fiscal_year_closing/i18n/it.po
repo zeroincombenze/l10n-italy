@@ -1,31 +1,32 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
 # * account_fiscal_year_closing
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-italy (7.0)\n"
+"Project-Id-Version: Odoo (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-24 23:40+0000\n"
 "PO-Revision-Date: 2015-05-27 19:59+0000\n"
-"Last-Translator: Maxime Chambreuil <maxime.chambreuil@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-7-0/language/it/)\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
+"Language: it_IT\n"
+"italy-7-0/language/it/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:371
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:371
 msgid "The Net L&P period must be defined"
 msgstr "Bisogna definire il periodo per perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:405
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:405
 msgid "The closing journal must be defined"
 msgstr "Bisogna definire il sezionale di chiusura"
 
@@ -41,7 +42,11 @@ msgstr "Altre operazioni"
 #: field:account_fiscal_year_closing.fyc_nlp_account_map,fyc_id:0
 #: code:addons/account_fiscal_year_closing/fyc.py:577 view:fyc.run:0
 #: model:ir.actions.act_window,name:account_fiscal_year_closing.fyc_run_action
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:577
+#: field:account_fiscal_year_closing.fyc_c_account_map,fyc_id
+#: field:account_fiscal_year_closing.fyc_lp_account_map,fyc_id
+#: field:account_fiscal_year_closing.fyc_nlp_account_map,fyc_id
+#: view:account_fiscal_year_closing.fyc view:fyc.run
 msgid "Fiscal Year Closing"
 msgstr "Chiusura anno fiscale"
 
@@ -57,25 +62,30 @@ msgstr ""
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,check_invalid_period_moves:0
+#: field:account_fiscal_year_closing.fyc,check_invalid_period_moves
 msgid "Check invalid period or date moves"
 msgstr "Controlla validità periodi o date movimenti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,company_id:0
+#: field:account_fiscal_year_closing.fyc,company_id
 msgid "Company"
 msgstr "Azienda"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Operation to perform"
 msgstr "Operazione da eseguire"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Fiscal Year Closings"
 msgstr "Chiusure anni fiscali"
 
 #. module: account_fiscal_year_closing
+#: code:addons/account_fiscal_year_closing/fyc.py:316
 #: code:addons/account_fiscal_year_closing/fyc.py:316
 #, python-format
 msgid "%s Fiscal Year Closing"
@@ -83,6 +93,7 @@ msgstr "%s Chiusura anno fiscale"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,create_closing:0
+#: field:account_fiscal_year_closing.fyc,create_closing
 msgid "Close fiscal year"
 msgstr "Chiudi anno fiscale"
 
@@ -107,34 +118,56 @@ msgstr "Chiudi anno fiscale"
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:562
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:565
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:568
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:331
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:340
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:343
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:346
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:349
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:364
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:368
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:371
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:374
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:385
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:395
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:399
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:402
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:405
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:548
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:552
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:558
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:562
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:565
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:568
 msgid "UserError"
 msgstr "Errore utente"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc_c_account_map,source_account_id:0
+#: field:account_fiscal_year_closing.fyc_c_account_map,source_account_id
 msgid "Account"
 msgstr "Conto"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Closing"
 msgstr "Chiusura"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:349
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:349
 msgid "The L&P journal must be defined"
 msgstr "Bisogna definire il sezionale di perdite e profitti"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Operations"
 msgstr "Operazioni"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:396
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:396
 msgid "The closing description must be defined"
 msgstr "Bisogna definire la descrizione di chiusura"
 
@@ -145,6 +178,7 @@ msgstr "Wizard chiusura anno fiscale"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,c_account_mapping_ids:0
+#: field:account_fiscal_year_closing.fyc,c_account_mapping_ids
 msgid "Accounts"
 msgstr "Conti"
 
@@ -155,16 +189,20 @@ msgstr "FYC Mappatura conti perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:386
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:386
 msgid "The L&P move must exist before creating the closing one"
-msgstr "Il movimento di profitti e perdite deve esistere prima ci creare quello di chiusura"
+msgstr ""
+"Il movimento di profitti e perdite deve esistere prima ci creare quello "
+"di chiusura"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Confirm"
 msgstr "Conferma"
 
 #. module: account_fiscal_year_closing
+#: code:addons/account_fiscal_year_closing/fyc.py:476
 #: code:addons/account_fiscal_year_closing/fyc.py:476
 #, python-format
 msgid "No destination account %s found for account %s."
@@ -172,59 +210,67 @@ msgstr "Nessun conto di destinazione %s trovato per il conto %s."
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:365
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:365
 msgid "The Net L&P description must be defined"
 msgstr "Bisogna definire la descrizione di perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:346
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:346
 msgid "The L&P period must be defined"
 msgstr "Bisogna definire il periodo di perdite e profitti"
 
 #. module: account_fiscal_year_closing
 #: selection:account_fiscal_year_closing.fyc,state:0
+#: selection:account_fiscal_year_closing.fyc,state
 msgid "New"
 msgstr "Nuovo"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,opening_fiscalyear_id:0
+#: field:account_fiscal_year_closing.fyc,opening_fiscalyear_id
 msgid "Fiscal year to open"
 msgstr "Anno fiscale da aprire"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:638
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:638
 msgid "The Opening move is required"
 msgstr "Il movimento di apertura è richiesto"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Account mapping"
 msgstr "Mappatura conti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,check_unbalanced_moves:0
+#: field:account_fiscal_year_closing.fyc,check_unbalanced_moves
 msgid "Check unbalanced moves"
 msgstr "Controlla movimenti sbilanciati"
 
 #. module: account_fiscal_year_closing
 #: view:fyc.run:0
+#: view:fyc.run
 msgid "Run"
 msgstr "Esegui"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,net_loss_and_profit_move_id:0
+#: field:account_fiscal_year_closing.fyc,net_loss_and_profit_move_id
 msgid "Net L&P Move"
 msgstr "Movimenti perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,closing_move_id:0
+#: field:account_fiscal_year_closing.fyc,closing_move_id
 msgid "Closing Move"
 msgstr "Movimento di chiusura"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Configuration"
 msgstr "Configurazione"
 
@@ -238,121 +284,143 @@ msgstr "Chiudi anno fiscale"
 #: field:account_fiscal_year_closing.fyc_c_account_map,dest_account_id:0
 #: field:account_fiscal_year_closing.fyc_lp_account_map,dest_account_id:0
 #: field:account_fiscal_year_closing.fyc_nlp_account_map,dest_account_id:0
+#: field:account_fiscal_year_closing.fyc_c_account_map,dest_account_id
+#: field:account_fiscal_year_closing.fyc_lp_account_map,dest_account_id
+#: field:account_fiscal_year_closing.fyc_nlp_account_map,dest_account_id
 msgid "Dest account"
 msgstr "Conto destinazione"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:630
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:630
 msgid "The Loss & Profit move is required"
 msgstr "Il movimento di perdite e profitti è richiesto"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:332
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:332
 #, python-format
 msgid "The L&P account mappings are not properly configured: %s"
-msgstr "La mappatura conti di perdite e profitti non è configurata correttamente: %s"
+msgstr ""
+"La mappatura conti di perdite e profitti non è configurata correttamente:"
+" %s"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:368
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:368
 msgid "The Net L&P date must be defined"
 msgstr "Bisogna definire la data di perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Move created by the operation"
 msgstr "Movimento creato dalla operazione"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,create_opening:0
+#: field:account_fiscal_year_closing.fyc,create_opening
 msgid "Open next fiscal year"
 msgstr "Apri prossimo anno fiscale"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
-msgid ""
-"Please, select the company, fiscal year to close and fiscal year to open."
+#: view:account_fiscal_year_closing.fyc
+msgid "Please, select the company, fiscal year to close and fiscal year to open."
 msgstr "Prego selezionare l'azienda, l'anno fiscale da chiudere e quello da aprire"
 
 #. module: account_fiscal_year_closing
 #: selection:account_fiscal_year_closing.fyc,state:0
+#: selection:account_fiscal_year_closing.fyc,state
 msgid "Canceled"
-msgstr "Cancellato"
+msgstr "Annullato"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:340
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:340
 msgid "The L&P description must be defined"
 msgstr "Bisogna definire la descrizione di perdite e profitti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc_lp_account_map,source_account_id:0
 #: field:account_fiscal_year_closing.fyc_nlp_account_map,source_account_id:0
+#: field:account_fiscal_year_closing.fyc_lp_account_map,source_account_id
+#: field:account_fiscal_year_closing.fyc_nlp_account_map,source_account_id
 msgid "Source account"
 msgstr "Conto sorgente"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:399
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:399
 msgid "The closing date must be defined"
 msgstr "Bisogna definire la data di chiusura"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:567
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:567
 msgid "Net Loss & Profit"
 msgstr "Perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
 #: selection:account_fiscal_year_closing.fyc,state:0
+#: selection:account_fiscal_year_closing.fyc,state
+#: view:account_fiscal_year_closing.fyc
 msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:559
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:559
 msgid "The opening description must be defined"
 msgstr "Bisogna definire la descrizione di apertura"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Checks"
 msgstr "Controlli"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Loss and Profit"
 msgstr "Perdite e profitti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,state:0
+#: field:account_fiscal_year_closing.fyc,state
 msgid "Status"
 msgstr "Stato"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:296
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:296
 #, python-format
 msgid ""
 "One or more unbalanced moves found: \n"
 "%s"
-msgstr "Trovati uno o più movimenti sbilanciati: \n%s"
+msgstr ""
+"Trovati uno o più movimenti sbilanciati: \n"
+"%s"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:629
 #: code:addons/account_fiscal_year_closing/fyc.py:633
 #: code:addons/account_fiscal_year_closing/fyc.py:637
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:629
+#: code:addons/account_fiscal_year_closing/fyc.py:633
+#: code:addons/account_fiscal_year_closing/fyc.py:637
 msgid "Not all the operations have been performed!"
 msgstr "Non tutte le operazioni sono state eseguite!"
 
 #. module: account_fiscal_year_closing
 #: view:fyc.run:0
+#: view:fyc.run
 msgid ""
 "This wizard will perform the selected operations. It will create account "
-"moves for the operations you selected, skipping those already created. Non-"
-"selected operations will be canceled."
+"moves for the operations you selected, skipping those already created. "
+"Non-selected operations will be canceled."
 msgstr ""
 
 #. module: account_fiscal_year_closing
@@ -360,28 +428,36 @@ msgstr ""
 #: field:account_fiscal_year_closing.fyc,lp_date:0
 #: field:account_fiscal_year_closing.fyc,nlp_date:0
 #: field:account_fiscal_year_closing.fyc,o_date:0
+#: field:account_fiscal_year_closing.fyc,c_date
+#: field:account_fiscal_year_closing.fyc,lp_date
+#: field:account_fiscal_year_closing.fyc,nlp_date
+#: field:account_fiscal_year_closing.fyc,o_date
 msgid "Date"
 msgstr "Data"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:402
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:402
 msgid "The closing period must be defined"
 msgstr "Bisogna definire il periodo di chiusura"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:516
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:516
 msgid "There is already a fiscal year closing for the fiscal year to close."
 msgstr "Esiste già una chiusura dell'anno fiscale per l'anno fiscale da chiudere."
 
 #. module: account_fiscal_year_closing
 #: help:account_fiscal_year_closing.fyc,check_draft_moves:0
+#: help:account_fiscal_year_closing.fyc,check_draft_moves
 msgid ""
 "Checks that there are no draft moves on the fiscal year that is being "
 "closed. Non-confirmed moves won't be taken in account on the closing "
 "operations."
-msgstr "Controlla che non ci siano movimenti bozza per l'anno fiscale che sta per essere chiuso. I movimenti non confermati non saranno presi in considerazione dalle operazioni di chiusura."
+msgstr ""
+"Controlla che non ci siano movimenti bozza per l'anno fiscale che sta per"
+" essere chiuso. I movimenti non confermati non saranno presi in "
+"considerazione dalle operazioni di chiusura."
 
 #. module: account_fiscal_year_closing
 #: model:ir.model,name:account_fiscal_year_closing.model_account_fiscal_year_closing_fyc_lp_account_map
@@ -396,25 +472,31 @@ msgstr "FYC Mappatura conti perdite e profitti"
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:202
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:242
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:295
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:505
+#: code:addons/account_fiscal_year_closing/fyc.py:515
+#: code:addons/account_fiscal_year_closing/fyc.py:525
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:49
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:202
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:242
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:295
 msgid "Error"
 msgstr "Errore"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:552
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:552
 msgid "The closing move shouldn't be empty"
 msgstr "Il movimento di chiusura non dovrebbe essere vuoto"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:526
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:526
 msgid "There is already a fiscal year closing for the fiscal year to open."
 msgstr "Esiste già una chiusura di anno fiscale per l'anno fiscale da aprire."
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:343
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:343
 msgid "The L&P date must be defined"
 msgstr "Bisogna definire la data di perdite e profitti"
 
@@ -423,62 +505,74 @@ msgstr "Bisogna definire la data di perdite e profitti"
 #: field:account_fiscal_year_closing.fyc,lp_period_id:0
 #: field:account_fiscal_year_closing.fyc,nlp_period_id:0
 #: field:account_fiscal_year_closing.fyc,o_period_id:0
+#: field:account_fiscal_year_closing.fyc,c_period_id
+#: field:account_fiscal_year_closing.fyc,lp_period_id
+#: field:account_fiscal_year_closing.fyc,nlp_period_id
+#: field:account_fiscal_year_closing.fyc,o_period_id
 msgid "Period"
 msgstr "Periodo"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:49
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:49
 msgid "No active ID found"
 msgstr ""
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "General"
 msgstr "Generale"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Net Loss and Profit"
 msgstr "Perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: selection:account_fiscal_year_closing.fyc,state:0
+#: selection:account_fiscal_year_closing.fyc,state
 msgid "Done"
 msgstr "Fatto"
 
 #. module: account_fiscal_year_closing
 #: help:account_fiscal_year_closing.fyc,check_invalid_period_moves:0
+#: help:account_fiscal_year_closing.fyc,check_invalid_period_moves
 msgid ""
 "Checks that there are no moves, on the fiscal year that is being closed, "
 "with dates or periods outside that fiscal year."
-msgstr "Controlla che non ci siano movimenti, nell'anno fiscale da chiudere, con date o periodi fuori da quell'anno fiscale."
+msgstr ""
+"Controlla che non ci siano movimenti, nell'anno fiscale da chiudere, con "
+"date o periodi fuori da quell'anno fiscale."
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0 view:fyc.run:0
+#: view:account_fiscal_year_closing.fyc view:fyc.run
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:568
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:568
 msgid "The opening journal must be defined"
 msgstr "Bisogna definire il sezionale di apertura"
 
 #. module: account_fiscal_year_closing
 #: selection:account_fiscal_year_closing.fyc,state:0
+#: selection:account_fiscal_year_closing.fyc,state
 msgid "In Progress"
 msgstr "In corso"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:506
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:506
 msgid "There is already a fiscal year closing with this name."
 msgstr "Esiste già una chiusura di anno fiscale con questo nome."
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:562
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:562
 msgid "The opening date must be defined"
 msgstr "Bisogna definire la data di apertura"
 
@@ -490,12 +584,13 @@ msgstr "Chiusure anni fiscali"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:634
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:634
 msgid "The Closing move is required"
 msgstr "Il movimento di chiusura è richiesto"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,opening_move_id:0
+#: field:account_fiscal_year_closing.fyc,opening_move_id
 msgid "Opening Move"
 msgstr "Movimento di apertura"
 
@@ -508,16 +603,26 @@ msgstr "Movimento di apertura"
 #: field:account_fiscal_year_closing.fyc_c_account_map,name:0
 #: field:account_fiscal_year_closing.fyc_lp_account_map,name:0
 #: field:account_fiscal_year_closing.fyc_nlp_account_map,name:0
+#: field:account_fiscal_year_closing.fyc,c_description
+#: field:account_fiscal_year_closing.fyc,lp_description
+#: field:account_fiscal_year_closing.fyc,name
+#: field:account_fiscal_year_closing.fyc,nlp_description
+#: field:account_fiscal_year_closing.fyc,o_description
+#: field:account_fiscal_year_closing.fyc_c_account_map,name
+#: field:account_fiscal_year_closing.fyc_lp_account_map,name
+#: field:account_fiscal_year_closing.fyc_nlp_account_map,name
 msgid "Description"
 msgstr "Descrizione"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Opening"
 msgstr "Apertura"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Account to close"
 msgstr "Conto da chiudere"
 
@@ -526,110 +631,138 @@ msgstr "Conto da chiudere"
 #: field:account_fiscal_year_closing.fyc,lp_journal_id:0
 #: field:account_fiscal_year_closing.fyc,nlp_journal_id:0
 #: field:account_fiscal_year_closing.fyc,o_journal_id:0
+#: field:account_fiscal_year_closing.fyc,c_journal_id
+#: field:account_fiscal_year_closing.fyc,lp_journal_id
+#: field:account_fiscal_year_closing.fyc,nlp_journal_id
+#: field:account_fiscal_year_closing.fyc,o_journal_id
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Registro"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
 #: field:account_fiscal_year_closing.fyc,lp_account_mapping_ids:0
 #: field:account_fiscal_year_closing.fyc,nlp_account_mapping_ids:0
+#: field:account_fiscal_year_closing.fyc,lp_account_mapping_ids
+#: field:account_fiscal_year_closing.fyc,nlp_account_mapping_ids
+#: view:account_fiscal_year_closing.fyc
 msgid "Account mappings"
 msgstr "Mappature conti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,check_draft_moves:0
+#: field:account_fiscal_year_closing.fyc,check_draft_moves
 msgid "Check draft moves"
 msgstr "Controlla movimenti bozza"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,create_loss_and_profit:0
+#: field:account_fiscal_year_closing.fyc,create_loss_and_profit
 msgid "Create Loss & Profit move"
 msgstr "Crea movimento di perdite e profitti"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Fiscal Years"
 msgstr "Anni fiscali"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:374
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:374
 msgid "The Net L&P journal must be defined"
 msgstr "Bisogna definire il sezionale per perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,closing_fiscalyear_id:0
+#: field:account_fiscal_year_closing.fyc,closing_fiscalyear_id
 msgid "Fiscal year to close"
 msgstr "Anno fiscale da chiudere"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:549
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:549
 msgid "The closing move must exist to create the opening one"
 msgstr "Il movimento di chiusura deve esistere per poter creare quello di apertura"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:203
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:203
 #, python-format
 msgid ""
 "One or more moves with invalid period or date found on the fiscal year: \n"
 "%s"
-msgstr "Sono stati trovati uno o più movimenti con periodo o data invalidi nell'anno fiscale: \n%s"
+msgstr ""
+"Sono stati trovati uno o più movimenti con periodo o data invalidi "
+"nell'anno fiscale: \n"
+"%s"
 
 #. module: account_fiscal_year_closing
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:243
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:243
 #, python-format
 msgid ""
 "One or more draft moves found: \n"
 "%s"
-msgstr "Sono stati trovati uno o più movimenti bozza: \n%s"
+msgstr ""
+"Sono stati trovati uno o più movimenti bozza: \n"
+"%s"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Perform the operations"
 msgstr "Esegui le operazioni"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Continue"
 msgstr "Continua"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0
+#: view:account_fiscal_year_closing.fyc
 msgid "Accounts to close"
 msgstr "Conti da chiudere"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,loss_and_profit_move_id:0
+#: field:account_fiscal_year_closing.fyc,loss_and_profit_move_id
 msgid "L&P Move"
 msgstr "Movimento perdite e profitti"
 
 #. module: account_fiscal_year_closing
 #: field:account_fiscal_year_closing.fyc,create_net_loss_and_profit:0
+#: field:account_fiscal_year_closing.fyc,create_net_loss_and_profit
 msgid "Create Net Loss & Profit"
 msgstr "Crea perdite e profitti netti"
 
 #. module: account_fiscal_year_closing
 #: help:account_fiscal_year_closing.fyc,check_unbalanced_moves:0
+#: help:account_fiscal_year_closing.fyc,check_unbalanced_moves
 msgid ""
-"Checks that there are no unbalanced moves on the fiscal year that is being "
-"closed."
-msgstr "Controlla che non ci siano movimenti sbilanciati nell'anno fiscale da chiudere."
+"Checks that there are no unbalanced moves on the fiscal year that is "
+"being closed."
+msgstr ""
+"Controlla che non ci siano movimenti sbilanciati nell'anno fiscale da "
+"chiudere."
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:565
-#, python-format
+#: code:addons/account_fiscal_year_closing/wizard/wizard_run.py:565
 msgid "The opening period must be defined"
 msgstr "Bisogna definire il periodo di apertura"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:587
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:587
 msgid "Fiscal Year Opening"
 msgstr "Apertura anno fiscale"
 
 #. module: account_fiscal_year_closing
 #: code:addons/account_fiscal_year_closing/fyc.py:557
-#, python-format
+#: code:addons/account_fiscal_year_closing/fyc.py:557
 msgid "Loss & Profit"
 msgstr "Perdite e profitti"
+
+

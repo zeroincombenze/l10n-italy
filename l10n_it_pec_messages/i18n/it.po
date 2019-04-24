@@ -381,7 +381,7 @@ msgstr "Configura utenti abilitati a questo server"
 #. module: l10n_it_pec_messages
 #: view:mail.compose.message:0
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: l10n_it_pec_messages
 #: view:mail.message:0

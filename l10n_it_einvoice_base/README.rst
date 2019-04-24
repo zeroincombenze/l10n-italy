@@ -28,7 +28,7 @@ as per send to the SdI (Exchange System by Italian Tax Authority)
 -------------------------------
 
 Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
-Elettronica e della FatturaPA, versione 1.2, da trasmettere al sistema di interscambio SdI.
+Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di interscambio SdI.
 
 In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".
 Le casistiche previste sono:
@@ -71,8 +71,35 @@ formato PDF al cliente.
 
 ::
 
+    Fattura elettronica a rappresentante fiscale in Italia
+
+Casistica di aziende estere con rappresentanza fiscale in Italia.
+Inserire nei contatti un indirizzo di fatturazione di tipo "Rappresentante fiscale"
+con la partita IVA italiana ed i dati per la fatturazione elettronica.
+La fattura va emessa al rappresentante fiscale.
+
+::
+
+    Fattura elettronica a stabile organizzazione
+
+Casistica di aziende estere con stabile organizzazione in Italia.
+Inserire nei contatti un indirizzo di fatturazione di tipo "Stabile organizzazione"
+con la partita IVA italiana ed i dati per la fatturazione elettronica.
+La fattura va emessa alla stabile organizzazione.
+
+::
+
+    Fattura elettronica a soggetto estero
+
+Inserire il valore XXXXXXX nel codice destinatario. Il file XML viene generato
+con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
+Anche in questo caso è obbligatorio inviare una fattura in
+formato PDF al cliente.
+
+::
+
 Configurare le imposte riguardo a "Natura non imponibile",
-"Riferimento legisltativo" ed "Esigibilità IVA"
+"Riferimento legislativo" ed "Esigibilità IVA"
 
 Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
 
@@ -99,9 +126,9 @@ Certifications / Certificazioni
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                     | Data inizio   | Da fine      | Note                                         |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <https://www.fatturapa.gov.it/export/fatturazione/it/strumenti.htm>`__  | 01-06-2017    | 31-12-2018   | Validazione contro schema xml                |
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <https://www.fatturapa.gov.it/export/fatturazione/it/strumenti.htm>`__  | 01-06-2017    | 31-12-2019   | Validazione contro schema xml                |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.fatturapa.gov.it/export/fatturazione/it/index.htm>`__                        | 01-06-2017    | 31-12-2018   | Controllo tramite sito Agenzia delle Entrate |
+| |FatturaPA|          | `FatturaPA <https://www.fatturapa.gov.it/export/fatturazione/it/index.htm>`__                        | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 |
@@ -128,7 +155,7 @@ Prerequisites / Prerequisiti
 ----------------------------
 
 
-* python
+* python2.7+
 * postgresql 9.2+
 
 |
@@ -200,7 +227,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
@@ -313,7 +340,7 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-01-18
+Last Update / Ultimo aggiornamento: 2019-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

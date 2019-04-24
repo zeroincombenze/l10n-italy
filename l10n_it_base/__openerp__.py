@@ -7,7 +7,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.15',
+    'version': '7.0.0.2.16',
     'category': 'Localisation/Italy',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA),'
@@ -23,8 +23,8 @@
         'views/province_view.xml',
         'data/res.region.csv',
         'data/res.province.csv',
-        'data/res.country.state.csv',
-        'data/res.city.csv',
+        'data/res.country.state.xml',
+        'data/res.city.xml',
         'data/res.partner.title.csv',
     ],
     'test': ['test/res_partner.yml'],

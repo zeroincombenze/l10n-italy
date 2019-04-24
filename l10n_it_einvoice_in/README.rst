@@ -6,7 +6,7 @@
 
 **Ricezione fatture elettroniche**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_in/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_einvoice_in/static/src/img/icon.png
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -19,11 +19,11 @@ Overview / Panoramica
 |en| EInvoice in
 -----------
 
-This module allows to import Electronic Bill XML files version 1.2
+This module allows to import Electronic Bill XML files version 1.2.1
 
 http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
 
-received through the Exchange System (ES).
+received through the Exchange System (SdI).
 
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
@@ -56,7 +56,7 @@ In the incoming electronic bill files list you will see, by default, files to be
 |it| Fattura Elettronica in
 ----------------------
 
-Questo modulo consente di importare i file XML della fattura elettronica versione 1.2
+Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
@@ -79,26 +79,7 @@ Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura
 Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
 
 
-|warning| Lo schema di definizione dei file xml, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
-moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
-segnalato dall'errore:
-
-|exclamation| **name CryptoBinary used for multiple values in typeBinding**
-
-
-Tutti i moduli della localizzazione italiana che generano file xml dipendenti
-dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
-`l10n_it_ade <../l10n_it_ade>`__ come dipendenza.
-
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
-
-|halt| Non utilizzare ancora questo modulo in produzione: alpha release soggetta
-ad ulteriori modifiche
-
-er ciascun fornitore è possibile impostare il "Livello dettaglio e-fatture":
+Per ciascun fornitore è possibile impostare il "Livello dettaglio e-fatture":
 
  - Livello minimo: la fattura fornitore viene creata senza righe, che dovranno essere create dall'utente in base a quanto indicato nella fattura elettronica
  - Livello massimo: le righe della fattura fornitore verranno generate a partire da tutte quelle presenti nella fattura elettronica
@@ -134,7 +115,7 @@ Prerequisites / Prerequisiti
 ----------------------------
 
 
-* python
+* python2.7+
 * postgresql 9.2+
 
 |
@@ -155,7 +136,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /opt/odoo/7.0/l10n-italy/                                                  |
 +----------------------------------------------------------------------------+
 
 ::
@@ -165,17 +146,16 @@ Installation / Installazione
     cd ./tools
     ./install_tools.sh -p
     export PATH=$HOME/dev:$PATH
-    odoo_install_repository l10n-italy -b 10.0 -O zero
+    odoo_install_repository l10n-italy -b 7.0 -O zero
     for pkg in os0 z0lib; do
         pip install $pkg -U
     done
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Install
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_einvoice_in** > Install
 
 |
 
@@ -192,15 +172,14 @@ Upgrade / Aggiornamento
 
 ::
 
-    odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    odoo_install_repository l10n-italy -b 7.0 -O zero -U
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Update
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_einvoice_in** > Update
 
 |
 
@@ -208,7 +187,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
@@ -252,6 +231,7 @@ Authors / Autori
 
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Innoviu srl <http://www.innoviu.com>`__
+* `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Collaboratori
@@ -260,6 +240,7 @@ Contributors / Collaboratori
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
+* Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 Translations by / Traduzioni a cura di
@@ -288,40 +269,40 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-01-27
+Last Update / Ultimo aggiornamento: 2019-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0
     :target: https://travis-ci.org/zeroincombenze/l10n-italy
     :alt: github.com
-.. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/10.0
+    :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
-    :target: https://erp10.zeroincombenze.it
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
+    :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org

@@ -284,7 +284,7 @@ msgstr ""
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: l10n_it_corrispettivi
 #: model:ir.model,name:l10n_it_corrispettivi.model_res_partner

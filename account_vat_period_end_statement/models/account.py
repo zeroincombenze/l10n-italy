@@ -799,6 +799,8 @@ class AccountVatPeriodEndStatement(orm.Model):
         return tax_tree
 
     def get_date_start_stop(self, statement, context=None):
+        import pdb
+        pdb.set_trace()
         date_start = False
         date_stop = False
         for period in statement.period_ids:
@@ -812,10 +814,12 @@ class AccountVatPeriodEndStatement(orm.Model):
             else:
                 if period.date_stop > date_stop:
                     date_stop = period.date_stop
-        date_start = datetime.strptime(date_start,
-                                       DEFAULT_SERVER_DATE_FORMAT)
-        date_stop = datetime.strptime(date_stop,
-                                      DEFAULT_SERVER_DATE_FORMAT)
+        if date_start:
+            date_start = datetime.strptime(date_start,
+                                           DEFAULT_SERVER_DATE_FORMAT)
+        if date_stop:
+            date_stop = datetime.strptime(date_stop,
+                                          DEFAULT_SERVER_DATE_FORMAT)
         return date_start, date_stop
 
     def compute_amount_dbt_crd(self, cr, uid, statement, company_id,
