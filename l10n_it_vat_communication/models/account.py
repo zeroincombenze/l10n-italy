@@ -344,22 +344,22 @@ class AccountVatCommunication(models.Model):
                                 tax_rate = tax.amount
                 if tax_type in ('sale', 'purchase'):
                     if tax_rate == 0.0 and not tax_nature:
-                        raise UserError(
+                        res['xml_Error'] += self._get_error(
                             _('00400 - '
                               'Invalid tax %s nature for invoice %s') % (
                                   invoice_tax.name,
                                   invoice.number))
                     elif tax_rate and tax_nature and tax_nature != 'N6':
-                        raise UserError(
+                        res['xml_Error'] += self._get_error(
                             _('00401 - '
                               'Invalid tax %s nature for invoice %s') % (
                                   invoice_tax.name,
                                   invoice.number))
                     if tax_payability == 'S' and tax_nature:
                         if tax.nature == 'N6':
-                            raise UserError(
+                            res['xml_Error'] += self._get_error(
                                 _('00420 - '
-                                'Wrong tax %s nature/payment for invoice %s') % (
+                                'Wrong payability/nature tax %s (%s)') % (
                                     invoice_tax.name,
                                     invoice.number))
                 if tax_nature:
@@ -715,25 +715,29 @@ class CommitmentLine(models.AbstractModel):
 
         res = {'xml_Error': ''}
         if partner.vat:
-            # partner.vat = partner.company_id.vat
-            vat = partner.vat.replace(' ', '')
-            res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
-            res['xml_IdCodice'] = vat and vat[2:] or ''
+            # vat = partner.vat.replace(' ', '')
+            # res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
+            # res['xml_IdCodice'] = vat and vat[2:] or ''
+            res['xml_IdPaese'], res['xml_IdCodice'] = \
+                partner.split_vat_n_country(partner.vat)
         res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
         if not res.get('xml_Nazione'):
             self._get_error(_('Unknow country of %s') % partner.name, context)
 
         if (partner.individual or not partner.is_company) and partner.fiscalcode:
-            r = self.env['account.vat.communication'].onchange_fiscalcode(cr, uid, partner.id,
+            r = self.env['account.vat.communication'].onchange_fiscalcode(
+                cr, uid, partner.id,
                 partner.fiscalcode, None,
                 country=partner.country_id,
                 context=context)
             if 'warning' in r:
                 res['xml_Error'] += self._get_error(
-                    _('Invalid fiscalcode of %s') % partner.name, context)
+                    _('00302 - '
+                      'Invalid fiscalcode of %s') % partner.name, context)
             if res.get('xml_Nazione', '') == 'IT' and \
                     partner.fiscalcode != res.get('xml_IdCodice'):
-                res['xml_CodiceFiscale'] = partner.fiscalcode.replace(' ', '')
+                res['xml_CodiceFiscale'] = partner.wep_fiscalcode(
+                    partner.fiscalcode)
         elif res.get('xml_IdPaese', '') == 'IT':
             pass
         elif not partner.vat:
@@ -753,45 +757,51 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Error'] += self._get_error(
                     _('Invalid First or Last name %s') % (partner.name),
                     context)
-        else:
-            res['xml_Denominazione'] = partner.name
-            if not partner.vat and \
-                    res['xml_Nazione'] == 'IT':
-                    # or
-                    # res['xml_Nazione'] in EU_COUNTRIES):
-                raise UserError(
-                    ('Partner %s %d without VAT number') % (
-                        partner.name, partner.id))
+        # else:
+        #     res['xml_Denominazione'] = partner.name
+        #     if not partner.vat and res['xml_Nazione'] == 'IT':
+        #         self._get_error(_('Partner %s %d without VAT number') % (
+        #                 partner.name, partner.id), context)
         if not res.get('xml_CodiceFiscale') and \
                 not res.get('xml_IdPaese') and \
                 not res.get('xml_IdCodice'):
-            raise UserError(
-                _('Partner %s %d without fiscal data') % (
+            res['xml_Error'] += self._get_error(
+                _('00464 - '
+                  'Partner %s %d without fiscal data') % (
                     partner.name, partner.id))
         if res.get('xml_IdPaese') and \
                 res.get('xml_IdPaese') != res['xml_Nazione']:
-            raise UserError(
-                _('Partner %s %d vat country differs from country') % (
+            res['xml_Error'] += self._get_error(
+                _('003XC - '
+                  'Partner %s %d vat country differs from country') % (
                     partner.name, partner.id))
 
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')
         else:
-            raise UserError(
-                _('Partner %s without street on address') % (partner.name))
+            res['xml_Error'] += self._get_error(
+                _('003XA - '
+                'Partner %s without street on address') % (
+                    partner.name))
 
         if res.get('xml_IdPaese', '') == 'IT':
             if address.zip:
                 res['xml_CAP'] = address.zip.replace('x', '0').replace('%',
                                                                        '0')
             if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
-                raise UserError(
-                    _('Partner %s has wrong zip code') % (partner.name))
+                res['xml_Error'] += self._get_error(
+                    _('003XZ - '
+                    'Partner %s has wrong zip code') % (
+                        partner.name))
+
         res['xml_Comune'] = address.city or ' '
         if not address.city:
-            raise UserError(
-                _('Partner %s without city on address') % (partner.name))
+            res['xml_Error'] += self._get_error(
+                _('003XY - '
+                'Partner %s without city on address') % (
+                    partner.name))
+
         if res['xml_Nazione'] == 'IT':
             if release.major_version == '6.1':
                 res['xml_Provincia'] = address.province.code
@@ -799,8 +809,9 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Provincia'] = partner.state_id.code
             if not res['xml_Provincia']:
                 del res['xml_Provincia']
-                raise UserError(
-                    _('Partner %s without province on address') % (
+                res['xml_Error'] += self._get_error(
+                    _('003XP - '
+                    'Partner %s without province on address') % (
                         partner.name))
         return res
 

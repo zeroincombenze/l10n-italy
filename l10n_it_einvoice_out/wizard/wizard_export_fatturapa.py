@@ -127,7 +127,7 @@ class WizardExportFatturapa(models.TransientModel):
         vat = company.vat
         if company.fatturapa_sender_partner:
             vat = company.fatturapa_sender_partner.vat
-        vat = self.__wep_vat(vat)
+        vat = self.env['res.partner'].wep_vat(vat)
         attach_model = self.env['fatturapa.attachment.out']
         attach_vals = {
             'name': '%s_%s.xml' % (vat, str(number)),
@@ -179,25 +179,25 @@ class WizardExportFatturapa(models.TransientModel):
             return escape(unidecode(text), XML_ESCAPE).strip()
         return text
 
-    def __wep_vat(self, vat):
-        if vat:
-            return vat.replace(
-                ' ', '').replace('.', '').replace('-', '').upper()
-        return vat
+    # def __wep_vat(self, vat):
+    #     if vat:
+    #         return vat.replace(
+    #             ' ', '').replace('.', '').replace('-', '').upper()
+    #     return vat
 
-    def _split_vat_n_country(self, vat):
-        if vat:
-            vat = self.__wep_vat(vat)
-            if vat[0:3] != 'IT9':
-                country_code = vat[0:2]
-                vat_number = vat[2:]
-            else:
-                country_code = ''
-                vat_number = ''
-        else:
-            country_code = ''
-            vat_number = ''
-        return country_code, vat_number
+    # def _split_vat_n_country(self, vat):
+    #     if vat:
+    #         vat = self.__wep_vat(vat)
+    #         if vat[0:3] != 'IT9' and vat[0:3] != 'IT8':
+    #             country_code = vat[0:2]
+    #             vat_number = vat[2:]
+    #         else:
+    #             country_code = ''
+    #             vat_number = ''
+    #     else:
+    #         country_code = ''
+    #         vat_number = ''
+    #     return country_code, vat_number
 
     def _get_partner_field(self, partner, parent, field, mode=None):
         """Select field from <invoice address> or <parent>
@@ -285,7 +285,7 @@ class WizardExportFatturapa(models.TransientModel):
                     "Partner %s is not PA but does not have Addressee Code."
                 ) % partner.name)
             vat = self._get_partner_field(partner, parent, 'vat')
-            fiscalcode = self.__wep_vat(
+            fiscalcode = partner.wep_fiscalcode(
                 self._get_partner_field(partner, parent, 'fiscalcode'))
             if code not in (CODE_NONE_IT, CODE_NONE_EU) and \
                     not vat and not fiscalcode:
@@ -470,11 +470,11 @@ class WizardExportFatturapa(models.TransientModel):
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         vat = self._get_partner_field(
             partner, parent, 'vat', mode=mode)
-        fiscalcode = self.__wep_vat(
+        fiscalcode = partner.wep_fiscalcode(
             self._get_partner_field(
                 partner, parent, 'fiscalcode', mode=mode))
         if vat:
-            country_code, vat_number = self._split_vat_n_country(vat)
+            country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                     DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(

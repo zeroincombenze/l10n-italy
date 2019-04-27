@@ -11,3 +11,4 @@ from . import account_tax
 from . import italy_ade_codice_carica
 from . import italy_ade_invoice_type
 from . import italy_ade_tax_nature
+from . import res_partner
