@@ -430,7 +430,7 @@ class AccountInvoice(models.Model):
             [('scope', 'like', scope)], order='code')][0]
 
     @api.onchange('partner_id', 'type', 'amount_total')
-    def onchange_set_einvoice_type():
+    def onchange_set_einvoice_type(self):
         if self.partner_id and self.partner_id.vat:
             ids = self.einvoice_type_selection(self.type,
                                                self.partner_id.vat,

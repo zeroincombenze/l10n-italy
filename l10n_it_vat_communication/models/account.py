@@ -50,9 +50,9 @@ class AccountInvoice(models.Model):
             exclude_invoice = True
         elif self.journal_id:
             exclude_invoice = (self.journal_id.einvoice or
-                               self.rev_charge or
-                               self.proforma or
-                               self.anom_sale_receipts)
+                               self.journal_id.rev_charge or
+                               self.journal_id.proforma or
+                               self.journal_id.anom_sale_receipts)
         else:
             exclude_invoice = False
         if not iso and self.partner_id.country_id:
