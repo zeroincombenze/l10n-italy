@@ -1,6 +1,6 @@
 
 =========================================
-|icon| Italian Withholding Tax 10.0.1.2.4
+|icon| Italian Withholding Tax 10.0.1.2.5
 =========================================
 
 
@@ -225,7 +225,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-24
+Last Update / Ultimo aggiornamento: 2019-04-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -245,7 +245,7 @@ Last Update / Ultimo aggiornamento: 2019-04-24
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
+.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_withholding_tax/static/description/Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/10.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg

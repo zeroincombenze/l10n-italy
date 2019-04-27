@@ -289,7 +289,7 @@ class AccountInvoice(models.Model):
         [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
     # 2.1.1.1 doc_type
     invoice_type_id = fields.Many2one(
-        'italy.ade.invoice.type', string="Document Type",)
+        'italy.ade.invoice.type', string="Fiscal Document Type",)
     #  2.1.1.5
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
@@ -410,33 +410,53 @@ class AccountInvoice(models.Model):
         'Subjected to Electronic Invoice',
         related='partner_id.electronic_invoice_subjected', readonly=True)
 
+    @api.one
+    def einvoice_type_selection(self, type, partner_vat, amount=None):
+        einv_type_model = self.env['italy.ade.invoice.type']
+        scope = 'NN'
+        if partner_vat:
+            if partner_vat[0:2] == 'IT':
+                scope = 'IT%'
+            elif partner_vat[0:2] in EU_COUNTRIES:
+                scope = 'EU%'
+            else:
+                scope = 'XX%'
+        if amount:
+            if amount >= 0.0:
+                scope += type
+            else:
+                scope += type[0].upper() + type[1:]
+        return [x.id for x in einv_type_model.search(
+            [('scope', 'like', scope)], order='code')][0]
+
+    @api.onchange('partner_id', 'type', 'amount_total')
+    def onchange_set_einvoice_type():
+        if self.partner_id and self.partner_id.vat:
+            ids = self.einvoice_type_selection(self.type,
+                                               self.partner_id.vat,
+                                               self.amount_total)
+        else:
+            ids = self.einvoice_type_selection(self.type,
+                                               'IT',
+                                               self.amount_total)
+        if not ids:
+            self.invoice_type_id = False
+        elif (not self.invoice_type_id or self.invoice_type_id not in ids):
+            self.invoice_type_id = ids[0]
+
+    @api.multi
+    @api.depends('partner_id', 'type', 'amount_total')
+    def set_einvoice_type(self):
+        for invoice in self:
+            invoice.onchange_set_einvoice_type()
+        return True
+
     @api.model
     def default_get(self, fields):
         res = super(AccountInvoice, self).default_get(fields)
-        if 'type' in res:
-            einv_type_model = self.env['italy.ade.invoice.type']
-            ids = einv_type_model.search(
-                [('scope', 'like', res['type'])], order='code')
-            if ids:
-                res.update({'invoice_type_id': ids[0].id})
+        ids = self.einvoice_type_selection(res.get('type'),
+                                           'IT',
+                                           res.get('amount_total'))
+        if len(ids) == 1:
+            res.update({'invoice_type_id': ids[0].id})
         return res
-
-    @api.one
-    def set_default_einvoice_type(self):
-        if not self.invoice_type_id:
-            einv_type_model = self.env['italy.ade.invoice.type']
-            scope = 'XX%'
-            if self.partner.country_id:
-                if self.partner.country_id.code == 'IT':
-                    scope = 'IT%'
-                elif self.partner.country_id.code in EU_COUNTRIES:
-                    scope = 'EU%'
-            if self.amount >= 0:
-                scope += self.type
-            else:
-                scope += self.type[0].upper() + self.type[1:]
-            ids = einv_type_model.search(
-                [('scope', 'like', scope)], order='code')
-            if ids:
-                return ids[0].id
-        return False

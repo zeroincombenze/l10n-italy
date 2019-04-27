@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="invoice_form_commtype" model="ir.ui.view">
+        <field name="name">invoice.form.commtype</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other_info']/group/group[2]" position="inside">
+                <field name="communication_type"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form_commtype" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.commtype</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/group/group/field[@name='company_id']" position="after">
+                <field name="communication_type"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_account_vat_communication" model="ir.ui.view">
         <field name="name">account.vat.communication.form</field>
         <field name="model">account.vat.communication</field>
@@ -8,6 +30,8 @@
         <field name="arch" type="xml">
             <form string="Vat Communication">
                 <group colspan="4">
+                    <field name="type"/>
+                    <field name="name"/>
                     <field name="company_id" colspan="1"
                            groups="base.group_multi_company"/>
                     <field name="state" colspan="1"/>

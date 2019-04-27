@@ -21,7 +21,7 @@ Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
 ricevute e genera il file da inviare all'Agenzia delle Entrate.
 Questo obbligo &egrave; conosciuto anche come Spesometro light 2018 e sostistuisce i
-precedenti obbblighi chiamati Spesometro e Spesometro 2017.
+precedenti obblighi chiamati Spesometro e Spesometro 2017.
 </p><p align="justify">
 
 <code>
@@ -32,7 +32,7 @@ Tutti i soggetti IVA (con partita IVA)
 </p><p align="justify">
 
 <code>
-    Normativa:
+    Normativa e prassi:
 </code>
 </p><p align="justify">
 <ul>
@@ -43,9 +43,17 @@ Tutti i soggetti IVA (con partita IVA)
 <li><a href="https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Dati+Fatture+%28c.d.+nuovo+spesometro%29/Scheda+informativa+Dati+Fatture+c.d.+nuovo+spesometro/?page=schedecomunicazioni">Info Agenzia delle Entrate</a></li>
 </ul>
 </p><p align="justify">
+Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
+</p><p align="justify">
+<ul>
+<li>Le autofatture, per fatture non ricevute dopo 4 mesi, rif. art. 6 c.8 D.Lgs 471/97, (codice TD20) sono inserite nella comunicazione.</li>
+<li>Le autofatture da reverse charge nazionale (codice TD01) non sono inserite nello spesometro. Marcare il registro sezionale come registro con e-fatture.</li>
+<li>Le autofatture da reverse charge estero (codice TD01) non sono inserite nello spesometro. La relativa fattura d'acquisto &egrave; inserita nell'"esterometro". Marcare il registro sezionale come registro con e-fatture</li>
+</ul>
+</p><p align="justify">
 <br/>
 </p><p align="justify">
-Il softwware permette di operare in modalit&agrave; 2017 per rigenerare eventuali file
+Il software permette di operare in modalit&agrave; 2017 per rigenerare eventuali file
 in formato 2017. Per eseguire questa funzione, prima di avviare Odoo eseguire
 la seguente istruzione:
 </p><p align="justify">
@@ -132,14 +140,12 @@ la seguente istruzione:
             <p class="oe_mt16">Authors / Autori:</p>
             <p class="oe_mt16"><ul>
 <li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
-<li><a href="http://www.didotech.com">Didotech srl</a></li>
 </ul></p>
         </div>
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Contributors / Collaboratori:</p>
             <p class="oe_mt16"><ul>
 <li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
-<li>Andrei Levin &lt;andrei.levin@didotech.com&gt;</li>
 </ul></p>
         </div>
     </div>

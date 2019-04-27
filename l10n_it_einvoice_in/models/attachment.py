@@ -79,10 +79,6 @@ class FatturaPAAttachmentIn(models.Model):
                     att.date_invoice0 = invoice_body.\
                         DatiGenerali.DatiGeneraliDocumento.Data
 
-
-    # @api.multi
-    # @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
-    # def _compute_due_date(self):
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
     def revaluate_due_date(self):

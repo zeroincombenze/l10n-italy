@@ -195,23 +195,14 @@
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
                             <tree string="Payments">
                                 <field name="payment_terms"/>
+                                <field name="payment_methods"/>
+                                <!--
+                                <form string="Payments Methods">
+                                    <field name="payment_due_date"/>
+                                    <field name="payment_amount "/>
+                                </form>
+                                -->
                             </tree>
-                            <form string="Payments" version="7.0">
-                                <sheet>
-                                    <group>
-                                        <field name="payment_terms"/>
-                                    </group>
-                                    <group string="Payments Details">
-                                        <field name="payment_methods" nolabel="1" readonly="1"/>
-                                        <!-- 
-                                            <tree string="Due Details">
-                                                <field name="payment_due_date"/>
-                                                <field name="payment_amount "/>
-                                            </tree>
-                                        -->
-                                    </group>
-                                </sheet>
-                            </form>
                         </field>
                     </group>
                     <group string="Delivery">

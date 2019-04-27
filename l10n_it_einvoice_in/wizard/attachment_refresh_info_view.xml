@@ -6,6 +6,8 @@
         <field name="model">wizard.attachment.in.refresh</field>
         <field name="arch" type="xml">
             <form string="Refresh attachment info" >
+                <separator colspan="4"
+                           string="This wizard reload invoice info from xml file"/>
                 <footer>
                     <button string="Refresh"
                             name="refresh_info"
@@ -23,5 +25,31 @@
         target="new"
         key2="client_action_multi"
         id="action_refresh_attachment_in"/>
+
+
+    <record model="ir.ui.view" id="wizard_attachment_in_duedate">
+        <field name="name">Refresh due date from attachment</field>
+        <field name="model">wizard.attachment.in.duedate</field>
+        <field name="arch" type="xml">
+            <form string="Refresh due date from attachment" >
+                <separator colspan="4"
+                           string="This wizard read due dates from xml file and set them in invoice"/>
+                <footer>
+                    <button string="Due Date"
+                            name="refresh_duedate"
+                            type="object"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="Refresh due date from attachment"
+        res_model="wizard.attachment.in.duedate"
+        src_model="fatturapa.attachment.in"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+        id="action_duedate_attachment_in"/>
 
 </odoo>

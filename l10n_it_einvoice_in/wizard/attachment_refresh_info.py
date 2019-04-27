@@ -29,6 +29,6 @@ class WizardAttachmentInDuedate(models.TransientModel):
         self.ensure_one()
         attachments = self.env[self.env.context['active_model']].browse(
             self.env.context['active_ids'])
-        attachments._compute_due_date()
+        attachments.revaluate_due_date()
 
         return True

@@ -26,6 +26,57 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
 
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    communication_type = fields.Selection([
+        ('XX19', 'Esterometro 2019'),
+        ('2018', 'Spesometro 2018'),
+        ('2019', 'Spesometro 2019'),
+        ('NO', 'Escluso'),],
+        'Tipo comunicazione',
+            help="Tipo di comunicazione a cui è assoggettata la fattura\n")
+
+    @api.onchange('partner_id', 'date')
+    def onchange_set_einvoice_commtype(self):
+        if not self.partner_id or not self.date:
+            return True
+        year = max(int(self.date[0:4]), 2017)
+        iso = self.partner_id.vat[0:2] if self.partner_id.vat else False
+        if ((hasattr(self, 'fatturapa_attachment_out_id') and
+             self.fatturapa_attachment_out_id) or
+                (hasattr(self, 'fatturapa_attachment_in_id') and
+                 self.fatturapa_attachment_in_id)):
+            exclude_invoice = True
+        elif self.journal_id:
+            exclude_invoice = (self.journal_id.einvoice or
+                               self.rev_charge or
+                               self.proforma or
+                               self.anom_sale_receipts)
+        else:
+            exclude_invoice = False
+        if not iso and self.partner_id.country_id:
+            iso = self.partner_id.country_id.code
+        if exclude_invoice:
+            communication_type = 'NO'
+        elif iso == 'IT':
+            communication_type = '%d' % year
+        elif iso in EU_COUNTRIES and year < 2019:
+            communication_type = '%d' % year
+        elif iso and year >= 2019:
+            communication_type = 'XX19'
+        else:
+            communication_type = 'NO'
+        self.communication_type = communication_type
+
+    @api.multi
+    @api.depends('partner_id', 'date')
+    def set_einvoice_commtype(self):
+        for invoice in self:
+            invoice.onchange_set_einvoice_commtype()
+        return True
+
+
 class AccountVatCommunication(models.Model):
 
     def _get_eu_res_country_group(self):
@@ -44,6 +95,16 @@ class AccountVatCommunication(models.Model):
         return False
 
     _name = "account.vat.communication"
+
+    name = fields.Char('Descrizione')
+    type = fields.Selection([
+            ('XX19', 'Esterometro'),
+            ('2019', 'Spesometro 2019'),
+            ('2018', 'Spesometro 2018'),
+            ('2017', 'Spesometro 2017'),],
+            'Tipo',
+            required=True,
+            help="Tipo di comunicazione\n")
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     soggetto_codice_fiscale = fields.Char(
@@ -127,14 +188,17 @@ class AccountVatCommunication(models.Model):
 
     @api.model
     def search_sequence(self, company_id):
-        return self.env['ir.sequence'].search([('name', '=', 'VAT communication'), ('company_id', '=', company_id)])
+        return self.env['ir.sequence'].search(
+            [('name', '=', 'VAT communication'),
+             ('company_id', '=', company_id)])
 
     @api.model
     def create_sequence(self, company_id):
         """ Create new no_gap entry sequence for progressivo_telematico """
 
         # Company sent own communication, so set next number as the nth quarter
-        next_number = int((date.today().toordinal() - date(2017, 7, 1).toordinal()) / 90) + 1
+        next_number = int((date.today().toordinal() - 
+                           date(2017, 7, 1).toordinal()) / 90) + 1
         sequence_model = self.env['ir.sequence']
         vals = {
             'name': 'VAT communication',
@@ -229,7 +293,6 @@ class AccountVatCommunication(models.Model):
         invoice_model = self.env['account.invoice']
         account_tax_model = self.env['account.invoice.tax']
         sum_amounts = {}
-        print(where)
         for f in ('total', 'taxable', 'tax', 'discarded'):
             sum_amounts[f] = 0.0
         invoices = invoice_model.search(where)
@@ -355,14 +418,6 @@ class AccountVatCommunication(models.Model):
         return comm_lines, sum_amounts
 
     def load_DTE_DTR(self, commitment, commitment_line_model, dte_dtr_id):
-        journal_model = self.env['account.journal']
-        exclude_journal_ids = journal_model.search(
-            [ '|', '|',
-             ('rev_charge', '=', True),
-             ('proforma', '=', True),
-             ('anom_sale_receipts', '=', True),
-             ])
-
         company_id = commitment.company_id.id
         # return 0        #debug
         p_start = 0
@@ -378,7 +433,7 @@ class AccountVatCommunication(models.Model):
         where = [('company_id', '=', company_id),
                  ('date', '>=', p_start),
                  ('date', '<=', p_stop),
-                 ('journal_id', 'not in', exclude_journal_ids.ids),
+                 ('communication_type', '=', commitment.type),
                  ('state', 'in', ('open', 'paid'))]
         if dte_dtr_id == 'DTE':
             where.append(('type', 'in', ['out_invoice', 'out_refund']))

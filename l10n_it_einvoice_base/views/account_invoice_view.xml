@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem name="Electronic Invoice" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
-    <menuitem name="Electronic Bill" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
+
+    <record id="invoice_form_doctype" model="ir.ui.view">
+        <field name="name">invoice.form.doctype</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other_info']/group/group[2]" position="inside">
+                <field name="invoice_type_id" options="{'no_create': True}"/>
+                <field name="type" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form_doctype" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.doctype</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/group/group/field[@name='company_id']" position="after">
+                <field name="invoice_type_id" options="{'no_create': True}"/>
+                <field name="type" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
 
     <record id="customer_invoice_lines_not_editable" model="ir.ui.view">
         <field name="name">customer_invoice_lines_not_editable</field>
@@ -53,5 +75,36 @@
             </field>
         </field>
     </record>
-</odoo>
 
+    <record id="fatturapa_payment_detail_view" model="ir.ui.view">
+        <field name="name">fatturapa.payment.detail.view</field>
+        <field name="model">fatturapa.payment.detail</field>
+        <field name="arch" type="xml">
+            <form string="Payments Details">
+                <field name="payment_due_date"/>
+                <field name="payment_amount"/>
+                <field name="payment_code"/>
+                <field name="payment_term_start"/>
+                <field name="payment_days"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="fatturapa_payment_detail_tree" model="ir.ui.view">
+        <field name="name">fatturapa.payment.detail.tree</field>
+        <field name="model">fatturapa.payment.detail</field>
+        <field name="arch" type="xml">
+            <tree string="Payments Details">
+                <field name="payment_due_date"/>
+                <field name="payment_amount"/>
+                <field name="payment_code"/>
+                <field name="payment_term_start"/>
+                <field name="payment_days"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem name="Electronic Invoice" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
+    <menuitem name="Electronic Bill" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
+
+</odoo>

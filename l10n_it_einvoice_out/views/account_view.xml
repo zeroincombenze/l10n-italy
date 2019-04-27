@@ -34,9 +34,6 @@
                 </page>
                 <page string="Electronic Invoice">
                     <group>
-                        <group string="Fiscal">
-                            <field name="invoice_type_id" options="{'no_create': True}"/>
-                        </group>
                         <group string="Results">
                             <field name="fatturapa_attachment_out_id"/>
                             <field name="has_pdf_invoice_print"

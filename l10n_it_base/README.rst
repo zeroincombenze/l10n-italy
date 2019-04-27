@@ -75,6 +75,10 @@ Usage / Utilizzo
 * Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
 * Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
 
+.. image:: partner_1.png
+    :alt: partner
+
+
 |
 
 OCA comparation / Confronto con OCA
@@ -276,7 +280,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-24
+Last Update / Ultimo aggiornamento: 2019-04-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
