@@ -64,84 +64,84 @@
                     <page string="Sale invoices">
                         <field name="account_vat_communication_dte_line_ids" nolabel="1">
                             <tree editable="bottom" string="Sale invoice Lines">
-                                                                <field name="invoice_id" />
-                                <field name="tax_id" />
-                                <field name="xml_TipoDocumento" />
-                                <field name="partner_id" />
-                                <field name="xml_IdPaese" />
-                                <field name="xml_IdCodice" />
-                                <field name="xml_CodiceFiscale" />
+                                <field name="invoice_id"/>
+                                <field name="tax_id"/>
+                                <field name="xml_TipoDocumento"/>
+                                <field name="partner_id"/>
+                                <field name="xml_IdPaese"/>
+                                <field name="xml_IdCodice"/>
+                                <field name="xml_CodiceFiscale"/>
                                 <field name="amount_total" sum="Total Amount"/>
                                 <field name="amount_taxable" sum="Untaxed Amount"/>
-                                <field name="xml_Aliquota" />
-                                <field name="xml_Detraibile" />
-                                <field name="tax_rate" />
-                                <field name="tax_nodet_rate" />
-                                <field name="tax_nature" />
-                                <field name="tax_payability" />
-                                <field name="xml_Error" />
+                                <field name="amount_tax" sum="Tax Amount"/>
+                                <field name="xml_Aliquota"/>
+                                <field name="xml_Detraibile"/>
+                                <field name="tax_nature"/>
+                                <field name="tax_payability"/>
+                                <field name="xml_Error1"/>
+                                <field name="xml_Error2"/>
                             </tree>
-                            <form>
-                                <field name="invoice_id" />
-                                <field name="tax_id" />
-                                <field name="xml_TipoDocumento" />
-                                <field name="partner_id" />
-                                <field name="xml_IdPaese" readonly="1" />
-                                <field name="xml_IdCodice" readonly="1" />
-                                <field name="xml_CodiceFiscale" readonly="1" />
-                                <field name="amount_total" />
-                                <field name="amount_taxable" />
-                                <field name="xml_Aliquota" readonly="1" />
-                                <field name="xml_Detraibile" readonly="1" />
-                                <field name="tax_rate" readonly="1" />
-                                <field name="tax_nodet_rate" readonly="1" />
-                                <field name="tax_nature" readonly="1" />
-                                <field name="tax_payability" />
-                                <field name="xml_Error" />
+                            <form string="Sale invoice Line">
+                                <group colspan="4">
+                                    <field name="invoice_id"/>
+                                    <field name="tax_id"/>
+                                    <field name="xml_TipoDocumento" readonly="1"/>
+                                    <field name="partner_id" readonly="1"/>
+                                    <field name="xml_IdPaese" readonly="1"/>
+                                    <field name="xml_IdCodice" readonly="1"/>
+                                    <field name="xml_CodiceFiscale" readonly="1"/>
+                                    <field name="amount_total" readonly="1"/>
+                                    <field name="amount_tax" readonly="1"/>
+                                    <field name="amount_taxable" readonly="1"/>
+                                    <field name="xml_Aliquota" readonly="1"/>
+                                    <field name="xml_Detraibile" readonly="1"/>
+                                    <field name="tax_nature" readonly="1"/>
+                                    <field name="tax_payability" readonly="1"/>
+                                    <field name="xml_Error1" readonly="1"/>
+                                    <field name="xml_Error2" readonly="1"/>
+                                </group>
                             </form>
                         </field>
                     </page>
                     <page string="Purchase invoices">
                         <field name="account_vat_communication_dtr_line_ids" nolabel="1">
                             <tree editable="bottom" string="Purchase invoice Lines">
-                                <field name="invoice_id" />
-                                <field name="tax_id" />
-                                <field name="xml_TipoDocumento" />
-                                <field name="partner_id" />
-                                <field name="xml_IdPaese" />
-                                <field name="xml_IdCodice" />
-                                <field name="xml_CodiceFiscale" />
+                                <field name="invoice_id"/>
+                                <field name="tax_id"/>
+                                <field name="xml_TipoDocumento"/>
+                                <field name="partner_id"/>
+                                <field name="xml_IdPaese"/>
+                                <field name="xml_IdCodice"/>
+                                <field name="xml_CodiceFiscale"/>
                                 <field name="amount_total" sum="Total Amount"/>
                                 <field name="amount_taxable" sum="Untaxed Amount"/>
-                                <field name="xml_Aliquota" />
-                                <field name="xml_Detraibile" />
-                                
-                                  <field name="tax_rate" />
-                                  <field name="tax_nodet_rate" />
-                                 
-                                <field name="tax_nature" />
-                                <field name="tax_payability" />
-                                <field name="xml_Error" />
+                                <field name="amount_tax" sum="Tax Amount"/>
+                                <field name="xml_Aliquota"/>
+                                <field name="xml_Detraibile"/>
+                                <field name="tax_nature"/>
+                                <field name="tax_payability"/>
+                                <field name="xml_Error1"/>
+                                <field name="xml_Error2"/>
                             </tree>
-                            <form>
-                                <field name="invoice_id" />
-                                <field name="tax_id" />
-                                <field name="xml_TipoDocumento" />
-                                <field name="partner_id" />
-                                <field name="xml_IdPaese" readonly="1" />
-                                <field name="xml_IdCodice" readonly="1" />
-                                <field name="xml_CodiceFiscale" readonly="1" />
-                                <field name="amount_total"/>
-                                <field name="amount_taxable"/>
-                                <field name="xml_Aliquota" readonly="1" />
-                                <field name="xml_Detraibile" readonly="1" />
-                                
-                                  <field name="tax_rate" readonly="1" />
-                                  <field name="tax_nodet_rate" readonly="1" />
-                                 
-                                <field name="tax_nature" readonly="1" />
-                                <field name="tax_payability" />
-                                <field name="xml_Error" />
+                            <form string="Purchase invoice Lines">
+                                <group colspan="4">
+                                    <field name="invoice_id"/>
+                                    <field name="tax_id"/>
+                                    <field name="xml_TipoDocumento" readonly="1"/>
+                                    <field name="partner_id" readonly="1"/>
+                                    <field name="xml_IdPaese" readonly="1"/>
+                                    <field name="xml_IdCodice" readonly="1"/>
+                                    <field name="xml_CodiceFiscale" readonly="1"/>
+                                    <field name="amount_total" readonly="1"/>
+                                    <field name="amount_tax" readonly="1"/>
+                                    <field name="amount_taxable" readonly="1"/>
+                                    <field name="xml_Aliquota" readonly="1"/>
+                                    <field name="xml_Detraibile" readonly="1"/>
+                                    <field name="tax_nature" readonly="1"/>
+                                    <field name="tax_payability" readonly="1"/>
+                                    <field name="xml_Error1" readonly="1"/>
+                                    <field name="xml_Error2" readonly="1"/>
+                                </group>
                             </form>
                         </field>
                     </page>

@@ -79,6 +79,13 @@ class AccountInvoice(models.Model):
 
 class AccountVatCommunication(models.Model):
 
+    def _get_error(self, error, context):
+        if context.get('no_except', True):
+            return error
+        else:
+            raise UserError(error)
+        return False
+
     def _get_eu_res_country_group(self):
         eu_group = self.env.ref("base.europe", raise_if_not_found=False)
         if not eu_group:
@@ -288,8 +295,9 @@ class AccountVatCommunication(models.Model):
         return address.country_id.code or code
 
     def load_invoices(self, commitment, commitment_line_model,
-                      dte_dtr_id, where, comm_lines):
+                      dte_dtr_id, where, comm_lines, context=None):
         """Read all in/out invoices and return amount and fiscal parts"""
+        context = context or {}
         invoice_model = self.env['account.invoice']
         account_tax_model = self.env['account.invoice.tax']
         sum_amounts = {}
@@ -300,6 +308,7 @@ class AccountVatCommunication(models.Model):
             inv_line = {}
             invoice_id = invoice.id
             for invoice_tax in invoice.tax_line_ids:
+                xml_Error2 = ''
                 tax_nature = False
                 tax_payability = 'I'
                 tax_rate = 0.0
@@ -343,25 +352,24 @@ class AccountVatCommunication(models.Model):
                             if tax.amount > tax_rate:
                                 tax_rate = tax.amount
                 if tax_type in ('sale', 'purchase'):
-                    if tax_rate == 0.0 and not tax_nature:
-                        res['xml_Error'] += self._get_error(
-                            _('00400 - '
-                              'Invalid tax %s nature for invoice %s') % (
-                                  invoice_tax.name,
-                                  invoice.number))
-                    elif tax_rate and tax_nature and tax_nature != 'N6':
-                        res['xml_Error'] += self._get_error(
-                            _('00401 - '
-                              'Invalid tax %s nature for invoice %s') % (
-                                  invoice_tax.name,
-                                  invoice.number))
-                    if tax_payability == 'S' and tax_nature:
-                        if tax.nature == 'N6':
-                            res['xml_Error'] += self._get_error(
-                                _('00420 - '
-                                'Wrong payability/nature tax %s (%s)') % (
-                                    invoice_tax.name,
-                                    invoice.number))
+                    if (tax_rate == 0.0 and (not tax_nature or
+                            (dte_dtr_id == 'DTR' and tax_nature == 'N6'))):
+                        xml_Error2 += self._get_error(
+                            _('00400 - Missed/wrong tax nature in %s') % (
+                                  invoice_tax.name), context)
+                    elif (tax_rate and tax_nature and
+                            (dte_dtr_id == 'DTE' or tax_nature != 'N6')):
+                        xml_Error2 += self._get_error(
+                            _('00401 - Invalid/wrong tax nature in %s') %
+                                  invoice_tax.name, context)
+                    if tax_payability == 'S' and tax_nature == 'N6':
+                        xml_Error2 += self._get_error(
+                            _('00420 - Wrong tax payability in %s') %
+                                    invoice_tax.name, context)
+                if tax_rate and (tax_rate < 0.01 or tax_rate > 1):
+                    xml_Error2 += self._get_error(
+                        _('00424 - Invalid tax rate in %s') %
+                                invoice_tax.name, context)
                 if tax_nature:
                     if (tax_nature == 'FC') or (tax_nature == 'N2' and
                                             not invoice.partner_id.vat):
@@ -387,6 +395,7 @@ class AccountVatCommunication(models.Model):
                     inv_line[taxcode_base_id]['tax_nature'] = tax_nature
                     inv_line[taxcode_base_id][
                         'tax_payability'] = tax_payability
+                    inv_line[taxcode_base_id]['xml_Error2'] = xml_Error2
                 if tax_rate and not inv_line[taxcode_base_id]['tax_rate']:
                     inv_line[taxcode_base_id]['tax_rate'] = tax_rate
                 if tax_nodet_rate and not inv_line[taxcode_base_id][
@@ -446,12 +455,14 @@ class AccountVatCommunication(models.Model):
                               [('commitment_id', '=', commitment.id)])
             for com_line in resl:
                 com_line.unlink()
+        context = {'no_except': True}
         comm_lines, sum_amounts = self.load_invoices(
             commitment, commitment_line_model,
-            dte_dtr_id, where, {})
+            dte_dtr_id, where, {}, context=context)
         if comm_lines:
-            for line_id in commitment_line_model.search([('commitment_id', '=', commitment.id),
-                          ('invoice_id', 'not in', list(comm_lines.keys())),]):
+            for line_id in commitment_line_model.search(
+                    [('commitment_id', '=', commitment.id),
+                     ('invoice_id', 'not in', list(comm_lines.keys())),]):
                 line_id.unlink()
         for invoice_id in comm_lines:
             for line_id in commitment_line_model.search(
@@ -465,7 +476,8 @@ class AccountVatCommunication(models.Model):
                 aa = self.env['account.tax'].search([('id','=',tax_id)]).id
                 line = {'commitment_id': commitment.id,
                         'invoice_id': invoice_id,
-                        'tax_id': int(self.env['account.tax'].search([('id','=',tax_id)]).id),
+                        'tax_id': int(self.env['account.tax'].search(
+                            [('id','=',tax_id)]).id),
                         'partner_id': comm_lines[invoice_id]['partner_id'],
                         }
                 for f in ('amount_total',
@@ -476,15 +488,16 @@ class AccountVatCommunication(models.Model):
                           'tax_nodet_rate',
                           'tax_nature',
                           'tax_payability',
+                          'xml_Error2'
                           ):
                     line[f] = comm_lines[invoice_id]['taxes'][tax_id][f]
 
-                ids = commitment_line_model.search(
-                              [('commitment_id', '=', commitment.id),
-                              ('invoice_id', '=', invoice_id),
-                              ('tax_id', '=', tax_id), ])
-                if ids:
-                    commitment_line_model.write(line)
+                commitment_line = commitment_line_model.search(
+                    [('commitment_id', '=', commitment.id),
+                     ('invoice_id', '=', invoice_id),
+                     ('tax_id', '=', tax_id), ])
+                if commitment_line:
+                    commitment_line.write(line)
                 else:
                     commitment_line_model.create(line)
         return sum_amounts
@@ -693,7 +706,7 @@ class CommitmentLine(models.AbstractModel):
     _name = 'account.vat.communication.line'
 
     def _get_error(self, error, context):
-        if context.get('no_except', False):
+        if context.get('no_except', True):
             return error
         else:
             raise UserError(error)
@@ -713,7 +726,7 @@ class CommitmentLine(models.AbstractModel):
         else:
             address = partner
 
-        res = {'xml_Error': ''}
+        res = {'xml_Error1': ''}
         if partner.vat:
             # vat = partner.vat.replace(' ', '')
             # res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
@@ -731,7 +744,7 @@ class CommitmentLine(models.AbstractModel):
                 country=partner.country_id,
                 context=context)
             if 'warning' in r:
-                res['xml_Error'] += self._get_error(
+                res['xml_Error1'] += self._get_error(
                     _('00302 - '
                       'Invalid fiscalcode of %s') % partner.name, context)
             if res.get('xml_Nazione', '') == 'IT' and \
@@ -754,53 +767,48 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Nome'] = partner.firstname
                 res['xml_Cognome'] = partner.lastname
             if not res.get('xml_Cognome') or not res.get('xml_Nome'):
-                res['xml_Error'] += self._get_error(
-                    _('Invalid First or Last name %s') % (partner.name),
+                res['xml_Error1'] += self._get_error(
+                    _('Invalid First or Last name %s') % partner.name,
                     context)
-        # else:
-        #     res['xml_Denominazione'] = partner.name
-        #     if not partner.vat and res['xml_Nazione'] == 'IT':
-        #         self._get_error(_('Partner %s %d without VAT number') % (
-        #                 partner.name, partner.id), context)
         if not res.get('xml_CodiceFiscale') and \
                 not res.get('xml_IdPaese') and \
                 not res.get('xml_IdCodice'):
-            res['xml_Error'] += self._get_error(
+            res['xml_Error1'] += self._get_error(
                 _('00464 - '
-                  'Partner %s %d without fiscal data') % (
-                    partner.name, partner.id))
+                  'Partner %s without fiscal data') %
+                    partner.name, context)
         if res.get('xml_IdPaese') and \
                 res.get('xml_IdPaese') != res['xml_Nazione']:
-            res['xml_Error'] += self._get_error(
+            res['xml_Error1'] += self._get_error(
                 _('003XC - '
-                  'Partner %s %d vat country differs from country') % (
-                    partner.name, partner.id))
+                  'Partner %s %d vat country differs from country') %
+                    partner.name, context)
 
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')
         else:
-            res['xml_Error'] += self._get_error(
+            res['xml_Error1'] += self._get_error(
                 _('003XA - '
-                'Partner %s without street on address') % (
-                    partner.name))
+                'Partner %s without street on address') %
+                    partner.name, context)
 
         if res.get('xml_IdPaese', '') == 'IT':
             if address.zip:
                 res['xml_CAP'] = address.zip.replace('x', '0').replace('%',
                                                                        '0')
             if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
-                res['xml_Error'] += self._get_error(
+                res['xml_Error1'] += self._get_error(
                     _('003XZ - '
-                    'Partner %s has wrong zip code') % (
-                        partner.name))
+                    'Partner %s has wrong zip code') %
+                        partner.name, context)
 
         res['xml_Comune'] = address.city or ' '
         if not address.city:
-            res['xml_Error'] += self._get_error(
+            res['xml_Error1'] += self._get_error(
                 _('003XY - '
-                'Partner %s without city on address') % (
-                    partner.name))
+                'Partner %s without city on address') %
+                    partner.name, context)
 
         if res['xml_Nazione'] == 'IT':
             if release.major_version == '6.1':
@@ -809,10 +817,10 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Provincia'] = partner.state_id.code
             if not res['xml_Provincia']:
                 del res['xml_Provincia']
-                res['xml_Error'] += self._get_error(
+                res['xml_Error1'] += self._get_error(
                     _('003XP - '
-                    'Partner %s without province on address') % (
-                        partner.name))
+                    'Partner %s without province on address') %
+                        partner.name, context)
         return res
 
     @api.model
@@ -829,6 +837,7 @@ class CommitmentLine(models.AbstractModel):
             res['xml_Natura'] = line.tax_nature
         # res['xml_Natura'] = line.tax_id.nature_id.code
         res['xml_EsigibilitaIVA'] = line.tax_payability
+        res['xml_Error2'] = line.xml_Error2
         return res
 
     @api.model
@@ -892,6 +901,7 @@ class CommitmentDTELine(models.Model):
             line.xml_IdPaese = result['xml_IdPaese']
             line.xml_IdCodice = result['xml_IdCodice']
             line.xml_CodiceFiscale = result['xml_CodiceFiscale']
+            line.xml_Error1 = fields['xml_Error1']
         return res
 
     @api.multi
@@ -908,6 +918,7 @@ class CommitmentDTELine(models.Model):
             line.xml_ImponibileImporto = data["xml_ImponibileImporto"]
             line.xml_Imposta = data["xml_Imposta"]
             line.xml_Natura = data["xml_Natura"]
+            line.xml_Error2 = data["xml_Error2"]
         return res
 
     @api.multi
@@ -949,11 +960,15 @@ class CommitmentDTELine(models.Model):
         'Taxable amount', digits=dp.get_precision('Account'))
     amount_tax = fields.Float(
         'Tax amount', digits=dp.get_precision('Account'))
-    xml_Error = fields.Char(
+    xml_Error1 = fields.Char(
             compute='_xml_dati_partner',
             string="Error",
             store=False,
             select=True,
+            readonly=True
+        )
+    xml_Error2 = fields.Char(
+            string="Error",
             readonly=True
         )
     xml_IdPaese = fields.Char(
@@ -1023,20 +1038,22 @@ class CommitmentDTRLine(models.Model):
         uid=self.env.user.id
         ids=self.ids
         context=self.env.context
+
         res = {}
         for line in self.browse(ids):
-            fields = self._dati_partner(line.partner_id, args)
-
+            ctx = context.copy()
+            ctx['no_except'] = True
+            fields = self._dati_partner(line.partner_id, args, context=ctx)
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
                 if fields.get(f, ''):
                     result[f] = fields[f]
+                else:
+                    result[f] = False
             line.xml_IdPaese = result['xml_IdPaese']
             line.xml_IdCodice = result['xml_IdCodice']
-            try:
-                line.xml_CodiceFiscale = result['xml_CodiceFiscale']
-            except:
-                pass
+            line.xml_CodiceFiscale = result['xml_CodiceFiscale']
+            line.xml_Error1 = fields['xml_Error1']
         return res
 
     @api.multi
@@ -1097,11 +1114,15 @@ class CommitmentDTRLine(models.Model):
         'Taxable amount', digits=dp.get_precision('Account'))
     amount_tax = fields.Float(
         'Tax amount', digits=dp.get_precision('Account'))
-    xml_Error = fields.Char(
+    xml_Error1 = fields.Char(
             compute='_xml_dati_partner',
             string="Error",
             store=False,
             select=True,
+            readonly=True
+        )
+    xml_Error2 = fields.Char(
+            string="Error",
             readonly=True
         )
     xml_IdPaese = fields.Char(
