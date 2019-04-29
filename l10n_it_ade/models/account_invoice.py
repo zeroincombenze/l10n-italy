@@ -4,8 +4,18 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
+from xml.sax.saxutils import escape
+import logging
+
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+except ImportError as err:
+    _logger.debug(err)
 
 
 XML_ESCAPE = {

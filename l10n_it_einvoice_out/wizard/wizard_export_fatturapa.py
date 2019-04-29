@@ -10,6 +10,7 @@
 import re
 import base64
 import logging
+
 from xml.sax.saxutils import escape
 
 from odoo import api, fields, models
