@@ -770,6 +770,8 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Error1'] += self._get_error(
                     _('Invalid First or Last name %s') % partner.name,
                     context)
+        else:
+            res['xml_Denominazione'] = partner.name
         if not res.get('xml_CodiceFiscale') and \
                 not res.get('xml_IdPaese') and \
                 not res.get('xml_IdCodice'):

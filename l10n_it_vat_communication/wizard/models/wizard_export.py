@@ -255,7 +255,7 @@ class WizardVatCommunication(models.TransientModel):
                                  dte_dtr_id=dte_dtr_id,
                                  selector=selector,
                                  context=self.env.context)
-    
+
     def old_get_cedente_prestatore(self, cr, uid, fields, dte_dtr_id, context=None):
 
         if dte_dtr_id == 'DTE':
