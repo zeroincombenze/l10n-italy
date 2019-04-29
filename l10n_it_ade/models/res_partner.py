@@ -8,8 +8,29 @@ from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
 
+XML_ESCAPE = {
+    u'\'': u' ',
+    u'\n': u' ',
+    u'\r': u' ',
+    u'\t': u' ',
+    u'€': u'EUR',
+    u'©': u'(C)',
+    u'®': u'(R)',
+    u'«': u'&laquo;',
+    u'»': u'&raquo;',
+    u'Ø': u'&Oslash;',
+    u'ø': u'&oslash;',
+    u'ß': u'ss',
+}
+
 class ResPartner(models.Model):
     _inherit = "res.partner"
+
+    def wep_text(self, text):
+        """"Do xml escape to avoid error StringLatinType"""
+        if text:
+            return escape(unidecode(text), XML_ESCAPE).strip()
+        return text
 
     def wep_fiscalcode(self, fc):
         if fc:

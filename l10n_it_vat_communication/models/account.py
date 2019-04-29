@@ -40,7 +40,7 @@ class AccountInvoice(models.Model):
     @api.onchange('partner_id', 'date')
     def onchange_set_einvoice_commtype(self):
         if not self.partner_id or not self.date:
-            return True
+            return
         year = max(int(self.date[0:4]), 2017)
         iso = self.partner_id.vat[0:2] if self.partner_id.vat else False
         if ((hasattr(self, 'fatturapa_attachment_out_id') and

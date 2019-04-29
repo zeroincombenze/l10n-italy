@@ -63,31 +63,31 @@ CODE_NONE_IT = '0000000'
 CODE_NONE_EU = 'XXXXXXX'
 PAYTYPE_BNK_CUSTOMER = ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21')
 PAYTYPE_BNK_COMPANY = ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')
-XML_ESCAPE = {
-    u'\'': u' ',
-    u'\n': u' ',
-    u'\r': u' ',
-    u'\t': u' ',
-    u'€': u'EUR',
-    u'©': u'(C)',
-    u'®': u'(R)',
-    # u'à': u'&agrave;',
-    # u'á': u'&aacute;',
-    # u'è': u'&egrave;',
-    # u'é': u'&eacute;',
-    # u'ì': u'&igrave;',
-    # u'í': u'&iacute;',
-    # u'ò': u'&ograve;',
-    # u'ó': u'&oacute;',
-    # u'ù': u'&ugrave;',
-    # u'ú': u'&uacute;',
-    # u'°': u'&deg;',
-    u'«': u'&laquo;',
-    u'»': u'&raquo;',
-    u'Ø': u'&Oslash;',
-    u'ø': u'&oslash;',
-    u'ß': u'&szlig;',
-}
+# XML_ESCAPE = {
+#     u'\'': u' ',
+#     u'\n': u' ',
+#     u'\r': u' ',
+#     u'\t': u' ',
+#     u'€': u'EUR',
+#     u'©': u'(C)',
+#     u'®': u'(R)',
+#     # u'à': u'&agrave;',
+#     # u'á': u'&aacute;',
+#     # u'è': u'&egrave;',
+#     # u'é': u'&eacute;',
+#     # u'ì': u'&igrave;',
+#     # u'í': u'&iacute;',
+#     # u'ò': u'&ograve;',
+#     # u'ó': u'&oacute;',
+#     # u'ù': u'&ugrave;',
+#     # u'ú': u'&uacute;',
+#     # u'°': u'&deg;',
+#     u'«': u'&laquo;',
+#     u'»': u'&raquo;',
+#     u'Ø': u'&Oslash;',
+#     u'ø': u'&oslash;',
+#     u'ß': u'&szlig;',
+# }
 IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
 INHERITED_FLDS = ['codice_destinatario', 'name']
 
@@ -172,12 +172,12 @@ class WizardExportFatturapa(models.TransientModel):
                     wep_phone += phone[i]
         return wep_phone.strip()
 
-    def _wep_text(self, text):
-        """"Do xml escape to avoid error StringLatinType"""
-        # text.encode('latin', 'ignore').decode('latin')
-        if text:
-            return escape(unidecode(text), XML_ESCAPE).strip()
-        return text
+    # def _wep_text(self, text):
+    #     """"Do xml escape to avoid error StringLatinType"""
+    #     # text.encode('latin', 'ignore').decode('latin')
+    #     if text:
+    #         return escape(unidecode(text), XML_ESCAPE).strip()
+    #     return text
 
     # def __wep_vat(self, vat):
     #     if vat:
@@ -235,6 +235,8 @@ class WizardExportFatturapa(models.TransientModel):
                 value = partner[field] or (parent and parent[field])
             else:
                 value = partner[field]
+        if field == 'name':
+            return partner.wep_text(value)
         return value
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -779,7 +781,7 @@ class WizardExportFatturapa(models.TransientModel):
             for causale in caus_list:
                 if not causale:
                     continue
-                causale = self._wep_text(causale)
+                causale = invoice.wep_text(causale)
                 body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 
         if invoice.company_id.fatturapa_art73:
@@ -868,7 +870,7 @@ class WizardExportFatturapa(models.TransientModel):
                 # see https://tinyurl.com/ycem923t
                 # and '&#10;' would not be correctly visualized anyway
                 # (for example firefox replaces '&#10;' with space
-                Descrizione=self._wep_text(line.name),
+                Descrizione=invoice.wep_text(line.name),
                 PrezzoUnitario=('%.' + str(
                     price_precision
                 ) + 'f') % prezzo_unitario,
