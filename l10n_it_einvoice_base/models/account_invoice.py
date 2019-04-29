@@ -458,5 +458,5 @@ class AccountInvoice(models.Model):
                                            'IT',
                                            res.get('amount_total'))
         if len(ids) == 1:
-            res.update({'invoice_type_id': ids[0].id})
+            res.update({'invoice_type_id': ids[0]})
         return res
