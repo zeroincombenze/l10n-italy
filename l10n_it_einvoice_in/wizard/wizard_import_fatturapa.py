@@ -1015,7 +1015,8 @@ class WizardImportFatturapa(models.TransientModel):
                 ) % Withholding.CausalePagamento)
             wt_found = False
             for wt in wts:
-                if wt.tax == float(Withholding.AliquotaRitenuta):
+                wt_aliquota = wt.tax * wt.base
+                if wt_aliquota == float(Withholding.AliquotaRitenuta):
                     wt_found = wt
                     break
             if not wt_found:
@@ -1140,9 +1141,9 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.1.6
         RelInvoices = FatturaBody.DatiGenerali.DatiFattureCollegate
         if RelInvoices:
-            for invoice in RelInvoices:
+            for rel_invoice in RelInvoices:
                 doc_datas = self._prepareRelDocsLine(
-                    invoice_id, invoice, 'invoice')
+                    invoice_id, rel_invoice, 'invoice')
                 if doc_datas:
                     for doc_data in doc_datas:
                         rel_docs_model.create(doc_data)

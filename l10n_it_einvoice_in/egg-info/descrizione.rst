@@ -19,7 +19,7 @@ Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura
 
 ::
 
-    Normativa:
+    Normativa e prassi:
 
 Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
 

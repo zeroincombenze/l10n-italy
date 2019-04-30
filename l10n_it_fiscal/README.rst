@@ -1,12 +1,10 @@
 
-========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.5
-========================================================================
+==================================================================
+|icon| Italy - Fiscal localization by zeroincombenze(R) 10.0.0.2.0
+==================================================================
 
 
-**Ricezione fatture elettroniche**
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_in/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_fiscal/static/description/icon.png
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -16,134 +14,42 @@
 Overview / Panoramica
 =====================
 
-|en| EInvoice in
-----------------
+|en| Chart of Account and Tax codes
+-----------------------------------
 
-This module allows to import Electronic Bill XML files version 1.2.1
+Very detailed Chart of Account, available to any Italian Company.
+Tree structure may be expanded by end-user, adding new records.
 
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
+Code has 6 digits; users should not add codes ending with '0'.
 
-received through the Exchange System (SdI).
+Tax codes cover most of variety italian fiscal cases:
 
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
-
-For every supplier, it is possible to set the 'E-bills Detail Level':
-
- - Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill
- - VAT code level: Line are cumulated by VAT code
- - Maximum level: Every line contained in electronic bill will create a line in bill
-
-Moreover, in supplier form you can set the 'E-bill Default Product': this product will be used, during generation of bills, when no other possible product is found. Tax and account of bill line will be set according to what configured in the product.
-
-Every product code used by suppliers can be set, in product form, in
-
-Inventory →  Products
-
-If supplier specifies a known code in XML, the system will use it to retrieve the correct product to be used in bill line, setting the related tax and account.
-
- * Go to Accounting →  Purchases →  Electronic Bill
- * Upload XML file
- * View bill content clicking on 'Show preview'
- * Run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill
-
-In the incoming electronic bill files list you will see, by default, files to be registered. These are files not yet linked to one or more bills.
-
+* Ordinary regime
+* Simplified regime
+* Cash VAT
+* Subjects without VAT
 
 |
 
-|it| Fattura Elettronica in
----------------------------
+|it| Piano dei conti e Codici IVA
+---------------------------------
 
-Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
+Piano dei conti molto dettagliato utilizzabile da qualsiasi impresa italiana.
+La struttura può  essere ulteriormente espansa dall'utente finale
+con l'inserimento di nuovi record.
 
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
-
-ricevuti attraverso il Sistema di Interscambio (SdI).
-
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-
-
-::
-
-    Destinatari:
-
-Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+La codifica è di 6 cifre;
+l'utente finale non dovrebbe inserire codici terminanti con '0'.
 
 
-::
+I codici IVA coprono una grande varietà di casistiche fiscali:
 
-    Normativa e prassi:
+* Regime Ordinario
+* Regime semplificato (contribuenti minimi L.244/07)
+* Regime IVA per cassa (L.185/08 e art.6 DPR633/72)
+* Operazioni senza IVA (L.98/11)
 
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
-
-
-Per ciascun fornitore è possibile impostare il "Livello dettaglio e-fatture":
-
- - Livello minimo: la fattura fornitore viene creata senza righe, che dovranno essere create dall'utente in base a quanto indicato nella fattura elettronica
- - Livello codice IVA: le righe sono cumulate per codice IVA
- - Livello massimo: le righe della fattura fornitore verranno generate a partire da tutte quelle presenti nella fattura elettronica
-
-Nella scheda fornitore è inoltre possibile impostare il "Prodotto predefinito per e-fattura": verrà usato, durante la generazione delle fatture fornitore, quando non sono disponibili altri prodotti adeguati. Il conto e l'imposta della riga fattura verranno impostati in base a quelli configurati nel prodotto.
-
-Tutti i codici prodotto usati dai fornitori possono essere impostati nella relativa scheda, in
-
-Magazzino →  Prodotti
-
-
-|
-
-Features / Caratteristiche
---------------------------
-
-+--------------------------------------------------------+------------+---------------------------------+
-| Descrizione                                            | Stato      | Note                            |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitore, righe con IVA                  | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitore, righe senza IVA                | |check|    | Non riconosce esatto codice IVA |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con ritenuta d'acconto          | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori da agenti (enasarco)            | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con controllo su totale fattura | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con split-payment               | |no_check| |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con reverse charge              | |info|     | Non riconosce esatto codice IVA |
-+--------------------------------------------------------+------------+---------------------------------+
-| E-Nota Credito da fornitore                            | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Gestione multi-aziendale                               | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Validazione e-fattura per azienda                      | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Generazione scadenzario passivo da e-fattura           | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Livello contabile solo testata senza dettagli          | |check|    | Per collegare fatture manuali   |
-+--------------------------------------------------------+------------+---------------------------------+
-| Livello righe contabili per aliquote IVA               | |check|    | Per fatture con troppe righe    |
-+--------------------------------------------------------+------------+---------------------------------+
-| Livelllo righe contabili in dettaglio                  | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da stabile organizzazione estera             | |info|     |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da rappresentante fiscale                    | |info|     |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-
-
-|
-
-Usage / Utilizzo
-----------------
-
-Se il fornitore specifica un codice noto nell'XML, questo verrà usato dal sistema per recuperare il prodotto corretto da usare nella riga fattura, impostando il conto e l'imposta collegati.
-
-|menu| Contabilità > Acquisti > Fattura elettronica
-
-Caricare un file XML
-Visualizzare il contenuto della fattura facendo clic su "Mostra anteprima"
-Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura già (automaticamente) creata
+See http://www.zeroincombenze.it/il-piano-dei-conti-2/
 
 
 |
@@ -212,7 +118,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Install
+* |menu| Setting > Apps |right_do| Select **l10n_it_fiscal** > Install
 
 |
 
@@ -237,7 +143,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Update
+* |menu| Setting > Apps |right_do| Select **l10n_it_fiscal** > Update
 
 |
 
@@ -287,25 +193,13 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `Innoviu srl <http://www.innoviu.com>`__
-* `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Roberto Onnis <roberto.onnis@innoviu.com>
-* Alessio Gerace <alessio.gerace@agilebg.com>
-* Cesare Pellegrini <cesare@pointec.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-
-Translations by / Traduzioni a cura di
---------------------------------------
-
-* Sergio Zanchetta <https://github.com/primes2h>
-
+* Antonio M. Vigliotti <info@shs-av.com>
 
 |
 
@@ -329,7 +223,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-30
+Last Update / Ultimo aggiornamento: 2019-04-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -349,7 +243,7 @@ Last Update / Ultimo aggiornamento: 2019-04-30
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_in/static/description/Unknown badge-OCA
+.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_fiscal/static/description/Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/10.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg

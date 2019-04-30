@@ -75,7 +75,7 @@ Usage / Utilizzo
 * Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
 * Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
 
-.. image:: partner_1.png
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_base/static/description/partner_1.png
     :alt: partner
 
 
@@ -212,8 +212,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -280,7 +280,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-25
+Last Update / Ultimo aggiornamento: 2019-04-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -300,7 +300,7 @@ Last Update / Ultimo aggiornamento: 2019-04-25
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
+.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_base/static/description/Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/10.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg

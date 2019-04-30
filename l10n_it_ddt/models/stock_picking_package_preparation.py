@@ -374,6 +374,8 @@ class StockPickingPackagePreparation(models.Model):
             if not ddt.to_be_invoiced or ddt.invoice_id:
                 continue
             order = ddt._get_sale_order_ref()
+            invoiced_order_lines = []
+            orders = []
 
             if order:
                 group_method = (
@@ -398,6 +400,11 @@ class StockPickingPackagePreparation(models.Model):
                 group_key = ddt.id
 
             for line in ddt.line_ids:
+                if line.sale_line_id.order_id not in orders:
+                    orders.append(line.sale_line_id.order_id)
+                if line.sale_line_id not in invoiced_order_lines:
+                    invoiced_order_lines.append(line.sale_line_id)
+
                 if group_key not in invoices:
                     inv_data = ddt._prepare_invoice()
                     invoice = inv_obj.create(inv_data)
@@ -420,6 +427,13 @@ class StockPickingPackagePreparation(models.Model):
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:
                     references[invoice] = references[invoice] | ddt
+
+            # Get order lines to invoce because not in ddt
+            for order in orders:
+                for line in order.order_line:
+                    if line not in invoiced_order_lines:
+                        line.invoice_line_create(
+                            invoices[group_key].id, line.qty_to_invoice)
 
         if not invoices:
             raise UserError(_('There is no invoicable line.'))
