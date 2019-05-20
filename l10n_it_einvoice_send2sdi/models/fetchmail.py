@@ -39,7 +39,7 @@ class Fetchmail(models.Model):
                 # see _update_cron method)
                 server = server.with_context(**additional_context)
                 MailThread = self.env['mail.thread']
-                _logger.info(
+                _logger.debug(
                     'start checking for new e-invoices on %s server %s',
                     server.type, server.name)
                 additional_context['fetchmail_server_id'] = server.id

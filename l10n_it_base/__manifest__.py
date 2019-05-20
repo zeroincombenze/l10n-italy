@@ -8,9 +8,9 @@
 {
     'name': 'Italian Localisation - Base',
     'version': '10.0.0.2.15',
-    'category': 'Localisation/Italy',
-    'author': 'SHS-AV s.r.l.',
-    'website': 'https://odoo-italia.org/',
+    'category': 'Generic Modules/Accounting',
+    'author': 'Odoo Community Association (OCA), Pexego,',
+    'website': 'https://www.odoo-community.org',
     'license': 'LGPL-3',
     'depends': [
         'base',

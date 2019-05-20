@@ -37,7 +37,7 @@ class MailThread(models.AbstractModel):
             message.get('From', ''),
             message.get('Return-Path', '')]
         ):
-            _logger.info("Processing FatturaPA PEC with Message-Id: "
+            _logger.debug("Processing FatturaPA PEC with Message-Id: "
                          "{}".format(message.get('Message-Id')))
 
             fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
@@ -49,7 +49,7 @@ class MailThread(models.AbstractModel):
             if response_attachments and fatturapa_attachments:
                 # this is an electronic invoice
                 if len(response_attachments) > 1:
-                    _logger.info(
+                    _logger.debug(
                         'More than 1 message found in mail of incoming '
                         'invoice')
                 message_dict['model'] = 'fatturapa.attachment.in'
@@ -74,7 +74,7 @@ class MailThread(models.AbstractModel):
                 # (see mail.message.create)
                 self.env['mail.message'].with_context(
                     message_create_from_mail_mail=True).create(message_dict)
-                _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
+                _logger.debug('Routing FatturaPA PEC E-Mail with Message-Id: {}'
                              .format(message.get('Message-Id')))
                 return []
 
@@ -93,7 +93,7 @@ class MailThread(models.AbstractModel):
                 # (see mail.message.create)
                 self.env['mail.message'].with_context(
                     message_create_from_mail_mail=True).create(message_dict)
-                _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
+                _logger.debug('Routing FatturaPA PEC E-Mail with Message-Id: {}'
                              .format(message.get('Message-Id')))
                 return []
 
@@ -139,7 +139,7 @@ class MailThread(models.AbstractModel):
                                 fetchmail_server.e_inv_notify_partner_ids.ids
                             )]
                         })
-                        _logger.info(
+                        _logger.debug(
                             'Notifying partners %s about message with '
                             'Message-Id: %s' % (
                                 fetchmail_server.e_inv_notify_partner_ids.ids,
@@ -186,7 +186,7 @@ class MailThread(models.AbstractModel):
                         fatturapa_atts = fatturapa_attachment_in.search([
                             ('name', '=', file_name)])
                         if fatturapa_atts:
-                            _logger.info("In invoice %s already processed"
+                            _logger.debug("In invoice %s already processed"
                                          % fatturapa_atts.mapped('name'))
                         else:
                             fatturapa_attachment_in.create({
@@ -197,7 +197,7 @@ class MailThread(models.AbstractModel):
             fatturapa_atts = fatturapa_attachment_in.search(
                 [('name', '=', attachment.name)])
             if fatturapa_atts:
-                _logger.info(
+                _logger.debug(
                     "Invoice xml already processed in %s"
                     % fatturapa_atts.mapped('name'))
             else:

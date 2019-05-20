@@ -64,17 +64,21 @@ class FatturaPAAttachmentIn(models.Model):
         _logger.info(json.dumps(data,
                         ensure_ascii=False))
 
-        response = requests.post(url,
-                                 headers=headers,
-                                 data=json.dumps(data,
-                                                 ensure_ascii=False))
+        try:
+            response = requests.post(url,
+                                     headers=headers,
+                                     data=json.dumps(data,
+                                                     ensure_ascii=False))
+        except BaseException:
+            _logger.error('request.post FAILED')
+            return
 
         try:
             documenti = response.json()
             if documenti['EsitoChiamata'] > 0:
                 _logger.info(response.text)
                 return
-        except:
+        except BaseException:
             return
 
         for value in documenti['Documenti']:
@@ -109,18 +113,22 @@ class FatturaPAAttachmentIn(models.Model):
         _logger.info(json.dumps(data,
                         ensure_ascii=False))
 
-        response = requests.post(url,
-                                 headers=headers,
-                                 data=json.dumps(data,
-                                                 ensure_ascii=False))
+        try:
+            response = requests.post(url,
+                                     headers=headers,
+                                     data=json.dumps(data,
+                                                     ensure_ascii=False))
+        except BaseException:
+            _logger.error('request.post FAILED')
+            return
 
         try:
             documenti = response.json()
             if documenti['EsitoChiamata'] > 0:
                 _logger.info(response.text)
                 return
-        except:
-            _logger.info(response.text)
+        except BaseException:
+            _logger.error(response.text)
             return
 
         documento = Evolve.parse_documento(documenti["Documenti"][0])
@@ -141,7 +149,7 @@ class FatturaPAAttachmentIn(models.Model):
         try:
             attach_model.create(attach_vals)
         except BaseException:
-            _logger.info('Error creating XML attachment')
+            _logger.error('Error creating XML attachment')
 
 
 class FatturaPAAttachmentOut(models.Model):
@@ -200,7 +208,7 @@ class FatturaPAAttachmentOut(models.Model):
                         # out invoice not found, so it is an incoming invoice
                         return message_dict
                     else:
-                        _logger.info('Error: FatturaPA {} not found.'.format(
+                        _logger.error('Error: FatturaPA {} not found.'.format(
                             file_name))
                         # TODO Send a mail warning
                         return message_dict
@@ -329,7 +337,7 @@ class FatturaPAAttachmentOut(models.Model):
                             ensure_ascii=False))
 
             headers = Evolve.header(send_channel)
-            url = send_channel.sender_url + 'Cerca'
+            url = os.path.join(send_channel.sender_url, 'Cerca')
 
             if send_channel.trace:
                 _logger.info(
@@ -348,7 +356,7 @@ class FatturaPAAttachmentOut(models.Model):
                         '>>>     response.json()=\n%s\n' % data)
                 if data['EsitoChiamata'] > 0:
                     if not send_channel.trace:
-                        _logger.info(response.text)
+                        _logger.debug(response.text)
                     return
             except:
                 if send_channel.trace:
@@ -359,18 +367,18 @@ class FatturaPAAttachmentOut(models.Model):
 
             documenti = Evolve.parse_documenti_verify(data['Documenti'])
 
-            _logger.info(documenti)
+            _logger.debug(documenti)
 
             # Warning: order test is important, depend from evolve_stati
             for k in evolve_stati:
-                _logger.info("Elaborazione " + k)
+                _logger.debug("Elaborazione " + k)
                 if k in documenti:
                     att.state = evolve_stato_mapping[k]
                     att.last_sdi_response = json.dumps(documenti[k],
                                     ensure_ascii=False)
 
                     #####################
-                    _logger.info (documenti[k][0])
+                    _logger.debug (documenti[k][0])
                     data = {
                         'Documento': {
                             'IdAzienda': int(send_channel.sender_company_id),
@@ -397,8 +405,8 @@ class FatturaPAAttachmentOut(models.Model):
                                              data=json.dumps(data,
                                                              ensure_ascii=False))
 
-                    _logger.info("--------------------------")
-                    _logger.info(response.text)
+                    _logger.debug("--------------------------")
+                    _logger.debug(response.text)
                     #####################
 
                     return
@@ -491,7 +499,8 @@ class FatturaPAAttachmentOut(models.Model):
 
             # Header
             headers = Evolve.header(send_channel)
-            url = send_channel.sender_url + 'Salva'
+            url = os.path.join(send_channel.sender_url, 'Salva')
+
             if send_channel.trace:
                 _logger.info(
                     '>>> send_via_json(%s)\n'

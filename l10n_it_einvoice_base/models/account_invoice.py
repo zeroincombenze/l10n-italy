@@ -289,7 +289,8 @@ class AccountInvoice(models.Model):
         [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
     # 2.1.1.1 doc_type
     invoice_type_id = fields.Many2one(
-        'italy.ade.invoice.type', string="Fiscal Document Type",)
+        'italy.ade.invoice.type', string="Fiscal Document Type",
+        copy=False)
     #  2.1.1.5
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
@@ -459,4 +460,14 @@ class AccountInvoice(models.Model):
                                            res.get('amount_total'))
         if len(ids) == 1:
             res.update({'invoice_type_id': ids[0]})
+        return res
+
+    @api.model
+    def _prepare_refund(self, invoice, date_invoice=None, date=None, description=None, journal_id=None):
+        res = super(AccountInvoice, self)._prepare_refund(invoice,
+                                                          date_invoice=date_invoice,
+                                                          date=date,
+                                                          description=description,
+                                                          journal_id=journal_id)
+        res['invoice_type_id'] = False
         return res

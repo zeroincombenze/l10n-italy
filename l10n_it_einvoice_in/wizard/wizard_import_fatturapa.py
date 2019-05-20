@@ -207,7 +207,11 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 vals['name'] = '%s %s' % (DatiAnagrafici.Anagrafica.Cognome,
                                           DatiAnagrafici.Anagrafica.Nome)
-            return partner_model.create(vals).id
+            try:
+                return partner_model.create(vals).id
+            except BaseException:
+                _logger.info('Error creating partner %s' % vals['name'])
+                return partner_model.create({'name': vals['name']}).id
 
     def getCedPrest(self, cedPrest):
         partner_model = self.env['res.partner']
@@ -282,7 +286,10 @@ class WizardImportFatturapa(models.TransientModel):
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
                 vals['fax'] = cedPrest.Contatti.Fax
-            partner_model.browse(partner_id).write(vals)
+            try:
+                partner_model.browse(partner_id).write(vals)
+            except:
+                _logger.info('Error upgrading partner id %d' % partner_id)
         return partner_id
 
     def getCarrirerPartner(self, Carrier):

@@ -5,10 +5,14 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
+import logging
+
 from odoo import api, fields, models
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
+
+_logger = logging.getLogger(__name__)
 
 class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
@@ -55,6 +59,12 @@ class FatturaPAAttachmentIn(models.Model):
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
     def _compute_xml_data(self):
+        for att in self:
+            print hasattr(att, 'in_invoice_ids')
+            print att.in_invoice_ids
+        return
+
+    def __to_remove_(self):
         wizard_model = self.env['wizard.import.fatturapa']
         for att in self:
             fatt = wizard_model.get_invoice_obj(att)
@@ -65,19 +75,23 @@ class FatturaPAAttachmentIn(models.Model):
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
             att.registered = False
-            if att.in_invoice_ids:
-                att.date_invoice0 = att.in_invoice_ids[0].date_invoice
-                if len(att.in_invoice_ids) == att.invoices_number:
-                    att.registered = True
-            att.invoices_total = 0
-            for invoice_body in fatt.FatturaElettronicaBody:
-                att.invoices_total += float(
-                    invoice_body.DatiGenerali.DatiGeneraliDocumento.
-                    ImportoTotaleDocumento or 0
-                )
-                if not att.in_invoice_ids:
-                    att.date_invoice0 = invoice_body.\
-                        DatiGenerali.DatiGeneraliDocumento.Data
+            if hasattr(att, 'in_invoice_ids'):
+                try:
+                    if att.in_invoice_ids:
+                        att.date_invoice0 = att.in_invoice_ids[0].date_invoice
+                        if len(att.in_invoice_ids) == att.invoices_number:
+                            att.registered = True
+                    att.invoices_total = 0
+                    for invoice_body in fatt.FatturaElettronicaBody:
+                        att.invoices_total += float(
+                            invoice_body.DatiGenerali.DatiGeneraliDocumento.
+                            ImportoTotaleDocumento or 0
+                        )
+                        if not att.in_invoice_ids:
+                            att.date_invoice0 = invoice_body.\
+                                DatiGenerali.DatiGeneraliDocumento.Data
+                except BaseException:
+                    _logger.error('Internal error in attachment id %d' % att.id)
 
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')

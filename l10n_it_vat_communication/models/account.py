@@ -783,7 +783,7 @@ class CommitmentLine(models.AbstractModel):
                 res.get('xml_IdPaese') != res['xml_Nazione']:
             res['xml_Error1'] += self._get_error(
                 _('003XC - '
-                  'Partner %s %d vat country differs from country') %
+                  'Partner %s vat country differs from country') %
                     partner.name, context)
 
         if address.street:

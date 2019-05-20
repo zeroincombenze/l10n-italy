@@ -132,7 +132,7 @@ class RibaFileExport(models.TransientModel):
     def _Record50(
         self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore
     ):
-        self._descrizione = 'PER LA FATTURA N. ' + invoice_ref + \
+        self._descrizione = 'RIF.FATT.N. ' + invoice_ref.trim() + \
             ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +

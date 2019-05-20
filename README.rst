@@ -2,8 +2,8 @@
 ================================
 |Zeroincombenze| l10n-italy 10.0
 ================================
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Try Me|
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
 
@@ -85,7 +85,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_causali_pagamento            | 10.0.1.0.0 | |same|     | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenut |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_central_journal              | 10.0.0.0.1 | |same|     | Italian Localization - Account central journal                                   |
+| l10n_it_central_journal              | 10.0.0.0.1 | 10.0.0.0.2 | Italian Localization - Account central journal                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_codici_carica                | |no_check| | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -93,15 +93,15 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi_sale           | |no_check| | 10.0.1.0.1 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt                          | 10.0.1.5.2 | 10.0.1.7.2 | Documento di Trasporto                                                           |
+| l10n_it_ddt                          | 10.0.1.5.3 | 10.0.1.7.3 | Documento di Trasporto                                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_base                | 10.0.2.1.5 | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
+| l10n_it_einvoice_base                | 10.0.2.1.7 | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 10.0.1.0.0 | |no_check| | Esportazione di file XML di fatture elettroniche in uno ZIP da esportare.        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_in                  | 10.0.1.3.3 | |no_check| | Ricezione fatture elettroniche                                                   |
+| l10n_it_einvoice_in                  | 10.0.1.3.5 | |no_check| | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out                 | 10.0.1.0.6 | |no_check| | Electronic invoices emission                                                     |
+| l10n_it_einvoice_out                 | 10.0.1.0.8 | |no_check| | Electronic invoices emission                                                     |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -111,7 +111,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_esigibilita_iva              | |no_check| | 10.0.1.0.0 | Esigibilità IVA                                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 10.0.2.5.0 | Fatture elettroniche                                                             |
+| l10n_it_fatturapa                    | |no_check| | 10.0.2.6.0 | Fatture elettroniche                                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_export_zip         | |no_check| | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -119,9 +119,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 10.0.1.4.0 | Emissione fatture elettroniche                                                   |
+| l10n_it_fatturapa_out                | |no_check| | 10.0.1.4.1 | Emissione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e DDT                            |
+| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.3 | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_out_stamp          | |no_check| | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -142,6 +142,10 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_fiscalcode                   | 10.0.1.0.3 | 10.0.1.3.0 | Italian Localisation - Fiscal Code                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscalcode_invoice           | 10.0.1.0.0 | |same|     | Italian Fiscal Code in invoice PDF                                               |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_invoices_data_communication  | |no_check| | 10.0.1.1.0 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")             |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_invoices_data_communication_ | |no_check| | 10.0.1.0.0 | Integrazione fatturazione elettronica e Comunicazione dati fatture (c.d. "nuovo  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ipa                          | |no_check| | 10.0.2.0.0 | IPA Code (IndicePA)                                                              |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -181,7 +185,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_website_sale_fiscalcode      | 10.0.1.0.1 | |same|     | Website Sale FiscalCode                                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_withholding_tax              | 10.0.1.2.4 | 10.0.1.2.3 | Italian Withholding Tax                                                          |
+| l10n_it_withholding_tax              | 10.0.1.2.5 | 10.0.1.2.3 | Italian Withholding Tax                                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_withholding_tax_causali      | |no_check| | 10.0.1.0.0 | Causali pagamento per ritenute d'acconto                                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -222,8 +226,14 @@ Prerequisites / Prerequisiti
 ----------------------------
 
 
-* python2.7+
-* postgresql 9.2+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+* codicefiscale
+* unidecode
+* pyxb==1.2.5
+* pycryptodome
+* pkcs7
+
 
 Installation / Installazione
 ----------------------------
@@ -302,8 +312,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare uno dei moduli, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -330,7 +340,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2019-04-24
+Last Update / Ultimo aggiornamento: 2019-05-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -348,11 +358,8 @@ Last Update / Ultimo aggiornamento: 2019-04-24
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/10.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
     :alt: Technical Documentation
@@ -362,7 +369,7 @@ Last Update / Ultimo aggiornamento: 2019-04-24
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -372,9 +379,9 @@ Last Update / Ultimo aggiornamento: 2019-04-24
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
