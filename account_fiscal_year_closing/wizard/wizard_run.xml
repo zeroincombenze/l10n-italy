@@ -2,7 +2,7 @@
 
 <openerp>
     <data>
-        
+
         <record id="fyc_run_view" model="ir.ui.view">
             <field name="name">fyc.run.wizard</field>
             <field name="model">fyc.run</field>
@@ -27,6 +27,6 @@
             <field name="view_id" ref="fyc_run_view"/>
 
         </record>
-        
+
     </data>
 </openerp>

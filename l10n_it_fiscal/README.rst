@@ -1,28 +1,16 @@
-# -*- coding: utf-8 -*-
-{
-    'name': 'Italy - Fiscal localization by zeroincombenze(R)',
-    'version': '7.0.0.2.1',
-    'category': 'Localization/Account Charts',
-    'author': 'SHS-AV s.r.l.',
-    'website': 'http://www.zeroincombenze.it',
-    'license': 'AGPL-3',
-    'depends': [
-        'base_vat',
-        'account_chart',
-        'base_iban',
-    ],
-    'data': [
-        'data/account.account.template.csv',
-        'data/account.tax.code.template.csv',
-        'account_chart.xml',
-        'data/account.tax.template.csv',
-        'data/account.fiscal.position.template.csv',
-        'l10n_chart_it_zeroincombenze.xml',
-    ],
-    'installable': True,
-    'maintainer': 'Antonio Maria Vigliotti',
-    'auto_install': False,
-    'description': r'''
+
+=================================================================
+|icon| Italy - Fiscal localization by zeroincombenze(R) 7.0.0.2.1
+=================================================================
+
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_fiscal/static/src/img/icon.png
+
+|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+
+.. contents::
+
+
 Overview / Panoramica
 =====================
 
@@ -65,6 +53,96 @@ See http://www.zeroincombenze.it/il-piano-dei-conti-2/
 
 
 |
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
++-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+
+|
+|
+
+Getting started / Come iniziare
+===============================
+
+|Try Me|
+
+
+Prerequisites / Prerequisiti
+----------------------------
+
+
+* python2.7+
+* postgresql 9.2+
+
+|
+
+Installation / Installazione
+----------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instruction are just an   | Istruzioni di esempio valide solo per    |
+| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
+| you have to do on Linux.        | e Debian 8+                              |
+|                                 |                                          |
+| Installation is built with:     | L'installazione è costruita con:         |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
++---------------------------------+------------------------------------------+
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| /opt/odoo/7.0/l10n-italy/                                                  |
++----------------------------------------------------------------------------+
+
+::
+
+    cd $HOME
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    export PATH=$HOME/dev:$PATH
+    odoo_install_repository l10n-italy -b 7.0 -O zero
+    for pkg in os0 z0lib; do
+        pip install $pkg -U
+    done
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
+
+From UI: go to:
+
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_fiscal** > Install
+
+|
+
+Upgrade / Aggiornamento
+-----------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| When you want upgrade and you   | Per aggiornare, se avete installato con  |
+| installed using above           | le istruzioni di cui sopra:              |
+| statements:                     |                                          |
++---------------------------------+------------------------------------------+
+
+::
+
+    odoo_install_repository l10n-italy -b 7.0 -O zero -U
+    # Adjust following statements as per your system
+    sudo systemctl restart odoo
+
+From UI: go to:
+
+* |menu| Setting > Modules > Update Modules List
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_fiscal** > Update
+
 |
 
 Support / Supporto
@@ -77,6 +155,27 @@ Support / Supporto
 |
 |
 
+Get involved / Ci mettiamo in gioco
+===================================
+
+Bug reports are welcome! You can use the issue tracker to report bugs,
+and/or submit pull requests on `GitHub Issues
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+
+In case of trouble, please check there if your issue has already been reported.
+
+Proposals for enhancement
+-------------------------
+
+
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
+An Enhancement Proposal may be submitted if your idea gains ground.
+
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+|
+|
+
 Credits / Didascalie
 ====================
 
@@ -84,6 +183,7 @@ Copyright
 ---------
 
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
+
 
 
 |
@@ -113,6 +213,10 @@ is mainly designed to cover Italian law and markeplace.
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
+
+|chat_with_us|
+
+
 |
 
 This module is part of l10n-italy project.
@@ -137,7 +241,7 @@ Last Update / Ultimo aggiornamento: 2019-04-29
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: /l10n_it_fiscal/static/src/img/Unknown badge-OCA
+.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_fiscal/static/src/img/Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
@@ -180,5 +284,3 @@ Last Update / Ultimo aggiornamento: 2019-04-29
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
-''',
-}

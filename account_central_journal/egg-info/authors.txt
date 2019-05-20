@@ -1,5 +1,6 @@
 .. $if branch in '7.0'
 * ISA s.r.l. <http://www.isa.it>
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 .. $elif branch in '8.0'
 * Link It Spa <http://www.linkgroup.it>,
 .. $elif branch in '9.0'

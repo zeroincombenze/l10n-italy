@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
+
         <!--
             Central Journal Report Filter View
         -->
-        
+
         <record model="ir.ui.view" id="central_journal_report_form_view">   
             <field name="name">wizard.central.journal.report.form</field>
             <field name="model">wizard.central.journal.report</field>
@@ -18,6 +18,7 @@
                         <separator colspan="4" string="Dates movements"/>
                         <field name="date_move_line_from" invisible="1"/>
                         <field name="date_move_line_from_view" readonly="1"/>
+                        <field name="periods"/>
                         <field name="date_move_line_to" attrs="{'readonly':[('print_state','!=','print')]}"/>
                     </group>
                     <newline/>

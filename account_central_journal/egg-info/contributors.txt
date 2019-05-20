@@ -1,6 +1,7 @@
 .. $if branch in '7.0'
 * Daniele Arcangeli <d.arcangeli@isa.it>
 * Alessandro Camilli <a.camilli@yahoo.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 .. $elif branch in '8.0'
 * Diego Milani <dmilani@linkgroup.it>
 * Davide Corio <davide.corio@abstract.it>

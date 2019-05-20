@@ -2,8 +2,8 @@
 ===============================
 |Zeroincombenze| l10n-italy 7.0
 ===============================
-
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+
 
 .. contents::
 
@@ -41,7 +41,7 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_central_journal            | 7.0.3.0.2  | 7.0.3      | Print Italian Account Central Journal                                            |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_fiscal_year_closing        | 7.0.1.0    | |same|     | Fiscal Year Closing                                                              |
+| account_fiscal_year_closing        | 7.0.1.0.1  | 7.0.1.0    | Fiscal Year Closing                                                              |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_entry_date         | 7.0.0.1    | |same|     | Account Invoice entry Date                                                       |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -158,8 +158,13 @@ Prerequisites / Prerequisiti
 ----------------------------
 
 
-* python2.7+
-* postgresql 9.2+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+* codicefiscale
+* lxml
+* pyxb==1.2.4
+* unidecode
+
 
 Installation / Installazione
 ----------------------------
@@ -238,8 +243,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare uno dei moduli, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -266,7 +271,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2019-04-24
+Last Update / Ultimo aggiornamento: 2019-05-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -284,11 +289,8 @@ Last Update / Ultimo aggiornamento: 2019-04-24
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -298,7 +300,7 @@ Last Update / Ultimo aggiornamento: 2019-04-24
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -308,9 +310,9 @@ Last Update / Ultimo aggiornamento: 2019-04-24
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

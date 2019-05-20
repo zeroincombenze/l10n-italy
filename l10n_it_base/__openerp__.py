@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-18 - Associazione Odoo Italia <https://odoo-italia.org>
 # Copyright 2014-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -9,9 +8,7 @@
     'name': 'Italian Localisation - Base',
     'version': '7.0.0.2.16',
     'category': 'Localisation/Italy',
-    'author': 'Odoo Italia Associazione,'
-              'Odoo Community Association (OCA),'
-              'SHS-AV s.r.l.',
+    'author': 'SHS-AV s.r.l.',
     'website': 'https://odoo-italia.org/',
     'license': 'AGPL-3',
     'depends': ['base'],
@@ -34,7 +31,7 @@ Overview / Panoramica
 =====================
 
 |en| Italy Base localization
------------------------
+----------------------------
 
 This module add following data:
 
@@ -45,7 +42,7 @@ This module add following data:
 |
 
 |it| Localizzazione italiana di base
--------------------------------
+------------------------------------
 
 Questo modulo fornisce i dati precompilati di:
 
@@ -59,7 +56,7 @@ La videata dell'anagrafica è modificata come da consuetudine italiana:
 
 CAP - Località - Provincia
 
-mentre nella versione origiale di Odoo il CAP è posto dopo la provincia (formato anglosassone).
+mentre nella versione originale di Odoo il CAP è posto dopo la provincia come nel formato anglosassone.
 
 
 |
@@ -78,6 +75,9 @@ Features / Caratteristiche
 +----------------------------------------------------------------+----------+----------------------------------------------+
 | Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
 +----------------------------------------------------------------+----------+----------------------------------------------+
+| Check for duplicate vat / Controllo partita IVA duplicata      | |check|  | Controllo non bloccante                      |
++----------------------------------------------------------------+----------+----------------------------------------------+
+
 
 |
 
@@ -89,6 +89,11 @@ Usage / Utilizo
 * Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
 * Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
 * Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
+* Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
+
+.. image:: /l10n_it_base/static/src/img/partner_1.png
+    :alt: partner
+
 
 |
 |
@@ -98,7 +103,6 @@ Support / Supporto
 
 
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-and support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
 
 
 |
@@ -116,7 +120,7 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 |
 
 Authors / Autori
------------------
+----------------
 
 
 * `Innoviu srl <http://www.innoviu.com>`__
@@ -136,6 +140,7 @@ Contributors / Collaboratori
 * Roberto Onnis <onnis.roberto@gmail.com>
 * Antonio M. Vigliotti <info@shs-av.com>
 
+
 |
 
 ----------------
@@ -146,13 +151,15 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-15
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-04-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -170,9 +177,9 @@ Last Update / Ultimo aggiornamento: 2018-11-15
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
+.. |OCA project| image:: /l10n_it_base/static/src/img/Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
@@ -184,8 +191,8 @@ Last Update / Ultimo aggiornamento: 2018-11-15
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
-    :target: Unknown oca-codecov-URL
+.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -208,11 +215,11 @@ Last Update / Ultimo aggiornamento: 2018-11-15
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',

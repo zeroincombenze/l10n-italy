@@ -1,12 +1,10 @@
 
-========================================
-|icon| Account Central Journal 7.0.3.0.2
-========================================
+====================================
+|icon| Fiscal Year Closing 7.0.1.0.1
+====================================
 
 
-**Print Italian Account Central Journal**
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_central_journal/static/src/img/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_fiscal_year_closing/static/src/img/icon.png
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -16,21 +14,77 @@
 Overview / Panoramica
 =====================
 
-|en| Account Central Journal
-----------------------------
+|en| Fiscal Year Closing Wizard
+-------------------------------
 
-Print Italian fiscal journal.
+Generalization of l10n_es_fiscal_year_closing (http://apps.openerp.com/addon/4506)
 
-This module in other Odoo version is called account_central_journal.
+Replaces the default OpenERP end of year wizards (from account module)
+with a more advanced all-in-one wizard that will let the users:
+
+* Check for unbalanced moves, moves with invalid dates or period or draft moves on the fiscal year to be closed.
+* Create the Loss and Profit entry.
+* Create the Net Loss and Profit entry.
+* Create the Closing entry.
+* Create the Opening entry.
+
+It is stateful, saving all the info about the fiscal year closing, so the
+user can cancel and undo the operations easily.
+
 
 |
 
-|it| Stampa libro giornale fiscale
-----------------------------------
+|it| Chiusure e riaperture contabili
+------------------------------------
 
-Permette la stampa  del libro giornale fiscale.
+Completa l'ordinaria apertura di Odoo in conformità alle leggi fiscali italiane.
 
-Questo modulo in alcune versioni è chiamato account_central_journal.
+Permette:
+
+* Verifica sbilanciamento e date delle operazioni contabili
+* Registra l'operazione di profitti e perdite
+* Registra l'operazione di perdita o utile di esercizio
+* Registra le operazioni di chiusura contabile
+* Registra le operazioni di riapertura contabile
+
+
+|
+
+Usage / Utilizzo
+----------------
+
+|it| Operazioni di chiusura e riapertura
+
+* Registrazione nuovo esercizio
+* Controlli
+* Stampe fiscali di fine anno
+* Apertura provvisoria esercizio (eventuale)
+* Cancellazione apertura provvisoria (eventuale)
+* Chiusura esercizio
+* Apertura esercizio
+
+`Registrazione nuovo esercizio`
+
+| menu | contabilità > Configurazione > periodi > anni fiscali
+
+
+`Controlli`
+
+Prima di procedere con le operazioni di chiusura e riapertura procedere con i seguenti controlli:
+
+* Determinazione registrazioni stato bozza
+* Sezionale apertura
+* Sezionale di chiusura profitti e perdite
+* Sezionale di chiusura utile o perdita
+* Sezionale di chiusura patrimoniale
+
+
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_fiscal_year_closing/static/src/img/sezionale_apertura.png
+    :alt: sezionale apertura
+
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_fiscal_year_closing/static/src/img/sezionale_chiusura_pp.png
+    :alt: sezionale chiusura
+
 
 |
 
@@ -41,7 +95,7 @@ OCA comparation / Confronto con OCA
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 | Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  |                                |
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 
 |
@@ -52,6 +106,13 @@ Getting started / Come iniziare
 
 |Try Me|
 
+
+Prerequisites / Prerequisiti
+----------------------------
+
+
+* python2.7+
+* postgresql 9.2+
 
 |
 
@@ -90,7 +151,7 @@ Installation / Installazione
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Install
+* |menu| Setting > Local Modules |right_do| Select **account_fiscal_year_closing** > Install
 
 |
 
@@ -114,7 +175,7 @@ Upgrade / Aggiornamento
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Update
+* |menu| Setting > Local Modules |right_do| Select **account_fiscal_year_closing** > Update
 
 |
 
@@ -164,17 +225,24 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-
-* `ISA s.r.l. <http://www.isa.it>`__
+* `Pexego <http://www.pexego.es/>`__
+* `Zikzakmedia S.L. <http://zikzakmedia.com>`__
+* `ACYSOS S.L. <http://acysos.com>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Agile Business Group sagl <http://www.agilebg.com>`__
+* `Domsense srl <http://www.domsense.com>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
-
-* Daniele Arcangeli <d.arcangeli@isa.it>
-* Alessandro Camilli <a.camilli@yahoo.it>
+* Borja López Soilán (Pexego) - borja@kami.es
+* Lorenzo Battistini - lorenzo.battistini@agilebg.com
+* Jordi Esteve <jesteve@zikzakmedia.com>
+* Pedro Tarrafeta <pedro@acysos.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 |
 
@@ -198,7 +266,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-05-17
+Last Update / Ultimo aggiornamento: 2019-05-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -218,6 +286,9 @@ Last Update / Ultimo aggiornamento: 2019-05-17
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
+.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_fiscal_year_closing/static/src/img/Unknown badge-OCA
+    :target: https://github.com/OCA/l10n-italy/tree/7.0
+    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -237,9 +308,9 @@ Last Update / Ultimo aggiornamento: 2019-05-17
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
+   :target: https://www.facebook.com/groups/openerp.italia/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
+   :target: https://www.facebook.com/groups/openerp.italia/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

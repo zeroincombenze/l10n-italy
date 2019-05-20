@@ -28,14 +28,9 @@ addons:
       - libxml2-dev
       - libxslt1-dev
       - zlib1g-dev
-      - curl
-      - nodejs
-      - npm
-      - python-ldap
-      - python-psycopg2
-      - python-simplejson
       - expect-dev
-      - python-setuptools
+      - libffi-dev
+      - libssl-dev
 #   Search your packages here:
 #     https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
 
@@ -52,6 +47,7 @@ install:
 
 env:
   global:
+  - WKHTMLTOPDF_VERSION="0.12.1"
   - VERSION="7.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
 
   matrix:

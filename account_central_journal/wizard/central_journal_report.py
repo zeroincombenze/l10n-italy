@@ -80,8 +80,16 @@ class central_journal_report(osv.osv_memory):
                 ('print', 'Ready for printing'),
                 ('printed', 'Printed')
             ], 'State', readonly=True),
+        'periods': fields.selection(
+            [('ordinary', 'Ordinary'),
+             ('special', 'Special'),
+             ('both', 'Both')
+            ], 'Period selection'),
     }
 
+    _default = {
+        'periods': 'both',
+    }
     def onchange_fiscalyear(
         self, cr, uid, ids, fiscalyear_id=False, context=None
     ):
@@ -164,6 +172,5 @@ class central_journal_report(osv.osv_memory):
     _defaults = {
         'print_state': 'draft',
     }
-
 
 central_journal_report()

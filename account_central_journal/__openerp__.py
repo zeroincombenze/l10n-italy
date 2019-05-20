@@ -1,23 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 ISA s.r.l. (<http://www.isa.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
 {
     'name': 'Account Central Journal',
     'summary': 'Print Italian Account Central Journal',
@@ -41,14 +23,21 @@
 Overview / Panoramica
 =====================
 
-|en| Account Central Journal (deprecated)
+|en| Account Central Journal
+----------------------------
+
+Print Italian fiscal journal.
+
+This module in other Odoo version is called account_central_journal.
 
 |
 
-|it| Stampa libro giornale fiscale (versione in disuso).
+|it| Stampa libro giornale fiscale
+----------------------------------
 
-Questo modulo non è più utilizzato ed è stato sostituito da l10n_it_central_journal.
+Permette la stampa  del libro giornale fiscale.
 
+Questo modulo in alcune versioni è chiamato account_central_journal.
 
 |
 |
@@ -57,14 +46,14 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -75,17 +64,19 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 |
 
 Authors / Autori
------------------
+----------------
 
 
 * `ISA s.r.l. <http://www.isa.it>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Collaboratori
 ----------------------------
 
 
-Daniele Arcangeli <d.arcangeli@isa.it>
-Alessandro Camilli <a.camilli@yahoo.it>
+* Daniele Arcangeli <d.arcangeli@isa.it>
+* Alessandro Camilli <a.camilli@yahoo.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 
@@ -97,13 +88,15 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-01
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-05-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -123,9 +116,6 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -145,9 +135,9 @@ Last Update / Ultimo aggiornamento: 2018-12-01
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

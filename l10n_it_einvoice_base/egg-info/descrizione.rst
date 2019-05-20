@@ -86,6 +86,11 @@ Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura
 
 ::
 
-    Normativa:
+    Normativa e prassi:
 
 Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
+
+Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
+
+* Il codice TD20 è utilizzabile solo per le autofatture rif. art. 6 c.8 D.Lgs 471/97 (fatture non ricevute dopo 4 mesi)
+* Le autofatture in reverse charge devono avere il codice TD01

@@ -75,17 +75,28 @@ Usage / Utilizzo
 * Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
 * Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
 
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_base/static/src/img/partner_1.png
+    :alt: partner
+
+
 |
 
 OCA comparation / Confronto con OCA
 -----------------------------------
 
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Description / Descrizione                                       | Odoo Italia  | OCA               | Notes / Note                   |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| City from ZIP / Città da CAP                                    | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Check for duplicate vat / Controllo partita IVA duplicata       | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
 
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+|OCA project|
 
 |
 |
@@ -255,7 +266,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-24
+Last Update / Ultimo aggiornamento: 2019-04-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -275,7 +286,7 @@ Last Update / Ultimo aggiornamento: 2019-04-24
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
+.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_base/static/src/img/Unknown badge-OCA
     :target: https://github.com/OCA/l10n-italy/tree/7.0
     :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
