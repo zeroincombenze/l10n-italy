@@ -12,7 +12,7 @@
     self.fill_fields(cr, uid, id_0)
     partner = self.browse(cr, uid, id_0)
     # assert partner.country_id.id == ref('base.it'), "Invalid country code [0b]!"
-    assert partner.state_id.id == ref('l10n_it_base.it_TO'), "Invalid state_id [0b]!"
+    assert partner.state_id.id == ref('base.state_it_to'), "Invalid state_id [0b]!"
     TO_id = province_obj.search(cr, uid, [('code', '=', 'TO')])[0]
     province = province_obj.browse(cr, uid, TO_id)
     assert partner.province.id == TO_id, "Invalid province [0b]!"
@@ -34,7 +34,7 @@
     assert partner.city == 'Maddaloni', "Invalid city [1]!"
     assert partner.zip == '81024', "Invalid zip code [1]!"
     assert partner.country_id.id == ref('base.it'), "Invalid country code [1]!"
-    assert partner.state_id.id == ref('l10n_it_base.it_CE'), "Invalid state_id [1]!"
+    assert partner.state_id.id == ref('base.state_it_ce'), "Invalid state_id [1]!"
     CE_id = province_obj.search(cr, uid, [('code', '=', 'CE')])[0]
     province = province_obj.browse(cr, uid, CE_id)
     assert partner.province.id == CE_id, "Invalid province [1]!"
@@ -58,7 +58,7 @@
     assert partner.city == 'Castano Primo', "Invalid city change [1b]!"
     assert partner.zip == '20022', "Invalid zip code change [1b]!"
     assert partner.country_id.id == ref('base.it'), "Invalid country code change [1b]!"
-    assert partner.state_id.id == ref('l10n_it_base.it_MI'), "Invalid state_id change [1b]!"
+    assert partner.state_id.id == ref('base.state_it_mi'), "Invalid state_id change [1b]!"
     MI_id = province_obj.search(cr, uid, [('code', '=', 'MI')])[0]
     province = province_obj.browse(cr, uid, MI_id)
     assert partner.province.id == MI_id, "Invalid province change [1b]!"
@@ -88,7 +88,7 @@
     self.write(cr, uid, [ref('partner_2')], vals)
     partner = self.browse(cr, uid, ref('partner_2'))
     assert partner.city == 'San Secondo di Pinerolo', "Invalid city rewritten [2]!"
-    assert partner.state_id.id == ref('l10n_it_base.it_TO'), "Invalid state_id [2]!"
+    assert partner.state_id.id == ref('base.state_it_to'), "Invalid state_id [2]!"
     TO_id = province_obj.search(cr, uid, [('code', '=', 'TO')])[0]
     province = province_obj.browse(cr, uid, TO_id)
     assert partner.province.id == TO_id, "Invalid province [2]!"
@@ -146,7 +146,7 @@
     assert partner.city == 'Torino', "Invalid city [4]!"
     assert partner.zip == '10135', "Invalid zip code [4]!"
     assert partner.country_id.id == ref('base.it'), "Invalid country code [4]!"
-    assert partner.state_id.id == ref('l10n_it_base.it_TO'), "Invalid state_id [4]!"
+    assert partner.state_id.id == ref('base.state_it_to'), "Invalid state_id [4]!"
     TO_id = province_obj.search(cr, uid, [('code', '=', 'TO')])[0]
     province = province_obj.browse(cr, uid, TO_id)
     assert partner.province.id == TO_id, "Invalid province [4]!"

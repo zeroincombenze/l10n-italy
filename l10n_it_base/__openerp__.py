@@ -6,7 +6,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.16',
+    'version': '7.0.0.2.17',
     'category': 'Localisation/Italy',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://odoo-italia.org/',

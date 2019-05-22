@@ -799,8 +799,8 @@ class AccountVatPeriodEndStatement(orm.Model):
         return tax_tree
 
     def get_date_start_stop(self, statement, context=None):
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         date_start = False
         date_stop = False
         for period in statement.period_ids:

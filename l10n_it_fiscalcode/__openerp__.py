@@ -26,7 +26,7 @@
     'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['base', 'base_vat', 'l10n_it_base'],
-    'test': ['test/fiscalcode.yml'],
+    # 'test': ['test/fiscalcode.yml'],
     'installable': True,
     'data': [
         'views/fiscalcode_view.xml',
