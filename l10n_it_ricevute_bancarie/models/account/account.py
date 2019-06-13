@@ -37,6 +37,16 @@ class ResPartnerBankAdd(models.Model):
         help="Identification Code of the Company in the System Interbank")
 
 
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+    riba_accredited_ids = fields.One2many(
+        'riba.distinta', 'accreditation_move_id', 'Distinte RiBa accredited',
+        readonly=True)
+    riba_unsolved_ids = fields.One2many(
+        'riba.distinta.line', 'unsolved_move_id', 'Distinte RiBa unsolved',
+        readonly=True)
+
+
 # se distinta_line_ids == None allora non è stata emessa
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"

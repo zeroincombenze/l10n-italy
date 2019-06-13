@@ -9,7 +9,7 @@
 
 {
     'name': "Ricevute Bancarie",
-    'version': "10.0.1.1.2",
+    'version': "10.0.1.1.3",
     'author': "Odoo Community Association (OCA)",
     'category': "Accounting & Finance",
     'website': "https://odoo-community.org/",

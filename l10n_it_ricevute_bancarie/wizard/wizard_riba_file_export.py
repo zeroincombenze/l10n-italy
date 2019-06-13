@@ -6,12 +6,18 @@
 # GAzie http://gazie.sourceforge.net/
 # and Cecchi s.r.l http://www.cecchi.com/
 
-
+import logging
 import base64
 from odoo import fields, models, _
 from odoo.exceptions import UserError
 import datetime
 import re
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+except ImportError as err:
+    _logger.debug(err)
 
 
 class RibaFileExport(models.TransientModel):
@@ -103,18 +109,19 @@ class RibaFileExport(models.TransientModel):
         self, ragione_soc1_creditore, indirizzo_creditore, cap_citta_creditore,
         ref_creditore
     ):
-        self._creditore = ragione_soc1_creditore.ljust(24)
+        self._creditore = unidecode(ragione_soc1_creditore).ljust(24)
         return (
             " 20" + str(self._progressivo).rjust(7, '0') +
-            self._creditore[0:24] + indirizzo_creditore.ljust(24)[0:24] +
-            cap_citta_creditore.ljust(24)[0:24] +
-            ref_creditore.ljust(24)[0:24] +
+            self._creditore[0:24] + 
+            unidecode(indirizzo_creditore).ljust(24)[0:24] +
+            unidecode(cap_citta_creditore).ljust(24)[0:24] +
+            unidecode(ref_creditore).ljust(24)[0:24] +
             " " * 14 + "\r\n")
 
     def _Record30(self, nome_debitore, codice_fiscale_debitore):
         return (
             " 30" + str(self._progressivo).rjust(7, '0') +
-            nome_debitore.ljust(60)[0:60] +
+            unidecode(nome_debitore).ljust(60)[0:60] +
             codice_fiscale_debitore.ljust(16, ' ') + " " * 34 + "\r\n")
 
     def _Record40(
@@ -125,14 +132,15 @@ class RibaFileExport(models.TransientModel):
             provincia_debitore.rjust(25 - len(comune_debitore), ' ')
         return (
             " 40" + str(self._progressivo).rjust(7, '0') +
-            indirizzo_debitore.ljust(30)[0:30] +
-            str(cap_debitore).rjust(5, '0') + self._comune_provincia_debitor +
-            descrizione_domiciliataria.ljust(50)[0:50] + "\r\n")
+            unidecode(indirizzo_debitore).ljust(30)[0:30] +
+            str(cap_debitore).rjust(5, '0') + unidecode(
+                self._comune_provincia_debitor) +
+            unidecode(descrizione_domiciliataria).ljust(50)[0:50] + "\r\n")
 
     def _Record50(
         self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore
     ):
-        self._descrizione = 'RIF.FATT.N. ' + invoice_ref.trim() + \
+        self._descrizione = 'RIF.FATT.N. ' + invoice_ref + \
             ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +
@@ -142,7 +150,7 @@ class RibaFileExport(models.TransientModel):
     def _Record51(self, numero_ricevuta_creditore):
         return " 51" + str(self._progressivo).rjust(7, '0') + str(
             numero_ricevuta_creditore).rjust(
-                10, '0') + self._creditore[0:20] + " " * 80 + "\r\n"
+                10, '0') + unidecode(self._creditore)[0:20] + " " * 80 + "\r\n"
 
     def _Record70(self):
         return " 70" + str(self._progressivo).rjust(
