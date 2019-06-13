@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2018 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+# Copyright 2019 - Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 #                  Associazione Odoo Italia <http://www.odoo-italia.org>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
@@ -7,7 +7,7 @@
 #
 {
     "name": "Agenzia delle Entrate",
-    "version": "10.0.0.1.11",
+    "version": "10.0.0.1.13",
     "category": "Localization/Italy",
     "summary": "Codice e definizioni come da Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"

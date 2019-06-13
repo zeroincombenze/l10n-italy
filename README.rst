@@ -111,23 +111,23 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_esigibilita_iva              | |no_check| | 10.0.1.0.0 | Esigibilità IVA                                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 10.0.2.6.0 | Fatture elettroniche                                                             |
+| l10n_it_fatturapa                    | |no_check| | 10.0.2.7.1 | Fatture elettroniche                                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_export_zip         | |no_check| | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.6.0 | Ricezione fatture elettroniche                                                   |
+| l10n_it_fatturapa_in                 | |no_check| | 10.0.1.7.0 | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | 10.0.1.4.1 | Emissione fatture elettroniche                                                   |
+| l10n_it_fatturapa_out                | |no_check| | 10.0.1.4.3 | Emissione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.3 | Modulo ponte tra emissione fatture elettroniche e DDT                            |
+| l10n_it_fatturapa_out_ddt            | |no_check| | 10.0.1.0.4 | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out_stamp          | |no_check| | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo               |
+| l10n_it_fatturapa_out_stamp          | |no_check| | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out_triple_discoun | |no_check| | 10.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e sconto triplo                  |
+| l10n_it_fatturapa_out_triple_discoun | |no_check| | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e sconto triplo                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out_wt             | |no_check| | 10.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e ritenute.                      |
+| l10n_it_fatturapa_out_wt             | |no_check| | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e ritenute.                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_pec                | |no_check| | 10.0.1.5.3 | Invio fatture elettroniche tramite PEC                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -143,7 +143,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscalcode_invoice           | 10.0.1.0.0 | |same|     | Italian Fiscal Code in invoice PDF                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_invoices_data_communication  | |no_check| | 10.0.1.1.0 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")             |
+| l10n_it_invoices_data_communication  | |no_check| | 10.0.1.1.1 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_invoices_data_communication_ | |no_check| | 10.0.1.0.0 | Integrazione fatturazione elettronica e Comunicazione dati fatture (c.d. "nuovo  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -157,13 +157,13 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_prima_nota_cassa             | |halt|     | |halt|     | Italian Localisation - Prima Nota Cassa                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_rea                          | 10.0.1.0.1 | 10.0.1.1.1 | Manage fields for  Economic Administrative catalogue                             |
+| l10n_it_rea                          | 10.0.1.0.1 | 10.0.1.1.2 | Manage fields for  Economic Administrative catalogue                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_reverse_charge               | 10.0.1.2.0 | 10.0.1.1.8 | Reverse Charge for Italy                                                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ricevute_bancarie            | 10.0.1.1.2 | 10.0.1.2.0 | Ricevute Bancarie                                                                |
+| l10n_it_ricevute_bancarie            | 10.0.1.1.3 | 10.0.1.2.0 | Ricevute Bancarie                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_sdi_channel                  | |no_check| | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -340,7 +340,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2019-05-22
+Last Update / Ultimo aggiornamento: 2019-06-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -1,4 +1,4 @@
-10.0.1.1.3 (2018-06-13)
+10.0.1.1.3 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Fix bug export payment list file with no ASCII characters (only 10.0)

@@ -24,14 +24,6 @@ XML_ESCAPE = {
     u'\n': u' ',
     u'\r': u' ',
     u'\t': u' ',
-    u'€': u'EUR',
-    u'©': u'(C)',
-    u'®': u'(R)',
-    u'«': u'&laquo;',
-    u'»': u'&raquo;',
-    u'Ø': u'&Oslash;',
-    u'ø': u'&oslash;',
-    u'ß': u'ss',
 }
 
 class ResPartner(models.Model):
@@ -41,6 +33,16 @@ class ResPartner(models.Model):
         """"Do xml escape to avoid error StringLatinType"""
         if text:
             return escape(unidecode(text), XML_ESCAPE).strip()
+        return text
+
+    def dim_text(self, text):
+        text = self.wep_text(text)
+        if text:
+            res = ''
+            for ch in text:
+                if ch.isalnum():
+                    res += ch.lower()
+            text = res
         return text
 
     def wep_fiscalcode(self, fc):
