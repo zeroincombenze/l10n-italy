@@ -6,7 +6,6 @@
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_withholding_tax/static/description/icon.png
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
 
@@ -59,11 +58,11 @@ OCA comparation / Confronto con OCA
 -----------------------------------
 
 
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -73,13 +72,6 @@ Getting started / Come iniziare
 
 |Try Me|
 
-
-Prerequisites / Prerequisiti
-----------------------------
-
-
-* python2.7+
-* postgresql 9.2+
 
 |
 
@@ -176,11 +168,20 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.1.2.5 (2019-05-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Evaluate amount includes attributable base rate / Importo include percentuale di attribuzione
+
+
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -225,7 +226,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-26
+Last Update / Ultimo aggiornamento: 2019-06-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -243,11 +244,8 @@ Last Update / Ultimo aggiornamento: 2019-04-26
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_withholding_tax/static/description/Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/10.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
     :alt: Technical Documentation
@@ -257,7 +255,7 @@ Last Update / Ultimo aggiornamento: 2019-04-26
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -267,9 +265,9 @@ Last Update / Ultimo aggiornamento: 2019-04-26
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

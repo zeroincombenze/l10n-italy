@@ -6,6 +6,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 import logging
+import re
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
@@ -52,29 +53,38 @@ class FatturaPAAttachmentIn(models.Model):
         self.name = self.datas_fname
 
     def get_xml_string(self):
-        if self.ir_attachment_id:
-            return self.ir_attachment_id.get_xml_string()
-        return False
+        if not self.ir_attachment_id:
+            return False
+        xml_string = self.ir_attachment_id.get_xml_string()
+        # Do not change order of parsing!
+        for tag in ('RiferimentoAmministrazione',
+                    'IdDocumento',
+                    'UnitaMisura',
+                    'CodiceFiscale',
+                    'Causale',
+                    'NumItem',
+                    'DatiConvenzione',
+                    'DatiRicezione'):
+            token = r'<%s>[ \t\n]*</%s>' % (tag, tag)
+            xml_string = re.sub(token, '', xml_string)
+        return xml_string
 
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
     def _compute_xml_data(self):
-        for att in self:
-            print hasattr(att, 'in_invoice_ids')
-            print att.in_invoice_ids
-        return
-
-    def __to_remove_(self):
         wizard_model = self.env['wizard.import.fatturapa']
         for att in self:
-            fatt = wizard_model.get_invoice_obj(att)
-            if not fatt:
+            inv_xml = wizard_model.get_invoice_obj(att)
+            if not inv_xml:
                 continue
-            cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            partner_id = wizard_model.getCedPrest(cedentePrestatore)
-            att.xml_supplier_id = partner_id
-            att.invoices_number = len(fatt.FatturaElettronicaBody)
+            xml_supplier_id = wizard_model.getPartnerBase(
+                inv_xml.FatturaElettronicaHeader.CedentePrestatore)
+            if xml_supplier_id < 0:
+                continue
+            att.xml_supplier_id = xml_supplier_id
+            att.invoices_number = len(inv_xml.FatturaElettronicaBody)
             att.registered = False
+            # Strange but there is some trouble during execution
             if hasattr(att, 'in_invoice_ids'):
                 try:
                     if att.in_invoice_ids:
@@ -82,7 +92,7 @@ class FatturaPAAttachmentIn(models.Model):
                         if len(att.in_invoice_ids) == att.invoices_number:
                             att.registered = True
                     att.invoices_total = 0
-                    for invoice_body in fatt.FatturaElettronicaBody:
+                    for invoice_body in inv_xml.FatturaElettronicaBody:
                         att.invoices_total += float(
                             invoice_body.DatiGenerali.DatiGeneraliDocumento.
                             ImportoTotaleDocumento or 0
@@ -101,8 +111,10 @@ class FatturaPAAttachmentIn(models.Model):
             fatt = wizard_model.get_invoice_obj(att)
             if not fatt:
                 continue
-            for fattura in fatt.FatturaElettronicaBody: 
-                wizard_model.set_payment_term(
-                    att.in_invoice_ids[0],
-                    att.in_invoice_ids[0].company_id,
-                    fattura.DatiPagamento)
+            for fattura in fatt.FatturaElettronicaBody:
+                # Strange but there is some trouble during execution
+                if hasattr(att, 'in_invoice_ids') and att.in_invoice_ids:
+                    wizard_model.set_payment_term(
+                        att.in_invoice_ids[0],
+                        att.in_invoice_ids[0].company_id,
+                        fattura.DatiPagamento)

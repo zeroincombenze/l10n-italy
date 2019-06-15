@@ -46,6 +46,9 @@ class FatturaPAAttachmentIn(models.Model):
     @api.multi
     def import_xml_invoice(self):
         send_channel = self.env.user.company_id.einvoice_sender_id
+        if send_channel is False:
+            _logger.error('Undefined SDI channel')
+            return
 
         headers = Evolve.header(send_channel)
         url = os.path.join(send_channel.sender_url, 'Cerca')
@@ -314,6 +317,8 @@ class FatturaPAAttachmentOut(models.Model):
             break
         if company:
             send_channel = company.einvoice_sender_id
+        if send_channel is False:
+            _logger.error('Undefined SDI channel')
         return send_channel
 
     @api.multi
@@ -420,6 +425,8 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_verify(self):
         send_channel = self.get_send_channel()
+        if send_channel is False:
+            raise UserError(_('Undefined SDI channel'))
 
         invoice = self.out_invoice_ids
         if len(invoice) > 1:
@@ -651,6 +658,8 @@ class Evolve():
 
     @staticmethod
     def header(send_channel):
+        if send_channel is False:
+            return False
         now = datetime.datetime.now(pytz.timezone(
             'Europe/Rome')).strftime("%Y-%m-%d %H.%M.%S")
         aes = AES.new(os0.b(send_channel.client_key),

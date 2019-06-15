@@ -72,7 +72,7 @@ env:
 #  - TESTS="1.0" ODOO_REPO="OCA/OCB" UNIT_TEST="1"
 
 script:
-  - travis_run_tests
+  - . /home/travis/dev/activate_tools; travis_run_tests
 
 after_success:
   - travis_after_tests_success

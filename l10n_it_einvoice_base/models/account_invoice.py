@@ -31,6 +31,7 @@ class FatturapaFormat(models.Model):
     name = fields.Char('Description', size=128)
     code = fields.Char('Code', size=5)
 
+
 #  used in fatturaPa import
 class FatturapaPaymentData(models.Model):
     # _position = ['2.4.2.2']
@@ -109,7 +110,8 @@ class WelfareFundDataLine(models.Model):
 
     name = fields.Many2one(
         'welfare.fund.type', string="Welfare Fund Type")
-    tax_nature_id = fields.Many2one('italy.ade.tax.nature', string="Non taxable nature")
+    tax_nature_id = fields.Many2one('italy.ade.tax.nature',
+                                    string="Non taxable nature")
     welfare_rate_tax = fields.Float('Welfare Tax Rate')
     welfare_amount_tax = fields.Float('Welfare Tax Amount')
     welfare_taxable = fields.Float('Welfare Taxable')
@@ -463,11 +465,13 @@ class AccountInvoice(models.Model):
         return res
 
     @api.model
-    def _prepare_refund(self, invoice, date_invoice=None, date=None, description=None, journal_id=None):
-        res = super(AccountInvoice, self)._prepare_refund(invoice,
-                                                          date_invoice=date_invoice,
-                                                          date=date,
-                                                          description=description,
-                                                          journal_id=journal_id)
+    def _prepare_refund(self, invoice, date_invoice=None, date=None,
+                        description=None, journal_id=None):
+        res = super(AccountInvoice, self)._prepare_refund(
+            invoice,
+            date_invoice=date_invoice,
+            date=date,
+            description=description,
+            journal_id=journal_id)
         res['invoice_type_id'] = False
         return res
