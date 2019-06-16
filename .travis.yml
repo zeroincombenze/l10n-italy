@@ -38,7 +38,6 @@ addons:
       - python-setuptools
 
 before_install:
-  - export TRAVIS_DEBUG_MODE="2"
 # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
@@ -57,7 +56,10 @@ install:
 
 env:
   global:
-  - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRAVIS_DEBUG_MODE="3"
+  - WKHTMLTOPDF_VERSION="0.12.4"
+  - VERSION="10.0" TESTS="0" LINT_CHECK="0" ODOO_TNLBOT="0"
+
 
   matrix:
   # - LINT_CHECK="1" LINT_CHECK_LEVEL="MINIMAL"
