@@ -18,6 +18,9 @@ virtualenv:
 git:
   submodules: false
 
+services:
+  - postgresql
+
 addons:
   apt:
     sources:
