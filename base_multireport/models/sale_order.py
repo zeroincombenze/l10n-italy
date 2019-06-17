@@ -7,11 +7,11 @@ from openerp import fields, models, api
 class SaleOrder(models.Model):
     _inherit = ["sale.order"]
 
-    pdf_model = fields.Many2one(
-        'multireport.model',
-        'Quote/Order Report',
-        help="Select Report to use when printing the Sales Order or Quote"
-    )
+    # pdf_model = fields.Many2one(
+    #     'multireport.model',
+    #     'Quote/Order Report',
+    #     help="Select Report to use when printing the Sales Order or Quote"
+    # )
 
     # Override print_quotation method in sale module
     @api.multi

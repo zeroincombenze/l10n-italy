@@ -8,7 +8,6 @@
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/base_multireport/static/description/icon.png
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
 
@@ -55,6 +54,99 @@ alla lista dei modelli.
 
 |
 
+Usage / Utilizzo
+----------------
+
+This module gives a lot of features usable by reports.
+
+Inside every report it is possible check for some charactes o add some values.
+Look at follow table for details:
+
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| Name                                                         | Description                          | Notes / Example                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_opts.code_mode                                           | Print code in document body          | <td if="doc_opts.code_mode=='print'"><span t-esc="l.code_2_print()"/></td> |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_opts.description_mode                                    | Print code in document body          | <td><span t-esc="l.description_2_print()"/></td>                           |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_opts.header                                              | Add header to report                 |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_opts.model                                               | Document model                       |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_opts.paperformat_id                                      | ID to paperformat                    |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_opts.report_name                                         | Report Name                          |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.custom_header                                      | No Header Logo                       | <div t-if="doc_style.custom_header"> .. </div>.                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.description_mode_account_invoice                   | `Print Description` (see below)      |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.description_mode_purchase_order                    | `Print Description` (see below)      |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.description_mode_sale_order                        | `Print Description` (see below)      |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.description_mode_stock_picking_package_preparation | `Print Description` (see below)      |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.header_account_invoice                             | `Header mode` (see below)            |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.header_purchase_order                              | `Header mode` (see below)            |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.header_sale_order                                  | `Header mode` (see below)            |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.header_stock_picking_package_preparation           | `Header mode` (see below)            |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.name                                               | Name of Style                        |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.origin                                             | `Report Identity` (see below)        |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.pdf_ending_page                                    | Ending Page PDF                      |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.pdf_watermark                                      | Default watermark for this style     |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.pdf_watermark_account_invoice                      | Sale Invoice default Watermark PDF   |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.pdf_watermark_purchase_order                       | Purchase Order default Watermark PDF |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.pdf_watermark_sale_order                           | Sale Order default Watermark PDF     |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+| doc_style.pdf_watermark_stock_picking_package_preparation    | Packing List default Watermark PDF   |                                                                            |
++--------------------------------------------------------------+--------------------------------------+----------------------------------------------------------------------------+
+
+
+
+`Report Identity`
+
+Report Identity is used to manage standard Odoo reports or customized reports.
+If value is 'Odoo' all customizzation is disabled and original Odoo reports are printed.
+
+`Print description`
+
+This parameter manage the printing of description of document lines.
+May be one of: 'as_is', 'line1', 'nocode', 'nocode1'
+
+* as_is: is default value; means description is printed as is, without manipulations
+* line1: only the 1st line of description is printed
+* nocode: product code (printed between [brackets]) is removed
+* nocode1: same of line1 + nocode
+
+`Header mode`
+
+This parameter set how header is printed. May be one of 'standard', 'logo', 'no_header'
+
+* standard: standard Odoo header is printed
+* logo: only the logo is printed, without text; logo must contain company informations
+* no_header: no header is printed
+
+In xml report it is also possible test the existence of a field. The should be as follow:
+
+`
+<div t-if="'some_field' in docs[0]">FOUND SOME FIELD</div>
+<div t-if="'some_field' not in docs[0]">NOT FOUND SOME FIELD</div>
+`
+
+
+|
+
 OCA comparation / Confronto con OCA
 -----------------------------------
 
@@ -62,7 +154,7 @@ OCA comparation / Confronto con OCA
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 | Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  |                                |
 +-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
 
 |
@@ -73,13 +165,6 @@ Getting started / Come iniziare
 
 |Try Me|
 
-
-Prerequisites / Prerequisiti
-----------------------------
-
-
-* python2.7+
-* postgresql 9.2+
 
 |
 
@@ -179,8 +264,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -223,7 +308,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-24
+Last Update / Ultimo aggiornamento: 2019-05-30
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -241,11 +326,8 @@ Last Update / Ultimo aggiornamento: 2019-04-24
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/10.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
     :alt: Technical Documentation
@@ -255,7 +337,7 @@ Last Update / Ultimo aggiornamento: 2019-04-24
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -265,9 +347,9 @@ Last Update / Ultimo aggiornamento: 2019-04-24
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

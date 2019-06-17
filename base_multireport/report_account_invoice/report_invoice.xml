@@ -62,7 +62,10 @@
                     </div>
                 </div>
 
+                <t t-call="base_multireport.report_invoice_lines"/>
+
                 <!-- Is there a discount on at least one line? -->
+                <!-- 
                 <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
 
                 <table class="table table-condensed">
@@ -81,7 +84,6 @@
                     <t t-set="last_ddt" t-value="''"/>
                     <tbody class="invoice_tbody">
                         <tr t-foreach="o.invoice_line_ids" t-as="l">
-                            <!-- <td><span t-field="l.name"/></td> -->
                             <td>
                                 <t t-if="(l.sale_line_ids and last_order != l.sale_line_ids.order_id.client_order_ref) or (l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number)">
                                     <p>
@@ -117,6 +119,7 @@
                         </tr>
                     </tbody>
                 </table>
+                -->
 
                 <div class="row">
                     <div class="col-xs-4 pull-right">

@@ -1,6 +1,5 @@
 # Odoo yaml template for travis-ci
-# # __version__=0.2.1
-#
+# __version__=0.2.1
 
 language: python
 sudo: false
@@ -17,6 +16,7 @@ virtualenv:
 
 git:
   submodules: false
+  depth: false
 
 services:
   - postgresql

@@ -13,11 +13,6 @@ logger = getLogger(__name__)
 
 
 class Report(models.Model):
-    _inherit = 'report'
-
-
-
-class Report(models.Model):
     _inherit = "report"
 
     RPT_BY_MODEL = {
@@ -26,7 +21,7 @@ class Report(models.Model):
     }
 
     @api.model
-    def get_reportname(self, document):
+    def select_reportname(self, document):
         model = document.__class__.__name__
         rule_model = self.env['multireport.selection.rules']
         ir_model_model = self.env['ir.model']
@@ -46,8 +41,8 @@ class Report(models.Model):
         return reportname
 
     @api.model
-    def get_report_attr(self, document):
-        reportname = self.get_reportname(document)
+    def get_report_attr(self, document, report):
+        reportname = self.select_reportname(document)
         company = False
         report_model_style = False
         if hasattr(document, 'company_id'):
@@ -59,11 +54,26 @@ class Report(models.Model):
             pdf_report = False
         return reportname, company, report_model_style, pdf_report
 
-    # @api.noguess
-    # def get_action(self, docids, report_name, data=None):
-    #     import pdb
-    #     pdb.set_trace()
-    #     return super(Report, self).get_action(docids, report_name, data=data)
+    @api.model
+    def get_html(self, docids, report_name, data=None):
+        """This method generates and returns html version of a report.
+        """
+        report_model_name = 'report.%s' % report_name
+        report_model = self.env.get(report_model_name)
+        if report_model is not None:
+            return report_model.render_html(docids, data=data)
+        else:
+            report = self._get_report_from_name(report_name)
+            docs = self.env[report.model].browse(docids)
+            company = docs[0].company_id or self.env.user.company_id
+            docargs = {
+                'doc_ids': docids,
+                'doc_model': report.model,
+                'docs': docs,
+                'doc_opts': report,
+                'doc_style': company.report_model_style
+                }
+            return self.render(report.report_name, docargs)
 
     @api.model
     def get_pdf(self, docids, report_name, html=None, data=None):
@@ -74,7 +84,7 @@ class Report(models.Model):
         report = self._get_report_from_name(report_name)
         recs = self.env[report.model].browse(docids)
         reportname, company, report_model_style, pdf_report = self.env[
-            'report'].get_report_attr(recs[0])
+            'report'].get_report_attr(recs[0], report)
         if (not report_model_style or not report_model_style.origin or
                 report_model_style.origin == 'odoo') and not pdf_report:
             return result
