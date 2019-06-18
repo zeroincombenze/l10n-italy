@@ -1,0 +1,9 @@
+Feature / Funzione ,Status,Notes / Note
+Print original Odoo reports / Stampa modelli originali di Odoo,|check|,Style configuration /Configurazione a livello di stile
+Print product code / Stampa codice prodotto,|check|,Configurable by report / Configurabile per ogni singolo report
+Prin descriprion without code / Stampa descrizione senza codice,|check|,Configurable by report / Configurabile per ogni singolo report
+Print only logo header / Stampa solo logo in intestazione,|check|,Syle configuration: company info must be present in log / Configurabile a livello di stile: le informazioni aziendali vanno inserite nel logo
+No print header / Non stampare intestazione,|check|,Style configuration /Configurazione a livello di stile
+Configurable documents / Documenti configurabili:,"Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore",
+Watermark / Filigrana,|check|,High quality report / Stampa di alta qualità
+Ending page / Pagina finale,|check|,Ending page with commercial info / Pagina finale con informazioni commerciali
