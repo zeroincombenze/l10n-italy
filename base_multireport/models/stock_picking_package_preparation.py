@@ -41,14 +41,15 @@ class StockPickingPackagePreparation(models.Model):
 class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
 
-    def description_2_print(self):
-        field_name = 'name'
-        style = self.package_preparation_id.company_id.report_model_style.\
+    def description_2_print(self, style_mode=None):
+        style_mode = style_mode or \
+            self.package_preparation_id.company_id.report_model_style.\
             description_mode_stock_picking_package_preparation
+        field_name = 'name'
         value = self[field_name]
-        if style in ('line1', 'nocode1'):
+        if style_mode in ('line1', 'nocode1'):
             value = value.split('\n')[0]
-        if style in ('nocode', 'nocode1'):
+        if style_mode in ('nocode', 'nocode1'):
             i = value.find(']')
             if value[0] == '[' and i >= 0:
                 value = value[i + 1:].lstrip()

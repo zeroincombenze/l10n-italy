@@ -50,6 +50,122 @@ alla lista dei modelli.
 </p></p>
         </div>
     </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Features / Caratteristiche</h3>
+        <div class="oe_span12">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Feature / Funzione</td><td>Status</td><td>Notes / Note</td>
+</tr><tr>
+<td>Print original Odoo reports / Stampa modelli originali di Odoo</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Style configuration /Configurazione a livello di stile</td>
+</tr><tr>
+<td>Print product code / Stampa codice prodotto</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Configurable by report / Configurabile per ogni singolo report</td>
+</tr><tr>
+<td>Prin descriprion without code / Stampa descrizione senza codice</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Configurable by report / Configurabile per ogni singolo report</td>
+</tr><tr>
+<td>Print only logo header / Stampa solo logo in intestazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Syle configuration: company info must be present in log / Configurabile a livello di stile: le informazioni aziendali vanno inserite nel logo</td>
+</tr><tr>
+<td>No print header / Non stampare intestazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Style configuration /Configurazione a livello di stile</td>
+</tr><tr>
+<td>Configurable documents / Documenti configurabili:</td><td>Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore</td><td/>
+</tr><tr>
+<td>Watermark / Filigrana</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>High quality report / Stampa di alta qualit&#224;</td>
+</tr><tr>
+<td>Ending page / Pagina finale</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Ending page with commercial info / Pagina finale con informazioni commerciali</td>
+</tr></table>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
+        <div class="oe_span12">
+This module gives a lot of features usable by reports.
+<p align="justify">
+Inside every report it is possible check for some charactes o add some values.
+Look at follow table for details:
+</p><p align="justify">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Name</td><td>Description</td><td>Notes / Example</td>
+</tr><tr>
+<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2_print()"/&gt;&lt;/td&gt;</td>
+</tr><tr>
+<td>doc_opts.description_mode</td><td>Print code in document body</td><td>&lt;td&gt;&lt;span t-esc="l.description_2_print()"/&gt;&lt;/td&gt;</td>
+</tr><tr>
+<td>doc_opts.header</td><td>Add header to report</td><td/>
+</tr><tr>
+<td>doc_opts.model</td><td>Document model</td><td/>
+</tr><tr>
+<td>doc_opts.paperformat_id</td><td>ID to paperformat</td><td/>
+</tr><tr>
+<td>doc_opts.report_name</td><td>Report Name</td><td/>
+</tr><tr>
+<td>doc_style.custom_header</td><td>No Header Logo</td><td>&lt;div t-if="doc_style.custom_header"&gt; .. &lt;/div&gt;.</td>
+</tr><tr>
+<td>doc_style.description_mode_account_invoice</td><td><code>Print Description</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.description_mode_purchase_order</td><td><code>Print Description</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.description_mode_sale_order</td><td><code>Print Description</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.description_mode_stock_picking_package_preparation</td><td><code>Print Description</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.header_account_invoice</td><td><code>Header mode</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.header_purchase_order</td><td><code>Header mode</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.header_sale_order</td><td><code>Header mode</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.header_stock_picking_package_preparation</td><td><code>Header mode</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.name</td><td>Name of Style</td><td/>
+</tr><tr>
+<td>doc_style.origin</td><td><code>Report Identity</code> (see below)</td><td/>
+</tr><tr>
+<td>doc_style.pdf_ending_page</td><td>Ending Page PDF</td><td/>
+</tr><tr>
+<td>doc_style.pdf_watermark</td><td>Default watermark for this style</td><td/>
+</tr><tr>
+<td>doc_style.pdf_watermark_account_invoice</td><td>Sale Invoice default Watermark PDF</td><td/>
+</tr><tr>
+<td>doc_style.pdf_watermark_purchase_order</td><td>Purchase Order default Watermark PDF</td><td/>
+</tr><tr>
+<td>doc_style.pdf_watermark_sale_order</td><td>Sale Order default Watermark PDF</td><td/>
+</tr><tr>
+<td>doc_style.pdf_watermark_stock_picking_package_preparation</td><td>Packing List default Watermark PDF</td><td/>
+</tr><tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr></table>
+</p>
+        </div>
+    </div>
 </section>
 
 <section class="oe_container oe_separator"/>
@@ -58,11 +174,15 @@ alla lista dei modelli.
     <div class="oe_row oe_spaced">
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Authors / Autori:</p>
-            <p class="oe_mt16">* SHS-AV s.r.l. <https://www.zeroincombenze.it/></p>
+            <p class="oe_mt16"><ul>
+<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+</ul></p>
         </div>
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Contributors / Collaboratori:</p>
-            <p class="oe_mt16">* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com></p>
+            <p class="oe_mt16"><ul>
+<li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
+</ul></p>
         </div>
     </div>
     <div class="oe_row oe_spaced">

@@ -27,7 +27,9 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    def description_2_print(self, style_mode):
+    def description_2_print(self, style_mode=None):
+        style_mode = style_mode or \
+            self.company_id.report_model_style.description_mode_account_invoice
         field_name = 'name'
         value = self[field_name]
         if style_mode in ('line1', 'nocode1'):
