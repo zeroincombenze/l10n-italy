@@ -1,5 +1,5 @@
 # Odoo yaml template for travis-ci
-# __version__=0.2.1.54
+# __version__=0.2.2
 
 language: python
 sudo: false
@@ -16,6 +16,11 @@ virtualenv:
 
 git:
   submodules: false
+  depth: false
+
+services:
+  - postgresql
+  - xvfb
 
 addons:
   apt:
@@ -35,6 +40,7 @@ addons:
 #     https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
 
 before_install:
+  # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
@@ -48,7 +54,8 @@ env:
   global:
   - TRAVIS_DEBUG_MODE="1"
   - WKHTMLTOPDF_VERSION="0.12.1"
-  - VERSION="7.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - VERSION="7.0" TESTS="0" LINT_CHECK="0" ODOO_TNLBOT="0"
+
 
   matrix:
   # - LINT_CHECK="1" LINT_CHECK_LEVEL="MINIMAL"
