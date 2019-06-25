@@ -145,8 +145,9 @@ class WizardImportFatturapa(models.TransientModel):
         return companies[0]
 
     @api.multi
-    def synchro(self, model, vals, skeys=[], constraints=None,
+    def synchro(self, model, vals, skeys=None, constraints=None,
                 keep=None, default=None):
+        skeys = skeys or []
         ir_model = self.env[model]
         partner_model = self.env['res.partner']
         MAGIC_FIELDS = {'company_id': False,
@@ -370,7 +371,7 @@ class WizardImportFatturapa(models.TransientModel):
                 DatiAnagrafici.IdFiscaleIVA.IdCodice
             )
 
-        if DatiAnagraficiVettore.NumeroLicenzaGuida:
+        if DatiAnagrafici.NumeroLicenzaGuida:
             vals['license_number'] = \
                 Carrier.DatiAnagraficiVettore.NumeroLicenzaGuida
 

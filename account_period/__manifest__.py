@@ -12,7 +12,6 @@
 Account Period
 """,
     'author': "Jarvis (www.odoomod.com)",
-    'website': 'http://www.odoomod.com',
     'license': 'AGPL-3',
     "depends": [
         'account',

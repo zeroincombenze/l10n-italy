@@ -18,7 +18,7 @@ class Certdoc(http.Controller):
 
     def filter_attive(self, archive_id):
 
-        return '<br><form action="/certdoc?archive_id='+archive_id+'"><label for="from">From</label><input name="from"> <label for="to">To</label><input name="to"><input type="submit"></form>';
+        return '<br><form action="/certdoc?archive_id='+archive_id+'"><label for="from">From</label><input name="from"> <label for="to">To</label><input name="to"><input type="submit"></form>'
 
     def get_attive(self):
 

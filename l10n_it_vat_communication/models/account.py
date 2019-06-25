@@ -683,11 +683,8 @@ class AccountVatCommunication(models.Model):
                 _('Internal error: no DTE neither DTR selected'))
         model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
         line_model = self.env[model_name]
-        ids = line_model.search(
-                [
-                ('commitment_id', '=', commitment.id),
-                ('invoice_id', '=', invoice_id)
-            ])
+        ids = line_model.search([('commitment_id', '=', commitment.id),
+                                 ('invoice_id', '=', invoice_id)])
         return ids
 
     def get_xml_riepilogo(self, cr, uid, commitment, line_id,

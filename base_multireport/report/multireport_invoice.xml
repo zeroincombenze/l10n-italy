@@ -3,7 +3,7 @@
     <template id="report_invoice">
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-set="style" t-value="res_company.report_model_style.origin or 'odoo'"/>
+                <t t-set="style" t-value="o.company_id.report_model_style.origin or 'odoo'"/>
                 <t t-if="style == 'odoo_based'" t-call="base_multireport.report_invoice_document" t-lang="o.partner_id.lang"/>
                 <t t-if="style == 'odoo'" t-call="account.report_invoice_document" t-lang="o.partner_id.lang"/>
             </t>
@@ -24,7 +24,7 @@
     <template id="account_invoice_report_duplicate_main">
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-set="style" t-value="res_company.report_model_style.origin or 'odoo'"/>
+                <t t-set="style" t-value="o.company_id.report_model_style.origin or 'odoo'"/>
                 <t t-if="style == 'odoo_based'" t-call="base_multireport.account_invoice_report_duplicate" t-lang="o.partner_id.lang"/>
                 <t t-if="style == 'odoo'" t-call="base_multireport.account_invoice_report_duplicate" t-lang="o.partner_id.lang"/>
             </t>
@@ -44,7 +44,7 @@
     <template id="report_delivery_invoice">
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-set="style" t-value="res_company.report_model_style.origin or 'odoo'"/>
+                <t t-set="style" t-value="o.company_id.report_model_style.origin or 'odoo'"/>
                 <t t-if="style == 'odoo_based'" t-call="base_multireport.delivery_n_account_invoice" t-lang="o.partner_id.lang"/>
             </t>
         </t>

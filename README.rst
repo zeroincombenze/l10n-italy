@@ -2,7 +2,7 @@
 ================================
 |Zeroincombenze| l10n-italy 10.0
 ================================
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Try Me|
+|Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -340,7 +340,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2019-06-21
+Last Update / Ultimo aggiornamento: 2019-06-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

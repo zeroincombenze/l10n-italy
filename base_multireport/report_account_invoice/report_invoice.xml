@@ -3,7 +3,7 @@
 
     <template id="report_invoice_document">
         <t t-call="base_multireport.external_layout">
-            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
             <div class="page">
                 <div class="row">
                     <div class="col-xs-6">
@@ -146,7 +146,7 @@
                 <span t-field="o.number"/>
             </h2>
         </xpath>
-        <xpath expr="//p[last()]" position="after">
+        <xpath expr="//div[@class='page']/p[last()]" position="after">
             <div>
                 <p>Documento non valido ai fini fiscali. L'originale è disponibile all'indirizzo PEC o codice SdI fornito oppure nell'area riservata.</p>
             </div>

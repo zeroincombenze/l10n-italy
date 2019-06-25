@@ -35,7 +35,7 @@ try:
             AltriDatiIdentificativiNoCAPType,
             IdentificativiFiscaliNoIVAType,
             IndirizzoType,
-            # IndirizzoNoCAPType,
+            IndirizzoNoCAPType,
             RettificaType,
             DatiFatturaBodyDTEType,
             DatiGeneraliType,
@@ -417,10 +417,10 @@ class WizardVatCommunication(models.TransientModel):
                         fields['xml_Imposta'])
                     riepilogo.DatiIVA.Aliquota = '{:.2f}'.format(
                         fields['xml_Aliquota'])
-                    if fields.get('xml_Detraibile', None) != None:
+                    if fields.get('xml_Detraibile', None) is not None:
                         riepilogo.Detraibile = '{:.2f}'.format(
                             fields['xml_Detraibile'])
-                    if fields.get('xml_Deducibile', None) != None:
+                    if fields.get('xml_Deducibile', None) is not None:
                         riepilogo.Deducibile = fields['xml_Deducibile']
                     if fields.get('xml_Natura', False):
                         riepilogo.Natura = fields['xml_Natura']
@@ -528,7 +528,7 @@ class WizardVatCommunication(models.TransientModel):
                 try:
                     vat_communication_xml = communication.toDOM().toprettyxml()
                 except Exception as e:
-                    print(e.details())
+                    _logger.error(e.details())
                     raise
 
                 out = base64.b64encode(vat_communication_xml.encode('ascii'))

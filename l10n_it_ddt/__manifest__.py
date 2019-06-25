@@ -11,9 +11,9 @@
 
 {
     'name': 'DDT',
-    'version': '10.0.1.5.3',
+    'version': '10.0.1.5.4',
     'category': 'Localization/Italy',
-    'summary': 'Documento di Trasporto',
+    'summary': 'Delivery Documento to Transfer',
     'author': 'Odoo Community Association (OCA),'
               'Odoo Italia Associazione,'
               '*Dettaglio autori in documentazione*',

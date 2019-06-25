@@ -8,6 +8,8 @@
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/base_multireport/static/description/icon.png
 
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+
 
 .. contents::
 
@@ -294,6 +296,8 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Error "description_2_print() takes exactly 2 arguments (1 given)"
+* [FIX] Does not print fiscalcode on custom invoice
+
 
 10.0.0.2.6 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -319,12 +323,14 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 |
 
@@ -348,7 +354,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-06-21
+Last Update / Ultimo aggiornamento: 2019-06-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -106,6 +106,7 @@
                         <thead>
                             <tr>
                                 <th><strong>Description</strong></th>
+                                <th class="text-right"><strong>UM</strong></th>
                                 <th class="text-right"><strong>Quantity</strong></th>
                                 <th name="lot_serial" t-if="has_serial_number" class="text-right">
                                     <strong>Lots/Serial Numbers</strong>
@@ -120,6 +121,7 @@
                             <tr t-foreach="o.line_ids" t-as="line">
                                 <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
                                 <td><span t-field="line.name"></span></td>
+                                <td class="text-right"><span t-field="line.product_uom_id"></span></td>
                                 <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
                                 <t t-if="has_serial_number">
                                     <td t-if="line.move_id.lot_ids" class="text-right">

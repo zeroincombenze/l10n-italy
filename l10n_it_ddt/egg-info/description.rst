@@ -1,5 +1,5 @@
-Delivery document
------------------
+Delivery document to transfer
+-----------------------------
 
 This module print the Italian deliver document AKA DdT
 
