@@ -11,6 +11,7 @@
                   <button name="send_einvoice" states="ready" string="Invia a SDI" type="object" class="oe_highlight"/>
                   <button name="send_verify" states="sent,sender_error,recipient_error,rejected" string="Verifica invio" type="object" class="oe_highlight"/>
                   <button name="reset_to_ready" states="sender_error,recipient_error,rejected" string="Reset to ready" type="object" />
+                  <button name="set_to_delivered" states="recipient_error" string="Set to delivered" type="object" />
                   <field name="state" widget="statusbar"/>
               </header>
             </xpath>

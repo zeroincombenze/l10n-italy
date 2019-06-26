@@ -1,12 +1,14 @@
 
 =======================================
-|icon| Send E-Invoice to SdI 10.0.1.0.3
+|icon| Send E-Invoice to SdI 10.0.1.0.4
 =======================================
 
 
-**Send E-Invoice to customer thought SdI**
+**Send E-Invoice to customer by SdI**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_send2sdi/static/description/icon.png
+
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -15,9 +17,9 @@
 Overview / Panoramica
 =====================
 
-|en| Send invoices to SdI
+|en| Send invoices to Customer by SdI
 
-Use a defined channel to send E-Invoice to Customer thorught SdI
+Use a defined channel to send E-Invoice to Customer by SdI
 
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
@@ -30,7 +32,7 @@ Questo modulo permette di inviare le fatture tramite uno canale SdI
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 In questa versione sono implementati il canale JSON verso hub di
-terzo incaricato e canale PEC.
+terzo incaricato e il canale PEC.
 
 
 |
@@ -152,6 +154,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.4 (2019-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recoginze state "Notifica di esito: documento accettato"
+* [IMP] New button "Set to delivered" when recipient_error
+
+
 10.0.1.0.3 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -207,7 +216,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-06-15
+Last Update / Ultimo aggiornamento: 2019-06-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -186,7 +186,7 @@ class WizardImportFatturapa(models.TransientModel):
             try:
                 cur_rec = ir_model.browse(id)
                 for field in keep:
-                    if (rec[field] and
+                    if (field in vals and rec[field] and
                             isinstance(vals[field], basestring) and
                             partner_model.dim_text(
                                 rec[field]) == partner_model.dim_text(

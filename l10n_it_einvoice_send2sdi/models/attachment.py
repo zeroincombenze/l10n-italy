@@ -23,21 +23,26 @@ _logger = logging.getLogger(__name__)
 RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
                       '[a-zA-Z0-9]{,3}'
 
-evolve_stato_mapping = {
-    "In attesa di risposta dopo aver inviato il documento": 'sent',
-    "Ricevuta di consegna": 'validated',
-    "Notifica di mancata consegna": 'validated',
-    "Il documento non ha superato i controlli di validazione": 'rejected',
-    "Notifica di scarto": 'rejected'
-}
-
 evolve_stati = [
     "In attesa di risposta dopo aver inviato il documento",
     "Ricevuta di consegna",
+    "Notifica di esito: documento accettato",
     "Notifica di mancata consegna",
+    "Notifica di decorrenza termini",
     "Il documento non ha superato i controlli di validazione",
     "Notifica di scarto"
 ]
+
+evolve_stato_mapping = {
+    evolve_stati[0]: 'sent',
+    evolve_stati[1]: 'validated',
+    evolve_stati[2]: 'validated',
+    evolve_stati[3]: 'recipient_error',
+    evolve_stati[4]: 'recipient_error',
+    evolve_stati[5]: 'rejected',
+    evolve_stati[6]: 'rejected'
+}
+
 
 class FatturaPAAttachmentIn(models.Model):
 
@@ -463,6 +468,15 @@ class FatturaPAAttachmentOut(models.Model):
                     _("You can not reset files in 'Delivered' state.")
                 )
             att.state = 'ready'
+
+    @api.multi
+    def set_to_delivered(self):
+        for att in self:
+            if att.state != 'recipient_error':
+                raise UserError(
+                    _("You can not reset files in 'recipient_error' state.")
+                )
+            att.state = 'validated'
 
     @api.multi
     def send_via_json(self, send_channel):
