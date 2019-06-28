@@ -45,6 +45,8 @@ before_install:
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - export PYTHONPATH=${HOME}/tools
+
 
 install:
   - travis_install_env
@@ -77,7 +79,7 @@ env:
 #  - TESTS="1.0" ODOO_REPO="OCA/OCB" UNIT_TEST="1"
 
 script:
-  - PYTHONPATH=${HOME}/tools; travis_run_tests
+  - travis_run_tests
 
 after_success:
   - travis_after_tests_success
