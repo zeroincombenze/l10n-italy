@@ -71,7 +71,8 @@ class Report(models.Model):
                 'doc_model': report.model,
                 'docs': docs,
                 'doc_opts': report,
-                'doc_style': company.report_model_style
+                'doc_style': company.report_model_style,
+                'def_company': self.env.user.company_id,
                 }
             return self.render(report.report_name, docargs)
 

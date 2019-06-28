@@ -60,6 +60,27 @@
                         <strong>Riferimento:</strong>
                         <p t-field="o.reference"/>
                     </div>
+                    <div t-if="doc_opts.payment_term_position == 'header'" class="col-xs-3">
+                        <p><strong>Payment Term:</strong></p>
+                        <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
+                        <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>
+                    </div>
+                    <div class="col-xs-4" t-if="o.partner_bank_id">
+                        <p><strong>IBAN:</strong></p>
+                        <p t-field="o.partner_bank_id.display_name"/>
+                    </div>
+                    <div class="col-xs-4" t-if="not o.partner_bank_id and o.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.riba or o.payment_term_id.fatturapa_pm_id in ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21')">
+                        <p><strong>IBAN:</strong></p>
+                        <p>
+                            <t t-foreach="o.partner_id.bank_ids" t-as="bank"><span t-field="bank.display_name"/></t>
+                        </p>
+                    </div>
+                    <div class="col-xs-4" t-if="not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')">
+                        <p><strong>IBAN:</strong></p>
+                        <p>
+                            <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-field="bank.display_name"/></t>
+                        </p>
+                    </div>
                 </div>
 
                 <t t-call="base_multireport.report_invoice_lines"/>

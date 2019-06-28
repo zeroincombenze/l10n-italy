@@ -77,25 +77,43 @@ alla lista dei modelli.
     <div class="oe_row oe_spaced">
         <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
         <div class="oe_span12">
-This module gives a lot of features usable by reports.
+This module gives a lot of pretty features to print nice reports.
 <p align="justify">
-Inside every report it is possible check for some charactes o add some values.
+Inside every report it is possible check for some characteristics and/or add some values.
+Field name beginning with <code>doc_opts</code> are values from the specific report which is printing.
+Field name beginning with <code>doc_style</code> are values from the style of the company.
+Values in <code>doc_opts</code> are more priority than value in <code>doc_style</code>.
+</p><p align="justify">
 Look at follow table for details:
 </p><p align="justify">
 <table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
 <td>Name</td><td>Description</td><td>Notes / Example</td>
 </tr><tr>
-<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2_print()"/&gt;&lt;/td&gt;</td>
+<td>company</td><td>Company of current document</td><td>Set by external layout</td>
+</tr><tr>
+<td>company_partner</td><td>Company partner of current document</td><td>Set by external layout</td>
+</tr><tr>
+<td>def_company</td><td>Default company</td><td>Set by module</td>
+</tr><tr>
+<td>doc</td><td>Current document which is printing</td><td>Set by module. External layout set 'o' to compatibilit with Odoo reports</td>
+</tr><tr>
+<td>doc_model</td><td>Document model</td><td>Deprecated: use doc_opts.model</td>
+</tr><tr>
+<td>doc_opts</td><td>Document parameters</td><td/>
+</tr><tr>
+<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td t-if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2_print()"/&gt;&lt;/td&gt;</td>
 </tr><tr>
 <td>doc_opts.description_mode</td><td>Print code in document body</td><td>&lt;td&gt;&lt;span t-esc="l.description_2_print()"/&gt;&lt;/td&gt;</td>
 </tr><tr>
 <td>doc_opts.header</td><td>Add header to report</td><td/>
 </tr><tr>
-<td>doc_opts.model</td><td>Document model</td><td/>
+<td>doc_opts.model</td><td>Document model</td><td>Same as doc_model</td>
 </tr><tr>
 <td>doc_opts.paperformat_id</td><td>ID to paperformat</td><td/>
 </tr><tr>
 <td>doc_opts.report_name</td><td>Report Name</td><td/>
+</tr><tr>
+<td>doc_style</td><td>Style parameteres</td><td/>
 </tr><tr>
 <td>doc_style.custom_header</td><td>No Header Logo</td><td>&lt;div t-if="doc_style.custom_header"&gt; .. &lt;/div&gt;.</td>
 </tr><tr>
@@ -131,6 +149,17 @@ Look at follow table for details:
 </tr><tr>
 <td>doc_style.pdf_watermark_stock_picking_package_preparation</td><td>Packing List default Watermark PDF</td><td/>
 </tr><tr>
+<td>o</td><td>Current invoice which is printing</td><td>Alias used in invoice print set by external layout</td>
+</tr><tr>
+<td>style</td><td>Current <code>Report Identity</code> (see below)</td><td/>
+</tr><tr>
+
+
+
+
+
+
+
 
 
 

@@ -1,10 +1,17 @@
 Name,Description,Notes / Example
+company,Company of current document,Set by external layout
+company_partner,Company partner of current document,Set by external layout
+def_company,Default company,Set by module
+doc,Current document which is printing,Set by module. External layout set 'o' to compatibilit with Odoo reports
+doc_model,Document model,Deprecated: use doc_opts.model
+doc_opts,Document parameters,
 doc_opts.code_mode,Print code in document body,"<td t-if=""doc_opts.code_mode=='print'""><span t-esc=""l.code_2_print()""/></td>"
 doc_opts.description_mode,Print code in document body,"<td><span t-esc=""l.description_2_print()""/></td>"
 doc_opts.header,Add header to report,
-doc_opts.model,Document model,
+doc_opts.model,Document model,Same as doc_model
 doc_opts.paperformat_id,ID to paperformat,
 doc_opts.report_name,Report Name,
+doc_style,Style parameteres,
 doc_style.custom_header,No Header Logo,"<div t-if=""doc_style.custom_header""> .. </div>. "
 doc_style.description_mode_account_invoice,`Print Description` (see below),
 doc_style.description_mode_purchase_order,`Print Description` (see below),
@@ -22,3 +29,5 @@ doc_style.pdf_watermark_account_invoice,Sale Invoice default Watermark PDF,
 doc_style.pdf_watermark_purchase_order,Purchase Order default Watermark PDF,
 doc_style.pdf_watermark_sale_order,Sale Order default Watermark PDF,
 doc_style.pdf_watermark_stock_picking_package_preparation,Packing List default Watermark PDF,
+o,Current invoice which is printing,Alias used in invoice print set by external layout
+style,Current `Report Identity` (see below),

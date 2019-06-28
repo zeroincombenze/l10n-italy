@@ -14,14 +14,14 @@
             <t t-set="company" t-value="o.company_id"></t>
         </t>
         <t t-if="not o or not 'company_id' in o">
-            <t t-set="company" t-value="res_company"></t>
+            <t t-set="company" t-value="def_company"></t>
         </t>
         <t t-set="company_partner" t-value="company.partner_id"></t>
         <t t-set="style" t-value="company.report_model_style.origin or 'odoo'"/>
         <t t-if="style == 'odoo_based'" t-call="base_multireport.external_layout_header"/>
         <t t-if="style == 'vg7'" t-call="base_multireport.external_layout_header_vg7"/>
         <t t-if="style == 'odoo'" t-call="report.external_layout_header"/>
-        <t t-raw="0" />
+        <t t-raw="0"/>
         <t t-if="style == 'odoo_based'" t-call="base_multireport.external_layout_footer"/>
         <t t-if="style == 'vg7'" t-call="base_multireport.external_layout_footer_vg7"/>
         <t t-if="style == 'odoo'" t-call="report.external_layout_footer"/>

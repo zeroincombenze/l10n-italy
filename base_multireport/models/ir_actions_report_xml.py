@@ -61,6 +61,14 @@ class IrActionsReportXml(models.Model):
         help="Which content is printed in document line",
         default='as_is'
     )
+    payment_term_position = fields.Selection(
+        [('footer', 'Footer'),
+         ('header', 'Header'),
+         ],
+        'Payment term layout position',
+        help="Where Payment term is printed: may be in footer or in header",
+        default='footer'
+    )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(
         'Watermark expression',
