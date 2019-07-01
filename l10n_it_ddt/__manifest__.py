@@ -13,7 +13,7 @@
     'name': 'DDT',
     'version': '10.0.1.5.4',
     'category': 'Localization/Italy',
-    'summary': 'Delivery Documento to Transfer',
+    'summary': 'Delivery Document to Transfer',
     'author': 'Odoo Community Association (OCA),'
               'Odoo Italia Associazione,'
               '*Dettaglio autori in documentazione*',
@@ -22,6 +22,7 @@
     'depends': [
         'sale_stock',
         'stock_account',
+        'delivery',
         'stock_picking_package_preparation_line',
     ],
     'data': [
@@ -38,6 +39,7 @@
         'wizard/ddt_create_invoice.xml',
         'wizard/ddt_invoicing.xml',
         'views/report_ddt.xml',
+        'data/mail_template_data.xml',
     ],
     'installable': True,
 }

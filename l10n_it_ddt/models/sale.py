@@ -28,26 +28,33 @@ class SaleOrder(models.Model):
                     ddt_ids.append(ddt.id)
             so.ddt_ids = ddt_ids
 
+    def _default_ddt_type(self):
+        # TODO: FIX in separate module
+        # signature = BeautifulSoup(self.env.user.signature).get_text()
+        signature = self.env.user.signature
+        if signature:
+            a = signature.find('>')
+            b = signature.find('<', a)
+            signature = signature[a + 1:b]
+            res = self.env['stock.ddt.type'].search([('name', 'ilike', signature)],
+                                                    limit=1)
+            if res:
+                return res
+        return self.env['stock.ddt.type'].search([], limit=1)
+
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition',
-        string='Carriage Condition',
-        translate=True)
+        'stock.picking.carriage_condition', string='Carriage Condition')
     goods_description_id = fields.Many2one(
         'stock.picking.goods_description',
-        string='Description of Goods',
-        translate=True)
+        string='Description of Goods')
     transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        string='Reason for Transportation',
-        translate=True)
+        string='Reason for Transportation')
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
-        string='Method of Transportation',
-        translate=True)
+        string='Method of Transportation')
     ddt_carrier_id = fields.Many2one(
-        'res.partner',
-        string='Carrier',
-        translate=True)
+        'res.partner', string='Carrier')
     parcels = fields.Integer('Parcels')
     weight = fields.Float(string="Weight")
     gross_weight = fields.Float(string="Gross Weight")
@@ -63,6 +70,8 @@ class SaleOrder(models.Model):
          ('shipping_partner', 'Shipping Partners'),
          ('code_group', 'Code group')], 'DDT invoicing group',
         default='billing_partner')
+    ddt_type_id = fields.Many2one(
+        'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
 
     @api.multi
     @api.onchange('partner_id')

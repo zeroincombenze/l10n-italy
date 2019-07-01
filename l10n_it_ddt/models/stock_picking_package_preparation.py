@@ -13,7 +13,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, float_is_zero
 from odoo.tools.misc import formatLang
-# from bs4 import BeautifulSoup
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -78,8 +77,8 @@ class StockDdtType(models.Model):
         'stock.picking.transportation_method',
         string='Default Method of Transportation')
     company_id = fields.Many2one(
-        'res.company', string='Company',
-        default=lambda self: self.env.user.company_id, )
+        comodel_name='res.company', string='Company',
+        default=lambda self: self.env.user.company_id.id)
 
 
 class StockPickingPackagePreparation(models.Model):
@@ -96,8 +95,6 @@ class StockPickingPackagePreparation(models.Model):
                 ddt.transportation_reason_id.to_be_invoiced or False
 
     def _default_ddt_type(self):
-        # TODO: FIX in separate module
-        # signature = BeautifulSoup(self.env.user.signature).get_text()
         signature = self.env.user.signature
         if signature:
             a = signature.find('>')
@@ -313,6 +310,19 @@ class StockPickingPackagePreparation(models.Model):
         """
         self.ensure_one()
         order = self._get_sale_order_ref()
+        if order:
+            # Most of the values will be overwritten below,
+            # but this preserves inheritance chain
+            invoice_vals = order._prepare_invoice()
+        else:
+            # Initialise res with the fields in sale._prepare_invoice
+            # that won't be overwritten below
+            invoice_vals = {
+                'type': 'out_invoice',
+                'partner_shipping_id':
+                    self.partner_id.address_get(['delivery'])['delivery'],
+                'company_id': self.company_id.id
+            }
         journal_id = self._context.get('invoice_journal_id', False)
         if not journal_id:
             journal_id = self.env['account.invoice'].default_get(
@@ -326,14 +336,17 @@ class StockPickingPackagePreparation(models.Model):
             order and order.partner_invoice_id.id or
             self.partner_id.address_get(['invoice'])['invoice'])
         invoice_partner = self.env['res.partner'].browse(invoice_partner_id)
+        invoice_description = self._prepare_invoice_description()
         currency_id = (
             order and order.pricelist_id.currency_id.id or
             journal.currency_id.id or journal.company_id.currency_id.id)
         payment_term_id = (
             order and order.payment_term_id.id or
             self.partner_id.property_payment_term_id.id)
-        invoice_description = self._prepare_invoice_description()
-        invoice_vals = {
+        fiscal_position_id = (
+            order and order.fiscal_position_id.id or
+            invoice_partner.property_account_position_id.id)
+        invoice_vals.update({
             'name': invoice_description or '',
             'date_invoice': self._context.get('invoice_date', False),
             'origin': self.ddt_number,
@@ -346,9 +359,7 @@ class StockPickingPackagePreparation(models.Model):
             'currency_id': currency_id,
             # TO DO 'comment': self.note,
             'payment_term_id': payment_term_id,
-            'fiscal_position_id': (
-                order and order.fiscal_position_id.id or
-                invoice_partner.property_account_position_id.id),
+            'fiscal_position_id': fiscal_position_id,
             'carriage_condition_id': self.carriage_condition_id.id,
             'goods_description_id': self.goods_description_id.id,
             'transportation_reason_id': self.transportation_reason_id.id,
@@ -358,7 +369,7 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
-        }
+        })
         return invoice_vals
 
     @api.multi
@@ -463,6 +474,44 @@ class StockPickingPackagePreparation(models.Model):
                     'self': invoice, 'origin': references[invoice]},
                 subtype_id=self.env.ref('mail.mt_note').id)
         return [inv.id for inv in invoices.values()]
+
+    @api.multi
+    def action_send_ddt_mail(self):
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = ir_model_data.\
+                get_object_reference('l10n_it_ddt',
+                                     'email_template_edi_ddt')[1]
+        except ValueError:
+            template_id = False
+
+        try:
+            compose_form_id = ir_model_data.\
+                get_object_reference('mail',
+                                     'email_compose_message_wizard_form')[1]
+        except ValueError:
+            compose_form_id = False
+
+        ctx = {
+            'default_model': 'stock.picking.package.preparation',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'mark_so_as_sent': True,
+            'custom_layout':
+                "l10n_it_ddt.mail_template_data_notification_email_ddt"
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
+        }
 
     @api.multi
     def unlink(self):

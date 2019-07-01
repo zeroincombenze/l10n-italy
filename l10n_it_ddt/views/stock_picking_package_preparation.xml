@@ -67,6 +67,8 @@
             <button name="action_draft" position="after">
                 <button name="set_done" type="object" string="Set done"
                         attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
+                <button name="action_send_ddt_mail" type="object" string="Send by Mail"
+                            attrs="{'invisible':[('state','in', 'draft')]}"/>
             </button>
             <field name="name" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -82,6 +84,34 @@
                 <field name="partner_shipping_id"
                        domain="['|', ('id', '=', partner_id), ('parent_id', '=', partner_id)]"
                        attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
+            </field>
+            <field name="picking_ids" position="replace">
+                <field name="picking_ids" options="{'no_create': True, 'no_edit': True}">
+                    <tree>
+                        <field name="name"/>
+                        <field name="state"/>
+                        <button name="open_form_current"
+                                type="object"
+                                string="Open full-screen"
+                                icon="fa-external-link"/>
+                    </tree>
+                    <form>
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="name" readonly="True"/>
+                                    <field name="state"/>
+                                    <field name="partner_id" readonly="True"/>
+                                    <field name="origin" readonly="True"/>
+                                </group>
+                                <group>
+                                    <field name="location_id"/>
+                                    <field name="location_dest_id"/>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
             </field>
             <notebook position="inside">
                 <page string="Shipping Informations"
@@ -173,6 +203,7 @@
         <field name="arch" type="xml">
             <tree string="Type">
                 <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -183,16 +214,19 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Type">
-                <group>
-                    <field name="name"/>
-                    <field name="sequence_id"/>
-                    <field name="note"/>
-                    <field name="default_carriage_condition_id"/>
-                    <field name="default_goods_description_id"/>
-                    <field name="default_transportation_reason_id"/>
-                    <field name="default_transportation_method_id"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence_id"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="note"/>
+                        <field name="default_carriage_condition_id"/>
+                        <field name="default_goods_description_id"/>
+                        <field name="default_transportation_reason_id"/>
+                        <field name="default_transportation_method_id"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+               	</sheet>
             </form>
         </field>
     </record>

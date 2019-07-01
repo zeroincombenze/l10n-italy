@@ -27,6 +27,7 @@ class DdTFromPickings(models.TransientModel):
             'goods_description_id': False,
             'transportation_reason_id': False,
             'transportation_method_id': False,
+            'carrier_id': False,
         }
         type_list = []
         partner = False
@@ -52,12 +53,19 @@ class DdTFromPickings(models.TransientModel):
             # get ddt type from the first picking
             if picking.ddt_type:
                 type_list.append(picking.ddt_type.id)
+            elif sale_order.ddt_type_id:
+                type_list.append(sale_order.ddt_type_id.id)
         # check if selected picking have different destinations
         if len(self.picking_ids.mapped('location_dest_id')) > 1:
             raise UserError(_("Selected pickings have different destinations"))
         if len(type_list) > 0:
             values.update(
                 {'ddt_type_id': type_list[0]})
+        else:
+            ddt_type = self.env['stock.ddt.type'].search([], limit=1)
+            if ddt_type:
+                values.update(
+                    {'ddt_type_id': ddt_type[0].id})
         parcels = 0
         # for each of the following fields (carriage condition id,
         # goods description id, transportation id, transportation method)
@@ -170,6 +178,18 @@ class DdTFromPickings(models.TransientModel):
                     picking.ddt_type.default_transportation_method_id)
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
+        carrier_id = False
+        for picking in self.picking_ids:
+            if picking.sale_id and picking.sale_id.ddt_carrier_id:
+                if carrier_id and (
+                    carrier_id != (
+                        picking.sale_id.ddt_carrier_id)):
+                    raise UserError(
+                        _("Selected Pickings have "
+                          "different carrier"))
+                carrier_id = picking.sale_id.ddt_carrier_id
+                values['carrier_id'] = (
+                    carrier_id.id)
 
         if len(self.picking_ids) == 1 and self.picking_ids[0].sale_id:
             # otherwise weights and volume should be different

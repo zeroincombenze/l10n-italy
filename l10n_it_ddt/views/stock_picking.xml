@@ -15,4 +15,15 @@
         </field>
     </record>
 
+    <record id="stock_picking_form_ddt" model="ir.ui.view">
+        <field name="name">stock.picking.form.ddt</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <field name="number_of_packages" position="after">
+                    <field name="ddt_type"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>
