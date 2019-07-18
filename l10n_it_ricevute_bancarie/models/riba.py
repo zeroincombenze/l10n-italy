@@ -105,7 +105,7 @@ class RibaList(models.Model):
     @api.multi
     def unlink(self):
         for riba_list in self:
-            if riba_list.state not in ('draft',  'cancel'):
+            if riba_list.state not in ('draft', 'cancel'):
                 raise UserError(_(
                     'List %s is in state %s. You can only delete documents'
                     ' in state draft or canceled')
@@ -123,17 +123,68 @@ class RibaList(models.Model):
         self.state = 'draft'
 
     @api.multi
+    def back_to_draft(self):
+        for riba_list in self:
+            riba_list.date_accepted = False
+            if riba_list.acceptance_move_ids:
+                for move in riba_list.acceptance_move_ids:
+                    move.line_ids.remove_move_reconcile()
+                    move.button_cancel()
+                    move.unlink()
+        riba_list.signal_workflow('cancel')
+
+    @api.multi
+    def back_to_accepted(self):
+        for riba_list in self:
+            riba_list.date_accreditation = False
+            if riba_list.accreditation_move_id:
+                riba_list.accreditation_move_id.line_ids.remove_move_reconcile()
+                riba_list.accreditation_move_id.button_cancel()
+                riba_list.accreditation_move_id.unlink()
+            for riba in riba_list.line_ids:
+                if riba.payment_ids:
+                    for move in riba_list.payment_ids:
+                        move.remove_move_reconcile()
+                        move.move_id.button_cancel()
+                        move.move_id.unlink()
+                if riba.unsolved_move_id:
+                    for move in riba_list.unsolved_move_id:
+                        move.line_ids.remove_move_reconcile()
+                        move.move_id.button_cancel()
+                        move.move_id.unlink()
+        riba_list.signal_workflow('accepted')
+
+    @api.multi
+    def back_to_accredited(self):
+        for riba_list in self:
+            riba_list.date_paid = False
+            if riba_list.payment_ids:
+                for line in riba_list.payment_ids:
+                    line.remove_move_reconcile()
+                    line.move_id.button_cancel()
+                    line.move_id.unlink()
+        riba_list.signal_workflow('accredited')
+
+    @api.multi
     def riba_cancel(self):
         for riba_list in self:
             for line in riba_list.line_ids:
-                line.state = 'cancel'
-                if line.acceptance_move_id:
-                    line.acceptance_move_id.unlink()
-                if line.unsolved_move_id:
-                    line.unsolved_move_id.unlink()
-            if riba_list.accreditation_move_id:
-                riba_list.accreditation_move_id.unlink()
-            riba_list.state = 'cancel'
+                if riba_list.state == 'paid':
+                    if riba_list.payment_ids:
+                        # RiBA list is paid
+                        riba_list.payment_ids.remove_move_reconcile()
+                        for move in riba_list.payment_ids:
+                            move.move_id.button_cancel()
+                            move.move_id.unlink(move.id)
+                    state = 'accredited'
+                elif riba_list.state == 'accredited':
+                    riba_list.back_to_accepted()
+                elif riba_list.state == 'accepted':
+                    riba_list.back_to_draft()
+                elif riba_list.state == 'draft':
+                    riba_list.state = 'cancel'
+                    for line in riba_list.line_ids:
+                        line.state = 'cancel'
 
     @api.multi
     def settle_all_line(self):
@@ -155,6 +206,9 @@ class RibaList(models.Model):
         self.state = 'accepted'
         if not self.date_accepted:
             self.date_accepted = fields.Date.context_today(self)
+        for riba_list in self:
+            for line in riba_list.line_ids:
+                line.state = 'confirmed'
 
     @api.multi
     def riba_accredited(self):
@@ -206,7 +260,6 @@ class RibaList(models.Model):
             for line in riba_list.line_ids:
                 line.state = 'draft'
 
-
 class RibaListLine(models.Model):
     _name = 'riba.distinta.line'
     _description = 'Riba details'
@@ -220,21 +273,26 @@ class RibaListLine(models.Model):
             line.invoice_number = ""
             for move_line in line.move_line_ids:
                 line.amount += move_line.amount
-                if not line.invoice_date:
-                    line.invoice_date = str(fields.Date.from_string(
+                if move_line.move_line_id.invoice_id:
+                    invoice_date = fields.Date.from_string(
                         move_line.move_line_id.invoice_id.date_invoice
-                    ).strftime('%d/%m/%Y'))
+                    ).strftime('%d/%m/%Y')
+                    invoice_number = \
+                        move_line.move_line_id.invoice_id.move_name
+                else:
+                    # Avoid crash in some case which the invoice is deleted
+                    invoice_date = '???'
+                    invoice_number = '???'
+                if not line.invoice_date:
+                    line.invoice_date = invoice_date
                 else:
                     line.invoice_date = "%s, %s" % (
-                        line.invoice_date, str(fields.Date.from_string(
-                            move_line.move_line_id.invoice_id.date_invoice
-                        ).strftime('%d/%m/%Y')))
+                        line.invoice_date, invoice_date)
                 if not line.invoice_number:
-                    line.invoice_number = str(
-                        move_line.move_line_id.invoice_id.move_name)
+                    line.invoice_number = invoice_number
                 else:
-                    line.invoice_number = "%s, %s" % (line.invoice_number, str(
-                        move_line.move_line_id.invoice_id.move_name))
+                    line.invoice_number = "%s, %s" % (line.invoice_number,
+                                                      invoice_number)
 
     amount = fields.Float(
         compute='_compute_line_values', string="Amount")
@@ -389,7 +447,7 @@ class RibaListLine(models.Model):
 
             settlement_move_amount = settlement_move_line.debit
 
-            move_ref = "Settlement RIBA {} - {}".format(
+            move_ref = u"Settlement RIBA {} - {}".format(
                 riba_line.distinta_id.name,
                 riba_line.partner_id.name,
                 )
@@ -431,6 +489,22 @@ class RibaListLine(models.Model):
 
             to_be_settled.reconcile()
             settlement_move.post()
+
+    @api.multi
+    def riba_line_back2accredited(self):
+        for riba in self:
+            if riba.payment_ids:
+                for move in riba.payment_ids:
+                    move.remove_move_reconcile()
+                    move.move_id.button_cancel()
+                    move.move_id.unlink()
+                riba.state = 'accredited'
+            if riba.unsolved_move_id:
+                for move in riba.unsolved_move_id:
+                    move.line_ids.remove_move_reconcile()
+                    move.button_cancel()
+                    move.unlink()
+                riba.state = 'accredited'
 
 
 class RibaListMoveLine(models.Model):

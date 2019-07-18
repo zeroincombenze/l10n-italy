@@ -1,3 +1,11 @@
+10.0.0.2.8 (2019-07-05)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Print Bank account base on payment type / Stampa banca d'appoggio in base al tipo di pagamento
+* [IMP] Payment datas on header or on footer / Dati di pagamento in intestazione o nel piede
+* [IMP] Print due dates and due amounts / STampa data e importo scadenze
+
+
 10.0.0.2.7 (2019-06-21)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

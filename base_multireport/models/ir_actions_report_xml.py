@@ -62,12 +62,27 @@ class IrActionsReportXml(models.Model):
         default='as_is'
     )
     payment_term_position = fields.Selection(
-        [('footer', 'Footer'),
+        [('odoo', 'Odoo'),
+         ('auto', 'Auto'),
+         ('footer', 'Footer'),
          ('header', 'Header'),
+         ('none', 'None')
          ],
         'Payment term layout position',
-        help="Where Payment term is printed: may be in footer or in header",
-        default='footer'
+        help='Where Payment term and due dates are printed: '
+             'may be Auto, None, on Footer or on Header\n'
+             'With auto, when due payment is whole in one date, '
+             'all datas are printed on header otherwise \n'
+             'all datas are printed on footer\n'
+             'Odoo print only Payment Term notes on Footer',
+        default='odoo'
+    )
+    order_ref_text = fields.Char(
+        'Text with order ref',
+        help='Use text with tag {0} that means order.name '
+            'and or {1} taht means order.client_order_ref.\n'
+            'i.e. Our order {0} - Your order {1}',
+        default='>Vs. Ordine: {1} - '
     )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(

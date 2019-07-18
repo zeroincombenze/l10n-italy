@@ -1,24 +1,61 @@
-Nella configurazione delle Ri.Ba. è possibile specificare se si tratti di
-'salvo buon fine' o 'al dopo incasso', che hanno un flusso completamente diverso.
+L'utilizzo delle Ri.Ba. utilizza i seguenti menù:
 
- - Al dopo incasso: nessuna registrazione verrà effettuata automaticamente e le fatture risulteranno pagate solo al momento dell'effettivo incasso.
- - Salvo buon fine: le registrazioni generate seguiranno la struttura descritta in questo documento
+|menu| Contabilità > Pagamenti > Ri.Ba Configurazione
 
-E' possibile specificare diverse configurazioni (dal menù
-configurazioni -> varie -> Ri.Ba.). Per ognuna, in caso di 'salvo buon fine',
-è necessario specificare almeno il sezionale ed il conto da
-utilizzare al momento dell'accettazione della distinta da parte della banca.
-Tale conto deve essere di tipo 'crediti' (ad esempio "Ri.Ba. all'incasso",
-eventualmente da creare).
+|menu| Contabilità > Management > Termini di pagamento
 
-La configurazione relativa alla fase di accredito, verrà usata nel momento in
-cui la banca accredita l'importo della distinta.
-E' possibile utilizzare un sezionale creato appositamente, ad esempio "accredito RiBa",
-ed un conto chiamato ad esempio "banche c/RIBA all'incasso", che non deve essere di tipo 'banca'.
+|menu| Contabilità > Ri.Ba > Distinte
 
-La configurazione relativa all'insoluto verrà utilizzata in caso di mancato pagamento da parte del cliente.
-Il conto può chiamarsi ad esempio "crediti insoluti".
+|menu| Contabilità > Ri.Ba > Emetti Ri.Ba
 
-Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e legarlo in
-Configurazione -> Contabilità -> Ri.Ba. Configurazione spese d'incasso -> Servizio spese d'incasso.
+|menu| Contabilità > Ri.Ba > Fatture insolute
+
+
+Configurazione
+~~~~~~~~~~~~~~
+
+Nella configurazione delle Ri.Ba. è possibile specificare il tipo di distinta:
+
+* DI (Dopo Incasso): nessuna registrazione è effettuata automaticamente
+* SBF (Salvo Buon Fine): sono emesse le registrazioni come descritte qui sotto
+
+Per attivare la gestione Ri.Ba. è necessario impostare il tipo 'Ri.Ba.' nei termini di pagamento.
+
+
+Gestione distinta
+~~~~~~~~~~~~~~~~~
+
+Ai fini di una corretta comprensione si ipotizza la gestiona da una fattura da 100€ + IVA.
+Si ricorda che a scrittura contabile è della fattura è la seguente:
+
+.. $include example-invoice.rst
+
+Per iniziare il flusso, usare il menù `Contabilità > Ri.Ba > Emetti Ri.Ba`, selezionare le scadenze da inserire in distinta
+e dal bottone `Azione` selezionare `Emetti Ri.Ba`. Scegliere un conto bancario configurato.
+
+Scaricare il file CBI da presentare in banca: dal bottone `Azione` selezionare `Esporta Ri.Ba`.
+
+Quando la banca conferma l'accettazione della distinta, dal menù `Contabilità > Ri.Ba > Emetti Ri.Ba`
+selezionare la distinta ed impostare lo stato di `Accettata` tramite l'apposito bottone.
+Se la distinta è di tipo SBF viene generata la seguente scrittura contabile (una registrazionne per ogni scadenza in distinta):
+
+.. $include example-riba.rst
+
+Quando la banca accredita la distinta, impostare lo stato `Accreditata` tramite l'apposito bottone.
+Se la distinta è di tipo SBF si può generare la seguente scrittura contabile:
+
+.. $include example-paylist.rst
+
+Quando la ricevuta è effettivamente pagata dal cliente è possibile dichiararlo nella relativa riga della distinta.
+Se la distinta è di tipo SBF viene generata la sequente scrittura contabile:
+
+.. $include example-payment.rst
+
+
+Note finali
+~~~~~~~~~~~
+
+Per ogni stato della distinta è possibile sia avanzare allo stato successivo che ripristinare lo stato precedente.
+Le relative registrazioni contabili saranno inserite o rimosse in modo da mantenere il sistema sempre nel corretto stato contabile.
+
+Si può dichiarare ogni singola scadenza come pagata o insoluta. Anche per le singole scadenze è possibili ripristinare lo stato precedente.

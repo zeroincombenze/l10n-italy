@@ -20,6 +20,7 @@
                             <group>
                                 <field name="code_mode"/>
                                 <field name="description_mode"/>
+                                <field name="payment_term_position"/>
                                 <field name="pdf_watermark"/>
                                 <field name="pdf_ending_page"/>
                             </group>

@@ -1,3 +1,10 @@
+10.0.1.0.5 (2019-07-10)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Avoid crash if not client_key of channel / No crash se client_key del canale assente
+* [IMP] Set error if not response over 5 days / Imposta stato di errore dopo 5 giorni senza risposta
+
+
 10.0.1.0.4 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

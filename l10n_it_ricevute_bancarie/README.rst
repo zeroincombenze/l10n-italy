@@ -1,10 +1,12 @@
 
 ===================================
-|icon| Ricevute Bancarie 10.0.1.1.3
+|icon| Ricevute Bancarie 10.0.1.3.1
 ===================================
 
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ricevute_bancarie/static/description/icon.png
+
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -24,28 +26,74 @@ Module to manage Ricevute Bancarie
 |it| Ricevute Bancarie
 ----------------------
 
-Per utilizzare il meccanismo delle Ri.Ba. è necessario configurare un termine
-di pagamento di tipo 'Ri.Ba.'.
+Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
 
-Per emettere una distinta bisogna andare su Ri.Ba. -> emetti Ri.Ba. e
-selezionare i pagamenti per i quali emettere la distinta.
-Se per il cliente è stato abilitato il raggruppo, i pagamenti dello stesso
-cliente e con la stessa data di scadenza andranno a costituire un solo elemento
-della distinta.
+Si può configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine) o DI (Dopo Incasso).
+Con la distinta DI nessuna operazione contabile è gestita dal programma.
+Si può solo generare il file CBI da inviare in banca.
+Con la distinta SBF sono gestite tutte le operazioni contabili come esposto in questo documento.
 
-I possibili stati della distinta sono: bozza, accettata, accreditata, pagata,
-insoluta, annullata.
+Le operazioni contabili sono configurabili.
 
-Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
-contabili, le quali verranno riepilogate nel tab 'contabilità'.
-Questo tab è presente sia sulla distinta che sulle sue righe.
 
-*Esempio*
+|
 
-* Emissione fattura di 100€ verso cliente1.
-* Metodo di pagamento: riba salvo buon fine.
+Features / Caratteristiche
+--------------------------
 
-`Fattura`
++-------------------------------------------+---------+----------------------+
+| Feature / Funzione                        | Status  | Notes / Note         |
++-------------------------------------------+---------+----------------------+
+| Emissione distinte RiBa                   | |check| |                      |
++-------------------------------------------+---------+----------------------+
+| Download file CBI per la banca            | |check| |                      |
++-------------------------------------------+---------+----------------------+
+| Registrazioni contabili                   | |check| | Se tipo distinta SBF |
++-------------------------------------------+---------+----------------------+
+| Ripristino distinta allo stato precedente | |check| |                      |
++-------------------------------------------+---------+----------------------+
+| Gestione insoluti                         | |check| |                      |
++-------------------------------------------+---------+----------------------+
+| Ripristino scadenza insoluto o pagata     | |check| |                      |
++-------------------------------------------+---------+----------------------+
+| Stampa distinta                           | |check| |                      |
++-------------------------------------------+---------+----------------------+
+
+
+|
+
+Usage / Utilizzo
+----------------
+
+L'utilizzo delle Ri.Ba. utilizza i seguenti menù:
+
+|menu| Contabilità > Pagamenti > Ri.Ba Configurazione
+
+|menu| Contabilità > Management > Termini di pagamento
+
+|menu| Contabilità > Ri.Ba > Distinte
+
+|menu| Contabilità > Ri.Ba > Emetti Ri.Ba
+
+|menu| Contabilità > Ri.Ba > Fatture insolute
+
+
+Configurazione
+~~~~~~~~~~~~~~
+
+Nella configurazione delle Ri.Ba. è possibile specificare il tipo di distinta:
+
+* DI (Dopo Incasso): nessuna registrazione è effettuata automaticamente
+* SBF (Salvo Buon Fine): sono emesse le registrazioni come descritte qui sotto
+
+Per attivare la gestione Ri.Ba. è necessario impostare il tipo 'Ri.Ba.' nei termini di pagamento.
+
+
+Gestione distinta
+~~~~~~~~~~~~~~~~~
+
+Ai fini di una corretta comprensione si ipotizza la gestiona da una fattura da 100€ + IVA.
+Si ricorda che a scrittura contabile è della fattura è la seguente:
 
 +------+-------------------+-----+-----+------+
 | Riga | Descrizione       | D   | A   | Note |
@@ -61,7 +109,14 @@ Questo tab è presente sia sulla distinta che sulle sue righe.
 
 
 
-`Emissione RiBA`
+Per iniziare il flusso, usare il menù `Contabilità > Ri.Ba > Emetti Ri.Ba`, selezionare le scadenze da inserire in distinta
+e dal bottone `Azione` selezionare `Emetti Ri.Ba`. Scegliere un conto bancario configurato.
+
+Scaricare il file CBI da presentare in banca: dal bottone `Azione` selezionare `Esporta Ri.Ba`.
+
+Quando la banca conferma l'accettazione della distinta, dal menù `Contabilità > Ri.Ba > Emetti Ri.Ba`
+selezionare la distinta ed impostare lo stato di `Accettata` tramite l'apposito bottone.
+Se la distinta è di tipo SBF viene generata la seguente scrittura contabile (una registrazionne per ogni scadenza in distinta):
 
 +------+-------------------+-----+-----+----------------------+
 | Riga | Descrizione       | D   | A   | Note                 |
@@ -75,8 +130,8 @@ Questo tab è presente sia sulla distinta che sulle sue righe.
 
 
 
-
-`Accredito distinta RiBA`
+Quando la banca accredita la distinta, impostare lo stato `Accreditata` tramite l'apposito bottone.
+Se la distinta è di tipo SBF si può generare la seguente scrittura contabile:
 
 +------+-------------------------+-----+-----+------+
 | Riga | Descrizione             | D   | A   | Note |
@@ -92,8 +147,8 @@ Questo tab è presente sia sulla distinta che sulle sue righe.
 
 
 
-
-`Pagamento effettivo RiBA`
+Quando la ricevuta è effettivamente pagata dal cliente è possibile dichiararlo nella relativa riga della distinta.
+Se la distinta è di tipo SBF viene generata la sequente scrittura contabile:
 
 +------+---------------------+-----+-----+----------------------+
 | Riga | Descrizione         | D   | A   | Note                 |
@@ -108,35 +163,14 @@ Questo tab è presente sia sulla distinta che sulle sue righe.
 
 
 
-|
+Note finali
+~~~~~~~~~~~
 
-Usage / Utilizzo
-----------------
+Per ogni stato della distinta è possibile sia avanzare allo stato successivo che ripristinare lo stato precedente.
+Le relative registrazioni contabili saranno inserite o rimosse in modo da mantenere il sistema sempre nel corretto stato contabile.
 
-Nella configurazione delle Ri.Ba. è possibile specificare se si tratti di
-'salvo buon fine' o 'al dopo incasso', che hanno un flusso completamente diverso.
+Si può dichiarare ogni singola scadenza come pagata o insoluta. Anche per le singole scadenze è possibili ripristinare lo stato precedente.
 
- - Al dopo incasso: nessuna registrazione verrà effettuata automaticamente e le fatture risulteranno pagate solo al momento dell'effettivo incasso.
- - Salvo buon fine: le registrazioni generate seguiranno la struttura descritta in questo documento
-
-E' possibile specificare diverse configurazioni (dal menù
-configurazioni -> varie -> Ri.Ba.). Per ognuna, in caso di 'salvo buon fine',
-è necessario specificare almeno il sezionale ed il conto da
-utilizzare al momento dell'accettazione della distinta da parte della banca.
-Tale conto deve essere di tipo 'crediti' (ad esempio "Ri.Ba. all'incasso",
-eventualmente da creare).
-
-La configurazione relativa alla fase di accredito, verrà usata nel momento in
-cui la banca accredita l'importo della distinta.
-E' possibile utilizzare un sezionale creato appositamente, ad esempio "accredito RiBa",
-ed un conto chiamato ad esempio "banche c/RIBA all'incasso", che non deve essere di tipo 'banca'.
-
-La configurazione relativa all'insoluto verrà utilizzata in caso di mancato pagamento da parte del cliente.
-Il conto può chiamarsi ad esempio "crediti insoluti".
-
-Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e legarlo in
-Configurazione -> Contabilità -> Ri.Ba. Configurazione spese d'incasso -> Servizio spese d'incasso.
 
 |
 
@@ -144,11 +178,11 @@ OCA comparation / Confronto con OCA
 -----------------------------------
 
 
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  |                                |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -257,16 +291,22 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.1.1.3 (2018-06-13)
+10.0.1.3.1 (2019-07-17)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Fix bug export payment list file with no ASCII characters (only 10.0)
+* [IMP] Added back state of workflow path / Possibilità di rispistino stato precedente
+* [IMP] Added back state of paid/unsolved record / Possibilità di ripristino stato Ri.Ba. pagate o insolute
 
+
+10.0.1.1.3 (2019-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Fix bug export CBI payment list file with no ASCII characters / Rimosso errore file CBI quando presenti lettere accentate
 
 10.0.1.1.2 (2018-11-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Fix bug in copy invoice when this module is installed (only 10.0)
+* [FIX] Fix bug in copy invoice when this module is installed / Rimosso errore copia fatture quando questo modulo è installato
 
 
 |
@@ -325,7 +365,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-06-13
+Last Update / Ultimo aggiornamento: 2019-07-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

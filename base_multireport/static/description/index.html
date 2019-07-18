@@ -95,13 +95,13 @@ Look at follow table for details:
 </tr><tr>
 <td>def_company</td><td>Default company</td><td>Set by module</td>
 </tr><tr>
-<td>doc</td><td>Current document which is printing</td><td>Set by module. External layout set 'o' to compatibilit with Odoo reports</td>
+<td>doc</td><td>Current document which is printing</td><td>Set by module. External layout set 'o' to compatibility with</td>
 </tr><tr>
 <td>doc_model</td><td>Document model</td><td>Deprecated: use doc_opts.model</td>
 </tr><tr>
 <td>doc_opts</td><td>Document parameters</td><td/>
 </tr><tr>
-<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td t-if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2_print()"/&gt;&lt;/td&gt;</td>
+<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td t-if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2</td>
 </tr><tr>
 <td>doc_opts.description_mode</td><td>Print code in document body</td><td>&lt;td&gt;&lt;span t-esc="l.description_2_print()"/&gt;&lt;/td&gt;</td>
 </tr><tr>
@@ -110,6 +110,10 @@ Look at follow table for details:
 <td>doc_opts.model</td><td>Document model</td><td>Same as doc_model</td>
 </tr><tr>
 <td>doc_opts.paperformat_id</td><td>ID to paperformat</td><td/>
+</tr><tr>
+<td>doc_opts.payment_term_position</td><td>Payment data position</td><td>May be Auto, None, on Footer or on Header - With auto, when</td>
+</tr><tr>
+<td>doc_opts.pdf_watermark</td><td>Default watermark for this report</td><td/>
 </tr><tr>
 <td>doc_opts.report_name</td><td>Report Name</td><td/>
 </tr><tr>
@@ -139,6 +143,8 @@ Look at follow table for details:
 </tr><tr>
 <td>doc_style.pdf_ending_page</td><td>Ending Page PDF</td><td/>
 </tr><tr>
+<td>doc_style.pdf_ending_page</td><td>Ending Page PDF</td><td/>
+</tr><tr>
 <td>doc_style.pdf_watermark</td><td>Default watermark for this style</td><td/>
 </tr><tr>
 <td>doc_style.pdf_watermark_account_invoice</td><td>Sale Invoice default Watermark PDF</td><td/>
@@ -148,6 +154,8 @@ Look at follow table for details:
 <td>doc_style.pdf_watermark_sale_order</td><td>Sale Order default Watermark PDF</td><td/>
 </tr><tr>
 <td>doc_style.pdf_watermark_stock_picking_package_preparation</td><td>Packing List default Watermark PDF</td><td/>
+</tr><tr>
+<td>l</td><td>Current invoice line when printing</td><td>Alias used in invoice print</td>
 </tr><tr>
 <td>o</td><td>Current invoice which is printing</td><td>Alias used in invoice print set by external layout</td>
 </tr><tr>

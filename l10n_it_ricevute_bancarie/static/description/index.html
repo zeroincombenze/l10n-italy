@@ -19,30 +19,73 @@ Module to manage Ricevute Bancarie
             </p>
             <p class="oe_mt16" align="justify"><h2>Ricevute Bancarie / Ricevute Bancarie</h2>
 <p align="justify">
-Per utilizzare il meccanismo delle Ri.Ba. &#232; necessario configurare un termine
-di pagamento di tipo 'Ri.Ba.'.
+Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
 </p><p align="justify">
-Per emettere una distinta bisogna andare su Ri.Ba. -&gt; emetti Ri.Ba. e
-selezionare i pagamenti per i quali emettere la distinta.
-Se per il cliente &#232; stato abilitato il raggruppo, i pagamenti dello stesso
-cliente e con la stessa data di scadenza andranno a costituire un solo elemento
-della distinta.
+Si pu&#242; configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine) o DI (Dopo Incasso).
+Con la distinta DI nessuna operazione contabile &#232; gestita dal programma.
+Si pu&#242; solo generare il file CBI da inviare in banca.
+Con la distinta SBF sono gestite tutte le operazioni contabili come esposto in questo documento.
 </p><p align="justify">
-I possibili stati della distinta sono: bozza, accettata, accreditata, pagata,
-insoluta, annullata.
+Le operazioni contabili sono configurabili.
+</p></p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Features / Caratteristiche</h3>
+        <div class="oe_span12">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Feature / Funzione</td><td>Status</td><td>Notes / Note</td>
+</tr><tr>
+<td>Emissione distinte RiBa</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/>
+</tr><tr>
+<td>Download file CBI per la banca</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/>
+</tr><tr>
+<td>Registrazioni contabili</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Se tipo distinta SBF</td>
+</tr><tr>
+<td>Ripristino distinta allo stato precedente</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/>
+</tr><tr>
+<td>Gestione insoluti</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/>
+</tr><tr>
+<td>Ripristino scadenza insoluto o pagata</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/>
+</tr><tr>
+<td>Stampa distinta</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/>
+</tr></table>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
+        <div class="oe_span12">
+L'utilizzo delle Ri.Ba. utilizza i seguenti men&#249;:
+<p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Pagamenti &gt; Ri.Ba Configurazione
 </p><p align="justify">
-Ad ogni passaggio di stato sar&#224; possibile generare le relative registrazioni
-contabili, le quali verranno riepilogate nel tab 'contabilit&#224;'.
-Questo tab &#232; presente sia sulla distinta che sulle sue righe.
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Management &gt; Termini di pagamento
 </p><p align="justify">
-*Esempio*
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Ri.Ba &gt; Distinte
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Ri.Ba &gt; Emetti Ri.Ba
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Ri.Ba &gt; Fatture insolute
+</p><p align="justify">
+</p><p align="justify">
+Configurazione
+~~~~~~~~~~~~~~
+</p><p align="justify">
+Nella configurazione delle Ri.Ba. &#232; possibile specificare il tipo di distinta:
 </p><p align="justify">
 <ul>
-<li>Emissione fattura di 100&#8364; verso cliente1.</li>
-<li>Metodo di pagamento: riba salvo buon fine.</li>
+<li>DI (Dopo Incasso): nessuna registrazione &#232; effettuata automaticamente</li>
+<li>SBF (Salvo Buon Fine): sono emesse le registrazioni come descritte qui sotto</li>
 </ul>
 </p><p align="justify">
-<code>Fattura</code>
+Per attivare la gestione Ri.Ba. &#232; necessario impostare il tipo 'Ri.Ba.' nei termini di pagamento.
+</p><p align="justify">
+</p><p align="justify">
+Gestione distinta
+~~~~~~~~~~~~~~~~~
+</p><p align="justify">
+Ai fini di una corretta comprensione si ipotizza la gestiona da una fattura da 100&#8364; + IVA.
+Si ricorda che a scrittura contabile &#232; della fattura &#232; la seguente:
 </p><p align="justify">
 <table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
 <td>Riga</td><td>Descrizione</td><td>D</td><td>A</td><td>Note</td>
@@ -55,6 +98,13 @@ Questo tab &#232; presente sia sulla distinta che sulle sue righe.
 </tr><tr>
 <td>1.3</td><td>IVA</td><td/><td>22</td><td/>
 </tr><tr>
+
+
+
+
+
+
+
 
 
 
@@ -100,37 +150,18 @@ Questo tab &#232; presente sia sulla distinta che sulle sue righe.
 <td>4.1</td><td>Effetti SBF</td><td/><td>122</td><td>Riconciliata con 2.2</td>
 </tr><tr>
 <td>4.2</td><td>Banca c/effetti</td><td>122</td><td/><td>Riconciliata con 3.1</td>
+</tr><tr>
+
+
+
+
+
+
+
+
+
+
 </tr></table>
-</p></p>
-        </div>
-    </div>
-    <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
-        <div class="oe_span12">
-Nella configurazione delle Ri.Ba. &#232; possibile specificare se si tratti di
-'salvo buon fine' o 'al dopo incasso', che hanno un flusso completamente diverso.
-<p align="justify">
- - Al dopo incasso: nessuna registrazione verr&#224; effettuata automaticamente e le fatture risulteranno pagate solo al momento dell'effettivo incasso.
- - Salvo buon fine: le registrazioni generate seguiranno la struttura descritta in questo documento
-</p><p align="justify">
-E' possibile specificare diverse configurazioni (dal men&#249;
-configurazioni -&gt; varie -&gt; Ri.Ba.). Per ognuna, in caso di 'salvo buon fine',
-&#232; necessario specificare almeno il sezionale ed il conto da
-utilizzare al momento dell'accettazione della distinta da parte della banca.
-Tale conto deve essere di tipo 'crediti' (ad esempio "Ri.Ba. all'incasso",
-eventualmente da creare).
-</p><p align="justify">
-La configurazione relativa alla fase di accredito, verr&#224; usata nel momento in
-cui la banca accredita l'importo della distinta.
-E' possibile utilizzare un sezionale creato appositamente, ad esempio "accredito RiBa",
-ed un conto chiamato ad esempio "banche c/RIBA all'incasso", che non deve essere di tipo 'banca'.
-</p><p align="justify">
-La configurazione relativa all'insoluto verr&#224; utilizzata in caso di mancato pagamento da parte del cliente.
-Il conto pu&#242; chiamarsi ad esempio "crediti insoluti".
-</p><p align="justify">
-Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e legarlo in
-Configurazione -&gt; Contabilit&#224; -&gt; Ri.Ba. Configurazione spese d'incasso -&gt; Servizio spese d'incasso.
 </p>
         </div>
     </div>

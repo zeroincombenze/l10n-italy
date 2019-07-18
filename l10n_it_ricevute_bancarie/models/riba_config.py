@@ -37,13 +37,15 @@ class RibaConfiguration(models.Model):
     accreditation_journal_id = fields.Many2one(
         'account.journal', "Accreditation journal",
         domain=[('type', '=', 'bank')],
-        help="Journal used when Ri.Ba. amount is accredited by the bank")
+        help="Journal used when Ri.Ba. list is accredited by the bank")
     accreditation_account_id = fields.Many2one(
-        'account.account', "Ri.Ba. bank account",
-        help='Account used when Ri.Ba. is accepted by the bank',
+        'account.account', "Ri.Ba. transitory bank account",
+        help='Account used when Ri.Ba. list is accepted by the bank',
         domain=[('internal_type', '!=', 'liquidity')])
     bank_account_id = fields.Many2one(
         'account.account', "Bank account",
+        help='Account receiving amount when list is accepted by the bank.\n'
+             'May be the liquidity bank account or a transitory account.',
         domain=[('internal_type', '=', 'liquidity')])
     bank_expense_account_id = fields.Many2one(
         'account.account', "Bank Expenses account")

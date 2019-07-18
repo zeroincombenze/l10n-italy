@@ -1,41 +1,11 @@
 Ricevute Bancarie
 -----------------
 
-Per utilizzare il meccanismo delle Ri.Ba. è necessario configurare un termine
-di pagamento di tipo 'Ri.Ba.'.
+Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
 
-Per emettere una distinta bisogna andare su Ri.Ba. -> emetti Ri.Ba. e
-selezionare i pagamenti per i quali emettere la distinta.
-Se per il cliente è stato abilitato il raggruppo, i pagamenti dello stesso
-cliente e con la stessa data di scadenza andranno a costituire un solo elemento
-della distinta.
+Si può configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine) o DI (Dopo Incasso).
+Con la distinta DI nessuna operazione contabile è gestita dal programma.
+Si può solo generare il file CBI da inviare in banca.
+Con la distinta SBF sono gestite tutte le operazioni contabili come esposto in questo documento.
 
-I possibili stati della distinta sono: bozza, accettata, accreditata, pagata,
-insoluta, annullata.
-
-Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
-contabili, le quali verranno riepilogate nel tab 'contabilità'.
-Questo tab è presente sia sulla distinta che sulle sue righe.
-
-*Esempio*
-
-* Emissione fattura di 100€ verso cliente1.
-* Metodo di pagamento: riba salvo buon fine.
-
-`Fattura`
-
-.. $include example-invoice.rst
-
-`Emissione RiBA`
-
-.. $include example-riba.rst
-
-
-`Accredito distinta RiBA`
-
-.. $include example-paylist.rst
-
-
-`Pagamento effettivo RiBA`
-
-.. $include example-payment.rst
+Le operazioni contabili sono configurabili.

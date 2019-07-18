@@ -379,11 +379,24 @@ class FatturaPAAttachmentOut(models.Model):
 
             _logger.debug(documenti)
 
+            # No response
+            limit_date = (datetime.datetime.now() - timedelta(days=10)
+                          ).strftime('%Y-%m-%d')
+            if not documenti:
+                if att.sending_date and att.sending_date < limit_date:
+                    att.state = 'recipient_error'
+                    return
+
             # Warning: order test is important, depend from evolve_stati
             for k in evolve_stati:
                 _logger.debug("Elaborazione " + k)
                 if k in documenti:
-                    att.state = evolve_stato_mapping[k]
+                    if (evolve_stato_mapping[k] == 'sent' and
+                            att.sending_date and
+                            att.sending_date < limit_date):
+                        att.state = 'recipient_error'
+                    else:
+                        att.state = evolve_stato_mapping[k]
                     att.last_sdi_response = json.dumps(documenti[k],
                                     ensure_ascii=False)
 
@@ -672,7 +685,7 @@ class Evolve():
 
     @staticmethod
     def header(send_channel):
-        if send_channel is False:
+        if send_channel is False or not send_channel.client_key:
             return False
         now = datetime.datetime.now(pytz.timezone(
             'Europe/Rome')).strftime("%Y-%m-%d %H.%M.%S")

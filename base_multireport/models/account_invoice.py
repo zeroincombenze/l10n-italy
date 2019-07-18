@@ -14,6 +14,12 @@ class AccountInvoice(models.Model):
     #     copy=False
     # )
 
+    due_records = fields.One2many(
+        'account.move.line', 'invoice_id',
+        domain=[('account_id.user_type_id.type', '=', 'receivable')],
+        string='Due Dates', copy=False,
+        )
+
     # Override print_quotation method in sale module
     @api.multi
     def invoice_print(self):

@@ -120,7 +120,10 @@
                     <header>
                         <button name="confirm" type='object' string="Accepted" class="oe_highlight" attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"/>
                         <button name="%(riba_accreditation_action)d" type='action' attrs="{'invisible':['|',('state','!=','accepted'),('type','=','incasso')]}" string="Accredited" class="oe_highlight"/>
-                        <button name="cancel" attrs="{'invisible':[('state','=','cancel')]}" string="Cancel" />
+                        <button name="cancel" attrs="{'invisible':[('state','in',('cancel','accredited','paid'))]}" string="Cancel" />
+                        <!-- <button name="back_to_draft" type='object' attrs="{'invisible':[('state','!=','accepted')]}" string="Back to Draft" /> -->
+                        <button name="back_to_accepted" type='object' attrs="{'invisible':[('state','!=','accredited')]}" string="Back to Accepted" />
+                        <button name="back_to_accredited" type='object' attrs="{'invisible':[('state','!=','paid')]}" string="Back to Accredited" />
                         <button name="settle_all_line" type='object' string="Settle all" class="oe_highlight" attrs="{'invisible':['|',('state','!=','accredited')]}"/>
                         <button name="action_cancel_draft" attrs="{'invisible':['|',('state','!=','cancel'),('type','=','incasso')]}"  string="Reset to Draft" type="object" />
                         <field name="state" widget="statusbar" />
@@ -144,6 +147,8 @@
                                     <field name="state"/>
                                     <button name="%(riba_unsolved_action)d" type='action' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}" string="Unsolved" icon="fa-exclamation-triangle"/>
                                     <button name="riba_line_settlement" type='object' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}" string="Resolved" icon="fa-check"/>
+                                    <button name="riba_line_back2accredited" type='object' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','paid')]}" string="Unresolved" icon="fa-meh-o"/>
+                                    <button name="riba_line_back2accredited" type='object' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','unsolved')]}" string="Unresolved" icon="fa-exchange"/>
                                     <field name="type" invisible="1" />
                                 </tree>
                             </field>
