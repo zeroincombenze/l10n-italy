@@ -2,8 +2,8 @@
 ===============================
 |Zeroincombenze| l10n-italy 9.0
 ===============================
+|Build Status| |Codecov Status| |license gpl| |Try Me|
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
 .. contents::
 
@@ -34,79 +34,79 @@ Sono coperte le aree:
 Avaiable Addons / Moduli disponibili
 ------------------------------------
 
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| Name / Nome                          | Version    | OCA Ver.   | Description / Descrizione                          |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| account_central_journal              | |no_check| | |halt|     | Account Central Journal                            |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| account_fiscal_year_closing          | |halt|     | |halt|     | Fiscal Year Closing                                |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_entry_date           | 9.0.0.1.1  | |halt|     | Account Invoice entry Date                         |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| account_invoice_sequential_dates     | |halt|     | |halt|     | Check invoice date consistency                     |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| account_vat_period_end_statement     | |halt|     | |halt|     | Period End VAT Statement                           |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_CEE_balance_generic          | |halt|     | |halt|     | Italy - 4th EU Directive - Consolidation Chart of  |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_abicab                       | 9.0.1.0.0  | |same|     | Base Bank ABI/CAB codes                            |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_account                      | |halt|     | |halt|     | Italian Localization - Account                     |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ade                          | 9.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia del |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ateco                        | |halt|     | |halt|     | Ateco codes                                        |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base                         | 9.0.8.0.0. | |halt|     | Italian Localisation - Base                        |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base_crm                     | |halt|     | |halt|     | Italian Localisation - CRM                         |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_base_location_geonames_impor | 9.0.0.1.0  | |same|     | Import base_location entries (provinces) from Geon |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_bill_of_entry                | |halt|     | |halt|     | Italian Localisation - Bill of Entry               |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_central_journal              | |halt|     | |no_check| | Account Central Journal                            |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_corrispettivi                | |halt|     | |halt|     | Italian Localisation - Corrispettivi               |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ddt                          | 9.0.1.0.0  | |same|     | Documento di Trasporto                             |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_base                | 9.0.2.0.1  | |no_check| | Infrastructure for Italian Electronic Invoice + Fa |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_einvoice_out                 | |halt|     | |no_check| | Electronic invoices emission                       |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | |halt|     | Electronic invoices                                |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fatturapa_out                | |no_check| | |halt|     | Electronic invoices emission                       |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal                       | 9.0.0.2.0  | |no_check| | Italy - Fiscal localization by zeroincombenze(R)   |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_ipa                   | 9.0.1.1.0  | |no_check| | IPA Code and Destination Code in Partner Record    |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscal_payment_term          | 9.0.1.0.0  | |no_check| | Electronic invoices payment                        |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_fiscalcode                   | 9.0.0.2.0  | |halt|     | Italian Localisation - Fiscal Code                 |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ipa                          | |no_check| | |halt|     | IPA Code (IndicePA)                                |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_partially_deductible_vat     | |halt|     | |halt|     | Italy - Partially Deductible VAT                   |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_pec                          | 9.0.1.0.0  | |halt|     | Pec Mail                                           |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_prima_nota_cassa             | |halt|     | |halt|     | Italian Localisation - Prima Nota Cassa            |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_rea                          | 9.0.0.1.0  | |same|     | Manage fields for  Economic Administrative catalog |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_ricevute_bancarie            | |halt|     | |halt|     | Ricevute Bancarie                                  |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_split_payment                | |halt|     | |halt|     | Split Payment                                      |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_vat_registries               | |halt|     | |halt|     | Italian Localization - VAT Registries              |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| l10n_it_withholding_tax              | |halt|     | |halt|     | Italian Localisation - Withholding tax             |
-+--------------------------------------+------------+------------+----------------------------------------------------+
-| multibase_plus                       | 9.0.0.1.1  | |no_check| | Enhanced Odoo Features                             |
-+--------------------------------------+------------+------------+----------------------------------------------------+
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| Name / Nome                          | Version    | OCA Ver.   | Description / Descrizione                                                        |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| account_central_journal              | |no_check| | |halt|     | Account Central Journal                                                          |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| account_fiscal_year_closing          | |halt|     | |no_check| | Fiscal Year Closing                                                              |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| account_invoice_entry_date           | 9.0.0.1.1  | |halt|     | Account Invoice entry Date                                                       |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| account_invoice_sequential_dates     | |halt|     | |halt|     | Check invoice date consistency                                                   |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| account_vat_period_end_statement     | |halt|     | |halt|     | Period End VAT Statement                                                         |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_CEE_balance_generic          | |halt|     | |halt|     | Italy - 4th EU Directive - Consolidation Chart of Accounts                       |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_abicab                       | 9.0.1.0.0  | |same|     | Base Bank ABI/CAB codes                                                          |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_account                      | |halt|     | |halt|     | Italian Localization - Account                                                   |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_ade                          | 9.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia delle Entrate                     |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_ateco                        | |halt|     | |halt|     | Ateco codes                                                                      |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_base                         | 9.0.8.0.0. | |halt|     | Italian Localisation - Base                                                      |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_base_crm                     | |halt|     | |halt|     | Italian Localisation - CRM                                                       |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_base_location_geonames_impor | 9.0.0.1.0  | |same|     | Import base_location entries (provinces) from Geonames                           |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_bill_of_entry                | |halt|     | |halt|     | Italian Localisation - Bill of Entry                                             |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_central_journal              | |halt|     | |no_check| | Account Central Journal                                                          |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_corrispettivi                | |halt|     | |halt|     | Italian Localisation - Corrispettivi                                             |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_ddt                          | 9.0.1.0.0  | |same|     | Documento di Trasporto                                                           |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_einvoice_base                | 9.0.2.0.1  | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_einvoice_out                 | |halt|     | |no_check| | Electronic invoices emission                                                     |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fatturapa                    | |no_check| | |halt|     | Electronic invoices                                                              |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fatturapa_out                | |no_check| | |halt|     | Electronic invoices emission                                                     |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fiscal                       | 9.0.0.2.0  | |no_check| | Italy - Fiscal localization by zeroincombenze(R)                                 |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fiscal_ipa                   | 9.0.1.1.0  | |no_check| | IPA Code and Destination Code in Partner Record                                  |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fiscal_payment_term          | 9.0.1.0.0  | |no_check| | Electronic invoices payment                                                      |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fiscalcode                   | 9.0.0.2.0  | |halt|     | Italian Localisation - Fiscal Code                                               |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_ipa                          | |no_check| | |halt|     | IPA Code (IndicePA)                                                              |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_partially_deductible_vat     | |halt|     | |halt|     | Italy - Partially Deductible VAT                                                 |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_pec                          | 9.0.1.0.0  | |halt|     | Pec Mail                                                                         |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_prima_nota_cassa             | |halt|     | |halt|     | Italian Localisation - Prima Nota Cassa                                          |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_rea                          | 9.0.0.1.0  | |same|     | Manage fields for  Economic Administrative catalogue                             |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_ricevute_bancarie            | |halt|     | |halt|     | Ricevute Bancarie                                                                |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_split_payment                | |halt|     | |halt|     | Split Payment                                                                    |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_vat_registries               | |halt|     | |halt|     | Italian Localization - VAT Registries                                            |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_withholding_tax              | |halt|     | |halt|     | Italian Localisation - Withholding tax                                           |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| multibase_plus                       | 9.0.0.1.1  | |no_check| | Enhanced Odoo Features                                                           |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 
 
 OCA comparation / Confronto con OCA
@@ -138,8 +138,12 @@ Prerequisites / Prerequisiti
 ----------------------------
 
 
-* python
-* postgresql 9.2+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+* unidecode
+* codicefiscale
+* pyxb==1.2.4
+
 
 Installation / Installazione
 ----------------------------
@@ -196,7 +200,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This project is mainly maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 
@@ -213,13 +217,13 @@ Proposals for enhancement
 -------------------------
 
 
-|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
+|en| If you have a proposal to change on oh these modules, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
-|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+|it| Se hai proposte per migliorare uno dei moduli, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -235,9 +239,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -245,7 +249,8 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-11-19
+
+Last Update / Ultimo aggiornamento: 2019-08-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -265,9 +270,6 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/9.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/9.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-9.svg
-    :target: https://github.com/OCA/l10n-italy/tree/9.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-9.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/9.0/dev
     :alt: Technical Documentation
@@ -277,8 +279,8 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-9.svg
     :target: https://erp9.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: Unknown badge-oca-codecov
-    :target: Unknown oca-codecov-URL
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/9.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/9.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -287,9 +289,9 @@ Last Update / Ultimo aggiornamento: 2018-11-19
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
@@ -301,10 +303,10 @@ Last Update / Ultimo aggiornamento: 2018-11-19
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
