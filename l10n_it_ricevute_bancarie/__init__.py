@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-# © 2016 Andrea Cometa (<http://www.andreacometa.it>)
-# © 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-# © 2012 Domsense srl (<http://www.domsense.com>)
-# © 2012 Associazione Odoo Italia
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+#
+# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
+# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
+# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+#
 from . import models, wizard, report

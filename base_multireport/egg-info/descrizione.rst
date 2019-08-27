@@ -1,15 +1,11 @@
 Gestisci modelli di stampa multipli
 ----------------------------------------
 
-Installare questo modulo per stampare modelli multipli di documenti basati su:
+Installate questo modulo se volete personalizzare i modelli di stampa.
 
-* Sezionale (utile per gestire le fatture accompagnatorie)
-* Partner (alcuni partner posso avare documenti persolizzati)
-* Date (modelli speciali in particolai periodi dell'anno)
-* Azienda
-* Lingua partner
-* Posizione fiscale
-* Team
+Il modulo è costruito sui seguenti concetti:
 
-Si può anche costruire un modulo di fattura personalizzata da aggiungere
-alla lista dei modelli.
+* Personalizza ordini, fatture e documenti di trasporto
+* Il modulo non disabilita i modelli standard di Odoo, che potete utilizzare in qualsiasi momento
+* Potete usare questo modulo come base per un vostro modulo di personalizzazione stampe
+* I parametri di configurazione sono organizzati tramite albero gerarchico

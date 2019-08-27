@@ -17,11 +17,24 @@
         <field name="name">view.multireport.template.form</field>
         <field name="model">multireport.template</field>
         <field name="arch" type="xml">
-            <form string="Invoice Type">
+            <form string="Multi Report Template values">
                 <group>
                     <field name="name"/>
+                    <field name="header_mode"/>
+                    <field name="payment_term_position"/>
+                    <field name="footer_mode"/>
+                </group>
+                <group>
+                    <field name="code_mode"/>
+                    <field name="description_mode"/>
+                </group>
+                <group>
                     <field name="header_id"/>
                     <field name="footer_id"/>
+                    <field name="pdf_watermark"/>
+                    <field name="pdf_watermark_expression"/>
+                    <field name="pdf_ending_page"/>
+                    <field name="pdf_ending_page_expression"/>
                 </group>
             </form>
         </field>
@@ -40,3 +53,4 @@
               groups="base.group_no_one"/>
 
 </odoo>
+

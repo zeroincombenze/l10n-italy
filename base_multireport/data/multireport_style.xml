@@ -12,7 +12,7 @@
         </record>
         <record id="mr_style_vg7" model="multireport.style">
             <field name="name">VG7</field>
-            <field name="origin">vg7</field>
+            <field name="origin">odoo_based</field>
         </record>
 
     </data>

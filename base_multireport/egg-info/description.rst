@@ -1,16 +1,12 @@
  Manage document multiple reports
 -------------------------------------
 
-Install this module if you wish to set rules to select
-graphical document model to print, depending by:
+Install this module if you wish to wish customize your report printing.
 
-* Journal
-* Customer (some partner can have the own document model)
-* Date (special model at specific time)
-* Company
-* Partner language
-* Fiscal position
-* Team
+The module is built on follow concepts:
 
-You can build your own customized report and add it to document report list.
-You can find an customized invoice report example in this module.
+* Module customize order, invoice and delivery documents
+* Module does not disable standard Odoo modules: you can use them whenever you want
+* You can use this module as base of your custom report module
+* Configuration parameters are organized as a hierarchical tree
+

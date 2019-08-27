@@ -10,21 +10,16 @@
             </p>
             <p class="oe_mt16" align="justify"><h2>Manage document multiple reports / Gestisci modelli di stampa multipli</h2>
 <p align="justify">
-Install this module if you wish to set rules to select
-graphical document model to print, depending by:
+Install this module if you wish to wish customize your report printing.
+</p><p align="justify">
+The module is built on follow concepts:
 </p><p align="justify">
 <ul>
-<li>Journal</li>
-<li>Customer (some partner can have the own document model)</li>
-<li>Date (special model at specific time)</li>
-<li>Company</li>
-<li>Partner language</li>
-<li>Fiscal position</li>
-<li>Team</li>
+<li>Module customize order, invoice and delivery documents</li>
+<li>Module does not disable standard Odoo modules: you can use them whenever you want</li>
+<li>You can use this module as base of your custom report module</li>
+<li>Configuration parameters are organized as a hierarchical tree</li>
 </ul>
-</p><p align="justify">
-You can build your own customized report and add it to document report list.
-You can find an customized invoice report example in this module.
 </p></p>
         </div>
         <div class="oe_span6">
@@ -33,20 +28,16 @@ You can find an customized invoice report example in this module.
             </p>
             <p class="oe_mt16" align="justify"><h2>Manage document multiple reports / Gestisci modelli di stampa multipli</h2>
 <p align="justify">
-Installare questo modulo per stampare modelli multipli di documenti basati su:
+Installate questo modulo se volete personalizzare i modelli di stampa.
+</p><p align="justify">
+Il modulo &#232; costruito sui seguenti concetti:
 </p><p align="justify">
 <ul>
-<li>Sezionale (utile per gestire le fatture accompagnatorie)</li>
-<li>Partner (alcuni partner posso avare documenti persolizzati)</li>
-<li>Date (modelli speciali in particolai periodi dell'anno)</li>
-<li>Azienda</li>
-<li>Lingua partner</li>
-<li>Posizione fiscale</li>
-<li>Team</li>
+<li>Personalizza ordini, fatture e documenti di trasporto</li>
+<li>Il modulo non disabilita i modelli standard di Odoo, che potete utilizzare in qualsiasi momento</li>
+<li>Potete usare questo modulo come base per un vostro modulo di personalizzazione stampe</li>
+<li>I parametri di configurazione sono organizzati tramite albero gerarchico</li>
 </ul>
-</p><p align="justify">
-Si pu&#242; anche costruire un modulo di fattura personalizzata da aggiungere
-alla lista dei modelli.
 </p></p>
         </div>
     </div>
@@ -80,9 +71,23 @@ alla lista dei modelli.
 This module gives a lot of pretty features to print nice reports.
 <p align="justify">
 Inside every report it is possible check for some characteristics and/or add some values.
-Field name beginning with <code>doc_opts</code> are values from the specific report which is printing.
-Field name beginning with <code>doc_style</code> are values from the style of the company.
-Values in <code>doc_opts</code> are more priority than value in <code>doc_style</code>.
+The value of every parameter is evaluate in fallback way.
+The fallback path is:
+1. Valid value (not null and not space) in report (model ir_action_report_xml)
+2. Valid value (not null and not space) in template of report (model multireport.template), if declared
+3. Valid value (not null and not space) in specific document style (model multireport.style)
+4. Value in default document style (model multireport.style)
+5. For some parameters, for historical reason, value may be load from other sources (i.e. custom footer)
+</p><p align="justify">
+In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parme to get value.
+</p><p align="justify">
+Report may load specific value if declare field as follow:
+<ul>
+<li>If field name beginning with <code>doc_opts</code>, value is from the specific report which is printing.</li>
+<li>If Field name beginning with <code>doc_style</code>, value is from the style of the company.</li>
+</ul>
+</p><p align="justify">
+Warning! If report get value directly from report or style, can get a None value and result may be unexpected.
 </p><p align="justify">
 Look at follow table for details:
 </p><p align="justify">
@@ -93,15 +98,15 @@ Look at follow table for details:
 </tr><tr>
 <td>company_partner</td><td>Company partner of current document</td><td>Set by external layout</td>
 </tr><tr>
-<td>def_company</td><td>Default company</td><td>Set by module</td>
+<td>def_company</td><td>Default company</td><td>Set by Odoo report module</td>
 </tr><tr>
-<td>doc</td><td>Current document which is printing</td><td>Set by module. External layout set 'o' to compatibility with</td>
+<td>doc</td><td>Current document which is printing</td><td>Set by module. External layout set 'o' to compatibility with Odoo reports</td>
 </tr><tr>
 <td>doc_model</td><td>Document model</td><td>Deprecated: use doc_opts.model</td>
 </tr><tr>
-<td>doc_opts</td><td>Document parameters</td><td/>
+<td>doc_opts</td><td>Document parametes</td><td/>
 </tr><tr>
-<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td t-if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2</td>
+<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td t-if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2_print()"/&gt;&lt;/td&gt;</td>
 </tr><tr>
 <td>doc_opts.description_mode</td><td>Print code in document body</td><td>&lt;td&gt;&lt;span t-esc="l.description_2_print()"/&gt;&lt;/td&gt;</td>
 </tr><tr>
@@ -111,7 +116,7 @@ Look at follow table for details:
 </tr><tr>
 <td>doc_opts.paperformat_id</td><td>ID to paperformat</td><td/>
 </tr><tr>
-<td>doc_opts.payment_term_position</td><td>Payment data position</td><td>May be Auto, None, on Footer or on Header - With auto, when</td>
+<td>doc_opts.payment_term_position</td><td>Payment data position</td><td>May be Auto, None, on Footer or on Header - With auto, when due payment is whole in one date, all datas are printed on header otherwise  - all datas are printed on footer - Odoo print only Payment Term notes on Footer</td>
 </tr><tr>
 <td>doc_opts.pdf_watermark</td><td>Default watermark for this report</td><td/>
 </tr><tr>
@@ -158,6 +163,10 @@ Look at follow table for details:
 <td>l</td><td>Current invoice line when printing</td><td>Alias used in invoice print</td>
 </tr><tr>
 <td>o</td><td>Current invoice which is printing</td><td>Alias used in invoice print set by external layout</td>
+</tr><tr>
+<td>report</td><td>Document report class</td><td/>
+</tr><tr>
+<td>report.get_report_attrib</td><td>Get specific fallback value</td><td>&lt;div t-if="report.get_report_attrib('custom_header',o,doc_opts)"&gt; .. &lt;/div&gt;.</td>
 </tr><tr>
 <td>style</td><td>Current <code>Report Identity</code> (see below)</td><td/>
 </tr><tr>

@@ -8,6 +8,8 @@ from PIL import Image
 from StringIO import StringIO
 from odoo import api, models, tools
 from PIL import PdfImagePlugin # flake8: noqa
+from os0 import os0
+
 
 logger = getLogger(__name__)
 
@@ -19,6 +21,7 @@ class Report(models.Model):
         'sale.order': 'sale.report_saleorder',
         'account.invoice': 'account.report_invoice',
     }
+    BOOL_PARAMS = ['no_header_logo',]
 
     @api.model
     def select_reportname(self, document):
@@ -41,7 +44,7 @@ class Report(models.Model):
         return reportname
 
     @api.model
-    def get_report_attr(self, document, report):
+    def get_doc_n_repo_params(self, document, report):
         reportname = self.select_reportname(document)
         company = False
         report_model_style = False
@@ -55,15 +58,49 @@ class Report(models.Model):
         return reportname, company, report_model_style, pdf_report
 
     @api.model
+    def get_report_attrib(self, param, doc, report):
+        reportname, company, report_model_style, pdf_report = self.env[
+            'report'].get_doc_n_repo_params(doc, report)
+        model = report.model.replace('.', '_')
+        value = False
+        if report_model_style.origin != 'odoo':
+            param_in_style = '%s_%s' % (param, model)
+            template = False
+            if hasattr(report, 'template'):
+                template = getattr(report, 'template')
+            if hasattr(report, param):
+                value = getattr(report, param)
+            if not value and template and hasattr(template, param):
+                value = getattr(template, param)
+            if not value and hasattr(report_model_style, param_in_style):
+                value = getattr(report_model_style, param_in_style)
+        if not value and hasattr(report_model_style, 'model_%s_id' % model):
+            model_default = getattr(report, 'model_%s_id' % model)
+            if hasattr(model_default, param):
+                value = getattr(model_default, param)
+        if not value and hasattr(report_model_style, param):
+            value = getattr(report_model_style, param)
+        if param == 'footer_mode' and (not value or value == 'standard'):
+            if company.custom_footer:
+                value = 'custom'
+        if param in self.BOOL_PARAMS:
+            value = os0.str2bool(value, True)
+        return value or None
+
+    @api.model
     def get_html(self, docids, report_name, data=None):
         """This method generates and returns html version of a report.
         """
         report_model_name = 'report.%s' % report_name
         report_model = self.env.get(report_model_name)
         if report_model is not None:
-            return report_model.render_html(docids, data=data)
+            return super(Report, self).get_html(
+                docids, report_name, data=data)
         else:
             report = self._get_report_from_name(report_name)
+            if report.model not in self.RPT_BY_MODEL:
+                return super(Report, self).get_html(
+                    docids, report_name, data=data)
             docs = self.env[report.model].browse(docids)
             company = docs[0].company_id or self.env.user.company_id
             docargs = {
@@ -73,6 +110,7 @@ class Report(models.Model):
                 'doc_opts': report,
                 'doc_style': company.report_model_style,
                 'def_company': self.env.user.company_id,
+                'report': self,
                 }
             return self.render(report.report_name, docargs)
 
@@ -83,27 +121,26 @@ class Report(models.Model):
         if not docids:
             return result
         report = self._get_report_from_name(report_name)
+        if report.model not in self.RPT_BY_MODEL:
+            return result
         recs = self.env[report.model].browse(docids)
         reportname, company, report_model_style, pdf_report = self.env[
-            'report'].get_report_attr(recs[0], report)
+            'report'].get_doc_n_repo_params(recs[0], report)
         if (not report_model_style or not report_model_style.origin or
                 report_model_style.origin == 'odoo') and not pdf_report:
             return result
-        model = recs[0].__class__.__name__
-        specific_watermark = 'pdf_watermark_%s' % model.replace('.', '_')
-        watermark = None
-        if hasattr(report_model_style, specific_watermark):
-            watermark = getattr(report_model_style, specific_watermark)
-        if not watermark:
-            watermark = report_model_style.pdf_watermark or None
+        watermark = self.get_report_attrib('pdf_watermark', recs[0], report)
         if not watermark:
             watermark = tools.safe_eval(
-                report_model_style.pdf_watermark_expression or 'None',
+                 self.get_report_attrib('pdf_watermark_expression',
+                                        recs[0], report) or 'None',
                 dict(env=self.env, docs=recs)
             )
         if watermark:
             watermark = b64decode(watermark)
-        ending_page = report_model_style.pdf_ending_page or None
+        ending_page = watermark = self.get_report_attrib('ending_page',
+                                                         recs[0], report)
+        report_model_style.pdf_ending_page or None
         if ending_page:
             ending_page = b64decode(ending_page)
         if not watermark and not ending_page:

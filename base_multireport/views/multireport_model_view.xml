@@ -5,9 +5,11 @@
         <field name="name">view.multireport.model.tree</field>
         <field name="model">multireport.model</field>
         <field name="arch" type="xml">
-            <tree string="Report Model">
+            <tree string="Multi-report Model">
                 <field name="name"/>
-                <field name="template_id"/>
+                <field name="model_id"/>
+                <field name="header_mode"/>
+                <field name="footer_mode"/>
             </tree>
         </field>
     </record>
@@ -16,10 +18,13 @@
         <field name="name">view.multireport.model.form</field>
         <field name="model">multireport.model</field>
         <field name="arch" type="xml">
-            <form string="Invoice Type">
+            <form string="Multi-report Model">
                 <group>
                     <field name="name"/>
-                    <field name="template_id"/>
+                    <field name="model_id"/>
+                    <field name="header_mode"/>
+                    <field name="payment_term_position"/>
+                    <field name="footer_mode"/>
                 </group>
             </form>
         </field>

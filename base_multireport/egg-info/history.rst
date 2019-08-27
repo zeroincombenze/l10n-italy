@@ -1,3 +1,15 @@
+10.0.0.2.10 (2019-08-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fallback parameters / Parametri a cascata
+
+
+10.0.0.2.9 (2019-08-07)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Description with NL / Stampa descrizione con NL
+
+
 10.0.0.2.8 (2019-07-05)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

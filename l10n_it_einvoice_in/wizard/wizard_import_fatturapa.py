@@ -152,6 +152,7 @@ class WizardImportFatturapa(models.TransientModel):
         partner_model = self.env['res.partner']
         MAGIC_FIELDS = {'company_id': False,
                         'is_company': True,
+                        'supplier': True,
         }
         keep = keep or []
         default = default or {}
@@ -186,10 +187,10 @@ class WizardImportFatturapa(models.TransientModel):
             try:
                 cur_rec = ir_model.browse(id)
                 for field in keep:
-                    if (field in vals and rec[field] and
+                    if (field in vals and cur_rec[field] and
                             isinstance(vals[field], basestring) and
                             partner_model.dim_text(
-                                rec[field]) == partner_model.dim_text(
+                                cur_rec[field]) == partner_model.dim_text(
                                     vals[field])):
                         del vals[field]
                 for field in default:
@@ -329,8 +330,8 @@ class WizardImportFatturapa(models.TransientModel):
                                    ['rea_code'],
                                    ['vat', 'name', 'is_company', 'type'],
                                    ['fiscalcode', 'type'],
-                                   ['vat', 'is_company'],
-                                   ['name', 'is_company'],
+                                   ['vat', 'is_company', 'supplier'],
+                                   ['name', 'is_company', 'supplier'],
                                    ['vat'],
                                    ['name']),
                             constraints=[('id', '!=', 'parent_id')],

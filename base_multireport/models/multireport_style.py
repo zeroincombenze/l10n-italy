@@ -16,12 +16,74 @@ class MultireportStyle(models.Model):
         help="Give a unique name for this report style")
     origin = fields.Selection(
         [('odoo', 'Original Odoo Model'),
-         ('odoo_based', 'Odoo based Model'),
-         ('vg7', 'VG7 Model')],
+         ('odoo_based', 'Odoo based Model')],
         'Report origin/indentity',
         required=True,
         help="Original report",
         default='odoo')
+    # default values
+    template_sale_order = fields.Many2one(
+        'multireport.template', 'Sale order template',
+        help="Sale order model",)
+        # default=lambda self: self.env.ref('base_multireport.mr_t_odoo'))
+    model_sale_order_id = fields.Many2one(
+        'multireport.model', 'Odoo sale order model default',
+        # domain=lambda self: [('model_id', '=', self.env.ref('sale.model_sale_order').id)],
+    )
+    header_mode = fields.Selection(
+        [('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Header Print Mode',
+        help="Which content is printed in document",
+        required=True,
+        default='standard')
+    # sale.order values
+    header_mode_sale_order = fields.Selection(
+        [('', 'From default style'),
+         ('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Header Print Mode',
+        help="Which content is printed in document")
+    # stock.picking[.package.preparation] values
+    header_mode_stock_picking_package_preparation = fields.Selection(
+        [('', 'From default style'),
+         ('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Header Print Mode',
+        help="Which content is printed in document")
+    # account.invoice values
+    header_mode_account_invoice = fields.Selection(
+        [('', 'From default style'),
+         ('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Header Print Mode',
+        help="Which content is printed in document")
+    # purchase.order values
+    header_mode_purchase_order = fields.Selection(
+        [('', 'From default style'),
+         ('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Header Print Mode',
+        help="Which content is printed in document")
+    # other values
+    template_stock_picking_package_preparation = fields.Many2one(
+        'multireport.template', 'Delivery document template',
+        help="Delivery document model",)
+        # default=lambda self: self.env.ref('base_multireport.mr_t_odoo'))
+    template_purchase_order = fields.Many2one(
+        'multireport.template', 'Purchase order template',
+        help="Purchase order model",)
+        # default=lambda self: self.env.ref('base_multireport.mr_t_odoo'))
     pdf_watermark = fields.Binary(
         'Watermark PDF',
         help='Upload your company letterhead PDF to form the background '
@@ -48,28 +110,53 @@ class MultireportStyle(models.Model):
     pdf_watermark_purchase_order = fields.Binary(
         'Purchase Order Watermark PDF',
         help='Specific background for Purchase Orders')
-    # TODO: in template
-    custom_header = fields.Boolean('Custom Header')
-    no_header_logo = fields.Boolean('No Header Logo')
     description_mode_sale_order = fields.Selection(
-        [('as_is', 'As is'),
-         ('line1', 'Only first line'),
-         ('nocode', 'No code'),
-         ('nocode1', 'No code & Only first line'),
-         ],
-        'Description line print',
-        help="Which content is printed in document",
-        default='as_is')
+        related='template_sale_order.description_mode',
+        readony=True)
     description_mode_stock_picking_package_preparation = fields.Selection(
-        [('as_is', 'As is'),
-         ('line1', 'Only first line'),
-         ('nocode', 'No code'),
-         ('nocode1', 'No code & Only first line'),
-         ],
-        'Description line print',
-        help="Which content is printed in document",
-        default='as_is')
+        related='template_sale_order.description_mode',
+        readony=True)
     description_mode_account_invoice = fields.Selection(
+        [('', 'From default style'),
+         ('as_is', 'As is'),
+         ('line1', 'Only first line'),
+         ('nocode', 'No code'),
+         ('nocode1', 'No code & Only first line'),
+         ],
+        'Description line print',
+        help="Which content is printed in document",
+    )
+    # FIELD TEMPLATE
+    # description_mode_purchase_order = fields.Selection(
+    #     related='model_purchase_order_id.description_mode',
+    #    readony=True)
+    code_mode_sale_order = fields.Selection(
+        related='template_sale_order.code_mode',
+        readony=True)
+    code_mode_stock_picking_package_preparation = fields.Selection(
+        related='template_sale_order.code_mode',
+        readony=True)
+    code_mode_account_invoice = fields.Selection(
+        [('', 'From default style'),
+         ('noprint', 'No print'),
+         ('print', 'Print'),
+         ],
+        'Print code in document line',
+        help="If you choice to print, set description to <nocode>",
+    )
+    code_mode_purchase_order = fields.Selection(
+        related='template_sale_order.code_mode',
+        readony=True)
+    code_mode = fields.Selection(
+        [('noprint', 'No print'),
+         ('print', 'Print'),
+         ],
+        'Print code in document line',
+        help="If you choice to print, set description to <nocode>",
+        default='noprint',
+        required=True,
+    )
+    description_mode = fields.Selection(
         [('as_is', 'As is'),
          ('line1', 'Only first line'),
          ('nocode', 'No code'),
@@ -77,45 +164,49 @@ class MultireportStyle(models.Model):
          ],
         'Description line print',
         help="Which content is printed in document",
-        default='as_is')
-    description_mode_purchase_order = fields.Selection(
-        [('as_is', 'As is'),
-         ('line1', 'Only first line'),
-         ('nocode', 'No code'),
-         ('nocode1', 'No code & Only first line'),
+        default='as_is',
+        required=True,
+    )
+    payment_term_position_account_invoice = fields.Selection(
+        [('', 'From default style'),
+         ('odoo', 'Odoo'),
+         ('auto', 'Auto'),
+         ('footer', 'Footer'),
+         ('header', 'Header'),
+         ('none', 'None')
          ],
-        'Description line print',
-        help="Which content is printed in document",
-        default='as_is')
-    header_sale_order = fields.Selection(
+        'Payment term layout position',
+        help='Where Payment term and due dates are printed: '
+             'may be Auto, None, on Footer or on Header\n'
+             'With auto, when due payment is whole in one date, '
+             'all datas are printed on header otherwise \n'
+             'all datas are printed on footer\n'
+             'Odoo print only Payment Term notes on Footer',
+    )
+    payment_term_position = fields.Selection(
+        [('odoo', 'Odoo'),
+         ('auto', 'Auto'),
+         ('footer', 'Footer'),
+         ('header', 'Header'),
+         ('none', 'None')
+         ],
+        'Payment term layout position',
+        help='Where Payment term and due dates are printed: '
+             'may be Auto, None, on Footer or on Header\n'
+             'With auto, when due payment is whole in one date, '
+             'all datas are printed on header otherwise \n'
+             'all datas are printed on footer\n'
+             'Odoo print only Payment Term notes on Footer',
+        default='odoo',
+        required=True,
+    )
+    footer_mode = fields.Selection(
         [('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
-         ('no_header', 'No print Header'),
+         ('custom', 'Customized Footer'),
+         ('no_footer', 'No print Footer'),
          ],
-        'Header Print Mode',
+        'Footer Print Mode',
         help="Which content is printed in document",
-        default='standard')
-    header_stock_picking_package_preparation = fields.Selection(
-        [('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
-         ('no_header', 'No print Header'),
-         ],
-        'Header Print Mode',
-        help="Which content is printed in document",
-        default='standard')
-    header_account_invoice = fields.Selection(
-        [('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
-         ('no_header', 'No print Header'),
-         ],
-        'Header Print Mode',
-        help="Which content is printed in document",
-        default='standard')
-    header_purchase_order = fields.Selection(
-        [('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
-         ('no_header', 'No print Header'),
-         ],
-        'Header Print Mode',
-        help="Which content is printed in document",
-        default='standard')
+        required=True,
+        default='standard'
+    )

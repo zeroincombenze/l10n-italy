@@ -173,33 +173,6 @@ class WizardExportFatturapa(models.TransientModel):
                     wep_phone += phone[i]
         return wep_phone.strip()
 
-    # def _wep_text(self, text):
-    #     """"Do xml escape to avoid error StringLatinType"""
-    #     # text.encode('latin', 'ignore').decode('latin')
-    #     if text:
-    #         return escape(unidecode(text), XML_ESCAPE).strip()
-    #     return text
-
-    # def __wep_vat(self, vat):
-    #     if vat:
-    #         return vat.replace(
-    #             ' ', '').replace('.', '').replace('-', '').upper()
-    #     return vat
-
-    # def _split_vat_n_country(self, vat):
-    #     if vat:
-    #         vat = self.__wep_vat(vat)
-    #         if vat[0:3] != 'IT9' and vat[0:3] != 'IT8':
-    #             country_code = vat[0:2]
-    #             vat_number = vat[2:]
-    #         else:
-    #             country_code = ''
-    #             vat_number = ''
-    #     else:
-    #         country_code = ''
-    #         vat_number = ''
-    #     return country_code, vat_number
-
     def _get_partner_field(self, partner, parent, field, mode=None):
         """Select field from <invoice address> or <parent>
         Order refers to a <customer> and an <invoice address>.
@@ -337,8 +310,10 @@ class WizardExportFatturapa(models.TransientModel):
         if not fatturapa_fp:
             raise UserError(
                 _('E-invoice fiscal position not set.'))
+        # CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+        #     IdPaese=company.country_id.code, IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-            IdPaese=company.country_id.code, IdCodice=company.vat[2:])
+            IdPaese=company.vat[0:2], IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
             Denominazione=company.name)
 
@@ -473,10 +448,12 @@ class WizardExportFatturapa(models.TransientModel):
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         vat = self._get_partner_field(
             partner, parent, 'vat', mode=mode)
+        is_pa = self._get_partner_field(
+            partner, parent, 'is_pa', mode=mode)
         fiscalcode = partner.wep_fiscalcode(
             self._get_partner_field(
                 partner, parent, 'fiscalcode', mode=mode))
-        if vat:
+        if vat and vat[0:3] not in ('IT9', 'IT8') and not is_pa:
             country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -488,10 +465,11 @@ class WizardExportFatturapa(models.TransientModel):
         if fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = fiscalcode
-        elif vat[0:3] == 'IT9':
+        elif vat and (vat[0:3] in ('IT9', 'IT8') or 
+                      (vat.startswith('IT') and is_pa)):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = vat[2:]
-
+    
         company_type = self._get_partner_field(
             partner, parent, 'company_type', mode=mode)
         if company_type == 'company':

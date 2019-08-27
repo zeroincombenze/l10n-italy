@@ -328,8 +328,10 @@ Authors / Autori
 ----------------
 
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
+* `Andrea Cometa <http://www.andreacometa.it>`__
 * `Apulia Software <https://www.apuliasoftware.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
@@ -365,7 +367,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-07-18
+Last Update / Ultimo aggiornamento: 2019-08-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

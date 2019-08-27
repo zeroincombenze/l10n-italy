@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo noupdate="1">
 
-        <record id="mr_m_odoo" model="multireport.model">
-            <field name="name">Odoo based model</field>
-            <field name="template_id" ref="base_multireport.mr_t_odoo"/>
+        <record id="mr_m_sale" model="multireport.model">
+            <field name="name">Sale Order Print Configuration</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
         </record>
-        <record id="mr_m_vg7" model="multireport.model">
-            <field name="name">VG7 model</field>
-            <field name="template_id" ref="base_multireport.mr_t_vg7"/>
+        <record id="mr_m_invoice" model="multireport.model">
+            <field name="name">Account Invoice Print Configuration</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
         </record>
 
-    </data>
 </openerp>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import re
 from odoo import fields, models, api
 
 
@@ -43,39 +44,62 @@ class IrActionsReportXml(models.Model):
     #     default=lambda self: self._default_fields(),
     #     domain=_domain_fields,
     # )
+
+    header_mode = fields.Selection(
+        [('', 'From template/style'),
+         ('standard', 'Full Standard'),
+         ('logo', 'Only logo'),
+         ('no_header', 'No print Header'),
+         ],
+        'Header Print Mode',
+        help="Which content is printed in document header",
+    )
+    payment_term_position = fields.Selection(
+        [('', 'From template/style'),
+         ('odoo', 'Odoo'),
+         ('auto', 'Auto'),
+         ('footer', 'On Footer'),
+         ('header', 'On Header'),
+         ('none', 'None')
+         ],
+        'Payment term layout position',
+        help='Where Payment term and due dates are printed:\n'
+             'may be Auto, None, on Footer, on Header or None\n'
+             'If "auto", when due payment is whole in one date,\n'
+             'all datas are printed on header otherwise on footer\n'
+             'If "Odoo" print only Payment Term notes on Footer',
+    )
+    footer_mode = fields.Selection(
+        [('', 'From template/style'),
+         ('standard', 'Odoo Standard'),
+         ('auto', 'Automatic Footer'),
+         ('custom', 'Customized Footer'),
+         ('no_footer', 'No print Footer'),
+         ],
+        'Footer Print Mode',
+        help='Which content is printed in document footer\n'
+             'If "standard", footer is printed as "auto" or "custom"\n'
+             'based on company.custom_footer field (Odoo standaed behavior)\n'
+             'If "auto", footer is printed with automatic data\n'
+             'If "custom", footer is printed from user data written\n',
+    )
     code_mode = fields.Selection(
-        [('noprint', 'No print'),
+        [('', 'From template/style'),
+         ('noprint', 'No print'),
          ('print', 'Print'),
          ],
         'Print code in document line',
-        help="If choice print, set description to <nocode>",
-        default='noprint'
+        help='If you choice "print", please set description mode to "nocode"',
     )
     description_mode = fields.Selection(
-        [('as_is', 'As is'),
+        [('', 'From template/style'),
+         ('as_is', 'As is'),
          ('line1', 'Only first line'),
          ('nocode', 'No code'),
          ('nocode1', 'No code & Only first line'),
          ],
         'Print description in document line',
         help="Which content is printed in document line",
-        default='as_is'
-    )
-    payment_term_position = fields.Selection(
-        [('odoo', 'Odoo'),
-         ('auto', 'Auto'),
-         ('footer', 'Footer'),
-         ('header', 'Header'),
-         ('none', 'None')
-         ],
-        'Payment term layout position',
-        help='Where Payment term and due dates are printed: '
-             'may be Auto, None, on Footer or on Header\n'
-             'With auto, when due payment is whole in one date, '
-             'all datas are printed on header otherwise \n'
-             'all datas are printed on footer\n'
-             'Odoo print only Payment Term notes on Footer',
-        default='odoo'
     )
     order_ref_text = fields.Char(
         'Text with order ref',
@@ -88,7 +112,7 @@ class IrActionsReportXml(models.Model):
     pdf_watermark_expression = fields.Char(
         'Watermark expression',
         help='An expression yielding the base64 '
-             'encoded data to be used as watermark. \n'
+             'encoded data to be used as watermark.\n'
              'You have access to variables `env` and `docs`')
     pdf_ending_page = fields.Binary(
         'Ending Page PDF',
@@ -97,3 +121,38 @@ class IrActionsReportXml(models.Model):
              'your business terms and Conditions, '
              'upload a PDF with those content here and '
              'it will be appended to every document you print.')
+    pdf_ending_page_expression = fields.Char(
+        'Ending Page PDF expression',
+        help='An expression yielding the base64 '
+             'encoded data to be used as Ending Page PDF.\n'
+             'You have access to variables `env` and `docs`')
+    template = fields.Many2one(
+        'multireport.template', 'Model template',
+        help="Model template with fallback values.",)
+        # default=lambda self: self.env.ref('base_multireport.mr_t_odoo'))
+
+
+class View(models.Model):
+    _inherit = 'ir.ui.view'
+
+    # @api.multi
+    # def name_get(self):
+    #     names = []
+    #     for view in self:
+    #         x = re.search('t-name *= *["\'][^"\']*["\']', view.arch)
+    #         if x:
+    #             name = view.arch[x.start():x.end()].split('=')[1][1:-1]
+    #         else:
+    #             name = view.name
+    #         names.append((name))
+    #    return names
+
+    @api.depends('name', 'arch')
+    def _compute_display_name(self):
+        for view in self:
+            x = re.search('t-name *= *["\'][^"\']*["\']', view.arch)
+            if x:
+                name = view.arch[x.start():x.end()].split('=')[1][1:-1]
+            else:
+                name = view.name
+            view.display_name = name

@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="account.invoice_tree"></field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']" position="before">
-                <field name="fatturapa_state"/>
+                <field name="fatturapa_state" widget="status_widget"/>
             </xpath>
         </field>
     </record>

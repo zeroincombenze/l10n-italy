@@ -34,10 +34,10 @@ class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
     def description_2_print(self, style_mode=None):
-        style_mode = style_mode or \
-            self.company_id.report_model_style.description_mode_account_invoice
-        field_name = 'name'
-        value = self[field_name]
+        if not style_mode:
+            style_mode = self.company_id.report_model_style.\
+                description_mode_account_invoice
+        value = self.name
         if style_mode in ('line1', 'nocode1'):
             value = value.split('\n')[0]
         if style_mode in ('nocode', 'nocode1'):
@@ -46,9 +46,29 @@ class AccountInvoiceLine(models.Model):
                 value = value[i + 1:].lstrip()
         return value
 
-    def code_2_print(self, style_mode):
-        if self.product_id:
+    def code_2_print(self, style_mode=None):
+        if not style_mode:
+            style_mode = self.company_id.report_model_style.\
+                code_mode_account_invoice
+        if self.product_id and style != 'noprint':
             value = self.product_id.default_code
         else:
             value = ''
         return value
+
+    @api.depends('product_id')
+    def _set_code(self):
+        for line in self:
+            line.code = line.code_2_print()
+
+    @api.depends('product_id', 'name')
+    def _set_description(self):
+        for line in self:
+            line.description = line.description_2_print()
+
+    code = fields.Char('Code',
+                       compute='_set_code',
+                       copy=False)
+    description = fields.Char('Description',
+                       compute='_set_description',
+                       copy=False)

@@ -1,10 +1,10 @@
 Name,Description,Notes / Example
 company,Company of current document,Set by external layout
 company_partner,Company partner of current document,Set by external layout
-def_company,Default company,Set by module
+def_company,Default company,Set by Odoo report module
 doc,Current document which is printing,Set by module. External layout set 'o' to compatibility with Odoo reports
 doc_model,Document model,Deprecated: use doc_opts.model
-doc_opts,Document parameters,
+doc_opts,Document parametes,
 doc_opts.code_mode,Print code in document body,"<td t-if=""doc_opts.code_mode=='print'""><span t-esc=""l.code_2_print()""/></td>"
 doc_opts.description_mode,Print code in document body,"<td><span t-esc=""l.description_2_print()""/></td>"
 doc_opts.header,Add header to report,
@@ -34,4 +34,6 @@ doc_style.pdf_watermark_sale_order,Sale Order default Watermark PDF,
 doc_style.pdf_watermark_stock_picking_package_preparation,Packing List default Watermark PDF,
 l,Current invoice line when printing,Alias used in invoice print
 o,Current invoice which is printing,Alias used in invoice print set by external layout
+report,Document report class,
+report.get_report_attrib,Get specific fallback value,"<div t-if=""report.get_report_attrib('custom_header',o,doc_opts)""> .. </div>. "
 style,Current `Report Identity` (see below),

@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2011-2012 Associazione OpenERP Italia
-# (<http://www.odoo-italia.org>).
-# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
-# Thanks to Antonio de Vincentiis http://www.devincentiis.it/ ,
-# GAzie http://gazie.sourceforge.net/
-# and Cecchi s.r.l http://www.cecchi.com/
-
-import logging
+#
+# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
+# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
+# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
+# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+#
 import base64
-from odoo import fields, models, _
-from odoo.exceptions import UserError
 import datetime
+import logging
 import re
+
+from odoo import _, fields, models
+from odoo.exceptions import UserError
+
 _logger = logging.getLogger(__name__)
 
 try:

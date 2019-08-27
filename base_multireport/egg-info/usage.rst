@@ -1,9 +1,21 @@
 This module gives a lot of pretty features to print nice reports.
 
 Inside every report it is possible check for some characteristics and/or add some values.
-Field name beginning with `doc_opts` are values from the specific report which is printing.
-Field name beginning with `doc_style` are values from the style of the company.
-Values in `doc_opts` are more priority than value in `doc_style`.
+The value of every parameter is evaluate in fallback way.
+The fallback path is:
+1. Valid value (not null and not space) in report (model ir_action_report_xml)
+2. Valid value (not null and not space) in template of report (model multireport.template), if declared
+3. Valid value (not null and not space) in specific document style (model multireport.style)
+4. Value in default document style (model multireport.style)
+5. For some parameters, for historical reason, value may be load from other sources (i.e. custom footer)
+
+In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parme to get value.
+
+Report may load specific value if declare field as follow:
+* If field name beginning with `doc_opts`, value is from the specific report which is printing.
+* If Field name beginning with `doc_style`, value is from the style of the company.
+
+Warning! If report get value directly from report or style, can get a None value and result may be unexpected.
 
 Look at follow table for details:
 
@@ -13,7 +25,7 @@ Look at follow table for details:
 
 Report Identity is used to select standard Odoo reports or customized reports.
 If value is 'Odoo' all customization is disabled and original Odoo reports are printed.
-It is an attribute of company style.
+It is only an attribute of company style.
 
 `Print description`
 
@@ -25,7 +37,7 @@ May be one of: 'as_is', 'line1', 'nocode', 'nocode1'
 * nocode: product code (text between [brackets]) is removed
 * nocode1: same of line1 + nocode
 
-It is an attribute of specific report which is printing.
+It is an fallback attribute.
 
 `Header mode`
 
@@ -35,7 +47,7 @@ This parameter set how header is printed. May be one of 'standard', 'logo', 'no_
 * logo: only the logo is printed, without text; logo must contain company informations
 * no_header: no header is printed
 
-It is an attribute of company style.
+It is an fallback attribute.
 
 |
 
