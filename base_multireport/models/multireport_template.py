@@ -18,6 +18,7 @@ class MultireportTemplate(models.Model):
         [('', 'From style'),
          ('standard', 'Full Standard'),
          ('logo', 'Only logo'),
+         ('logo', 'Only logo w/o sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
@@ -69,6 +70,27 @@ class MultireportTemplate(models.Model):
          ],
         'Print description in document line',
         help="Which content is printed in document line",
+    )
+    order_ref_text = fields.Char(
+        'Text with order ref',
+        help='Order reference text to print in document body.\n'
+            'May be used following macroes:\n'
+            '%(client_order_ref)s => Customer reference in order\n'
+            '%(order_name)s => Sale order number\n'
+            '%(date_order)s => Sale order date.\n'
+            'i.e. "Order #: %(order_name)s - Your ref: %(client_order_ref)s"',
+        default='Vs. Ordine: %(client_order_ref)s / '\
+                'Ns. Ordine: %(order_name)s del %(date_order)s'
+    )
+    ddt_ref_text = fields.Char(
+        'Text with delivery ref',
+        help='Delivery reference text to print in document body.\n'
+            'May be used following macroes:\n'
+            '%(ddt_number)s => Delivery document number.\n'
+            '%(date_ddt)s => Delivery document date\n'
+            '%(date_done)s => Delivery date\n'
+            'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"',
+        default='DdT %(ddt_number)s - %(date_ddt)s'
     )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(

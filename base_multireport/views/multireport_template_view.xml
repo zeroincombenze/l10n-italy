@@ -18,17 +18,19 @@
         <field name="model">multireport.template</field>
         <field name="arch" type="xml">
             <form string="Multi Report Template values">
-                <group>
+                <group string="Header and Footer">
                     <field name="name"/>
                     <field name="header_mode"/>
                     <field name="payment_term_position"/>
                     <field name="footer_mode"/>
                 </group>
-                <group>
+                <group string="Body">
                     <field name="code_mode"/>
                     <field name="description_mode"/>
+                    <field name="order_ref_text"/>
+                    <field name="ddt_ref_text"/>
                 </group>
-                <group>
+                <group string="Other">
                     <field name="header_id"/>
                     <field name="footer_id"/>
                     <field name="pdf_watermark"/>

@@ -10,16 +10,18 @@
                 <xpath expr="//sheet/notebook" position="inside">
                     <page name="base_multireport" string="Report Configuration">
                         <!-- <group> <field name="field2print_ids" nolabel="1" options="{'no_create': True}" colspan="4"/> </group> -->
-                        <group>
+                        <group string="Header and Footer">
                             <field name="header_mode"/>
                             <field name="payment_term_position"/>
                             <field name="footer_mode"/>
                         </group>
-                        <group>
+                        <group string="Body">
                             <field name="code_mode"/>
                             <field name="description_mode"/>
+                            <field name="order_ref_text"/>
+                            <field name="ddt_ref_text"/>
                         </group>
-                        <group>
+                        <group string="Other">
                             <field name="template"/>
                             <field name="pdf_watermark"/>
                             <field name="pdf_watermark_expression"/>

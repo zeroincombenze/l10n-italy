@@ -25,6 +25,7 @@ class MultireportStyle(models.Model):
     header_mode = fields.Selection(
         [('standard', 'Full Standard'),
          ('logo', 'Only logo'),
+         ('logo', 'Only logo w/o sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',

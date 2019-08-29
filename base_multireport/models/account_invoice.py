@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016-2019 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp import fields, models, api
+from datetime import datetime
+
+from odoo import fields, models, api
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class AccountInvoice(models.Model):
@@ -32,6 +35,74 @@ class AccountInvoice(models.Model):
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
+
+    def get_order_ref_text(self, doc, report, line):
+        order_ref_text = self.env[
+            'report'].get_report_attrib('order_ref_text', doc, report)
+        if not order_ref_text:
+            return ''
+        lang = self.env['res.lang'].search(
+            [('code', '=', line.invoice_id.partner_id.lang)])
+        if not lang:
+            lang = self.env.user.company_id.partner_id.lang
+        date_format = lang.date_format
+        client_ddt_ref = ''
+        order_name = ''
+        date_order = ''
+        if line.sale_line_ids:
+            date_order = line.sale_line_ids[0].order_id.date_order
+            if date_order:
+                date_order = datetime.strptime(
+                    date_order,
+                    DEFAULT_SERVER_DATETIME_FORMAT).strftime(date_format)
+            else:
+                date_order = ''
+            client_order_ref = line.sale_line_ids[
+                0].order_id.client_order_ref or ''
+            order_name = line.sale_line_ids.order_id.name
+        ctx = {
+            'order_name': order_name,
+            'date_order': date_order,
+            'client_order_ref': client_order_ref,
+        }
+        return order_ref_text % ctx
+
+    def get_ddt_ref_text(self, doc, report, line):
+        ddt_ref_text = self.env[
+            'report'].get_report_attrib('ddt_ref_text', doc, report)
+        if not ddt_ref_text:
+            return ''
+        lang = self.env['res.lang'].search(
+            [('code', '=', line.invoice_id.partner_id.lang)])
+        if not lang:
+            lang = self.env.user.company_id.partner_id.lang
+        date_format = lang.date_format
+        date_ddt = ''
+        date_done = ''
+        ddt_number = ''
+        if line.ddt_line_id:
+            date_ddt = line.ddt_line_id.package_preparation_id.date
+            if date_ddt:
+                date_ddt = datetime.strptime(
+                    date_ddt,
+                    DEFAULT_SERVER_DATETIME_FORMAT).strftime(date_format)
+            else:
+                date_ddt = ''
+            date_done = line.ddt_line_id.package_preparation_id.date
+            if date_done:
+                date_done = datetime.strptime(
+                    date_done,
+                    DEFAULT_SERVER_DATETIME_FORMAT).strftime(date_format)
+            else:
+                date_done = ''
+            ddt_number = \
+                line.ddt_line_id.package_preparation_id.ddt_number or ''
+        ctx = {
+            'ddt_number': ddt_number,
+            'date_ddt': date_ddt,
+            'date_done': date_done,
+        }
+        return ddt_ref_text % ctx
 
     def description_2_print(self, style_mode=None):
         if not style_mode:

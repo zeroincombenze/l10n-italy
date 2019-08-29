@@ -25,17 +25,20 @@
             <t t-set="last_order" t-value="''"/>
             <t t-set="last_ddt" t-value="''"/>
             <tbody class="invoice_tbody">
+                <t t-set="order_ref_text" t-value="report.get_report_attrib('order_ref_text',o,doc_opts)"/>
+                <t t-set="ddt_ref_text" t-value="report.get_report_attrib('ddt_ref_text',o,doc_opts)"/>
                 <t t-foreach="o.invoice_line_ids" t-as="l">
-                    <tr t-if="(l.sale_line_ids and last_order != l.sale_line_ids.order_id.name) or (l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number)">
+                    <tr t-if="(order_ref_text or ddt_ref_text) and (l.sale_line_ids and last_order != l.sale_line_ids.order_id.name) or (l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number)">
                         <td t-if="code_mode == 'print'"></td>
                         <td>
                             <p>
                                 <t t-if="l.sale_line_ids and last_order != l.sale_line_ids.order_id.name">
-                                    <strong>Vs. Ordine: <span t-field="l.sale_line_ids.order_id.client_order_ref"/> - <span t-field="l.sale_line_ids.order_id.date_order" t-options="{'widget': 'date'}"/></strong>
+                                    <strong><span t-esc="l.get_order_ref_text(o,doc_opts,l)"/></strong>
                                     <t t-set="last_order" t-value="l.sale_line_ids.order_id.name"/>
                                 </t>
+                                <br t-if="order_ref_text and ddt_ref_text"/>
                                 <t t-if="l.ddt_line_id and last_ddt != l.ddt_line_id.package_preparation_id.ddt_number">
-                                    <strong>DdT: <span t-field="l.ddt_line_id.package_preparation_id.ddt_number"/> - <span t-field="l.ddt_line_id.package_preparation_id.date" t-options="{'widget': 'date'}"/></strong>
+                                    <strong><span t-esc="l.get_ddt_ref_text(o,doc_opts,l)"/></strong>
                                     <t t-set="last_ddt" t-value="l.ddt_line_id.package_preparation_id.ddt_number"/>
                                 </t>
                             </p>

@@ -49,6 +49,7 @@ class IrActionsReportXml(models.Model):
         [('', 'From template/style'),
          ('standard', 'Full Standard'),
          ('logo', 'Only logo'),
+         ('logo', 'Only logo w/o sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
@@ -103,10 +104,21 @@ class IrActionsReportXml(models.Model):
     )
     order_ref_text = fields.Char(
         'Text with order ref',
-        help='Use text with tag {0} that means order.name '
-            'and or {1} taht means order.client_order_ref.\n'
-            'i.e. Our order {0} - Your order {1}',
-        default='>Vs. Ordine: {1} - '
+        help='Order reference text to print in document body.\n'
+            'May be used following macroes:\n'
+            '%(client_order_ref)s => Customer reference in order\n'
+            '%(order_name)s => Sale order number\n'
+            '%(date_order)s => Sale order date.\n'
+            'i.e. "Order #: %(order_name)s - Your ref: %(client_order_ref)s"',
+    )
+    ddt_ref_text = fields.Char(
+        'Text with delivery ref',
+        help='Delivery reference text to print in document body.\n'
+            'May be used following macroes:\n'
+            '%(ddt_number)s => Delivery document number.\n'
+            '%(date_ddt)s => Delivery document date\n'
+            '%(date_done)s => Delivery date\n'
+            'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"',
     )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(
