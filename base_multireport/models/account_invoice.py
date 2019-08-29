@@ -36,7 +36,7 @@ class AccountInvoiceLine(models.Model):
     def description_2_print(self, style_mode=None):
         if not style_mode:
             style_mode = self.company_id.report_model_style.\
-                description_mode_account_invoice
+                description_mode
         value = self.name
         if style_mode in ('line1', 'nocode1'):
             value = value.split('\n')[0]
@@ -47,10 +47,7 @@ class AccountInvoiceLine(models.Model):
         return value
 
     def code_2_print(self, style_mode=None):
-        if not style_mode:
-            style_mode = self.company_id.report_model_style.\
-                code_mode_account_invoice
-        if self.product_id and style != 'noprint':
+        if self.product_id and (not style_mode or style_mode != 'noprint'):
             value = self.product_id.default_code
         else:
             value = ''
@@ -59,7 +56,10 @@ class AccountInvoiceLine(models.Model):
     @api.depends('product_id')
     def _set_code(self):
         for line in self:
-            line.code = line.code_2_print()
+            if line.product_id:
+                line.code = line.product_id.default_code
+            else:
+                line.code = False
 
     @api.depends('product_id', 'name')
     def _set_description(self):

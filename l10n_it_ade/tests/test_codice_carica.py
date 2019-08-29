@@ -6,11 +6,7 @@
 #
 import base64
 import os
-import shutil
-import tempfile
-from datetime import datetime
 
-from lxml import etree
 from z0bug_odoo import test_common
 
 

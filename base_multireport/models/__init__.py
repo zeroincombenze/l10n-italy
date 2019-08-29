@@ -7,7 +7,7 @@ from . import report
 from . import multireport_selection_rules
 from . import multireport_template
 from . import ir_actions_report_xml
-from . import multireport_model
+# from . import multireport_model
 from . import multireport_style
 from . import res_company
 from . import account_invoice

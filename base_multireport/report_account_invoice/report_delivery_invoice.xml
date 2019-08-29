@@ -83,7 +83,7 @@
 
     <template id="base_multireport.report_delivery_invoice">
         <t t-call="base_multireport.external_layout">
-            <t t-set="o" t-value="docs.with_context({'lang':docs.partner_id.lang})"/>
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
             <div class="page">
                 <div class="row">
                     <div name="invoice_address" class="col-xs-5 col-xs-offset-7">
@@ -114,7 +114,7 @@
                         <strong>Data fattura:</strong>
                         <p t-field="o.date_invoice"/>
                     </div>
-                    <div class="col-xs-2" t-if="o.date_due and o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">
+                    <div class="col-xs-2" t-if="(report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)) and o.date_due and o.type == 'out_invoice' and o.state in ('open', 'paid')">
                         <strong>Data scadenza:</strong>
                         <p t-field="o.date_due"/>
                     </div>
@@ -130,48 +130,30 @@
                         <strong>Riferimento:</strong>
                         <p t-field="o.reference"/>
                     </div>
+                    <div class="col-xs-3" t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)">
+                        <strong>Payment Term:</strong>
+                        <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
+                        <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>
+                    </div>
+                    <div class="col-xs-4" t-if="o.partner_bank_id and report.get_report_attrib('payment_term_position',o,doc_opts) in ('header', 'auto')">
+                        <strong>IBAN:</strong>
+                        <p t-field="o.partner_bank_id.display_name"/>
+                    </div>
+                    <div class="col-xs-4" t-if="not o.partner_bank_id and o.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.riba or o.payment_term_id.fatturapa_pm_id.code in ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21') and report.get_report_attrib('payment_term_position',o,doc_opts) in ('header', 'auto')">
+                        <strong>IBAN:</strong>
+                        <p>
+                            <t t-foreach="o.partner_id.bank_ids" t-as="bank"><span t-field="bank.display_name"/></t>
+                        </p>
+                    </div>
+                    <div class="col-xs-4" t-if="not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18') and report.get_report_attrib('payment_term_position',o,doc_opts) in ('header', 'auto')">
+                        <strong>IBAN:</strong>
+                        <p>
+                            <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-if="len(bank.display_name) &gt; 16" t-field="bank.display_name"/></t>
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Is there a discount on at least one line? -->
-                <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
-
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Descrizione</th>
-                            <th class="hidden">Documento di origine</th>
-                            <th class="text-right">Quantità</th>
-                            <th class="text-right">Prezzo unitario</th>
-                            <th t-if="display_discount" class="text-right">Sc.(%)</th>
-                            <th class="text-right">IVA</th>
-                            <th class="text-right">Totale riga</th>
-                        </tr>
-                    </thead>
-                    <tbody class="invoice_tbody">
-                        <tr t-foreach="o.invoice_line_ids" t-as="l">
-                            <!-- <td><span t-field="l.name"/></td> -->
-                            <td><span t-esc="l.description_2_print()"/></td>
-                            <td class="hidden"><span t-field="l.origin"/></td>
-                            <td class="text-right">
-                                <span t-field="l.quantity"/>
-                                <span t-field="l.uom_id" groups="product.group_uom"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-field="l.price_unit"/>
-                            </td>
-                            <td t-if="display_discount" class="text-right">
-                                <span t-field="l.discount"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-field="l.price_subtotal"
-                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <t t-call="base_multireport.report_invoice_lines"/>
 
                 <div class="row">
                     <div class="col-xs-4 pull-right">
@@ -194,6 +176,12 @@
                                 <td><strong>Totale</strong></td>
                                 <td class="text-right">
                                     <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.amount_net_pay != o.amount_total" class="border-black">
+                                <td><strong>Totale a pagare</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_net_pay" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </td>
                             </tr>
                         </table>
@@ -226,13 +214,15 @@
                     </div>
                 </div>
 
+                <t t-call="base_multireport.report_invoice_payment_dues"/>
+
                 <!-- 
                 <p t-if="o.comment">
                     <strong>Note:</strong>
                     <span t-field="o.comment"/>
                 </p>
                 -->
-                <p t-if="o.payment_term_id">
+                <p t-if="o.payment_term_id and report.get_report_attrib('payment_term_position',o,doc_opts) != 'odoo'">
                     <span t-field="o.payment_term_id.note"/>
                 </p>
                 <p t-if="o.fiscal_position_id.note">

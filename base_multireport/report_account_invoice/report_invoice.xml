@@ -24,6 +24,7 @@
                         <p t-if="o.partner_id.fiscalcode">CF: <span t-field="o.partner_id.fiscalcode"/></p>
                     </div>
                 </div>
+
                 <h2>
                     <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Fattura</span>
                     <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>

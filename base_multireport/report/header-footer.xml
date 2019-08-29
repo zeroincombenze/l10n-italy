@@ -16,7 +16,6 @@
         <t t-if="not o or not 'company_id' in o">
             <t t-set="company" t-value="def_company"></t>
         </t>
-        <!-- report.get_report_attrib('external_layout_header',o,doc_opts) -->
         <t t-set="company_partner" t-value="company.partner_id"></t>
         <t t-set="style" t-value="company.report_model_style.origin or 'odoo'"/>
         <t t-if="style == 'odoo_based'" t-call="base_multireport.external_layout_header"/>
@@ -30,17 +29,15 @@
 
     <template id="external_layout_header">
         <div class="header">
-            <!-- <div t-if="not company.report_model_style.no_header_logo" class="row"> -->
             <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'no_header'" class="row">
-                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) == 'logo'" class="col-xs-3">
-                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
+                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) == 'logo'" class="col-xs-12">
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 300px;"/>
                 </div>
                 <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'logo'" class="col-xs-3">
                     <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
-                    <div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
                 </div>
+                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'logo'" class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
             </div>
-            <!-- <div t-if="not company.report_model_style.no_header_logo" class="row zero_min_height"> -->
             <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'no_header'" class="row zero_min_height">
                 <div class="col-xs-12">
                     <div style="border-bottom: 1px solid black;"></div>

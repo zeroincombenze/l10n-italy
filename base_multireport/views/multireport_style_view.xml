@@ -38,54 +38,28 @@
                                     <field name="pdf_watermark" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                                     <field name="pdf_watermark_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                                     <field name="pdf_ending_page" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                    <field name="pdf_ending_page_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                                 </group>
                             </group>
                         </page>
                         <page name="sale_order" string="Sale Order">
                             <group>
-                                <field name="model_sale_order_id"/>
-                                <group>
-                                    <field name="header_mode_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                </group>
-                                <field name="description_mode_sale_order" readonly="1"/>
-                                <field name="code_mode_sale_order" readonly="1"/>
-                                <field name="pdf_watermark_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field name="template_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             </group>
                         </page>
                         <page name="packing_list" string="Delivery document">
                             <group>
-                                <group>
-                                    <field name="header_mode_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                </group>
-                                <field name="template_stock_picking_package_preparation"/>
-                                <field name="description_mode_stock_picking_package_preparation" readonly="1"/>
-                                <field name="code_mode_stock_picking_package_preparation" readonly="1"/>
-                                <field name="pdf_watermark_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field name="template_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             </group>
                         </page>
                         <page name="account_invoice" string="Account Invoice">
                             <group>
-                                <group>
-                                    <field name="header_mode_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="payment_term_position_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                </group>
-                                <group>
-                                    <field name="code_mode_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="description_mode_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                </group>
-                                <group>
-                                    <field name="pdf_watermark_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                </group>
+                                <field name="template_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             </group>
                         </page>
                         <page name="purchase_order" string="Purchase Order">
                             <group>
-                                <group>
-                                    <field name="header_mode_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                </group>
-                                <field name="template_purchase_order"/>
-                                <field name="code_mode_purchase_order" readonly="1"/>
-                                <field name="pdf_watermark_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field name="template_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                             </group>
                         </page>
                     </notebook>

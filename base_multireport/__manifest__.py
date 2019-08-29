@@ -26,7 +26,7 @@
         'views/multireport_style_view.xml',
         'views/ir_actions_report_xml_view.xml',
         'views/multireport_template_view.xml',
-        'views/multireport_model_view.xml',
+        # 'views/multireport_model_view.xml',
         'views/multireport_selection_rules_view.xml',
         'views/config_view.xml',
         # 'views/sale_order_view.xml',
@@ -48,7 +48,9 @@
     'external_dependencies': {
         'python': [
             'PyPDF2',
+            'os0',
         ],
     },
     'installable': True,
+    'post_init_hook': 'update_template_ref',
 }

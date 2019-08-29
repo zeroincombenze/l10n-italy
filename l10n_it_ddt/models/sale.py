@@ -72,6 +72,11 @@ class SaleOrder(models.Model):
         default='billing_partner')
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
+    ddt_invoice_exclude = fields.Boolean(
+        string='DDT do not invoice services',
+        help="If flagged services from this SO will not be automatically "
+             "invoiced from DDT. This parameter can be set on partners and "
+             "automatically applied to Sale Orders.")
 
     @api.multi
     @api.onchange('partner_id')
@@ -87,6 +92,8 @@ class SaleOrder(models.Model):
                 self.partner_id.transportation_method_id.id)
             self.ddt_invoicing_group = (
                 self.partner_id.ddt_invoicing_group)
+            self.ddt_invoice_exclude = (
+                self.partner_id.ddt_invoice_exclude)
         return result
 
     @api.multi
@@ -142,8 +149,8 @@ class SaleOrder(models.Model):
         result = mod_obj.get_object_reference(
             'stock_picking_package_preparation',
             'action_stock_picking_package_preparation')
-        id = result and result[1] or False
-        result = act_obj.browse(id).read()[0]
+        ddt_id = result and result[1] or False
+        result = act_obj.browse(ddt_id).read()[0]
 
         ddt_ids = []
         for so in self:

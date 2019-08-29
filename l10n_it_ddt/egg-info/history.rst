@@ -1,3 +1,8 @@
+10.0.1.5.5 (2019-08-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice from delivery documents base on flag / La creazione righe da ordine non in DdT è opzionale
+
 10.0.1.5.4 (2019-06-24)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

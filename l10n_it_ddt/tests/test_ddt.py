@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-# Author: Francesco Apruzzese
-# Copyright 2015 Apulia Software srl
-# Copyright 2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from z0bug_odoo import test_common
+
+# from odoo.tests.common import TransactionCase
 from odoo.exceptions import Warning as UserError
 
 
-class TestDdt(TransactionCase):
+class TestDdt(test_common.TransactionCase):
 
     def _get_picking_vals(self):
         return {

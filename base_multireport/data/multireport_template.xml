@@ -8,9 +8,6 @@
     </record>
     <record id="mr_t_odoo" model="multireport.template">
         <field name="name">Odoo based template</field>
-        <field name="header_mode">standard</field>
-        <field name="description_mode">as_is</field>
-        <field name="code_mode">noprint</field>
         <field name="header_id" ref="report.external_layout_header"/>
         <field name="footer_id" ref="report.external_layout_footer"/>
     </record>

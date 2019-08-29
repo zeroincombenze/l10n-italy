@@ -85,7 +85,7 @@ class StockPickingPackagePreparation(models.Model):
 
     _inherit = 'stock.picking.package.preparation'
     _rec_name = 'display_name'
-    _order = 'date desc'
+    _order = 'ddt_number, date desc'
 
     @api.multi
     @api.depends('transportation_reason_id.to_be_invoiced')
@@ -194,7 +194,7 @@ class StockPickingPackagePreparation(models.Model):
         # ----- Check if exist a stock picking whose state is 'done'
         for record_picking in self.picking_ids:
             if record_picking.state == 'done':
-                raise UserError((
+                raise UserError(_(
                     "Impossible to put in pack a picking whose state "
                     "is 'done'"))
         for package in self:
@@ -432,7 +432,7 @@ class StockPickingPackagePreparation(models.Model):
                     invoices[group_key].write(vals)
                     ddt.invoice_id = invoices[group_key].id
 
-                if line.product_uom_qty > 0:
+                if line.allow_invoice_line():
                     line.invoice_line_create(
                         invoices[group_key].id, line.product_uom_qty)
             if references.get(invoices.get(group_key)):
@@ -445,6 +445,8 @@ class StockPickingPackagePreparation(models.Model):
                     if line not in invoiced_order_lines:
                         line.invoice_line_create(
                             invoices[group_key].id, line.qty_to_invoice)
+            # Allow additional operations from ddt
+            ## ddt.other_operations_on_ddt(invoice)
 
         if not invoices:
             raise UserError(_('There is no invoicable line.'))
@@ -728,3 +730,11 @@ class StockPickingPackagePreparationLine(models.Model):
                 # If not tracking by lots, quantity is not relevant
                 res[lot] = False
         return res
+
+    @api.multi
+    def allow_invoice_line(self):
+        """This method allows or not the invoicing of a specific DDT line.
+        It can be inherited for different purposes, e.g. for proper invoicing
+        of kit."""
+        self.ensure_one()
+        return self.product_uom_qty > 0

@@ -42,11 +42,10 @@ class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
 
     def description_2_print(self, style_mode=None):
-        style_mode = style_mode or \
-            self.package_preparation_id.company_id.report_model_style.\
-            description_mode_stock_picking_package_preparation
-        field_name = 'name'
-        value = self[field_name]
+        if not style_mode:
+            style_mode = self.company_id.report_model_style.\
+                description_mode
+        value = self.name
         if style_mode in ('line1', 'nocode1'):
             value = value.split('\n')[0]
         if style_mode in ('nocode', 'nocode1'):
@@ -55,13 +54,22 @@ class StockPickingPackagePreparationLine(models.Model):
                 value = value[i + 1:].lstrip()
         return value
 
-    def code_2_print(self):
-        field_name = 'name'
-        style = self.package_preparation_id.company_id.report_model_style.\
-            description_mode_stock_picking_package_preparation
-        value = self[field_name]
-        if style in ('nocode', 'nocode1'):
-            i = value.find(']')
-            if value[0] == '[' and i >= 0:
-                value = value[1:i]
+
+    def code_2_print(self, style_mode=None):
+        if self.product_id and (not style_mode or style_mode != 'noprint'):
+            value = self.product_id.default_code
+        else:
+            value = ''
         return value
+
+    @api.depends('product_id')
+    def _set_code(self):
+        for line in self:
+            if line.product_id:
+                line.code = line.product_id.default_code
+            else:
+                line.code = False
+
+    code = fields.Char('Code',
+                       compute='_set_code',
+                       copy=False)

@@ -20,6 +20,7 @@ class Report(models.Model):
     RPT_BY_MODEL = {
         'sale.order': 'sale.report_saleorder',
         'account.invoice': 'account.report_invoice',
+        'stock.picking.package.preparation': 'l10n_it_ddt.report_ddt',
     }
     BOOL_PARAMS = ['no_header_logo',]
 
@@ -63,22 +64,32 @@ class Report(models.Model):
             'report'].get_doc_n_repo_params(doc, report)
         model = report.model.replace('.', '_')
         value = False
-        if report_model_style.origin != 'odoo':
+        if report_model_style and report_model_style.origin != 'odoo':
             param_in_style = '%s_%s' % (param, model)
             template = False
             if hasattr(report, 'template'):
                 template = getattr(report, 'template')
+            if (not template and
+                    report_model_style and
+                    hasattr(report_model_style, 'template')):
+                template = getattr(report_model_style, 'template')
             if hasattr(report, param):
                 value = getattr(report, param)
             if not value and template and hasattr(template, param):
                 value = getattr(template, param)
+            # TODO: deprecated, remove early
             if not value and hasattr(report_model_style, param_in_style):
                 value = getattr(report_model_style, param_in_style)
-        if not value and hasattr(report_model_style, 'model_%s_id' % model):
+        # TODO: deprecated, remove early
+        if (not value and
+                report_model_style and
+                hasattr(report_model_style, 'model_%s_id' % model)):
             model_default = getattr(report, 'model_%s_id' % model)
             if hasattr(model_default, param):
                 value = getattr(model_default, param)
-        if not value and hasattr(report_model_style, param):
+        if (not value and
+                report_model_style and
+                hasattr(report_model_style, param)):
             value = getattr(report_model_style, param)
         if param == 'footer_mode' and (not value or value == 'standard'):
             if company.custom_footer:
@@ -140,7 +151,6 @@ class Report(models.Model):
             watermark = b64decode(watermark)
         ending_page = watermark = self.get_report_attrib('ending_page',
                                                          recs[0], report)
-        report_model_style.pdf_ending_page or None
         if ending_page:
             ending_page = b64decode(ending_page)
         if not watermark and not ending_page:

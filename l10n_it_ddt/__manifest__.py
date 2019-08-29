@@ -8,16 +8,13 @@
 #
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #
-
 {
     'name': 'DDT',
-    'version': '10.0.1.5.4',
-    'category': 'Localization/Italy',
     'summary': 'Delivery Document to Transfer',
-    'author': 'Odoo Community Association (OCA),'
-              'Odoo Italia Associazione,'
-              '*Dettaglio autori in documentazione*',
-    'website': 'https://odoo-community.org/',
+    'version': '10.0.1.5.5',
+    'category': 'Localization/Italy',
+    'author': 'Odoo Community Association (OCA) and other subjects',
+    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',
@@ -31,6 +28,7 @@
         'views/stock_picking_package_preparation.xml',
         'views/stock_picking.xml',
         'views/partner.xml',
+        'views/product.xml',
         'views/account.xml',
         'views/sale.xml',
         'views/stock_location.xml',

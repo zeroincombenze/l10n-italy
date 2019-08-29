@@ -19,8 +19,7 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition',
-        string='Carriage Condition')
+        'stock.picking.carriage_condition', string='Carriage Condition')
     goods_description_id = fields.Many2one(
         'stock.picking.goods_description',
         string='Description of Goods')

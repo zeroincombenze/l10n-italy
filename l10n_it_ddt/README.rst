@@ -1,12 +1,14 @@
 
 =====================
-|icon| DDT 10.0.1.5.3
+|icon| DDT 10.0.1.5.5
 =====================
 
 
-**Documento di Trasporto**
+**Delivery Document to Transfer**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/icon.png
+
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -15,8 +17,8 @@
 Overview / Panoramica
 =====================
 
-|en| Delivery document
-----------------------
+|en| Delivery document to Transfer
+----------------------------------
 
 This module print the Italian deliver document AKA DdT
 
@@ -95,11 +97,11 @@ OCA comparation / Confronto con OCA
 -----------------------------------
 
 
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA                   | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  |                                |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -208,10 +210,31 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.5.5 (2019-08-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice from delivery documents base on flag / La creazione righe da ordine non in DdT è opzionale
+
+10.0.1.5.4 (2019-06-24)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Print UoM in lines / Stampa UM in dettagli
+* [IMP] DdT type visible in picking / Tipo DdT visbile nella consegna
+* [IMP] DdT type in sale order / Tipo DdT in ordine di vendita
+
+
 10.0.1.5.3 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Invoice from delivery documents add service lines from sale order / La creazione della fattura da ordine aggiunge le rigeh di servizi che non sono in DdT
+* [IMP] Invoice from delivery documents add service lines from sale order / La creazione della fattura da ordine aggiunge le righe di servizi che non sono in DdT
+
+
+10.0.1.5.2
+~~~~~~~~~~
+
+* [IMP] Ref. fields not copied / Campi con riferimenti con copiati in duplica DdT
+* [IMP] DdT name based on DdT number or partner name / Nome DdT (per ricerche) basato su numero o nome cliente
+* [IMP] Report header / Cessionario e Destinatario in modello di stampa
 
 
 |
@@ -274,7 +297,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-06-13
+Last Update / Ultimo aggiornamento: 2019-08-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

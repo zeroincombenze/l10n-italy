@@ -126,10 +126,13 @@ class IrActionsReportXml(models.Model):
         help='An expression yielding the base64 '
              'encoded data to be used as Ending Page PDF.\n'
              'You have access to variables `env` and `docs`')
+    # mr_model_id = fields.Many2one(
+    #     'multireport.model', 'Multi-report Model with fallback values.',
+    #     # domain=lambda self: [('model_id.name', '=', self.model)],
+    # )
     template = fields.Many2one(
         'multireport.template', 'Model template',
         help="Model template with fallback values.",)
-        # default=lambda self: self.env.ref('base_multireport.mr_t_odoo'))
 
 
 class View(models.Model):
