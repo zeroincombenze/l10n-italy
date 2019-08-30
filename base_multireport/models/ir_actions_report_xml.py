@@ -49,11 +49,16 @@ class IrActionsReportXml(models.Model):
         [('', 'From template/style'),
          ('standard', 'Full Standard'),
          ('logo', 'Only logo'),
-         ('logo', 'Only logo w/o sep. line'),
+         ('only_logo', 'Only logo w/o sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
         help="Which content is printed in document header",
+    )
+    logo_style = fields.Char(
+        'Html logo style',
+        help='Html style attribute for logo <img> tag.\n'
+             'i.e. "max-height: 45px;"'
     )
     payment_term_position = fields.Selection(
         [('', 'From template/style'),
@@ -119,6 +124,10 @@ class IrActionsReportXml(models.Model):
             '%(date_ddt)s => Delivery document date\n'
             '%(date_done)s => Delivery date\n'
             'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"',
+    )
+    bottom_text = fields.Text(
+        'Bottom text',
+        help='Text to print in bottom area of document'
     )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(

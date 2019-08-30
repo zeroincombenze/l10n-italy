@@ -25,13 +25,18 @@ class MultireportStyle(models.Model):
     header_mode = fields.Selection(
         [('standard', 'Full Standard'),
          ('logo', 'Only logo'),
-         ('logo', 'Only logo w/o sep. line'),
+         ('only_logo', 'Only logo w/o sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
         help="Which content is printed in document header",
         required=True,
         default='standard')
+    logo_style = fields.Char(
+        'Html logo style',
+        help='Html style attribute for logo <img> tag.\n'
+             'i.e. "max-height: 45px;"',
+        default='max-height: 45px;')
     payment_term_position = fields.Selection(
         [('odoo', 'Odoo'),
          ('auto', 'Auto'),
@@ -82,6 +87,10 @@ class MultireportStyle(models.Model):
         help="Which content is printed in document line",
         default='as_is',
         required=True,
+    )
+    bottom_text = fields.Text(
+        'Bottom text',
+        help='Text to print in bottom area of document'
     )
     pdf_watermark = fields.Binary(
         'Watermark PDF',

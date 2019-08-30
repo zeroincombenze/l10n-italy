@@ -94,6 +94,8 @@ class Report(models.Model):
         if param == 'footer_mode' and (not value or value == 'standard'):
             if company.custom_footer:
                 value = 'custom'
+        elif param == 'logo_style' and not value:
+            value = 'max-height: 45px;'
         if param in self.BOOL_PARAMS:
             value = os0.str2bool(value, True)
         return value or None

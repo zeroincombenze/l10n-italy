@@ -42,8 +42,10 @@
         'report_sale_order/report_sale_order_vg7.xml',
         'report_account_invoice/report_invoice.xml',
         'report_account_invoice/report_delivery_invoice.xml',
+        'report_account_invoice/report_invoice_header.xml',
         'report_account_invoice/report_invoice_lines.xml',
-        'report_account_invoice/report_invoice_payment_dues.xml',
+        'report_account_invoice/report_invoice_footer.xml',
+        # 'report_account_invoice/report_invoice_payment_dues.xml',
     ],
     'external_dependencies': {
         'python': [

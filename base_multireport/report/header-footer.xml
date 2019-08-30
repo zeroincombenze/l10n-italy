@@ -30,11 +30,12 @@
     <template id="external_layout_header">
         <div class="header">
             <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'no_header'" class="row">
+                <t t-set="logo_style" t-value="report.get_report_attrib('logo_style',o,doc_opts)"></t>
                 <div t-if="report.get_report_attrib('header_mode',o,doc_opts) in ('logo', 'only_logo')" class="col-xs-12">
-                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 225px;"/>
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" t-att-style="report.get_report_attrib('logo_style',o,doc_opts)"/>
                 </div>
                 <div t-if="report.get_report_attrib('header_mode',o,doc_opts) not in ('logo', 'only_logo')" class="col-xs-3">
-                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" t-att-style="report.get_report_attrib('logo_style',o,doc_opts)"/>
                 </div>
                 <div t-if="report.get_report_attrib('header_mode',o,doc_opts) not in ('logo', 'only_logo')" class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
             </div>
