@@ -7,4 +7,14 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from . import models, wizard, report
+from openerp import fields, models
+
+
+class ResPartner(models.Model):
+
+    _name = "res.partner"
+    _inherit = "res.partner"
+
+    group_riba = fields.Boolean(
+        "Group Ri.Ba.",
+        help="Group Ri.Ba. by customer while issuing")

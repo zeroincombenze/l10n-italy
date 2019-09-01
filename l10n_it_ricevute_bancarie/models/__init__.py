@@ -7,4 +7,8 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from . import models, wizard, report
+from . import riba_config
+from . import partner
+from . import riba
+from . import account
+from . import account_config
