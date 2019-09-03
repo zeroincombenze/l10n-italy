@@ -47,9 +47,13 @@ class IrActionsReportXml(models.Model):
 
     header_mode = fields.Selection(
         [('', 'From template/style'),
-         ('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
-         ('only_logo', 'Only logo w/o sep. line'),
+         ('standard', 'Full Odoo Standard'),
+         ('logo', 'Only wide logo'),
+         ('only_logo', 'Only wide logo / no sep. line'),
+         ('line-up', 'Line-up logo / slogan'),
+         ('line-up2', 'Line-up logo / slogan / no sep. line'),
+         ('line-up3', 'Line-up: logo / company data'),
+         ('lin3-up4', 'Line-up: logo / company data / no sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',

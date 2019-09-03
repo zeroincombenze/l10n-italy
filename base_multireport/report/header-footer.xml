@@ -34,13 +34,17 @@
                 <div t-if="report.get_report_attrib('header_mode',o,doc_opts) in ('logo', 'only_logo')" class="col-xs-12">
                     <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" t-att-style="report.get_report_attrib('logo_style',o,doc_opts)"/>
                 </div>
-                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) not in ('logo', 'only_logo')" class="col-xs-3">
+                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) in ('standard', 'line-up', 'line-up2', 'line-up3', 'line-up4')" class="col-xs-3">
                     <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" t-att-style="report.get_report_attrib('logo_style',o,doc_opts)"/>
                 </div>
-                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) not in ('logo', 'only_logo')" class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
+                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) in ('standard', 'line-up', 'line-up2')" class="col-xs-9 text-right" style="margin-top:20px;"
+                     t-field="company.rml_header1"/>
+                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) in ('line-up3', 'line-up4')" class="col-xs-9 text-right"
+                     t-field="company.partner_id"
+                     t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
             </div>
-            <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'no_header'" class="row zero_min_height">
-                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) != 'only_logo'" class="col-xs-12">
+            <div class="row zero_min_height">
+                <div t-if="report.get_report_attrib('header_mode',o,doc_opts) in ('standard', 'logo', 'line-up', 'line-up3')" class="col-xs-12">
                     <div style="border-bottom: 1px solid black;"></div>
                 </div>
             </div>

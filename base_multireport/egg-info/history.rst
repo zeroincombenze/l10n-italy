@@ -1,3 +1,15 @@
+10.0.0.2.12 (2019-09-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Line-up header / Intestazione con allineamento logo + dati
+
+
+10.0.0.2.11 (2019-09-02)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Address mode / MOdalità stampa indirizzo
+
+
 10.0.0.2.10 (2019-08-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

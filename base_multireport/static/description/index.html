@@ -45,23 +45,31 @@ Il modulo &#232; costruito sui seguenti concetti:
         <h3 class="oe_slogan" style="color:#162832;">Features / Caratteristiche</h3>
         <div class="oe_span12">
 <table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
-<td>Feature / Funzione</td><td>Status</td><td>Notes / Note</td>
+<td>Feature / Funzione</td><td>Notes / Note</td>
 </tr><tr>
-<td>Print original Odoo reports / Stampa modelli originali di Odoo</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Style configuration /Configurazione a livello di stile</td>
+<td>Print original Odoo reports / Stampa modelli originali di Odoo</td><td>Style configuration = Odoo/Configurazione a livello di stile = Odoo</td>
 </tr><tr>
-<td>Print product code / Stampa codice prodotto</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Configurable by report / Configurabile per ogni singolo report</td>
+<td>Header line-up: logo and slogan / Intestazione solo logo e slogan</td><td/>
 </tr><tr>
-<td>Prin descriprion without code / Stampa descrizione senza codice</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Configurable by report / Configurabile per ogni singolo report</td>
+<td>Header line-up: logo and company data / Intestazione solo logo e dati azienda</td><td>Company data shifted up / Dati aziende spostati in alto</td>
 </tr><tr>
-<td>Print only logo header / Stampa solo logo in intestazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Syle configuration: company info must be present in log / Configurabile a livello di stile: le informazioni aziendali vanno inserite nel logo</td>
+<td>Header with only wide logo / Intestazione solo logo largo</td><td>Logo with company data / Logo con i dati dell'azienda</td>
 </tr><tr>
-<td>No print header / Non stampare intestazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Style configuration /Configurazione a livello di stile</td>
+<td>Header without data / No intestazione</td><td>Use preprinted paper / Utilizzo su carta intestata</td>
 </tr><tr>
-<td>Configurable documents / Documenti configurabili:</td><td>Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore</td><td/>
+<td>Optiona separation line / Linea di separazione opzionale</td><td/>
 </tr><tr>
-<td>Watermark / Filigrana</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>High quality report / Stampa di alta qualit&#224;</td>
+<td>Address mode / Modo stampa indirizzo</td><td>Print 2 addresses or only the specific one / Stampa doppio indirizzo o solo specifico</td>
 </tr><tr>
-<td>Ending page / Pagina finale</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Ending page with commercial info / Pagina finale con informazioni commerciali</td>
+<td>Print product code / Stampa codice prodotto</td><td/>
+</tr><tr>
+<td>Print descriprion without code / Stampa descrizione senza codice</td><td>Extract code from description / Estrapola il codice dalla descrizione</td>
+</tr><tr>
+<td>Configurable documents / Documenti configurabili:</td><td>Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore</td>
+</tr><tr>
+<td>Watermark / Filigrana</td><td>High quality report / Stampa di alta qualit&#224;</td>
+</tr><tr>
+<td>Ending page / Pagina finale</td><td>Ending page with commercial info / Pagina finale con informazioni commerciali</td>
 </tr></table>
         </div>
     </div>
@@ -94,82 +102,155 @@ Look at follow table for details:
 <table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
 <td>Name</td><td>Description</td><td>Notes / Example</td>
 </tr><tr>
+<td>address_mode</td><td>Which addresses are printed</td><td/>
+</tr><tr>
+<td>bottom_text</td><td>Text to print at the bottom of the document</td><td/>
+</tr><tr>
+<td>code</td><td>Product code</td><td/>
+</tr><tr>
+<td>code_mode</td><td>Print code in document body</td><td>&lt;t t-set="code_mode" t-value="report.get_report_attrib('code_mode',o,doc_opts)"/&gt;</td>
+</tr><tr>
 <td>company</td><td>Company of current document</td><td>Set by external layout</td>
 </tr><tr>
 <td>company_partner</td><td>Company partner of current document</td><td>Set by external layout</td>
 </tr><tr>
+<td>ddt_ref_text</td><td>Text at every change of delivery document</td><td/>
+</tr><tr>
 <td>def_company</td><td>Default company</td><td>Set by Odoo report module</td>
+</tr><tr>
+<td>description_mode</td><td>Print code in document body</td><td>&lt;t t-set="description_mode" t-value="report.get_report_attrib('description_mode',o,doc_opts)"/&gt;</td>
 </tr><tr>
 <td>doc</td><td>Current document which is printing</td><td>Set by module. External layout set 'o' to compatibility with Odoo reports</td>
 </tr><tr>
-<td>doc_model</td><td>Document model</td><td>Deprecated: use doc_opts.model</td>
+<td>doc_model</td><td>Document model</td><td>It is the same of use doc_opts.model</td>
 </tr><tr>
 <td>doc_opts</td><td>Document parametes</td><td/>
-</tr><tr>
-<td>doc_opts.code_mode</td><td>Print code in document body</td><td>&lt;td t-if="doc_opts.code_mode=='print'"&gt;&lt;span t-esc="l.code_2_print()"/&gt;&lt;/td&gt;</td>
-</tr><tr>
-<td>doc_opts.description_mode</td><td>Print code in document body</td><td>&lt;td&gt;&lt;span t-esc="l.description_2_print()"/&gt;&lt;/td&gt;</td>
-</tr><tr>
-<td>doc_opts.header</td><td>Add header to report</td><td/>
 </tr><tr>
 <td>doc_opts.model</td><td>Document model</td><td>Same as doc_model</td>
 </tr><tr>
 <td>doc_opts.paperformat_id</td><td>ID to paperformat</td><td/>
 </tr><tr>
-<td>doc_opts.payment_term_position</td><td>Payment data position</td><td>May be Auto, None, on Footer or on Header - With auto, when due payment is whole in one date, all datas are printed on header otherwise  - all datas are printed on footer - Odoo print only Payment Term notes on Footer</td>
-</tr><tr>
-<td>doc_opts.pdf_watermark</td><td>Default watermark for this report</td><td/>
-</tr><tr>
 <td>doc_opts.report_name</td><td>Report Name</td><td/>
 </tr><tr>
 <td>doc_style</td><td>Style parameteres</td><td/>
-</tr><tr>
-<td>doc_style.custom_header</td><td>No Header Logo</td><td>&lt;div t-if="doc_style.custom_header"&gt; .. &lt;/div&gt;.</td>
-</tr><tr>
-<td>doc_style.description_mode_account_invoice</td><td><code>Print Description</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.description_mode_purchase_order</td><td><code>Print Description</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.description_mode_sale_order</td><td><code>Print Description</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.description_mode_stock_picking_package_preparation</td><td><code>Print Description</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.header_account_invoice</td><td><code>Header mode</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.header_purchase_order</td><td><code>Header mode</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.header_sale_order</td><td><code>Header mode</code> (see below)</td><td/>
-</tr><tr>
-<td>doc_style.header_stock_picking_package_preparation</td><td><code>Header mode</code> (see below)</td><td/>
 </tr><tr>
 <td>doc_style.name</td><td>Name of Style</td><td/>
 </tr><tr>
 <td>doc_style.origin</td><td><code>Report Identity</code> (see below)</td><td/>
 </tr><tr>
-<td>doc_style.pdf_ending_page</td><td>Ending Page PDF</td><td/>
+<td>footer_mode</td><td>How to print footer</td><td/>
 </tr><tr>
-<td>doc_style.pdf_ending_page</td><td>Ending Page PDF</td><td/>
-</tr><tr>
-<td>doc_style.pdf_watermark</td><td>Default watermark for this style</td><td/>
-</tr><tr>
-<td>doc_style.pdf_watermark_account_invoice</td><td>Sale Invoice default Watermark PDF</td><td/>
-</tr><tr>
-<td>doc_style.pdf_watermark_purchase_order</td><td>Purchase Order default Watermark PDF</td><td/>
-</tr><tr>
-<td>doc_style.pdf_watermark_sale_order</td><td>Sale Order default Watermark PDF</td><td/>
-</tr><tr>
-<td>doc_style.pdf_watermark_stock_picking_package_preparation</td><td>Packing List default Watermark PDF</td><td/>
+<td>header_mode</td><td>How to print header</td><td/>
 </tr><tr>
 <td>l</td><td>Current invoice line when printing</td><td>Alias used in invoice print</td>
 </tr><tr>
+<td>logo style</td><td>Html logo style</td><td>Default is &#8220;max-height: 45px;&#8221;</td>
+</tr><tr>
 <td>o</td><td>Current invoice which is printing</td><td>Alias used in invoice print set by external layout</td>
+</tr><tr>
+<td>order_ref_text</td><td>Text at every change of order reference</td><td/>
+</tr><tr>
+<td>payment_term_position</td><td>Payment data position</td><td/>
+</tr><tr>
+<td>pdf_watermark</td><td>Default watermark for this report</td><td/>
+</tr><tr>
+<td>pdf_watermark_expression</td><td>Default watermark for this report</td><td/>
 </tr><tr>
 <td>report</td><td>Document report class</td><td/>
 </tr><tr>
-<td>report.get_report_attrib</td><td>Get specific fallback value</td><td>&lt;div t-if="report.get_report_attrib('custom_header',o,doc_opts)"&gt; .. &lt;/div&gt;.</td>
+<td>report.get_report_attrib</td><td>Get specific fallback value</td><td>&lt;div t-if="report.get_report_attrib('header_mode',o,doc_opts)"&gt; .. &lt;/div&gt;.</td>
 </tr><tr>
 <td>style</td><td>Current <code>Report Identity</code> (see below)</td><td/>
 </tr><tr>
+<td>pdf_ending_page</td><td>Default Ending Page for this report</td><td/>
+</tr><tr>
+<td>pdf_ending_page_expression</td><td>Default Ending Page for this report</td><td/>
+</tr><tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

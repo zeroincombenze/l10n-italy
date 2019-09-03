@@ -27,9 +27,80 @@ Report Identity is used to select standard Odoo reports or customized reports.
 If value is 'Odoo' all customization is disabled and original Odoo reports are printed.
 It is only an attribute of company style.
 
+|
+
+`Header mode`
+
+This parameter, named `header_mode` set how the header is printed.
+May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3', 'line-up4', 'no_header'
+
+* standard: standard Odoo header is printed
+* logo: only the wide logo is printed which must contain company informations; separation line after logo
+* only_logo: only the wide logo is printed which must contain company informations; no separation line is printed
+* line-up:  logo and slogan, separation line but no company data
+* line-up2:  logo and slogan but no separation line neither company data
+* line-up3:  logo and company data and separation line; no slogan
+* line-up3:  logo and company data; no separation line neither slogan
+* no_header: no header is printed; used on pre-printed paper
+
+|
+
+`Footer mode`
+
+This parameter, name `footer_mode` set how the footer is printed.
+May be one of 'standard', 'auto', 'custom', 'no_footer'
+
+        help='Which content is printed in document footer\n'
+             'If "standard", footer is printed as "auto" or "custom"\n'
+             'based on company.custom_footer field (Odoo standaed behavior)\n'
+             'If "auto", footer is printed with automatic data\n'
+             'If "custom", footer is printed from user data written\n',
+
+
+* standard: standard Odoo footer is printed; may be as 'auto' or as 'custom' based on company.custom_footer field
+* auto: footer is printed with comapny data
+* custom: user data is printed in footer (like Odoo custom footer)
+* no_footer: no footer is printed; anyway pages are printed
+
+|
+
+`Address mode`
+
+This parameter, named `address_mode` set how the partner address is printed.
+May be on of 'standard', 'only_one'.
+
+* standard: standard Odoo behavior; id shipping and invoice addresses are different, both of them are printed
+* only_on: just the specific address is printed; specific is shipping address on delivery document, invoice addres on invoice document
+
+|
+
+`Payment Term Position`
+ 
+This parameter, named `payment_term_position` set where the payment datas (payment term, due date and payment term notes) are printed.
+May be one of 'odoo', 'auto', 'header', 'footer', 'none'
+
+* odoo: standard Odoo behavior; payment term on header, payment term notes on footer
+* auto: when due payment is whole in one date, all datas are printed on header otherwise on footer
+* header: all the payment datas are printed on header
+* footer: all the payment data are printed on footer
+* none: no any payment data is printed
+
+
+|
+
+`Print code`
+
+This parameter, name `code_mode` manage the printing of product code in document lines.
+May be one of: 'print', 'no_print'
+
+* noprint: standard Odoo behavior
+* print: print a column with code in body of documents
+
+|
+
 `Print description`
 
-This parameter manage the printing of description in document lines.
+This parameter, name `description_mode` manage the printing of description in document lines.
 May be one of: 'as_is', 'line1', 'nocode', 'nocode1'
 
 * as_is: that is the default value; it means description is printed as is, without manipulations
@@ -37,17 +108,31 @@ May be one of: 'as_is', 'line1', 'nocode', 'nocode1'
 * nocode: product code (text between [brackets]) is removed
 * nocode1: same of line1 + nocode
 
-It is an fallback attribute.
+|
 
-`Header mode`
+`Order reference text`
 
-This parameter set how header is printed. May be one of 'standard', 'logo', 'no_header'
+This parameter, named `order_ref_text` contains the text to print before every line of document body when order changes.
+May be used following macroes:
 
-* standard: standard Odoo header is printed
-* logo: only the logo is printed, without text; logo must contain company informations
-* no_header: no header is printed
+%(client_order_ref)s => Customer reference of order
+%(order_name)s => Sale order number
+%(date_order)s => Sale order date
 
-It is an fallback attribute.
+i.e. "Order #: %(order_name)s - Your ref: %(client_order_ref)s"'
+
+|
+
+`DdT reference text`
+
+This parameter, named `ddt_ref_text` contains the text to print before every line of document body when delivery document changes.
+May be used following macroes:
+
+%(ddt_number)s => Delivery document number
+%(date_ddt)s => Delivery document date
+%(date_done)s => Delivery date
+
+'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"'
 
 |
 
