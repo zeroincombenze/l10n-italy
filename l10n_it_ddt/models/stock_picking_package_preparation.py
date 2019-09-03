@@ -534,6 +534,10 @@ class StockPickingPackagePreparationLine(models.Model):
 
     _inherit = 'stock.picking.package.preparation.line'
 
+    sale_id = fields.Many2one(
+        related='move_id.procurement_id.sale_line_id.order_id',
+        string='Sale order',
+        store=True, readonly=True)
     sale_line_id = fields.Many2one(
         related='move_id.procurement_id.sale_line_id',
         string='Sale order line',

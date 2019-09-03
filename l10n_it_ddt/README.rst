@@ -1,6 +1,6 @@
 
 =====================
-|icon| DDT 10.0.1.5.5
+|icon| DDT 10.0.1.5.6
 =====================
 
 
@@ -210,10 +210,17 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.5.6 (2019-09-03)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Sale invoice ref / Riferimento al numero di ordine
+
+
 10.0.1.5.5 (2019-08-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Invoice from delivery documents base on flag / La creazione righe da ordine non in DdT è opzionale
+
 
 10.0.1.5.4 (2019-06-24)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,7 +304,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-08-28
+Last Update / Ultimo aggiornamento: 2019-09-03
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

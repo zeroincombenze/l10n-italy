@@ -10,6 +10,9 @@
         <field name="inherit_id" ref="stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form"/>
         <field name="arch" type="xml">
 
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
+                <field name="sale_id"/>
+            </xpath>
             <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
                 <field name="price_unit"/>
                 <field name="discount"/>
@@ -20,6 +23,7 @@
                 <field name="price_unit"/>
                 <field name="discount"/>
                 <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                <field name="sale_id"/>
             </xpath>
 
         </field>
@@ -54,6 +58,7 @@
         <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="display_name" />
                 <field name="ddt_number" />
             </field>
         </field>
