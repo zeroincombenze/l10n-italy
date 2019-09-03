@@ -111,9 +111,9 @@ class Report(models.Model):
                 docids, report_name, data=data)
         else:
             report = self._get_report_from_name(report_name)
-            if report.model not in self.RPT_BY_MODEL:
-                return super(Report, self).get_html(
-                    docids, report_name, data=data)
+            # if report.model not in self.RPT_BY_MODEL:
+            #     return super(Report, self).get_html(
+            #         docids, report_name, data=data)
             docs = self.env[report.model].browse(docids)
             company = docs[0].company_id or self.env.user.company_id
             docargs = {
@@ -122,7 +122,7 @@ class Report(models.Model):
                 'docs': docs,
                 'doc_opts': report,
                 'doc_style': company.report_model_style,
-                'def_company': self.env.user.company_id,
+                'def_company': company,
                 'report': self,
                 }
             return self.render(report.report_name, docargs)

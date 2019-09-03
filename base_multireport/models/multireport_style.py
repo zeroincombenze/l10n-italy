@@ -32,6 +32,15 @@ class MultireportStyle(models.Model):
         help="Which content is printed in document header",
         required=True,
         default='standard')
+    address_mode = fields.Selection(
+        [('standard', 'Standard Invoice + Shipping'),
+         ('only_one', 'Only specific address'),
+         ],
+        'Address Print Mode',
+        help="Which addresses are printed in document header",
+        required=True,
+        default='standard'
+    )
     logo_style = fields.Char(
         'Html logo style',
         help='Html style attribute for logo <img> tag.\n'

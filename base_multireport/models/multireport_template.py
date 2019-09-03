@@ -24,6 +24,14 @@ class MultireportTemplate(models.Model):
         'Header Print Mode',
         help="Which content is printed in document header",
     )
+    address_mode = fields.Selection(
+        [('', 'From style'),
+         ('standard', 'Standard Invoice + Shipping'),
+         ('only_one', 'Only specific address'),
+         ],
+        'Address Print Mode',
+        help="Which addresses are printed in document header",
+    )
     logo_style = fields.Char(
         'Html logo style',
         help='Html style attribute for logo <img> tag.\n'

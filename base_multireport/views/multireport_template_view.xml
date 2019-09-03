@@ -21,6 +21,7 @@
                 <group string="Header and Footer">
                     <field name="name"/>
                     <field name="header_mode"/>
+                    <field name="address_mode"/>
                     <field name="logo_style"/>
                     <field name="payment_term_position"/>
                     <field name="footer_mode"/>

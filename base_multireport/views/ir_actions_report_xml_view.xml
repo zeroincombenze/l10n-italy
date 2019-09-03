@@ -12,6 +12,7 @@
                         <!-- <group> <field name="field2print_ids" nolabel="1" options="{'no_create': True}" colspan="4"/> </group> -->
                         <group string="Header and Footer">
                             <field name="header_mode"/>
+                            <field name="address_mode"/>
                             <field name="logo_style"/>
                             <field name="payment_term_position"/>
                             <field name="footer_mode"/>

@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="delivery_data_in_invoice">
+        <style type="text/css">
+               table.delivery_data td h6 { margin: 0; }
+               .signature { min-height: 3em; }
+        </style>
+        <table class="table table-condensed table-bordered delivery_data">
+            <tr>
+                <td>
+                    <h6>Causale Trasporto</h6>
+                    <div class="signature" t-field="o.transportation_reason_id"></div>
+                </td>
+                <td>
+                    <h6>Condizioni di trasporto/reso</h6>
+                    <div t-field="o.carriage_condition_id"></div>
+                </td>
+                <td>
+                    <h6>Metodo di trasporto</h6>
+                    <div t-field="o.transportation_method_id"></div>
+                </td>
+                <td>
+                    <h6>Aspetto dei beni</h6>
+                    <div class="signature" t-field="o.goods_description_id"></div>
+                </td>
+                <td>
+                    <h6>Peso netto</h6>
+                    <div class="signature" t-field="o.weight"></div>
+                </td>
+                <td>
+                    <h6>Peso lordo</h6>
+                    <div class="signature" t-field="o.gross_weight"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h6>Corriere/Vettore</h6>
+                    <div class="signature" t-field="o.carrier_id.name"></div>
+                </td>
+                <td>
+                    <h6>Data trasporto</h6>
+
+                </td>
+                <td>
+                    <h6>Ora trasporto</h6>
+                    <div class="signature"></div>
+                </td>
+                <td>
+                    <h6>Colli</h6>
+                    <div class="signature" t-field="o.parcels"></div>
+                </td>
+                <td>
+                    <h6>Volume</h6>
+                    <div class="signature" t-field="o.volume"></div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-condensed table-bordered delivery_data">
+            <tr>
+                <td>
+                    <h6>Firma corriere/Vettore</h6>
+                    <div class="signature"></div>
+                </td>
+                <td>
+                    <h6>Firma conducente</h6>
+                    <div class="signature"></div>
+                </td>
+                <td>
+                    <h6>Firma destinatario</h6>
+                    <div class="signature"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><h6>Note</h6>
+                    <span t-field="o.comment"/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
     <template id="report_invoice_footer">
         <div class="row">
             <div class="col-xs-4 pull-right">

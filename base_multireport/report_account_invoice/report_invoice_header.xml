@@ -3,9 +3,10 @@
 
     <template id="report_invoice_header">
         <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+        <t t-set="address_mode" t-value="report.get_report_attrib('address_mode',o,doc_opts)"/>
         <div class="row">
             <div class="col-xs-6">
-                <div t-if="o.partner_shipping_id and o.partner_shipping_id != o.partner_id">
+                <div t-if="address_mode == 'standard' and o.partner_shipping_id and o.partner_shipping_id != o.partner_id">
                     <strong>Indirizzo di spedizione:</strong>
                     <address t-field="o.partner_shipping_id"
                              t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
@@ -14,8 +15,9 @@
                 </div>
             </div>
             <div class="col-xs-5 col-xs-offset-1">
-                <strong t-if="o.partner_shipping_id and o.partner_shipping_id == o.partner_id">Indirizzo di spedizione e fatturazione:</strong>
-                <strong t-if="not o.partner_shipping_id or o.partner_shipping_id != o.partner_id">Indirizzo di fatturazione:</strong>
+                <strong t-if="address_mode == 'standard' and o.partner_shipping_id and o.partner_shipping_id == o.partner_id">Indirizzo di spedizione e fatturazione:</strong>
+                <strong t-if="address_mode == 'standard' and not o.partner_shipping_id or o.partner_shipping_id != o.partner_id">Indirizzo di fatturazione:</strong>
+                <strong t-if="address_mode != 'standard'">Indirizzo di fatturazione:</strong>
                 <address t-field="o.partner_id"
                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
                 <p t-if="o.partner_id.vat">PIVA: <span t-field="o.partner_id.vat"/></p>

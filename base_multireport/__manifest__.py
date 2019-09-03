@@ -5,7 +5,7 @@
 {
     'name': 'base_rule_multireport',
     'summary': 'Manage document multiple reports',
-    'version': '10.0.0.2.10',
+    'version': '10.0.0.2.11',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',
@@ -41,7 +41,6 @@
         'report_sale_order/report_sale_order.xml',
         'report_sale_order/report_sale_order_vg7.xml',
         'report_account_invoice/report_invoice.xml',
-        'report_account_invoice/report_delivery_invoice.xml',
         'report_account_invoice/report_invoice_header.xml',
         'report_account_invoice/report_invoice_lines.xml',
         'report_account_invoice/report_invoice_footer.xml',
