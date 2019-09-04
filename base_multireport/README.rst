@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.12
+|icon| base_rule_multireport 10.0.0.2.13
 ========================================
 
 
@@ -413,6 +413,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.13 (2019-09-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Due payments + IBAN / Scadenze + IBAN
+
+
 10.0.0.2.12 (2019-09-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -507,7 +513,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-03
+Last Update / Ultimo aggiornamento: 2019-09-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

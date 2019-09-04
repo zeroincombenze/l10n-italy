@@ -80,6 +80,10 @@
     </template>
 
     <template id="report_invoice_footer">
+        <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
+        <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
+        <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
+
         <div class="row">
             <div class="col-xs-4 pull-right">
                 <table class="table table-condensed">
@@ -145,7 +149,7 @@
             <strong>Note:</strong>
             <span t-field="o.comment"/>
         </p>
-        <p t-if="o.payment_term_id and report.get_report_attrib('payment_term_position',o,doc_opts) != 'odoo'" class="col-xs-12">
+        <p t-if="term_position == 'odoo'" class="col-xs-12">
             <span t-field="o.payment_term_id.note"/>
         </p>
         <p t-if="o.fiscal_position_id.note" class="col-xs-12">
@@ -162,30 +166,32 @@
 
 
     <template id="report_invoice_payment_dues">
-        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+        <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
+        <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
+        <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
 
-        <div t-if="doc_opts.payment_term_position == 'footer' or (doc_opts.payment_term_position == 'auto' and len(o.due_records) > 1)"  class="col-xs-6 pull-left" style="padding-top:1px; padding-left:0px; padding-right:0px; page-break-inside: avoid;">
-            <p><strong>Payment Term:</strong></p>
+        <div t-if="term_position == 'footer'" class="col-xs-6 pull-left" style="padding-top:1px; padding-left:0px; padding-right:0px; page-break-inside: avoid;">
+            <p><strong>Termine di pagamento:</strong></p>
             <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
             <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>
-            <p t-if="o.type in ['in_refund', 'out_refund']"><strong >Refunds:</strong></p>
-            <p t-if="o.type in ['in_invoice', 'out_invoice']"><strong >Payments:</strong></p>
-            <p t-if="o.partner_bank_id and doc_opts.payment_term_position == 'footer'">
+            <div class="col-xs-4" t-if="term_position == 'footer' and o.partner_bank_id">
                 <strong>IBAN:</strong>
                 <span t-field="o.partner_bank_id.display_name"/>
-            </p>
-            <p t-if="not o.partner_bank_id and o.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.riba or o.payment_term_id.fatturapa_pm_id.code in ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21') and doc_opts.payment_term_position == 'footer'">
+            </div>
+            <div class="col-xs-4" t-if="term_position == 'footer' and not o.partner_bank_id and o.partner_id.bank_ids and o.payment_term_id and (o.payment_term_id.riba or o.payment_term_id.fatturapa_pm_id.code in ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21'))">
                 <strong>IBAN:</strong>
                 <p>
                     <t t-foreach="o.partner_id.bank_ids" t-as="bank"><span t-field="bank.display_name"/></t>
                 </p>
-            </p>
-            <p t-if="not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18') and doc_opts.payment_term_position == 'footer'">
+            </div>
+            <div class="col-xs-4" t-if="term_position == 'footer' and not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')">
                 <strong>IBAN:</strong>
                 <p>
                     <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-if="len(bank.display_name) &gt; 16" t-field="bank.display_name"/></t>
                 </p>
-            </p>
+            </div>
+            <p t-if="o.type in ['in_refund', 'out_refund']"><strong >Rimborsi:</strong></p>
+            <p t-if="o.type in ['in_invoice', 'out_invoice']"><strong >Scad.e pagamenti:</strong></p>
             <table class="table table-condensed">
                 <thead >
                     <tr>
@@ -195,7 +201,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-foreach="o.due_records" t-as="p">
+                    <t t-foreach="o.due_records.sorted(key=lambda r: r.date_maturity)" t-as="p">
                         <tr>
                             <td><span t-esc="p_index + 1"/></td>
                             <td><span t-field="p.date_maturity"/></td>

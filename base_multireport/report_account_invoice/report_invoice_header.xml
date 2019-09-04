@@ -39,6 +39,9 @@
             <span t-if="o.state in ('draft','cancel')" t-field="o.move_name"/>
         </h2>
 
+        <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
+        <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
+        <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
         <div class="row mt32 mb32">
             <div class="col-xs-2" t-if="o.name">
                 <strong>Descrizione:</strong>
@@ -48,9 +51,18 @@
                 <strong>Data fattura:</strong>
                 <p t-field="o.date_invoice"/>
             </div>
-            <div class="col-xs-2" t-if="(report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)) and o.date_due and o.type == 'out_invoice' and o.state in ('open', 'paid')">
+            <div class="col-xs-2" t-if="term_position == 'odoo' and o.date_due and o.type == 'out_invoice' and o.state in ('open', 'paid')">
                 <strong>Data scadenza:</strong>
                 <p t-field="o.date_due"/>
+            </div>
+            <div class="col-xs-2" t-if="term_position == 'header'">
+                <strong>Data scadenza:</strong>
+                <p t-if="len(o.due_records) &lt; 2" t-field="o.date_due"/>
+                <p t-if="len(o.due_records) &gt;= 2">
+                    <t t-foreach="o.due_records.sorted(key=lambda r: r.date_maturity)" t-as="p">
+                        <span t-field="p.date_maturity"/>
+                    </t>
+                </p>
             </div>
             <div class="col-xs-2" t-if="o.origin">
                 <strong>Origine:</strong>
@@ -64,22 +76,22 @@
                 <strong>Riferimento:</strong>
                 <p t-field="o.reference"/>
             </div>
-            <div class="col-xs-3" t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)">
+            <div class="col-xs-3" t-if="term_position in ('header', 'odoo')">
                 <strong>Payment Term:</strong>
                 <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
                 <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>
             </div>
-            <div class="col-xs-4" t-if="o.partner_bank_id and report.get_report_attrib('payment_term_position',o,doc_opts) in ('header', 'auto')">
+            <div class="col-xs-4" t-if="term_position in ('header', 'odoo') and o.partner_bank_id">
                 <strong>IBAN:</strong>
                 <p t-field="o.partner_bank_id.display_name"/>
             </div>
-            <div class="col-xs-4" t-if="not o.partner_bank_id and o.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.riba or o.payment_term_id.fatturapa_pm_id.code in ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21') and report.get_report_attrib('payment_term_position',o,doc_opts) in ('header', 'auto')">
+            <div class="col-xs-4" t-if="term_position in ('header', 'odoo') and not o.partner_bank_id and o.partner_id.bank_ids and o.payment_term_id and (o.payment_term_id.riba or o.payment_term_id.fatturapa_pm_id.code in ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21'))">
                 <strong>IBAN:</strong>
                 <p>
                     <t t-foreach="o.partner_id.bank_ids" t-as="bank"><span t-field="bank.display_name"/></t>
                 </p>
             </div>
-            <div class="col-xs-4" t-if="not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18') and report.get_report_attrib('payment_term_position',o,doc_opts) in ('header', 'auto')">
+            <div class="col-xs-4" t-if="term_position in ('header', 'odoo') and not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')">
                 <strong>IBAN:</strong>
                 <p>
                     <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-if="len(bank.display_name) &gt; 16" t-field="bank.display_name"/></t>
