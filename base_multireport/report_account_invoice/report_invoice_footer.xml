@@ -149,7 +149,7 @@
             <strong>Note:</strong>
             <span t-field="o.comment"/>
         </p>
-        <p t-if="term_position == 'odoo'" class="col-xs-12">
+        <p t-if="term_position in ('odoo', 'footer_notes')" class="col-xs-12">
             <span t-field="o.payment_term_id.note"/>
         </p>
         <p t-if="o.fiscal_position_id.note" class="col-xs-12">
@@ -170,7 +170,7 @@
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
 
-        <div t-if="term_position == 'footer'" class="col-xs-6 pull-left" style="padding-top:1px; padding-left:0px; padding-right:0px; page-break-inside: avoid;">
+        <div t-if="term_position in ('footer', 'footer_no_iban')" class="col-xs-6 pull-left" style="padding-top:1px; padding-left:0px; padding-right:0px; page-break-inside: avoid;">
             <p><strong>Termine di pagamento:</strong></p>
             <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
             <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>

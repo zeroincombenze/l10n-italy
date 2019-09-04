@@ -54,7 +54,10 @@ class MultireportStyle(models.Model):
         [('odoo', 'Odoo'),
          ('auto', 'Auto'),
          ('footer', 'On Footer'),
+         ('footer_no_iban', 'On Footer, no IBAN'),
+         ('footer_notes', 'On Footer, only notes'),
          ('header', 'On Header'),
+         ('header_no_iban', 'On Header, no IBAN'),
          ('none', 'None')
          ],
         'Payment term layout position',

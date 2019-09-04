@@ -77,12 +77,15 @@ May be on of 'standard', 'only_one'.
 `Payment Term Position`
  
 This parameter, named `payment_term_position` set where the payment datas (payment term, due date and payment term notes) are printed.
-May be one of 'odoo', 'auto', 'header', 'footer', 'none'
+May be one of 'odoo', 'auto', 'header', 'header_no_iban', 'footer', 'footer_no_iban', 'footer_notes', 'none'
 
 * odoo: standard Odoo behavior; payment term on header, payment term notes on footer
 * auto: when due payment is whole in one date, all datas are printed on header otherwise on footer
 * header: all the payment datas are printed on header
+* header_no_iban: like "header" but without IBAN
 * footer: all the payment data are printed on footer
+* footer_no_iban: like "footer" but without IBAN
+* footer_notes: just payment term notes in footer
 * none: no any payment data is printed
 
 

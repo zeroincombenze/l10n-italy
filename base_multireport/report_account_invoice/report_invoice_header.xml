@@ -55,7 +55,7 @@
                 <strong>Data scadenza:</strong>
                 <p t-field="o.date_due"/>
             </div>
-            <div class="col-xs-2" t-if="term_position == 'header'">
+            <div class="col-xs-2" t-if="term_position in ('header', 'header_no_iban')">
                 <strong>Data scadenza:</strong>
                 <p t-if="len(o.due_records) &lt; 2" t-field="o.date_due"/>
                 <p t-if="len(o.due_records) &gt;= 2">
@@ -76,8 +76,12 @@
                 <strong>Riferimento:</strong>
                 <p t-field="o.reference"/>
             </div>
-            <div class="col-xs-3" t-if="term_position in ('header', 'odoo')">
-                <strong>Payment Term:</strong>
+            <div class="col-xs-3" t-if="term_position == 'odoo'">
+                <strong>Termini di pagamento:</strong>
+                <p t-field="o.payment_term_id"/>
+            </div>
+            <div class="col-xs-3" t-if="term_position in ('header', 'header_no_iban')">
+                <strong>Termini di pagamento:</strong>
                 <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
                 <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>
             </div>
