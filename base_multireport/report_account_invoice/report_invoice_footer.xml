@@ -83,6 +83,7 @@
         <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
+        <t t-if="not o.payment_term_id" t-set="term_position" t-value="'none'"/>
 
         <div class="row">
             <div class="col-xs-4 pull-right">
@@ -104,13 +105,13 @@
                     <tr class="border-black">
                         <td><strong>Totale</strong></td>
                         <td class="text-right">
-                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            <strong><span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
                         </td>
                     </tr>
-                    <tr t-if="o.amount_net_pay != o.amount_total" class="border-black">
+                    <tr t-if="'amount_net_pay' in o and o.amount_net_pay != o.amount_total" class="border-black">
                         <td><strong>Totale a pagare</strong></td>
                         <td class="text-right">
-                            <span t-field="o.amount_net_pay" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            <strong><span t-field="o.amount_net_pay" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
                         </td>
                     </tr>
                 </table>
@@ -169,6 +170,7 @@
         <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
+        <t t-if="not o.payment_term_id" t-set="term_position" t-value="'none'"/>
 
         <div t-if="term_position in ('footer', 'footer_no_iban')" class="col-xs-6 pull-left" style="padding-top:1px; padding-left:0px; padding-right:0px; page-break-inside: avoid;">
             <p><strong>Termine di pagamento:</strong></p>

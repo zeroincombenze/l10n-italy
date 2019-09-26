@@ -19,18 +19,19 @@ except ImportError as err:
 
 
 XML_ESCAPE = {
-    u'\'': u' ',
+    # u'\'': u' ',
     u'\n': u' ',
     u'\r': u' ',
     u'\t': u' ',
     u'€': u'EUR',
     u'©': u'(C)',
     u'®': u'(R)',
-    u'«': u'&laquo;',
-    u'»': u'&raquo;',
+    u'«': u'"',
+    u'»': u'"',
     u'Ø': u'&Oslash;',
     u'ø': u'&oslash;',
     u'ß': u'ss',
+    u'\u2019': u'\'',
 }
 
 class AccountInvoice(models.Model):

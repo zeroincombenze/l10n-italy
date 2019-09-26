@@ -87,6 +87,10 @@ class StockPickingPackagePreparation(models.Model):
     _rec_name = 'display_name'
     _order = 'ddt_number, date desc'
 
+    _sql_constraints = [('ddt_number',
+                         'unique(ddt_number)',
+                         'DdT number already exists!')]
+
     @api.multi
     @api.depends('transportation_reason_id.to_be_invoiced')
     def _compute_to_be_invoiced(self):
@@ -105,6 +109,11 @@ class StockPickingPackagePreparation(models.Model):
             if res:
                 return res
         return self.env['stock.ddt.type'].search([], limit=1)
+
+    def _set_parcel_qty(self):
+        if self.parcels == 0:
+            return 1
+        return self.parcels
 
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
@@ -125,7 +134,7 @@ class StockPickingPackagePreparation(models.Model):
         string='Method of Transportation')
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
-    parcels = fields.Integer('Parcels')
+    parcels = fields.Integer('Parcels', default=_set_parcel_qty)
     display_name = fields.Char(
         string='Name', compute='_compute_clean_display_name')
     volume = fields.Float('Volume')
@@ -195,8 +204,8 @@ class StockPickingPackagePreparation(models.Model):
         for record_picking in self.picking_ids:
             if record_picking.state == 'done':
                 raise UserError(_(
-                    "Impossible to put in pack a picking whose state "
-                    "is 'done'"))
+                    "Impossible to put in pack a picking whose state is 'done'"
+                    ))
         for package in self:
             # ----- Check if package has details
             if not package.line_ids:
@@ -210,6 +219,14 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     def set_done(self):
+        do_put_in_pack = False
+        for picking in self.picking_ids:
+            if picking.state == 'assigned':
+                do_put_in_pack = True
+            else:
+                do_put_in_pack = False
+        if do_put_in_pack:
+            return self.action_put_in_pack()
         for picking in self.picking_ids:
             if picking.state != 'done':
                 raise UserError(
@@ -439,10 +456,12 @@ class StockPickingPackagePreparation(models.Model):
                 if ddt not in references[invoices[group_key]]:
                     references[invoice] = references[invoice] | ddt
 
-            # Get order lines to invoce because not in ddt
+            # Get order lines to invoice because not in ddt
             for order in orders:
                 for line in order.order_line:
-                    if line not in invoiced_order_lines:
+                    if (line not in invoiced_order_lines and
+                            (not line.product_id or
+                             line.product_id.invoice_policy == 'order')):
                         line.invoice_line_create(
                             invoices[group_key].id, line.qty_to_invoice)
             # Allow additional operations from ddt
@@ -523,16 +542,28 @@ class StockPickingPackagePreparation(models.Model):
                     _("Document {d} has invoice linked".format(
                         d=ddt.ddt_number)))
         # TODO: decrement ddt number if last DdT
-        # Unlik just if cancelled
-        #    if not package.ddt_number:
-        #        package.ddt_number = (
-        #            package.ddt_type_id.sequence_id.next_by_id())
+        # Unlink just if cancelled
+            if ddt.ddt_number:
+                ddt.ddt_type_id.sequence_id.unnext_by_id(ddt.ddt_number)
         return super(StockPickingPackagePreparation, self).unlink()
 
 
 class StockPickingPackagePreparationLine(models.Model):
-
     _inherit = 'stock.picking.package.preparation.line'
+
+    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_ids')
+    def _compute_amount(self):
+        """
+        Compute the amounts of the line.
+        """
+        for line in self:
+            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+            taxes = line.tax_ids.compute_all(
+                price, line.currency_id,
+                line.product_uom_qty,
+                product=line.product_id,
+                partner=line.sale_id.partner_shipping_id)
+            line.price_subtotal = taxes['total_excluded']
 
     sale_id = fields.Many2one(
         related='move_id.procurement_id.sale_line_id.order_id',
@@ -548,6 +579,16 @@ class StockPickingPackagePreparationLine(models.Model):
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
         default=0.0)
+    ddt_id = fields.Many2one(
+        'stock.picking.package.preparation',
+        string='Ddt number')
+    currency_id = fields.Many2one(
+        related='move_id.procurement_id.sale_line_id.order_id.currency_id',
+        string='Currency',
+        store=True, readonly=True)
+    price_subtotal = fields.Monetary(compute='_compute_amount',
+                                     string='Subtotal',
+                                     readonly=True, store=True)
 
     @api.onchange('product_id')
     def _onchange_product_id(self):

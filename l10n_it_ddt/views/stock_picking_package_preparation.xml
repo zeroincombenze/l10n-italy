@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data noupdate="0">
 
     <!-- DdT Views -->
 
@@ -17,12 +16,14 @@
                 <field name="price_unit"/>
                 <field name="discount"/>
                 <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                <field name="price_subtotal"/>
             </xpath>
 
             <xpath expr="//field[@name='line_ids']/form//field[@name='product_uom_id']" position="after">
                 <field name="price_unit"/>
                 <field name="discount"/>
                 <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                <field name="price_subtotal"/>
                 <field name="sale_id"/>
             </xpath>
 
@@ -131,8 +132,7 @@
                         <field name="transportation_method_id"
                                attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
                         <field name="carrier_id"/>
-                        <field name="parcels"
-                               attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                        <field name="parcels"/>
                         <field name="volume"/>
                         <field name="weight"/>
                         <field name="weight_manual"/>
@@ -223,7 +223,6 @@
                     <group>
                         <field name="name"/>
                         <field name="sequence_id"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
                         <field name="note"/>
                         <field name="default_carriage_condition_id"/>
                         <field name="default_goods_description_id"/>
@@ -387,6 +386,5 @@
     <menuitem action="action_transportation_method_tree"
               id="menu_action_transportation_method_tree" parent="menu_stock_ddt_data"/>
 
-</data>
 </odoo>
 

@@ -11,7 +11,6 @@
 #
 ##############################################################################
 
-
 from odoo import fields, models, api
 
 
@@ -36,8 +35,8 @@ class SaleOrder(models.Model):
             a = signature.find('>')
             b = signature.find('<', a)
             signature = signature[a + 1:b]
-            res = self.env['stock.ddt.type'].search([('name', 'ilike', signature)],
-                                                    limit=1)
+            res = self.env['stock.ddt.type'].search(
+                [('name', 'ilike', signature)], limit=1)
             if res:
                 return res
         return self.env['stock.ddt.type'].search([], limit=1)
@@ -94,7 +93,40 @@ class SaleOrder(models.Model):
                 self.partner_id.ddt_invoicing_group)
             self.ddt_invoice_exclude = (
                 self.partner_id.ddt_invoice_exclude)
+            self.ddt_type = self._default_ddt_type()
+            if self.parcels == 0:
+                self.parcels = 1
         return result
+
+    @api.multi
+    @api.onchange('ddt_type_id')
+    def onchange_ddt_type(self):
+        if (self.ddt_type_id.company_id and
+                self.ddt_type_id.company_id == self.company_id):
+            for field in ('carriage_condition_id',
+                          'goods_description_id',
+                          'transportation_reason_id',
+                          'transportation_method_id'):
+                default_field = 'default_%s' % field
+                if self.ddt_type_id[default_field]:
+                    setattr(self, field, self.ddt_type_id[default_field])
+            if self.ddt_type_id.note and not self.note:
+                self.note = self.ddt_type_id.note
+            if self.parcels == 0:
+                self.parcels = 1
+
+    @api.multi
+    @api.onchange('carrier_id')
+    def onchange_carrier_id(self):
+        for field in ('carriage_condition_id',
+                      'goods_description_id',
+                      'transportation_reason_id',
+                      'transportation_method_id',
+                      'ddt_carrier_id'):
+            if self.carrier_id[field]:
+                setattr(self, field, self.carrier_id[field])
+        if self.carrier_id.note and not self.note:
+            self.note = self.carrier_id.note
 
     @api.multi
     def _prepare_invoice(self):
@@ -139,7 +171,20 @@ class SaleOrder(models.Model):
             if order.create_ddt:
                 ddt_data = order._preparare_ddt_data()
                 ddt_model.create(ddt_data)
+                if order.invoice_status == 'no':
+                    order.invoice_status = 'to invoice'
         return res
+
+    @api.multi
+    def action_cancel(self):
+        for order in self:
+            for ddt in order.ddt_ids:
+                if ddt.state == 'draft':
+                    ddt.unlink()
+                else:
+                    raise UserError(
+                        _("Document %d has invoice linked" % ddt.ddt_number))
+        return super(SaleOrder, self).action_cancel()
 
     @api.multi
     def action_view_ddt(self):

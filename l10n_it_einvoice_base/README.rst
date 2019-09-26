@@ -1,6 +1,6 @@
 
 ======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.7
+|icon| EInvoice + FatturaPA 10.0.2.1.8
 ======================================
 
 
@@ -185,11 +185,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
 From UI: go to:
@@ -288,6 +285,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.8 (2019-09-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Foreign customer w/o vat / I clienti esteri senza P.IVA ne CF se cod.destinatario = 'XXXXXXX'
+
+
 10.0.2.1.7 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -354,7 +357,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-07-18
+Last Update / Ultimo aggiornamento: 2019-09-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

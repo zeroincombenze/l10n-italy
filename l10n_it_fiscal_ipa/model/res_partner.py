@@ -65,7 +65,10 @@ class ResPartner(models.Model):
                     'deve avere il codice IPA di 6 caratteri'
                 ) % partner.name)
             if partner.electronic_invoice_subjected:
-                if not partner.vat and not partner.fiscalcode:
+                if (not partner.vat and
+                        not partner.fiscalcode and
+                        (not partner.codice_destinatario or
+                         partner.codice_destinatario != 'XXXXXXX')):
                     raise ValidationError(_(
                         'Partner %s, soggetto a Fattura Elettronica '
                         'ma senza P.IVA ne codice fiscale'

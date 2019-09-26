@@ -19,3 +19,5 @@ from . import product
 from . import stock
 from . import sale
 from . import stock_location
+from . import delivery_carrier
+from . import ir_sequence

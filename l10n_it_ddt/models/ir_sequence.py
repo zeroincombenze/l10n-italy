@@ -11,8 +11,9 @@ class IrSequence(models.Model):
     _inherit = 'ir.sequence'
 
     def _unnext_do(self, number):
-        if number == (self.number_next - 1):
-            self.number_next -= 1
+        number_last_actual = self.number_next_actual - 1
+        if number == self.get_next_char(number_last_actual):
+            self.number_next = number_last_actual
 
     def _unnext(self, number):
         if not self.use_date_range:

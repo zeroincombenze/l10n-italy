@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-15 05:31+0000\n"
-"PO-Revision-Date: 2019-01-15 05:31+0000\n"
+"POT-Creation-Date: 2019-09-24 06:37+0000\n"
+"PO-Revision-Date: 2019-09-24 06:37+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -47,9 +47,9 @@ msgid "<span>Preventivo di vendita n. </span>"
 msgstr "<span>Preventivo di vendita n. </span>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Comment:</strong>"
-msgstr "<strong>Commento:</strong>"
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "<strong>Codice cliente:</strong>"
+msgstr "<strong>Codice cliente:</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
@@ -57,14 +57,14 @@ msgid "<strong>Commerciale:</strong>"
 msgstr "<strong>Commerciale:</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Customer Code:</strong>"
-msgstr "<strong>Codice cliente:</strong>"
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "<strong>Data fattura:</strong>"
+msgstr "<strong>Data fattura:</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Description:</strong>"
-msgstr "<strong>Descrizione:</strong>"
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "<strong>Data scadenza:</strong>"
+msgstr "<strong>Data scadenza:</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt
@@ -72,20 +72,25 @@ msgid "<strong>Description</strong>"
 msgstr "<strong>Descrizione</strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "<strong>Descrizione:</strong>"
+msgstr "<strong>Descrizione:</strong>"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt
 msgid "<strong>Discount</strong>"
 msgstr "<strong>Sconto</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Due Date:</strong>"
-msgstr "<strong>Data di scadenza:</strong>"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
 msgid "<strong>Fiscal Position Remark:</strong>"
 msgstr "<strong>Note su posizione fiscale:</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
+msgid "<strong>IBAN:</strong>"
+msgstr "<strong>IBAN:</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
@@ -93,19 +98,16 @@ msgid "<strong>Imponibile: </strong>"
 msgstr "<strong>Imponibile: </strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "<strong>Imponibile</strong>"
 msgstr "<strong>Imponibile</strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "<strong>Indirizzo di spedizione:</strong>"
 msgstr "<strong>Indirizzo di spedizione:</strong>"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Invoice Date:</strong>"
-msgstr "<strong>Data fattura:</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt
@@ -113,9 +115,20 @@ msgid "<strong>Lots/Serial Numbers</strong>"
 msgstr "<strong>Lotti/Numeri seriali</strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "<strong>Note fiscali:</strong>"
 msgstr "<strong>Note fiscali:</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
+msgid "<strong>Note:</strong>"
+msgstr "<strong>Note:</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "<strong>Origine:</strong>"
+msgstr "<strong>Origine:</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
@@ -133,14 +146,19 @@ msgid "<strong>Quantity</strong>"
 msgstr "<strong>Quantità</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Reference:</strong>"
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "<strong>Riferimento:</strong>"
 msgstr "<strong>Riferimento:</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Source:</strong>"
-msgstr "<strong>Origine:</strong>"
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
+msgid "<strong>Rimborsi:</strong>"
+msgstr "<strong>Rimborsi:</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
+msgid "<strong>Scad.e pagamenti:</strong>"
+msgstr "<strong>Scad.e pagamenti:</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
@@ -148,11 +166,12 @@ msgid "<strong>Subtotal: </strong>"
 msgstr "<strong>Subtotale: </strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "<strong>Subtotal</strong>"
-msgstr "<strong>Totale imponibile</strong>"
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
+msgid "<strong>Termine di pagamento:</strong>"
+msgstr "<strong>Termine di pagamento:</strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "<strong>Termini di pagamento:</strong>"
 msgstr "<strong>Termini di pagamento:</strong>"
@@ -163,15 +182,25 @@ msgid "<strong>Total Without Taxes</strong>"
 msgstr "<strong>Totale imponibile</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
 msgid "<strong>Total</strong>"
 msgstr "<strong>Totale</strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
+msgid "<strong>Totale a pagare</strong>"
+msgstr "<strong>Totale a pagare</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "<strong>Totale</strong>"
 msgstr "<strong>Totale</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_ddt
+msgid "<strong>UM</strong>"
+msgstr "<strong>UM</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
@@ -184,14 +213,49 @@ msgid "Account Invoice"
 msgstr "Fattura"
 
 #. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_template_account_invoice
+msgid "Account invoice model"
+msgstr "Account invoice model"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_template_account_invoice
+msgid "Account_invoice template"
+msgstr "Account_invoice template"
+
+#. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_active
 msgid "Active"
 msgstr "Attivo"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Amount"
-msgstr "Importo"
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_address_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_address_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_address_mode
+msgid "Address Print Mode"
+msgstr "Modo stampa indirizzo"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_pdf_ending_page_expression
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_ending_page_expression
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_pdf_ending_page_expression
+msgid ""
+"An expression yielding the base64 encoded data to be used as Ending Page "
+"PDF.\n"
+"You have access to variables `env` and `docs`"
+msgstr ""
+"An expression yielding the base64 encoded data to be used as Ending Page "
+"PDF.\n"
+"You have access to variables `env` and `docs`"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_pdf_watermark_expression
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_pdf_watermark_expression
+msgid ""
+"An expression yielding the base64 encoded data to be used as watermark.\n"
+"You have access to variables `env` and `docs`"
+msgstr ""
+"An expression yielding the base64 encoded data to be used as watermark.\n"
+"You have access to variables `env` and `docs`"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_expression
@@ -239,14 +303,62 @@ msgstr ""
 "untranslated report models."
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Base"
-msgstr "Base"
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+msgid "As is"
+msgstr "Come è"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Aspetto dei beni"
+msgstr "Aspetto dei beni"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "Auto"
+msgstr "Auto"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+msgid "Automatic Footer"
+msgstr "Piede automatico"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
+msgid "Base imponibile"
+msgstr "Base imponibile"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.act_report_xml_view_multireport
+#: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_form
+msgid "Body"
+msgstr "Testo"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_bottom_text
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_bottom_text
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_bottom_text
+msgid "Bottom text"
+msgstr "Testo in basso"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_name
 msgid "Brief name of document to print"
-msgstr "Brief name of document to print"
+msgstr "Nome breve del documento da stampare"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
@@ -254,8 +366,12 @@ msgid "C.IVA"
 msgstr "C.IVA"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "CF:"
+msgstr "CF:"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
 msgid "Cancelled Invoice"
 msgstr "Fattura annullata"
 
@@ -275,9 +391,26 @@ msgid "Carrier's Signature"
 msgstr "Firma del vettore"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Causale Trasporto"
+msgstr "Causale Trasporto"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt
 msgid "Cessionario"
 msgstr "Cessionario"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_account_invoice_line_code
+#: model:ir.model.fields,field_description:base_multireport.field_stock_picking_package_preparation_line_code
+msgid "Code"
+msgstr "Codice"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_ddt
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
+msgid "Codice"
+msgstr "Codice"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
@@ -285,12 +418,26 @@ msgid "Codice Fiscale:"
 msgstr "Codice Fiscale:"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Colli"
+msgstr "Colli"
+
+#. module: base_multireport
 #: model:ir.model,name:base_multireport.model_res_company
 msgid "Companies"
 msgstr "Aziende"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_create_uid
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Condizioni di trasporto/reso"
+msgstr "Condizioni di trasporto/reso"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Corriere/Vettore"
+msgstr "Corriere/Vettore"
+
+#. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_create_uid
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_create_uid
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_create_uid
@@ -298,7 +445,6 @@ msgid "Created by"
 msgstr "Creato da"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_create_date
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_create_date
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_create_date
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_create_date
@@ -306,9 +452,14 @@ msgid "Created on"
 msgstr "Data di creazione"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_custom_header
-msgid "Custom Header"
-msgstr "Intestazione personalizzata"
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+msgid "Customized Footer"
+msgstr "Piede personalizzato"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt
@@ -316,9 +467,19 @@ msgid "DDT number:"
 msgstr "Numero DdT:"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
+msgid "Data"
+msgstr "Data"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Data ordine:"
 msgstr "Data ordine:"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Data trasporto"
+msgstr "Data trasporto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
@@ -341,11 +502,46 @@ msgid "Default Setting"
 msgstr "Impostazioni predefinite"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
+#: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
+msgid "Delivery document"
+msgstr "Documento di consegna"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_template_stock_picking_package_preparation
+msgid "Delivery document model"
+msgstr "Modello documento di consegna"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_template_stock_picking_package_preparation
+msgid "Delivery document template"
+msgstr "Specifica documento di consegna"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_ddt_ref_text
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_ddt_ref_text
+#, python-format
+msgid ""
+"Delivery reference text to print in document body.\n"
+"May be used following macroes:\n"
+"%(ddt_number)s => Delivery document number.\n"
+"%(date_ddt)s => Delivery document date\n"
+"%(date_done)s => Delivery date\n"
+"i.e. \"Ddt #: %(ddt_number)s of %(date_ddt)s\""
+msgstr ""
+"Delivery reference text to print in document body.\n"
+"May be used following macroes:\n"
+"%(ddt_number)s => Delivery document number.\n"
+"%(date_ddt)s => Delivery document date\n"
+"%(date_done)s => Delivery date\n"
+"i.e. \"Ddt #: %(ddt_number)s of %(date_ddt)s\""
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_account_invoice_line_description
 msgid "Description"
 msgstr "Descrizione"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Descrizione"
 msgstr "Descrizione"
@@ -356,12 +552,6 @@ msgid "Destinatario"
 msgstr "Destinatario"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Disc.(%)"
-msgstr "Sconto (%)"
-
-#. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_display_name
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_display_name
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_display_name
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_display_name
@@ -375,28 +565,24 @@ msgid "Document report selection rules"
 msgstr "Regole selezione impaginazione stampa"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.account_invoice_report_duplicate
-msgid ""
-"Documento non valido ai fini fiscali. L'originale è disponibile "
-"all'indirizzo PEC o codice SdI fornito oppure nell'area riservata."
-msgstr ""
-"Documento non valido ai fini fiscali. L'originale è disponibile "
-"all'indirizzo PEC o codice SdI fornito oppure nell'area riservata."
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
+msgid "Documento di origine"
+msgstr "Documento di origine"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_stock_picking_package_preparation_report_doc_ids
 msgid "Documents to be appended to DdT (PDF only):"
-msgstr "Documents to be appended to DdT (PDF only):"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Draft Invoice"
-msgstr "Bozza fattura"
+msgstr "Documento da appendere al DdT (solo PDF):"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Driver's Signature"
 msgstr "Firma Conducente"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_account_invoice_due_records
+msgid "Due Dates"
+msgstr "Date scadenza"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer
@@ -405,14 +591,28 @@ msgid "Email:"
 msgstr "Email:"
 
 #. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_pdf_ending_page
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_ending_page
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_pdf_ending_page
 msgid "Ending Page PDF"
 msgstr "Pagina finale PDF"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.account_invoice_report_duplicate
-msgid "Fattura di cortesia"
-msgstr "Fattura di cortesia"
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_pdf_ending_page_expression
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_ending_page_expression
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_pdf_ending_page_expression
+msgid "Ending Page PDF expression"
+msgstr "Espressione pagina finale PDF"
+
+#. module: base_multireport
+#: model:ir.actions.report.xml,name:base_multireport.account_invoices
+msgid "Fattura (personalizzata)"
+msgstr "Fattura (personalizzata)"
+
+#. module: base_multireport
+#: model:ir.actions.report.xml,name:base_multireport.delivery_invoice_action_report
+msgid "Fattura di accompagnamento"
+msgstr "Fattura di accompagnamento"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
@@ -436,9 +636,63 @@ msgid "Fax:"
 msgstr "Fax:"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Firma conducente"
+msgstr "Firma conducente"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Firma corriere/Vettore"
+msgstr "Firma corriere/Vettore"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Firma destinatario"
+msgstr "Firma destinatario"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_footer_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_footer_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_footer_mode
+msgid "Footer Print Mode"
+msgstr "Modo stampa piede"
+
+#. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_since_date
 msgid "From date"
 msgstr "Dalla data"
+
+#. module: base_multireport
+#: selection:multireport.template,address_mode:0
+#: selection:multireport.template,code_mode:0
+#: selection:multireport.template,description_mode:0
+#: selection:multireport.template,footer_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:multireport.template,address_mode:0
+#: selection:multireport.template,code_mode:0
+#: selection:multireport.template,description_mode:0
+#: selection:multireport.template,footer_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:multireport.template,payment_term_position:0
+msgid "From style"
+msgstr "Dallo stile"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:ir.actions.report.xml,code_mode:0
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:ir.actions.report.xml,code_mode:0
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+msgid "From template/style"
+msgstr "Da specifica/stile"
 
 #. module: base_multireport
 #: model:ir.actions.report.xml,name:base_multireport.account_invoice_action_report_duplicate
@@ -446,9 +700,14 @@ msgid "Ft. di cortesia (personalizzata)"
 msgstr "Ft. di cortesia (personalizzata)"
 
 #. module: base_multireport
-#: model:ir.model.fields,help:base_multireport.field_multireport_model_name
-msgid "Give a unique name for this report model"
-msgstr "Assegnamento nome univoco al rapporto"
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Full Odoo Standard"
+msgstr "Standard Odoo integrale"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_name
@@ -458,7 +717,7 @@ msgstr "Assegnamento nome univoco allo stile rapporto"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_name
 msgid "Give a unique name for this report template"
-msgstr "Assegnamento nome univoco al modello del rapporto"
+msgstr "Assegnamento nome univoco alla specifica del rapporto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
@@ -471,6 +730,19 @@ msgid "Gross Weight"
 msgstr "Peso lordo"
 
 #. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_header_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_header_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_header_mode
+msgid "Header Print Mode"
+msgstr "Modo stampa intestazione"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.act_report_xml_view_multireport
+#: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_form
+msgid "Header and Footer"
+msgstr "Intestazione e piede"
+
+#. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_ending_page
 msgid ""
 "Here you can upload a PDF document that contain some specific content. "
@@ -480,12 +752,35 @@ msgstr ""
 "This document will be appended to the printed report"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_id
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_logo_style
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_logo_style
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_logo_style
+msgid "Html logo style"
+msgstr "Stile logo Html"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_logo_style
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_logo_style
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_logo_style
+msgid ""
+"Html style attribute for logo <img> tag.\n"
+"i.e. \"max-height: 45px;\""
+msgstr ""
+"Html style attribute for logo <img> tag.\n"
+"i.e. \"max-height: 45px;\""
+
+#. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_id
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_id
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_id
 msgid "ID"
 msgstr "ID"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
+msgid "IVA"
+msgstr "IVA"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_position_id
@@ -508,30 +803,60 @@ msgid "If partner"
 msgstr "If partner"
 
 #. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_code_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_code_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_code_mode
+msgid "If you choice \"print\", please set description mode to \"nocode\""
+msgstr "If you choice \"print\", please set description mode to \"nocode\""
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_pdf_ending_page
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_pdf_ending_page
+msgid ""
+"If you want the last page of every document printed to contain some "
+"specific content such as Advertisement, your business terms and "
+"Conditions, upload a PDF with those content here and it will be appended "
+"to every document you print."
+msgstr ""
+"If you want the last page of every document printed to contain some "
+"specific content such as Advertisement, your business terms and "
+"Conditions, upload a PDF with those content here and it will be appended "
+"to every document you print."
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
+msgid "Importo"
+msgstr "Importo"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Indirizzo di fatturazione:"
 msgstr "Indirizzo di fatturazione:"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Indirizzo di spedizione e fatturazione:"
 msgstr "Indirizzo di spedizione e fatturazione:"
 
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_account_invoice
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
 msgid "Invoice"
 msgstr "Fattura"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.view_multireport_model_form
+#: model:ir.model,name:base_multireport.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga Fattura"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
-#: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_form
 msgid "Invoice Type"
 msgstr "Tipo Fattura"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model___last_update
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules___last_update
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style___last_update
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template___last_update
@@ -539,7 +864,6 @@ msgid "Last Modified on"
 msgstr "Data ultima modifica"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_write_uid
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_write_uid
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_write_uid
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_write_uid
@@ -547,12 +871,66 @@ msgid "Last Updated by"
 msgstr "Ultima modifica di"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_write_date
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_write_date
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_write_date
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_write_date
 msgid "Last Updated on"
 msgstr "Data ultima modifica"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Line-up logo / slogan"
+msgstr "Logo in linea / slogan"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Line-up logo / slogan / no sep. line"
+msgstr "Logo in linea / slogan / no riga sep."
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Line-up: logo / company data"
+msgstr "Logo in linea / dati azienda"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Line-up: logo / company data / no sep. line"
+msgstr "Logo in linea / dati azienda / no riga sep."
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Metodo di trasporto"
+msgstr "Metodo di trasporto"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_template
+msgid "Model template"
+msgstr "Model template"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_template
+msgid "Model template with fallback values."
+msgstr "Specifica con valori a cascata"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_model_id
@@ -572,59 +950,54 @@ msgstr "Multi Report Document Model"
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_multireport_style
 msgid "Multi Report Document Style"
-msgstr "Multi Report Document Style"
+msgstr "Stile documento multi-documenti"
 
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_multireport_template
 msgid "Multi Report Template"
-msgstr "Multi Report Template"
+msgstr "Specifica multi-rapporto"
 
 #. module: base_multireport
-#: model:ir.ui.menu,name:base_multireport.menu_multireport_model
-msgid "Multi-Report Model"
-msgstr "Multi-Report Model"
+#: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_form
+msgid "Multi Report Template values"
+msgstr "Valori specifica multi-rapporto"
 
 #. module: base_multireport
 #: model:ir.actions.act_window,name:base_multireport.action_multireport_selection_rules
 #: model:ir.ui.menu,name:base_multireport.menu_multireport_selection_rules
 msgid "Multi-Report Selection Rules"
-msgstr "Multi-Report Selection Rules"
+msgstr "Regole selezione multi-documento"
 
 #. module: base_multireport
 #: model:ir.ui.menu,name:base_multireport.menu_multireport_style
 msgid "Multi-Report Style"
-msgstr "Multi-Report Style"
+msgstr "Stile multi-documenti"
 
 #. module: base_multireport
 #: model:ir.ui.menu,name:base_multireport.menu_multireport_template
 msgid "Multi-Report Template"
-msgstr "Multi-Report Template"
+msgstr "Specifica multi-rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_base_config_settings_report_model_style
 #: model:ir.model.fields,field_description:base_multireport.field_res_company_report_model_style
 msgid "Multi-report style"
-msgstr "Multi-report style"
-
-#. module: base_multireport
-#: model:ir.actions.act_window,name:base_multireport.action_multireport_model
-msgid "Multireport Model"
-msgstr "Multireport Model"
+msgstr "Stile multi-documenti"
 
 #. module: base_multireport
 #: model:ir.actions.act_window,name:base_multireport.action_multireport_style
 msgid "Multireport Styles"
-msgstr "Multireport Styles"
+msgstr "Stili multi-documento"
 
 #. module: base_multireport
 #: model:ir.actions.act_window,name:base_multireport.action_multireport_template
 msgid "Multireport Template"
-msgstr "Multireport Template"
+msgstr "Specifica multi-rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_name
 msgid "Name of Style"
-msgstr "Name of Style"
+msgstr "Nome dello stile"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_footer_id
@@ -637,14 +1010,9 @@ msgid "Name of header associated to this template"
 msgstr "Name of header associated to this template"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_name
-msgid "Name of model"
-msgstr "Name of model"
-
-#. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_name
 msgid "Name of report template"
-msgstr "Name of report template"
+msgstr "Nome specifica multi-rapporto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
@@ -652,9 +1020,64 @@ msgid "Net Weight"
 msgstr "Peso netto"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.account_invoice_report_duplicate
-msgid "Nota Credito di cortesia"
-msgstr "Nota Credito di cortesia"
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+msgid "No code"
+msgstr "No code"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+msgid "No code & Only first line"
+msgstr "No codice & solo 1° riga"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,code_mode:0
+#: selection:multireport.style,code_mode:0
+#: selection:multireport.template,code_mode:0
+#: selection:ir.actions.report.xml,code_mode:0
+#: selection:multireport.style,code_mode:0
+#: selection:multireport.template,code_mode:0
+msgid "No print"
+msgstr "No stampa"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+msgid "No print Footer"
+msgstr "No stampa piede"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "No print Header"
+msgstr "No stampa intestazione"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "None"
+msgstr "Nulla"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
@@ -667,18 +1090,154 @@ msgid "Nota di Credito Fornitore"
 msgstr "Nota di Credito Fornitore"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Note"
+msgstr "Nota"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Notes"
 msgstr "Note"
 
 #. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "Odoo"
+msgstr "Odoo"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+#: selection:ir.actions.report.xml,footer_mode:0
+#: selection:multireport.style,footer_mode:0
+#: selection:multireport.template,footer_mode:0
+msgid "Odoo Standard"
+msgstr "Odoo Standard"
+
+#. module: base_multireport
 #: selection:multireport.style,origin:0
-#: selection:multireport.style,origin:0
-#: selection:multireport.style,origin
-#: selection:multireport.style,origin
 #: selection:multireport.style,origin:0
 msgid "Odoo based Model"
-msgstr "Odoo based Model"
+msgstr "Modello basato su Odoo"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "On Footer"
+msgstr "Nel piede"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "On Footer, no IBAN"
+msgstr "Nel piede senza IBAN"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "On Footer, only notes"
+msgstr "Solo note nel piede"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "On Header"
+msgstr "In intestazione"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:multireport.style,payment_term_position:0
+#: selection:multireport.template,payment_term_position:0
+msgid "On Header, no IBAN"
+msgstr "In intestazione senza IBAN"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+#: selection:ir.actions.report.xml,description_mode:0
+#: selection:multireport.style,description_mode:0
+#: selection:multireport.template,description_mode:0
+msgid "Only first line"
+msgstr "Solo 1° riga"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:multireport.style,address_mode:0
+#: selection:multireport.template,address_mode:0
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:multireport.style,address_mode:0
+#: selection:multireport.template,address_mode:0
+msgid "Only specific address"
+msgstr "Solo indirizzo specifico"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Only wide logo"
+msgstr "Solo logo largo"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+msgid "Only wide logo / no sep. line"
+msgstr "Solo logo largo senza riga sep."
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Ora trasporto"
+msgstr "Ora trasporto"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_order_ref_text
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_order_ref_text
+#, python-format
+msgid ""
+"Order reference text to print in document body.\n"
+"May be used following macroes:\n"
+"%(client_order_ref)s => Customer reference in order\n"
+"%(order_name)s => Sale order number\n"
+"%(date_order)s => Sale order date.\n"
+"i.e. \"Order #: %(order_name)s - Your ref: %(client_order_ref)s\""
+msgstr ""
+"Order reference text to print in document body.\n"
+"May be used following macroes:\n"
+"%(client_order_ref)s => Customer reference in order\n"
+"%(order_name)s => Sale order number\n"
+"%(date_order)s => Sale order date.\n"
+"i.e. \"Order #: %(order_name)s - Your ref: %(client_order_ref)s\""
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
@@ -688,16 +1247,19 @@ msgstr "Ordine N."
 #. module: base_multireport
 #: selection:multireport.style,origin:0
 #: selection:multireport.style,origin:0
-#: selection:multireport.style,origin
-#: selection:multireport.style,origin
-#: selection:multireport.style,origin:0
 msgid "Original Odoo Model"
-msgstr "Original Odoo Model"
+msgstr "Modello originale Odoo"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_origin
 msgid "Original report"
-msgstr "Original report"
+msgstr "Rapporto originale"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.act_report_xml_view_multireport
+#: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_form
+msgid "Other"
+msgstr "Altro"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
@@ -710,8 +1272,12 @@ msgid "P:IVA:"
 msgstr "P:IVA:"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "PIVA:"
+msgstr "PIVA:"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
 msgid "PRO-FORMA"
 msgstr "Pro-Forma"
 
@@ -721,14 +1287,9 @@ msgid "Package Preparation"
 msgstr "Preparazione confezionamento"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
-msgid "Packing List"
-msgstr "Packing List"
-
-#. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_watermark_stock_picking_package_preparation
-msgid "Packing List Watermark PDF"
-msgstr "Packing List Watermark PDF"
+#: model:ir.model,name:base_multireport.model_stock_picking_package_preparation_line
+msgid "Package Preparation Line"
+msgstr "Riga preparazione confezionamento"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer
@@ -744,6 +1305,23 @@ msgstr "Colli"
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
 msgid "Partita IVA:"
 msgstr "Partita IVA:"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_payment_term_position
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_payment_term_position
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_payment_term_position
+msgid "Payment term layout position"
+msgstr "Posizione termine di pagamento"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Peso lordo"
+msgstr "Peso lordo"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Peso netto"
+msgstr "Peso netto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer_vg7
@@ -771,9 +1349,34 @@ msgid "Prezzo"
 msgstr "Prezzo"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Prezzo unitario"
 msgstr "Prezzo unitario"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,code_mode:0
+#: selection:multireport.style,code_mode:0
+#: selection:multireport.template,code_mode:0
+#: selection:ir.actions.report.xml,code_mode:0
+#: selection:multireport.style,code_mode:0
+#: selection:multireport.template,code_mode:0
+msgid "Print"
+msgstr "Print"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_code_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_code_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_code_mode
+msgid "Print code in document line"
+msgstr "Stampa codice in riga documento"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_description_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_description_mode
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_description_mode
+msgid "Print description in document line"
+msgstr "Stampa descrizione in riga documento"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
@@ -781,9 +1384,14 @@ msgid "Purchase Order"
 msgstr "Ordine di Acquisto"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_watermark_purchase_order
-msgid "Purchase Order Watermark PDF"
-msgstr "Purchase Order Watermark PDF"
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_template_purchase_order
+msgid "Purchase order model"
+msgstr "Modello ordine di acquisto"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_template_purchase_order
+msgid "Purchase order template"
+msgstr "Specifica ordine di acquisto"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_purpose
@@ -791,30 +1399,15 @@ msgid "Purpose"
 msgstr "Purpose"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Quantity"
-msgstr "Quantità"
-
-#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Quantità"
 msgstr "Quantità"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_account_invoice_pdf_model
-#: model:ir.model.fields,field_description:base_multireport.field_sale_order_pdf_model
-msgid "Quote/Order Report"
-msgstr "Quote/Order Report"
-
-#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Recipient's Signature"
 msgstr "Firma destinatario"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Refund"
-msgstr "Nota credito"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_model_id
@@ -825,12 +1418,12 @@ msgstr "Modello Documento correlato"
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_footer_id
 msgid "Related footer"
-msgstr "Related footer"
+msgstr "Relativo piede"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_header_id
 msgid "Related header"
-msgstr "Related header"
+msgstr "Relativa intestazione"
 
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_report
@@ -838,17 +1431,16 @@ msgid "Report"
 msgstr "Rapporto"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.view_multireport_model_tree
-msgid "Report Model"
-msgstr "Report Model"
+#: model:ir.ui.view,arch_db:base_multireport.act_report_xml_view_multireport
+msgid "Report Configuration"
+msgstr "Configurazione rapporto"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_tree
 msgid "Report Style"
-msgstr "Report Style"
+msgstr "Stile rapporto"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_model_template_id
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_tree
 msgid "Report Template"
 msgstr "Report Template"
@@ -856,7 +1448,7 @@ msgstr "Report Template"
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_origin
 msgid "Report origin/indentity"
-msgstr "Report origin/indentity"
+msgstr "Identità/origine rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_purpose
@@ -866,7 +1458,7 @@ msgstr "Report purpose: why, when use this report."
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_report_id
 msgid "Report to print"
-msgstr "Report to print"
+msgstr "Rapporto da stampare"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_report_id
@@ -900,19 +1492,19 @@ msgid "Rules to select report name"
 msgstr "Rules to select report name"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_watermark_account_invoice
-msgid "Sale Invoice Watermark PDF"
-msgstr "Sale Invoice Watermark PDF"
-
-#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
 msgid "Sale Order"
-msgstr "Sale Order"
+msgstr "Ordine di vendita"
 
 #. module: base_multireport
-#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_watermark_sale_order
-msgid "Sale Order Watermark PDF"
-msgstr "Sale Order Watermark PDF"
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_template_sale_order
+msgid "Sale order model"
+msgstr "Modello ordine di vendita"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_style_template_sale_order
+msgid "Sale order template"
+msgstr "Specifica ordine di vendita"
 
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_sale_order
@@ -920,21 +1512,16 @@ msgid "Sales Order"
 msgstr "Ordine di vendita"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Sc.(%)"
 msgstr "Sc.(%)"
 
 #. module: base_multireport
-#: model:ir.model.fields,help:base_multireport.field_account_invoice_pdf_model
-#: model:ir.model.fields,help:base_multireport.field_sale_order_pdf_model
-msgid "Select Report to use when printing the Sales Order or Quote"
-msgstr "Select Report to use when printing the Sales Order or Quote"
-
-#. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_base_config_settings_report_model_style
 #: model:ir.model.fields,help:base_multireport.field_res_company_report_model_style
 msgid "Select multi-report style"
-msgstr "Select multi-report style"
+msgstr "Selezione stile multi-documento"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_selection_rules_form
@@ -963,64 +1550,50 @@ msgid "Size"
 msgstr "Dimensioni"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Source Document"
-msgstr "Documento di origine"
-
-#. module: base_multireport
-#: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_stock_picking_package_preparation
-msgid "Specific background for Packing List"
-msgstr "Specific background for Packing List"
-
-#. module: base_multireport
-#: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_purchase_order
-msgid "Specific background for Purchase Orders"
-msgstr "Specific background for Purchase Orders"
-
-#. module: base_multireport
-#: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_account_invoice
-msgid "Specific background for Sale Invoices"
-msgstr "Specific background for Sale Invoices"
-
-#. module: base_multireport
-#: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_sale_order
-msgid "Specific background for Sale Orders"
-msgstr "Specific background for Sale Orders"
-
-#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
 msgid "Spettabile"
 msgstr "Spettabile"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "TIN:"
-msgstr "P.IV"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Tax"
-msgstr "Imposta"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Tax Excluded Price"
-msgstr "Prezzo netto"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Taxes"
-msgstr "IVA"
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:multireport.style,address_mode:0
+#: selection:multireport.template,address_mode:0
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:multireport.style,address_mode:0
+#: selection:multireport.template,address_mode:0
+msgid "Standard Invoice + Shipping"
+msgstr "Standard Fattura + Consegna"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_selection_rules_form
 msgid "Technical values"
-msgstr "Technical values"
+msgstr "Valori tecnici"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer
+#: model:ir.ui.view,arch_db:base_multireport.report_ddt
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
 msgid "Telefono:"
 msgstr "Telefono:"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_bottom_text
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_bottom_text
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_bottom_text
+msgid "Text to print in bottom area of document"
+msgstr "Text to print in bottom area of document"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_ddt_ref_text
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_ddt_ref_text
+msgid "Text with delivery ref"
+msgstr "Testo con riferimento consegna"
+
+#. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_order_ref_text
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_order_ref_text
+msgid "Text with order ref"
+msgstr "Testo con riferimento ordine"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_until_date
@@ -1028,6 +1601,7 @@ msgid "To date"
 msgstr "Alla data"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document
 msgid "Totale riga"
 msgstr "Totale riga"
@@ -1041,11 +1615,6 @@ msgstr "Trasporto a mezzo"
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Transportation Reason"
 msgstr "Causale del trasporto"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Unit Price"
-msgstr "Prezzo Unitario"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark
@@ -1067,38 +1636,87 @@ msgid "VAT number:"
 msgstr "Partita IVA:"
 
 #. module: base_multireport
-#: selection:multireport.style,origin:0
-#: selection:multireport.style,origin:0
-#: selection:multireport.style,origin
-#: selection:multireport.style,origin
-#: selection:multireport.style,origin:0
-msgid "VG7 Model"
-msgstr "VG7 Model"
+#: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
+msgid "Volume"
+msgstr "Volume"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Vendor Bill"
-msgstr "Fattura fornitore"
-
-#. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_document
-msgid "Vendor Refund"
-msgstr "Nota di credito fornitore"
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_pdf_watermark
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_pdf_watermark
+msgid "Watermark"
+msgstr "Filigrana"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_watermark
 msgid "Watermark PDF"
-msgstr "Watermark PDF"
+msgstr "PDF filigrana"
 
 #. module: base_multireport
+#: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_pdf_watermark_expression
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_pdf_watermark_expression
+#: model:ir.model.fields,field_description:base_multireport.field_multireport_template_pdf_watermark_expression
 msgid "Watermark expression"
-msgstr "Watermark expression"
+msgstr "Espressione filigrana"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer_vg7
 msgid "Website:"
 msgstr "Sito web:"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_payment_term_position
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_payment_term_position
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_payment_term_position
+msgid ""
+"Where Payment term and due dates are printed:\n"
+"may be Auto, None, on Footer, on Header or None\n"
+"If \"auto\", when due payment is whole in one date,\n"
+"all datas are printed on header otherwise on footer\n"
+"If \"Odoo\" print only Payment Term notes on Footer"
+msgstr ""
+"Where Payment term and due dates are printed:\n"
+"may be Auto, None, on Footer, on Header or None\n"
+"If \"auto\", when due payment is whole in one date,\n"
+"all datas are printed on header otherwise on footer\n"
+"If \"Odoo\" print only Payment Term notes on Footer"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_address_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_address_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_address_mode
+msgid "Which addresses are printed in document header"
+msgstr "Which addresses are printed in document header"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_footer_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_footer_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_footer_mode
+msgid ""
+"Which content is printed in document footer\n"
+"If \"standard\", footer is printed as \"auto\" or \"custom\"\n"
+"based on company.custom_footer field (Odoo standaed behavior)\n"
+"If \"auto\", footer is printed with automatic data\n"
+"If \"custom\", footer is printed from user data written\n"
+msgstr ""
+"Which content is printed in document footer\n"
+"If \"standard\", footer is printed as \"auto\" or \"custom\"\n"
+"based on company.custom_footer field (Odoo standaed behavior)\n"
+"If \"auto\", footer is printed with automatic data\n"
+"If \"custom\", footer is printed from user data written\n"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_header_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_header_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_header_mode
+msgid "Which content is printed in document header"
+msgstr "Which content is printed in document header"
+
+#. module: base_multireport
+#: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_description_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_style_description_mode
+#: model:ir.model.fields,help:base_multireport.field_multireport_template_description_mode
+msgid "Which content is printed in document line"
+msgstr "Which content is printed in document line"
 
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_base_config_settings
@@ -1108,23 +1726,18 @@ msgstr "base.config.settings"
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
-#: selection:multireport.selection.rules,action
-#: selection:multireport.selection.rules,action
-#: selection:multireport.selection.rules,action:0
 msgid "company"
 msgstr "azienda"
 
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action:0
-#: selection:multireport.selection.rules,action
-#: selection:multireport.selection.rules,action
-#: selection:multireport.selection.rules,action:0
 msgid "customer"
 msgstr "cliente"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
+#: model:ir.ui.view,arch_db:base_multireport.report_ddt
 msgid "del"
 msgstr "del"
 
@@ -1139,10 +1752,17 @@ msgid "imponibile"
 msgstr "imponibile"
 
 #. module: base_multireport
+#: model:ir.model,name:base_multireport.model_ir_actions_report_xml
+msgid "ir.actions.report.xml"
+msgstr "ir.actions.report.xml"
+
+#. module: base_multireport
+#: model:ir.model,name:base_multireport.model_ir_ui_view
+msgid "ir.ui.view"
+msgstr "ir.ui.view"
+
+#. module: base_multireport
 #: selection:multireport.selection.rules,action:0
-#: selection:multireport.selection.rules,action:0
-#: selection:multireport.selection.rules,action
-#: selection:multireport.selection.rules,action
 #: selection:multireport.selection.rules,action:0
 msgid "odoo"
 msgstr "odoo"
@@ -1154,9 +1774,6 @@ msgstr "q.tà"
 
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
-#: selection:multireport.selection.rules,action:0
-#: selection:multireport.selection.rules,action
-#: selection:multireport.selection.rules,action
 #: selection:multireport.selection.rules,action:0
 msgid "report"
 msgstr "rapporto"
@@ -1174,7 +1791,7 @@ msgstr "sequence"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
 msgid "udm"
-msgstr "udm"
+msgstr "um"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7

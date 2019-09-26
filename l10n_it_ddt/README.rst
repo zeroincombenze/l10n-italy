@@ -1,6 +1,6 @@
 
 =====================
-|icon| DDT 10.0.1.5.6
+|icon| DDT 10.0.1.5.8
 =====================
 
 
@@ -139,11 +139,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
 From UI: go to:
@@ -209,6 +206,21 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.5.8 (2019-09-23)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Total amount in line / Importo totale di riga
+* [FIX] Order cancel unlink DdTs too / Annullo ordine elimina anche i DdT
+* [FIX] Order confirm with DdT set 'to invoice' / Conferma ordine, se crea DdT, imposta ordine da fatturare
+* [FIX] Unlink DdT recover sequence number / L'eliminazione di un DdT recupera il numero, se ultimo DdT
+
+
+10.0.1.5.7 (2019-09-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Shipping condition by carrier / Informazioni di spedizione da metodo di consegna
+
 
 10.0.1.5.6 (2019-09-03)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -304,7 +316,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-03
+Last Update / Ultimo aggiornamento: 2019-09-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

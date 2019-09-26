@@ -42,6 +42,7 @@
         <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
+        <t t-if="not o.payment_term_id" t-set="term_position" t-value="'none'"/>
         <div class="row mt32 mb32">
             <div class="col-xs-2" t-if="o.name">
                 <strong>Descrizione:</strong>
@@ -76,11 +77,11 @@
                 <strong>Riferimento:</strong>
                 <p t-field="o.reference"/>
             </div>
-            <div class="col-xs-3" t-if="term_position == 'odoo'">
+            <div class="col-xs-4" t-if="term_position == 'odoo'">
                 <strong>Termini di pagamento:</strong>
                 <p t-field="o.payment_term_id"/>
             </div>
-            <div class="col-xs-3" t-if="term_position in ('header', 'header_no_iban')">
+            <div class="col-xs-4" t-if="term_position in ('header', 'header_no_iban')">
                 <strong>Termini di pagamento:</strong>
                 <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
                 <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>

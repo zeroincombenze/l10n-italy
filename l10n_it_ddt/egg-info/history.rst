@@ -1,3 +1,18 @@
+10.0.1.5.8 (2019-09-23)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Total amount in line / Importo totale di riga
+* [FIX] Order cancel unlink DdTs too / Annullo ordine elimina anche i DdT
+* [FIX] Order confirm with DdT set 'to invoice' / Conferma ordine, se crea DdT, imposta ordine da fatturare
+* [FIX] Unlink DdT recover sequence number / L'eliminazione di un DdT recupera il numero, se ultimo DdT
+
+
+10.0.1.5.7 (2019-09-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Shipping condition by carrier / Informazioni di spedizione da metodo di consegna
+
+
 10.0.1.5.6 (2019-09-03)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -11,7 +11,7 @@
 {
     'name': 'DDT',
     'summary': 'Delivery Document to Transfer',
-    'version': '10.0.1.5.6',
+    'version': '10.0.1.5.8',
     'category': 'Localization/Italy',
     'author': 'Odoo Community Association (OCA) and other subjects',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
@@ -32,6 +32,7 @@
         'views/account.xml',
         'views/sale.xml',
         'views/stock_location.xml',
+        'views/delivery_carrier_view.xml',
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
         'wizard/ddt_create_invoice.xml',

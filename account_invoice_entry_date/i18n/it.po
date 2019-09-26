@@ -1,20 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_invoice_entry_date
+# * account_invoice_entry_date
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo (VENV-10.0)\n"
+"Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-30 05:35+0000\n"
-"PO-Revision-Date: 2019-04-30 05:35+0000\n"
+"POT-Creation-Date: 2019-09-24 05:56+0000\n"
+"PO-Revision-Date: 2019-09-24 05:56+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
 
 #. module: account_invoice_entry_date
 #: model:ir.ui.view,arch_db:account_invoice_entry_date.wizard_default_registration_date
@@ -45,7 +45,7 @@ msgstr "Data registrazione predefinita"
 #. module: account_invoice_entry_date
 #: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_display_name
 msgid "Display Name"
-msgstr "Visualizza nome"
+msgstr "Nome visualizzato"
 
 #. module: account_invoice_entry_date
 #: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_id
@@ -89,8 +89,8 @@ msgstr "Data di registrazione"
 
 #. module: account_invoice_entry_date
 #: code:addons/account_invoice_entry_date/models/account_invoice.py:46
-#, python-format
+#: code:addons/account_invoice_entry_date/models/account_invoice.py:46
 msgid "The invoice date cannot be later than the date of registration!"
-msgstr "The invoice date cannot be later than the date of registration!"
+msgstr "Data fattura successiva a data registrazione"
 
 

@@ -64,31 +64,6 @@ CODE_NONE_IT = '0000000'
 CODE_NONE_EU = 'XXXXXXX'
 PAYTYPE_BNK_CUSTOMER = ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21')
 PAYTYPE_BNK_COMPANY = ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')
-# XML_ESCAPE = {
-#     u'\'': u' ',
-#     u'\n': u' ',
-#     u'\r': u' ',
-#     u'\t': u' ',
-#     u'€': u'EUR',
-#     u'©': u'(C)',
-#     u'®': u'(R)',
-#     # u'à': u'&agrave;',
-#     # u'á': u'&aacute;',
-#     # u'è': u'&egrave;',
-#     # u'é': u'&eacute;',
-#     # u'ì': u'&igrave;',
-#     # u'í': u'&iacute;',
-#     # u'ò': u'&ograve;',
-#     # u'ó': u'&oacute;',
-#     # u'ù': u'&ugrave;',
-#     # u'ú': u'&uacute;',
-#     # u'°': u'&deg;',
-#     u'«': u'&laquo;',
-#     u'»': u'&raquo;',
-#     u'Ø': u'&Oslash;',
-#     u'ø': u'&oslash;',
-#     u'ß': u'&szlig;',
-# }
 IBAN_PATTERN = re.compile('[A-Z]{2}[0-9]{2}[A-Z][0-9A-Z]+')
 INHERITED_FLDS = ['codice_destinatario', 'name']
 
