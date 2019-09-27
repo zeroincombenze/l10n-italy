@@ -55,6 +55,14 @@
                             <label for="fatturapa_rea_liquidation"/>
                             <field name="fatturapa_rea_liquidation" class="oe_inline"/>
                         </div>
+                        <div>
+                            <label for="einvoice_xeu_vat_none"/>
+                            <field name="einvoice_xeu_vat_none" class="oe_inline"/>
+                        </div>
+                        <div>
+                            <label for="einvoice_xeu_fc_none"/>
+                            <field name="einvoice_xeu_fc_none" class="oe_inline"/>
+                        </div>
                     </div>
                 </group>
             </xpath>

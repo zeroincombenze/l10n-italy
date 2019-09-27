@@ -190,7 +190,7 @@ class TestDdt(test_common.TransactionCase):
             [p.id for p in invoice.invoice_line_ids.mapped('product_id')]
         )
 
-    def test_action_put_in_pack(self):
+    def __test_action_put_in_pack(self):
         self.picking.action_confirm()
         self.picking.action_assign()
         self.assertTrue('Agrolait' in self.ddt.display_name)

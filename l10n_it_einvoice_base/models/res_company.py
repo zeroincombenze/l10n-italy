@@ -53,6 +53,20 @@ class ResCompany(models.Model):
         'italy.ade.sender', 'E-Invoice Sender Channel',
         help="Sender Channel used to send e-Invoices",
         )
+    einvoice_xeu_vat_none = fields.Char(
+        'No EU customer TIN',
+        help='No EU customer vat number in XML file.\n'
+             'Usually is OO99999999999 but may depends by sender.\n'
+             '%(iso) means iso code of customer.',
+        default='OO99999999999'
+        )
+    einvoice_xeu_fc_none = fields.Char(
+        'No EU customer fc',
+        help='No EU customer fiscal code in XML file.\n'
+             'Usually is 00000000000 but may depends by sender.\n'
+             '%(iso) means iso code of customer.',
+        default='0000000000'
+        )
 
     @api.multi
     @api.constrains(
@@ -179,6 +193,22 @@ class AccountConfigSettings(models.TransientModel):
         related='company_id.einvoice_sender_id',
         string='E-Invoice Sender Channel',
         help="Sender Channel used to send e-Invoices",
+        )
+    einvoice_xeu_vat_none = fields.Char(
+        related='company_id.einvoice_xeu_vat_none',
+        string='No EU customer TIN',
+        help='No EU customer vat number in XML file.\n'
+             'Usually is OO99999999999 but may depends by sender.\n'
+             '%(iso) means iso code of customer.',
+        default='OO99999999999'
+        )
+    einvoice_xeu_fc_none = fields.Char(
+        related='company_id.einvoice_xeu_fc_none',
+        string='No EU customer fc',
+        help='No EU customer fiscal code in XML file.\n'
+             'Usually is 00000000000 but may depends by sender.\n'
+             '%(iso) means iso code of customer.',
+        default='0000000000'
         )
 
     @api.onchange('company_id')

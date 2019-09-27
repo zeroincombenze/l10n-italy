@@ -416,7 +416,8 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CedentePrestatore,
             company)
 
-    def _setDatiAnagraficiCessionario(self, partner, parent, fatturapa):
+    def _setDatiAnagraficiCessionario(self,
+                                      company, partner, parent, fatturapa):
         mode = partner.type_inv_addr
         mode = mode if mode not in ('SO','FR') else 'parent'
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -428,7 +429,19 @@ class WizardExportFatturapa(models.TransientModel):
         fiscalcode = partner.wep_fiscalcode(
             self._get_partner_field(
                 partner, parent, 'fiscalcode', mode=mode))
+        codice_destinatario = self._get_partner_field(
+            partner, parent, 'codice_destinatario', mode=mode)
         if vat and vat[0:3] not in ('IT9', 'IT8') and not is_pa:
+            country_code, vat_number = partner.split_vat_n_country(vat)
+            if country_code and vat_number:
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                    DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                        IdPaese=country_code,
+                        IdCodice=vat_number)
+        elif (codice_destinatario == CODE_NONE_EU and
+              company.einvoice_xeu_vat_none):
+            vat = company.einvoice_xeu_vat_none.replace(
+                '%(iso)', 'partner.country_id.code')
             country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -444,7 +457,12 @@ class WizardExportFatturapa(models.TransientModel):
                       (vat.startswith('IT') and is_pa)):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = vat[2:]
-    
+        elif (codice_destinatario == CODE_NONE_EU and
+              company.einvoice_xeu_cf_none):
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                DatiAnagrafici.CodiceFiscale = company.einvoice_xeu_cf_none.\
+                replace('%(iso)', 'partner.country_id.code')
+
         company_type = self._get_partner_field(
             partner, parent, 'company_type', mode=mode)
         if company_type == 'company':
@@ -674,10 +692,10 @@ class WizardExportFatturapa(models.TransientModel):
                 company.fatturapa_tax_representative, fatturapa)
         return True
 
-    def setCessionarioCommittente(self, partner, parent, fatturapa):
+    def setCessionarioCommittente(self, company, partner, parent, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
             CessionarioCommittenteType())
-        self._setDatiAnagraficiCessionario(partner, parent, fatturapa)
+        self._setDatiAnagraficiCessionario(company, partner, parent, fatturapa)
         self._setSedeCessionario(partner, parent, fatturapa)
         mode = partner.type_inv_addr
         if mode == 'SO':
@@ -1002,7 +1020,7 @@ class WizardExportFatturapa(models.TransientModel):
         self.setDatiTrasmissione(company, partner, parent, fatturapa)
         self.setCedentePrestatore(company, fatturapa)
         self.setRappresentanteFiscale(company, fatturapa)
-        self.setCessionarioCommittente(partner, parent, fatturapa)
+        self.setCessionarioCommittente(company,partner, parent, fatturapa)
         self.setTerzoIntermediarioOSoggettoEmittente(company, fatturapa)
 
     def setFatturaElettronicaBody(self, inv, FatturaElettronicaBody):
