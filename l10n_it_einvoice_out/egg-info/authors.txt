@@ -1,4 +1,4 @@
-* Davide Corio
+* Davide Corio <info@davidecorio.com>
 * Agile Business Group sagl <https://www.agilebg.com/>
 * Innoviu srl <http://www.innoviu.com>
 * Odoo Italia Network

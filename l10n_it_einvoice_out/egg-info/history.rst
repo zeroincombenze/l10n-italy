@@ -1,7 +1,7 @@
 10.0.1.0.10 (2019-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Set xml data for Foreign customers w/o vat / Compilato il campo partita IVA (OO99999999999) per clienti esteri senza P.IVA
+* [FIX] Set xml data for Foreign customers w/o vat / Compilato il campo partita IVA per clienti esteri senza P.IVA
 
 
 10.0.1.0.9 (2019-07-30)

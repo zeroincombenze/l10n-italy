@@ -60,7 +60,7 @@ e il codice fiscale.
     Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
 </code>
 </p><p align="justify">
-Casistica in cui un cliente con partita IVA non ha fornito
+Casistica in cui un cliente con partita IVA che non abbia fornito
 ne il proprio Codice Destinatario ne la propria PEC. Si riconduce al caso
 precedente, inserendo il valore "0000000" nel codice destinatario ed il
 codice fiscale. Anche in questo caso &#232; obbligatorio inviare una fattura in
@@ -96,6 +96,14 @@ con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
 Anche in questo caso &#232; obbligatorio inviare una fattura in
 formato PDF al cliente.
 </p><p align="justify">
+Se il soggetto non ha ne partita IVA ne codice fiscale il campo viene compilato
+con il valore di configurazione "No EU customer TIN" del men&#249;
+<code>Contabilit&#224; &gt; Configurazione &gt; Configurazione</code>
+Il valore predefinito &#232; "%(iso)s99999999999" che inserisce la partita IVA di 11 cifre 9
+precedute dal codice ISO del cliente.
+Il valore potrebbe cambiare in quanto il terzo incaricato potrebbe effettuare
+controlli di validazione prima dell'invio all'Agenzia delle Entrate.
+</p><p align="justify">
 
 <code>
 </code>
@@ -117,7 +125,7 @@ Il modulo &#232; destinato a tutte le aziende che dal 2019 dovranno emettere fat
     Normativa e prassi:
 </code>
 </p><p align="justify">
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la <a href="https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm">normativa fattura elettronica</a>
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica &lt;https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm&gt;`__
 </p><p align="justify">
 Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
 </p><p align="justify">
@@ -126,6 +134,27 @@ Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
 <li>Le autofatture in reverse charge devono avere il codice TD01</li>
 </ul>
 </p></p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
+        <div class="oe_span12">
+<h1>Usage / Uso</h1>
+<p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Configurazione &gt; Configurazione
+</p><p align="justify">
+<ul>
+<li>Posizione fiscale: impostare la posizione fiscale da inserire in fattura elettronica. Solitamente "Regime Ordinario"</li>
+<li>Sequenza: numeratore dei file XML</li>
+<li>REA Office: provincia della CCIAA dell'azienda</li>
+<li>REA number: numero di iscrizione dell'azienda alla CCIAA (senza sigla provincia)</li>
+<li>REA capital: capitale sociale, espresso in &#8364;</li>
+<li>REA copartner: impostare se socio unico e pi&#249; soci</li>
+<li>REA liquidation: impostare attivo a meno che l'azienda sia in cessazione attivit&#224;</li>
+<li>No EU customer TIN: valore da inserire come P.IVA nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA</li>
+<li>No EU customer fc: valore da inserire come CF nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA</li>
+</ul>
+</p>
         </div>
     </div>
 </section>

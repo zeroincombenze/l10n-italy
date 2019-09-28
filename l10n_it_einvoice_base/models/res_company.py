@@ -58,14 +58,14 @@ class ResCompany(models.Model):
         help='No EU customer vat number in XML file.\n'
              'Usually is OO99999999999 but may depends by sender.\n'
              '%(iso) means iso code of customer.',
-        default='OO99999999999'
+        default='%(iso)s99999999999'
         )
     einvoice_xeu_fc_none = fields.Char(
         'No EU customer fc',
         help='No EU customer fiscal code in XML file.\n'
              'Usually is 00000000000 but may depends by sender.\n'
              '%(iso) means iso code of customer.',
-        default='0000000000'
+        default=''
         )
 
     @api.multi

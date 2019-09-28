@@ -37,7 +37,7 @@ e il codice fiscale.
 
     Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
 
-Casistica in cui un cliente con partita IVA non ha fornito
+Casistica in cui un cliente con partita IVA che non abbia fornito
 ne il proprio Codice Destinatario ne la propria PEC. Si riconduce al caso
 precedente, inserendo il valore "0000000" nel codice destinatario ed il
 codice fiscale. Anche in questo caso è obbligatorio inviare una fattura in
@@ -69,6 +69,14 @@ Inserire il valore XXXXXXX nel codice destinatario. Il file XML viene generato
 con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
 Anche in questo caso è obbligatorio inviare una fattura in
 formato PDF al cliente.
+
+Se il soggetto non ha ne partita IVA ne codice fiscale il campo viene compilato
+con il valore di configurazione "No EU customer TIN" del menù
+`Contabilità > Configurazione > Configurazione`
+Il valore predefinito è "%(iso)s99999999999" che inserisce la partita IVA di 11 cifre 9
+precedute dal codice ISO del cliente.
+Il valore potrebbe cambiare in quanto il terzo incaricato potrebbe effettuare
+controlli di validazione prima dell'invio all'Agenzia delle Entrate.
 
 ::
 

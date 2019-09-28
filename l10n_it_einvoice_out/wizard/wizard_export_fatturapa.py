@@ -431,6 +431,10 @@ class WizardExportFatturapa(models.TransientModel):
                 partner, parent, 'fiscalcode', mode=mode))
         codice_destinatario = self._get_partner_field(
             partner, parent, 'codice_destinatario', mode=mode)
+        PART_DATA = {
+            'iso': partner.country_id.code,
+            '9x11': '99999999999',
+        }
         if vat and vat[0:3] not in ('IT9', 'IT8') and not is_pa:
             country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
@@ -440,8 +444,7 @@ class WizardExportFatturapa(models.TransientModel):
                         IdCodice=vat_number)
         elif (codice_destinatario == CODE_NONE_EU and
               company.einvoice_xeu_vat_none):
-            vat = company.einvoice_xeu_vat_none.replace(
-                '%(iso)', 'partner.country_id.code')
+            vat = company.einvoice_xeu_vat_none % PART_DATA
             country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -458,10 +461,10 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = vat[2:]
         elif (codice_destinatario == CODE_NONE_EU and
-              company.einvoice_xeu_cf_none):
+              company.einvoice_xeu_fc_none):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.CodiceFiscale = company.einvoice_xeu_cf_none.\
-                replace('%(iso)', 'partner.country_id.code')
+                DatiAnagrafici.CodiceFiscale = company.\
+                einvoice_xeu_fc_none % PART_DATA
 
         company_type = self._get_partner_field(
             partner, parent, 'company_type', mode=mode)

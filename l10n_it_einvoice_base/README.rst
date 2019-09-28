@@ -1,6 +1,6 @@
 
 ======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.8
+|icon| EInvoice + FatturaPA 10.0.2.1.9
 ======================================
 
 
@@ -64,7 +64,7 @@ e il codice fiscale.
 
     Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
 
-Casistica in cui un cliente con partita IVA non ha fornito
+Casistica in cui un cliente con partita IVA che non abbia fornito
 ne il proprio Codice Destinatario ne la propria PEC. Si riconduce al caso
 precedente, inserendo il valore "0000000" nel codice destinatario ed il
 codice fiscale. Anche in questo caso è obbligatorio inviare una fattura in
@@ -96,6 +96,14 @@ Inserire il valore XXXXXXX nel codice destinatario. Il file XML viene generato
 con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
 Anche in questo caso è obbligatorio inviare una fattura in
 formato PDF al cliente.
+
+Se il soggetto non ha ne partita IVA ne codice fiscale il campo viene compilato
+con il valore di configurazione "No EU customer TIN" del menù
+`Contabilità > Configurazione > Configurazione`
+Il valore predefinito è "%(iso)s99999999999" che inserisce la partita IVA di 11 cifre 9
+precedute dal codice ISO del cliente.
+Il valore potrebbe cambiare in base al terzo incaricato, che potrebbeeffettuare
+controlli di validazione prima dell'invio all'Agenzia delle Entrate.
 
 ::
 
@@ -136,6 +144,27 @@ Certifications / Certificazioni
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | |FatturaPA|          | `FatturaPA <https://www.fatturapa.gov.it/export/fatturazione/it/index.htm>`__                        | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+
+|
+
+Usage / Utilizzo
+----------------
+
+Usage / Uso
+===========
+
+|menu| Contabilità > Configurazione > Configurazione
+
+* Posizione fiscale: impostare la posizione fiscale da inserire in fattura elettronica. Solitamente "Regime Ordinario"
+* Sequenza: numeratore dei file XML
+* REA Office: provincia della CCIAA dell'azienda
+* REA number: numero di iscrizione dell'azienda alla CCIAA (senza sigla provincia)
+* REA capital: capitale sociale, espresso in €
+* REA copartner: impostare se socio unico e più soci
+* REA liquidation: impostare attivo a meno che l'azienda sia in cessazione attività
+* No EU customer TIN: valore da inserire come P.IVA nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA
+* No EU customer fc: valore da inserire come CF nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA
+
 
 |
 
@@ -285,6 +314,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.9 (2019-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No EU customer TIN / Impostazione P.IVA in file XML per clienti no UE senza P.IVA
+
+
 10.0.2.1.8 (2019-09-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -357,7 +392,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-26
+Last Update / Ultimo aggiornamento: 2019-09-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

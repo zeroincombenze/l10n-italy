@@ -1,3 +1,9 @@
+10.0.2.1.9 (2019-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No EU customer TIN / Impostazione P.IVA in file XML per clienti no UE senza P.IVA
+
+
 10.0.2.1.8 (2019-09-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
