@@ -35,6 +35,8 @@ class FatturaPAAttachment(models.Model):
     date_invoice0 = fields.Date(
         'Date Invoice', store=True,
         compute='_compute_xml_data')
+    invoices_number = fields.Char(
+        "Invoice Number", compute="_compute_xml_data", store=True)
 
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
@@ -52,8 +54,10 @@ class FatturaPAAttachment(models.Model):
             if att.out_invoice_ids:
                 att.date_invoice0 = att.out_invoice_ids[0].date_invoice
             att.invoices_total = 0
+            att.invoices_number = ''
             for invoice in att.out_invoice_ids:
                 att.invoices_total += invoice.amount_total
+                att.invoices_number += (' %s' % invoice.number)
 
     @api.multi
     @api.constrains('datas_fname')

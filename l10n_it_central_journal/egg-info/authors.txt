@@ -6,6 +6,7 @@
 * ISA s.r.l. <http://www.isa.it>
 .. $elif branch in '10.0'
 * Dinamiche Aziendali <http://www.dinamicheaziendali.it>
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 .. $elif branch in '11.0'
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 .. $fi

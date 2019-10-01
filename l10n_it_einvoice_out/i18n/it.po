@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-13 09:46+0000\n"
-"PO-Revision-Date: 2019-09-13 09:46+0000\n"
+"POT-Creation-Date: 2019-10-01 16:39+0000\n"
+"PO-Revision-Date: 2019-10-01 16:39+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 2.3.4\n"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_out.wizard_export_fatturapa_form_view
@@ -53,8 +53,8 @@ msgid "Checksum/SHA1"
 msgstr "Checksum/SHA1"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:375
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:375
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:350
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:350
 #, python-format
 msgid "City is not set for %s."
 msgstr "Città non impostata per %s."
@@ -65,45 +65,45 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:119
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:119
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:94
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:94
 #, python-format
 msgid "Company %s TIN not set."
 msgstr "P.IVA azienda %s non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:219
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:219
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:194
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:194
 msgid "Company Country not set."
 msgstr "Nazione dell'azienda non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:289
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:289
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:264
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:264
 msgid "Company Email not set."
 msgstr "Email dell'azienda non impostata"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:307
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:307
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:282
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:282
 msgid "Company TIN not set."
 msgstr "Partita IVA aziendale non impostata"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:285
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:285
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:260
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:260
 msgid "Company Telephone number not set."
 msgstr "Numero di telefono dell'azienda non impostato."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:228
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:228
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:203
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:203
 msgid "Company does not have fiscal code or VAT number."
 msgstr "Codice fiscale o partita IVA dell'azienda non impostati."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:379
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:379
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:354
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:354
 #, python-format
 msgid "Country is not set for %s."
 msgstr "Nazione non impostata per %s."
@@ -129,52 +129,52 @@ msgid "Customer"
 msgstr "Cliente"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:655
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:655
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:651
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:651
 msgid "Customer Fiscal Representative name is not set."
 msgstr "Customer Fiscal Representative name is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:628
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:628
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:624
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:624
 msgid "Customer Stabile Organization ZIP is not set."
 msgstr "Customer Stabile Organization ZIP is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:631
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:631
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:627
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:627
 msgid "Customer Stabile Organization city is not set."
 msgstr "Customer Stabile Organization city is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:613
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:669
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:613
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:669
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:609
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:665
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:609
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:665
 msgid "Customer Stabile Organization country is not set."
 msgstr "Customer Stabile Organization country is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:663
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:663
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:659
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:659
 msgid "Customer Stabile Organization must have name and surname."
 msgstr "Customer Stabile Organization must have name and surname."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:634
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:634
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:630
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:630
 msgid "Customer Stabile Organization province is not set."
 msgstr "Customer Stabile Organization province is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:625
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:625
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:621
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:621
 msgid "Customer Stabile Organization street is not set."
 msgstr "Customer Stabile Organization street is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:678
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:678
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:674
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:674
 msgid ""
 "Customer Stabile Organization vat country is different from from address "
 "country."
@@ -183,38 +183,38 @@ msgstr ""
 "country."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:674
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:674
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:670
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:670
 msgid "Customer Stabile Organization vat is not set."
 msgstr "Customer Stabile Organization vat is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:581
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:581
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:577
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:577
 msgid "Customer ZIP is not set."
 msgstr "CAP del cliente non impostato."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:584
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:584
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:580
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:580
 msgid "Customer city is not set."
 msgstr "Città del cliente non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:562
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:562
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:558
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:558
 msgid "Customer country is not set."
 msgstr "Nazione del cliente non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:587
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:587
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:583
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:583
 msgid "Customer province is not set."
 msgstr "Customer province is not set."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:573
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:573
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:569
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:569
 msgid "Customer street is not set."
 msgstr "Indirizzo del cliente non impostato."
 
@@ -262,8 +262,8 @@ msgid "E-invoice Export Files"
 msgstr "File e-fattura esportati"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/models/attachment.py:96
-#: code:addons/l10n_it_einvoice_out/models/attachment.py:96
+#: code:addons/l10n_it_einvoice_out/models/attachment.py:100
+#: code:addons/l10n_it_einvoice_out/models/attachment.py:100
 msgid "E-invoice attachment changed"
 msgstr "Allegato e-fattura modificato"
 
@@ -273,14 +273,14 @@ msgid "E-invoice attachments"
 msgstr "Allegati e-fattura"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:312
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:312
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:287
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:287
 msgid "E-invoice fiscal position not set."
 msgstr "Posizione fiscale non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:150
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:150
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:125
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:125
 msgid "E-invoice sequence not configured."
 msgstr "Sequenza e-fattura non configurata."
 
@@ -329,8 +329,8 @@ msgid "Fattura emessa (e inviata) ad Agenzia delle Entrate"
 msgstr "Fattura emessa (e inviata) ad Agenzia delle Entrate"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:156
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:156
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:131
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:131
 #, python-format
 msgid ""
 "FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio:\n"
@@ -340,8 +340,8 @@ msgstr ""
 "%s"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/models/attachment.py:65
-#: code:addons/l10n_it_einvoice_out/models/attachment.py:65
+#: code:addons/l10n_it_einvoice_out/models/attachment.py:69
+#: code:addons/l10n_it_einvoice_out/models/attachment.py:69
 #, python-format
 msgid "File %s already present."
 msgstr "File %s già presente."
@@ -406,21 +406,26 @@ msgstr ""
 "il file."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1100
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1100
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1096
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1096
 #, python-format
 msgid "Invoice %s has e-invoice export file yet."
 msgstr "File e-fattura già presente per la fattura %s."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:739
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:739
+#: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_invoices_number
+msgid "Invoice Number"
+msgstr "Numero Fattura"
+
+#. module: l10n_it_einvoice_out
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:735
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:735
 msgid "Invoice does not have a number."
 msgstr "La fattura non ha un numero ufficiale."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:838
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:838
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:834
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:834
 #, python-format
 msgid "Invoice line %s does not have tax"
 msgstr "Riga fattura %s senza IVA"
@@ -436,14 +441,14 @@ msgid "Invoices Total"
 msgstr "Invoices Total"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1061
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1061
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1057
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1057
 msgid "Invoices must belong to the same company"
 msgstr "Le fatture devono appartenere alla stessa azienda"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1056
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1056
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1052
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1052
 msgid "Invoices must belong to the same partner."
 msgstr "Le fatture devono appartenere allo stesso soggetto."
 
@@ -484,22 +489,22 @@ msgid "Mime Type"
 msgstr "Tipo MIME"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:913
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:913
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:909
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:909
 #, python-format
 msgid "No 'law reference' field for tax %s."
 msgstr "Campo \"riferimento legislativo\" non valorizzato per l'imposta %s."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:909
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:909
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:905
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:905
 #, python-format
 msgid "No 'nature' field for tax %s"
 msgstr "Campo \"natura\" non valorizzato per l'imposta %s"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:872
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:872
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:868
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:868
 #, python-format
 msgid "No 'nature' field for tax %s."
 msgstr "Campo \"natura\" non valorizzato per l'imposta %s."
@@ -510,29 +515,29 @@ msgid "Out Invoices"
 msgstr "Fatture emesse"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:125
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:125
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:100
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:100
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr "Partita IVA del soggetto %s non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:253
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:253
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:228
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:228
 #, python-format
 msgid "Partner %s is PA but has not IPA code"
 msgstr "Soggetto %s è PA ma non ha un codice ufficio assegnato"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:260
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:260
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:235
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:235
 #, python-format
 msgid "Partner %s is not PA but does not have Addressee Code."
 msgstr "Il soggetto %s, che non è una PA, non possiede un codice destinatario."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:268
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:268
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:243
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:243
 #, python-format
 msgid ""
 "Partner %s is not PA but does not have vat number neither fiscal code "
@@ -542,21 +547,21 @@ msgstr ""
 "Code."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:483
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:483
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:479
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:479
 #, python-format
 msgid "Partner %s must have name and surname."
 msgstr "Il soggetto %s deve avere nome e cognome."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:533
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:533
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:529
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:529
 msgid "Partner VAT number and fiscal code are not set."
 msgstr "Partita IVA e codice fiscale del soggetto non impostati."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:954
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:954
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:950
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:950
 #, python-format
 msgid "Payment term %s does not have a linked e-invoice payment method."
 msgstr ""
@@ -564,8 +569,8 @@ msgstr ""
 "collegata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:950
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:950
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:946
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:946
 #, python-format
 msgid "Payment term %s does not have a linked e-invoice payment term."
 msgstr "Il termine di pagamento %s non ha un relativo termine e-fattura collegato."
@@ -576,8 +581,8 @@ msgid "Preview link"
 msgstr "Collegamento anteprima"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:348
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:348
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:323
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:323
 msgid "Province not set."
 msgstr "Provincia non impostata"
 
@@ -633,8 +638,8 @@ msgid "Stored Filename"
 msgstr "Nome file memorizzato"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:367
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:367
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:342
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:342
 #, python-format
 msgid "Street is not set for %s."
 msgstr "Indirizzo non impostato per %s."
@@ -660,8 +665,8 @@ msgid "This report will be automatically included in the created XML"
 msgstr "Questo documento verrà incluso automaticamente nell'XML generato"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:841
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:841
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:837
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:837
 #, python-format
 msgid "Too many taxes for invoice line %s."
 msgstr "Troppe imposte per la riga fattura %s."
@@ -687,15 +692,15 @@ msgid "Url"
 msgstr "Url"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/models/attachment.py:97
-#: code:addons/l10n_it_einvoice_out/models/attachment.py:97
+#: code:addons/l10n_it_einvoice_out/models/attachment.py:101
+#: code:addons/l10n_it_einvoice_out/models/attachment.py:101
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr "L'utente %s ha caricato un nuovo file e-fattura"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:505
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:505
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:501
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:501
 #, python-format
 msgid "VAT number and fiscal code are not set for %s."
 msgstr "P:IVA e codice fiscale non impostati per %s."
@@ -710,32 +715,32 @@ msgstr ""
 " collegamento Internet nel file."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:345
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:345
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:320
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:320
 msgid "Your company City is not set."
 msgstr "Città azienda non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:351
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:351
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:326
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:326
 msgid "Your company Country is not set."
 msgstr "Nazione azienda non impostata."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:339
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:339
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:314
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:314
 msgid "Your company Street is not set."
 msgstr "Indirizzo azienda non impostato."
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:342
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:342
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:317
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:317
 msgid "Your company ZIP is not set."
 msgstr "CAP azienda non impostato"
 
 #. module: l10n_it_einvoice_out
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:371
-#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:371
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:346
+#: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:346
 #, python-format
 msgid "ZIP is not set for %s."
 msgstr "CAP non impostato per %s."

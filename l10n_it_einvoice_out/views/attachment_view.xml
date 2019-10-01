@@ -8,6 +8,7 @@
             <tree string="Export Electronic Invoice" create="false">
                 <field name="name"/>
                 <field name="invoice_partner_id"/>
+                <field name="invoices_number"/>
                 <field name="date_invoice0"/>
                 <field name="invoices_total"/>
                 <field name="out_invoice_ids"/>

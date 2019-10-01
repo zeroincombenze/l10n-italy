@@ -34,3 +34,12 @@ class IrSequence(models.Model):
     def unnext_by_id(self, number):
         self.check_access_rights('read')
         self._unnext(number)
+
+
+class IrSequenceDateRange(models.Model):
+    _inherit = 'ir.sequence.date_range'
+
+    def _unnext(self, number):
+        number_last_actual = self.number_next_actual - 1
+        if number == self.sequence_id.get_next_char(number_last_actual):
+            self.number_next = number_last_actual

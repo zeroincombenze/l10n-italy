@@ -11,6 +11,7 @@
 .. $elif branch in '10.0'
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Lara Baggio <lbaggio@linkgroup.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 .. $elif branch in '11.0'
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 .. $fi
