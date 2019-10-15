@@ -1,3 +1,9 @@
+10.0.1.5.9 (2019-10-15)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Default delivery data by xmlrpc tough / Imposta dati predefiniti di traporto anche da xmlrpc
+
+
 10.0.1.5.8 (2019-09-23)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

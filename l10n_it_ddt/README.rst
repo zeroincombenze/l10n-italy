@@ -1,6 +1,6 @@
 
 =====================
-|icon| DDT 10.0.1.5.8
+|icon| DDT 10.0.1.5.9
 =====================
 
 
@@ -207,6 +207,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.5.9 (2019-10-15)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Default delivery data by xmlrpc tough / Imposta dati predefiniti di traporto anche da xmlrpc
+
+
 10.0.1.5.8 (2019-09-23)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -316,7 +322,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-24
+Last Update / Ultimo aggiornamento: 2019-10-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

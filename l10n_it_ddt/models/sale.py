@@ -76,6 +76,8 @@ class SaleOrder(models.Model):
         help="If flagged services from this SO will not be automatically "
              "invoiced from DDT. This parameter can be set on partners and "
              "automatically applied to Sale Orders.")
+    delivery_data_set = fields.Boolean(
+        string="Delivery Data is Set")
 
     @api.multi
     @api.onchange('partner_id')
@@ -114,6 +116,7 @@ class SaleOrder(models.Model):
                 self.note = self.ddt_type_id.note
             if self.parcels == 0:
                 self.parcels = 1
+            self.delivery_data_set
 
     @api.multi
     @api.onchange('carrier_id')
@@ -127,6 +130,7 @@ class SaleOrder(models.Model):
                 setattr(self, field, self.carrier_id[field])
         if self.carrier_id.note and not self.note:
             self.note = self.carrier_id.note
+        self.delivery_data_set
 
     @api.multi
     def _prepare_invoice(self):
@@ -211,3 +215,63 @@ class SaleOrder(models.Model):
             result['views'] = [(res and res[1] or False, 'form')]
             result['res_id'] = ddt_ids and ddt_ids[0] or False
         return result
+
+
+    def get_delivery_values(self, vals):
+        '''If write is called from exteranl partner (i.e. e-commerce)
+        delivery data will be empty even if ddt_type and/or carrier_id are set
+        In ordinary edit by end-user, delivery_data_set is True'''
+        if not vals.get('delivery_data_set'):
+            if not vals.get('parcels'):
+                vals['parcels'] = 1
+            if vals.get('partner_id'):
+                partner = self.env['res.partner'].browse(
+                    vals['partner_id'])
+                for field in ('carriage_condition_id',
+                              'goods_description_id',
+                              'transportation_reason_id',
+                              'transportation_method_id',
+                              'ddt_invoicing_group',
+                              'ddt_invoice_exclude'):
+                    if partner[field] and not vals.get(field):
+                        if field.endswith('_id'):
+                            vals[field] = partner[field].id
+                        else:
+                            vals[field] = partner[field]
+                if not vals.get('ddt_type_id'):
+                    vals['ddt_type_id'] = self.env[
+                        'sale.order']._default_ddt_type().id
+            if vals.get('ddt_type_id'):
+                ddt_type = self.env['stock.ddt.type'].browse(
+                    vals['ddt_type_id'])
+                for field in ('carriage_condition_id',
+                              'goods_description_id',
+                              'transportation_reason_id',
+                              'transportation_method_id'):
+                    default_field = 'default_%s' % field
+                    if ddt_type[default_field] and not vals.get(field):
+                        vals[field] = ddt_type[default_field].id
+                if self.ddt_type_id.note and not self.note:
+                    self.note = self.ddt_type_id.note
+            if vals.get('carrier_id'):
+                carrier = self.env['delivery.carrier'].browse(
+                    vals['carrier_id'])
+                for field in ('carriage_condition_id',
+                              'goods_description_id',
+                              'transportation_reason_id',
+                              'transportation_method_id',
+                              'ddt_carrier_id'):
+                    if carrier[field] and not vals.get(field):
+                        vals[field] = carrier[field].id
+        vals['delivery_data_set'] = True
+        return vals
+
+    @api.multi
+    def write(self, vals):
+        vals = self.get_delivery_values(vals)
+        return super(SaleOrder, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        vals = self.get_delivery_values(vals)
+        return super(SaleOrder, self).create(vals)
