@@ -1,12 +1,13 @@
 
-==========================
-|icon| Fiscal Year Closing
-==========================
+====================================
+|icon| Fiscal Year Closing 8.0.1.0.0
+====================================
 
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/account_fiscal_year_closing/static/description/icon.png
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+
 
 .. contents::
 
@@ -14,57 +15,76 @@
 Overview / Panoramica
 =====================
 
-|en| 
-Generalization of l10n_es_fiscal_year_closing
-See http://apps.openerp.com/addon/4506
+|en| Fiscal Year Closing Wizard
+-------------------------------
 
-Fiscal Year Closing Wizard
-
+Generalization of l10n_es_fiscal_year_closing (http://apps.openerp.com/addon/4506)
 
 Replaces the default OpenERP end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:
-  - Check for unbalanced moves, moves with invalid dates
-    or period or draft moves on the fiscal year to be closed.
-  - Create the Loss and Profit entry.
-  - Create the Net Loss and Profit entry.
-  - Create the Closing entry.
-  - Create the Opening entry.
+
+* Check for unbalanced moves, moves with invalid dates or period or draft moves on the fiscal year to be closed.
+* Create the Loss and Profit entry.
+* Create the Net Loss and Profit entry.
+* Create the Closing entry.
+* Create the Opening entry.
 
 It is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
-    
+
 
 |
 
-|it| Odoo è una suite di prodotti web open-source.
+|it| Chiusure e riaperture contabili
+------------------------------------
 
-Le principali applicazioni di Odoo includono un Open Source CRM e Enterprise Resource Planning.
-I principali moduli ERP sono: gestione Magazzino, gestione Progetti, Contabilità e Fatturazione, Punto vendite, Dipendenti, Produzione, gestione Acquisti, gestione vendite e molto altro ancora.
+Completa l'ordinaria apertura di Odoo in conformità alle leggi fiscali italiane.
+
+Permette:
+
+* Verifica sbilanciamento e date delle operazioni contabili
+* Registra l'operazione di profitti e perdite
+* Registra l'operazione di perdita o utile di esercizio
+* Registra le operazioni di chiusura contabile
+* Registra le operazioni di riapertura contabile
 
 
-Distributions / Distribuzioni Odoo 8.0:
-=======================================
+|
+
+Usage / Utilizzo
+----------------
+
+|it| Operazioni di chiusura e riapertura
+
+* Registrazione nuovo esercizio
+* Controlli
+* Stampe fiscali di fine anno
+* Apertura provvisoria esercizio (eventuale)
+* Cancellazione apertura provvisoria (eventuale)
+* Chiusura esercizio
+* Apertura esercizio
+
+`Registrazione nuovo esercizio`
+
+| menu | contabilità > Configurazione > periodi > anni fiscali
 
 
-+-------------+----------------------------------+------------------------------------+--------------------------------------------------------------+-------------------+
-| name / nome | description / descrizione        | Italy / Localizzazione Italiana    | Maintainers                                                  | License / Licenza |
-+-------------+----------------------------------+------------------------------------+--------------------------------------------------------------+-------------------+
-| odoo        | Native Odoo / Odoo nativo        | |no_check|                     (1) | No more supported by `Odoo S.A. <https://www.odoo.com/>`__   | |license gpl|     |
-+-------------+----------------------------------+------------------------------------+--------------------------------------------------------------+-------------------+
-| oca         | Odoo by OCA                      | |warning| Norme fiscali < 2107 (2) | `Odoo Community Association <http://odoo-community.org/>`__  | |license gpl|     |
-+-------------+----------------------------------+------------------------------------+--------------------------------------------------------------+-------------------+
-| oia         | Odoo Italia                      | |check| Aggiornato al 2018     (3) | `Associazione Odoo Italia <https://www.odoo-italia.org/>`__  | |license gpl|     |
-+-------------+----------------------------------+------------------------------------+--------------------------------------------------------------+-------------------+
-| zero        | Zeroincombenze(R)                | |check| Aggiornato al 2018     (3) | `SHS-AV s.r.l. <http://www.shs-av.com/>`__                   | |license gpl|     |
-+-------------+----------------------------------+------------------------------------+--------------------------------------------------------------+-------------------+
+`Controlli`
 
-Notes / Note:
--------------
+Prima di procedere con le operazioni di chiusura e riapertura procedere con i seguenti controlli:
 
-1. Localizzazione con supporto a pagamento tramite partner
-2. Manca software per norme fiscali 2017; OCA sta sviluppando il supporto per la Fattura Elettronica B2B
-3. Software per Fattura elettronica B2B in sviluppo
+* Determinazione registrazioni stato bozza
+* Sezionale apertura
+* Sezionale di chiusura profitti e perdite
+* Sezionale di chiusura utile o perdita
+* Sezionale di chiusura patrimoniale
 
+
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/account_fiscal_year_closing/static/description/sezionale_apertura.png
+    :alt: sezionale apertura
+
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/account_fiscal_year_closing/static/description/sezionale_chiusura_pp.png
+    :alt: sezionale chiusura
 
 
 |
@@ -72,11 +92,12 @@ Notes / Note:
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -86,13 +107,6 @@ Getting started / Come iniziare
 
 |Try Me|
 
-
-Prerequisites / Prerequisiti
-----------------------------
-
-
-* python2.7+
-* postgresql 9.2+
 
 |
 
@@ -121,11 +135,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 8.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 8.0 -vsy -o /opt/odoo/8.0
 
 From UI: go to:
@@ -190,8 +201,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -205,12 +216,24 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* `Pexego <http://www.pexego.es/>`__
+* `Zikzakmedia S.L. <http://zikzakmedia.com>`__
+* `ACYSOS S.L. <http://acysos.com>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Agile Business Group sagl <http://www.agilebg.com>`__
+* `Domsense srl <http://www.domsense.com>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
+* Borja López Soilán (Pexego) - borja@kami.es
+* Lorenzo Battistini - lorenzo.battistini@agilebg.com
+* Jordi Esteve <jesteve@zikzakmedia.com>
+* Pedro Tarrafeta <pedro@acysos.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 |
 
@@ -222,9 +245,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -232,7 +255,9 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-20
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-10-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -250,11 +275,8 @@ Last Update / Ultimo aggiornamento: 2019-03-20
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/8.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/8.0/dev
     :alt: Technical Documentation
@@ -264,7 +286,7 @@ Last Update / Ultimo aggiornamento: 2019-03-20
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg
     :target: https://erp8.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -274,9 +296,9 @@ Last Update / Ultimo aggiornamento: 2019-03-20
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

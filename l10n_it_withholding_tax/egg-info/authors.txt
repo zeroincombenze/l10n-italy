@@ -1,0 +1,5 @@
+* Open Force <https://www.openforce.it/>
+* Agile Business Group sagl <https://www.agilebg.com/>
+.. $if branch in '8.0'
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+.. $fi

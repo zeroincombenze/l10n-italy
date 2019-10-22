@@ -1,14 +1,15 @@
 
-================================================
-|icon| Definizioni di Base Agenzia delle Entrate
-================================================
+===========================================================
+|icon| Definizioni di Base Agenzia delle Entrate 8.0.0.1.10
+===========================================================
 
 
 **Codice con le definizioni dei file xml Agenzia delle Entrate**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_ade/static/description/icon.png
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+
 
 .. contents::
 
@@ -17,7 +18,7 @@ Overview / Panoramica
 =====================
 
 |en| Tax Authority Definitions
-=========================
+==============================
 
 This module has no specific function for End-user.
 
@@ -30,7 +31,7 @@ This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.
 |
 
 |it| Definizioni Agenzia delle Entrate
-=================================
+======================================
 
 Questo modulo non ha funzioni specifiche per l'utente finale.
 Contiene dati e definizioni come stabilito dall'Agenzia delle Entrate
@@ -103,25 +104,25 @@ Usage / Uso
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Dato Fattura Elettronica       | Nome tecnico                 | Modulo OCA                  | Modulo OIA                  | Note tecnico OCA          | Nome tecnico OIA          | Note                                     |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Schema di definione xsd        |                              | l10n_it_fatturapa           | l10n_it_ade                 |                           |                           | Il modulo di OIA serve anche alla liquid |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Natura dell'IVA                |                              | l10n_it_account_tax_kind    | l10n_it_ade                 | account.tax.kind          | italy.ade.tax.nature      | Estensione della tabella account.tax usa |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Termini di pagamento           |                              | l10n_it_fiscal_payment_term | l10n_it_fiscal_payment_term | fatturapa.payment_term    | fatturapa.payment_term    | Modelli compatibili tra OIA e OCA        |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Metodi di pagamento            |                              | l10n_it_fiscal_payment_term | l10n_it_fiscal_payment_term | fatturapa.payment_method  | fatturapa.payment_method  | Modelli compatibili tra OIA e OCA        |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Codice Destinatario            | codice_destinatario          | l10n_it_fatturapa           | l10n_it_fiscal_ipa          | res.partner               | res.partner               |                                          |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Partner è PA?                 | is_pa                        | l10n_it_fatturapa           | l10n_it_fiscal_ipa          | res.partner               | res.partner               |                                          |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Soggetto a Fattura elettronica | electronic_invoice_subjected | l10n_it_fatturapa           | l10n_it_fiscal_ipa          | res.partner               | res.partner               | Il nome del campo è diverso             |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
-| Regime Fiscale                 | fiscal_position              | l10n_it_fatturapa           | l10n_it_fatturapa           | fatturapa.fiscal_position | fatturapa.fiscal_position |                                          |
-+--------------------------------+------------------------------+-----------------------------+-----------------------------+---------------------------+---------------------------+------------------------------------------+
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Dato Fattura Elettronica       | Modulo zeroincombenze       | Modello zeroincombenze    | Nome tecnico                 | Modulo OCA                  | Modello OCA               | Note tecnico OCA             | Note                                                                                                     |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Schema di definizione xsd      | l10n_it_ade                 |                           |                              | l10n_it_fatturapa           |                           |                              | Il modulo di zeroincombenze serve anche alla liquidazione IVA e comunicazione IVA (ex Spesometro)        |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Natura dell'IVA                | l10n_it_ade                 | italy.ade.tax.nature      | nature_id                    | l10n_it_account_tax_kind    | account.tax.kind          | tax_kind_id                  | Estensione della tabella account.tax usata anche da liquidazione IVA e comunicazione IVA (ex Spesometro) |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Termini di pagamento           | l10n_it_fiscal_payment_term | fatturapa.payment_term    |                              | l10n_it_fiscal_payment_term | fatturapa.payment_term    |                              | Modelle in comune                                                                                        |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Metodi di pagamento            | l10n_it_fiscal_payment_term | fatturapa.payment_method  |                              | l10n_it_fiscal_payment_term | fatturapa.payment_method  |                              | Modello in comune                                                                                        |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Codice Destinatario            | l10n_it_fiscal_ipa          | res.partner               | codice_destinatario          | l10n_it_fatturapa           | res.partner               | codice_destinatario          |                                                                                                          |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Partner è PA?                  | l10n_it_fiscal_ipa          | res.partner               | is_pa                        | l10n_it_fatturapa           | res.partner               | is_pa                        |                                                                                                          |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Soggetto a Fattura elettronica | l10n_it_fiscal_ipa          | res.partner               | electronic_invoice_subjected | l10n_it_fatturapa           | res.partner               | electronic_invoice_subjected | Il comportamento è diverso                                                                               |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
+| Regime Fiscale                 | l10n_it_fatturapa           | fatturapa.fiscal_position | fiscal_position              | l10n_it_fatturapa           | fatturapa.fiscal_position |                              |                                                                                                          |
++--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
 
 
 |
@@ -132,13 +133,6 @@ Getting started / Come iniziare
 
 |Try Me|
 
-
-Prerequisites / Prerequisiti
-----------------------------
-
-
-* python2.7+
-* postgresql 9.2+
 
 |
 
@@ -167,11 +161,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 8.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 8.0 -vsy -o /opt/odoo/8.0
 
 From UI: go to:
@@ -233,11 +224,26 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.0.1.13 (2019-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Dim_text function / field to search for similarity 
+
+
+10.0.0.1.+ < 13 (2018)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Use both pyxb 1.2.4 both 1.2.5 (automatic detection)
+* [IMP] File xml without characters not accepted by Tax Authority
+
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -268,9 +274,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -278,7 +284,9 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-20
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-10-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -296,11 +304,8 @@ Last Update / Ultimo aggiornamento: 2019-03-20
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/8.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/8.0/dev
     :alt: Technical Documentation
@@ -310,7 +315,7 @@ Last Update / Ultimo aggiornamento: 2019-03-20
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg
     :target: https://erp8.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -320,9 +325,9 @@ Last Update / Ultimo aggiornamento: 2019-03-20
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

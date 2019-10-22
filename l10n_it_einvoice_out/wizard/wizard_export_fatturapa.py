@@ -555,7 +555,7 @@ class WizardExportFatturapa(models.TransientModel):
             TerzoIntermediarioOSoggettoEmittente.\
             DatiAnagrafici = DatiAnagraficiTerzoIntermediarioType()
         if not partner.vat and not partner.fiscalcode:
-            raise orm.except_orm(E,
+            raise UserError(
                 _('Partner VAT number and fiscal code are not set.'))
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.\
@@ -584,25 +584,25 @@ class WizardExportFatturapa(models.TransientModel):
         country_id = self._get_partner_field(
             cr, uid, partner, parent, 'country_id')
         if not country_id:
-            raise orm.except_orm(E,
+            raise UserError(
                 _('Customer country is not set.'))
         street = self._get_partner_field(cr, uid, partner, parent, 'street')
         zip = self._get_partner_field(cr, uid, partner, parent, 'zip')
         city = self._get_partner_field(cr, uid, partner, parent, 'city')
         state_id = self._get_partner_field(cr, uid, partner, parent, 'state_id')
         if not street:
-            raise orm.except_orm(E,
+            raise UserError(
                 _('Customer street is not set.'))
         codice_destinatario = self._get_partner_field(
             cr, uid, partner, parent, 'codice_destinatario')
         if codice_destinatario != 'XXXXXXX' and not zip:
-            raise orm.except_orm(E,
+            raise UserError(
                 _('Customer ZIP is not set.'))
         if not city:
-            raise orm.except_orm(E,
+            raise UserError(
                 _('Customer city is not set.'))
         if codice_destinatario != 'XXXXXXX' and not state_id:
-            raise orm.except_orm(E,
+            raise UserError(
                 _('Customer province is not set.'))
 
         if codice_destinatario != 'XXXXXXX':
@@ -1027,7 +1027,7 @@ class WizardExportFatturapa(models.TransientModel):
                     inv = invoice_model.browse(
                         cr, uid, invoice_id, context=context_partner)
                     if inv.fatturapa_attachment_out_id:
-                        raise orm.except_orm(E,
+                        raise UserError(
                             _("Invoice %s has e-invoice export file yet.") % (
                                 inv.number))
                     invoice_body = FatturaElettronicaBodyType()

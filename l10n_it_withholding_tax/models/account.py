@@ -290,7 +290,8 @@ class account_invoice_withholding_tax(models.Model):
         if self.withholding_tax_id:
             tot_invoice = 0.0
             for inv_line in self.invoice_id.invoice_line:
-                tot_invoice += inv_line.price_subtotal
+                if not inv_line.withholding_tax_exclude:
+                    tot_invoice += inv_line.price_subtotal
             tax = self.withholding_tax_id.compute_amount(
                 (tot_invoice), invoice_id=None)
             self.base = tax['base']

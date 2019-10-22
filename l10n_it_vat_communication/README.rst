@@ -1,12 +1,13 @@
 
-==================================
-|icon| Comunicazione periodica IVA
-==================================
+=============================================
+|icon| Comunicazione periodica IVA 8.0.0.1.13
+=============================================
 
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_vat_communication/static/description/icon.png
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+
 
 .. contents::
 
@@ -14,16 +15,46 @@
 Overview / Panoramica
 =====================
 
-|en| Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
+|en| Invoices VAT communication
+-------------------------------
+
+Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 
 |
 
-|it| Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
+|it| Comunicazione IVA (ex Spesometro)
+--------------------------------------
+
+Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
 ricevute e genera il file da inviare all'Agenzia delle Entrate.
 Questo obbligo è conosciuto anche come Spesometro light 2018 e sostistuisce i
-precedenti obbblighi chiamati Spesometro e Spesometro 2017.
+precedenti obblighi chiamati Spesometro e Spesometro 2017.
 
-Il softwware permette di operare in modalità 2017 per rigenerare eventuali file
+::
+
+    Destinatari:
+
+Tutti i soggetti IVA (con partita IVA)
+
+::
+
+    Normativa e prassi:
+
+* `Art. 21 D.L. n. 78/2010 <https://www.gazzettaufficiale.it/gunewsletter/dettaglio.jsp?service=1&datagu=2010-05-31&task=dettaglio&numgu=125&redaz=010G0101&tmstp=1275551085053>`__
+* `Art. 4 D.L. n. 193/2016 <https://www.gazzettaufficiale.it/eli/id/2016/10/24/16G00209/sg>`__
+* `Art. 1ter D.L. n. 148/2017 <https://www.gazzettaufficiale.it/eli/id/2017/12/05/17A08254/SG>`__
+* `Provvedimenti Agenzia delle entrate del 27 marzo 2017, numero 58793 <https://www.agenziaentrate.gov.it/wps/wcm/connect/4e22d9ab-2bbd-4e3f-9e60-a9a8cbf70232/PROVVEDIMENTO+PROT.+58793+DEL+27+MARZO+2017.pdf?MOD=AJPERES&CACHEID=4e22d9ab-2bbd-4e3f-9e60-a9a8cbf70232>`__
+* `Info Agenzia delle Entrate <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Dati+Fatture+%28c.d.+nuovo+spesometro%29/Scheda+informativa+Dati+Fatture+c.d.+nuovo+spesometro/?page=schedecomunicazioni>`__
+
+Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
+
+* Le autofatture, per fatture non ricevute dopo 4 mesi, rif. art. 6 c.8 D.Lgs 471/97, (codice TD20) sono inserite nella comunicazione.
+* Le autofatture da reverse charge nazionale (codice TD01) non sono inserite nello spesometro. Marcare il registro sezionale come registro con e-fatture.
+* Le autofatture da reverse charge estero (codice TD01) non sono inserite nello spesometro. La relativa fattura d'acquisto è inserita nell'"esterometro". Marcare il registro sezionale come registro con e-fatture
+
+|
+
+Il software permette di operare in modalità 2017 per rigenerare eventuali file
 in formato 2017. Per eseguire questa funzione, prima di avviare Odoo eseguire
 la seguente istruzione:
 
@@ -120,11 +151,12 @@ Usage / Utilizzo
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia       | OCA                   | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov Status|  | |OCA project|                  |
-+-----------------------------------------------------------------+-------------------+-----------------------+--------------------------------+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -134,13 +166,6 @@ Getting started / Come iniziare
 
 |Try Me|
 
-
-Prerequisites / Prerequisiti
-----------------------------
-
-
-* python2.7+
-* postgresql 9.2+
 
 |
 
@@ -169,11 +194,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 8.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 8.0 -vsy -o /opt/odoo/8.0
 
 From UI: go to:
@@ -251,8 +273,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -266,14 +288,18 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
+
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 * `Didotech srl <http://www.didotech.com>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
+
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Andrei Levin <andrei.levin@didotech.com>
+* Carlo Vettore <carlo.vettore@didotech.com>
 
 |
 
@@ -285,9 +311,9 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
 |chat_with_us|
@@ -295,7 +321,9 @@ La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato ita
 
 |
 
-Last Update / Ultimo aggiornamento: 2019-03-20
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-10-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -313,11 +341,8 @@ Last Update / Ultimo aggiornamento: 2019-03-20
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/8.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/8.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-8.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/8.0/dev
     :alt: Technical Documentation
@@ -327,7 +352,7 @@ Last Update / Ultimo aggiornamento: 2019-03-20
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-8.svg
     :target: https://erp8.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/8.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/8.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -337,9 +362,9 @@ Last Update / Ultimo aggiornamento: 2019-03-20
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

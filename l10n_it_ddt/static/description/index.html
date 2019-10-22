@@ -1,45 +1,117 @@
+
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#162832;">Shipping Document/Gestione DdT</h2>
-        <div class="oe_span6 text-center">
-            <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
-            <p class="oe_mt16" align="justify">
-This modules extends stock_picking_package_preparation module adding DDT data.
+        <h2 class="oe_slogan" style="color:#162832;">Documento di Trasporto / Stampa DdT</h2>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
             </p>
+            <p class="oe_mt16" align="justify"><h2>Documento di Trasporto / Stampa DdT</h2>
+<p align="justify">
+This module print the Italian deliver document AKA DdT
+</p><p align="justify">
+You can automatically create a DDT From a Sale Order, setting
+'Automatically create the DDT' field that will automatically create the DDT on
+Sale Order confirmation.
+</p><p align="justify">
+You can also directly create a DDT using
+Inventory -&gt; Operations -&gt; DDT
+menu and add existings delivery orders to it, in the 'transfers' tab.
+</p><p align="justify">
+You can add lines to an existing DDT using the 'Details' tab.
+Lines can be descriptive or linked to a product. If linked to a product,
+the stock movement will also be created.
+</p><p align="justify">
+When you work with delivery orders, you can create a DDT selecting 1 or more
+pickings and launching the action 'DDT from pickings'.
+</p><p align="justify">
+Also, you can select 1 or more pickings and run 'add pickings to DDT' to add
+the selected delivery orders to an existing DDT
+</p><p align="justify">
+If the state of the delivery orders allows it, you can deliver them from the
+DDT directly, clicking 'put in pack' and 'package done'.
+</p><p align="justify">
+Otherwise, you can process delivery orders separately, then go to the DDT and
+click on 'set done'.
+</p><p align="justify">
+Finally you can create your invoice directly from the DDT using the 
+'Create Invoice' button that creates a new Invoice with the ddt lines as 
+invoice lines
+</p></p>
         </div>
-        <div class="oe_span6 text-center">
-            <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
-            <p class="oe_mt16" align="justify">
-Gestione e stampa Documento di Trasporto
+        <div class="oe_span6">
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
             </p>
+            <p class="oe_mt16" align="justify"><h2>Documento di Trasporto / Stampa DdT</h2>
+<p align="justify">
+Stampa documento di trasporto, consociuto anche come DdT
+</p><p align="justify">
+&#200; possibile creare automaticamente un DDT da un ordine di vendita, impostando
+il campo 'crea automaticamente il DDT' che creer&#224; il DDT alla conferma
+dell'ordine.
+</p><p align="justify">
+&#200; anche possibile creare un DDT direttamente, usando
+Inventario -&gt; Operazioni -&gt; DDT
+e aggiungendo degli ordini di consegna esistenti al DDT, nel tab
+'trasferimenti'.
+</p><p align="justify">
+&#200; possibile aggiungere righe ad un DDT esistente usando il tab 'Dettaglio'.
+Le righe possono essere descrittive o collegate a prodotti. Le righe collegate
+ad un prodotto creeranno anche i movimenti di magazzino.
+</p><p align="justify">
+Se si lavora con gli ordini di consegna, &#232; possibile creare un DDT selezionando
+1 o pi&#249; ordini di consegna ed eseguendo l'azione 'DDT da Picking'.
+</p><p align="justify">
+Inoltre, &#232; possibile selezionare 1 o pi&#249; ordini di consegna ed eseguire
+'aggiungi Picking al DDT' per aggiungere gli ordini selezionati ad un DDT
+esistente.
+</p><p align="justify">
+Se lo stato degli ordini di consegna lo permette, &#232; possibile consegnarli tutti
+direttamente dal DDT, cliccando sui bottoni 'metti nel pacco' e
+'pacco completato'.
+</p><p align="justify">
+Altrimenti, &#232; possibile processare gli ordini di consegna separatamente, poi
+andare sul DDT e cliccare su 'imposta completato'.
+</p><p align="justify">
+Infine, &#232; possibile creare la fattura direttamente dal DDT usando il bottone
+'crea fattura' il quale crea una nuova fattura usando le righe del DDT.
+</p><p align="justify">
+E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'da fatturare'
+</p></p>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_separator">
-</section>
+<section class="oe_container oe_separator"/>
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span6 text-center">
-            <p class="oe_mt16" align="justify">
-Credits:
-            </p>
+        <div class="oe_span6" align="left">
+            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16"><ul>
+<li><a href="https://www.abstract.it/">Abstract</a></li>
+<li><a href="https://www.agilebg.com/">Agile Business Group sagl</a></li>
+<li><a href="https://www.apuliasoftware.it/">Apulia Software</a></li>
+<li><a href="https://www.openforce.it/">Open Force</a></li>
+<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+</ul></p>
         </div>
-        <div class="oe_span6">
-            <p class="oe_mt16" align="left">
-            <ul>
-                <li>Davide Corio &lt;davide.corio@abstract.it&gt;</li>
-                <li>Nicola Malcontenti &lt;nicola.malcontenti@agilebg.com&gt;</li>
-                <li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
-                <li>Francesco Apruzzese &lt;f.apruzzese@apuliasoftware.it&gt;</li>
-                <li>Andrea Gallina &lt;a.gallina@apuliasoftware.it&gt;</li>
-                <li>Alex Comba &lt;alex.comba@agilebg.com&gt;</li>
-                <li>Andrea Cometa &lt;a.cometa@apuliasoftware.it&gt;</li>
-                <li>Alessandro Camilli &lt;alessandrocamilli@openforce.it&gt;</li>
-                <li>Antonio Maria Vigliotti &lt;info@shs-av.com&gt;</li>
-            </ul>
-            </p>
+        <div class="oe_span6" align="left">
+            <p class="oe_mt16">Contributors / Collaboratori:</p>
+            <p class="oe_mt16"><ul>
+<li>Davide Corio &lt;davide.corio@abstract.it&gt;</li>
+<li>Nicola Malcontenti &lt;nicola.malcontenti@agilebg.com&gt;</li>
+<li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
+<li>Francesco Apruzzese &lt;f.apruzzese@apuliasoftware.it&gt;</li>
+<li>Andrea Gallina &lt;a.gallina@apuliasoftware.it&gt;</li>
+<li>Alex Comba &lt;alex.comba@agilebg.com&gt;</li>
+<li>Alessandro Camilli &lt;alessandrocamilli@openforce.it&gt;</li>
+<li>Antonio M. Vigliotti &lt;info@shs-av.com&gt;</li>
+</ul></p>
         </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <p>This module is part of l10n-italy project.</p>
     </div>
 </section>

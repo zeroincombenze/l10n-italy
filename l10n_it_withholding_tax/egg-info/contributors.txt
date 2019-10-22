@@ -1,0 +1,5 @@
+* Alessandro Camilli <alessandrocamilli@openforce.it>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+.. $if branch in '8.0'
+* Antonio M. Vigliotti <info@shs-av.com>
+.. $fi
