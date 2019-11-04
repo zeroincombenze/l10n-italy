@@ -1,3 +1,13 @@
+10.0.1.5.10 (2019-10-18)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] Delivery condition inheritance / Determinazione dei valori di consegna
+* [FIX] Weights are evaluated from pickig or order / I pesi del DdT sono calcolati dal prelivo o dall'ordine
+* [IMP] Parcels is the sum of picking or order parcels / I colli sono la somma dei colli del prelievo o dell'ordine
+* [IMP] Volume is the sum of picking or order volume / Il volume è la somma dei volumi del prelievo o dell'ordine
+* [FIX] Show price is inherit from customer / Il flag mostra prezzi è ereditato del cliente
+
+
 10.0.1.5.9 (2019-10-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,7 +1,7 @@
 
-=====================
-|icon| DDT 10.0.1.5.9
-=====================
+======================
+|icon| DDT 10.0.1.5.10
+======================
 
 
 **Delivery Document to Transfer**
@@ -90,18 +90,6 @@ Infine, è possibile creare la fattura direttamente dal DDT usando il bottone
 
 E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'da fatturare'
 
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -206,6 +194,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.5.10 (2019-10-18)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] Delivery condition inheritance / Determinazione dei valori di consegna
+* [FIX] Weights are evaluated from pickig or order / I pesi del DdT sono calcolati dal prelivo o dall'ordine
+* [IMP] Parcels is the sum of picking or order parcels / I colli sono la somma dei colli del prelievo o dell'ordine
+* [IMP] Volume is the sum of picking or order volume / Il volume è la somma dei volumi del prelievo o dell'ordine
+* [FIX] Show price is inherit from customer / Il flag mostra prezzi è ereditato del cliente
+
 
 10.0.1.5.9 (2019-10-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -322,7 +320,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-10-15
+Last Update / Ultimo aggiornamento: 2019-11-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

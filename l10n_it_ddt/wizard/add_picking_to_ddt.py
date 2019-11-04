@@ -20,6 +20,32 @@ class AddPickingToDdt(models.TransientModel):
 
     ddt_id = fields.Many2one('stock.picking.package.preparation')
 
+    @api.model
+    def check_4_delivery_value(self, picking, fieldname, condition_help):
+        '''Check if current delivery condition is equal to DdT condition.
+        See file "ddt_from_picking" to furthermo information.'''
+        ddt_model = self.env['stock.picking.package.preparation']
+        pp_fieldname = ddt_model.fieldname_of_model(
+            'stock.picking.package.preparation', fieldname)
+        sp_fieldname = ddt_model.fieldname_of_model(
+            'stock.picking', fieldname)
+        so_fieldname = ddt_model.fieldname_of_model(
+            'sale.order', fieldname)
+        # check on picking, if field is valid
+        if sp_fieldname and picking[sp_fieldname]:
+             if picking[sp_fieldname] != self.ddt_id[pp_fieldname]:
+                 raise UserError(
+                     _('Selected Pickings have different %s' %
+                       condition_help))
+        # otherwise check in sale order of picking (if exists)
+        elif (so_fieldname and
+              picking.sale_id and
+              picking.sale_id[so_fieldname] and
+              picking.sale_id[so_fieldname] != self.ddt_id[pp_fieldname]):
+            raise UserError(
+                _('Selected Picking %s has different %s' %
+                  (picking.name, condition_help)))
+
     @api.multi
     def add_to_ddt(self):
         pickings = self.env['stock.picking'].browse(
@@ -39,27 +65,16 @@ class AddPickingToDdt(models.TransientModel):
                 raise UserError(
                     _("Selected Picking %s have"
                       " different Partner") % picking.name)
+
             if picking.sale_id:
-                if picking.sale_id.carriage_condition_id != (
-                        self.ddt_id.carriage_condition_id):
-                    raise UserError(
-                        _("Selected Picking %s have"
-                          " different carriage condition") % picking.name)
-                elif picking.sale_id.goods_description_id != (
-                        self.ddt_id.goods_description_id):
-                    raise UserError(
-                        _("Selected Picking %s have "
-                          "different goods description") % picking.name)
-                elif picking.sale_id.transportation_reason_id != (
-                        self.ddt_id.transportation_reason_id):
-                    raise UserError(
-                        _("Selected Picking %s have"
-                          " different transportation reason") % picking.name)
-                elif picking.sale_id.transportation_method_id != (
-                        self.ddt_id.transportation_method_id):
-                    raise UserError(
-                        _("Selected Picking %s have"
-                          " different transportation method") % picking.name)
+                for fieldname, condition_help in (
+                        ('carriage_condition_id', _('carriage condition')),
+                        ('goods_description_id', _('goods description')),
+                        ('transportation_reason_id', _('transportation reason')),
+                        ('transportation_method_id', _('transportation method')),
+                        ('ddt_carrier_id', _('carrier'))):
+                    self.check_4_delivery_value(
+                        picking, fieldname, condition_help)
             self.ddt_id.picking_ids = [(4, picking.id)]
         ir_model_data = self.env['ir.model.data']
         form_res = ir_model_data.get_object_reference(

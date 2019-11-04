@@ -198,6 +198,205 @@ class StockPickingPackagePreparation(models.Model):
                 % ddt.display_name
             )
 
+    @api.model
+    def get_delivery_value(self, vals, picking, fieldname, condition_help):
+        '''Set specific condition of delivey. Inherit condition from
+        picking > sale order > ddt type > delivery method > customer
+        Workflow (rp=res.partner, dt=stock.ddt.type dc=delivery.carrier,
+                  so=sale.order, sp=stock.picking,
+                  pp=stock.picking.package.preparation):
+        Field name               | rp | dt | dc | so | sp | pp
+        -------------------------|----|----|----|----|----|---
+        ddt_type_id              | X  | ID | X  | Ok | 3. | Ok
+        carrier_id               | 1. | X  | ID | Ok | Ok | X
+        goods_description_id     | Ok | 2. | Ok | Ok | X  | Ok
+        carriage_condition_id    | Ok | 2. | Ok | Ok | X  | Ok
+        transportation_reason_id | Ok | 2. | Ok | Ok | X  | Ok
+        transportation_method_id | Ok | 2. | Ok | Ok | X  | Ok
+        ddt_carrier_id           | X  | X  | Ok | X  | X  | 5.
+        show_price               | 6. | X  | X  | X  | X  | Ok
+        note                     | X  | Ok | Ok | Ok | X  | Ok
+        parcels (*)              |    |    |    | Ok | 4. | Ok
+        weight (*)               |    |    |    | Ok | Ok | Ok
+        gross_weight (*)         |    |    |    | Ok | 7. | Ok
+        where:
+        Ok: field in model
+        X:  field not in model
+        ID: field is key of model
+        1.  field name is "property_carrier_id"
+        2.  field name is prefixed with "default_"
+        3.  field name is ddt_type
+        4.  field name is "number_of packages"
+        5.  field name is "carrier_id"
+        6.  field name is "ddt_show_price"
+        7.  field name is "shipping_weight"
+        (*) field evaluated by sum, searched only in <sp> and <so>
+        '''
+        ddt_model = self.env['stock.picking.package.preparation']
+        pp_fieldname = ddt_model.fieldname_of_model(
+            'stock.picking.package.preparation', fieldname)
+        if not pp_fieldname:
+            return vals
+        if not vals.get(fieldname):
+            sp_fieldname = ddt_model.fieldname_of_model(
+                'stock.picking', fieldname)
+            so_fieldname = ddt_model.fieldname_of_model(
+                'sale.order', fieldname)
+            dc_fieldname = ddt_model.fieldname_of_model(
+                'delivery.carrier', fieldname)
+            dt_fieldname = ddt_model.fieldname_of_model(
+                'stock.ddt.type', fieldname)
+            rp_fieldname = ddt_model.fieldname_of_model(
+                'res.partner', fieldname)
+            delivery_carrier = False
+            if dc_fieldname:
+                if (picking.sale_id and picking.sale_id.carrier_id):
+                    delivery_carrier = picking.sale_id.carrier_id
+                # Warning: carrier_id in DdT has different meaning od the same
+                # field in sale.order and picking
+                # TODO: change name from carrier_id to ddt_carrier_id
+                # elif vals.get('carrier_id'):
+                #     delivery_carrier = self.env[
+                #         'delivery.carrier'].browse(vals['carrier_id'])
+            ddt_type = False
+            if dt_fieldname:
+                if picking.ddt_type:
+                    ddt_type = picking.ddt_type
+                elif vals.get('ddt_type_id'):
+                    ddt_type = self.env[
+                        'stock.ddt.type'].browse(vals['ddt_type_id'])
+            # field from picking ?
+            if (sp_fieldname and
+                    picking[sp_fieldname]):
+                if fieldname.endswith('_id'):
+                    vals[pp_fieldname] = picking[sp_fieldname].id
+                else:
+                    vals[pp_fieldname] = picking[sp_fieldname]
+            # field from sale.order ?
+            elif (so_fieldname and
+                    picking.sale_id and
+                    picking.sale_id[so_fieldname]):
+                if fieldname.endswith('_id'):
+                    vals[pp_fieldname] = picking.sale_id[so_fieldname].id
+                else:
+                    vals[pp_fieldname] = picking.sale_id[so_fieldname]
+            # field from delivery.carrier?
+            elif (dc_fieldname and
+                    delivery_carrier and
+                    delivery_carrier[dc_fieldname]):
+                if fieldname.endswith('_id'):
+                    vals[pp_fieldname] = delivery_carrier[dc_fieldname].id
+                else:
+                    vals[pp_fieldname] = delivery_carrier[dc_fieldname]
+            # field from stock.ddt.type ?
+            elif (dt_fieldname and
+                    ddt_type and
+                    ddt_type[dt_fieldname]):
+                if fieldname.endswith('_id'):
+                    vals[pp_fieldname] = ddt_type[dt_fieldname].id
+                else:
+                    vals[pp_fieldname] = ddt_type[dt_fieldname]
+            # field from partner ?
+            elif (rp_fieldname and
+                    picking.partner_id and
+                    picking.partner_id[rp_fieldname]):
+                if fieldname.endswith('_id'):
+                    vals[pp_fieldname] = picking.partner_id[rp_fieldname].id
+                else:
+                    vals[pp_fieldname] = picking.partner_id[rp_fieldname]
+        elif fieldname != 'note':
+            # check on picking, if field is valid
+            if sp_fieldname and picking[sp_fieldname]:
+                 if picking[sp_fieldname].id != vals[pp_fieldname]:
+                     raise UserError(
+                         _('Selected Pickings have different %s' %
+                           condition_help))
+            # otherwise check in sale order of picking (if exists)
+            elif (picking.sale_id and
+                  picking.sale_id[so_fieldname] and
+                  picking.sale_id[so_fieldname].id != vals[pp_fieldname]):
+                raise UserError(
+                    _('Selected Pickings have different %s' %
+                      condition_help))
+        return vals
+
+    @api.model
+    def sum_delivery_value(self, vals, picking, fieldname):
+        ddt_model = self.env['stock.picking.package.preparation']
+        pp_fieldname = ddt_model.fieldname_of_model(
+            'stock.picking.package.preparation', fieldname)
+        so_fieldname = ddt_model.fieldname_of_model(
+            'sale.order', fieldname)
+        sp_fieldname = ddt_model.fieldname_of_model(
+            'stock.picking', fieldname)
+        if not vals.get(pp_fieldname):
+            vals[pp_fieldname] = 0
+        # field from picking ?
+        if sp_fieldname and picking[sp_fieldname]:
+            vals[pp_fieldname] += picking[sp_fieldname]
+        # field from sale.order ?
+        elif so_fieldname and picking.sale_id:
+            vals[pp_fieldname] += picking.sale_id[so_fieldname]
+        return vals
+
+    @api.model
+    def preparare_ddt_data(self, picking_ids, partner=None):
+        vals = { 'partner_id': False }
+        for picking in picking_ids:
+            # check if picking is already linked to a DDT
+            self.check_linked_picking(picking)
+            current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
+            if not partner:
+                partner = current_ddt_shipping_partner
+            elif partner != current_ddt_shipping_partner:
+                raise UserError(
+                    _("Selected Pickings have different Partner"))
+            sale_order = picking.sale_id
+            if sale_order:
+                vals['partner_id'] = sale_order.partner_id.id
+            else:
+                vals['partner_id'] = partner.commercial_partner_id.id
+            if not picking.picking_type_code == 'internal':
+                vals['partner_shipping_id'] = partner.id
+            else:
+                vals['partner_shipping_id'] = (
+                    picking.location_dest_id.partner_id.id)
+        # check if selected picking have different destinations
+        if len(picking_ids[0].mapped('location_dest_id')) > 1:
+            raise UserError(_("Selected pickings have different destinations"))
+        for picking in picking_ids:
+            vals = self.get_delivery_value(
+                vals, picking, 'ddt_type_id', _('ddt type'))
+        if not vals.get('ddt_type_id'):
+            ddt_type = self.env['stock.ddt.type'].search([], limit=1)
+            if ddt_type:
+                vals['ddt_type_id'] = ddt_type[0].id
+        # for picking in picking_ids:
+        #     vals = self.get_delivery_value(
+        #         vals, picking, 'carrier_id', _('delivery method'))
+        for picking in picking_ids:
+            for field, field_help in (('ddt_carrier_id', _('carrier')),
+                                      ('show_price', _('show price')),
+                                      ('note', _('note')),
+                                      ('carriage_condition_id',
+                                       _('carriage condition')),
+                                      ('goods_description_id',
+                                       _('goods description')),
+                                      ('transportation_reason_id',
+                                       _('transportation reason')),
+                                      ('transportation_method_id',
+                                       _('transportation method'))):
+                vals = self.get_delivery_value(
+                    vals, picking, field, field_help)
+            vals = self.sum_delivery_value(vals, picking, 'parcels')
+            vals = self.sum_delivery_value(vals, picking, 'weight') 
+            vals = self.sum_delivery_value(vals, picking, 'gross_weight')
+            vals = self.sum_delivery_value(vals, picking, 'volume')
+        if not vals.get('parcels'):
+            vals['parcels'] = 1
+        vals.update({'picking_ids': [(6, 0, [p.id for p in picking_ids])]})
+        return vals
+
     @api.multi
     def action_put_in_pack(self):
         # ----- Check if exist a stock picking whose state is 'done'

@@ -1,17 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Abstract (http://www.abstract.it)
-#    @author Davide Corio <davide.corio@abstract.it>
-#    Copyright (C) 2014 Agile Business Group (http://www.agilebg.com)
-#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
-
-from odoo import fields, models, api
+from odoo import _, api, fields, models
+from odoo.exceptions import Warning as UserError
 
 
 class SaleOrder(models.Model):
@@ -39,7 +31,10 @@ class SaleOrder(models.Model):
                 [('name', 'ilike', signature)], limit=1)
             if res:
                 return res
-        return self.env['stock.ddt.type'].search([], limit=1)
+        ids = self.env['stock.ddt.type'].search([], limit=1)
+        if not ids:
+            return False
+        return ids[0].id
 
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', string='Carriage Condition')
@@ -62,7 +57,7 @@ class SaleOrder(models.Model):
         'stock.picking.package.preparation',
         string='Related DdTs',
         compute='_compute_ddt_ids')
-    create_ddt = fields.Boolean('Automatically create the DDT')
+    # create_ddt = fields.Boolean('Automatically create the DDT')
     ddt_invoicing_group = fields.Selection(
         [('nothing', 'One DDT - One Invoice'),
          ('billing_partner', 'Billing Partner'),
@@ -96,15 +91,13 @@ class SaleOrder(models.Model):
             self.ddt_invoice_exclude = (
                 self.partner_id.ddt_invoice_exclude)
             self.ddt_type = self._default_ddt_type()
-            if self.parcels == 0:
-                self.parcels = 1
         return result
 
     @api.multi
     @api.onchange('ddt_type_id')
     def onchange_ddt_type(self):
-        if (self.ddt_type_id.company_id and
-                self.ddt_type_id.company_id == self.company_id):
+        if (not self.ddt_type_id.company_id
+                or self.ddt_type_id.company_id == self.company_id):
             for field in ('carriage_condition_id',
                           'goods_description_id',
                           'transportation_reason_id',
@@ -114,23 +107,21 @@ class SaleOrder(models.Model):
                     setattr(self, field, self.ddt_type_id[default_field])
             if self.ddt_type_id.note and not self.note:
                 self.note = self.ddt_type_id.note
-            if self.parcels == 0:
-                self.parcels = 1
-            self.delivery_data_set
+            self.delivery_data_set = True
 
     @api.multi
     @api.onchange('carrier_id')
     def onchange_carrier_id(self):
-        for field in ('carriage_condition_id',
-                      'goods_description_id',
-                      'transportation_reason_id',
-                      'transportation_method_id',
-                      'ddt_carrier_id'):
-            if self.carrier_id[field]:
-                setattr(self, field, self.carrier_id[field])
-        if self.carrier_id.note and not self.note:
-            self.note = self.carrier_id.note
-        self.delivery_data_set
+        if self.carrier_id:
+            for field in ('carriage_condition_id',
+                          'goods_description_id',
+                          'transportation_reason_id',
+                          'transportation_method_id'):
+                if self.carrier_id[field]:
+                    setattr(self, field, self.carrier_id[field])
+            if self.carrier_id.note and not self.note:
+                self.note = self.carrier_id.note
+            self.delivery_data_set = True
 
     @api.multi
     def _prepare_invoice(self):
@@ -148,36 +139,41 @@ class SaleOrder(models.Model):
         })
         return vals
 
-    def _preparare_ddt_data(self):
-        picking_ids = [p.id for p in self.picking_ids]
-        return {
-            'partner_id': self.partner_id.id,
-            'partner_shipping_id': self.partner_shipping_id.id,
-            'carriage_condition_id': self.carriage_condition_id.id,
-            'goods_description_id': self.goods_description_id.id,
-            'transportation_reason_id':
-            self.transportation_reason_id.id,
-            'transportation_method_id':
-            self.transportation_method_id.id,
-            'carrier_id': self.ddt_carrier_id.id,
-            'parcels': self.parcels,
-            'weight_manual': self.weight,
-            'gross_weight': self.gross_weight,
-            'volume': self.volume,
-            'picking_ids': [(6, 0, picking_ids)],
-        }
-
     @api.multi
-    def action_confirm(self):
-        res = super(SaleOrder, self).action_confirm()
+    def action_create_ddt(self):
         ddt_model = self.env['stock.picking.package.preparation']
         for order in self:
-            if order.create_ddt:
-                ddt_data = order._preparare_ddt_data()
-                ddt_model.create(ddt_data)
-                if order.invoice_status == 'no':
-                    order.invoice_status = 'to invoice'
-        return res
+            picking_ids = []
+            for picking in order.picking_ids:
+                if len(picking.mapped('ddt_ids')) == 0:
+                    picking_ids.append(picking)
+            if not picking_ids:
+                raise UserError(
+                    _("There are to picking to create a DdT"))
+            ddt = ddt_model.create(ddt_model.preparare_ddt_data(
+                picking_ids,
+                partner=self.partner_id))
+            if order.invoice_status == 'no':
+                order.invoice_status = 'to invoice'
+        ir_model_data = self.env['ir.model.data']
+        form_res = ir_model_data.get_object_reference(
+            'stock_picking_package_preparation',
+            'stock_picking_package_preparation_form')
+        form_id = form_res and form_res[1] or False
+        tree_res = ir_model_data.get_object_reference(
+            'stock_picking_package_preparation',
+            'stock_picking_package_preparation_tree')
+        tree_id = tree_res and tree_res[1] or False
+        return {
+            'name': 'DdT',
+            'view_type': 'form',
+            'view_mode': 'form,tree',
+            'res_model': 'stock.picking.package.preparation',
+            'res_id': ddt.id,
+            'view_id': False,
+            'views': [(form_id, 'form'), (tree_id, 'tree')],
+            'type': 'ir.actions.act_window',
+        }
 
     @api.multi
     def action_cancel(self):
@@ -216,14 +212,11 @@ class SaleOrder(models.Model):
             result['res_id'] = ddt_ids and ddt_ids[0] or False
         return result
 
-
     def get_delivery_values(self, vals):
         '''If write is called from exteranl partner (i.e. e-commerce)
         delivery data will be empty even if ddt_type and/or carrier_id are set
         In ordinary edit by end-user, delivery_data_set is True'''
         if not vals.get('delivery_data_set'):
-            if not vals.get('parcels'):
-                vals['parcels'] = 1
             if vals.get('partner_id'):
                 partner = self.env['res.partner'].browse(
                     vals['partner_id'])
@@ -240,7 +233,7 @@ class SaleOrder(models.Model):
                             vals[field] = partner[field]
                 if not vals.get('ddt_type_id'):
                     vals['ddt_type_id'] = self.env[
-                        'sale.order']._default_ddt_type().id
+                        'sale.order']._default_ddt_type()
             if vals.get('ddt_type_id'):
                 ddt_type = self.env['stock.ddt.type'].browse(
                     vals['ddt_type_id'])
