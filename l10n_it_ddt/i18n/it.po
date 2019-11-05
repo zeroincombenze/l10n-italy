@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-04 17:54+0000\n"
-"PO-Revision-Date: 2019-11-04 17:54+0000\n"
+"POT-Creation-Date: 2019-11-04 21:22+0000\n"
+"PO-Revision-Date: 2019-11-04 21:22+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -295,6 +295,11 @@ msgstr "<strong>Prezzo</strong>"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Quantity</strong>"
 msgstr "<strong>Quantità</strong>"
+
+#. module: l10n_it_ddt
+#: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Totale imponibile</strong>"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -691,7 +696,7 @@ msgstr "Do not invoice services from DDT"
 #: code:addons/l10n_it_ddt/models/sale_order.py:186
 #, python-format
 msgid "Document %d has invoice linked"
-msgstr "Document %d has invoice linked"
+msgstr "Il documento %d ha una fattura collegata"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:741
@@ -811,7 +816,7 @@ msgstr "Impossible to put in pack a picking whose state is 'done'"
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_location
 msgid "Inventory Locations"
-msgstr "Locationi d'Inventario"
+msgstr "Locazioni d'Inventario"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
@@ -1253,7 +1258,7 @@ msgstr "Stock DdT Type"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line_price_subtotal
 msgid "Subtotal"
-msgstr "Subtotale"
+msgstr "Totale Riga"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line_tax_ids
@@ -1268,8 +1273,8 @@ msgstr "Telefono:"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/sale_order.py:152
 #: code:addons/l10n_it_ddt/models/sale_order.py:152
-msgid "There are to picking to create a DdT"
-msgstr "There are to picking to create a DdT"
+msgid "There are not picking to create a DdT"
+msgstr "Non ci sono prelievi per creare un DdT"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:670

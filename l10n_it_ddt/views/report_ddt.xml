@@ -114,6 +114,7 @@
                                 <t t-if="o.show_price">
                                     <th class="text-right"><strong>Price</strong></th>
                                     <th class="text-right"><strong>Discount</strong></th>
+                                    <th class="text-right"><strong>Subtotal</strong></th>
                                 </t>
                             </tr>
                         </thead>
@@ -134,13 +135,16 @@
                                 <t t-if="o.show_price">
                                     <td class="text-right" id="line_price_unit"><span t-field="line.price_unit"></span></td>
                                     <td class="text-right" id="line_discount"><span t-field="line.discount"></span></td>
+                                    <td class="text-right" id="line_discount"><span t-field="line.price_subtotal"></span></td>
                                 </t>
                             </tr>
                         </tbody>
                     </table>
+                    <div style="position:relative; top:10px;">
                     <t t-call="l10n_it_ddt.delivery_data">
                         <t t-set="ddt" t-value="o"/>
                     </t>
+                    </div>
                 </div>
             </t>
         </template>

@@ -149,7 +149,7 @@ class SaleOrder(models.Model):
                     picking_ids.append(picking)
             if not picking_ids:
                 raise UserError(
-                    _("There are to picking to create a DdT"))
+                    _("There are not picking to create a DdT"))
             ddt = ddt_model.create(ddt_model.preparare_ddt_data(
                 picking_ids,
                 partner=self.partner_id))
