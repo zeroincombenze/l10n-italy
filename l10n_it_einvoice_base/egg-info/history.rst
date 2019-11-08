@@ -1,3 +1,9 @@
+10.0.2.1.10 (2019-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Flag no equal FC and TIN / Indicatore no codice fiscale se eguale alla partita IVA
+
+
 10.0.2.1.9 (2019-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

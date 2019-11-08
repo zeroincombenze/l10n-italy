@@ -1,3 +1,10 @@
+10.0.1.0.11 (2019-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PA with VAT number / Reinserita partita IVA per fatture PA
+* [IMP] No fiscal code if equal to TIN (by parameter) / Codice fiscale non inserito se equale alla partita IVA (parametrico)
+
+
 10.0.1.0.10 (2019-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

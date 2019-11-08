@@ -63,6 +63,14 @@
                             <label for="einvoice_xeu_fc_none"/>
                             <field name="einvoice_xeu_fc_none" class="oe_inline"/>
                         </div>
+                        <div>
+                            <label for="pa_move_pi_2_fc"/>
+                            <field name="pa_move_pi_2_fc" class="oe_inline"/>
+                        </div>
+                        <div>
+                            <label for="einvoice_no_eq_cf_pi"/>
+                            <field name="einvoice_no_eq_cf_pi" class="oe_inline"/>
+                        </div>
                     </div>
                 </group>
             </xpath>

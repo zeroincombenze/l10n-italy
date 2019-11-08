@@ -67,6 +67,17 @@ class ResCompany(models.Model):
              '%(iso) means iso code of customer.',
         default=''
         )
+    einvoice_no_eq_cf_pi = fields.Boolean(
+        'No FC if same of TIN',
+        help='Do not insert fiscalcode if it is equal to VAT number',
+        default=False
+        )
+    pa_move_pi_2_fc = fields.Boolean(
+        'Move TIN to FC if partner is PA',
+        help='If partner has TIN and not fiscalcode, move TIN to fiscalcode\n'
+             'If both are set, do not insert TIN',
+        default=True
+        )
 
     @api.multi
     @api.constrains(
@@ -209,6 +220,19 @@ class AccountConfigSettings(models.TransientModel):
              'Usually is 00000000000 but may depends by sender.\n'
              '%(iso) means iso code of customer.',
         default='0000000000'
+        )
+    pa_move_pi_2_fc = fields.Boolean(
+        related='company_id.pa_move_pi_2_fc',
+        string='Move TIN to FC if partner is PA',
+        help='If partner has TIN and not fiscalcode, move TIN to fiscalcode\n'
+             'If both are set, do not insert TIN',
+        default=False
+        )
+    einvoice_no_eq_cf_pi = fields.Boolean(
+        related='company_id.einvoice_no_eq_cf_pi',
+        string='No FC if same of TIN',
+        help='Do not insert fiscalcode if it is equal to VAT number',
+        default=True
         )
 
     @api.onchange('company_id')

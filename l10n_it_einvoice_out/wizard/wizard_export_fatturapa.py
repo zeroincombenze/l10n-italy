@@ -435,7 +435,22 @@ class WizardExportFatturapa(models.TransientModel):
             'iso': partner.country_id.code,
             '9x11': '99999999999',
         }
-        if vat and vat[0:3] not in ('IT9', 'IT8') and not is_pa:
+        if vat and is_pa:
+            if not fiscalcode:
+                fiscalcode = vat[2:]
+                vat = ''
+            else:
+                vat = ''
+        elif vat and vat[0:3] in ('IT9', 'IT8'):
+            if not fiscalcode:
+                fiscalcode = vat[2:]
+                vat = ''
+            elif fiscalcode == vat[2:]:
+                vat = ''
+        elif company.einvoice_no_eq_cf_pi and vat and fiscalcode == vat[2:]:
+            fiscalcode = ''
+
+        if vat:
             country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -451,15 +466,9 @@ class WizardExportFatturapa(models.TransientModel):
                     DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                         IdPaese=country_code,
                         IdCodice=vat_number)
-        else:
-            vat = ''
         if fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = fiscalcode
-        elif vat and (vat[0:3] in ('IT9', 'IT8') or 
-                      (vat.startswith('IT') and is_pa)):
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.CodiceFiscale = vat[2:]
         elif (codice_destinatario == CODE_NONE_EU and
               company.einvoice_xeu_fc_none):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
@@ -665,6 +674,8 @@ class WizardExportFatturapa(models.TransientModel):
                 _('Customer Stabile Organization country is not set.'))
         vat = self._get_partner_field(
             partner, parent, 'vat', mode=mode)
+        fiscalcode = self._get_partner_field(
+            partner, parent, 'fiscalcode', mode=mode)
         if not vat:
             raise UserError(
                 _('Customer Stabile Organization vat is not set.'))

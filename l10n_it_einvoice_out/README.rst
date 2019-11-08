@@ -1,6 +1,6 @@
 
 ==============================================================
-|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.10
+|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.11
 ==============================================================
 
 
@@ -116,18 +116,6 @@ Per consultazione (non modificare):
 
 
 |
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-|
 |
 
 Getting started / Come iniziare
@@ -231,6 +219,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.11 (2019-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PA with VAT number / Reinserita partita IVA per fatture PA
+* [IMP] No fiscal code if equal to TIN (by parameter) / Codice fiscale non inserito se equale alla partita IVA (parametrico)
+
+
 10.0.1.0.10 (2019-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -267,7 +262,7 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `Davide Corio`__
+* `Davide Corio <info@davidecorio.com>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Innoviu srl <http://www.innoviu.com>`__
 * `Odoo Italia Network`__
@@ -312,7 +307,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-27
+Last Update / Ultimo aggiornamento: 2019-11-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

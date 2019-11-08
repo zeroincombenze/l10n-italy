@@ -1,7 +1,7 @@
 
-======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.9
-======================================
+=======================================
+|icon| EInvoice + FatturaPA 10.0.2.1.10
+=======================================
 
 
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
@@ -102,7 +102,7 @@ con il valore di configurazione "No EU customer TIN" del menù
 `Contabilità > Configurazione > Configurazione`
 Il valore predefinito è "%(iso)s99999999999" che inserisce la partita IVA di 11 cifre 9
 precedute dal codice ISO del cliente.
-Il valore potrebbe cambiare in base al terzo incaricato, che potrebbeeffettuare
+Il valore potrebbe cambiare in quanto il terzo incaricato potrebbe effettuare
 controlli di validazione prima dell'invio all'Agenzia delle Entrate.
 
 ::
@@ -165,18 +165,6 @@ Usage / Uso
 * No EU customer TIN: valore da inserire come P.IVA nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA
 * No EU customer fc: valore da inserire come CF nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA
 
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -314,6 +302,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.10 (2019-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Flag no equal FC and TIN / Indicatore no codice fiscale se eguale alla partita IVA
+
+
 10.0.2.1.9 (2019-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -392,7 +386,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-27
+Last Update / Ultimo aggiornamento: 2019-11-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
