@@ -1,12 +1,14 @@
 
 ========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.6
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.7
 ========================================================================
 
 
 **Ricezione fatture elettroniche**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_in/static/description/icon.png
+
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -146,18 +148,6 @@ Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozz
 
 
 |
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-|
 |
 
 Getting started / Come iniziare
@@ -193,11 +183,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
 From UI: go to:
@@ -263,6 +250,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.3.7 (2019-06-25)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Without province, cannot import e-invoice
+
 
 10.0.1.3.6 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -332,7 +325,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-06-15
+Last Update / Ultimo aggiornamento: 2019-11-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

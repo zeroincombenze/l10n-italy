@@ -303,13 +303,6 @@ In xml report it is also possible test the existence of a field. The should be a
 
 
 |
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-This module is exclusive of Zeroincombenze® and is not avaiable on OCA repository.
-
-|
 |
 
 Getting started / Come iniziare
@@ -345,11 +338,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
 From UI: go to:
@@ -516,7 +506,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-04
+Last Update / Ultimo aggiornamento: 2019-11-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

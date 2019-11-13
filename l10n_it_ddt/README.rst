@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.5.10
+|icon| DDT 10.0.1.5.11
 ======================
 
 
@@ -195,6 +195,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.5.11 (2019-11-11)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sometime it crashes when cancel sale order / A volte sistema andava in crash in annullo ordine
+
+
 10.0.1.5.10 (2019-10-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -320,7 +326,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-04
+Last Update / Ultimo aggiornamento: 2019-11-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

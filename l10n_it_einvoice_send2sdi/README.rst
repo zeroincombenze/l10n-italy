@@ -1,6 +1,6 @@
 
 =======================================
-|icon| Send E-Invoice to SdI 10.0.1.0.4
+|icon| Send E-Invoice to SdI 10.0.1.0.6
 =======================================
 
 
@@ -34,18 +34,6 @@ http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 In questa versione sono implementati il canale JSON verso hub di
 terzo incaricato e il canale PEC.
 
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 |
 |
@@ -83,11 +71,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
 
 From UI: go to:
@@ -154,6 +139,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.6 (2019-11-11)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check for channel URL / Verifica URL del canale
+
+
+10.0.1.0.5 (2019-07-10)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Avoid crash if not client_key of channel / No crash se client_key del canale assente
+* [IMP] Set error if not response over 5 days / Imposta stato di errore dopo 5 giorni senza risposta
+
+
 10.0.1.0.4 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -216,7 +214,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-06-26
+Last Update / Ultimo aggiornamento: 2019-11-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

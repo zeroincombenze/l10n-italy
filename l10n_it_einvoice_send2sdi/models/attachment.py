@@ -54,6 +54,9 @@ class FatturaPAAttachmentIn(models.Model):
         if send_channel is False:
             _logger.error('Undefined SDI channel')
             return
+        if not send_channel.sender_url:
+            _logger.error('Undefined URL of SDI channel')
+            return
 
         headers = Evolve.header(send_channel)
         url = os.path.join(send_channel.sender_url, 'Cerca')

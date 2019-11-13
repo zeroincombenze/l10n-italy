@@ -1,3 +1,9 @@
+10.0.1.5.11 (2019-11-11)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sometime it crashes when cancel sale order / A volte sistema andava in crash in annullo ordine
+
+
 10.0.1.5.10 (2019-10-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

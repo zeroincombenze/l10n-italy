@@ -58,35 +58,6 @@ Features / Funzioni
 
 
 |
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia                   | OCA               | Notes / Note                   |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Validation checks / Validazioni      | |check|                       | |no_check|        |                                |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Partner view / Vista cliente         | This Module                   | This Module       | Different layout               |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| IPA Code                             | This Module                   | This Module       |                                |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Recipient Code / Codice Destinatario | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Is PA / Pubbblica Amministrazione?   | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| EInvoice / Soggetto Fattura E.       | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| EORI Code / Codice EORI              | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| License Code / Codice Licenza        | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| PEC                                  | PEC destinatario o PEC legale | PEC destinatario  | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-
-
-|
 |
 
 Getting started / Come iniziare
@@ -256,7 +227,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-26
+Last Update / Ultimo aggiornamento: 2019-11-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
