@@ -1,12 +1,10 @@
 
-============================================
-|icon| Account Invoice entry Date 10.0.0.1.1
-============================================
+===================================
+|icon| Fiscal Year Closing 10.0.1.0
+===================================
 
 
-**Account Invoice Entry Dates**
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_invoice_entry_date/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_fiscal_year_closing/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -17,22 +15,78 @@
 Overview / Panoramica
 =====================
 
-|en| Invoice Entry Date
------------------------
+|en| Fiscal Year Closing Wizard
+-------------------------------
 
-This module allows to specify the fiscal entry date in supplier invoices.
+Generalization of l10n_es_fiscal_year_closing (http://apps.openerp.com/addon/4506)
+
+Replaces the default OpenERP end of year wizards (from account module)
+with a more advanced all-in-one wizard that will let the users:
+
+* Check for unbalanced moves, moves with invalid dates or period or draft moves on the fiscal year to be closed.
+* Create the Loss and Profit entry.
+* Create the Net Loss and Profit entry.
+* Create the Closing entry.
+* Create the Opening entry.
+
+It is stateful, saving all the info about the fiscal year closing, so the
+user can cancel and undo the operations easily.
+
 
 |
 
-|it| Data registrazione fatture
--------------------------------
+|it| Chiusure e riaperture contabili
+------------------------------------
 
-Permette l'inserimento della data di registrazione nelle fatture fornitori.
+Completa l'ordinaria apertura di Odoo in conformità alle leggi fiscali italiane.
 
-La data di registrazione è utilizzata (solo) per la stampa dei registri IVA.
+Permette:
 
-Codice è migrato dalla 8.0 con adattamenti alla 10.0
+* Verifica sbilanciamento e date delle operazioni contabili
+* Registra l'operazione di profitti e perdite
+* Registra l'operazione di perdita o utile di esercizio
+* Registra le operazioni di chiusura contabile
+* Registra le operazioni di riapertura contabile
 
+
+|
+
+Usage / Utilizzo
+----------------
+
+|it| Operazioni di chiusura e riapertura
+
+* Registrazione nuovo esercizio
+* Controlli
+* Stampe fiscali di fine anno
+* Apertura provvisoria esercizio (eventuale)
+* Cancellazione apertura provvisoria (eventuale)
+* Chiusura esercizio
+* Apertura esercizio
+
+`Registrazione nuovo esercizio`
+
+|menu| contabilità > Configurazione > periodi > anni fiscali
+
+
+`Controlli`
+
+Prima di procedere con le operazioni di chiusura e riapertura procedere con i seguenti controlli:
+
+* Determinazione registrazioni stato bozza
+* Sezionale apertura
+* Sezionale di chiusura profitti e perdite
+* Sezionale di chiusura utile o perdita
+* Sezionale di chiusura patrimoniale
+
+
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_fiscal_year_closing/static/description/sezionale_apertura.png
+    :alt: sezionale apertura
+
+.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_fiscal_year_closing/static/description/sezionale_chiusura_pp.png
+    :alt: sezionale chiusura
+
+stamp
 
 |
 |
@@ -78,7 +132,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **account_invoice_entry_date** > Install
+* |menu| Setting > Apps |right_do| Select **account_fiscal_year_closing** > Install
 
 |
 
@@ -103,7 +157,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **account_invoice_entry_date** > Update
+* |menu| Setting > Apps |right_do| Select **account_fiscal_year_closing** > Update
 
 |
 
@@ -153,31 +207,24 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-
+* `Pexego <http://www.pexego.es/>`__
+* `Zikzakmedia S.L. <http://zikzakmedia.com>`__
+* `ACYSOS S.L. <http://acysos.com>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Agile Business Group sagl <http://www.agilebg.com>`__
+* `Domsense srl <http://www.domsense.com>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
-
+* Borja López Soilán (Pexego) - borja@kami.es
+* Lorenzo Battistini - lorenzo.battistini@agilebg.com
+* Jordi Esteve <jesteve@zikzakmedia.com>
+* Pedro Tarrafeta <pedro@acysos.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Acknowledges / Riconoscimenti
------------------------------
-
-+-----------------------------------+-------------------------------------------+
-| |en|                              | |it|                                      |
-+-----------------------------------+-------------------------------------------+
-| This software inherits from past  | Questo software eredita da versioni       |
-| versions some parts of code. Even | passate alcune parti di codice. Anche     |
-| if people did not actively        | se non hanno partecipato attivamente allo |
-| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
-| acknowledge them for their prior  | persone che precedentemente vi hanno      |
-| contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+
-
-* Paolo Chiara <p.chiara@isa.it>
-* Sergio Corato <info@icstools.it>
 
 |
 

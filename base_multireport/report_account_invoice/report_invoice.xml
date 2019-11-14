@@ -14,8 +14,8 @@
 
     <template id="account_invoice_report_duplicate" inherit_id="base_multireport.report_invoice_document" primary="True">
         <xpath expr="//t[@t-call='base_multireport.report_invoice_header']" position="before">
-            <t t-set="doctype" t-value="'NC di cortesia'"/>
-            <t t-set="doctype" t-value="'Fattura di cortesia'"/>
+            <t t-if="o.type == 'out_refund'" t-set="doctype" t-value="'NC di cortesia'"/>
+            <t t-if="not doctype" t-set="doctype" t-value="'Fattura di cortesia'"/>
         </xpath>
         <xpath expr="//t[@t-call='base_multireport.report_invoice_footer']" position="before">
             <t t-set="ending_message"
@@ -25,8 +25,8 @@
 
     <template id="report_delivery_invoice_document" inherit_id="base_multireport.report_invoice_document" primary="True">
         <xpath expr="//t[@t-call='base_multireport.report_invoice_header']" position="before">
-            <t t-set="doctype" t-value="'Nota Credito accompagnatoria'"/>
-            <t t-set="doctype" t-value="'Fattura accompagnatoria'"/>
+            <t t-if="o.type == 'out_refund'" t-set="doctype" t-value="'Nota Credito accompagnatoria'"/>
+            <t t-if="not doctype" t-set="doctype" t-value="'Fattura accompagnatoria'"/>
             <t t-set="ddt_ref_text" t-value="'False'"/>
         </xpath>
         <xpath expr="//t[@t-call='base_multireport.report_invoice_footer']" position="after">

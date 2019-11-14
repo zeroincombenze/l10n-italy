@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.13
+|icon| base_rule_multireport 10.0.0.2.14
 ========================================
 
 
@@ -406,6 +406,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.14 (2019-11-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Text refund / Test NC personalizzata
+
+
 10.0.0.2.13 (2019-09-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -506,7 +512,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-13
+Last Update / Ultimo aggiornamento: 2019-11-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
