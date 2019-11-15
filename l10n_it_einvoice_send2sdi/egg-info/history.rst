@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Check for channel URL / Verifica URL del canale
+* [IMP] Check for response of errored sent invoices (15 days) / Verifica invio fatture con errore (15 gg)
 
 
 10.0.1.0.5 (2019-07-10)

@@ -265,6 +265,12 @@ class StockPickingPackagePreparation(models.Model):
                 elif vals.get('ddt_type_id'):
                     ddt_type = self.env[
                         'stock.ddt.type'].browse(vals['ddt_type_id'])
+            if (picking.sale_id and picking.sale_id.partner_id):
+                inv_partner_id = picking.sale_id.partner_id
+            elif picking.partner_id and picking.partner_id.parent_id:
+                inv_partner_id = picking.partner_id.parent_id
+            else:
+                inv_partner_id = False
             # field from picking ?
             if (sp_fieldname and
                     picking[sp_fieldname]):
@@ -298,12 +304,12 @@ class StockPickingPackagePreparation(models.Model):
                     vals[pp_fieldname] = ddt_type[dt_fieldname]
             # field from partner ?
             elif (rp_fieldname and
-                    picking.partner_id and
-                    picking.partner_id[rp_fieldname]):
+                  inv_partner_id and
+                  inv_partner_id[rp_fieldname]):
                 if fieldname.endswith('_id'):
-                    vals[pp_fieldname] = picking.partner_id[rp_fieldname].id
+                    vals[pp_fieldname] = inv_partner_id[rp_fieldname].id
                 else:
-                    vals[pp_fieldname] = picking.partner_id[rp_fieldname]
+                    vals[pp_fieldname] = inv_partner_id[rp_fieldname]
         elif fieldname != 'note':
             # check on picking, if field is valid
             if sp_fieldname and picking[sp_fieldname]:
@@ -371,9 +377,6 @@ class StockPickingPackagePreparation(models.Model):
             ddt_type = self.env['stock.ddt.type'].search([], limit=1)
             if ddt_type:
                 vals['ddt_type_id'] = ddt_type[0].id
-        # for picking in picking_ids:
-        #     vals = self.get_delivery_value(
-        #         vals, picking, 'carrier_id', _('delivery method'))
         for picking in picking_ids:
             for field, field_help in (('ddt_carrier_id', _('carrier')),
                                       ('show_price', _('show price')),

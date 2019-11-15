@@ -152,7 +152,7 @@ class SaleOrder(models.Model):
                     _("There are not picking to create a DdT"))
             ddt = ddt_model.create(ddt_model.preparare_ddt_data(
                 picking_ids,
-                partner=self.partner_id))
+                partner=self.partner_shipping_id))
             if order.invoice_status == 'no':
                 order.invoice_status = 'to invoice'
         ir_model_data = self.env['ir.model.data']

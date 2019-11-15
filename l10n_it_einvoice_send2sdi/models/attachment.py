@@ -466,13 +466,16 @@ class FatturaPAAttachmentOut(models.Model):
         attachments = self.env['fatturapa.attachment.out'].search(
             # [('state', '=', 'sent')])
             # # [('state', '!=', 'ready'), ('state', '!=', 'validated')])
-            ['|', ('state', '=', 'sent'),
+            ['|', '|',
+             ('state', '=', 'sent'),
+             '&', ('state', '=', 'recipient_error'),
+                    ('sending_date', '<=', (
+                        datetime.datetime.now() + timedelta(days=15)).strftime(
+                            '%Y-%m-%d')),
              '&', ('sending_date', '<=', (
                  datetime.datetime.now() + timedelta(days=95)).strftime(
                      '%Y-%m-%d')),
-             ('invoice_partner_id.is_pa', '=', True)])
-        #attachments = self.env['fatturapa.attachment.out'].search([])
-
+                     ('invoice_partner_id.is_pa', '=', True)])
         for attachment in attachments:
             attachment.send_verify()
 

@@ -143,6 +143,7 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Check for channel URL / Verifica URL del canale
+* [IMP] Check for response of errored sent invoices (15 days) / Verifica invio fatture con errore (15 gg)
 
 
 10.0.1.0.5 (2019-07-10)
@@ -214,7 +215,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-14
+Last Update / Ultimo aggiornamento: 2019-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
