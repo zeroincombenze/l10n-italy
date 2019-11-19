@@ -73,11 +73,12 @@ class FatturaPAAttachmentIn(models.Model):
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
     def _compute_xml_data(self):
         wizard_model = self.env['wizard.import.fatturapa']
+        partner_model = self.env['res.partner']
         for att in self:
             inv_xml = wizard_model.get_invoice_obj(att)
             if not inv_xml:
                 continue
-            xml_supplier_id = wizard_model.getPartnerBase(
+            xml_supplier_id = partner_model.getPartnerBase(
                 inv_xml.FatturaElettronicaHeader.CedentePrestatore)
             if xml_supplier_id < 0:
                 continue

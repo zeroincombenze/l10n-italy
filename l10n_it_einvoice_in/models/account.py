@@ -45,6 +45,145 @@ class AccountInvoice(models.Model):
         self.fatturapa_attachment_in_id = False
         return {'type': 'ir.actions.client', 'tag': 'reload'}
 
+    def xml_get_header_data(
+        self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id
+    ):
+        company = self.env['res.company'].xml_get_company(
+            fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici,
+            wizard=self)
+        partner = self.env['res.partner'].browse(partner_id)
+        # currency 2.1.1.2
+        currency = self.env['res.currency'].search(
+            [
+                (
+                    'name', '=',
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
+                )
+            ])
+        if not currency:
+            raise UserError(
+                _(
+                    'No currency found with code %s.'
+                    % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
+                )
+            )
+        # 2.1.1
+        docType_id = False
+        invtype = 'in_invoice'
+        docType = FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
+        if docType:
+            docType_record = self.env['italy.ade.invoice.type'].search(
+                [('code', '=', docType)]
+            )
+            if docType_record:
+                docType_id = docType_record[0].id
+            else:
+                raise UserError(
+                    _("Document type %s not handled.")
+                    % docType)
+            if docType == 'TD04':
+                invtype = 'in_refund'
+        # 2.1.1.11
+        comment = ''
+        causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
+        if causLst:
+            for item in causLst:
+                comment += item + '\n'
+        #
+        invoice_data = {
+            'invoice_type_id': docType_id,
+            'date_invoice':
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+            'reference':
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
+            'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
+            'type': invtype,
+            'currency_id': currency[0].id,
+            # 'origin': xmlData.datiOrdineAcquisto,
+            'payment_term_id': partner.property_supplier_payment_term_id.id,
+            'company_id': company.id,
+            'comment': comment,
+            'check_total': FatturaBody.DatiGenerali.DatiGeneraliDocumento.\
+                           ImportoTotaleDocumento
+        }
+        # 2.1.1.10
+        if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
+            invoice_data['efatt_rounding'] = float(
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
+            )
+        # 2.1.1.12
+        if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Art73:
+            invoice_data['art73'] = True
+        # 2.1.1.5
+        Withholding = FatturaBody.DatiGenerali.\
+            DatiGeneraliDocumento.DatiRitenuta
+        wt_found = None
+        if Withholding:
+            wts = self.env['withholding.tax'].search([
+                ('causale_pagamento_id.code', '=',
+                 Withholding.CausalePagamento)
+            ])
+            if not wts:
+                raise UserError(_(
+                    "The bill contains withholding tax with "
+                    "payment reason %s, "
+                    "but such a tax is not found in your system. Please "
+                    "set it."
+                ) % Withholding.CausalePagamento)
+            wt_found = False
+            for wt in wts:
+                wt_aliquota = wt.tax * wt.base
+                if wt_aliquota == float(Withholding.AliquotaRitenuta):
+                    wt_found = wt
+                    break
+            if not wt_found:
+                raise UserError(_(
+                    "No withholding tax found with "
+                    "document payment reason %s and rate %s."
+                ) % (
+                    Withholding.CausalePagamento, Withholding.AliquotaRitenuta
+                ))
+            invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
+        return invoice_data, company, partner, wt_found
+
+    def xml_get_body_data(
+        self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id,
+        detail_level, company, wt_found,
+    ):
+        # TODO: to complete
+        partner = self.env['res.partner'].browse(partner_id)
+        invoice_lines = []
+        e_invoice_line_ids = []
+        e_invoice_line_ids_2 = {}
+        credit_account = False
+        if detail_level > '0' and partner.e_invoice_default_account_id:
+            credit_account = partner.e_invoice_default_account_id
+        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+            if detail_level == '2':
+                if credit_account:
+                    credit_account_id = credit_account.id
+                invoice_line_data = wizard._prepareInvoiceLine(
+                    credit_account_id, line, wt_found)
+                product = wizard.get_line_product(line, partner)
+                if product:
+                    invoice_line_data['product_id'] = product.id
+                    wizard.adjust_accounting_data(product, invoice_line_data)
+                invoice_line_id = invoice_line_model.create(
+                    invoice_line_data).id
+                invoice_lines.append(invoice_line_id)
+
+            elif detail_level == '1':
+                company_id = company.id
+                account_tax = wizard.get_tax(company_id,
+                                             line.AliquotaIVA,
+                                             line.Natura)
+                if account_tax not in e_invoice_line_ids_2:
+                    e_invoice_line_ids_2[account_tax] = float(0)
+                e_invoice_line_ids_2[account_tax] += float(line.PrezzoTotale)
+
+            einvoiceline = self.create_e_invoice_line(line)
+            e_invoice_line_ids.append(einvoiceline.id)
+
 
 class fatturapa_article_code(models.Model):
     # _position = ['2.2.1.3']

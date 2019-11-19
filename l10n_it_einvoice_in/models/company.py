@@ -15,6 +15,31 @@ class ResCompany(models.Model):
         help="Product used to model ScontoMaggiorazione XML element on bills."
     )
 
+    def xml_get_company(self, DatiAnagrafici, wizard=None):
+        '''Get company data from xml file'''
+        vat = ''
+        if DatiAnagrafici:
+            if DatiAnagrafici.IdFiscaleIVA:
+                vat = "%s%s" % (
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice
+                )
+        if not vat:
+            if wizard:
+                wizard.log_inconsistency(
+                    _('E-Invoice without VAT number'))
+            else:
+                raise UserError(
+                    _('E-Invoice without VAT number'))
+            return self.env.user.company_id
+        if vat and vat == self.env.user.company_id.vat:
+            return self.env.user.company_id
+        companies = self.search([('vat', '=', vat)])
+        if not companies:
+            raise UserError(
+                _("VAT number %s of customer invoice "
+                  "is not the same of the current company" % vat))
+        return companies[0]
 
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'

@@ -1,6 +1,6 @@
 
 ========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.7
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.8
 ========================================================================
 
 
@@ -251,6 +251,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.8 (2019-10-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Link to existent invoice set header data / Il collegamento ad una fattura esistente imposta i dati di testata
+* [FIX] Unicode error in delivery address / Errore unicode in indirizzo di consegan
+* [IMP] Some supplier invoices have natura N6 without vax rate / Fattura fornitori con natura N6 e senza aliquota IVA
+
+
 10.0.1.3.7 (2019-06-25)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -325,7 +333,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-15
+Last Update / Ultimo aggiornamento: 2019-11-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

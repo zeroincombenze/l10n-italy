@@ -62,3 +62,12 @@ stdout.log
 *.z0i
 *.oia
 .gitrepname
+setup/
+stock-logistics-barcode/
+stock-logistics-tracking/
+stock-logistics-warehouse/
+stock-logistics-workflow/
+uncovered/
+web/
+webkit-tools/
+website/

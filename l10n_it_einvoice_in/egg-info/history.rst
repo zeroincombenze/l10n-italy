@@ -1,3 +1,11 @@
+10.0.1.3.8 (2019-10-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Link to existent invoice set header data / Il collegamento ad una fattura esistente imposta i dati di testata
+* [FIX] Unicode error in delivery address / Errore unicode in indirizzo di consegan
+* [IMP] Some supplier invoices have natura N6 without vax rate / Fattura fornitori con natura N6 e senza aliquota IVA
+
+
 10.0.1.3.7 (2019-06-25)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

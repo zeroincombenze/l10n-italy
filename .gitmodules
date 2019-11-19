@@ -1,0 +1,21 @@
+[submodule "stock-logistics-barcode"]
+	path = stock-logistics-barcode
+	url = https://github.com/zeroincombenze/stock-logistics-barcode
+[submodule "stock-logistics-tracking"]
+	path = stock-logistics-tracking
+	url = https://github.com/zeroincombenze/stock-logistics-tracking
+[submodule "stock-logistics-warehouse"]
+	path = stock-logistics-warehouse
+	url = https://github.com/zeroincombenze/stock-logistics-warehouse
+[submodule "stock-logistics-workflow"]
+	path = stock-logistics-workflow
+	url = https://github.com/zeroincombenze/stock-logistics-workflow
+[submodule "web"]
+	path = web
+	url = https://github.com/zeroincombenze/web
+[submodule "webkit-tools"]
+	path = webkit-tools
+	url = https://github.com/zeroincombenze/webkit-tools
+[submodule "website"]
+	path = website
+	url = https://github.com/zeroincombenze/website

@@ -17,8 +17,6 @@ from odoo.tools.translate import _
 _logger = logging.getLogger(__name__)
 
 
-
-
 class WizardImportFatturapa(models.TransientModel):
     _name = "wizard.import.fatturapa"
     _description = "Import E-bill"
@@ -68,17 +66,6 @@ class WizardImportFatturapa(models.TransientModel):
                     partners[0].e_invoice_detail_level)
         return res
 
-    def CountryByCode(self, CountryCode):
-        country_model = self.env['res.country']
-        return country_model.search([('code', '=', CountryCode)])
-
-    def ProvinceByCode(self, provinceCode):
-        province_model = self.env['res.country.state']
-        return province_model.search([
-            ('code', '=', provinceCode),
-            ('country_id.code', '=', 'IT')
-        ])
-
     def log_inconsistency(self, message):
         inconsistencies = self.env.context.get('inconsistencies', '')
         if inconsistencies:
@@ -122,230 +109,6 @@ class WizardImportFatturapa(models.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
 
-    def getCompany(self, DatiAnagrafici):
-        vat = ''
-        if DatiAnagrafici:
-            if DatiAnagrafici.IdFiscaleIVA:
-                vat = "%s%s" % (
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice
-                )
-        if not vat:
-            self.log_inconsistency(
-                _('E-Invoice without VAT number'))
-            return self.env.user.company_id
-        if vat and vat == self.env.user.company_id.vat:
-            return self.env.user.company_id
-
-        companies = self.env['res.company'].search([('vat', '=', vat)])
-        if not companies:
-            raise UserError(
-                _("VAT number %s of customer invoice "
-                  "is not the same of the current company" % vat))
-        return companies[0]
-
-    @api.multi
-    def synchro(self, model, vals, skeys=None, constraints=None,
-                keep=None, default=None):
-        skeys = skeys or []
-        ir_model = self.env[model]
-        partner_model = self.env['res.partner']
-        MAGIC_FIELDS = {'company_id': False,
-                        'is_company': True,
-                        'supplier': True,
-        }
-        keep = keep or []
-        default = default or {}
-        id = -1
-        for keys in skeys:
-            where = []
-            for key in keys:
-                if key not in vals and key in MAGIC_FIELDS:
-                    if MAGIC_FIELDS[key]:
-                        where.append((key, '=', MAGIC_FIELDS[key]))
-                elif key not in vals:
-                    where = []
-                    break
-                else:
-                    where.append((key, '=', vals[key]))
-            if where:
-                for constr in constraints:
-                    add_where = False
-                    if constr[0] in vals:
-                        constr[0] = vals[constr[0]]
-                        add_where = True
-                    if constr[-1] in vals:
-                        constr[-1] = vals[constr[-1]]
-                        add_where = True
-                    if add_where:
-                        where.append(constr)
-                rec = ir_model.search(where)
-                if rec:
-                    id = rec[0].id
-                    break
-        if id > 0:
-            try:
-                cur_rec = ir_model.browse(id)
-                for field in keep:
-                    if (field in vals and cur_rec[field] and
-                            isinstance(vals[field], basestring) and
-                            partner_model.dim_text(
-                                cur_rec[field]) == partner_model.dim_text(
-                                    vals[field])):
-                        del vals[field]
-                for field in default:
-                    if not vals.get(field) and field in default:
-                        vals[field] = default[field]
-                cur_rec.write(vals)
-            except:
-                _logger.error('Error writing %s ID=%d' %
-                              (model, id))
-                return -2
-        else:
-            try:
-                id = ir_model.create(vals).id
-            except:
-                _logger.error('Error creating %s' % model)
-                return -1
-        return id
-
-    def getPartnerBase(self, partner_xml):
-        if not partner_xml:
-            return -1
-        if hasattr(partner_xml, 'DatiAnagrafici'):
-            DatiAnagrafici = partner_xml.DatiAnagrafici
-        else:
-            return -1
-        if hasattr(DatiAnagrafici, 'Anagrafica'):
-            Anagrafica = DatiAnagrafici.Anagrafica
-        else:
-            return -1
-        fiscalPosModel = self.env['fatturapa.fiscal_position']
-        vals = {
-            'customer': False,
-            'supplier': True,
-            'is_company': True,
-            'street': partner_xml.Sede.Indirizzo,
-            'zip': partner_xml.Sede.CAP,
-            'city': partner_xml.Sede.Comune,
-        }
-        if partner_xml.Sede.Provincia:
-            Provincia = partner_xml.Sede.Provincia
-            prov_sede = self.ProvinceByCode(Provincia)
-            if not prov_sede:
-                self.log_inconsistency(
-                    _('Province ( %s ) not present in your system')
-                    % Provincia
-                )
-            else:
-                vals['state_id'] = prov_sede[0].id
-
-        if partner_xml.Contatti:
-            vals['phone'] = partner_xml.Contatti.Telefono
-            vals['email'] = partner_xml.Contatti.Email
-            vals['fax'] = partner_xml.Contatti.Fax
-
-        if DatiAnagrafici.AlboProfessionale:
-            vals['register'] = DatiAnagrafici.AlboProfessionale
-            if DatiAnagrafici.ProvinciaAlbo:
-                ProvinciaAlbo = DatiAnagrafici.ProvinciaAlbo
-                prov = self.ProvinceByCode(ProvinciaAlbo)
-                if not prov:
-                    self.log_inconsistency(
-                        _('Register Province ( %s ) not present '
-                          'in your system')
-                        % ProvinciaAlbo
-                    )
-                else:
-                    vals['register_province'] = prov[0].id
-            vals['register_code'] = DatiAnagrafici.NumeroIscrizioneAlbo or ''
-            vals['register_regdate'] = DatiAnagrafici.DataIscrizioneAlbo or ''
-
-        if DatiAnagrafici.RegimeFiscale:
-            rfPos = DatiAnagrafici.RegimeFiscale
-            FiscalPos = fiscalPosModel.search(
-                [('code', '=', rfPos)]
-            )
-            if not FiscalPos:
-                raise UserError(
-                    _('Tax Regime %s not present in your system.')
-                    % rfPos
-                )
-            else:
-                vals['register_fiscalpos'] = FiscalPos[0].id
-
-        if partner_xml.IscrizioneREA:
-            REA = partner_xml.IscrizioneREA
-            vals['rea_code'] = REA.NumeroREA
-            offices = self.ProvinceByCode(REA.Ufficio)
-            if not offices:
-                self.log_inconsistency(
-                    _(
-                        'REA Office Province Code ( %s ) not present in '
-                        'your system'
-                    ) % REA.Ufficio
-                )
-            else:
-                office_id = offices[0].id
-                vals['rea_office'] = office_id
-            vals['rea_capital'] = REA.CapitaleSociale or 0.0
-            vals['rea_member_type'] = REA.SocioUnico or False
-            vals['rea_liquidation_state'] = REA.StatoLiquidazione or False
-
-        if DatiAnagrafici.CodiceFiscale:
-            vals['fiscalcode'] = DatiAnagrafici.CodiceFiscale
-        if DatiAnagrafici.IdFiscaleIVA:
-            vals['vat'] = "%s%s" % (
-                DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                DatiAnagrafici.IdFiscaleIVA.IdCodice
-            )
-
-        if (hasattr(partner_xml,'DatiAnagraficiVettore') and
-                partner_xml.DatiAnagraficiVettore and
-                partner_xml.DatiAnagraficiVettore.NumeroLicenzaGuida):
-            vals['license_number'] = \
-                partner_xml.DatiAnagraficiVettore.NumeroLicenzaGuida
-
-        if DatiAnagrafici.IdFiscaleIVA:
-            CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-            countries = self.CountryByCode(CountryCode)
-            if countries:
-                country_id = countries[0].id
-            else:
-                raise UserError(
-                    _("Country Code %s not found in the system.") % CountryCode
-                )
-            vals['country_id'] = country_id
-        if Anagrafica.CodEORI:
-            vals['eori_code'] = Anagrafica.CodEORI
-        if Anagrafica.Denominazione:
-            vals['name'] = Anagrafica.Denominazione
-        else:
-            vals['name'] = '%s %s' % (Anagrafica.Cognome,
-                                      Anagrafica.Nome)
-        return self.synchro('res.partner',
-                            vals,
-                            skeys=(['vat', 'fiscalcode', 'is_company', 'type'],
-                                   ['vat', 'fiscalcode', 'is_company'],
-                                   ['rea_code'],
-                                   ['vat', 'name', 'is_company', 'type'],
-                                   ['fiscalcode', 'type'],
-                                   ['vat', 'is_company', 'supplier'],
-                                   ['name', 'is_company', 'supplier'],
-                                   ['vat'],
-                                   ['name']),
-                            constraints=[('id', '!=', 'parent_id')],
-                            keep = ['customer', 'country_id',
-                                    'name', 'street', 'zip',
-                                    'city', 'state_id',
-                                   ],
-                            default = {
-                                'rea_member_type': 'SM',
-                                'rea_liquidation_state': 'LN',
-                                'type': 'contact',
-                            }
-        )
-
     def getCarrirerPartner(self, Carrier):
         if not Carrier:
             return -1
@@ -378,7 +141,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         if DatiAnagrafici.IdFiscaleIVA:
             CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-            countries = self.CountryByCode(CountryCode)
+            countries = self.env['res.partner'].CountryByCode(CountryCode)
             if countries:
                 country_id = countries[0].id
             else:
@@ -422,7 +185,9 @@ class WizardImportFatturapa(models.TransientModel):
         where = []
         where.append(('company_id', '=', company_id))
         where.append(('type_tax_use', '=', 'purchase'))
-        where.append(('amount', '=', AliquotaIVA_fp))
+        # Some supplier use N6 w/o Vax rate!
+        if Natura != 'N6' or AliquotaIVA_fp != 0.0:
+            where.append(('amount', '=', AliquotaIVA_fp))
         if Natura:
             where.append(('nature_id.code', '=', Natura))
         account_taxes = account_tax_model.search(where, order="sequence")
@@ -1020,9 +785,7 @@ class WizardImportFatturapa(models.TransientModel):
     def invoiceCreate(
         self, fatt, fatturapa_attachment, FatturaBody, partner_id
     ):
-        partner_model = self.env['res.partner']
         invoice_model = self.env['account.invoice']
-        currency_model = self.env['res.currency']
         invoice_line_model = self.env['account.invoice.line']
         ftpa_doctype_model = self.env['italy.ade.invoice.type']
         rel_docs_model = self.env['fatturapa.related_document_type']
@@ -1033,118 +796,25 @@ class WizardImportFatturapa(models.TransientModel):
         PaymentTermsModel = self.env['fatturapa.payment_term']
         SummaryDatasModel = self.env['faturapa.summary.data']
 
-        # company = self.env.user.company_id
-        company = self.getCompany(
-                fatt.FatturaElettronicaHeader.CessionarioCommittente.
-                DatiAnagrafici)
-        partner = partner_model.browse(partner_id)
-        # currency 2.1.1.2
-        currency = currency_model.search(
-            [
-                (
-                    'name', '=',
-                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
-                )
-            ])
-        if not currency:
-            raise UserError(
-                _(
-                    'No currency found with code %s.'
-                    % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
-                )
-            )
+        invoice_data, company, partner, wt_found = invoice_model.xml_get_header_data(
+            self, fatt, fatturapa_attachment, FatturaBody, partner_id)
+
         purchase_journal = self.get_purchase_journal(company)
         # purchase_journal = invoice_model._default_journal()
         credit_account_id = purchase_journal.default_credit_account_id.id
         # credit_account_id = invoice_model._default_account()
-        invoice_lines = []
-        comment = ''
-        # 2.1.1
-        docType_id = False
-        invtype = 'in_invoice'
-        docType = FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
-        if docType:
-            docType_record = ftpa_doctype_model.search(
-                [
-                    ('code', '=', docType)
-                ]
-            )
-            if docType_record:
-                docType_id = docType_record[0].id
-            else:
-                raise UserError(
-                    _("Document type %s not handled.")
-                    % docType)
-            if docType == 'TD04':
-                invtype = 'in_refund'
-        # 2.1.1.11
-        causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
-        if causLst:
-            for item in causLst:
-                comment += item + '\n'
-
-        invoice_data = {
-            'invoice_type_id': docType_id,
-            'date_invoice':
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
-            'reference':
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
-            'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
+        invoice_data.update({
             'account_id': partner.property_account_payable_id.id,
-            'type': invtype,
             'partner_id': partner_id,
-            'currency_id': currency[0].id,
             'journal_id': purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
             'fiscal_position_id': partner.property_account_position_id.id,
-            'payment_term_id': partner.property_supplier_payment_term_id.id,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
-            'comment': comment,
-            'check_total': FatturaBody.DatiGenerali.DatiGeneraliDocumento.\
-                           ImportoTotaleDocumento
-        }
+        })
 
-        # 2.1.1.10
-        if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
-            invoice_data['efatt_rounding'] = float(
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
-            )
-        # 2.1.1.12
-        if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Art73:
-            invoice_data['art73'] = True
-
-        # 2.1.1.5
-        Withholding = FatturaBody.DatiGenerali.\
-            DatiGeneraliDocumento.DatiRitenuta
-        wt_found = None
-        if Withholding:
-            wts = self.env['withholding.tax'].search([
-                ('causale_pagamento_id.code', '=',
-                 Withholding.CausalePagamento)
-            ])
-            if not wts:
-                raise UserError(_(
-                    "The bill contains withholding tax with "
-                    "payment reason %s, "
-                    "but such a tax is not found in your system. Please "
-                    "set it."
-                ) % Withholding.CausalePagamento)
-            wt_found = False
-            for wt in wts:
-                wt_aliquota = wt.tax * wt.base
-                if wt_aliquota == float(Withholding.AliquotaRitenuta):
-                    wt_found = wt
-                    break
-            if not wt_found:
-                raise UserError(_(
-                    "No withholding tax found with "
-                    "document payment reason %s and rate %s."
-                ) % (
-                    Withholding.CausalePagamento, Withholding.AliquotaRitenuta
-                ))
-            invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
         # 2.2.1
+        invoice_lines = []
         e_invoice_line_ids = []
         e_invoice_line_ids_2 = {}
 
@@ -1209,15 +879,6 @@ class WizardImportFatturapa(models.TransientModel):
             invoice._amount_withholding_tax()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
-
-        # # 2.1.1.7
-        # Walfares = FatturaBody.DatiGenerali.\
-        #     DatiGeneraliDocumento.DatiCassaPrevidenziale
-        # if Walfares and self.e_invoice_detail_level == '2':
-        #     for walfareLine in Walfares:
-        #         WalferLineVals = self._prepareWelfareLine(
-        #             invoice_id, walfareLine)
-        #         WelfareFundLineModel.create(WalferLineVals)
 
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
@@ -1329,10 +990,10 @@ class WizardImportFatturapa(models.TransientModel):
             if Delivery.IndirizzoResa:
                 delivery_dict['delivery_address'] = (
                     '{0}, {1}\n{2} - {3}\n{4} {5}'.format(
-                        Delivery.IndirizzoResa.Indirizzo or '',
+                        repr(Delivery.IndirizzoResa.Indirizzo) or '',
                         Delivery.IndirizzoResa.NumeroCivico or '',
                         Delivery.IndirizzoResa.CAP or '',
-                        Delivery.IndirizzoResa.Comune or '',
+                        repr(Delivery.IndirizzoResa.Comune) or '',
                         Delivery.IndirizzoResa.Provincia or '',
                         Delivery.IndirizzoResa.Nazione or ''
                     )
@@ -1473,6 +1134,7 @@ class WizardImportFatturapa(models.TransientModel):
         fatturapa_attachment_model = self.env['fatturapa.attachment.in']
         fatturapa_attachment_ids = self.env.context.get('active_ids', False)
         invoice_model = self.env['account.invoice']
+        partner_model = self.env['res.partner']
         new_invoices = []
         for fatturapa_attachment_id in fatturapa_attachment_ids:
             self.__dict__.update(
@@ -1484,12 +1146,10 @@ class WizardImportFatturapa(models.TransientModel):
                 raise UserError(
                     _("File is linked to bills yet."))
             fatt = self.get_invoice_obj(fatturapa_attachment)
-            # company_id = self.getCompany(
-            #     fatt.FatturaElettronicaHeader.CessionarioCommittente.
-            #     DatiAnagrafici)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
-            partner_id = self.getPartnerBase(cedentePrestatore)
+            partner_id = partner_model.getPartnerBase(cedentePrestatore,
+                                                      fatturapa=self)
             # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale
@@ -1501,34 +1161,32 @@ class WizardImportFatturapa(models.TransientModel):
             if self.env.context.get('inconsistencies'):
                 generic_inconsistencies = (
                     self.env.context['inconsistencies'] + '\n\n')
-
             # 2
-            for fattura in fatt.FatturaElettronicaBody:
-
+            for FatturaBody in fatt.FatturaElettronicaBody:
                 # reset inconsistencies
                 self.__dict__.update(
                     self.with_context(inconsistencies='').__dict__
                 )
 
                 invoice_id = self.invoiceCreate(
-                    fatt, fatturapa_attachment, fattura, partner_id)
+                    fatt, fatturapa_attachment, FatturaBody, partner_id)
                 invoice = invoice_model.browse(invoice_id)
                 self.set_StabileOrganizzazione(cedentePrestatore, invoice)
                 vals = {}
                 if TaxRappresentative:
-                    tax_partner_id = self.getPartnerBase(
-                        TaxRappresentative.DatiAnagrafici)
+                    tax_partner_id = partner_model.getPartnerBase(
+                        TaxRappresentative.DatiAnagrafici, fatturapa=self)
                     if tax_partner_id > 0:
                         vals['tax_representative_id'] = tax_partner_id
                 if Intermediary:
-                    intermediary_id = self.getPartnerBase(
-                        Intermediary.DatiAnagrafici)
+                    intermediary_id = partner_model.getPartnerBase(
+                        Intermediary.DatiAnagrafici, fatturapa=self)
                     if intermediary_id > 0:
                         vals['intermediary'] = intermediary_id
                 if vals:
                     invoice.write(vals)
                 new_invoices.append(invoice_id)
-                self.check_invoice_amount(invoice, fattura)
+                self.check_invoice_amount(invoice, FatturaBody)
 
                 if self.env.context.get('inconsistencies'):
                     invoice_inconsistencies = (
