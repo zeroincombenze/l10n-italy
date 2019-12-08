@@ -35,10 +35,14 @@ class AccountJournal(orm.Model):
         'einvoice': False,
     }
 
+    # @api.onchange('rev_charge', 'anom_sale_receipts', 'proforma', 'einvoice')
     def onchange_check_subtype(self, cr, uid, ids, name,
                                jtype, rev_charge, anom_sale_receipts, proforma,
                                einvoice, context=None):
         res = {'value': {}}
+        for p in ('rev_charge', 'anom_sale_receipts', 'proforma', 'einvoice'):
+            if p != name:
+                res['value'][p] = False
         if ((name =='rev_charge' and rev_charge) or
                 (name == 'anom_sale_receipts' and anom_sale_receipts)):
             if jtype != 'sale':
@@ -55,7 +59,4 @@ class AccountJournal(orm.Model):
                     'title': 'Invalid setting!',
                     'message': 'Journal type must be sale or purchase'}
                 }
-        for p in ('rev_charge', 'anom_sale_receipts', 'proforma', 'einvoice'):
-            if p != name: \
-                res['value'][name] = False
         return res

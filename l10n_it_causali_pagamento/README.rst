@@ -4,7 +4,7 @@
 =========================================================
 
 
-**Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto**
+**Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d"acconto**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_causali_pagamento/static/src/img/icon.png
 
