@@ -6,11 +6,7 @@
 #
 import base64
 import os
-import shutil
-import tempfile
-from datetime import datetime
 
-from lxml import etree
 from z0bug_odoo import test_common
 
 
@@ -36,3 +32,4 @@ class TestAdeCodiceCarica(test_common.SingleTransactionCase):
                       {'name': CODICE_CARICA_NAME2})
         rec = self.browse_rec(model_name, self.codice_carica_id)
         self.assertEqual(rec.name, CODICE_CARICA_NAME2)
+

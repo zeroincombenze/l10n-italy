@@ -10,9 +10,8 @@
     'summary': 'Electronic & Fiscal invoices payment',
     'version': '7.0.1.0.0',
     'category': 'Localization/Italy',
-    'author': 'Odoo Italia Associazione,'
-              'Odoo Community Association (OCA)',
-    'website': 'http://www.odoo-italia.org',
+    'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
+    'website': 'https://www.zeroincombenze.it/',
     'license': 'AGPL-3',
     'depends': [
         'account',
@@ -25,60 +24,79 @@
         'data/fatturapa_data.xml',
     ],
     'installable': True,
-    'description': r'''|en|
+    'description': r'''
+Overview / Panoramica
+=====================
 
-Italian Fiscal Payment Terms
-=============================
+|en| Italian Fiscal Payment Terms
+=================================
 
 E-Invoice and FatturaPA Payment Terms as per
 `Italian Government Website <http://fatturapa.gov.it>`__
 
+|
 
-|it|
-
-Termini di Pagamento Fiscali 
-==============================
+|it| Termini di Pagamento Fiscali 
+==================================
 
 Termini di pagamento fiscali per Fattura Elettronica e FatturaPA come da 
 `Disposizioni governative FatturaPA <http://fatturapa.gov.it>`__
 
+|
+|
+
+Support / Supporto
+------------------
 
 
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|en|
+|
+|
 
+Credits / Didascalie
+====================
 
+Copyright
+---------
 
-
-Credits / Riconoscimenti
-=========================
-
-Authors / Autori
------------------
-
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-
-
-Contributors / Contributi
---------------------------
-
-* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-
-
-Maintainers / Manutezione
---------------------------
-
-|Odoo Italia Associazione|
-
-This module is maintained by the Odoo Italia Associazione.
-
-To contribute to this module, please visit https://odoo-italia.org/.
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-28
+Authors / Autori
+----------------
+
+
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
+Contributors / Collaboratori
+----------------------------
+
+
+* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+
+|
+
+----------------
+
+
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed to cover Italian law and markeplace.
+
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+
+|
+
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -89,15 +107,15 @@ Last Update / Ultimo aggiornamento: 2018-10-28
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -107,16 +125,19 @@ Last Update / Ultimo aggiornamento: 2018-10-28
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: badge-oca-codecov
-    :target: oca-codecov-URL
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
@@ -128,11 +149,12 @@ Last Update / Ultimo aggiornamento: 2018-10-28
 .. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
 .. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
 }

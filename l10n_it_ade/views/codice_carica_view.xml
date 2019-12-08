@@ -39,7 +39,7 @@
 
     <menuitem id="menu_ade_codice_carica" name="Codici Carica"
               action="action_ade_codice_carica" parent="menu_ade"
-              groups="account.group_account_manager"/>
+              groups="account.group_account_manager" sequence="45"/>
 
 </data>
 </openerp>

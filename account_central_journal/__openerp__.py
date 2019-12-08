@@ -5,8 +5,8 @@
     'summary': 'Print Italian Account Central Journal',
     'version': '7.0.3.0.2',
     'category': 'Generic Modules/Accounting',
-    'author': 'ISA S.r.l.,Odoo Community Association (OCA)',
-    'website': 'http://www.isa.it',
+    'author': 'Odoo Community Association (OCA), ISA s.r.l., SHS-AV s.r.l.',
+    'website': 'https://odoo-community.org/',
     'depends': [
         'base',
         'account',
@@ -96,7 +96,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-05-17
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -114,7 +114,7 @@ Last Update / Ultimo aggiornamento: 2019-05-17
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
@@ -125,7 +125,7 @@ Last Update / Ultimo aggiornamento: 2019-05-17
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png

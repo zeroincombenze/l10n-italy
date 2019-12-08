@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
@@ -34,52 +36,26 @@ class AccountJournal(orm.Model):
     }
 
     def onchange_check_subtype(self, cr, uid, ids, name,
-                               type, rev_charge, anom_sale_receipts, proforma,
+                               jtype, rev_charge, anom_sale_receipts, proforma,
                                einvoice, context=None):
-        if name == 'rev_charge' and rev_charge:
-            if type != 'sale':
-                return {'value': {name: False},
+        res = {'value': {}}
+        if ((name =='rev_charge' and rev_charge) or
+                (name == 'anom_sale_receipts' and anom_sale_receipts)):
+            if jtype != 'sale':
+                res = {'value': {name: False},
                         'warning': {
                     'title': 'Invalid setting!',
                     'message': 'Journal type must be sale'}
                 }
-            res = {'value': {name: True,
-                             'anom_sale_receipts': False,
-                             'proforma': False,
-                             'einvoice': False}}
-        elif name == 'anom_sale_receipts' and anom_sale_receipts:
-            if type != 'sale':
-                return {'value': {name: False},
-                        'warning': {
-                    'title': 'Invalid setting!',
-                    'message': 'Journal type must be sale'}
-                }
-            res = {'value': {name: True,
-                             'rev_charge': False,
-                             'proforma': False,
-                             'einvoice': False}}
-        elif name == 'proforma' and proforma:
-            if type not in ('purchase', 'sale'):
-                return {'value': {name: False},
+        elif ((name == 'proforma' and proforma) or
+              (name == 'einvoice' and einvoice)):
+            if jtype not in ('purchase', 'sale'):
+                res = {'value': {name: False},
                         'warning': {
                     'title': 'Invalid setting!',
                     'message': 'Journal type must be sale or purchase'}
                 }
-            res = {'value': {name: True,
-                             'rev_charge': False,
-                             'anom_sale_receipts': False,
-                             'einvoice': False}}
-        elif name == 'einvoice' and einvoice:
-            if type not in ('purchase', 'sale'):
-                return {'value': {name: False},
-                        'warning': {
-                    'title': 'Invalid setting!',
-                    'message': 'Journal type must be sale or purchase'}
-                }
-            res = {'value': {name: True,
-                             'rev_charge': False,
-                             'anom_sale_receipts': False,
-                             'proforma': False}}
-        else:
-            res = {'value': {name: False}}
+        for p in ('rev_charge', 'anom_sale_receipts', 'proforma', 'einvoice'):
+            if p != name: \
+                res['value'][name] = False
         return res

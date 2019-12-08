@@ -8,41 +8,70 @@
     'name': 'Comunicazione periodica IVA',
     'version': '7.0.0.1.12',
     'category': 'Generic Modules/Accounting',
-    'author': 'SHS-AV s.r.l., Odoo Italia Associazione',
-    'website': 'https://odoo-italia.org',
+    'author': 'Odoo Community Association (OCA) and other subjects',
+    'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_ade',
         'l10n_it_fiscalcode',
         'account_invoice_entry_date',
         'l10n_it_vat_registries',
-        # 'l10n_it_account'
     ],
-    'data': ['views/add_period.xml',
-             'views/remove_period.xml',
-             'views/account_view.xml',
-             'views/wizard_export_view.xml',
-             'security/ir.model.access.csv',
-             'communication_workflow.xml',
-             ],
+    'external_dependencies': {'python': ['pyxb', 'unidecode']},
+    'data': [
+        'views/add_period.xml',
+        'views/remove_period.xml',
+        'views/account_view.xml',
+        'views/wizard_export_view.xml',
+        'security/ir.model.access.csv',
+        'communication_workflow.xml',
+    ],
     'installable': True,
-    'external_dependencies': {
-        'python': ['pyxb', 'unidecode'],
-    },
+    'maintainer': 'Odoo Community Association (OCA)',
     'description': r'''
 Overview / Panoramica
 =====================
 
-|en| Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
+|en| Invoices VAT communication
+-------------------------------
+
+Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 
 |
 
-|it| Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
+|it| Comunicazione IVA (ex Spesometro)
+--------------------------------------
+
+Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
 ricevute e genera il file da inviare all'Agenzia delle Entrate.
 Questo obbligo è conosciuto anche come Spesometro light 2018 e sostistuisce i
-precedenti obbblighi chiamati Spesometro e Spesometro 2017.
+precedenti obblighi chiamati Spesometro e Spesometro 2017.
 
-Il softwware permette di operare in modalità 2017 per rigenerare eventuali file
+::
+
+    Destinatari:
+
+Tutti i soggetti IVA (con partita IVA)
+
+::
+
+    Normativa e prassi:
+
+* `Art. 21 D.L. n. 78/2010 <https://www.gazzettaufficiale.it/gunewsletter/dettaglio.jsp?service=1&datagu=2010-05-31&task=dettaglio&numgu=125&redaz=010G0101&tmstp=1275551085053>`__
+* `Art. 4 D.L. n. 193/2016 <https://www.gazzettaufficiale.it/eli/id/2016/10/24/16G00209/sg>`__
+* `Art. 1ter D.L. n. 148/2017 <https://www.gazzettaufficiale.it/eli/id/2017/12/05/17A08254/SG>`__
+* `Provvedimenti Agenzia delle entrate del 27 marzo 2017, numero 58793 <https://www.agenziaentrate.gov.it/wps/wcm/connect/4e22d9ab-2bbd-4e3f-9e60-a9a8cbf70232/PROVVEDIMENTO+PROT.+58793+DEL+27+MARZO+2017.pdf?MOD=AJPERES&CACHEID=4e22d9ab-2bbd-4e3f-9e60-a9a8cbf70232>`__
+* `Info Agenzia delle Entrate <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Dati+Fatture+%28c.d.+nuovo+spesometro%29/Scheda+informativa+Dati+Fatture+c.d.+nuovo+spesometro/?page=schedecomunicazioni>`__
+
+Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
+
+* Le autofatture, per fatture non ricevute dopo 4 mesi, rif. art. 6 c.8 D.Lgs 471/97, (codice TD20) sono inserite nella comunicazione.
+* Le autofatture da reverse charge nazionale (codice TD01) non sono inserite nello spesometro. Marcare il registro sezionale come registro con e-fatture.
+* Le autofatture da reverse charge estero (codice TD01) non sono inserite nello spesometro. La relativa fattura d'acquisto è inserita nell'"esterometro". Marcare il registro sezionale come registro con e-fatture
+
+|
+
+Il software permette di operare in modalità 2017 per rigenerare eventuali file
 in formato 2017. Per eseguire questa funzione, prima di avviare Odoo eseguire
 la seguente istruzione:
 
@@ -111,15 +140,15 @@ Features / Caratteristiche
 Certifications / Certificazioni
 -------------------------------
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
-| Logo                                                                                                                                                                                                                      | Ente/Certificato                                                                                                                                                                                              | Data inizio | Da fine    | Note                                                      |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
-| [![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md)                      | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/)                            | 01-10-2017  | 31-12-2018 | Validazione contro schema xml                             |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
-| [![DesktopTelematico](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/DesktopTelematico.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/DesktopTelematico.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/schede/comunicazioni/dati+fatture+%28c.d.+nuovo+spesometro%29/software+di+controllo+dati+fatture+%28c.d.+nuovo+spesometro%29) | 01-03-2018  | 31-12-2018 | Controllo tramite s/w Agenzia delle Entrate               |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
-| [![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)                        | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/)                                  | 05-10-2017  | 31-12-2018 | File accettati da portale fatturaPA Agenzia delle Entrate |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
++---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
+| Logo                | Ente/Certificato                                                                                                                                                                                              | Data inizio | Da fine    | Note                                                      |
++---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
+| |xml\_schema|       | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                         | 01-10-2017  | 31-12-2018 | Validazione contro schema xml                             |
++---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
+| |DesktopTelematico| | `Desktop telematico <http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/schede/comunicazioni/dati+fatture+%28c.d.+nuovo+spesometro%29/software+di+controllo+dati+fatture+%28c.d.+nuovo+spesometro%29>`__ | 01-03-2018  | 31-12-2018 | Controllo tramite s/w Agenzia delle Entrate               |
++---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
+| |FatturaPA|         | `FatturaPA <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                                           | 05-10-2017  | 31-12-2018 | File accettati da portale fatturaPA Agenzia delle Entrate |
++---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------+-----------------------------------------------------------+
 
 
 |
@@ -140,14 +169,14 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -158,16 +187,20 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 |
 
 Authors / Autori
------------------
+----------------
+
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 * `Didotech srl <http://www.didotech.com>`__
 
+
 Contributors / Collaboratori
 ----------------------------
 
+
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Andrei Levin <andrei.levin@didotech.com>
+* Carlo Vettore <carlo.vettore@didotech.com>
 
 |
 
@@ -179,13 +212,15 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-01
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -203,11 +238,8 @@ Last Update / Ultimo aggiornamento: 2018-12-01
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -217,7 +249,7 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -227,9 +259,9 @@ Last Update / Ultimo aggiornamento: 2018-12-01
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
@@ -249,5 +281,4 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
-    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
 }

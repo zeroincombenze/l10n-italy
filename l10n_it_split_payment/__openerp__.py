@@ -19,76 +19,169 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': 'Split Payment',
+    'summary': 'Split Payment',
     'version': '7.0.1.0.0',
     'category': 'Localization/Italy',
-    'summary': 'Split Payment',
-    'description': """
-====================================
-Italian Localization - split payment
-====================================
-
-Law: http://goo.gl/1riAwt (Articolo 17 ter)
-
-Module to generate Split Payment accounting entries
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-* go to Settings, Configuration, Accounting and configure
-'Split Payment Write-off account' (like 'IVA n/debito sospesa SP').
-Write-off account should be different from standard debit VAT,
-in order to separately add it in VAT statement.
-* configure the fiscal position used for split payment, setting 'Split Payment'
-flag. In fiscal position, map standard VAT with SP VAT, like the following:
-
-.. image:: /l10n_it_split_payment/static/fiscal_position.png
-
-
--------------------------------------------------------------------------------
-
-22SPL is configured like the following:
-
-
-.. image:: /l10n_it_split_payment/static/SP.png
-
-Credits
-=======
-
-Contributors
-------------
-
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-
-Maintainer
-----------
-
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
-
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
-""",
-    'author': 'Abstract, Agile Business Group, '
-              'Odoo Community Association (OCA)',
-    'website': 'http://www.abstract.it',
+    'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
+    'website': 'https://www.zeroincombenze.it/',
     'license': 'AGPL-3',
-    'depends': [
-        'account'],
+    'depends': ['account'],
     'data': [
         'views/account_view.xml',
         'views/config_view.xml',
     ],
     'installable': True,
+    'description': r'''
+Overview / Panoramica
+=====================
+
+|en| Split Payment
+==================
+
+Module to generate Split Payment accounting entries
+
+Law: http://goo.gl/1riAwt (Articolo 17 ter)
+
+
+|
+
+|it| Split Payment
+==================
+
+Modulo per generare registrazioni contabili con split payment.
+
+
+Destinatari
+-----------
+
+Utilizzatori FatturaPa.
+
+
+Normativa
+---------
+
+http://goo.gl/1riAwt (Articolo 17 ter)
+
+
+Funzionalità & Differenze da OCA
+--------------------------------
+
+Differenze documentative.
+
+
+|
+|
+
+Support / Supporto
+------------------
+
+
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
+
+|
+|
+
+Credits / Didascalie
+====================
+
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
+
+
+|
+
+Authors / Autori
+----------------
+
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+
+Contributors / Collaboratori
+----------------------------
+
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
+|
+
+----------------
+
+
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed to cover Italian law and markeplace.
+
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+
+|
+
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-12-08
+
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+    :target: https://odoo-community.org/page/development-status
+    :alt: Alfa
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0
+    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :alt: github.com
+.. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
+    :alt: Coverage
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
+    :alt: Codecov
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
+    :alt: Technical Documentation
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
+    :alt: Technical Documentation
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
+    :target: https://erp7.zeroincombenze.it
+    :alt: Try Me
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :alt: Codecov
+.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
+   :target: https://odoo-italia.org
+   :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
+.. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
+.. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
+.. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
+.. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
+.. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
+.. |right_do| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/right_do.png
+.. |exclamation| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png
+.. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
+.. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
+.. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
+.. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
+.. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
+.. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+''',
 }

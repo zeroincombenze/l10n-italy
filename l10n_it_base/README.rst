@@ -1,12 +1,13 @@
 
 =============================================
-|icon| Italian Localisation - Base 7.0.0.2.16
+|icon| Italian Localisation - Base 7.0.0.2.17
 =============================================
 
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_base/static/src/img/icon.png
 
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+
 
 .. contents::
 
@@ -80,25 +81,6 @@ Usage / Utilizzo
 
 
 |
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia  | OCA               | Notes / Note                   |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| City from ZIP / Città da CAP                                    | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for duplicate vat / Controllo partita IVA duplicata       | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-
-|OCA project|
-
-|
 |
 
 Getting started / Come iniziare
@@ -106,13 +88,6 @@ Getting started / Come iniziare
 
 |Try Me|
 
-
-Prerequisites / Prerequisiti
-----------------------------
-
-
-* python2.7+
-* postgresql 9.2+
 
 |
 
@@ -141,11 +116,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 7.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
 From UI: go to:
@@ -210,8 +182,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -266,7 +238,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-04-26
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -284,11 +256,8 @@ Last Update / Ultimo aggiornamento: 2019-04-26
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/l10n_it_base/static/src/img/Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -298,7 +267,7 @@ Last Update / Ultimo aggiornamento: 2019-04-26
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -308,9 +277,9 @@ Last Update / Ultimo aggiornamento: 2019-04-26
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png

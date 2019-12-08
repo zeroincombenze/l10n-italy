@@ -17,11 +17,18 @@
     'name': 'Period End VAT Statement',
     'version': '7.0.4.0.5',
     'category': 'Generic Modules/Accounting',
-    'author': 'Agile Business Group,'
-              ' Odoo Italia Associazione,'
-              ' Odoo Community Association (OCA)',
-    'website': 'https://odoo-italia.org',
+    'author': 'Odoo Community Association (OCA), Agile Business Group sagl, SHS-AV s.r.l.',
+    'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
+    'depends': [
+        'l10n_it_ade',
+        'base',
+        'account_voucher',
+        'report_webkit',
+        'l10n_it_vat_registries',
+        'l10n_it_fiscalcode',
+    ],
+    'external_dependencies': {'python': ['pyxb']},
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
@@ -33,18 +40,8 @@
         'views/account_view.xml',
         'views/company_view.xml',
     ],
-    'depends': [
-        'l10n_it_ade',
-        'base',
-        'account_voucher',
-        'report_webkit',
-        'l10n_it_vat_registries',
-        'l10n_it_fiscalcode',
-    ],
     'installable': True,
-    'external_dependencies': {
-        'python': ['pyxb'],
-    },
+    'maintainer': 'Odoo Community Association (OCA)',
     'description': r'''
 Overview / Panoramica
 =====================
@@ -86,14 +83,14 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -104,7 +101,7 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 |
 
 Authors / Autori
------------------
+----------------
 
 * `Agile Business Group sagl <http://www.agilebg.com>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
@@ -127,13 +124,15 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-01
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -151,11 +150,8 @@ Last Update / Ultimo aggiornamento: 2018-12-01
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -165,7 +161,7 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -175,9 +171,9 @@ Last Update / Ultimo aggiornamento: 2018-12-01
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
@@ -197,5 +193,4 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
-    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
 }

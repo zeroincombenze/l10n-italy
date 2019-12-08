@@ -8,21 +8,21 @@
 #
 {
     'name': 'IPA Code (IndicePA)',
+    'summary': 'IPA Code and Destination Code in Partner Record',
     'version': '7.0.1.1.0',
     'category': 'Localisation/Italy',
-    'author': 'KTec S.r.l, Odoo Community Association (OCA), Odoo Italia Associazione',
-    'website': 'http://www.ktec.it',
-    'summary': 'IPA Code and Destination Code in Partner Record',
+    'author': 'Odoo Community Association (OCA) and other subjects',
+    'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': ['base'],
     'data': ['view/partner_view.xml'],
-    'demo': [],
-    'test': [],
     'installable': True,
-    'description': '''|en|
+    'description': r'''
+Overview / Panoramica
+=====================
 
-IPA Code
-=========
+|en| IPA Code
+=============
 
 This module adds IPA (IndicePA) code and Recipient Code fields to partner,
 used by Italian Electronic Invoice.
@@ -30,14 +30,12 @@ used by Italian Electronic Invoice.
 http://www.indicepa.gov.it
 
 
+|
 
+|it| Codice IPA (IndicePA)
+==========================
 
-|it|
-
-Codice IPA (IndicePA)
-======================
-
-Questo modulo permette l'inseriento del codice IPA (IndicePA) e del Codice Destinatario
+Questo modulo permette l'inserimento del codice IPA (IndicePA) e del Codice Destinatario
 nell'anagrafica cliente.
 
 Questi dati sono indispensabili per la gestione della Fattura Elettronica B2B e
@@ -46,9 +44,13 @@ per la FatturaPA.
 http://www.indicepa.gov.it
 
 
+|
+
+Features / Caratteristiche
+--------------------------
 
 Features / Funzioni
---------------------
+-------------------
 
 +-------------------------------------------------+----------+----------------------------------------------+
 | Feature / Funzione                              |  Status  | Notes / Note                                 |
@@ -59,59 +61,66 @@ Features / Funzioni
 +-------------------------------------------------+----------+----------------------------------------------+
 
 
+|
+|
 
-OCA Differences / Differenze da OCA
-------------------------------------
-
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia | OCA               | Notes / Note                   |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Partner view / Vista cliente         | This Module | This Module       | Different layout               |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| IPA Code                             | This Module | This Module       |                                |
-+--------------------------------------+-------------+-------------------+--------------------------------+
-| Recipient Code / Codice Destinatario | This Module | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------+-------------------+--------------------------------+
+Support / Supporto
+------------------
 
 
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
+|
+|
 
-|en|
+Credits / Didascalie
+====================
+
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
+|
 
-
-Credits
-========
-
-Authors
---------
-
+Authors / Autori
+----------------
 
 * `KTec S.r.l. <https://www.ktec.it/>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-Contributors
--------------
 
+Contributors / Collaboratori
+----------------------------
 
 * Luigi Di Naro <luigi.dinaro@ktec.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Maintainers
-------------
 
-|Odoo Italia Associazione|
+|
 
-This module is maintained by the Odoo Italia Associazione.
-
-To contribute to this module, please visit https://odoo-italia.org/.
+----------------
 
 
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed to cover Italian law and markeplace.
+
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+
+|
+
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -122,44 +131,54 @@ To contribute to this module, please visit https://odoo-italia.org/.
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
-.. |Tech Doc| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
-    :target: http://wiki.zeroincombenze.org/en/Odoo/7.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
-.. |Help| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
-    :target: http://wiki.zeroincombenze.org/it/Odoo/7.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
 .. |right_do| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/right_do.png
 .. |exclamation| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
+.. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
+.. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-   
-
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
 }

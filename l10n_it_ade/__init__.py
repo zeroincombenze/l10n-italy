@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#                  Associazione Odoo Italia <http://www.odoo-italia.org>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-#
-from . import bindings
 from . import models
-# from . import ade

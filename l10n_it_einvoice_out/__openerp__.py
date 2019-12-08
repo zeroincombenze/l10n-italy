@@ -11,134 +11,183 @@
     'summary': 'Electronic invoices emission',
     'version': '7.0.2.0.1',
     'category': 'Localization/Italy',
-    'author': 'Odoo Italia Associazione,'
-              'Odoo Community Association (OCA)',
-    'website': 'http://www.odoo-italia.org',
+    'author': 'Odoo Community Association (OCA) and other subjects',
+    'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
-    "depends": [
+    'depends': [
         'l10n_it_einvoice_base',
         'l10n_it_split_payment',
-        ],
-    "data": [
+    ],
+    'external_dependencies': {'python': ['unidecode']},
+    'data': [
         'wizard/wizard_export_fatturapa_view.xml',
         'views/attachment_view.xml',
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
-    'external_dependencies': {
-        'python': ['unidecode'],
-    },
-    'description': '''|en|
-
-EInvoice + FatturaPA
+    'description': r'''
+Overview / Panoramica
 =====================
 
-This module allows you to generate the fatturaPA XML file version 1.2
+|en| EInvoice + FatturaPA
+=========================
+
+This module allows you to generate the fatturaPA XML file version 1.2.1
 which will be sent to the SdI (Exchange System by Italian Tax Authority)
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
 
 |warning| Read carefully note of module l10n_it_einvoice_base before install this module
 
-|halt| Do not install this module: it is in development status; official release will be avaiable on 2018-10-22
 
+|
 
-|it|
-
-Fattura Elettronica + FatturaPA
-================================
+|it| Fattura Elettronica + FatturaPA
+====================================
 
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
 da trasmettere al sistema di interscambio SdI.
 
-|warning| Lo schema di definizione dei file xml, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
-moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
-segnalato dall'errore:
+::
 
-|exclamation| **name CryptoBinary used for multiple values in typeBinding**
+    Destinatari:
+
+Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+
+
+::
+
+    Normativa:
+
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
+
 
 Tutti i moduli della localizzazione italiana che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
 `l10n_it_ade <../l10n_it_ade>`__ come dipendenza.
 
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
+Per maggiori informazioni contattare
 l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
-
-|halt| Non installare questo modulo: è in fase di svilupp; il rilascio è previsto per lunedì 22-10-2018
-
-Features / Funzioni
---------------------
-
-+-------------------------+----------+----------------------------------------------+
-| Feature / Funzione      |  Status  | Notes / Note                                 |
-+-------------------------+----------+----------------------------------------------+
-| Emissione FatturaPA     | |check|  | Genera file .xml versione 1.2                |
-+-------------------------+----------+----------------------------------------------+
-| Emissione Fattura B2B   | |check|  | Genera file .xml versione 1.2                |
-+-------------------------+----------+----------------------------------------------+
-| Dati azienda da fattura | |check|  | Versione OCA utilizza dati azienda da utente |
-+-------------------------+----------+----------------------------------------------+
-
-
-OCA Differences / Differenze da OCA
-------------------------------------
-
-+--------------------------------------+---------------------+-------------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia         | OCA                     | Notes / Note                   |
-+--------------------------------------+---------------------+-------------------------+--------------------------------+
-| Company / Azienda                    | By User / Da Utente | By Invoice / Da Fattura | Different layout               |
-+--------------------------------------+---------------------+-------------------------+--------------------------------+
-
-
-
-
-|en|
-
-Usage / Uso
-============
-
-|menu| Configurazione > Configurazione > Contabilità > Fattura PA |do_right| Impostare i vari parametri
-|menu| Contabilità > Configurazione > Sezionali > Sezionali |do_right| Impostare sezionale fattura elettronica
-|menu| Contabilità > Configurazione > Imposte > Imposte |do_right| Impostare natura codici IVA
-|menu| Contabilità > Configurazione > Management > Termini di pagamento |do_right| Collegare i terminii di pagamento con i relativi termini fiscali
-|menu| Contabilità > Clienti > Clienti |do_right| Impostare IPA, EORI (se necessario), nazione, partita IVA, codice fiscale
-
-
-
-Credits / Riconoscimenti
-=========================
-
-Authors / Autori
------------------
-
-
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-
-Contributors / Contributi
---------------------------
-
-
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-
-Maintainers / Manutezione
---------------------------
-
-|Odoo Italia Associazione|
-
-This module is maintained by the Odoo Italia Associazione.
-
-To contribute to this module, please visit https://odoo-italia.org/.
 
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-10-21
+Features / Caratteristiche
+--------------------------
+
++--------------------------------------+----------+----------------------------------------------+
+| Feature / Funzione                   |  Status  | Notes / Note                                 |
++--------------------------------------+----------+----------------------------------------------+
+| Emissione FatturaPA                  | |check|  | Genera file .xml versione 1.2.1              |
++--------------------------------------+----------+----------------------------------------------+
+| Emissione Fattura B2B                | |check|  | Genera file .xml versione 1.2.1              |
++--------------------------------------+----------+----------------------------------------------+
+| Dati azienda da fattura              | |check|  |                                              |
++--------------------------------------+----------+----------------------------------------------+
+| Controllo dati durante inserimento   | |check|  |                                              |
++--------------------------------------+----------+----------------------------------------------+
+
+
+|
+
+Certifications / Certificazioni
+-------------------------------
+
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+| Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2019   | Validazione contro schema xml                |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+
+
+|
+
+Usage / Utilizo
+---------------
+
+|menu| Configurazione > Configurazione > Contabilità > Fattura PA |do_right| Impostare i vari parametri
+
+|menu| Contabilità > Configurazione > Sezionali > Sezionali |do_right| Impostare sezionale fattura elettronica
+
+|menu| Contabilità > Configurazione > Imposte > Imposte |do_right| Impostare natura codici IVA
+
+|menu| Contabilità > Configurazione > Management > Termini di pagamento |do_right| Collegare i termini di pagamento con i relativi termini fiscali
+
+|menu| Contabilità > Clienti > Clienti |do_right| Impostare Codice Destinatario o PEC o IPA, nazione, partita IVA, codice fiscale
+
+|menu| Contabilità > Configurazione > Contabilità > Posizioni fiscali |do_right| Collegare posizioni fiscali con regimi fiscali
+
+Per consultazione (non modificare):
+
+|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Natura dell'IVA
+
+|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Tipi Fattura
+
+
+|
+|
+
+Support / Supporto
+------------------
+
+
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
+
+|
+|
+
+Credits / Didascalie
+====================
+
+Copyright
+---------
+
+Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
+
+
+|
+
+Authors / Autori
+----------------
+
+* `Davide Corio`__
+* `Agile Business Group sagl <https://www.agilebg.com/>`__
+* `Innoviu srl <http://www.innoviu.com>`__
+* `Odoo Italia Network`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
+Contributors / Collaboratori
+----------------------------
+
+* Davide Corio
+* Roberto Onnis <roberto.onnis@innoviu.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alessio Gerace <alessio.gerace@agilebg.com>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
+|
+
+----------------
+
+
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+is mainly designed to cover Italian law and markeplace.
+
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+
+|
+
+This module is part of l10n-italy project.
+
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -149,15 +198,15 @@ Last Update / Ultimo aggiornamento: 2018-10-21
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
+.. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
+    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -167,16 +216,19 @@ Last Update / Ultimo aggiornamento: 2018-10-21
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: badge-oca-codecov
-    :target: oca-codecov-URL
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
    :alt: Odoo Italia Associazione
+.. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :target: https://www.zeroincombenze.it/
+   :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
@@ -185,13 +237,15 @@ Last Update / Ultimo aggiornamento: 2018-10-21
 .. |warning| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/warning.png
 .. |same| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/same.png
 .. |late| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/late.png
+.. |halt| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/halt.png
+.. |info| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/info.png
 .. |xml_schema| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/iso/icons/xml-schema.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/iso/scope/xml-schema.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md
 .. |DesktopTelematico| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/DesktopTelematico.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/DesktopTelematico.md
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
-   :target: https://raw.githubusercontent.com/zeroincombenze/grymbcertificates/ade/scope/fatturapa.md
-
+   :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
+.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
 }
-

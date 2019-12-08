@@ -1,77 +1,68 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2017-18 - Associazione Odoo Italia <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-# Code partially inherited by l10n_it_account of OCA
-#
 {
-    'name': 'Definizioni di Base Agenzia delle Entrate',
-    'summary': 'Codice con le definizioni dei file xml Agenzia delle Entrate',
-    'version': '7.0.0.1.10',
+    'name': 'Agenzia delle Entrate',
+    'summary': 'Codice e definizioni come da Agenzia delle Entrate',
+    'version': '7.0.0.1.14',
     'category': 'Localization/Italy',
-    'author': 'SHS-AV s.r.l.,'
-              ' Odoo Italia Associazione',
+    'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
     'license': 'AGPL-3',
     'depends': ['account'],
+    'external_dependencies': {'python': ['pyxb']},
     'data': [
         'security/ir.model.access.csv',
+        'data/italy_ade_tax_nature.xml',
         'data/italy_ade_codice_carica.xml',
         'data/italy_ade_invoice_type.xml',
-        'data/italy_ade_tax_nature.xml',
         'views/ir_ui_menu.xml',
-        'views/codice_carica_view.xml',
-        'views/invoice_type_view.xml',
-        'views/tax_nature_view.xml',
         'views/account_tax_view.xml',
         'views/account_journal.xml',
+        'views/codice_carica_view.xml',
+        'views/tax_nature_view.xml',
+        'views/invoice_type_view.xml',
     ],
     'installable': True,
-    'external_dependencies': {
-        'python': ['pyxb'],
-    },
+    'maintainer': 'Odoo Community Association (OCA)',
+    'development_status': 'Beta',
     'description': r'''
 Overview / Panoramica
 =====================
 
 |en| Tax Authority Definitions
-=========================
+==============================
 
 This module has no specific function for End-user.
 
-It defines the structures by Italian Tax Authority to manage
+It defines the structures by Italian IRS (Tax Authority) to manage
 all fiscal communications.
 Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement.
 
-This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__
+This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__
 
 |
 
 |it| Definizioni Agenzia delle Entrate
-=================================
+======================================
 
 Questo modulo non ha funzioni specifiche per l'utente finale.
-Contiene dati e definizioni stabilite dall'Agenzia delle Entrate
+Contiene dati e definizioni come stabilito dall'Agenzia delle Entrate
 All'interno sono presenti gli schemi xml usati da FatturaPA,
 Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 
 |info| Questo modulo è incompatibile con alcuni moduli OCA.
 
-|warning| Lo schema di definizione dei file xml, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
-moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
-segnalato dall'errore:
-
-|exclamation| name CryptoBinary used for multiple values in typeBinding
-
 Tutti i moduli della localizzazione italiana che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
 `l10n_it_ade <https://github.com/zeroincombenze/l10n-italy/tree/7.0/l10n_it_ade>`__ come dipendenza.
 
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
+Per maggiori informazioni contattare
 l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
 |
@@ -85,13 +76,11 @@ Features / Funzioni
 +------------------------------------------------------+----------+----------------------------------------------+
 | Feature / Funzione                                   |  Status  | Notes / Note                                 |
 +------------------------------------------------------+----------+----------------------------------------------+
-| Generate / Emissione FatturaPA                       | |check|  | Genera file .xml versione 1.2                |
+| Fiscal Invoice Type / Tipo fattura fiscale           | |check|  | Codifica tipo di fattura come da AdE         |
 +------------------------------------------------------+----------+----------------------------------------------+
-| Generate / Emissione Fattura B2B                     | |check|  | Genera file .xml versione 1.2                |
+| Codice Carica                                        | |check|  | Codifica codice carica come da AdE           |
 +------------------------------------------------------+----------+----------------------------------------------+
-| Company info form invoice / Dati azienda da fattura  | |check|  | Versione OCA utilizza dati azienda da utente |
-+------------------------------------------------------+----------+----------------------------------------------+
-| Validation suring editing / Controlli in tempo reale | |check|  |                                              |
+| Tax Nature / Natura fiscale dell'IVA                 | |check|  | Codifica natura fiscale dell'IVA come da AdE |
 +------------------------------------------------------+----------+----------------------------------------------+
 
 
@@ -106,9 +95,9 @@ Certifications / Certificazioni
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2018   | Validazione contro schema xml                |
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2019   | Validazione contro schema xml                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2018   | Controllo tramite sito Agenzia delle Entrate |
+| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
@@ -134,14 +123,14 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__ and free support is supplied through `Odoo Italia Associazione Forum <https://odoo-italia.org/index.php/kunena/recente>`__
+|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
 |
 
-Credits / Titoli di coda
-========================
+Credits / Didascalie
+====================
 
 Copyright
 ---------
@@ -152,7 +141,7 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 |
 
 Authors / Autori
------------------
+----------------
 
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
@@ -171,17 +160,19 @@ which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
 is mainly designed to cover Italian law and markeplace.
 
-|it| **zeroincombenze®** è un marchio registrato di `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-che distribuisce e promuove **Odoo** pronto all'uso sullla propria infrastuttura.
-La distribuzione `Zeroincombenze® è progettata per le esigenze del mercato italiano.
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 |
 
-Last Update / Ultimo aggiornamento: 2018-12-01
+This module is part of l10n-italy project.
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+Last Update / Ultimo aggiornamento: 2019-12-08
+
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
+    :alt: Beta
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0
     :target: https://travis-ci.org/zeroincombenze/l10n-italy
     :alt: github.com
@@ -195,11 +186,8 @@ Last Update / Ultimo aggiornamento: 2018-12-01
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
     :alt: Codecov
-.. |OCA project| image:: Unknown badge-OCA
-    :target: https://github.com/OCA/l10n-italy/tree/7.0
-    :alt: OCA
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
     :alt: Technical Documentation
@@ -209,7 +197,7 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
     :target: https://erp7.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
@@ -219,9 +207,9 @@ Last Update / Ultimo aggiornamento: 2018-12-01
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
 .. |en| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |it| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png
-   :target: https://www.facebook.com/groups/openerp.italia/
+   :target: https://www.facebook.com/Zeroincombenze-Software-gestionale-online-249494305219415/
 .. |check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png
 .. |no_check| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png
 .. |menu| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png
@@ -241,5 +229,4 @@ Last Update / Ultimo aggiornamento: 2018-12-01
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
-    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
 }

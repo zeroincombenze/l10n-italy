@@ -2,7 +2,7 @@
 ===============================
 |Zeroincombenze| l10n-italy 7.0
 ===============================
-|Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
+|Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -55,9 +55,9 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_abicab                     | 7.0.1.0    | |same|     | Italian Localisation - Base Bank ABI/CAB codes                                   |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                        | 7.0.0.1.10 | |no_check| | Codice con le definizioni dei file xml Agenzia delle Entrate                     |
+| l10n_it_ade                        | 7.0.0.1.14 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_base                       | 7.0.0.2.16 | 7.0.0.1    | Italian Localisation - Base                                                      |
+| l10n_it_base                       | 7.0.0.2.17 | 7.0.0.1    | Italian Localisation - Base                                                      |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_base_crm                   | 7.0.0.1    | |same|     | Italian Localisation - CRM                                                       |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -119,33 +119,6 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 
 
-OCA comparation / Confronto con OCA
------------------------------------
-
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                         |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Coverage                             | |Codecov Status| | |OCA Codecov|   |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Test compatibilità OCA e Odoo        | |no_check|       | |check|         | `Errore import decimal precision <https://github.com/OCA/OCB/issues/629>`__          |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Gestione evoluta anagrafiche         | |check|          | |no_check|      | `l10n_it_base <https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_base>__ |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Codici IVA completi                  | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Dichiaritivi fiscali                 | 2018             | 2017            |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Controllo date                       | Per anno fiscale | No anno fiscale | Versione OCA non permette l'accavallamento numerazioni a inizio anno                 |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Controllo date fatture emesse        | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| FatturaPA                            | v1.2.1           | v1.2.1          |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-
 
 
 Getting started / Come iniziare
@@ -162,7 +135,7 @@ Prerequisites / Prerequisiti
 * postgresql 9.2+ (best 9.5)
 * codicefiscale
 * lxml
-* pyxb==1.2.4
+* pyxb==1.2.5
 * unidecode
 
 
@@ -191,11 +164,8 @@ Installation / Installazione
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
-    export PATH=$HOME/dev:$PATH
+    source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 7.0 -O zero
-    for pkg in os0 z0lib; do
-        pip install $pkg -U
-    done
     sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
 
@@ -271,7 +241,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2019-05-20
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

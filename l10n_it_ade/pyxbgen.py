@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # pyxbgen
@@ -376,9 +375,10 @@ def main(args):
 
 
 if __name__ == '__main__':
-    """pyxbgeb.py filename [schema] [fmlist]
-    fmlist is -u file -m module"""
+    # pyxbgeb.py filename [schema] [fmlist]
+    # fmlist is -u file -m module
     args = sys.argv[1:]
     while len(args) < 3:
         args.append('')
     main(args)
+
