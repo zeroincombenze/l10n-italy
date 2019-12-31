@@ -29,6 +29,11 @@
                         </group>
                     </page>
                 </notebook>
+
+                <xpath expr="//field[@name='tax_line_ids']" position="after">
+                    <field name="weight" />
+                </xpath>
+
             </field>
         </record>
 

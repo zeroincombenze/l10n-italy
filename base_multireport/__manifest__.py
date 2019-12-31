@@ -38,6 +38,7 @@
         'report/multireport_ddt.xml',
         'report/multireport_invoice.xml',
         'report_ddt/report_ddt.xml',
+        'report_ddt/report_ddt_footer.xml',
         'report_sale_order/report_sale_order.xml',
         'report_sale_order/report_sale_order_vg7.xml',
         'report_account_invoice/report_invoice.xml',

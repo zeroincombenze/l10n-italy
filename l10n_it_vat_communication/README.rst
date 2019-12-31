@@ -1,6 +1,6 @@
 
 ==============================================
-|icon| Comunicazione periodica IVA 10.0.0.1.17
+|icon| Comunicazione periodica IVA 10.0.0.1.18
 ==============================================
 
 
@@ -304,8 +304,8 @@ Acknowledges / Riconoscimenti
 | contributions.                    | contribuito.                              |
 +-----------------------------------+-------------------------------------------+
 
-* Andrei Levin <andrei.levin@didotech.com>
 * Carlo Vettore <carlo.vettore@didotech.com>
+* Andrei Levin <andrei.levin@didotech.com>
 
 |
 
@@ -329,7 +329,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-19
+Last Update / Ultimo aggiornamento: 2019-12-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

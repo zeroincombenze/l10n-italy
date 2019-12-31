@@ -8,6 +8,7 @@
 import logging
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -249,7 +250,7 @@ class Partner(models.Model):
         else:
             vals['name'] = '%s %s' % (Anagrafica.Cognome,
                                       Anagrafica.Nome)
-        partner_id = self.synchro(
+        partner_id = self.synchro2(
             'res.partner',
             vals,
             skeys=(['vat', 'fiscalcode', 'is_company', 'type'],
@@ -278,7 +279,7 @@ class Partner(models.Model):
             for nm in ('rea_code', 'rea_office', 'rea_capital'):
                 if nm in vals:
                     del vals[nm]
-            self.synchro(
+            self.synchro2(
                 'res.partner',
                 vals,
                 skeys=(['type', 'parent_id']),

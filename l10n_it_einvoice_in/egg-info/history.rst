@@ -1,3 +1,10 @@
+10.0.1.3.9 (2019-12-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with RF19 / Errore in importazione fattura da forfettario
+* [FIX] Conflict with connector_vg7 module / Conflitto con modulo connector_vg7
+
+
 10.0.1.3.8 (2019-10-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

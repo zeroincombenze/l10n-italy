@@ -25,6 +25,20 @@
                 <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
                 <field name="price_subtotal"/>
                 <field name="sale_id"/>
+                <field name="weight"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']" position="after">
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                        <label for="amount_total" />
+                        <button name="button_dummy"
+                                string="(update)" type="object" class="oe_edit_only oe_link"/>
+                    </div>
+                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                </group>
             </xpath>
 
         </field>
@@ -74,7 +88,7 @@
                 <button name="set_done" type="object" string="Set done"
                         attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
                 <button name="action_send_ddt_mail" type="object" string="Send by Mail"
-                            attrs="{'invisible':[('state','in', 'draft')]}"/>
+                        attrs="{'invisible':[('state','in', 'draft')]}"/>
             </button>
             <field name="name" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -230,7 +244,7 @@
                         <field name="default_transportation_method_id"/>
                         <field name="company_id" groups="base.group_multi_company"/>
                     </group>
-               	</sheet>
+                </sheet>
             </form>
         </field>
     </record>

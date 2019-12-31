@@ -156,7 +156,7 @@ class WizardImportFatturapa(models.TransientModel):
         else:
             vals['name'] = '%s %s' % (Anagrafica.Cognome,
                                       Anagrafica.Nome)
-        return self.synchro('res.partner',
+        return self.synchro2('res.partner',
                             vals,
                             skeys=(['vat', 'fiscalcode', 'is_company'],
                                    ['vat', 'name', 'is_company'],
@@ -166,14 +166,14 @@ class WizardImportFatturapa(models.TransientModel):
                                    ['vat'],
                                    ['name']),
                             constraints=[('id', '!=', 'parent_id')],
-                            keep = ['customer', 'country_id', 'name',
+                            keep=['customer', 'country_id', 'name',
                                    ],
-                            default = {
+                            default={
                                 'type': 'contact',
                             }
         )
 
-    def get_tax(self, company_id, AliquotaIVA, Natura):
+    def get_tax(self, company_id, AliquotaIVA, Natura, partner=None):
         account_tax_model = self.env['account.tax']
         ir_values_model = self.env['ir.values']
         AliquotaIVA_fp = float(AliquotaIVA)
@@ -190,17 +190,21 @@ class WizardImportFatturapa(models.TransientModel):
             where.append(('amount', '=', AliquotaIVA_fp))
         if Natura:
             where.append(('nature_id.code', '=', Natura))
+        if (partner and
+                partner.register_fiscalpos.code == 'RF19'
+                and Natura == 'N2'):
+            where.append(('name', 'ilike', '%a%1%L%190%'))
         account_taxes = account_tax_model.search(where, order="sequence")
         if not account_taxes:
             raise UserError(
                 _('No tax with percentage '
                   '%s and nature %s found. Please configure this tax.')
                 % (AliquotaIVA, Natura))
-        #if len(account_taxes) > 1:
-        #    self.log_inconsistency(
-        #        _('Too many taxes with percentage '
-        #          '%s and nature %s found.')
-        #        % (AliquotaIVA, Natura))
+        if len(account_taxes) > 1:
+            self.log_inconsistency(
+                _('Too many taxes with percentage '
+                  '%s and nature %s found.')
+                % (AliquotaIVA, Natura))
         if def_purchase_tax and def_purchase_tax.amount == AliquotaIVA_fp:
             account_tax_id = def_purchase_tax.id
         else:
@@ -221,11 +225,13 @@ class WizardImportFatturapa(models.TransientModel):
                 return tax_nature_ids[0].id
         return False
 
-    def _prepare_generic_line_data(self, line):
+    def _prepare_generic_line_data(self, line, partner_id=False):
         retLine = {}
         company_id = self.env['res.company']._company_default_get(
             'account.invoice.line').id
-        account_tax = self.get_tax(company_id, line.AliquotaIVA, line.Natura)
+        partner_model = self.env['res.partner']
+        account_tax = self.get_tax(company_id, line.AliquotaIVA, line.Natura,
+                                   partner=partner_model.browse(partner_id))
         if account_tax:
             retLine['invoice_line_tax_ids'] = [(6, 0, [account_tax])]
         return retLine
@@ -286,8 +292,9 @@ class WizardImportFatturapa(models.TransientModel):
                     line_vals['invoice_line_tax_ids'] = [
                         (6, 0, [new_tax.id])]
 
-    def _prepareInvoiceLine(self, credit_account_id, line, wt_found=False):
-        retLine = self._prepare_generic_line_data(line)
+    def _prepareInvoiceLine(self, credit_account_id, line,
+                            wt_found=False, partner_id=False):
+        retLine = self._prepare_generic_line_data(line, partner_id=partner_id)
         retLine.update({
             'name': line.Descrizione,
             'sequence': int(line.NumeroLinea),
@@ -371,6 +378,8 @@ class WizardImportFatturapa(models.TransientModel):
             float(line.ImportoContributoCassa) or None)
         if ImportoContributoCassa:
             retLine['price_unit'] = float(line.ImportoContributoCassa)
+        else:
+            retLine['price_unit'] = 0.0
         retLine['quantity'] = 1
         if wt_found and line.Ritenuta:
             retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
@@ -433,6 +442,8 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _computeDiscount(self, DettaglioLinea):
         line_total = float(DettaglioLinea.PrezzoTotale)
+        if float(DettaglioLinea.Quantita) == 0.0 or float(DettaglioLinea.PrezzoUnitario) == 0.0:
+                return 0
         line_unit = line_total / float(DettaglioLinea.Quantita)
         discount = (
             1 - (line_unit / float(DettaglioLinea.PrezzoUnitario))
@@ -828,7 +839,7 @@ class WizardImportFatturapa(models.TransientModel):
                 if (partner.e_invoice_default_account_id):
                     credit_account_id = partner.e_invoice_default_account_id.id
                 invoice_line_data = self._prepareInvoiceLine(
-                    credit_account_id, line, wt_found)
+                    credit_account_id, line, wt_found, partner_id=partner_id)
                 product = self.get_line_product(line, partner)
                 if product:
                     invoice_line_data['product_id'] = product.id
@@ -838,8 +849,11 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_lines.append(invoice_line_id)
 
             elif self.e_invoice_detail_level == '1':
-                company_id = self.env['res.company']._company_default_get('account.invoice.line').id
-                account_tax = self.get_tax(company_id, line.AliquotaIVA, line.Natura)
+                company_id = self.env['res.company']._company_default_get(
+                    'account.invoice.line').id
+                account_tax = self.get_tax(
+                    company_id, line.AliquotaIVA,
+                    line.Natura, partner=line.partner_id)
 
                 if account_tax not in e_invoice_line_ids_2:
                     e_invoice_line_ids_2[account_tax] = float(0)

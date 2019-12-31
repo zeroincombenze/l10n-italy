@@ -607,7 +607,7 @@ class AccountVatCommunication(models.Model):
         CedentePrestatore iteration"""
         if dte_dtr_id != 'DTE' and dte_dtr_id != 'DTR':
             raise UserError(
-                _('Internal error: no DTE neither DTR selected'))
+                _('Internal error: no DTE neither DTR indexed'))
         model_name = 'account.vat.communication.%s.line' % dte_dtr_id.lower()
         table_name = model_name.replace('.', '_')
         sql = 'SELECT DISTINCT partner_id FROM %s WHERE commitment_id = %d' % \
@@ -963,7 +963,7 @@ class CommitmentDTELine(models.Model):
             compute='_xml_dati_partner',
             string="Error",
             store=False,
-            select=True,
+            index=True,
             readonly=True
         )
     xml_Error2 = fields.Char(
@@ -974,56 +974,56 @@ class CommitmentDTELine(models.Model):
             compute='_xml_dati_partner',
             string="Country",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_IdCodice = fields.Char(
             compute='_xml_dati_partner',
             string="VAT number",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_CodiceFiscale = fields.Char(
             compute='_xml_dati_partner',
             string="Fiscalcode",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_TipoDocumento = fields.Char(
             compute='_xml_tipodocumento',
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_ImponibileImporto = fields.Float(
             compute='_xml_dati_line',
             string="Taxable",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Imposta = fields.Float(
             compute='_xml_dati_line',
             string="Tax",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Aliquota = fields.Float(
             compute='_xml_dati_line',
             string="Tax rate",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Detraibile = fields.Float(
             compute='_xml_dati_line',
             string="Tax deductible",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Natura = fields.Char(
             compute='_xml_dati_line',
             string="Tax type",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
 
 
@@ -1117,7 +1117,7 @@ class CommitmentDTRLine(models.Model):
             compute='_xml_dati_partner',
             string="Error",
             store=False,
-            select=True,
+            index=True,
             readonly=True
         )
     xml_Error2 = fields.Char(
@@ -1128,56 +1128,56 @@ class CommitmentDTRLine(models.Model):
             compute='_xml_dati_partner',
             string="Country",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_IdCodice = fields.Char(
             compute='_xml_dati_partner',
             string="VAT number",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_CodiceFiscale = fields.Char(
             compute='_xml_dati_partner',
             string="Fiscalcode",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_TipoDocumento = fields.Char(
             compute='_xml_tipodocumento',
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_ImponibileImporto = fields.Float(
             compute='_xml_dati_line',
             string="Taxable",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Imposta = fields.Float(
             compute='_xml_dati_line',
             string="Tax",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Aliquota = fields.Float(
             compute='_xml_dati_line',
             string="Tax rate",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Detraibile = fields.Float(
             compute='_xml_dati_line',
             string="Tax deductible",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
     xml_Natura = fields.Char(
             compute='_xml_dati_line',
             string="Tax type",
             store=False,
-            select=True,
+            index=True,
             readonly=True)
 
 class AccountPeriod(models.Model):

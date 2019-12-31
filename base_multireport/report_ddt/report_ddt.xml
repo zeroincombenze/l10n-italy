@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!--
     <template id="delivery_data">
 
         <style type="text/css">
@@ -80,6 +81,7 @@
             </tr>
         </table>
     </template>
+    -->
 
     <template id="report_ddt">
         <t t-call="base_multireport.external_layout">
@@ -145,10 +147,17 @@
                         </tr>
                     </tbody>
                 </table>
-                <div style="position:relative; top:10px;">
-                <t t-call="base_multireport.delivery_data">
-                    <t t-set="ddt" t-value="o"/>
+                <t t-if="o.show_price">
+                    <div>
+                        <t t-call="base_multireport.report_ddt_footer">
+                            <t t-set="ddt" t-value="o"/>
+                        </t>
+                    </div>
                 </t>
+                <div style="position:relative; top:10px;">
+                    <t t-call="base_multireport.delivery_data">
+                        <t t-set="ddt" t-value="o"/>
+                    </t>
                 </div>
             </div>
         </t>

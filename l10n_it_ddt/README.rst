@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.5.11
+|icon| DDT 10.0.1.5.13
 ======================
 
 
@@ -195,6 +195,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.5.13 (2019-12-11)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Line weight / Peso in riga
+
+
+10.0.1.5.12 (2019-11-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Total amount of stock.package.preparation / Totale del DdT
+
+
 10.0.1.5.11 (2019-11-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -326,7 +338,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-19
+Last Update / Ultimo aggiornamento: 2019-12-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

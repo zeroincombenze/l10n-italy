@@ -67,3 +67,4 @@ class AccountInvoiceLine(models.Model):
     ddt_sequence = fields.Integer(
         string='Ddt sequence', related='ddt_line_id.sequence',
         store=True, copy=False)
+    weight = fields.Float(string="Weight")

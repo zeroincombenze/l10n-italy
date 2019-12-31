@@ -115,6 +115,36 @@ class StockPickingPackagePreparation(models.Model):
             return 1
         return self.parcels
 
+    @api.depends('line_ids.price_total')
+    def _amount_all(self):
+        """
+        Compute the total amounts of the SO.
+        """
+        for ddt in self:
+            amount_untaxed = amount_tax = 0.0
+            for line in ddt.line_ids:
+                amount_untaxed += line.price_subtotal
+                # FORWARDPORT UP TO 10.0
+                if (ddt.company_id.tax_calculation_rounding_method == 
+                        'round_globally'):
+                    price = line.price_unit * (
+                        1 - (line.discount or 0.0) / 100.0)
+                    taxes = line.tax_ids.compute_all(
+                        price, line.currency_id,
+                        line.product_uom_qty,
+                        product=line.product_id,
+                        partner=ddt.partner_shipping_id)
+                    amount_tax += sum(
+                        t.get('amount', 0.0) for t in taxes.get('taxes', []))
+                else:
+                    amount_tax += line.price_tax
+            ddt.update({
+                'amount_untaxed': ddt.currency_id.round(amount_untaxed),
+                'amount_tax': ddt.currency_id.round(amount_tax),
+                'amount_total': amount_untaxed + amount_tax,
+            })
+
+
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
     ddt_number = fields.Char(string='DdT Number', copy=False)
@@ -155,6 +185,24 @@ class StockPickingPackagePreparation(models.Model):
     check_if_picking_done = fields.Boolean(
         compute='_compute_check_if_picking_done',
     )
+    currency_id = fields.Many2one(
+        related='company_id.currency_id',
+        string='Currency',
+        store=True, readonly=True)
+    amount_untaxed = fields.Monetary(
+        string='Untaxed Amount', store=True, readonly=True,
+        compute='_amount_all', track_visibility='always')
+    amount_tax = fields.Monetary(
+        string='Taxes', store=True, readonly=True,
+        compute='_amount_all', track_visibility='always')
+    amount_total = fields.Monetary(
+        string='Total', store=True, readonly=True,
+        compute='_amount_all', track_visibility='always')
+
+    @api.multi
+    def button_dummy(self):
+        self._amount_all()
+        return True
 
     @api.multi
     @api.depends('picking_ids',
@@ -765,7 +813,12 @@ class StockPickingPackagePreparationLine(models.Model):
                 line.product_uom_qty,
                 product=line.product_id,
                 partner=line.sale_id.partner_shipping_id)
-            line.price_subtotal = taxes['total_excluded']
+            # line.price_subtotal = taxes['total_excluded']
+            line.update({
+                'price_tax': taxes['total_included'] - taxes['total_excluded'],
+                'price_total': taxes['total_included'],
+                'price_subtotal': taxes['total_excluded'],
+            })
 
     sale_id = fields.Many2one(
         related='move_id.procurement_id.sale_line_id.order_id',
@@ -791,6 +844,13 @@ class StockPickingPackagePreparationLine(models.Model):
     price_subtotal = fields.Monetary(compute='_compute_amount',
                                      string='Subtotal',
                                      readonly=True, store=True)
+    price_tax = fields.Monetary(compute='_compute_amount',
+                                string='Taxes', readonly=True, store=True)
+    price_total = fields.Monetary(compute='_compute_amount',
+                                  string='Total', readonly=True, store=True)
+    weight = fields.Float(
+        string="Line Weight")
+
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
@@ -861,6 +921,7 @@ class StockPickingPackagePreparationLine(models.Model):
             sale_line = False
             if line['move_id']:
                 move = self.env['stock.move'].browse(line['move_id'])
+                line['weight'] = move.weight
                 sale_line = move.procurement_id.sale_line_id or False
             if sale_line:
                 line['price_unit'] = sale_line.price_unit or 0
@@ -937,6 +998,7 @@ class StockPickingPackagePreparationLine(models.Model):
             'uom_id': self.product_uom_id.id,
             'product_id': self.product_id.id or False,
             'invoice_line_tax_ids': [(6, 0, self.tax_ids.ids)],
+            'weight': self.weight,
         })
         return res
 

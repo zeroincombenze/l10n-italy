@@ -180,11 +180,11 @@ Acknowledges / Riconoscimenti
 | contributions.                    | contribuito.                              |
 +-----------------------------------+-------------------------------------------+
 
-* Daniele Arcangeli <d.arcangeli@isa.it>
-* Alessandro Camilli <a.camilli@yahoo.it>
 * Diego Milani <dmilani@linkgroup.it>
-* Davide Corio <davide.corio@abstract.it>
+* Alessandro Camilli <a.camilli@yahoo.it>
+* Daniele Arcangeli <d.arcangeli@isa.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Davide Corio <davide.corio@abstract.it>
 
 |
 
@@ -208,7 +208,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-11-19
+Last Update / Ultimo aggiornamento: 2019-12-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
