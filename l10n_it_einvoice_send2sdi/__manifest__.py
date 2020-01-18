@@ -1,7 +1,16 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 {
     'name': 'Send E-Invoice to SdI',
     'summary': 'Send E-Invoice to customer by SdI',
-    'version': '10.0.1.0.6',
+    'version': '10.0.1.0.7',
     'category': 'Localization/Italy',
     'author': 'SHS-AV s.r.l.,Odoo Italia Associazione',
     'website': 'http://www.odoo-italia.org',

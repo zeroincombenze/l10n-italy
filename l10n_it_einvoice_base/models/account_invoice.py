@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014    - Davide Corio <davide.corio@abstract.it>
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 from odoo import fields, models, api
 import odoo.addons.decimal_precision as dp
@@ -16,7 +17,6 @@ RELATED_DOCUMENT_TYPES = {
     'reception': 'DatiRicezione',
     'invoice': 'DatiFattureCollegate',
 }
-# TODO: Use module for classification
 EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
                 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
@@ -32,7 +32,6 @@ class FatturapaFormat(models.Model):
     code = fields.Char('Code', size=5)
 
 
-#  used in fatturaPa import
 class FatturapaPaymentData(models.Model):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment.data"

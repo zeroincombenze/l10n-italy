@@ -15,9 +15,9 @@ Install this module if you wish to wish customize your report printing.
 The module is built on follow concepts:
 </p><p align="justify">
 <ul>
-<li>Module customize order, invoice and delivery documents</li>
-<li>Module does not disable standard Odoo modules: you can use them whenever you want</li>
-<li>You can use this module as base of your custom report module</li>
+<li>You can customize order, invoice and delivery documents</li>
+<li>Module does not disable standard Odoo report: you can use them whenever you want</li>
+<li>You can use this module as base for your custom report module</li>
 <li>Configuration parameters are organized as a hierarchical tree</li>
 </ul>
 </p></p>
@@ -53,17 +53,21 @@ Il modulo &#232; costruito sui seguenti concetti:
 </tr><tr>
 <td>Header line-up: logo and company data / Intestazione solo logo e dati azienda</td><td>Company data shifted up / Dati aziende spostati in alto</td>
 </tr><tr>
+<td>Header line-up: logo and customized data / Intestazione solo logo e dati personalizzati</td><td>You can use macroes to retriebe company data / Disponibili macro per caricare dati aziendali</td>
+</tr><tr>
 <td>Header with only wide logo / Intestazione solo logo largo</td><td>Logo with company data / Logo con i dati dell'azienda</td>
 </tr><tr>
 <td>Header without data / No intestazione</td><td>Use preprinted paper / Utilizzo su carta intestata</td>
 </tr><tr>
-<td>Optiona separation line / Linea di separazione opzionale</td><td/>
+<td>Custom footer / Piede personalizzato</td><td>You can use macroes to retriebe company data / Disponibili macro per caricare dati aziendali</td>
+</tr><tr>
+<td>Optional separation line / Linea di separazione opzionale</td><td/>
 </tr><tr>
 <td>Address mode / Modo stampa indirizzo</td><td>Print 2 addresses or only the specific one / Stampa doppio indirizzo o solo specifico</td>
 </tr><tr>
 <td>Print product code / Stampa codice prodotto</td><td/>
 </tr><tr>
-<td>Print descriprion without code / Stampa descrizione senza codice</td><td>Extract code from description / Estrapola il codice dalla descrizione</td>
+<td>Print description without code / Stampa descrizione senza codice</td><td>Extract code from description / Estrapola il codice dalla descrizione</td>
 </tr><tr>
 <td>Configurable documents / Documenti configurabili:</td><td>Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore</td>
 </tr><tr>
@@ -81,15 +85,17 @@ This module gives a lot of pretty features to print nice reports.
 Inside every report it is possible check for some characteristics and/or add some values.
 The value of every parameter is evaluate in fallback way.
 The fallback path is:
+</p><p align="justify">
 1. Valid value (not null and not space) in report (model ir_action_report_xml)
 2. Valid value (not null and not space) in template of report (model multireport.template), if declared
 3. Valid value (not null and not space) in specific document style (model multireport.style)
 4. Value in default document style (model multireport.style)
 5. For some parameters, for historical reason, value may be load from other sources (i.e. custom footer)
 </p><p align="justify">
-In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parme to get value.
+In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parameter to get value.
 </p><p align="justify">
 Report may load specific value if declare field as follow:
+</p><p align="justify">
 <ul>
 <li>If field name beginning with <code>doc_opts</code>, value is from the specific report which is printing.</li>
 <li>If Field name beginning with <code>doc_style</code>, value is from the style of the company.</li>
@@ -166,6 +172,27 @@ Look at follow table for details:
 </tr><tr>
 <td>pdf_ending_page_expression</td><td>Default Ending Page for this report</td><td/>
 </tr><tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

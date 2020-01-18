@@ -1,3 +1,9 @@
+10.0.1.0.7 (2020-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Use custom value of channel / Uso valori personalizzati del canale
+
+
 10.0.1.0.6 (2019-11-11)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

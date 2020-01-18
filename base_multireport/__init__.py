@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                Odoo Italian Community
-#                Odoo Community Association (OCA)
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 from . import models
 from . import post_install
 from .post_install import update_template_ref

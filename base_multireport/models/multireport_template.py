@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                Odoo Italian Community
-#                Odoo Community Association (OCA)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 from openerp import fields, models
 
 
@@ -23,6 +27,8 @@ class MultireportTemplate(models.Model):
          ('line-up2', 'Line-up logo / slogan / no sep. line'),
          ('line-up3', 'Line-up: logo / company data'),
          ('lin3-up4', 'Line-up: logo / company data / no sep. line'),
+         ('line-up5', 'Line-up: logo / custom_header'),
+         ('lin3-up6', 'Line-up: logo / custom header / no sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
@@ -112,10 +118,6 @@ class MultireportTemplate(models.Model):
             'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"',
         default='DdT %(ddt_number)s - %(date_ddt)s'
     )
-    bottom_text = fields.Text(
-        'Bottom text',
-        help='Text to print in bottom area of document'
-    )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(
         'Watermark expression',
@@ -148,3 +150,11 @@ class MultireportTemplate(models.Model):
                 ('inherit_id', '=', False),
                 ('name', 'like', 'footer')],
         help="Name of footer associated to this template")
+    custom_header = fields.Html(
+        'Html custon headet')
+    bottom_text = fields.Text(
+        'Bottom text',
+        help='Text to print in bottom area of document'
+    )
+    custom_footer = fields.Html(
+        'Html custom footer')

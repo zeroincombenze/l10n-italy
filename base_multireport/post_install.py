@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 
 from openerp import api, SUPERUSER_ID
 
@@ -7,20 +15,23 @@ def update_template_ref(cr, registry):
     """Set default values"""
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        mr_t_odoo = env.ref('base_multireport.mr_t_odoo').id
         mr_style_model = env['multireport.style']
         vals = {
-            'template_sale_order': mr_t_odoo,
-            'template_stock_picking_package_preparation': mr_t_odoo,
-            'template_account_invoice': mr_t_odoo,
-            'template_purchase_order': mr_t_odoo,
+            'template_sale_order':
+                env.ref('base_multireport.mr_t_saleorder').id,
+            'template_stock_picking_package_preparation':
+                env.ref('base_multireport.mr_t_deliverydocument').id,
+            'template_account_invoice':
+                env.ref('base_multireport.mr_t_invoice').id,
+            'template_purchase_order':
+                env.ref('base_multireport.mr_t_purchaseorder').id,
         }
         where = [('origin', '!=', 'odoo')]
         for mr_style in mr_style_model.search(where):
             mr_style.write(vals)
 
         ir_report_model = env['ir.actions.report.xml']
-        vals = {'template': mr_t_odoo,}
+        vals = {'template': False,}
         where = [('model', 'in', ('sale.order',
                                   'stock.picking.package.preparation',
                                   'account.invoice',

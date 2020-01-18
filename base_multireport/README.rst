@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.14
+|icon| base_rule_multireport 10.0.0.2.16
 ========================================
 
 
@@ -24,9 +24,9 @@ Install this module if you wish to wish customize your report printing.
 
 The module is built on follow concepts:
 
-* Module customize order, invoice and delivery documents
-* Module does not disable standard Odoo modules: you can use them whenever you want
-* You can use this module as base of your custom report module
+* You can customize order, invoice and delivery documents
+* Module does not disable standard Odoo report: you can use them whenever you want
+* You can use this module as base for your custom report module
 * Configuration parameters are organized as a hierarchical tree
 
 
@@ -51,33 +51,37 @@ Il modulo è costruito sui seguenti concetti:
 Features / Caratteristiche
 --------------------------
 
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Feature / Funzione                                                            | Notes / Note                                                                                              |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Print original Odoo reports / Stampa modelli originali di Odoo                | Style configuration = Odoo/Configurazione a livello di stile = Odoo                                       |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Header line-up: logo and slogan / Intestazione solo logo e slogan             |                                                                                                           |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Header line-up: logo and company data / Intestazione solo logo e dati azienda | Company data shifted up / Dati aziende spostati in alto                                                   |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Header with only wide logo / Intestazione solo logo largo                     | Logo with company data / Logo con i dati dell'azienda                                                     |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Header without data / No intestazione                                         | Use preprinted paper / Utilizzo su carta intestata                                                        |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Optiona separation line / Linea di separazione opzionale                      |                                                                                                           |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Address mode / Modo stampa indirizzo                                          | Print 2 addresses or only the specific one / Stampa doppio indirizzo o solo specifico                     |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Print product code / Stampa codice prodotto                                   |                                                                                                           |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Print descriprion without code / Stampa descrizione senza codice              | Extract code from description / Estrapola il codice dalla descrizione                                     |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Configurable documents / Documenti configurabili:                             | Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Watermark / Filigrana                                                         | High quality report / Stampa di alta qualità                                                              |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| Ending page / Pagina finale                                                   | Ending page with commercial info / Pagina finale con informazioni commerciali                             |
-+-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Feature / Funzione                                                                      | Notes / Note                                                                                              |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Print original Odoo reports / Stampa modelli originali di Odoo                          | Style configuration = Odoo/Configurazione a livello di stile = Odoo                                       |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Header line-up: logo and slogan / Intestazione solo logo e slogan                       |                                                                                                           |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Header line-up: logo and company data / Intestazione solo logo e dati azienda           | Company data shifted up / Dati aziende spostati in alto                                                   |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Header line-up: logo and customized data / Intestazione solo logo e dati personalizzati | You can use macroes to retriebe company data / Disponibili macro per caricare dati aziendali              |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Header with only wide logo / Intestazione solo logo largo                               | Logo with company data / Logo con i dati dell'azienda                                                     |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Header without data / No intestazione                                                   | Use preprinted paper / Utilizzo su carta intestata                                                        |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Custom footer / Piede personalizzato                                                    | You can use macroes to retriebe company data / Disponibili macro per caricare dati aziendali              |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Optional separation line / Linea di separazione opzionale                               |                                                                                                           |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Address mode / Modo stampa indirizzo                                                    | Print 2 addresses or only the specific one / Stampa doppio indirizzo o solo specifico                     |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Print product code / Stampa codice prodotto                                             |                                                                                                           |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Print description without code / Stampa descrizione senza codice                        | Extract code from description / Estrapola il codice dalla descrizione                                     |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Configurable documents / Documenti configurabili:                                       | Sale order, Delivery document, Invoice, Purchase order / Ordine cliente, DdT, Fattura, Ordine a fornitore |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Watermark / Filigrana                                                                   | High quality report / Stampa di alta qualità                                                              |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Ending page / Pagina finale                                                             | Ending page with commercial info / Pagina finale con informazioni commerciali                             |
++-----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 
 |
@@ -90,15 +94,17 @@ This module gives a lot of pretty features to print nice reports.
 Inside every report it is possible check for some characteristics and/or add some values.
 The value of every parameter is evaluate in fallback way.
 The fallback path is:
+
 1. Valid value (not null and not space) in report (model ir_action_report_xml)
 2. Valid value (not null and not space) in template of report (model multireport.template), if declared
 3. Valid value (not null and not space) in specific document style (model multireport.style)
 4. Value in default document style (model multireport.style)
 5. For some parameters, for historical reason, value may be load from other sources (i.e. custom footer)
 
-In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parme to get value.
+In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parameter to get value.
 
 Report may load specific value if declare field as follow:
+
 * If field name beginning with `doc_opts`, value is from the specific report which is printing.
 * If Field name beginning with `doc_style`, value is from the style of the company.
 
@@ -187,7 +193,7 @@ It is only an attribute of company style.
 `Header mode`
 
 This parameter, named `header_mode` set how the header is printed.
-May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3', 'line-up4', 'no_header'
+May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3', 'line-up4', 'line-up5', 'line-up6', 'no_header'
 
 * standard: standard Odoo header is printed
 * logo: only the wide logo is printed which must contain company informations; separation line after logo
@@ -195,7 +201,9 @@ May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3'
 * line-up:  logo and slogan, separation line but no company data
 * line-up2:  logo and slogan but no separation line neither company data
 * line-up3:  logo and company data and separation line; no slogan
-* line-up3:  logo and company data; no separation line neither slogan
+* line-up4:  logo and company data; no separation line neither slogan
+* line-up5:  logo and custom data and separation line; no slogan
+* line-up6:  logo and custom data; no separation line neither slogan
 * no_header: no header is printed; used on pre-printed paper
 
 |
@@ -205,15 +213,8 @@ May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3'
 This parameter, name `footer_mode` set how the footer is printed.
 May be one of 'standard', 'auto', 'custom', 'no_footer'
 
-        help='Which content is printed in document footer\n'
-             'If "standard", footer is printed as "auto" or "custom"\n'
-             'based on company.custom_footer field (Odoo standaed behavior)\n'
-             'If "auto", footer is printed with automatic data\n'
-             'If "custom", footer is printed from user data written\n',
-
-
 * standard: standard Odoo footer is printed; may be as 'auto' or as 'custom' based on company.custom_footer field
-* auto: footer is printed with comapny data
+* auto: footer is printed with company data
 * custom: user data is printed in footer (like Odoo custom footer)
 * no_footer: no footer is printed; anyway pages are printed
 
@@ -294,6 +295,32 @@ May be used following macroes:
 
 |
 
+`Custom Header`
+
+This parameter, named `custom_header` contains the html code to print when header_mode is set to line_up5 or line_up6.
+May be used following macroes:
+
+%(banks)s => IBAN of company
+%(city)s => City of company
+%(email)s => e-mail of company
+%(fax)s
+%(mobile)s
+%(name)s
+%(phone)s
+%(street)s
+%(street2)s
+%(vat)s
+%(website)s
+%(zip)s
+%(codice_destinatario)s (solo se installato modulo fattura elettronica)
+%(fatturapa_rea_capital)s (solo se installato modulo fattura elettronica)
+%(fatturapa_rea_number)s (solo se installato modulo fattura elettronica)
+%(fatturapa_rea_office)s (solo se installato modulo fattura elettronica)
+%(fiscalcode)s (solo se installato modulo codice fiscale)
+%(ipa_code)s (solo se installato modulo codice ipa)
+
+|
+
 In xml report it is also possible test the existence of a field. The should be as follow:
 
 `
@@ -329,7 +356,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -405,6 +432,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.0.2.16 (2020-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Customized header and/or footer / Intestazione e piede personalizzati
+
+
+10.0.0.2.15 (2020-01-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Payment footer improvements / Miglioramenti nella stampa del castelletto totali
+
 
 10.0.0.2.14 (2019-11-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -512,7 +551,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-01-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 import os
 import logging
 import re
@@ -60,10 +69,11 @@ class FatturaPAAttachmentIn(models.Model):
 
         headers = Evolve.header(send_channel)
         url = os.path.join(send_channel.sender_url, 'Cerca')
+        archive = int(send_channel.param2) if send_channel.param2 else 2
 
         data = {
             'IdAzienda': int(send_channel.sender_company_id),
-            'IdArchivio': 2,
+            'IdArchivio': archive,
             'Filtri': [
                 # {
                 #  'NomeCampo': 'DataDownload',
@@ -104,11 +114,12 @@ class FatturaPAAttachmentIn(models.Model):
         attachments = attach_model.search([('uid', '=', documento["Uid"])])
         if (len(attachments)>0):
             return
+        archive = int(send_channel.param2) if send_channel.param2 else 2
 
         data = {
             'Documento': {
                 'IdAzienda': int(send_channel.sender_company_id),
-                'IdArchivio': 2,
+                'IdArchivio': archive,
                 'CampiDinamici': [
                     {
                         'Nome': 'Uid',
@@ -332,11 +343,12 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_verify_via_json(self, send_channel, invoice):
 
+        archive = int(send_channel.param1) if send_channel.param1 else 1
         for att in self:
 
             data = {
                 'IdAzienda': int(send_channel.sender_company_id),
-                'IdArchivio': 1 ,
+                'IdArchivio': archive,
                 'Filtri': [
                     {
                         'NomeCampo': 'NumeroFattura',
@@ -408,7 +420,7 @@ class FatturaPAAttachmentOut(models.Model):
                     data = {
                         'Documento': {
                             'IdAzienda': int(send_channel.sender_company_id),
-                            'IdArchivio': 1,
+                            'IdArchivio': archive,
                             'CampiDinamici': [
                                 {
                                     'Nome': 'Uid',
@@ -504,6 +516,7 @@ class FatturaPAAttachmentOut(models.Model):
         if len(invoice) > 1:
             raise UserError(_("Multiple invoice to one xml"))
 
+        archive = int(send_channel.param3) if send_channel.param3 else 3
         for att in self:
             # xml base64
             bytes = att.datas
@@ -524,7 +537,7 @@ class FatturaPAAttachmentOut(models.Model):
                 "Documento":{
                     "Visible":True,
                     "IdAzienda": int(send_channel.sender_company_id),
-                    "IdArchivio": 3,
+                    "IdArchivio": archive,
                     "CampiDinamici":[{
                         "Nome":"NumeroFattura",
                         "Valore": invoice.number,

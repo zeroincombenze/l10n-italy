@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                Odoo Italian Community
-#                Odoo Community Association (OCA)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 from openerp import fields, models, api
 
 
@@ -30,6 +34,8 @@ class MultireportStyle(models.Model):
          ('line-up2', 'Line-up logo / slogan / no sep. line'),
          ('line-up3', 'Line-up: logo / company data'),
          ('lin3-up4', 'Line-up: logo / company data / no sep. line'),
+         ('line-up5', 'Line-up: logo / custom_header'),
+         ('lin3-up6', 'Line-up: logo / custom header / no sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
@@ -104,10 +110,6 @@ class MultireportStyle(models.Model):
         default='as_is',
         required=True,
     )
-    bottom_text = fields.Text(
-        'Bottom text',
-        help='Text to print in bottom area of document'
-    )
     pdf_watermark = fields.Binary(
         'Watermark PDF',
         help='Upload your company letterhead PDF to form the background '
@@ -127,6 +129,7 @@ class MultireportStyle(models.Model):
         help='An expression yielding the base64 '
              'encoded data to be used as Ending Page PDF.\n'
              'You have access to variables `env` and `docs`')
+    # TODO: remove early
     # sale.order values
     template_sale_order = fields.Many2one(
         'multireport.template', 'Sale order template',
@@ -144,3 +147,11 @@ class MultireportStyle(models.Model):
         'multireport.template', 'Purchase order template',
         help="Purchase order model")
     # other values
+    custom_header = fields.Html(
+        'Html custon headet')
+    bottom_text = fields.Text(
+        'Bottom text',
+        help='Text to print in bottom area of document'
+    )
+    custom_footer = fields.Html(
+        'Html custom footer')

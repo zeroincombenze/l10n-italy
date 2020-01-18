@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 from openerp import fields, models
 
 
@@ -57,3 +63,12 @@ class ItalyEinvoiceSender(models.Model):
         help="Trace data in log. Warning! Use this feature with caution; "
              "all sent data will be recorded in the log file."
              "This feature must be used only to debug handshake")
+    param1 = fields.Char(
+        string='Custom value to issue for communication',
+        help="E-mail to use when method is PEC")
+    param2 = fields.Char(
+        string='Custom value to issue for communication',
+        help="E-mail to use when method is PEC")
+    param3 = fields.Char(
+        string='Custom value to issue for communication',
+        help="E-mail to use when method is PEC")

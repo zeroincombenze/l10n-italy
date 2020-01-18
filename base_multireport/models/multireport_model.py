@@ -19,9 +19,16 @@ class MultireportModel(models.Model):
         string='Odoo Model (change only)',
         help="Model to which this values will be applied")
     header_mode = fields.Selection(
-        [('', 'From default style'),
-         ('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
+        [('', 'From style'),
+         ('standard', 'Full Odoo Standard'),
+         ('logo', 'Only wide logo'),
+         ('only_logo', 'Only wide logo / no sep. line'),
+         ('line-up', 'Line-up logo / slogan'),
+         ('line-up2', 'Line-up logo / slogan / no sep. line'),
+         ('line-up3', 'Line-up: logo / company data'),
+         ('lin3-up4', 'Line-up: logo / company data / no sep. line'),
+         ('line-up5', 'Line-up: logo / custom_header'),
+         ('lin3-up6', 'Line-up: logo / custom header / no sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
@@ -56,3 +63,5 @@ class MultireportModel(models.Model):
              'If "auto", footer is printed with automatic data\n'
              'If "custom", footer is printed from user data written\n',
     )
+    custom_header = fields.Html(
+        'Html custon headet')

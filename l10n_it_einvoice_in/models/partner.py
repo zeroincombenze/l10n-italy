@@ -46,7 +46,7 @@ class Partner(models.Model):
     )
 
     @api.multi
-    def synchro(self, model, values, skeys=None, constraints=None,
+    def synchro2(self, model, values, skeys=None, constraints=None,
                 keep=None, default=None):
         vals = values.copy()
         skeys = skeys or []
@@ -276,7 +276,7 @@ class Partner(models.Model):
         if partner.name != vals['name']:
             vals['type'] = 'invoice'
             vals['parent_id'] = partner_id
-            for nm in ('rea_code', 'rea_office', 'rea_capital'):
+            for nm in ('rea_code', 'rea_office', 'rea_capital', 'vat'):
                 if nm in vals:
                     del vals[nm]
             self.synchro2(

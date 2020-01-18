@@ -41,6 +41,10 @@
                     <field name="pdf_ending_page"/>
                     <field name="pdf_ending_page_expression"/>
                 </group>
+                <group>
+                    <field name="custom_header"/>
+                    <field name="custom_footer"/>
+                </group>
             </form>
         </field>
     </record>

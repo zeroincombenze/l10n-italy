@@ -1,3 +1,15 @@
+10.0.0.2.16 (2020-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Customized header and/or footer / Intestazione e piede personalizzati
+
+
+10.0.0.2.15 (2020-01-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Payment footer improvements / Miglioramenti nella stampa del castelletto totali
+
+
 10.0.0.2.14 (2019-11-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

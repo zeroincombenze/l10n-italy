@@ -3,15 +3,17 @@ This module gives a lot of pretty features to print nice reports.
 Inside every report it is possible check for some characteristics and/or add some values.
 The value of every parameter is evaluate in fallback way.
 The fallback path is:
+
 1. Valid value (not null and not space) in report (model ir_action_report_xml)
 2. Valid value (not null and not space) in template of report (model multireport.template), if declared
 3. Valid value (not null and not space) in specific document style (model multireport.style)
 4. Value in default document style (model multireport.style)
 5. For some parameters, for historical reason, value may be load from other sources (i.e. custom footer)
 
-In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parme to get value.
+In report the fallback function is report.get_report_attrib(PARAM,o,doc_opts), where param is parameter to get value.
 
 Report may load specific value if declare field as follow:
+
 * If field name beginning with `doc_opts`, value is from the specific report which is printing.
 * If Field name beginning with `doc_style`, value is from the style of the company.
 
@@ -32,7 +34,7 @@ It is only an attribute of company style.
 `Header mode`
 
 This parameter, named `header_mode` set how the header is printed.
-May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3', 'line-up4', 'no_header'
+May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3', 'line-up4', 'line-up5', 'line-up6', 'no_header'
 
 * standard: standard Odoo header is printed
 * logo: only the wide logo is printed which must contain company informations; separation line after logo
@@ -40,7 +42,9 @@ May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3'
 * line-up:  logo and slogan, separation line but no company data
 * line-up2:  logo and slogan but no separation line neither company data
 * line-up3:  logo and company data and separation line; no slogan
-* line-up3:  logo and company data; no separation line neither slogan
+* line-up4:  logo and company data; no separation line neither slogan
+* line-up5:  logo and custom data and separation line; no slogan
+* line-up6:  logo and custom data; no separation line neither slogan
 * no_header: no header is printed; used on pre-printed paper
 
 |
@@ -50,15 +54,8 @@ May be one of 'standard', 'logo', 'only_logo', 'line-up', 'line-up2', 'line-up3'
 This parameter, name `footer_mode` set how the footer is printed.
 May be one of 'standard', 'auto', 'custom', 'no_footer'
 
-        help='Which content is printed in document footer\n'
-             'If "standard", footer is printed as "auto" or "custom"\n'
-             'based on company.custom_footer field (Odoo standaed behavior)\n'
-             'If "auto", footer is printed with automatic data\n'
-             'If "custom", footer is printed from user data written\n',
-
-
 * standard: standard Odoo footer is printed; may be as 'auto' or as 'custom' based on company.custom_footer field
-* auto: footer is printed with comapny data
+* auto: footer is printed with company data
 * custom: user data is printed in footer (like Odoo custom footer)
 * no_footer: no footer is printed; anyway pages are printed
 
@@ -136,6 +133,32 @@ May be used following macroes:
 %(date_done)s => Delivery date
 
 'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"'
+
+|
+
+`Custom Header`
+
+This parameter, named `custom_header` contains the html code to print when header_mode is set to line_up5 or line_up6.
+May be used following macroes:
+
+%(banks)s => IBAN of company
+%(city)s => City of company
+%(email)s => e-mail of company
+%(fax)s
+%(mobile)s
+%(name)s
+%(phone)s
+%(street)s
+%(street2)s
+%(vat)s
+%(website)s
+%(zip)s
+%(codice_destinatario)s (solo se installato modulo fattura elettronica)
+%(fatturapa_rea_capital)s (solo se installato modulo fattura elettronica)
+%(fatturapa_rea_number)s (solo se installato modulo fattura elettronica)
+%(fatturapa_rea_office)s (solo se installato modulo fattura elettronica)
+%(fiscalcode)s (solo se installato modulo codice fiscale)
+%(ipa_code)s (solo se installato modulo codice ipa)
 
 |
 

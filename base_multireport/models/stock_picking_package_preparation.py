@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 
 
 from base64 import b64decode
@@ -33,9 +41,6 @@ class StockPickingPackagePreparation(models.Model):
         pdf_content = StringIO()
         new_pdf.write(pdf_content)
         return pdf_content.getvalue()
-
-    def get_header_mode(self):
-        return self.company_id.report_model_style.header_stock_picking_package_preparation
 
 
 class StockPickingPackagePreparationLine(models.Model):

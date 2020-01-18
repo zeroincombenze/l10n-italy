@@ -44,6 +44,10 @@
                                     <field name="pdf_ending_page_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
                                 </group>
                             </group>
+                            <group>
+                                <field name="custom_header" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field name="custom_footer" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                            </group>
                         </page>
                         <page name="sale_order" string="Sale Order">
                             <group>

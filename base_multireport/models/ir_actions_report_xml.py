@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 import re
 from odoo import fields, models, api
 
@@ -140,10 +147,6 @@ class IrActionsReportXml(models.Model):
             '%(date_done)s => Delivery date\n'
             'i.e. "Ddt #: %(ddt_number)s of %(date_ddt)s"',
     )
-    bottom_text = fields.Text(
-        'Bottom text',
-        help='Text to print in bottom area of document'
-    )
     pdf_watermark = fields.Binary('Watermark')
     pdf_watermark_expression = fields.Char(
         'Watermark expression',
@@ -169,6 +172,14 @@ class IrActionsReportXml(models.Model):
     template = fields.Many2one(
         'multireport.template', 'Model template',
         help="Model template with fallback values.",)
+    custom_header = fields.Html(
+        'Html custon headet')
+    bottom_text = fields.Text(
+        'Bottom text',
+        help='Text to print in bottom area of document'
+    )
+    custom_footer = fields.Html(
+        'Html custom footer')
 
 
 class View(models.Model):

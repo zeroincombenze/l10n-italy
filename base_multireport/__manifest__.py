@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016-2019 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
-#                     Odoo Italia Associazione
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+#
+# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+#
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+#
 {
     'name': 'base_rule_multireport',
     'summary': 'Manage document multiple reports',
-    'version': '10.0.0.2.14',
+    'version': '10.0.0.2.16',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',

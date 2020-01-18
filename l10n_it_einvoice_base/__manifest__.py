@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
     'name': 'EInvoice + FatturaPA',
     'summary': 'Infrastructure for Italian Electronic Invoice + FatturaPA',
-    'version': '10.0.2.1.10',
+    'version': '10.0.2.1.11',
     'category': 'Localization/Italy',
     'author': 'Odoo Italia Associazione,Odoo Community Association (OCA)',
     'website': 'http://www.odoo-italia.org',
