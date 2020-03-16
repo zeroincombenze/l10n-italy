@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -62,6 +62,7 @@ class SaleOrder(models.Model):
         [('nothing', 'One DDT - One Invoice'),
          ('billing_partner', 'Billing Partner'),
          ('shipping_partner', 'Shipping Partners'),
+         ('sale_order', 'By Sale Order'),
          ('code_group', 'Code group')], 'DDT invoicing group',
         default='billing_partner')
     ddt_type_id = fields.Many2one(

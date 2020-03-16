@@ -1,2 +1,3 @@
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>

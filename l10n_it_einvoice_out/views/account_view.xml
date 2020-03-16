@@ -70,7 +70,6 @@
         </field>
     </record>
 
-
     <record id="view_account_invoice_filter_fatturapa" model="ir.ui.view">
         <field name="name">account.invoice.select.fatturapa</field>
         <field name="model">account.invoice</field>

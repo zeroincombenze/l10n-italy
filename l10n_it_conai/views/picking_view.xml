@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='show_price']" position="after">
-                <field name="conai_category_id"/>
+                <field name="conai_exemption_id"/>
             </xpath>
             <xpath expr="//field[@name='line_ids']/form//group[last()]" position="after">
                 <group>

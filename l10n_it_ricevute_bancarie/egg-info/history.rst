@@ -1,3 +1,10 @@
+10.0.1.3.2 (2020-01-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Unsolve cane reopne invoice / L'insoluto puà riaprire la fattura
+
+
+
 10.0.1.3.1 (2019-07-17)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

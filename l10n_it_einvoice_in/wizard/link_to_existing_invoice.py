@@ -16,15 +16,28 @@ class WizardLinkToInvoice(models.TransientModel):
     invoice_id = fields.Many2one(
         'account.invoice', string="Bill", required=True)
 
+    def log_inconsistency(self, message):
+        inconsistencies = self.env.context.get('inconsistencies', '')
+        if inconsistencies:
+            inconsistencies += '\n'
+        inconsistencies += message
+        # we can't set
+        # self = self.with_context(inconsistencies=inconsistencies)
+        # because self is a locale variable.
+        # We use __dict__ to modify attributes of self
+        self.__dict__.update(
+            self.with_context(inconsistencies=inconsistencies).__dict__
+        )
+
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
         if xml_string:
             return fatturapa_v_1_2.CreateFromDocument(xml_string)
         return False
 
-
     def invoiceUpdate(
-        self, invoice, fatt, fatturapa_attachment, FatturaBody, partner_id
+        self, invoice, fatt, fatturapa_attachment, FatturaBody, partner_id,
+            wizard=None
     ):
         invoice_model = self.env['account.invoice']
         invoice_line_model = self.env['account.invoice.line']
@@ -37,8 +50,9 @@ class WizardLinkToInvoice(models.TransientModel):
         PaymentTermsModel = self.env['fatturapa.payment_term']
         SummaryDatasModel = self.env['faturapa.summary.data']
 
-        invoice_data, company, partner, wt_found = invoice_model.xml_get_header_data(
-            self, fatt, fatturapa_attachment, FatturaBody, partner_id)
+        invoice_data, company, partner, wt_found = invoice_model.\
+            xml_get_header_data(self, fatt, fatturapa_attachment, FatturaBody,
+                                partner_id)
         invoice.write(invoice_data)
 
 
@@ -55,7 +69,7 @@ class WizardLinkToInvoice(models.TransientModel):
         for fatturapa_attachment_id in fatturapa_attachment_ids:
             fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id)
-            fatt = self.get_invoice_obj(fatturapa_attachment)
+            fatt = fatturapa_attachment.get_invoice_obj()
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = partner_model.getPartnerBase(cedentePrestatore,
@@ -73,9 +87,10 @@ class WizardLinkToInvoice(models.TransientModel):
                 # Variabiles to make code quite equal to import fatturapa
                 self.invoiceUpdate(
                     self.invoice_id,
-                    fatt, fatturapa_attachment, FatturaBody, partner_id)
+                    fatt, fatturapa_attachment, FatturaBody, partner_id,
+                    wizard=self)
                 # 2.5
-                AttachmentsData = FatturaBody.Allegati
-                if AttachmentsData and self.invoice_id:
-                    fatturapa_attachment_model.extract_attachments(
-                        AttachmentsData, self.invoice_id.id)
+                # AttachmentsData = FatturaBody.Allegati
+                # if AttachmentsData and self.invoice_id:
+                #     fatturapa_attachment_model.extract_attachments(
+                #         AttachmentsData, self.invoice_id.id)

@@ -46,11 +46,11 @@ class AccountInvoice(models.Model):
         return {'type': 'ir.actions.client', 'tag': 'reload'}
 
     def xml_get_header_data(
-        self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id
+        self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id,
     ):
         company = self.env['res.company'].xml_get_company(
             fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici,
-            wizard=self)
+            wizard=wizard)
         partner = self.env['res.partner'].browse(partner_id)
         # currency 2.1.1.2
         currency = self.env['res.currency'].search(

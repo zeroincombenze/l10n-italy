@@ -90,7 +90,9 @@ class ResPartner(models.Model):
                     raise ValidationError(_(
                         'Customer %s: street is needed for XML generation.'
                     ) % partner.name)
-                if not partner.zip:
+                if (not partner.zip and
+                        (not partner.codice_destinatario or
+                         partner.codice_destinatario != 'XXXXXXX')):
                     raise ValidationError(_(
                         'Customer %s: ZIP is needed for XML generation.'
                     ) % partner.name)

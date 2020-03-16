@@ -1,6 +1,6 @@
 
 =========================================
-|icon| Italian Withholding Tax 10.0.1.2.5
+|icon| Italian Withholding Tax 10.0.1.2.6
 =========================================
 
 
@@ -45,11 +45,13 @@ Usage / Utilizzo
 ----------------
 
 
-Creare una ritenuta d’acconto ed inserire i valori necessari per un corretto calcolo.
+|menu| Contabilità > Configurazione > Contabilità > Ritenuta
 
+Inserire le varie tipologie di ritenuta d’acconto o enasarco da gestire, inserendo i valori necessari per un corretto calcolo.
 Per gestire le variazioni delle aliquote nel tempo è possibile dichiarare il periodo di competenza.
-
 Inserire i conti di ritenuta attiva e passiva di tipo crediti e debiti.
+
+|
 
 In fattura inserire il codice ritenuta per il calcolo della ritenuta d'acconto.
 
@@ -81,7 +83,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -158,6 +160,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.6 (2020-02-03)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Enasarco + RA
+
+
 10.0.1.2.5 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -190,6 +198,7 @@ Contributors / Collaboratori
 
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 
@@ -213,7 +222,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

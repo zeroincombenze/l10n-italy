@@ -10,7 +10,7 @@
                 <field name="invoice_partner_id"/>
                 <field name="invoices_number"/>
                 <field name="date_invoice0"/>
-                <field name="invoices_total"/>
+                <field name="invoices_total" sum="Invoices Total"/>
                 <field name="out_invoice_ids"/>
             </tree>
         </field>
@@ -33,6 +33,7 @@
         <field name="arch" type="xml">
             <form string="Export Electronic Invoice" create="false">
                 <div>
+                    <field name="ftpa_preview_link" widget="url" text="Preview" class="btn btn-default"/>
                     <group>
                         <group>
                             <field name="datas" filename="datas_fname" />
@@ -44,7 +45,6 @@
                             <field name="invoice_partner_id"/>
                         </group>
                     </group>
-                    <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
                     <separator string="Invoices"/>
                     <field name="out_invoice_ids"
                            context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"/>

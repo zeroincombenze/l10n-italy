@@ -84,6 +84,11 @@ class ResCompany(models.Model):
              'If both are set, do not insert TIN',
         default=True
         )
+    fatturapa_preview_style = fields.Selection([
+        ('fatturaordinaria_v1.2.1.xsl', 'FatturaOrdinaria v1.2.1'),
+        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware v1.1')],
+        string='Preview Format Style', required=True,
+        default='fatturaordinaria_v1.2.1.xsl')
 
     @api.multi
     @api.constrains(
@@ -239,6 +244,10 @@ class AccountConfigSettings(models.TransientModel):
         string='No FC if same of TIN',
         help='Do not insert fiscalcode if it is equal to VAT number',
         default=True
+        )
+    fatturapa_preview_style = fields.Selection(
+        related='company_id.fatturapa_preview_style',
+        string="Preview Format Style", required=True
         )
 
     @api.onchange('company_id')

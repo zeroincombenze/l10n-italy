@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+#
 {
     'name': 'Italian Withholding Tax',
-    'version': '10.0.1.2.5',
+    'version': '10.0.1.2.6',
     'category': 'Account',
-    'author': 'Openforce,Odoo Community Association (OCA)',
-    'website': 'https://www.odoo-italia.net/',
-    'license': 'AGPL-3',
+    'author': 'Odoo Community Association (OCA) and other subjects',
+    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
+    'license': 'LGPL-3',
     'depends': [
         'account',
         'l10n_it_causali_pagamento',

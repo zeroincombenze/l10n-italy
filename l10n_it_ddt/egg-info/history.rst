@@ -1,3 +1,16 @@
+10.0.1.8.2 (2020-02-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Change version id / Cambio identificativo versione
+* [IMP] Invoicing by order / Fatturazione divisa per ordini
+
+
+10.0.1.5.14 (2020-01-21)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Qty zero becomes 1 in Invoice / Q.tà zero diventa 1 in fattura
+
+
 10.0.1.5.13 (2019-12-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,6 +1,6 @@
 
 ==============================================================
-|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.11
+|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.14
 ==============================================================
 
 
@@ -142,7 +142,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -218,6 +218,24 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.14 (2020-02-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invoice address empty / Compila indirizzo di fatturazione vuoto
+
+
+10.0.1.0.13 (2020-02-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] XML Preview / Anteprima file XML
+
+
+10.0.1.0.12 (2020-02-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PDF Attachment / Inserimento allagetao PDF in e-fattura
+
 
 10.0.1.0.11 (2019-11-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -307,7 +325,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

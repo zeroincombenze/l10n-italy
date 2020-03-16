@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ddt_line_new_inv" model="ir.ui.view">
+        <field name="name">DdT Create Invoice</field>
+        <field name="model">ddt.line.new.inv</field>
+        <field name="arch" type="xml">
+            <form string="DDT Create Invoice">
+                <separator string="DDT"/>
+                <field string="DDT" name="line_ids" readonly="0">
+                    <tree create="false">
+                        <field name="package_preparation_id" readonly="1"/>
+                        <field name="name"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="sale_id" readonly="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="create_invoice" string="Create Invoice"
+                            type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <act_window name="Create Invoice"
+        res_model="ddt.line.new.inv"
+        src_model="stock.picking.package.preparation.line"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+        id="action_create_invoice"/>
+
+</odoo>

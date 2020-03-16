@@ -1,8 +1,13 @@
+10.0.2.1.12 (2020-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] XML Preview / Anteprima file XML
+
+
 10.0.2.1.11 (2020-01-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Custom communication values / Valori di configurazione per comunicazione
-
 
 
 10.0.2.1.10 (2019-11-07)

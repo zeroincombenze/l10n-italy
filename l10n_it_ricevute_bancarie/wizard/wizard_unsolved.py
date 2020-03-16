@@ -116,6 +116,7 @@ class RibaUnsolved(models.TransientModel):
             not wizard.bank_expense_account_id
         ):
             raise UserError(_('Every account is mandatory'))
+
         move_vals = {
             'ref': _('Unsolved Ri.Ba. %s - line %s') % (
                 distinta_line.distinta_id.name, distinta_line.sequence),
@@ -162,6 +163,33 @@ class RibaUnsolved(models.TransientModel):
 
         move = move_model.create(move_vals)
         move.post()
+
+        if (wizard.overdue_effects_account_id ==
+                distinta_line.move_line_ids.move_line_id.account_id):
+            for line in move.line_ids:
+                if line.name == _('Overdue Effects'):
+                    overdue_line_id = line.id
+                    break
+            move_ids = [
+                distinta_line.move_line_ids.move_line_id.id,
+                overdue_line_id,
+            ]
+            self.env['account.move.line'].browse(
+                move_ids).remove_move_reconcile()
+            
+            
+            for acceptance_move_line in distinta_line.acceptance_move_id.line_ids:
+                if (
+                    acceptance_move_line.account_id.id ==
+                    wizard.overdue_effects_account_id.id
+                ):
+                    move_ids = [
+                        overdue_line_id,
+                        acceptance_move_line.id,
+                    ]
+                    break
+            self.env['account.move.line'].browse(
+                move_ids).reconcile()
 
         to_be_reconciled = []
         for move_line in move.line_ids:

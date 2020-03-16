@@ -1,3 +1,21 @@
+10.0.1.0.14 (2020-02-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invoice address empty / Compila indirizzo di fatturazione vuoto
+
+
+10.0.1.0.13 (2020-02-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] XML Preview / Anteprima file XML
+
+
+10.0.1.0.12 (2020-02-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PDF Attachment / Inserimento allagetao PDF in e-fattura
+
+
 10.0.1.0.11 (2019-11-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -26,6 +26,7 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
+
 re_base64 = re.compile(
     br'^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$')
 
@@ -94,7 +95,6 @@ class Attachment(models.Model):
                         'Base64 encoded file %s.'
                     ) % e.args
                 )
-
         # Amazon sends xml files without <?xml declaration,
         # so they cannot be easily detected using a pattern.
         # We first try to parse as asn1, if it fails we assume xml
@@ -121,7 +121,8 @@ class Attachment(models.Model):
 
     def get_fattura_elettronica_preview(self):
         xsl_path = get_module_resource(
-            'l10n_it_fatturapa', 'data', 'fatturaordinaria_v1.2.1.xsl')
+            'l10n_it_einvoice_base', 'static', 'src',
+            self.env.user.company_id.fatturapa_preview_style)
         xslt = ET.parse(xsl_path)
         xml_string = self.get_xml_string()
         xml_file = BytesIO(xml_string)

@@ -1,6 +1,6 @@
 
 =======================================
-|icon| Send E-Invoice to SdI 10.0.1.0.6
+|icon| Send E-Invoice to SdI 10.0.1.0.8
 =======================================
 
 
@@ -139,6 +139,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.8 (2020-03-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Best display error message / Miglioramento messaggi di errore
+
+
+
+10.0.1.0.7 (2020-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Use custom value of channel / Uso valori personalizzati del canale
+
+
 10.0.1.0.6 (2019-11-11)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -215,7 +228,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-30
+Last Update / Ultimo aggiornamento: 2020-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

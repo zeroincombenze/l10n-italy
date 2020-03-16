@@ -79,36 +79,6 @@ class WizardImportFatturapa(models.TransientModel):
             self.with_context(inconsistencies=inconsistencies).__dict__
         )
 
-    def check_partner_base_data(self, partner_id, DatiAnagrafici):
-        partner = self.env['res.partner'].browse(partner_id)
-        if (
-            DatiAnagrafici.Anagrafica.Denominazione and
-            partner.name != DatiAnagrafici.Anagrafica.Denominazione
-        ):
-            self.log_inconsistency(_(
-                "Company Name field contains '%s'."
-                " Your System contains '%s'"
-            ) % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
-        if (
-            DatiAnagrafici.Anagrafica.Nome and
-            partner.firstname != DatiAnagrafici.Anagrafica.Nome
-        ):
-            self.log_inconsistency(_(
-                "Name field contains '%s'."
-                " Your System contains '%s'"
-            ) % (DatiAnagrafici.Anagrafica.Nome, partner.firstname))
-        if (
-            DatiAnagrafici.Anagrafica.Cognome and
-            partner.lastname != DatiAnagrafici.Anagrafica.Cognome
-        ):
-            self.log_inconsistency(
-                _(
-                    "Surname field contains '%s'."
-                    " Your System contains '%s'"
-                )
-                % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
-            )
-
     def getCarrirerPartner(self, Carrier):
         if not Carrier:
             return -1
@@ -156,7 +126,7 @@ class WizardImportFatturapa(models.TransientModel):
         else:
             vals['name'] = '%s %s' % (Anagrafica.Cognome,
                                       Anagrafica.Nome)
-        return self.synchro2('res.partner',
+        return self.env['res.partner'].synchro2('res.partner',
                             vals,
                             skeys=(['vat', 'fiscalcode', 'is_company'],
                                    ['vat', 'name', 'is_company'],
@@ -173,8 +143,10 @@ class WizardImportFatturapa(models.TransientModel):
                             }
         )
 
+
     def get_tax(self, company_id, AliquotaIVA, Natura, partner=None):
         account_tax_model = self.env['account.tax']
+        nature_model = self.env['italy.ade.tax.nature']
         ir_values_model = self.env['ir.values']
         AliquotaIVA_fp = float(AliquotaIVA)
         supplier_taxes_ids = ir_values_model.get_default(
@@ -182,28 +154,34 @@ class WizardImportFatturapa(models.TransientModel):
         def_purchase_tax = False
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
-        where = []
-        where.append(('company_id', '=', company_id))
-        where.append(('type_tax_use', '=', 'purchase'))
+        domain = []
+        domain.append(('company_id', '=', company_id))
+        domain.append(('type_tax_use', '=', 'purchase'))
         # Some supplier use N6 w/o Vax rate!
         if Natura != 'N6' or AliquotaIVA_fp != 0.0:
-            where.append(('amount', '=', AliquotaIVA_fp))
+            domain.append(('amount', '=', AliquotaIVA_fp))
         if Natura:
-            where.append(('nature_id.code', '=', Natura))
+            nature_id = nature_model.search([('code', '=', Natura)])
+            if nature_id:
+                domain.append(('nature_id.code', '=', nature_id.id))
+            else:
+                domain.append(('nature_id', '=', -1))
+        elif AliquotaIVA_fp != 0.0:
+            domain.append(('nature_id', '=', False))
         if (partner and
                 partner.register_fiscalpos.code == 'RF19'
                 and Natura == 'N2'):
-            where.append(('name', 'ilike', '%a%1%L%190%'))
-        account_taxes = account_tax_model.search(where, order="sequence")
+            domain.append(('name', 'ilike', '%190%'))
+        account_taxes = account_tax_model.search(domain, order="sequence")
         if not account_taxes:
             raise UserError(
-                _('No tax with percentage '
-                  '%s and nature %s found. Please configure this tax.')
+                _('Nessun codice IVA con aliquota '
+                  '%s e natura %s. Inserirne uno.')
                 % (AliquotaIVA, Natura))
         if len(account_taxes) > 1:
             self.log_inconsistency(
-                _('Too many taxes with percentage '
-                  '%s and nature %s found.')
+                _('Rilevati troppi codici IVA con aliquota %s '
+                  'e natura %s. Eventualmente selezionare il codice corretto.')
                 % (AliquotaIVA, Natura))
         if def_purchase_tax and def_purchase_tax.amount == AliquotaIVA_fp:
             account_tax_id = def_purchase_tax.id
@@ -218,7 +196,7 @@ class WizardImportFatturapa(models.TransientModel):
             ])
             if not tax_nature_ids:
                 self.log_inconsistency(
-                    _("Tax kind %s not found") % Natura
+                    _("Natura %s non trovata") % Natura
                 )
                 return False
             else:
@@ -283,8 +261,9 @@ class WizardImportFatturapa(models.TransientModel):
             if new_tax.id != line_tax_id:
                 if new_tax._get_tax_amount() != line_tax._get_tax_amount():
                     self.log_inconsistency(_(
-                        "XML contains tax %s. Product %s has tax %s. Using "
-                        "the XML one"
+                        "Il file XML ha codice IVA %s. "
+                        "Il prodotto %s ha codice IVA %s. "
+                        "Selezionare il codice IVA corretto,"
                     ) % (line_tax.name, product.name, new_tax.name))
                 else:
                     # If product has the same amount of the one in XML,
@@ -563,8 +542,8 @@ class WizardImportFatturapa(models.TransientModel):
                     if not banks:
                         if not dline.IstitutoFinanziario:
                             self.log_inconsistency(
-                                _("Name of Bank with BIC '%s' is not set."
-                                  " Can't create bank") % dline.BIC
+                                _("Nome banca con BIC '%s' non impostato. "
+                                  "Impossibile creare banca.") % dline.BIC
                             )
                         else:
                             bankid = BankModel.create(
@@ -588,10 +567,9 @@ class WizardImportFatturapa(models.TransientModel):
                     if not payment_banks and not bankid:
                         self.log_inconsistency(
                             _(
-                                'BIC is required and not exist in Xml\n'
-                                'Curr bank data is: \n'
+                                'BIC richiesto ma non rilevato in file XML\n'
                                 'IBAN: %s\n'
-                                'Bank Name: %s\n'
+                                'Nome Banca: %s\n'
                             )
                             % (
                                 dline.IBAN.strip() or '',
@@ -693,7 +671,7 @@ class WizardImportFatturapa(models.TransientModel):
                         totlines[i][1] != totdue[i][1]):
                     valid_due = False
                     break
-        payment_term_found = False
+        # payment_term_found = False
         if not valid_due:
             payment_term_found, prospect = self.match_best_of_payterms(totdue)
             if payment_term_found and prospect > 95:
@@ -704,13 +682,23 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.write({
                     'payment_term_id': False,
                     'date_due': totdue[0][0]})
+                self.log_inconsistency(
+                    _('\nNessun termine di pagamento soddisfa la fattura XML. '
+                      'Inserita data di scadenza da XML. '
+                      'Verificare congruenza')
+                )
             elif payment_term_found and prospect > 80:
                 invoice.write({
                     'payment_term_id': payment_term_found.id,
                     'date_due': totdue[-1][0]})
+                self.log_inconsistency(
+                    _('\nTermine di pagamento che mom soddisfa la fattura XML. '
+                      'Verificare congruenza o inserire nuovo pagamento.')
+                )
             else:
                 self.log_inconsistency(
-                    _('None of payment terms matches due invoice!')
+                    _('\nNessun termine di pagamento soddisfa alla fattura XML. '
+                      'Verificare le scadenze!')
                 )
 
     # TODO sul partner?
@@ -798,7 +786,7 @@ class WizardImportFatturapa(models.TransientModel):
     ):
         invoice_model = self.env['account.invoice']
         invoice_line_model = self.env['account.invoice.line']
-        ftpa_doctype_model = self.env['italy.ade.invoice.type']
+        # ftpa_doctype_model = self.env['italy.ade.invoice.type']
         rel_docs_model = self.env['fatturapa.related_document_type']
         # WelfareFundLineModel = self.env['welfare.fund.data.line']
         SalModel = self.env['faturapa.activity.progress']
@@ -806,8 +794,13 @@ class WizardImportFatturapa(models.TransientModel):
         PaymentDataModel = self.env['fatturapa.payment.data']
         PaymentTermsModel = self.env['fatturapa.payment_term']
         SummaryDatasModel = self.env['faturapa.summary.data']
-
-        invoice_data, company, partner, wt_found = invoice_model.xml_get_header_data(
+        partner_model = self.env['res.partner']
+        partner = partner_model.browse(partner_id)
+        if partner.parent_id:
+            partner = partner.parent_id
+            partner_id = partner.parent_id.id
+        invoice_data, company, partner, wt_found = invoice_model.\
+            xml_get_header_data(
             self, fatt, fatturapa_attachment, FatturaBody, partner_id)
 
         purchase_journal = self.get_purchase_journal(company)
@@ -1072,6 +1065,15 @@ class WizardImportFatturapa(models.TransientModel):
                 ).id
                 self._createPayamentsLine(PayDataId, PaymentLine, partner_id)
         self.set_payment_term(invoice, company, PaymentsData)
+        if (partner.property_payment_term_id and
+                invoice.payment_term_id != partner.property_payment_term_id):
+            self.log_inconsistency(
+                _('\nTermine di pagamento da XML "%s" '
+                  'diverso da anagrafica "%s"')
+                % (invoice.payment_term_id and invoice.payment_term_id.name or
+                   '',
+                   partner.property_payment_term_id.name)
+            )
         # 2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:
@@ -1123,8 +1125,8 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.amount_total - ImportoTotaleDocumento, precision_digits=2
             ):
                 self.log_inconsistency(
-                    _('Bill total %s is different from '
-                      'document total amount %s')
+                    _('Totale fattura %s dal totale %s '
+                      'presente nel file XML')
                     % (invoice.amount_total, ImportoTotaleDocumento)
                 )
         else:
@@ -1138,8 +1140,8 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.amount_untaxed - amount_untaxed, precision_digits=2
             ):
                 self.log_inconsistency(
-                    _('Computed amount untaxed %s is different from'
-                      ' summary data %s')
+                    _('Totale imponibile %s differisce da imponibile %s '
+                      'presente nel file XML')
                     % (invoice.amount_untaxed, amount_untaxed)
                 )
 
@@ -1164,6 +1166,9 @@ class WizardImportFatturapa(models.TransientModel):
             # 1.2
             partner_id = partner_model.getPartnerBase(cedentePrestatore,
                                                       fatturapa=self)
+            if partner_id < 1:
+                _logger.error('Unrecognized supplier')
+                continue
             # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\
                 RappresentanteFiscale

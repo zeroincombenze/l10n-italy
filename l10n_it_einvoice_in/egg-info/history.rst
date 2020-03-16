@@ -1,3 +1,22 @@
+10.0.1.3.12 (2020-03-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Partner data / Dati fornitore non modificati. Se diversi creato indirizzo fatturazione
+* [IMP] More incisive message / Messagi più precisi
+
+
+10.0.1.3.11 (2020-02-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor change / Modifiche interne
+
+
+10.0.1.3.10 (2020-02-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] XML Preview / Anteprima file XML
+
+
 10.0.1.3.9 (2019-12-29)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

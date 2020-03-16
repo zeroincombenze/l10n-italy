@@ -1,3 +1,10 @@
+10.0.1.0.8 (2020-03-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Best display error message / Miglioramento messaggi di errore
+
+
+
 10.0.1.0.7 (2020-01-17)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

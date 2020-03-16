@@ -14,9 +14,15 @@ import odoo.addons.decimal_precision as dp
 class StockPickingPackagePreparation(models.Model):
     _inherit = 'stock.picking.package.preparation'
 
-    conai_category_id = fields.Many2one(
+    conai_exemption_id = fields.Many2one(
         'italy.conai.partner.category', string='CONAI Category')
 
+    @api.multi
+    def _prepare_invoice(self):
+        self.ensure_one()
+        vals = super(StockPickingPackagePreparation, self)._prepare_invoice()
+        vals['conai_exemption_id'] = self.conai_exemption_id.id
+        return vals
 
 class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
@@ -33,12 +39,12 @@ class StockPickingPackagePreparationLine(models.Model):
         res = super(StockPickingPackagePreparationLine,
                     self)._prepare_invoice_line(qty, invoice_id)
         res['conai_amount'] = 0.0
-        if self.package_preparation_id.conai_category_id:
-            percent = self.package_preparation_id.conai_category_id.conai_percent
-        elif self.package_preparation_id.partner_id.conai_category_id:
-            percent = self.package_preparation_id.partner_id.conai_category_id.conai_percent
+        if self.package_preparation_id.conai_exemption_id:
+            percent = self.package_preparation_id.conai_exemption_id.conai_percent
+        elif self.package_preparation_id.partner_id.conai_exemption_id:
+            percent = self.package_preparation_id.partner_id.conai_exemption_id.conai_percent
         else:
-            percent = 100.0
+            percent = 0
         category_id = False
         if self.conai_category_id:
             category_id = self.conai_category_id
@@ -49,9 +55,10 @@ class StockPickingPackagePreparationLine(models.Model):
                 category_id = self.product_id.conai_category_id
             elif self.product_id.product_tmpl_id:
                 category_id = self.product_id.product_tmpl_id.conai_category_id
-            if category_id:
-                price_unit = category_id.conai_price_unit
-                res['conai_category_id'] = category_id.id
+        if category_id:
+            price_unit = category_id.conai_price_unit
+            res['conai_category_id'] = category_id.id
         weight_conv = 1000
-        res['conai_amount'] = self.weight * price_unit * percent / weight_conv
+        res['conai_amount'] = self.weight * self.product_uom_qty * price_unit * (
+                100 - percent) / weight_conv
         return res

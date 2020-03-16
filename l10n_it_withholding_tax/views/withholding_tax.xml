@@ -45,7 +45,7 @@
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                             <field name="payment_term"/>
                             <field name="causale_pagamento_id"/>
-                            <field name="welfare_fund_type_id" attrs="{'readonly': [('wt_types', '!=', 'cassa')]}"/>
+                            <field name="welfare_fund_type_id"/>
                         </group>
                     </group>
                     <field name="comment"/>

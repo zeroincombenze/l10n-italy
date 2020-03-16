@@ -1,17 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Abstract (http://www.abstract.it)
-#    @author Davide Corio <davide.corio@abstract.it>
-#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
-
-
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):
@@ -68,3 +59,13 @@ class AccountInvoiceLine(models.Model):
         string='Ddt sequence', related='ddt_line_id.sequence',
         store=True, copy=False)
     weight = fields.Float(string="Weight")
+
+    @api.multi
+    def unlink(self):
+        ddt_line_model = self.env['stock.picking.package.preparation.line']
+        for line_inv in self:
+            ddt_lines = ddt_line_model.search(
+                [('invoice_line_id', '=', line_inv.id)])
+            for ddt in ddt_lines:
+                ddt.package_preparation_id.write({'invoice_id': False})
+        super(AccountInvoiceLine, self).unlink()

@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-# @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2017 Gianmarco Conte - Dinamiche Aziendali
 #
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 from datetime import datetime
 
@@ -540,11 +536,15 @@ class StockPickingPackagePreparation(models.Model):
         It returns the first sale order of the ddt.
         """
         sale_order = False
-        for picking in self.picking_ids:
-            for sm in picking.move_lines:
-                if sm.procurement_id and sm.procurement_id.sale_line_id:
-                    sale_order = sm.procurement_id.sale_line_id.order_id
-                    return sale_order
+        # for picking in self.picking_ids:
+        #     for sm in picking.move_lines:
+        #         if sm.procurement_id and sm.procurement_id.sale_line_id:
+        #             sale_order = sm.procurement_id.sale_line_id.order_id
+        #             return sale_order
+        for line in self.line_ids:
+            if line.sale_line_id:
+                sale_order = line.sale_line_id.order_id
+                break
         return sale_order
 
     @api.multi
@@ -645,7 +645,7 @@ class StockPickingPackagePreparation(models.Model):
         Create the invoice associated to the DDT.
         :returns: list of created invoices
         """
-        inv_obj = self.env['account.invoice']
+        inv_model = self.env['account.invoice']
         invoices = {}
         references = {}
         for ddt in self:
@@ -661,8 +661,14 @@ class StockPickingPackagePreparation(models.Model):
                 group_partner_invoice_id = order.partner_invoice_id.id
                 group_currency_id = order.currency_id.id
             else:
-                group_method = (
-                    ddt.partner_shipping_id.ddt_invoicing_group)
+                if ddt.partner_shipping_id:
+                    group_method = (
+                        ddt.partner_shipping_id.commercial_partner_id.
+                            ddt_invoicing_group)
+                else:
+                    group_method = (
+                        ddt.partner_id.commercial_partner_id.
+                            ddt_invoicing_group)
                 group_partner_invoice_id = ddt.partner_id.id
                 group_currency_id = ddt.partner_id.currency_id.id
             if group_method == 'billing_partner':
@@ -677,31 +683,46 @@ class StockPickingPackagePreparation(models.Model):
             else:
                 group_key = ddt.id
 
+            ddt_invoiced = True
+            prior_group_key = order
             for line in ddt.line_ids:
-                if line.sale_line_id.order_id not in orders:
-                    orders.append(line.sale_line_id.order_id)
-                if line.sale_line_id not in invoiced_order_lines:
-                    invoiced_order_lines.append(line.sale_line_id)
+                if not line.allow_invoice_line():
+                    ddt_invoiced = False
+                    continue
+
+                if group_method == 'sale_order':
+                    if line.sale_line_id:
+                        group_key = line.sale_line_id.order_id
+                        prior_group_key = group_key
+                    else:
+                        group_key = prior_group_key
+                if line.sale_line_id:
+                    if line.sale_line_id.order_id not in orders:
+                        orders.append(line.sale_line_id.order_id)
+                    if line.sale_line_id not in invoiced_order_lines:
+                        invoiced_order_lines.append(line.sale_line_id)
 
                 if group_key not in invoices:
                     inv_data = ddt._prepare_invoice()
-                    invoice = inv_obj.create(inv_data)
+                    invoice = inv_model.create(inv_data)
                     references[invoice] = ddt
                     invoices[group_key] = invoice
-                    ddt.invoice_id = invoice.id
+                    # ddt.invoice_id = invoice.id
                 elif group_key in invoices:
                     vals = {}
-
                     origin = invoices[group_key].origin
-                    if origin and ddt.ddt_number not in origin.split(', '):
+                    if (origin and ddt.ddt_number and
+                            ddt.ddt_number not in origin.split(', ')):
                         vals['origin'] = invoices[
                             group_key].origin + ', ' + ddt.ddt_number
                     invoices[group_key].write(vals)
                     ddt.invoice_id = invoices[group_key].id
 
-                if line.allow_invoice_line():
-                    line.invoice_line_create(
-                        invoices[group_key].id, line.product_uom_qty)
+                line.invoice_line_create(
+                    invoices[group_key].id, line.product_uom_qty)
+
+            if ddt_invoiced:
+                ddt.invoice_id = invoice.id
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:
                     references[invoice] = references[invoice] | ddt
@@ -850,7 +871,13 @@ class StockPickingPackagePreparationLine(models.Model):
                                   string='Total', readonly=True, store=True)
     weight = fields.Float(
         string="Line Weight")
-
+    invoice_line_id = fields.Many2one(
+        'account.invoice.line', string='Invoice',
+        readonly=True, copy=False)
+    partner_id = fields.Many2one(
+        'res.partner', string='Partner',
+        related='package_preparation_id.partner_id',
+        store=True, readonly=True, related_sudo=False)
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
@@ -1010,6 +1037,8 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
+        if not qty:
+            qty = 1.0
         for line in self:
             if not float_is_zero(qty, precision_digits=precision):
                 vals = line._prepare_invoice_line(
@@ -1020,8 +1049,9 @@ class StockPickingPackagePreparationLine(models.Model):
                         {'sale_line_ids': [
                             (6, 0, [line.sale_line_id.id])
                         ]})
-                self.env['account.invoice.line'].with_context(
+                line_inv = self.env['account.invoice.line'].with_context(
                     skip_update_line_ids=True).create(vals)
+                line.invoice_line_id = line_inv.id
 
     def quantity_by_lot(self):
         res = {}
@@ -1046,4 +1076,74 @@ class StockPickingPackagePreparationLine(models.Model):
         It can be inherited for different purposes, e.g. for proper invoicing
         of kit."""
         self.ensure_one()
-        return self.product_uom_qty > 0
+        # return self.product_uom_qty > 0
+        return not self.invoice_line_id
+
+
+    @api.multi
+    def action_line_invoice_create(self):
+        """
+        Create the invoice selected by end-user.
+        :returns: list of created invoices
+        """
+        inv_model = self.env['account.invoice']
+        # ddt_model = self.env['stock.picking.package.preparation']
+        invoice = False
+
+        ddt_line_list = []
+        ddt_list = []
+        partner_id = False
+        reference = False
+        for line in self:
+            if not line.allow_invoice_line():
+                continue
+            if not partner_id:
+                partner_id = line.package_preparation_id.partner_id
+            if line.package_preparation_id.partner_id != partner_id:
+                raise UserError(_('Too many partners.'))
+            if not invoice:
+                inv_data = line.package_preparation_id._prepare_invoice()
+                invoice = inv_model.create(inv_data)
+            line.invoice_line_create(
+                invoice.id, line.product_uom_qty)
+            if line.package_preparation_id not in ddt_list:
+                ddt_list.append(line.package_preparation_id)
+            ddt_line_list.append(line.id)
+
+        for ddt in ddt_list:
+            ddt_invoiced = True
+            reference = ddt
+            for line in ddt.line_ids:
+                if line.id not in ddt_line_list and not line.invoice_line_id:
+                    ddt_invoiced = False
+                    break
+            if ddt_invoiced:
+                ddt.invoice_id = invoice.id
+
+        if not invoice:
+            raise UserError(_('There is no invoicable line.'))
+
+        if not invoice.name:
+            invoice.write({
+                'name': invoice.origin
+            })
+        if not invoice.invoice_line_ids:
+            raise UserError(_('There is no invoicable line.'))
+        # If invoice is negative, do a refund invoice instead
+        if invoice.amount_untaxed < 0:
+            invoice.type = 'out_refund'
+            for line in invoice.invoice_line_ids:
+                line.quantity = -line.quantity
+        # Use additional field helper function (for account extensions)
+        for line in invoice.invoice_line_ids:
+            line._set_additional_fields(invoice)
+        # Necessary to force computation of taxes. In account_invoice,
+        # they are triggered
+        # by onchanges, which are not triggered when doing a create.
+        invoice.compute_taxes()
+        invoice.message_post_with_view(
+            'mail.message_origin_link',
+            values={
+                'self': invoice, 'origin': reference},
+            subtype_id=self.env.ref('mail.mt_note').id)
+        return [invoice.id]

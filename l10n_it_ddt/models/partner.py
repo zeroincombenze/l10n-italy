@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-#    @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
 
 
 from odoo import fields, models
@@ -31,6 +26,7 @@ class ResPartner(models.Model):
         [('nothing', 'One DDT - One Invoice'),
          ('billing_partner', 'Billing Partner'),
          ('shipping_partner', 'Shipping Partner'),
+         ('sale_order', 'By Sale Order'),
          ('code_group', 'Code group')], 'DDT invoicing group',
         default='billing_partner')
     ddt_code_group = fields.Char(string='Code group')

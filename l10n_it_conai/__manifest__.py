@@ -10,7 +10,7 @@
 {
     'name': 'CONAI Management',
     'summary': 'Dati CONAI in fattura e calcolo importi',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.1.2',
     'category': 'Localization/Italy',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
@@ -27,7 +27,7 @@
         'views/product_category_view.xml',
         'views/partner_category_view.xml',
         'views/picking_view.xml',
-        # 'views/account_invoice_view.xml',
+        'views/account_invoice_view.xml',
         'views/product_view.xml',
         'views/partner_view.xml',
     ],

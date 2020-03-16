@@ -64,11 +64,11 @@ class ItalyEinvoiceSender(models.Model):
              "all sent data will be recorded in the log file."
              "This feature must be used only to debug handshake")
     param1 = fields.Char(
-        string='Custom value to issue for communication',
-        help="E-mail to use when method is PEC")
+        string='Custom value 1',
+        help="Custom value to issue for communication, if required")
     param2 = fields.Char(
-        string='Custom value to issue for communication',
-        help="E-mail to use when method is PEC")
+        string='Custom value 2',
+        help="Custom value to issue for communication, if required")
     param3 = fields.Char(
-        string='Custom value to issue for communication',
-        help="E-mail to use when method is PEC")
+        string='Custom value 3',
+        help="Custom value to issue for communication, if required")

@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Ricevute Bancarie 10.0.1.3.1
+|icon| Ricevute Bancarie 10.0.1.3.2
 ===================================
 
 
@@ -199,7 +199,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -275,6 +275,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.3.2 (2020-01-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Unsolve cane reopne invoice / L'insoluto puà riaprire la fattura
+
+
 
 10.0.1.3.1 (2019-07-17)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -352,7 +359,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

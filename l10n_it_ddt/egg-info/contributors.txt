@@ -5,4 +5,5 @@
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Alessandro Camilli <alessandrocamilli@openforce.it>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Antonio M. Vigliotti <info@shs-av.com>

@@ -19,7 +19,7 @@ RELATED_DOCUMENT_TYPES = {
 }
 EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
-                'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
+                'LT', 'LU', 'MT', 'NL', 'PL', 'PT',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
 

@@ -1,7 +1,7 @@
 
-======================
-|icon| DDT 10.0.1.5.13
-======================
+=====================
+|icon| DDT 10.0.1.8.2
+=====================
 
 
 **Delivery Document to Transfer**
@@ -118,7 +118,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -194,6 +194,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.8.2 (2020-02-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Change version id / Cambio identificativo versione
+* [IMP] Invoicing by order / Fatturazione divisa per ordini
+
+
+10.0.1.5.14 (2020-01-21)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Qty zero becomes 1 in Invoice / Q.tà zero diventa 1 in fattura
+
 
 10.0.1.5.13 (2019-12-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -300,6 +313,7 @@ Authors / Autori
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Apulia Software <https://www.apuliasoftware.it>`__
 * `Open Force <https://www.openforce.it/>`__
+* `Dinamiche Aziendali <http://www.dinamicheaziendali.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
@@ -313,6 +327,7 @@ Contributors / Collaboratori
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Alessandro Camilli <alessandrocamilli@openforce.it>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Antonio M. Vigliotti <info@shs-av.com>
 
 
@@ -338,7 +353,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-03-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

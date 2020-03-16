@@ -20,6 +20,7 @@ class WithholdingTax(models.Model):
             SELECT tax, base FROM withholding_tax_rate
                 WHERE withholding_tax_id = %s
                  and (date_start <= current_date or date_start is null)
+                 and (date_stop >= current_date or date_stop is null)
                 ORDER by date_start LIMIT 1''',
                             (self.id,))
         rate = self.env.cr.fetchone()
@@ -67,8 +68,7 @@ class WithholdingTax(models.Model):
         'welfare.fund.type', 'Welfare Fund Type')
     wt_types = fields.Selection([
         ('enasarco', 'Enasarco'),
-        ('ritenuta', 'Ritenuta d\'acconto'),
-        ('cassa', 'Cassa previdenziale')],
+        ('ritenuta', 'Ritenuta d\'acconto')],
         'Withholding tax type', required=True, default='ritenuta')
 
     @api.one
@@ -127,23 +127,23 @@ class WithholdingTaxRate(models.Model):
     @api.constrains('date_start', 'date_stop')
     def _check_date(self):
         if self.withholding_tax_id.active:
-            where = []
+            domain = [
+                ('withholding_tax_id', '=', self.withholding_tax_id.id),
+                ('id', '!=', self.id)]
             if self.date_start:
-                where.append("((date_stop>='%s') or (date_stop is null))" %
-                             (self.date_start,))
+                domain.extend([
+                    '|',
+                    ('date_stop', '>=', self.date_start),
+                    ('date_stop', '=', False)])
             if self.date_stop:
-                where.append("((date_start<='%s') or (date_start is null))" %
-                             (self.date_stop,))
+                domain.extend([
+                    '|',
+                    ('date_start', '<=', self.date_stop),
+                    ('date_start', '=', False)])
 
-            self.env.cr.execute(
-                'SELECT id '
-                'FROM withholding_tax_rate '
-                'WHERE ' + ' and '.join(where) + (where and ' and ' or '') +
-                'withholding_tax_id = %s '
-                'AND id <> %s', (
-                    self.withholding_tax_id.id,
-                    self.id))
-            if self.env.cr.fetchall():
+            overlapping_rate = self.env['withholding.tax.rate'] \
+                .search(domain, limit=1)
+            if overlapping_rate:
                 raise ValidationError(
                     _('Error! You cannot have 2 rates that overlap!'))
 

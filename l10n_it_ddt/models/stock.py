@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
-# @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-# Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#
+#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+#
 
 
 from odoo import fields, models, api

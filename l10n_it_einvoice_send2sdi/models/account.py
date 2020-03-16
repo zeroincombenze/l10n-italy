@@ -26,6 +26,7 @@ class AccountInvoice(models.Model):
         [('ready', 'Ready to Send'),
          ('sent', 'Sent'),
          ('delivered', 'Delivered'),
+         ('accepted', 'Accepted'),
          ('error', 'Error')],
         string='E-invoice State',
         compute='_compute_fatturapa_state',

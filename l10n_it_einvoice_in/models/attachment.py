@@ -11,6 +11,7 @@ import re
 from odoo import api, fields, models
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
+from odoo.addons.l10n_it_ade.bindings import fatturapa_v_1_2
 
 
 _logger = logging.getLogger(__name__)
@@ -43,6 +44,7 @@ class FatturaPAAttachmentIn(models.Model):
     date_invoice0 = fields.Date(
         'Date Invoice', store=True,
         compute='_compute_xml_data')
+    company_id = fields.Many2one('res.company', string='Company')
 
     @api.onchange('datas_fname')
     def onchange_datas_fname(self):
@@ -69,18 +71,26 @@ class FatturaPAAttachmentIn(models.Model):
             xml_string = re.sub(token, '', xml_string)
         return xml_string
 
+    def get_invoice_obj(self):
+        xml_string = self.get_xml_string()
+        if xml_string:
+            return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return False
+
     @api.multi
     @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
     def _compute_xml_data(self):
-        wizard_model = self.env['wizard.import.fatturapa']
         partner_model = self.env['res.partner']
         for att in self:
-            inv_xml = wizard_model.get_invoice_obj(att)
+            inv_xml = att.get_invoice_obj()
             if not inv_xml:
                 continue
             xml_supplier_id = partner_model.getPartnerBase(
                 inv_xml.FatturaElettronicaHeader.CedentePrestatore)
             if xml_supplier_id < 0:
+                continue
+            partner = partner_model.browse(xml_supplier_id)
+            if partner.vat == self.env.user.company_id.vat:
                 continue
             att.xml_supplier_id = xml_supplier_id
             att.invoices_number = len(inv_xml.FatturaElettronicaBody)

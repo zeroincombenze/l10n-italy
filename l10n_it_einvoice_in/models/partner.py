@@ -45,71 +45,6 @@ class Partner(models.Model):
         default='2', required=True
     )
 
-    @api.multi
-    def synchro2(self, model, values, skeys=None, constraints=None,
-                keep=None, default=None):
-        vals = values.copy()
-        skeys = skeys or []
-        ir_model = self.env[model]
-        MAGIC_FIELDS = {'company_id': False,
-                        'is_company': True,
-                        'supplier': True,
-        }
-        keep = keep or []
-        default = default or {}
-        id = -1
-        for keys in skeys:
-            where = []
-            for key in keys:
-                if key not in vals and key in MAGIC_FIELDS:
-                    if MAGIC_FIELDS[key]:
-                        where.append((key, '=', MAGIC_FIELDS[key]))
-                elif key not in vals:
-                    where = []
-                    break
-                else:
-                    where.append((key, '=', vals[key]))
-            if where:
-                for constr in constraints:
-                    add_where = False
-                    if constr[0] in vals:
-                        constr[0] = vals[constr[0]]
-                        add_where = True
-                    if constr[-1] in vals:
-                        constr[-1] = vals[constr[-1]]
-                        add_where = True
-                    if add_where:
-                        where.append(constr)
-                rec = ir_model.search(where)
-                if rec:
-                    id = rec[0].id
-                    break
-        if id > 0:
-            try:
-                cur_rec = ir_model.browse(id)
-                for field in keep:
-                    if (field in vals and cur_rec[field] and
-                            isinstance(vals[field], basestring) and
-                            ir_model.dim_text(
-                                cur_rec[field]) == ir_model.dim_text(
-                                    vals[field])):
-                        del vals[field]
-                for field in default:
-                    if not vals.get(field) and field in default:
-                        vals[field] = default[field]
-                cur_rec.write(vals)
-            except:
-                _logger.error('Error writing %s ID=%d' %
-                              (model, id))
-                return -2
-        else:
-            try:
-                id = ir_model.create(vals).id
-            except:
-                _logger.error('Error creating %s' % model)
-                return -1
-        return id
-
     def CountryByCode(self, CountryCode):
         country_model = self.env['res.country']
         return country_model.search([('code', '=', CountryCode)])
@@ -120,6 +55,39 @@ class Partner(models.Model):
             ('code', '=', provinceCode),
             ('country_id.code', '=', 'IT')
         ])
+
+
+    def check_partner_base_data(self, partner_id, DatiAnagrafici, fatturapa):
+        partner = self.env['res.partner'].browse(partner_id)
+        if (
+            DatiAnagrafici.Anagrafica.Denominazione and
+            partner.name != DatiAnagrafici.Anagrafica.Denominazione
+        ):
+            fatturapa.log_inconsistency(_(
+                "Ragione sociale da XML '%s' "
+                "differisce da dato in sistema'%s'."
+            ) % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
+        if (
+            DatiAnagrafici.Anagrafica.Nome and
+            partner.firstname != DatiAnagrafici.Anagrafica.Nome
+        ):
+            fatturapa.log_inconsistency(_(
+                "Nome da XML '%s' "
+                "differisce da dato in sistema'%s'."
+            ) % (DatiAnagrafici.Anagrafica.Nome,
+                 partner.firstname or partner.name))
+        if (
+            DatiAnagrafici.Anagrafica.Cognome and
+            partner.lastname != DatiAnagrafici.Anagrafica.Cognome
+        ):
+            fatturapa.log_inconsistency(
+                _(
+                    "Cognome da XML '%s' "
+                    "differisce da dato in sistema'%s'."
+                )
+                % (DatiAnagrafici.Anagrafica.Cognome,
+                   partner.lastname or partner.name)
+            )
 
     def getPartnerBase(self, partner_xml, fatturapa=None):
         '''Get data from xml and write or create partner'''
@@ -147,13 +115,13 @@ class Partner(models.Model):
             prov_sede = self.ProvinceByCode(Provincia)
             if not prov_sede:
                 if fatturapa:
-                    self.log_inconsistency(
-                        _('Province ( %s ) not present in your system')
+                    fatturapa.log_inconsistency(
+                        _('Provincia "%s" non presente in archivio')
                         % Provincia
                     )
                 else:
                     raise UserError(
-                        _('Province ( %s ) not present in your system')
+                        _('Provincia "%s" non presente in archivio')
                         % Provincia
                     )
             else:
@@ -170,11 +138,11 @@ class Partner(models.Model):
                 ProvinciaAlbo = DatiAnagrafici.ProvinciaAlbo
                 prov = self.ProvinceByCode(ProvinciaAlbo)
                 if not prov:
-                    self.log_inconsistency(
-                        _('Register Province ( %s ) not present '
-                          'in your system')
-                        % ProvinciaAlbo
-                    )
+                    if fatturapa:
+                        fatturapa.log_inconsistency(
+                            _('Provincia albo "%s" non presente in archivio ')
+                            % ProvinciaAlbo
+                        )
                 else:
                     vals['register_province'] = prov[0].id
             vals['register_code'] = DatiAnagrafici.NumeroIscrizioneAlbo or ''
@@ -199,17 +167,10 @@ class Partner(models.Model):
             offices = self.ProvinceByCode(REA.Ufficio)
             if not offices:
                 if fatturapa:
-                    self.log_inconsistency(
+                    fatturapa.log_inconsistency(
                         _(
-                            'REA Office Province Code ( %s ) not present in '
-                            'your system'
-                        ) % REA.Ufficio
-                    )
-                else:
-                    raise UserError(
-                        _(
-                            'REA Office Province Code ( %s ) not present in '
-                            'your system'
+                            'Provincia ufficio REA "%s" non presente in '
+                            'archivio'
                         ) % REA.Ufficio
                     )
             else:
@@ -250,39 +211,121 @@ class Partner(models.Model):
         else:
             vals['name'] = '%s %s' % (Anagrafica.Cognome,
                                       Anagrafica.Nome)
+        SKEYS = (['vat', 'fiscalcode', 'type'],
+                 ['vat', 'name', 'type'],
+                 ['fiscalcode', 'dim_name', 'type'],
+                 ['rea_code'],
+                 ['vat', 'dim_name', 'type'],
+                 ['vat', 'type'],
+                 ['dim_name', 'type'],
+                 ['vat', 'fiscalcode', 'is_company'],
+                 ['vat'],
+                 ['name', 'is_company'],
+                 ['name'])
         partner_id = self.synchro2(
             'res.partner',
             vals,
-            skeys=(['vat', 'fiscalcode', 'is_company', 'type'],
-                   ['rea_code', 'type'],
-                   ['vat', 'name', 'is_company', 'type'],
-                   ['fiscalcode', 'type'],
-                   ['vat', 'is_company', 'supplier'],
-                   ['name', 'is_company', 'supplier'],
-                   ['vat'],
-                   ['name']),
+            skeys=SKEYS,
             constraints=[('id', '!=', 'parent_id')],
-            keep = ['customer', 'country_id',
-                    'name', 'street', 'zip',
-                    'city', 'state_id',
-                   ],
-            default = {
+            keep=['customer', 'country_id',
+                  'name', 'street', 'zip',
+                  'city', 'state_id', 'phone',
+                  ],
+            default={
                 'rea_member_type': 'SM',
                 'rea_liquidation_state': 'LN',
                 'type': 'contact',
+                'supplier': True,
             }
         )
-        partner = self.browse(partner_id)
-        if partner.name != vals['name']:
-            vals['type'] = 'invoice'
-            vals['parent_id'] = partner_id
-            for nm in ('rea_code', 'rea_office', 'rea_capital', 'vat'):
-                if nm in vals:
-                    del vals[nm]
-            self.synchro2(
-                'res.partner',
-                vals,
-                skeys=(['type', 'parent_id']),
-                constraints=[('id', '!=', 'parent_id')],
-            )
+        if partner_id > 0:
+            partner = self.browse(partner_id)
+            if partner.type == 'invoice':
+                partner_id = partner.parent_id.id
+            if fatturapa:
+                self.check_partner_base_data(
+                    partner_id, DatiAnagrafici, fatturapa)
         return partner_id
+
+    @api.model
+    def synchro2(self, model, values, skeys=None, constraints=None,
+                keep=None, default=None):
+        vals = values.copy()
+        skeys = skeys or []
+        MAGIC_FIELDS = {'company_id': False,
+                        'is_company': True,
+                        'supplier': True,
+        }
+        keep = keep or []
+        default = default or {}
+        rec = False
+        for keys in skeys:
+            domain = []
+            repeat = False
+            for key in keys:
+                if key not in vals and key == 'type':
+                    domain.append([key, '=', 'invoice'])
+                    repeat = True
+                elif key not in vals and key in MAGIC_FIELDS:
+                    if MAGIC_FIELDS[key]:
+                        domain.append([key, '=', MAGIC_FIELDS[key]])
+                elif key not in vals:
+                    domain = []
+                    break
+                else:
+                    domain.append([key, '=', vals[key]])
+            if domain:
+                for constr in constraints:
+                    add_domain = False
+                    if constr[0] in vals:
+                        constr[0] = vals[constr[0]]
+                        add_domain = True
+                    if constr[-1] in vals:
+                        constr[-1] = vals[constr[-1]]
+                        add_domain = True
+                    if add_domain:
+                        domain.append(constr)
+                rec = self.search(domain)
+                if rec:
+                    rec = rec[0]
+                    break
+                if repeat:
+                    for i, kk in enumerate(domain):
+                        if kk[0] == 'type':
+                            domain[i][2] = 'contact'
+                    rec = self.search(domain)
+                    if rec:
+                        rec = rec[0]
+                        break
+        if rec:
+            if rec.type != 'invoice':
+                for field in ('name', 'street', 'zip', 'city'):
+                    if (self.dim_text(
+                            rec[field]) != self.dim_text(vals[field])):
+                        vals['parent_id'] = rec.id
+                        vals['type'] = 'invoice'
+                        rec = False
+                        break
+        if rec:
+            try:
+                if rec.type != 'invoice':
+                    for field in keep:
+                        if (field in vals and rec[field]):
+                            del vals[field]
+                    for field in default:
+                        if not vals.get(field) and field in default:
+                            vals[field] = default[field]
+                elif 'rea_code' in vals:
+                    del vals['rea_code']
+                rec.write(vals)
+                id = rec.id
+            except BaseException as e:
+                raise UserError(e)
+        else:
+            if vals.get('type') == 'invoice' and 'rea_code' in vals:
+                del vals['rea_code']
+            try:
+                id = self.create(vals).id
+            except BaseException as e:
+                raise UserError(e)
+        return id
