@@ -5,8 +5,10 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-import odoo.addons.decimal_precision as dp
+# import odoo.addons.decimal_precision as dp
 from odoo import api, fields, models
+from odoo.tools.translate import _
+from odoo.exceptions import UserError
 
 
 class AccountInvoice(models.Model):

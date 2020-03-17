@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Partner data / Dati fornitore non modificati. Se diversi creato indirizzo fatturazione
+* [FIX] Crash in some cases / Errore durante importazione in alcuni casi
 * [IMP] More incisive message / Messagi più precisi
 
 

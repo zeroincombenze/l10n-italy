@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.11
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.12
 =========================================================================
 
 
@@ -255,6 +255,7 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Partner data / Dati fornitore non modificati. Se diversi creato indirizzo fatturazione
+* [FIX] Crash in some cases / Errore durante importazione in alcuni casi
 * [IMP] More incisive message / Messagi più precisi
 
 
@@ -365,7 +366,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-03-16
+Last Update / Ultimo aggiornamento: 2020-03-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

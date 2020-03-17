@@ -10,7 +10,7 @@
 #
 {
     'name': 'Ricevute Bancarie',
-    'version': '10.0.1.3.2',
+    'version': '10.0.1.3.3',
     'category': 'Accounting & Finance',
     'author': 'Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org/',
@@ -23,6 +23,7 @@
         'l10n_it_abicab',
     ],
     'data': [
+        # 'data/base.xml',
         'views/partner_view.xml',
         'views/configuration_view.xml',
         'riba_sequence.xml',
