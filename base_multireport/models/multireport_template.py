@@ -7,12 +7,54 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp import fields, models
+from odoo import fields, models, api, _
+
+FOOTER_DEFAULT = '''
+<ul class="list-inline">
+    <li>Telefono: %(phone)s</li>
+    <li>&bull;</li>
+    <li>Fax: %(fax)s</li>
+    <li>&bull;</li>
+    <li>Email: %(email)s</li>
+    <li>&bull;</li>
+    <li>Sito web: %(website)s</li>
+</ul>'''
+HELP_HEAFOO = '''You can insert html code to format the field.
+You can use following macro:
+%(banks)s  -> Company banks      %(codice_destinatario)s
+%(city)s   -> Company city       %(fatturapa_rea_capital)s
+%(email)s  -> Company email      %(fatturapa_rea_capital)s
+%(fax)s    -> Company fax        %(fatturapa_rea_number)s
+%(name)    -> Company name       %(fatturapa_rea_office)s
+%(phone)s  -> Company phone      %(fiscalcode)s
+%(street)s -> Company street     %(ipa_code)s
+%(street2)s-> Company street2    %(mobile)s
+%(vat)s    -> Company vat
+%(website)s-> Company website
+%s(zip)    -> Company zip'''
 
 
 class MultireportTemplate(models.Model):
     _name = "multireport.template"
     _description = "Multi Report Template"
+
+    def _get_body_header(self):
+        import pdb
+        pdb.set_trace()
+        model = False
+        if self.ir_model_id:
+            model = self.ir_model_id.model
+        name = 'report_%s_body_header' % {
+            'sale.order': 'saleorder',
+            'account.invoice': 'invoice',
+            'stock.picking.package.preparation': 'ddt',
+            'purchase.order': 'purchaseorder',
+        }.get(model, '')
+        xref = self.env['ir.model.data'].search([
+            ('module', '=', 'base_multireport'),
+            ('name', '=', name)])
+        if xref:
+            self.body_header = xref.res_id
 
     name = fields.Char(
         'Name of report template',
@@ -75,7 +117,7 @@ class MultireportTemplate(models.Model):
         'Footer Print Mode',
         help='Which content is printed in document footer\n'
              'If "standard", footer is printed as "auto" or "custom"\n'
-             'based on company.custom_footer field (Odoo standaed behavior)\n'
+             'based on company.custom_footer field (Odoo standard behavior)\n'
              'If "auto", footer is printed with automatic data\n'
              'If "custom", footer is printed from user data written\n',
     )
@@ -136,13 +178,30 @@ class MultireportTemplate(models.Model):
         help='An expression yielding the base64 '
              'encoded data to be used as Ending Page PDF.\n'
              'You have access to variables `env` and `docs`')
+    custom_header = fields.Html(
+        'Html custom header',
+        help=_(HELP_HEAFOO))
+    bottom_text = fields.Text(
+        'Bottom text',
+        help='Text to print in bottom area of document'
+    )
+    custom_footer = fields.Html(
+        'Html custom footer',
+        help=_(HELP_HEAFOO),
+        default=FOOTER_DEFAULT)
+    ir_model_id = fields.Many2one(
+        'ir.model',
+        domain=[('model', 'in', ('sale.order',
+                                 'stock.picking.package.preparation',
+                                 'account.invoice',
+                                 'purchase.order'))])
     header_id = fields.Many2one(
         'ir.ui.view', 'Related header',
         required=True,
         domain=[('type', '=', 'qweb'),
                 ('inherit_id', '=', False),
-                ('name', 'like', 'header')],
-        help="Name of header associated to this template")
+                ('name', 'like', 'report_%_body_header')],
+        help="Name of body header associated to this template")
     footer_id = fields.Many2one(
         'ir.ui.view', 'Related footer',
         required=True,
@@ -150,11 +209,14 @@ class MultireportTemplate(models.Model):
                 ('inherit_id', '=', False),
                 ('name', 'like', 'footer')],
         help="Name of footer associated to this template")
-    custom_header = fields.Html(
-        'Html custon headet')
-    bottom_text = fields.Text(
-        'Bottom text',
-        help='Text to print in bottom area of document'
-    )
-    custom_footer = fields.Html(
-        'Html custom footer')
+
+
+
+class MultireportTemplateLine(models.Model):
+    _name = "multireport.template.line"
+    _description = "Multi Report Template Line"
+
+    template_id = fields.Many2one(
+        'multireport.template',
+        required=True)
+

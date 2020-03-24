@@ -2,15 +2,12 @@
 #
 # Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
-# Contributions to development, thanks to:
-# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
     'name': 'base_rule_multireport',
     'summary': 'Manage document multiple reports',
-    'version': '10.0.0.2.16',
+    'version': '10.0.0.2.17',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',
@@ -28,6 +25,7 @@
         'data/multireport_template.xml',
         # 'data/multireport_model.xml',
         'data/multireport_selection_rules.xml',
+        'wizard/wizard_build_report_view.xml',
         'views/multireport_style_view.xml',
         'views/ir_actions_report_xml_view.xml',
         'views/multireport_template_view.xml',
@@ -42,14 +40,24 @@
         'report/multireport_sale_order.xml',
         'report/multireport_ddt.xml',
         'report/multireport_invoice.xml',
+        'report/multireport_purchase_order.xml',
         'report_ddt/report_ddt.xml',
+        'report_ddt/report_ddt_header.xml',
+        'report_ddt/report_ddt_lines.xml',
         'report_ddt/report_ddt_footer.xml',
         'report_sale_order/report_sale_order.xml',
+        'report_sale_order/report_sale_order_header.xml',
+        'report_sale_order/report_sale_order_lines.xml',
+        'report_sale_order/report_sale_order_footer.xml',
         'report_sale_order/report_sale_order_vg7.xml',
         'report_account_invoice/report_invoice.xml',
         'report_account_invoice/report_invoice_header.xml',
         'report_account_invoice/report_invoice_lines.xml',
         'report_account_invoice/report_invoice_footer.xml',
+        'report_purchase_order/report_purchase_order.xml',
+        'report_purchase_order/report_purchase_order_header.xml',
+        'report_purchase_order/report_purchase_order_lines.xml',
+        'report_purchase_order/report_purchase_order_footer.xml',
         # 'report_account_invoice/report_invoice_payment_dues.xml',
     ],
     'external_dependencies': {

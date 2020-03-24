@@ -18,7 +18,7 @@
                     <th class="text-right">Quantità</th>
                     <th class="text-right">Prezzo unitario</th>
                     <th t-if="display_discount" class="text-right">Sc.(%)</th>
-                    <th class="text-right">IVA</th>
+                    <th class="text-right">C.IVA</th>
                     <th class="text-right">Totale riga</th>
                 </tr>
             </thead>

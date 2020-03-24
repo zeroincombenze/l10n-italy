@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="report_ddt_footer">
+        <div class="row">
+            <div class="col-xs-4 pull-right">
+                <table class="table table-condensed">
+                    <tr class="border-black">
+                        <td><strong>Imponibile</strong></td>
+                        <td class="text-right">
+                            <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>IVA</td>
+                        <td class="text-right">
+                            <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                        </td>
+                    </tr>
+                    <tr class="border-black">
+                        <td><strong>Totale</strong></td>
+                        <td class="text-right">
+                            <strong><span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
+                        </td>
+                    </tr>
+                    <tr t-if="'amount_net_pay' in o and o.amount_net_pay != o.amount_total" class="border-black">
+                        <td><strong>Totale a pagare</strong></td>
+                        <td class="text-right">
+                            <strong><span t-field="o.amount_net_pay" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </template>
+
     <template id="delivery_data">
         <style type="text/css">
                table.delivery_data td h6 { margin: 0; }
@@ -10,37 +43,37 @@
             <tr>
                 <td>
                     <h6>Transportation Reason</h6>
-                    <div class="signature" t-field="ddt.transportation_reason_id"></div>
+                    <div class="signature" t-field="o.transportation_reason_id"></div>
                 </td>
                 <td>
                     <h6>Carriage Condition</h6>
-                    <div t-field="ddt.carriage_condition_id"></div>
+                    <div t-field="o.carriage_condition_id"></div>
                 </td>
                 <td>
                     <h6>Transportation Method</h6>
-                    <div t-field="ddt.transportation_method_id"></div>
+                    <div t-field="o.transportation_method_id"></div>
                 </td>
                 <td>
                     <h6>Goods Description</h6>
-                    <div class="signature" t-field="ddt.goods_description_id"></div>
+                    <div class="signature" t-field="o.goods_description_id"></div>
                 </td>
                 <td>
                     <h6>Net Weight</h6>
-                    <div class="signature" t-field="ddt.weight"></div>
+                    <div class="signature" t-field="o.weight"></div>
                 </td>
                 <td>
                     <h6>Gross Weight</h6>
-                    <div class="signature" t-field="ddt.gross_weight"></div>
+                    <div class="signature" t-field="o.gross_weight"></div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <h6>Carrier</h6>
-                    <div class="signature" t-field="ddt.carrier_id.name"></div>
+                    <div class="signature" t-field="o.carrier_id.name"></div>
                 </td>
                 <td>
                     <h6>Date</h6>
-                    <div class="signature" t-field="ddt.date_done"></div>
+                    <div class="signature" t-field="o.date_done"></div>
                 </td>
                 <td>
                     <h6>Pick up time</h6>
@@ -48,11 +81,11 @@
                 </td>
                 <td>
                     <h6>Parcels</h6>
-                    <div class="signature" t-field="ddt.parcels"></div>
+                    <div class="signature" t-field="o.parcels"></div>
                 </td>
                 <td>
                     <h6>Size</h6>
-                    <div class="signature" t-field="ddt.volume"></div>
+                    <div class="signature" t-field="o.volume"></div>
                 </td>
             </tr>
         </table>
@@ -73,40 +106,10 @@
             </tr>
             <tr>
                 <td colspan="3"><h6>Notes</h6>
-                    <div class="signature" t-field="ddt.note"></div>
+                    <div class="signature" t-field="o.note"></div>
                 </td>
             </tr>
         </table>
-    </template>
-
-
-    <template id="report_ddt_footer">
-
-        <div class="row">
-            <div class="col-xs-4 pull-right">
-                <table class="table table-condensed">
-                    <tr class="border-black">
-                        <td><strong>Imponibile</strong></td>
-                        <td class="text-right">
-                            <span t-field="ddt.amount_untaxed" t-options='{"widget": "monetary", "display_currency": ddt.currency_id}'/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>IVA</td>
-                        <td class="text-right">
-                            <span t-field="ddt.amount_tax" t-options='{"widget": "monetary", "display_currency": ddt.currency_id}'/>
-                        </td>
-                    </tr>
-                    <tr class="border-black">
-                        <td><strong>Totale</strong></td>
-                        <td class="text-right">
-                            <strong><span t-field="ddt.amount_total" t-options='{"widget": "monetary", "display_currency": ddt.currency_id}'/></strong>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
     </template>
 
 </odoo>

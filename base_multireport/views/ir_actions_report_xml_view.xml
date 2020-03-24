@@ -9,6 +9,9 @@
             <data>
                 <xpath expr="//sheet/notebook" position="inside">
                     <page name="base_multireport" string="Report Configuration">
+                        <button name="%(action_wizard_build_report)d"
+                            type="action"
+                            string="Build report"/>
                         <!-- <group> <field name="field2print_ids" nolabel="1" options="{'no_create': True}" colspan="4"/> </group> -->
                         <group string="Header and Footer">
                             <field name="header_mode"/>

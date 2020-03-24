@@ -1,3 +1,11 @@
+10.0.0.2.17 (2020-03-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Ending pag / Pagina finale
+* [FIX] Bottom text / Test fondo pagina
+* [IMP] Customized block (initial dev) / Blocchi personalizzabili (in ulteriore sviluppo)
+
+
 10.0.0.2.16 (2020-01-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

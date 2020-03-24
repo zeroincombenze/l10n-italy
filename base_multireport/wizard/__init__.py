@@ -7,7 +7,4 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from . import models
-from . import wizard
-from . import post_install
-from .post_install import update_template_ref
+from . import wizard_build_report

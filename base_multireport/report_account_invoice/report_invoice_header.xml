@@ -2,14 +2,14 @@
 <odoo>
 
     <template id="report_invoice_header">
-        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
-        <t t-set="address_mode" t-value="report.get_report_attrib('address_mode',o,doc_opts)"/>
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <t t-set="address_mode" t-value="report.get_report_attrib('address_mode', o, doc_opts)"/>
         <div class="row">
             <div class="col-xs-6">
                 <div t-if="address_mode == 'standard' and o.partner_shipping_id and o.partner_shipping_id != o.partner_id">
                     <strong>Indirizzo di spedizione:</strong>
                     <address t-field="o.partner_shipping_id"
-                             t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                             t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
                     <div t-if="o.partner_shipping_id.phone">Telefono: <span t-field="o.partner_shipping_id.phone"/></div>
                     <div t-if="not o.partner_shipping_id.phone">Telefono: <span t-field="o.partner_id.phone"/></div>
                 </div>
@@ -20,29 +20,33 @@
                 <strong t-if="address_mode != 'standard'">Indirizzo di fatturazione:</strong>
                 <address t-field="o.partner_id"
                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                <p t-if="o.partner_id.vat">PIVA: <span t-field="o.partner_id.vat"/></p>
+                <p t-if="o.partner_id.vat">P.IVA: <span t-field="o.partner_id.vat"/></p>
                 <p t-if="o.partner_id.fiscalcode">CF: <span t-field="o.partner_id.fiscalcode"/></p>
             </div>
         </div>
 
-        <h2>
-            <t t-if="not doctype and o.type == 'in_invoice'" t-set="doctype" t-value="'Ft. fornitore'"/>
-            <t t-if="not doctype and o.type == 'in_refund'" t-set="doctype" t-value="'NC fornitore'"/>
-            <t t-if="not doctype and o.type == 'out_refund'" t-set="doctype" t-value="'Nota credito'"/>
-            <t t-if="not doctype" t-set="doctype" t-value="'Fattura'"/>
-            <t t-if="o.state == 'proforma2'" t-set="desdoc" t-value="doctype + ' PRO-FORMA'"/>
-            <t t-if="o.state == 'draft'" t-set="desdoc" t-value="'bozza ' + doctype"/>
-            <t t-if="o.state == 'cancel'" t-set="desdoc" t-value="doctype + ' annullata!'"/>
-            <t t-if="not desdoc" t-set="desdoc" t-value="doctype"/>
-            <span t-esc="desdoc"/>
-            <span t-if="o.state not in ('draft','cancel')" t-field="o.number"/>
-            <span t-if="o.state in ('draft','cancel')" t-field="o.move_name"/>
-        </h2>
+        <t t-call="base_multireport.report_invoice_body_header"/>
 
+    </template>
+
+    <template id="report_invoice_body_header">
         <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
         <t t-if="not o.payment_term_id" t-set="term_position" t-value="'none'"/>
+        <t t-if="not doctype and o.type == 'in_invoice'" t-set="doctype" t-value="'Ft. fornitore'"/>
+        <t t-if="not doctype and o.type == 'in_refund'" t-set="doctype" t-value="'NC fornitore'"/>
+        <t t-if="not doctype and o.type == 'out_refund'" t-set="doctype" t-value="'Nota credito'"/>
+        <t t-if="not doctype" t-set="doctype" t-value="'Fattura'"/>
+        <t t-if="o.state == 'proforma2'" t-set="desdoc" t-value="doctype + ' PRO-FORMA'"/>
+        <t t-if="o.state == 'draft'" t-set="desdoc" t-value="'bozza ' + doctype"/>
+        <t t-if="o.state == 'cancel'" t-set="desdoc" t-value="doctype + ' annullata!'"/>
+        <t t-if="not desdoc" t-set="desdoc" t-value="doctype"/>
+        <h2>
+            <span t-esc="desdoc"/>
+            <span t-if="o.state not in ('draft','cancel')" t-field="o.number"/>
+            <span t-if="o.state in ('draft','cancel')" t-field="o.move_name"/>
+        </h2>
         <div class="row mt32 mb32">
             <div class="col-xs-2" t-if="o.name">
                 <strong>Descrizione:</strong>
@@ -99,7 +103,7 @@
             <div class="col-xs-4" t-if="term_position in ('header', 'odoo') and not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')">
                 <strong>IBAN:</strong>
                 <p>
-                    <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-if="len(bank.display_name) &gt; 16" t-field="bank.display_name"/></t>
+                    <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-if="bank.journal_id and bank.journal_id.display_on_footer" t-field="bank.display_name"/></t>
                 </p>
             </div>
         </div>

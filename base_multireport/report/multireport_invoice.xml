@@ -10,6 +10,12 @@
         </t>
     </template>
 
+    <!--
+    <record id="base_multireport.account_invoices" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="base_multireport.paperformat_invoice"/>
+    </record>
+    -->
+
     <report
            id="base_multireport.account_invoices"
            model="account.invoice"
@@ -31,6 +37,12 @@
         </t>
     </template>
 
+    <!--
+    <record id="base_multireport.account_invoice_action_report_duplicate" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="base_multireport.paperformat_invoice"/>
+    </record>
+    -->
+
     <report
            id="base_multireport.account_invoice_action_report_duplicate"
            model="account.invoice"
@@ -49,6 +61,12 @@
             </t>
         </t>
     </template>
+
+    <!--
+    <record id="base_multireport.delivery_invoice_action_report" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="base_multireport.paperformat_invoice"/>
+    </record>
+    -->
 
     <report
            id="base_multireport.delivery_invoice_action_report"

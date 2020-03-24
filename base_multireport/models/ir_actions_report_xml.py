@@ -8,7 +8,31 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import re
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+
+FOOTER_DEFAULT = '''
+<ul class="list-inline">
+    <li>Telefono: %(phone)s</li>
+    <li>&bull;</li>
+    <li>Fax: %(fax)s</li>
+    <li>&bull;</li>
+    <li>Email: %(email)s</li>
+    <li>&bull;</li>
+    <li>Sito web: %(website)s</li>
+</ul>'''
+HELP_HEAFOO = '''You can insert html code to format the field.
+You can use following macro:
+%(banks)s  -> Company banks      %(codice_destinatario)s
+%(city)s   -> Company city       %(fatturapa_rea_capital)s
+%(email)s  -> Company email      %(fatturapa_rea_capital)s
+%(fax)s    -> Company fax        %(fatturapa_rea_number)s
+%(name)    -> Company name       %(fatturapa_rea_office)s
+%(phone)s  -> Company phone      %(fiscalcode)s
+%(street)s -> Company street     %(ipa_code)s
+%(street2)s-> Company street2    %(mobile)s
+%(vat)s    -> Company vat
+%(website)s-> Company website
+%s(zip)    -> Company zip'''
 
 
 class IrActionsReportXml(models.Model):
@@ -107,7 +131,7 @@ class IrActionsReportXml(models.Model):
         'Footer Print Mode',
         help='Which content is printed in document footer\n'
              'If "standard", footer is printed as "auto" or "custom"\n'
-             'based on company.custom_footer field (Odoo standaed behavior)\n'
+             'based on company.custom_footer field (Odoo standard behavior)\n'
              'If "auto", footer is printed with automatic data\n'
              'If "custom", footer is printed from user data written\n',
     )
@@ -173,13 +197,16 @@ class IrActionsReportXml(models.Model):
         'multireport.template', 'Model template',
         help="Model template with fallback values.",)
     custom_header = fields.Html(
-        'Html custon headet')
+        'Html custom header',
+        help=_(HELP_HEAFOO))
     bottom_text = fields.Text(
         'Bottom text',
         help='Text to print in bottom area of document'
     )
     custom_footer = fields.Html(
-        'Html custom footer')
+        'Html custom footer',
+        help=_(HELP_HEAFOO),
+        default=FOOTER_DEFAULT)
 
 
 class View(models.Model):

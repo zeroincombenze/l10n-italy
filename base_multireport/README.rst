@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.16
+|icon| base_rule_multireport 10.0.0.2.17
 ========================================
 
 
@@ -343,6 +343,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -367,7 +368,7 @@ Installation / Installazione
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
 
 From UI: go to:
 
@@ -380,6 +381,7 @@ From UI: go to:
 Upgrade / Aggiornamento
 -----------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -391,6 +393,7 @@ Upgrade / Aggiornamento
 ::
 
     odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -432,6 +435,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.0.2.17 (2020-03-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Ending pag / Pagina finale
+* [FIX] Bottom text / Test fondo pagina
+* [IMP] Customized block (initial dev) / Blocchi personalizzabili (in ulteriore sviluppo)
+
 
 10.0.0.2.16 (2020-01-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -551,7 +562,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-03-16
+Last Update / Ultimo aggiornamento: 2020-03-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

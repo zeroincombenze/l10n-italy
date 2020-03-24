@@ -7,7 +7,6 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-
 from openerp import api, SUPERUSER_ID
 
 
@@ -17,35 +16,38 @@ def migrate(cr, version):
         return
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        mr_t_odoo = env.ref('base_multireport.mr_t_odoo').id
         mr_style_model = env['multireport.style']
         vals = {
-            'template_sale_order': mr_t_odoo,
-            'template_stock_picking_package_preparation': mr_t_odoo,
-            'template_account_invoice': mr_t_odoo,
-            'template_purchase_order': mr_t_odoo,
+            'template_sale_order':
+                env.ref('base_multireport.mr_t_saleorder').id,
+            'template_stock_picking_package_preparation':
+                env.ref('base_multireport.mr_t_deliverydocument').id,
+            'template_account_invoice':
+                env.ref('base_multireport.mr_t_invoice').id,
+            'template_purchase_order':
+                env.ref('base_multireport.mr_t_purchaseorder').id,
         }
-        where = [('origin', '!=', 'odoo')]
-        for mr_style in mr_style_model.search(where):
+        domain = [('origin', '!=', 'odoo')]
+        for mr_style in mr_style_model.search(domain):
             mr_style.write(vals)
 
         ir_report_model = env['ir.actions.report.xml']
-        vals = {'template': mr_t_odoo,}
-        where = [('model', 'in', ('sale.order',
-                                  'stock.picking.package.preparation',
-                                  'account.invoice',
-                                  'purchase.order'))]
-        for ir_report in ir_report_model.search(where):
+        vals = {'template': False,}
+        domain = [('model', 'in', ('sale.order',
+                                   'stock.picking.package.preparation',
+                                   'account.invoice',
+                                   'purchase.order'))]
+        for ir_report in ir_report_model.search(domain):
             ir_report.write(vals)
 
         vals = {}
         ir_view_model = env['ir.ui.view']
-        where = [('key', '=', 'base_multireport.external_layout_header')]
-        ids = ir_view_model.search(where)
+        domain = [('key', '=', 'base_multireport.external_layout_header')]
+        ids = ir_view_model.search(domain)
         if len(ids) == 1:
             vals['header_id'] = ids[0].id
-        where = [('key', '=', 'base_multireport.external_layout_footer')]
-        ids = ir_view_model.search(where)
+        domain = [('key', '=', 'base_multireport.external_layout_footer')]
+        ids = ir_view_model.search(domain)
         if len(ids) == 1:
             vals['footer_id'] = ids[0].id
         if vals:

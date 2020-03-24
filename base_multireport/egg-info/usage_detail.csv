@@ -6,7 +6,7 @@ code_mode,Print code in document body,"<t t-set=""code_mode"" t-value=""report.g
 company,Company of current document,Set by external layout
 company_partner,Company partner of current document,Set by external layout
 ddt_ref_text,Text at every change of delivery document,
-def_company,Default company,Set by Odoo report module
+res_company,Default company,Set by Odoo report module
 description_mode,Print code in document body,"<t t-set=""description_mode"" t-value=""report.get_report_attrib('description_mode',o,doc_opts)""/>"
 doc,Current document which is printing,Set by module. External layout set 'o' to compatibility with Odoo reports
 doc_model,Document model,It is the same of use doc_opts.model

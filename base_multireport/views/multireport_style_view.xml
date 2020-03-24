@@ -17,6 +17,11 @@
         <field name="model">multireport.style</field>
         <field name="arch" type="xml">
             <form string="Invoice Type">
+                <header>
+                    <button name="%(action_wizard_build_report)d"
+                        type="action"
+                        string="Build report"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>

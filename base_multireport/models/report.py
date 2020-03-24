@@ -13,8 +13,8 @@ from pyPdf import PdfFileWriter, PdfFileReader
 from pyPdf.utils import PdfReadError
 from PIL import Image
 from StringIO import StringIO
-from odoo import api, models, tools
-from PIL import PdfImagePlugin # flake8: noqa
+from odoo import fields, models, api, tools, _
+# from PIL import PdfImagePlugin # flake8: noqa
 from os0 import os0
 
 
@@ -28,8 +28,9 @@ class Report(models.Model):
         'sale.order': 'sale.report_saleorder',
         'account.invoice': 'account.report_invoice',
         'stock.picking.package.preparation': 'l10n_it_ddt.report_ddt',
+        'purchase.order': 'purchase.report_purchaseorder_document',
     }
-    BOOL_PARAMS = ['no_header_logo',]
+    BOOL_PARAMS = ['no_header_logo', ]
     DEFAULT_VALUES = {
         'logo_style': 'max-height: 45px;',
         'custom_footer': '$company.rml_footer',
@@ -78,9 +79,6 @@ class Report(models.Model):
         template = False
         if report_model_style and report_model_style.origin != 'odoo':
             template_in_style = 'template_%s' % model
-            # TODO: deprecated, remove early
-            # if hasattr(report, 'template'):
-            #     template = getattr(report, 'template')
             if (not template and
                     report_model_style and
                     hasattr(report_model_style, template_in_style)):
@@ -94,16 +92,6 @@ class Report(models.Model):
                 value = getattr(template, param)
                 if param == 'custom_footer' and value == '<p><br></p>':
                     value = False
-            # TODO: deprecated, remove early
-            # if not value and hasattr(report_model_style, param_in_style):
-            #     value = getattr(report_model_style, param_in_style)
-        # TODO: deprecated, remove early
-        # if (not value and
-        #         report_model_style and
-        #         hasattr(report_model_style, 'model_%s_id' % model)):
-        #     model_default = getattr(report, 'model_%s_id' % model)
-        #     if hasattr(model_default, param):
-        #         value = getattr(model_default, param)
         if (not value and
                 report_model_style and
                 hasattr(report_model_style, param)):
@@ -113,6 +101,8 @@ class Report(models.Model):
         if param == 'footer_mode' and (not value or value == 'standard'):
             if company.custom_footer:
                 value = 'custom'
+            else:
+                value = 'auto'
         elif not value and param in self.DEFAULT_VALUES:
             value = self.DEFAULT_VALUES[param]
             if value.startswith('$company'):
@@ -122,7 +112,7 @@ class Report(models.Model):
         elif param in ('custom_header', 'custom_footer'):
             banks = ''
             for bank in company.partner_id.bank_ids:
-                if len(bank.acc_number) == 27:
+                if bank.journal_id and bank.journal_id.display_on_footer:
                     banks = banks + ' ' + bank.acc_number
             banks = banks.strip()
             param = {
@@ -150,6 +140,11 @@ class Report(models.Model):
                     param[nm] = getattr(company.partner_id, nm)
                 else:
                     param[nm] = ''
+            for nm in ('country_id', 'state_id'):
+                if hasattr(company.partner_id, nm):
+                    param[nm] = getattr(company.partner_id, nm).name
+                else:
+                    param[nm] = ''
             value = value % param
             if param == 'custom_header':
                 value = 'div class="header">%s</div>' % value
@@ -169,14 +164,18 @@ class Report(models.Model):
         else:
             report = self._get_report_from_name(report_name)
             docs = self.env[report.model].browse(docids)
-            company = docs[0].company_id or self.env.user.company_id
+            company = False
+            if 'company_id' in docs[0]:
+                company = docs[0].company_id
+            if not company:
+                company = self.env.user.company_id
             docargs = {
                 'doc_ids': docids,
                 'doc_model': report.model,
                 'docs': docs,
                 'doc_opts': report,
                 'doc_style': company.report_model_style,
-                'def_company': company,
+                'res_company': company,
                 'report': self,
                 }
             return self.render(report.report_name, docargs)
@@ -201,7 +200,7 @@ class Report(models.Model):
             watermark = tools.safe_eval(
                  self.get_report_attrib('pdf_watermark_expression',
                                         recs[0], report) or 'None',
-                dict(env=self.env, docs=recs)
+                                        dict(env=self.env, docs=recs)
             )
         if watermark:
             watermark = b64decode(watermark)
@@ -264,13 +263,13 @@ class Report(models.Model):
         #                 StringIO(rec.get_docs_to_attach())).pages:
         #             pdf.addPage(page)
 
-        # if ending_page:
-        #     pdf_last_page = PdfFileReader(StringIO(ending_page))
-        #     if not pdf_watermark and not recs:
-        #         for page in doc.pages:
-        #             pdf.addPage(page)
-        #     for last in pdf_last_page.pages:
-        #         pdf.addPage(last)
+        if ending_page:
+            pdf_last_page = PdfFileReader(StringIO(ending_page))
+            if not pdf_watermark and not recs:
+                for page in doc.pages:
+                    pdf.addPage(page)
+            for last in pdf_last_page.pages:
+                pdf.addPage(last)
 
         pdf_content = StringIO()
         pdf.write(pdf_content)

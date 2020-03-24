@@ -9,6 +9,7 @@
                 <field name="name"/>
                 <field name="header_id"/>
                 <field name="footer_id"/>
+                <field name="ir_model_id"/>
             </tree>
         </field>
     </record>
@@ -18,6 +19,11 @@
         <field name="model">multireport.template</field>
         <field name="arch" type="xml">
             <form string="Multi Report Template values">
+                <header>
+                    <button name="%(action_wizard_build_report)d"
+                        type="action"
+                        string="Build report"/>
+                </header>
                 <group string="Header and Footer">
                     <field name="name"/>
                     <field name="header_mode"/>
@@ -34,6 +40,7 @@
                     <field name="ddt_ref_text"/>
                 </group>
                 <group string="Other">
+                    <field name="ir_model_id"/>
                     <field name="header_id"/>
                     <field name="footer_id"/>
                     <field name="pdf_watermark"/>
