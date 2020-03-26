@@ -3,7 +3,7 @@
 
     <template id="report_ddt_header">
         <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
-        <t t-set="address_mode" t-value="report.get_report_attrib('address_mode',o,doc_opts)"/>
+        <t t-set="address_mode" t-value="report.get_report_attrib('address_mode', o, doc_opts)"/>
         <div class="row">
             <div class="col-xs-6">
                 <h2>Cessionario</h2>

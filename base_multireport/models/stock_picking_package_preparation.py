@@ -7,12 +7,12 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-
-
+from datetime import datetime
 from base64 import b64decode
 from StringIO import StringIO
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from odoo import models, fields, api
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class StockPickingPackagePreparation(models.Model):
@@ -78,3 +78,33 @@ class StockPickingPackagePreparationLine(models.Model):
     code = fields.Char('Code',
                        compute='_set_code',
                        copy=False)
+
+    def get_order_ref_text(self, doc, report, line):
+        order_ref_text = self.env[
+            'report'].get_report_attrib('order_ref_text', doc, report)
+        if not order_ref_text:
+            return ''
+        lang = self.env['res.lang'].search(
+            [('code', '=', line.package_preparation_id.partner_id.lang)])
+        if not lang:
+            lang = self.env.user.company_id.partner_id.lang
+        date_format = lang.date_format
+        order_name = ''
+        date_order = ''
+        client_order_ref = ''
+        if line.sale_id:
+            date_order = line.sale_id.date_order
+            if date_order:
+                date_order = datetime.strptime(
+                    date_order,
+                    DEFAULT_SERVER_DATETIME_FORMAT).strftime(date_format)
+            else:
+                date_order = ''
+            client_order_ref = line.sale_id.client_order_ref or ''
+            order_name = line.sale_id.name
+        ctx = {
+            'order_name': order_name,
+            'date_order': date_order,
+            'client_order_ref': client_order_ref,
+        }
+        return order_ref_text % ctx

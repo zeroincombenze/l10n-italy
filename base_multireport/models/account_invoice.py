@@ -52,7 +52,7 @@ class AccountInvoiceLine(models.Model):
         if not lang:
             lang = self.env.user.company_id.partner_id.lang
         date_format = lang.date_format
-        client_ddt_ref = ''
+        client_order_ref = ''
         order_name = ''
         date_order = ''
         if line.sale_line_ids:

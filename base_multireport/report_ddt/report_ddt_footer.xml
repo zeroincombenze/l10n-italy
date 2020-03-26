@@ -4,7 +4,7 @@
     <template id="report_ddt_footer">
         <div class="row">
             <div class="col-xs-4 pull-right">
-                <table class="table table-condensed">
+                <table class="table table-condensed" t-if="o.show_price">
                     <tr class="border-black">
                         <td><strong>Imponibile</strong></td>
                         <td class="text-right">

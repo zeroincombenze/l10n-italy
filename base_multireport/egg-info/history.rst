@@ -1,3 +1,11 @@
+10.0.0.2.18 (2020-03-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Total amount in Delivery document / Totale documento in DdT
+* [FIX] M2M banks/journal error / Errore in caso di relazioni m2m tra banche e sezionali
+* [IMP] Order ref in delivery documenti lines / Riferimento ordine in stampa DdT
+
+
 10.0.0.2.17 (2020-03-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

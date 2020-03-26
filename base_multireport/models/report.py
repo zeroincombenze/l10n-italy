@@ -112,7 +112,8 @@ class Report(models.Model):
         elif param in ('custom_header', 'custom_footer'):
             banks = ''
             for bank in company.partner_id.bank_ids:
-                if bank.journal_id and bank.journal_id.display_on_footer:
+                if bank.journal_id and any(
+                        [x.display_on_footer for x in bank.journal_id]):
                     banks = banks + ' ' + bank.acc_number
             banks = banks.strip()
             param = {

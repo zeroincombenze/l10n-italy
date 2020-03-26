@@ -1,21 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* base_multireport
+#	* base_multireport
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (VENV-10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-24 14:07+0000\n"
-"PO-Revision-Date: 2020-03-24 15:16+0100\n"
+"POT-Creation-Date: 2020-03-26 10:55+0000\n"
+"PO-Revision-Date: 2020-03-26 10:55+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
@@ -288,30 +287,24 @@ msgstr "Modo stampa indirizzo"
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_pdf_ending_page_expression
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_ending_page_expression
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_pdf_ending_page_expression
-msgid ""
-"An expression yielding the base64 encoded data to be used as Ending Page PDF.\n"
+msgid "An expression yielding the base64 encoded data to be used as Ending Page PDF.\n"
 "You have access to variables `env` and `docs`"
-msgstr ""
-"An expression yielding the base64 encoded data to be used as Ending Page PDF.\n"
+msgstr "An expression yielding the base64 encoded data to be used as Ending Page PDF.\n"
 "You have access to variables `env` and `docs`"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_pdf_watermark_expression
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_pdf_watermark_expression
-msgid ""
-"An expression yielding the base64 encoded data to be used as watermark.\n"
+msgid "An expression yielding the base64 encoded data to be used as watermark.\n"
 "You have access to variables `env` and `docs`"
-msgstr ""
-"An expression yielding the base64 encoded data to be used as watermark.\n"
+msgstr "An expression yielding the base64 encoded data to be used as watermark.\n"
 "You have access to variables `env` and `docs`"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_expression
-msgid ""
-"An expression yielding the base64 encoded data to be used as watermark. \n"
+msgid "An expression yielding the base64 encoded data to be used as watermark. \n"
 "You have access to variables `env` and `docs`"
-msgstr ""
-"An expression yielding the base64 encoded data to be used as watermark. \n"
+msgstr "An expression yielding the base64 encoded data to be used as watermark. \n"
 "You have access to variables `env` and `docs`"
 
 #. module: base_multireport
@@ -572,15 +565,13 @@ msgstr "Specifica documento di consegna"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_ddt_ref_text
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_ddt_ref_text
-msgid ""
-"Delivery reference text to print in document body.\n"
+msgid "Delivery reference text to print in document body.\n"
 "May be used following macroes:\n"
 "%(ddt_number)s => Delivery document number.\n"
 "%(date_ddt)s => Delivery document date\n"
 "%(date_done)s => Delivery date\n"
 "i.e. \"Ddt #: %(ddt_number)s of %(date_ddt)s\""
-msgstr ""
-"Delivery reference text to print in document body.\n"
+msgstr "Delivery reference text to print in document body.\n"
 "May be used following macroes:\n"
 "%(ddt_number)s => Delivery document number.\n"
 "%(date_ddt)s => Delivery document date\n"
@@ -812,11 +803,9 @@ msgstr "Stile logo Html"
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_logo_style
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_logo_style
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_logo_style
-msgid ""
-"Html style attribute for logo <img> tag.\n"
+msgid "Html style attribute for logo <img> tag.\n"
 "i.e. \"max-height: 45px;\""
-msgstr ""
-"Html style attribute for logo <img> tag.\n"
+msgstr "Html style attribute for logo <img> tag.\n"
 "i.e. \"max-height: 45px;\""
 
 #. module: base_multireport
@@ -1235,15 +1224,13 @@ msgstr "Ora trasporto"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_order_ref_text
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_order_ref_text
-msgid ""
-"Order reference text to print in document body.\n"
+msgid "Order reference text to print in document body.\n"
 "May be used following macroes:\n"
 "%(client_order_ref)s => Customer reference in order\n"
 "%(order_name)s => Sale order number\n"
 "%(date_order)s => Sale order date.\n"
 "i.e. \"Order #: %(order_name)s - Your ref: %(client_order_ref)s\""
-msgstr ""
-"Order reference text to print in document body.\n"
+msgstr "Order reference text to print in document body.\n"
 "May be used following macroes:\n"
 "%(client_order_ref)s => Customer reference in order\n"
 "%(order_name)s => Sale order number\n"
@@ -1667,14 +1654,12 @@ msgstr "Sito web:"
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_payment_term_position
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_payment_term_position
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_payment_term_position
-msgid ""
-"Where Payment term and due dates are printed:\n"
+msgid "Where Payment term and due dates are printed:\n"
 "may be Auto, None, on Footer, on Header or None\n"
 "If \"auto\", when due payment is whole in one date,\n"
 "all datas are printed on header otherwise on footer\n"
 "If \"Odoo\" print only Payment Term notes on Footer"
-msgstr ""
-"Where Payment term and due dates are printed:\n"
+msgstr "Where Payment term and due dates are printed:\n"
 "may be Auto, None, on Footer, on Header or None\n"
 "If \"auto\", when due payment is whole in one date,\n"
 "all datas are printed on header otherwise on footer\n"
@@ -1691,18 +1676,18 @@ msgstr "Which addresses are printed in document header"
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_footer_mode
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_footer_mode
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_footer_mode
-msgid ""
-"Which content is printed in document footer\n"
+msgid "Which content is printed in document footer\n"
 "If \"standard\", footer is printed as \"auto\" or \"custom\"\n"
 "based on company.custom_footer field (Odoo standard behavior)\n"
 "If \"auto\", footer is printed with automatic data\n"
 "If \"custom\", footer is printed from user data written\n"
-msgstr ""
-"Which content is printed in document footer\n"
+""
+msgstr "Which content is printed in document footer\n"
 "If \"standard\", footer is printed as \"auto\" or \"custom\"\n"
 "based on company.custom_footer field (Odoo standard behavior)\n"
 "If \"auto\", footer is printed with automatic data\n"
 "If \"custom\", footer is printed from user data written\n"
+""
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_header_mode
@@ -1735,8 +1720,7 @@ msgstr "Redigi intestazione personalizzata"
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_custom_header
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_custom_footer
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_custom_header
-msgid ""
-"You can insert html code to format the field.\n"
+msgid "You can insert html code to format the field.\n"
 "You can use following macro:\n"
 "%(banks)s  -> Company banks      %(codice_destinatario)s\n"
 "%(city)s   -> Company city       %(fatturapa_rea_capital)s\n"
@@ -1749,8 +1733,7 @@ msgid ""
 "%(vat)s    -> Company vat\n"
 "%(website)s-> Company website\n"
 "%s(zip)    -> Company zip"
-msgstr ""
-"You can insert html code to format the field.\n"
+msgstr "You can insert html code to format the field.\n"
 "You can use following macro:\n"
 "%(banks)s  -> Company banks      %(codice_destinatario)s\n"
 "%(city)s   -> Company city       %(fatturapa_rea_capital)s\n"
@@ -1839,3 +1822,5 @@ msgstr "um"
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
 msgid "valore"
 msgstr "valore"
+
+

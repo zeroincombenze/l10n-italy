@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.17
+|icon| base_rule_multireport 10.0.0.2.18
 ========================================
 
 
@@ -436,6 +436,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.18 (2020-03-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Total amount in Delivery document / Totale documento in DdT
+* [FIX] M2M banks/journal error / Errore in caso di relazioni m2m tra banche e sezionali
+* [IMP] Order ref in delivery documenti lines / Riferimento ordine in stampa DdT
+
+
 10.0.0.2.17 (2020-03-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -562,7 +570,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-03-24
+Last Update / Ultimo aggiornamento: 2020-03-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

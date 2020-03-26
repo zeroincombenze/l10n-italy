@@ -22,9 +22,18 @@
                     </t>
                 </tr>
             </thead>
+            <t t-set="last_order" t-value="''"/>
             <tbody>
+                <t t-set="order_ref_text" t-if="order_ref_text != 'False'" t-value="report.get_report_attrib('order_ref_text', o, doc_opts)"/>
                 <tr t-foreach="o.line_ids" t-as="line">
                     <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
+                    <tr t-if="(order_ref_text or ddt_ref_text) and (line.sale_id and last_order != line.sale_id.name)">
+                        <td t-if="code_mode == 'print'"></td>
+                        <td>
+                            <strong><span t-esc="line.get_order_ref_text(o, doc_opts, line)"/></strong>
+                            <t t-set="last_order" t-value="line.sale_id.name"/>
+                        </td>
+                    </tr>
                     <td t-if="code_mode == 'print'"><span t-field="line.code"/></td>
                     <td><span style="white-space: pre-wrap" t-esc="line.description_2_print(description_mode)"/></td>
                     <td class="text-right" style="vertical-align: bottom;"><span t-field="line.product_uom_id"></span></td>
@@ -43,6 +52,7 @@
                         <td class="text-right" id="line_subtotal" style="vertical-align: bottom;"><span t-field="line.price_subtotal"></span></td>
                     </t>
                 </tr>
+                <tr></tr>
             </tbody>
         </table>
     </template>
