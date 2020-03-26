@@ -103,7 +103,8 @@
             <div class="col-xs-4" t-if="term_position in ('header', 'odoo') and not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')">
                 <strong>IBAN:</strong>
                 <p>
-                    <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span t-if="bank.journal_id and bank.journal_id.display_on_footer" t-field="bank.display_name"/></t>
+                    <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span
+                       t-if="bank.journal_id and any([x.display_on_footer for x in bank.journal_id])" t-field="bank.display_name"/></t>
                 </p>
             </div>
         </div>
