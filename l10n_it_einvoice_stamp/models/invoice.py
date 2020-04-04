@@ -144,6 +144,28 @@ class AccountInvoice(models.Model):
                     inv.move_id.state = 'posted'
         return res
 
+    @api.model
+    def set_values(self, invoices, vals):
+        if 'tax_stamp' in vals:
+            if 'comment' in vals:
+                pass
+            elif invoices:
+                if len(invoices) == 1 and not invoices[0].comment:
+                    vals['comment'] = self.env.user.company_id.text_stamp
+            else:
+                vals['comment'] = self.env.user.company_id.text_stamp
+        return vals
+
+    @api.model
+    def create(self, vals):
+        vals = self.set_values(None, vals)
+        return super(AccountInvoice, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        vals = self.set_values(self, vals)
+        return super(AccountInvoice, self).write(vals)
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"

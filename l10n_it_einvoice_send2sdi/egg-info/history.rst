@@ -1,8 +1,13 @@
+10.0.1.0.9 (2020-03-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash in some error cases / Crash in alcuni casi di rifiuto fattura
+
+
 10.0.1.0.8 (2020-03-06)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Best display error message / Miglioramento messaggi di errore
-
 
 
 10.0.1.0.7 (2020-01-17)

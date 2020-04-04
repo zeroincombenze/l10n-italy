@@ -798,7 +798,7 @@ class WizardImportFatturapa(models.TransientModel):
         partner = partner_model.browse(partner_id)
         if partner.parent_id:
             partner = partner.parent_id
-            partner_id = partner.parent_id.id
+            partner_id = partner.id
         invoice_data, company, partner, wt_found = invoice_model.\
             xml_get_header_data(
             self, fatt, fatturapa_attachment, FatturaBody, partner_id)

@@ -95,16 +95,22 @@ class StockPickingPackagePreparation(models.Model):
                 ddt.transportation_reason_id.to_be_invoiced or False
 
     def _default_ddt_type(self):
+        # TODO: FIX in separate module
+        # signature = BeautifulSoup(self.env.user.signature).get_text()
         signature = self.env.user.signature
         if signature:
             a = signature.find('>')
             b = signature.find('<', a)
             signature = signature[a + 1:b]
-            res = self.env['stock.ddt.type'].search([('name', 'ilike', signature)],
-                                                    limit=1)
+            res = self.env['stock.ddt.type'].search(
+                [('name', 'ilike', signature)], limit=1)
             if res:
-                return res
-        return self.env['stock.ddt.type'].search([], limit=1)
+                return res.id
+        ids = self.env['stock.ddt.type'].search([], limit=1)
+        if not ids:
+            return False
+        return ids[0].id
+
 
     def _set_parcel_qty(self):
         if self.parcels == 0:

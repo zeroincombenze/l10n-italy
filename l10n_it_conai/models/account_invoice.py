@@ -112,6 +112,9 @@ class AccountInvoiceLine(models.Model):
 
     _inherit = 'account.invoice.line'
 
+    date_invoice = fields.Date(
+        string='Date',
+        related='invoice_id.date_invoice', store=True, readonly=True)
     conai_category_id = fields.Many2one(
         'italy.conai.product.category', string='CONAI Category')
     conai_amount = fields.Float(

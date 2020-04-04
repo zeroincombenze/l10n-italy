@@ -301,7 +301,7 @@ class Partner(models.Model):
             if rec.type != 'invoice':
                 for field in ('name', 'street', 'zip', 'city'):
                     if (self.dim_text(
-                            rec[field]) != self.dim_text(vals[field])):
+                            rec[field]) != self.dim_text(vals.get(field, ''))):
                         vals['parent_id'] = rec.id
                         vals['type'] = 'invoice'
                         rec = False

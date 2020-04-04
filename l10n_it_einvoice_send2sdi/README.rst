@@ -1,6 +1,6 @@
 
 =======================================
-|icon| Send E-Invoice to SdI 10.0.1.0.8
+|icon| Send E-Invoice to SdI 10.0.1.0.9
 =======================================
 
 
@@ -49,6 +49,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -73,7 +74,7 @@ Installation / Installazione
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
 
 From UI: go to:
 
@@ -86,6 +87,7 @@ From UI: go to:
 Upgrade / Aggiornamento
 -----------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -97,6 +99,7 @@ Upgrade / Aggiornamento
 ::
 
     odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -139,11 +142,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.9 (2020-03-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash in some error cases / Crash in alcuni casi di rifiuto fattura
+
+
 10.0.1.0.8 (2020-03-06)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Best display error message / Miglioramento messaggi di errore
-
 
 
 10.0.1.0.7 (2020-01-17)
@@ -228,7 +236,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-03-16
+Last Update / Ultimo aggiornamento: 2020-03-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

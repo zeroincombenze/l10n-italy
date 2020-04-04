@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
             res = self.env['stock.ddt.type'].search(
                 [('name', 'ilike', signature)], limit=1)
             if res:
-                return res
+                return res.id
         ids = self.env['stock.ddt.type'].search([], limit=1)
         if not ids:
             return False

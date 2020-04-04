@@ -3,6 +3,9 @@
 
 from odoo import fields, models, api
 
+HELP = 'Testo da inserire in fattura'
+DEFAULT = 'Imposta di bollo assolta virtualmente ai sensi del D.M. 17.06.2014'
+
 
 class ResCompany(models.Model):
     _inherit = 'res.company'
@@ -11,6 +14,13 @@ class ResCompany(models.Model):
         'product.product', 'Tax Stamp Product',
         help="Product used as Tax Stamp in customer invoices."
         )
+    text_stamp = fields.Char(
+        'Note su fattura',
+        help=HELP,
+        default=DEFAULT,
+    )
+    aut_min_bv = fields.Char(
+        'Autorizzazione ministeriale')
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -21,6 +31,15 @@ class AccountConfigSettings(models.TransientModel):
         string="Tax Stamp Product",
         help="Product used as Tax Stamp in customer invoices."
         )
+    text_stamp = fields.Char(
+        related='company_id.text_stamp',
+        string='Note su fattura',
+        help=HELP,
+        default=DEFAULT,
+    )
+    aut_min_bv = fields.Char(
+        related='company_id.aut_min_bv',
+        string='Autorizzazione ministeriale')
 
     @api.onchange('company_id')
     def onchange_company_id(self):

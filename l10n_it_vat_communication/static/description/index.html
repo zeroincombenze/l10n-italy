@@ -1,0 +1,155 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#162832;">Comunicazione periodica IVA</h2>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+            </p>
+            <p class="oe_mt16" align="justify"><h2>Invoices VAT communication</h2>
+<p align="justify">
+Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
+</p></p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+            </p>
+            <p class="oe_mt16" align="justify"><h2>Comunicazione IVA (ex Spesometro)</h2>
+<p align="justify">
+Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
+ricevute e genera il file da inviare all'Agenzia delle Entrate.
+Questo obbligo &egrave; conosciuto anche come Spesometro light 2018 e sostistuisce i
+precedenti obblighi chiamati Spesometro e Spesometro 2017.
+</p><p align="justify">
+
+<code>
+    Destinatari:
+</code>
+</p><p align="justify">
+Tutti i soggetti IVA (con partita IVA)
+</p><p align="justify">
+
+<code>
+    Normativa e prassi:
+</code>
+</p><p align="justify">
+<ul>
+<li><a href="https://www.gazzettaufficiale.it/gunewsletter/dettaglio.jsp?service=1&datagu=2010-05-31&task=dettaglio&numgu=125&redaz=010G0101&tmstp=1275551085053">Art. 21 D.L. n. 78/2010</a></li>
+<li><a href="https://www.gazzettaufficiale.it/eli/id/2016/10/24/16G00209/sg">Art. 4 D.L. n. 193/2016</a></li>
+<li><a href="https://www.gazzettaufficiale.it/eli/id/2017/12/05/17A08254/SG">Art. 1ter D.L. n. 148/2017</a></li>
+<li><a href="https://www.agenziaentrate.gov.it/wps/wcm/connect/4e22d9ab-2bbd-4e3f-9e60-a9a8cbf70232/PROVVEDIMENTO+PROT.+58793+DEL+27+MARZO+2017.pdf?MOD=AJPERES&CACHEID=4e22d9ab-2bbd-4e3f-9e60-a9a8cbf70232">Provvedimenti Agenzia delle entrate del 27 marzo 2017, numero 58793</a></li>
+<li><a href="https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Dati+Fatture+%28c.d.+nuovo+spesometro%29/Scheda+informativa+Dati+Fatture+c.d.+nuovo+spesometro/?page=schedecomunicazioni">Info Agenzia delle Entrate</a></li>
+</ul>
+</p><p align="justify">
+Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
+</p><p align="justify">
+<ul>
+<li>Le autofatture, per fatture non ricevute dopo 4 mesi, rif. art. 6 c.8 D.Lgs 471/97, (codice TD20) sono inserite nella comunicazione.</li>
+<li>Le autofatture da reverse charge nazionale (codice TD01) non sono inserite nello spesometro. Marcare il registro sezionale come registro con e-fatture.</li>
+<li>Le autofatture da reverse charge estero (codice TD01) non sono inserite nello spesometro. La relativa fattura d'acquisto &egrave; inserita nell'"esterometro". Marcare il registro sezionale come registro con e-fatture</li>
+</ul>
+</p><p align="justify">
+<br/>
+</p><p align="justify">
+Il software permette di operare in modalit&agrave; 2017 per rigenerare eventuali file
+in formato 2017. Per eseguire questa funzione, prima di avviare Odoo eseguire
+la seguente istruzione:
+</p><p align="justify">
+
+<code>
+     export SPESOMETRO_VERSION=2.0
+</p></p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Features / Caratteristiche</h3>
+        <div class="oe_span12">
+</code>
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Feature / Funzione</td><td>Status</td><td>Notes / Note</td>
+</tr><tr>
+<td>Fatture clienti e fornitori detraibili</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Fatture ordinarie</td>
+</tr><tr>
+<td>Fatture fornitori indetraibili</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Tutte le percentuali di indetraibilit&agrave;</td>
+</tr><tr>
+<td>Fatture a privati senza Partita IVA</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Necessario codice fiscale</td>
+</tr><tr>
+<td>Fatture semplificata</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Per clienti senza PI ne CF</td>
+</tr><tr>
+<td>Fatture senza IVA</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Fatture esenti, NI, escluse, eccetera</td>
+</tr><tr>
+<td>Escludi importi Fuori Campo IVA</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Totale fattura in Comunicazione pu&ograve; essere diverso da registrazione</td>
+</tr><tr>
+<td>Controlla CAP e provincia Italia in comunicazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Da nazione, oppure da partita IVA oppure Italia</td>
+</tr><tr>
+<td>Converti CF no Italia in comunicazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Da nazione, oppure da partita IVA oppure Italia</td>
+</tr><tr>
+<td>Controlli dati anagrafici</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Controlli Agenzia Entrate</td>
+</tr><tr>
+<td>Conversione utf-8</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Lo Spesometro 2017 richiedeva ISO-Latin1</td>
+</tr><tr>
+<td>IVA differita</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Da codice imposte</td>
+</tr><tr>
+<td>IVA da split-payment</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Da codice imposte</td>
+</tr><tr>
+<td>Ignora autofatture</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Esclusione tramite sezionale</td>
+</tr><tr>
+<td>Ignora corrispettivi</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Esclusione tramite sezionale</td>
+</tr><tr>
+<td>Ignora avvisi di parcella</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Esclusione tramite sezionale</td>
+</tr><tr>
+<td>Identificazione Reverse Charge</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Da codice imposte</td>
+</tr><tr>
+<td>Fatture vendita UE</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Inserite in spesometro</td>
+</tr><tr>
+<td>Fatture vendita extra-UE</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Inserite in spesometro</td>
+</tr><tr>
+<td>Fatture acq. intra-UE beni</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png"/></td><td>In fase di rilascio</td>
+</tr><tr>
+<td>Fatture acq. intra-UE servizi</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Tutte le fatture EU (provvisoriamente)</td>
+</tr><tr>
+<td>Rettifica dichiarazione</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png"/></td><td>In fase di rilascio</td>
+</tr><tr>
+<td>Nomenclatura del file</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td></td>
+</tr><tr>
+<td>Dimensioni del file</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/no_check.png"/></td><td>Nessuna verifica anche futura</td>
+</tr></table>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
+        <div class="oe_span12">
+<ul>
+<li><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&agrave; &gt; Configurazione &gt; Sezionali &gt; Sezionali :point_right: Impostare sezionali autofatture</li>
+<li><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&agrave; &gt; Configurazione &gt; Imposte &gt; Imposte :point_right: Impostare natura codici IVA</li>
+<li><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&agrave; &gt; Clienti &gt; Clienti :point_right: Impostare nazione, partita IVA, codice fiscale e Cognome/nome</li>
+<li><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&agrave; &gt; Fornitori &gt; Fornitori :point_right: Impostare nazione, partita IVA, codice fiscale e Cognome/nome</li>
+<li><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&agrave; &gt; Elaborazione periodica &gt; Fine periodo &gt; Comunicazione :point_right: Gestione Comunicazione e scarico file xml</li>
+</ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_separator"/>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6" align="left">
+            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16"><ul>
+<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+</ul></p>
+        </div>
+        <div class="oe_span6" align="left">
+            <p class="oe_mt16">Contributors / Collaboratori:</p>
+            <p class="oe_mt16"><ul>
+<li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
+</ul></p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <p>This module is part of l10n-italy project.</p>
+    </div>
+</section>

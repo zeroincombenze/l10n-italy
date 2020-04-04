@@ -1,5 +1,4 @@
 Bollo su Fattura Elettronica
-----------------------------
 
 Questo modulo gestisce il bollo virtuale in fattura.
 

@@ -33,18 +33,19 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
                       '[a-zA-Z0-9]{,3}'
 
 evolve_stato_mapping = {
-    'Inviato': 'sent',
-    'In attesa di risposta dopo aver inviato il documento': 'sent',
-    'Importato': 'sent',
-    'Controlli validazione': 'sent',
-    'Notifica di scarto': 'rejected',
-    'Il documento non può essere preso in carico': 'rejected',
-    'Il documento non ha superato i controlli di validazione': 'rejected',
-    'Ricevuta di consegna': 'validated',
-    'Notifica di mancata consegna': 'recipient_error',
-    'Notifica di esito: documento rifiutato dalla PA': 'discarted',
-    'Notifica di esito: documento accettato': 'accepted',
-    'Notifica di decorrenza termini': 'recipient_error',
+    u'Inviato': 'sent',
+    u'In attesa di risposta dopo aver inviato il documento': 'sent',
+    u'Importato': 'sent',
+    u'Controlli validazione': 'sent',
+    u'Notifica di scarto': 'rejected',
+    u'Il documento non può essere preso in carico': 'rejected',
+    u'Il documento non ha superato i controlli di validazione': 'rejected',
+    u'Ricevuta di consegna': 'validated',
+    u'Notifica di mancata consegna': 'recipient_error',
+    u'Notifica di esito: documento rifiutato dalla PA': 'discarted',
+    u'Notifica di esito: documento accettato': 'accepted',
+    u'Notifica di decorrenza termini': 'recipient_error',
+    u'ERRORE SCONOSCIUTO': 'sender_error',
 }
 
 
@@ -458,16 +459,19 @@ class FatturaPAAttachmentOut(models.Model):
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
                     if evolve_stato_mapping[
-                            doc['StatoFattura']] in ('accepted', 'discarted'):
+                            doc.get('StatoFattura','ERRORE SCONOSCIUTO')] in (
+                            'accepted', 'discarted'):
                         last_ix = ii
                         break
-                    elif doc['Uid'] == last_uid:
+                    elif doc.get('Uid', '') == last_uid:
                         last_ix = ii
                     elif evolve_stato_mapping[
-                            doc['StatoFattura']] == 'validated':
+                            doc.get('StatoFattura',
+                                    'ERRORE SCONOSCIUTO')] == 'validated':
                         valid_ix = ii
                 doc = documenti[last_ix]
-                att_state = evolve_stato_mapping[doc['StatoFattura']]
+                att_state = evolve_stato_mapping[doc.get('StatoFattura',
+                                                         'ERRORE SCONOSCIUTO')]
                 if valid_ix >= 0 and att_state in (
                         'sender_error', 'sent', 'rejected'):
                     last_ix = valid_ix
@@ -490,11 +494,11 @@ class FatturaPAAttachmentOut(models.Model):
                         'Note="%s"\n'
                         '\nCronologia invii\n'
                         '%s\n' % (
-                    doc['TipoDocumento'],
-                    doc['NumeroFattura'],
-                    doc['Destinatario'],
+                    doc.get('TipoDocumento'),
+                    doc.get('NumeroFattura'),
+                    doc.get('Destinatario'),
                     doc.get('DestinatarioPartitaIva', ''),
-                    doc['StatoFattura'],
+                    doc.get('StatoFattura', 'ERRORE SCONOSCIUTO'),
                     doc.get('Note', ''),
                     history))
 
@@ -537,6 +541,8 @@ class FatturaPAAttachmentOut(models.Model):
              ('invoice_partner_id.is_pa', '=', True)])
         for attachment in attachments:
             attachment.send_verify()
+            # commit every table to avoid too big transaction
+            self.env.cr.commit()  # pylint: disable=invalid-commit
 
     @api.multi
     def reset_to_ready(self):

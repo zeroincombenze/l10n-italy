@@ -10,7 +10,7 @@
 {
     'name': 'Fattura elettronica - Import ZIP',
     'summary': 'Importazione di file XML di fatture elettroniche da uno ZIP',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'category': 'Localization/Italy',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',

@@ -34,6 +34,7 @@
                         <field name="partner_id"/>
                         <field name="customer_ref"/>
                         <field name="customer_date"/>
+                        <field name="customer_autmin"/>
                         <field name="plafond"/>
                         <field name="plafond_used"/>
                         <field name="plafond_avaiable"/>
@@ -51,7 +52,7 @@
 
         <menuitem id="menu_lettera_intento" name="Registro lettere d'intento"
                   action="action_lettera_intento"
-                  parent="account.account_account_menu"
+                  parent="account.menu_account_customer"
                   sequence="90"/>
 
 </odoo>

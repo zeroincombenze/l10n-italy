@@ -1,3 +1,8 @@
+10.0.1.3.13 (2020-03-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash if invoice address / Errore durante importazione con indirizzo di fatturazione
+
 10.0.1.3.12 (2020-03-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

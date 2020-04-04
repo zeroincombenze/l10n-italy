@@ -7,8 +7,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-
-
+import os
 import io
 import base64
 import zipfile
@@ -43,15 +42,16 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
             model = 'fatturapa.attachment.in'
         att_model = self.env[model]
         rex = r'[A-Z]{2}[A-Za-z0-9]+_[A-Za-z0-9]{5}\.(xml|XML|xml.p7m|XML.P7m)'
-        for xml_file in zf.namelist():
+        for xml_fullfile in zf.namelist():
+            xml_file = os.path.basename(xml_fullfile)
             if re.match(rex, xml_file):
                 if att_model.search([('name', '=', xml_file)]):
                     continue
                 try:
-                    data = zf.read(xml_file)
+                    data = zf.read(xml_fullfile)
                 except KeyError:
                     raise UserError(
-                        'Error extracting %s from zip file' % xml_file)
+                        'Error extracting %s from zip file' % xml_fullfile)
                 vals = {
                     'name': xml_file,
                     'datas_fname': xml_file,

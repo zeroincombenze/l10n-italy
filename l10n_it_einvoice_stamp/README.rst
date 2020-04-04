@@ -1,6 +1,6 @@
 
 ==================================================
-|icon| Italian Localization - Tax Stamp 10.0.1.0.1
+|icon| Italian Localization - Tax Stamp 10.0.1.0.3
 ==================================================
 
 
@@ -17,10 +17,7 @@
 Overview / Panoramica
 =====================
 
-|en| EInvoice Stamp
--------------------
-
-This module supports Italian Tax Stamp in invoices.
+|en| This module supports Italian Tax Stamp in invoices.
 
 You can find 'Tax Stamp 2 euro' product to configure; this product may be inserted in invoice.
 
@@ -28,7 +25,6 @@ You can find 'Tax Stamp 2 euro' product to configure; this product may be insert
 |
 
 |it| Bollo su Fattura Elettronica
----------------------------------
 
 Questo modulo gestisce il bollo virtuale in fattura.
 
@@ -50,6 +46,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -63,7 +60,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -74,7 +71,7 @@ Installation / Installazione
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
 
 From UI: go to:
 
@@ -87,6 +84,7 @@ From UI: go to:
 Upgrade / Aggiornamento
 -----------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -98,6 +96,7 @@ Upgrade / Aggiornamento
 ::
 
     odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -155,7 +154,9 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* Agile Business Group sagl <https://www.agilebg.com/>
+* `Agile Business Group sagl <https://www.agilebg.com/>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
@@ -165,6 +166,8 @@ Contributors / Collaboratori
 * Ermanno Gnan
 * Enrico Ganzaroli
 * Sergio Zanchetta <https://github.com/primes2h>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 |
 
@@ -188,11 +191,11 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-03-29
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
+    :alt: Beta
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.org/zeroincombenze/l10n-italy
     :alt: github.com

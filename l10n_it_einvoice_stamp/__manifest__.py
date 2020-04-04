@@ -4,15 +4,13 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # Copyright 2018 Sergio Zanchetta (https://github.com/primes2h)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
-
 {
     'name': 'Italian Localization - Tax Stamp',
-    'version': '10.0.1.0.1',
-    'category': 'Localization/Italy',
     'summary': 'Tax stamp automatic management',
-    'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'version': '10.0.1.0.4',
+    'category': 'Localization/Italy',
+    'author': 'Odoo Community Association (OCA) and other subjects',
+    'website': 'https://odoo-community.org/',
     'license': 'LGPL-3',
     'depends': [
         'product',
@@ -26,4 +24,5 @@
         'views/company_view.xml',
     ],
     'installable': True,
+    'development_status': 'Beta',
 }

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2019-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -36,7 +36,10 @@ class ItalyLetteraIntento(models.Model):
                     'date': lett.customer_date,
                 }
                 self.env.cr.execute(query)
-                amount = -self.env.cr.fetchall()[0][0]
+                res = self.env.cr.fetchall()
+                amount = 0
+                if res[0][0]:
+                    amount = -res[0][0]
                 lett.plafond_used = amount
                 lett.plafond_avaiable = lett.plafond - amount
 
@@ -50,6 +53,7 @@ class ItalyLetteraIntento(models.Model):
         string='Partner')
     customer_ref = fields.Char('Customer Ref.')
     customer_date = fields.Date(string='Customer Date')
+    customer_autmin = fields.Char('Autorizzazione ministeriale')
     currency_id = fields.Many2one(
         'res.currency', string='Currency',
         required=True,
@@ -62,30 +66,29 @@ class ItalyLetteraIntento(models.Model):
 
     @api.model
     def fiscal_pos_values(self, partner, partner_vals, lett):
-        vals = {}
-        for nm in ('customer_date', 'date'):
-            vals[nm] = ''
-            if partner_vals.get(nm):
-                vals[nm] = datetime.strptime(partner_vals[nm],
-                                             '%Y-%m-%d').strftime('%d-%m-%Y')
+        params = {}
+        for tgt, src in (('vs.data', 'customer_date'),
+                         ('ns.data', 'date')):
+            params[tgt] = ''
+            if partner_vals.get(src):
+                params[tgt] = datetime.strptime(
+                    partner_vals[src], '%Y-%m-%d').strftime('%d-%m-%Y')
             elif lett:
-                vals[nm] = datetime.strptime(lett[nm],
-                                             '%Y-%m-%d').strftime('%d-%m-%Y')
-        for nm in ('customer_ref', 'name'):
-            vals[nm] = ''
-            if partner_vals.get(nm):
-                vals[nm] = partner_vals[nm]
+                params[tgt] = datetime.strptime(
+                    lett[src], '%Y-%m-%d').strftime('%d-%m-%Y')
+        for tgt, src in (('vs.prot', 'customer_ref'),
+                         ('ns.prot', 'name'),
+                         ('aut.min', 'customer_autmin')):
+            params[tgt] = ''
+            if partner_vals.get(src):
+                params[tgt] = partner_vals[src]
             elif lett:
-                vals[nm] = lett[nm]
+                params[tgt] = lett[src]
         return {
             'name': 'Lettera intento %s' % partner.name,
             'company_id': partner.company_id.id,
-            'note': 'Operazione senza IVA Vs. lettera d\'intento '
-                    'n. %s del %s, ns. prot %s del %s' % (
-                vals['customer_ref'],
-                vals['customer_date'],
-                vals['name'],
-                vals['date']),
+            'lettera_intento': True,
+            'note': self.env.user.company_id.text_lettera_intento % params
         }
 
     @api.model
