@@ -29,12 +29,13 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         conai_struct = {}
         if self.conai_exemption_id:
-            p_rate = self.conai_exemption_id.conai_percent
+            ex_rate = self.conai_exemption_id.conai_percent
         elif self.partner_id.conai_exemption_id:
-            p_rate = self.partner_id.conai_exemption_id.conai_percent
+            ex_rate = self.partner_id.conai_exemption_id.conai_percent
+            self.conai_exemption_id = self.partner_id.conai_exemption_id.id
         else:
-            p_rate = 0
-        p_rate = (100 - p_rate) / 100.0
+            ex_rate = 0.0
+        p_rate = (100.0 - ex_rate) / 100.0
         weight_conv = 1000
         supplemental_line_ids = []
         for line in self.invoice_line_ids:
@@ -76,13 +77,13 @@ class AccountInvoice(models.Model):
                     line.weight = line.product_id.weight
                 conai_struct[conai_category_id][
                     'name'] = conai_category_id.name
-                conai_amount = (line.weight * line.quantity *  p_rate *
+                conai_amount = (line.weight * line.quantity *
                                 conai_struct[conai_category_id]['price'])
-                conai_struct[conai_category_id][
-                    'amount'] = conai_amount
                 if conai_amount != line.conai_amount:
                     line.write({'conai_amount': conai_amount,
                                 'weight': line.weight})
+                conai_struct[conai_category_id][
+                    'amount'] = conai_amount * p_rate
                 conai_struct[conai_category_id]['qty'] += (
                         line.weight * line.quantity)
         self.amount_conai = 0.0
@@ -97,6 +98,8 @@ class AccountInvoice(models.Model):
                 'invoice_line_tax_ids': [(
                     6, 0, [x.id for x in conai_struct[line]['tax']])],
             }
+            if ex_rate > 0.0:
+                line_vals['name'] += '\nEsenzione %s%%' % ex_rate
             if nr < len(supplemental_line_ids):
                 self.env['account.invoice.line'].browse(
                     supplemental_line_ids[nr]).write(line_vals)
@@ -105,6 +108,8 @@ class AccountInvoice(models.Model):
             self.amount_conai += conai_struct[
                 line]['price'] * p_rate * conai_struct[line]['qty']
         self.amount_goods_service = self.amount_untaxed - self.amount_conai
+        self.compute_taxes()
+        self._compute_residual()
         return super(AccountInvoice, self).invoice_validate()
 
 

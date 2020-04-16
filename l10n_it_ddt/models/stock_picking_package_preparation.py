@@ -89,6 +89,7 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     @api.depends('transportation_reason_id.to_be_invoiced')
+    @api.depends('transportation_reason_id.to_be_invoiced')
     def _compute_to_be_invoiced(self):
         for ddt in self:
             ddt.to_be_invoiced = ddt.transportation_reason_id and \
@@ -884,6 +885,10 @@ class StockPickingPackagePreparationLine(models.Model):
         'res.partner', string='Partner',
         related='package_preparation_id.partner_id',
         store=True, readonly=True, related_sudo=False)
+    date = fields.Datetime(
+        related='package_preparation_id.date',
+        string='Date',
+        store=True, readonly=True)
 
     @api.onchange('product_id')
     def _onchange_product_id(self):

@@ -1,6 +1,3 @@
-Ricevute Bancarie
------------------
-
 Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
 
 Si può configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine) o DI (Dopo Incasso).

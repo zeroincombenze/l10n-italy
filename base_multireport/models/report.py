@@ -114,7 +114,7 @@ class Report(models.Model):
             for bank in company.partner_id.bank_ids:
                 if bank.journal_id and any(
                         [x.display_on_footer for x in bank.journal_id]):
-                    banks = banks + ' ' + bank.acc_number
+                    banks = banks + ' </br>' + bank.acc_number
             banks = banks.strip()
             param = {
                 'banks': banks,

@@ -1,6 +1,3 @@
-Delivery document to Transfer
------------------------------
-
 This module print the Italian deliver document AKA DdT
 
 You can automatically create a DDT From a Sale Order, setting

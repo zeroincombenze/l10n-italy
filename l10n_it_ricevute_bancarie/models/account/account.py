@@ -200,10 +200,13 @@ class AccountInvoice(models.Model):
                         'price_unit': (
                             invoice.payment_term_id.riba_payment_cost),
                         'due_cost_line': True,
-                        'name': _('{line_name} for {month}-{year}').format(
+                        # 'name': _('{line_name} for {month}-{year}').format(
+                        #     line_name=service_prod.name,
+                        #     month=pay_date[0][5:7],
+                        #     year=pay_date[0][:4],
+                        # ),
+                        'name': _('{line_name}').format(
                             line_name=service_prod.name,
-                            month=pay_date[0][5:7],
-                            year=pay_date[0][:4],
                         ),
                         'account_id': account.id,
                     }

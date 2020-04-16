@@ -199,6 +199,8 @@
         <field name="arch" type="xml">
             <tree string="Prodotti in DdT" create="false" delete="false">
                 <field name="package_preparation_id" readonly="1"/>
+                <field name="ddt_id"/>
+                <field name="date" widget="date" readonly="1"/>
                 <field name="name"/>
                 <field name="partner_id" readonly="1"/>
                 <field name="product_id" readonly="1"/>

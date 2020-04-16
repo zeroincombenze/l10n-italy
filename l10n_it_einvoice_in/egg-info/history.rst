@@ -1,3 +1,9 @@
+10.0.1.3.13 (2020-04-06)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash if wrong invoice date (i.e. 2020-04-06Z) / Errore se data formattata erroneamente
+
+
 10.0.1.3.13 (2020-03-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

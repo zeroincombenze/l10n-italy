@@ -96,7 +96,7 @@
             <strong>Note fiscali:</strong>
             <span t-field="o.fiscal_position_id.note"/>
         </p>
-        <p t-if="report.get_report_attrib('bottom_text',o,doc_opts)" class="col-xs-12">
+        <p t-if="report.get_report_attrib('bottom_text',o,doc_opts)" class="col-xs-12" style="font-size: smaller;">
             <span t-esc="report.get_report_attrib('bottom_text',o,doc_opts)"/>
         </p>
     </template>
@@ -203,9 +203,8 @@
             </div>
             <div class="col-xs-12" t-if="term_position == 'footer' and not o.partner_bank_id and o.company_id.partner_id.bank_ids and o.payment_term_id and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')">
                 <strong>IBAN:</strong>
-                <p>
-                    <t t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span
-                       t-if="bank.journal_id and any([x.display_on_footer for x in bank.journal_id])" t-field="bank.display_name"/></t>
+                <p t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span
+                        t-if="bank.journal_id and any([x.display_on_footer for x in bank.journal_id])" t-field="bank.display_name"/>
                 </p>
             </div>
             <div class="col-xs-12">

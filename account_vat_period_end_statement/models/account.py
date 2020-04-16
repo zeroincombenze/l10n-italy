@@ -102,6 +102,10 @@ class AccountVatPeriodEndStatement(models.Model):
 
     _name = "account.vat.period.end.statement"
     _rec_name = 'date'
+
+    # TODO
+    # name = fields.Char('Descrizione',
+    #                    required=True)
     debit_vat_account_line_ids = fields.One2many(
         'statement.debit.account.line', 'statement_id', 'Debit VAT',
         help='The accounts containing the debit VAT amount to write-off',
@@ -255,6 +259,19 @@ class AccountVatPeriodEndStatement(models.Model):
         'res.company', 'Company',
         default=lambda self: self.env['res.company']._company_default_get(
             'account.invoice'))
+    show_zero = fields.Boolean('Show zero amount lines')
+    # TODO
+    # type = fields.Selection([
+    #     ('xml', 'Liquidazione elettronica + Ordinaria'),
+    #     ('xml2', 'Liquidazione elettronica'),
+    #     ('month', 'Liquidazione ordinaria'),
+    #     ('year', 'Liquidazione annuale'), ],
+    #     'Tipo',
+    #     required=True,
+    #     help="Tipo di liquidazione\n"
+    #          "liquidazione elettronica per generare file xml da inviare\n"
+    #          "Liquidazione ordinaria: calcola IVA periodo\n"
+    #          "Liquidazione annuale per riepilogo annuale"),
 
     @api.multi
     def unlink(self):
@@ -489,6 +506,7 @@ class AccountVatPeriodEndStatement(models.Model):
             statement.previous_debit_vat_amount = 0.0
             prev_statements = self.search(
                 [('date', '<', statement.date)], order='date desc')
+                 # ('type', '=', type)], order='date desc')
             if prev_statements:
                 prev_statement = prev_statements[0]
                 if (

@@ -69,6 +69,14 @@ class FatturaPAAttachmentIn(models.Model):
                     'DatiRicezione'):
             token = r'<%s>[ \t\n]*</%s>' % (tag, tag)
             xml_string = re.sub(token, '', xml_string)
+        for tag in ('Data', ):
+            token = r'<%s>[0-9]{4}-[0-9]{2}-[0-9]{2}[^<]+?</%s>' % (tag, tag)
+            x = re.search(token, xml_string)
+            while x:
+                new_token = '%s</%s>' % (
+                    xml_string[x.start():x.end()][:len(tag)+12], tag)
+                xml_string = re.sub(token, new_token, xml_string)
+                x = re.search(token, xml_string)
         return xml_string
 
     def get_invoice_obj(self):

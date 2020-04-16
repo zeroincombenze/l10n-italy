@@ -1,6 +1,3 @@
-Stampa DdT
-----------
-
 Stampa documento di trasporto, consociuto anche come DdT
 
 È possibile creare automaticamente un DDT da un ordine di vendita, impostando

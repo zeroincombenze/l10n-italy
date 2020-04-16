@@ -93,6 +93,7 @@
                                    </form>
                                 </field>
                             </group>
+                            <field name="show_zero"/>
                             <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
                             <group>
                                 <field name="state"  select="1"/>
