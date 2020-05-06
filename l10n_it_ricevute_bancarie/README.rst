@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Ricevute Bancarie 10.0.1.3.4
+|icon| Ricevute Bancarie 10.0.1.3.5
 ===================================
 
 
@@ -273,11 +273,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.5 (2020-05-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Set sequence in cost line / Imposta sequenza in riga addebito spese (in modo da inserirla in fondo)
+
+
 10.0.1.3.2 (2020-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Unsolve cane reopne invoice / L'insoluto puà riaprire la fattura
-
+* [IMP] Unsolve can reopen invoice / L'insoluto puà riaprire la fattura
 
 
 10.0.1.3.1 (2019-07-17)
@@ -356,7 +361,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-04-16
+Last Update / Ultimo aggiornamento: 2020-05-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -415,4 +420,5 @@ Last Update / Ultimo aggiornamento: 2020-04-16
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+

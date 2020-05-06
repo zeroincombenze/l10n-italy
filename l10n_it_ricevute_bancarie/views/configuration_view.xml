@@ -48,6 +48,6 @@
         <!-- ====================================================== -->
         <!-- 				CONFIGURAZIONE RIBA MENU 				-->
         <!-- ====================================================== -->
-        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="payment.root_payment_menu"/>
+        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="account.account_management_menu"/>
     </data>
 </odoo>

@@ -17,7 +17,9 @@ class AccountInvoice(models.Model):
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
         self.partner_bank_id = False
-        if self.partner_id.commercial_partner_id and self.partner_id.commercial_partner_id.assigned_bank:
-            self.partner_bank_id = self.partner_id.commercial_partner_id.assigned_bank.id
-        return super(AccountInvoice, self)._onchange_partner_id
+        if (self.partner_id.commercial_partner_id and
+                self.partner_id.commercial_partner_id.assigned_bank):
+            self.partner_bank_id = self.\
+                partner_id.commercial_partner_id.assigned_bank.id
+        return super(AccountInvoice, self)._onchange_partner_id()
 

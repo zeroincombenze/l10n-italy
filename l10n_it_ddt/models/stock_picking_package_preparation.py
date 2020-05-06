@@ -655,6 +655,7 @@ class StockPickingPackagePreparation(models.Model):
         inv_model = self.env['account.invoice']
         invoices = {}
         references = {}
+        seq_offset = 0
         for ddt in self:
             if not ddt.to_be_invoiced or ddt.invoice_id:
                 continue
@@ -692,6 +693,7 @@ class StockPickingPackagePreparation(models.Model):
 
             ddt_invoiced = True
             prior_group_key = order
+            max_ddt_seq = 0
             for line in ddt.line_ids:
                 if not line.allow_invoice_line():
                     ddt_invoiced = False
@@ -726,8 +728,11 @@ class StockPickingPackagePreparation(models.Model):
                     ddt.invoice_id = invoices[group_key].id
 
                 line.invoice_line_create(
-                    invoices[group_key].id, line.product_uom_qty)
+                    invoices[group_key].id, line.product_uom_qty,
+                    offset=seq_offset)
+                max_ddt_seq = max(max_ddt_seq, line.sequence)
 
+            seq_offset += max_ddt_seq
             if ddt_invoiced:
                 ddt.invoice_id = invoice.id
             if references.get(invoices.get(group_key)):
@@ -740,8 +745,9 @@ class StockPickingPackagePreparation(models.Model):
                     if (line not in invoiced_order_lines and
                             (not line.product_id or
                              line.product_id.invoice_policy == 'order')):
-                        line.invoice_line_create(
-                            invoices[group_key].id, line.qty_to_invoice)
+                        line.invoice_line_create(invoices[group_key].id,
+                                                 line.qty_to_invoice,
+                                                 offset=seq_offset)
             # Allow additional operations from ddt
             ## ddt.other_operations_on_ddt(invoice)
 
@@ -828,6 +834,7 @@ class StockPickingPackagePreparation(models.Model):
 
 class StockPickingPackagePreparationLine(models.Model):
     _inherit = 'stock.picking.package.preparation.line'
+    _order = 'partner_id, package_preparation_id, sequence, id'
 
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_ids')
     def _compute_amount(self):
@@ -968,7 +975,7 @@ class StockPickingPackagePreparationLine(models.Model):
         return lines
 
     @api.multi
-    def _prepare_invoice_line(self, qty, invoice_id=None):
+    def _prepare_invoice_line(self, qty, invoice_id=None, offset=None):
         """
         Prepare the dict of values to create the new invoice line for a
         ddt line.
@@ -977,6 +984,7 @@ class StockPickingPackagePreparationLine(models.Model):
         :param invoice_id: possible existing invoice
         """
         self.ensure_one()
+        offset = offset or 0.0
         res = {}
         if (
             self.sale_line_id.product_id.property_account_income_id or
@@ -1028,7 +1036,7 @@ class StockPickingPackagePreparationLine(models.Model):
         res.update({
             'ddt_line_id': self.id,
             'name': self.name,
-            'sequence': self.sequence,
+            'sequence': self.sequence + offset,
             'origin': self.package_preparation_id.name or '',
             'price_unit': self.price_unit,
             'quantity': qty,
@@ -1041,28 +1049,27 @@ class StockPickingPackagePreparationLine(models.Model):
         return res
 
     @api.multi
-    def invoice_line_create(self, invoice_id, qty):
+    def invoice_line_create(self, invoice_id, qty, offset=None):
         """
         :param invoice_id: integer
         :param qty: float quantity to invoice
         """
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
-        if not qty:
-            qty = 1.0
+        offset = offset or 0
         for line in self:
-            if not float_is_zero(qty, precision_digits=precision):
-                vals = line._prepare_invoice_line(
-                    qty=qty, invoice_id=invoice_id)
-                vals.update({'invoice_id': invoice_id})
-                if line.sale_line_id:
-                    vals.update(
-                        {'sale_line_ids': [
-                            (6, 0, [line.sale_line_id.id])
-                        ]})
-                line_inv = self.env['account.invoice.line'].with_context(
-                    skip_update_line_ids=True).create(vals)
-                line.invoice_line_id = line_inv.id
+            # if not float_is_zero(qty, precision_digits=precision):
+            vals = line._prepare_invoice_line(
+                qty=qty, invoice_id=invoice_id, offset=offset)
+            vals.update({'invoice_id': invoice_id})
+            if line.sale_line_id:
+                vals.update(
+                    {'sale_line_ids': [
+                        (6, 0, [line.sale_line_id.id])
+                    ]})
+            line_inv = self.env['account.invoice.line'].with_context(
+                skip_update_line_ids=True).create(vals)
+            line.invoice_line_id = line_inv.id
 
     def quantity_by_lot(self):
         res = {}

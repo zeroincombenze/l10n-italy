@@ -842,16 +842,20 @@ class WizardExportFatturapa(models.TransientModel):
         uom_precision = max(2, self.env['decimal.precision'].precision_get(
             'Product Unit of Measure'))
         for line in invoice.invoice_line_ids:
-            if not line.invoice_line_tax_ids:
+            if not line.invoice_line_tax_ids and line.price_subtotal:
                 raise UserError(
                     _("Invoice line %s does not have tax") % line.name)
             if len(line.invoice_line_tax_ids) > 1:
                 raise UserError(
                     _("Too many taxes for invoice line %s.") % line.name)
-            aliquota = line.invoice_line_tax_ids[0].amount
+            if line.invoice_line_tax_ids:
+                aliquota = line.invoice_line_tax_ids[0].amount
+            else:
+                aliquota = 0.0
             AliquotaIVA = '%.2f' % (aliquota)
             line.ftpa_line_number = line_no
             prezzo_unitario = self._get_prezzo_unitario(line)
+            # FIX
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 # can't insert newline with pyxb
@@ -862,13 +866,15 @@ class WizardExportFatturapa(models.TransientModel):
                 PrezzoUnitario=('%.' + str(
                     price_precision
                 ) + 'f') % prezzo_unitario,
-                Quantita=('%.' + str(
-                    uom_precision
-                ) + 'f') % line.quantity,
                 UnitaMisura=line.uom_id and (
                     unidecode(line.uom_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
-                AliquotaIVA=AliquotaIVA)
+                AliquotaIVA=AliquotaIVA
+            )
+            if line.quantity:
+                DettaglioLinea.Quantita = ('%.' + str(
+                    uom_precision
+                ) + 'f') % line.quantity
             if line.discount:
                 ScontoMaggiorazione = ScontoMaggiorazioneType(
                     Tipo='SC',
@@ -876,13 +882,16 @@ class WizardExportFatturapa(models.TransientModel):
                 )
                 DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
             if aliquota == 0.0:
-                if not line.invoice_line_tax_ids[0].nature_id:
-                    raise UserError(
-                        _("No 'nature' field for tax %s.") %
-                        line.invoice_line_tax_ids[0].name)
-                DettaglioLinea.Natura = line.invoice_line_tax_ids[
-                    0
-                ].nature_id.code
+                if line.invoice_line_tax_ids:
+                    if not line.invoice_line_tax_ids[0].nature_id:
+                        raise UserError(
+                            _("No 'nature' field for tax %s.") %
+                            line.invoice_line_tax_ids[0].name)
+                    DettaglioLinea.Natura = line.invoice_line_tax_ids[
+                        0
+                    ].nature_id.code
+                else:
+                    self.line_desc = DettaglioLinea.Natura = 'N2'
             if line.admin_ref:
                 DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
             if line.product_id:
@@ -905,6 +914,7 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setDatiRiepilogo(self, invoice, body):
+        found_code_line_desc = False
         for tax_line in invoice.tax_line_ids:
             tax = tax_line.tax_id
             riepilogo = DatiRiepilogoType(
@@ -921,6 +931,8 @@ class WizardExportFatturapa(models.TransientModel):
                     raise UserError(
                         _("No 'law reference' field for tax %s.") % tax.name)
                 riepilogo.RiferimentoNormativo = tax.law_reference
+                if tax.nature_id.code == self.line_desc:
+                    found_code_line_desc = True
             if tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability
             # TODO
@@ -929,7 +941,15 @@ class WizardExportFatturapa(models.TransientModel):
             # el.remove(el.find('Arrotondamento'))
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
-
+        if self.line_desc and not found_code_line_desc:
+            riepilogo = DatiRiepilogoType(
+                AliquotaIVA='%.2f' % 0.0,
+                ImponibileImporto='%.2f' % 0.0,
+                Imposta='%.2f' % 0.0,
+                Natura=self.line_desc,
+                RiferimentoNormativo='Non imponibile'
+            )
+            body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
         return True
 
     def setDatiBanca(self, DettaglioPagamento, bank_id, company=None):
@@ -1041,6 +1061,7 @@ class WizardExportFatturapa(models.TransientModel):
 
     def setFatturaElettronicaBody(self, inv, FatturaElettronicaBody):
 
+        self.line_desc = False
         self.setDatiGeneraliDocumento(inv, FatturaElettronicaBody)
         self.setDettaglioLinee(inv, FatturaElettronicaBody)
         self.setDatiDDT(inv, FatturaElettronicaBody)

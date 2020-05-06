@@ -1,8 +1,13 @@
+10.0.1.3.5 (2020-05-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Set sequence in cost line / Imposta sequenza in riga addebito spese (in modo da inserirla in fondo)
+
+
 10.0.1.3.2 (2020-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Unsolve cane reopne invoice / L'insoluto puà riaprire la fattura
-
+* [IMP] Unsolve can reopen invoice / L'insoluto puà riaprire la fattura
 
 
 10.0.1.3.1 (2019-07-17)

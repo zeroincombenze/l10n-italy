@@ -1,3 +1,9 @@
+10.0.1.0.15 (2020-05-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Comment lines / Righe di descrizione senza codice IVA ne prezzo
+
+
 10.0.1.0.14 (2020-02-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

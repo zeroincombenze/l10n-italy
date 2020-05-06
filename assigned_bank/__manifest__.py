@@ -10,7 +10,7 @@
 {
     'name': 'Assigned bank',
     'summary': 'Assign internal bank to customers or supplier',
-    'version': '10.0.0.1.0',
+    'version': '10.0.0.1.1',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',

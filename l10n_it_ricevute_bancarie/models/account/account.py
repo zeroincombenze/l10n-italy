@@ -209,6 +209,7 @@ class AccountInvoice(models.Model):
                             line_name=service_prod.name,
                         ),
                         'account_id': account.id,
+                        'sequence': 99999,
                     }
                     # ---- Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:

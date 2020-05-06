@@ -10,12 +10,13 @@
 #
 {
     'name': 'Ricevute Bancarie',
-    'version': '10.0.1.3.4',
+    'version': '10.0.1.3.5',
     'category': 'Accounting & Finance',
     'author': 'Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': [
+        'account',
         'account_accountant',
         'l10n_it_fiscalcode',
         'account_due_list',
