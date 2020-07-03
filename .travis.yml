@@ -1,6 +1,5 @@
 # Odoo yaml template for travis-ci
-# # __version__=0.2.1
-#
+# __version__=0.2.1
 
 language: python
 sudo: false
@@ -10,13 +9,17 @@ cache:
     - $HOME/.cache/pip
 
 python:
-  - "3.4"
+  - "3.7"
 
 virtualenv:
-  system_site_packages: true
+  system_site_packages: false
 
 git:
   submodules: false
+  depth: false
+
+services:
+  - postgresql
 
 addons:
   apt:
@@ -30,22 +33,20 @@ addons:
       - libxslt1-dev
       - zlib1g-dev
       - python-simplejson
-      - nodejs
-      - npm
       - python-ldap
       - python-psycopg2
-      - build-essential
       - expect-dev
       - libffi-dev
       - libssl-dev
       - python-setuptools
 
 before_install:
-  - export TRAVIS_DEBUG_MODE="1"
 # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
-  - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
-  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  # - mv ${HOME}/tools ${HOME}
+  - export PATH=${HOME}/tools/maintainer-quality-tools/travis:${PATH}
+  - export PYTHONPATH=${HOME}/tools
+
 
 install:
   - travis_install_env
@@ -60,7 +61,10 @@ install:
 
 env:
   global:
-  - VERSION="11.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0" WEBSITE_REPO="1"
+  - TRAVIS_DEBUG_MODE="2"
+  - WKHTMLTOPDF_VERSION="0.12.5"
+  - VERSION="12.0" TESTS="0" LINT_CHECK="0" ODOO_TNLBOT="0"
+
 
   matrix:
   - LINT_CHECK="1" LINT_CHECK_LEVEL="MINIMAL"
