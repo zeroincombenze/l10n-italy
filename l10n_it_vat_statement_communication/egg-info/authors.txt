@@ -1,0 +1,6 @@
+* Odoo Community Association (OCA) <https://odoo-community.org>
+* Associazione Odoo Italia <http://www.odoo-italia.org>
+* Domsense s.r.l. (<http://www.domsense.com>)
+* Agile Business Group sagl <http://www.agilebg.com>
+* LinkIt Spa (<http://http://www.linkgroup.it>)
+* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
