@@ -3,3 +3,4 @@ unidecode
 pyxb==1.2.5
 pycryptodome
 pkcs7
+PyPDF2
