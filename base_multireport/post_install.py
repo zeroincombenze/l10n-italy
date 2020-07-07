@@ -7,7 +7,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp import api, SUPERUSER_ID
+from odoo import api, SUPERUSER_ID
 
 
 def update_template_ref(cr, registry):
@@ -30,7 +30,7 @@ def update_template_ref(cr, registry):
             mr_style.write(vals)
 
         ir_report_model = env['ir.actions.report.xml']
-        vals = {'template': False,}
+        vals = {'template': False}
         domain = [('model', 'in', ('sale.order',
                                    'stock.picking.package.preparation',
                                    'account.invoice',

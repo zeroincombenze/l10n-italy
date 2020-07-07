@@ -1,3 +1,27 @@
+10.0.1.3.17 (2020-07-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import error level 2 / Errore importazione livello 2
+
+
+10.0.1.3.16 (2020-06-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No import self-invoice / Non importa autofatture
+
+
+10.0.1.3.15 (2020-05-22)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash if supplier invoice w/o due_adate / Errore importazione se xml senza date scadenza
+
+
+10.0.1.3.15 (2020-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash import rated invoice if supplier w/o account / Errore importazione per aliquote e fornitore senza conto
+
+
 10.0.1.3.13 (2020-04-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

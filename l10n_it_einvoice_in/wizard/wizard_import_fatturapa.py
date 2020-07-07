@@ -451,12 +451,12 @@ class WizardImportFatturapa(models.TransientModel):
                     elif DiscRise.Tipo == 'MG':
                         discount += float(DiscRise.Importo)
             journal = self.get_purchase_journal(invoice.company_id)
-            credit_account_id = journal.default_credit_account_id.id
+            credit_account = journal.default_credit_account_id
             line_vals = {
                 'invoice_id': invoice_id,
                 'name': _(
                     "Global bill discount from document general data"),
-                'account_id': credit_account_id,
+                'account_id': credit_account.id,
                 'price_unit': discount,
                 'quantity': 1,
             }
@@ -661,7 +661,7 @@ class WizardImportFatturapa(models.TransientModel):
                 'payment_term_id': False,
                 'date_due': date_invoice})
             return
-        if len(totlines) == len(totdue):
+        if len(totdue) and len(totlines) == len(totdue):
             valid_due = True
         else:
             valid_due = False
@@ -674,7 +674,7 @@ class WizardImportFatturapa(models.TransientModel):
         # payment_term_found = False
         if not valid_due:
             payment_term_found, prospect = self.match_best_of_payterms(totdue)
-            if payment_term_found and prospect > 95:
+            if payment_term_found and len(totdue) and prospect > 95:
                 invoice.write({
                     'payment_term_id': payment_term_found.id,
                     'date_due': totdue[-1][0]})
@@ -687,7 +687,7 @@ class WizardImportFatturapa(models.TransientModel):
                       'Inserita data di scadenza da XML. '
                       'Verificare congruenza')
                 )
-            elif payment_term_found and prospect > 80:
+            elif payment_term_found and len(totdue) and prospect > 80:
                 invoice.write({
                     'payment_term_id': payment_term_found.id,
                     'date_due': totdue[-1][0]})
@@ -799,14 +799,15 @@ class WizardImportFatturapa(models.TransientModel):
         if partner.parent_id:
             partner = partner.parent_id
             partner_id = partner.id
-        invoice_data, company, partner, wt_found = invoice_model.\
-            xml_get_header_data(
+        (invoice_data,
+         company,
+         partner,
+         wt_found) = invoice_model.xml_get_header_data(
             self, fatt, fatturapa_attachment, FatturaBody, partner_id)
 
         purchase_journal = self.get_purchase_journal(company)
         # purchase_journal = invoice_model._default_journal()
-        credit_account_id = purchase_journal.default_credit_account_id.id
-        # credit_account_id = invoice_model._default_account()
+        credit_account = purchase_journal.default_credit_account_id
         invoice_data.update({
             'account_id': partner.property_account_payable_id.id,
             'partner_id': partner_id,
@@ -822,17 +823,14 @@ class WizardImportFatturapa(models.TransientModel):
         e_invoice_line_ids = []
         e_invoice_line_ids_2 = {}
 
-        if self.e_invoice_detail_level > '0':
-            if (partner.e_invoice_default_account_id):
-                credit_account = partner.e_invoice_default_account_id
+        if partner.e_invoice_default_account_id:
+            credit_account = partner.e_invoice_default_account_id
 
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
 
             if self.e_invoice_detail_level == '2':
-                if (partner.e_invoice_default_account_id):
-                    credit_account_id = partner.e_invoice_default_account_id.id
                 invoice_line_data = self._prepareInvoiceLine(
-                    credit_account_id, line, wt_found, partner_id=partner_id)
+                    credit_account.id, line, wt_found, partner_id=partner_id)
                 product = self.get_line_product(line, partner)
                 if product:
                     invoice_line_data['product_id'] = product.id
@@ -846,7 +844,7 @@ class WizardImportFatturapa(models.TransientModel):
                     'account.invoice.line').id
                 account_tax = self.get_tax(
                     company_id, line.AliquotaIVA,
-                    line.Natura, partner=line.partner_id)
+                    line.Natura, partner=partner)
 
                 if account_tax not in e_invoice_line_ids_2:
                     e_invoice_line_ids_2[account_tax] = float(0)
@@ -874,7 +872,7 @@ class WizardImportFatturapa(models.TransientModel):
         if Walfares and self.e_invoice_detail_level == '2':
             for walfareLine in Walfares:
                 invoice_line_data = self._prepareWelfareLine(
-                    credit_account_id, walfareLine, wt_found)
+                    credit_account.id, walfareLine, wt_found)
                 invoice_line_id = invoice_line_model.create(
                     invoice_line_data).id
                 invoice_lines.append(invoice_line_id)

@@ -98,8 +98,8 @@ class FatturaPAAttachmentIn(models.Model):
             if xml_supplier_id < 0:
                 continue
             partner = partner_model.browse(xml_supplier_id)
-            if partner.vat == self.env.user.company_id.vat:
-                continue
+            # if partner.vat == self.env.user.company_id.vat:
+            #     continue
             att.xml_supplier_id = xml_supplier_id
             att.invoices_number = len(inv_xml.FatturaElettronicaBody)
             att.registered = False

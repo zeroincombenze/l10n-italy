@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
+
 
 <template id="report_giornale">
     <t t-call="report.html_container">
         <t t-set="title" t-value="'Stampa libro giornale'"/>
+        <t t-set="l10n_it_count_fiscal_year" t-value="year_footer"/>
         <t t-call="l10n_it_account.internal_layout">
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
@@ -30,8 +31,8 @@
                             <th class="left_without_line">Ref</th>
                             <th class="left_without_line">Account code</th>
                             <th class="left_without_line" style="min-width:10%">Account name</th>
-                            <th class="left_without_line" style="min-width:15%">Partner name</th>
-                            <th class="left_without_line" style="max-width:10%">Name</th>
+                            <!-- <th class="left_without_line" style="min-width:15%">Partner name</th> -->
+                            <th class="left_without_line" style="max-width:15%">Name</th>
                             <th class="right_without_line">Debit</th>
                             <th class="right_without_line">Credit</th>
                         </tr>
@@ -51,7 +52,7 @@
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
+                            <!-- <td class="left_without_line"> </td> -->
                             <td class="left_without_line">Initial Balance</td>
                             <!-- Debit -->
                             <td class="right_without_line">
@@ -72,9 +73,6 @@
 
                             <t t-if="line.move_id.id != save_move_id">
                                <t t-set="class_new_move" t-value="'new_move'"/>
-                               <tr style="page-break-inside: avoid;" >
-                                   <td colspan="10"><hr></hr></td>
-                               </tr>
                             </t>
                             <t t-if="line.move_id.id == save_move_id">
                                <t t-set="class_new_move" t-value="''"/>
@@ -113,14 +111,20 @@
                                 </td>
                                 <!-- partner name -->
                                 <td class="left_without_line">
-                                    <div style="page-break-inside: avoid"
-                                    t-esc="line.partner_id.name" />
+                                    <t t-if="line.account_id.user_type_id.type in ['receivable', 'payable']">
+                                        <div style="page-break-inside: avoid;word-break: break-all;"
+                                        t-esc="line.partner_id.name" />
+                                    </t>
+                                    <t t-else="">
+                                        <div style="page-break-inside: avoid;word-break: break-all;"
+                                        t-esc="line.name" />
+                                    </t>
                                 </td>
                                 <!-- Name -->
-                                <td class="left_without_line">
+                                <!-- <td class="left_without_line">
                                     <div style="page-break-inside: avoid"
                                     t-esc="line.name" />
-                                </td>
+                                </td> -->
                                 <!-- Debit -->
                                 <td class="right_without_line">
                                     <div t-if="line.debit"
@@ -166,5 +170,5 @@
         </t>
     </t>
 </template>
-</data>
-</openerp>
+
+</odoo>

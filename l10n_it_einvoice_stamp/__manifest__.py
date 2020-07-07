@@ -7,7 +7,7 @@
 {
     'name': 'Italian Localization - Tax Stamp',
     'summary': 'Tax stamp automatic management',
-    'version': '10.0.1.0.4',
+    'version': '10.0.1.0.5',
     'category': 'Localization/Italy',
     'author': 'Odoo Community Association (OCA) and other subjects',
     'website': 'https://odoo-community.org/',
@@ -22,6 +22,7 @@
         'views/invoice_view.xml',
         'views/product_view.xml',
         'views/company_view.xml',
+        'report/stamp_statement.xml',
     ],
     'installable': True,
     'development_status': 'Beta',

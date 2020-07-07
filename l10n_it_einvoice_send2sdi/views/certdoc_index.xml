@@ -1,5 +1,5 @@
 <odoo>
-  <data>
+
     <template id="index_page" name="Example page" page="True">
       <t t-call="website.layout">
         <div class="oe_structure">
@@ -13,5 +13,5 @@
         </div>
       </t>
     </template>
-  </odoo>
-</data>
+
+ </odoo>

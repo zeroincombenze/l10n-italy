@@ -1,0 +1,1 @@
+VAT statement to send

@@ -39,8 +39,6 @@ class MultireportTemplate(models.Model):
     _description = "Multi Report Template"
 
     def _get_body_header(self):
-        import pdb
-        pdb.set_trace()
         model = False
         if self.ir_model_id:
             model = self.ir_model_id.model

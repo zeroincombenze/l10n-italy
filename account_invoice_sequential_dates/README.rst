@@ -1,8 +1,10 @@
 
 =========================================
-|icon| Check invoice date consistency 0.1
+|icon| Invoice sequential date 10.0.1.0.4
 =========================================
 
+
+**Check invoice date consistency**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_invoice_sequential_dates/static/description/icon.png
 
@@ -15,33 +17,36 @@
 Overview / Panoramica
 =====================
 
-|en| This module check for sequential invoice date because Italian law.
+|en| This module helps ensuring the sequence of sale invoice numbers because Italian law.
 
-Like OCA module, out_invoice dates are checked.
+This modulo was deprecated by Italian OCA Group
+when OCA published a module to ensue the chronology of invoice numbers.
+The OCA module is account_invoice_constraint_chronology in repository account-financial-tools.
 
-Also in_invoice registration date are checked (this function is not [yet]
-implemented in OCA module).
+This module acts in different way because Italian law is more restrictive from European rules.
+
+It prevents the validation of sale invoices when:
+
+* invoice date is less than previous invoice number date
+* invoice date is greater then next invoice date, when invoice ir re-validated
+
 
 |
 
-|it| Questo modulo controlla la sequenza delle date della fattura per onorare la
+|it| Sequenza numero fattura
+
+Questo modulo controlla la sequenza delle date della fattura per onorare la
 legge fiscale italiana.
 
-Come il modulo OCA è controllata la sequenza delle date della fatture di
-vendita.
-Inoltre è verificata la sequenza della date di registrazione delle fatture
-di acquisto (queste funzione non è [ancora] implementata nel modulo OCA).
+Il modulo è stato abbandoanto dal gruppo Italiano di OCA quando OCA ha publicato un modulo analogo
+Tcon il nome account_invoice_constraint_chronology nella repository account-financial-tools.
 
-Il controllo è effettuato sull'anno fiscale e permette la registrazione
-contestuale di fatture su 2 anni fiscali diversi durante il periodo di
-accavallamento degli esercizi.
+Questo modulo agisce in modo diverso a causa della legislazione italiana più restrittiva delle regole europee.
 
-::
+Il modulo previene la validazione se:
 
-    Normativa:
-
-* `DPR 633 art. 23 <http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200002300000000&articolo=Articolo%2023>`__
-
+* La data fattura è antecedente la precednte fattura
+* La data fattura è posteriore rispetto alla successiva fattura, se rivalidata
 
 
 |
@@ -58,6 +63,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -71,7 +77,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| /home/odoo/10.0/l10n-italy/                                                |
 +----------------------------------------------------------------------------+
 
 ::
@@ -82,7 +88,7 @@ Installation / Installazione
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
 
 From UI: go to:
 
@@ -92,8 +98,20 @@ From UI: go to:
 
 |
 
+Configuration / Configurazione
+------------------------------
+
+Go to:
+
+|menu| Accounting > Configuration > Journals > Journals  and activate the option *Check Chronology* on the relevant journals. After the installation of the module, this option will be active on *sale* and *sale refund* journals.
+
+
+
+|
+
 Upgrade / Aggiornamento
 -----------------------
+
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -106,6 +124,7 @@ Upgrade / Aggiornamento
 ::
 
     odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -163,19 +182,14 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* Odoo Community
+
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
-* Davide Corio <davide.corio@domsense.com>
-* Luca Subiaco <subluca@gmail.com>
-* Simone Orsi <simone.orsi@domsense.com>
-* Mario Riva <mario.riva@domsense.com>
-* Mauro Soligo <mauro.soligo@katodo.com>
-* Giovanni Barzan <giovanni.barzan@gmail.com>
-* Lorenzo Battistini <lorenzo.battistini@albatos.com>
-* Roberto Onnis <onnis.roberto@gmail.com>
+
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
@@ -200,7 +214,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2020-05-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -259,4 +273,5 @@ Last Update / Ultimo aggiornamento: 2019-12-31
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+

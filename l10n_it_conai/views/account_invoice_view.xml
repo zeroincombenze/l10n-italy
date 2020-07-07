@@ -13,7 +13,6 @@
 
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
                 <field name="conai_category_id"/>
-                <field name="conai_amount"/>
             </xpath>
 
         </field>
@@ -47,6 +46,7 @@
                 <field name="product_id" readonly="1"/>
                 <field name="quantity" readonly="1"/>
                 <field name="price_unit" readonly="1"/>
+                <field name="conai_exemption_id"/>
                 <field name="weight" sum="Weight Total"/>
                 <field name="conai_category_id"/>
                 <field name="conai_amount" readonly="1" sum="CONAI Total"/>
@@ -62,12 +62,14 @@
                 <field name="partner_id"/>
                 <field name="product_id"/>
                 <field name="conai_category_id"/>
+                <field name="conai_exemption_id"/>
                 <filter string="Con conai" domain="[('conai_category_id','!=', False)]"/>
                 <filter string="Senza conai" domain="[('conai_category_id','=', False)]"/>
                 <filter string="Con peso" domain="[('weight','!=', False), ('weight','!=', 0.0)]"/>
                 <filter string="Senza peso" domain="['|',('weight','=', False), ('weight','=', 0.0)]"/>
                 <group expand="0" string="Group By">
                     <filter name="group_by_category_id" string="Categoria conai" domain="[]" context="{'group_by': 'conai_category_id'}"/>
+                    <filter name="group_by_exemption_id" string="Esenzione conai" domain="[]" context="{'group_by': 'conai_exemption_id'}"/>
                     <filter name="group_by_date_invoice" string="Data fattura" domain="[]" context="{'group_by': 'date_invoice'}"/>
                 </group>
             </search>

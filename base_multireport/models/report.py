@@ -110,30 +110,45 @@ class Report(models.Model):
         model = report.model.replace('.', '_')
         # Fallback value path: report, template, style, partner, company
         value = get_obj_value(param)
+        template = False
+        if report_model_style and report_model_style.origin != 'odoo':
+            template_in_style = 'template_%s' % model
+            if (not template and
+                    report_model_style and
+                    hasattr(report_model_style, template_in_style)):
+                template = getattr(report_model_style, template_in_style)
+
+            if hasattr(report, param):
+                value = getattr(report, param)
+                if param == 'custom_footer' and value == '<p><br></p>':
+                    value = False
+            if not value and template and hasattr(template, param):
+                value = getattr(template, param)
+                if param == 'custom_footer' and value == '<p><br></p>':
+                    value = False
         if (not value and
                 report_model_style and
-                report_model_style.origin != 'odoo'):
-            template = get_obj_value('template_%s' % model,
-                                     object=report_model_style)
-            if template:
-                value = get_obj_value(param, object=template)
-            if not value:
-                value = get_obj_value(param, object=report_model_style)
-        if not value:
-            partner = get_obj_value('partner_id')
-            if partner:
-                value = get_obj_value(param, object=partner)
-        if not value:
-            value = get_obj_value(param, object=company)
-        if not value:
-            value = get_obj_value(param, object=company.partner_id)
-        value = post_value(param, value)
-        if param in ('custom_header', 'custom_footer'):
+                hasattr(report_model_style, param)):
+            value = getattr(report_model_style, param)
+            if param == 'custom_footer' and value == '<p><br></p>':
+                value = False
+        if param == 'footer_mode' and (not value or value == 'standard'):
+            if company.custom_footer:
+                value = 'custom'
+            else:
+                value = 'auto'
+        elif not value and param in self.DEFAULT_VALUES:
+            value = self.DEFAULT_VALUES[param]
+            if value.startswith('$company'):
+                value = getattr(company, value.split('.')[1])
+        if param in self.BOOL_PARAMS:
+            value = os0.str2bool(value, True)
+        elif param in ('custom_header', 'custom_footer'):
             banks = ''
             for bank in company.partner_id.bank_ids:
                 if bank.journal_id and any(
                         [x.display_on_footer for x in bank.journal_id]):
-                    banks = banks + '</br>' + bank.acc_number
+                    banks = banks + ' </br>' + bank.acc_number
             banks = banks.strip()
             param = {
                 'banks': banks,
@@ -156,13 +171,20 @@ class Report(models.Model):
                        'ipa_code',
                        'mobile',
                        ):
-                param[nm] = get_obj_value(nm, object=company.partner_id) or ''
+                if hasattr(company.partner_id, nm):
+                    param[nm] = getattr(company.partner_id, nm)
+                else:
+                    param[nm] = ''
             for nm in ('country_id', 'state_id'):
-                param[nm] = get_obj_value(
-                    nm, object=company.partner_id, ttype='2many2one') or ''
+                if hasattr(company.partner_id, nm):
+                    param[nm] = getattr(company.partner_id, nm).name
+                else:
+                    param[nm] = ''
             value = value % param
             if param == 'custom_header':
                 value = 'div class="header">%s</div>' % value
+            # elif param == 'custom_footer':
+            #    value = 'div class="footer">%s</div>' % value
         return value or None
 
     @api.model

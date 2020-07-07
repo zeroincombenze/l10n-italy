@@ -39,8 +39,11 @@
                     <div class="page">
 
                         <div id="distinta_number" class="row with_bord" style="padding: 2px;">
+                            <br></br>
+                            <br></br>
                             <p class="distinta_number">
                                 Ricevute Bancarie list nr <span t-esc="o.name or 'Bozza'"/> del <span t-field="o.registration_date"/>
+                                Banca <span t-esc="o.config_id.bank_id.bank_name"/> <span t-esc="o.config_id.bank_id.acc_number"/>
                             </p>
                         </div>
 
@@ -53,6 +56,8 @@
                                         </th>
                                         <th>
                                             <p>Invoice Number</p>
+                                        </th>
+                                        <th>
                                             <p>Invoice Date</p>
                                         </th>
                                         <th>
@@ -80,6 +85,8 @@
                                         </td>
                                         <td>
                                             <p><span t-field="line.invoice_number" /></p>
+                                        </td>
+                                        <td>
                                             <p><span t-field="line.invoice_date" /></p>
                                         </td>
                                         <td>

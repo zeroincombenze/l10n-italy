@@ -34,7 +34,7 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
             raise UserError('Imported file is not a zip file')
         zf = zipfile.ZipFile(io.BytesIO(base64.b64decode(self.zip)))
         att_list = []
-        ir_att_model = self.env['ir.attachment']
+        # ir_att_model = self.env['ir.attachment']
         if self.type == 'sale':
             model = 'fatturapa.attachment.out'
             att_model = self.env[model]
@@ -49,23 +49,26 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
                     continue
                 try:
                     data = zf.read(xml_fullfile)
-                except KeyError:
-                    raise UserError(
-                        'Error extracting %s from zip file' % xml_fullfile)
+                except BaseException as e:
+                    # raise UserError(
+                    #     'Error %s extracting %s from zip file' % (
+                    #         e, xml_fullfile))
+                    continue
                 vals = {
                     'name': xml_file,
                     'datas_fname': xml_file,
                     'datas': data.encode('base64'),
                     'type': 'binary',
                     'mimetype': 'text/xml',
-                    'extension': '.xml',
+                    # 'extension': '.xml',
                 }
                 try:
                     att_id = att_model.create(vals)
                     att_list.append(att_id.id)
-                except BaseException:
+                except BaseException as e:
                     raise UserError(
-                        'Error extracting %s from zip file' % xml_file)
+                        'Error %s extracting %s from zip file' % (
+                            e, xml_fullfile))
         return {
             'name': "Imported Attachment",
             'view_type': 'form',

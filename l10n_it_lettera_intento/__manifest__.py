@@ -10,7 +10,7 @@
 {
     'name': 'Lettere di intento',
     'summary': 'Lettere di intento',
-    'version': '10.0.0.1.1',
+    'version': '10.0.0.1.2',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',
@@ -21,6 +21,7 @@
         'views/italy_lettera_intento_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/config_view.xml',
+        'views/account_invoice_view.xml',
     ],
     'installable': True,
 }

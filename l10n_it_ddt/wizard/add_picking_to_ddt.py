@@ -27,10 +27,10 @@ class AddPickingToDdt(models.TransientModel):
             'sale.order', fieldname)
         # check on picking, if field is valid
         if sp_fieldname and picking[sp_fieldname]:
-             if picking[sp_fieldname] != self.ddt_id[pp_fieldname]:
-                 raise UserError(
-                     _('Selected Pickings have different %s' %
-                       condition_help))
+            if picking[sp_fieldname] != self.ddt_id[pp_fieldname]:
+                raise UserError(
+                    _('Selected Pickings have different %s' %
+                      condition_help))
         # otherwise check in sale order of picking (if exists)
         elif (so_fieldname and
               picking.sale_id and

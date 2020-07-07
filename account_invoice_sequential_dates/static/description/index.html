@@ -1,43 +1,48 @@
+
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#162832;">Check invoice date consistency</h2>
+            <h2 class="oe_slogan" style="color:#162832;">Check invoice date consistency / Sequenza numero fattura</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
             </p>
-            <p class="oe_mt16" align="justify">This module check for sequential invoice date because Italian law.
+            <p class="oe_mt16" align="justify">This module helps ensuring the sequence of sale invoice numbers because Italian law.
 <p align="justify">
-Like OCA module, out_invoice dates are checked.
+This modulo was deprecated by Italian OCA Group
+when OCA published a module to ensue the chronology of invoice numbers.
+The OCA module is account_invoice_constraint_chronology in repository account-financial-tools.
 </p><p align="justify">
-Also in_invoice registration date are checked (this function is not [yet]
-implemented in OCA module).
+This module acts in different way because Italian law is more restrictive from European rules.
+</p><p align="justify">
+It prevents the validation of sale invoices when:
+</p><p align="justify">
+<ul>
+<li>invoice date is less than previous invoice number date</li>
+<li>invoice date is greater then next invoice date, when invoice ir re-validated</li>
+</ul>
 </p></p>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
             </p>
-            <p class="oe_mt16" align="justify">Questo modulo controlla la sequenza delle date della fattura per onorare la
-legge fiscale italiana.
+            <p class="oe_mt16" align="justify">Sequenza numero fattura
 <p align="justify">
-Come il modulo OCA &egrave; controllata la sequenza delle date della fatture di
-vendita.
-Inoltre &egrave; verificata la sequenza della date di registrazione delle fatture
-di acquisto (queste funzione non &egrave; [ancora] implementata nel modulo OCA).
+Questo modulo controlla la sequenza delle date della fattura per onorare la
+legge fiscale italiana.
 </p><p align="justify">
-Il controllo &egrave; effettuato sull'anno fiscale e permette la registrazione
-contestuale di fatture su 2 anni fiscali diversi durante il periodo di
-accavallamento degli esercizi.
+Il modulo &#232; stato abbandoanto dal gruppo Italiano di OCA quando OCA ha publicato un modulo analogo
+Tcon il nome account_invoice_constraint_chronology nella repository account-financial-tools.
 </p><p align="justify">
-
-<code>
-    Normativa:
-</code>
+Questo modulo agisce in modo diverso a causa della legislazione italiana pi&#249; restrittiva delle regole europee.
+</p><p align="justify">
+Il modulo previene la validazione se:
 </p><p align="justify">
 <ul>
-<li><a href="http://def.finanze.it/DocTribFrontend/getAttoNormativoDetail.do?ACTION=getArticolo&id={75A4827C-3766-4ECC-9C45-00C8D6CDC552}&codiceOrdinamento=200002300000000&articolo=Articolo%2023">DPR 633 art. 23</a></li>
+<li>La data fattura &#232; antecedente la precednte fattura</li>
+<li>La data fattura &#232; posteriore rispetto alla successiva fattura, se rivalidata</li>
 </ul>
 </p></p>
         </div>
@@ -50,19 +55,13 @@ accavallamento degli esercizi.
     <div class="oe_row oe_spaced">
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Authors / Autori:</p>
-            <p class="oe_mt16">* Odoo Community</p>
+            <p class="oe_mt16"><ul>
+<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+</ul></p>
         </div>
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Contributors / Collaboratori:</p>
             <p class="oe_mt16"><ul>
-<li>Davide Corio &lt;davide.corio@domsense.com&gt;</li>
-<li>Luca Subiaco &lt;subluca@gmail.com&gt;</li>
-<li>Simone Orsi &lt;simone.orsi@domsense.com&gt;</li>
-<li>Mario Riva &lt;mario.riva@domsense.com&gt;</li>
-<li>Mauro Soligo &lt;mauro.soligo@katodo.com&gt;</li>
-<li>Giovanni Barzan &lt;giovanni.barzan@gmail.com&gt;</li>
-<li>Lorenzo Battistini &lt;lorenzo.battistini@albatos.com&gt;</li>
-<li>Roberto Onnis &lt;onnis.roberto@gmail.com&gt;</li>
 <li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
 </ul></p>
         </div>

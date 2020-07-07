@@ -93,6 +93,8 @@
                         attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
                 <button name="action_send_ddt_mail" type="object" string="Send by Mail"
                         attrs="{'invisible':[('state','in', 'draft')]}"/>
+                <button name="set_draft" type="object" string="Set to draft"
+                        attrs="{'invisible':[('state', '!=', 'done')]}"/>
             </button>
             <field name="name" position="attributes">
                 <attribute name="invisible">1</attribute>

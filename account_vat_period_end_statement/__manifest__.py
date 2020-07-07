@@ -22,20 +22,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-
 {
     "name": "Period End VAT Statement",
-    "version": "10.0.1.4.2",
-    'category': 'Generic Modules/Accounting',
+    'summary': 'Versamento Iva periodica (mensile o trimestrale) ',
+    "version": "10.0.1.5.1",
+    'category': 'Localization/Italy',
     'license': 'AGPL-3',
     "depends": [
-        "l10n_it_account",
-        "report",
-        "l10n_it_fiscalcode",
-        "date_range",
         "account_accountant",
         "account_tax_balance",
+        "date_range",
+        "l10n_it_account",
+        "l10n_it_ade",
+        "l10n_it_fiscalcode",
+        "report",
         ],
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
@@ -51,4 +51,5 @@
         'views/account_view.xml',
     ],
     'installable': True,
+    'development_status': 'Beta',
 }

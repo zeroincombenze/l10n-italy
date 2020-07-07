@@ -17,10 +17,12 @@
             <t t-if="o.type == 'out_refund'" t-set="doctype" t-value="'NC di cortesia'"/>
             <t t-if="not doctype" t-set="doctype" t-value="'Fattura di cortesia'"/>
         </xpath>
+        <!--
         <xpath expr="//t[@t-call='base_multireport.report_invoice_footer']" position="before">
             <t t-set="ending_message"
-               t-value="'Documento non valido ai fini fiscali. L\'originale è disponibile all\'indirizzo PEC o codice SdI fornito oppure nell\'area riservata.'"/>
+               t-value="'Documento non valido ai fini fiscali ai sensi art. 21 DPR 633/72. L\'originale è disponibile all'indirizzo PEC o SDI fornito, oppure nell\'area riservata dell\'Agenzia delle Entrate'"/>
         </xpath>
+        -->
     </template>
 
     <template id="report_delivery_invoice_document" inherit_id="base_multireport.report_invoice_document" primary="True">

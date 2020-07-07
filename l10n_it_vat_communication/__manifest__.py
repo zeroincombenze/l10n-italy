@@ -27,6 +27,6 @@
         'wizard/views/wizard_export_view.xml',
         'wizard/views/set_invoice_commtype_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
 }

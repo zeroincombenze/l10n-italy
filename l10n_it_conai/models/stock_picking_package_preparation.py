@@ -46,17 +46,17 @@ class StockPickingPackagePreparationLine(models.Model):
         else:
             percent = 0
         category_id = False
+        price_unit = 0.0
         if self.conai_category_id:
             category_id = self.conai_category_id
-            price_unit = category_id.conai_price_unit
+            price_unit = (category_id.conai_price_unit or 0.0)
         elif self.product_id:
-            price_unit = 0.0
             if self.product_id.conai_category_id:
                 category_id = self.product_id.conai_category_id
             elif self.product_id.product_tmpl_id:
                 category_id = self.product_id.product_tmpl_id.conai_category_id
         if category_id:
-            price_unit = category_id.conai_price_unit
+            price_unit = (category_id.conai_price_unit or 0.0)
             res['conai_category_id'] = category_id.id
         weight_conv = 1000
         res['conai_amount'] = self.weight * self.product_uom_qty * price_unit * (

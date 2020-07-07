@@ -1108,11 +1108,11 @@ class WizardExportFatturapa(models.TransientModel):
 
     def exportFatturaPA(self):
         invoice_model = self.env['account.invoice']
-        invoices_by_partner = self.group_invoices_by_partner()
         attachments = self.env['fatturapa.attachment.out']
-        for partner_id in invoices_by_partner:
-            invoice_ids = invoices_by_partner[partner_id]
-            company, partner, parent = self.getPartnerCompanyId(invoice_ids)
+
+        invoice_ids = self.env.context.get('active_ids', False)
+        for invoice_id in invoice_ids:
+            company, partner, parent = self.getPartnerCompanyId([invoice_id])
             fatturapa = FatturaElettronica(
                 versione=self._getFormatoTrasmissione(partner,
                                                       parent))
@@ -1122,22 +1122,22 @@ class WizardExportFatturapa(models.TransientModel):
             try:
                 self.with_context(context_partner).setFatturaElettronicaHeader(
                     company, partner, parent, fatturapa)
-                for invoice_id in invoice_ids:
-                    inv = invoice_model.with_context(context_partner).browse(
+
+                inv = invoice_model.with_context(context_partner).browse(
                         invoice_id)
-                    if inv.fatturapa_attachment_out_id:
+                if inv.fatturapa_attachment_out_id:
                         raise UserError(
                             _("Invoice %s has e-invoice export file yet.") % (
                                 inv.number))
-                    if self.report_print_menu:
+                if self.report_print_menu:
                         self.generate_attach_report(inv)
-                    invoice_body = FatturaElettronicaBodyType()
-                    self.with_context(
+                invoice_body = FatturaElettronicaBodyType()
+                self.with_context(
                         context_partner
                     ).setFatturaElettronicaBody(
                         inv, invoice_body)
-                    fatturapa.FatturaElettronicaBody.append(invoice_body)
-                    # TODO DatiVeicoli
+                fatturapa.FatturaElettronicaBody.append(invoice_body)
+                # TODO DatiVeicoli
 
                 number = self.setProgressivoInvio(fatturapa)
             except (SimpleFacetValueError, SimpleTypeValueError) as e:
@@ -1147,9 +1147,7 @@ class WizardExportFatturapa(models.TransientModel):
             attach = self.saveAttachment(fatturapa, number)
             attachments |= attach
 
-            for invoice_id in invoice_ids:
-                inv = invoice_model.browse(invoice_id)
-                inv.write({'fatturapa_attachment_out_id': attach.id})
+            inv.write({'fatturapa_attachment_out_id': attach.id})
 
         action = {
             'view_type': 'form',

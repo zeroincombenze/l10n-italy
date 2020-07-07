@@ -1,6 +1,6 @@
 
 ==================================
-|icon| CONAI Management 10.0.0.1.2
+|icon| CONAI Management 10.0.0.1.5
 ==================================
 
 
@@ -182,7 +182,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-05-06
+Last Update / Ultimo aggiornamento: 2020-06-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

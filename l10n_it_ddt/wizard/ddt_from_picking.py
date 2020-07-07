@@ -110,11 +110,11 @@ class DdTFromPickings(models.TransientModel):
                 'stock.picking.package.preparation', fieldname)
             if not pp_fieldname:
                 return vals
+            sp_fieldname = ddt_model.fieldname_of_model(
+                'stock.picking', fieldname)
+            so_fieldname = ddt_model.fieldname_of_model(
+                'sale.order', fieldname)
             if not vals.get(fieldname):
-                sp_fieldname = ddt_model.fieldname_of_model(
-                    'stock.picking', fieldname)
-                so_fieldname = ddt_model.fieldname_of_model(
-                    'sale.order', fieldname)
                 dc_fieldname = ddt_model.fieldname_of_model(
                     'delivery.carrier', fieldname)
                 dt_fieldname = ddt_model.fieldname_of_model(
@@ -166,10 +166,10 @@ class DdTFromPickings(models.TransientModel):
             elif fieldname != 'note':
                 # check on picking, if field is valid
                 if sp_fieldname and picking[sp_fieldname]:
-                     if picking[sp_fieldname].id != vals[pp_fieldname]:
-                         raise UserError(
-                             _('Selected Pickings have different %s' %
-                               condition_help))
+                    if picking[sp_fieldname].id != vals[pp_fieldname]:
+                        raise UserError(
+                            _('Selected Pickings have different %s' %
+                              condition_help))
                 # otherwise check in sale order of picking (if exists)
                 elif (picking.sale_id and
                       picking.sale_id[so_fieldname] and

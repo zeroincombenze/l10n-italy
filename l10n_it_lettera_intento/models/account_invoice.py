@@ -17,6 +17,11 @@ _logger = logging.getLogger(__name__)
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
+    lettera_intento = fields.Boolean('Lettera di intento',
+        related='fiscal_position_id.lettera_intento',
+        store=True, readonly=True
+    )
+
     @api.model
     def set_values(self, invoices, vals):
         if 'fiscal_position_id' in vals:

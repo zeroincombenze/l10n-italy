@@ -74,9 +74,9 @@ class AccountTax(models.Model):
             deductible = tax_balance = tax.balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
-            if tax.nature_id.code == 'N6':
-                undeductible = tax_balance
-                deductible = 0
+            # if tax.nature_id.code == 'N6':
+            #     undeductible = tax_balance
+            #     deductible = 0
             if registry_type == 'supplier':
                 return (tax_name, -base_balance,
                         -tax_balance, -deductible, -undeductible)

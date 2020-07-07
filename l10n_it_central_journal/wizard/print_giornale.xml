@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="wizard_giornale" model="ir.ui.view">
-            <field name="name">Central Journal</field>
-            <field name="model">wizard.giornale</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Central Journal">
-                    <separator string="Dates movements"/>
-                    <group>
-                        <field name="daterange"/>
-                        <field name="company_id"/>
-                        <field name="last_def_date_print" readonly="1"/>
-                        <field name="date_move_line_from" invisible="1"/>
-                        <field name="date_move_line_from_view" readonly="1"/>
-                        <field name="date_move_line_to"/>
-                    </group>
-                    <separator string="Journals"/>
-                    <group>
+    <record id="wizard_giornale" model="ir.ui.view">
+        <field name="name">Central Journal</field>
+        <field name="model">wizard.giornale</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Central Journal">
+                <separator string="Dates movements"/>
+                <group>
+                    <field name="daterange"/>
+                    <field name="company_id"/>
+                    <field name="last_def_date_print" readonly="1"/>
+                    <field name="date_move_line_from_view" invisible="1"/>
+                    <field name="first_date_print" invisible="1"/>
+                    <field name="date_move_line_from"/>
+                    <field name="date_move_line_to"/>
+                </group>
+                <separator string="Journals"/>
+                <group>
                     <field name="journal_ids" colspan="4" nolabel="1" height="250"
                            domain="[('central_journal_exclude', '=', False)]"/>
-                    </group>
-                        <separator string="Layout"/>
-                    <group>
+                </group>
+                <separator string="Layout"/>
+                <group>
                     <field name="target_move"/>
                     <field name="fiscal_page_base"/>
                     <field name="start_row"/>
+                    <field name="year_footer"/>
                     <field name="progressive_credit" invisible="1"/>
                     <field name="progressive_debit2" invisible="1"/>
                 </group>
@@ -56,5 +57,4 @@
             id="menu_giornale"
             icon="STOCK_PRINT"/>
 
-</data>
-        </openerp>
+</odoo>

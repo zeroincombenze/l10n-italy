@@ -251,7 +251,7 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.model
     def get_delivery_value(self, vals, picking, fieldname, condition_help):
-        '''Set specific condition of delivey. Inherit condition from
+        """Set specific condition of delivey. Inherit condition from
         picking > sale order > ddt type > delivery method > customer
         Workflow (rp=res.partner, dt=stock.ddt.type dc=delivery.carrier,
                   so=sale.order, sp=stock.picking,
@@ -282,7 +282,7 @@ class StockPickingPackagePreparation(models.Model):
         6.  field name is "ddt_show_price"
         7.  field name is "shipping_weight"
         (*) field evaluated by sum, searched only in <sp> and <so>
-        '''
+        """
         ddt_model = self.env['stock.picking.package.preparation']
         pp_fieldname = ddt_model.fieldname_of_model(
             'stock.picking.package.preparation', fieldname)
@@ -364,10 +364,10 @@ class StockPickingPackagePreparation(models.Model):
         elif fieldname != 'note':
             # check on picking, if field is valid
             if sp_fieldname and picking[sp_fieldname]:
-                 if picking[sp_fieldname].id != vals[pp_fieldname]:
-                     raise UserError(
-                         _('Selected Pickings have different %s' %
-                           condition_help))
+                if picking[sp_fieldname].id != vals[pp_fieldname]:
+                    raise UserError(
+                        _('Selected Pickings have different %s' %
+                          condition_help))
             # otherwise check in sale order of picking (if exists)
             elif (picking.sale_id and
                   picking.sale_id[so_fieldname] and
@@ -469,6 +469,18 @@ class StockPickingPackagePreparation(models.Model):
                 package.ddt_number = (
                     package.ddt_type_id.sequence_id.next_by_id())
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
+
+    @api.multi
+    def set_draft(self):
+        invoiced = bool(self.invoice_id)
+        for line in self.line_ids:
+            if line.invoice_line_id:
+                invoiced = True
+        if invoiced:
+            raise UserError(
+                _("Impossible to set draft document when invoice!"))
+        self.write({'state': 'draft', 'date_done': False})
+        return True
 
     @api.multi
     def set_done(self):
@@ -746,8 +758,7 @@ class StockPickingPackagePreparation(models.Model):
                             (not line.product_id or
                              line.product_id.invoice_policy == 'order')):
                         line.invoice_line_create(invoices[group_key].id,
-                                                 line.qty_to_invoice,
-                                                 offset=seq_offset)
+                                                 line.qty_to_invoice)
             # Allow additional operations from ddt
             ## ddt.other_operations_on_ddt(invoice)
 
@@ -960,8 +971,8 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         Add values used for invoice creation
         """
-        lines = super(StockPickingPackagePreparationLine, self).\
-            _prepare_lines_from_pickings(picking_ids)
+        lines = super(StockPickingPackagePreparationLine,
+            self)._prepare_lines_from_pickings(picking_ids)
         for line in lines:
             sale_line = False
             if line['move_id']:
@@ -1058,9 +1069,10 @@ class StockPickingPackagePreparationLine(models.Model):
             'Product Unit of Measure')
         offset = offset or 0
         for line in self:
-            # if not float_is_zero(qty, precision_digits=precision):
+            # vals = line._prepare_invoice_line(
+            #     qty=qty, invoice_id=invoice_id, offset=offset)
             vals = line._prepare_invoice_line(
-                qty=qty, invoice_id=invoice_id, offset=offset)
+                qty=qty, invoice_id=invoice_id)
             vals.update({'invoice_id': invoice_id})
             if line.sale_line_id:
                 vals.update(
@@ -1161,7 +1173,6 @@ class StockPickingPackagePreparationLine(models.Model):
         invoice.compute_taxes()
         invoice.message_post_with_view(
             'mail.message_origin_link',
-            values={
-                'self': invoice, 'origin': reference},
+            values={'self': invoice, 'origin': reference},
             subtype_id=self.env.ref('mail.mt_note').id)
         return [invoice.id]

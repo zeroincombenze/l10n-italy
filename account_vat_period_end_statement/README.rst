@@ -1,6 +1,6 @@
 
 ==========================================
-|icon| Period End VAT Statement 10.0.1.4.2
+|icon| Period End VAT Statement 10.0.1.5.1
 ==========================================
 
 
@@ -15,11 +15,118 @@
 Overview / Panoramica
 =====================
 
-|en| N/A
+|en| This module evaluates VAT to pay (or on credit).
+
+Previous debit or credit amount is read from previous VAT statement, according
+to its payments status.
+
 
 |
 
-|it| N/D
+|it| Versamento Iva periodica
+
+::
+
+    Cosa è:
+
+Modulo per calcolare l'importo IVA da pagare (o a credito) sia per i contribuenti
+mensili che trimestrali.
+L'importo del versamento deve essere dichiarato per via telemativa con il modello F24 (non gestito da questo modulo).
+
+L'IVA è calcolata dalle registrazioni contabili inerenti i registri IVA.
+Inoltre viene sottratto l’eventuale credito d’imposta del periodo precedente (o l’eventuale debito inferiore a 25,82€).
+Il risultato finale delle operazioni può essere un importo:
+
+    * debito, da versare all'erario, se pari o superiore a 25,82 euro (altrimenti si riporta in aumento per il periodo successivo)
+    * credito, da computare in detrazione nel periodo successivo.
+
+::
+
+    Destinatari:
+
+Tutti i soggetti passivi IVA in regime non forfettario
+
+::
+
+    Normativa e prassi:
+
+* `Articolo 23 del  DPR n. 633/72 - Registrazione fatture emesse <https://www.gazzettaufficiale.it/eli/id/1972/11/11/072U0633/sg>`__
+* `Articolo 25 del  DPR n. 633/72 - Registrazione fatture degli acquisti <https://www.gazzettaufficiale.it/eli/id/1972/11/11/072U0633/sg>`__
+* Articolo 39 del DPR n. 633/72 - Della tenuta e conservazione dei registri
+
+Normativa non supportata da questo software:
+
+* Articolo 24 del DPR n. 633/72) - Registrazione dei corrispettivi
+
+
+|
+
+Usage / Utilizzo
+----------------
+
+|en| In order to create a 'VAT Statement', open Accounting > Adviser > VAT Statements.
+Select a Journal that will contain the journal entries of the statement.
+The field Tax authority VAT account contains the account where the statement balance will be registered.
+
+The 'VAT statement' object allows to specify every amount and relative account
+used by the statement.
+By default, amounts of debit and credit taxes are automatically loaded
+from taxes of the selected periods (see Configuration to correctly generate the periods).
+Previous debit or credit is loaded from previous VAT statement, according
+to its payments status.
+
+In order to generate the journal entry, click on 'Create move' button, inside the 'Accounts' tab.
+If you select a payment term, the due date(s) will be set.
+
+The 'tax authority' tab contains information about payment(s),
+here you can see statement's result ('authority VAT amount') and residual
+amount to pay ('Balance').
+The statement can be paid like every other debit, by journal item
+reconciliation.
+
+It is also possible to print the 'VAT statement' clicking on print > Print VAT period end statement.
+
+|it| Per fare la liquidazione IVA, aprire Contabilità > Contabilità > Liquidazioni IVA.
+Selezionare un sezionale che conterrà le registrazioni contabili della liquidazione.
+Il campo Conto IVA Erario contiene il conto dove verrà effettuata la registrazione della liquidazione IVA.
+
+L'oggetto 'Liquidazione IVA' permette di specificare ogni importo e il conto utilizzato dalla liquidazione.
+Di norma, gli importi di debito e credito delle tasse vengono caricati automaticamente dai periodi selezionati
+(vedere Configurazione per generare correttamente i periodi).
+I debiti e crediti precedenti vengono caricati dalle liquidazioni IVA precedenti, in base allo stato del loro pagamento.
+
+Per creare la registrazione contabile, cliccare sul bottone 'Crea movimento', dentro il tab 'Conti'.
+Se i termini di pagamento sono impostati viene scritta anche la scadenza (o le scadenze).
+
+Il tab 'Erario' contiene informazioni sui pagamenti,
+qui si possono visualizzare i risultati della liquidazione ('Importo IVA erario')
+e l'importo residuo da pagare ('Importo a saldo').
+La liquidazione può essere pagata come qualunque altro debito, con la riconciliazione delle registrazioni contabili.
+
+È inoltre possibile stampare la liquidazione IVA cliccando su Stampa > Stampa liquidazione IVA.
+
+
+|
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Description / Descrizione                        |  OCA                                                           | Zeroincombenze                                        | Notes / Note                                                 |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Authority VAT account / Conto IVA erario         | Required / Obbligatorio                                        | Not required / Non obbligatorio                       | Il conto serve esclusivamente per la registrazione contabile |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Year footer                                      | |no_check|                                                     | |check|                                               | Come in 10.0                                                 |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Show zero rows / Mostra righe a zero             | |no_check|                                                     | |check|                                               | Mostra righe codici IVA con importo a zero                   |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Statement line fields  / Dati righe liquidazione | Importo IVA                                                    | Base imponibile, IVA, IVA detraibile                  |                                                              |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Data search / Ricerca dati                       | By supplemental VAT account in tax / Campo aggiuntivo in tasse | Based on VAT account in tax / Basato su Odoo standard |                                                              |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+| Multi-company                                    | Based on data range / Basato su intervalli date                | |check|                                               |                                                              |
++--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
+
 
 |
 |
@@ -143,12 +250,28 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Associazione Odoo Italia <http://www.odoo-italia.org>`__
+* `Agile Business Group sagl <http://www.agilebg.com>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
+* Lorenzo Battistini <https://github.com/eLBati>
+* Elena Carlesso
+* Marco Marchiori <marcomarkiori@gmail.com>
+* Sergio Corato <sergiocorato@gmail.com>
+* Andrea Gallina <a.gallina@apuliasoftware.it>
+* Alex Comba <alex.comba@agilebg.com>
+* Alessandro Camilli <camillialex@gmail.com>
+* Simone Rubino <simone.rubino@agilebg.com>
+* Giacomo Grasso <giacomo.grasso.82@gmail.com>
+* Lara Baggio <http://linkgroup.it/>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 |
 
@@ -172,7 +295,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-04-16
+Last Update / Ultimo aggiornamento: 2020-06-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -231,4 +354,5 @@ Last Update / Ultimo aggiornamento: 2020-04-16
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+

@@ -493,14 +493,14 @@ class FatturaPAAttachmentOut(models.Model):
                         'Stato invio fattura="%s"\n'
                         'Note="%s"\n'
                         '\nCronologia invii\n'
-                        '%s\n' % (
-                    doc.get('TipoDocumento'),
-                    doc.get('NumeroFattura'),
-                    doc.get('Destinatario'),
-                    doc.get('DestinatarioPartitaIva', ''),
-                    doc.get('StatoFattura', 'ERRORE SCONOSCIUTO'),
-                    doc.get('Note', ''),
-                    history))
+                        '%s\n' % (doc.get('TipoDocumento'),
+                                  doc.get('NumeroFattura'),
+                                  doc.get('Destinatario'),
+                                  doc.get('DestinatarioPartitaIva', ''),
+                                  doc.get('StatoFattura',
+                                      'ERRORE SCONOSCIUTO'),
+                                  doc.get('Note', ''),
+                                  history))
 
     @api.multi
     def send_verify_via_pec(self, send_channel, invoice):

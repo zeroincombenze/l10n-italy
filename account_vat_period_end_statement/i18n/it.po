@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-12 08:44+0000\n"
-"PO-Revision-Date: 2019-10-12 08:44+0000\n"
+"POT-Creation-Date: 2020-06-23 08:03+0000\n"
+"PO-Revision-Date: 2020-06-23 08:03+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"Generated-By: Babel 2.7.0\n"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
@@ -43,7 +44,9 @@ msgstr "<strong>Totale</strong>"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_account_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_account_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_account_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_account_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_account_id
 msgid "Account"
 msgstr "Conto"
@@ -72,18 +75,22 @@ msgstr "Conti"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
 msgid "Add"
-msgstr "Aggiungi"
+msgstr "Aggiungere"
 
 #. module: account_vat_period_end_statement
 #: model:ir.actions.act_window,name:account_vat_period_end_statement.action_add_period
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Add period"
-msgstr "Aggiungi periodo"
+msgstr "Aggiungere periodo"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_amount
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_amount
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_amount
 msgid "Amount"
 msgstr "Importo"
@@ -94,11 +101,16 @@ msgid "Amount Due"
 msgstr "Importo a saldo"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_annual
+msgid "Annual prospect"
+msgstr "Prospetto annuale"
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_res_company_of_account_end_vat_statement_interest
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_res_company_of_account_end_vat_statement_interest_account_id
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_res_company_of_account_end_vat_statement_interest_percent
 msgid "Apply interest on end vat statement"
-msgstr "Applica interessi su liquidazione"
+msgstr "Interessi su liquidazione IVA"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_authority_vat_amount
@@ -111,10 +123,21 @@ msgid "Base"
 msgstr "Base"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_base_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_base_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_base_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_base_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_base_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_base_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_base_amount
+msgid "Base Amount"
+msgstr "Base imponibile"
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.remove_period
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Annullare"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_res_company
@@ -129,7 +152,7 @@ msgstr "Azienda"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_interest
 msgid "Compute Interest"
-msgstr "Calcola interessi"
+msgstr "Calcolare interessi"
 
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
@@ -140,14 +163,18 @@ msgstr "Confermato"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Create Move"
-msgstr "Crea movimento"
+msgstr "Creare registrazione"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_create_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_add_period_to_vat_statement_create_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement_create_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_create_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_create_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_create_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_create_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_create_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_create_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_create_uid
 msgid "Created by"
 msgstr "Creato da"
@@ -157,27 +184,55 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_add_period_to_vat_statement_create_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement_create_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_create_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_create_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_create_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_create_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_create_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_create_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_create_date
 msgid "Created on"
-msgstr "Data di creazione"
+msgstr "Creato il"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Credit Account Lines"
-msgstr "Righe conti di credito"
+msgstr "Righe conti a credito"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:338
-#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_credit_vat_account_line_ids
-#: code:addons/account_vat_period_end_statement/models/account.py:338
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Credit Nature Lines"
+msgstr "Righe credito per natura"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_credit_vat_nature_line_ids
+msgid "Credit Nature VAT"
+msgstr "IVA natura a credito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Credit Tax Lines"
+msgstr "Righe credito per codice IVA"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:397
+#: code:addons/account_vat_period_end_statement/models/account.py:397
 msgid "Credit VAT"
 msgstr "IVA a credito"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_credit_vat_account_id
 msgid "Credit VAT from previous periods"
-msgstr "IVA a credito da periodi precedenti"
+msgstr "IVA a credito da periodo precedente"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_credit_vat_account_line_ids
+msgid "Credit line VAT"
+msgstr "Riga IVA credito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_credit_vat_move_line_ids
+msgid "Credit tax VAT"
+msgstr "Codice IVA credito"
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
@@ -185,7 +240,7 @@ msgstr "IVA a credito da periodi precedenti"
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:40
 #: code:addons/account_vat_period_end_statement/wizard/remove_period.py:48
 msgid "Current statement not found"
-msgstr "Liquidazione corrente non trovata"
+msgstr "Dichiarazione non trovata"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_date
@@ -200,19 +255,43 @@ msgstr "Date Range"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Debit Account Lines"
-msgstr "Righe conti di debito"
+msgstr "Righe conti a debito"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:319
-#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_debit_vat_account_line_ids
-#: code:addons/account_vat_period_end_statement/models/account.py:319
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Debit Nature Lines"
+msgstr "Righe debito per natura"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_debit_vat_nature_line_ids
+msgid "Debit Nature VAT"
+msgstr "IVA natura a debito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Debit Tax Lines"
+msgstr "Righe debito per codice IVA"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:378
+#: code:addons/account_vat_period_end_statement/models/account.py:378
 msgid "Debit VAT"
 msgstr "IVA a debito"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_debit_vat_account_id
 msgid "Debit VAT from previous periods"
-msgstr "IVA a debito da periodi precedenti"
+msgstr "IVA a debito da periodo precedente"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_debit_vat_account_line_ids
+msgid "Debit line VAT"
+msgstr "Riga IVA debito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_debit_vat_move_line_ids
+msgid "Debit tax VAT"
+msgstr "Codice IVA debito"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
@@ -236,10 +315,24 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement_display_name
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_report_account_vat_period_end_statement_vat_statement_display_name
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_display_name
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_display_name
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_display_name
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_display_name
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_display_name
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_display_name
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_advance_account_id
+msgid "Down payment"
+msgstr "Acconto"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_advance_amount
+msgid "Down payment Amount"
+msgstr "Importo acconto"
 
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
@@ -248,18 +341,18 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:414
+#: code:addons/account_vat_period_end_statement/models/account.py:492
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_interests_debit_vat_account_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:414
+#: code:addons/account_vat_period_end_statement/models/account.py:492
 msgid "Due interests"
 msgstr "Interessi dovuti"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_interests_debit_vat_amount
 msgid "Due interests Amount"
-msgstr "Importo interessi dovuti"
+msgstr "Ammontare interessi dovuti"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_account_vat_period_end_statement_interests_debit_vat_account_id
@@ -267,12 +360,21 @@ msgid "Due interests for three-monthly statments"
 msgstr "Interessi dovuti per liquidazioni trimestrali"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_fiscal_year
+msgid "Fiscal year for report"
+msgstr "Anno fiscale per rapporto"
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_add_period_to_vat_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_report_account_vat_period_end_statement_vat_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_id_11212
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_id_11199
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_id
 msgid "ID"
 msgstr "ID"
@@ -280,7 +382,7 @@ msgstr "ID"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_interest_percent
 msgid "Interest - Percent"
-msgstr "% interessi"
+msgstr "Interesse - Percentuale"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_res_company_of_account_end_vat_statement_interest
@@ -319,7 +421,11 @@ msgstr "Registro sezionale"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement___last_update
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_report_account_vat_period_end_statement_vat_statement___last_update
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line___last_update
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move___last_update
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature___last_update
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line___last_update
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move___last_update
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature___last_update
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line___last_update
 msgid "Last Modified on"
 msgstr "Data ultima modifica"
@@ -328,7 +434,11 @@ msgstr "Data ultima modifica"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_write_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_add_period_to_vat_statement_write_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement_write_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_write_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_write_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_write_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_write_uid
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_write_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_write_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_write_uid
 msgid "Last Updated by"
@@ -338,7 +448,11 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_write_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_add_period_to_vat_statement_write_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_remove_period_from_vat_statement_write_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_write_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_write_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_write_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_write_date
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_write_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_write_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_write_date
 msgid "Last Updated on"
@@ -350,8 +464,8 @@ msgid "Last printed page"
 msgstr "Ultima pagina su bollato"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:433
-#: code:addons/account_vat_period_end_statement/models/account.py:433
+#: code:addons/account_vat_period_end_statement/models/account.py:511
+#: code:addons/account_vat_period_end_statement/models/account.py:511
 msgid "Other VAT Credits / Debits"
 msgstr "Altri Crediti / Debiti per IVA"
 
@@ -416,40 +530,45 @@ msgid "Periods"
 msgstr "Periodi"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:357
+#: code:addons/account_vat_period_end_statement/models/account.py:416
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_credit_vat_account_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:357
+#: code:addons/account_vat_period_end_statement/models/account.py:416
 msgid "Previous Credits VAT"
-msgstr "IVA crediti precedenti"
+msgstr "IVA credito precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_credit_vat_amount
 msgid "Previous Credits VAT Amount"
-msgstr "Importo IVA crediti precedenti"
+msgstr "Ammontare IVA credito precedente"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:395
+#: code:addons/account_vat_period_end_statement/models/account.py:473
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_debit_vat_account_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:395
+#: code:addons/account_vat_period_end_statement/models/account.py:473
 msgid "Previous Debits VAT"
-msgstr "IVA debiti precedenti"
+msgstr "IVA debito precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_debit_vat_amount
 msgid "Previous Debits VAT Amount"
-msgstr "Importo IVA debiti precedenti"
+msgstr "Ammontare IVA debito precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Previous credit vat"
-msgstr "Iva a credito periodo precedente"
+msgstr "IVA credito precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Previous debit vat"
-msgstr "Iva a debito periodo precedente"
+msgstr "IVA debito precedente"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_previous_year_credit
+msgid "Previous year credits"
+msgstr "Credito anno precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -469,24 +588,24 @@ msgstr "Acquisto"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Recompute amounts"
-msgstr "Ricalcola importi"
+msgstr "Ricalcolare importi"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,help:account_vat_period_end_statement.field_account_vat_period_end_statement_residual
 msgid "Remaining amount due."
-msgstr "Importo dovuto rimanente"
+msgstr "Importo dovuto residuo."
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.remove_period
 msgid "Remove"
-msgstr "Rimuovi"
+msgstr "Rimuovere"
 
 #. module: account_vat_period_end_statement
 #: model:ir.actions.act_window,name:account_vat_period_end_statement.action_remove_period
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.remove_period
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Remove period"
-msgstr "Rimuovi periodo"
+msgstr "Rimuovere periodo"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
@@ -512,13 +631,25 @@ msgid "Set to draft"
 msgstr "Bozza"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_show_zero
+msgid "Show zero amount lines"
+msgstr "Mostra righe con importi a zero"
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_state
 msgid "State"
 msgstr "Stato"
 
 #. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Summary"
+msgstr "Riepilogo"
+
+#. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_account_tax
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_tax_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_tax_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_tax_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_tax_id
 msgid "Tax"
 msgstr "Imposta"
@@ -534,19 +665,21 @@ msgid "Tax Authority Partner"
 msgstr "Agenza delle Entrate"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:449
-#: code:addons/account_vat_period_end_statement/models/account.py:449
+#: code:addons/account_vat_period_end_statement/models/account.py:527
+#: code:addons/account_vat_period_end_statement/models/account.py:527
 msgid "Tax Authority VAT"
-msgstr "IVA Erario"
+msgstr "IVA erario"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_authority_vat_account_id
 msgid "Tax Authority VAT Account"
-msgstr "Conto IVA Erario"
+msgstr "Conto IVA erario"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:376
-#: code:addons/account_vat_period_end_statement/models/account.py:376
+#: code:addons/account_vat_period_end_statement/models/account.py:435
+#: code:addons/account_vat_period_end_statement/models/account.py:454
+#: code:addons/account_vat_period_end_statement/models/account.py:435
+#: code:addons/account_vat_period_end_statement/models/account.py:454
 msgid "Tax Credits"
 msgstr "Crediti d'imposta"
 
@@ -560,11 +693,26 @@ msgstr "Crediti d'imposta"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_tax_credit_amount
 msgid "Tax credits Amount"
-msgstr "Importo crediti d'imposta"
+msgstr "Ammontare crediti d'imposta"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:615
-#: code:addons/account_vat_period_end_statement/models/account.py:615
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_nature_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_nature_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_nature_id
+msgid "Tax nature"
+msgstr "Tax nature"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_nature_code
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_nature_code
+msgid "Tax nature code"
+msgstr "Codice natura IVA"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:785
+#: code:addons/account_vat_period_end_statement/models/account.py:785
 msgid "The account for vat interest must be configurated"
 msgstr "Il conto per gli interessi IVA deve essere configurato"
 
@@ -588,40 +736,103 @@ msgstr ""
 "del periodo in liquidazione IVA"
 
 #. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Total Amount"
+msgstr "Importo totale"
+
+#. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Total Base"
+msgstr "Totale base imponibile"
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Total Statement"
 msgstr "Riepilogo Liquidazione"
 
 #. module: account_vat_period_end_statement
+#: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+msgid "Total VAT"
+msgstr "IVA totale"
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Total credit vat"
-msgstr "Totale iva a credito"
+msgstr "Totale IVA a credito"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "Total debit vat"
-msgstr "Totale iva a debito"
+msgstr "Totale IVA a debito"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Undeductible"
-msgstr "Non detraibile"
+msgstr "Indetraibile"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:307
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line_move
+msgid "VAT Statement credit account line"
+msgstr "Riga liquidazione IVA conto credito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line_nature
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_nature_line
+msgid "VAT Statement credit nature line"
+msgstr "Riga liquidazione natura a credito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_tax_line
+msgid "VAT Statement credit tax line"
+msgstr "Riga liquidazione cod. IVA a credito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line_move
+msgid "VAT Statement debit account line"
+msgstr "Riga liquidazione IVA conto debito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line_nature
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_nature_line
+msgid "VAT Statement debit nature line"
+msgstr "Riga liquidazione natura a debito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_tax_line
+msgid "VAT Statement debit tax line"
+msgstr "Riga liquidazione cod. IVA a debito"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_generic_account_line
+msgid "VAT Statement generic account line"
+msgstr "Riga liquidazione IVA conto generico"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_account_vat_period_end_statement
+msgid "VAT period end statement"
+msgstr "Liquidazione IVA"
+
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/models/account.py:366
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_date_range_vat_statement_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_statement_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_statement_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_statement_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_statement_id
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_vat_period_end_statement_company_form
-#: code:addons/account_vat_period_end_statement/models/account.py:307
+#: code:addons/account_vat_period_end_statement/models/account.py:366
 msgid "VAT statement"
 msgstr "Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_move_id
 msgid "VAT statement move"
-msgstr "Movimento liquidazione IVA"
+msgstr "Registrazione liquidazione IVA"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.menu,name:account_vat_period_end_statement.menu_account_vat_period_end_statement
@@ -629,9 +840,25 @@ msgid "VAT statements"
 msgstr "Liquidazioni IVA"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,help:account_vat_period_end_statement.field_account_vat_period_end_statement_year_footer
+msgid "Value printed near number of page in the footer"
+msgstr "Valore stampato vicino al n. pagina nel piede"
+
+#. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Vat"
-msgstr "Imposta"
+msgstr "Iva"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_move_vat_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_vat_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_vat_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_move_vat_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_vat_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_vat_amount
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_vat_amount
+msgid "Vat Amount"
+msgstr "Importo Iva"
 
 #. module: account_vat_period_end_statement
 #: model:ir.actions.act_window,name:account_vat_period_end_statement.action_account_vat_period_end_statement
@@ -641,15 +868,15 @@ msgid "Vat statement"
 msgstr "Liquidazione IVA"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:264
-#: code:addons/account_vat_period_end_statement/models/account.py:264
-msgid "You cannot delete a confirmed or paid statement"
-msgstr "Non è possibile eliminare una liquidazione confermata o pagata"
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_year_footer
+msgid "Year for Footer"
+msgstr "Anno nel piede"
 
 #. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_account_vat_period_end_statement
-msgid "account.vat.period.end.statement"
-msgstr "account.vat.period.end.statement"
+#: code:addons/account_vat_period_end_statement/models/account.py:315
+#: code:addons/account_vat_period_end_statement/models/account.py:315
+msgid "You cannot delete a confirmed or paid statement"
+msgstr "Non è possibile eliminare una liquidazione confermata o pagata"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_add_period_to_vat_statement
@@ -665,20 +892,5 @@ msgstr "remove.period.from.vat.statement"
 #: model:ir.model,name:account_vat_period_end_statement.model_report_account_vat_period_end_statement_vat_statement
 msgid "report.account_vat_period_end_statement.vat_statement"
 msgstr "report.account_vat_period_end_statement.vat_statement"
-
-#. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line
-msgid "statement.credit.account.line"
-msgstr "statement.credit.account.line"
-
-#. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line
-msgid "statement.debit.account.line"
-msgstr "statement.debit.account.line"
-
-#. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_statement_generic_account_line
-msgid "statement.generic.account.line"
-msgstr "statement.generic.account.line"
 
 

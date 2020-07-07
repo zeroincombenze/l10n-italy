@@ -1,3 +1,9 @@
+10.0.1.0.16 (2020-07-02)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Non XML with multiple invoices / Genera 1 XML per ogni fattura
+
+
 10.0.1.0.15 (2020-05-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_invoice_intento_search" model="ir.ui.view">
+        <field name="name">account.invoice.conai.search</field>
+        <field name="model">account.invoice</field>
+        <field name="arch" type="xml">
+            <search string="Lettere di intento">
+                <filter string="Ft. con lettera d'intento" domain="[('lettera_intento','!=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>
+

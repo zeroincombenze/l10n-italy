@@ -95,7 +95,8 @@ class AccountInvoice(models.Model):
         invoice_data = {
             'invoice_type_id': docType_id,
             'date_invoice':
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
+                    '%Y-%m-%d'),
             'reference':
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
@@ -153,6 +154,7 @@ class AccountInvoice(models.Model):
         detail_level, company, wt_found,
     ):
         # TODO: to complete
+        invoice_line_model = self.env['account.invoice.line']
         partner = self.env['res.partner'].browse(partner_id)
         invoice_lines = []
         e_invoice_line_ids = []

@@ -315,7 +315,7 @@ class Partner(models.Model):
                     for field in default:
                         if not vals.get(field) and field in default:
                             vals[field] = default[field]
-                elif 'rea_code' in vals:
+                if 'rea_code' in vals and rec.rea_code:
                     del vals['rea_code']
                 rec.write(vals)
                 id = rec.id
