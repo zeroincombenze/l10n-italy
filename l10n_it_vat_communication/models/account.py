@@ -666,7 +666,7 @@ class AccountVatCommunication(models.Model):
                     _('Missed supplier invoice number %s, id=%d') % (
                         invoice.number, invoice.id))
             res['xml_Numero'] = invoice.reference[-20:]
-            res['xml_DataRegistrazione'] = invoice.registration_date
+            res['xml_DataRegistrazione'] = invoice.date
             res['xml_DataContabile'] = invoice.date
         else:
             res['xml_Numero'] = invoice.number[:20]
