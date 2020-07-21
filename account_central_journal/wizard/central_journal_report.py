@@ -90,6 +90,7 @@ class central_journal_report(osv.osv_memory):
     _default = {
         'periods': 'both',
     }
+
     def onchange_fiscalyear(
         self, cr, uid, ids, fiscalyear_id=False, context=None
     ):
@@ -113,10 +114,13 @@ class central_journal_report(osv.osv_memory):
                 date_move_line_from = date_move_line_from_view = (
                     date_last_print + timedelta(days=1)).__str__()
                 if date_last_print == date_stop:
+                    # date_move_line_from = (
+                    #     date_move_line_from_view
+                    # ) = date_start.__str__()
                     date_move_line_from = (
                         date_move_line_from_view
-                    ) = date_start.__str__()
-                    print_state = 'printed'
+                    ) = date_stop.__str__()
+                #     print_state = 'printed'
             else:
                 date_move_line_from = (
                     date_move_line_from_view
@@ -136,8 +140,7 @@ class central_journal_report(osv.osv_memory):
         }
 
     def print_report(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
         datas = self._get_report_datas(cr, uid, ids, context)
         if (
             self._dates_control(
@@ -153,8 +156,7 @@ class central_journal_report(osv.osv_memory):
         }
 
     def print_report_final(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
         datas = self._get_report_datas(cr, uid, ids, context)
         if (
             self._dates_control(

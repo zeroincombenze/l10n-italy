@@ -8,8 +8,8 @@
     'name': 'Italian Localisation - Base',
     'version': '7.0.0.2.17',
     'category': 'Localisation/Italy',
-    'author': 'Odoo Community Association (OCA), Innoviu srl, SHS-AV s.r.l.',
-    'website': 'https://odoo-community.org/',
+    'author': 'SHS-AV s.r.l.',
+    'website': 'https://shs-av.com/',
     'license': 'AGPL-3',
     'depends': ['base'],
     'data': [

@@ -3,7 +3,7 @@
 {
     'name': 'Account Central Journal',
     'summary': 'Print Italian Account Central Journal',
-    'version': '7.0.3.0.2',
+    'version': '7.0.3.0.4',
     'category': 'Generic Modules/Accounting',
     'author': 'Odoo Community Association (OCA), ISA s.r.l., SHS-AV s.r.l.',
     'website': 'https://odoo-community.org/',

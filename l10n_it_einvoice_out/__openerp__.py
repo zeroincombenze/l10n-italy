@@ -173,7 +173,6 @@ Contributors / Collaboratori
 
 ----------------
 
-
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
 `Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__

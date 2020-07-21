@@ -34,6 +34,12 @@ class central_journal_report(report_sxw.rml_parse):
             date_move_line_to = form_values['date_move_line_to']
             _filter = ("date", "<=", date_move_line_to)
             self.filters.append(_filter)
+        if form_values['periods'] == 'ordinary':
+            _filter = ("period_id.special", "=", False)
+            self.filters.append(_filter)
+        elif form_values['periods'] == 'special':
+            _filter = ("period_id.special", "=", True)
+            self.filters.append(_filter)
         return True
 
     def _get_print_info(self, fiscalyear_id):

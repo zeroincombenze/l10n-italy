@@ -29,7 +29,6 @@
     'depends': ['account'],
     'data': ['views/account_invoice_view.xml'],
     'installable': True,
-    'active': False,
     'description': r'''
 Overview / Panoramica
 =====================

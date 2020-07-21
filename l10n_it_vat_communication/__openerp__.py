@@ -8,8 +8,8 @@
     'name': 'Comunicazione periodica IVA',
     'version': '7.0.0.1.12',
     'category': 'Generic Modules/Accounting',
-    'author': 'Odoo Community Association (OCA) and other subjects',
-    'website': 'https://odoo-community.org/',
+    'author': 'SHS-AV s.r.l.',
+    'website': 'https://www.shs-av.com',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_ade',
@@ -27,7 +27,6 @@
         'communication_workflow.xml',
     ],
     'installable': True,
-    'maintainer': 'Odoo Community Association (OCA)',
     'description': r'''
 Overview / Panoramica
 =====================

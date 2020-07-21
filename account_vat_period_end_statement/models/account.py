@@ -727,16 +727,31 @@ class AccountVatPeriodEndStatement(orm.Model):
         return True
 
     def link_tax_code(self, tax, tax_parent, tax_tree):
+
+        def set_ln(tax_tree, basevat, left, right):
+            if (tax_tree[type_use][basevat].get(left) and
+                    tax_tree[type_use][basevat].get(left, right) != right):
+                raise orm.except_orm(
+                    _('Error VAT Configuration!'),
+                    _("Tax %s with %s and %s account id mismatch") %
+                    (tax.description, left, right))
+            tax_tree[type_use][basevat][left] = right
+            return tax_tree
+
         type_use = tax.type_tax_use
         if type_use not in tax_tree:
             tax_tree[type_use] = {}
+            tax_tree[type_use]['account_id'] = {}
         if tax_parent and tax_parent.type_tax_use != type_use:
             raise orm.except_orm(
                 _('Error VAT Configuration!'),
                 _("Tax child use %s different from parent use %s") %
                 (tax.name, tax_parent.name))
-        if tax_parent and tax.type != 'percent':
+        # Undeductible
+        if tax_parent and not tax.account_collected_id:
             return tax_tree
+        # if tax.description.startswith('22a0'):
+        #     pass
         for basevat in ('tax_code_id', 'base_code_id',
                         'ref_tax_code_id', 'ref_base_code_id'):
             if basevat[-11:] == 'tax_code_id':
@@ -749,24 +764,32 @@ class AccountVatPeriodEndStatement(orm.Model):
                 tax_tree[type_use][basevat] = {}
             if getattr(tax, basevat):
                 left = getattr(tax, basevat).id
+                if basevat[-11:] == 'tax_code_id' and getattr(
+                        tax, 'account_collected_id'):
+                    tax_tree[type_use]['account_id'][
+                        left] = tax.account_collected_id.id
                 if getattr(tax, vatbase):
                     right = getattr(tax, vatbase).id
-                    tax_tree[type_use][basevat][left] = right
+                    tax_tree = set_ln(tax_tree, basevat, left, right)
                 elif tax_parent and getattr(tax_parent, vatbase):
                     right = getattr(tax_parent, vatbase).id
-                    tax_tree[type_use][basevat][left] = right
+                    tax_tree = set_ln(tax_tree, basevat, left, right)
                 elif left not in tax_tree[type_use][basevat]:
-                    tax_tree[type_use][basevat][left] = False
+                    tax_tree = set_ln(tax_tree, basevat, left, False)
             elif tax_parent and getattr(tax_parent, basevat):
                 left = getattr(tax_parent, basevat).id
+                if basevat[-11:] == 'tax_code_id' and getattr(
+                        tax, 'account_collected_id'):
+                    tax_tree[type_use]['account_id'][
+                        left] = tax.account_collected_id.id
                 if getattr(tax, vatbase):
                     right = getattr(tax, vatbase).id
-                    tax_tree[type_use][basevat][left] = right
+                    tax_tree = set_ln(tax_tree, basevat, left, right)
                 elif getattr(tax_parent, vatbase):
                     right = getattr(tax_parent, vatbase).id
-                    tax_tree[type_use][basevat][left] = right
+                    tax_tree = set_ln(tax_tree, basevat, left, right)
                 elif left not in tax_tree[type_use][basevat]:
-                    tax_tree[type_use][basevat][left] = False
+                    tax_tree = set_ln(tax_tree, basevat, left, False)
         return tax_tree
 
     def build_tax_tree(self, cr, uid, company_id, context=None):
@@ -788,19 +811,26 @@ class AccountVatPeriodEndStatement(orm.Model):
         context = context or {}
         tax_pool = self.pool.get('account.tax')
         tax_ids = tax_pool.search(
-            cr, uid, [('company_id', '=', company_id)])
+            cr, uid, [('company_id', '=', company_id),
+                      ('parent_id', '=', False)])
         tax_tree = {}
         for tax_id in tax_ids:
             tax = tax_pool.browse(cr, uid, tax_id)
             tax_tree = self.link_tax_code(tax, None, tax_tree)
             if tax.child_ids:
+                ded_rate = 1.0
                 for tax_child in tax.child_ids:
-                    tax_tree = self.link_tax_code(tax_child, tax, tax_tree)
+                    if tax_child.type == 'percent':
+                        if tax_child.account_collected_id:
+                            ded_rate = tax_child.amount
+                        else:
+                            ded_rate = 1 - tax_child.amount
+                if ded_rate:
+                    for tax_child in tax.child_ids:
+                        tax_tree = self.link_tax_code(tax_child, tax, tax_tree)
         return tax_tree
 
     def get_date_start_stop(self, statement, context=None):
-        # import pdb
-        # pdb.set_trace()
         date_start = False
         date_stop = False
         for period in statement.period_ids:
@@ -822,14 +852,14 @@ class AccountVatPeriodEndStatement(orm.Model):
                                           DEFAULT_SERVER_DATE_FORMAT)
         return date_start, date_stop
 
-    def compute_amount_dbt_crd(self, cr, uid, statement, company_id,
+    def _get_credit_debit_lines(self, cr, uid, statement, company_id,
                                tax_tree, show_zero=None, context=None):
         context = context or {}
         if show_zero is None:
             show_zero = statement.show_zero
         tax_code_pool = self.pool.get('account.tax.code')
         dbt_crd_line_ids = []
-        dbt_crd_tax_code_ids = tax_code_pool.search(cr, uid, [
+        taxes = tax_code_pool.search(cr, uid, [
             ('exclude_from_registries', '=', False),
             ('company_id', '=', company_id),
         ], context=context)
@@ -842,13 +872,15 @@ class AccountVatPeriodEndStatement(orm.Model):
             stmt_periods = 'period_ids'
         elif stmt_type == 'year':
             stmt_periods = 'y_period_ids'
-        for dbt_crd_tax_code_id in dbt_crd_tax_code_ids:
+        for dbt_crd_tax_code_id in taxes:
             if tax_code_pool.search(cr, uid, [('parent_id',
                                                '=',
                                                dbt_crd_tax_code_id)]):
                 continue
             dbt_crd_tax_code = tax_code_pool.browse(
                 cr, uid, dbt_crd_tax_code_id, context)
+            if dbt_crd_tax_code.code == 'ITC22N':
+                pass
             total = 0.0
             for period in statement[stmt_periods]:
                 ctx = context.copy()
@@ -857,85 +889,68 @@ class AccountVatPeriodEndStatement(orm.Model):
                     cr, uid, dbt_crd_tax_code_id, ctx).sum_period
             if not statement.show_zero and total == 0.0:
                 continue
-            left_id = right_id = False
+            base_id = vat_id = account_id = False
             for type in tax_tree:
-                for basevat in ('tax_code_id', 'base_code_id',
-                                'ref_tax_code_id', 'ref_base_code_id'):
-                    if basevat[-11:] == 'tax_code_id':
-                        basevat_id = basevat[-11:]
-                        vatbase = basevat[0:-11] + 'base_code_id'
-                        vatbase_id = vatbase[-12:]
-                    elif basevat[-12:] == 'base_code_id':
-                        basevat_id = basevat[-12:]
-                        vatbase = basevat[0:-12] + 'tax_code_id'
-                        vatbase_id = vatbase[-11:]
+                for fullname in ('tax_code_id', 'base_code_id',
+                                 'ref_tax_code_id', 'ref_base_code_id'):
+                    if dbt_crd_tax_code_id not in tax_tree[type][fullname]:
+                        continue
+                    if fullname[-11:] == 'tax_code_id':
+                        cur_name = fullname[-11:]
+                        vat_id = dbt_crd_tax_code_id
+                        base_id = tax_tree[type][fullname][dbt_crd_tax_code_id]
+                    elif fullname[-12:] == 'base_code_id':
+                        cur_name = fullname[-12:]
+                        base_id = dbt_crd_tax_code_id
+                        vat_id = tax_tree[type][fullname][dbt_crd_tax_code_id]
                     else:
-                        vatbase_id = False             # never should run here!
-                    if dbt_crd_tax_code_id in tax_tree[type][basevat]:
-                        left_id = dbt_crd_tax_code_id
-                        if left_id in tax_tree[type][basevat]:
-                            right_id = tax_tree[type][basevat][left_id]
-                        else:
-                            right_id = False
-                        if type == 'sale':
-                            dbt_crd = 'debit'
-                        elif type == 'purchase':
-                            dbt_crd = 'credit'
-                        else:
-                            dbt_crd = dbt_crd_tax_code.vat_statement_type
-                        if dbt_crd == 'debit':
-                            type_sign = 1
-                        elif dbt_crd == 'credit':
-                            type_sign = -1
-                        else:
-                            type_sign = 0
-                        if left_id and right_id:
-                            break
-                if left_id and right_id:
+                        continue                       # never should run here!
                     break
-            if not left_id and not right_id:
-                continue
+                if base_id or vat_id:
+                    break
+            dbt_crd = {
+                'sale': 'debit',
+                'purchase': 'credit'
+            }.get(type, dbt_crd_tax_code.vat_statement_type)
+            type_sign = {
+                'debit': 1,
+                'credit': -1,
+            }.get(dbt_crd, 0)
             found_rec = False
             for id, rec in enumerate(dbt_crd_line_ids):
                 if dbt_crd == rec['dbt_crd']:
-                    if basevat_id in rec and rec[basevat_id] == left_id:
-                        found_rec = True
-                        break
-                    elif vatbase_id in rec and rec[vatbase_id] == right_id:
+                    if rec.get(cur_name) in (base_id, vat_id):
                         found_rec = True
                         break
             if not found_rec:
                 rec = {}
                 rec['dbt_crd'] = dbt_crd
-            if dbt_crd_tax_code.vat_statement_account_id:
-                rec['account_id'] = \
-                    dbt_crd_tax_code.vat_statement_account_id.id
-            if basevat_id == 'tax_code_id':
-                rec[basevat_id] = left_id
-                rec['amount'] = \
-                    total * type_sign
-                if right_id:
-                    if vatbase not in rec:
-                        rec[vatbase_id] = right_id
+            if cur_name == 'tax_code_id':
+                rec[cur_name] = vat_id
+                rec['amount'] = total * type_sign
+                if base_id:
+                    rec['base_code_id'] = base_id
                     if 'base_amount' not in rec:
                         rec['base_amount'] = 0.0
-            elif basevat_id == 'base_code_id':
-                rec[basevat_id] = left_id
-                rec['base_amount'] = \
-                    total * type_sign
-                if right_id:
-                    if vatbase not in rec:
-                        rec[vatbase_id] = right_id
+            elif cur_name == 'base_code_id':
+                rec[cur_name] = base_id
+                rec['base_amount'] = total * type_sign
+                if vat_id:
+                    rec['tax_code_id'] = vat_id
                     if 'amount' not in rec:
                         rec['amount'] = 0.0
+            if ('account_id' not in rec and
+                    tax_tree[type]['account_id'].get(vat_id, False)):
+                rec['account_id'] = tax_tree[
+                    type]['account_id'][vat_id]
             if found_rec:
                 del dbt_crd_line_ids[id]
             dbt_crd_line_ids.append(rec)
         id = 0
         while id < len(dbt_crd_line_ids):
-            if not show_zero and \
-                    rec.get('amount', 0) == 0 and \
-                    rec.get('base_amount', 0) == 0:
+            if (not show_zero and
+                    rec.get('amount', 0) == 0 and
+                    rec.get('base_amount', 0) == 0):
                 del dbt_crd_line_ids[id]
             else:
                 id += 1
@@ -949,8 +964,8 @@ class AccountVatPeriodEndStatement(orm.Model):
         # Dummy compay_id
         company_id = self.pool.get(
             'res.users').browse(cr, uid, uid, context).company_id.id
-        debit_line_pool = self.pool.get('statement.debit.account.line')
-        credit_line_pool = self.pool.get('statement.credit.account.line')
+        debit_line_model = self.pool.get('statement.debit.account.line')
+        credit_line_model = self.pool.get('statement.credit.account.line')
         tax_tree = self.build_tax_tree(cr, uid, company_id, context)
         for statement in self.browse(cr, uid, ids, context):
             # Actual company_id
@@ -977,10 +992,10 @@ class AccountVatPeriodEndStatement(orm.Model):
             type = statement.type
             prev_statement_ids = self.search(cr, uid, [(
                 'date', '<', statement.date),
-                ('type', '=', type)], order='date')
+                ('type', '=', type)], order='date desc')
             if prev_statement_ids:
                 prev_statement = self.browse(
-                    cr, uid, prev_statement_ids[len(prev_statement_ids) - 1],
+                    cr, uid, prev_statement_ids[0],
                     context)
                 if prev_statement.residual > 0 and \
                         prev_statement.authority_vat_amount > 0:
@@ -991,7 +1006,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                     statement.write(
                         {'previous_credit_vat_amount': -
                             prev_statement.authority_vat_amount})
-            dbt_crd_ids = self.compute_amount_dbt_crd(
+            dbt_crd_ids = self._get_credit_debit_lines(
                 cr, uid, statement, company_id, tax_tree, context)
             credit_line_ids = []
             debit_line_ids = []
@@ -1009,10 +1024,10 @@ class AccountVatPeriodEndStatement(orm.Model):
                 credit_line.unlink()
             for debit_vals in debit_line_ids:
                 debit_vals.update({'statement_id': statement.id})
-                debit_line_pool.create(cr, uid, debit_vals, context=context)
+                debit_line_model.create(cr, uid, debit_vals, context=context)
             for credit_vals in credit_line_ids:
                 credit_vals.update({'statement_id': statement.id})
-                credit_line_pool.create(cr, uid, credit_vals, context=context)
+                credit_line_model.create(cr, uid, credit_vals, context=context)
 
             interest_amount = 0.0
             # if exits Delete line with interest

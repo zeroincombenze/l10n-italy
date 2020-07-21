@@ -67,7 +67,6 @@ Features / Funzioni
 Support / Supporto
 ------------------
 
-
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 

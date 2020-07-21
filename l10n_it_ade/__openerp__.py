@@ -12,7 +12,8 @@
     'summary': 'Codice e definizioni come da Agenzia delle Entrate',
     'version': '7.0.0.1.14',
     'category': 'Localization/Italy',
-    'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
+    'author': 'SHS-AV s.r.l.',
+    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
     'license': 'AGPL-3',
     'depends': ['account'],
     'external_dependencies': {'python': ['pyxb']},
@@ -29,7 +30,7 @@
         'views/invoice_type_view.xml',
     ],
     'installable': True,
-    'maintainer': 'Odoo Community Association (OCA)',
+    'maintainer': 'Zeroincombenze (R)',
     'development_status': 'Beta',
     'description': r'''
 Overview / Panoramica

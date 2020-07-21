@@ -21,3 +21,11 @@ class AccountInvoice(orm.Model):
             related='fatturapa_attachment_out_id.has_pdf_invoice_print',
             readonly=True),
     }
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        default = default or {}
+        default.update({
+            'fatturapa_attachment_out_id': False,
+            'has_pdf_invoice_print': False,
+        })
+        return super(AccountInvoice, self).copy(cr, uid, id, default, context)

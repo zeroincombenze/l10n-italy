@@ -8,9 +8,8 @@ Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 
 |info| Questo modulo è incompatibile con alcuni moduli OCA.
 
-Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+Tutti i moduli che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
 `l10n_it_ade <{{GIT_URL_ROOT}}/tree/{{branch}}/l10n_it_ade>`__ come dipendenza.
 
-Per maggiori informazioni contattare
-l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
+Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.

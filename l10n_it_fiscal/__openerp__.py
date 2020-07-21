@@ -3,8 +3,8 @@
     'name': 'Italy - Fiscal localization by zeroincombenze(R)',
     'version': '7.0.0.2.1',
     'category': 'Localization/Account Charts',
-    'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
-    'website': 'https://www.zeroincombenze.it/',
+    'author': 'SHS-AV s.r.l.',
+    'website': 'http://www.zeroincombenze.it',
     'license': 'AGPL-3',
     'depends': [
         'base_vat',
@@ -20,7 +20,7 @@
         'l10n_chart_it_zeroincombenze.xml',
     ],
     'installable': True,
-    'maintainer': 'Odoo Community Association (OCA)',
+    'maintainer': 'Antonio Maria Vigliotti',
     'auto_install': False,
     'description': r'''
 Overview / Panoramica

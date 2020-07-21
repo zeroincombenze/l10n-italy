@@ -3,11 +3,13 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Italian Localization - Causali pagamento',
-    'summary': 'Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d"acconto',
+    'summary':
+        'Aggiunge la tabella delle causali di pagamento da usare ad esempio '
+        'nelle ritenute d\'acconto',
     'version': '7.0.1.0.0',
     'category': 'Account',
     'author': 'Odoo Community Association (OCA), Agile Business Group sagl',
-    'website': 'https://www.agilebg.com/',
+    'website': 'http://www.odoo-italia.org',
     'license': 'AGPL-3',
     'depends': ['account'],
     'data': [

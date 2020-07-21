@@ -274,16 +274,18 @@ class AccountVatCommunication(orm.Model):
                 for tax_id in account_tax_model.search(
                         cr, uid, where):
                     tax = account_tax_model.browse(cr, uid, tax_id)
+                    if tax.type_tax_use:
+                        tax_type = tax.type_tax_use
                     if tax and not tax.parent_id:
+                        # Parent code
                         if tax.amount > tax_rate:
                             tax_rate = tax.amount
                         if tax.non_taxable_nature:
                             tax_nature = tax.non_taxable_nature
                         if tax.payability:
                             tax_payability = tax.payability
-                        if tax.type_tax_use:
-                            tax_type = tax.type_tax_use
                     else:
+                        # Child code
                         if release.major_version == '6.1':
                             tax_rate = 0
                             for child in account_tax_model.browse(
@@ -291,10 +293,21 @@ class AccountVatCommunication(orm.Model):
                                 if child.type == 'percent':
                                     tax_rate += child.amount
                             tax_nodet_rate = 1 - (tax.amount / tax_rate)
-                        else:
+                        elif release.major_version == '7.0':
                             if tax.type == 'percent' and \
                                     tax.amount > tax_nodet_rate:
                                 tax_nodet_rate = tax.amount
+                            tax = account_tax_model.browse(
+                                cr, uid, tax.parent_id.id)
+                            taxcode_base_id = invoice_tax.tax_code_id.id
+                            if tax.amount > tax_rate:
+                                tax_rate = tax.amount
+                        elif release.major_version == '8.0':
+                            if tax.type == 'percent':
+                                if tax.nondeductible:
+                                    tax_nodet_rate = tax.amount
+                                else:
+                                    tax_nodet_rate = 1 - tax.amount
                             tax = account_tax_model.browse(
                                 cr, uid, tax.parent_id.id)
                             taxcode_base_id = invoice_tax.tax_code_id.id
@@ -489,12 +502,12 @@ class AccountVatCommunication(orm.Model):
         return True
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
-                            country=None, context=None):
+                            country_id=None, context=None):
         name = name or 'fiscalcode'
         if fiscalcode:
             country_model = self.pool.get('res.country')
-            if country and country_model.browse(
-                    cr, uid, country.id).code != 'IT':
+            if country_id and country_model.browse(
+                    cr, uid, country_id).code != 'IT':
                 return {'value': {name: fiscalcode,
                                   'individual': True}}
             elif len(fiscalcode) == 11:
@@ -696,7 +709,7 @@ class CommitmentLine(orm.AbstractModel):
             r = self.pool['account.vat.communication'].onchange_fiscalcode(
                 cr, uid, partner.id,
                 partner.fiscalcode, None,
-                country=partner.country_id,
+                country_id=partner.country_id.id,
                 context=context)
             if 'warning' in r:
                 res['xml_Error'] += self._get_error(
@@ -730,8 +743,15 @@ class CommitmentLine(orm.AbstractModel):
                      res['xml_Nazione'] in EU_COUNTRIES):
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Partner %s without VAT number') % (partner.name))
-
+                    _('Partner %s %d without VAT number') % (
+                        partner.name, partner.id))
+        if not res.get('xml_CodiceFiscale') and \
+                not res.get('xml_IdPaese') and \
+                not res.get('xml_IdCodice'):
+            raise orm.except_orm(
+                _('Error!'),
+                _('Partner %s %d without fiscal data') % (
+                    partner.name, partner.id))
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')

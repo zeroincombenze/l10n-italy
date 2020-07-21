@@ -6,7 +6,7 @@
     'summary': 'Enhanced Odoo Features',
     'version': '7.0.0.1.2',
     'category': 'Base',
-    'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
+    'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',
     'license': 'AGPL-3',
     'depends': [
@@ -43,7 +43,7 @@ Features / Caratteristiche
 +----------------------------------------------------------------------+------------+------------+------------+------------+---------+------------+--------+
 | Supplier ref in Purchase Order tree / Rif. Fornitore in lista ordini | |no_check| | |no_check| | |check|    | |no_check| | |check| | |no_check| | |info| |
 +----------------------------------------------------------------------+------------+------------+------------+------------+---------+------------+--------+
-| Refund (credit note) invoice menu / Menù Note Credito               | |same|     | |same|     | |same|     | |same|     | |check| | |same|     | |info| |
+| Refund (credit note) invoice menu / Menù Note Credito                | |same|     | |same|     | |same|     | |same|     | |check| | |same|     | |info| |
 +----------------------------------------------------------------------+------------+------------+------------+------------+---------+------------+--------+
 | Invoice group by company / Raggruppamento fatture per azienda        | |no_check| | |no_check| | |no_check| | |check|    | |check| | |no_check| | |info| |
 +----------------------------------------------------------------------+------------+------------+------------+------------+---------+------------+--------+

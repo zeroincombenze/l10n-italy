@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# pylint: skip-file
 # -*- coding: utf-8 -*-
 #
 # pyxbgen
@@ -381,4 +383,3 @@ if __name__ == '__main__':
     while len(args) < 3:
         args.append('')
     main(args)
-
