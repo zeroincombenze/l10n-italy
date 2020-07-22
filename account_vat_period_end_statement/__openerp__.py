@@ -193,5 +193,4 @@ Last Update / Ultimo aggiornamento: 2019-12-08
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
 ''',
-    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
 }
