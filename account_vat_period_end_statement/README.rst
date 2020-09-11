@@ -1,10 +1,10 @@
 
 ========================================
-|icon| ITA - Liquidazione IVA 12.0.1.3.0
+|icon| ITA - Liquidazione IVA 12.0.1.5.3
 ========================================
 
 
-**Versamento Iva periodica (mensile o trimestrale)**
+**Allow to create the 'VAT Statement'.**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/account_vat_period_end_statement/static/description/icon.png
 
@@ -154,7 +154,7 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
@@ -164,14 +164,21 @@ Installation / Installazione
 ::
 
     cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
+    # Odoo installation
     odoo_install_repository l10n-italy -b 12.0 -O zero
-    venv_mgr create /opt/odoo/VENV-12.0 -O 12.0 -DI
+    vem create /opt/odoo/VENV-12.0 -O 12.0 -DI
 
 From UI: go to:
+
+* |menu| Setting > Activate Developer mode 
+* |menu| Apps > Update Apps List
+* |menu| Setting > Apps |right_do| Select **account_vat_period_end_statement** > Install
+
 
 |
 
@@ -189,8 +196,15 @@ Upgrade / Aggiornamento
 
 ::
 
+    cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    source /opt/odoo/dev/activate_tools
+    # Odoo upgrade
     odoo_install_repository l10n-italy -b 12.0 -O zero -U
-    venv_mgr amend /opt/odoo/VENV-12.0 -O 12.0 -DI
+    vem amend /opt/odoo/VENV-12.0 -O 12.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -225,6 +239,16 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+12.0.1.5.3 (2020-09-10)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] AXI-92 Date VAT apply / liquidazione iva non utilizza data applicazione iva
+
+
 
 |
 |
@@ -289,7 +313,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-06-24
+Last Update / Ultimo aggiornamento: 2020-09-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

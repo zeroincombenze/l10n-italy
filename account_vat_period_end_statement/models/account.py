@@ -654,6 +654,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     'from_date': period.date_start,
                     'to_date': period.date_end,
                     'registry_type': reg_type,
+                    'date_apply_vat': True,
                 })[1:4]))
         return {
             'kind_id': tax.kind_id.id if tax.kind_id else False,

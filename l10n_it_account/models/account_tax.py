@@ -17,6 +17,33 @@ class AccountTax(models.Model):
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
 
+    def _evaluate_tax_amount(self, rec_id):
+        rec = self.browse(rec_id)
+        data = self.env.context
+        move_line_model = self.env['account.move.line']
+        domain = ['|',
+                  ('tax_line_id', '=', rec_id),
+                  ('tax_ids', '!=', False)]
+        if data.get('vat_registry_journal_ids'):
+            domain.append((
+                'move_id.journal_id', 'in', data['vat_registry_journal_ids']))
+        if data.get('from_date'):
+            domain.append((
+                'move_id.date_apply_vat', '>=', str(data['from_date'])))
+        if data.get('to_date'):
+            domain.append((
+                'move_id.date_apply_vat', '<=', str(data['to_date'])))
+        base_balance = 0.0
+        balance = 0.0
+        for line in move_line_model.search(domain):
+            if line.tax_ids and rec_id in [x.id for x in line.tax_ids]:
+                base_balance += (line.credit - line.debit)
+            elif rec_id == line.tax_line_id.id:
+                balance += (line.credit - line.debit)
+        rec.base_balance = base_balance
+        rec.balance = balance
+        return rec
+
     def _get_tax_amount(self):
         self.ensure_one()
         res = 0.0
@@ -51,7 +78,11 @@ class AccountTax(models.Model):
         if data.get('journal_ids'):
             context['vat_registry_journal_ids'] = data['journal_ids']
 
-        tax = self.env['account.tax'].with_context(context).browse(self.id)
+        if data.get('date_apply_vat'):
+            tax = self.env['account.tax'].with_context(
+                context)._evaluate_tax_amount(self.id)
+        else:
+            tax = self.env['account.tax'].with_context(context).browse(self.id)
         tax_name = tax._get_tax_name()
         if not tax.children_tax_ids:
             base_balance = tax.base_balance
