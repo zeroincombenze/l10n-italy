@@ -10,7 +10,7 @@
 {
     'name': 'Send E-Invoice to SdI',
     'summary': 'Send E-Invoice to customer by SdI',
-    'version': '10.0.1.0.9',
+    'version': '10.0.1.0.10',
     'category': 'Localization/Italy',
     'author': 'SHS-AV s.r.l.,Odoo Italia Associazione',
     'website': 'http://www.odoo-italia.org',

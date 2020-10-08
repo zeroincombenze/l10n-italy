@@ -287,12 +287,13 @@ class AccountVatCommunication(models.Model):
 
     def get_country_code(self, partner):
         if release.major_version == '6.1':
-            address_id = self.env['res.partner'].address_get([partner.id])['default']
+            address_id = self.env['res.partner'].address_get(
+                [partner.id])['default']
             address = self.env['res.partner.address'].browse(address_id)
         else:
             address = partner
         code = partner.vat and partner.vat[0:2].upper()
-        return address.country_id.code or code
+        return code or address.country_id and address.country_id.code
 
     def load_invoices(self, commitment, commitment_line_model,
                       dte_dtr_id, where, comm_lines, context=None):
@@ -725,9 +726,6 @@ class CommitmentLine(models.AbstractModel):
 
         res = {'xml_Error1': ''}
         if partner.vat:
-            # vat = partner.vat.replace(' ', '')
-            # res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
-            # res['xml_IdCodice'] = vat and vat[2:] or ''
             res['xml_IdPaese'], res['xml_IdCodice'] = \
                 partner.split_vat_n_country(partner.vat)
         res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
@@ -776,8 +774,9 @@ class CommitmentLine(models.AbstractModel):
                 _('00464 - '
                   'Partner %s without fiscal data') %
                     partner.name, context)
-        if res.get('xml_IdPaese') and \
-                res.get('xml_IdPaese') != res['xml_Nazione']:
+        if (res.get('xml_IdPaese') and
+                res.get('xml_IdPaese') != 'EU' and
+                res.get('xml_IdPaese') != res['xml_Nazione']):
             res['xml_Error1'] += self._get_error(
                 _('003XC - '
                   'Partner %s vat country differs from country') %
@@ -846,7 +845,8 @@ class CommitmentLine(models.AbstractModel):
         context=self.env.context
 
         doctype = invoice.type
-        country_code = self.env['account.vat.communication'].get_country_code(invoice.partner_id)
+        country_code = self.env['account.vat.communication'].get_country_code(
+            invoice.partner_id)
         if doctype == 'out_invoice' and \
                 not invoice.partner_id.vat and \
                 not invoice.partner_id.fiscalcode:
@@ -858,8 +858,9 @@ class CommitmentLine(models.AbstractModel):
                 not invoice.partner_id.vat and \
                 not invoice.partner_id.fiscalcode:
             return 'TD08'
-        elif country_code != 'IT' and country_code in EU_COUNTRIES and \
-                doctype == 'in_invoice':
+        elif (country_code != 'IT' and
+              country_code in EU_COUNTRIES + ['EU'] and
+              doctype == 'in_invoice'):
             return 'TD11'
         elif doctype in ('out_invoice', 'in_invoice'):
             if invoice.amount_total >= 0:

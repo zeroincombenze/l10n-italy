@@ -31,7 +31,7 @@
         <div class="header">
             <div t-if="report.get_report_attrib('header_mode', o, doc_opts) != 'no_header'" class="row">
                 <t t-set="logo_style" t-value="report.get_report_attrib('logo_style', o, doc_opts)"/>
-                <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('logo', 'only_logo')" class="col-xs-12">
+                <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('logo', 'only_logo', 'line-up25', 'line-up26')" class="col-xs-12">
                     <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" t-att-style="report.get_report_attrib('logo_style', o, doc_opts)"/>
                 </div>
                 <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('standard', 'line-up', 'line-up2', 'line-up3', 'line-up4', 'line-up5', 'line-up6')" class="col-xs-3">
@@ -46,13 +46,13 @@
                     <t t-set="rml_header" t-value="report.get_report_attrib('custom_header', o, doc_opts)"/>
                     <span t-raw="rml_header"/>
                 </div>
-                <!--
-                <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('line-up5', 'line-up6')" class="col-xs-9 text-right"
-                     t-raw="report.get_report_attrib('custom_header', o, doc_opts)"/>
-                -->
+                <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('line-up25', 'line-up26')" class="col-xs-12">
+                    <t t-set="rml_header" t-value="report.get_report_attrib('custom_header', o, doc_opts)"/>
+                    <span t-raw="rml_header"/>
+                </div>
             </div>
             <div class="row zero_min_height">
-                <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('standard', 'logo', 'line-up', 'line-up3', 'line-up5')" class="col-xs-12">
+                <div t-if="report.get_report_attrib('header_mode', o, doc_opts) in ('standard', 'logo', 'line-up', 'line-up3', 'line-up5', 'line-up25')" class="col-xs-12">
                     <div style="border-bottom: 1px solid black;"/>
                 </div>
             </div>

@@ -109,7 +109,7 @@ class WizardVatCommunication(models.TransientModel):
         header = (DatiFatturaHeaderType())
         if 'xml_CodiceFiscale' in fields:
             header.Dichiarante = (DichiaranteType())
-            header.Dichiarante.Carica = fields['xml_Carica']
+            header.Dichiarante.Carica = fields['xml_Carica'].code
             header.Dichiarante.CodiceFiscale = CodiceFiscaleType(
                 fields['xml_CodiceFiscale'])
         return header
@@ -157,7 +157,7 @@ class WizardVatCommunication(models.TransientModel):
             sede.Nazione = fields['xml_Nazione']
         else:
             raise exceptions.Warning(
-                _('Unknow country of %s %s %S' %
+                _('Unknow country of %s %s %s' %
                   (fields.get('xml_Denominazione'),
                    fields.get('xml_Nome'),
                    fields.get('xml_Cognome'))))
@@ -167,7 +167,7 @@ class WizardVatCommunication(models.TransientModel):
         else:
             raise exceptions.Warning(
                 _('Error!'),
-                _('Missed address %s %s %S' %
+                _('Missed address %s %s %s' %
                   (fields.get('xml_Denominazione'),
                    fields.get('xml_Nome'),
                    fields.get('xml_Cognome'))))
@@ -175,7 +175,7 @@ class WizardVatCommunication(models.TransientModel):
             sede.Comune = self.str60Latin(fields['xml_Comune'])
         else:
             raise exceptions.Warning(
-                _('Missed city %s %s %S' %
+                _('Missed city %s %s %s' %
                   (fields.get('xml_Denominazione'),
                    fields.get('xml_Nome'),
                    fields.get('xml_Cognome'))))
@@ -300,7 +300,6 @@ class WizardVatCommunication(models.TransientModel):
                                                context=self.env.context)
 
     def old_get_cessionario_committente(self, cr, uid, fields, dte_dtr_id, context=None):
-
         if dte_dtr_id == 'DTE':
             partner = (CessionarioCommittenteDTEType())
             partner_type = 'customer'

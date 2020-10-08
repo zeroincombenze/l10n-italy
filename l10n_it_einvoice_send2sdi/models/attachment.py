@@ -354,15 +354,27 @@ class FatturaPAAttachmentOut(models.Model):
             _logger.info(
                 '>>> %s.send_json(%s,%s,%s)' % (
                     send_channel.name, url, headers, req))
-        response = requests.post(url,
-                                 headers=headers,
-                                 data=json.dumps(req,
-                                                 ensure_ascii=False))
+        try:
+            response = requests.post(url,
+                                     headers=headers,
+                                     data=json.dumps(req,
+                                                     ensure_ascii=False))
+        except:
+            if send_channel.trace:
+                _logger.info('>>> requests.post() FAILED!')
+            att.state = 'sender_error'
+            return False
         try:
             data = response.json()
+            err_msg = ''
+            for item in ('ErrorStack', 'ErrorInnerExceptions', 'ErrorMessage'):
+                if item in data:
+                    err_msg += '%s = "%s"\n' % (item, data[item])
+            if not err_msg:
+                err_msg = data
             if send_channel.trace:
                 _logger.info(
-                    '>>> response.json()=\n%s\n' % data)
+                    '>>> response.json()=\n%s\n' % err_msg)
             if data['EsitoChiamata'] > 0:
                 # Store response even if not trace enabled
                 if not send_channel.trace:
@@ -419,19 +431,21 @@ class FatturaPAAttachmentOut(models.Model):
             last_ix = -1
             last_uid = ''
             for ii, doc in enumerate(documenti):
-                if doc['DataCaricamento'] > last_date:
-                    last_date = doc['DataCaricamento']
+                data_caricamento = doc.get('DataCaricamento',
+                    doc['DataFattura'])
+                if data_caricamento > last_date:
+                    last_date = data_caricamento
                     last_uid = doc.get('Uid', '')
                     last_ix = ii
                 history += '%-20.20s %-10.10s %-40.40s %-18.18s %-60.60s\n' % (
-                    doc['DataCaricamento'], doc['DataFattura'],
+                    doc.get('DataCaricamento', ''), doc['DataFattura'],
                     doc.get('Uid', ''), doc.get('StatoInvioSdi', ''),
                     doc.get('Note', '')
                 )
             limit_date = (datetime.datetime.now() - timedelta(days=10)
                           ).strftime('%Y-%m-%d %H:%M:%S')
             att_state = evolve_stato_mapping[
-                documenti[last_ix]['StatoInvioSdi']]
+                documenti[last_ix].get('StatoInvioSdi', 'ERRORE SCONOSCIUTO')]
             if (att_state == 'sent' and
                     att.sending_date and
                     att.sending_date < limit_date):

@@ -10,7 +10,7 @@
 {
     'name': 'Italian Localization - FatturaPA - Emission',
     'summary': 'Electronic invoices emission',
-    'version': '10.0.1.0.16',
+    'version': '10.0.1.0.17',
     'category': 'Localization/Italy',
     'author': 'Odoo Community Association (OCA) and other subjects',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',

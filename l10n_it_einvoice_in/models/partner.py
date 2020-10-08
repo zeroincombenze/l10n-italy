@@ -298,7 +298,10 @@ class Partner(models.Model):
                         rec = rec[0]
                         break
         if rec:
-            if rec.type != 'invoice':
+            if rec.type == 'invoice':
+                if 'rea_code' in vals:
+                    del vals['rea_code']
+            else:
                 for field in ('name', 'street', 'zip', 'city'):
                     if (self.dim_text(
                             rec[field]) != self.dim_text(vals.get(field, ''))):

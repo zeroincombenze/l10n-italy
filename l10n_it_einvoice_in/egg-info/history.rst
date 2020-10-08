@@ -1,3 +1,21 @@
+10.0.1.3.20 (2020-09-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invalid carrier VAT / Ignora PIVA corriere non valida
+
+
+10.0.1.3.19 (2020-07-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No import if company IBAN in xml / Non importa fattura se IBAN azienda in file XML
+
+
+10.0.1.3.18 (2020-07-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Duplicare rea_code when invoice address / Codice rea duplicato se uso indirizzo fatturazione
+
+
 10.0.1.3.17 (2020-07-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

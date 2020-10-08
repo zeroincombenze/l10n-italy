@@ -1,3 +1,9 @@
+10.0.1.8.6 (2020-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Add DdT lines to invoice / Aggiunta righe DdT a fattura esistente
+
+
 10.0.1.8.2 (2020-02-19)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

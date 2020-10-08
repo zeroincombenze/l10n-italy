@@ -428,8 +428,9 @@ class AccountInvoice(models.Model):
                 scope += type
             else:
                 scope += type[0].upper() + type[1:]
-        return [x.id for x in einv_type_model.search(
-            [('scope', 'like', scope)], order='code')][0]
+        res = [x.id for x in einv_type_model.search(
+            [('scope', 'like', scope)], order='code')]
+        return res[0] if res else []
 
     @api.onchange('partner_id', 'type', 'amount_total')
     def onchange_set_einvoice_type(self):

@@ -13,16 +13,28 @@ from odoo.tools.translate import _
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
+    @api.multi
+    def _set_rc_flag(self, invoice):
+        self.ensure_one()
+        if invoice.type in ['in_invoice', 'in_refund']:
+            fposition = invoice.fiscal_position_id
+            rc = bool(fposition.rc_type_id)
+            if rc:
+                for tax in self.invoice_line_tax_ids:
+                    if not tax.nature_id.code.startswith('N6'):
+                        rc = False
+                        break
+            self.rc = rc
+
     @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
-        # fposition = self.invoice_id.fiscal_position_id
-        self.rc = False
-        for tax in self.invoice_line_tax_ids:
-            if tax.non_taxable_nature == 'N6':
-                self.rc = True
-                break
+        self._set_rc_flag(self.invoice_id)
 
-    rc = fields.Boolean("RC", copy=False)
+    rc = fields.Boolean("RC")
+
+    def _set_additional_fields(self, invoice):
+        self._set_rc_flag(invoice)
+        return super(AccountInvoiceLine, self)._set_additional_fields(invoice)
 
 
 class AccountInvoice(models.Model):
@@ -39,6 +51,20 @@ class AccountInvoice(models.Model):
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
 
+    @api.onchange('fiscal_position_id')
+    def onchange_rc_fiscal_position_id(self):
+        for line in self.invoice_line_ids:
+            line._set_rc_flag(self)
+
+    @api.onchange('partner_id', 'company_id')
+    def _onchange_partner_id(self):
+        res = super(AccountInvoice, self)._onchange_partner_id()
+        # In some cases (like creating the invoice from PO),
+        # fiscal position's onchange is triggered
+        # before than being changed by this method.
+        self.onchange_rc_fiscal_position_id()
+        return res
+
     def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
@@ -46,14 +72,24 @@ class AccountInvoice(models.Model):
             'uom_id': line.product_id.uom_id.id,
             'price_unit': line.price_unit,
             'quantity': line.quantity,
+            'discount': line.discount,
             }
 
-    def rc_inv_vals(self, partner, account, rc_type, lines):
+    def rc_inv_vals(self, partner, account, rc_type, lines, currency):
         if self.type == 'in_invoice':
             type = 'out_invoice'
         else:
             type = 'out_refund'
 
+        comment = _(
+            "Reverse charge self invoice.\n"
+            "Supplier: %s\n"
+            "Reference: %s\n"
+            "Date: %s\n"
+            "Internal reference: %s") % (
+            self.partner_id.display_name, self.reference or '', self.date,
+            self.number
+        )
         return {
             'partner_id': partner.id,
             'type': type,
@@ -65,7 +101,10 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
-            'fiscal_position_id': None
+            'currency_id': currency.id,
+            'fiscal_position_id': False,
+            'payment_term_id': False,
+            'comment': comment,
             }
 
     def get_inv_line_to_reconcile(self):
@@ -91,18 +130,42 @@ class AccountInvoice(models.Model):
             'date': self.date,
             }
 
+    def compute_rc_amount_tax(self):
+        rc_amount_tax = 0.0
+        round_curr = self.currency_id.round
+        rc_lines = self.invoice_line_ids.filtered(lambda l: l.rc)
+        for rc_line in rc_lines:
+            price_unit = \
+                rc_line.price_unit * (1 - (rc_line.discount or 0.0) / 100.0)
+            taxes = rc_line.invoice_line_tax_ids.compute_all(
+                price_unit,
+                self.currency_id,
+                rc_line.quantity,
+                product=rc_line.product_id,
+                partner=rc_line.partner_id)['taxes']
+            rc_amount_tax += sum([tax['amount'] for tax in taxes])
+
+        # convert the amount to main company currency, as
+        # compute_rc_amount_tax is used for debit/credit fields
+        invoice_currency = self.currency_id.with_context(
+            date=self.date_invoice)
+        main_currency = self.company_currency_id.with_context(
+            date=self.date_invoice)
+        if invoice_currency != main_currency:
+            round_curr = main_currency.round
+            rc_amount_tax = invoice_currency.compute(
+                rc_amount_tax, main_currency)
+
+        return round_curr(rc_amount_tax)
+
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
-        for tax in self.tax_line_ids:
-            if tax.tax_id.nature_id.code == 'N6':
-                if self.type == 'in_invoice':
-                    credit += tax.amount
-                else:
-                    debit += tax.amount
-        # if self.type == 'in_invoice':
-        #     credit = self.amount_tax
-        # else:
-        #     debit = self.amount_tax
+        amount_rc_tax = self.compute_rc_amount_tax()
+
+        if self.type == 'in_invoice':
+            credit = amount_rc_tax
+        else:
+            debit = amount_rc_tax
 
         return {
             'name': self.number,
@@ -114,29 +177,17 @@ class AccountInvoice(models.Model):
 
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
-        if amount:
-            if self.type == 'in_invoice':
+
+        if self.type == 'in_invoice':
+            if amount:
                 debit = amount
             else:
-                credit = amount
+                debit = self.compute_rc_amount_tax()
         else:
-            for tax in self.tax_line_ids:
-                if tax.tax_id.nature_id.code == 'N6':
-                    if self.type == 'in_invoice':
-                        debit += tax.amount
-                    else:
-                        credit += tax.amount
-        # if self.type == 'in_invoice':
-        #     if amount:
-        #         debit = amount
-        #     else:
-        #         debit = self.amount_tax
-        # else:
-        #     if amount:
-        #         credit = amount
-        #     else:
-        #         credit = self.amount_tax
-
+            if amount:
+                credit = amount
+            else:
+                credit = self.compute_rc_amount_tax()
         return {
             'name': self.number,
             'debit': debit,
@@ -190,22 +241,25 @@ class AccountInvoice(models.Model):
         move_line_model = self.env['account.move.line']
 
         rc_payment_data = self.rc_payment_vals(rc_type)
-        rc_payment = move_model.create(rc_payment_data)
         rc_invoice = self.rc_self_invoice_id
 
         payment_credit_line_data = self.rc_payment_credit_line_vals(
             rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(
             self.amount_total)
-        rc_payment.line_ids = [
+        # payment_debit_line_data = self.rc_debit_line_vals(
+        #     payment_credit_line_data['credit'])
+        rc_payment_data['line_ids'] = [
             (0, 0, payment_debit_line_data),
             (0, 0, payment_credit_line_data),
         ]
+        rc_payment = move_model.create(rc_payment_data)
         for move_line in rc_payment.line_ids:
             if move_line.debit:
                 payment_debit_line = move_line
             elif move_line.credit:
                 payment_credit_line = move_line
+        rc_payment.post()
 
         lines_to_rec = move_line_model.browse([
             self.get_inv_line_to_reconcile().id,
@@ -237,12 +291,12 @@ class AccountInvoice(models.Model):
 
     def partially_reconcile_supplier_invoice(self, rc_payment):
         move_line_model = self.env['account.move.line']
+        payment_debit_line = None
         for move_line in rc_payment.line_ids:
-            # testa se nota credito o debito
-            if (self.type == 'in_invoice') and move_line.debit:
-                payment_debit_line = move_line
-            elif (self.type == 'in_refund') and move_line.credit:
-                payment_debit_line = move_line
+            if move_line.account_id.internal_type == 'payable':
+                if ((self.type == 'in_invoice' and move_line.debit) or
+                        (self.type == 'in_refund' and move_line.credit)):
+                    payment_debit_line = move_line
         inv_lines_to_rec = move_line_model.browse(
             [self.get_inv_line_to_reconcile().id,
                 payment_debit_line.id])
@@ -283,33 +337,34 @@ class AccountInvoice(models.Model):
             rc_partner = rc_type.partner_id
         else:
             rc_partner = self.partner_id
+        rc_currency = self.currency_id
         rc_account = rc_partner.property_account_receivable_id
 
         rc_invoice_lines = []
         for line in self.invoice_line_ids:
             if line.rc:
                 rc_invoice_line = self.rc_inv_line_vals(line)
-                line_tax = line.invoice_line_tax_ids
-                if not line_tax:
+                line_tax_ids = line.invoice_line_tax_ids
+                if not line_tax_ids:
                     raise UserError(_(
                         "Invoice line\n%s\nis RC but has not tax") % line.name)
-                tax_id = None
+                tax_ids = list()
                 for tax_mapping in rc_type.tax_ids:
-                    if tax_mapping.purchase_tax_id == line_tax[0]:
-                        tax_id = tax_mapping.sale_tax_id.id
-                        break
-                if not tax_id:
+                    for line_tax_id in line_tax_ids:
+                        if tax_mapping.purchase_tax_id == line_tax_id:
+                            tax_ids.append(tax_mapping.sale_tax_id.id)
+                if not tax_ids:
                     raise UserError(_("Tax code used is not a RC tax.\nCan't "
                                       "find tax mapping"))
-                if line_tax:
+                if line_tax_ids:
                     rc_invoice_line['invoice_line_tax_ids'] = [
-                        (6, False, [tax_id])]
+                        (6, False, tax_ids)]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
-                rc_partner, rc_account, rc_type, rc_invoice_lines)
+                rc_partner, rc_account, rc_type, rc_invoice_lines, rc_currency)
 
             # create or write the self invoice
             if self.rc_self_invoice_id:
@@ -456,3 +511,16 @@ class AccountInvoice(models.Model):
                     inv.rc_self_purchase_invoice_id.id)
                 self_purchase_invoice.action_invoice_draft()
         return True
+
+    def get_tax_amount_added_for_rc(self):
+        res = 0
+        for line in self.invoice_line_ids:
+            if line.rc:
+                price_unit = line.price_unit * (
+                    1 - (line.discount or 0.0) / 100.0)
+                taxes = line.invoice_line_tax_ids.compute_all(
+                    price_unit, self.currency_id, line.quantity,
+                    line.product_id, self.partner_id)['taxes']
+                for tax in taxes:
+                    res += tax['amount']
+        return res

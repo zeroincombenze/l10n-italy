@@ -81,6 +81,7 @@ class WizardGiornale(models.TransientModel):
                 self.date_move_line_from_view = self.last_def_date_print
             else:
                 self.last_def_date_print = None
+                self.first_date_print = None
             self.date_move_line_from = date_start
             self.date_move_line_to = date_end
             if self.daterange.progressive_line_number != 0:

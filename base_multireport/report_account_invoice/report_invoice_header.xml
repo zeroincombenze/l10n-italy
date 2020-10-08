@@ -13,11 +13,23 @@
                     <div t-if="o.partner_shipping_id.phone">Telefono: <span t-field="o.partner_shipping_id.phone"/></div>
                     <div t-if="not o.partner_shipping_id.phone">Telefono: <span t-field="o.partner_id.phone"/></div>
                 </div>
+                <div t-if="address_mode == 'docnum'">
+                    <h2 style="color: #90BF3F;">
+                        <t t-if="o.state == 'proforma2'" t-set="desdoc" t-value="doctype + ' PRO-FORMA'"/>
+                        <t t-if="o.state == 'draft'" t-set="desdoc" t-value="'bozza ' + doctype"/>
+                        <t t-if="o.state == 'cancel'" t-set="desdoc" t-value="doctype + ' annullata!'"/>
+                        <t t-if="not desdoc" t-set="desdoc" t-value="doctype"/>
+                        <span t-esc="desdoc"/>
+                        <span t-if="o.state not in ('draft','cancel')" t-field="o.number"/>
+                        <span t-if="o.state in ('draft','cancel')" t-field="o.move_name"/>
+                        <p style="color: #90BF3F; font-size: 2em;" t-if="o.date_invoice"> del <span t-field="o.date_invoice"/></p>
+                    </h2>
+                </div>
             </div>
             <div class="col-xs-5 col-xs-offset-1">
                 <strong t-if="address_mode == 'standard' and o.partner_shipping_id and o.partner_shipping_id == o.partner_id">Indirizzo di spedizione e fatturazione:</strong>
                 <strong t-if="address_mode == 'standard' and (not o.partner_shipping_id or o.partner_shipping_id != o.partner_id)">Indirizzo di fatturazione:</strong>
-                <strong t-if="address_mode != 'standard'">Indirizzo di fatturazione:</strong>
+                <strong t-if="address_mode != 'standard'">Spett.le:</strong>
                 <address t-field="o.partner_id"
                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
                 <p t-if="o.partner_id.vat">P.IVA: <span t-field="o.partner_id.vat"/></p>
@@ -48,7 +60,7 @@
         <t t-if="o.payment_term_id and o.type == 'out_refund' and o.payment_term_id.fatturapa_pm_id.code in ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')" t-set="partner_bank" t-value="'partner'"/>
         <t t-if="partner_bank == 'company' and o.partner_bank_id" t-set="partner_bank" t-value="'document'"/>
         <t t-if="not partner_bank" t-set="partner_bank" t-value="'none'"/>
-        <h2>
+        <h2 t-if="address_mode != 'docnum'">
             <span t-esc="desdoc"/>
             <span t-if="o.state not in ('draft','cancel')" t-field="o.number"/>
             <span t-if="o.state in ('draft','cancel')" t-field="o.move_name"/>
@@ -58,7 +70,7 @@
                 <strong>Descrizione:</strong>
                 <p t-field="o.name"/>
             </div>
-            <div class="col-xs-2" t-if="o.date_invoice">
+            <div class="col-xs-2" t-if="address_mode != 'docnum' and o.date_invoice">
                 <strong>Data fattura:</strong>
                 <p t-field="o.date_invoice"/>
             </div>
@@ -75,7 +87,7 @@
                     </t>
                 </p>
             </div>
-            <div class="col-xs-2" t-if="o.origin">
+            <div class="col-xs-2" t-if="address_mode != 'docnum' and o.origin">
                 <strong>Origine:</strong>
                 <p t-field="o.origin"/>
             </div>
@@ -88,11 +100,11 @@
                 <p t-field="o.reference"/>
             </div>
             <div class="col-xs-4" t-if="term_position == 'odoo'">
-                <strong>Termini di pagamento:</strong>
+                <strong>Termine di pagamento:</strong>
                 <p t-field="o.payment_term_id"/>
             </div>
             <div class="col-xs-4" t-if="term_position in ('header', 'header_no_iban')">
-                <strong>Termini di pagamento:</strong>
+                <strong>Termine di pagamento:</strong>
                 <p t-if="o.payment_term_id.note" t-field="o.payment_term_id.note"/>
                 <p t-if="not o.payment_term_id.note" t-field="o.payment_term_id"/>
             </div>

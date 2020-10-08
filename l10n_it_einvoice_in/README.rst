@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.17
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.20
 =========================================================================
 
 
@@ -277,6 +277,24 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.20 (2020-09-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invalid carrier VAT / Ignora PIVA corriere non valida
+
+
+10.0.1.3.19 (2020-07-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No import if company IBAN in xml / Non importa fattura se IBAN azienda in file XML
+
+
+10.0.1.3.18 (2020-07-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Duplicare rea_code when invoice address / Codice rea duplicato se uso indirizzo fatturazione
+
+
 10.0.1.3.17 (2020-07-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -427,7 +445,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-07-07
+Last Update / Ultimo aggiornamento: 2020-09-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

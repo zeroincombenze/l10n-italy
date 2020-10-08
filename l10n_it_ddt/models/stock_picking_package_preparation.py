@@ -288,6 +288,8 @@ class StockPickingPackagePreparation(models.Model):
             'stock.picking.package.preparation', fieldname)
         if not pp_fieldname:
             return vals
+        sp_fieldname = ''
+        so_fieldname = ''
         if not vals.get(fieldname):
             sp_fieldname = ddt_model.fieldname_of_model(
                 'stock.picking', fieldname)
@@ -369,7 +371,7 @@ class StockPickingPackagePreparation(models.Model):
                         _('Selected Pickings have different %s' %
                           condition_help))
             # otherwise check in sale order of picking (if exists)
-            elif (picking.sale_id and
+            elif (picking.sale_id and so_fieldname and
                   picking.sale_id[so_fieldname] and
                   picking.sale_id[so_fieldname].id != vals[pp_fieldname]):
                 raise UserError(
@@ -706,6 +708,7 @@ class StockPickingPackagePreparation(models.Model):
             ddt_invoiced = True
             prior_group_key = order
             max_ddt_seq = 0
+            invoice = False
             for line in ddt.line_ids:
                 if not line.allow_invoice_line():
                     ddt_invoiced = False
@@ -738,6 +741,7 @@ class StockPickingPackagePreparation(models.Model):
                             group_key].origin + ', ' + ddt.ddt_number
                     invoices[group_key].write(vals)
                     ddt.invoice_id = invoices[group_key].id
+                    invoice = invoices[group_key]
 
                 line.invoice_line_create(
                     invoices[group_key].id, line.product_uom_qty,
@@ -745,7 +749,7 @@ class StockPickingPackagePreparation(models.Model):
                 max_ddt_seq = max(max_ddt_seq, line.sequence)
 
             seq_offset += max_ddt_seq
-            if ddt_invoiced:
+            if ddt_invoiced and invoice:
                 ddt.invoice_id = invoice.id
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:

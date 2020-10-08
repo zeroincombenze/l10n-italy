@@ -30,7 +30,8 @@
         'views/account_invoice_view.xml',
         'views/product_view.xml',
         'views/partner_view.xml',
-        'report/conai_statement.xml'
+        'report/conai_statement.xml',
+        # 'views/help_online.xml',
     ],
     'installable': True,
     'maintainer': 'Zeroincombenze (R)',

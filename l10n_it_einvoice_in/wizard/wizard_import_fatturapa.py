@@ -99,7 +99,11 @@ class WizardImportFatturapa(models.TransientModel):
 
         if DatiAnagrafici.CodiceFiscale:
             vals['fiscalcode'] = DatiAnagrafici.CodiceFiscale
-        if DatiAnagrafici.IdFiscaleIVA:
+        if (DatiAnagrafici.IdFiscaleIVA and
+                DatiAnagrafici.IdFiscaleIVA.IdPaese and
+                DatiAnagrafici.IdFiscaleIVA.IdCodice and
+                DatiAnagrafici.IdFiscaleIVA.IdCodice != '00000000000' and
+                DatiAnagrafici.IdFiscaleIVA.IdCodice != '99999999999'):
             vals['vat'] = "%s%s" % (
                 DatiAnagrafici.IdFiscaleIVA.IdPaese,
                 DatiAnagrafici.IdFiscaleIVA.IdCodice
@@ -471,7 +475,7 @@ class WizardImportFatturapa(models.TransientModel):
             self.env['account.invoice.line'].create(line_vals)
         return True
 
-    def _createPayamentsLine(self, payment_id, line, partner_id):
+    def _createPayamentsLine(self, payment_id, line, partner_id, company):
         PaymentModel = self.env['fatturapa.payment.detail']
         PaymentMethodModel = self.env['fatturapa.payment_method']
         details = line.DettaglioPagamento or False
@@ -560,7 +564,7 @@ class WizardImportFatturapa(models.TransientModel):
                             'acc_number', '=',
                             pretty_iban(dline.IBAN.strip())
                         ),
-                        ('partner_id', '=', partner_id),
+                        # ('partner_id', '=', partner_id),
                     ]
                     payment_bank_id = False
                     payment_banks = PartnerBankModel.search(SearchDom)
@@ -587,7 +591,9 @@ class WizardImportFatturapa(models.TransientModel):
                                 'bank_bic': dline.BIC
                             }
                         ).id
-                    if payment_banks:
+                    if (payment_banks and
+                            payment_banks[
+                                0].partner_id.id != company.partner_id.id):
                         payment_bank_id = payment_banks[0].id
 
                 if payment_bank_id:
@@ -1061,7 +1067,8 @@ class WizardImportFatturapa(models.TransientModel):
                         'invoice_id': invoice_id
                     }
                 ).id
-                self._createPayamentsLine(PayDataId, PaymentLine, partner_id)
+                self._createPayamentsLine(
+                    PayDataId, PaymentLine, partner_id, company)
         self.set_payment_term(invoice, company, PaymentsData)
         if (partner.property_payment_term_id and
                 invoice.payment_term_id != partner.property_payment_term_id):

@@ -1,6 +1,9 @@
+.. !! from "readme_main_module.rst"
+
+.. !! from "readme_header.rst"
 
 =====================
-|icon| DDT 10.0.1.8.4
+|icon| DDT 10.0.1.8.6
 =====================
 
 
@@ -17,7 +20,9 @@
 Overview / Panoramica
 =====================
 
-|en| This module print the Italian deliver document AKA DdT
+|en| .. !! from "description.rst"
+
+This module print the Italian deliver document AKA DdT
 
 You can automatically create a DDT From a Sale Order, setting
 'Automatically create the DDT' field that will automatically create the DDT on
@@ -50,7 +55,9 @@ invoice lines
 
 |
 
-|it| Stampa documento di trasporto, consociuto anche come DdT
+|it| .. !! from "descrizione.rst"
+
+Stampa documento di trasporto, consociuto anche come DdT
 
 È possibile creare automaticamente un DDT da un ordine di vendita, impostando
 il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
@@ -86,6 +93,21 @@ E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'd
 
 
 |
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+.. !! from "oca_diff.rst"
+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+
+
+|
 |
 
 Getting started / Come iniziare
@@ -99,6 +121,8 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+.. !! from "installation.rst"
+
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -109,7 +133,7 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
@@ -119,12 +143,14 @@ Installation / Installazione
 ::
 
     cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
+    # Odoo installation
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
+    vem create /opt/odoo/VENV-10.0 -O 10.0 -DI
 
 From UI: go to:
 
@@ -132,10 +158,13 @@ From UI: go to:
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Install
 
+
 |
 
 Upgrade / Aggiornamento
 -----------------------
+
+.. !! from "upgrade.rst"
 
 
 +---------------------------------+------------------------------------------+
@@ -148,8 +177,15 @@ Upgrade / Aggiornamento
 
 ::
 
+    cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    source /opt/odoo/dev/activate_tools
+    # Odoo upgrade
     odoo_install_repository l10n-italy -b 10.0 -O zero -U
-    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
+    vem amend /opt/odoo/VENV-10.0 -O 10.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -164,6 +200,7 @@ From UI: go to:
 Support / Supporto
 ------------------
 
+.. !! from "support.rst"
 
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
@@ -174,6 +211,8 @@ Support / Supporto
 Get involved / Ci mettiamo in gioco
 ===================================
 
+.. !! from "maintenance.rst"
+
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
 <https://github.com/zeroincombenze/l10n-italy/issues>`_.
@@ -183,6 +222,7 @@ In case of trouble, please check there if your issue has already been reported.
 Proposals for enhancement
 -------------------------
 
+.. !! from "proposals_for_enhancement.rst"
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -191,6 +231,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+.. !! from "history.rst"
+
+10.0.1.8.6 (2020-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Add DdT lines to invoice / Aggiunta righe DdT a fattura esistente
+
 
 10.0.1.8.2 (2020-02-19)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -306,6 +354,8 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
+.. !! from "authors.txt"
+
 * `Abstract <https://www.abstract.it>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Apulia Software <https://www.apuliasoftware.it>`__
@@ -316,6 +366,8 @@ Authors / Autori
 
 Contributors / Collaboratori
 ----------------------------
+
+.. !! from "contributors.txt"
 
 * Davide Corio <davide.corio@abstract.it>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
@@ -330,6 +382,8 @@ Contributors / Collaboratori
 
 |
 
+.. !! from "copyright_notes.rst"
+
 ----------------
 
 
@@ -342,15 +396,19 @@ is mainly designed to cover Italian law and markeplace.
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
+.. !! from "contact_us.rst"
+
 
 |chat_with_us|
+
+.. !! from "readme_footer.rst"
 
 
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-04-16
+Last Update / Ultimo aggiornamento: 2020-07-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -409,4 +467,5 @@ Last Update / Ultimo aggiornamento: 2020-04-16
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+

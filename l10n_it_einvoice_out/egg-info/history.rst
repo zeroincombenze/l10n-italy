@@ -1,3 +1,9 @@
+10.0.1.0.17 (2020-09-10)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Check for flag subject_electronic_invoice / Controllo cliente soggetto a fattura elettronica
+
+
 10.0.1.0.16 (2020-07-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

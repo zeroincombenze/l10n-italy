@@ -1,6 +1,10 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*~
+*~*
+*gitignore
+*.csync_journal.db
 
 # C extensions
 *.so
@@ -48,26 +52,25 @@ coverage.xml
 # Rope
 .ropeproject
 
+# Django stuff:
+*.log
+
+# Komodo
+*.komodoproject
+.komodotools
+
+# pyCharm
+.idea
+
+# *.pot is used for translations templates
+
 # Sphinx documentation
 docs/_build/
 
-# Backup files
-*~
-*.swp
-
-# OSX Files
-*.DS_Store
+/.settings/
 stdout.log
 *.oca
 *.z0i
-*.oia
-.gitrepname
 setup/
-stock-logistics-barcode/
-stock-logistics-tracking/
-stock-logistics-warehouse/
-stock-logistics-workflow/
-uncovered/
-web/
-webkit-tools/
-website/
+
+account_invoice_entry_date/

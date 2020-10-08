@@ -986,6 +986,9 @@ class WizardExportFatturapa(models.TransientModel):
                 invoice.payment_term_id.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
             payment_line_ids = invoice.get_receivable_line_ids()
+            if len(payment_line_ids) == 0:
+                raise UserError(
+                    _('Invalid invoice structure: no credit line found'))
             TipoDocumento = self.setTipoDocumento(invoice)
             credit_amount = 0.0
             for move_line_id in payment_line_ids:
@@ -1113,6 +1116,12 @@ class WizardExportFatturapa(models.TransientModel):
         invoice_ids = self.env.context.get('active_ids', False)
         for invoice_id in invoice_ids:
             company, partner, parent = self.getPartnerCompanyId([invoice_id])
+            if (not self._get_partner_field(
+                    partner, parent, 'electronic_invoice_subjected') and
+                    not self._get_partner_field(partner, parent, 'is_pa')):
+                raise UserError(
+                    _("Unauthorized e-invoice to %s ") % (
+                        partner.name))
             fatturapa = FatturaElettronica(
                 versione=self._getFormatoTrasmissione(partner,
                                                       parent))
