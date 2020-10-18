@@ -1,6 +1,6 @@
 
 =============================================
-|icon| Comunicazione periodica IVA 8.0.0.1.13
+|icon| Comunicazione periodica IVA 8.0.0.1.14
 =============================================
 
 
@@ -158,6 +158,7 @@ OCA comparation / Confronto con OCA
 | Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
 +-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
+
 |
 |
 
@@ -172,6 +173,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -181,32 +183,36 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/8.0/l10n-italy/                                                  |
+| /home/odoo/8.0/l10n-italy/                                                 |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
+    # Odoo installation
     odoo_install_repository l10n-italy -b 8.0 -O zero
-    sudo manage_odoo requirements -b 8.0 -vsy -o /opt/odoo/8.0
+    vem create /opt/odoo/VENV-8.0 -O 8.0 -DI
 
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **l10n_it_vat_communication** > Install
 
+
 |
 
 Upgrade / Aggiornamento
 -----------------------
+
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -218,7 +224,15 @@ Upgrade / Aggiornamento
 
 ::
 
+    cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    source /opt/odoo/dev/activate_tools
+    # Odoo upgrade
     odoo_install_repository l10n-italy -b 8.0 -O zero -U
+    vem amend /opt/odoo/VENV-8.0 -O 8.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -323,7 +337,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-10-21
+Last Update / Ultimo aggiornamento: 2020-07-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -382,4 +396,5 @@ Last Update / Ultimo aggiornamento: 2019-10-21
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+

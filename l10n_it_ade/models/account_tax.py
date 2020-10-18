@@ -39,8 +39,14 @@ class AccountTax(models.Model):
         'Law reference', size=128)
 
     def get_tax_by_invoice_tax(self, cr, uid, invoice_tax, context=None):
+        base_ids = self.pool['account.tax'].search(
+            cr, uid, [('base_code_id', '=', invoice_tax.base_code_id.id)])
         tax_ids = self.pool['account.tax'].search(
             cr, uid, [('tax_code_id', '=', invoice_tax.tax_code_id.id)])
+        if len(tax_ids):
+            tax_ids = list(set(base_ids) & set(tax_ids))
+        else:
+            tax_ids = base_ids
         if not len(tax_ids):
             raise UserError(
                 _('Error'), _('No tax %s found') % invoice_tax.name)

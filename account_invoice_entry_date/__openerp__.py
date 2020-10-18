@@ -21,7 +21,7 @@
 
 {
     'name': 'Account Invoice entry Date',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'Generic Modules/Accounting',
     'description': """Account Invoice Entry Dates""",
     'author': "Odoo Italian Community,Odoo Community Association (OCA)",

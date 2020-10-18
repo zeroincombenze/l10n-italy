@@ -30,6 +30,7 @@ class ResCompany(models.Model):
         string='Split Payment Write-off Account',
         help='Account used to write off the VAT amount')
 
+
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'
 

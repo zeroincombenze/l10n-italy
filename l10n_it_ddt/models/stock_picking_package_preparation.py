@@ -9,7 +9,8 @@
 ##############################################################################
 
 
-from openerp import _, api, exceptions, fields, models
+from openerp import models, fields, api, exceptions, _
+from openerp.exceptions import ValidationError
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -17,8 +18,8 @@ class StockPickingCarriageCondition(models.Model):
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
 
-    name = fields.Char(string='Carriage Condition',
-                       required=True, translate=True)
+    name = fields.Char(
+        string='Carriage Condition', required=True, translate=True)
     note = fields.Text(string='Note', translate=True)
 
 
@@ -27,8 +28,8 @@ class StockPickingGoodsDescription(models.Model):
     _name = 'stock.picking.goods_description'
     _description = "Description of Goods"
 
-    name = fields.Char(string='Description of Goods',
-                       required=True, translate=True)
+    name = fields.Char(
+        string='Description of Goods', required=True, translate=True)
     note = fields.Text(string='Note', translate=True)
 
 
@@ -37,10 +38,9 @@ class StockPickingTransportationReason(models.Model):
     _name = 'stock.picking.transportation_reason'
     _description = 'Reason for Transportation'
 
-    name = fields.Char(string='Reason For Transportation',
-                       required=True, translate=True)
+    name = fields.Char(
+        string='Reason For Transportation', required=True, translate=True)
     note = fields.Text(string='Note', translate=True)
-    to_be_invoiced = fields.Boolean(string='To be Invoiced')
 
 
 class StockPickingTransportationMethod(models.Model):
@@ -48,8 +48,8 @@ class StockPickingTransportationMethod(models.Model):
     _name = 'stock.picking.transportation_method'
     _description = 'Method of Transportation'
 
-    name = fields.Char(string='Method of Transportation',
-                       required=True, translate=True)
+    name = fields.Char(
+        string='Method of Transportation', required=True, translate=True)
     note = fields.Text(string='Note', translate=True)
 
 
@@ -62,35 +62,20 @@ class StockDdtType(models.Model):
     name = fields.Char(required=True)
     sequence_id = fields.Many2one('ir.sequence', required=True)
     note = fields.Text(string='Note')
-    default_carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition',
-        string='Default Carriage Condition')
-    default_goods_description_id = fields.Many2one(
-        'stock.picking.goods_description',
-        string='Default Description of Goods')
-    default_transportation_reason_id = fields.Many2one(
-        'stock.picking.transportation_reason',
-        string='Default Reason for Transportation')
-    default_transportation_method_id = fields.Many2one(
-        'stock.picking.transportation_method',
-        string='Default Method of Transportation')
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id, )
+    restrict_pickings = fields.Boolean(
+        help='Pickings already in other DDTs cannot be added'
+             ' to DDTs having this type',
+        default=True)
 
 
 class StockPickingPackagePreparation(models.Model):
 
     _inherit = 'stock.picking.package.preparation'
     _rec_name = 'display_name'
-    _order = 'date desc'
-
-    @api.multi
-    @api.depends('transportation_reason_id.to_be_invoiced')
-    def _compute_to_be_invoiced(self):
-        for ddt in self:
-            ddt.to_be_invoiced = ddt.transportation_reason_id and \
-                ddt.transportation_reason_id.to_be_invoiced or False
+    _order = 'ddt_number desc'
 
     def _default_ddt_type(self):
         return self.env['stock.ddt.type'].search([], limit=1)
@@ -99,52 +84,28 @@ class StockPickingPackagePreparation(models.Model):
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
     ddt_number = fields.Char(string='DdT Number', copy=False)
     partner_invoice_id = fields.Many2one('res.partner')
-    partner_shipping_id = fields.Many2one(
-        'res.partner', string="Shipping Address")
+    partner_shipping_id = fields.Many2one('res.partner')
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition',
-        string='Carriage Condition')
+        'stock.picking.carriage_condition', 'Carriage Condition')
     goods_description_id = fields.Many2one(
-        'stock.picking.goods_description',
-        string='Description of Goods')
+        'stock.picking.goods_description', 'Description of Goods')
     transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        string='Reason for Transportation')
+        'Reason for Transportation')
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
-        string='Method of Transportation')
+        'Method of Transportation')
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
-    parcels = fields.Integer('Parcels')
-    display_name = fields.Char(
-        string='Name', compute='_compute_display_name')
+    parcels = fields.Integer()
+    display_name = fields.Char(string='Name', compute='_compute_display_name')
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
-        'account.invoice', string='Invoice',
-        readonly=True, copy=False)
-    to_be_invoiced = fields.Boolean(
-        string='To be Invoiced', store=True,
-        compute="_compute_to_be_invoiced",
-        help="This depends on 'To be Invoiced' field of the Reason for "
-             "Transportation of this DDT")
+        'account.invoice', string="Invoice", readonly=True, copy=False)
     weight_manual = fields.Float(
         string="Force Weight",
         help="Fill this field with the value you want to be used as weight. "
              "Leave empty to let the system to compute it")
-    gross_weight = fields.Float(string="Gross Weight")
-    check_if_picking_done = fields.Boolean(
-        compute='_compute_check_if_picking_done',
-    )
-
-    @api.multi
-    @api.depends('picking_ids',
-                 'picking_ids.state')
-    def _compute_check_if_picking_done(self):
-        for record in self:
-            record.check_if_picking_done = False
-            for package in record.picking_ids:
-                if package.state == 'done':
-                    record.check_if_picking_done = True
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
@@ -165,6 +126,19 @@ class StockPickingPackagePreparation(models.Model):
                 self.partner_id.transportation_method_id.id \
                 if self.partner_id.transportation_method_id else False
 
+    @api.constrains('picking_ids')
+    def _check_multiple_picking_ids(self):
+        for package in self:
+            if not package.ddt_type_id.restrict_pickings:
+                continue
+            for picking in package.picking_ids:
+                other_ddts = picking.ddt_ids - package
+                if other_ddts:
+                    raise ValidationError(
+                        _("The picking %s is already in DDT %s")
+                        % (picking.name_get()[0][1],
+                           other_ddts.name_get()[0][1]))
+
     @api.multi
     def action_put_in_pack(self):
         for package in self:
@@ -174,8 +148,10 @@ class StockPickingPackagePreparation(models.Model):
                     _("Impossible to put in pack a package without details"))
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
-                package.ddt_number = package.ddt_type_id.sequence_id.get(
-                    package.ddt_type_id.sequence_id.code)
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.next_by_id(
+                        package.ddt_type_id.sequence_id.id)
+                )
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.multi
@@ -186,8 +162,10 @@ class StockPickingPackagePreparation(models.Model):
                     _("Not every picking is in done status"))
         for package in self:
             if not package.ddt_number:
-                package.ddt_number = package.ddt_type_id.sequence_id.get(
-                    package.ddt_type_id.sequence_id.code)
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.next_by_id(
+                        package.ddt_type_id.sequence_id.id)
+                )
         self.write({'state': 'done', 'date_done': fields.Datetime.now()})
         return True
 

@@ -17,14 +17,12 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition',
-        string='Carriage Condition')
+        'stock.picking.carriage_condition', 'Carriage Condition')
     goods_description_id = fields.Many2one(
-        'stock.picking.goods_description',
-        string='Description of Goods')
+        'stock.picking.goods_description', 'Description of Goods')
     transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        string='Reason for Transportation')
+        'Reason for Transportation')
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
-        string='Method of Transportation')
+        'Method of Transportation')

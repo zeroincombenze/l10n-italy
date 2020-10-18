@@ -28,6 +28,8 @@ Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement
 
 This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__
 
+This code partially inherits some parts from l10n_it_account of OCA.
+
 |
 
 |it| Definizioni Agenzia delle Entrate
@@ -40,12 +42,12 @@ Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 
 |info| Questo modulo è incompatibile con alcuni moduli OCA.
 
-Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+Tutti i moduli che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
 `l10n_it_ade <https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_ade>`__ come dipendenza.
 
-Per maggiori informazioni contattare
-l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
+Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.
+
 
 |
 
@@ -78,9 +80,9 @@ Certifications / Certificazioni
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2019   | Validazione contro schema xml                |
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2020   | Validazione contro schema xml                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
+| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2020   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
@@ -139,6 +141,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -148,32 +151,36 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/8.0/l10n-italy/                                                  |
+| /home/odoo/8.0/l10n-italy/                                                 |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
+    # Odoo installation
     odoo_install_repository l10n-italy -b 8.0 -O zero
-    sudo manage_odoo requirements -b 8.0 -vsy -o /opt/odoo/8.0
+    vem create /opt/odoo/VENV-8.0 -O 8.0 -DI
 
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **l10n_it_ade** > Install
 
+
 |
 
 Upgrade / Aggiornamento
 -----------------------
+
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -185,7 +192,15 @@ Upgrade / Aggiornamento
 
 ::
 
+    cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    source /opt/odoo/dev/activate_tools
+    # Odoo upgrade
     odoo_install_repository l10n-italy -b 8.0 -O zero -U
+    vem amend /opt/odoo/VENV-8.0 -O 8.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -228,16 +243,23 @@ ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
 10.0.0.1.13 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Symbols quotes and double quotes / Conversione simboli '«»' e apostrofo
+
+
+10.0.0.1.13 (2019-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Dim_text function / field to search for similarity 
 
 
-10.0.0.1.+ < 13 (2018)
-~~~~~~~~~~~~~~~~~~~~~~
+< 10.0.0.1.13 (2018)
+~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Use both pyxb 1.2.4 both 1.2.5 (automatic detection)
 * [IMP] File xml without characters not accepted by Tax Authority
+* [FIX] Link fiscal type refund by refund / Riconoscimento NC fiscale da documento Odoo
 
 |
 |
@@ -257,12 +279,32 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
+
+Acknowledges / Riconoscimenti
+-----------------------------
+
++-----------------------------------+-------------------------------------------+
+| |en|                              | |it|                                      |
++-----------------------------------+-------------------------------------------+
+| This software inherits from past  | Questo software eredita da versioni       |
+| versions some parts of code. Even | passate alcune parti di codice. Anche     |
+| if people did not actively        | se non hanno partecipato attivamente allo |
+| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
+| acknowledge them for their prior  | persone che precedentemente vi hanno      |
+| contributions.                    | contribuito.                              |
++-----------------------------------+-------------------------------------------+
+
+* Davide Corio <info@davidecorio.com>
+* Alex Comba <alex.comba@agilebg.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 |
 
@@ -286,7 +328,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-10-21
+Last Update / Ultimo aggiornamento: 2020-10-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -345,4 +387,5 @@ Last Update / Ultimo aggiornamento: 2019-10-21
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+

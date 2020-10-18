@@ -8,7 +8,7 @@ from openerp.exceptions import ValidationError
 from openerp import netsvc
 
 
-class withholding_tax(models.Model):
+class WithholdingTax(models.Model):
     _name = 'withholding.tax'
     _description = 'Withholding Tax'
 
@@ -71,11 +71,11 @@ class withholding_tax(models.Model):
 
     @api.one
     def get_base_from_tax(self, wt_amount):
-        '''
+        """
         100 * wt_amount        1
         ---------------  *  -------
               % tax          Coeff
-        '''
+        """
         dp_obj = self.env['decimal.precision']
         base = 0
         if wt_amount:
@@ -85,7 +85,7 @@ class withholding_tax(models.Model):
         return base
 
 
-class withholding_tax_rate(models.Model):
+class WithholdingTaxRate(models.Model):
     _name = 'withholding.tax.rate'
     _description = 'Withholding Tax Rates'
 
@@ -124,11 +124,11 @@ class withholding_tax_rate(models.Model):
     tax = fields.Float(string='Tax %')
 
 
-class withholding_tax_statement(models.Model):
+class WithholdingTaxStatement(models.Model):
 
-    '''
+    """
     The Withholding tax statement are created at the invoice validation
-    '''
+    """
 
     _name = 'withholding.tax.statement'
     _description = 'Withholding Tax Statement'
@@ -175,12 +175,12 @@ class withholding_tax_statement(models.Model):
             st.display_name = name
 
 
-class withholding_tax_move(models.Model):
+class WithholdingTaxMove(models.Model):
 
-    '''
+    """
     The Withholding tax moves are created at the payment of invoice using
     voucher
-    '''
+    """
     _name = 'withholding.tax.move'
     _description = 'Withholding Tax Move'
 
@@ -256,4 +256,4 @@ class withholding_tax_move(models.Model):
                 raise ValidationError(
                     _('Warning! You cannot delet move linked to voucher.You \
                     must before delete the voucher.'))
-        return super(withholding_tax_move, self).unlink()
+        return super(WithholdingTaxMove, self).unlink()

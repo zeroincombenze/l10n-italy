@@ -31,7 +31,76 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'GB',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
+
+class AccountInvoice(orm.Model):
+    _inherit = "account.invoice"
+
+    _columns = {
+        'communication_type': fields.selection([
+            ('XX19', 'Esterometro 2019'),
+            ('2018', 'Spesometro 2018'),
+            ('2019', 'Spesometro 2019'),
+            ('NO', 'Escluso'),],
+            'Tipo comunicazione',
+            help="Tipo di comunicazione a cui è assoggettata la fattura\n"),
+    }
+
+    def onchange_set_einvoice_commtype(
+            self, cr, uid, ids, partner_id, registration_date,
+            fatturapa_attachment_out_id, context=None):
+        if not partner_id or not registration_date:
+            return {}
+        partner = self.pool['res.partner'].browse(partner_id)
+        year = max(int(registration_date[0:4]), 2017)
+        iso = partner.vat[0:2] if partner.vat else False
+        if (fatturapa_attachment_out_id):
+            exclude_invoice = True
+        else:
+            exclude_invoice = False
+        if not iso and partner.country_id:
+            iso = partner.country_id.code
+        if exclude_invoice:
+            communication_type = 'NO'
+        elif iso == 'IT':
+            communication_type = '%d' % year
+        elif iso in EU_COUNTRIES and year < 2019:
+            communication_type = '%d' % year
+        elif iso and year >= 2019:
+            communication_type = 'XX19'
+        else:
+            communication_type = 'NO'
+        return {'value': {'communication_type': communication_type}}
+
+    def set_einvoice_commtype(self, cr, uid, ids, context=None):
+        invoice_model = self.pool['account.invoice']
+        for invoice in invoice_model.browse(cr, uid, ids):
+            if invoice.state not in ('open', 'paid'):
+                continue
+            if invoice.registration_date:
+                year = max(int(invoice.registration_date[0:4]), 2017)
+            else:
+                year = max(int(invoice.date_invoice[0:4]), 2017)
+            year = min(year, 2019)
+            iso = invoice.partner_id.vat[0:2] if invoice.partner_id.vat else False
+            if not iso and invoice.partner_id.country_id:
+                iso = invoice.partner_id.country_id.code
+            if invoice.fatturapa_attachment_out_id:
+                communication_type = 'NO'
+            elif iso == 'IT':
+                communication_type = '%d' % year
+            elif iso in EU_COUNTRIES and year < 2019:
+                communication_type = '%d' % year
+            elif iso and year >= 2019:
+                communication_type = 'XX19'
+            else:
+                communication_type = 'NO'
+            invoice_model.write(cr, uid, invoice.id, {
+                'communication_type': communication_type})
+        return True
+
+
 class AccountVatCommunication(orm.Model):
+    _name = "account.vat.communication"
 
     def _get_default_soggetto_codice_fiscale(self, cr, uid, context=None):
         user = self.pool.get('res.users').browse(cr, uid, uid, context)
@@ -40,8 +109,15 @@ class AccountVatCommunication(orm.Model):
             return company.vat[2:]
         return ''
 
-    _name = "account.vat.communication"
     _columns = {
+        'name': fields.char('Descrizione'),
+        'communication_type': fields.selection([
+            ('XX19', 'Esterometro 2019'),
+            ('2018', 'Spesometro 2018'),
+            ('2019', 'Spesometro 2019'),
+            ('NO', 'Escluso'),],
+            'Tipo comunicazione',
+            help="Tipo di comunicazione a cui è assoggettata la fattura\n"),
         'company_id': fields.many2one('res.company', 'Company'),
         'soggetto_codice_fiscale':
             fields.char(
@@ -146,7 +222,7 @@ class AccountVatCommunication(orm.Model):
                            date(2017, 7, 1).toordinal()) / 90) + 1
         sequence_model = self.pool['ir.sequence']
         vals = {
-            'name' : 'VAT communication',
+            'name': 'VAT communication',
             'implementation': 'no_gap',
             'company_id': company_id,
             'prefix': '',
@@ -247,7 +323,8 @@ class AccountVatCommunication(orm.Model):
             sum_amounts[f] = 0.0
         for invoice_id in invoice_model.search(cr, uid, where, context=context):
             inv_line = {}
-            invoice = invoice_model.browse(cr, uid, invoice_id, context)
+            invoice = invoice_model.browse(
+                cr, uid, invoice_id, context=context)
             for invoice_tax in invoice.tax_line:
                 tax_nature = False
                 tax_payability = 'I'
@@ -417,6 +494,7 @@ class AccountVatCommunication(orm.Model):
         where = [('company_id', '=', company_id),
                  ('period_id', 'in', period_ids),
                  ('journal_id', 'not in', exclude_journal_ids),
+                 ('communication_type', '=', commitment.communication_type),
                  ('state', 'in', ('open', 'paid'))]
         if dte_dtr_id == 'DTE':
             where.append(('type', 'in', ['out_invoice', 'out_refund']))
@@ -487,8 +565,7 @@ class AccountVatCommunication(orm.Model):
         return sum_amounts
 
     def compute_amounts(self, cr, uid, ids, context=None):
-        context = {} if context is None else context
-
+        context = context or {}
         for commitment in self.browse(cr, uid, ids, context):
             dte_sum_amounts = self.load_DTE(cr, uid, commitment, context)
             dtr_sum_amounts = self.load_DTR(cr, uid, commitment, context)
@@ -551,7 +628,7 @@ class AccountVatCommunication(orm.Model):
         res = {}
         if commitment.codice_carica and commitment.soggetto_codice_fiscale:
             res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
-            res['xml_Carica'] = commitment.codice_carica
+            res['xml_Carica'] = commitment.codice_carica.code
         return res
 
     def get_xml_company(

@@ -4,7 +4,7 @@
 
     <template id="report_giornale">
         <t t-call="report.html_container">
-            <t t-set="title" t-value="'Libro giornale'"/>
+        <t t-set="title" t-value="'Stampa libro giornale'"/>
             <t t-call="l10n_it_account.internal_layout">
 
                 <div class="page">

@@ -47,7 +47,7 @@
     </record>
     <record id="fatturapa_mp08" model="fatturapa.payment_method">
         <field name="code">MP08</field>
-        <field name="name">carta di pagamento</field>
+            <field name="name">carta di credito</field>
     </record>
     <record id="fatturapa_mp09" model="fatturapa.payment_method">
         <field name="code">MP09</field>

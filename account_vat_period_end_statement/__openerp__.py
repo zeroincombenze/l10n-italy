@@ -1,87 +1,53 @@
 # -*- coding: utf-8 -*-
-#    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
-#    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
-#    Copyright (C) 2012-15 LinkIt Spa <http://http://www.linkgroup.it>
-#    Copyright (C) 2015-17 Associazione Odoo Italia
-#                          <http://www.odoo-italia.org>
-#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-# [2011: domsense] First version
-# [2012: agilebg] Various enhancements
-# [2013: openerp-italia] Various enhancements
-# [2017: odoo-italia] Electronic VAT statement
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
+#    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
+#    Copyright (C) 2015 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+
+
 {
     "name": "Period End VAT Statement",
-    "version": "8.0.3.0.5",
+    "version": "8.0.3.0.1",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
-        "l10n_it_ade",
         "l10n_it_account",
         "account_voucher",
         "report",
-        "l10n_it_vat_registries",
         "l10n_it_fiscalcode",
-    ],
-    "author": "Agile Business Group,"
-              " Odoo Italia Associazione,"
-              " Odoo Community Association (OCA)",
-    'maintainer': 'Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>',
-    "description": """(en)
-
-Period End VAT Statement
-========================
-
-This module evaluates VAT to pay (or on credit) and generates the electronic
-VAT closeout statement as VAT Authority
-<http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/
-normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/
-provvedimento+27+marzo+2017+liquidazioni+periodiche+iva>
-
-By default, amounts of debit and credit taxes are automatically loaded
-from tax codes of selected periods.
-
-Previous debit or credit is loaded from previous VAT statement, according
-to its payments status.
-
-https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
-
-
-(it)
-
-Liquidazione IVA periodica
-==========================
-
-Questo modulo calcola l'IVA da pagare (o a credito) sia per i contribuenti
-mensili che trimestrali e permette di generare il file della comunicazione
-elettronica come da normativa del 2017 dell'Agenzia delle Entrate
-http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/documentazione/normativa+e+prassi/provvedimenti/2017/marzo+2017+provvedimenti/provvedimento+27+marzo+2017+liquidazioni+periodiche+iva
-
-La liquidazione è calcolata sommando i totali di periodo dei conti imposte.
-
-L'utente può aggiungere l'eventuale credito/debito del periodo precedente e
-calcolare gli interessi; può anche registrare l'utilizzo del credito in
-compensazione.
-
-
-https://www.zeroincombenze.it/liquidazione-iva-elettronica-ip17
-""",
-    'website': 'https://odoo-italia.org',
+        ],
+    "author": "Agile Business Group, Odoo Community Association (OCA)"
+              ", LinkIt Spa",
+    'website': 'http://www.agilebg.com',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
-        'wizard/vat_settlement.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
+        'reports.xml',
+        'views/report_vatperiodendstatement.xml',
         'views/config.xml',
         'views/account_view.xml',
     ],
-    'external_dependencies': {
-        'python': ['pyxb'],
-    },
-    'demo': [],
-    'installable': True,
+    'installable': False,
 }

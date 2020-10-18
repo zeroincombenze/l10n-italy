@@ -2,20 +2,40 @@
 <openerp>
 <data>
 
+    <record id="invoice_form_commtype" model="ir.ui.view">
+        <field name="name">invoice.form.commtype</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="date_due" position="after">
+                <field name="communication_type"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form_commtype" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.commtype</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term" position="after">
+                <field name="communication_type"/>
+            </field>
+        </field>
+    </record>
+
     <record id="view_account_vat_communication" model="ir.ui.view">
         <field name="name">account.vat.communication.form</field>
         <field name="model">account.vat.communication</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Vat Communication">
-                <header>
-                    <button type='action' name="%(action_add_period)d" string="Add period" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"/>
-                    <button type='action' name="%(action_remove_period)d" string="Remove period" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"/>
-                    <button type="object" name="compute_amounts" string="Recompute amounts" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"/>
-                    <button name="set_draft" states="confirmed,open" string="Set to draft" colspan="2"/>
-                </header>
-                <field name="company_id" groups="base.group_multi_company"/>
-                <field name="state" select="1"/>
+                <group>
+                    <field name="communication_type"/>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state" select="1"/>
+                </group>
                 <notebook colspan="4">
                     <page string="Header">
                         <group colspan="4">
@@ -38,6 +58,9 @@
                         </group>
                     </page>
                     <page string="Periods">
+                        <button type='action' name="%(action_add_period)d" string="Add period" colspan="1" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"/>
+                        <button type='action' name="%(action_remove_period)d" string="Remove period" colspan="1" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"/>
+                        <button type="object" name="compute_amounts" string="Recompute amounts" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed',))]}"/>
                         <field name="period_ids" colspan="4" nolabel="1" readonly="1"/>
                     </page>
                     <page string="Sale invoices">
@@ -74,8 +97,10 @@
                                 <field name="amount_total" />
                                 <field name="amount_taxable" />
                                 <field name="amount_tax" />
-                                <field name="xml_Aliquota" readonly="1" />
-                                <field name="xml_Detraibile" readonly="1" />
+                                <!--
+                                  <field name="xml_Aliquota" readonly="1" />
+                                  <field name="xml_Detraibile" readonly="1" />
+                                  -->
                                 <field name="tax_rate" readonly="1" />
                                 <field name="tax_nodet_rate" readonly="1" />
                                 <field name="tax_nature" readonly="1" />
@@ -98,8 +123,8 @@
                                 <field name="amount_taxable" sum="Untaxed Amount"/>
                                 <field name="amount_tax" sum="Tax Amount"/>
                                 <!--
-                                <field name="xml_Aliquota" />
-                                <field name="xml_Detraibile" />
+                                  <field name="xml_Aliquota" />
+                                  <field name="xml_Detraibile" />
                                   -->
                                 <field name="tax_rate" />
                                 <field name="tax_nodet_rate" />
@@ -118,8 +143,10 @@
                                 <field name="amount_total"/>
                                 <field name="amount_taxable"/>
                                 <field name="amount_tax"/>
-                                <field name="xml_Aliquota" readonly="1" />
-                                <field name="xml_Detraibile" readonly="1" />
+                                <!--
+                                  <field name="xml_Aliquota" readonly="1" />
+                                  <field name="xml_Detraibile" readonly="1" />
+                                  -->
                                 <field name="tax_rate" readonly="1" />
                                 <field name="tax_nodet_rate" readonly="1" />
                                 <field name="tax_nature" readonly="1" />
@@ -138,6 +165,7 @@
                         </field>
                     </page>
                 </notebook>
+                <button name="set_draft" states="confirmed,open" string="Set to draft" colspan="2"/>
             </form>
         </field>
     </record>
@@ -149,6 +177,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Vat Communication">
+                <field name="name" />
                 <field name="soggetto_codice_fiscale" />
                 <field name="codice_carica" />
                 <field name="state" />
@@ -156,7 +185,6 @@
             </tree>
         </field>
     </record>
-
 
     <record id="action_account_vat_communication" model="ir.actions.act_window">
         <field name="name">Vat Communication</field>

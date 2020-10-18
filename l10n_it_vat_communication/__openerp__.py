@@ -6,7 +6,7 @@
 # [2017: SHS-AV s.r.l.] First version
 {
     "name": "Comunicazione periodica IVA",
-    "version": "8.0.0.1.13",
+    "version": "8.0.0.1.14",
     'category': 'Generic Modules/Accounting',
     'license': 'AGPL-3',
     "depends": [
@@ -44,6 +44,7 @@ Questa comunicazione è anche conosciuta come Spesometro light 2018.
              'views/remove_period.xml',
              'views/account_view.xml',
              'views/wizard_export_view.xml',
+             'views/set_invoice_commtype_view.xml',
              'security/ir.model.access.csv',
              'communication_workflow.xml',
              ],
@@ -51,5 +52,5 @@ Questa comunicazione è anche conosciuta come Spesometro light 2018.
         'python': ['pyxb', 'unidecode'],
     },
     'demo': [],
-    'installable': True,
+    'installable': False,
 }

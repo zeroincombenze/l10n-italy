@@ -13,7 +13,7 @@
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": [
         "l10n_it_einvoice_out",
         "l10n_it_einvoice_in",

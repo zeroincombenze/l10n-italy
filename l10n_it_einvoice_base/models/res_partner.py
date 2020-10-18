@@ -27,7 +27,7 @@ class ResPartner(models.Model):
     register_province = fields.Many2one(
         'res.country.state', string='Register Province')
     # 1.2.1.6
-    register_code = fields.Char('Register Code', size=60)
+    register_code = fields.Char('Register Registration Number', size=60)
     # 1.2.1.7
     register_regdate = fields.Date('Register Registration Date')
     # 1.2.1.8
@@ -36,9 +36,9 @@ class ResPartner(models.Model):
         string="Register Fiscal Position")
     # 1.1.6
     pec_destinatario = fields.Char(
-        "PEC destinatario",
-        help="Indirizzo PEC al quale inviare la fattura elettronica. "
-             "Da valorizzare "
-             "SOLO nei casi in cui l'elemento informativo "
-             "<CodiceDestinatario> vale '0000000'"
+        "Addressee PEC",
+        help="PEC to which the electronic invoice will be sent. "
+             "Must be filled "
+             "ONLY when the information element "
+             "<CodiceDestinatario> is '0000000'"
     )
