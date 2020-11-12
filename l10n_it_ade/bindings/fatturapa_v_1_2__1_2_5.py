@@ -203,62 +203,35 @@ class CausalePagamentoType (
         161,
         2)
     _Documentation = None
-CausalePagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=CausalePagamentoType, enum_prefix=None)
-CausalePagamentoType.A = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='A', tag='A')
-CausalePagamentoType.B = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='B', tag='B')
-CausalePagamentoType.C = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='C', tag='C')
-CausalePagamentoType.D = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='D', tag='D')
-CausalePagamentoType.E = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='E', tag='E')
-CausalePagamentoType.G = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='G', tag='G')
-CausalePagamentoType.H = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='H', tag='H')
-CausalePagamentoType.I = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='I', tag='I')
-CausalePagamentoType.L = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='L', tag='L')
-CausalePagamentoType.M = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='M', tag='M')
-CausalePagamentoType.N = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='N', tag='N')
-CausalePagamentoType.O = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='O', tag='O')
-CausalePagamentoType.P = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='P', tag='P')
-CausalePagamentoType.Q = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='Q', tag='Q')
-CausalePagamentoType.R = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='R', tag='R')
-CausalePagamentoType.S = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='S', tag='S')
-CausalePagamentoType.T = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='T', tag='T')
-CausalePagamentoType.U = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='U', tag='U')
-CausalePagamentoType.V = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='V', tag='V')
-CausalePagamentoType.W = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='W', tag='W')
-CausalePagamentoType.X = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='X', tag='X')
-CausalePagamentoType.Y = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='Y', tag='Y')
-CausalePagamentoType.Z = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='Z', tag='Z')
-CausalePagamentoType.L1 = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='L1', tag='L1')
-CausalePagamentoType.M1 = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='M1', tag='M1')
-CausalePagamentoType.O1 = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='O1', tag='O1')
-CausalePagamentoType.V1 = CausalePagamentoType._CF_enumeration.addEnumeration(
-    unicode_value='V1', tag='V1')
+CausalePagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=CausalePagamentoType)
+CausalePagamentoType.A = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='A', tag='A')
+CausalePagamentoType.B = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='B', tag='B')
+CausalePagamentoType.C = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='C', tag='C')
+CausalePagamentoType.D = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='D', tag='D')
+CausalePagamentoType.E = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='E', tag='E')
+CausalePagamentoType.G = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='G', tag='G')
+CausalePagamentoType.H = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='H', tag='H')
+CausalePagamentoType.I = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='I', tag='I')
+CausalePagamentoType.L = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='L', tag='L')
+CausalePagamentoType.M = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='M', tag='M')
+CausalePagamentoType.N = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='N', tag='N')
+CausalePagamentoType.O = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='O', tag='O')
+CausalePagamentoType.P = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='P', tag='P')
+CausalePagamentoType.Q = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='Q', tag='Q')
+CausalePagamentoType.R = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='R', tag='R')
+CausalePagamentoType.S = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='S', tag='S')
+CausalePagamentoType.T = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='T', tag='T')
+CausalePagamentoType.U = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='U', tag='U')
+CausalePagamentoType.V = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='V', tag='V')
+CausalePagamentoType.W = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='W', tag='W')
+CausalePagamentoType.X = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='X', tag='X')
+CausalePagamentoType.Y = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='Y', tag='Y')
+CausalePagamentoType.L1 = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='L1', tag='L1')
+CausalePagamentoType.M1 = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='M1', tag='M1')
+CausalePagamentoType.M2 = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='M2', tag='M2')
+CausalePagamentoType.O1 = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='O1', tag='O1')
+CausalePagamentoType.V1 = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='V1', tag='V1')
+CausalePagamentoType.ZO = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='ZO', tag='ZO')
 CausalePagamentoType._InitializeFacetMap(CausalePagamentoType._CF_enumeration)
 Namespace.addCategoryObject(
     'typeBinding',
@@ -352,54 +325,29 @@ class TipoCassaType (
         224,
         2)
     _Documentation = None
-TipoCassaType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoCassaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoCassaType, enum_prefix=None)
-TipoCassaType.TC01 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC01', tag='TC01')
-TipoCassaType.TC02 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC02', tag='TC02')
-TipoCassaType.TC03 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC03', tag='TC03')
-TipoCassaType.TC04 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC04', tag='TC04')
-TipoCassaType.TC05 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC05', tag='TC05')
-TipoCassaType.TC06 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC06', tag='TC06')
-TipoCassaType.TC07 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC07', tag='TC07')
-TipoCassaType.TC08 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC08', tag='TC08')
-TipoCassaType.TC09 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC09', tag='TC09')
-TipoCassaType.TC10 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC10', tag='TC10')
-TipoCassaType.TC11 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC11', tag='TC11')
-TipoCassaType.TC12 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC12', tag='TC12')
-TipoCassaType.TC13 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC13', tag='TC13')
-TipoCassaType.TC14 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC14', tag='TC14')
-TipoCassaType.TC15 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC15', tag='TC15')
-TipoCassaType.TC16 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC16', tag='TC16')
-TipoCassaType.TC17 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC17', tag='TC17')
-TipoCassaType.TC18 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC18', tag='TC18')
-TipoCassaType.TC19 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC19', tag='TC19')
-TipoCassaType.TC20 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC20', tag='TC20')
-TipoCassaType.TC21 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC21', tag='TC21')
-TipoCassaType.TC22 = TipoCassaType._CF_enumeration.addEnumeration(
-    unicode_value='TC22', tag='TC22')
+TipoCassaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=TipoCassaType)
+TipoCassaType.TC01 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC01', tag='TC01')
+TipoCassaType.TC02 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC02', tag='TC02')
+TipoCassaType.TC03 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC03', tag='TC03')
+TipoCassaType.TC04 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC04', tag='TC04')
+TipoCassaType.TC05 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC05', tag='TC05')
+TipoCassaType.TC06 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC06', tag='TC06')
+TipoCassaType.TC07 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC07', tag='TC07')
+TipoCassaType.TC08 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC08', tag='TC08')
+TipoCassaType.TC09 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC09', tag='TC09')
+TipoCassaType.TC10 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC10', tag='TC10')
+TipoCassaType.TC11 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC11', tag='TC11')
+TipoCassaType.TC12 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC12', tag='TC12')
+TipoCassaType.TC13 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC13', tag='TC13')
+TipoCassaType.TC14 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC14', tag='TC14')
+TipoCassaType.TC15 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC15', tag='TC15')
+TipoCassaType.TC16 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC16', tag='TC16')
+TipoCassaType.TC17 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC17', tag='TC17')
+TipoCassaType.TC18 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC18', tag='TC18')
+TipoCassaType.TC19 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC19', tag='TC19')
+TipoCassaType.TC20 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC20', tag='TC20')
+TipoCassaType.TC21 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC21', tag='TC21')
+TipoCassaType.TC22 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC22', tag='TC22')
 TipoCassaType._InitializeFacetMap(TipoCassaType._CF_length,
                                   TipoCassaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoCassaType', TipoCassaType)
@@ -423,24 +371,25 @@ class TipoDocumentoType (
         383,
         2)
     _Documentation = None
-TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoDocumentoType, enum_prefix=None)
-TipoDocumentoType.TD01 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD01', tag='TD01')
-TipoDocumentoType.TD02 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD02', tag='TD02')
-TipoDocumentoType.TD03 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD03', tag='TD03')
-TipoDocumentoType.TD04 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD04', tag='TD04')
-TipoDocumentoType.TD05 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD05', tag='TD05')
-TipoDocumentoType.TD06 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD06', tag='TD06')
-TipoDocumentoType.TD20 = TipoDocumentoType._CF_enumeration.addEnumeration(
-    unicode_value='TD20', tag='TD20')
+TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=TipoDocumentoType)
+TipoDocumentoType.TD01 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD01', tag='TD01')
+TipoDocumentoType.TD02 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD02', tag='TD02')
+TipoDocumentoType.TD03 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD03', tag='TD03')
+TipoDocumentoType.TD04 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD04', tag='TD04')
+TipoDocumentoType.TD05 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD05', tag='TD05')
+TipoDocumentoType.TD06 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD06', tag='TD06')
+TipoDocumentoType.TD16 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD16', tag='TD16')
+TipoDocumentoType.TD17 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD17', tag='TD17')
+TipoDocumentoType.TD18 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD18', tag='TD18')
+TipoDocumentoType.TD19 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD19', tag='TD19')
+TipoDocumentoType.TD20 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD20', tag='TD20')
+TipoDocumentoType.TD21 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD21', tag='TD21')
+TipoDocumentoType.TD22 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD22', tag='TD22')
+TipoDocumentoType.TD23 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD23', tag='TD23')
+TipoDocumentoType.TD24 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD24', tag='TD24')
+TipoDocumentoType.TD25 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD25', tag='TD25')
+TipoDocumentoType.TD26 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD26', tag='TD26')
+TipoDocumentoType.TD27 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD27', tag='TD27')
 TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_length,
                                       TipoDocumentoType._CF_enumeration)
 Namespace.addCategoryObject(
@@ -467,14 +416,13 @@ class TipoRitenutaType (
         418,
         2)
     _Documentation = None
-TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(
-    value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoRitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=TipoRitenutaType, enum_prefix=None)
-TipoRitenutaType.RT01 = TipoRitenutaType._CF_enumeration.addEnumeration(
-    unicode_value='RT01', tag='RT01')
-TipoRitenutaType.RT02 = TipoRitenutaType._CF_enumeration.addEnumeration(
-    unicode_value='RT02', tag='RT02')
+TipoRitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=TipoRitenutaType)
+TipoRitenutaType.RT01 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT01', tag='RT01')
+TipoRitenutaType.RT02 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT02', tag='RT02')
+TipoRitenutaType.RT03 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT03', tag='RT03')
+TipoRitenutaType.RT04 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT04', tag='RT04')
+TipoRitenutaType.RT05 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT05', tag='RT05')
+TipoRitenutaType.RT06 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT06', tag='RT06')
 TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_length,
                                      TipoRitenutaType._CF_enumeration)
 Namespace.addCategoryObject(
@@ -900,22 +848,31 @@ class NaturaType (
         1050,
         2)
     _Documentation = None
-NaturaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(
-    value_datatype=NaturaType, enum_prefix=None)
-NaturaType.N1 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N1', tag='N1')
-NaturaType.N2 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N2', tag='N2')
-NaturaType.N3 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N3', tag='N3')
-NaturaType.N4 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N4', tag='N4')
-NaturaType.N5 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N5', tag='N5')
-NaturaType.N6 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N6', tag='N6')
-NaturaType.N7 = NaturaType._CF_enumeration.addEnumeration(
-    unicode_value='N7', tag='N7')
+NaturaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=NaturaType)
+NaturaType.N1 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N1', tag='N1')
+NaturaType.N2 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N2', tag='N2')
+NaturaType.N2_1 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N2.1', tag='N2_1')
+NaturaType.N2_2 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N2.2', tag='N2_2')
+NaturaType.N3 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3', tag='N3')
+NaturaType.N3_1 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3.1', tag='N3_1')
+NaturaType.N3_2 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3.2', tag='N3_2')
+NaturaType.N3_3 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3.3', tag='N3_3')
+NaturaType.N3_4 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3.4', tag='N3_4')
+NaturaType.N3_5 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3.5', tag='N3_5')
+NaturaType.N3_6 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N3.6', tag='N3_6')
+NaturaType.N4 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N4', tag='N4')
+NaturaType.N5 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N5', tag='N5')
+NaturaType.N6 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6', tag='N6')
+NaturaType.N6_1 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.1', tag='N6_1')
+NaturaType.N6_2 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.2', tag='N6_2')
+NaturaType.N6_3 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.3', tag='N6_3')
+NaturaType.N6_4 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.4', tag='N6_4')
+NaturaType.N6_5 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.5', tag='N6_5')
+NaturaType.N6_6 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.6', tag='N6_6')
+NaturaType.N6_7 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.7', tag='N6_7')
+NaturaType.N6_8 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.8', tag='N6_8')
+NaturaType.N6_9 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.9', tag='N6_9')
+NaturaType.N7 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N7', tag='N7')
 NaturaType._InitializeFacetMap(NaturaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'NaturaType', NaturaType)
 _module_typeBindings.NaturaType = NaturaType
