@@ -7,7 +7,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import fields, models
+from odoo import api, models, fields
 
 
 class ItalyAdeTaxNature(models.Model):
@@ -18,9 +18,27 @@ class ItalyAdeTaxNature(models.Model):
                          'unique(code)',
                          'Code already exists!')]
 
-    code = fields.Char(string='Code',
-                       size=2)
-    name = fields.Char(string='Name')
+    code = fields.Char(string='Code', size=4, required=True)
+    name = fields.Char(string='Name', required=True)
     help = fields.Text(string='Help')
-    active = fields.Boolean(string='Active',
-                            default=True)
+    active = fields.Boolean(string='Active', default=True)
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for tax_kind in self:
+            res.append(
+                (tax_kind.id, '[%s] %s' % (tax_kind.code, tax_kind.name)))
+        return res
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if not args:
+            args = []
+        if name:
+            records = self.search([
+                '|', ('name', operator, name), ('code', operator, name)
+                ] + args, limit=limit)
+        else:
+            records = self.search(args, limit=limit)
+        return records.name_get()

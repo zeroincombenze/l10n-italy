@@ -14,7 +14,7 @@ class AddPeriod(models.TransientModel):
 
     _name = 'add.period.to.vat.commitment'
 
-    period_id = fields.Many2one('account.period', 'Period', required=True)
+    period_id = fields.Many2one('date.range', 'Period', required=True)
 
     @api.multi
     def add_period(self):

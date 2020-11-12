@@ -6,76 +6,71 @@
 #
 # This free software is released under GNU Affero GPL3
 # author: Antonio M. Vigliotti - antoniomaria.vigliotti@gmail.com
-# (C) 2017-2019 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
+# (C) 2017-2020 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
 #
 THIS=$(basename "$0")
 TDIR=$(readlink -f $(dirname $0))
-PYTHONPATH=$(echo -e "import sys\nprint str(sys.path).replace(' ','').replace('\"','').replace(\"'\",\"\").replace(',',':')[1:-1]"|python)
-for d in $TDIR $TDIR/.. ${PYTHONPATH//:/ } /etc; do
-  if [ -e $d/z0librc ]; then
+PYPATH=$(echo -e "import sys\nprint(str(sys.path).replace(' ','').replace('\"','').replace(\"'\",\"\").replace(',',':')[1:-1])"|python)
+for d in $TDIR ${PATH//:/ } ${PYPATH//:/ } /etc /home/odoo/devel/../z0lib /home/odoo/devel/../../z0lib /home/odoo/devel/../../z0lib/z0lib; do
+  if [[ -e $d/z0librc ]]; then
     . $d/z0librc
     Z0LIBDIR=$d
     Z0LIBDIR=$(readlink -e $Z0LIBDIR)
     break
-  elif [ -d $d/z0lib ]; then
-    . $d/z0lib/z0librc
-    Z0LIBDIR=$d/z0lib
-    Z0LIBDIR=$(readlink -e $Z0LIBDIR)
-    break
   fi
 done
-if [ -z "$Z0LIBDIR" ]; then
+if [[ -z "$Z0LIBDIR" ]]; then
   echo "Library file z0librc not found!"
   exit 2
 fi
 
-__version__=0.1.5.9
+__version__=0.1.5.10
 
 gen_init() {
-    local mdl="${1//,/ }"
-    local i=./__init__.py
-    if [ $opt_dry_run -eq 0 ]; then
-      echo "# flake8: noqa">$i
-      echo "# -*- coding: utf-8 -*-" >>$i
-      echo "# Copyright 2017-2019 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>">>$i
-      echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$i
-      echo "#">>$i
-      echo "# Generated $(date '+%a %Y-%m-%d %H:%M:%S') by pyxbgen.sh $__version__">>$i
-      echo "# by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>">>$i
-      echo "#">>$i
-      for m in $mdl; do
-        if [ "$opt_mod" == "." ]; then
-          echo "from . import $m">>$i
-        else
-          echo "import odoo.addons.${opt_mod}.bindings.$m">>$i
-        fi
-      done
-    fi
+  local mdl="${1//,/ }"
+  local i=./__init__.py
+  if [ $opt_dry_run -eq 0 ]; then
+    echo "# flake8: noqa" >$i
+    echo "# -*- coding: utf-8 -*-" >>$i
+    echo "# Copyright 2017-2020 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>" >>$i
+    echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)." >>$i
+    echo "#" >>$i
+    echo "# Generated $(date '+%a %Y-%m-%d %H:%M:%S') by pyxbgen.sh $__version__" >>$i
+    echo "# by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>" >>$i
+    echo "#" >>$i
+    for m in $mdl; do
+      if [ "$opt_mod" == "." ]; then
+        echo "from . import $m" >>$i
+      else
+        echo "import odoo.addons.${opt_mod}.bindings.$m" >>$i
+      fi
+    done
+  fi
 }
 
 create_hook() {
-    local fn=$1
-    if [ $opt_dry_run -eq 0 ]; then
-      echo "# flake8: noqa">$fn
-      echo "# -*- coding: utf-8 -*-">>$fn
-      echo "# Copyright 2017-2019 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>">>$fn
-      echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).">>$fn
-      echo "#">>$fn
-      echo "import pyxb">>$fn
-      stmt="if"
-      for v in 1.2.4 1.2.5 1.2.6; do
-        echo "$stmt pyxb.__version__ == '$v':">>$fn
-        if [ "$opt_mod" == "." ]; then
-          echo "    from ${fn:0: -3}__${v//./_} import *">>$fn
-        else
-          echo "    from odoo.addons.${opt_mod}.${fn:0: -3}__${v//./_} import *">>$fn
-        fi
-        stmt="elif"
-      done
-      echo "else:">>$fn
-      echo "    raise pyxb.PyXBVersionError('1.2.4 to 1.2.6')">>$fn
-      # echo "">>$fn
-    fi
+  local fn=$1
+  if [ $opt_dry_run -eq 0 ]; then
+    echo "# flake8: noqa" >$fn
+    echo "# -*- coding: utf-8 -*-" >>$fn
+    echo "# Copyright 2017-2020 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>" >>$fn
+    echo "# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)." >>$fn
+    echo "#" >>$fn
+    echo "import pyxb" >>$fn
+    stmt="if"
+    for v in 1.2.4 1.2.5 1.2.6; do
+      echo "$stmt pyxb.__version__ == '$v':" >>$fn
+      if [ "$opt_mod" == "." ]; then
+        echo "    from ${fn:0:-3}__${v//./_} import *" >>$fn
+      else
+        echo "    from odoo.addons.${opt_mod}.${fn:0:-3}__${v//./_} import *" >>$fn
+      fi
+      stmt="elif"
+    done
+    echo "else:" >>$fn
+    echo "    raise pyxb.PyXBVersionError('1.2.4 to 1.2.6')" >>$fn
+    # echo "">>$fn
+  fi
 }
 
 excl="DatiFatturaMessaggi,Fattura_VFSM10.xsd,FatturaPA_versione_1.1,FatturaPA_versione_1.2,MessaggiTypes"
@@ -86,43 +81,36 @@ OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_m
 OPTACTI=(1        "="        1        1        "1>"     "=>"      1        "="     1           "=>"     1          0            "1>"    "*"         1           "=>")
 OPTDEFL=(1        ""         0        0        0        ""        0        "."     0           ""       0          -1            0       ""         -1          "$excl")
 OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       "name"  ""          "path"   ""         "silent"     ""      "version"   "verbose"   "file")
-OPTHELP=("this help"\
- "odoo branch for topep8; may be 6.1 7.0 8.0 9.0 10.0 11.0 or 12.0"\
- "keep binding directory, if found"\
- "keep temporary files"\
- "list xml schemas and module names"\
- "generate __init__.py with modules list"\
- "multi version (append pyxb version to file names)"\
- "copy file to module path (i.e. ~/10.0/l10n-italy/l10n_it_ade/"\
- "odoo module name (def='.')"\
- "do nothing (dry-run)"\
- "do not apply pep8"\
- "silent mode"\
- "execute uri Agenzia delle Entrate"\
- "show version"\
- "verbose mode"\
- "commma separated module exclusion list; i.e. fornituraIvp,FatturaPA,DatiFattura,DatiFatturaMessaggi")
+OPTHELP=("this help"
+  "odoo branch for topep8; may be 6.1 7.0 8.0 9.0 10.0 11.0 12.0 13.0 or 14.0"
+  "keep binding directory, if found"
+  "keep temporary files"
+  "list xml schemas and module names"
+  "generate __init__.py with modules list"
+  "multi version (append pyxb version to file names)"
+  "copy file to module path (i.e. ~/10.0/l10n-italy/l10n_it_ade/"
+  "odoo module name (def='.')"
+  "do nothing (dry-run)"
+  "do not apply pep8"
+  "silent mode"
+  "execute uri Agenzia delle Entrate"
+  "show version"
+  "verbose mode"
+  "commma separated module exclusion list; i.e. fornituraIvp,FatturaPA,DatiFattura,DatiFatturaMessaggi")
 OPTARGS=()
 
-DISTO=$(xuname "-d")
-if [ "$DISTO" == "CentOS" ]; then
-  parseoptargs "$@"
-else
-  echo "Warning! This tool run just under CentOS, version 6 o 7"
-  opt_version=0
-  opt_help=1
-fi
+parseoptargs "$@"
 if [ "$opt_version" ]; then
   echo "$__version__"
   exit 0
 fi
 if [ $opt_help -gt 0 ]; then
-  print_help "Agenzia delle Entrate pyxb generator\nPer generare file .py usare switch -u"\
-  "(C) 2017-2019 by zeroincombenze(R)\nhttp://wiki.zeroincombenze.org/en/Linux/dev\nAuthor: antoniomaria.vigliotti@gmail.com"
+  print_help "Agenzia delle Entrate pyxb generator\nPer generare file .py usare switch -u" \
+    "(C) 2017-2020 by zeroincombenze®\nhttps://zeroincombenze-tools.readthedocs.io/\nAuthor: antoniomaria.vigliotti@gmail.com"
   exit 0
 fi
-XSD_FILES=("fornituraIvp_2017_v1.xsd" "FatturaPA_versione_1.2.xsd" "FatturaPA_versione_1.1.xsd" "DatiFatturav2.1.xsd" "DatiFatturaMessaggiv2.0.xsd" "MessaggiTypes_v1.1.xsd" "Fattura_VFPR12.xsd" "Fattura_VFSM10.xsd")
-MOD_NAMES=("vat_settlement_v_1_0"     "fatturapa_v_1_2"            "fatturapa_v_1_1"            "dati_fattura_v_2_1"  "messaggi_fattura_v_2_0"      "MessaggiTypes_v_1_1"    "fatturapa_v_1_2"    "fatturapa_v_1_0")
+XSD_FILES=("fornituraIvp_2017_v1.xsd" "FatturaPA_versione_1.2.1.xsd" "FatturaPA_versione_1.2.xsd" "FatturaPA_versione_1.1.xsd" "DatiFatturav2.1.xsd" "DatiFatturaMessaggiv2.0.xsd" "MessaggiTypes_v1.1.xsd" "Fattura_VFPR12.xsd" "Fattura_VFSM10.xsd")
+MOD_NAMES=("vat_settlement_v_1_0" "fatturapa_v_1_2" "fatturapa_v_1_2" "fatturapa_v_1_1" "dati_fattura_v_2_1" "messaggi_fattura_v_2_0" "MessaggiTypes_v_1_1" "fatturapa_v_1_2" "fatturapa_v_1_0")
 bin_path=${PATH//:/ }
 PYXBGEN_BIN=
 for x in $TDIR $TDIR/.. $bin_path; do
@@ -131,7 +119,7 @@ for x in $TDIR $TDIR/.. $bin_path; do
     break
   fi
 done
-[ -z "PYXBGEN_BIN" ] && echo "File pyxbgen not found!"
+[ -z "$PYXBGEN_BIN" ] && echo "File pyxbgen not found!" && exit 1
 PYXBGEN_PY=
 for x in $TDIR $TDIR/.. $bin_path; do
   if [ -e $x/pyxbgen.py ]; then
@@ -139,7 +127,7 @@ for x in $TDIR $TDIR/.. $bin_path; do
     break
   fi
 done
-[ -z "PYXBGEN_PY" ] && echo "File pyxbgen.py not found!"
+[ -z "$PYXBGEN_PY" ] && echo "File pyxbgen.py not found!" && exit 1
 TOPEP8=$(which topep8 2>/dev/null)
 if [ -z "$TOPEP8" ]; then
   TOPEP8=$(which autopep8 2>/dev/null)
@@ -157,8 +145,8 @@ if [ -n "$opt_ginit" ]; then
   gen_init "$opt_ginit"
   exit 0
 fi
-pyxbgen_ver=$($PYXBGEN_BIN --version|grep -Eo "[0-9.]+")
-pyxb_ver=$(pip show pyxb 2>/dev/null|grep "^Version"|grep -Eo "[0-9.]+")
+pyxbgen_ver=$($PYXBGEN_BIN --version | grep -Eo "[0-9.]+")
+pyxb_ver=$(pip show pyxb 2>/dev/null | grep "^Version" | grep -Eo "[0-9.]+")
 if [ "$pyxbgen_ver" != "$pyxb_ver" ]; then
   echo "Version mismatch"
   echo "pyxb version is $pyxb_ver  "
@@ -198,27 +186,27 @@ if [ -n "$opt_odoo" ]; then
   exit 0
 fi
 if [ $opt_list -eq 0 ]; then
-   if [ -d $BINDINGS.bak -a ! -f $BINDINGS.bak/_ds.py  -a ! -f $BINDINGS.bak/_cm.py ]; then
-     [ $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS.bak"
-     rm -fR $BINDINGS.bak
-   fi
-   if [ -d $BINDINGS -a ! -f $BINDINGS/_ds.py  -a ! -f $BINDINGS/_cm.py ]; then
-     [ $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS"
-     rm -fR $BINDINGS
-   fi
-   if [ $opt_cont -eq 0 -a -d $BINDINGS ]; then
-     if [ -d $BINDINGS.bak ]; then
-       [ $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS.bak"
-       rm -fR $BINDINGS.bak
-     fi
-     [ $opt_verbose -ne 0 ] && echo "\$ mv $BINDINGS $BINDINGS.bak"
-     mv $BINDINGS $BINDINGS.bak
-   fi
+  if [ -d $BINDINGS.bak -a ! -f $BINDINGS.bak/_ds.py -a ! -f $BINDINGS.bak/_cm.py ]; then
+    [ $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS.bak"
+    rm -fR $BINDINGS.bak
+  fi
+  if [ -d $BINDINGS -a ! -f $BINDINGS/_ds.py -a ! -f $BINDINGS/_cm.py ]; then
+    [ $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS"
+    rm -fR $BINDINGS
+  fi
+  if [ $opt_cont -eq 0 -a -d $BINDINGS ]; then
+    if [ -d $BINDINGS.bak ]; then
+      [ $opt_verbose -ne 0 ] && echo "\$ rm -fR $BINDINGS.bak"
+      rm -fR $BINDINGS.bak
+    fi
+    [ $opt_verbose -ne 0 ] && echo "\$ mv $BINDINGS $BINDINGS.bak"
+    mv $BINDINGS $BINDINGS.bak
+  fi
 fi
 [ $opt_verbose -ne 0 ] && echo "\$ mkdir -p $BINDINGS"
 mkdir -p $BINDINGS
 [ $opt_verbose -ne 0 ] && echo "\$ cd $BINDINGS"
-pushd $BINDINGS ?>/dev/null
+pushd $BINDINGS ? >/dev/null
 if [ ! -d "$SCHEMAS" ]; then
   echo "Directory $SCHEMAS not found!"
 fi
@@ -250,11 +238,11 @@ for d in $SCHEMAS/*; do
       ff=$(readlink -f $f)
       if [[ ! $fn =~ $exclude || $opt_list -ne 0 ]]; then
         jy=0
-        while ((jy<${#XSD_FILES[*]})); do
+        while ((jy < ${#XSD_FILES[*]})); do
           xsd="${XSD_FILES[jy]}"
           mdn="${MOD_NAMES[jy]}"
           if [ "$fn" == "$xsd" ]; then
-            grp=${mdn:0: -6}
+            grp=${mdn:0:-6}
             if [[ $fn =~ $exclude ]]; then
               info="deprecated"
               TEXT_COLOR="$INVALID_COLOR"
@@ -308,7 +296,7 @@ if [ $opt_list -eq 0 ]; then
       [ $opt_dry_run -ne 0 ] || eval $PYXBGEN_PY $fn -3
       if [ $opt_mult -gt 0 ]; then
         if [ ${fn: -3} == ".py" ]; then
-          tgt="${fn:0: -3}__${pyxb_ver//./_}${fn: -3}"
+          tgt="${fn:0:-3}__${pyxb_ver//./_}${fn: -3}"
           echo "\$ mv $fn $tgt"
           mv $fn $tgt
           create_hook $fn
@@ -317,7 +305,7 @@ if [ $opt_list -eq 0 ]; then
     fi
   done
 fi
-popd ?>/dev/null
+popd ? >/dev/null
 if [ $opt_list -eq 0 -a $opt_keep -eq 0 ]; then
   find . -name "*.bak" -delete
   find . -name "*.pyc" -delete

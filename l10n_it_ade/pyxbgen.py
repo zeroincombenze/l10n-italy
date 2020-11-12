@@ -7,13 +7,13 @@
 #
 # This free software is released under GNU Affero GPL3
 # author: Antonio M. Vigliotti - antoniomaria.vigliotti@gmail.com
-# (C) 2017-2019 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
+# (C) 2017-2020 by SHS-AV s.r.l. - http://www.shs-av.com - info@shs-av.com
 #
 import os
 import sys
 import re
 
-__version__ = '0.1.5.2'
+__version__ = '0.1.5.10'
 
 
 def wash_source(lines, kind):
@@ -364,10 +364,6 @@ def main(args):
             correct_future(lines)
         else:
             robust_source(lines, FILE_SCHEMA)
-            # if len(args) <= 2:
-            #     wash_source(lines, '')
-            # else:
-            #     wash_source(lines, args[2])
             topep8(lines, FILE_SCHEMA)
         fd = open(args[0], 'w')
         fd.write(''.join('%s\n' % l for l in lines))

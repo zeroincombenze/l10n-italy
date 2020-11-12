@@ -6,7 +6,6 @@
 #
 # [2017: SHS-AV s.r.l.] First version
 #
-# from openerp import release
 import logging
 import os
 import base64
@@ -96,7 +95,6 @@ class WizardVatCommunication(models.TransientModel):
     target = fields.Char('Customers/Suppliers', size=4, readonly=True)
 
     def str60Latin(self, s):
-        # t = s.encode('latin-1', 'ignore')
         return unidecode(s)[:60]
 
     def str80Latin(self, s):
@@ -349,6 +347,9 @@ class WizardVatCommunication(models.TransientModel):
         partners = []
         partner_ids = commitment_model.get_partner_list(
             cr, uid, commitment, dte_dtr_id, context)
+        if not partner_ids:
+            raise exceptions.Warning(
+                _('No invoices found!'))
         for partner_id in partner_ids:
             fields_partner = commitment_model.get_xml_cessionario_cedente(
                 cr, uid, commitment, partner_id, dte_dtr_id, context)
@@ -416,13 +417,13 @@ class WizardVatCommunication(models.TransientModel):
                         fields['xml_Imposta'])
                     riepilogo.DatiIVA.Aliquota = '{:.2f}'.format(
                         fields['xml_Aliquota'])
-                    if fields.get('xml_Detraibile', None) is not None:
-                        riepilogo.Detraibile = '{:.2f}'.format(
-                            fields['xml_Detraibile'])
                     if fields.get('xml_Deducibile', None) is not None:
                         riepilogo.Deducibile = fields['xml_Deducibile']
                     if fields.get('xml_Natura', False):
                         riepilogo.Natura = fields['xml_Natura']
+                    elif fields.get('xml_Detraibile', None) is not None:
+                        riepilogo.Detraibile = '{:.2f}'.format(
+                            fields['xml_Detraibile'])
                     if fields.get('xml_EsigibilitaIVA', False):
                         riepilogo.EsigibilitaIVA = fields['xml_EsigibilitaIVA']
                     dati_riepilogo.append(riepilogo)

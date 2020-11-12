@@ -29,9 +29,14 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
                     browse(comunicazione_ids):
                 out = base64.encodestring(comunicazione.get_export_xml())
                 wizard.file_export = out
-                wizard.name = "%s_LI_%s.xml" % (
-                    comunicazione.declarant_fiscalcode,
-                    str(comunicazione.identificativo).rjust(5, '0'))
+                if comunicazione.declarant_fiscalcode:
+                    wizard.name = "%s_LI_%s.xml" % (
+                        comunicazione.declarant_fiscalcode,
+                        str(comunicazione.identificativo).rjust(5, '0'))
+                else:
+                    wizard.name = "%s_LI_%s.xml" % (
+                        comunicazione.taxpayer_fiscalcode,
+                        str(comunicazione.identificativo).rjust(5, '0'))
             model_data_obj = self.env['ir.model.data']
             view_rec = model_data_obj.get_object_reference(
                 'l10n_it_vat_statement_communication',

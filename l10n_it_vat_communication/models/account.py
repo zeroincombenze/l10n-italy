@@ -5,13 +5,14 @@
 #
 #
 import logging
+from datetime import date
 
+from odoo.addons import decimal_precision as dp
 import odoo.release as release
 from odoo import api, fields, models
 from odoo.exceptions import UserError, Warning
-from odoo.addons import decimal_precision as dp
 from odoo.tools.translate import _
-from datetime import date
+
 
 _logger = logging.getLogger(__name__)
 try:
@@ -93,7 +94,6 @@ class AccountVatCommunication(models.Model):
                             'Please update the base module.'))
         return eu_group
 
-    # def _get_default_soggetto_codice_fiscale(self, cr, uid, context=None):
 
     @api.model
     def _get_default_soggetto_codice_fiscale(self):
@@ -130,7 +130,7 @@ class AccountVatCommunication(models.Model):
         'State', readonly=True,
         default='draft')
     period_ids = fields.One2many(
-        'account.period', 'vat_commitment_id', 'Periods')
+        'date.range', 'vat_commitment_id', 'Periods')
     account_vat_communication_dte_line_ids = fields.One2many(
         'account.vat.communication.dte.line', 'commitment_id',
         'Sale invoices',
@@ -320,8 +320,6 @@ class AccountVatCommunication(models.Model):
                     taxcode_vat_id = False
                     where = [('tax_id', '=', taxcode_base_id)]
                 else:
-                    # Получить номер компании, по ней получить компанию, далее VAT и распарсить по полям, номер документы из функции _tipodocumento,
-                    # tax изsccount.tax
                     taxcode_base_id = invoice_tax.base_code_id.id
                     taxcode_vat_id = invoice_tax.tax_id.id
                     where = [('base_code_id', '=', taxcode_base_id)]
@@ -434,12 +432,12 @@ class AccountVatCommunication(models.Model):
         p_stop = 0
         if commitment.period_ids:
             p_start = commitment.period_ids[0].date_start
-            p_stop = commitment.period_ids[0].date_stop
+            p_stop = commitment.period_ids[0].date_end
             for period in commitment.period_ids:
                 if period.date_start < p_start:
                     p_start = period.date_start
-                if period.date_stop > p_stop:
-                    p_stop = period.date_stop
+                if period.date_end > p_stop:
+                    p_stop = period.date_end
         where = [('company_id', '=', company_id),
                  ('date', '>=', p_start),
                  ('date', '<=', p_stop),
@@ -1181,8 +1179,8 @@ class CommitmentDTRLine(models.Model):
             index=True,
             readonly=True)
 
-class AccountPeriod(models.Model):
-    _inherit = "account.period"
+class DateTange(models.Model):
+    _inherit = "date.range"
 
     vat_commitment_id = fields.Many2one(
         'account.vat.communication', "VAT commitment")

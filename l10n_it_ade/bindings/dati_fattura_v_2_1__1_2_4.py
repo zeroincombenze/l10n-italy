@@ -6,6 +6,7 @@
 # 2019-03-09 09:37:22.818463 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0
+
 from __future__ import unicode_literals
 import logging
 import io
@@ -14,13 +15,14 @@ _logger = logging.getLogger(__name__)
 try:
     import pyxb
     import pyxb.binding
+    import pyxb.binding.datatypes
     import pyxb.binding.saxer
     import pyxb.utils.utility
     import pyxb.utils.domutils
     import pyxb.utils.six as _six
 except ImportError as err:
     _logger.debug(err)
-
+from . import _ds as _ImportedBinding__ds
 
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
@@ -33,14 +35,6 @@ if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
 
-# Import bindings for namespaces imported into schema
-from . import _ds as _ImportedBinding__ds
-try:
-    import pyxb.binding.datatypes
-except ImportError as err:
-    _logger.debug(err)
-
-
 SCHEMA_FILE = '../data/datifatture/DatiFatturav2.1.xsd'
 
 
@@ -50,6 +44,7 @@ Namespace = pyxb.namespace.NamespaceForURI(
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 _Namespace_ds = _ImportedBinding__ds.Namespace
 _Namespace_ds.configureCategories(['typeBinding', 'elementBinding'])
+
 
 def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
     """Parse the given XML and use the document element to create a

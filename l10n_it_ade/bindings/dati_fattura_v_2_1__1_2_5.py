@@ -36,8 +36,6 @@ if pyxb.__version__ != _PyXBVersion:
 # inside class definitions where property names may conflict.
 _module_typeBindings = pyxb.utils.utility.Object()
 
-# Import bindings for namespaces imported into schema
-
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
@@ -504,7 +502,7 @@ _module_typeBindings.EsigibilitaIVAType = EsigibilitaIVAType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}RateType
 
 
-class RateType (pyxb.binding.datatypes.decimal):
+class RateType (pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 
@@ -513,12 +511,14 @@ class RateType (pyxb.binding.datatypes.decimal):
     _Documentation = None
 
 
-RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
+# RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
-RateType._InitializeFacetMap(RateType._CF_maxInclusive,
-                             RateType._CF_whiteSpace,
+# RateType._InitializeFacetMap(RateType._CF_maxInclusive,
+#                              RateType._CF_whiteSpace,
+#                              RateType._CF_pattern)
+RateType._InitializeFacetMap(RateType._CF_whiteSpace,
                              RateType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType
@@ -526,7 +526,7 @@ _module_typeBindings.RateType = RateType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}Amount2DecimalType
 
 
-class Amount2DecimalType (pyxb.binding.datatypes.decimal):
+class Amount2DecimalType (pyxb.binding.datatypes.string):
 
     """An atomic simple type."""
 

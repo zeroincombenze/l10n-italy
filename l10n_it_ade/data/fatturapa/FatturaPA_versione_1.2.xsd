@@ -4,8 +4,9 @@
 	xmlns="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" 
 	targetNamespace="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" 
 	version="1.2">
+
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
-  
+
   <xs:element name="FatturaElettronica" type="FatturaElettronicaType">
     <xs:annotation>
       <xs:documentation>XML schema fatture destinate a PA e privati in forma ordinaria 1.2</xs:documentation>
@@ -195,16 +196,12 @@
       <xs:length value="2" />
       <xs:enumeration value="SC">
         <xs:annotation>
-          <xs:documentation>
-						SC = Sconto
-					</xs:documentation>
+          <xs:documentation>SC = Sconto</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="MG">
         <xs:annotation>
-          <xs:documentation>
-						MG = Maggiorazione
-					</xs:documentation>
+          <xs:documentation>MG = Maggiorazione</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -214,9 +211,7 @@
       <xs:length value="2" />
       <xs:enumeration value="SI">
         <xs:annotation>
-          <xs:documentation>
-						SI = Documento emesso secondo modalità e termini stabiliti con DM ai sensi dell'art. 73 DPR 633/72
-					</xs:documentation>
+          <xs:documentation>SI = Documento emesso secondo modalità e termini stabiliti con DM ai sensi dell'art. 73 DPR 633/72</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -226,156 +221,112 @@
       <xs:length value="4" />
       <xs:enumeration value="TC01">
         <xs:annotation>
-          <xs:documentation>
-						Cassa nazionale previdenza e assistenza avvocati e procuratori legali
-					</xs:documentation>
+          <xs:documentation>Cassa nazionale previdenza e assistenza avvocati e procuratori legali</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC02">
         <xs:annotation>
-          <xs:documentation>
-						Cassa previdenza dottori commercialisti
-					</xs:documentation>
+          <xs:documentation>Cassa previdenza dottori commercialisti</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC03">
         <xs:annotation>
-          <xs:documentation>
-						Cassa previdenza e assistenza geometri
-					</xs:documentation>
+          <xs:documentation>Cassa previdenza e assistenza geometri</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC04">
         <xs:annotation>
-          <xs:documentation>
-						Cassa nazionale previdenza e assistenza ingegneri e architetti liberi professionisti
-					</xs:documentation>
+          <xs:documentation>Cassa nazionale previdenza e assistenza ingegneri e architetti liberi professionisti</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC05">
         <xs:annotation>
-          <xs:documentation>
-						Cassa nazionale del notariato
-					</xs:documentation>
+          <xs:documentation>Cassa nazionale del notariato</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC06">
         <xs:annotation>
-          <xs:documentation>
-						Cassa nazionale previdenza e assistenza ragionieri e periti commerciali
-					</xs:documentation>
+          <xs:documentation>Cassa nazionale previdenza e assistenza ragionieri e periti commerciali</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC07">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale assistenza agenti e rappresentanti di commercio (ENASARCO)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale assistenza agenti e rappresentanti di commercio (ENASARCO)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC08">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza consulenti del lavoro (ENPACL)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza consulenti del lavoro (ENPACL)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC09">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza medici (ENPAM)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza medici (ENPAM)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC10">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza farmacisti (ENPAF)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza farmacisti (ENPAF)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC11">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza veterinari (ENPAV)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza veterinari (ENPAV)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC12">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza impiegati dell'agricoltura (ENPAIA)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza impiegati dell'agricoltura (ENPAIA)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC13">
         <xs:annotation>
-          <xs:documentation>
-						Fondo previdenza impiegati imprese di spedizione e agenzie marittime
-					</xs:documentation>
+          <xs:documentation>Fondo previdenza impiegati imprese di spedizione e agenzie marittime</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC14">
         <xs:annotation>
-          <xs:documentation>
-						Istituto nazionale previdenza giornalisti italiani (INPGI)
-					</xs:documentation>
+          <xs:documentation>Istituto nazionale previdenza giornalisti italiani (INPGI)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC15">
         <xs:annotation>
-          <xs:documentation>
-						Opera nazionale assistenza orfani sanitari italiani (ONAOSI)
-					</xs:documentation>
+          <xs:documentation>Opera nazionale assistenza orfani sanitari italiani (ONAOSI)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC16">
         <xs:annotation>
-          <xs:documentation>
-						Cassa autonoma assistenza integrativa giornalisti italiani (CASAGIT)
-					</xs:documentation>
+          <xs:documentation>Cassa autonoma assistenza integrativa giornalisti italiani (CASAGIT)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC17">
         <xs:annotation>
-          <xs:documentation>
-						Ente previdenza periti industriali e periti industriali laureati (EPPI)
-					</xs:documentation>
+          <xs:documentation>Ente previdenza periti industriali e periti industriali laureati (EPPI)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC18">
         <xs:annotation>
-          <xs:documentation>
-						Ente previdenza e assistenza pluricategoriale (EPAP)
-					</xs:documentation>
+          <xs:documentation>Ente previdenza e assistenza pluricategoriale (EPAP)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC19">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza biologi (ENPAB)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza biologi (ENPAB)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC20">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza professione infermieristica (ENPAPI)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza professione infermieristica (ENPAPI)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC21">
         <xs:annotation>
-          <xs:documentation>
-						Ente nazionale previdenza e assistenza psicologi (ENPAP)
-					</xs:documentation>
+          <xs:documentation>Ente nazionale previdenza e assistenza psicologi (ENPAP)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TC22">
         <xs:annotation>
-          <xs:documentation>
-						INPS
-					</xs:documentation>
+          <xs:documentation>INPS</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -509,9 +460,7 @@
   </xs:simpleType>
   <xs:complexType name="CedentePrestatoreType">
     <xs:annotation>
-      <xs:documentation>
-				Blocco relativo ai dati del Cedente / Prestatore
-			</xs:documentation>
+      <xs:documentation>Blocco relativo ai dati del Cedente / Prestatore</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DatiAnagrafici"             type="DatiAnagraficiCedenteType"               />
@@ -584,8 +533,7 @@
       </xs:enumeration>
       <xs:enumeration value="RF10">
         <xs:annotation>
-          <xs:documentation>Intrattenimenti, giochi e altre attività	di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)
-					</xs:documentation>
+          <xs:documentation>Intrattenimenti, giochi e altre attività	di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="RF11">
@@ -637,9 +585,7 @@
   </xs:simpleType>
   <xs:complexType name="AnagraficaType">
     <xs:annotation>
-      <xs:documentation>
-				Il campo Denominazione è in alternativa ai campi Nome e Cognome
-			</xs:documentation>
+      <xs:documentation>Il campo Denominazione è in alternativa ai campi Nome e Cognome</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:choice>
@@ -681,9 +627,7 @@
   </xs:complexType>
   <xs:complexType name="RappresentanteFiscaleType">
     <xs:annotation>
-      	<xs:documentation>
-			Blocco relativo ai dati del Rappresentante Fiscale
-		</xs:documentation>
+      	<xs:documentation>Blocco relativo ai dati del Rappresentante Fiscale</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DatiAnagrafici" type="DatiAnagraficiRappresentanteType" />
@@ -730,9 +674,7 @@
   </xs:complexType>
   <xs:complexType name="DatiBeniServiziType">
     <xs:annotation>
-      <xs:documentation>
-				Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica
-			</xs:documentation>
+      <xs:documentation>Blocco relativo ai dati di Beni Servizi della Fattura	Elettronica</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DettaglioLinee" type="DettaglioLineeType" maxOccurs="unbounded" />
@@ -755,9 +697,7 @@
   </xs:complexType>
   <xs:complexType name="DatiPagamentoType">
     <xs:annotation>
-      <xs:documentation>
-				Blocco relativo ai dati di Pagamento della Fattura	Elettronica
-			</xs:documentation>
+      <xs:documentation>Blocco relativo ai dati di Pagamento della Fattura	Elettronica</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="CondizioniPagamento" type="CondizioniPagamentoType"                       />
@@ -956,9 +896,7 @@
   </xs:complexType>
   <xs:complexType name="AllegatiType">
     <xs:annotation>
-      <xs:documentation>
-				Blocco relativo ai dati di eventuali allegati
-			</xs:documentation>
+      <xs:documentation>Blocco relativo ai dati di eventuali allegati</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="NomeAttachment"        type="String60LatinType"                />
@@ -1007,9 +945,7 @@
       <xs:length value="2" />
       <xs:enumeration value="SI">
         <xs:annotation>
-          <xs:documentation>
-						SI = Cessione / Prestazione soggetta a ritenuta
-					</xs:documentation>
+          <xs:documentation>SI = Cessione / Prestazione soggetta a ritenuta</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>

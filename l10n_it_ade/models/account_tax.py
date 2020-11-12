@@ -17,16 +17,16 @@ class AccountTax(models.Model):
         'italy.ade.tax.nature',
         string='Nature',
         help='Nature of tax code: may be taxable, out of scope, etc ...')
-    non_taxable_nature = fields.Selection([
-        ('N1', 'escluse ex art. 15'),
-        ('N2', 'non soggette'),
-        ('N3', 'non imponibili'),
-        ('N4', 'esenti'),
-        ('N5', 'regime del margine/IVA non esposta'),
-        ('N6', 'inversione contabile (acq. in reverse charge)'),
-        ('N7', 'IVA assolta in altro stato UE'),
-        ('FC', 'FC applicazione IVA'),
-    ], string="Non taxable nature (*DEPRECATED*)")
+    # non_taxable_nature = fields.Selection([
+    #     ('N1', 'escluse ex art. 15'),
+    #     ('N2', 'non soggette'),
+    #     ('N3', 'non imponibili'),
+    #     ('N4', 'esenti'),
+    #     ('N5', 'regime del margine/IVA non esposta'),
+    #     ('N6', 'inversione contabile (acq. in reverse charge)'),
+    #     ('N7', 'IVA assolta in altro stato UE'),
+    #     ('FC', 'FC applicazione IVA'),
+    # ], string="Non taxable nature (*DEPRECATED*)")
     payability = fields.Selection([
         ('I', 'Immediate payability'),
         ('D', 'Deferred payability'),
@@ -35,3 +35,10 @@ class AccountTax(models.Model):
         default='I')
     law_reference = fields.Char(
         'Law reference', size=128)
+    # vat_rate_no_zero = fields.Boolean(
+    #     'Apply only for no zero tax rate')
+    # type_tax_use = fields.Selection(
+    #     [('sale', 'Sales'),
+    #      ('purchase', 'Purchases'),
+    #      ('both', 'Both')],
+    #    string='Tax Scope', required=True, default="both")

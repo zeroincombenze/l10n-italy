@@ -35,7 +35,7 @@ class RemovePeriod(models.TransientModel):
             raise exceptions.UserError(_('Current commitment not found'))
 
         for record in self:
-            rec = self.env['account.period'].search([('id', '=', int(record.period_id))])
+            rec = self.env['date.range'].search([('id', '=', int(record.period_id))])
             rec.write({'vat_commitment_id': None})
         self.env['account.vat.communication'].compute_amounts(context['active_id'])
 

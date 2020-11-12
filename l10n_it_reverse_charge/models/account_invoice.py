@@ -242,7 +242,6 @@ class AccountInvoice(models.Model):
 
         rc_payment_data = self.rc_payment_vals(rc_type)
         rc_invoice = self.rc_self_invoice_id
-
         payment_credit_line_data = self.rc_payment_credit_line_vals(
             rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(
@@ -306,10 +305,8 @@ class AccountInvoice(models.Model):
         rc_type = self.fiscal_position_id.rc_type_id
         move_line_model = self.env['account.move.line']
         rc_invoice = self.rc_self_invoice_id
-
         rc_payment_credit_line_data = self.rc_payment_credit_line_vals(
             rc_invoice)
-
         rc_payment_debit_line_data = self.rc_payment_debit_line_vals(
             rc_invoice, rc_type.payment_journal_id)
 

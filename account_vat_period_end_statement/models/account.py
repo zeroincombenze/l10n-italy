@@ -703,7 +703,7 @@ class AccountVatPeriodEndStatement(models.Model):
         return sum_item(vals['nature_code'], 'N', vals,
             sum_item(vals.get('account_id') or '~', 'A', vals, total))
 
-    def _set_dbtcrd_lines(self, tax, statement, line_ids, total):
+    def _set_dbtcrd_lines(self, tax, line_ids, statement, total):
         vals, valid = self.evaluate_tax_values(tax, statement)
         if self.show_zero or valid:
             line_ids.append(vals)
@@ -732,10 +732,11 @@ class AccountVatPeriodEndStatement(models.Model):
         tax_model = self.env['account.tax']
         taxes = tax_model.search([
             # ('exclude_from_registries', '=', False),
+            ('type_tax_use', 'in', ['sale', 'purchase']),
             ('company_id', '=', self.company_id.id),
         ])
         for tax in taxes:
-            # se ho una tassa padre con figli cee_type, considero le figlie
+            # se ho una tassa padre con figlie cee_type, condidero le figlie
             if any(tax_child
                    for tax_child in tax.children_tax_ids
                    if tax_child.cee_type in ('sale', 'purchase')):
@@ -743,11 +744,16 @@ class AccountVatPeriodEndStatement(models.Model):
                 for tax_child in tax.children_tax_ids:
                     if tax_child.cee_type == 'sale':
                         debit_tax_ids, debit_total = self._set_dbtcrd_lines(
-                            tax_child, statement, debit_tax_ids, debit_total)
+                            tax_child,
+                            debit_tax_ids,
+                            statement,
+                            debit_total)
                     elif tax_child.cee_type == 'purchase':
                         credit_tax_ids, credit_total = self._set_dbtcrd_lines(
-                            tax_child, statement,
-                            credit_tax_ids, credit_total)
+                            tax_child,
+                            credit_tax_ids,
+                            statement,
+                            credit_total)
 
             elif tax.type_tax_use == 'sale':
                 debit_tax_ids, debit_total = self._set_dbtcrd_lines(
@@ -903,7 +909,7 @@ class StatementDebitAccountLine(models.Model):
 
 class StatementCreditAccountLine(models.Model):
     _name = 'statement.credit.account.line'
-    _description = "VAT Statement credit tax line"
+    _description = "VAT Statement credit account line"
 
     account_id = fields.Many2one(
         'account.account', 'Account'

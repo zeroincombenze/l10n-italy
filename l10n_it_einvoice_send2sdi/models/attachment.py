@@ -695,7 +695,7 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def unlink(self):
         for att in self:
-            if att.state != 'ready':
+            if att.state not in ('ready', 'rejected', 'discarted'):
                 raise UserError(_(
                     "You can only delete 'ready to send' files."
                 ))

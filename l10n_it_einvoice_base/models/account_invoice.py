@@ -17,6 +17,7 @@ RELATED_DOCUMENT_TYPES = {
     'reception': 'DatiRicezione',
     'invoice': 'DatiFattureCollegate',
 }
+# TODO: Use module for classification
 EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV',
                 'LT', 'LU', 'MT', 'NL', 'PL', 'PT',
@@ -61,10 +62,10 @@ class FatturapaPaymentDetail(models.Model):
     payment_due_date = fields.Date('Payment Due Date')
     payment_amount = fields.Float('Payment Amount')
     post_office_code = fields.Char('Post Office Code', size=20)
-    recepit_name = fields.Char("Receipt Issuer Name")
-    recepit_surname = fields.Char("Receipt Issuer Surname")
-    recepit_cf = fields.Char("Receipt Issuer FC")
-    recepit_title = fields.Char("Receipt Issuer Title")
+    recepit_name = fields.Char("Recepit Partner Firstname")
+    recepit_surname = fields.Char("Recepit Partner Lastname")
+    recepit_cf = fields.Char("Recepit Partner Fiscalnumber")
+    recepit_title = fields.Char("Recepit Partner Title")
     payment_bank_name = fields.Char("Bank Name")
     payment_bank_iban = fields.Char("IBAN")
     payment_bank_abi = fields.Char("ABI")
@@ -287,7 +288,8 @@ class AccountInvoice(models.Model):
         'res.partner', string="Intermediary")
     #  1.6
     sender = fields.Selection(
-        [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
+        [('CC', 'Assignee / Partner'),
+         ('TZ', 'Third Person')], 'Sender')
     # 2.1.1.1 doc_type
     invoice_type_id = fields.Many2one(
         'italy.ade.invoice.type', string="Fiscal Document Type",
@@ -295,7 +297,8 @@ class AccountInvoice(models.Model):
     #  2.1.1.5
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
-        [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
+        [('RT01', 'Natural Person'),
+         ('RT02', 'Legal Person')],
         'Withholding Type'
     )
     #  2.1.1.5.2 withholding_amount in module
