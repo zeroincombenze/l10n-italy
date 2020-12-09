@@ -58,7 +58,7 @@ class FatturaPAAttachmentIn(models.Model):
         if not self.ir_attachment_id:
             return False
         xml_string = self.ir_attachment_id.get_xml_string()
-        # Do not change order of parsing!
+        # Do not change order of parsing!!!
         for tag in ('RiferimentoAmministrazione',
                     'IdDocumento',
                     'UnitaMisura',
@@ -66,7 +66,8 @@ class FatturaPAAttachmentIn(models.Model):
                     'Causale',
                     'NumItem',
                     'DatiConvenzione',
-                    'DatiRicezione'):
+                    'DatiRicezione',
+                    'NumeroCivico'):
             token = r'<%s>[ \t\n]*</%s>' % (tag, tag)
             xml_string = re.sub(token, '', xml_string)
         for tag in ('Data', ):

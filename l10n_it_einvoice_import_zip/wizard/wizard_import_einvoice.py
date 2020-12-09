@@ -42,6 +42,7 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
             model = 'fatturapa.attachment.in'
         att_model = self.env[model]
         rex = r'[A-Z]{2}[A-Za-z0-9]+_[A-Za-z0-9]{5}\.(xml|XML|xml.p7m|XML.P7m)'
+        token_id = '//ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2'
         for xml_fullfile in zf.namelist():
             xml_file = os.path.basename(xml_fullfile)
             if re.match(rex, xml_file):
@@ -57,11 +58,14 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
                 vals = {
                     'name': xml_file,
                     'datas_fname': xml_file,
-                    'datas': data.encode('base64'),
                     'type': 'binary',
                     'mimetype': 'text/xml',
-                    # 'extension': '.xml',
                 }
+                encoded = True if data.find(token_id) < 0 else False
+                if encoded:
+                    vals['datas'] = data
+                else:
+                    vals['datas'] = data.encode('base64')
                 try:
                     att_id = att_model.create(vals)
                     att_list.append(att_id.id)

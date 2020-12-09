@@ -1,3 +1,10 @@
+10.0.1.8.7 (2020-12-07)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Date done updatable / Data spedizione modificabile
+* [IMP} Total amount in tree view / Totale importo DdT in vista albero
+
+
 10.0.1.8.6 (2020-07-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

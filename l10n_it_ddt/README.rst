@@ -1,9 +1,6 @@
-.. !! from "readme_main_module.rst"
-
-.. !! from "readme_header.rst"
 
 =====================
-|icon| DDT 10.0.1.8.6
+|icon| DDT 10.0.1.8.7
 =====================
 
 
@@ -20,9 +17,7 @@
 Overview / Panoramica
 =====================
 
-|en| .. !! from "description.rst"
-
-This module print the Italian deliver document AKA DdT
+|en| This module print the Italian deliver document AKA DdT
 
 You can automatically create a DDT From a Sale Order, setting
 'Automatically create the DDT' field that will automatically create the DDT on
@@ -55,9 +50,7 @@ invoice lines
 
 |
 
-|it| .. !! from "descrizione.rst"
-
-Stampa documento di trasporto, consociuto anche come DdT
+|it| Stampa documento di trasporto, consociuto anche come DdT
 
 È possibile creare automaticamente un DDT da un ordine di vendita, impostando
 il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
@@ -97,8 +90,6 @@ E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'd
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-.. !! from "oca_diff.rst"
-
 
 +-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 | Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
@@ -121,15 +112,13 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
-.. !! from "installation.rst"
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
-| These instruction are just an   | Istruzioni di esempio valide solo per    |
-| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
-| you have to do on Linux.        | e Debian 8+                              |
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
@@ -137,20 +126,26 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /home/odoo/10.0/l10n-italy/                                                |
+| $HOME/10.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo installation
-    odoo_install_repository l10n-italy -b 10.0 -O zero
-    vem create /opt/odoo/VENV-10.0 -O 10.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository installation; OCB repository must be installed
+    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
+    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 From UI: go to:
 
@@ -164,28 +159,24 @@ From UI: go to:
 Upgrade / Aggiornamento
 -----------------------
 
-.. !! from "upgrade.rst"
-
-
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| When you want upgrade and you   | Per aggiornare, se avete installato con  |
-| installed using above           | le istruzioni di cui sopra:              |
-| statements:                     |                                          |
-+---------------------------------+------------------------------------------+
 
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo upgrade
-    odoo_install_repository l10n-italy -b 10.0 -O zero -U
-    vem amend /opt/odoo/VENV-10.0 -O 10.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository upgrade
+    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
+    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -200,7 +191,6 @@ From UI: go to:
 Support / Supporto
 ------------------
 
-.. !! from "support.rst"
 
 |Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
@@ -211,8 +201,6 @@ Support / Supporto
 Get involved / Ci mettiamo in gioco
 ===================================
 
-.. !! from "maintenance.rst"
-
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
 <https://github.com/zeroincombenze/l10n-italy/issues>`_.
@@ -222,7 +210,6 @@ In case of trouble, please check there if your issue has already been reported.
 Proposals for enhancement
 -------------------------
 
-.. !! from "proposals_for_enhancement.rst"
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -232,7 +219,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-.. !! from "history.rst"
+10.0.1.8.7 (2020-12-07)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Date done updatable / Data spedizione modificabile
+* [IMP} Total amount in tree view / Totale importo DdT in vista albero
+
 
 10.0.1.8.6 (2020-07-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -354,8 +346,6 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-.. !! from "authors.txt"
-
 * `Abstract <https://www.abstract.it>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Apulia Software <https://www.apuliasoftware.it>`__
@@ -366,8 +356,6 @@ Authors / Autori
 
 Contributors / Collaboratori
 ----------------------------
-
-.. !! from "contributors.txt"
 
 * Davide Corio <davide.corio@abstract.it>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
@@ -380,9 +368,13 @@ Contributors / Collaboratori
 * Antonio M. Vigliotti <info@shs-av.com>
 
 
-|
+Maintainer / Manutenzione
+-------------------------
 
-.. !! from "copyright_notes.rst"
+
+
+
+|
 
 ----------------
 
@@ -396,19 +388,15 @@ is mainly designed to cover Italian law and markeplace.
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
-.. !! from "contact_us.rst"
-
 
 |chat_with_us|
-
-.. !! from "readme_footer.rst"
 
 
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-07-24
+Last Update / Ultimo aggiornamento: 2020-12-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

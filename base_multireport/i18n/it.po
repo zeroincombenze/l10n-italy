@@ -6,16 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 08:39+0000\n"
-"PO-Revision-Date: 2020-06-23 08:39+0000\n"
-"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"POT-Creation-Date: 2020-12-09 17:25+0000\n"
+"PO-Revision-Date: 2020-12-09 18:48+0100\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail."
+"com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.8.0\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
@@ -204,12 +206,12 @@ msgid "<strong>Subtotal: </strong>"
 msgstr "<strong>Subtotale: </strong>"
 
 #. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_body_header
 #: model:ir.ui.view,arch_db:base_multireport.report_invoice_payment_dues
 msgid "<strong>Termine di pagamento:</strong>"
 msgstr "<strong>Termine di pagamento:</strong>"
 
 #. module: base_multireport
-#: model:ir.ui.view,arch_db:base_multireport.report_invoice_body_header
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_body_header
 msgid "<strong>Termini di pagamento:</strong>"
 msgstr "<strong>Termini di pagamento:</strong>"
@@ -312,10 +314,12 @@ msgstr ""
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_expression
 msgid ""
-"An expression yielding the base64 encoded data to be used as watermark. \n"
+"An expression yielding the base64 encoded data to be used as "
+"watermark. \n"
 "You have access to variables `env` and `docs`"
 msgstr ""
-"An expression yielding the base64 encoded data to be used as watermark. \n"
+"An expression yielding the base64 encoded data to be used as "
+"watermark. \n"
 "You have access to variables `env` and `docs`"
 
 #. module: base_multireport
@@ -521,7 +525,7 @@ msgstr "Corriere/Vettore"
 #: model:ir.model,name:base_multireport.model_wizard_build_report
 #: model:ir.ui.view,arch_db:base_multireport.wizard_build_report_view
 msgid "Create or update a report"
-msgstr "Crea o modifica rapporto"
+msgstr "Creare o modificare rapporto"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_create_uid
@@ -647,6 +651,16 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: base_multireport
+#: selection:ir.actions.report.xml,address_mode:0
+#: selection:multireport.style,address_mode:0
+#: selection:multireport.template,address_mode:0
+#: selection:ir.actions.report.xml,address_mode
+#: selection:multireport.style,address_mode
+#: selection:multireport.template,address_mode
+msgid "Doc. number & Specific address"
+msgstr "Doc. number & Specific address"
+
+#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_selection_rules_form
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_selection_rules_tree
 msgid "Document report selection rules"
@@ -665,7 +679,7 @@ msgstr "Documento da appendere al DdT (solo PDF):"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Driver's Signature"
-msgstr "Firma Conducente"
+msgstr "Firma del conducente"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_account_invoice_due_records
@@ -676,7 +690,7 @@ msgstr "Date scadenza"
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer_vg7
 msgid "Email:"
-msgstr "Email:"
+msgstr "E-mail:"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_ir_act_report_xml_pdf_ending_page
@@ -786,16 +800,6 @@ msgstr "Da modulo/stile"
 #: model:ir.actions.report.xml,name:base_multireport.account_invoice_action_report_duplicate
 msgid "Ft. di cortesia (personalizzata)"
 msgstr "Ft. di cortesia (personalizzata)"
-
-#. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Full Odoo Standard"
-msgstr "Standard Odoo integrale"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_name
@@ -952,7 +956,7 @@ msgstr "Fattura"
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga Fattura"
+msgstr "Riga fattura"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
@@ -971,7 +975,7 @@ msgstr "Ir model id"
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_line___last_update
 #: model:ir.model.fields,field_description:base_multireport.field_wizard_build_report___last_update
 msgid "Last Modified on"
-msgstr "Data ultima modifica"
+msgstr "Ultima modifica il"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_write_uid
@@ -980,7 +984,7 @@ msgstr "Data ultima modifica"
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_write_uid
 #: model:ir.model.fields,field_description:base_multireport.field_wizard_build_report_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_write_date
@@ -989,63 +993,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_write_date
 #: model:ir.model.fields,field_description:base_multireport.field_wizard_build_report_write_date
 msgid "Last Updated on"
-msgstr "Data ultima modifica"
-
-#. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Line-up logo / slogan"
-msgstr "Logo in linea / slogan"
-
-#. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Line-up logo / slogan / no sep. line"
-msgstr "Logo in linea / slogan / no riga sep."
-
-#. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Line-up: logo / company data"
-msgstr "Logo in linea / dati azienda"
-
-#. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Line-up: logo / company data / no sep. line"
-msgstr "Logo in linea / dati azienda / no riga sep."
-
-#. module: base_multireport
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Line-up: logo / custom header / no sep. line"
-msgstr "Logo in linea / Intestaz.Personalizzata / No sep."
-
-#. module: base_multireport
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Line-up: logo / custom_header"
-msgstr "Logo in linea / Intestaz.Personalizzata"
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
@@ -1060,7 +1008,7 @@ msgstr "Model template"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_ir_act_report_xml_template
 msgid "Model template with fallback values."
-msgstr "Modulo con valori in cascata"
+msgstr "Modulo con valori in cascata."
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_model_id
@@ -1190,16 +1138,6 @@ msgid "No print Footer"
 msgstr "No stampa piede"
 
 #. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "No print Header"
-msgstr "No stampa intestazione"
-
-#. module: base_multireport
 #: selection:ir.actions.report.xml,payment_term_position:0
 #: selection:multireport.style,payment_term_position:0
 #: selection:multireport.template,payment_term_position:0
@@ -1207,7 +1145,7 @@ msgstr "No stampa intestazione"
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
 msgid "None"
-msgstr "Nulla"
+msgstr "Nessuna"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
@@ -1260,8 +1198,7 @@ msgid "Odoo Standard"
 msgstr "Odoo Standard"
 
 #. module: base_multireport
-#: selection:multireport.style,origin:0
-#: selection:multireport.style,origin
+#: selection:multireport.style,origin:0 selection:multireport.style,origin
 msgid "Odoo based Model"
 msgstr "Modello basato su Odoo"
 
@@ -1336,26 +1273,6 @@ msgid "Only specific address"
 msgstr "Solo indirizzo specifico"
 
 #. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Only wide logo"
-msgstr "Solo logo largo"
-
-#. module: base_multireport
-#: selection:ir.actions.report.xml,header_mode:0
-#: selection:multireport.style,header_mode:0
-#: selection:multireport.template,header_mode:0
-#: selection:ir.actions.report.xml,header_mode
-#: selection:multireport.style,header_mode
-#: selection:multireport.template,header_mode
-msgid "Only wide logo / no sep. line"
-msgstr "Solo logo largo senza riga sep."
-
-#. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
 msgid "Ora trasporto"
 msgstr "Ora trasporto"
@@ -1390,8 +1307,7 @@ msgid "Ordine N."
 msgstr "Ordine N."
 
 #. module: base_multireport
-#: selection:multireport.style,origin:0
-#: selection:multireport.style,origin
+#: selection:multireport.style,origin:0 selection:multireport.style,origin
 msgid "Original Odoo Model"
 msgstr "Modello originale Odoo"
 
@@ -1421,12 +1337,12 @@ msgstr "PRO-FORMA"
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_stock_picking_package_preparation
 msgid "Package Preparation"
-msgstr "Preparazione confezionamento"
+msgstr "Preparazione collo"
 
 #. module: base_multireport
 #: model:ir.model,name:base_multireport.model_stock_picking_package_preparation_line
 msgid "Package Preparation Line"
-msgstr "Riga preparazione confezionamento"
+msgstr "Riga preparazione collo"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_footer
@@ -1539,7 +1455,7 @@ msgstr "Quantità"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Recipient's Signature"
-msgstr "Firma destinatario"
+msgstr "Firma del destinatario"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_model_id
@@ -1669,12 +1585,12 @@ msgstr "Selection criteria"
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_action
 msgid ""
 "Set 'report' to get the internal report name field, 'company' to get "
-"preferred model of company (if any), 'customer' to get preferred model of"
-" customer (if any), 'odoo' to execute Odoo standard document printing."
+"preferred model of company (if any), 'customer' to get preferred model "
+"of customer (if any), 'odoo' to execute Odoo standard document printing."
 msgstr ""
 "Set 'report' to get the internal report name field, 'company' to get "
-"preferred model of company (if any), 'customer' to get preferred model of"
-" customer (if any), 'odoo' to execute Odoo standard document printing."
+"preferred model of company (if any), 'customer' to get preferred model "
+"of customer (if any), 'odoo' to execute Odoo standard document printing."
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_wizard_build_report_default_body_header
@@ -1690,6 +1606,11 @@ msgstr "Sito web:"
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data
 msgid "Size"
 msgstr "Dimensione"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
+msgid "Spett.le:"
+msgstr "Spett.le:"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
@@ -1785,7 +1706,7 @@ msgstr "Partita IVA:"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_purchase_order_header
 msgid "VAT:"
-msgstr "IVA:"
+msgstr "Partita IVA:"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.delivery_data_in_invoice
@@ -1937,6 +1858,7 @@ msgstr "cliente"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.external_layout_header_vg7
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt_header
+#: model:ir.ui.view,arch_db:base_multireport.report_invoice_header
 msgid "del"
 msgstr "del"
 
@@ -1997,4 +1919,122 @@ msgstr "um"
 msgid "valore"
 msgstr "valore"
 
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ Only wide logo"
+msgstr "⌘ Solo logo largo"
 
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ Only wide logo / no sep. line"
+msgstr "⌘ Solo logo largo senza riga sep."
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ ⌁ Line-up logo / slogan"
+msgstr "⌘ ⌁ Logo lineare + slogan"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ ⌁ Line-up logo / slogan / no sep. line"
+msgstr "⌘ ⌁ Logo lineare + slogan senza riga sep."
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ ┅ Line-up: logo / company data"
+msgstr "⌘ ┅ Logo lineare + dati azienda"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ ┅ Line-up: logo / company data / no sep. line"
+msgstr "⌘ ┅ Logo lineare + dati azienda senza riga sep."
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ ☷ Line-up: logo / custom header / no sep. line"
+msgstr "⌘ ☷ Logo lineare + intestaz. personalizzata senza riga sep."
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "⌘ ☷ Line-up: logo / custom_header"
+msgstr "⌘ ☷ Logo lineare + intestazione personalizzata"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "ⓞ Full Odoo Standard"
+msgstr "ⓞ Odoo standard"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "▭ No print Header"
+msgstr "▭ Non stampare intestazione"
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "☷ Two lines: logo / custom header / no sep. line"
+msgstr "☷ Due righe: logo / intestaz. personalizzata senza riga sep."
+
+#. module: base_multireport
+#: selection:ir.actions.report.xml,header_mode:0
+#: selection:multireport.style,header_mode:0
+#: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
+msgid "☷ Two lines: logo / custom_header"
+msgstr "☷ Due righe: logo / intestazione personalizzata"

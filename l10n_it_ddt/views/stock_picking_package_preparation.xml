@@ -51,7 +51,6 @@
         <field name="model">stock.picking.package.preparation</field>
         <field name="arch" type="xml">
             <search string="Search DDT">
-                <field name="ddt_number"/>
                 <field name="partner_id"/>
                 <field name="partner_shipping_id"/>
                 <field name="ddt_type_id" />
@@ -76,9 +75,11 @@
         <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="display_name" />
-                <field name="ddt_number" />
+                <field name="display_name"/>
             </field>
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="amount_total" sum="Total"/>
+            </xpath>
         </field>
     </record>
 
@@ -96,12 +97,11 @@
                 <button name="set_draft" type="object" string="Set to draft"
                         attrs="{'invisible':[('state', '!=', 'done')]}"/>
             </button>
+            <field name="date_done" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'done')]}</attribute>
+            </field>
             <field name="name" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </field>
-            <field name="name" position="after">
-                <field name="ddt_number" readonly="1"
-                       attrs="{'invisible':[('ddt_number', '=', ''), ('ddt_type_id', '=', False)]}"/>
             </field>
             <field name="partner_id" position="after">
                 <field name="ddt_type_id" widget="selection"/>
@@ -200,6 +200,7 @@
         <field name="model">stock.picking.package.preparation.line</field>
         <field name="arch" type="xml">
             <tree string="Prodotti in DdT" create="false" delete="false">
+                <field name="sale_id" readonly="1"/>
                 <field name="package_preparation_id" readonly="1"/>
                 <field name="ddt_id"/>
                 <field name="date" widget="date" readonly="1"/>
@@ -207,7 +208,7 @@
                 <field name="partner_id" readonly="1"/>
                 <field name="product_id" readonly="1"/>
                 <field name="product_uom_qty" readonly="1"/>
-                <field name="sale_id" readonly="1"/>
+                <field name="price_subtotal" readonly="1" sum="Total"/>
             </tree>
         </field>
     </record>

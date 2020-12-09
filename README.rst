@@ -73,7 +73,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                          | 10.0.0.1.1 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
+| l10n_it_ade                          | 10.0.0.2.0 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |same|     | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -99,13 +99,13 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ddt                          | 10.0.1.8.7 | 10.0.1.9.0 | Delivery Document to Transfer                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt_new                      | |halt|     | |no_check| | Delivery Document to Transfer                                                    |
+| l10n_it_ddt_new                      | 10.0.1.8.8 | |no_check| | Delivery Document to Transfer                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_base                | 10.0.2.1.1 | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 10.0.1.0.0 | |no_check| | Esportazione di file XML di fatture elettroniche in uno ZIP da esportare.        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_import_zip          | 10.0.1.0.2 | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
+| l10n_it_einvoice_import_zip          | 10.0.1.0.3 | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_in                  | 10.0.1.3.2 | |no_check| | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -163,7 +163,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ipa                          | |no_check| | 10.0.2.0.0 | IPA Code (IndicePA)                                                              |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_lettera_intento              | 10.0.0.1.2 | |no_check| | Lettere di intento                                                               |
+| l10n_it_lettera_intento              | 10.0.0.1.3 | |no_check| | Lettere di intento                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_location_nuts                | |no_check| | 10.0.1.0.1 | NUTS specific options for Italy                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -270,9 +270,9 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
-| These instruction are just an   | Istruzioni di esempio valide solo per    |
-| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
-| you have to do on Linux.        | e Debian 8+                              |
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
@@ -280,20 +280,26 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /home/odoo/10.0/l10n-italy/                                                |
+| $HOME/10.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo installation
-    odoo_install_repository l10n-italy -b 10.0 -O zero
-    vem create /opt/odoo/VENV-10.0 -O 10.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository installation; OCB repository must be installed
+    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
+    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 
 
@@ -301,25 +307,23 @@ Upgrade / Aggiornamento
 -----------------------
 
 
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| When you want upgrade and you   | Per aggiornare, se avete installato con  |
-| installed using above           | le istruzioni di cui sopra:              |
-| statements:                     |                                          |
-+---------------------------------+------------------------------------------+
-
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo upgrade
-    odoo_install_repository l10n-italy -b 10.0 -O zero -U
-    vem amend /opt/odoo/VENV-10.0 -O 10.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository upgrade
+    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
+    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -378,7 +382,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2020-11-11
+Last Update / Ultimo aggiornamento: 2020-12-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -1,6 +1,6 @@
 
 ====================================
-|icon| Lettere di intento 10.0.0.1.2
+|icon| Lettere di intento 10.0.0.1.3
 ====================================
 
 
@@ -41,28 +41,36 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
-| These instruction are just an   | Istruzioni di esempio valide solo per    |
-| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
-| you have to do on Linux.        | e Debian 8+                              |
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /home/odoo/10.0/l10n-italy/                                                |
+| $HOME/10.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    odoo_install_repository l10n-italy -b 10.0 -O zero
-    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository installation; OCB repository must be installed
+    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
+    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 From UI: go to:
 
@@ -70,24 +78,30 @@ From UI: go to:
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_lettera_intento** > Install
 
+
 |
 
 Upgrade / Aggiornamento
 -----------------------
 
 
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| When you want upgrade and you   | Per aggiornare, se avete installato con  |
-| installed using above           | le istruzioni di cui sopra:              |
-| statements:                     |                                          |
-+---------------------------------+------------------------------------------+
-
 ::
 
-    odoo_install_repository l10n-italy -b 10.0 -O zero -U
-    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
+    cd $HOME
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
+    git clone https://github.com/zeroincombenze/tools.git
+    cd $HOME/tools
+    ./install_tools.sh -p
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository upgrade
+    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
+    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -127,6 +141,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+0.0.0.1.3 (2020-11-24)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal pos. note in invoice comment / Campo note posizione fiscale copiato in fattura
+
+
 |
 |
 
@@ -156,6 +179,12 @@ Contributors / Collaboratori
 
 
 
+Maintainer / Manutenzione
+-------------------------
+
+
+
+
 |
 
 ----------------
@@ -178,7 +207,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-06-03
+Last Update / Ultimo aggiornamento: 2020-11-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

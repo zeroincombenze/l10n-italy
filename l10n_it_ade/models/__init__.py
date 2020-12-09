@@ -10,6 +10,7 @@
 from . import account_invoice
 from . import account_journal
 from . import account_tax
+from . import italy_ade_tax_assosoftware
 from . import italy_ade_codice_carica
 from . import italy_ade_invoice_type
 from . import italy_ade_tax_nature

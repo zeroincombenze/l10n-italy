@@ -23,12 +23,18 @@ class AccountInvoice(models.Model):
     )
 
     @api.model
-    def set_values(self, invoices, vals):
+    def set_values(self, invoice, vals):
         if 'fiscal_position_id' in vals:
             fiscalpos = self.env['account.fiscal.position'].browse(
                 vals['fiscal_position_id'])
             if fiscalpos.lettera_intento:
                 vals['tax_stamp'] = True
+                if not invoice:
+                    if vals.get('comment'):
+                        if vals['comment'].find(fiscalpos.note) < 0:
+                            vals['comment'] += '\n%s' % fiscalpos.note
+                    else:
+                        vals['comment'] = fiscalpos.note
         return vals
 
     @api.model

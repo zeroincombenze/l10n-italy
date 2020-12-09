@@ -35,10 +35,12 @@ class AccountTax(models.Model):
         default='I')
     law_reference = fields.Char(
         'Law reference', size=128)
-    # vat_rate_no_zero = fields.Boolean(
-    #     'Apply only for no zero tax rate')
-    # type_tax_use = fields.Selection(
-    #     [('sale', 'Sales'),
-    #      ('purchase', 'Purchases'),
-    #      ('both', 'Both')],
-    #    string='Tax Scope', required=True, default="both")
+    type_tax_use = fields.Selection(
+        [('sale', 'Sales'),
+         ('purchase', 'Purchases'),
+         ('both', 'Both')],
+       string='Tax Scope', required=True, default="both")
+    assosoftware_id = fields.Many2one(
+        'italy.ade.tax.assosoftware',
+        string='Assosoftware Code',
+        help='Tax Assosoftware classification')

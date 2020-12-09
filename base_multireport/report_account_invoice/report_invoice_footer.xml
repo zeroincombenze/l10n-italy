@@ -199,18 +199,18 @@
             </div>
             <div class="col-xs-12" t-if="term_position == 'footer' and partner_bank == 'document'">
                 <strong>IBAN:</strong>
-                <span t-field="o.partner_bank_id.display_name"/>
+                <span t-field="o.partner_bank_id.acc_number"/>
             </div>
             <div class="col-xs-12" t-if="term_position == 'footer' and partner_bank == 'partner'">
                 <strong>IBAN:</strong>
                 <p>
-                    <t t-foreach="o.partner_id.bank_ids" t-as="bank"><span t-field="bank.display_name"/></t>
+                    <t t-foreach="o.partner_id.bank_ids" t-as="bank"><span t-field="bank.acc_number"/></t>
                 </p>
             </div>
             <div class="col-xs-12" t-if="term_position == 'footer' and partner_bank == 'company'">
                 <strong>IBAN:</strong>
                 <p t-foreach="o.company_id.partner_id.bank_ids" t-as="bank"><span
-                        t-if="bank.journal_id and any([x.display_on_footer for x in bank.journal_id])" t-field="bank.display_name"/>
+                        t-if="bank.journal_id and any([x.display_on_footer for x in bank.journal_id])" t-field="bank.acc_number"/>
                 </p>
             </div>
             <div class="col-xs-12">

@@ -1,3 +1,9 @@
+10.0.0.2.19 (2020-12-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Bank IBAN (new module partner bank) / Stampa (a seguito modifica modulo partner bank)
+
+
 10.0.0.2.18 (2020-03-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

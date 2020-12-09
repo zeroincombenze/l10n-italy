@@ -10,7 +10,7 @@
 {
     'name': 'Lettere di intento',
     'summary': 'Lettere di intento',
-    'version': '10.0.0.1.2',
+    'version': '10.0.0.1.3',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',

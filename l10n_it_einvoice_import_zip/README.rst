@@ -1,6 +1,6 @@
 
 ==================================================
-|icon| Fattura elettronica - Import ZIP 10.0.1.0.0
+|icon| Fattura elettronica - Import ZIP 10.0.1.0.3
 ==================================================
 
 
@@ -30,6 +30,19 @@ This module adds a wizard to import several XML e-invoice files from a ZIP file.
 Importazione di file XML di fatture elettroniche da uno ZIP.
 
 |
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+
+
+|
 |
 
 Getting started / Come iniziare
@@ -43,6 +56,7 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -52,7 +66,7 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
@@ -62,12 +76,14 @@ Installation / Installazione
 ::
 
     cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
+    # Odoo installation
     odoo_install_repository l10n-italy -b 10.0 -O zero
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    vem create /opt/odoo/VENV-10.0 -O 10.0 -DI
 
 From UI: go to:
 
@@ -75,10 +91,12 @@ From UI: go to:
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_import_zip** > Install
 
+
 |
 
 Upgrade / Aggiornamento
 -----------------------
+
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -90,7 +108,15 @@ Upgrade / Aggiornamento
 
 ::
 
+    cd $HOME
+    # Tools installation & activation: skip if you have installed this tool
+    git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -p
+    source /opt/odoo/dev/activate_tools
+    # Odoo upgrade
     odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    vem amend /opt/odoo/VENV-10.0 -O 10.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -129,6 +155,15 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.1.0.3 (2020-11-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* No error importi  base64 .xml.p7m files
+
 
 |
 |
@@ -177,7 +212,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-02-13
+Last Update / Ultimo aggiornamento: 2020-11-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
@@ -236,4 +271,5 @@ Last Update / Ultimo aggiornamento: 2020-02-13
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/axitec_helpdesk
+
