@@ -22,12 +22,12 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 121430,121430,Marchi di fabbrica,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 121440,121440,Programmi Software e Licenze,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 121500,121500,Spese di Avviamento,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-121510,121510,Avviamento ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-121600,121600,Immobilizzazioni imm.li in corso e acconti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-121620,121620,Acconti a Fornitori su Immobilizzazioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-121630,121630,Caparre su Immobilizzazioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-121640,121640,Altre immobilizzazioni immateriali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-121700,121700,Altre Immobilizzazioni ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+121510,121510,Avviamento,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+121600,121600,Immobilizzazioni imm.li in corso e acconti,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
+121620,121620,Acconti a Fornitori su Immobilizzazioni,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
+121630,121630,Caparre su Immobilizzazioni,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
+121640,121640,Altre immobilizzazioni immateriali,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
+121700,121700,Altre Immobilizzazioni,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
 121710,121710,Indennità Perdita Avviamento,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 121720,121720,Spese Plur.li su Beni di Terzi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 121730,121730,Altre spese  Pluriennali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -52,12 +52,12 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 122430,122430,FA Marchi di fabbrica,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122440,122440,FA Programmi Software e Licenze,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122500,122500,FA Costi di Avviamento,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-122510,122510,FA Avviamento ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+122510,122510,FA Avviamento,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122600,122600,FA Immobilizzazioni imm.li in corso e acconti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122620,122620,FA Acconti a Fornitori su Immobilizzazioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122630,122630,FA Caparre su Immobilizzazioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122640,122640,FA Altre immobilizzazioni immateriali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-122700,122700,FA Altre Immobilizzazioni ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+122700,122700,FA Altre Immobilizzazioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122710,122710,FA Indennità Perdita Avviamento,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122720,122720,FA Costi Plur.li su Beni di Terzi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 122730,122730,FA Altri costi  Pluriennali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -69,7 +69,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 123130,123130,Terreni ad Util.ne Agricola,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123140,123140,Terreni da Costruzione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123150,123150,Altri terreni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-123160,123160,Fabbricati  ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+123160,123160,Fabbricati,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123170,123170,Fabb.ti Indust.li e Infrastrutture,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123180,123180,Fabbricati Industriali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123200,123200,Impianti  e Macchinari,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -79,7 +79,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 123240,123240,Impianti Generali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123300,123300,Attrezzature Industriali e Commerciali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123310,123310,Attrezzatura,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-123320,123320,Attrezzature Varie e Minute ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+123320,123320,Attrezzature Varie e Minute,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123330,123330,Autovetture,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123340,123340,Automezzi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123350,123350,Mezzi di Trasporto Interni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -92,8 +92,8 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 123410,123410,Beni in Concessione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123420,123420,Beni Gratuitamente Devolvibili,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 123430,123430,Altri Beni Materiali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-123500,123500,Immoliz.ni Materiali in Corso e Acconti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-123510,123510,Immobil. Materiali in Corso,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+123500,123500,Immobil.ni Materiali in Corso e Acconti,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
+123510,123510,Immobil. Materiali in Corso,account.data_account_type_fixed_assets,FALSE,l10n_chart_it_zeroincombenze
 123520,123520,Acconti a Fornitori su Acquisti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124100,124100,FA Terreni e Fabbricati,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124110,124110,FA Terreni senza Costruzioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -101,7 +101,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 124130,124130,FA Terreni ad Util.ne Agricola,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124140,124140,FA Terreni da Costruzione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124150,124150,FA Altri terreni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-124160,124160,FA Fabbricati  ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+124160,124160,FA Fabbricati,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124170,124170,FA Fabb.ti Indust.li e Infrastrutture,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124180,124180,FA Fabbricati Industriali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124200,124200,FA Impianti  e Macchinari,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -111,7 +111,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 124240,124240,FA Impianti Generali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124300,124300,FA Attrezzature Industriali e Commerciali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124310,124310,FA Attrezzatura,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-124320,124320,FA Attrezzature Varie e Minute ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+124320,124320,FA Attrezzature Varie e Minute,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124330,124330,FA Autovetture,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124340,124340,FA Automezzi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 124350,124350,FA Mezzi di Trasporto Interni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -149,13 +149,13 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 151110,151110,Mat.di Consumo per Officina e Stab.,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151120,151120,Materie Sussidiarie,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151130,151130,Altri Materiali di Consumo,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-151140,151140,Imballaggi  ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+151140,151140,Imballaggi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151150,151150,Merci in esposizione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151170,151170,Combustibili,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151180,151180,Materiali per Manutenz.ne e Riparaz.ne,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151190,151190,Cancelleria e Stampati da utilizzare,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151200,151200,Prodotti in  Lavorazione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-151210,151210,Prodotti in Corso di Lavorazione  ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+151210,151210,Prodotti in Corso di Lavorazione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151250,151250,Semilavorati,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151300,151300,Lavori in corso su ordinazione,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 151320,151320,Lav. in corso su ordin.  a breve termine,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -179,7 +179,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 152150,152150,Clienti fatture da emettere,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152160,152160,Crediti inesigibili o in sofferenza,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152170,152170,Clienti c/corrispettivi da emettere,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
-152180,152180,Crediti commerciali diversi,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+152180,152180,Crediti commerciali diversi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 152200,152200,Effetti attivi commerciali,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152210,152210,Effetti all'incasso,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152220,152220,Effetti allo sconto,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
@@ -191,19 +191,19 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 152410,152410,Effetti all'incasso (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152420,152420,Effetti allo sconto (+12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 152430,152430,Effetti insoluti o protestati( credito +12M),account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
-152500,152500,Crediti v/Imprese Controllate ( a breve ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152550,152550,Crediti v/Imprese Controllate (+12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152600,152600,Crediti v/Imprese Collegate ( a breve ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152650,152650,Crediti v/Imprese Collegate (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152700,152700,Crediti v/Controllanti ( a breve ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152750,152750,Crediti v/Controllanti (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152800,152800,Crediti v/Altre Imprese ( a breve ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152850,152850,Crediti v/Altre Imprese ( +12 M ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152900,152900,Altri Crediti ( Entro 12 Mesi ),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-152950,152950,Altri Crediti (+ 12 M),account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153010,153010,IVA n/credito ,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
+152500,152500,Crediti v/Imprese Controllate ( a breve ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152550,152550,Crediti v/Imprese Controllate (+12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152600,152600,Crediti v/Imprese Collegate ( a breve ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152650,152650,Crediti v/Imprese Collegate (+ 12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152700,152700,Crediti v/Controllanti ( a breve ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152750,152750,Crediti v/Controllanti (+ 12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152800,152800,Crediti v/Altre Imprese ( a breve ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152850,152850,Crediti v/Altre Imprese ( +12 M ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152900,152900,Altri Crediti ( Entro 12 Mesi ),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+152950,152950,Altri Crediti (+ 12 M),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153010,153010,IVA n/credito,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153020,153020,Crediti IVA c/erario,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-153030,153030,IVA n/credito in sosp. ,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153030,153030,IVA n/credito in sosp.,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153040,153040,Crediti per rimborsi IVA,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153050,153050,Integr. IVA da c/acquisti UE (L.427/93),account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153060,153060,Imposte c/acconto IVA,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
@@ -212,17 +212,17 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 153120,153120,Crediti per rit. Int.Attivi Bancari,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153140,153140,Crediti per rimborsi IRES/IRAP,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
 153150,153150,Imposte c/acconto  IRES/IRAP,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-153200,153200,Crediti v/dipendenti,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153250,153250,Personale c/acconti,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153300,153300,Crediti verso INAIL,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153310,153310,Crediti v/istituti previdenziali,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153330,153330,Crediti v/compagnie assicurative,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153340,153340,Crediti per rimborsi INAIL,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153400,153400,Crediti per depositi cauzionali,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153410,153410,Arrotondamenti a. su stipendi,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153420,153420,Fondo rischi su crediti,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153450,153450,Obbligazionisti c/sottoscrizioni,account.data_account_type_current_assets,TRUE,l10n_chart_it_zeroincombenze
-153500,153500,Creditori diversi ,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
+153200,153200,Crediti v/dipendenti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153250,153250,Personale c/acconti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153300,153300,Crediti verso INAIL,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153310,153310,Crediti v/istituti previdenziali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153330,153330,Crediti v/compagnie assicurative,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153340,153340,Crediti per rimborsi INAIL,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153400,153400,Crediti per depositi cauzionali,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153410,153410,Arrotondamenti a. su stipendi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153420,153420,Fondo rischi su crediti,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153450,153450,Obbligazionisti c/sottoscrizioni,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+153500,153500,Creditori diversi,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 153510,153510,Crediti v/fornitori c/anticipi,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 153520,153520,Crediti v/Amministratori,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
 153530,153530,Note Credito da ricevere,account.data_account_type_receivable,TRUE,l10n_chart_it_zeroincombenze
@@ -247,9 +247,9 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 180304,180304,BNL Paribas (attivo),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 180400,180400,Banche e c/c on-line,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 190110,190110,Ratei attivi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
-190120,190120,Risconti attivi,account.data_account_type_current_assets,FALSE,l10n_chart_it_zeroincombenze
+190120,190120,Risconti attivi,account.data_account_type_prepayments,FALSE,l10n_chart_it_zeroincombenze
 211010,211010,Capitale sociale,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-211020,211020,Patrimonio Netto ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+211020,211020,Patrimonio Netto,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 211030,211030,Quote sottoscritte,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 211040,211040,Azioni di Risparmio,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 212010,212010,Riserva da sovrapprezzo azioni,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
@@ -272,7 +272,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 217120,217120,Altre riserve: riserva per utili su cambi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 217130,217130,"Altre riserve: Riserve da condono fiscale, ex L.289 del 27/12/2002",account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 218010,218010,Utili (perdite) portati a nuovo,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-219010,219010,Utile (perdita) d'esercizio ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+219010,219010,Utile (perdita) d'esercizio,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 219020,219020,"Utile (perdita) d'esercizio, copertura parziale perdita d'esercizio ",account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 219030,219030,"Utile (perdita) d'esercizio, utile (perdita) residua",account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 220100,220100,Fondo per trattamento di quiescenza,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
@@ -296,10 +296,10 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 240303,240303,Monte dei Paschi Siena (passivo),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 240304,240304,BNL Paribas (passivo),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 240400,240400,Banche c/c passivi on-line,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-240500,240500,Banche c/sovvenzioni ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-241100,241100,Banche c/RIBA all'incasso ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-242100,242100,Banche c/cambiali all'incasso ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-243100,243100,Banche c/anticipi su fatture ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+240500,240500,Banche c/sovvenzioni,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+241100,241100,Banche c/RIBA all'incasso,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+242100,242100,Banche c/cambiali all'incasso,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+243100,243100,Banche c/anticipi su fatture,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 244101,244101,Carta di credito Visa,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 244102,244102,Carta di credito Mastercard,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 245100,245100,Obbligazioni ordinarie,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
@@ -308,11 +308,11 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 245130,245130,Obbligazioni indicizzate (+ 12 M ),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 245140,245140,Altre obbligazioni,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 245150,245150,Altre obbligazioni (+ 12 M),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-246000,246000,Mutui passivi ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+246000,246000,Mutui passivi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 246010,246010,Aperture di credito con garanzia reale,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 246020,246020,Altri debiti con garanzia reale ( a breve ),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 246030,246030,Altri debiti con garanzia reale (+ 12 M),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-247100,247100,Debiti v/altri finanziatori ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+247100,247100,Debiti v/altri finanziatori,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 247110,247110,Debiti v/soci,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 247120,247120,Soci c/finanziamento infruttifero,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 247130,247130,Debiti v/società finanziarie,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
@@ -331,39 +331,39 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 250110,250110,Debiti v/fornitori UE,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250120,250120,Debiti v/fornitori Extra-UE,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250140,250140,Debiti per Carburanti,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-250150,250150,Fornitori Fatture da ricevere ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-250180,250180,Debiti da liquidare ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+250150,250150,Fornitori Fatture da ricevere,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+250180,250180,Debiti da liquidare,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250190,250190,Bolla doganale,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-250200,250200,Cambiali passive ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+250200,250200,Cambiali passive,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250300,250300,Debiti v/fornitori Italia (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250310,250310,Debiti v/fornitori UE (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250320,250320,Debiti v/fornitori Extra-UE (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
 250400,250400,Cambiali passive (+12M),account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-260010,260010,IVA n/debito ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-260020,260020,Erario c/IVA ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260010,260010,IVA n/debito,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260020,260020,Erario c/IVA,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 260030,260030,IVA n/deb. in sospensione,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 260040,260040,IVA su corrispettivi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 260050,260050,IVA autofatture da c/acquisti UE,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-260100,260100,Debiti per imposte ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-260110,260110,Debiti per ritenute da versare ,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
-260200,260200,Personale c/retribuzioni ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260210,260210,Personale c/liquidazioni ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260300,260300,Debiti verso INAIL,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260310,260310,Debiti v/istituti previdenziali ,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260311,260311,Debiti v/INPS Dipendenti,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260312,260312,Debiti v/IRPEF Dipendenti,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260313,260313,Debiti v/Fondi pensione complementari,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260314,260314,Debiti v/IRPEF Amministratori e collaboratori,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260316,260316,Cassa assistenza sanitaria,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260317,260317,Debiti v/Associazioni sindacali e di categoria,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260400,260400,Depositi cauzionali (da rendere),account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260410,260410,Debitori diversi,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260420,260420,Debiti v/clienti c/anticipi,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260430,260430,Debiti v/Amministratori,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
-260440,260440,Note Credito da Emettere,account.data_account_type_current_liabilities,TRUE,l10n_chart_it_zeroincombenze
+260100,260100,Debiti per imposte,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260110,260110,Debiti per ritenute da versare,account.data_account_type_payable,TRUE,l10n_chart_it_zeroincombenze
+260200,260200,Personale c/retribuzioni,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260210,260210,Personale c/liquidazioni,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260300,260300,Debiti verso INAIL,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260310,260310,Debiti v/istituti previdenziali,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260311,260311,Debiti v/INPS Dipendenti,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260312,260312,Debiti v/IRPEF Dipendenti,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260313,260313,Debiti v/Fondi pensione complementari,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260314,260314,Debiti v/IRPEF Amministratori e collaboratori,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260316,260316,Cassa assistenza sanitaria,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260317,260317,Debiti v/Associazioni sindacali e di categoria,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260400,260400,Depositi cauzionali (da rendere),account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260410,260410,Debitori diversi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260420,260420,Debiti v/clienti c/anticipi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260430,260430,Debiti v/Amministratori,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+260440,260440,Note Credito da Emettere,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
 260450,260450,Arrotondamenti p. su stipendi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-290010,290010,Ratei passivi ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
-290020,290020,Risconti passivi ,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+290010,290010,Ratei passivi,account.data_account_type_current_liabilities,FALSE,l10n_chart_it_zeroincombenze
+290020,290020,Risconti passivi,account.data_account_type_prepayments,FALSE,l10n_chart_it_zeroincombenze
 410010,410010,"Rischi assunti dall'impresa, Fideiussioni",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 410020,410020,"Rischi assunti dall'impresa, Avalli",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 410030,410030,"Rischi assunti dall'impresa, Altre garanzie personali",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
@@ -384,9 +384,9 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 510300,510300,Corrispettivi lordi da ventilare,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 510400,510400,Corrispettivi ripartiti,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 510500,510500,Ricavi da privati,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-511000,511000,Premi su vendite ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-512000,512000,Rimborsi spese c/clienti ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-513000,513000,Resi su vendite ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+511000,511000,Premi su vendite,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+512000,512000,Rimborsi spese c/clienti,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+513000,513000,Resi su vendite,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 519000,519000,"Rett.che per Resi,Sconti,Abbuoni su vendite",account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 520100,520100,Var.ne Materie Prime,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 520150,520150,Var.ne Merci Esposizione,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
@@ -410,7 +410,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 541180,541180,Rivalorizzazione Fabbricati industriali,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 541200,541200,Rivalorizzazione Impianti  e Macchinari,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 541300,541300,Rival. Attrezzature Industriali e Commerciali,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-541320,541320,Rival. Attrezzature Varie e Minute ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+541320,541320,Rival. Attrezzature Varie e Minute,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 541340,541340,Rivalorizzazione Automezzi,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 541380,541380,Rival. Macchine Ufficio Elettroniche,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 541390,541390,Rival. Mobili e Arredi Uffcio,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
@@ -421,12 +421,12 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 550210,550210,Prov. da partec. in imprese controllate,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 550220,550220,Prov. da partec. in imprese collegate,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 550230,550230,Prov. da partec. in altre imprese,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-550510,550510,Fitti attivi ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-550520,550520,Proventi vari ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-550530,550530,Arrotondamenti attivi ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-550540,550540,Plusvalenze ordinarie diverse ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-550550,550550,Sopravvenienze attive ordinarie diverse ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-550560,550560,Insussistenze attive ordinarie diverse ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+550510,550510,Fitti attivi,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+550520,550520,Proventi vari,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+550530,550530,Arrotondamenti attivi,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+550540,550540,Plusvalenze ordinarie diverse,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+550550,550550,Sopravvenienze attive ordinarie diverse,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+550560,550560,Insussistenze attive ordinarie diverse,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 610100,610100,Acq. Merce,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 610110,610110,Acq. Materie prime,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 610140,610140,Acq. Imballaggi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
@@ -434,7 +434,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 610250,610250,Acq. Semilavorati,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 610300,610300,Acq. Attrezzatura varia e minuta,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 610400,610400,Costi Merce c/apporti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-610500,610500,Resi su acquisti ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+610500,610500,Resi su acquisti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 620300,620300,Noleggi vari,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 621110,621110,Spese accessorie su Acquisti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 621120,621120,Spese di Incasso,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
@@ -505,7 +505,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 625030,625030,Costi assicurativi per ufficio,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 625040,625040,Cancelleria e Stampati,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 625050,625050,"Spese pulizia,acqua e manutenz.locali",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-625060,625060,Spese postali ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+625060,625060,Spese postali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 625070,625070,Spese x valori bollati e francobolli,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 625080,625080,Abbonamenti a giornali e riviste,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 625100,625100,Energia Elettrica,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
@@ -523,93 +523,93 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 627030,627030,Contr. INPS Amministratore,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 630100,630100,Canoni di locazione passivi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 630200,630200,Canoni di locazione leasing,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-640910,640910,Salari e stipendi ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+640910,640910,Salari e stipendi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640920,640920,Oneri sociali per il personale,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640930,640930,TFR: trattamento di fine rapporto,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640940,640940,Trattamento di quiescenza,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-640950,640950,Altri costi per il personale ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+640950,640950,Altri costi per il personale,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640960,640960,Rimb. Spese a Dipendenti (pie’ di lista),account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640960,640960,Premio INAIL,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640970,640970,Quota TFR destinata a fondi previdenziali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640980,640980,Oneri per assistenza sanitaria,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 640990,640990,"Ricerca, formazione e addestramento",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651100,651100,QA Costi di Impianto e di Ampliamento,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651110,651110,QA Costituzione Società,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651120,651120,QA Modifica Statuto Sociale,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651130,651130,QA Avviamento impianti e Produzione,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651140,651140,QA Trasformazione Società,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651150,651150,QA Spese Ristrutturaz. in Economia,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651200,651200,QA Ricerca Sviluppo e Pubblicità,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651210,651210,QA Costi di ricerca e sviluppo,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651220,651220,QA Costi di Pubblicità,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651300,651300,QA Costi di brevetto industriale e diritti su opere dell'ingegno,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651310,651310,QA Brevetti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651320,651320,QA Diritti su Opere dell'Ingegno,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651330,651330,QA Diritti su Programmi Software,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651400,651400,"QA Concessione licenze, marchi e simili",account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651410,651410,QA Concessioni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651420,651420,QA Licenze,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651430,651430,QA Marchi di fabbrica,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651440,651440,QA Programmi Software e Licenze,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651500,651500,QA Costi di Avviamento,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651510,651510,QA Avviamento ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651600,651600,QA Immobilizzazioni imm.li in corso e acconti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651620,651620,QA Acconti a Fornitori su Immobilizzazioni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651630,651630,QA Caparre su Immobilizzazioni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651640,651640,QA Altre immobilizzazioni immateriali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651700,651700,QA Altre Immobilizzazioni ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651710,651710,QA Indennità Perdita Avviamento,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651720,651720,QA Costi Plur.li su Beni di Terzi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651730,651730,QA Altri costi  Pluriennali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651740,651740,QA Spese Manut.da Ammortiz.su Beni di Proprietà,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-651750,651750,QA Spese di Manutenzione su beni di Terzi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652100,652100,QA Terreni e Fabbricati,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652110,652110,QA Terreni senza Costruzioni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652120,652120,QA Terreni ad Util.ne Industriale,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652130,652130,QA Terreni ad Util.ne Agricola,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652140,652140,QA Terreni da Costruzione,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652150,652150,QA Altri terreni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652160,652160,QA Fabbricati  ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652170,652170,QA Fabb.ti Indust.li e Infrastrutture,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652180,652180,QA Fabbricati Industriali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652200,652200,QA Impianti  e Macchinari,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652210,652210,QA Impianti generici vari,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652220,652220,QA Impianti Specifici,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652230,652230,QA Macchinari Operatori e Impianti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652240,652240,QA Impianti Generali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652300,652300,QA Attrezzature Industriali e Commerciali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652310,652310,QA Attrezzatura,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652320,652320,QA Attrezzature Varie e Minute ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652330,652330,QA Autovetture,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652340,652340,QA Automezzi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652350,652350,QA Mezzi di Trasporto Interni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652360,652360,QA Imballaggi durevoli da riutilizzare,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652370,652370,QA Macchine Ufficio Ordinarie,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652380,652380,QA Macchine Ufficio Elettroniche,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652382,652382,QA Telefono Cellulare,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652390,652390,QA Mobili e Arredi Uffcio,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652400,652400,QA Altri Beni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652410,652410,QA Beni in Concessione,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652420,652420,QA Beni Gratuitamente Devolvibili,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652430,652430,QA Altri Beni Materiali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652500,652500,QA Immoliz.ni Materiali in Corso e Acconti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652510,652510,QA Immobil. Materiali in Corso,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-652520,652520,QA Acconti a Fornitori su Acquisti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-661010,661010,Svalutazioni immobilizzazioni immateriali ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-661020,661020,Svalutazioni immobilizzazioni materiali ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-661030,661030,Svalutazione crediti ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+651100,651100,QA Costi di Impianto e di Ampliamento,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651110,651110,QA Costituzione Società,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651120,651120,QA Modifica Statuto Sociale,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651130,651130,QA Avviamento impianti e Produzione,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651140,651140,QA Trasformazione Società,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651150,651150,QA Spese Ristrutturaz. in Economia,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651200,651200,QA Ricerca Sviluppo e Pubblicità,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651210,651210,QA Costi di ricerca e sviluppo,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651220,651220,QA Costi di Pubblicità,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651300,651300,QA Costi di brevetto industriale e diritti su opere dell'ingegno,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651310,651310,QA Brevetti,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651320,651320,QA Diritti su Opere dell'Ingegno,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651330,651330,QA Diritti su Programmi Software,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651400,651400,"QA Concessione licenze, marchi e simili",account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651410,651410,QA Concessioni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651420,651420,QA Licenze,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651430,651430,QA Marchi di fabbrica,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651440,651440,QA Programmi Software e Licenze,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651500,651500,QA Costi di Avviamento,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651510,651510,QA Avviamento,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651600,651600,QA Immobilizzazioni imm.li in corso e acconti,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651620,651620,QA Acconti a Fornitori su Immobilizzazioni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651630,651630,QA Caparre su Immobilizzazioni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651640,651640,QA Altre immobilizzazioni immateriali,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651700,651700,QA Altre Immobilizzazioni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651710,651710,QA Indennità Perdita Avviamento,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651720,651720,QA Costi Plur.li su Beni di Terzi,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651730,651730,QA Altri costi  Pluriennali,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651740,651740,QA Spese Manut.da Ammortiz.su Beni di Proprietà,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+651750,651750,QA Spese di Manutenzione su beni di Terzi,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652100,652100,QA Terreni e Fabbricati,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652110,652110,QA Terreni senza Costruzioni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652120,652120,QA Terreni ad Util.ne Industriale,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652130,652130,QA Terreni ad Util.ne Agricola,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652140,652140,QA Terreni da Costruzione,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652150,652150,QA Altri terreni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652160,652160,QA Fabbricati,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652170,652170,QA Fabb.ti Indust.li e Infrastrutture,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652180,652180,QA Fabbricati Industriali,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652200,652200,QA Impianti  e Macchinari,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652210,652210,QA Impianti generici vari,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652220,652220,QA Impianti Specifici,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652230,652230,QA Macchinari Operatori e Impianti,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652240,652240,QA Impianti Generali,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652300,652300,QA Attrezzature Industriali e Commerciali,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652310,652310,QA Attrezzatura,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652320,652320,QA Attrezzature Varie e Minute,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652330,652330,QA Autovetture,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652340,652340,QA Automezzi,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652350,652350,QA Mezzi di Trasporto Interni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652360,652360,QA Imballaggi durevoli da riutilizzare,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652370,652370,QA Macchine Ufficio Ordinarie,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652380,652380,QA Macchine Ufficio Elettroniche,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652382,652382,QA Telefono Cellulare,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652390,652390,QA Mobili e Arredi Uffcio,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652400,652400,QA Altri Beni,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652410,652410,QA Beni in Concessione,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652420,652420,QA Beni Gratuitamente Devolvibili,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652430,652430,QA Altri Beni Materiali,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652500,652500,QA Immoliz.ni Materiali in Corso e Acconti,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652510,652510,QA Immobil. Materiali in Corso,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+652520,652520,QA Acconti a Fornitori su Acquisti,account.data_account_type_depreciation,FALSE,l10n_chart_it_zeroincombenze
+661010,661010,Svalutazioni immobilizzazioni immateriali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+661020,661020,Svalutazioni immobilizzazioni materiali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+661030,661030,Svalutazione crediti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 671010,671010,Variazioni materie prime,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 671020,671020,Variazioni materiale di consumo,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-681010,681010,Accantonamento per responsabilità civile ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-682010,682010,Accantonamento per spese future ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-682020,682020,Accantonamento per manutenzioni programmate ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+681010,681010,Accantonamento per responsabilità civile,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+682010,682010,Accantonamento per spese future,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+682020,682020,Accantonamento per manutenzioni programmate,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691000,691000,Imposte e tasse di esercizio,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691100,691100,Tassa Conc. Governativa,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691200,691200,Tasse comunali,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691210,691210,Tassa sui rifiuti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691220,691220,Tassa occupazione suolo pubblico,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691230,691230,Tass partecipazione a fiere,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-691300,691300,Oneri fiscali diversi ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+691300,691300,Oneri fiscali diversi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691320,691320,Registraz. Contratti di locazione,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691350,691350,Tassa di possesso automezzi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691360,691360,Imposta di registro,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
@@ -622,13 +622,13 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 691710,691710,Costo diritti SIAE,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691720,691720,Abbonamento RAI,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 691900,691900,Multe e ammende,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-698010,698010,Perdite su crediti ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-698020,698020,Arrotondamenti passivi ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-698030,698030,Minusvalenze ordinarie diverse ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-698040,698040,Sopravvenienze passive ordinarie diverse ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-698050,698050,Insussistenze passive ordinarie diverse ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-699000,699000,Oneri vari ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-710151,710151,Proventi da partecipazione ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+698010,698010,Perdite su crediti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+698020,698020,Arrotondamenti passivi,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+698030,698030,Minusvalenze ordinarie diverse,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+698040,698040,Sopravvenienze passive ordinarie diverse,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+698050,698050,Insussistenze passive ordinarie diverse,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+699000,699000,Oneri vari,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+710151,710151,Proventi da partecipazione,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 720161,720161,Crediti iscritti nelle immobilizzazioni,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 720162,720162,Crediti da tit. iscritti nelle  immobiliz. che non costituiscono partecipaz.,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 720163,720163,Crediti da tit. iscritti  nell'attivo circolante che non costituiscono partecipaz.,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
@@ -650,27 +650,27 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 841000,841000,Svalutazioni da partecipazioni,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 842000,842000,Svalutazioni di immobilizzazioni finanziarie,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 843000,843000,Svalutazioni da titoli in att. Circ. senza partecipaz.,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-851000,851000,Plusvalenze da alienazioni ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+851000,851000,Plusvalenze da alienazioni,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851010,851010,Plusvalenze da alienazioni eserc. precedenti,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-851020,851020,Plusvalenze straordinarie ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+851020,851020,Plusvalenze straordinarie,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851030,851030,Plusvalenze da terreni e fabbricati,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851040,851040,Plusvalenze da attrezzature,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851050,851050,Plusvalenze da cessione titoli,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851060,851060,Plusvalenze da partecipazioni,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851100,851100,"Sopravvenuta insussistenza di oneri,spese e passiv.",account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-851110,851110,Insussistenze attive straordinarie ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+851110,851110,Insussistenze attive straordinarie,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 851150,851150,Incasso da credito considerato inesigibile,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 852000,852000,Indennità di risarcimento assicurativo,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
-852040,852040,Sopravvenienze attive straordinarie ,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
+852040,852040,Sopravvenienze attive straordinarie,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 852050,852050,Fatture emesse > da accertare,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 852060,852060,Contributi in conto capitale,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 852090,852090,Altre liberalità,account.data_account_type_other_income,FALSE,l10n_chart_it_zeroincombenze
 860211,860211,Minusvalenze da alienazioni eserc. Precedenti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-860212,860212,Minusvalenze straordinarie ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-860213,860213,Sopravvenienze passive straordinarie ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-860214,860214,Insussistenze passive straordinarie ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-860215,860215,Imposte esercizi precedenti ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
-870220,870220,Imposte dell'esercizio ,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+860212,860212,Minusvalenze straordinarie,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+860213,860213,Sopravvenienze passive straordinarie,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+860214,860214,Insussistenze passive straordinarie,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+860215,860215,Imposte esercizi precedenti,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
+870220,870220,Imposte dell'esercizio,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 870230,870230,Risultato economico di esercizio,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 870240,870240,Risultato economico di esercizio,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze
 880250,880250,Altri accantonamenti da norme tributarie,account.data_account_type_expenses,FALSE,l10n_chart_it_zeroincombenze

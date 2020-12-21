@@ -277,7 +277,7 @@
     </record>
     <record model="italy.ade.tax.assosoftware" id="N030401">
         <field name="code">N030401</field>
-        <field name="name">NIart.41 D.L.331/93 (cessioni intra)</field>
+        <field name="name">NI art.41 D.L.331/93 (cessioni intra)</field>
         <field name="nature">N3.2</field>
     </record>
     <record model="italy.ade.tax.assosoftware" id="N030402">

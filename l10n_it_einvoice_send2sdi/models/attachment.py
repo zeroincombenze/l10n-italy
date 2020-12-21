@@ -166,8 +166,8 @@ class FatturaPAAttachmentIn(models.Model):
 
         try:
             attach_model.create(attach_vals)
-        except BaseException:
-            _logger.error('Error creating XML attachment')
+        except BaseException as e:
+            _logger.error('Error <%s> creating XML attachment' % e)
 
 
 class FatturaPAAttachmentOut(models.Model):

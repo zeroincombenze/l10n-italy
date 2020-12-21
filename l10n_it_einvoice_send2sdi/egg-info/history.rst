@@ -1,3 +1,9 @@
+10.0.1.0.12 (2020-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Detailed error messages / Messaggi di errore dettagliata
+
+
 10.0.1.0.9 (2020-03-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

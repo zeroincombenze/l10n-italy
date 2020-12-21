@@ -1,3 +1,9 @@
+10.0.1.3.22 (2020-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Avoid invoice address duplicate / Evita duplicazione indirizzi di fatturazione impport ft. fornitori
+
+
 10.0.1.3.21 (2020-11-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

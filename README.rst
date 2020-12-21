@@ -73,7 +73,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                          | 10.0.0.2.0 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
+| l10n_it_ade                          | 10.0.0.3.0 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |same|     | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -92,6 +92,8 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_codici_carica                | |no_check| | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_conai                        | 10.0.0.1.5 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_conai_new                    | 10.0.0.1.5 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi                | 10.0.1.1.0 | 10.0.1.2.4 | Italian Localization - Corrispettivi                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -382,7 +384,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2020-12-09
+Last Update / Ultimo aggiornamento: 2020-12-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -214,14 +214,13 @@ class Partner(models.Model):
         SKEYS = (['vat', 'fiscalcode', 'type'],
                  ['vat', 'name', 'type'],
                  ['fiscalcode', 'dim_name', 'type'],
-                 ['rea_code'],
                  ['vat', 'dim_name', 'type'],
+                 ['rea_code'],
                  ['vat', 'type'],
                  ['dim_name', 'type'],
                  ['vat', 'fiscalcode', 'is_company'],
                  ['vat'],
-                 ['name', 'is_company'],
-                 ['name'])
+                 ['name', 'is_company'])
         partner_id = self.synchro2(
             'res.partner',
             vals,
@@ -250,6 +249,16 @@ class Partner(models.Model):
     @api.model
     def synchro2(self, model, values, skeys=None, constraints=None,
                 keep=None, default=None):
+
+        def is_the_same(rec, vals):
+            result = True
+            for field in ('name', 'street', 'zip', 'city'):
+                if (self.dim_text(
+                        rec[field]) != self.dim_text(vals.get(field, ''))):
+                    result = False
+                    break
+            return rec
+
         vals = values.copy()
         skeys = skeys or []
         MAGIC_FIELDS = {'company_id': False,
@@ -293,22 +302,27 @@ class Partner(models.Model):
                     for i, kk in enumerate(domain):
                         if kk[0] == 'type':
                             domain[i][2] = 'contact'
+                    domain.append(('parent_id', '=', False))
                     rec = self.search(domain)
                     if rec:
                         rec = rec[0]
                         break
         if rec:
-            if rec.type == 'invoice':
-                if 'rea_code' in vals:
-                    del vals['rea_code']
-            else:
-                for field in ('name', 'street', 'zip', 'city'):
-                    if (self.dim_text(
-                            rec[field]) != self.dim_text(vals.get(field, ''))):
-                        vals['parent_id'] = rec.id
-                        vals['type'] = 'invoice'
-                        rec = False
-                        break
+            if rec.parent_id and is_the_same(rec.parent_id, vals):
+                defvals = {}
+                if rec.rea_code:
+                    defvals['rea_code'] = False
+                if rec.type == 'contact':
+                    defvals['type'] = 'invoice'
+                if rec.name == rec.parent_id.name:
+                    defvals['name'] = False
+                if defvals:
+                    rec.write(defvals)
+                rec = rec.parent_id
+            if not rec.parent_id and not is_the_same(rec, vals):
+                vals['parent_id'] = rec.id
+                vals['type'] = 'invoice'
+                rec = False
         if rec:
             try:
                 if rec.type != 'invoice':
@@ -318,7 +332,8 @@ class Partner(models.Model):
                     for field in default:
                         if not vals.get(field) and field in default:
                             vals[field] = default[field]
-                if 'rea_code' in vals and rec.rea_code:
+                if 'rea_code' in vals and (rec.rea_code or
+                                           rec.type == 'invoice'):
                     del vals['rea_code']
                 rec.write(vals)
                 id = rec.id
