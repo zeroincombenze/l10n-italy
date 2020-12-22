@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_invoice_entry_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo (10.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-12 08:12+0000\n"
+"PO-Revision-Date: 2019-10-12 08:12+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#. module: account_invoice_entry_date
+#: model:ir.ui.view,arch_db:account_invoice_entry_date.wizard_default_registration_date
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_create_date
+msgid "Created on"
+msgstr "Data di creazione"
+
+#. module: account_invoice_entry_date
+#: model:ir.ui.view,arch_db:account_invoice_entry_date.wizard_default_registration_date
+msgid "Default"
+msgstr "Predefinito"
+
+#. module: account_invoice_entry_date
+#: model:ir.actions.act_window,name:account_invoice_entry_date.action_default_registration_date
+#: model:ir.ui.view,arch_db:account_invoice_entry_date.wizard_default_registration_date
+msgid "Default registration date"
+msgstr "Data registrazione predefinita"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_invoice_entry_date
+#: model:ir.model,name:account_invoice_entry_date.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,help:account_invoice_entry_date.field_account_invoice_registration_date
+msgid "Keep empty to use the current date"
+msgstr "Lasciare vuoto per usare la data corrente"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate___last_update
+msgid "Last Modified on"
+msgstr "Data ultima modifica"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_write_uid
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_wizard_default_invoice_registrationdate_write_date
+msgid "Last Updated on"
+msgstr "Data ultima modifica"
+
+#. module: account_invoice_entry_date
+#: model:ir.model,name:account_invoice_entry_date.model_wizard_default_invoice_registrationdate
+msgid "Refresh registration date"
+msgstr "Riaggiorna data registrazione"
+
+#. module: account_invoice_entry_date
+#: model:ir.model.fields,field_description:account_invoice_entry_date.field_account_invoice_registration_date
+msgid "Registration Date"
+msgstr "Data di registrazione"
+
+#. module: account_invoice_entry_date
+#: code:addons/account_invoice_entry_date/models/account_invoice.py:46
+#: code:addons/account_invoice_entry_date/models/account_invoice.py:46
+msgid "The invoice date cannot be later than the date of registration!"
+msgstr "Data fattura successiva a data registrazione"
+
+
