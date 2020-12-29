@@ -706,6 +706,10 @@ ModalitaPagamentoType.MP22 = (
     ModalitaPagamentoType._CF_enumeration.addEnumeration(
         unicode_value='MP22', tag='MP22')
     )
+ModalitaPagamentoType.MP23 = (
+    ModalitaPagamentoType._CF_enumeration.addEnumeration(
+        unicode_value='MP23', tag='MP23')
+    )
 ModalitaPagamentoType._InitializeFacetMap(
     ModalitaPagamentoType._CF_length,
     ModalitaPagamentoType._CF_enumeration)

@@ -73,7 +73,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                          | 10.0.0.3.0 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
+| l10n_it_ade                          | 10.0.0.3.1 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |same|     | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -93,7 +93,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_conai                        | 10.0.0.1.5 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_conai_new                    | 10.0.0.1.5 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
+| l10n_it_conai_new                    | |halt|     | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi                | 10.0.1.1.0 | 10.0.1.2.4 | Italian Localization - Corrispettivi                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -107,7 +107,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 10.0.1.0.0 | |no_check| | Esportazione di file XML di fatture elettroniche in uno ZIP da esportare.        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_import_zip          | 10.0.1.0.3 | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
+| l10n_it_einvoice_import_zip          | 10.0.1.0.4 | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_in                  | 10.0.1.3.2 | |no_check| | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -384,7 +384,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2020-12-21
+Last Update / Ultimo aggiornamento: 2020-12-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

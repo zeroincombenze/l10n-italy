@@ -621,6 +621,8 @@ ModalitaPagamentoType.MP21 = ModalitaPagamentoType._CF_enumeration.addEnumeratio
     unicode_value='MP21', tag='MP21')
 ModalitaPagamentoType.MP22 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
     unicode_value='MP22', tag='MP22')
+ModalitaPagamentoType.MP23 = ModalitaPagamentoType._CF_enumeration.addEnumeration(
+    unicode_value='MP23', tag='MP23')
 ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 ModalitaPagamentoType._InitializeFacetMap(ModalitaPagamentoType._CF_enumeration,

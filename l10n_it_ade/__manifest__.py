@@ -10,7 +10,7 @@
 {
     'name': 'Agenzia delle Entrate',
     'summary': 'Codice e definizioni come da Agenzia delle Entrate',
-    'version': '10.0.0.3.0',
+    'version': '10.0.0.3.1',
     'category': 'Localization/Italy',
     'author': 'Odoo Community Association (OCA), SHS-AV s.r.l.',
     'license': 'LGPL-3',

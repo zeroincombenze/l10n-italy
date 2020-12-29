@@ -46,7 +46,9 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
         for xml_fullfile in zf.namelist():
             xml_file = os.path.basename(xml_fullfile)
             if re.match(rex, xml_file):
-                if att_model.search([('name', '=', xml_file)]):
+                rec_ids = att_model.search([('name', '=', xml_file)])
+                if rec_ids:
+                    att_list += [x.id for x in rec_ids]
                     continue
                 try:
                     data = zf.read(xml_fullfile)

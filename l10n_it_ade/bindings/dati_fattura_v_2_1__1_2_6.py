@@ -32,7 +32,6 @@ _PyXBVersion = '1.2.6'
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
 
-
 # A holder for module-level binding classes so we can access them from
 # inside class definitions where property names may conflict.
 _module_typeBindings = pyxb.utils.utility.Object()
@@ -47,7 +46,7 @@ except ImportError as err:
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI(
-    'http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0', create_if_missing=True)
+    'http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 _Namespace_ds = _ImportedBinding__ds.Namespace
 _Namespace_ds.configureCategories(['typeBinding', 'elementBinding'])
