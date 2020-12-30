@@ -7,9 +7,9 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-import datetime
-from odoo import models, api, fields, _
-from odoo.exceptions import UserError
+# import datetime
+from odoo import models, api, fields
+# from odoo.exceptions import UserError
 
 
 class AccountInvoice(models.Model):
@@ -37,7 +37,7 @@ class AccountInvoice(models.Model):
     def _check_4_inv_date(self):
 
         for invoice in self:
-            res = False
+            # res = False
             if (invoice.type in ('out_invoice', 'out_refund') and
                     not invoice.journal_id.enable_date):
                 invoice.date_apply_vat = invoice.date_apply_balance = \

@@ -1,5 +1,0 @@
-.. $if branch in '7.0'
-* Odoo Community Association (OCA) <https://odoo-community.org>
-.. $elif branch in '10.0'
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
-.. $fi

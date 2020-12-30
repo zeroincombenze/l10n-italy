@@ -143,10 +143,12 @@ class SaleOrder(models.Model):
     @api.multi
     def action_create_ddt(self):
         ddt_model = self.env['stock.picking.package.preparation']
+        ddt = False
         for order in self:
             picking_ids = []
             for picking in order.picking_ids:
-                if len(picking.mapped('ddt_ids')) == 0:
+                if (picking.state in ('assigned', 'done') and
+                        len(picking.mapped('ddt_ids')) == 0):
                     picking_ids.append(picking)
             if not picking_ids:
                 raise UserError(
@@ -184,7 +186,7 @@ class SaleOrder(models.Model):
                     ddt.unlink()
                 else:
                     raise UserError(
-                        _("Document %d has invoice linked" % ddt.ddt_number))
+                        _("Document has ddt %s linked" % ddt.ddt_number))
         return super(SaleOrder, self).action_cancel()
 
     @api.multi

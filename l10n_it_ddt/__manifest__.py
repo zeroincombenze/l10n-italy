@@ -5,7 +5,7 @@
 {
     'name': 'DDT',
     'summary': 'Delivery Document to Transfer',
-    'version': '10.0.1.8.7',
+    'version': '10.0.1.8.8',
     'category': 'Localization/Italy',
     'author': 'Odoo Community Association (OCA) and other subjects',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
@@ -18,6 +18,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'data/ddt_data.xml',
         'views/stock_picking_package_preparation.xml',
         'views/ddt_data.xml',
@@ -38,4 +39,3 @@
     ],
     'installable': True,
 }
-

@@ -13,11 +13,22 @@ class DdtCreateInvoice(models.TransientModel):
         return self.env['stock.picking.package.preparation'].browse(
             self.env.context['active_ids'])
 
+    @api.model
+    def _default_journal(self):
+        return self.env['account.journal'].search([('type', '=', 'sale')],
+                                                  order='id', limit=1)
+    journal_id = fields.Many2one('account.journal', string='Journal',
+                                 default=_default_journal,
+                                 domain=[('type', '=', 'sale')])
+    date_invoice = fields.Date(string='Invoice Date')
     ddt_ids = fields.Many2many(
         'stock.picking.package.preparation', default=_get_ddt_ids)
 
     @api.multi
     def create_invoice(self):
+        self = self.with_context(
+            invoice_date=self.date_invoice,
+        )
         if self.ddt_ids:
             invoice_ids = self.ddt_ids.action_invoice_create()
             # ----- Show new invoices

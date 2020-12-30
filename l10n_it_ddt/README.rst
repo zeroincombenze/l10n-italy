@@ -1,6 +1,6 @@
 
 =====================
-|icon| DDT 10.0.1.8.7
+|icon| DDT 10.0.1.8.8
 =====================
 
 
@@ -50,7 +50,7 @@ invoice lines
 
 |
 
-|it| Stampa documento di trasporto, consociuto anche come DdT
+|it| Stampa documento di trasporto, conosciuto anche come DdT
 
 È possibile creare automaticamente un DDT da un ordine di vendita, impostando
 il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
@@ -218,6 +218,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.8.8 (2020-12-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Create DdT check for picking state / Controllo stato picking in creazione DdT
 
 10.0.1.8.7 (2020-12-07)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -396,7 +401,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-12-09
+Last Update / Ultimo aggiornamento: 2020-12-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

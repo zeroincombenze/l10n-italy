@@ -1,3 +1,8 @@
+10.0.1.8.8 (2020-12-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Create DdT check for picking state / Controllo stato picking in creazione DdT
+
 10.0.1.8.7 (2020-12-07)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

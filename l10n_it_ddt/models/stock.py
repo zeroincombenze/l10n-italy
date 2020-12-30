@@ -4,74 +4,23 @@
 #
 
 
-from odoo import fields, models, api
+from odoo import models, api
 
 
 class StockPicking(models.Model):
-
-    _inherit = 'stock.picking'
-
-    ddt_ids = fields.Many2many(
-        comodel_name='stock.picking.package.preparation',
-        relation='stock_picking_pack_prepare_rel',
-        column1='stock_picking_id',
-        column2='stock_picking_package_preparation_id',
-        string='DdT',
-        copy=False, )
-    ddt_type = fields.Many2one(
-        'stock.ddt.type',
-        related='picking_type_id.default_location_src_id.type_ddt_id')
+    _inherit = 'stock.move'
 
     @api.multi
-    def write(self, values):
-        pack_to_update = None
-        if 'move_lines' in values:
-            pack_to_update = self.env['stock.picking.package.preparation']
-            for picking in self:
-                pack_to_update |= picking.ddt_ids
-        res = super(StockPicking, self).write(values)
-        if pack_to_update:
-            pack_to_update._update_line_ids()
-        return res
-
-    @api.multi
-    def unlink(self):
-        pack_to_update = self.env['stock.picking.package.preparation']
-        for picking in self:
-            pack_to_update |= picking.ddt_ids
-        res = super(StockPicking, self).unlink()
-        if pack_to_update:
-            pack_to_update._update_line_ids()
-        return res
-
-    @api.model
-    def create(self, values):
-        picking = super(StockPicking, self).create(values)
-        if picking.ddt_ids:
-            picking.ddt_ids._update_line_ids()
-        return picking
-
-    def get_ddt_shipping_partner(self):
-        # this is mainly used in dropshipping configuration,
-        # where self.partner_id is your supplier, but 'move_lines.partner_id'
-        # is your customer
-        if not self.picking_type_code == 'internal':
-            move_partners = self.mapped('move_lines.partner_id')
-            if len(move_partners) == 1:
-                return move_partners[0]
-            else:
-                return self.partner_id
-        else:
-            return self.location_dest_id.partner_id
-
-    @api.multi
-    def open_form_current(self):
-        self.ensure_one()
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': self._name,
-            'res_id': self.id,
-            'target': 'current'
-        }
+    def action_cancel(self):
+        for move in self:
+            if move.procurement_id:
+                move.procurement_id.cancel()
+            for quant in move.quant_ids:
+                quant.quants_move(
+                    quant, move, move.location_id,
+                    location_from=move.location_dest_id,
+                    lot_id=move.lot_ids and move.lot_ids[0] or False)
+            move.write({'state': 'cancel', 'date': False})
+            if move.picking_id:
+                move.picking_id.action_revert_done()
+        return True

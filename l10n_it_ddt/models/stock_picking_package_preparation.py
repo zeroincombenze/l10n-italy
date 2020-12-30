@@ -112,7 +112,6 @@ class StockPickingPackagePreparation(models.Model):
             return False
         return ids[0].id
 
-
     def _set_parcel_qty(self):
         if self.parcels == 0:
             return 1
@@ -128,7 +127,7 @@ class StockPickingPackagePreparation(models.Model):
             for line in ddt.line_ids:
                 amount_untaxed += line.price_subtotal
                 # FORWARDPORT UP TO 10.0
-                if (ddt.company_id.tax_calculation_rounding_method == 
+                if (ddt.company_id.tax_calculation_rounding_method ==
                         'round_globally'):
                     price = line.price_unit * (
                         1 - (line.discount or 0.0) / 100.0)
@@ -146,7 +145,6 @@ class StockPickingPackagePreparation(models.Model):
                 'amount_tax': ddt.currency_id.round(amount_tax),
                 'amount_total': amount_untaxed + amount_tax,
             })
-
 
     ddt_type_id = fields.Many2one(
         'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
@@ -173,6 +171,9 @@ class StockPickingPackagePreparation(models.Model):
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice',
+        readonly=True, copy=False)
+    invoice_ids = fields.Many2many(
+        'account.invoice', string='Invoices',
         readonly=True, copy=False)
     to_be_invoiced = fields.Boolean(
         string='To be Invoiced', store=True,
@@ -400,7 +401,7 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.model
     def preparare_ddt_data(self, picking_ids, partner=None):
-        vals = { 'partner_id': False }
+        vals = {'partner_id': False}
         for picking in picking_ids:
             # check if picking is already linked to a DDT
             self.check_linked_picking(picking)
@@ -445,7 +446,7 @@ class StockPickingPackagePreparation(models.Model):
                 vals = self.get_delivery_value(
                     vals, picking, field, field_help)
             vals = self.sum_delivery_value(vals, picking, 'parcels')
-            vals = self.sum_delivery_value(vals, picking, 'weight') 
+            vals = self.sum_delivery_value(vals, picking, 'weight')
             vals = self.sum_delivery_value(vals, picking, 'gross_weight')
             vals = self.sum_delivery_value(vals, picking, 'volume')
         if not vals.get('parcels'):
@@ -460,7 +461,7 @@ class StockPickingPackagePreparation(models.Model):
             if record_picking.state == 'done':
                 raise UserError(_(
                     "Impossible to put in pack a picking whose state is 'done'"
-                    ))
+                ))
         for package in self:
             # ----- Check if package has details
             if not package.line_ids:
@@ -475,34 +476,48 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def set_draft(self):
         invoiced = bool(self.invoice_id)
+        picking_ids = []
         for line in self.line_ids:
             if line.invoice_line_id:
                 invoiced = True
+                break
+            if line.move_id.picking_id not in picking_ids:
+                picking_ids.append(line.move_id.picking_id)
         if invoiced:
             raise UserError(
-                _("Impossible to set draft document when invoice!"))
+                _("Impossible to set draft document when invoiced!"))
+        # for picking in picking_ids:
+        #     picking.write({'state': 'draft'})
         self.write({'state': 'draft', 'date_done': False})
         return True
 
     @api.multi
     def set_done(self):
-        do_put_in_pack = False
-        for picking in self.picking_ids:
-            if picking.state == 'assigned':
-                do_put_in_pack = True
-            else:
-                do_put_in_pack = False
-        if do_put_in_pack:
-            return self.action_put_in_pack()
-        for picking in self.picking_ids:
-            if picking.state != 'done':
-                raise UserError(
-                    _("Not every picking is in done status"))
-        for package in self:
-            if not package.ddt_number:
-                package.ddt_number = (
-                    package.ddt_type_id.sequence_id.next_by_id())
-        self.write({'state': 'done', 'date_done': fields.Datetime.now()})
+        for ddt in self:
+            for field in ('carriage_condition_id',
+                          'goods_description_id',
+                          'transportation_reason_id',
+                          'transportation_method_id'):
+                if not ddt[field]:
+                    raise UserError(
+                        _('Required value for %s' % field))
+            do_put_in_pack = False
+            for picking in ddt.picking_ids:
+                if picking.state == 'assigned':
+                    do_put_in_pack = True
+                else:
+                    do_put_in_pack = False
+            if do_put_in_pack:
+                return ddt.action_put_in_pack()
+            for picking in ddt.picking_ids:
+                if picking.state != 'done':
+                    raise UserError(
+                        _("Not every picking is in done status"))
+            for package in ddt:
+                if not package.ddt_number:
+                    package.ddt_number = (
+                        package.ddt_type_id.sequence_id.next_by_id())
+            ddt.write({'state': 'done', 'date_done': fields.Datetime.now()})
         return True
 
     @api.multi
@@ -686,11 +701,11 @@ class StockPickingPackagePreparation(models.Model):
                 if ddt.partner_shipping_id:
                     group_method = (
                         ddt.partner_shipping_id.commercial_partner_id.
-                            ddt_invoicing_group)
+                        ddt_invoicing_group)
                 else:
                     group_method = (
                         ddt.partner_id.commercial_partner_id.
-                            ddt_invoicing_group)
+                        ddt_invoicing_group)
                 group_partner_invoice_id = ddt.partner_id.id
                 group_currency_id = ddt.partner_id.currency_id.id
             if group_method == 'billing_partner':
@@ -731,6 +746,7 @@ class StockPickingPackagePreparation(models.Model):
                     invoice = inv_model.create(inv_data)
                     references[invoice] = ddt
                     invoices[group_key] = invoice
+                    ddt.invoice_ids = [(4, invoice.id)]
                     # ddt.invoice_id = invoice.id
                 elif group_key in invoices:
                     vals = {}
@@ -764,7 +780,7 @@ class StockPickingPackagePreparation(models.Model):
                         line.invoice_line_create(invoices[group_key].id,
                                                  line.qty_to_invoice)
             # Allow additional operations from ddt
-            ## ddt.other_operations_on_ddt(invoice)
+            # ddt.other_operations_on_ddt(invoice)
 
         if not invoices:
             raise UserError(_('There is no invoicable line.'))
@@ -838,10 +854,12 @@ class StockPickingPackagePreparation(models.Model):
         for ddt in self:
             if ddt.invoice_id:
                 raise UserError(
-                    _("Document {d} has invoice linked".format(
-                        d=ddt.ddt_number)))
-        # TODO: decrement ddt number if last DdT
-        # Unlink just if cancelled
+                    _("Document %s has invoice linked" % ddt.ddt_number))
+            if ddt.state != 'cancel':
+                raise UserError(
+                    _('You can not delete document %s! '
+                      'Try to cancel it before.' % ddt.ddt_number))
+            # Decrement ddt number if last DdT
             if ddt.ddt_number:
                 ddt.ddt_type_id.sequence_id.unnext_by_id(ddt.ddt_number)
         return super(StockPickingPackagePreparation, self).unlink()
@@ -886,7 +904,11 @@ class StockPickingPackagePreparationLine(models.Model):
         default=0.0)
     ddt_id = fields.Many2one(
         'stock.picking.package.preparation',
-        string='Ddt number')
+        string='Deprecated')
+    ddt_number = fields.Char(
+        related='package_preparation_id.ddt_number',
+        string='Ddt number',
+        store=True, readonly=True)
     currency_id = fields.Many2one(
         related='move_id.procurement_id.sale_line_id.order_id.currency_id',
         string='Currency',
@@ -901,7 +923,11 @@ class StockPickingPackagePreparationLine(models.Model):
     weight = fields.Float(
         string="Line Weight")
     invoice_line_id = fields.Many2one(
-        'account.invoice.line', string='Invoice',
+        'account.invoice.line', string='Invoice line',
+        readonly=True, copy=False)
+    invoice_number = fields.Char(
+        related='invoice_line_id.invoice_id.number',
+        string='Invoice',
         readonly=True, copy=False)
     partner_id = fields.Many2one(
         'res.partner', string='Partner',
@@ -976,7 +1002,7 @@ class StockPickingPackagePreparationLine(models.Model):
         Add values used for invoice creation
         """
         lines = super(StockPickingPackagePreparationLine,
-            self)._prepare_lines_from_pickings(picking_ids)
+                      self)._prepare_lines_from_pickings(picking_ids)
         for line in lines:
             sale_line = False
             if line['move_id']:
@@ -1112,7 +1138,6 @@ class StockPickingPackagePreparationLine(models.Model):
         self.ensure_one()
         # return self.product_uom_qty > 0
         return not self.invoice_line_id
-
 
     @api.multi
     def action_line_invoice_create(self):

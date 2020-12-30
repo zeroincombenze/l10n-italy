@@ -19,7 +19,7 @@
                 <footer>
                     <button name="create_invoices" string="Create" type="object"
                             class="oe_highlight"/>
-                    or
+                            or
                     <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
@@ -28,7 +28,7 @@
 
     <record id="action_ddt_invoicing" model="ir.actions.act_window">
         <field name="name">DDT Invoicing</field>
-        <field name="type">ir.actions.act_window</field>
+
         <field name="res_model">ddt.invoicing</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
@@ -41,3 +41,4 @@
               sequence="20"/>
 
 </odoo>
+

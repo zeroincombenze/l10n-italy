@@ -7,6 +7,7 @@ from . import partner
 from . import account
 from . import product
 from . import stock
+from . import stock_picking
 from . import sale_order
 from . import stock_location
 from . import delivery_carrier

@@ -5,7 +5,8 @@
     'category': 'Generic Modules/Accounting',
     'summary': """Account Invoice Entry Dates""",
     'author': "SHS-AV s.r.l.",
-    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/software-gestionale/',
+    'website':
+        'http://www.zeroincombenze.it/servizi-le-imprese/software-gestionale/',
     'license': 'LGPL-3',
     'depends': ['account'],
     'data': [
