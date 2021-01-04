@@ -1,6 +1,6 @@
 
 =====================
-|icon| DDT 10.0.1.8.8
+|icon| DDT 10.0.1.8.9
 =====================
 
 
@@ -219,6 +219,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.9 (2021-01-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice TD24 / Tipo documento fiscale TD24
+
 10.0.1.8.8 (2020-12-27)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -401,7 +406,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-12-29
+Last Update / Ultimo aggiornamento: 2021-01-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

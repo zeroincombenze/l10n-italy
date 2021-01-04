@@ -624,7 +624,7 @@ class StockPickingPackagePreparation(models.Model):
                 'type': 'out_invoice',
                 'partner_shipping_id':
                     self.partner_id.address_get(['delivery'])['delivery'],
-                'company_id': self.company_id.id
+                'company_id': self.company_id.id,
             }
         journal_id = self._context.get('invoice_journal_id', False)
         if not journal_id:
@@ -672,6 +672,8 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
+            'invoice_type_id': self.env.ref(
+                'l10n_it_ade.fatturapa_TD24').id,
         })
         return invoice_vals
 
