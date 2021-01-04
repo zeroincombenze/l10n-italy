@@ -894,7 +894,7 @@ class WizardExportFatturapa(models.TransientModel):
                 if natura in ('N2', 'N3', 'N6'):
                     raise UserError(
                         _("Invalid nature code %s for %s VAT code!") % (
-                        natura, line.invoice_line_tax_ids[0].description))
+                            natura, line.invoice_line_tax_ids[0].description))
                 self.line_desc = DettaglioLinea.Natura = natura
             if line.admin_ref:
                 DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
