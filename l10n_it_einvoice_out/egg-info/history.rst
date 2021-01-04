@@ -1,3 +1,8 @@
+10.0.1.0.18 (2021-01-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
+
 10.0.1.0.17 (2020-09-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

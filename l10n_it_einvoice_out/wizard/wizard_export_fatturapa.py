@@ -888,11 +888,14 @@ class WizardExportFatturapa(models.TransientModel):
                         raise UserError(
                             _("No 'nature' field for tax %s.") %
                             line.invoice_line_tax_ids[0].name)
-                    DettaglioLinea.Natura = line.invoice_line_tax_ids[
-                        0
-                    ].nature_id.code
+                    natura = line.invoice_line_tax_ids[0].nature_id.code
                 else:
-                    self.line_desc = DettaglioLinea.Natura = 'N2'
+                    Natura = 'N2.2'
+                if natura in ('N2', 'N3', 'N6'):
+                    raise UserError(
+                        _("Invalid nature code %s for %s VAT code!") % (
+                        natura, line.invoice_line_tax_ids[0].description))
+                self.line_desc = DettaglioLinea.Natura = natura
             if line.admin_ref:
                 DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
             if line.product_id:
