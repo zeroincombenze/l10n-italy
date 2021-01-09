@@ -13,6 +13,7 @@
 
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
                 <field name="conai_category_id"/>
+                <field name="conai_amount" readonly="1"/>
             </xpath>
 
         </field>
@@ -27,7 +28,7 @@
             <field name="invoice_line_tax_ids" position="after">
                 <field name="weight"/>
                 <field name="conai_category_id"/>
-                <field name="conai_amount"/>
+                <field name="conai_amount" readonly="1"/>
             </field>
 
         </field>

@@ -7,7 +7,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import fields, models
+from odoo import fields, models, api
 import odoo.addons.decimal_precision as dp
 
 
@@ -48,3 +48,27 @@ class ItalyConaiProductCategory(models.Model):
     account_id = fields.Many2one(
         'account.account', string='Account')
 
+    @api.model
+    def evaluate_weight_conv(self):
+        weight_conv = 1
+        uom = self.env.ref('product.product_uom_ton')
+        if self.conai_uom_id == self.env.ref('product.product_uom_ton'):
+            weight_conv = 1000
+            uom = self.env.ref('product.product_uom_kgm')
+        return weight_conv, uom
+
+    @api.model
+    def get_price(self):
+        weight_conv, uom = self.evaluate_weight_conv()
+        price = (self.conai_price_unit or 0.0) / weight_conv
+        return price
+
+    @api.model
+    def get_qty(self, weight, percent=None):
+        p_rate = (100.0 - (percent or 0.0)) / 100.0
+        return weight * p_rate
+
+    @api.model
+    def evaluate_conai_amount(self, weight, percent=None):
+        return self.get_qty(
+            weight, percent=percent) * self.get_price() if weight else 0.0

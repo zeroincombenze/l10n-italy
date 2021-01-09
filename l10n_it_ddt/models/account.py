@@ -58,7 +58,13 @@ class AccountInvoiceLine(models.Model):
     ddt_sequence = fields.Integer(
         string='Ddt sequence', related='ddt_line_id.sequence',
         store=True, copy=False)
-    weight = fields.Float(string="Weight")
+    weight = fields.Float(string="Line Weight")
+
+    @api.multi
+    @api.onchange('product_id', 'quantity')
+    def _compute_weight(self):
+        if self.product_id:
+            self.weight = self.product_id.weight * self.quantity
 
     @api.multi
     def unlink(self):

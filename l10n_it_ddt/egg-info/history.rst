@@ -1,3 +1,8 @@
+10.0.1.8.10 (2021-01-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Evaluate sale order line weight / Calcolo peso riga in ordine
+
 10.0.1.8.9 (2021-01-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

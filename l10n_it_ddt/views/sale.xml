@@ -60,6 +60,9 @@
                         string="View DdT">
                 </button>
             </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='tax_id']" position="after">
+                <field name="weight"/>
+            </xpath>
         </field>
     </record>
 

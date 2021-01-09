@@ -1,7 +1,7 @@
 
-=====================
-|icon| DDT 10.0.1.8.9
-=====================
+======================
+|icon| DDT 10.0.1.8.10
+======================
 
 
 **Delivery Document to Transfer**
@@ -219,6 +219,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.10 (2021-01-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Evaluate sale order line weight / Calcolo peso riga in ordine
+
 10.0.1.8.9 (2021-01-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -406,7 +411,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-01-04
+Last Update / Ultimo aggiornamento: 2021-01-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

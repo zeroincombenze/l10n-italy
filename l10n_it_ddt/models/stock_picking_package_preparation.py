@@ -922,8 +922,7 @@ class StockPickingPackagePreparationLine(models.Model):
                                 string='Taxes', readonly=True, store=True)
     price_total = fields.Monetary(compute='_compute_amount',
                                   string='Total', readonly=True, store=True)
-    weight = fields.Float(
-        string="Line Weight")
+    weight = fields.Float(string="Line Weight")
     invoice_line_id = fields.Many2one(
         'account.invoice.line', string='Invoice line',
         readonly=True, copy=False)

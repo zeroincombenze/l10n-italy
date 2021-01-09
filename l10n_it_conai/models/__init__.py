@@ -7,10 +7,12 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
+from . import account_config
 from . import account_invoice
 from . import italy_conai_product_category
 from . import italy_conai_partner_category
 from . import partner
 from . import product
+from . import sale_order
 from . import stock_picking_package_preparation
 

@@ -5,7 +5,7 @@
 {
     'name': 'DDT',
     'summary': 'Delivery Document to Transfer',
-    'version': '10.0.1.8.9',
+    'version': '10.0.1.8.10',
     'category': 'Localization/Italy',
     'author': 'Odoo Community Association (OCA) and other subjects',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',

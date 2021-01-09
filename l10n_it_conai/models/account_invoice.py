@@ -31,88 +31,75 @@ class AccountInvoice(models.Model):
             if invoice.type in ('in_invoice', 'in_refund'):
                 continue
             conai_struct = {}
-            if invoice.conai_exemption_id:
-                p_rate = invoice.conai_exemption_id.conai_percent
+            if (invoice.conai_exemption_id and
+                    invoice.conai_exemption_id.conai_percent):
+                percent = invoice.conai_exemption_id.conai_percent
                 p_name = invoice.conai_exemption_id.name
                 ii = p_name.lower().find('vs')
                 if ii >= 0:
                     p_name = p_name[ii:]
-                p_name = 'Esenzione %s%% %s' % (p_rate, p_name)
+                p_name = 'Esenzione %s%% %s' % (percent, p_name)
             else:
-                p_rate = 0.0
+                percent = 0.0
                 p_name = ''
-            p_rate = (100 - p_rate) / 100.0
-            weight_conv = 1000
             supplemental_line_ids = []
             for line in invoice.invoice_line_ids:
                 if line.name.startswith('Contributo ambientale'):
                     supplemental_line_ids.append(line.id)
                     continue
-                conai_category_id = False
-                if line.conai_category_id:
-                    conai_category_id = line.conai_category_id
-                if conai_category_id and conai_category_id not in conai_struct:
-                    conai_struct[conai_category_id] = {}
-                    conai_struct[conai_category_id]['qty'] = 0.0
-                    conai_struct[conai_category_id]['weight'] = 0.0
-                    if conai_category_id.conai_uom_id == invoice.env.ref(
-                            'product.product_uom_ton'):
-                        conai_struct[conai_category_id]['price'] = (
-                            conai_category_id.conai_price_unit or
-                            0.0) / weight_conv
-                        conai_struct[conai_category_id]['um'] = 'Kg'
-                    else:
-                        conai_struct[conai_category_id]['price'] = (
-                                conai_category_id.conai_price_unit or 0.0)
-                        conai_struct[conai_category_id]['um'] = \
-                            conai_category_id.conai_uom_id.name
-                    conai_struct[conai_category_id]['amount'] = 0.0
-                    conai_struct[conai_category_id][
-                        'account_id'] = conai_category_id.account_id.id
-                    if not conai_struct[conai_category_id]['account_id']:
-                        conai_struct[conai_category_id][
-                            'account_id'] = line.account_id.id
-                    conai_struct[conai_category_id][
-                        'tax'] = line.invoice_line_tax_ids
-                if conai_category_id:
-                    if not line.weight and line.product_id:
-                        line.weight = (
-                                (line.product_id.weight or
-                                 line.product_id.product_tmpl_id.weight) *
-                                line.quantity)
-                    conai_struct[conai_category_id][
-                        'name'] = conai_category_id.name
-                    conai_amount = (line.weight * line.quantity *
-                                    conai_struct[conai_category_id]['price'])
-                    conai_struct[conai_category_id][
-                        'amount'] = conai_amount
-                    # if conai_amount != line.conai_amount:
-                    line.write({'conai_amount': conai_amount,
-                                'weight': line.weight})
-                    conai_struct[conai_category_id]['weight'] += (
-                            line.weight * line.quantity)
-                    conai_struct[conai_category_id]['qty'] += (
-                            line.weight * line.quantity * p_rate)
+                if not line.conai_category_id:
+                    continue
+                conai_category = line.conai_category_id
+                weight_conv, uom = conai_category.evaluate_weight_conv()
+                if conai_category not in conai_struct:
+                    conai = {}
+                    conai['name'] = conai_category.name
+                    conai['weight'] = 0.0
+                    conai['um'] = uom
+                    conai['price'] = conai_category.get_price()
+                    conai['amount'] = 0.0
+                    conai['account_id'] = conai_category.account_id.id
+                    if not conai['account_id']:
+                        conai[ 'account_id'] = line.account_id.id
+                    conai['tax'] = line.invoice_line_tax_ids
+                    conai_struct[conai_category] = conai
+                if not line.weight and line.product_id:
+                    line.weight = (
+                            (line.product_id.weight or
+                             line.product_id.product_tmpl_id.weight) *
+                            line.quantity)
+                conai_amount = conai_category.evaluate_conai_amount(
+                    line.weight)
+                conai_struct[conai_category]['amount'] = conai_amount
+                line.write({'conai_amount': conai_amount,
+                            'weight': line.weight})
+                conai_struct[conai_category]['weight'] += line.weight
             invoice.amount_conai = 0.0
-            for nr, line in enumerate(conai_struct):
+            for nr, conai_category in enumerate(conai_struct):
                 if p_name:
                     conai_name = 'Contributo ambientale %s (%s %s)\n%s' % (
-                        conai_struct[line]['name'],
-                        conai_struct[line]['weight'],
-                        conai_struct[line]['um'],
+                        conai_struct[conai_category]['name'],
+                        conai_struct[conai_category]['weight'],
+                        conai_struct[conai_category]['um'].name,
                         p_name)
                 else:
-                    conai_name = 'Contributo ambientale %s (%s)' % (
-                        conai_struct[line]['name'],
-                        conai_struct[line]['um'])
+                    conai_name = 'Contributo ambientale %s (%s %s)' % (
+                        conai_struct[conai_category]['name'],
+                        conai_struct[conai_category]['weight'],
+                        conai_struct[conai_category]['um'].name)
                 line_vals = {
                     'name': conai_name,
                     'invoice_id': invoice.id,
-                    'quantity': conai_struct[line]['qty'],
-                    'price_unit': conai_struct[line]['price'],
-                    'account_id': conai_struct[line]['account_id'],
-                    'invoice_line_tax_ids': [(
-                        6, 0, [x.id for x in conai_struct[line]['tax']])],
+                    'uom_id': conai_struct[conai_category]['um'].id,
+                    'quantity': conai_category.get_qty(
+                        conai_struct[conai_category]['weight'],
+                        percent=percent),
+                    'price_unit': conai_struct[conai_category]['price'],
+                    'account_id': conai_struct[conai_category]['account_id'],
+                    'invoice_line_tax_ids': [
+                        (6, 0,
+                         [x.id for x in conai_struct[conai_category]['tax']])],
+                    'sequence': 99999,
                 }
                 if nr < len(supplemental_line_ids):
                     inv_line_model.browse(
@@ -149,6 +136,33 @@ class AccountInvoiceLine(models.Model):
     conai_exemption_id = fields.Many2one(
         string='CONAI Exemption',
         related='invoice_id.conai_exemption_id', store=True, readonly=True)
+
+    @api.multi
+    @api.onchange('product_id')
+    def _set_conai_category(self):
+        if self.product_id:
+            if self.product_id.conai_category_id:
+                self.conai_category_id = self.product_id.conai_category_id.id
+            elif self.product_id.product_tmpl_id.conai_category_id:
+                self.conai_category_id = \
+                    self.product_id.product_tmpl_id.conai_category_id.id
+            self.evaluate_conai_amount()
+
+    @api.multi
+    @api.onchange('quantity')
+    def _set_conai_amount(self):
+        self.evaluate_conai_amount()
+
+    @api.model
+    def evaluate_conai_amount(self):
+        if not self.weight and self.product_id and self.quantity:
+            self.weight = (
+                    (self.product_id.weight or
+                     self.product_id.product_tmpl_id.weight) *
+                    self.quantity)
+        if self.weight and self.conai_category_id:
+            self.conai_amount = self.conai_category_id.evaluate_conai_amount(
+                self.weight)
 
     @api.model
     def create(self, vals):

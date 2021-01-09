@@ -271,3 +271,17 @@ class SaleOrder(models.Model):
     def create(self, vals):
         vals = self.get_delivery_values(vals)
         return super(SaleOrder, self).create(vals)
+
+
+class SaleOrderLine(models.Model):
+
+    _inherit = 'sale.order.line'
+
+    weight = fields.Float(string="Line Weight")
+
+    @api.multi
+    @api.onchange('product_id', 'product_uom_qty')
+    def _compute_weight(self):
+        if self.product_id:
+            self.weight = self.product_id.weight * self.product_uom_qty
+        # return super(SaleOrderLine, self)._compute_weight()
