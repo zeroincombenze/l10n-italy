@@ -193,6 +193,7 @@ class TestDdt(TransactionCase):
         self.src_location = self.env.ref('stock.stock_location_stock')
         self.dest_location = self.env.ref('stock.stock_location_customers')
         self.partner = self.env.ref('base.res_partner_2')
+        self.partner.ddt_show_price = True
         self.partner2 = self.env.ref('base.res_partner_3')
         self.product1 = self.env.ref('product.product_product_25')
         self.product2 = self.env.ref('product.product_product_27')
@@ -217,7 +218,11 @@ class TestDdt(TransactionCase):
         self.picking2.move_lines[0].partner_id = self.partner.id
         res = wizard.create_ddt()
         ddt = self.ddt_model.browse(res['res_id'])
-
+        self.assertTrue(ddt.ddt_show_price)
+        ddt.write({
+            'carrier_tracking_ref': 'TRACK-1000',
+            'dimension': '50x50x10',
+        })
         self.assertEqual(len(ddt.picking_ids), 2)
         self.assertEqual(len(ddt.line_ids), 2)
         self.assertTrue(self.picking1 | self.picking2 == ddt.picking_ids)
@@ -284,6 +289,8 @@ class TestDdt(TransactionCase):
             self.product1.id in
             [p.id for p in invoice.invoice_line_ids.mapped('product_id')]
         )
+        self.assertEqual(invoice.dimension, '50x50x10')
+        self.assertEqual(invoice.carrier_tracking_ref, 'TRACK-1000')
 
     def test_action_put_in_pack(self):
         self.picking.action_confirm()
@@ -456,8 +463,12 @@ class TestDdt(TransactionCase):
         self._create_sale_order_line(order5, self.product1)
         order5.create_ddt = True
         order5.action_confirm()
+        self.assertTrue(order4.ddt_show_price)
+        self.assertTrue(order5.ddt_show_price)
         ddt4 = order4.ddt_ids[0]
         ddt5 = order5.ddt_ids[0]
+        self.assertTrue(ddt4.ddt_show_price)
+        self.assertTrue(ddt5.ddt_show_price)
         ddt4.transportation_reason_id = (
             self.transportation_reason_VEN.id)
         ddt5.transportation_reason_id = (
@@ -471,6 +482,7 @@ class TestDdt(TransactionCase):
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(invoice.name, invoice.origin)
         self.assertEqual(len(order4.order_line.invoice_lines), 1)
         self.assertEqual(len(order5.order_line.invoice_lines), 1)
         self.assertEqual(order4.order_line.qty_invoiced, 1.0)

@@ -9,6 +9,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
 import odoo.addons.decimal_precision as dp
+
+from odoo.fields import first
 from odoo.tools import float_is_zero
 from odoo.tools.misc import formatLang, format_date
 
@@ -111,6 +113,8 @@ class StockPickingPackagePreparation(models.Model):
         string='Method of Transportation')
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
+    carrier_tracking_ref = fields.Char(string='Tracking Reference', copy=False)
+    dimension = fields.Char()
     # TODO align terms: parcels > packages
     parcels = fields.Integer('Packages')
     display_name = fields.Char(
@@ -126,7 +130,7 @@ class StockPickingPackagePreparation(models.Model):
         string='To be Invoiced',
         help="This depends on 'To be Invoiced' field of the Reason for "
              "Transportation of this TD")
-    show_price = fields.Boolean(string='Show prices on report')
+    ddt_show_price = fields.Boolean(string='Show prices on report')
     show_deadline_date = fields.Selection([
         ('life_date', 'End of Life Date'),
         ('use_date', 'Best before Date'),
@@ -180,7 +184,6 @@ class StockPickingPackagePreparation(models.Model):
                 self.partner_id.transportation_method_id.id
                 if self.partner_id.transportation_method_id
                 else self.ddt_type_id.default_transportation_method_id)
-            self.show_price = self.partner_id.ddt_show_price
 
     @api.model
     def check_linked_picking(self, picking):
@@ -277,12 +280,14 @@ class StockPickingPackagePreparation(models.Model):
         It returns the first sale order of the ddt.
         """
         self.ensure_one()
-        sale_order = self.env['sale.order'].browse()
-        for sm in self.picking_ids.mapped('move_lines'):
-            if sm.sale_line_id:
-                sale_order = sm.sale_line_id.order_id
-                break
-        return sale_order
+        return first(self._get_sale_orders_ref())
+
+    @api.multi
+    def _get_sale_orders_ref(self):
+        """
+        Get all the sale orders involved in the TDs.
+        """
+        return self.mapped('picking_ids.move_lines.sale_line_id.order_id')
 
     @api.multi
     def _prepare_invoice_description(self):
@@ -368,6 +373,8 @@ class StockPickingPackagePreparation(models.Model):
             'transportation_reason_id': self.transportation_reason_id.id,
             'transportation_method_id': self.transportation_method_id.id,
             'carrier_id': self.carrier_id.id,
+            'carrier_tracking_ref': self.carrier_tracking_ref,
+            'dimension': self.dimension,
             'parcels': self.parcels,
             'weight': self.weight,
             'gross_weight': self.gross_weight,
@@ -406,50 +413,32 @@ class StockPickingPackagePreparation(models.Model):
         Create the invoice associated to the TD.
         :returns: list of created invoices
         """
-        grouped_invoices = self.create_td_grouped_invoices()
-
+        grouped_invoices, references = self.create_td_grouped_invoices()
         if not grouped_invoices:
             raise UserError(_('There is no invoiceable line.'))
 
-        for invoice in grouped_invoices.values():
-            if not invoice.invoice_line_ids:
-                raise UserError(_('There is no invoiceable line.'))
-
+        for invoice in list(grouped_invoices.values()):
             if not invoice.name:
                 invoice.update({
-                    'name': invoice.origin
+                    'name': invoice.origin,
                 })
-            # If invoice is negative, do a refund invoice instead
-            if invoice.amount_untaxed < 0:
-                invoice.type = 'out_refund'
-                for line in invoice.invoice_line_ids:
-                    line.quantity = -line.quantity
-            # Use additional field helper function (for account extensions)
-            for line in invoice.invoice_line_ids:
-                line._set_additional_fields(invoice)
-            # Necessary to force computation of taxes. In account_invoice,
-            # they are triggered
-            # by onchanges, which are not triggered when doing a create.
-            invoice.compute_taxes()
 
-            related_tds = self.filtered(lambda td: td.invoice_id == invoice)
-            invoice.message_post_with_view(
-                'mail.message_origin_link',
-                values={
-                    'self': invoice,
-                    'origin': related_tds,
-                },
-                subtype_id=self.env.ref('mail.mt_note').id)
+        sale_orders = self._get_sale_orders_ref()
+        sale_orders._finalize_invoices(grouped_invoices, references)
         return [inv.id for inv in list(grouped_invoices.values())]
 
     @api.multi
     def create_td_grouped_invoices(self):
         """
         Create the invoices, grouped by `group_key` (see `get_td_group_key`).
-        :return: dictionary group_key -> invoice record-set
+        :return: (
+            dictionary group_key -> invoice record-set,
+            dictionary invoice -> TD record-set,
+            )
         """
         inv_obj = self.env['account.invoice']
         grouped_invoices = {}
+        references = {}
         for td in self:
             if not td.to_be_invoiced or td.invoice_id:
                 continue
@@ -461,6 +450,11 @@ class StockPickingPackagePreparation(models.Model):
 
             invoice = grouped_invoices.get(group_key)
             td.invoice_id = invoice.id
+
+            if invoice not in references:
+                references[invoice] = td
+            else:
+                references[invoice] |= td
 
             origin = invoice.origin
             if origin and td.ddt_number not in origin.split(', '):
@@ -474,7 +468,7 @@ class StockPickingPackagePreparation(models.Model):
 
             # Allow additional operations from td
             td.other_operations_on_ddt(invoice)
-        return grouped_invoices
+        return grouped_invoices, references
 
     @api.multi
     def get_td_group_key(self):

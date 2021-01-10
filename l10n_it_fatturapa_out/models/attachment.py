@@ -1,6 +1,5 @@
 # Copyright 2014 Davide Corio
 # Copyright 2016-2018 Lorenzo Battistini - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
@@ -113,6 +112,14 @@ class FatturaPAAttachment(models.Model):
                            ) % self.env.user.login
                 )
         return res
+
+    @api.multi
+    def unlink(self):
+        for attachment_out in self:
+            for invoice in attachment_out.out_invoice_ids:
+                invoice.fatturapa_doc_attachments.filtered(
+                    'is_pdf_invoice_print').unlink()
+        return super(FatturaPAAttachment, self).unlink()
 
 
 class FatturaAttachments(models.Model):
