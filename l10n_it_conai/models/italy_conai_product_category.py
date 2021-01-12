@@ -50,10 +50,10 @@ class ItalyConaiProductCategory(models.Model):
 
     @api.model
     def evaluate_weight_conv(self):
-        weight_conv = 1
+        weight_conv = 1.0
         uom = self.env.ref('product.product_uom_ton')
         if self.conai_uom_id == self.env.ref('product.product_uom_ton'):
-            weight_conv = 1000
+            weight_conv = 1000.0
             uom = self.env.ref('product.product_uom_kgm')
         return weight_conv, uom
 

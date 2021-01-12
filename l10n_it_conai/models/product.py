@@ -16,6 +16,20 @@ class ProductTemplate(models.Model):
 
     conai_category_id = fields.Many2one(
         'italy.conai.product.category', string='CONAI Category')
+    conai_category2_id = fields.Many2one(
+        'italy.conai.product.category', string='CONAI 2nd Category')
+    weight2 = fields.Float(string="CONAI 2nd Category Weight")
+
+    @api.multi
+    @api.onchange('weight2')
+    def _check_4_weight2(self):
+        if self.weight2 and self.weight and self.weight2 >= self.weight:
+            self.weight2 = 0.0
+            return {'warning': {
+                'title': 'Wrong weight!',
+                'message':
+                    'The 2nd weight must be lesser than %s!' % self.weight,
+            }}
 
 
 class ProductProduct(models.Model):
@@ -23,3 +37,16 @@ class ProductProduct(models.Model):
 
     conai_category_id = fields.Many2one(
         'italy.conai.product.category', string='CONAI Category')
+    conai_category2_id = fields.Many2one(
+        'italy.conai.product.category', string='CONAI 2nd Category')
+    weight2 = fields.Float(string="CONAI 2nd Category Weight")
+
+    @api.multi
+    @api.onchange('weight2')
+    def _check_4_weight2(self):
+        if self.weight2 and self.weight and self.weight2 >= self.weight:
+            self.weight2 = 0.0
+            return {
+                 'title': 'Wrong weight!',
+                 'message': 'The 2nd weight must be lesser than weight!',
+            }

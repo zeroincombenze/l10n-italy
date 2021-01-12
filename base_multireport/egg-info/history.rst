@@ -1,3 +1,9 @@
+10.0.0.2.20 (2021-01-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No purchase order code / Errore in stampa ordine di acquisto con codice
+
+
 10.0.0.2.19 (2020-12-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

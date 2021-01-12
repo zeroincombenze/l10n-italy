@@ -11,21 +11,21 @@ from odoo import fields, models, api
 import odoo.addons.decimal_precision as dp
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     conai_exemption_id = fields.Many2one(
         'italy.conai.partner.category', string='CONAI Exemption')
     amount_goods_service = fields.Monetary(
         string='Goods & Service Amount',
-        currency_field='company_currency_id',
+        currency_field='company_id',
         store=True, readonly=True)
     amount_conai = fields.Monetary(string='CONAI Amount',
-                                   currency_field='company_currency_id',
+                                   currency_field='company_id',
                                    store=True, readonly=True)
 
     @api.multi
-    def action_move_create(self):
+    def action_confirm(self):
 
         def _calc_conai_value(conai_category, weight):
             conai_amount = conai_category.evaluate_conai_amount(weight)
@@ -45,15 +45,12 @@ class AccountInvoice(models.Model):
                 conai['um'] = uom
                 conai['price'] = conai_category.get_price()
                 conai['amount'] = 0.0
-                conai['account_id'] = conai_category.account_id.id
-                if not conai['account_id']:
-                    conai[ 'account_id'] = line.account_id.id
-                conai['tax'] = line.invoice_line_tax_ids
+                conai['tax'] = line.tax_id
                 conai_struct[conai_category] = conai
             if line.product_id:
                 weight2 = ((line.product_id.weight2 or
                             line.product_id.product_tmpl_id.weight2) *
-                           line.quantity)
+                           line.product_uom_qty)
                 category2 = (line.product_id.conai_category2_id or
                              line.product_id.product_tmpl_id.conai_category2_id)
             if weight2 and category2:
@@ -66,15 +63,14 @@ class AccountInvoice(models.Model):
                 line.write({'conai_amount': conai_amount,
                             'weight': line.weight})
 
-        inv_line_model = self.env['account.invoice.line']
-        for invoice in self:
-            if invoice.type in ('in_invoice', 'in_refund'):
-                continue
+        order_line_model = self.env['sale.order.line']
+        for order in self:
+            conai_product = order.company_id.conai_product_id
             conai_struct = {}
-            if (invoice.conai_exemption_id and
-                    invoice.conai_exemption_id.conai_percent):
-                percent = invoice.conai_exemption_id.conai_percent
-                p_name = invoice.conai_exemption_id.name
+            if (order.conai_exemption_id and
+                    order.conai_exemption_id.conai_percent):
+                percent = order.conai_exemption_id.conai_percent
+                p_name = order.conai_exemption_id.name
                 ii = p_name.lower().find('vs')
                 if ii >= 0:
                     p_name = p_name[ii:]
@@ -83,7 +79,7 @@ class AccountInvoice(models.Model):
                 percent = 0.0
                 p_name = ''
             supplemental_line_ids = []
-            for line in invoice.invoice_line_ids:
+            for line in order.order_line:
                 if line.name.startswith('Contributo ambientale'):
                     supplemental_line_ids.append(line.id)
                     continue
@@ -93,67 +89,62 @@ class AccountInvoice(models.Model):
                     line.weight = (
                             (line.product_id.weight or
                              line.product_id.product_tmpl_id.weight) *
-                            line.quantity)
+                            line.product_uom_qty)
                 _process_category(line.conai_category_id)
                 if line.product_id:
                     _process_category(
                         line.product_id.conai_category2_id or
                         line.product_id.product_tmpl_id.conai_category2_id)
 
-            invoice.amount_conai = 0.0
-            for nr, conai_category in enumerate(conai_struct):
-                if p_name:
-                    conai_name = 'Contributo ambientale %s (%s %s)\n%s' % (
-                        conai_struct[conai_category]['name'],
-                        conai_struct[conai_category]['weight'],
-                        conai_struct[conai_category]['um'].name,
-                        p_name)
-                else:
-                    conai_name = 'Contributo ambientale %s (%s %s)' % (
-                        conai_struct[conai_category]['name'],
-                        conai_struct[conai_category]['weight'],
-                        conai_struct[conai_category]['um'].name)
-                line_vals = {
-                    'name': conai_name,
-                    'invoice_id': invoice.id,
-                    'uom_id': conai_struct[conai_category]['um'].id,
-                    'quantity': conai_category.get_qty(
-                        conai_struct[conai_category]['weight'],
-                        percent=percent),
-                    'price_unit': conai_struct[conai_category]['price'],
-                    'account_id': conai_struct[conai_category]['account_id'],
-                    'invoice_line_tax_ids': [
-                        (6, 0,
-                         [x.id for x in conai_struct[conai_category]['tax']])],
-                    'sequence': 99999,
-                }
-                if nr < len(supplemental_line_ids):
-                    inv_line_model.browse(
-                        supplemental_line_ids[nr]).write(line_vals)
-                    inv_line = inv_line_model.browse(
-                        supplemental_line_ids[nr])
-                else:
-                    inv_line = inv_line_model.create(line_vals)
-                invoice.amount_conai += inv_line.price_subtotal
-            nr = len(conai_struct)
-            while nr < len(supplemental_line_ids):
-                inv_line_model.browse(
-                    supplemental_line_ids[nr]).unlink()
-                nr += 1
-            invoice.amount_goods_service = (
-                    invoice.amount_untaxed - invoice.amount_conai)
-            if len(conai_struct):
-                invoice.compute_taxes()
-        return super(AccountInvoice, self).action_move_create()
+            if conai_product:
+                for nr, conai_category in enumerate(conai_struct):
+                    if p_name:
+                        conai_name = 'Contributo ambientale %s (%s %s)\n%s' % (
+                            conai_struct[conai_category]['name'],
+                            conai_struct[conai_category]['weight'],
+                            conai_struct[conai_category]['um'].name,
+                            p_name)
+                    else:
+                        conai_name = 'Contributo ambientale %s (%s %s)' % (
+                            conai_struct[conai_category]['name'],
+                            conai_struct[conai_category]['weight'],
+                            conai_struct[conai_category]['um'].name)
+                    line_vals = {
+                        'product_id': conai_product.id,
+                        'name': conai_name,
+                        'order_id': order.id,
+                        'product_uom': conai_struct[conai_category]['um'].id,
+                        'product_uom_qty': conai_category.get_qty(
+                            conai_struct[conai_category]['weight'],
+                            percent=percent),
+                        'price_unit': conai_struct[conai_category]['price'],
+                        'tax_id': [
+                            (6, 0,
+                             [x.id for x in
+                              conai_struct[conai_category]['tax']])],
+                        'sequence': 99999,
+                    }
+                    if nr < len(supplemental_line_ids):
+                        order_line_model.browse(
+                            supplemental_line_ids[nr]).write(line_vals)
+                    else:
+                        inv_line = order_line_model.create(line_vals)
+                nr = len(conai_struct)
+                while nr < len(supplemental_line_ids):
+                    order_line_model.browse(
+                        supplemental_line_ids[nr]).unlink()
+                    nr += 1
+                if len(conai_struct):
+                    order._amount_all()
+        return super(SaleOrder, self).action_confirm()
 
 
-class AccountInvoiceLine(models.Model):
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
-    _inherit = 'account.invoice.line'
-
-    date_invoice = fields.Date(
+    date_order = fields.Datetime(
         string='Date',
-        related='invoice_id.date_invoice', store=True, readonly=True)
+        related='order_id.date_order', store=True, readonly=True)
     conai_category_id = fields.Many2one(
         'italy.conai.product.category', string='CONAI Category')
     conai_amount = fields.Float(
@@ -161,10 +152,7 @@ class AccountInvoiceLine(models.Model):
         digits=dp.get_precision('Product Price'))
     conai_exemption_id = fields.Many2one(
         string='CONAI Exemption',
-        related='invoice_id.conai_exemption_id', store=True, readonly=True)
-    conai_category2_id = fields.Many2one(
-        'italy.conai.product.category', string='CONAI 2nd Category')
-    weight2 = fields.Float(string="CONAI 2nd Category Weight")
+        related='order_id.conai_exemption_id', store=True, readonly=True)
 
     @api.multi
     @api.onchange('product_id')
@@ -178,17 +166,17 @@ class AccountInvoiceLine(models.Model):
             self.evaluate_conai_amount()
 
     @api.multi
-    @api.onchange('quantity')
+    @api.onchange('product_uom_qty', 'conai_category_id')
     def _set_conai_amount(self):
         self.evaluate_conai_amount()
 
     @api.model
     def evaluate_conai_amount(self):
-        if not self.weight and self.product_id and self.quantity:
+        if not self.weight and self.product_id and self.product_uom_qty:
             self.weight = (
                     (self.product_id.weight or
                      self.product_id.product_tmpl_id.weight) *
-                    self.quantity)
+                    self.product_uom_qty)
         if self.weight and self.conai_category_id:
             self.conai_amount = self.conai_category_id.evaluate_conai_amount(
                 self.weight)
@@ -214,4 +202,4 @@ class AccountInvoiceLine(models.Model):
                 vals['conai_category_id'] = conai_category_id
             if weight:
                 vals['weight'] = weight
-        return super(AccountInvoiceLine, self).create(vals)
+        return super(SaleOrderLine, self).create(vals)

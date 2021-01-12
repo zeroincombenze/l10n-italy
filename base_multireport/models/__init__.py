@@ -12,6 +12,7 @@ from . import multireport_selection_rules
 from . import multireport_template
 from . import ir_actions_report_xml
 from . import multireport_style
+from . import purchase_order
 from . import res_company
 from . import account_invoice
 from . import sale_order

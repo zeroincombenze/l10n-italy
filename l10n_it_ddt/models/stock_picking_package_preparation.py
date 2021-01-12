@@ -500,7 +500,13 @@ class StockPickingPackagePreparation(models.Model):
                           'transportation_method_id'):
                 if not ddt[field]:
                     raise UserError(
-                        _('Required value for %s' % field))
+                        _('Required value for %s') %
+                        _(self.fields_get()[field]['string']))
+                    # Another solution: return original (english) name
+                    # raise UserError(
+                    #     _('Required value for %s') %
+                    #     _(self._fields[field].string))
+
             do_put_in_pack = False
             for picking in ddt.picking_ids:
                 if picking.state == 'assigned':

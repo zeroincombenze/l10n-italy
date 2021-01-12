@@ -8,6 +8,8 @@
        <field name="arch" type="xml">
             <xpath expr="//page[@name='general_information']//field[@name='categ_id']" position="after">
                 <field name="conai_category_id"/>
+                <field name="conai_category2_id"/>
+                <field name="weight2" attrs="{'readonly': [('conai_category2_id', '=', False)]}"/>
             </xpath>
         </field>
     </record>

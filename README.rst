@@ -55,7 +55,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | assigned_bank                        | 10.0.0.1.1 | |no_check| | Assign internal bank to customers or supplier                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| base_multireport                     | 10.0.0.2.1 | |no_check| | Manage document multiple reports                                                 |
+| base_multireport                     | 10.0.0.2.2 | |no_check| | Manage document multiple reports                                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_eu_trial_balance                | |halt|     | |no_check| | 2013/34/EU - Trial Balance + Financial Statements                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -91,17 +91,13 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_codici_carica                | |no_check| | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_conai                        | 10.0.0.1.5 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
-+--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_conai_new                    | |halt|     | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
+| l10n_it_conai                        | 10.0.0.1.6 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi                | 10.0.1.1.0 | 10.0.1.2.4 | Italian Localization - Corrispettivi                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi_sale           | |no_check| | 10.0.1.0.3 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt                          | 10.0.1.8.9 | 10.0.1.9.0 | Delivery Document to Transfer                                                    |
-+--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt_new                      | 10.0.1.8.8 | |no_check| | Delivery Document to Transfer                                                    |
+| l10n_it_ddt                          | 10.0.1.8.1 | 10.0.1.9.0 | Delivery Document to Transfer                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_dichiarazione_intento        | |no_check| | 10.0.1.0.0 | Gestione dichiarazioni di intento                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -386,7 +382,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-01-04
+Last Update / Ultimo aggiornamento: 2021-01-12
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
