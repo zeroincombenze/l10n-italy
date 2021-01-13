@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2018-21 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -10,7 +10,7 @@
 {
     'name': 'EInvoice + FatturaPA',
     'summary': 'Infrastructure for Italian Electronic Invoice + FatturaPA',
-    'version': '10.0.2.1.12',
+    'version': '10.0.2.1.13',
     'category': 'Localization/Italy',
     'author': 'Odoo Italia Associazione,Odoo Community Association (OCA)',
     'website': 'http://www.odoo-italia.org',

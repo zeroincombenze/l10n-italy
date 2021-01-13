@@ -1,3 +1,8 @@
+10.0.1.3.24 (2021-01-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Disabled xml validation / Validazione file xml disabilitata
+
 10.0.1.3.23 (2021-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -66,17 +66,30 @@ class FatturaPAAttachmentIn(models.Model):
         headers = Evolve.header(send_channel)
         url = os.path.join(send_channel.sender_url, 'Cerca')
         archive = int(send_channel.param2) if send_channel.param2 else 2
+        domain_mode = int(send_channel.param4) if send_channel.param4 else 0
 
         data = {
             'IdAzienda': int(send_channel.sender_company_id),
             'IdArchivio': archive,
-            'Filtri': [
-                # {
-                #  'NomeCampo': 'DataDownload',
-                #  'Criterio': 'nullo',
-                # }
-            ]
+            'Filtri': [],
         }
+        if 0 < domain_mode <= 60:
+            limit_date = (datetime.datetime.now() - timedelta(days=domain_mode)
+                          ).strftime('%Y-%m-%dT%H:%M:%S')
+            data['Filtri'] = [
+                {
+                    'NomeCampo': 'DataRicezione',
+                    'Criterio': '>',
+                    'FromValue': limit_date,
+                }
+            ]
+        elif domain_mode == 0:
+            data['Filtri'] = [
+                {
+                    'NomeCampo': 'DataDownload',
+                    'Criterio': 'nullo',
+                }
+            ]
 
         _logger.info(json.dumps(data,
                         ensure_ascii=False))

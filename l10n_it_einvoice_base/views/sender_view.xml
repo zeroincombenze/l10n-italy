@@ -30,9 +30,14 @@
                     <field name="pec_server_id"/>
                     <field name="email_exchange_system"/>
                     <field name="email_from_for_fatturaPA"/>
+                </group>
+                <group>
                     <field name="param1"/>
                     <field name="param2"/>
                     <field name="param3"/>
+                    <field name="param4"/>
+                    <field name="param5"/>
+                    <field name="param6"/>
                     <field name="active"/>
                     <field name="trace"/>
                 </group>

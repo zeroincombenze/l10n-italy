@@ -5,13 +5,13 @@
 # Copyright 2018    - Lorenzo Battistini
 # Copyright 2018    - Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-21 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '10.0.1.3.23',
+    'version': '10.0.1.3.24',
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
     'author': 'Agile Business Group, Innoviu, '

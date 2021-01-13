@@ -72,3 +72,12 @@ class ItalyEinvoiceSender(models.Model):
     param3 = fields.Char(
         string='Custom value 3',
         help="Custom value to issue for communication, if required")
+    param4 = fields.Char(
+        string='Custom value 4',
+        help="Custom value to issue for communication, if required")
+    param5 = fields.Char(
+        string='Custom value 5',
+        help="Custom value to issue for communication, if required")
+    param6 = fields.Char(
+        string='Custom value 6',
+        help="Custom value to issue for communication, if required")

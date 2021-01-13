@@ -1,6 +1,6 @@
 
 ========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.12
+|icon| Send E-Invoice to SdI 10.0.1.0.13
 ========================================
 
 
@@ -169,6 +169,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.13 (2021-01-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Get supplier invoice range by parameter / Intervallo fatture fornitori da parametro
+
+
 10.0.1.0.12 (2020-12-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -275,7 +281,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-12-21
+Last Update / Ultimo aggiornamento: 2021-01-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

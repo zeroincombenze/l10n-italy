@@ -6,6 +6,7 @@
 import base64
 import logging
 from datetime import datetime
+import pyxb
 
 from odoo import api, fields, models
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
@@ -39,7 +40,10 @@ class WizardImportFatturapa(models.TransientModel):
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
         if xml_string:
-            return fatturapa_v_1_2.CreateFromDocument(xml_string)
+            pyxb.RequireValidWhenParsing(False)
+            inv_obj = fatturapa_v_1_2.CreateFromDocument(xml_string)
+            pyxb.RequireValidWhenParsing(True)
+            return inv_obj
         return False
 
     @api.model

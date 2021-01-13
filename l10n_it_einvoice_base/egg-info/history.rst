@@ -1,3 +1,8 @@
+10.0.2.1.13 (202\-01-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] 4 custom communication values / 4 Valori di configurazione per comunicazione
+
 10.0.2.1.12 (2020-01-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

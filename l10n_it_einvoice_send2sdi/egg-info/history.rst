@@ -1,3 +1,9 @@
+10.0.1.0.13 (2021-01-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Get supplier invoice range by parameter / Intervallo fatture fornitori da parametro
+
+
 10.0.1.0.12 (2020-12-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
