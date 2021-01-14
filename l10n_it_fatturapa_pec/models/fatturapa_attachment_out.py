@@ -2,7 +2,6 @@
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018-2019 Lorenzo Battistini <https://github.com/eLBati>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
 import re
@@ -205,7 +204,7 @@ class FatturaPAAttachmentOut(models.Model):
                         esito = esito_committente.find('Esito')
                         if esito is not None:
                             if esito.text == 'EC01':
-                                state = 'validated'
+                                state = 'accepted'
                             elif esito.text == 'EC02':
                                 state = 'rejected'
                             fatturapa_attachment_out.write({

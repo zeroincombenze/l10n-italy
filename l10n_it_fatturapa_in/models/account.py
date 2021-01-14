@@ -43,23 +43,26 @@ class AccountInvoice(models.Model):
     e_invoice_received_date = fields.Date(
         string='E-Bill Received Date')
 
+    @api.multi
     @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
                  'tax_line_ids.amount_rounding', 'currency_id', 'company_id',
                  'date_invoice', 'type', 'efatt_rounding')
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        if self.efatt_rounding != 0:
-            self.amount_total += self.efatt_rounding
-            amount_total_company_signed = self.amount_total
-            if self.currency_id and self.company_id and self.currency_id !=\
-                    self.company_id.currency_id:
-                currency_id = self.currency_id
-                amount_total_company_signed = currency_id._convert(
-                    self.amount_total, self.company_id.currency_id,
-                    self.company_id, self.date_invoice or fields.Date.today())
-            sign = self.type in ['in_refund', 'out_refund'] and -1 or 1
-            self.amount_total_company_signed = amount_total_company_signed * sign
-            self.amount_total_signed = self.amount_total * sign
+        for inv in self:
+            if inv.efatt_rounding != 0:
+                inv.amount_total += inv.efatt_rounding
+                amount_total_company_signed = inv.amount_total
+                if inv.currency_id and inv.company_id and \
+                        inv.currency_id != inv.company_id.currency_id:
+                    currency_id = inv.currency_id
+                    amount_total_company_signed = currency_id._convert(
+                        inv.amount_total, inv.company_id.currency_id,
+                        inv.company_id, inv.date_invoice or fields.Date.today())
+                sign = inv.type in ['in_refund', 'out_refund'] and -1 or 1
+                inv.amount_total_company_signed = \
+                    amount_total_company_signed * sign
+                inv.amount_total_signed = inv.amount_total * sign
 
     @api.model
     def invoice_line_move_line_get(self):
@@ -161,16 +164,18 @@ class AccountInvoice(models.Model):
         error_message = ''
         # ftpa_withholding_type is set when DatiRitenuta is set,
         # withholding_tax is not set if no lines with Ritenuta = SI are found
-        if self.ftpa_withholding_type and not self.withholding_tax:
+        if self.ftpa_withholding_ids and not self.withholding_tax:
             error_message += (_(
                 "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
                 "found. Please manually check Withholding tax Amount\n"
             ))
-        if self.ftpa_withholding_amount != self.withholding_tax_amount:
+        if sum(self.ftpa_withholding_ids.mapped('amount'))\
+                != self.withholding_tax_amount:
             error_message += (_(
                 "E-bill contains ImportoRitenuta %s but created invoice has got"
                 " %s\n" % (
-                    self.ftpa_withholding_amount, self.withholding_tax_amount
+                    sum(self.ftpa_withholding_ids.mapped('amount')),
+                    self.withholding_tax_amount
                 )
             ))
         return error_message

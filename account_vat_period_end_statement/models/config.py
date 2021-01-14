@@ -1,8 +1,5 @@
-# Copyright 2015 Alessandro Camilli <a.camilli@openforce.it>
-# Copyright 2020 Odoo Community Association (OCA) <https://odoo-community.org>
-#
-#
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# Copyright 2015 Alessandro Camilli (a.camilli@openforce.it)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields
 

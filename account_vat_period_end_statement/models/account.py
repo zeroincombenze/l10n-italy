@@ -1,12 +1,9 @@
-# Copyright 2011-12 Domsense s.r.l. <http://www.domsense.com>.
-# Copyright 2012-15 Agile Business Group sagl <http://www.agilebg.com>
-# Copyright 2015 Associazione Odoo Italia <http://www.odoo-italia.org>
-# Copyright 2020 Odoo Community Association (OCA) <https://odoo-community.org>
-#
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
+# Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
+# Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
-from datetime import datetime
 from odoo import models, fields, api
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
@@ -15,9 +12,6 @@ from odoo.tools import float_is_zero
 
 
 class AccountVatPeriodEndStatement(models.Model):
-    _name = "account.vat.period.end.statement"
-    _description = "VAT period end statement"
-    _rec_name = 'date'
 
     @api.multi
     def _compute_authority_vat_amount(self):
@@ -102,33 +96,19 @@ class AccountVatPeriodEndStatement(models.Model):
             return 0
         return company.of_account_end_vat_statement_interest_percent
 
-    debit_vat_nature_line_ids = fields.One2many(
-        'statement.debit.account.line.nature', 'statement_id',
-        'Debit Nature VAT',
-        readonly=True
-    )
-    credit_vat_nature_line_ids = fields.One2many(
-        'statement.credit.account.line.nature', 'statement_id',
-        'Credit Nature VAT',
-        readonly=True
-    )
-    debit_vat_move_line_ids = fields.One2many(
-        'statement.debit.account.line.move', 'statement_id', 'Debit tax VAT',
-        readonly=True
-    )
-    credit_vat_move_line_ids = fields.One2many(
-        'statement.credit.account.line.move', 'statement_id', 'Credit tax VAT',
-        readonly=True
-    )
+    _name = "account.vat.period.end.statement"
+    _description = "VAT period end statement"
+    _rec_name = 'date'
+
     debit_vat_account_line_ids = fields.One2many(
-        'statement.debit.account.line', 'statement_id', 'Debit line VAT',
+        'statement.debit.account.line', 'statement_id', 'Debit VAT',
         help='The accounts containing the debit VAT amount to write-off',
         readonly=True
     )
     credit_vat_account_line_ids = fields.One2many(
-        'statement.credit.account.line', 'statement_id', 'Credit line VAT',
+        'statement.credit.account.line', 'statement_id', 'Credit VAT',
         help='The accounts containing the credit VAT amount to write-off',
-    )
+        readonly=True)
     previous_credit_vat_account_id = fields.Many2one(
         'account.account', 'Previous Credits VAT',
         help='Credit VAT from previous periods',
@@ -217,7 +197,7 @@ class AccountVatPeriodEndStatement(models.Model):
             'paid': [('readonly', True)],
             'draft': [('readonly', False)]})
     authority_vat_account_id = fields.Many2one(
-        'account.account', 'Tax Authority VAT Account', required=False,
+        'account.account', 'Tax Authority VAT Account',
         states={
             'confirmed': [('readonly', True)],
             'paid': [('readonly', True)],
@@ -230,7 +210,7 @@ class AccountVatPeriodEndStatement(models.Model):
         'Deductible VAT Amount', compute="_compute_deductible_vat_amount",
         digits=dp.get_precision('Account'))
     journal_id = fields.Many2one(
-        'account.journal', 'Journal', required=False,
+        'account.journal', 'Journal', required=True,
         states={
             'confirmed': [('readonly', True)],
             'paid': [('readonly', True)],
@@ -284,10 +264,6 @@ class AccountVatPeriodEndStatement(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'account.invoice'))
     annual = fields.Boolean("Annual prospect")
-    year_footer = fields.Char(
-        string='Year for Footer',
-        help="Value printed near number of page in the footer")
-    show_zero = fields.Boolean('Show zero amount lines')
 
     @api.multi
     def unlink(self):
@@ -343,13 +319,6 @@ class AccountVatPeriodEndStatement(models.Model):
     def create_move(self):
         move_obj = self.env['account.move']
         for statement in self:
-            if not statement.journal_id:
-                raise UserError(
-                    _("Journal is required to create account move"))
-            if not statement.authority_vat_account_id:
-                raise UserError(_(
-                    "VAT Authority account is required to create account move")
-                )
             statement_date = fields.Date.to_string(statement.date)
             move_data = {
                 'name': _('VAT statement') + ' - ' + statement_date,
@@ -550,16 +519,13 @@ class AccountVatPeriodEndStatement(models.Model):
     @api.multi
     def compute_amounts(self):
         decimal_precision_obj = self.env['decimal.precision']
-        debit_nature_model = self.env['statement.debit.account.line.nature']
-        credit_nature_model = self.env['statement.credit.account.line.nature']
-        debit_move_model = self.env['statement.debit.account.line.move']
-        credit_move_model = self.env['statement.credit.account.line.move']
-        debit_tax_model = self.env['statement.debit.account.line']
-        credit_tax_model = self.env['statement.credit.account.line']
+        debit_line_model = self.env['statement.debit.account.line']
+        credit_line_model = self.env['statement.credit.account.line']
         for statement in self:
             statement.previous_debit_vat_amount = 0.0
             prev_statements = self.search(
-                [('date', '<', statement.date)], order='date desc')
+                [('date', '<', statement.date), ('annual', '=', False)],
+                order='date desc')
             if prev_statements and not statement.annual:
                 prev_statement = prev_statements[0]
                 if (
@@ -574,9 +540,15 @@ class AccountVatPeriodEndStatement(models.Model):
                             - prev_statement.authority_vat_amount)})
                     company = statement.company_id or self.env.user.company_id
                     statement_fiscal_year_dates = (
-                        company.compute_fiscalyear_dates(statement.date))
+                        company.compute_fiscalyear_dates(
+                            statement.date_range_ids and
+                            statement.date_range_ids[0].date_start or
+                            statement.date))
                     prev_statement_fiscal_year_dates = (
-                        company.compute_fiscalyear_dates(prev_statement.date))
+                        company.compute_fiscalyear_dates(
+                            prev_statement.date_range_ids and
+                            prev_statement.date_range_ids[0].date_start or
+                            prev_statement.date))
                     if (
                         prev_statement_fiscal_year_dates['date_to'] <
                         statement_fiscal_year_dates['date_from']
@@ -584,44 +556,19 @@ class AccountVatPeriodEndStatement(models.Model):
                         statement.write({
                             'previous_year_credit': True})
 
-            (credit_tax_ids,
-             debit_tax_ids,
-             debit_line_ids,
-             credit_line_ids,
-             debit_kind_ids,
-             credit_kind_ids) = self._get_credit_debit_lines(statement)
+            credit_line_ids, debit_line_ids = self._get_credit_debit_lines(
+                statement)
 
-            for debit_line in statement.debit_vat_nature_line_ids:
-                debit_line.unlink()
-            for credit_line in statement.credit_vat_nature_line_ids:
-                credit_line.unlink()
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
             for credit_line in statement.credit_vat_account_line_ids:
                 credit_line.unlink()
-            for debit_line in statement.debit_vat_move_line_ids:
-                debit_line.unlink()
-            for credit_line in statement.credit_vat_move_line_ids:
-                credit_line.unlink()
-
-            for debit_vals in debit_kind_ids:
-                debit_vals['statement_id'] = statement.id
-                debit_nature_model.create(debit_vals)
-            for credit_vals in credit_kind_ids:
-                credit_vals['statement_id'] = statement.id
-                credit_nature_model.create(credit_vals)
             for debit_vals in debit_line_ids:
-                debit_vals['statement_id'] = statement.id
-                debit_move_model.create(debit_vals)
+                debit_vals.update({'statement_id': statement.id})
+                debit_line_model.create(debit_vals)
             for credit_vals in credit_line_ids:
-                credit_vals['statement_id'] = statement.id
-                credit_move_model.create(credit_vals)
-            for debit_vals in debit_tax_ids:
-                debit_vals['statement_id'] = statement.id
-                debit_tax_model.create(debit_vals)
-            for credit_vals in credit_tax_ids:
-                credit_vals['statement_id'] = statement.id
-                credit_tax_model.create(credit_vals)
+                credit_vals.update({'statement_id': statement.id})
+                credit_line_model.create(credit_vals)
 
             interest_amount = 0.0
             # if exits Delete line with interest
@@ -641,114 +588,63 @@ class AccountVatPeriodEndStatement(models.Model):
                 statement.interests_debit_vat_amount = interest_amount
         return True
 
-    def evaluate_tax_values(self, tax, statement):
-        reg_type = {
-            'sale': 'customer',
-            'purchase': 'supplier'
-        }.get(tax.type_tax_use, '')
-        total_base = total_vat = total = 0.0
+    def _set_debit_lines(self, debit_tax, debit_line_ids, statement):
+        total = 0.0
         for period in statement.date_range_ids:
-            total_base, total_vat, total = map(sum, zip(
-                (total_base, total_vat, total),
-                tax._compute_totals_tax({
-                    'from_date': period.date_start,
-                    'to_date': period.date_end,
-                    'registry_type': reg_type,
-                    'date_apply_vat': True,
-                })[1:4]))
-        return {
-            'kind_id': tax.kind_id.id if tax.kind_id else False,
-            'account_id': tax.account_id.id if tax.account_id else False,
-            'tax_id': tax.id,
-                'base_amount': total_base,
-                'vat_amount': total_vat,
-                'amount': total,
-        }, bool(total or total_base or total_vat)
+            total += debit_tax._compute_totals_tax({
+                'from_date': period.date_start,
+                'to_date': period.date_end,
+                'registry_type': 'customer',
+            })[3]  # position 3 is deductible part
+        debit_line_ids.append({
+            'account_id': debit_tax.vat_statement_account_id.id,
+            'tax_id': debit_tax.id,
+            'amount': total,
+        })
 
-    def sum_to_account(self, vals, total):
-
-        def sum_item(id, level, vals, total):
-            hash = '%s-%s' % (level, id)
-            if hash not in total:
-                total[hash] = {
-                    'level': level,
-                }
-                if level == 'N':
-                    for nm in ('kind_id', 'nature_code'):
-                        total[hash][nm] = vals.get(nm, False)
-                else:
-                    total[hash]['account_id'] = vals.get('account_id', False)
-                    total[hash]['tax_id'] = vals['tax_id']
-                for nm in ('amount', 'base_amount', 'vat_amount'):
-                    total[hash][nm] = 0.0
-            for nm in ('amount', 'base_amount', 'vat_amount'):
-                total[hash][nm] += vals[nm]
-            if level == 'A' and vals['tax_id'] != total[hash]['tax_id']:
-                total[hash]['tax_id'] = False
-            return total
-
-        return sum_item(vals['nature_code'], 'N', vals,
-            sum_item(vals.get('account_id') or '~', 'A', vals, total))
-
-    def _set_dbtcrd_lines(self, tax, statement, line_ids, total):
-        vals, valid = self.evaluate_tax_values(tax, statement)
-        if self.show_zero or valid:
-            line_ids.append(vals)
-            vals['nature_code'] = tax.kind_id.code if tax.kind_id else ' '
-            total = self.sum_to_account(vals, total)
-        return line_ids, total
-
-    def split_line_total(self, total):
-        kind_ids = []
-        line_ids = []
-        for hash in sorted(total.keys()):
-            vals = total[hash]
-            level = vals['level']
-            del vals['level']
-            if level == 'N':
-                kind_ids.append(vals)
-            else:
-                line_ids.append(vals)
-        return kind_ids, line_ids
+    def _set_credit_lines(self, credit_tax, credit_line_ids, statement):
+        total = 0.0
+        for period in statement.date_range_ids:
+            total += credit_tax._compute_totals_tax({
+                'from_date': period.date_start,
+                'to_date': period.date_end,
+                'registry_type': 'supplier',
+            })[3]  # position 3 is deductible part
+        credit_line_ids.append({
+            'account_id': credit_tax.vat_statement_account_id.id,
+            'tax_id': credit_tax.id,
+            'amount': total,
+        })
 
     def _get_credit_debit_lines(self, statement):
-        credit_tax_ids = []
-        debit_tax_ids = []
-        credit_total = {}
-        debit_total = {}
+        credit_line_ids = []
+        debit_line_ids = []
         tax_model = self.env['account.tax']
         taxes = tax_model.search([
-            # ('exclude_from_registries', '=', False),
-            ('company_id', '=', self.company_id.id),
+            ('vat_statement_account_id', '!=', False),
+            ('type_tax_use', 'in', ['sale', 'purchase']),
         ])
         for tax in taxes:
-            # se ho una tassa padre con figli cee_type, considero le figlie
-            if any(tax_child
-                   for tax_child in tax.children_tax_ids
-                   if tax_child.cee_type in ('sale', 'purchase')):
+            # se ho una tassa padre con figli cee_type, condidero le figlie
+            if any(tax_ch for tax_ch in tax.children_tax_ids
+                   if tax_ch.cee_type in ('sale', 'purchase')):
 
-                for tax_child in tax.children_tax_ids:
-                    if tax_child.cee_type == 'sale':
-                        debit_tax_ids, debit_total = self._set_dbtcrd_lines(
-                            tax_child, statement, debit_tax_ids, debit_total)
-                    elif tax_child.cee_type == 'purchase':
-                        credit_tax_ids, credit_total = self._set_dbtcrd_lines(
-                            tax_child, statement,
-                            credit_tax_ids, credit_total)
+                for tax_ch in tax.children_tax_ids:
+                    if tax_ch.cee_type == 'sale':
+                        self._set_debit_lines(tax_ch,
+                                              debit_line_ids,
+                                              statement)
+                    elif tax_ch.cee_type == 'purchase':
+                        self._set_credit_lines(tax_ch,
+                                               credit_line_ids,
+                                               statement)
 
             elif tax.type_tax_use == 'sale':
-                debit_tax_ids, debit_total = self._set_dbtcrd_lines(
-                    tax, statement, debit_tax_ids, debit_total)
+                self._set_debit_lines(tax, debit_line_ids, statement)
             elif tax.type_tax_use == 'purchase':
-                credit_tax_ids, credit_total = self._set_dbtcrd_lines(
-                    tax, statement, credit_tax_ids, credit_total)
+                self._set_credit_lines(tax, credit_line_ids, statement)
 
-        debit_kind_ids, debit_line_ids = self.split_line_total(debit_total)
-        credit_kind_ids, credit_line_ids = self.split_line_total(
-            credit_total)
-        return (credit_tax_ids, debit_tax_ids,
-                debit_line_ids, credit_line_ids,
-                debit_kind_ids, credit_kind_ids)
+        return credit_line_ids, debit_line_ids
 
     @api.onchange('authority_partner_id')
     def on_change_partner_id(self):
@@ -775,55 +671,15 @@ class AccountVatPeriodEndStatement(models.Model):
         return company.of_account_end_vat_statement_interest_account_id
 
 
-class StatementDebitAccountLineNature(models.Model):
-    _name = 'statement.debit.account.line.nature'
-    _description = "VAT Statement debit nature line"
-
-    statement_id = fields.Many2one(
-        'account.vat.period.end.statement', 'VAT statement'
-    )
-    kind_code = fields.Char('Tax nature code')
-    kind_id = fields.Many2one('account.tax.kind', 'Tax nature')
-    amount = fields.Float(
-        'Amount', required=True, digits=dp.get_precision('Account')
-    )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-
-
-class StatementCreditAccountLineNature(models.Model):
-    _name = 'statement.credit.account.line.nature'
-    _description = "VAT Statement credit nature line"
-
-    statement_id = fields.Many2one(
-        'account.vat.period.end.statement', 'VAT statement'
-    )
-    kind_code = fields.Char('Tax nature code')
-    kind_id = fields.Many2one('account.tax.kind', 'Tax nature')
-    amount = fields.Float(
-        'Amount', required=True, digits=dp.get_precision('Account')
-    )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-
-
-class StatementDebitAccountLineMove(models.Model):
-    _name = 'statement.debit.account.line.move'
+class StatementDebitAccountLine(models.Model):
+    _name = 'statement.debit.account.line'
     _description = "VAT Statement debit account line"
 
     account_id = fields.Many2one(
-        'account.account', 'Account'
+        'account.account', 'Account', required=True
     )
     tax_id = fields.Many2one(
-        'account.tax', 'Tax',
+        'account.tax', 'Tax', required=True
     )
     statement_id = fields.Many2one(
         'account.vat.period.end.statement', 'VAT statement'
@@ -831,72 +687,17 @@ class StatementDebitAccountLineMove(models.Model):
     amount = fields.Float(
         'Amount', required=True, digits=dp.get_precision('Account')
     )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-
-
-class StatementCreditAccountLineMove(models.Model):
-    _name = 'statement.credit.account.line.move'
-    _description = "VAT Statement credit account line"
-
-    account_id = fields.Many2one(
-        'account.account', 'Account'
-    )
-    tax_id = fields.Many2one(
-        'account.tax', 'Tax',
-    )
-    statement_id = fields.Many2one(
-        'account.vat.period.end.statement', 'VAT statement'
-    )
-    amount = fields.Float(
-        'Amount', required=True, digits=dp.get_precision('Account')
-    )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-
-
-class StatementDebitAccountLine(models.Model):
-    _name = 'statement.debit.account.line'
-    _description = "VAT Statement debit tax line"
-
-    account_id = fields.Many2one(
-        'account.account', 'Account'
-    )
-    tax_id = fields.Many2one(
-        'account.tax', 'Tax',
-    )
-    statement_id = fields.Many2one(
-        'account.vat.period.end.statement', 'VAT statement'
-    )
-    amount = fields.Float(
-        'Amount', required=True, digits=dp.get_precision('Account')
-    )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-    kind_id = fields.Many2one('account.tax.kind', 'Tax nature')
 
 
 class StatementCreditAccountLine(models.Model):
     _name = 'statement.credit.account.line'
-    _description = "VAT Statement credit tax line"
+    _description = "VAT Statement credit account line"
 
     account_id = fields.Many2one(
-        'account.account', 'Account'
+        'account.account', 'Account', required=True
     )
     tax_id = fields.Many2one(
-        'account.tax', 'Tax',
+        'account.tax', 'Tax', required=True
     )
     statement_id = fields.Many2one(
         'account.vat.period.end.statement', 'VAT statement'
@@ -904,19 +705,11 @@ class StatementCreditAccountLine(models.Model):
     amount = fields.Float(
         'Amount', required=True, digits=dp.get_precision('Account')
     )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-    kind_id = fields.Many2one('account.tax.kind', 'Tax nature')
 
 
 class StatementGenericAccountLine(models.Model):
     _name = 'statement.generic.account.line'
     _description = "VAT Statement generic account line"
-    _sort = 'kind_id, account_id, tax_id'
 
     account_id = fields.Many2one(
         'account.account', 'Account', required=True
@@ -927,13 +720,6 @@ class StatementGenericAccountLine(models.Model):
     amount = fields.Float(
         'Amount', required=True, digits=dp.get_precision('Account')
     )
-    base_amount = fields.Float(
-        'Base Amount', digits=dp.get_precision('Account')
-    )
-    vat_amount = fields.Float(
-        'Vat Amount', digits=dp.get_precision('Account')
-    )
-    kind_id = fields.Many2one('account.tax.kind', 'Tax nature')
     name = fields.Char('Description')
 
 

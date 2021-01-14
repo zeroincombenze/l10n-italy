@@ -1,5 +1,0 @@
-unicodecsv
-codicefiscale
-unidecode==0.04.17
-PyXB==1.2.6
-asn1crypto==0.24.0

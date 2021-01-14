@@ -1,4 +1,3 @@
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, models, fields
 
@@ -8,7 +7,7 @@ class AccountTaxKind(models.Model):
     _name = 'account.tax.kind'
     _description = 'Tax exemption kind'
 
-    code = fields.Char(string='Code', size=3, required=True)
+    code = fields.Char(string='Code', size=4, required=True)
     name = fields.Char(string='Name', required=True)
 
     @api.multi

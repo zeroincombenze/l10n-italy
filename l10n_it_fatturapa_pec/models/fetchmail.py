@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
 from odoo import models, api, fields, _
@@ -184,7 +183,7 @@ class Fetchmail(models.Model):
                     6, 0,
                     self.e_inv_notify_partner_ids.ids
                 )]
-            })
+            }).send()
             _logger.info(
                 'Notifying partners %s about PEC server %s error'
                 % (self.e_inv_notify_partner_ids.ids, self.name)

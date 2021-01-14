@@ -92,7 +92,6 @@ msgstr "Dodaj obdobje"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_add_period_to_vat_statement
 #, fuzzy
-#| msgid "Account used for VAT statement"
 msgid "Add period to VAT Statement"
 msgstr "Konto za DDV izjavo"
 
@@ -106,6 +105,16 @@ msgstr "Znesek"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__residual
 msgid "Amount Due"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_search
+msgid "Annual"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__annual
+msgid "Annual prospect"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -182,7 +191,7 @@ msgid "Credit Account Lines"
 msgstr "Postavke konta terjatev"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:354
+#: code:addons/account_vat_period_end_statement/models/account.py:355
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__credit_vat_account_line_ids
 #, python-format
 msgid "Credit VAT"
@@ -216,7 +225,7 @@ msgid "Debit Account Lines"
 msgstr "Postavke konta obveznosti"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:335
+#: code:addons/account_vat_period_end_statement/models/account.py:336
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__debit_vat_account_line_ids
 #, python-format
 msgid "Debit VAT"
@@ -257,7 +266,6 @@ msgstr "Prikazni naziv"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__advance_account_id
 #, fuzzy
-#| msgid "Payments"
 msgid "Down payment"
 msgstr "Plačila"
 
@@ -277,7 +285,7 @@ msgid "Draft"
 msgstr "Osnutek"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:449
+#: code:addons/account_vat_period_end_statement/models/account.py:450
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__interests_debit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -382,7 +390,7 @@ msgid "Last printed page"
 msgstr "Zadnja natisnjena stran"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:468
+#: code:addons/account_vat_period_end_statement/models/account.py:469
 #, python-format
 msgid "Other VAT Credits / Debits"
 msgstr "Druge DDV terjatve / obveznosti"
@@ -440,13 +448,19 @@ msgid "Period %s is associated to statement %s yet"
 msgstr "Obdobje %s še ni povezano z izjavo %s"
 
 #. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_search
+#, fuzzy
+msgid "Periodic"
+msgstr "Obdobje"
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__date_range_ids
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Periods"
 msgstr "Obdobja"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:373
+#: code:addons/account_vat_period_end_statement/models/account.py:374
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_credit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #, python-format
@@ -459,7 +473,7 @@ msgid "Previous Credits VAT Amount"
 msgstr "Znesek prejšnjih DDV v dobro"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:430
+#: code:addons/account_vat_period_end_statement/models/account.py:431
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_debit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #, python-format
@@ -484,7 +498,6 @@ msgstr "Prejšnji DDV v breme"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_year_credit
 #, fuzzy
-#| msgid "Previous credit vat"
 msgid "Previous year credits"
 msgstr "Prejšnji DDV v dobro"
 
@@ -528,18 +541,12 @@ msgstr "Odstrani obdobje"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_remove_period_from_vat_statement
 #, fuzzy
-#| msgid "Account used for VAT statement"
 msgid "Remove period from VAT Statement"
 msgstr "Konto za DDV izjavo"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 #, fuzzy
-#| msgid ""
-#| "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
-#| "Italia, Beni FUE in Italia, Cell., Microproc.\n"
-#| "Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-#| "UE, Cell. UE, Microproc. UE"
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
 "Italia, Beni FUE in Italia, Cell., Microproc.\n"
@@ -585,7 +592,7 @@ msgid "Tax Authority Partner"
 msgstr "Partner davčni organ"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:484
+#: code:addons/account_vat_period_end_statement/models/account.py:485
 #, python-format
 msgid "Tax Authority VAT"
 msgstr "DDV davčnega organa"
@@ -596,8 +603,8 @@ msgid "Tax Authority VAT Account"
 msgstr "Konto DDV davčnega organa"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:392
-#: code:addons/account_vat_period_end_statement/models/account.py:411
+#: code:addons/account_vat_period_end_statement/models/account.py:393
+#: code:addons/account_vat_period_end_statement/models/account.py:412
 #, python-format
 msgid "Tax Credits"
 msgstr ""
@@ -615,7 +622,7 @@ msgid "Tax credits Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:661
+#: code:addons/account_vat_period_end_statement/models/account.py:669
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr "Nastaviti morate konto za DDV obresti"
@@ -660,14 +667,12 @@ msgstr "Neodbitni"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line
 #, fuzzy
-#| msgid "Credit Account Lines"
 msgid "VAT Statement credit account line"
 msgstr "Postavke konta terjatev"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line
 #, fuzzy
-#| msgid "VAT statement move"
 msgid "VAT Statement debit account line"
 msgstr "Premik DDV izjave"
 
@@ -679,19 +684,17 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_report_account_vat_period_end_statement_vat_statement
 #, fuzzy
-#| msgid "VAT statement move"
 msgid "VAT Statement report"
 msgstr "Premik DDV izjave"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_account_vat_period_end_statement
 #, fuzzy
-#| msgid "Print Vat Period End Statement"
 msgid "VAT period end statement"
 msgstr "Natisni zaključno izjavo ob koncu DDV obdobja"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:323
+#: code:addons/account_vat_period_end_statement/models/account.py:324
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_date_range__vat_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line__statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line__statement_id
@@ -724,7 +727,7 @@ msgid "Vat statement"
 msgstr "DDV izjava"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:272
+#: code:addons/account_vat_period_end_statement/models/account.py:273
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Potrjenih ali plačanih izjav ne morete brisati"

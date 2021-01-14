@@ -9,7 +9,7 @@
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
-
+        
             <xpath expr="//notebook" position="inside">
                 <page string="VAT statement">
                     <group>
@@ -18,9 +18,8 @@
                         <field name="of_account_end_vat_statement_interest_account_id"/>
                     </group>
                 </page>
-            </xpath>
-
+               </xpath>
+               
         </field>
     </record>
 </odoo>
-

@@ -129,13 +129,18 @@ msgid "Error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:181
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:180
 #, python-format
 msgid "Fetchmail PEC server [%s] error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:73
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:72
 #, python-format
 msgid "File content and file name are mandatory"
 msgstr ""
@@ -187,7 +192,7 @@ msgid "Last error message"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:59
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:58
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
 msgstr ""
@@ -204,16 +209,31 @@ msgid "PEC error count"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:69
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:68
 #, python-format
-msgid "PEC message with Message-Id %s has been read but not processed, as not related to an e-invoice.\n"
+msgid "PEC message \"%s\" has been read but not processed, as not related to an e-invoice.\n"
 "Please check PEC mailbox %s, at server %s, with user %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:162
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:161
 #, python-format
 msgid "PEC server %s has been reset.Last error message is '%s'"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_export_fatturapa_form_view_regenerate
+msgid "Re-Export"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_invoice_fatturapa_out_pec_form
+msgid "Re-Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_export_fatturapa_regenerate
+msgid "Re-Export Electronic Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -288,6 +308,18 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:49
+#, python-format
+msgid "The invoice cannot be regenerated because doesn't have a e-invoice attachment associated to it"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:39
+#, python-format
+msgid "The method can be called with a valid active_id"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
 msgid "This user will be used at supplier e-bill creation."
@@ -299,19 +331,19 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:249
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:248
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:48
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:47
 #, python-format
 msgid "You can only reset files in 'Sender Error' state."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:69
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:68
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
 msgstr ""

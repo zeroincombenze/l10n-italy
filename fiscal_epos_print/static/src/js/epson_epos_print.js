@@ -122,12 +122,10 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             options = options || {};
             this.url = options.url || 'http://192.168.1.1/cgi-bin/fpmate.cgi';
             this.fiscalPrinter = new epson.fiscalPrint();
-            this.fpresponse = false;
             this.sender = sender;
             this.order = options.order || null;
             this.fiscalPrinter.onreceive = function(res, tag_list_names, add_info) {
                 sender.chrome.loading_hide();
-                self.fpresponse = tag_list_names
                 var tagStatus = (tag_list_names ? tag_list_names.filter(getStatusField) : []);
                 var msgPrinter = "";
 
@@ -137,6 +135,11 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 }
 
                 if (!res.success) {
+                    if (self.order != null) {
+                        var order = self.order;
+                        order.fiscal_printer_debug_info = JSON.stringify(res) + '\n' + JSON.stringify(tag_list_names) + '\n' + JSON.stringify(add_info);
+                        sender.pos.push_order(order);
+                    }
                     if (tagStatus.length > 0) {
                         var info = add_info[tagStatus[0]];
                         var msgPrinter = decodeFpStatus(info);
@@ -372,7 +375,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             xml += self.printRecItemAdjustment({
                                 adjustmentType: 0,
                                 description: _t('Discount') + ' ' + l.discount + '%',
-                                amount: round_pr((l.quantity * l.full_price) - (l.quantity * l.price), self.sender.pos.currency.rounding),
+                                amount: round_pr((l.quantity * l.full_price) - l.price_display, self.sender.pos.currency.rounding),
                             });
                         }
                     }

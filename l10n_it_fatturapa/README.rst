@@ -10,9 +10,9 @@ ITA - Fattura elettronica - Base
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_fatturapa
     :alt: OCA/l10n-italy
@@ -29,7 +29,7 @@ ITA - Fattura elettronica - Base
 
 Modulo base per gestire le fatture elettroniche.
 
-http://fatturapa.gov.it
+https://www.fatturapa.gov.it
 
 Consultare anche i file README di l10n_it_fatturapa_out e l10n_it_fatturapa_in.
 
@@ -37,7 +37,7 @@ Consultare anche i file README di l10n_it_fatturapa_out e l10n_it_fatturapa_in.
 
 Base module to handle Electronic Invoices.
 
-http://fatturapa.gov.it
+https://www.fatturapa.gov.it
 
 See also l10n_it_fatturapa_out and l10n_it_fatturapa_in README files.
 

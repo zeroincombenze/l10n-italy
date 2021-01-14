@@ -68,6 +68,7 @@ class TestDichiarazioneIntento(TransactionCase):
             })
 
     def setUp(self):
+
         super(TestDichiarazioneIntento, self).setUp()
         self.tax_model = self.env['account.tax']
         self.account = self.env['account.account'].search([
@@ -81,6 +82,7 @@ class TestDichiarazioneIntento(TransactionCase):
         self.today_date = fields.Date.today()
         self.partner1 = self.env.ref('base.res_partner_2')
         self.partner2 = self.env.ref('base.res_partner_12')
+        self.partner3 = self.env.ref('base.res_partner_10')
         self.tax22 = self.tax_model.create({
             'name': '22%',
             'amount': 22,
@@ -116,6 +118,16 @@ class TestDichiarazioneIntento(TransactionCase):
                     'tax_dest_id': self.tax22.id,
                     })]
                 })
+        self.fiscal_position2 = self.env[
+            'account.fiscal.position'].sudo().create({
+                'name': 'Dichiarazione Test 2',
+                'valid_for_dichiarazione_intento': False,
+                'tax_ids': [(0, 0, {
+                    'tax_src_id': self.tax22.id,
+                    'tax_dest_id': self.tax10.id,
+                    })]
+                })
+
         self.dichiarazione1 = self._create_dichiarazione(self.partner1, 'out')
         self.dichiarazione2 = self._create_dichiarazione(self.partner2, 'out')
         self.dichiarazione3 = self._create_dichiarazione(self.partner2, 'out')
@@ -132,6 +144,8 @@ class TestDichiarazioneIntento(TransactionCase):
                                                    tax=self.tax1)
         self.refund1 = self._create_refund(self.partner1, tax=self.tax1,
                                            invoice=self.invoice2)
+        self.invoice4 = self._create_invoice(self.partner3, tax=self.tax22)
+        self.invoice4.fiscal_position_id = self.fiscal_position2.id
 
     def test_dichiarazione_data(self):
         self.assertTrue(self.dichiarazione1.number)
@@ -207,8 +221,20 @@ class TestDichiarazioneIntento(TransactionCase):
 
     def test_refund_with_amount_bigger_than_residual(self):
         self.invoice2.action_invoice_open()
-        previous_used_amount = self.dichiarazione1.used_amount
         self.refund1.invoice_line_ids[0].quantity = 10
-        self.refund1.action_invoice_open()
-        post_used_amount = self.dichiarazione1.used_amount
-        self.assertNotEqual(previous_used_amount, post_used_amount)
+
+        # Check that base amount has been updated
+        self.assertNotEqual(self.refund1.tax_line_ids[0].base, 1000)
+        self.refund1.tax_line_ids._compute_base_amount()
+        self.assertEqual(self.refund1.tax_line_ids[0].base, 1000)
+
+        # Refund goes over plafond: 100 + 1000 > 1000
+        self.assertEqual(self.dichiarazione1.available_amount, 100)
+        self.assertEqual(self.refund1.amount_untaxed, 1000)
+        self.assertEqual(self.dichiarazione1.limit_amount, 1000)
+        with self.assertRaises(UserError):
+            self.refund1.action_invoice_open()
+
+    def test_fiscal_position_no_dichiarazione(self):
+        self.invoice4._onchange_date_invoice()
+        self.assertEqual(self.invoice4.fiscal_position_id.id, self.fiscal_position2.id)

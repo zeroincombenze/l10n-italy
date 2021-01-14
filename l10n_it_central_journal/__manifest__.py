@@ -1,9 +1,9 @@
 # Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'ITA - Libro giornale',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.1.4',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'author': 'Gianmarco Conte - Dinamiche Aziendali srl, '

@@ -2,7 +2,6 @@
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
 import re
@@ -67,13 +66,13 @@ class MailThread(models.AbstractModel):
                 if att:
                     return self.manage_pec_sdi_response(att, message_dict)
                 raise UserError(_(
-                    "PEC message with Message-Id %s has been read "
+                    "PEC message \"%s\" has been read "
                     "but not processed, as not related to an "
                     "e-invoice.\n"
                     "Please check PEC mailbox %s, at server %s,"
                     " with user %s."
                 ) % (
-                    message.get('Message-Id'),
+                    message_dict['subject'],
                     fetchmail_server.name, fetchmail_server.server,
                     fetchmail_server.user
                 ))
@@ -143,13 +142,27 @@ class MailThread(models.AbstractModel):
         if 'CONSEGNA: ' in subject:
             att_name = subject.replace('CONSEGNA: ', '')
             fatturapa_attachment_out = attachment_out_model \
-                .search([('datas_fname', '=', att_name)])
+                .search([
+                    ('datas_fname', '=', att_name)
+                ])
+            if not fatturapa_attachment_out:
+                fatturapa_attachment_out = attachment_out_model \
+                    .search([
+                        ('name', '=', att_name)
+                    ])
             if len(fatturapa_attachment_out) == 1:
                 return fatturapa_attachment_out
         if 'ACCETTAZIONE: ' in subject:
             att_name = subject.replace('ACCETTAZIONE: ', '')
             fatturapa_attachment_out = attachment_out_model \
-                .search([('datas_fname', '=', att_name)])
+                .search([
+                    ('datas_fname', '=', att_name)
+                ])
+            if not fatturapa_attachment_out:
+                fatturapa_attachment_out = attachment_out_model \
+                    .search([
+                        ('name', '=', att_name)
+                    ])
             if len(fatturapa_attachment_out) == 1:
                 return fatturapa_attachment_out
         return attachment_out_model.browse()
