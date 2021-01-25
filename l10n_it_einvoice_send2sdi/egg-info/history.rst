@@ -1,3 +1,9 @@
+10.0.1.0.14 (2021-01-21)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Log http error / Log error http
+* [IMP] Fatture consegnate in area riservata sono consegnate
+
 10.0.1.0.13 (2021-01-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

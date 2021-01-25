@@ -40,6 +40,7 @@ class FatturaPAAttachmentIn(models.Model):
     )
     registered = fields.Boolean(
         "Registered", compute="_compute_xml_data", store=True)
+    e_invoice_received_date = fields.Datetime(string='E-Bill Received Date')
     uid = fields.Char('Uid', size=255)
     date_invoice0 = fields.Date(
         'Date Invoice', store=True,

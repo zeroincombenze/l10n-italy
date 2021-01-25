@@ -102,6 +102,9 @@ class FatturaPAAttachmentIn(models.Model):
         except BaseException:
             _logger.error('request.post FAILED')
             return
+        if not (200 <= response.status_code < 300):
+            _logger.error('FAILED request.post: %s' % response.status_code)
+            return
 
         try:
             documenti = response.json()
@@ -151,6 +154,9 @@ class FatturaPAAttachmentIn(models.Model):
                                                      ensure_ascii=False))
         except BaseException:
             _logger.error('request.post FAILED')
+            return
+        if not (200 <= response.status_code < 300):
+            _logger.error('FAILED request.post: %s' % response.status_code)
             return
 
         try:
@@ -354,7 +360,8 @@ class FatturaPAAttachmentOut(models.Model):
         return send_channel
 
     @api.model
-    def primitive_json_send(self, send_channel, req, chn_inv, action, att):
+    def primitive_json_send(
+            self, send_channel, req, chn_inv, action, attachment=None):
         if 'Documento' in req:
             req['Documento']['IdAzienda'] = int(send_channel.sender_company_id)
             req['Documento']['IdArchivio'] = chn_inv
@@ -368,60 +375,62 @@ class FatturaPAAttachmentOut(models.Model):
                 '>>> %s.send_json(%s,%s,%s)' % (
                     send_channel.name, url, headers, req))
         try:
-            response = requests.post(url,
-                                     headers=headers,
-                                     data=json.dumps(req,
-                                                     ensure_ascii=False))
+            response = requests.post(
+                url, headers=headers, data=json.dumps(
+                    req, ensure_ascii=False))
         except:
+            errmsg = 'requests.post() FAILED!'
             if send_channel.trace:
-                _logger.info('>>> requests.post() FAILED!')
-            att.state = 'sender_error'
-            return False
+                _logger.info('>>> %s' % errmsg)
+            if attachment:
+                attachment.state = 'sender_error'
+            return False, errmsg
+        if not (200 <= response.status_code < 300):
+            errmsg = 'request.post FAILED: %s' % response.status_code
+            _logger.error(errmsg)
+            if attachment:
+                attachment.state = 'sender_error'
+                attachment.last_sdi_response = errmsg
+            return False, errmsg
         try:
             data = response.json()
-            err_msg = ''
+            errmsg = ''
             for item in ('ErrorStack', 'ErrorInnerExceptions', 'ErrorMessage'):
                 if item in data:
-                    err_msg += '%s = "%s"\n' % (item, data[item])
-            if not err_msg:
-                err_msg = data
+                    errmsg += '%s = "%s"\n' % (item, data[item])
             if send_channel.trace:
                 _logger.info(
-                    '>>> response.json()=\n%s\n' % err_msg)
+                    '>>> response.json()=\n%s\n' % errmsg or data)
             if data['EsitoChiamata'] > 0:
                 # Store response even if not trace enabled
+                errmsg = response.text.replace(r'\r\n', '\n')
                 if not send_channel.trace:
-                    _logger.info(response.text.replace(r'\r\n', '\n'))
-                att.state = 'sender_error'
-                att.last_sdi_response = response.text.replace(r'\r\n',
-                                                              '\n')
-                return False
+                    _logger.info(errmsg)
+                if attachment:
+                    attachment.state = 'sender_error'
+                    attachment.last_sdi_response = errmsg
+                return False, errmsg
         except:
+            errmsg = 'response.json() FAILED!'
             if send_channel.trace:
-                _logger.info('>>> response.json() FAILED!')
-            att.state = 'sender_error'
-            return False
-        return data
+                _logger.info('>>> %s' % errmsg)
+            if attachment:
+                attachment.state = 'sender_error'
+            return False, errmsg
+        return data, False
 
     @api.multi
     def send_verify_via_json(self, send_channel, invoice):
-        chn_inv_out = int(send_channel.param1) if send_channel.param1 else 1
-        chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
+        # chn_inv_out = int(send_channel.param1) if send_channel.param1 else 1
+        # chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
         for att in self:
-            request = {
-                'Filtri': [
-                    {
-                        'NomeCampo': 'NumeroFattura',
-                        'Criterio': '=',
-                        'FromValue': invoice.number
-                    }
-                ]
-            }
-            data = self.primitive_json_send(
-                send_channel, request, chn_inv_sent, 'Cerca', att)
+            data, errmsg = self.search_via_json(send_channel, invoice.number)
             if not data:
-                att.last_sdi_response = 'ERRORE DI COMUNICAZIONE!\n'\
-                                        'Provare verifica Invio più tardi.'
+                att.state = 'sender_error'
+                att.last_sdi_response = '%s\n%s\n%s' % (
+                    'ERRORE DI COMUNICAZIONE!',
+                    errmsg,
+                    'Provare verifica Invio più tardi.')
                 return
 
             documenti = Evolve.document_list(data['Documenti'])
@@ -449,7 +458,8 @@ class FatturaPAAttachmentOut(models.Model):
                 if data_caricamento > last_date:
                     last_date = data_caricamento
                     last_uid = doc.get('Uid', '')
-                    last_ix = ii
+                    if 'Fattura duplicata' not in doc.get('Note', ''):
+                        last_ix = ii
                 history += '%-20.20s %-10.10s %-40.40s %-18.18s %-60.60s\n' % (
                     doc.get('DataCaricamento', ''), doc['DataFattura'],
                     doc.get('Uid', ''), doc.get('StatoInvioSdi', ''),
@@ -467,13 +477,12 @@ class FatturaPAAttachmentOut(models.Model):
             att.last_sdi_response = '%s\n\n%s\n' % (
                 documenti[last_ix].get('Note', ''), history)
 
-            data = self.primitive_json_send(
-                send_channel, request, chn_inv_out, 'Cerca', att)
-            if not data:
-                att.state = 'sender_error'
-                att.last_sdi_response = '%s\n\n%s\n' % (
-                    'ERRORE DI SINCRONIZZAZIONE', history)
-                return
+            # data, errmsg = self.search_via_json(send_channel, invoice.number)
+            # if not data:
+            #     att.state = 'sender_error'
+            #     att.last_sdi_response = '%s\n\n%s\n' % (
+            #         'ERRORE DI SINCRONIZZAZIONE', history)
+            #     return
 
             documenti = Evolve.document_list(data['Documenti'])
             if len(documenti) == 0:
@@ -486,7 +495,7 @@ class FatturaPAAttachmentOut(models.Model):
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
                     if evolve_stato_mapping[
-                            doc.get('StatoFattura','ERRORE SCONOSCIUTO')] in (
+                            doc.get('StatoFattura', 'ERRORE SCONOSCIUTO')] in (
                             'accepted', 'discarted'):
                         last_ix = ii
                         break
@@ -496,6 +505,9 @@ class FatturaPAAttachmentOut(models.Model):
                             doc.get('StatoFattura',
                                     'ERRORE SCONOSCIUTO')] == 'validated':
                         valid_ix = ii
+                    elif ('disponibile in consultazione nell\'area riservata'
+                          in doc.get('Note', '')):
+                        valid_ix = ii
                 doc = documenti[last_ix]
                 att_state = evolve_stato_mapping[doc.get('StatoFattura',
                                                          'ERRORE SCONOSCIUTO')]
@@ -503,7 +515,10 @@ class FatturaPAAttachmentOut(models.Model):
                         'sender_error', 'sent', 'rejected'):
                     last_ix = valid_ix
                     doc = documenti[last_ix]
-                    att_state = evolve_stato_mapping[doc['StatoFattura']]
+                    if doc.get('StatoFattura'):
+                        att_state = evolve_stato_mapping[doc['StatoFattura']]
+                    else:
+                        att_state = 'validated'
 
                 if att_state == 'recipient_error':
                     delivered_date = datetime.datetime.strptime(
@@ -589,6 +604,23 @@ class FatturaPAAttachmentOut(models.Model):
                 )
             att.state = 'validated'
 
+    @api.model
+    def search_via_json(self, send_channel, invoice_number):
+        chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
+        request = {
+            'Filtri': [
+                {
+                    'NomeCampo': 'NumeroFattura',
+                    'Criterio': '=',
+                    'FromValue': invoice_number
+                }
+            ]
+        }
+        return self.primitive_json_send(
+            send_channel, request, chn_inv_sent, 'Cerca')
+
+
+
     @api.multi
     def send_via_json(self, send_channel):
         # Recupero i dati della fattura
@@ -598,11 +630,15 @@ class FatturaPAAttachmentOut(models.Model):
 
         chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
         for att in self:
+            data, errmsg = self.search_via_json(send_channel, invoice.number)
+            if data:
+                att.state = 'sent'
+                continue
+
             bytes = att.datas
             xml = b64decode(bytes)
             sha256 = hashlib.sha256()
             sha256.update(xml)
-
             request = {
                 "Files": [{
                     "Bytes": bytes,
@@ -624,8 +660,8 @@ class FatturaPAAttachmentOut(models.Model):
                     }]
                 }
             }
-            data = self.primitive_json_send(
-                send_channel, request, chn_inv_sent, 'Salva', att)
+            data, errmsg = self.primitive_json_send(
+                send_channel, request, chn_inv_sent, 'Salva', attachment=att)
             if not data:
                 return
 

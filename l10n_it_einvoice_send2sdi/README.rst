@@ -1,6 +1,6 @@
 
 ========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.13
+|icon| Send E-Invoice to SdI 10.0.1.0.14
 ========================================
 
 
@@ -169,6 +169,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.14 (2021-01-21)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Log http error / Log error http
+* [IMP] Fatture consegnate in area riservata sono consegnate
+
 10.0.1.0.13 (2021-01-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -281,7 +287,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-01-13
+Last Update / Ultimo aggiornamento: 2021-01-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

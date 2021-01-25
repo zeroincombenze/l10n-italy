@@ -186,16 +186,21 @@ class WizardImportFatturapa(models.TransientModel):
                     domain.append(('nature_id', '=', -1))
         elif AliquotaIVA_fp != 0.0:
             domain.append(('nature_id', '=', False))
-        if (partner and
-                partner.register_fiscalpos.code == 'RF19'
-                and Natura == 'N2'):
-            domain.append(('name', 'ilike', '%190%'))
         account_taxes = account_tax_model.search(domain, order="sequence")
         if not account_taxes:
             raise UserError(
                 _('Nessun codice IVA con aliquota '
                   '%s e natura %s. Inserirne uno.')
                 % (AliquotaIVA, Natura))
+        if len(account_taxes) > 1:
+            if (partner and
+                    partner.register_fiscalpos.code == 'RF19'
+                    and Natura == 'N2'):
+                domain.append(('name', 'ilike', '%190%'))
+                account_taxes2 = account_tax_model.search(
+                    domain, order="sequence")
+                if len(account_taxes2):
+                    account_taxes = account_taxes2
         if len(account_taxes) > 1:
             self.log_inconsistency(
                 _('Rilevati troppi codici IVA con aliquota %s '
@@ -898,6 +903,8 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_lines.append(invoice_line_id)
         invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
+        import pdb
+        pdb.set_trace()
         invoice = invoice_model.create(invoice_data)
         if wt_found:
             invoice._onchange_invoice_line_wt_ids()
