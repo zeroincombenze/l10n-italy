@@ -903,8 +903,6 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_lines.append(invoice_line_id)
         invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
-        import pdb
-        pdb.set_trace()
         invoice = invoice_model.create(invoice_data)
         if wt_found:
             invoice._onchange_invoice_line_wt_ids()

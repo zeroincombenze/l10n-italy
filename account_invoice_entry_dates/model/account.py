@@ -18,6 +18,7 @@ class AccountJournal(models.Model):
         default=False,
         help='If set, end-user can update account date')
 
-    @api.onchange('type')
-    def _onchange_type(self):
-        self.check_4_sequence = False
+    # @api.onchange('type')
+    # def _onchange_type(self):
+    #     self.check_4_sequence = False
+

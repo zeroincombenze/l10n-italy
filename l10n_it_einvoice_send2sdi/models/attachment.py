@@ -5,6 +5,7 @@
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
+#
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import os
@@ -34,6 +35,7 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
 
 evolve_stato_mapping = {
     u'Inviato': 'sent',
+    u'Inviata a Sdi': 'sent',
     u'In attesa di risposta dopo aver inviato il documento': 'sent',
     u'Importato': 'sent',
     u'Controlli validazione': 'sent',
@@ -421,30 +423,25 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.multi
     def send_verify_via_json(self, send_channel, invoice):
-        # chn_inv_out = int(send_channel.param1) if send_channel.param1 else 1
-        # chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
         for att in self:
             data, errmsg = self.search_via_json(send_channel, invoice.number)
-            if not data:
-                att.state = 'sender_error'
-                att.last_sdi_response = '%s\n%s\n%s' % (
-                    'ERRORE DI COMUNICAZIONE!',
-                    errmsg,
-                    'Provare verifica Invio più tardi.')
-                return
-
-            documenti = Evolve.document_list(data['Documenti'])
-            _logger.debug(documenti)
-            if len(documenti) == 0:
+            if not Evolve.has_document(data):
                 limit_date = (datetime.datetime.now() - timedelta(days=1)
                               ).strftime('%Y-%m-%d %H:%M:%S')
-                if (att.sending_date and
+                if not att.sending_date or (att.sending_date and
                         att.sending_date < limit_date):
                     att.state = 'ready'
                 else:
                     att.state = 'sender_error'
-                att.last_sdi_response = 'NO RISPOSTA DA SDI!\n'\
-                                        'Fattura non (ancora) acquisita.'
+                    if errmsg:
+                        att.last_sdi_response = '%s\n%s\n%s' % (
+                            'ERRORE DI COMUNICAZIONE!',
+                            errmsg,
+                            'Provare verifica Invio più tardi.')
+                    else:
+                        att.last_sdi_response = '%s\n%s' % (
+                            'NO RISPOSTA DA SDI!',
+                            'Fattura non (ancora) acquisita.')
                 return
             history = '%-20.20s %-10.10s %-40.40s %-18.18s %-60.60s\n' % (
                 'Data Caricamento', 'Data Fatt.',
@@ -452,6 +449,7 @@ class FatturaPAAttachmentOut(models.Model):
             last_date = '2019-01-01T00:00:00'
             last_ix = -1
             last_uid = ''
+            documenti = Evolve.document_list(data['Documenti'])
             for ii, doc in enumerate(documenti):
                 data_caricamento = doc.get('DataCaricamento',
                     doc['DataFattura'])
@@ -461,14 +459,16 @@ class FatturaPAAttachmentOut(models.Model):
                     if 'Fattura duplicata' not in doc.get('Note', ''):
                         last_ix = ii
                 history += '%-20.20s %-10.10s %-40.40s %-18.18s %-60.60s\n' % (
-                    doc.get('DataCaricamento', ''), doc['DataFattura'],
-                    doc.get('Uid', ''), doc.get('StatoInvioSdi', ''),
+                    doc.get('DataCaricamento', ''),
+                    doc['DataFattura'],
+                    doc.get('Uid', ''),
+                    Evolve.document_state(doc),
                     doc.get('Note', '')
                 )
             limit_date = (datetime.datetime.now() - timedelta(days=10)
                           ).strftime('%Y-%m-%d %H:%M:%S')
             att_state = evolve_stato_mapping[
-                documenti[last_ix].get('StatoInvioSdi', 'ERRORE SCONOSCIUTO')]
+                Evolve.document_state(documenti[last_ix])]
             if (att_state == 'sent' and
                     att.sending_date and
                     att.sending_date < limit_date):
@@ -476,13 +476,6 @@ class FatturaPAAttachmentOut(models.Model):
             att.state = att_state
             att.last_sdi_response = '%s\n\n%s\n' % (
                 documenti[last_ix].get('Note', ''), history)
-
-            # data, errmsg = self.search_via_json(send_channel, invoice.number)
-            # if not data:
-            #     att.state = 'sender_error'
-            #     att.last_sdi_response = '%s\n\n%s\n' % (
-            #         'ERRORE DI SINCRONIZZAZIONE', history)
-            #     return
 
             documenti = Evolve.document_list(data['Documenti'])
             if len(documenti) == 0:
@@ -494,23 +487,20 @@ class FatturaPAAttachmentOut(models.Model):
                 last_ix = -1
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
-                    if evolve_stato_mapping[
-                            doc.get('StatoFattura', 'ERRORE SCONOSCIUTO')] in (
-                            'accepted', 'discarted'):
+                    if evolve_stato_mapping[Evolve.document_state(
+                            doc)] in ('accepted', 'discarted'):
                         last_ix = ii
                         break
                     elif doc.get('Uid', '') == last_uid:
                         last_ix = ii
-                    elif evolve_stato_mapping[
-                            doc.get('StatoFattura',
-                                    'ERRORE SCONOSCIUTO')] == 'validated':
+                    elif evolve_stato_mapping[Evolve.document_state(
+                            doc)] == 'validated':
                         valid_ix = ii
                     elif ('disponibile in consultazione nell\'area riservata'
                           in doc.get('Note', '')):
                         valid_ix = ii
                 doc = documenti[last_ix]
-                att_state = evolve_stato_mapping[doc.get('StatoFattura',
-                                                         'ERRORE SCONOSCIUTO')]
+                att_state = evolve_stato_mapping[Evolve.document_state(doc)]
                 if valid_ix >= 0 and att_state in (
                         'sender_error', 'sent', 'rejected'):
                     last_ix = valid_ix
@@ -539,8 +529,7 @@ class FatturaPAAttachmentOut(models.Model):
                                   doc.get('NumeroFattura'),
                                   doc.get('Destinatario'),
                                   doc.get('DestinatarioPartitaIva', ''),
-                                  doc.get('StatoFattura',
-                                      'ERRORE SCONOSCIUTO'),
+                                  Evolve.document_state(doc),
                                   doc.get('Note', ''),
                                   history))
 
@@ -606,6 +595,7 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.model
     def search_via_json(self, send_channel, invoice_number):
+        chn_inv_out = int(send_channel.param1) if send_channel.param1 else 1
         chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
         request = {
             'Filtri': [
@@ -616,10 +606,12 @@ class FatturaPAAttachmentOut(models.Model):
                 }
             ]
         }
-        return self.primitive_json_send(
-            send_channel, request, chn_inv_sent, 'Cerca')
-
-
+        data, errmsg = self.primitive_json_send(
+            send_channel, request, chn_inv_out, 'Cerca')
+        if data and data['EsitoChiamata'] > 0:
+            data, errmsg = self.primitive_json_send(
+                send_channel, request, chn_inv_sent, 'Cerca')
+        return data, errmsg
 
     @api.multi
     def send_via_json(self, send_channel):
@@ -631,7 +623,7 @@ class FatturaPAAttachmentOut(models.Model):
         chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
         for att in self:
             data, errmsg = self.search_via_json(send_channel, invoice.number)
-            if data:
+            if Evolve.has_document(data):
                 att.state = 'sent'
                 continue
 
@@ -662,12 +654,9 @@ class FatturaPAAttachmentOut(models.Model):
             }
             data, errmsg = self.primitive_json_send(
                 send_channel, request, chn_inv_sent, 'Salva', attachment=att)
-            if not data:
-                return
 
-            if data['EsitoChiamata'] == 0:
-                n = len(data['Documenti']) - 1
-                stato = Evolve.parse_documento(data['Documenti'][n])
+            if data and data['EsitoChiamata'] == 0:
+                stato = Evolve.parse_documento(data['Documenti'][-1])
                 if stato["StatoInvioSdi"]:
                     att.state = evolve_stato_mapping[
                         stato['StatoInvioSdi']]
@@ -763,12 +752,26 @@ class FatturaPAAttachmentOut(models.Model):
 class Evolve():
 
     @staticmethod
+    def has_document(data):
+        if data and data['EsitoChiamata'] == 0:
+            return len(data['Documenti']) > 0
+        return False
+
+    @staticmethod
     def document_list(data):
         res = []
         for doc in data:
             documento = Evolve.parse_documento(doc)
             res.append(documento)
         return res
+
+    @staticmethod
+    def document_state(documento):
+        if 'StatoFattura' in documento:
+            return documento['StatoFattura']
+        elif 'StatoInvioSdi' in documento:
+            return documento['StatoInvioSdi']
+        return 'ERRORE SCONOSCIUTO'
 
     @staticmethod
     def documenti_by_state(data):
