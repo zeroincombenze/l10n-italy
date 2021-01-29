@@ -9,11 +9,11 @@
                 <field name="ftpa_preview_link" widget="url" text="Preview" class="btn btn-default"/>
                 <div>
                     <group>
-                        <groufp>
+                        <group>
                             <field filename="datas_fname" name="datas"/>
                             <field name="datas_fname" invisible="1"/>
                             <field name="name" invisible="1"/>
-                        </groufp>
+                        </group>
                         <group>
                             <field name="xml_supplier_id"/>
                             <field name="invoices_number"/>
