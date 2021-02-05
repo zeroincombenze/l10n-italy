@@ -18,7 +18,8 @@ class ProductTemplate(models.Model):
         'italy.conai.product.category', string='CONAI Category')
     conai_category2_id = fields.Many2one(
         'italy.conai.product.category', string='CONAI 2nd Category')
-    weight2 = fields.Float(string="CONAI 2nd Category Weight")
+    weight2 = fields.Float(string="CONAI 2nd Category Weight",
+        digits=dp.get_precision('Stock Weight'))
 
     @api.multi
     @api.onchange('weight2')
@@ -39,7 +40,8 @@ class ProductProduct(models.Model):
         'italy.conai.product.category', string='CONAI Category')
     conai_category2_id = fields.Many2one(
         'italy.conai.product.category', string='CONAI 2nd Category')
-    weight2 = fields.Float(string="CONAI 2nd Category Weight")
+    weight2 = fields.Float(string="CONAI 2nd Category Weight",
+        digits=dp.get_precision('Stock Weight'))
 
     @api.multi
     @api.onchange('weight2')

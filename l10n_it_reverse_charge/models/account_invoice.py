@@ -21,7 +21,8 @@ class AccountInvoiceLine(models.Model):
             rc = bool(fposition.rc_type_id)
             if rc:
                 for tax in self.invoice_line_tax_ids:
-                    if not tax.nature_id.code.startswith('N6'):
+                    if (not tax.nature or
+                            not tax.nature_id.code.startswith('N6')):
                         rc = False
                         break
             self.rc = rc

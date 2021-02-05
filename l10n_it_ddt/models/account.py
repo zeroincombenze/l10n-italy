@@ -2,6 +2,7 @@
 #
 #    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
+import odoo.addons.decimal_precision as dp
 from odoo import api, fields, models
 
 
@@ -23,8 +24,10 @@ class AccountInvoice(models.Model):
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
     parcels = fields.Integer('Parcels')
-    weight = fields.Float(string="Weight")
-    gross_weight = fields.Float(string="Gross Weight")
+    weight = fields.Float(string="Weight",
+        digits=dp.get_precision('Stock Weight'))
+    gross_weight = fields.Float(string="Gross Weight",
+        digits=dp.get_precision('Stock Weight'))
     volume = fields.Float('Volume')
     ddt_ids = fields.One2many(
         'stock.picking.package.preparation', 'invoice_id',
@@ -58,7 +61,9 @@ class AccountInvoiceLine(models.Model):
     ddt_sequence = fields.Integer(
         string='Ddt sequence', related='ddt_line_id.sequence',
         store=True, copy=False)
-    weight = fields.Float(string="Line Weight")
+    weight = fields.Float(string="Line Weight",
+        digits=dp.get_precision('Stock Weight'))
+
 
     @api.multi
     @api.onchange('product_id', 'quantity')
