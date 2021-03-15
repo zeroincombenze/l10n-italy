@@ -63,6 +63,7 @@ class ItalyConaiStatement(models.Model):
                 line_model.create(vals)
             return statement_line_ids
 
+        line_model = self.env['italy.conai.statement.line']
         for statement in self:
             statement_line_ids = sorted(
                 [x.id for x in statement.conai_line_ids])

@@ -122,7 +122,7 @@ class FatturaPAAttachmentIn(models.Model):
                 self.import_xml_invoice_single(
                     documento, send_channel, headers)
                 self.env.cr.commit()  # pylint: disable=invalid-commit
-            except BaseExcetion:
+            except BaseException:
                 break
 
     # Import singolo documento
