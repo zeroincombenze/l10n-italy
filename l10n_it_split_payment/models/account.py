@@ -15,6 +15,7 @@ class AccountFiscalPosition(models.Model):
 
     split_payment = fields.Boolean('Split Payment')
 
+
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 

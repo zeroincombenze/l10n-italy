@@ -118,17 +118,24 @@ class FatturaPAAttachmentIn(models.Model):
 
         for value in documenti['Documenti']:
             documento = Evolve.parse_documento(value)
-            self.import_xml_invoice_single(documento, send_channel, headers)
+            try:
+                self.import_xml_invoice_single(
+                    documento, send_channel, headers)
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except BaseExcetion:
+                break
 
     # Import singolo documento
     def import_xml_invoice_single(self, documento, send_channel, headers):
 
         attach_model = self.env['fatturapa.attachment.in']
-
+        data_ricezione = documento['DataRicezione']
         attachments = attach_model.search([('uid', '=', documento["Uid"])])
-        if (len(attachments)>0):
+        if len(attachments) > 0:
+            attachments[0].write({'e_invoice_received_date': data_ricezione})
             return
         archive = int(send_channel.param2) if send_channel.param2 else 2
+
 
         data = {
             'Documento': {
@@ -180,9 +187,10 @@ class FatturaPAAttachmentIn(models.Model):
 
         attach_vals = {
             'name': filein["Nome"],
+            'e_invoice_received_date': data_ricezione,
             'datas_fname': filein["Nome"],
             'datas': filein["Bytes"],
-            'uid': documento["Uid"]
+            'uid': documento["Uid"],
         }
 
         try:

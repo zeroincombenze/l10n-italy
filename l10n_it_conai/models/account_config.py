@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2021 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 #
 from odoo import api, fields, models
 

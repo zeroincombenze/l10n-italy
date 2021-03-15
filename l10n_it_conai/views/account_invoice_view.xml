@@ -85,9 +85,9 @@
     </record>
 
     <menuitem action="action_invoice_line_tree"
-          id="menu_invoice_line_tree"
-          parent="account.menu_finance_reports"
-          sequence="50"/>
+              id="menu_invoice_line_tree"
+              parent="account.menu_finance_reports"
+              sequence="50"/>
 
 </odoo>
 

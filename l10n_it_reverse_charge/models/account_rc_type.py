@@ -3,7 +3,7 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2021 Antonio M. Vigliotti - SHS-Av srl
 
 from odoo import fields, models, _, api
 from odoo.exceptions import ValidationError
@@ -26,6 +26,9 @@ class AccountRCTypeTax(models.Model):
         'account.tax',
         string='Sale Tax',
         required=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company', related='rc_type_id.company_id',
+        store=True)
     _sql_constraints = [
         ('purchase_sale_tax_uniq',
          'unique (rc_type_id,purchase_tax_id,sale_tax_id)',
@@ -81,6 +84,9 @@ class AccountRCType(models.Model):
         copy=False)
     description = fields.Text('Description')
     self_invoice_text = fields.Text('Text in Self Invoice')
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True,
+        default=lambda self: self.env.user.company_id)
 
     @api.multi
     @api.constrains('with_supplier_self_invoice', 'tax_ids')

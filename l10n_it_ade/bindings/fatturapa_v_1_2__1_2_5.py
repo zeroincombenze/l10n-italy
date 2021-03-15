@@ -10342,7 +10342,7 @@ ScontoMaggiorazioneType._AddElement(
         pyxb.namespace.ExpandedName(
             None,
             'Importo'),
-        Amount2DecimalType,
+        Amount8DecimalType,         # [antoniov: 2021-03-05] New 2021 law
         scope=ScontoMaggiorazioneType,
         location=pyxb.utils.utility.Location(
             'http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/'

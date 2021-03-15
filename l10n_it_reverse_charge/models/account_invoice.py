@@ -3,7 +3,7 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2021 Antonio M. Vigliotti - SHS-Av srl
 
 from odoo import api, fields, models
 from odoo.exceptions import Warning as UserError
@@ -247,8 +247,7 @@ class AccountInvoice(models.Model):
             rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(
             self.amount_total)
-        # payment_debit_line_data = self.rc_debit_line_vals(
-        #     payment_credit_line_data['credit'])
+        # payment_credit_line_data['credit'])
         rc_payment_data['line_ids'] = [
             (0, 0, payment_debit_line_data),
             (0, 0, payment_credit_line_data),
