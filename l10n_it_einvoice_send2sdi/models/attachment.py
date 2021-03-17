@@ -141,7 +141,6 @@ class FatturaPAAttachmentIn(models.Model):
             return
         archive = int(send_channel.param2) if send_channel.param2 else 2
 
-
         data = {
             'Documento': {
                 'IdAzienda': int(send_channel.sender_company_id),
@@ -438,7 +437,8 @@ class FatturaPAAttachmentOut(models.Model):
         return data, False
 
     def analyze_data_list(self, att, data, errmsg, documenti, store_mesg=None):
-        att_state = att.state
+        # att_state = att.state
+        last_ix = -1
         if not Evolve.has_document(data):
             # No invoice got from server
             limit_date = (datetime.datetime.now() - timedelta(days=1)
@@ -473,7 +473,6 @@ class FatturaPAAttachmentOut(models.Model):
             else:
                 # Got one or more invoices
                 last_date = '2019-01-01T00:00:00'
-                last_ix = -1
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
                     data_caricamento = doc.get('DataCaricamento',

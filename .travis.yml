@@ -24,7 +24,7 @@ services:
 addons:
   apt:
     sources:
-      - pov-wkhtmltopf
+      - pov-wkhtmltopdf
     # Search your sources alias here:
     # https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
     packages:
