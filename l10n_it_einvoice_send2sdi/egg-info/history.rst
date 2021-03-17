@@ -1,3 +1,9 @@
+10.0.1.0.17 (2021-03-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Send invoice already sent if previous error / Reinvia fattura inviata con errore
+* [REF] Messages history / Cronologie invio
+
 10.0.1.0.16 (2021-03-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
