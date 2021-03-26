@@ -35,6 +35,7 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
 
 evolve_stato_mapping = {
     u'Inviato': 'sent',
+    u'Il documento è in fase di invio': 'sent',
     u'Inviata a Sdi': 'sent',
     u'In attesa di risposta dopo aver inviato il documento': 'sent',
     u'Importato': 'sent',

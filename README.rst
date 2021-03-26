@@ -155,7 +155,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_intrastat                    | |no_check| | 10.0.1.0.3 | Riclassificazione merci e servizi per dichiarazioni Intrastat                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_intrastat_statement          | |no_check| | 10.0.1.0.5 | Dichiarazione Intrastat per l'Agenzia delle Dogane                               |
+| l10n_it_intrastat_statement          | |no_check| | 10.0.1.1.0 | Dichiarazione Intrastat per l'Agenzia delle Dogane                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_invoices_data_communication  | |no_check| | 10.0.1.1.2 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -382,7 +382,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-03-15
+Last Update / Ultimo aggiornamento: 2021-03-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
