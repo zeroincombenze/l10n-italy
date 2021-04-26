@@ -838,14 +838,16 @@ class CommitmentLine(models.AbstractModel):
 
     @api.model
     def _tipodocumento(self, invoice):
-        cr = self.env.cr
-        uid = self.env.user.id
-        context = self.env.context
+        # cr = self.env.cr
+        # uid = self.env.user.id
+        # context = self.env.context
 
         doctype = invoice.type
         country_code = self.env['account.vat.communication'].get_country_code(
             invoice.partner_id)
-        if doctype == 'out_invoice' and \
+        if invoice.invoice_type_id:
+            return invoice.invoice_type_id.code
+        elif doctype == 'out_invoice' and \
                 not invoice.partner_id.vat and \
                 not invoice.partner_id.fiscalcode:
             if invoice.amount_total >= 0:
@@ -1072,10 +1074,10 @@ class CommitmentDTRLine(models.Model):
 
     @api.multi
     def _xml_tipodocumento(self, fname=None, args=None):
-        cr=self.env.cr
-        uid=self.env.user.id
-        ids=self.ids
-        context=self.env.context
+        # cr=self.env.cr
+        # uid=self.env.user.id
+        ids = self.ids
+        # context=self.env.context
         res = {}
         for line in self.browse(ids):
             td = self._tipodocumento(line.invoice_id)

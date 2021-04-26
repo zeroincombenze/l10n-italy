@@ -6,7 +6,7 @@
 # [2017: SHS-AV s.r.l.] First version
 {
     'name': 'Comunicazione periodica IVA',
-    'version': '10.0.0.2.0',
+    'version': '10.0.0.2.1',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/software-gestionale/',
