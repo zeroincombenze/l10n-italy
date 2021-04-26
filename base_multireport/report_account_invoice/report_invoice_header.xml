@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="shipping_addres">
+        <t t-set="address_mode" t-value="report.get_report_attrib('address_mode', o, doc_opts)"/>
+        <div class="row">
+            <div class="col-xs-6">
+                <div t-if="address_mode == 'standard' and o.partner_shipping_id and o.partner_shipping_id != o.partner_id">
+                    <strong>Indirizzo di spedizione:</strong>
+                    <p t-if="o.partner_id.name" t-field="o.partner_id.name"/>
+                    <p t-if="not o.partner_id.name" t-field="o.partner_id.parent_id.name"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
     <template id="report_invoice_header">
         <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
         <t t-set="address_mode" t-value="report.get_report_attrib('address_mode', o, doc_opts)"/>

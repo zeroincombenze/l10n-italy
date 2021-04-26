@@ -838,9 +838,9 @@ class CommitmentLine(models.AbstractModel):
 
     @api.model
     def _tipodocumento(self, invoice):
-        cr=self.env.cr
-        uid=self.env.user.id
-        context=self.env.context
+        cr = self.env.cr
+        uid = self.env.user.id
+        context = self.env.context
 
         doctype = invoice.type
         country_code = self.env['account.vat.communication'].get_country_code(

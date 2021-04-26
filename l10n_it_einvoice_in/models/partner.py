@@ -56,7 +56,6 @@ class Partner(models.Model):
             ('country_id.code', '=', 'IT')
         ])
 
-
     def check_partner_base_data(self, partner_id, DatiAnagrafici, fatturapa):
         partner = self.env['res.partner'].browse(partner_id)
         if (
@@ -335,7 +334,14 @@ class Partner(models.Model):
                 if 'rea_code' in vals and (rec.rea_code or
                                            rec.type == 'invoice'):
                     del vals['rea_code']
-                rec.write(vals)
+                for item in vals.keys():
+                    if (vals[item] is None or
+                            isinstance(rec[item],
+                                       (basestring, bool, int, float)) and
+                            rec[item] == vals[item]):
+                        del vals[item]
+                if vals:
+                    rec.write(vals)
                 id = rec.id
             except BaseException as e:
                 raise UserError(e)

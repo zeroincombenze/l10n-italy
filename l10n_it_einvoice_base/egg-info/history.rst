@@ -1,3 +1,14 @@
+10.0.2.1.15 (2021-04-06)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Withholding tax 2021 law / Normativa 2021 Enasarco
+
+10.0.2.1.14 (2021-04-01)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Update preview label to 2021 law / Aggiornamento preview normativa 2021
+
+
 10.0.2.1.13 (2020-01-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -37,4 +48,3 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Create refund from invoice set wrong fiscal document type / NC da fattura generava tipo documento errato
-

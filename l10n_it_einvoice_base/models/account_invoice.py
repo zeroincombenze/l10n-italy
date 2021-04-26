@@ -298,7 +298,11 @@ class AccountInvoice(models.Model):
     #  2.1.1.5.1
     ftpa_withholding_type = fields.Selection(
         [('RT01', 'Natural Person'),
-         ('RT02', 'Legal Person')],
+         ('RT02', 'Legal Person'),
+         ('RT03', 'INPS'),
+         ('RT04', 'Enasarco'),
+         ('RT05', 'Empam'),
+         ('RT06', 'Other'),],
         'Withholding Type'
     )
     #  2.1.1.5.2 withholding_amount in module
