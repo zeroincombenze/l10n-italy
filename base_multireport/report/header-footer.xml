@@ -68,7 +68,9 @@
 
     <template id="external_layout_footer">
         <div class="footer">
-            <div class="text-center" style="border-top: 1px solid black;">
+            <t t-set="footer_attr" t-if="report.get_report_attrib('footer_mode', o, doc_opts) != 'no_footer'" t-value="'border-top: 1px solid black'"/>
+            <t t-set="footer_attr" t-if="report.get_report_attrib('footer_mode', o, doc_opts) == 'no_footer'" t-value="'border-top: none'"/>
+            <div class="text-center" t-att-style="footer_attr">
                 <ul t-if="report.get_report_attrib('footer_mode', o, doc_opts) == 'auto'" class="list-inline">
                     <t t-set="company" t-value="company.sudo()"/>
                     <li t-if="company.phone">Telefono: <span t-field="company.phone"/></li>
@@ -89,7 +91,7 @@
                     <span t-raw="rml_footer"/>
                 </t>
 
-                <ul class="list-inline">
+                <ul class="list-inline" style="font-size: small;">
                     <li>Pag.:</li>
                     <li><span class="page"/></li>
                     <li>/</li>
@@ -99,4 +101,3 @@
         </div>
     </template>
 </odoo>
-

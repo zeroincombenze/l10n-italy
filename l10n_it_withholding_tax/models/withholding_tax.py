@@ -67,9 +67,18 @@ class WithholdingTax(models.Model):
     welfare_fund_type_id = fields.Many2one(
         'welfare.fund.type', 'Welfare Fund Type')
     wt_types = fields.Selection([
-        ('enasarco', 'Enasarco'),
-        ('ritenuta', 'Ritenuta d\'acconto')],
-        'Withholding tax type', required=True, default='ritenuta')
+        ('enasarco', 'Enasarco tax'),
+        ('ritenuta', 'Withholding tax'),
+        ('inps', 'Inps Tax'),
+        ('enpam', 'Enpam Tax'),
+        ('other', 'Other Tax')
+        ], 'Withholding tax type', required=True, default='ritenuta')
+    use_daticassaprev = fields.Boolean(
+        "DatiCassa export", oldname='use_daticassaprev_for_enasarco',
+        help="Setting this, while exporting e-invoice XML, "
+             "data will be also added to DatiCassaPrevidenziale"
+    )
+    daticassprev_tax_id = fields.Many2one('account.tax')
 
     @api.one
     @api.constrains('rate_ids')

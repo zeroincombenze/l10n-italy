@@ -83,7 +83,7 @@ class Report(models.Model):
                 object = report
             if object:
                 if hasattr(object, param):
-                    if ttype == '2many2one':
+                    if ttype == 'many2one':
                         value = getattr(object, param).name
                     else:
                         value = getattr(object, param)
@@ -118,7 +118,9 @@ class Report(models.Model):
                     hasattr(report_model_style, template_in_style)):
                 template = getattr(report_model_style, template_in_style)
 
-            if hasattr(report, param):
+            if param in ('custom_header', 'custom_footer'):
+                value = False
+            elif hasattr(report, param):
                 value = getattr(report, param)
                 if param == 'custom_footer' and value == '<p><br></p>':
                     value = False
@@ -132,6 +134,8 @@ class Report(models.Model):
             value = getattr(report_model_style, param)
             if param == 'custom_footer' and value == '<p><br></p>':
                 value = False
+        if param in ('custom_header', 'custom_footer') and not value:
+            value = get_obj_value(param)
         if param == 'footer_mode' and (not value or value == 'standard'):
             if company.custom_footer:
                 value = 'custom'
