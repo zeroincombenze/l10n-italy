@@ -8,6 +8,7 @@
 .. contents::
 
 
+
 Overview / Panoramica
 =====================
 
@@ -123,7 +124,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_export_zip         | |no_check| | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_in                 | |no_check| | 10.0.3.0.0 | Ricezione fatture elettroniche                                                   |
+| l10n_it_fatturapa_in                 | |no_check| | 10.0.3.0.2 | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -155,7 +156,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_intrastat                    | |no_check| | 10.0.1.0.3 | Riclassificazione merci e servizi per dichiarazioni Intrastat                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_intrastat_statement          | |no_check| | 10.0.1.1.0 | Dichiarazione Intrastat per l'Agenzia delle Dogane                               |
+| l10n_it_intrastat_statement          | |no_check| | 10.0.1.1.1 | Dichiarazione Intrastat per l'Agenzia delle Dogane                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_invoices_data_communication  | |no_check| | 10.0.1.1.2 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -189,7 +190,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_split_payment                | 10.0.1.1.0 | |same|     | Split Payment                                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_vat_communication            | 10.0.0.2.0 | |no_check| | Comunicazione periodica IVA                                                      |
+| l10n_it_vat_communication            | 10.0.0.2.1 | |no_check| | Comunicazione periodica IVA                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_vat_registries               | 10.0.1.3.0 | 10.0.1.3.1 | Italian Localization - VAT Registries                                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -336,6 +337,7 @@ Support / Supporto
 
 
 
+
 Get involved / Ci mettiamo in gioco
 ===================================
 
@@ -353,6 +355,199 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare uno dei moduli, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+
+History / Cronologia
+--------------------
+
+base_multireport: 10.0.0.2.21 (2021-05-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Custome footer / Piede personalizzato
+
+
+l10n_it_einvoice_in: 10.0.1.3.26 (2021-04-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Strange error in fiscal code
+
+
+l10n_it_einvoice_base: 10.0.2.1.15 (2021-04-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Withholding tax 2021 law / Normativa 2021 Enasarco
+
+
+l10n_it_einvoice_base: 10.0.2.1.14 (2021-04-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Update preview label to 2021 law / Aggiornamento preview normativa 2021
+
+
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.18 (2021-03-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Manage "'Il documento è in fase di invio"
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.17 (2021-03-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Send invoice already sent if previous error / Reinvia fattura inviata con errore
+* [REF] Messages history / Cronologie invio
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.16 (2021-03-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Set e_invoice_received_date / Imposta data arrivo SDI
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.15 (2021-03-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Set e_invoice_received_date / Imposta data arrivo SDI
+
+
+
+l10n_it_ade: 10.0.0.3.2 (2021-03-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Discount amount +2 decs / Sconto con più di 2 decimali
+
+
+l10n_it_conai: 10.0.0.1.7 (2021-01-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No data change after update / No modifica dati default in update
+
+
+l10n_it_einvoice_in: 10.0.1.3.25 (2021-01-25)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Received date / Data di ricezione fattura
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.14 (2021-01-21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Log http error / Log error http
+* [IMP] Fatture consegnate in area riservata sono marcate consegnate
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.13 (2021-01-12)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Get supplier invoice range by parameter / Intervallo fatture fornitori da parametro
+
+
+
+l10n_it_einvoice_in: 10.0.1.3.24 (2021-01-12)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Disabled xml validation / Validazione file xml disabilitata
+
+
+base_multireport: 10.0.0.2.20 (2021-01-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No purchase order code / Errore in stampa ordine di acquisto con codice
+
+
+
+l10n_it_ddt: 10.0.1.8.10 (2021-01-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Evaluate sale order line weight / Calcolo peso riga in ordine
+
+
+l10n_it_einvoice_in: 10.0.1.3.23 (2021-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Accept old nature code / Accetta codici natura 2020
+
+
+l10n_it_ddt: 10.0.1.8.9 (2021-01-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice TD24 / Tipo documento fiscale TD24
+
+
+l10n_it_einvoice_out: 10.0.1.0.18 (2021-01-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
+
+
+l10n_it_account: 10.0.1.2.6 (2020-12-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recongnize N6.* / Riconoscimento N6.*
+
+
+l10n_it_einvoice_import_zip: 10.0.1.0.4 (2020-12-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Show attachment previous recorder too / Mostra anche allegati registrati in precedenza
+
+
+l10n_it_ddt: 10.0.1.8.8 (2020-12-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Create DdT check for picking state / Controllo stato picking in creazione DdT
+
+
+l10n_it_conai: 10.0.0.1.6 (2020-12-21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] CONAI on sale order / Dati CONAI in ordini di vendita
+
+
+l10n_it_ade: 10.0.0.3.1 (2020-12-21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] MP23 / Pagamento MP23
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.12 (2020-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Detailed error messages / Messaggi di errore dettagliata
+
+
+
+l10n_it_einvoice_in: 10.0.1.3.22 (2020-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Avoid invoice address duplicate / Evita duplicazione indirizzi di fatturazione impport ft. fornitori
+
+
+
+l10n_it_ade: 10.0.0.3.0 (2020-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New 1.2.1 standard / Implementazione standard e-fattura 1.2.1
+
+
+l10n_it_ddt: 10.0.1.8.7 (2020-12-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Date done updatable / Data spedizione modificabile
+* [IMP} Total amount in tree view / Totale importo DdT in vista albero
+
+
+
+base_multireport: 10.0.0.2.19 (2020-12-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Bank IBAN (new module partner bank) / Stampa (a seguito modifica modulo partner bank)
+
+
+
+
+
 
 Credits / Didascalie
 ====================
@@ -376,25 +571,26 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-03-26
+Last Update / Ultimo aggiornamento: 2021-05-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
@@ -442,4 +638,5 @@ Last Update / Ultimo aggiornamento: 2021-03-26
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/axitec_helpdesk
+
 
