@@ -784,7 +784,7 @@ class StockPickingPackagePreparation(models.Model):
                 for line in order.order_line:
                     if (line not in invoiced_order_lines and
                             (not line.product_id or
-                             line.product_id.invoice_policy == 'order')):
+                             line.product_id.type == 'service')):
                         line.invoice_line_create(invoices[group_key].id,
                                                  line.qty_to_invoice)
             # Allow additional operations from ddt

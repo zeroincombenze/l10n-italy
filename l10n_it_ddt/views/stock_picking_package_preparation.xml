@@ -13,6 +13,7 @@
                 <field name="sale_id"/>
                 <field name="invoice_number"/>
             </xpath>
+
             <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
                 <field name="price_unit"/>
                 <field name="discount"/>
@@ -284,4 +285,3 @@
     </record>
 
 </odoo>
-

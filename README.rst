@@ -360,6 +360,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_ddt: 10.0.1.8.11 (2021-06-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Ad just service line from sale order / Aggiunge solo righe di servizi da ordine
+
+
 l10n_it_central_journal: 10.0.0.0.4 (2021-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -585,7 +591,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-06-01
+Last Update / Ultimo aggiornamento: 2021-06-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

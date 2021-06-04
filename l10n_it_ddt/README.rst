@@ -1,17 +1,18 @@
 
 ======================
-|icon| DDT 10.0.1.8.10
+|icon| DDT 10.0.1.8.11
 ======================
 
 
 **Delivery Document to Transfer**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/None/10.0//static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
+
 
 
 Overview / Panoramica
@@ -144,14 +145,14 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
+    odoo_install_repository None -b 10.0 -O zero -o $HOME/10.0
     vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Install
+* |menu| Setting > Apps |right_do| Select **** > Install
 
 
 |
@@ -175,7 +176,7 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
+    odoo_install_repository None -b 10.0 -o $HOME/10.0 -U
     vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
@@ -184,7 +185,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Update
+* |menu| Setting > Apps |right_do| Select **** > Update
 
 |
 
@@ -203,7 +204,7 @@ Get involved / Ci mettiamo in gioco
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+<https://github.com/zeroincombenze/None/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
 
@@ -216,8 +217,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.8.11 (2021-06-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Ad just service line from sale order / Aggiunge solo righe di servizi da ordine
 
 10.0.1.8.10 (2021-01-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -247,100 +254,6 @@ ChangeLog History / Cronologia modifiche
 * [IMP] Add DdT lines to invoice / Aggiunta righe DdT a fattura esistente
 
 
-10.0.1.8.2 (2020-02-19)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Change version id / Cambio identificativo versione
-* [IMP] Invoicing by order / Fatturazione divisa per ordini
-
-
-10.0.1.5.14 (2020-01-21)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Qty zero becomes 1 in Invoice / Q.tà zero diventa 1 in fattura
-
-
-10.0.1.5.13 (2019-12-11)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Line weight / Peso in riga
-
-
-10.0.1.5.12 (2019-11-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Total amount of stock.package.preparation / Totale del DdT
-
-
-10.0.1.5.11 (2019-11-11)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Sometime it crashes when cancel sale order / A volte sistema andava in crash in annullo ordine
-
-
-10.0.1.5.10 (2019-10-18)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Delivery condition inheritance / Determinazione dei valori di consegna
-* [FIX] Weights are evaluated from pickig or order / I pesi del DdT sono calcolati dal prelivo o dall'ordine
-* [IMP] Parcels is the sum of picking or order parcels / I colli sono la somma dei colli del prelievo o dell'ordine
-* [IMP] Volume is the sum of picking or order volume / Il volume è la somma dei volumi del prelievo o dell'ordine
-* [FIX] Show price is inherit from customer / Il flag mostra prezzi è ereditato del cliente
-
-
-10.0.1.5.9 (2019-10-15)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Default delivery data by xmlrpc tough / Imposta dati predefiniti di traporto anche da xmlrpc
-
-
-10.0.1.5.8 (2019-09-23)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Total amount in line / Importo totale di riga
-* [FIX] Order cancel unlink DdTs too / Annullo ordine elimina anche i DdT
-* [FIX] Order confirm with DdT set 'to invoice' / Conferma ordine, se crea DdT, imposta ordine da fatturare
-* [FIX] Unlink DdT recover sequence number / L'eliminazione di un DdT recupera il numero, se ultimo DdT
-
-
-10.0.1.5.7 (2019-09-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Shipping condition by carrier / Informazioni di spedizione da metodo di consegna
-
-
-10.0.1.5.6 (2019-09-03)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Sale invoice ref / Riferimento al numero di ordine
-
-
-10.0.1.5.5 (2019-08-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Invoice from delivery documents base on flag / La creazione righe da ordine non in DdT è opzionale
-
-
-10.0.1.5.4 (2019-06-24)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Print UoM in lines / Stampa UM in dettagli
-* [IMP] DdT type visible in picking / Tipo DdT visbile nella consegna
-* [IMP] DdT type in sale order / Tipo DdT in ordine di vendita
-
-
-10.0.1.5.3 (2019-05-20)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Invoice from delivery documents add service lines from sale order / La creazione della fattura da ordine aggiunge le righe di servizi che non sono in DdT
-
-
-10.0.1.5.2
-~~~~~~~~~~
-
-* [IMP] Ref. fields not copied / Campi con riferimenti con copiati in duplica DdT
-* [IMP] DdT name based on DdT number or partner name / Nome DdT (per ricerche) basato su numero o nome cliente
-* [IMP] Report header / Cessionario e Destinatario in modello di stampa
 
 
 |
@@ -404,32 +317,33 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
 |
 
-This module is part of l10n-italy project.
+This module is part of None project.
 
-Last Update / Ultimo aggiornamento: 2021-01-08
+Last Update / Ultimo aggiornamento: 2021-06-04
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :alt: 
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/None.svg?branch=10.0
+    :target: https://travis-ci.com/zeroincombenze/None
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/None/badge.svg?branch=10.0
+    :target: https://coveralls.io/github/zeroincombenze/None?branch=10.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/None/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/None/branch/10.0
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
@@ -440,8 +354,8 @@ Last Update / Ultimo aggiornamento: 2021-01-08
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/None/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/None/branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org

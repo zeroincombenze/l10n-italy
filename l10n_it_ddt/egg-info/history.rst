@@ -1,3 +1,8 @@
+10.0.1.8.11 (2021-06-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Ad just service line from sale order / Aggiunge solo righe di servizi da ordine
+
 10.0.1.8.10 (2021-01-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

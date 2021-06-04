@@ -63,7 +63,15 @@ class AccountInvoiceLine(models.Model):
         store=True, copy=False)
     weight = fields.Float(string="Line Weight",
         digits=dp.get_precision('Stock Weight'))
-
+    sale_line_id = fields.Many2one(
+        'sale.order.line',
+        string='Sale order line',
+        store=True, readonly=True)
+    # TODO: Remove
+    sale_line_ids = fields.Many2many(
+        'sale.order.line',
+        string='Sale order lines',
+        store=True, readonly=True)
 
     @api.multi
     @api.onchange('product_id', 'quantity')
