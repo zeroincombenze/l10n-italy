@@ -45,19 +45,24 @@
 
           <div class="header">
               <div class="row">
-                  <div class="col-xs-4  ">
+                  <div class="col-xs-4">
                       <h3><span t-esc="company.name"/></h3>
                       <span t-esc="company.street" class=""/><br/>
                       <span t-esc="company.zip" class=""/> - <span t-esc="company.city" class=""/> - <span t-esc="company.state_id.code" class=""/><br/>
-                      <span class="text-right">Vat:</span><span t-esc="company.partner_id.vat" class=""/><br/>
+                      <span class="text-right">TIN: </span><span t-esc="company.partner_id.vat" class=""/><br/>
                   </div>
-                  <div class="col-xs-4 col-xs-offset-4 text-right">
+                  <div class="col-xs-4 col-xs-offset-4 text-right" style="margin-left:10px">
                       <h3 t-esc="title"/>
                   </div>
               </div>
           </div>
           <t t-raw="0" />
           <div class="footer">
+              <!-- The variable "l10n_it_count_fiscal_year" shall be used to set manually the fiscal year
+                in the report footer. Define it in you report as follows:
+                <t t-set="l10n_it_count_fiscal_year" t-value="<value>"/>
+                The variable "l10n_it_count_fiscal_page_base" is also available, to set the "Last printed page"
+              -->
               <div class="row">
                   <div class="col-xs-4">
 
@@ -65,7 +70,12 @@
                   <div class="col-xs-4 col-xs-offset-4 text-right">
                     <span style="display: none;" id="l10n_it_count_fiscal_page_base" t-esc="l10n_it_count_fiscal_page_base" />
                     <ul class="list-inline">Pag:
-                        <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
+                        <t t-if="l10n_it_count_fiscal_year">
+                            <li><span t-esc="l10n_it_count_fiscal_year"/></li>
+                        </t>
+                        <t t-if="not l10n_it_count_fiscal_year">
+                            <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
+                        </t>
                         <li>/</li>
                         <li><span class="page"/></li>
                     </ul>

@@ -360,6 +360,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_account: 10.0.1.2.7 (2021-07-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Journal page
+
+
 l10n_it_ddt: 10.0.1.8.11 (2021-06-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -450,115 +456,6 @@ l10n_it_einvoice_send2sdi: 10.0.1.0.14 (2021-01-21)
 * [IMP] Fatture consegnate in area riservata sono marcate consegnate
 
 
-l10n_it_einvoice_send2sdi: 10.0.1.0.13 (2021-01-12)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Get supplier invoice range by parameter / Intervallo fatture fornitori da parametro
-
-
-
-l10n_it_einvoice_in: 10.0.1.3.24 (2021-01-12)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Disabled xml validation / Validazione file xml disabilitata
-
-
-base_multireport: 10.0.0.2.20 (2021-01-09)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] No purchase order code / Errore in stampa ordine di acquisto con codice
-
-
-
-l10n_it_ddt: 10.0.1.8.10 (2021-01-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Evaluate sale order line weight / Calcolo peso riga in ordine
-
-
-l10n_it_einvoice_in: 10.0.1.3.23 (2021-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Accept old nature code / Accetta codici natura 2020
-
-
-l10n_it_ddt: 10.0.1.8.9 (2021-01-04)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Invoice TD24 / Tipo documento fiscale TD24
-
-
-l10n_it_einvoice_out: 10.0.1.0.18 (2021-01-03)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
-
-
-l10n_it_account: 10.0.1.2.6 (2020-12-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Recongnize N6.* / Riconoscimento N6.*
-
-
-l10n_it_einvoice_import_zip: 10.0.1.0.4 (2020-12-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Show attachment previous recorder too / Mostra anche allegati registrati in precedenza
-
-
-l10n_it_ddt: 10.0.1.8.8 (2020-12-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Create DdT check for picking state / Controllo stato picking in creazione DdT
-
-
-l10n_it_conai: 10.0.0.1.6 (2020-12-21)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] CONAI on sale order / Dati CONAI in ordini di vendita
-
-
-l10n_it_ade: 10.0.0.3.1 (2020-12-21)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] MP23 / Pagamento MP23
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.12 (2020-12-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Detailed error messages / Messaggi di errore dettagliata
-
-
-
-l10n_it_einvoice_in: 10.0.1.3.22 (2020-12-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Avoid invoice address duplicate / Evita duplicazione indirizzi di fatturazione impport ft. fornitori
-
-
-
-l10n_it_ade: 10.0.0.3.0 (2020-12-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] New 1.2.1 standard / Implementazione standard e-fattura 1.2.1
-
-
-l10n_it_ddt: 10.0.1.8.7 (2020-12-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Date done updatable / Data spedizione modificabile
-* [IMP} Total amount in tree view / Totale importo DdT in vista albero
-
-
-
-base_multireport: 10.0.0.2.19 (2020-12-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Bank IBAN (new module partner bank) / Stampa (a seguito modifica modulo partner bank)
-
-
-
 
 
 
@@ -591,7 +488,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-06-04
+Last Update / Ultimo aggiornamento: 2021-07-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
