@@ -293,8 +293,6 @@ class Partner(models.Model):
                         add_domain = True
                     if add_domain:
                         domain.append(constr)
-                import pdb
-                pdb.set_trace()
                 rec = self.search(domain)
                 if rec:
                     rec = rec[0]
