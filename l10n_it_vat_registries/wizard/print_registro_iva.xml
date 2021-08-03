@@ -9,12 +9,18 @@
             <field name="arch" type="xml">
                 <form string="Tax Journal">
                     <group>
-                        <field name="date_range_id"/>
+                        <group>
+                            <field name="date_range_id"/>
+                        </group>
+                        <newline/>
                         <group>
                             <field name="from_date"/>
                         </group>
                         <group>
                             <field name="to_date"/>
+                        </group>
+                        <group>
+                            <field name="year_footer"/>
                         </group>
                         <separator string="Journals" colspan="2"/>
                         <group>
@@ -24,11 +30,11 @@
                             <button name="load_journal_ids" type="object" string="Load Journals" icon="fa-upload"/>
                         </group>
                         <field name="journal_ids" colspan="2" nolabel="1" height="250" domain="[('type', 'in', ('sale','purchase'))]"/>
-                        <separator string="Layout" colspan="2"/>
-                        <field name="layout_type"/>
-                        <field name="only_totals" />
-                        <field name="fiscal_page_base"/>
-                        <newline/>
+                        <group string="Layout">
+                            <field name="layout_type"/>
+                            <field name="only_totals" />
+                            <field name="fiscal_page_base"/>
+                        </group>
                         <field name="message" nolabel="1" colspan="2"/>
                     </group>
                     <footer>
