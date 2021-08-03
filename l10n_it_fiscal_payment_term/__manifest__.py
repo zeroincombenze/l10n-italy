@@ -10,7 +10,7 @@
 {
     'name': 'Fiscal payment term',
     'summary': 'Electronic & Fiscal invoices payment',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Localization/Italy',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA)',
