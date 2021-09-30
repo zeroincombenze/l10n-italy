@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-# Author: Gianmarco Conte - Dinamiche Aziendali Srl
-# Copyright 2017
-# Dinamiche Aziendali Srl <www.dinamicheaziendali.it>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
@@ -12,6 +9,7 @@ from odoo.tools.misc import flatten
 
 class WizardGiornale(models.TransientModel):
     _name = "wizard.giornale"
+    _description = "Wizard journal report"
 
     @api.model
     def _get_journal(self):
@@ -81,7 +79,7 @@ class WizardGiornale(models.TransientModel):
                 self.date_move_line_from_view = self.last_def_date_print
             else:
                 self.last_def_date_print = None
-                self.first_date_print = None
+                self.first_date_print = date_start
             self.date_move_line_from = date_start
             self.date_move_line_to = date_end
             if self.daterange.progressive_line_number != 0:
@@ -158,19 +156,15 @@ class WizardGiornale(models.TransientModel):
     def print_giornale_final(self):
         self.ensure_one()
         res_company_obj = self.env['res.company']
-        move_line_obj = self.env['account.move.line']
         if self.target_move != 'posted':
             raise UserError(_('Only posted records'))
-        if self.first_date_print:
-            if self.date_move_line_from < self.first_date_print:
-                raise UserError(_('Date already printed'))
-            elif self.date_move_line_from > self.first_date_print:
-                raise UserError(_('Missing records'))
-        else:
-            move_line_ids = move_line_obj.search([], order='date', limit=1)
-            if (move_line_ids and
-                    self.date_move_line_from >= move_line_ids[0].date):
-                raise UserError(_('Missing records'))
+
+        if not self.first_date_print:
+            raise UserError(_('Missing records'))
+        if self.date_move_line_from < self.first_date_print:
+            raise UserError(_('Date already printed'))
+        elif self.date_move_line_from > self.first_date_print:
+            raise UserError(_('Missing records'))
 
         move_line_ids = self.get_line_ids()
         if not move_line_ids:

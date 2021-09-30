@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
 <template id="report_giornale">
     <t t-call="report.html_container">
         <t t-set="title" t-value="'Stampa libro giornale'"/>
@@ -52,7 +51,6 @@
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
-                            <!-- <td class="left_without_line"> </td> -->
                             <td class="left_without_line">Initial Balance</td>
                             <!-- Debit -->
                             <td class="right_without_line">
@@ -106,7 +104,7 @@
                                 </td>
                                 <!-- Account name -->
                                 <td class="left_without_line">
-                                    <div style="page-break-inside: avoid"
+                                    <div style="page-break-inside: avoid;word-break: break-all;"
                                     t-esc="line.account_id.name" />
                                 </td>
                                 <!-- partner name -->
