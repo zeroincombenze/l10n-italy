@@ -5,15 +5,15 @@
     <!-- Payment Terms -->
     <record id="fatturapa_TP01" model="fatturapa.payment_term">
         <field name="code">TP01</field>
-        <field name="name">pagamento a rate</field>
+            <field name="name">(pagamento a rate)</field>
     </record>
     <record id="fatturapa_tp02" model="fatturapa.payment_term">
         <field name="code">TP02</field>
-        <field name="name">pagamento completo</field>
+            <field name="name">(pagamento completo)</field>
     </record>
     <record id="fatturapa_tp03" model="fatturapa.payment_term">
         <field name="code">TP03</field>
-        <field name="name">anticipo</field>
+            <field name="name">(anticipo)</field>
     </record>
     <record id="fatturapa_tp04" model="fatturapa.payment_term">
         <field name="code"/>
@@ -52,7 +52,7 @@
     </record>
     <record id="fatturapa_mp08" model="fatturapa.payment_method">
         <field name="code">MP08</field>
-            <field name="name">carta di credito</field>
+            <field name="name">carta di pagamento</field>
     </record>
     <record id="fatturapa_mp09" model="fatturapa.payment_method">
         <field name="code">MP09</field>
@@ -117,4 +117,3 @@
 
 </data>
 </openerp>
-
