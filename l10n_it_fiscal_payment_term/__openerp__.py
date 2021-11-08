@@ -14,8 +14,8 @@
     'summary': 'Electronic invoices payment',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA)',
-    'website': 'http://www.odoo-italia.org',
-    'license': 'AGPL-3',
+    'website': 'https://odoo-community.org',
+    'license': 'LGPL-3',
     'depends': [
         'account',
         'l10n_it_ade',
@@ -23,8 +23,10 @@
     'data': [
         'security/ir.model.access.csv',
         'data/fatturapa_data.xml',
+        'views/account_view.xml',
         'views/payment_term_view.xml',
         'views/payment_method_view.xml',
     ],
     'installable': True,
+    'pre_init_hook': 'pre_init_hook',
 }
