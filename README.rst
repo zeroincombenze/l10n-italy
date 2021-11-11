@@ -407,6 +407,7 @@ l10n_it_account: 10.0.1.2.7 (2021-07-19)
 * [FIX] Journal page
 
 
+
 l10n_it_ddt: 10.0.1.8.11 (2021-06-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -417,25 +418,6 @@ l10n_it_central_journal: 10.0.0.0.4 (2021-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Wrong footer / Piede stampa sbagliato
-
-
-
-base_multireport: 10.0.0.2.21 (2021-05-09)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Custome footer / Piede personalizzato
-
-
-l10n_it_einvoice_in: 10.0.1.3.26 (2021-04-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Strange error in fiscal code
-
-
-l10n_it_einvoice_base: 10.0.2.1.15 (2021-04-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Withholding tax 2021 law / Normativa 2021 Enasarco
 
 
 
@@ -471,7 +453,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-09-30
+Last Update / Ultimo aggiornamento: 2021-11-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -530,6 +512,6 @@ Last Update / Ultimo aggiornamento: 2021-09-30
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
 
 

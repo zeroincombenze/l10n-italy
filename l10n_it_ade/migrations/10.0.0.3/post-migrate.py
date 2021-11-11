@@ -14,7 +14,7 @@ from odoo import api, SUPERUSER_ID
 # law section(number), law letter(text), law ref (text)
 # - law supplemental -> (bis|ter|quater|quinques|sexies|septies|octies|novies)
 RE_ESCL = 'E[scl.]+'
-RE_FC = '(F\.?C|F[uori.]+ C[ampo.]+)( IVA )?'
+RE_FC = r'(F\.?C|F[uori.]+ C[ampo.]+)( IVA )?'
 RE_NSOGG = 'N[on]*[. ]+S'
 RE_MIN = 'Contr[ib. ]+Min'
 RE_NI = 'N[on]*[. ]+I[mp. ]+'
@@ -32,16 +32,16 @@ ASSOCODES = {
     'N020204': (None, '7', 'quinquies', None, None, None),
     'N020206': (None, '7', 'sexies', None, None, None),
     'N020207': (None, '7', 'septies', None, None, None),
-    'N020208': (None, '38', None, '5', None, 'D?\.?L.? *331'),
+    'N020208': (None, '38', None, '5', None, r'D?\.?L.? *331'),
     'N020209': ('no.? res', '17', None, '3', None, None),
     'N020210': (None, '7', None, None, None,
                 '19[- .,]*c[- .,]*3[- .,/]*l[etr.]*b'),
-    'N020212': (RE_NSOGG, '50', 'bis', '4', '[cehi .]+', 'D?\.?L.? *331'),
+    'N020212': (RE_NSOGG, '50', 'bis', '4', '[cehi .]+', r'D?\.?L.? *331'),
     'N020213': (None, '7', 'octies', None, None, None),
     'N020300': (RE_NSOGG, '74', None, '[12]', None, None),
     'N020400': (RE_ESCL, '13', None, None, None, None),
     'N020501': (RE_MIN, '(1|27)', None, None, None,
-                '(D?\.?L.? *98|L.? *244)'),
+                r'(D?\.?L.? *98|L.? *244)'),
     'N020502': ('Forf', '1', None, None, None, 'L.? *190'),
     'N020601': ('Var[iazione.]?', '26', None, '3', None, None),
     'N030101': (RE_NI, '8', None, '1', 'a', None),
@@ -59,14 +59,14 @@ ASSOCODES = {
                 '(Let[tera.]+|Dich[iarzone]*)[ di]* Int[ento.]+'),
     'N030204': (RE_NI, '72', None, '1', None,
                 '(Let[tera.]+|Dich[iarzone]*)[ di]* Int[ento.]+'),
-    'N030401': (RE_NI, '41', None, None, None, 'D?\.?L.? *331'),
+    'N030401': (RE_NI, '41', None, None, None, r'D?\.?L.? *331'),
     'N030501': (RE_NI, '38', 'quater', '1', None, None),
     'N040101': (RE_ESE, '10', None, None, None, None),
     'N040102': (RE_ESE, '10', None, '[123456789]', None, None),
     'N040103': (RE_ESE, '10', None, '11', None, None),
     'N040105': (RE_ESE, '10', None, '27', None, 'quinques'),
     'N050100': ('R[egime.]+[ di]+Marg', '3[67]', None, None, None,
-                'D?\.?L.? *41'),
+                r'D?\.?L.? *41'),
     'N060101': (None, '17', None, '6', 'a', 'bis'),
     'N060102': (None, '74', None, '[78]', None, None),
     'N060103': (None, '17', None, '5', None, None),
@@ -75,9 +75,9 @@ ASSOCODES = {
     'N060106': (None, '17', None, '6', 'c', None),
     'N060107': (None, '17', None, '6', 'a', 'ter'),
     'N060109': (None, '7', 'bis', None, None, None),
-    'N060110': (None, '7', 'ter', None, None, None),
-    'N060111': (None, '7', 'quater', None, None, None),
-    'N060112': (None, '7', 'quinques', None, None, None),
+    'N060201': (None, '7', 'ter', None, None, None),
+    'N060202': (None, '7', 'quater', None, None, None),
+    'N060203': (None, '7', 'quinques', None, None, None),
     '*SP': (None, '17', 'ter', None, None, None),
     '*DF': (None, '32', 'bis', None, None, '83'),
     '*N6.9': (None, '17', None, 'c', None, None),
@@ -193,8 +193,8 @@ def migrate(cr, version):
                         letter=ASSOCODES[assosoftware][4],
                         law=ASSOCODES[assosoftware][5]):
                     # match w/o nature
-                    weight = 3 +len([x for x in ASSOCODES[assosoftware]
-                                     if x is not None])
+                    weight = 3 + len([x for x in ASSOCODES[assosoftware]
+                                      if x is not None])
                     if weight <= res[tax.description]['wgt']:
                         continue
                     set_result(tax, assosoftware, assosoftware_model, weight,
@@ -258,7 +258,7 @@ def migrate(cr, version):
                 if res[item].get('nat'):
                     vals['nature_id'] = nature_model.search(
                         [('code', '=', res[item]['nat'])])[0].id
-                elif 'nat' in  res[item]:
+                elif 'nat' in res[item]:
                     vals['nature_id'] = False
                 if 'pay' in res[item]:
                     vals['payability'] = res[item]['pay']
