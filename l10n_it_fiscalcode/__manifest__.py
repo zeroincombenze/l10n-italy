@@ -1,14 +1,17 @@
-# -*- coding: utf-8 -*-
-#    Copyright (C) 2014-2018 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-#    Copyright (C) 2016      Andrea Gallina (Apulia Software)
-#    Copyright (C) 2018      Antonio Vigliotti <https://www.zeroincombenze.it>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-#
+# Copyright 2014 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# Copyright 2016 Andrea Gallina (Apulia Software)
+# Copyright © 2018 Matteo Bilotta (Link IT s.r.l.)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+# noinspection PyStatementEffect
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '11.0.1.0.2',
+    'version': '11.0.1.1.1',
     'category': 'Localisation/Italy',
-    'author': "Odoo Italia Network, Odoo Community Association (OCA)",
+    'author': "Link IT s.r.l., "
+              "Apulia Software, "
+              "Odoo Italia Network, "
+              "Odoo Community Association (OCA)",
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
@@ -16,10 +19,11 @@
         'python': ['codicefiscale'],
     },
     'data': [
-        'views/fiscalcode_view.xml',
-        'wizard/compute_fc_view.xml',
+        "security/ir.model.access.csv",
         'data/res.city.it.code.csv',
-        "security/ir.model.access.csv"
-    ],
+        'view/fiscalcode_view.xml',
+        'view/report_invoice_document.xml',
+        'wizard/compute_fc_view.xml',
+        ],
     'installable': True
 }
