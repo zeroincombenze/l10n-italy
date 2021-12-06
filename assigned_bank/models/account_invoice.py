@@ -21,5 +21,7 @@ class AccountInvoice(models.Model):
                 self.partner_id.commercial_partner_id.assigned_bank):
             self.partner_bank_id = self.\
                 partner_id.commercial_partner_id.assigned_bank.id
+        elif self.env.user.company_id.partner_id.assigned_bank:
+            self.partner_bank_id = self.env.\
+                user.company_id.partner_id.assigned_bank
         return super(AccountInvoice, self)._onchange_partner_id()
-
