@@ -92,13 +92,19 @@ class FatturaPAAttachmentIn(models.Model):
                 }
             ]
         elif domain_mode == 0:
+            limit_date = (datetime.datetime.now() - timedelta(days=59)
+                          ).strftime('%Y-%m-%dT%H:%M:%S')
             data['Filtri'] = [
                 {
                     'NomeCampo': 'DataDownload',
                     'Criterio': 'nullo',
+                },
+                {
+                    'NomeCampo': 'DataRicezione',
+                    'Criterio': '>',
+                    'FromValue': limit_date,
                 }
             ]
-
         _logger.info(json.dumps(data,
                         ensure_ascii=False))
 

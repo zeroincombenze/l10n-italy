@@ -1,17 +1,18 @@
 
-========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.18
-========================================
+=============================================
+|icon| Send E-Invoice to SdI 12.0.10.0.1.0.19
+=============================================
 
 
 **Send E-Invoice to customer by SdI**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_send2sdi/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_einvoice_send2sdi/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
+
 
 
 Overview / Panoramica
@@ -76,7 +77,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/12.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -94,8 +95,8 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
+    odoo_install_repository l10n-italy -b 12.0 -O zero -o $HOME/12.0
+    vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
 
 From UI: go to:
 
@@ -125,16 +126,12 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
+    vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_send2sdi** > Update
 
 |
 
@@ -166,8 +163,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.19 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Limit read to max 59 days / Limite lettura a 59 giorni
 
 10.0.1.0.18 (2021-03-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,55 +206,6 @@ ChangeLog History / Cronologia modifiche
 * [IMP] Get supplier invoice range by parameter / Intervallo fatture fornitori da parametro
 
 
-10.0.1.0.12 (2020-12-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Detailed error messages / Messaggi di errore dettagliata
-
-
-10.0.1.0.9 (2020-03-31)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash in some error cases / Crash in alcuni casi di rifiuto fattura
-
-
-10.0.1.0.8 (2020-03-06)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Best display error message / Miglioramento messaggi di errore
-
-
-10.0.1.0.7 (2020-01-17)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Use custom value of channel / Uso valori personalizzati del canale
-
-
-10.0.1.0.6 (2019-11-11)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Check for channel URL / Verifica URL del canale
-* [IMP] Check for response of errored sent invoices (15 days) / Verifica invio fatture con errore (15 gg)
-
-
-10.0.1.0.5 (2019-07-10)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Avoid crash if not client_key of channel / No crash se client_key del canale assente
-* [IMP] Set error if not response over 5 days / Imposta stato di errore dopo 5 giorni senza risposta
-
-
-10.0.1.0.4 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Recoginze state "Notifica di esito: documento accettato"
-* [IMP] New button "Set to delivered" when recipient_error
-
-
-10.0.1.0.3 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Checks for valid channel / Test validazione canale
 
 
 |
@@ -275,11 +229,13 @@ Authors / Autori
 * `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
+
 Contributors / Collaboratori
 ----------------------------
 
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+
 
 Maintainer / Manutenzione
 -------------------------
@@ -302,6 +258,7 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
@@ -309,37 +266,37 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-03-23
+Last Update / Ultimo aggiornamento: 2022-01-05
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :alt: 
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=12.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=12.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0
     :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
     :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
-    :target: https://erp10.zeroincombenze.it
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
+    :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -368,5 +325,5 @@ Last Update / Ultimo aggiornamento: 2021-03-23
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
 

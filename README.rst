@@ -391,11 +391,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_send2sdi: 10.0.1.0.19 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Limit read to max 59 days / Limite lettura a 59 giorni
+
+
 l10n_it_einvoice_in: 10.0.1.3.27 (2022-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
 * [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
+* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
 
 
 assigned_bank: 10.0.0.1.2 (2021-12-04)

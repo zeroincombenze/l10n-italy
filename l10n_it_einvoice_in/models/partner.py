@@ -258,7 +258,15 @@ class Partner(models.Model):
                     break
             return rec
 
+        def clear_dup_rea_code(vals):
+            if 'rea_code' in vals:
+                for rec in self.search(
+                        [('rea_code', '=', vals['rea_code'])]):
+                    if rec.type != 'contact' or rec.parent_id:
+                        rec.write({'rea_code': False})
+
         vals = values.copy()
+        clear_dup_rea_code(vals)
         skeys = skeys or []
         MAGIC_FIELDS = {'company_id': False,
                         'is_company': True,
