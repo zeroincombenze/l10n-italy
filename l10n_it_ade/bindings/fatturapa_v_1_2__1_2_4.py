@@ -407,6 +407,14 @@ TipoRitenutaType.RT01 = TipoRitenutaType._CF_enumeration.addEnumeration(
     unicode_value='RT01', tag='RT01')
 TipoRitenutaType.RT02 = TipoRitenutaType._CF_enumeration.addEnumeration(
     unicode_value='RT02', tag='RT02')
+TipoRitenutaType.RT03 = TipoRitenutaType._CF_enumeration.addEnumeration(
+    unicode_value='RT03', tag='RT03')
+TipoRitenutaType.RT04 = TipoRitenutaType._CF_enumeration.addEnumeration(
+    unicode_value='RT04', tag='RT04')
+TipoRitenutaType.RT05 = TipoRitenutaType._CF_enumeration.addEnumeration(
+    unicode_value='RT05', tag='RT05')
+TipoRitenutaType.RT06 = TipoRitenutaType._CF_enumeration.addEnumeration(
+    unicode_value='RT06', tag='RT06')
 TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(
     value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_enumeration,

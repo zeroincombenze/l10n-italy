@@ -50,6 +50,7 @@ class AccountInvoice(models.Model):
     def xml_get_header_data(
         self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id,
     ):
+        inconsistencies = ''
         company = self.env['res.company'].xml_get_company(
             fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici,
             wizard=wizard)
@@ -63,12 +64,9 @@ class AccountInvoice(models.Model):
                 )
             ])
         if not currency:
-            raise UserError(
-                _(
-                    'No currency found with code %s.'
-                    % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
-                )
-            )
+            inconsistencies = (
+                    'Divisa %s in fattura non valida!' %
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa)
         # 2.1.1
         docType_id = False
         invtype = 'in_invoice'
@@ -136,7 +134,8 @@ class AccountInvoice(models.Model):
             wt_found = False
             for wt in wts:
                 wt_aliquota = wt.tax * wt.base
-                if wt_aliquota == float(Withholding.AliquotaRitenuta):
+                if (wt_aliquota == float(Withholding.AliquotaRitenuta) or
+                        wt.tax == float(Withholding.AliquotaRitenuta)):
                     wt_found = wt
                     break
             if not wt_found:
@@ -147,7 +146,7 @@ class AccountInvoice(models.Model):
                     Withholding.CausalePagamento, Withholding.AliquotaRitenuta
                 ))
             invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
-        return invoice_data, company, partner, wt_found
+        return invoice_data, company, partner, wt_found, inconsistencies
 
     def xml_get_body_data(
         self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id,

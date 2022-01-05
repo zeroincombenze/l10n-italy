@@ -101,13 +101,13 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_conai                        | 12.0.10.0. | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_corrispettivi                | 12.0.10.0. | 12.0.1.1.7 | Italian Localization - Corrispettivi                                             |
+| l10n_it_corrispettivi                | 12.0.10.0. | 12.0.1.1.8 | Italian Localization - Corrispettivi                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi_fatturapa_out  | |no_check| | 12.0.1.0.1 | Modulo per integrare ricevute e fatturazione elettronica                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi_sale           | |no_check| | 12.0.1.0.3 | Modulo per integrare le ricevute in Odoo con gli ordini di vendita.              |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt                          | 12.0.10.0. | 12.0.1.9.3 | Delivery Document to Transfer                                                    |
+| l10n_it_ddt                          | 12.0.10.0. | 12.0.1.9.4 | Delivery Document to Transfer                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_delivery_note                | |no_check| | 12.0.1.0.4 | Crea, gestisce e fattura i DDT partendo dalle consegne                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -137,11 +137,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_esigibilita_iva              | |no_check| | 12.0.2.0.0 | Italian Localization - Esigibilita' IVA                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa                    | |no_check| | 12.0.2.2.2 | Fatture elettroniche                                                             |
+| l10n_it_fatturapa                    | |no_check| | 12.0.2.3.0 | Fatture elettroniche                                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_export_zip         | |no_check| | 12.0.1.0.1 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_in                 | |no_check| | 12.0.2.7.4 | Ricezione fatture elettroniche                                                   |
+| l10n_it_fatturapa_in                 | |no_check| | 12.0.2.8.0 | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 12.0.1.0.2 | Modulo ponte tra ricezione fatture elettroniche e acquisti                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -150,6 +150,8 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_fatturapa_out                | |no_check| | 12.0.2.3.1 | Emissione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_out_ddt            | |no_check| | 12.0.1.4.0 | Modulo ponte tra emissione fatture elettroniche e DDT                            |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_fatturapa_out_di             | |no_check| | 12.0.1.0.0 | Dichiarazioni d'intento in fatturapa                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_out_rc             | |no_check| | 12.0.1.0.4 | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -161,7 +163,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_pec                | |no_check| | 12.0.1.9.2 | Invio fatture elettroniche tramite PEC                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_sale               | |no_check| | 12.0.1.1.1 | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita      |
+| l10n_it_fatturapa_sale               | |no_check| | 12.0.1.1.2 | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscal                       | 12.0.10.0. | |no_check| | Italy - Fiscal localization by zeroincombenze(R)                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -389,6 +391,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_in: 10.0.1.3.27 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
+* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
+
+
 assigned_bank: 10.0.0.1.2 (2021-12-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -452,7 +461,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2021-12-06
+Last Update / Ultimo aggiornamento: 2022-01-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

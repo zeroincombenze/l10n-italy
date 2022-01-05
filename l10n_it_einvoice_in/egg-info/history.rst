@@ -1,3 +1,9 @@
+10.0.1.3.27 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
+* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
+
 10.0.1.3.26 (2021-04-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

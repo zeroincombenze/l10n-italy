@@ -828,9 +828,11 @@ class WizardImportFatturapa(models.TransientModel):
         (invoice_data,
          company,
          partner,
-         wt_found) = invoice_model.xml_get_header_data(
+         wt_found,
+         inconsistencies) = invoice_model.xml_get_header_data(
             self, fatt, fatturapa_attachment, FatturaBody, partner_id)
-
+        if inconsistencies:
+            self.log_inconsistency(inconsistencies)
         purchase_journal = self.get_purchase_journal(company)
         # purchase_journal = invoice_model._default_journal()
         credit_account = purchase_journal.default_credit_account_id

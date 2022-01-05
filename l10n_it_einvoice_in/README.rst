@@ -1,17 +1,18 @@
 
-=========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.26
-=========================================================================
+==============================================================================
+|icon| Italian Localization - Fattura elettronica - Ricezione 12.0.10.0.1.3.27
+==============================================================================
 
 
 **Ricezione fatture elettroniche**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_in/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_einvoice_in/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
+
 
 
 Overview / Panoramica
@@ -188,7 +189,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/12.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -206,8 +207,8 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
+    odoo_install_repository l10n-italy -b 12.0 -O zero -o $HOME/12.0
+    vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
 
 From UI: go to:
 
@@ -237,16 +238,12 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
+    vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Update
 
 |
 
@@ -278,13 +275,20 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.3.27 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
+* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
 
 10.0.1.3.26 (2021-04-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Stranage error in fiscal code
+* [FIX] Strange error in fiscal code
 
 10.0.1.3.25 (2021-01-25)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -296,129 +300,6 @@ ChangeLog History / Cronologia modifiche
 
 * [IMP] Disabled xml validation / Validazione file xml disabilitata
 
-10.0.1.3.23 (2021-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Accept old nature code / Accetta codici natura 2020
-
-10.0.1.3.22 (2020-12-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Avoid invoice address duplicate / Evita duplicazione indirizzi di fatturazione impport ft. fornitori
-
-
-10.0.1.3.21 (2020-11-24)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Wrong address number / Ignora numero civico non valido
-
-
-10.0.1.3.20 (2020-09-09)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Invalid carrier VAT / Ignora PIVA corriere non valida
-
-
-10.0.1.3.19 (2020-07-29)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] No import if company IBAN in xml / Non importa fattura se IBAN azienda in file XML
-
-
-10.0.1.3.18 (2020-07-28)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Duplicare rea_code when invoice address / Codice rea duplicato se uso indirizzo fatturazione
-
-
-10.0.1.3.17 (2020-07-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import error level 2 / Errore importazione livello 2
-
-
-10.0.1.3.16 (2020-06-16)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] No import self-invoice / Non importa autofatture
-
-
-10.0.1.3.15 (2020-05-22)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash if supplier invoice w/o due_adate / Errore importazione se xml senza date scadenza
-
-
-10.0.1.3.15 (2020-05-08)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash import rated invoice if supplier w/o account / Errore importazione per aliquote e fornitore senza conto
-
-
-10.0.1.3.13 (2020-04-06)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash if wrong invoice date (i.e. 2020-04-06Z) / Errore se data formattata erroneamente
-
-
-10.0.1.3.13 (2020-03-15)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash if invoice address / Errore durante importazione con indirizzo di fatturazione
-
-10.0.1.3.12 (2020-03-15)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Partner data / Dati fornitore non modificati. Se diversi creato indirizzo fatturazione
-* [FIX] Crash in some cases / Errore durante importazione in alcuni casi
-* [IMP] More incisive message / Messagi più precisi
-
-
-10.0.1.3.11 (2020-02-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Minor change / Modifiche interne
-
-
-10.0.1.3.10 (2020-02-04)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] XML Preview / Anteprima file XML
-
-
-10.0.1.3.9 (2019-12-29)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] synchro2 error / Errore sunchro2
-
-
-10.0.1.3.9 (2019-12-29)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import e-invoice with RF19 / Errore in importazione fattura da forfettario
-* [FIX] Conflict with connector_vg7 module / Conflitto con modulo connector_vg7
-
-
-10.0.1.3.8 (2019-10-22)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Link to existent invoice set header data / Il collegamento ad una fattura esistente imposta i dati di testata
-* [FIX] Unicode error in delivery address / Errore unicode in indirizzo di consegan
-* [IMP] Some supplier invoices have natura N6 without vax rate / Fattura fornitori con natura N6 e senza aliquota IVA
-
-
-10.0.1.3.7 (2019-06-25)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Without province, cannot import e-invoice
-
-
-10.0.1.3.6 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Some supplier invoces with empty tags fail schema validation / Alcune fatture fornitori con tag vuoti non erano validate dallo schema
-* [FIX] Invoice supplier with existent REA code crashes / Fatture fornitori con codice REA esistente mandavano in crash il sistema
-* [IMP] New search algorithm finds similar names / Nuovo algoritmo di ricerca che trova nomi simili
 
 
 |
@@ -444,6 +325,7 @@ Authors / Autori
 * `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
+
 Contributors / Collaboratori
 ----------------------------
 
@@ -452,6 +334,12 @@ Contributors / Collaboratori
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Translations by / Traduzioni a cura di
+--------------------------------------
+
+* Sergio Zanchetta <https://github.com/primes2h>
+
+
 
 Translations by / Traduzioni a cura di
 --------------------------------------
@@ -480,6 +368,7 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
@@ -487,37 +376,37 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-04-07
+Last Update / Ultimo aggiornamento: 2022-01-05
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :alt: 
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=12.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=12.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0
     :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
     :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
-    :target: https://erp10.zeroincombenze.it
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
+    :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -546,5 +435,5 @@ Last Update / Ultimo aggiornamento: 2021-04-07
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
 
