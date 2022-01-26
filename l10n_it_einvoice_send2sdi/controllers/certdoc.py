@@ -13,7 +13,7 @@ from odoo.addons.l10n_it_einvoice_send2sdi.models.attachment import Evolve
 class Certdoc(http.Controller):
 
     @http.route('/certdoc', type='http', auth='public')
-    def render_index_page(self, archive_id =  None):
+    def render_index_page(self, archive_id=None):
 
         ret = self.header()
 

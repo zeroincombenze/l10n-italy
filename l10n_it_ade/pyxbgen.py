@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# pylint: skip-file
+# flake8: noqa - pylint: skip-file
 # -*- coding: utf-8 -*-
 #
 # pyxbgen

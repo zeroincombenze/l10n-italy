@@ -807,6 +807,9 @@ class FatturaPAAttachmentOut(models.Model):
         if set(states) != set(['ready']):
             raise UserError(_("You can only send 'Ready to Send' files."))
         send_channel = self.get_send_channel()
+        if send_channel.avail_invoices_ctr < 10:
+            raise UserError(
+                _("You cannot send invoices. Please buy a new invoices pack!"))
         if send_channel.method == 'JSON':
             return self.send_via_json(send_channel)
         elif send_channel.method == 'PEC':

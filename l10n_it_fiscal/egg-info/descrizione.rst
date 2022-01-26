@@ -15,5 +15,3 @@ I codici IVA coprono una grande varietà di casistiche fiscali:
 * Regime semplificato (contribuenti minimi L.244/07)
 * Regime IVA per cassa (L.185/08 e art.6 DPR633/72)
 * Operazioni senza IVA (L.98/11)
-
-See http://www.zeroincombenze.it/il-piano-dei-conti-2/

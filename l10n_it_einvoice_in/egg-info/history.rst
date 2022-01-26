@@ -1,3 +1,8 @@
+10.0.1.3.28 (2022-01-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Link existent invoice / Collegamento a fattura esistente
+
 10.0.1.3.27 (2022-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

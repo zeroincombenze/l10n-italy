@@ -418,20 +418,20 @@ id,code,name,user_type_id:id,group_id:id,reconcile,chart_template_id:id
 265270,265270,IVA n/deb. EU-OSS SK – Slovacchia,account.data_account_type_current_liabilities,l10n_it_fiscal.265,FALSE,l10n_chart_it_zeroincombenze
 290010,290010,Ratei passivi,account.data_account_type_current_liabilities,l10n_it_fiscal.29,FALSE,l10n_chart_it_zeroincombenze
 290020,290020,Risconti passivi,account.data_account_type_current_liabilities,l10n_it_fiscal.29,FALSE,l10n_chart_it_zeroincombenze
-410010,410010,"Rischi assunti dall'impresa, Fideiussioni",account.data_account_type_expenses,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
-410020,410020,"Rischi assunti dall'impresa, Avalli",account.data_account_type_expenses,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
-410030,410030,"Rischi assunti dall'impresa, Altre garanzie personali",account.data_account_type_expenses,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
-410040,410040,"Rischi assunti dall'impresa, Garanzie reali",account.data_account_type_expenses,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
-410050,410050,"Rischi assunti dall'impresa, Altri rischi, crediti ceduti pro solvendo",account.data_account_type_expenses,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
-420010,420010,Totale impegni assunti dall'impresa,account.data_account_type_expenses,l10n_it_fiscal.42,FALSE,l10n_chart_it_zeroincombenze
-430010,430010,"Beni di terzi presso l'impresa, merci in conto lavorazione",account.data_account_type_expenses,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
-430020,430020,"Beni di terzi presso l'impresa, a titolo di deposito o comodato",account.data_account_type_expenses,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
-430030,430030,"Beni di terzi presso l'impresa, in pegno o cauzione",account.data_account_type_expenses,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
-430210,430210,Costo Macchinari in leasing,account.data_account_type_expenses,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
-430310,430310,Titoli di terzi ricevuti in garanzia,account.data_account_type_expenses,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
-490010,490010,Stato patrimoniale iniziale,account.data_account_type_expenses,l10n_it_fiscal.49,FALSE,l10n_chart_it_zeroincombenze
-490020,490020,Stato patrimoniale finale,account.data_account_type_expenses,l10n_it_fiscal.49,FALSE,l10n_chart_it_zeroincombenze
-490030,490030,Stato patrimoniale (da risultato di esercizio),account.data_account_type_expenses,l10n_it_fiscal.49,FALSE,l10n_chart_it_zeroincombenze
+410010,410010,"Rischi assunti dall'impresa, Fideiussioni",account.data_account_type_current_liabilities,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
+410020,410020,"Rischi assunti dall'impresa, Avalli",account.data_account_type_current_liabilities,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
+410030,410030,"Rischi assunti dall'impresa, Altre garanzie personali",account.data_account_type_current_liabilities,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
+410040,410040,"Rischi assunti dall'impresa, Garanzie reali",account.data_account_type_current_liabilities,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
+410050,410050,"Rischi assunti dall'impresa, Altri rischi, crediti ceduti pro solvendo",account.data_account_type_current_liabilities,l10n_it_fiscal.41,FALSE,l10n_chart_it_zeroincombenze
+420010,420010,Totale impegni assunti dall'impresa,account.data_account_type_current_liabilities,l10n_it_fiscal.42,FALSE,l10n_chart_it_zeroincombenze
+430010,430010,"Beni di terzi presso l'impresa, merci in conto lavorazione",account.data_account_type_current_liabilities,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
+430020,430020,"Beni di terzi presso l'impresa, a titolo di deposito o comodato",account.data_account_type_current_liabilities,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
+430030,430030,"Beni di terzi presso l'impresa, in pegno o cauzione",account.data_account_type_current_liabilities,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
+430210,430210,Costo Macchinari in leasing,account.data_account_type_current_liabilities,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
+430310,430310,Titoli di terzi ricevuti in garanzia,account.data_account_type_current_liabilities,l10n_it_fiscal.43,FALSE,l10n_chart_it_zeroincombenze
+490010,490010,Stato patrimoniale iniziale,account.data_account_type_current_liabilities,l10n_it_fiscal.49,FALSE,l10n_chart_it_zeroincombenze
+490020,490020,Stato patrimoniale finale,account.data_account_type_current_liabilities,l10n_it_fiscal.49,FALSE,l10n_chart_it_zeroincombenze
+490030,490030,Stato patrimoniale (da risultato di esercizio),account.data_account_type_current_liabilities,l10n_it_fiscal.49,FALSE,l10n_chart_it_zeroincombenze
 510000,510000,Ricavi da merci e servizi,account.data_account_type_revenue,l10n_it_fiscal.51,FALSE,l10n_chart_it_zeroincombenze
 510100,510100,Merci c/vendita,account.data_account_type_revenue,l10n_it_fiscal.51,FALSE,l10n_chart_it_zeroincombenze
 510200,510200,Ricavi da prestazioni di servizio,account.data_account_type_revenue,l10n_it_fiscal.51,FALSE,l10n_chart_it_zeroincombenze
@@ -730,8 +730,8 @@ id,code,name,user_type_id:id,group_id:id,reconcile,chart_template_id:id
 860214,860214,Insussistenze passive straordinarie,account.data_account_type_expenses,l10n_it_fiscal.86,FALSE,l10n_chart_it_zeroincombenze
 860215,860215,Imposte esercizi precedenti,account.data_account_type_expenses,l10n_it_fiscal.86,FALSE,l10n_chart_it_zeroincombenze
 870220,870220,Imposte dell'esercizio,account.data_account_type_expenses,l10n_it_fiscal.87,FALSE,l10n_chart_it_zeroincombenze
-870230,870230,Risultato economico di esercizio,account.data_unaffected_earnings,l10n_it_fiscal.87,FALSE,l10n_chart_it_zeroincombenze
-870240,870240,Risultato economico di esercizio,account.data_account_type_expenses,l10n_it_fiscal.87,FALSE,l10n_chart_it_zeroincombenze
-880250,880250,Altri accantonamenti da norme tributarie,account.data_account_type_expenses,l10n_it_fiscal.88,FALSE,l10n_chart_it_zeroincombenze
-880260,880260,Utile da esercizio precedente,account.data_account_type_expenses,l10n_it_fiscal.88,FALSE,l10n_chart_it_zeroincombenze
-880270,880270,Perdita da esercizio precedente,account.data_account_type_expenses,l10n_it_fiscal.88,FALSE,l10n_chart_it_zeroincombenze
+870230,870230,Risultato lordo di esercizio,account.data_unaffected_earnings,l10n_it_fiscal.87,FALSE,l10n_chart_it_zeroincombenze
+870240,870240,Profitti e Perdite,account.data_account_type_expenses,l10n_it_fiscal.87,FALSE,l10n_chart_it_zeroincombenze
+880250,880250,Altri accantonamenti da norme tributarie,account.data_account_type_current_liabilities,l10n_it_fiscal.88,FALSE,l10n_chart_it_zeroincombenze
+880260,880260,Utile da esercizio precedente,account.data_account_type_current_liabilities,l10n_it_fiscal.88,FALSE,l10n_chart_it_zeroincombenze
+880270,880270,Perdita da esercizio precedente,account.data_account_type_current_liabilities,l10n_it_fiscal.88,FALSE,l10n_chart_it_zeroincombenze

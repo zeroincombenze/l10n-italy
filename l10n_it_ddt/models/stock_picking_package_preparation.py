@@ -569,7 +569,7 @@ class StockPickingPackagePreparation(models.Model):
                         for quant in line.quant_ids:
                             if quant.qty >= 0:
                                 quants |= quant
-                weight = sum(l.product_id.weight * l.qty for l in quants)
+                weight = sum(ln.product_id.weight * ln.qty for ln in quants)
                 prep.net_weight = weight
                 prep.weight = weight
 

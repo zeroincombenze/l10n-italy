@@ -1,6 +1,6 @@
 
 =======================================================================
-|icon| Italy - Fiscal localization by zeroincombenze(R) 12.0.10.0.0.2.2
+|icon| Italy - Fiscal localization by zeroincombenze(R) 12.0.10.0.0.2.8
 =======================================================================
 
 
@@ -50,9 +50,6 @@ I codici IVA coprono una grande varietà di casistiche fiscali:
 * Regime semplificato (contribuenti minimi L.244/07)
 * Regime IVA per cassa (L.185/08 e art.6 DPR633/72)
 * Operazioni senza IVA (L.98/11)
-
-See http://www.zeroincombenze.it/il-piano-dei-conti-2/
-
 
 |
 
@@ -182,6 +179,60 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+12.0.0.2.8 (2022-01-10)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Memorandum accounts (wrongly set as costs) are set as liability
+
+12.0.0.2.7 (2022-01-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Tax for RC with wrong account code / Alcuni codici IVA per RC con conti errati
+
+12.0.0.2.6 (2022-01-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Module name changed (l10n_it_coa -> l10n_it_coa)
+
+12.0.0.2.5 (2021-12-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Account group no change on module upgrade
+* [FIX] Installation error
+
+12.0.0.2.4 (2021-12-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax 5%
+* [FIX] Wrong tax Dogana
+* [IMP] Taxes for all EU countries
+
+12.0.0.2.3 (2021-11-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax for NL
+* [IMP] Fiscal position for EU-OSS
+
+12.0.0.2.2 (2021-10-15)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong classification for cut-off and prepayments accounts / Errata classificazione ratei e risconti
+* [FIX] Wrong classification for SP tax codes / Errata classificazione codice IVA split-payment
+
+12.0.0.2.1 (2021-08-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] POW-486: Account groups / Tabella gruppi
+
+12.0.0.2.0 (2021-08-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] EU-OSS tax accounts / Conti IVA EU-OSS
+
+
 |
 |
 
@@ -306,7 +357,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-11-11
+Last Update / Ultimo aggiornamento: 2022-01-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

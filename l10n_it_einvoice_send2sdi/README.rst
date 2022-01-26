@@ -1,6 +1,6 @@
 
 =============================================
-|icon| Send E-Invoice to SdI 12.0.10.0.1.0.19
+|icon| Send E-Invoice to SdI 12.0.10.0.1.0.20
 =============================================
 
 
@@ -167,6 +167,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.20 (2022-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoices counters / Contatori fatture
+* [IMP] Lock send if negative counter / Blocco invio se contatore negativo
+
 10.0.1.0.19 (2022-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -192,18 +198,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Set e_invoice_received_date / Imposta data arrivo SDI
-
-
-10.0.1.0.14 (2021-01-21)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Log http error / Log error http
-* [IMP] Fatture consegnate in area riservata sono marcate consegnate
-
-10.0.1.0.13 (2021-01-12)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Get supplier invoice range by parameter / Intervallo fatture fornitori da parametro
 
 
 
@@ -266,7 +260,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-05
+Last Update / Ultimo aggiornamento: 2022-01-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

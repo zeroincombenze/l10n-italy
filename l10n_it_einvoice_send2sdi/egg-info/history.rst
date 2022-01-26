@@ -1,3 +1,9 @@
+10.0.1.0.20 (2022-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoices counters / Contatori fatture
+* [IMP] Lock send if negative counter / Blocco invio se contatore negativo
+
 10.0.1.0.19 (2022-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

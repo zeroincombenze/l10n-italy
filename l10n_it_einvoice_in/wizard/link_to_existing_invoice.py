@@ -49,10 +49,14 @@ class WizardLinkToInvoice(models.TransientModel):
         PaymentDataModel = self.env['fatturapa.payment.data']
         PaymentTermsModel = self.env['fatturapa.payment_term']
         SummaryDatasModel = self.env['faturapa.summary.data']
-
-        invoice_data, company, partner, wt_found = invoice_model.\
-            xml_get_header_data(self, fatt, fatturapa_attachment, FatturaBody,
-                                partner_id)
+        (invoice_data,
+         company,
+         partner,
+         wt_found,
+         inconsistencies) = invoice_model.xml_get_header_data(
+            self, fatt, fatturapa_attachment, FatturaBody, partner_id)
+        if inconsistencies:
+            self.log_inconsistency(inconsistencies)
         invoice.write(invoice_data)
 
 

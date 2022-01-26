@@ -109,7 +109,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ddt                          | 12.0.10.0. | 12.0.1.9.4 | Delivery Document to Transfer                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_delivery_note                | |no_check| | 12.0.1.0.4 | Crea, gestisce e fattura i DDT partendo dalle consegne                           |
+| l10n_it_delivery_note                | |no_check| | 12.0.1.0.5 | Crea, gestisce e fattura i DDT partendo dalle consegne                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_delivery_note_base           | |no_check| | 12.0.1.0.0 | Crea e gestisce tabelle principali per gestire i DDT                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -117,7 +117,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_delivery_note_order_link     | |no_check| | 12.0.1.0.0 | Crea collegamento tra i DDT e ordine di vendita                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_dichiarazione_intento        | |no_check| | 12.0.0.1.9 | Gestione dichiarazioni di intento                                                |
+| l10n_it_dichiarazione_intento        | |no_check| | 12.0.0.1.1 | Gestione dichiarazioni di intento                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_base                | 12.0.10.0. | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -391,6 +391,37 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_in: 10.0.1.3.28 (2022-01-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Link existent invoice / Collegamento a fattura esistente
+
+
+l10n_it_einvoice_import_zip: 10.0.1.0.5 (2022-01-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.20 (2022-01-17)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoices counters / Contatori fatture
+* [IMP] Lock send if negative counter / Blocco invio se contatore negativo
+
+
+l10n_it_fiscal: 12.0.0.2.8 (2022-01-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Memorandum accounts (wrongly set as costs) are set as liability
+
+
+l10n_it_fiscal: 12.0.0.2.7 (2022-01-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Tax for RC with wrong account code / Alcuni codici IVA per RC con conti errati
+
+
 l10n_it_einvoice_send2sdi: 10.0.1.0.19 (2022-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -405,10 +436,45 @@ l10n_it_einvoice_in: 10.0.1.3.27 (2022-01-05)
 * [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
 
 
+l10n_it_fiscal: 12.0.0.2.6 (2022-01-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Module name changed (l10n_it_coa -> l10n_it_coa)
+
+
+l10n_it_fiscal: 12.0.0.2.5 (2021-12-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Account group no change on module upgrade
+* [FIX] Installation error
+
+
+l10n_it_fiscal: 12.0.0.2.4 (2021-12-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax 5%
+* [FIX] Wrong tax Dogana
+* [IMP] Taxes for all EU countries
+
+
 assigned_bank: 10.0.0.1.2 (2021-12-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Default from company partner / Valore predefinito da soggetto azienda
+
+
+l10n_it_fiscal: 12.0.0.2.3 (2021-11-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax for NL
+* [IMP] Fiscal position for EU-OSS
+
+
+l10n_it_fiscal: 12.0.0.2.2 (2021-10-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong classification for cut-off and prepayments accounts / Errata classificazione ratei e risconti
+* [FIX] Wrong classification for SP tax codes / Errata classificazione codice IVA split-payment
 
 
 l10n_it_central_journal: 10.0.0.0.5 (2021-09-30)
@@ -416,6 +482,18 @@ l10n_it_central_journal: 10.0.0.0.5 (2021-09-30)
 
 * [FIX] Crash if final print / Errore in stampa definitiva
 
+
+
+l10n_it_fiscal: 12.0.0.2.1 (2021-08-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] POW-486: Account groups / Tabella gruppi
+
+
+l10n_it_fiscal: 12.0.0.2.0 (2021-08-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] EU-OSS tax accounts / Conti IVA EU-OSS
 
 l10n_it_vat_registries: 10.0.1.3.1 (2021-08-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -427,13 +505,6 @@ l10n_it_fiscal_payment_term: 10.0.1.0.1 (2021-07-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Added MP23 code in fatturapa.payment_method
-
-
-l10n_it_account: 10.0.1.2.7 (2021-07-19)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Journal page
-
 
 
 
@@ -468,7 +539,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-01-05
+Last Update / Ultimo aggiornamento: 2022-01-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
