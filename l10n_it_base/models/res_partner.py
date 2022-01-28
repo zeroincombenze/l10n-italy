@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010-18, Associazione Odoo Italia <https://odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # Copyright 2018-19 - Odoo Community Association <https://odoo-community.org>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
@@ -16,9 +16,9 @@ class ResPartner(models.Model):
         level = level or 0
         ign_city = ign_city or False
         where = []
+        if self.country_id:
+            where.append(('country_id', '=', self.country_id.id))
         if self.zip:
-            if self.country_id:
-                where.append(('country_id', '=', self.country_id.id))
             zip = '%s%s' % (self.zip[0: len(self.zip) - level],
                             '%' * level)
             where.append(('zip', '=ilike', zip))

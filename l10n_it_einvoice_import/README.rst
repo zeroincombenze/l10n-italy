@@ -1,12 +1,12 @@
 
-===================================================
-|icon| Italian Localisation - Base 12.0.10.0.0.2.16
-===================================================
+==============================================================================
+|icon| Italian Localization - Fattura elettronica - Ricezione 12.0.10.0.1.3.28
+==============================================================================
 
 
-**Managing Italian addresses**
+**Ricezione fatture elettroniche**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_base/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_einvoice_in/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -18,33 +18,78 @@
 Overview / Panoramica
 =====================
 
-|en| Italy Base localization
-----------------------------
+|en| EInvoice in
+----------------
 
-This module add following data:
+This module allows to import Electronic Bill XML files version 1.2.1
 
-* Italian cities
-* Titles
-* Provinces (districts) and Regions
+http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
+
+received through the Exchange System (SdI).
+
+http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
+
+For every supplier, it is possible to set the 'E-bills Detail Level':
+
+ - Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill
+ - VAT code level: Line are cumulated by VAT code
+ - Maximum level: Every line contained in electronic bill will create a line in bill
+
+Moreover, in supplier form you can set the 'E-bill Default Product': this product will be used, during generation of bills, when no other possible product is found. Tax and account of bill line will be set according to what configured in the product.
+
+Every product code used by suppliers can be set, in product form, in
+
+Inventory →  Products
+
+If supplier specifies a known code in XML, the system will use it to retrieve the correct product to be used in bill line, setting the related tax and account.
+
+ * Go to Accounting →  Purchases →  Electronic Bill
+ * Upload XML file
+ * View bill content clicking on 'Show preview'
+ * Run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill
+
+In the incoming electronic bill files list you will see, by default, files to be registered. These are files not yet linked to one or more bills.
+
 
 |
 
-|it| Localizzazione italiana di base
-------------------------------------
+|it| Fattura Elettronica in
+---------------------------
 
-Questo modulo fornisce i dati precompilati di:
+Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
 
-* Comuni italiani (aggiornati al 2014)
-* Titoli
-* Province e regioni aggiornati
+http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
-Inoltre gestisce alcuni automatistmi durante la compilazione del campi anagrafici.
+ricevuti attraverso il Sistema di Interscambio (SdI).
 
-La videata dell'anagrafica è modificata come da consuetudine italiana:
+http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
-CAP - Località - Provincia
 
-mentre nella versione originale di Odoo il CAP è posto dopo la provincia come nel formato anglosassone.
+::
+
+    Destinatari:
+
+Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+
+
+::
+
+    Normativa e prassi:
+
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
+
+
+Per ciascun fornitore è possibile impostare il "Livello dettaglio e-fatture":
+
+ - Livello minimo: la fattura fornitore viene creata senza righe, che dovranno essere create dall'utente in base a quanto indicato nella fattura elettronica
+ - Livello codice IVA: le righe sono cumulate per codice IVA
+ - Livello massimo: le righe della fattura fornitore verranno generate a partire da tutte quelle presenti nella fattura elettronica
+
+Nella scheda fornitore è inoltre possibile impostare il "Prodotto predefinito per e-fattura": verrà usato, durante la generazione delle fatture fornitore, quando non sono disponibili altri prodotti adeguati. Il conto e l'imposta della riga fattura verranno impostati in base a quelli configurati nel prodotto.
+
+Tutti i codici prodotto usati dai fornitori possono essere impostati nella relativa scheda, in
+
+Magazzino →  Prodotti
 
 
 |
@@ -52,19 +97,41 @@ mentre nella versione originale di Odoo il CAP è posto dopo la provincia come n
 Features / Caratteristiche
 --------------------------
 
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Feature / Funzione                                             |  Status  | Notes / Note                                 |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| City from ZIP / Città da CAP                                   | |check|  | Propone città da CAP; città modificabile     |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Multizone ZIP  / CAP Multizona                                 | |check|  | Riconoscimento CAP multizona                 |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| District from ZIP / Provincia da CAP                           | |check|  | Compila la provincia dal CAP                 |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
-+----------------------------------------------------------------+----------+----------------------------------------------+
-| Check for duplicate vat / Controllo partita IVA duplicata      | |check|  | Controllo non bloccante                      |
-+----------------------------------------------------------------+----------+----------------------------------------------+
++--------------------------------------------------------+------------+---------------------------------+
+| Descrizione                                            | Stato      | Note                            |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitore, righe con IVA                  | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitore, righe senza IVA                | |check|    | Non riconosce esatto codice IVA |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitori con ritenuta d'acconto          | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitori da agenti (enasarco)            | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitori con controllo su totale fattura | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitori con split-payment               | |no_check| |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da fornitori con reverse charge              | |info|     | Non riconosce esatto codice IVA |
++--------------------------------------------------------+------------+---------------------------------+
+| E-Nota Credito da fornitore                            | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| Gestione multi-aziendale                               | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| Validazione e-fattura per azienda                      | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| Generazione scadenzario passivo da e-fattura           | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| Livello contabile solo testata senza dettagli          | |check|    | Per collegare fatture manuali   |
++--------------------------------------------------------+------------+---------------------------------+
+| Livello righe contabili per aliquote IVA               | |check|    | Per fatture con troppe righe    |
++--------------------------------------------------------+------------+---------------------------------+
+| Livelllo righe contabili in dettaglio                  | |check|    |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da stabile organizzazione estera             | |info|     |                                 |
++--------------------------------------------------------+------------+---------------------------------+
+| e-fattura da rappresentante fiscale                    | |info|     |                                 |
++--------------------------------------------------------+------------+---------------------------------+
 
 
 |
@@ -72,15 +139,26 @@ Features / Caratteristiche
 Usage / Utilizzo
 ----------------
 
-|it| Durante l'inserimento dell'anagrafica rispettare le seguenti regole:
+Se il fornitore specifica un codice noto nell'XML, questo verrà usato dal sistema per recuperare il prodotto corretto da usare nella riga fattura, impostando il conto e l'imposta collegati.
 
-* Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
-* Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
-* Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
-* Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
+|menu| Contabilità > Acquisti > Fattura elettronica
 
-.. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_base/static/description/partner_1.png
-    :alt: partner
+Caricare un file XML
+Visualizzare il contenuto della fattura facendo clic su "Mostra anteprima"
+Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura già (automaticamente) creata
+
+
+|
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
 
 
 |
@@ -136,7 +214,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_base** > Install
+* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Install
 
 
 |
@@ -201,10 +279,23 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.0.2.16 (2022-01-27)
+10.0.1.3.28 (2022-01-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Foreign country w/o zip code / Stati esteri senza CAP
+* [FIX] Link existent invoice / Collegamento a fattura esistente
+
+10.0.1.3.27 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
+* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
+* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
+
+10.0.1.3.26 (2021-04-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Strange error in fiscal code
+
 
 
 |
@@ -227,32 +318,29 @@ Authors / Autori
 
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Innoviu srl <http://www.innoviu.com>`__
+* `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 Contributors / Collaboratori
 ----------------------------
 
-* Davide Corio <info@davidecorio.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <roberto.onnis@innoviu.com>
-* Antonio M. Vigliotti <info@shs-av.com>
+* Alessio Gerace <alessio.gerace@agilebg.com>
+* Cesare Pellegrini <cesare@pointec.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Translations by / Traduzioni a cura di
+--------------------------------------
+
+* Sergio Zanchetta <https://github.com/primes2h>
 
 
-Acknowledges / Riconoscimenti
------------------------------
 
-+-----------------------------------+-------------------------------------------+
-| |en|                              | |it|                                      |
-| This software inherits from past  | Questo software eredita da versioni       |
-| versions some parts of code. Even | passate alcune parti di codice. Anche     |
-| if people did not actively        | se non hanno partecipato attivamente allo |
-| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
-| acknowledge them for their prior  | persone che precedentemente vi hanno      |
-| contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Davide Corio <info@davidecorio.com>
+Translations by / Traduzioni a cura di
+--------------------------------------
 
-
+* Sergio Zanchetta <https://github.com/primes2h>
 
 
 Maintainer / Manutenzione
@@ -284,7 +372,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-27
+Last Update / Ultimo aggiornamento: 2022-01-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
