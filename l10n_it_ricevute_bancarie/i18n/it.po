@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 10:28+0000\n"
-"PO-Revision-Date: 2020-06-23 10:28+0000\n"
+"POT-Creation-Date: 2022-01-28 20:05+0000\n"
+"PO-Revision-Date: 2022-01-28 20:05+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.9.1\n"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -30,33 +30,33 @@ msgstr "Accettazione"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_acceptance_account_id
 msgid "Acceptance Account"
-msgstr "Conto Accettazione"
+msgstr "Conto RI.BA. all'incasso"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_acceptance_move_ids
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Acceptance Entries"
-msgstr "Registrazioni Accettazione"
+msgstr "Registrazioni di accettazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_acceptance_move_id
 msgid "Acceptance Entry"
-msgstr "Registrazione Accettazione"
+msgstr "Registrazione di accettazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_account_id
 msgid "Acceptance account"
-msgstr "Conto Accettazione"
+msgstr "Conto RI.BA. all'incasso"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_date_accepted
 msgid "Acceptance date"
-msgstr "Data Accettazione"
+msgstr "Data accettazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_journal_id
 msgid "Acceptance journal"
-msgstr "Sezionale Accettazione"
+msgstr "Sezionale di accettazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
@@ -83,7 +83,7 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_account_id
 msgid "Account used when Ri.Ba. is accepted by the bank"
-msgstr "Conto utilizzato quando la RiBa viene accettata dalla banca"
+msgstr "Il conto utilizzato quando la Ri.Ba. viene accettata dalla banca"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
@@ -119,7 +119,7 @@ msgstr "Accredito Ri.Ba. %s"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_date_accreditation
 msgid "Accreditation date"
-msgstr "Data Accredito"
+msgstr "Data accredito"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_journal_id
@@ -160,7 +160,13 @@ msgid "Back to Accredited"
 msgstr "Ripristinare accrediata"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
+msgid "Back to Draft"
+msgstr "Rimettere in bozza"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_bank_id
+#: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Banca"
 msgstr "Banca"
 
@@ -197,12 +203,12 @@ msgstr "Conto spese bancarie"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_bank_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_bank_account_id
 msgid "Bank account"
-msgstr "Conto banca"
+msgstr "Conto bancario"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_bank_id
 msgid "Bank account used for Ri.Ba. issuing"
-msgstr "Conto bancario usato per emissione RiBa"
+msgstr "Conto bancario utilizzato per l'emissione delle Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_accreditation
@@ -270,14 +276,14 @@ msgstr "Parametri di configurazione per le Ricevute Bancarie"
 #: selection:riba.distinta.line,state:0
 #: selection:riba.distinta.line,state
 msgid "Confirmed"
-msgstr "Confermato"
+msgstr "Confermata"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_issue_view
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
 msgid "Create"
-msgstr "Crea"
+msgstr "Creare"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_create_uid
@@ -335,8 +341,8 @@ msgid "Customer"
 msgstr "Cliente"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:201
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:201
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:207
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:207
 msgid "Date accreditation must be greater or equal to date acceptance"
 msgstr "Date accreditation must be greater or equal to date acceptance"
 
@@ -432,7 +438,7 @@ msgstr "ID servizio spese di incasso"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_due_date
 msgid "Due date"
-msgstr "Data di scadenza"
+msgstr "Data scadenza"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:126
@@ -473,7 +479,7 @@ msgstr "Importo spese"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_riba_file_export
 msgid "Export"
-msgstr "Esportazione"
+msgstr "Esportare comunicazione IVA"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_wizard_riba_file_export
@@ -498,7 +504,7 @@ msgstr "Nome file"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_full_reconcile
 msgid "Full Reconcile"
-msgstr "Riconciliazione totale"
+msgstr "Riconciliazione Completa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -508,18 +514,12 @@ msgstr "Generale"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_group_riba
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_invoice_group_riba
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_shipping_group_riba
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_supplier_group_riba
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_users_group_riba
 msgid "Group Ri.Ba."
 msgstr "Raggruppa Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner_group_riba
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner_invoice_group_riba
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner_shipping_group_riba
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner_supplier_group_riba
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_users_group_riba
 msgid "Group Ri.Ba. by customer while issuing"
 msgstr "Raggruppa le Ri.Ba. per cliente durante l'emissione"
@@ -537,7 +537,7 @@ msgstr "Raggruppa per fattura"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "Group by..."
-msgstr "Raggruppa per ..."
+msgstr "Raggruppa per..."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line_iban
@@ -561,7 +561,6 @@ msgstr "ID"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner_bank_codice_sia
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner_bank_company_codice_sia_10667
 msgid "Identification Code of the Company in the System Interbank"
 msgstr "Codice identificativo dell'azienda nel sistema interbancario"
 
@@ -574,18 +573,18 @@ msgstr "Fattura"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_invoice_date
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Invoice Date"
-msgstr "Data Fattura"
+msgstr "Data fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga Fattura"
+msgstr "Riga fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_invoice_number
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Invoice Number"
-msgstr "Numero Fattura"
+msgstr "Numero fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
@@ -596,7 +595,7 @@ msgstr "Registrazioni fattura"
 #: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:253
 #: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:253
 msgid "Invoice is linked to RI.BA. list nr {riba}"
-msgstr "La fattura è inserita nella distinta RI.BA. n. {riba}"
+msgstr "La fattura è collegata alla lista RI.BA. nr {riba}"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
@@ -620,12 +619,12 @@ msgstr "Movimento contabile"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_journal_id
 msgid "Journal used when Ri.Ba. is accepted by the bank"
-msgstr "Sezionale usato quando la RiBa è accettata dalla banca"
+msgstr "Sezionale utilizzato quando la Ri.Ba. viene accettata dalla banca"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_unsolved_journal_id
 msgid "Journal used when Ri.Ba. is unsolved"
-msgstr "Sezionale usato quando la RiBa è insoluta"
+msgstr "Sezionale utilizzato quando la Ri.Ba. è insoluta"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_journal_id
@@ -640,7 +639,7 @@ msgstr "Journal used when the clients finally pays the invoice to bank"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_registration_date
 msgid "Keep empty to use the current date"
-msgstr "Lasciare vuoto per usare la data corrente"
+msgstr "Lasciare vuoto per usare la data odierna"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb___last_update
@@ -653,7 +652,7 @@ msgstr "Lasciare vuoto per usare la data corrente"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue___last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved___last_update
 msgid "Last Modified on"
-msgstr "Data ultima modifica"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_write_uid
@@ -665,7 +664,7 @@ msgstr "Data ultima modifica"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_write_date
@@ -677,7 +676,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_write_date
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_write_date
 msgid "Last Updated on"
-msgstr "Data ultima modifica"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_distinta_id
@@ -685,8 +684,8 @@ msgid "List"
 msgstr "Distinta"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:110
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:110
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:108
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:108
 #, python-format
 msgid ""
 "List %s is in state %s. You can only delete documents in state draft or "
@@ -708,12 +707,12 @@ msgstr "Modalità Emissione"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Move line"
-msgstr "Move line"
+msgstr "Riga contabile"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Move lines"
-msgstr "Move lines"
+msgstr "Righe contabili"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:257
@@ -737,13 +736,13 @@ msgstr "Nessun codice SIA specificato per: "
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:272
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:272
 msgid "No VAT or Fiscal code specified for "
-msgstr "Nessuna P.IVA o codice fiscale specificato per "
+msgstr "P.IVA o codice fiscale non specificato per "
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:224
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:224
 msgid "No VAT or Fiscalcode specified for: "
-msgstr "Nessuna P.IVA o codice fiscale specificato per: "
+msgstr "P.IVA o codice fiscale non specificato per: "
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:77
@@ -765,7 +764,7 @@ msgstr "Numero"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Other Info"
-msgstr "Altre informazioni"
+msgstr "Altre info"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:139
@@ -835,8 +834,8 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:437
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:437
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:444
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:444
 msgid "Please define a Settlement journal"
 msgstr "Please define a Settlement journal"
 
@@ -853,7 +852,7 @@ msgstr "Conto spese di protesto"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "Reconciled"
-msgstr "Riconciliato"
+msgstr "Riconciliata"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_name
@@ -894,13 +893,13 @@ msgstr "Ri.Ba. - Configurazione"
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_accreditation_action
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
 msgid "Ri.Ba. Accreditation"
-msgstr "Accredito Ri.Ba."
+msgstr "Accredito Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:133
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:133
 msgid "Ri.Ba. Bank"
-msgstr "Banca Ri.Ba."
+msgstr "Banca Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_configuration
@@ -922,22 +921,22 @@ msgstr "Ri.Ba. Insoluta"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_riba_bank_account_id
 msgid "Ri.Ba. bank account"
-msgstr "Banca conto Ri.Ba."
+msgstr "Conto anticipo SBF (se presente)"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_riba_bank_amount
 msgid "Ri.Ba. bank amount"
-msgstr "Importo banca Ri.Ba."
+msgstr "Importo banca Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Ri.Ba. list"
-msgstr "Distinta Ri.Ba."
+msgstr "Distinta Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_partner_form_riba
 msgid "Ri.Ba. properties"
-msgstr "Proprietà Ri.Ba."
+msgstr "Proprietà Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
@@ -947,7 +946,7 @@ msgstr "Ri.Ba. transitory bank account"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line_riba
 msgid "RiBa"
-msgstr "Ri.Ba."
+msgstr "Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice_line_due_cost_line
@@ -962,23 +961,23 @@ msgstr "Spese d'incasso RiBa"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term_riba
 msgid "Riba"
-msgstr "Ri.Ba."
+msgstr "Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_config_id
 msgid "Riba configuration to be used"
-msgstr "Riba configuration to be used"
+msgstr "Configurazione Ri.Ba. da usare"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_ids
 msgid "Riba deadlines"
-msgstr "Riba scadenze"
+msgstr "Scadenze Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta_line
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta_move_line
 msgid "Riba details"
-msgstr "Dettagli Ri.Ba."
+msgstr "Dettagli Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta
@@ -997,7 +996,6 @@ msgstr "Ricevute bancarie issue"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_bank_codice_sia
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_bank_company_codice_sia_10667
 msgid "SIA Code"
 msgstr "Codice SIA"
 
@@ -1022,14 +1020,12 @@ msgstr "Cerca scritture"
 #: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:172
 #: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:172
 msgid "Set a Service for Due Cost in Company Config"
-msgstr ""
-"Imposta della configurazione della company un prodotto per i costi "
-"bancari "
+msgstr "Imposta della configurazione della company un prodotto per i costi bancari"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Settle all"
-msgstr "Imposta tutte pagate"
+msgstr "Marcare tutte pagate"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
@@ -1061,7 +1057,7 @@ msgstr "Stampa distinta"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_state
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_file_export_state
 msgid "State"
-msgstr "Stato"
+msgstr "Provincia"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -1142,7 +1138,7 @@ msgstr "Insoluto"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_unsolved_move_ids
 msgid "Unsolved Entries"
-msgstr "Voci non risolte"
+msgstr "Registrazioni insoluti"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:229
@@ -1162,7 +1158,7 @@ msgstr "Fatture insolute"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_form
 msgid "Unsolved Ri.Ba."
-msgstr "Ri.Ba. insolute"
+msgstr "Ri.Ba. insolute."
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:121
@@ -1198,14 +1194,14 @@ msgid ""
 "You can also skip this step and set the distinta status to 'accredited' "
 "anyway"
 msgstr ""
-"È anche possibile saltare questo passo e impostare comunque la distinta "
+"E' anche possibile saltare questo passo e impostare comunque la distinta "
 "dello stato di 'accreditata'"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
 msgid "You can also skip this step and set the line status to 'unsolved' anyway"
 msgstr ""
-"È anche possibile saltare questo passo e impostare comunque lo stato "
+"E' anche possibile saltare questo passo e impostare comunque lo stato "
 "della riga a 'insoluta'"
 
 #. module: l10n_it_ricevute_bancarie
@@ -1217,7 +1213,7 @@ msgstr "account.config.settings"
 #: selection:riba.file.export,state:0
 #: selection:riba.file.export,state
 msgid "choose"
-msgstr "Scegli"
+msgstr "scegli"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -1228,7 +1224,7 @@ msgstr "del"
 #: selection:riba.file.export,state:0
 #: selection:riba.file.export,state
 msgid "get"
-msgstr "get"
+msgstr "scarica"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_report_l10n_it_ricevute_bancarie_distinta_qweb

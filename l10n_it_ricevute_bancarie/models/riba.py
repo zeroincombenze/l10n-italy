@@ -3,18 +3,19 @@
 # Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
 # Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
 # Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
-from datetime import date
-
-import odoo.addons.decimal_precision as dp
 from odoo import _, api, fields, models, workflow
 from odoo.exceptions import Warning as UserError
+import odoo.addons.decimal_precision as dp
+from datetime import date
 
 
 class RibaList(models.Model):
+    _name = 'riba.distinta'
+    _description = 'Riba list'
 
     @api.multi
     def _compute_acceptance_move_ids(self):
@@ -39,9 +40,6 @@ class RibaList(models.Model):
             for line in riba.line_ids:
                 move_lines |= line.payment_ids
             riba.payment_ids = move_lines
-
-    _name = 'riba.distinta'
-    _description = 'Riba list'
 
     name = fields.Char(
         'Reference', required=True, readonly=True,
@@ -115,8 +113,8 @@ class RibaList(models.Model):
 
     @api.multi
     def confirm(self):
-        for list in self:
-            for line in list.line_ids:
+        for ribalist in self:
+            for line in ribalist.line_ids:
                 line.confirm()
 
     @api.multi
@@ -132,7 +130,8 @@ class RibaList(models.Model):
                     move.line_ids.remove_move_reconcile()
                     move.button_cancel()
                     move.unlink()
-        riba_list.signal_workflow('cancel')
+            # riba_list.signal_workflow('cancel')
+        self.action_draft()
 
     @api.multi
     def back_to_accepted(self):
@@ -149,10 +148,10 @@ class RibaList(models.Model):
                         move.move_id.button_cancel()
                         move.move_id.unlink()
                 if riba.unsolved_move_id:
-                    for move in riba_list.unsolved_move_id:
+                    for move in riba.unsolved_move_id:
                         move.line_ids.remove_move_reconcile()
-                        move.move_id.button_cancel()
-                        move.move_id.unlink()
+                        move.button_cancel()
+                        move.unlink()
         riba_list.signal_workflow('accepted')
 
     @api.multi
@@ -170,14 +169,14 @@ class RibaList(models.Model):
     def riba_cancel(self):
         for riba_list in self:
             for line in riba_list.line_ids:
-                if riba_list.state == 'paid':
-                    if riba_list.payment_ids:
+                if line.state == 'paid':
+                    if line.payment_ids:
                         # RiBA list is paid
-                        riba_list.payment_ids.remove_move_reconcile()
-                        for move in riba_list.payment_ids:
+                        line.payment_ids.remove_move_reconcile()
+                        for move in line.payment_ids:
                             move.move_id.button_cancel()
                             move.move_id.unlink(move.id)
-                    state = 'accredited'
+                    line.state = 'accredited'
                 elif riba_list.state == 'accredited':
                     riba_list.back_to_accepted()
                 elif riba_list.state == 'accepted':
@@ -186,6 +185,13 @@ class RibaList(models.Model):
                     riba_list.state = 'cancel'
                     for line in riba_list.line_ids:
                         line.state = 'cancel'
+                        if line.acceptance_move_id:
+                            line.acceptance_move_id.unlink()
+                        if line.unsolved_move_id:
+                            line.unsolved_move_id.unlink()
+                    if riba_list.accreditation_move_id:
+                        riba_list.accreditation_move_id.unlink()
+                    riba_list.state = 'cancel'
 
     @api.multi
     def settle_all_line(self):
@@ -204,10 +210,10 @@ class RibaList(models.Model):
 
     @api.multi
     def riba_accepted(self):
-        self.state = 'accepted'
-        if not self.date_accepted:
-            self.date_accepted = fields.Date.context_today(self)
         for riba_list in self:
+            riba_list.state = 'accepted'
+            if not riba_list.date_accepted:
+                riba_list.date_accepted = fields.Date.context_today(riba_list)
             for line in riba_list.line_ids:
                 line.state = 'confirmed'
 
@@ -251,7 +257,7 @@ class RibaList(models.Model):
         return self.test_state('paid')
 
     @api.multi
-    def action_cancel_draft(self):
+    def action_draft(self):
         for riba_list in self:
             workflow.trg_delete(
                 self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
@@ -260,6 +266,7 @@ class RibaList(models.Model):
             riba_list.state = 'draft'
             for line in riba_list.line_ids:
                 line.state = 'draft'
+
 
 class RibaListLine(models.Model):
     _name = 'riba.distinta.line'
@@ -444,20 +451,20 @@ class RibaListLine(models.Model):
                 ('account_id', '=', riba_line.acceptance_account_id.id),
                 ('move_id', '=', riba_line.acceptance_move_id.id),
                 ('debit', '!=', 0)
-                ])
+            ])
 
             settlement_move_amount = settlement_move_line.debit
 
             move_ref = u"Settlement RIBA {} - {}".format(
                 riba_line.distinta_id.name,
                 riba_line.partner_id.name,
-                )
+            )
             settlement_move = move_model.create({
                 'journal_id':
                     riba_line.distinta_id.config_id.settlement_journal_id.id,
                 'date': date.today().strftime('%Y-%m-%d'),
                 'ref': move_ref,
-                })
+            })
 
             move_line_credit = move_line_model.with_context({
                 'check_move_validity': False}).create(
