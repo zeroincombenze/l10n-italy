@@ -70,6 +70,7 @@ class AccountInvoice(models.Model):
         for invoice in self:
             if invoice.type in ('in_invoice', 'in_refund'):
                 continue
+            conai_product = invoice.company_id.conai_product_id
             conai_struct = {}
             if (invoice.conai_exemption_id and
                     invoice.conai_exemption_id.conai_percent):

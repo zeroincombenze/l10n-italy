@@ -34,14 +34,13 @@ class WizardAccountInvoiceImportZip(models.TransientModel):
             raise UserError('Imported file is not a zip file')
         zf = zipfile.ZipFile(io.BytesIO(base64.b64decode(self.zip)))
         att_list = []
-        # ir_att_model = self.env['ir.attachment']
         if self.type == 'sale':
             model = 'fatturapa.attachment.out'
-            att_model = self.env[model]
         else:
             model = 'fatturapa.attachment.in'
         att_model = self.env[model]
-        rex = r'[A-Z]{2}[A-Za-z0-9]+_[A-Za-z0-9]{4,5}\.(xml|XML|xml.p7m|XML.P7m)'
+        rex = r'[A-Z]{2}[A-Za-z0-9]+_[A-Za-z0-9]{4,5}\.' \
+              '(xml|XML|xml.p7m|XML.P7m)'
         token_id = '//ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2'
         for xml_fullfile in zf.namelist():
             xml_file = os.path.basename(xml_fullfile)

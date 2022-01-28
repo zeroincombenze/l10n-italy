@@ -134,12 +134,12 @@ msgid "Bills"
 msgstr "Fatture"
 
 #. module: l10n_it_einvoice_in
-#: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_invoices_number
+#: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_out_invoices_number
 msgid "Bills Number"
 msgstr "Numero fatture"
 
 #. module: l10n_it_einvoice_in
-#: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_invoices_total
+#: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_out_invoices_total
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_fatturapa_in_attachment_tree
 msgid "Bills Total"
 msgstr "Totale fatture"
@@ -432,7 +432,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_einvoice_in
-#: model:ir.model.fields,help:l10n_it_einvoice_in.field_fatturapa_attachment_in_invoices_total
+#: model:ir.model.fields,help:l10n_it_einvoice_in.field_fatturapa_attachment_out_invoices_total
 msgid ""
 "If specified by supplier, total amount of the document net of any "
 "discount and including tax charged to the buyer/ordered"
@@ -477,7 +477,7 @@ msgid "Import e-bill"
 msgstr "Importare e-fattura"
 
 #. module: l10n_it_einvoice_in
-#: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_in_invoice_ids
+#: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_out_invoice_ids
 msgid "In Bills"
 msgstr "Fatture"
 
@@ -1073,5 +1073,3 @@ msgstr "wizard.attachment.in.duedate"
 #: model:ir.model,name:l10n_it_einvoice_in.model_wizard_attachment_in_refresh
 msgid "wizard.attachment.in.refresh"
 msgstr "wizard.attachment.in.refresh"
-
-

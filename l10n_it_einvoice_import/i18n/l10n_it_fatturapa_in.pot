@@ -79,12 +79,12 @@ msgid "Bills"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_number
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_out_invoices_number
 msgid "Bills Number"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_total
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_out_invoices_total
 msgid "Bills Total"
 msgstr ""
 
@@ -329,7 +329,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in_invoices_total
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_out_invoices_total
 msgid "If specified by supplier, total amount of the document net of any discount and including tax charged to the buyer/ordered"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgid "Import e-bill"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_in_invoice_ids
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_out_invoice_ids
 msgid "In Bills"
 msgstr ""
 
@@ -849,4 +849,3 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "on"
 msgstr ""
-

@@ -525,7 +525,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             [('vat', '=', 'IT02780790107')], limit=1)
         invoice_values = {
             'partner_id': supplier.id,
-            'type': 'in_invoice',
+            'type': 'out_invoice',
             'reference': 'original_ref',
             'date_invoice': '2020-01-01',
         }
@@ -559,7 +559,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             [('vat', '=', 'IT02780790107')], limit=1)
         invoice_values = {
             'partner_id': supplier.id,
-            'type': 'in_invoice',
+            'type': 'out_invoice',
         }
         orig_invoice = self.invoice_model.create(invoice_values)
         wiz_values = {

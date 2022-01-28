@@ -3,10 +3,10 @@
     <data>
 
         <record id="wizard_import_fatturapa_form_view" model="ir.ui.view">
-            <field name="name">Electronic Bill Import</field>
+            <field name="name">Electronic Invoice Import</field>
             <field name="model">wizard.import.fatturapa</field>
             <field name="arch" type="xml">
-                <form string="Electronic Bill Import" >
+                <form string="Electronic Invoice Import" >
                     <group>
                         <separator colspan="2" 
                                    string="Take this action, if you want import data from e-invoice xml file"/>
@@ -22,9 +22,9 @@
 
         <act_window id="action_wizard_import_fatturapa"
                     key2="client_action_multi"
-                    name="Import Electronic Bill"
+                    name="Import Electronic Invoice"
                     res_model="wizard.import.fatturapa"
-                    src_model="fatturapa.attachment.in"
+                    src_model="fatturapa.attachment.out"
                     target="new"
                     view_id="wizard_import_fatturapa_form_view"
                     view_mode="form"/>

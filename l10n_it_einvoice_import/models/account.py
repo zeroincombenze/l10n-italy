@@ -14,8 +14,8 @@ from odoo.exceptions import UserError
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    fatturapa_attachment_in_id = fields.Many2one(
-        'fatturapa.attachment.in', 'E-bill Import File',
+    fatturapa_attachment_out_id = fields.Many2one(
+        'fatturapa.attachment.in', 'E-invoice Import File',
         ondelete='restrict', copy=False)
     inconsistencies = fields.Text('Import Inconsistencies', copy=False)
     e_invoice_line_ids = fields.One2many(
@@ -28,7 +28,7 @@ class AccountInvoice(models.Model):
         res = []
         for tup in result:
             invoice = self.browse(tup[0])
-            if invoice.type in ('in_invoice', 'in_refund'):
+            if invoice.type in ('out_invoice', 'out_refund'):
                 name = "%s, %s" % (tup[1], invoice.partner_id.name)
                 if invoice.amount_total_signed:
                     name += ', %s %s' % (
@@ -44,17 +44,18 @@ class AccountInvoice(models.Model):
     @api.multi
     def remove_attachment_link(self):
         self.ensure_one()
-        self.fatturapa_attachment_in_id = False
+        self.fatturapa_attachment_out_id = False
         return {'type': 'ir.actions.client', 'tag': 'reload'}
 
     def xml_get_header_data(
         self, wizard, fatt, fatturapa_attachment, FatturaBody, partner_id,
     ):
         inconsistencies = ''
-        company = self.env['res.company'].xml_get_company(
+        company = False
+        partner = self.env['res.company'].xml_get_company(
             fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici,
             wizard=wizard)
-        partner = self.env['res.partner'].browse(partner_id)
+        partner_id = self.env['res.partner'].browse(partner_id)
         # currency 2.1.1.2
         currency = self.env['res.currency'].search(
             [
@@ -69,7 +70,7 @@ class AccountInvoice(models.Model):
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa)
         # 2.1.1
         docType_id = False
-        invtype = 'in_invoice'
+        invtype = 'out_invoice'
         docType = FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
         if docType:
             docType_record = self.env['italy.ade.invoice.type'].search(
@@ -82,7 +83,7 @@ class AccountInvoice(models.Model):
                     _("Document type %s not handled.")
                     % docType)
             if docType == 'TD04':
-                invtype = 'in_refund'
+                invtype = 'out_refund'
         # 2.1.1.11
         comment = ''
         causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
@@ -102,7 +103,7 @@ class AccountInvoice(models.Model):
             'currency_id': currency[0].id,
             # 'origin': xmlData.datiOrdineAcquisto,
             'payment_term_id': partner.property_supplier_payment_term_id.id,
-            'company_id': company.id,
+            'company_id': self.user.company_id.id,
             'comment': comment,
             'check_total': FatturaBody.DatiGenerali.DatiGeneraliDocumento.\
                            ImportoTotaleDocumento
@@ -207,10 +208,10 @@ class AccountInvoiceLine(models.Model):
     # ]
     _inherit = "account.invoice.line"
 
-    fatturapa_attachment_in_id = fields.Many2one(
+    fatturapa_attachment_out_id = fields.Many2one(
         'fatturapa.attachment.in', 'E-bill Import File',
         readonly=True,
-        related='invoice_id.fatturapa_attachment_in_id',
+        related='invoice_id.fatturapa_attachment_out_id',
         copy=False)
 
 

@@ -17,7 +17,7 @@ from odoo.addons.l10n_it_ade.bindings import fatturapa_v_1_2
 _logger = logging.getLogger(__name__)
 
 class FatturaPAAttachmentIn(models.Model):
-    _name = "fatturapa.attachment.in"
+    _name = "fatturapa.attachment.out"
     _description = "E-bill import file"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
@@ -25,8 +25,8 @@ class FatturaPAAttachmentIn(models.Model):
 
     ir_attachment_id = fields.Many2one(
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
-    in_invoice_ids = fields.One2many(
-        'account.invoice', 'fatturapa_attachment_in_id',
+    out_invoice_ids = fields.One2many(
+        'account.invoice', 'fatturapa_attachment_out_id',
         string="In Bills", readonly=True)
     xml_supplier_id = fields.Many2one(
         "res.partner", string="Supplier", compute="_compute_xml_data",
@@ -90,7 +90,7 @@ class FatturaPAAttachmentIn(models.Model):
         return False
 
     @api.multi
-    @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
+    @api.depends('ir_attachment_id.datas', 'out_invoice_ids')
     def _compute_xml_data(self):
         partner_model = self.env['res.partner']
         for att in self:
@@ -108,11 +108,11 @@ class FatturaPAAttachmentIn(models.Model):
             att.invoices_number = len(inv_xml.FatturaElettronicaBody)
             att.registered = False
             # Strange but there is some trouble during execution
-            if hasattr(att, 'in_invoice_ids'):
+            if hasattr(att, 'out_invoice_ids'):
                 try:
-                    if att.in_invoice_ids:
-                        att.date_invoice0 = att.in_invoice_ids[0].date_invoice
-                        if len(att.in_invoice_ids) == att.invoices_number:
+                    if att.out_invoice_ids:
+                        att.date_invoice0 = att.out_invoice_ids[0].date_invoice
+                        if len(att.out_invoice_ids) == att.invoices_number:
                             att.registered = True
                     att.invoices_total = 0
                     for invoice_body in inv_xml.FatturaElettronicaBody:
@@ -120,14 +120,14 @@ class FatturaPAAttachmentIn(models.Model):
                             invoice_body.DatiGenerali.DatiGeneraliDocumento.
                             ImportoTotaleDocumento or 0
                         )
-                        if not att.in_invoice_ids:
+                        if not att.out_invoice_ids:
                             att.date_invoice0 = invoice_body.\
                                 DatiGenerali.DatiGeneraliDocumento.Data
                 except BaseException:
                     _logger.error('Internal error in attachment id %d' % att.id)
 
     @api.multi
-    @api.depends('ir_attachment_id.datas', 'in_invoice_ids')
+    @api.depends('ir_attachment_id.datas', 'out_invoice_ids')
     def revaluate_due_date(self):
         wizard_model = self.env['wizard.import.fatturapa']
         for att in self:
@@ -136,8 +136,8 @@ class FatturaPAAttachmentIn(models.Model):
                 continue
             for fattura in fatt.FatturaElettronicaBody:
                 # Strange but there is some trouble during execution
-                if hasattr(att, 'in_invoice_ids') and att.in_invoice_ids:
+                if hasattr(att, 'out_invoice_ids') and att.out_invoice_ids:
                     wizard_model.set_payment_term(
-                        att.in_invoice_ids[0],
-                        att.in_invoice_ids[0].company_id,
+                        att.out_invoice_ids[0],
+                        att.out_invoice_ids[0].company_id,
                         fattura.DatiPagamento)

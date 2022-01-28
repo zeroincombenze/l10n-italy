@@ -60,7 +60,7 @@ class WizardImportFatturapa(models.TransientModel):
         for fatturapa_attachment_id in fatturapa_attachment_ids:
             fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id)
-            if fatturapa_attachment.in_invoice_ids:
+            if fatturapa_attachment.out_invoice_ids:
                 raise UserError(
                     _("File %s is linked to bills yet.")
                     % fatturapa_attachment.name)
@@ -843,7 +843,7 @@ class WizardImportFatturapa(models.TransientModel):
             # 'origin': xmlData.datiOrdineAcquisto,
             'fiscal_position_id': partner.property_account_position_id.id,
             'company_id': company.id,
-            'fatturapa_attachment_in_id': fatturapa_attachment.id,
+            'fatturapa_attachment_out_id': fatturapa_attachment.id,
         })
 
         # 2.2.1
@@ -1185,7 +1185,7 @@ class WizardImportFatturapa(models.TransientModel):
             )
             fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id)
-            if fatturapa_attachment.in_invoice_ids:
+            if fatturapa_attachment.out_invoice_ids:
                 raise UserError(
                     _("File is linked to bills yet."))
             fatt = self.get_invoice_obj(fatturapa_attachment)
