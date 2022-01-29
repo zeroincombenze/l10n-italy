@@ -1,10 +1,12 @@
 
-=====================================================
-|icon| Italian Localization - Account 12.0.10.0.1.2.8
-=====================================================
+======================================================================================
+|icon| ITA - Fattura elettronica - Emissione - Dichiarazione d'intento 12.0.10.0.1.0.0
+======================================================================================
 
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_account/static/description/icon.png
+**Dichiarazioni d'intento in fattura elettronica**
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_einvoice_out_li/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -16,17 +18,11 @@
 Overview / Panoramica
 =====================
 
-|en| Accounting-related modules helpers
----------------------------------------
-
-Used by modules like l10n_it_vat_registries and account_vat_period_end_statement
+|en| Technical module for integrating l10n_it_dichiarazione_intento and l10n_it_einvoice_out
 
 |
 
-|it| Modulo di servizio contabile
----------------------------------
-
-Usato da moduli come l10n_it_vat_registries e account_vat_period_end_statement.
+|it| Modulo tecnico di integrazione tra l10n_it_dichiarazione_intento e l10n_it_einvoice_out
 
 |
 
@@ -94,7 +90,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_account** > Install
+* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_out_li** > Install
 
 
 |
@@ -156,21 +152,6 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
-----------------------------------------
-
-10.0.1.2.8 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] New function for einvoice
-
-10.0.1.2.7 (2021-07-19)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Journal page
-
-
-
 |
 |
 
@@ -189,19 +170,15 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `Abstract <https://www.abstract.it>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `Link It Spa <http://www.linkgroup.it>`__
+* `Marco Colombo`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 Contributors / Collaboratori
 ----------------------------
 
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-* Alex Comba <alex.comba@agilebg.com>
+* Marco Colombo <https://github.com/TheMule71>
+* Antonio M. Vigliotti <info@shs-av.com>
 
 
 Maintainer / Manutenzione

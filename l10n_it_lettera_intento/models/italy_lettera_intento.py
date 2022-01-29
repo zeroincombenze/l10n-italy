@@ -64,6 +64,17 @@ class ItalyLetteraIntento(models.Model):
     plafond_avaiable = fields.Monetary(string='Avaiable Plafond',
                                        compute=_used_plafond)
 
+    @api.multi
+    def name_get(self):
+        res = []
+        for item in self:
+            res.append(
+                (item.id,
+                 '%s - %s' % (item.partner_id and item.partner_id.name or '',
+                              item.name))
+            )
+        return res
+
     @api.model
     def fiscal_pos_values(self, partner, partner_vals, lett):
         params = {}

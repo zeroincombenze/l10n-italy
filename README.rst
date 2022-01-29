@@ -129,11 +129,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_in                  | 12.0.10.0. | |no_check| | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out                 | 12.0.10.0. | |no_check| | Electronic invoices emission                                                     |
+| l10n_it_einvoice_out                 | 12.0.10.0. | |no_check| | E-Invoice emission                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_ddt             | 12.0.10.0. | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_di              | 12.0.10.0. | |no_check| | Dichiarazioni d'intento in fatturapa                                             |
+| l10n_it_einvoice_out_li              | 12.0.10.0. | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 12.0.10.0. | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -402,6 +402,19 @@ l10n_it_ricevute_bancarie: 10.0.1.3.6 (2022-01-28)
 * [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
 
 
+l10n_it_lettera_intento: 10.0.0.1.4 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Editable Lettera intento id in invoice / Numero lettera intento in fattura modificabile
+
+
+l10n_it_account: 10.0.1.2.8 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New function for einvoice
+
+
+
 l10n_it_base: 10.0.0.2.16 (2022-01-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -511,7 +524,6 @@ l10n_it_central_journal: 10.0.0.0.5 (2021-09-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash if final print / Errore in stampa definitiva
-
 
 
 l10n_it_fiscal: 12.0.0.2.1 (2021-08-30)

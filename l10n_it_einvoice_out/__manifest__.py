@@ -12,6 +12,7 @@
     'summary': 'Electronic invoices emission',
     'version': '10.0.1.0.18',
     'category': 'Localization/Italy',
+    'summary': 'E-Invoice emission',
     'author': 'Odoo Community Association (OCA) and other subjects',
     'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
     'license': 'LGPL-3',

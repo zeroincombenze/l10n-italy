@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2019-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -10,7 +10,7 @@
 {
     'name': 'Lettere di intento',
     'summary': 'Lettere di intento',
-    'version': '10.0.0.1.3',
+    'version': '10.0.0.1.4',
     'category': 'Generic Modules/Accounting',
     'author': 'SHS-AV s.r.l.',
     'website': 'https://www.zeroincombenze.it/',

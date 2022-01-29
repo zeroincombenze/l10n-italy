@@ -311,7 +311,6 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setSedeCedente(self, CedentePrestatore, company):
-
         if not company.street:
             raise UserError(
                 _('Your company Street is not set.'))
@@ -327,6 +326,13 @@ class WizardExportFatturapa(models.TransientModel):
         if not company.country_id:
             raise UserError(
                 _('Your company Country is not set.'))
+        for (item, name) in (('fatturapa_rea_office', 'Ufficio REA'),
+                             ('fatturapa_rea_number', 'Numero REA'),
+                             ('fatturapa_rea_capital', 'Capitale sociale'),
+                             ('fatturapa_rea_partner', 'Unipersonale?'),):
+            if not getattr(company, item):
+                raise UserError(
+                    _('Your company %s is not set.') % name)
         # TODO: manage address number in <NumeroCivico>
         # see https://github.com/OCA/partner-contact/pull/96
         CedentePrestatore.Sede = IndirizzoType(
@@ -378,7 +384,7 @@ class WizardExportFatturapa(models.TransientModel):
                     company.fatturapa_rea_capital and
                     '%.2f' % company.fatturapa_rea_capital or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
-                StatoLiquidazione=company.fatturapa_rea_liquidation or None
+                StatoLiquidazione=company.fatturapa_rea_liquidation or 'LN'
                 )
 
     def _setContatti(self, CedentePrestatore, company):
@@ -1142,6 +1148,16 @@ class WizardExportFatturapa(models.TransientModel):
                         raise UserError(
                             _("Invoice %s has e-invoice export file yet.") % (
                                 inv.number))
+                if (inv.fiscal_position_id and
+                        inv.fiscal_position_id.lettera_intento):
+                    if not self.env['ir.module.module'].search(
+                            [('name', '=', 'l10n_it_einvoice_out_li'),
+                             ('state', '=', 'installed')]):
+                        raise UserError(
+                            _("Questo software non supporta la normativa 2002 "
+                              "delle lettere di intento.\n"
+                              "Per favore, contattare l'assistenza "
+                              "per ottenere l'aggiornamento fiscale!") )
                 if self.report_print_menu:
                         self.generate_attach_report(inv)
                 invoice_body = FatturaElettronicaBodyType()
