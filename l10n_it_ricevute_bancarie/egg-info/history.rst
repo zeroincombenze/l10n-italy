@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
+* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
 
 10.0.1.3.5 (2020-05-06)
 ~~~~~~~~~~~~~~~~~~~~~~~

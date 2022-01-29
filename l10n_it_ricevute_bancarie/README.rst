@@ -302,6 +302,7 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
+* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
 
 
 
@@ -341,7 +342,7 @@ Contributors / Collaboratori
 * Alex Comba <alex.comba@agilebg.com>
 * Antonio M. Vigliotti <info@shs-av.com>
 |
-----------------
+
 
 |en| **zeroincombenze®** is a trademark of SHS-AV s.r.l. <https://www.shs-av.com/>
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -408,6 +409,7 @@ Last Update / Ultimo aggiornamento: 2020-07-03
 :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
 :target: https://t.me/axitec_helpdesk
+* Antonio M. Vigliotti <info@shs-av.com>
 
 
 Maintainer / Manutenzione
@@ -439,7 +441,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-28
+Last Update / Ultimo aggiornamento: 2022-01-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
@@ -499,4 +501,3 @@ Last Update / Ultimo aggiornamento: 2022-01-28
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
