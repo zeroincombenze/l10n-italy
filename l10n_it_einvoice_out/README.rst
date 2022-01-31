@@ -1,6 +1,6 @@
 
 ===================================================================
-|icon| Italian Localization - FatturaPA - Emission 12.0.10.0.1.0.18
+|icon| Italian Localization - FatturaPA - Emission 12.0.10.0.1.0.19
 ===================================================================
 
 
@@ -244,6 +244,22 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.1.0.19 (2022-01-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check lettere intento / Test su lettere di intento
+* [FIX] Rea capital / controllo capitale sociale
+
+10.0.1.0.18 (2022-01-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
+
+
+
 |
 |
 
@@ -315,7 +331,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-29
+Last Update / Ultimo aggiornamento: 2022-01-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

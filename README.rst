@@ -395,6 +395,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_out: 10.0.1.0.19 (2022-01-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check lettere intento / Test su lettere di intento
+* [FIX] Rea capital / controllo capitale sociale
+
+
 l10n_it_ricevute_bancarie: 10.0.1.3.6 (2022-01-28)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -485,6 +492,12 @@ l10n_it_fiscal: 12.0.0.2.6 (2022-01-04)
 * [IMP] Module name changed (l10n_it_coa -> l10n_it_coa)
 
 
+l10n_it_einvoice_out: 10.0.1.0.18 (2022-01-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
+
+
 l10n_it_fiscal: 12.0.0.2.5 (2021-12-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -537,12 +550,6 @@ l10n_it_fiscal: 12.0.0.2.0 (2021-08-20)
 
 * [FIX] EU-OSS tax accounts / Conti IVA EU-OSS
 
-l10n_it_vat_registries: 10.0.1.3.1 (2021-08-02)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] User can set year in footer page / L'utente può impostare l'anno di stampa del piede
-
-
 
 
 
@@ -575,7 +582,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-01-29
+Last Update / Ultimo aggiornamento: 2022-01-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

@@ -30,6 +30,8 @@ class WizardExportFatturapa(models.TransientModel):
 
     def setDettaglioLinee(self, invoice, body):
         super(WizardExportFatturapa, self).setDettaglioLinee(invoice, body)
+        if not invoice.lettera_intento:
+            return
         if not invoice.lettera_intento_id:
             raise UserError(
                 _('Missed Lettera di intento in invoice!'))

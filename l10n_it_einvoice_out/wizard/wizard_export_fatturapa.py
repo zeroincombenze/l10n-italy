@@ -311,25 +311,15 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setSedeCedente(self, CedentePrestatore, company):
-        if not company.street:
-            raise UserError(
-                _('Your company Street is not set.'))
-        if not company.zip:
-            raise UserError(
-                _('Your company ZIP is not set.'))
-        if not company.city:
-            raise UserError(
-                _('Your company City is not set.'))
-        if not company.partner_id.state_id:
-            raise UserError(
-                _('Province not set.'))
-        if not company.country_id:
-            raise UserError(
-                _('Your company Country is not set.'))
-        for (item, name) in (('fatturapa_rea_office', 'Ufficio REA'),
-                             ('fatturapa_rea_number', 'Numero REA'),
-                             ('fatturapa_rea_capital', 'Capitale sociale'),
-                             ('fatturapa_rea_partner', 'Unipersonale?'),):
+        for (item, name) in (('country_id', 'nazione'),
+                             ('street', 'indirizzo'),
+                             ('zip', 'CAP'),
+                             ('city', u'città'),
+                             ('state_id', 'provincia'),
+                             ('fatturapa_rea_office', 'ufficio REA'),
+                             ('fatturapa_rea_number', 'numero REA'),
+                             # ('fatturapa_rea_capital', 'Capitale sociale'),
+                             ('fatturapa_rea_partner', 'nipersonale?'),):
             if not getattr(company, item):
                 raise UserError(
                     _('Your company %s is not set.') % name)
@@ -1149,6 +1139,7 @@ class WizardExportFatturapa(models.TransientModel):
                             _("Invoice %s has e-invoice export file yet.") % (
                                 inv.number))
                 if (inv.fiscal_position_id and
+                        hasattr(inv.fiscal_position_id, 'lettera_intento') and
                         inv.fiscal_position_id.lettera_intento):
                     if not self.env['ir.module.module'].search(
                             [('name', '=', 'l10n_it_einvoice_out_li'),

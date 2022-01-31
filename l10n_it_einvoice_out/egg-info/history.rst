@@ -1,4 +1,10 @@
-10.0.1.0.18 (2021-01-03)
+10.0.1.0.19 (2022-01-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check lettere intento / Test su lettere di intento
+* [FIX] Rea capital / controllo capitale sociale
+
+10.0.1.0.18 (2022-01-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
