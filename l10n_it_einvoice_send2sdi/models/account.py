@@ -29,6 +29,7 @@ class AccountInvoice(models.Model):
          ('accepted', 'Accepted'),
          ('error', 'Error')],
         string='E-invoice State',
+        translate = True,
         compute='_compute_fatturapa_state',
         store='true',
     )

@@ -522,7 +522,7 @@ class FatturaPAAttachmentOut(models.Model):
                     delivered_date = datetime.datetime.strptime(
                         documenti[last_ix]['DataFattura'],
                         '%Y-%m-%dT%H:%M:%S') + timedelta(
-                        days=120)
+                        days=32)
                     if (last_ix == valid_ix or
                             delivered_date < datetime.datetime.today()):
                         # Invoice sent for a long time w/o error: it is ok
@@ -538,41 +538,40 @@ class FatturaPAAttachmentOut(models.Model):
         att.state = att_state
         return att, last_ix
 
+    def build_history(self, documenti, valid_ix):
+        line_fmt = ''
+        for ii in range(11):
+            line_fmt += '<td>%s</td>'
+        row_fmt = '<tr>' + line_fmt + '</tr>\n'
+        history = (
+            '<p>%s</p>\n<p>'
+            '<table border="2px" cellpadding="2px" style="padding: 5px;">' +
+            row_fmt.replace('td', 'th')) % (
+            datetime.datetime.now(),
+            'Data Caricamento', 'Stato Invio SdI', 'Tipo Documento',
+            'Mittente', 'Destinatario', 'Dest. PartitaIva', 'Data Fattura',
+            'UID', 'Valuta', 'Imponibile', 'Note')
+        for ii, doc in enumerate(documenti):
+            history += row_fmt % (
+                doc.get('DataCaricamento', ''),
+                '<strong>%s</strong>' % Evolve.document_state(doc)
+                if ii == valid_ix else Evolve.document_state(doc),
+                doc.get('TipoDocumento', ''),
+                doc.get('Mittente', ''),
+                doc.get('Destinatario', ''),
+                doc.get('DestinatarioPartitaIva', ''),
+                doc.get('DataFattura', '')[:10],
+                doc.get('Uid', ''),
+                doc.get('Valuta', ''),
+                doc.get('Imponibile', ''),
+                '<strong>%s</strong>' % text2html(doc.get('Note', ''))
+                if ii != valid_ix else text2html(doc.get('Note', '')),
+            )
+        history += '</table></p>'
+        return history
+
     @api.multi
     def send_verify_via_json(self, send_channel, invoice):
-
-        def build_history(documenti, valid_ix):
-            line_fmt = ''
-            for ii in range(11):
-                line_fmt += '<td>%s</td>'
-            row_fmt = '<tr>' + line_fmt + '</tr>\n'
-            history = (
-                '<p>%s</p>\n<p>'
-                '<table border="2px" cellpadding="2px" style="padding: 5px;">' +
-                row_fmt.replace('td', 'th')) % (
-                datetime.datetime.now(),
-                'Data Caricamento', 'Stato Invio SdI', 'Tipo Documento',
-                'Mittente', 'Destinatario', 'Dest. PartitaIva', 'Data Fattura',
-                'UID', 'Valuta', 'Imponibile', 'Note')
-            for ii, doc in enumerate(documenti):
-                history += row_fmt % (
-                    doc.get('DataCaricamento', ''),
-                    '<strong>%s</strong>' % Evolve.document_state(doc)
-                    if ii == valid_ix else Evolve.document_state(doc),
-                    doc.get('TipoDocumento', ''),
-                    doc.get('Mittente', ''),
-                    doc.get('Destinatario', ''),
-                    doc.get('DestinatarioPartitaIva', ''),
-                    doc.get('DataFattura', '')[:10],
-                    doc.get('Uid', ''),
-                    doc.get('Valuta', ''),
-                    doc.get('Imponibile', ''),
-                    '<strong>%s</strong>' % text2html(doc.get('Note', ''))
-                    if ii != valid_ix else text2html(doc.get('Note', '')),
-                )
-            history += '</table></p>'
-            return history
-
         for att in self:
             data, errmsg, documenti = self.search_via_json(
                 send_channel, invoice.number, full_info=True)
@@ -580,7 +579,7 @@ class FatturaPAAttachmentOut(models.Model):
                 att, data, errmsg, documenti, store_mesg=True)
             if not documenti:
                 continue
-            att.last_sdi_response = build_history(documenti, last_ix)
+            att.last_sdi_response = self.build_history(documenti, last_ix)
 
     @api.multi
     def send_verify_via_pec(self, send_channel, invoice):
@@ -707,7 +706,10 @@ class FatturaPAAttachmentOut(models.Model):
                 send_channel, invoice.number)
             att, last_ix = self.analyze_data_list(
                 att, data, errmsg, documenti)
-            if documenti and att.state in ('validated', 'accepted', 'sent'):
+            if documenti and att.state in (
+                    'validated', 'accepted', 'sent', 'recipient_error'):
+                att.last_sdi_response = self.build_history(
+                    documenti, last_ix)
                 continue
 
             bytes = att.datas
