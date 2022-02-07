@@ -1,6 +1,6 @@
 
 ======================================================================================
-|icon| ITA - Fattura elettronica - Emissione - Dichiarazione d'intento 12.0.10.0.1.0.1
+|icon| ITA - Fattura elettronica - Emissione - Dichiarazione d'intento 12.0.10.0.1.0.2
 ======================================================================================
 
 
@@ -155,6 +155,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.2 (2022-02-07)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No N1 in VAT summary / Non aggiunge codice N1 in riepilogo IVA se non LI
+
 10.0.1.0.1 (2022-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -164,6 +169,7 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Fisrt version / Prima versione
+
 
 
 |
@@ -224,9 +230,9 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-31
+Last Update / Ultimo aggiornamento: 2022-02-07
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0

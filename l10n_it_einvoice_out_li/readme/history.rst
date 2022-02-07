@@ -1,3 +1,8 @@
+10.0.1.0.2 (2022-02-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No N1 in VAT summary / Non aggiunge codice N1 in riepilogo IVA se non LI
+
 10.0.1.0.1 (2022-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
