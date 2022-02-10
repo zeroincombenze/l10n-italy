@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo (VENV-10.0)\n"
+"Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 10:30+0000\n"
-"PO-Revision-Date: 2020-06-23 10:30+0000\n"
+"POT-Creation-Date: 2022-02-09 17:29+0000\n"
+"PO-Revision-Date: 2022-02-09 17:29+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -25,7 +25,7 @@ msgid "Account used to write off the VAT amount"
 msgstr "Account utilizzato per ammortizzare l'importo dell'IVA"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:184
+#: code:addons/l10n_it_split_payment/models/account.py:185
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
 msgstr "Non è possibile gestire le fatture dei fornitori con la scissione dei pagamenti"
@@ -46,7 +46,7 @@ msgid "Fiscal Position"
 msgstr "Posizione fiscale"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:143
+#: code:addons/l10n_it_split_payment/models/account.py:144
 #, python-format
 msgid "Importo + IVA split-payment"
 msgstr "Importo + IVA split-payment"
@@ -57,13 +57,13 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:57
+#: code:addons/l10n_it_split_payment/models/account.py:58
 #, python-format
 msgid "Please set 'Split Payment Write-off Account' field in accounting configuration"
 msgstr "Impostare il campo 'Conto Storno Scissione Pagamenti' nella configurazione della contabilità"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:61
+#: code:addons/l10n_it_split_payment/models/account.py:62
 #, python-format
 msgid "Please set 'Split Payment Write-off Tax' field in accounting configuration"
 msgstr "Please set 'Split Payment Write-off Tax' field in accounting configuration"
@@ -77,8 +77,8 @@ msgid "Split Payment"
 msgstr "Scissione Pagamenti"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:64
-#: code:addons/l10n_it_split_payment/models/account.py:87
+#: code:addons/l10n_it_split_payment/models/account.py:65
+#: code:addons/l10n_it_split_payment/models/account.py:88
 #: code:addons/l10n_it_split_payment/tests/test_splitpayment.py:150
 #, python-format
 msgid "Split Payment Write Off"

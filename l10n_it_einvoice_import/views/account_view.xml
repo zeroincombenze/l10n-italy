@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <menuitem action="action_fattura_pa_out"
-              id="menu_fattura_pa_in_tree"
-              parent="l10n_it_einvoice_base.menu_fattura_pa_payables"/>
-</odoo>

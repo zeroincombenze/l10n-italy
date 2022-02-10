@@ -28,6 +28,7 @@ class DdtCreateInvoice(models.TransientModel):
     def create_invoice(self):
         self = self.with_context(
             invoice_date=self.date_invoice,
+            invoice_journal_id=self.journal_id.id,
         )
         if self.ddt_ids:
             invoice_ids = self.ddt_ids.action_invoice_create()

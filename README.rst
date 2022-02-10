@@ -223,7 +223,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_split_payment                | 12.0.10.0. | 12.0.1.0.1 | Split Payment                                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_vat_communication            | 12.0.10.0. | |no_check| | Comunicazione periodica IVA                                                      |
+| l10n_it_vat_communication            | |halt|     | |no_check| | Comunicazione periodica IVA                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_vat_registries               | 12.0.10.0. | 12.0.1.2.5 | Italian Localization - VAT Registries                                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -394,6 +394,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 History / Cronologia
 --------------------
+
+l10n_it_ddt: 10.0.1.8.12 (2022-02-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Selected journal / Registro selezionato
+
 
 l10n_it_einvoice_send2sdi: 10.0.1.0.21 (2022-02-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -588,7 +594,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-02-07
+Last Update / Ultimo aggiornamento: 2022-02-10
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
