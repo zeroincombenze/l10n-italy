@@ -692,6 +692,7 @@ id,code,name,user_type_id:id,group_id:id,reconcile,chart_template_id:id
 720162,720162,Crediti da tit. iscritti nelle  immobiliz. che non costituiscono partecipaz.,account.data_account_type_revenue,l10n_it_fiscal.72,FALSE,l10n_chart_it_zeroincombenze
 720163,720163,Crediti da tit. iscritti  nell'attivo circolante che non costituiscono partecipaz.,account.data_account_type_revenue,l10n_it_fiscal.72,FALSE,l10n_chart_it_zeroincombenze
 720164,720164,Crediti da proventi finanziari diversi,account.data_account_type_revenue,l10n_it_fiscal.72,FALSE,l10n_chart_it_zeroincombenze
+720170,720170,Proventi da differenze di cambio,account.data_account_type_revenue,l10n_it_fiscal.72,FALSE,l10n_chart_it_zeroincombenze
 730100,730100,Interessi e altri oneri finanziari da imprese controllate,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
 730200,730200,Interessi e altri oneri finanziari da imprese collegate,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
 730300,730300,Interessi e altri oneri finanziari da imprese controllanti,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
@@ -703,6 +704,7 @@ id,code,name,user_type_id:id,group_id:id,reconcile,chart_template_id:id
 731120,731120,Interessi passivi verso banche,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
 731130,731130,Interessi passivi c/c bancari,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
 731140,731140,Spese e commissioni bancarie,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
+731170,731170,Perdite di cambio,account.data_account_type_expenses,l10n_it_fiscal.73,FALSE,l10n_chart_it_zeroincombenze
 831000,831000,Rivalutazioni da partecipazioni,account.data_account_type_other_income,l10n_it_fiscal.83,FALSE,l10n_chart_it_zeroincombenze
 832000,832000,Rivalutazioni di immobilizzazioni finanziarie,account.data_account_type_other_income,l10n_it_fiscal.83,FALSE,l10n_chart_it_zeroincombenze
 833000,833000,Rivalutaz. da titoli in att. Circ. senza partecipaz.,account.data_account_type_other_income,l10n_it_fiscal.83,FALSE,l10n_chart_it_zeroincombenze

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Italy - Fiscal localization by zeroincombenze(R)',
-    'version': '10.0.0.2.8',
+    'version': '10.0.0.2.10',
     'category': 'Localization/Account Charts',
     'author': 'SHS-AV s.r.l.',
     'website': 'http://www.zeroincombenze.it',
@@ -21,6 +21,8 @@
         'data/account.chart.template.csv',
         'data/account_chart_template_data.yml',
     ],
+    'pre_init_hook': 'update_rc_tax_codes_postt',
+    'post_init_hook': 'remove_old_account_post',
     'installable': True,
     'maintainer': 'Antonio Maria Vigliotti',
 }
