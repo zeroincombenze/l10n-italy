@@ -3,12 +3,12 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# Copyright 2021 Antonio M. Vigliotti - SHS-Av srl
+# Copyright 2019-22 Antonio M. Vigliotti - SHS-Av srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Reverse Charge IVA',
-    'version': '10.0.1.2.5',
+    'version': '10.0.1.3',
     'category': 'Localization/Italy',
     'summary': 'Reverse Charge for Italy',
     'author': 'Odoo Italia Network,Odoo Community Association (OCA)',
@@ -26,6 +26,7 @@
         'views/account_invoice_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_rc_type_view.xml',
+        'views/account_tax_view.xml',
         'security/reverse_charge_security.xml',
     ],
     'installable': True,

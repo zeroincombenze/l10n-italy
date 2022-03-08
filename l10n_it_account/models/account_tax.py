@@ -117,7 +117,7 @@ class AccountTax(models.Model):
                     undeductible += child_balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
-            if tax.nature_id.code == 'N6':
+            if tax.rc:
                 undeductible = tax_balance
                 deductible = 0
             if registry_type == 'supplier':

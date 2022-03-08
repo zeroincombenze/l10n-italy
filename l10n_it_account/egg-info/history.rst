@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Strange bug in print VAT registry
+* [IMP] New flag RC in tax / Nuovo flag RC in tassa
 
 10.0.1.2.8 (2022-01-28)
 ~~~~~~~~~~~~~~~~~~~~~~~

@@ -165,27 +165,27 @@ class WizardImportFatturapa(models.TransientModel):
         domain = []
         domain.append(('company_id', '=', company_id))
         domain.append(('type_tax_use', '=', 'purchase'))
-        # Some supplier use N6 w/o Vax rate!
-        if Natura != 'N6' or AliquotaIVA_fp != 0.0:
+        # Some supplier use N6 w/o tax rate!
+        if AliquotaIVA_fp != 0.0:
             domain.append(('amount', '=', AliquotaIVA_fp))
         if Natura:
-            if Natura.find('.') < 0:
+            if '.' not in Natura:
                 # Code 2020
                 nature_ids = nature_model.search(
                     [('code', 'like', Natura)])
                 if nature_ids:
                     domain.append(
                         ('nature_id', 'in', [x.id for x in nature_ids]))
-                else:
-                    domain.append(('nature_id', '=', -1))
+                # else:
+                #     domain.append(('nature_id', '=', -1))
             else:
                 nature_id = nature_model.search([('code', '=', Natura)])
                 if nature_id:
                     domain.append(('nature_id', '=', nature_id.id))
-                else:
-                    domain.append(('nature_id', '=', -1))
-        elif AliquotaIVA_fp != 0.0:
-            domain.append(('nature_id', '=', False))
+                # else:
+                #     domain.append(('nature_id', '=', -1))
+        # elif AliquotaIVA_fp != 0.0:
+        #     domain.append(('nature_id', '=', False))
         account_taxes = account_tax_model.search(domain, order="sequence")
         if not account_taxes:
             raise UserError(
@@ -201,6 +201,12 @@ class WizardImportFatturapa(models.TransientModel):
                     domain, order="sequence")
                 if len(account_taxes2):
                     account_taxes = account_taxes2
+        if len(account_taxes) > 1:
+            domain.append(('rc', '=', True))
+            account_taxes2 = account_tax_model.search(
+                domain, order="sequence")
+            if len(account_taxes2):
+                account_taxes = account_taxes2
         if len(account_taxes) > 1:
             self.log_inconsistency(
                 _('Rilevati troppi codici IVA con aliquota %s '

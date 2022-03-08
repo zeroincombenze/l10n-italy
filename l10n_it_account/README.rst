@@ -1,6 +1,6 @@
 
 =====================================================
-|icon| Italian Localization - Account 12.0.10.0.1.2.8
+|icon| Italian Localization - Account 12.0.10.0.1.2.9
 =====================================================
 
 
@@ -159,6 +159,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.9 (2022-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Strange bug in print VAT registry
+* [IMP] New flag RC in tax / Nuovo flag RC in tassa
+
 10.0.1.2.8 (2022-01-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -233,7 +239,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-29
+Last Update / Ultimo aggiornamento: 2022-03-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

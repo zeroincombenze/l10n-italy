@@ -3,7 +3,7 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# Copyright 2021 Antonio M. Vigliotti - SHS-Av srl
+# Copyright 2019-22 Antonio M. Vigliotti - SHS-Av srl
 
 from odoo import api, fields, models
 from odoo.exceptions import Warning as UserError
@@ -21,8 +21,7 @@ class AccountInvoiceLine(models.Model):
             rc = bool(fposition.rc_type_id)
             if rc:
                 for tax in self.invoice_line_tax_ids:
-                    if (not tax.nature_id or
-                            not tax.nature_id.code.startswith('N6')):
+                    if not tax.rc:
                         rc = False
                         break
             self.rc = rc

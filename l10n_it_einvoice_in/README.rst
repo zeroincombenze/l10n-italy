@@ -1,6 +1,6 @@
 
 ==============================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 12.0.10.0.1.3.28
+|icon| Italian Localization - Fattura elettronica - Ricezione 12.0.10.0.1.3.29
 ==============================================================================
 
 
@@ -279,6 +279,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.29 (2022-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Detect RC by rc flag / Riconoscimento RC tramite flag rc
+
 10.0.1.3.28 (2022-01-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -330,11 +335,6 @@ Contributors / Collaboratori
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-Translations by / Traduzioni a cura di
---------------------------------------
-
-* Sergio Zanchetta <https://github.com/primes2h>
-
 
 
 Translations by / Traduzioni a cura di
@@ -372,7 +372,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-26
+Last Update / Ultimo aggiornamento: 2022-03-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
