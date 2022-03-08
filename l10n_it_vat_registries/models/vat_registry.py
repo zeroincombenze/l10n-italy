@@ -32,7 +32,6 @@ class ReportRegistroIva(models.AbstractModel):
                 data['form']['from_date'], date_format),
             'to_date': self._format_date(
                 data['form']['to_date'], date_format),
-            'year_footer': data['form']['year_footer'],
             'registry_type': data['form']['registry_type'],
             'invoice_total': self._get_move_total,
             'tax_registry_name': data['form']['tax_registry_name'],
@@ -41,7 +40,8 @@ class ReportRegistroIva(models.AbstractModel):
             'compute_totals_tax': self._compute_totals_tax,
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'only_totals': data['form']['only_totals'],
-            'date_format': date_format
+            'date_format': date_format,
+            'year_footer': data['form']['year_footer'],
         }
 
         return self.env['report'].render(
