@@ -10,9 +10,11 @@ class AccountTax(models.Model):
     @api.onchange('nature_id')
     def _onchange_nature(self):
         rc = False
-        if self.nature_id and self.rc:
+        if (self.nature_id and
+                (self.nature_id.code.startswith('N6') or (
+                     self.nature_id.code.startswith('N3') and
+                     self.nature_id.code != 'N3.5'))):
             rc = True
         self.rc = rc
 
-    # end _compute_rc
     rc = fields.Boolean("RC")
