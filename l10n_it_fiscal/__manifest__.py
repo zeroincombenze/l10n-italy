@@ -21,8 +21,6 @@
         'data/account.chart.template.csv',
         'data/account_chart_template_data.yml',
     ],
-    'pre_init_hook': 'update_rc_tax_codes_postt',
-    'post_init_hook': 'remove_old_account_post',
-    'installable': True,
     'maintainer': 'Antonio Maria Vigliotti',
+    'installable': True,
 }
