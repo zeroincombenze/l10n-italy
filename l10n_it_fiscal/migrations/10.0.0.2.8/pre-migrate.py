@@ -47,6 +47,7 @@ def update_rc_tax_codes(cr):
                     rm_translation('account.tax', tax.id)
                 continue
             tax.description = 'a%s' % tax.description
+            tax.name = 'RC %s' % tax.name
             action_done = True
             rm_translation('account.tax', tax.id)
         if action_done:
