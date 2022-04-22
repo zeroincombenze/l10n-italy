@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Agile Business Group (<http://www.agilebg.com>)
+# Copyright 2018-2022 SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields
@@ -19,6 +20,15 @@ class AccountTax(models.Model):
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
 
+    def is_rc(self, nature=None):
+        nature = nature or (
+                hasattr(self, 'nature_id') and self.nature_id.code) or (
+                hasattr(self, 'kind_id') and self.kind_id.code)
+        return bool(
+            nature and (
+                nature.startswith('N6') or (
+                nature.startswith('N3') and nature != 'N3.5')))
+
     def _get_tax_amount(self):
         self.ensure_one()
         res = 0.0
@@ -32,9 +42,8 @@ class AccountTax(models.Model):
     def _get_tax_name(self):
         self.ensure_one()
         name = self.name
-        # [antoniov: 2019-07-29]
-        # if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
-        #     name = self.parent_tax_ids[0].name
+        if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
+            name = self.parent_tax_ids[0].name
         return name
 
     def _compute_totals_tax(self, data):
@@ -56,13 +65,13 @@ class AccountTax(models.Model):
 
         tax = self.env['account.tax'].with_context(context).browse(self.id)
         if 'payability' in tax and tax.payability == 'S':
-            deferred_vat = False
+            # deferred_vat = False
             split_payment = True
         elif 'payability' in tax and tax.payability == 'D':
-            deferred_vat = True
+            # deferred_vat = True
             split_payment = False
         else:
-            deferred_vat = False
+            # deferred_vat = False
             split_payment = False
         # [antoniov: 2022-03-08] strange bug
         # tax_name = tax._get_tax_name()
@@ -117,7 +126,7 @@ class AccountTax(models.Model):
                     undeductible += child_balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
-            if hasattr(tax, 'rc') and tax.rc:
+            if (hasattr(tax, 'rc') and tax.rc) or tax.is_rc():
                 undeductible = tax_balance
                 deductible = 0
             if registry_type == 'supplier':
@@ -125,6 +134,6 @@ class AccountTax(models.Model):
                         -tax_balance, -deductible, -undeductible)
             if split_payment and registry_type == 'customer':
                 return (tax_name, base_balance,
-                    tax_balance, undeductible, deductible)
+                        tax_balance, undeductible, deductible)
             return (tax_name, base_balance,
                     tax_balance, deductible, undeductible)

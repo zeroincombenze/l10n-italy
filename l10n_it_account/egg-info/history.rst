@@ -1,3 +1,8 @@
+10.0.1.2.10 (2022-04-21)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function tax.is_rc() / Funzione tax.is_rc()
+
 10.0.1.2.9 (2022-03-08)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -17,4 +22,4 @@
 10.0.1.2.6 (2020-12-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Recongnize N6.* / Riconoscimento N6.*
+* [FIX] Recognize N6.* / Riconoscimento N6.*
