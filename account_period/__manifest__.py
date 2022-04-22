@@ -5,7 +5,7 @@
 {
     'name': 'Account Period',
     "summary": "Account Period",
-    "version": "1.0",
+    "version": "10.0.0.1.0",
     "category": "Accounting",
     "website": "http://www.odoomod.com/",
     'description': """
