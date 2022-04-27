@@ -6,13 +6,13 @@
         <field name="model">italy.ade.invoice.type</field>
         <field name="arch" type="xml">
             <tree string="Fiscal Document Types">
-                <field name="code"/>
-                <field name="name"/>
-                <field name="help"/>
-                <field name="out_invoice"/>
-                <field name="in_invoice"/>
-                <field name="out_refund"/>
-                <field name="in_refund"/>
+                <field name="code" />
+                <field name="name" />
+                <field name="help" />
+                <field name="out_invoice" />
+                <field name="in_invoice" />
+                <field name="out_refund" />
+                <field name="in_refund" />
             </tree>
         </field>
     </record>
@@ -23,19 +23,19 @@
         <field name="arch" type="xml">
             <form string="Fiscal Document Types">
                 <group>
-                    <field name="code"/>
-                    <field name="name"/>
-                    <field name="scope"/>
-                    <field name="active"/>
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="scope" />
+                    <field name="active" />
                 </group>
                 <group>
-                    <field name="out_invoice"/>
-                    <field name="in_invoice"/>
-                    <field name="out_refund"/>
-                    <field name="in_refund"/>
+                    <field name="out_invoice" />
+                    <field name="in_invoice" />
+                    <field name="out_refund" />
+                    <field name="in_refund" />
                 </group>
                 <group>
-                    <field name="help"/>
+                    <field name="help" />
                 </group>
             </form>
         </field>
@@ -44,11 +44,15 @@
     <record id="action_invoice_type" model="ir.actions.act_window">
         <field name="name">Fiscal Document Types</field>
         <field name="res_model">italy.ade.invoice.type</field>
-        <field name="view_id" ref="view_invoice_type_tree"/>
+        <field name="view_id" ref="view_invoice_type_tree" />
     </record>
 
-    <menuitem id="menu_invoice_type" name="Invoice Type"
-              action="action_invoice_type" parent="menu_ade"
-              groups="account.group_account_manager"/>
+    <menuitem
+        id="menu_invoice_type"
+        name="Invoice Type"
+        action="action_invoice_type"
+        parent="menu_ade"
+        groups="account.group_account_manager"
+    />
 
 </odoo>

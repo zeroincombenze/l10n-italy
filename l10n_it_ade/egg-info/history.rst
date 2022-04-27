@@ -1,3 +1,8 @@
+10.0.0.3.3 (2022-04-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Regression test
+
 10.0.0.3.2 (2021-03-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -28,7 +33,7 @@
 10.0.0.1.13 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Dim_text function / field to search for similarity 
+* [IMP] Dim_text function, field to search for similarity
 
 
 < 10.0.0.1.13 (2018)

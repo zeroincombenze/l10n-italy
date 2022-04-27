@@ -7,38 +7,36 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class ItalyAdeTaxNature(models.Model):
-    _name = 'italy.ade.tax.nature'
-    _description = 'Tax Italian Nature'
+    _name = "italy.ade.tax.nature"
+    _description = "Tax Italian Nature"
 
-    _sql_constraints = [('code',
-                         'unique(code)',
-                         'Code already exists!')]
+    _sql_constraints = [("code", "unique(code)", "Code already exists!")]
 
-    code = fields.Char(string='Code', size=4, required=True)
-    name = fields.Char(string='Name', required=True)
-    help = fields.Text(string='Help')
-    active = fields.Boolean(string='Active', default=True)
+    code = fields.Char(string="Code", size=4, required=True)
+    name = fields.Char(string="Name", required=True)
+    help = fields.Text(string="Help")
+    active = fields.Boolean(string="Active", default=True)
 
     @api.multi
     def name_get(self):
         res = []
         for tax_kind in self:
-            res.append(
-                (tax_kind.id, '[%s] %s' % (tax_kind.code, tax_kind.name)))
+            res.append((tax_kind.id, "[%s] %s" % (tax_kind.code, tax_kind.name)))
         return res
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         if not args:
             args = []
         if name:
-            records = self.search([
-                '|', ('name', operator, name), ('code', operator, name)
-                ] + args, limit=limit)
+            records = self.search(
+                ["|", ("name", operator, name), ("code", operator, name)] + args,
+                limit=limit,
+            )
         else:
             records = self.search(args, limit=limit)
         return records.name_get()

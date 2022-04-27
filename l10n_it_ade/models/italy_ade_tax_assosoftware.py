@@ -7,30 +7,31 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class ItalyAdeTaxAssosoftware(models.Model):
-    _name = 'italy.ade.tax.assosoftware'
-    _description = 'Tax Assosoftware classification'
+    _name = "italy.ade.tax.assosoftware"
+    _description = "Tax Assosoftware classification"
 
-    _sql_constraints = [('code',
-                         'unique(code)',
-                         'Code already exists!')]
+    _sql_constraints = [("code", "unique(code)", "Code already exists!")]
 
-    code = fields.Char(string='Code', size=7, required=True)
-    name = fields.Char(string='Name', required=True)
-    nature = fields.Char(string='Nature',
-        help='Nature of tax code: may be taxable, out of scope, etc ...')
+    code = fields.Char(string="Code", size=7, required=True)
+    name = fields.Char(string="Name", required=True)
+    nature = fields.Char(
+        string="Nature",
+        help="Nature of tax code: may be taxable, out of scope, etc ...",
+    )
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         if not args:
             args = []
         if name:
-            records = self.search([
-                '|', ('name', operator, name), ('code', operator, name)
-                ] + args, limit=limit)
+            records = self.search(
+                ["|", ("name", operator, name), ("code", operator, name)] + args,
+                limit=limit,
+            )
         else:
             records = self.search(args, limit=limit)
         return records.name_get()
