@@ -6,7 +6,7 @@
 
 import collections
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):

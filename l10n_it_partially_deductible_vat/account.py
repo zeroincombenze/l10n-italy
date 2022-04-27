@@ -25,7 +25,7 @@
 import time
 from decimal import *
 
-from openerp.tools.translate import _
+from odoo.tools.translate import _
 from osv import fields, osv
 
 
