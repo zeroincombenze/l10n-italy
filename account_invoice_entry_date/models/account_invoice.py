@@ -8,7 +8,7 @@
 #
 import time
 
-from openerp.exceptions import Warning as UserError
+from odoo.exceptions import Warning as UserError
 
 from odoo import api, fields, models
 from odoo.tools.translate import _

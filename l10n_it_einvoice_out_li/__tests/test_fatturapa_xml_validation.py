@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2021 Marco Colombo https://github.com/TheMule71
 
 import base64

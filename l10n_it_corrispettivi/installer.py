@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from odoo.osv import fields, osv
 
 
 class corrispettivi_config_data(osv.osv_memory):
