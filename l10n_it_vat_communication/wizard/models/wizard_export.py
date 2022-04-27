@@ -50,7 +50,8 @@ try:
         )
     else:
         SPESOMETRO_VERSION = "2.1"
-        from odoo.addons.l10n_it_ade.bindings.dati_fattura_v_2_1 import (  # noqa: F401; IndirizzoNoCAPType,
+        from odoo.addons.l10n_it_ade.bindings.dati_fattura_v_2_1 import (  # noqa: F401
+            # IndirizzoNoCAPType,
             AltriDatiIdentificativiITType,
             AltriDatiIdentificativiType,
             CedentePrestatoreDTEType,

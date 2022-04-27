@@ -25,7 +25,6 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-*.eggs
 
 # Installer logs
 pip-log.txt
@@ -45,24 +44,6 @@ coverage.xml
 # Pycharm
 .idea
 
-# Eclipse
-.settings
-
-# Visual Studio cache/options directory
-.vs/
-.vscode
-
-# OSX Files
-.DS_Store
-
-# Django stuff:
-*.log
-
-# Komodo
-*.komodoproject
-.komodotools
-
-
 # Mr Developer
 .mr.developer.cfg
 .project
@@ -71,18 +52,23 @@ coverage.xml
 # Rope
 .ropeproject
 
+# Django stuff:
+*.log
+
+# Komodo
+*.komodoproject
+.komodotools
+
+# pyCharm
+.idea
+
+# *.pot is used for translations templates
+
 # Sphinx documentation
 docs/_build/
 
-# Backup files
-*~
-*.swp
-
-# OCA rules
-!static/lib/
-
-# Junks
 /.settings/
 stdout.log
 *.oca
 *.z0i
+setup/

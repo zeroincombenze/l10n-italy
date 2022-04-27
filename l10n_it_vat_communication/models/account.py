@@ -167,7 +167,11 @@ class AccountVatCommunication(models.Model):
         help="Codice carica responsabile trasmissione",
     )
     state = fields.Selection(
-        [("draft", "Draft"), ("open", "Open"), ("confirmed", "Confirmed")],
+        [
+            ("draft", "Draft"),
+            ("open", "Open"),
+            ("confirmed", "Confirmed"),
+        ],
         "State",
         readonly=True,
         default="draft",
@@ -195,7 +199,11 @@ class AccountVatCommunication(models.Model):
             "confirmed": [("readonly", True)],
         },
     )
-    attachment_ids = fields.One2many("ir.attachment", "res_id", "Attachments")
+    attachment_ids = fields.One2many(
+        "ir.attachment",
+        "res_id",
+        "Attachments",
+    )
     dte_amount_total = fields.Float(
         "Total sales",
         help="Total amount of sale invoices in Communication",
