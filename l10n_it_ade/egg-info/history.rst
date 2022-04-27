@@ -33,7 +33,7 @@
 10.0.0.1.13 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Dim_text function / field to search for similarity
+* [IMP] Dim_text function, field to search for similarity
 
 
 < 10.0.0.1.13 (2018)
