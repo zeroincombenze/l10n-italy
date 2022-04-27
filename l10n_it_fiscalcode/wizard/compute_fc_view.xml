@@ -6,22 +6,28 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Fiscal Code">
-                <group col="2"  width="250">
+                <group col="2" width="250">
                     <group string="Individual Data">
-                        <field name="fiscalcode_surname" colspan="2" 
-                                default_focus="1"/>
-                        <field name="fiscalcode_firstname" colspan="2"/>
-                        <field name="sex" colspan="2"/>
-                        <field name="birth_date" colspan="2"/>
-                        <field name="birth_city"/>
+                        <field
+                            name="fiscalcode_surname"
+                            colspan="2"
+                            default_focus="1"
+                        />
+                        <field name="fiscalcode_firstname" colspan="2" />
+                        <field name="sex" colspan="2" />
+                        <field name="birth_date" colspan="2" />
+                        <field name="birth_city" />
                         <field name="birth_province" />
                     </group>
-                    <newline/>
+                    <newline />
                     <footer>
-                        <button name="compute_fc" type="object"
-                                string="Compute" class="btn-primary"/>
-                        <button string="Cancel" special="cancel"
-                                class="btn-default"/>
+                        <button
+                            name="compute_fc"
+                            type="object"
+                            string="Compute"
+                            class="btn-primary"
+                        />
+                        <button string="Cancel" special="cancel" class="btn-default" />
                     </footer>
                 </group>
             </form>
@@ -40,12 +46,17 @@
     <record id="view_partner_form_fiscalcode_button" model="ir.ui.view">
         <field name="name">res.partner.fiscalcode.button</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="view_partner_form_fiscalcode_data"/>
+        <field name="inherit_id" ref="view_partner_form_fiscalcode_data" />
         <field name="arch" type="xml">
             <field name="fiscalcode" position="after">
-                <button name="%(l10n_it_fiscalcode.action_compute_fc)d"
-                        string="Compute F.C." type="action" icon="fa-gears" 
-                        colspan="2" style="margin-left: 10px"/>
+                <button
+                    name="%(l10n_it_fiscalcode.action_compute_fc)d"
+                    string="Compute F.C."
+                    type="action"
+                    icon="fa-gears"
+                    colspan="2"
+                    style="margin-left: 10px"
+                />
           </field>
         </field>
     </record>
