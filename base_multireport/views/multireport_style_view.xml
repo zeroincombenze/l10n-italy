@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="view_multireport_style_tree" model="ir.ui.view">
@@ -6,8 +6,8 @@
         <field name="model">multireport.style</field>
         <field name="arch" type="xml">
             <tree string="Report Style">
-                <field name="name"/>
-                <field name="origin"/>
+                <field name="name" />
+                <field name="origin" />
             </tree>
         </field>
     </record>
@@ -18,60 +18,116 @@
         <field name="arch" type="xml">
             <form string="Invoice Type">
                 <header>
-                    <button name="%(action_wizard_build_report)d"
+                    <button
+                        name="%(action_wizard_build_report)d"
                         type="action"
-                        string="Build report"/>
+                        string="Build report"
+                    />
                 </header>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="origin"/>
+                        <field name="name" />
+                        <field name="origin" />
                     </group>
                     <notebook colspan="4">
                         <page name="default" string="Default Setting">
                             <group>
                                 <group>
-                                    <field name="header_mode" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="address_mode" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="logo_style" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="payment_term_position" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="footer_mode" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="bottom_text" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                    <field
+                                        name="header_mode"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="address_mode"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="logo_style"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="payment_term_position"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="footer_mode"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="bottom_text"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
                                 </group>
                                 <group>
-                                    <field name="code_mode" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="description_mode" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                    <field
+                                        name="code_mode"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="description_mode"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
                                 </group>
                                 <group>
-                                    <field name="pdf_watermark" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="pdf_watermark_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="pdf_ending_page" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                    <field name="pdf_ending_page_expression" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                    <field
+                                        name="pdf_watermark"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="pdf_watermark_expression"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="pdf_ending_page"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
+                                    <field
+                                        name="pdf_ending_page_expression"
+                                        attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                    />
                                 </group>
                             </group>
                             <group>
-                                <field name="custom_header" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
-                                <field name="custom_footer" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field
+                                    name="custom_header"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
+                                <field
+                                    name="custom_footer"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
                             </group>
                         </page>
                         <page name="sale_order" string="Sale Order">
                             <group>
-                                <field name="template_sale_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field
+                                    name="template_sale_order"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
                             </group>
                         </page>
                         <page name="packing_list" string="Delivery document">
                             <group>
-                                <field name="template_stock_picking_package_preparation" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field
+                                    name="template_stock_picking_package_preparation"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
                             </group>
                         </page>
                         <page name="account_invoice" string="Account Invoice">
                             <group>
-                                <field name="template_account_invoice" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field
+                                    name="template_account_invoice"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
                             </group>
                         </page>
                         <page name="purchase_order" string="Purchase Order">
                             <group>
-                                <field name="template_purchase_order" attrs="{'readonly': [('origin', '=', 'odoo')]}"/>
+                                <field
+                                    name="template_purchase_order"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
                             </group>
                         </page>
                     </notebook>
@@ -80,17 +136,19 @@
         </field>
     </record>
 
-    <record id="action_multireport_style"
-            model="ir.actions.act_window">
+    <record id="action_multireport_style" model="ir.actions.act_window">
         <field name="name">Multireport Styles</field>
         <field name="res_model">multireport.style</field>
-        <field name="view_id" ref="view_multireport_style_tree"/>
+        <field name="view_id" ref="view_multireport_style_tree" />
     </record>
 
-    <menuitem id="menu_multireport_style"
-              name="Multi-Report Style" action="action_multireport_style"
-              parent="report.reporting_menuitem" sequence="90"
-              groups="base.group_no_one"/>
+    <menuitem
+        id="menu_multireport_style"
+        name="Multi-Report Style"
+        action="action_multireport_style"
+        parent="report.reporting_menuitem"
+        sequence="90"
+        groups="base.group_no_one"
+    />
 
 </odoo>
-

@@ -1,5 +1,10 @@
-partner-contact
-stock-logistics-workflow
-account-payment
 account-financial-reporting
+account-invoicing
+account-payment
+bank-payment
+commission
+partner-contact
 server-tools
+stock-logistics-workflow
+web
+pos

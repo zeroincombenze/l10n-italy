@@ -14,4 +14,3 @@ Notes:
 * On sale journal, date is the same of invoice_date and it is read-only
 * Above rule may be disableb by journal configuration
 * default value of date_apply_vat and date_apply_balance are the same of the date; end-user can update the field
-

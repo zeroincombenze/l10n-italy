@@ -169,3 +169,4 @@ l190a1v,l190a1v,Ven. Esente Art.1 commi 54-89 L.190/14 (R. Forfetario),90,,perce
 2-SI-v,2-SI-v,EU-SI 9.5% v,100,9.5,percent,sale,False,265260,265260,,,l10n_chart_it_zeroincombenze,tax_group_si
 1-SK-v,1-SK-v,EU-SK 20% v,100,20,percent,sale,False,265270,265270,,,l10n_chart_it_zeroincombenze,tax_group_sk
 2-SK-v,2-SK-v,EU-SK 10% v,100,10,percent,sale,False,265270,265270,,,l10n_chart_it_zeroincombenze,tax_group_sk
+-SP,-SP,Storno Split Payment,200,-22,percent,sale,False,260060,260060,,,l10n_chart_it_zeroincombenze,tax_group_sk

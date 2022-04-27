@@ -4,17 +4,17 @@
     <record id="view_account_config_settings" model="ir.ui.view">
         <field name="name">view_account_config_settings</field>
         <field name="model">account.config.settings</field>
-        <field name="inherit_id" ref="account.view_account_config_settings"/>
+        <field name="inherit_id" ref="account.view_account_config_settings" />
         <field name="arch" type="xml">
             <xpath expr="/form/group[6]" position="after">
-                <separator string="Split Payment"/>
+                <separator string="Split Payment" />
                 <group name="Split Payment">
-                    <label for="id" string="Configuration"/>
+                    <label for="id" string="Configuration" />
                     <div>
                         <div>
-                            <label for="sp_account_id"/>
-                            <field name="sp_account_id" class="oe_inline"/>
-                            <field name="sp_tax_id" class="oe_inline"/>
+                            <label for="sp_account_id" />
+                            <field name="sp_account_id" class="oe_inline" />
+                            <field name="sp_tax_id" class="oe_inline" />
                         </div>
                     </div>
                 </group>

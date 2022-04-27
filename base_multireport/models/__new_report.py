@@ -9,14 +9,15 @@
 #
 from base64 import b64decode
 from logging import getLogger
-from pyPdf import PdfFileWriter, PdfFileReader
-from pyPdf.utils import PdfReadError
-from PIL import Image
-from StringIO import StringIO
-from odoo import fields, models, api, tools, _
+
 # from PIL import PdfImagePlugin # flake8: noqa
 from os0 import os0
+from PIL import Image
+from pyPdf import PdfFileReader, PdfFileWriter
+from pyPdf.utils import PdfReadError
+from StringIO import StringIO
 
+from odoo import api, models, tools
 
 logger = getLogger(__name__)
 
@@ -25,33 +26,35 @@ class Report(models.Model):
     _inherit = "report"
 
     RPT_BY_MODEL = {
-        'sale.order': 'sale.report_saleorder',
-        'account.invoice': 'account.report_invoice',
-        'stock.picking.package.preparation': 'l10n_it_ddt.report_ddt',
-        'purchase.order': 'purchase.report_purchaseorder_document',
+        "sale.order": "sale.report_saleorder",
+        "account.invoice": "account.report_invoice",
+        "stock.picking.package.preparation": "l10n_it_ddt.report_ddt",
+        "purchase.order": "purchase.report_purchaseorder_document",
     }
-    BOOL_PARAMS = ['no_header_logo', ]
+    BOOL_PARAMS = [
+        "no_header_logo",
+    ]
     DEFAULT_VALUES = {
-        'logo_style': 'max-height: 45px;',
-        'custom_footer': '$company.rml_footer',
+        "logo_style": "max-height: 45px;",
+        "custom_footer": "$company.rml_footer",
     }
 
     @api.model
     def select_reportname(self, document):
         model = document.__class__.__name__
-        rule_model = self.env['multireport.selection.rules']
-        ir_model_model = self.env['ir.model']
-        ir_ui_view_model = self.env['ir.ui.view']
-        model_id = ir_model_model.search([('model', '=', model)])
+        rule_model = self.env["multireport.selection.rules"]
+        ir_model_model = self.env["ir.model"]
+        ir_ui_view_model = self.env["ir.ui.view"]
+        model_id = ir_model_model.search([("model", "=", model)])
         if model_id:
-            where = [('active', '=', True), ('model_id', '=', model_id.id)]
+            where = [("active", "=", True), ("model_id", "=", model_id.id)]
         else:
-            where = [('active', '=', True)]
+            where = [("active", "=", True)]
         reportname = self.RPT_BY_MODEL.get(model, None)
-        for rule in rule_model.search(where, order='sequence'):
-            if rule.action == 'odoo':
+        for rule in rule_model.search(where, order="sequence"):
+            if rule.action == "odoo":
                 break
-            elif rule.action == 'report' and rule.report_id:
+            elif rule.action == "report" and rule.report_id:
                 reportname = ir_ui_view_model.browse(rule.report_id.id).xml_id
                 break
         return reportname
@@ -61,21 +64,20 @@ class Report(models.Model):
         reportname = self.select_reportname(document)
         company = False
         report_model_style = False
-        if hasattr(document, 'company_id'):
+        if hasattr(document, "company_id"):
             company = document.company_id or self.env.user.company_id
             report_model_style = company.report_model_style or None
-        if hasattr(document, 'pdf_report'):
-            pdf_report = getattr(document, 'pdf_report')
+        if hasattr(document, "pdf_report"):
+            pdf_report = getattr(document, "pdf_report")
         else:
             pdf_report = False
         return reportname, company, report_model_style, pdf_report
 
     @api.model
     def get_report_attrib(self, param, doc, report):
-
         def get_obj_value(param, object=None, ttype=None):
             value = False
-            params = param.split('.')
+            params = param.split(".")
             if len(params) == 2:
                 object = object or params[0]
                 param = params[1]
@@ -83,44 +85,42 @@ class Report(models.Model):
                 object = report
             if object:
                 if hasattr(object, param):
-                    if ttype == '2many2one':
+                    if ttype == "2many2one":
                         value = getattr(object, param).name
                     else:
                         value = getattr(object, param)
-            if param == 'custom_footer' and value == '<p><br></p>':
+            if param == "custom_footer" and value == "<p><br></p>":
                 value = False
             return value
 
         def post_value(param, value):
-            if param == 'footer_mode' and (not value or value == 'standard'):
+            if param == "footer_mode" and (not value or value == "standard"):
                 if company.custom_footer:
-                    value = 'custom'
+                    value = "custom"
                 else:
-                    value = 'auto'
+                    value = "auto"
             elif not value and param in self.DEFAULT_VALUES:
                 value = self.DEFAULT_VALUES[param]
-                if value.startswith('$company'):
-                    value = getattr(company, value.split('.')[1])
+                if value.startswith("$company"):
+                    value = getattr(company, value.split(".")[1])
             if param in self.BOOL_PARAMS:
                 value = os0.str2bool(value, True)
             return value
 
         reportname, company, report_model_style, pdf_report = self.env[
-            'report'].get_doc_n_repo_params(doc, report)
-        model = report.model.replace('.', '_')
+            "report"
+        ].get_doc_n_repo_params(doc, report)
+        model = report.model.replace(".", "_")
         # Fallback value path: report, template, style, partner, company
         value = get_obj_value(param)
-        if (not value and
-                report_model_style and
-                report_model_style.origin != 'odoo'):
-            template = get_obj_value('template_%s' % model,
-                                     object=report_model_style)
+        if not value and report_model_style and report_model_style.origin != "odoo":
+            template = get_obj_value("template_%s" % model, object=report_model_style)
             if template:
                 value = get_obj_value(param, object=template)
             if not value:
                 value = get_obj_value(param, object=report_model_style)
         if not value:
-            partner = get_obj_value('partner_id')
+            partner = get_obj_value("partner_id")
             if partner:
                 value = get_obj_value(param, object=partner)
         if not value:
@@ -128,75 +128,76 @@ class Report(models.Model):
         if not value:
             value = get_obj_value(param, object=company.partner_id)
         value = post_value(param, value)
-        if param in ('custom_header', 'custom_footer'):
-            banks = ''
+        if param in ("custom_header", "custom_footer"):
+            banks = ""
             for bank in company.partner_id.bank_ids:
                 if bank.journal_id and any(
-                        [x.display_on_footer for x in bank.journal_id]):
-                    banks = banks + '</br>' + bank.acc_number
+                    [x.display_on_footer for x in bank.journal_id]
+                ):
+                    banks = banks + "</br>" + bank.acc_number
             banks = banks.strip()
             param = {
-                'banks': banks,
-                'city': company.city,
-                'email': company.email,
-                'fax': company.fax,
-                'name': company.name,
-                'phone': company.phone,
-                'street': company.street,
-                'street2': company.street2,
-                'vat': company.vat,
-                'website': company.website,
-                'zip': company.zip,
+                "banks": banks,
+                "city": company.city,
+                "email": company.email,
+                "fax": company.fax,
+                "name": company.name,
+                "phone": company.phone,
+                "street": company.street,
+                "street2": company.street2,
+                "vat": company.vat,
+                "website": company.website,
+                "zip": company.zip,
             }
-            for nm in ('codice_destinatario',
-                       'fatturapa_rea_capital',
-                       'fatturapa_rea_number',
-                       'fatturapa_rea_office',
-                       'fiscalcode',
-                       'ipa_code',
-                       'mobile',
-                       ):
-                param[nm] = get_obj_value(nm, object=company.partner_id) or ''
-            for nm in ('country_id', 'state_id'):
-                param[nm] = get_obj_value(
-                    nm, object=company.partner_id, ttype='2many2one') or ''
+            for nm in (
+                "codice_destinatario",
+                "fatturapa_rea_capital",
+                "fatturapa_rea_number",
+                "fatturapa_rea_office",
+                "fiscalcode",
+                "ipa_code",
+                "mobile",
+            ):
+                param[nm] = get_obj_value(nm, object=company.partner_id) or ""
+            for nm in ("country_id", "state_id"):
+                param[nm] = (
+                    get_obj_value(nm, object=company.partner_id, ttype="2many2one")
+                    or ""
+                )
             value = value % param
-            if param == 'custom_header':
+            if param == "custom_header":
                 value = 'div class="header">%s</div>' % value
         return value or None
 
     @api.model
     def get_html(self, docids, report_name, data=None):
-        """This method generates and returns html version of a report.
-        """
-        report_model_name = 'report.%s' % report_name
+        """This method generates and returns html version of a report."""
+        report_model_name = "report.%s" % report_name
         report_model = self.env.get(report_model_name)
         if report_model is not None:
-            return super(Report, self).get_html(
-                docids, report_name, data=data)
+            return super(Report, self).get_html(docids, report_name, data=data)
         else:
             report = self._get_report_from_name(report_name)
             docs = self.env[report.model].browse(docids)
             company = False
-            if 'company_id' in docs[0]:
+            if "company_id" in docs[0]:
                 company = docs[0].company_id
             if not company:
                 company = self.env.user.company_id
             docargs = {
-                'doc_ids': docids,
-                'doc_model': report.model,
-                'docs': docs,
-                'doc_opts': report,
-                'doc_style': company.report_model_style,
-                'res_company': company,
-                'report': self,
-                }
+                "doc_ids": docids,
+                "doc_model": report.model,
+                "docs": docs,
+                "doc_opts": report,
+                "doc_style": company.report_model_style,
+                "res_company": company,
+                "report": self,
+            }
             return self.render(report.report_name, docargs)
 
     @api.model
     def get_pdf(self, docids, report_name, html=None, data=None):
-        result = super(Report, self).get_pdf(
-            docids, report_name, html=html, data=data)
+        result = super(Report, self).get_pdf(docids, report_name, html=html, data=data)
         if not docids:
             return result
         report = self._get_report_from_name(report_name)
@@ -204,21 +205,24 @@ class Report(models.Model):
             return result
         recs = self.env[report.model].browse(docids)
         reportname, company, report_model_style, pdf_report = self.env[
-            'report'].get_doc_n_repo_params(recs[0], report)
-        if (not report_model_style or not report_model_style.origin or
-                report_model_style.origin == 'odoo') and not pdf_report:
+            "report"
+        ].get_doc_n_repo_params(recs[0], report)
+        if (
+            not report_model_style
+            or not report_model_style.origin
+            or report_model_style.origin == "odoo"
+        ) and not pdf_report:
             return result
-        watermark = self.get_report_attrib('pdf_watermark', recs[0], report)
+        watermark = self.get_report_attrib("pdf_watermark", recs[0], report)
         if not watermark:
             watermark = tools.safe_eval(
-                 self.get_report_attrib('pdf_watermark_expression',
-                                        recs[0], report) or 'None',
-                                        dict(env=self.env, docs=recs)
+                self.get_report_attrib("pdf_watermark_expression", recs[0], report)
+                or "None",
+                dict(env=self.env, docs=recs),
             )
         if watermark:
             watermark = b64decode(watermark)
-        ending_page = self.get_report_attrib('pdf_ending_page',
-                                             recs[0], report)
+        ending_page = self.get_report_attrib("pdf_ending_page", recs[0], report)
         if ending_page:
             ending_page = b64decode(ending_page)
         if not watermark and not ending_page:
@@ -234,30 +238,28 @@ class Report(models.Model):
                 Image.init()
                 image = Image.open(StringIO(watermark))
                 pdf_buffer = StringIO()
-                if image.mode != 'RGB':
-                    image = image.convert('RGB')
-                resolution = image.info.get(
-                    'dpi', report.paperformat_id.dpi or 90
-                )
+                if image.mode != "RGB":
+                    image = image.convert("RGB")
+                resolution = image.info.get("dpi", report.paperformat_id.dpi or 90)
                 if isinstance(resolution, tuple):
                     resolution = resolution[0]
-                image.save(pdf_buffer, 'pdf', resolution=resolution)
+                image.save(pdf_buffer, "pdf", resolution=resolution)
                 pdf_watermark = PdfFileReader(pdf_buffer)
             except:
-                logger.exception('Failed to load watermark')
+                logger.exception("Failed to load watermark")
 
         if not pdf_watermark:
-            logger.error(
-                'No usable watermark found, got %s...', watermark[:100]
-            )
+            logger.error("No usable watermark found, got %s...", watermark[:100])
             return result
 
         if pdf_watermark.numPages < 1:
-            logger.error('Your watermark pdf does not contain any pages')
+            logger.error("Your watermark pdf does not contain any pages")
             return result
         if pdf_watermark.numPages > 1:
-            logger.debug('Your watermark pdf contains more than one page, '
-                         'all but the first one will be ignored')
+            logger.debug(
+                "Your watermark pdf contains more than one page, "
+                "all but the first one will be ignored"
+            )
 
         doc = PdfFileReader(StringIO(result))
         for page in doc.pages:

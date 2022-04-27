@@ -16,5 +16,5 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     group_riba = fields.Boolean(
-        "Group Ri.Ba.",
-        help="Group Ri.Ba. by customer while issuing")
+        "Group Ri.Ba.", help="Group Ri.Ba. by customer while issuing"
+    )

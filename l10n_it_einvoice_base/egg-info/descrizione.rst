@@ -1,7 +1,7 @@
 Fattura Elettronica + FatturaPA
 -------------------------------
 
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
+Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
 Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di interscambio SdI.
 
 In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".

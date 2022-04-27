@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="wizard_export_vat_communication_form_view" model="ir.ui.view">
@@ -17,28 +17,44 @@
                 </script>
                 <group col="2" height="500" width="600" states="create">
                     <group col="3">
-                        <button colspan="1" special="cancel" class="oe_highlight" string="Cancel"></button>
-                        <button colspan="1" name="export_vat_communication_DTE" string="Start Export Customer Invoices" type="object"></button>
-                        <button colspan="1" name="export_vat_communication_DTR" string="Start Export Supplier Invoices" type="object"></button>
+                        <button
+                            colspan="1"
+                            special="cancel"
+                            class="oe_highlight"
+                            string="Cancel"
+                        />
+                        <button
+                            colspan="1"
+                            name="export_vat_communication_DTE"
+                            string="Start Export Customer Invoices"
+                            type="object"
+                        />
+                        <button
+                            colspan="1"
+                            name="export_vat_communication_DTR"
+                            string="Start Export Supplier Invoices"
+                            type="object"
+                        />
                     </group>
-                    <field invisible="1" name="state"/>
+                    <field invisible="1" name="state" />
                 </group>
                 <group col="6" fill="0" states="get">
-                    <separator colspan="5" string="Your download is ready"/>
-                    <field name="data" filename="name"/>
+                    <separator colspan="5" string="Your download is ready" />
+                    <field name="data" filename="name" />
                     <field name="name" select="1" invisible="1" />
                 </group>
             </form>
         </field>
     </record>
 
-    <act_window id="action_wizard_export_vat_communication"
+    <act_window
+        id="action_wizard_export_vat_communication"
         name="Export VAT Communication"
         res_model="wizard.vat.communication"
         src_model="account.vat.communication"
         target="new"
         view_id="wizard_export_vat_communication_form_view"
-        view_mode="form">
+        view_mode="form"
+    >
     </act_window>
 </odoo>
-

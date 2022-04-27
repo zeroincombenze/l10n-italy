@@ -8,25 +8,24 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
-    'name': 'Italian Localization - FatturaPA - Emission',
-    'summary': 'Electronic invoices emission',
-    'version': '10.0.1.0.19',
-    'category': 'Localization/Italy',
-    'summary': 'E-Invoice emission',
-    'author': 'Odoo Community Association (OCA) and other subjects',
-    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/',
-    'license': 'LGPL-3',
-    'depends': [
-        'l10n_it_einvoice_base',
-        'l10n_it_split_payment',
+    "name": "Italian Localization - FatturaPA - Emission",
+    "version": "10.0.1.0.19",
+    "category": "Localization/Italy",
+    "summary": "E-Invoice emission",
+    "author": "Odoo Community Association (OCA) and other subjects",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "LGPL-3",
+    "depends": [
+        "l10n_it_einvoice_base",
+        "l10n_it_split_payment",
     ],
-    'external_dependencies': {'python': ['unidecode']},
-    'data': [
-        'wizard/wizard_export_fatturapa_view.xml',
-        'wizard/attachment_refresh_info_view.xml',
-        'views/attachment_view.xml',
-        'views/account_view.xml',
-        'security/ir.model.access.csv',
+    "external_dependencies": {"python": ["unidecode"]},
+    "data": [
+        "wizard/wizard_export_fatturapa_view.xml",
+        "wizard/attachment_refresh_info_view.xml",
+        "views/attachment_view.xml",
+        "views/account_view.xml",
+        "security/ir.model.access.csv",
     ],
-    'installable': True,
+    "installable": True,
 }

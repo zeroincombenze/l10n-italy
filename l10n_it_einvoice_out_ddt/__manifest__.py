@@ -4,13 +4,12 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Integrazione DDT',
+    "name": "Italian Localization - Fattura elettronica - Integrazione DDT",
     "summary": "Modulo ponte tra emissione fatture elettroniche e DDT",
     "version": "10.0.1.0.2",
     "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
-               'l10n_it_fatturapa_out_ddt',
+    "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_out_ddt",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": [],
     "license": "LGPL-3",
@@ -21,7 +20,5 @@
         "l10n_it_einvoice_out",
         "l10n_it_ddt",
     ],
-    "data": [
-        "wizard/wizard_export_fatturapa_view.xml"
-    ],
+    "data": ["wizard/wizard_export_fatturapa_view.xml"],
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <openerp>
     <data>
 
@@ -9,8 +9,8 @@
             name="account.print.prima_nota_cassa"
             file="l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako"
             string="Prima Nota Cassa"
-            report_type="webkit" />
+            report_type="webkit"
+        />
 
     </data>
 </openerp>
-

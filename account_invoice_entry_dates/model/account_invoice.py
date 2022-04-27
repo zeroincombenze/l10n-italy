@@ -8,7 +8,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # import datetime
-from odoo import models, api, fields
+from odoo import api, fields, models
+
 # from odoo.exceptions import UserError
 
 
@@ -16,32 +17,37 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     date_apply_vat = fields.Date(
-        'Apply for VAT date',
+        "Apply for VAT date",
         states={
-            'paid': [('readonly', True)],
-            'open': [('readonly', True)],
-            'close': [('readonly', True)]
+            "paid": [("readonly", True)],
+            "open": [("readonly", True)],
+            "close": [("readonly", True)],
         },
-        help="Date to apply for VAT")
+        help="Date to apply for VAT",
+    )
 
     date_apply_balance = fields.Date(
-        'Apply for balance date',
+        "Apply for balance date",
         states={
-            'paid': [('readonly', True)],
-            'open': [('readonly', True)],
-            'close': [('readonly', True)]
+            "paid": [("readonly", True)],
+            "open": [("readonly", True)],
+            "close": [("readonly", True)],
         },
-        help="Date to apply for balance sheet")
+        help="Date to apply for balance sheet",
+    )
 
     @api.multi
     def _check_4_inv_date(self):
 
         for invoice in self:
             # res = False
-            if (invoice.type in ('out_invoice', 'out_refund') and
-                    not invoice.journal_id.enable_date):
-                invoice.date_apply_vat = invoice.date_apply_balance = \
-                    invoice.date_invoice
+            if (
+                invoice.type in ("out_invoice", "out_refund")
+                and not invoice.journal_id.enable_date
+            ):
+                invoice.date_apply_vat = (
+                    invoice.date_apply_balance
+                ) = invoice.date_invoice
         return True
 
     @api.multi

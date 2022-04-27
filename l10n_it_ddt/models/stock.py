@@ -4,11 +4,11 @@
 #
 
 
-from odoo import models, api
+from odoo import models
 
 
 class StockPicking(models.Model):
-    _inherit = 'stock.move'
+    _inherit = "stock.move"
 
     # @api.multi
     # def action_cancel(self):

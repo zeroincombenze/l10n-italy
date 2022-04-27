@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <record model="workflow" id="wkf_vat_communication">
         <field name="name">workflow.vat.communication</field>
@@ -34,4 +34,3 @@
     </record>
 
 </odoo>
-

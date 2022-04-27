@@ -68,7 +68,8 @@
                 <Data>2016-06-15</Data>
                 <Numero>INV/2016/0001</Numero>
                 <ImportoTotaleDocumento>14.00</ImportoTotaleDocumento>
-                <Causale>Vostra dichiarazione d'intento del 06/15/2016, protocollo telematico nr 08060120341234567-000002.</Causale>
+                <Causale
+                >Vostra dichiarazione d'intento del 06/15/2016, protocollo telematico nr 08060120341234567-000002.</Causale>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
         </DatiGenerali>
@@ -106,7 +107,8 @@
                 <Natura>N3.5</Natura>
                 <ImponibileImporto>14.00</ImponibileImporto>
                 <Imposta>0.00</Imposta>
-                <RiferimentoNormativo>Art. 8 co. 1 lett. c) e co. 2 del DPR 633/72</RiferimentoNormativo>
+                <RiferimentoNormativo
+                >Art. 8 co. 1 lett. c) e co. 2 del DPR 633/72</RiferimentoNormativo>
             </DatiRiepilogo>
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>

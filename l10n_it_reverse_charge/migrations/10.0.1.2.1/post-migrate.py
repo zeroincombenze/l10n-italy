@@ -7,7 +7,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 
 
 def migrate(cr, version):
@@ -15,6 +15,6 @@ def migrate(cr, version):
         return
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        tax_model = env['account.tax']
+        tax_model = env["account.tax"]
         for tax in tax_model.search([()]):
             tax._onchange_nature()

@@ -11,11 +11,7 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "l10n_it_fiscalcode", "account"
-    ],
-    "data": [
-        "views/report_invoice.xml"
-    ],
-    'auto_install': True,
+    "depends": ["l10n_it_fiscalcode", "account"],
+    "data": ["views/report_invoice.xml"],
+    "auto_install": True,
 }

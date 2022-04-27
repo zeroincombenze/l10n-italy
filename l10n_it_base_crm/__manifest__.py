@@ -3,7 +3,7 @@
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-#    Copyright (C) 2013 Associazione Odoo Italia 
+#    Copyright (C) 2013 Associazione Odoo Italia
 #                 (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,24 +22,22 @@
 ##############################################################################
 
 {
-    'name': "Italian Localisation - CRM",
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Italian Localization module - CRM version
+    "name": "Italian Localisation - CRM",
+    "version": "0.1",
+    "category": "Localisation/Italy",
+    "description": """Italian Localization module - CRM version
 
 Funcionalities:
 - Campi provincia e regione su Lead/Opportunity
 - Automatistmi su crm.lead
 """,
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": ['crm','l10n_it_bbone'],
-    "data": ['crm/crm_view.xml'
-    ],
+    "author": "Agile Business Group,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "AGPL-3",
+    "depends": ["crm", "l10n_it_base"],
+    "data": ["crm/crm_view.xml"],
     "demo": [],
-    'test': [
-    ],
+    "test": [],
     "active": False,
-    'installable': False
+    "installable": False,
 }

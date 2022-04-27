@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data noupdate="1">
         <record id="10" model="account.group">
@@ -12,27 +12,27 @@
         <record id="121" model="account.group">
             <field name="code_prefix">121</field>
             <field name="name">IMMOBILIZZAZIONI IMMATERIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.12"/>
+            <field name="parent_id" ref="l10n_it_fiscal.12" />
         </record>
         <record id="122" model="account.group">
             <field name="code_prefix">122</field>
             <field name="name">FA IMMOBILIZZAZIONI IMMATERIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.12"/>
+            <field name="parent_id" ref="l10n_it_fiscal.12" />
         </record>
         <record id="123" model="account.group">
             <field name="code_prefix">123</field>
             <field name="name">IMMOBILIZZAZIONI MATERIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.12"/>
+            <field name="parent_id" ref="l10n_it_fiscal.12" />
         </record>
         <record id="124" model="account.group">
             <field name="code_prefix">124</field>
             <field name="name">FA IMMOBILIZZAZIONI IMMATERIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.12"/>
+            <field name="parent_id" ref="l10n_it_fiscal.12" />
         </record>
         <record id="125" model="account.group">
             <field name="code_prefix">125</field>
             <field name="name">IMMOBILIZZAZIONI FINANZIARIE</field>
-            <field name="parent_id" ref="l10n_it_fiscal.12"/>
+            <field name="parent_id" ref="l10n_it_fiscal.12" />
         </record>
         <record id="15" model="account.group">
             <field name="code_prefix">15</field>
@@ -41,22 +41,24 @@
         <record id="151" model="account.group">
             <field name="code_prefix">151</field>
             <field name="name">RIMANENZE</field>
-            <field name="parent_id" ref="l10n_it_fiscal.15"/>
+            <field name="parent_id" ref="l10n_it_fiscal.15" />
         </record>
         <record id="152" model="account.group">
             <field name="code_prefix">152</field>
             <field name="name">CREDITI COMMERCIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.15"/>
+            <field name="parent_id" ref="l10n_it_fiscal.15" />
         </record>
         <record id="153" model="account.group">
             <field name="code_prefix">153</field>
-            <field name="name">CREDITI DIVERSI CHE NON COSTITUISCONO IMMOBILIZZAZIONI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.15"/>
+            <field
+                name="name"
+            >CREDITI DIVERSI CHE NON COSTITUISCONO IMMOBILIZZAZIONI</field>
+            <field name="parent_id" ref="l10n_it_fiscal.15" />
         </record>
         <record id="155" model="account.group">
             <field name="code_prefix">155</field>
             <field name="name">IVA N/CREDITO EU-OSS</field>
-            <field name="parent_id" ref="l10n_it_fiscal.15"/>
+            <field name="parent_id" ref="l10n_it_fiscal.15" />
         </record>
         <record id="180" model="account.group">
             <field name="code_prefix">180</field>
@@ -93,7 +95,7 @@
         <record id="265" model="account.group">
             <field name="code_prefix">265</field>
             <field name="name">IVA N/DEBITO EU-OSS</field>
-            <field name="parent_id" ref="l10n_it_fiscal.26"/>
+            <field name="parent_id" ref="l10n_it_fiscal.26" />
         </record>
         <record id="29" model="account.group">
             <field name="code_prefix">29</field>
@@ -158,12 +160,12 @@
         <record id="651" model="account.group">
             <field name="code_prefix">651</field>
             <field name="name">AMMORTAMENTI IMMOBILIZZAZIONI IMMATERIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.65"/>
+            <field name="parent_id" ref="l10n_it_fiscal.65" />
         </record>
         <record id="652" model="account.group">
             <field name="code_prefix">652</field>
             <field name="name">AMMORTAMENTI IMMOBILIZZAZIONI MATERIALI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.65"/>
+            <field name="parent_id" ref="l10n_it_fiscal.65" />
         </record>
         <record id="66" model="account.group">
             <field name="code_prefix">66</field>
@@ -180,12 +182,12 @@
         <record id="681" model="account.group">
             <field name="code_prefix">681</field>
             <field name="name">ACCANTONAMENTI PER RISCHI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.68"/>
+            <field name="parent_id" ref="l10n_it_fiscal.68" />
         </record>
         <record id="682" model="account.group">
             <field name="code_prefix">682</field>
             <field name="name">ALTRI ACCANTONAMENTI</field>
-            <field name="parent_id" ref="l10n_it_fiscal.68"/>
+            <field name="parent_id" ref="l10n_it_fiscal.68" />
         </record>
         <record id="69" model="account.group">
             <field name="code_prefix">69</field>

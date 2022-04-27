@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- WT move -->
     <!-- Workflow definition -->
@@ -10,7 +10,7 @@
     </record>
 
     <record id="act_draft" model="workflow.activity">
-        <field name="wkf_id" ref="wkf_wt_move_payment"/>
+        <field name="wkf_id" ref="wkf_wt_move_payment" />
         <field name="name">draft</field>
         <field name="kind">function</field>
         <field name="action">
@@ -20,7 +20,7 @@
     </record>
 
     <record id="act_confirmed" model="workflow.activity">
-        <field name="wkf_id" ref="wkf_wt_move_payment"/>
+        <field name="wkf_id" ref="wkf_wt_move_payment" />
         <field name="name">confirmed</field>
         <field name="kind">function</field>
         <field name="action">
@@ -31,15 +31,15 @@
 
     <!-- transitions -->
     <record id="rec_move_payment_t1" model="workflow.transition">
-        <field name="act_from" ref="act_draft"/>
-        <field name="act_to" ref="act_confirmed"/>
+        <field name="act_from" ref="act_draft" />
+        <field name="act_to" ref="act_confirmed" />
         <field name="signal">confirmed</field>
-        <field name="group_id" ref="base.group_user"/>
+        <field name="group_id" ref="base.group_user" />
     </record>
 
     <record id="rec_move_payment_t3" model="workflow.transition">
-        <field name="act_from" ref="act_confirmed"/>
-        <field name="act_to" ref="act_draft"/>
+        <field name="act_from" ref="act_confirmed" />
+        <field name="act_to" ref="act_draft" />
         <field name="signal">cancel</field>
     </record>
 

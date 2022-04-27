@@ -8,20 +8,20 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
-    'name': 'Lettere di intento',
-    'summary': 'Lettere di intento',
-    'version': '10.0.0.1.4',
-    'category': 'Generic Modules/Accounting',
-    'author': 'SHS-AV s.r.l.',
-    'website': 'https://www.zeroincombenze.it/',
-    'depends': ['base', 'l10n_it_einvoice_stamp'],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/ir_sequence_data.xml',
-        'views/italy_lettera_intento_view.xml',
-        'views/account_fiscal_position_view.xml',
-        'views/config_view.xml',
-        'views/account_invoice_view.xml',
+    "name": "Lettere di intento",
+    "summary": "Lettere di intento",
+    "version": "10.0.0.1.4",
+    "category": "Generic Modules/Accounting",
+    "author": "SHS-AV s.r.l.",
+    "website": "https://github.com/OCA/l10n-italy",
+    "depends": ["base", "l10n_it_einvoice_stamp"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
+        "views/italy_lettera_intento_view.xml",
+        "views/account_fiscal_position_view.xml",
+        "views/config_view.xml",
+        "views/account_invoice_view.xml",
     ],
-    'installable': True,
+    "installable": True,
 }

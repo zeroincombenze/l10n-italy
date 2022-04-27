@@ -24,6 +24,6 @@ DDT directly, clicking 'put in pack' and 'package done'.
 Otherwise, you can process delivery orders separately, then go to the DDT and
 click on 'set done'.
 
-Finally you can create your invoice directly from the DDT using the 
-'Create Invoice' button that creates a new Invoice with the ddt lines as 
+Finally you can create your invoice directly from the DDT using the
+'Create Invoice' button that creates a new Invoice with the ddt lines as
 invoice lines

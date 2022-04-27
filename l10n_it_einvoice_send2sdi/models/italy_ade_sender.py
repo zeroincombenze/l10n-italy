@@ -11,17 +11,20 @@ from odoo import fields, models
 
 
 class ItalyAdeSender(models.Model):
-    _inherit = 'italy.ade.sender'
+    _inherit = "italy.ade.sender"
 
     max_invoices_ctr = fields.Integer(
-        string='Max invoices',
+        string="Max invoices",
         readonly=True,
-        help="Total # of invoices to send or receive")
+        help="Total # of invoices to send or receive",
+    )
     used_invoices_ctr = fields.Integer(
-        string='Sent/Received invoices',
+        string="Sent/Received invoices",
         readonly=True,
-        help="Total # of invoices sent and received")
+        help="Total # of invoices sent and received",
+    )
     avail_invoices_ctr = fields.Integer(
-        string='# of invoices available',
+        string="# of invoices available",
         readonly=True,
-        help="Total # of invoices you can still send or receive")
+        help="Total # of invoices you can still send or receive",
+    )

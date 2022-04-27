@@ -8,10 +8,10 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="City">
-                <field name="country_id"/>
-                <field name="name"/>
-                <field name="zip"/>
-                <field name="state_id"/>
+                <field name="country_id" />
+                <field name="name" />
+                <field name="zip" />
+                <field name="state_id" />
             </tree>
         </field>
     </record>
@@ -23,13 +23,13 @@
         <field name="arch" type="xml">
             <form string="City">
                 <group col="2">
-                    <field name="country_id"/>
-                    <field name="name" select="1" colspan="2"/>
-                    <field name="zip"/>
-                    <field name="state_id" select="1"/>
-                    <field name="phone_prefix"/>
-                    <field name="istat_code"/>
-                    <field name="cadaster_code"/>
+                    <field name="country_id" />
+                    <field name="name" select="1" colspan="2" />
+                    <field name="zip" />
+                    <field name="state_id" select="1" />
+                    <field name="phone_prefix" />
+                    <field name="istat_code" />
+                    <field name="cadaster_code" />
                 </group>
             </form>
         </field>
@@ -42,7 +42,11 @@
         <field name="view_type">form</field>
     </record>
 
-    <menuitem action="action_city" id="menu_city_partner" parent="sales_team.menu_localisation"/>
+    <menuitem
+            action="action_city"
+            id="menu_city_partner"
+            parent="sales_team.menu_localisation"
+        />
 
 </data>
 </odoo>

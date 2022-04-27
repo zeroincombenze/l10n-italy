@@ -2,4 +2,3 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Foreign customer w/o vat / I clienti esteri senza P.IVA ne CF se cod.destinatario = 'XXXXXXX'
-

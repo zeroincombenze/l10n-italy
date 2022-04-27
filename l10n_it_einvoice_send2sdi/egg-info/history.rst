@@ -1,7 +1,7 @@
 10.0.1.0.21 (2022-02-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Sometime "ready" state / Errato stato "ready" in acluni casi
+* [FIX] Sometime "ready" state / Errato stato "ready" in alcuni casi
 
 10.0.1.0.20 (2022-01-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~

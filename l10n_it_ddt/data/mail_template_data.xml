@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
     <!--Email template -->
@@ -13,12 +13,14 @@
         <field name="email_to">
                ${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}
         </field>
-        <field name="report_template" ref="action_report_ddt"/>
+        <field name="report_template" ref="action_report_ddt" />
         <field name="report_name">${(object.ddt_number)}</field>
-        <field name="auto_delete" eval="True"/>
-        <field name="model_id" ref="model_stock_picking_package_preparation"/>
+        <field name="auto_delete" eval="True" />
+        <field name="model_id" ref="model_stock_picking_package_preparation" />
         <field name="lang">${object.partner_id.lang}</field>
-        <field name="body_html"><![CDATA[
+        <field
+            name="body_html"
+        ><![CDATA[
             <p>Dear ${object.partner_id.name},</p>
             <p>Here is your document
               %if object.date:
@@ -38,9 +40,11 @@
     <record id="mail_template_data_notification_email_ddt" model="mail.template">
         <field name="name">DDT Notification Email</field>
         <field name="subject">${object.subject}</field>
-        <field name="model_id" ref="mail.model_mail_message"/>
-        <field name="auto_delete" eval="True"/>
-        <field name="body_html"><![CDATA[<html>
+        <field name="model_id" ref="mail.model_mail_message" />
+        <field name="auto_delete" eval="True" />
+        <field
+            name="body_html"
+        ><![CDATA[<html>
             <head></head>
                  % set record = ctx.get('record')
                  % set company = record and record.company_id or user.company_id
@@ -115,4 +119,3 @@
     </record>
 
 </odoo>
-
