@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>). 
+#    (<http://www.openerp-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -19,21 +19,20 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localisation - Prima Nota Cassa',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """Accounting reports - Prima Nota Cassa - Webkit""",
-    'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.openerp-italia.org',
-    'license': 'AGPL-3',
-    "depends" : ['account', 'report_webkit'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
-        'reports.xml',
-        'wizard/wizard_print_prima_nota_cassa.xml',
-        ],
-    "demo_xml" : [],
+    "name": "Italian Localisation - Prima Nota Cassa",
+    "version": "0.1",
+    "category": "Localisation/Italy",
+    "description": """Accounting reports - Prima Nota Cassa - Webkit""",
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "AGPL-3",
+    "depends": ["account", "report_webkit"],
+    "init_xml": [],
+    "update_xml": [
+        "reports.xml",
+        "wizard/wizard_print_prima_nota_cassa.xml",
+    ],
+    "demo_xml": [],
     "active": False,
-    'installable': False
+    "installable": False,
 }

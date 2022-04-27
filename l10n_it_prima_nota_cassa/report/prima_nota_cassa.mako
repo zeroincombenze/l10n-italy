@@ -16,7 +16,7 @@
                 <td>${ _("Target Moves") }</td>
             </tr>
             <tr>
-                
+
                 <td>${ get_account(data) or '' }</td>
                 <td>${ get_fiscalyear(data) or '' }</td>
                 <td>${ ', '.join([ lt or '' for lt in get_journal(data)]) }</td>
@@ -42,7 +42,7 @@
                         <th> ${ _('Balance') }</th>
                     </tr>
 
-               
+
                     %for line in lines(a) :
                         <tr style="page-break-inside: avoid; vertical-align:text-top;">
                             <td>${ formatLang(line['ldate'], date=True) or ''|entity }</td>

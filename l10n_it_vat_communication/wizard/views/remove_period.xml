@@ -12,10 +12,16 @@
                         $(".modal-footer").hide();
                         });
                     </script>
-                    <field name="period_id"></field>
+                    <field name="period_id" />
                     <group col="2" colspan="4">
-                        <button string="Cancel" class="oe_link" special="cancel"/>
-                        <button default_focus="1" class="oe_highlight" name="remove_period" string="Remove" type="object"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                        <button
+                            default_focus="1"
+                            class="oe_highlight"
+                            name="remove_period"
+                            string="Remove"
+                            type="object"
+                        />
                     </group>
                 </form>
             </field>

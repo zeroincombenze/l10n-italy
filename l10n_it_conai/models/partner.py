@@ -7,12 +7,12 @@
 #
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 #
-import odoo.addons.decimal_precision as dp
-from odoo import fields, models, api, exceptions, _
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     conai_exemption_id = fields.Many2one(
-        'italy.conai.partner.category', string='CONAI Category')
+        "italy.conai.partner.category", string="CONAI Category"
+    )

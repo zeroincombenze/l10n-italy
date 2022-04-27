@@ -11,6 +11,6 @@ from odoo import fields, models
 
 
 class AccountFiscalPosition(models.Model):
-    _inherit = 'account.fiscal.position'
+    _inherit = "account.fiscal.position"
 
-    lettera_intento = fields.Boolean('Lettera di intento')
+    lettera_intento = fields.Boolean("Lettera di intento")

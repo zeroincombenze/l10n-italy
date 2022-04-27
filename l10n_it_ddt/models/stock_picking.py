@@ -4,29 +4,30 @@
 #
 
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class StockPicking(models.Model):
 
-    _inherit = 'stock.picking'
+    _inherit = "stock.picking"
 
     ddt_ids = fields.Many2many(
-        comodel_name='stock.picking.package.preparation',
-        relation='stock_picking_pack_prepare_rel',
-        column1='stock_picking_id',
-        column2='stock_picking_package_preparation_id',
-        string='DdT',
-        copy=False, )
+        comodel_name="stock.picking.package.preparation",
+        relation="stock_picking_pack_prepare_rel",
+        column1="stock_picking_id",
+        column2="stock_picking_package_preparation_id",
+        string="DdT",
+        copy=False,
+    )
     ddt_type = fields.Many2one(
-        'stock.ddt.type',
-        related='picking_type_id.default_location_src_id.type_ddt_id')
+        "stock.ddt.type", related="picking_type_id.default_location_src_id.type_ddt_id"
+    )
 
     @api.multi
     def write(self, values):
         pack_to_update = None
-        if 'move_lines' in values:
-            pack_to_update = self.env['stock.picking.package.preparation']
+        if "move_lines" in values:
+            pack_to_update = self.env["stock.picking.package.preparation"]
             for picking in self:
                 pack_to_update |= picking.ddt_ids
         res = super(StockPicking, self).write(values)
@@ -36,7 +37,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def unlink(self):
-        pack_to_update = self.env['stock.picking.package.preparation']
+        pack_to_update = self.env["stock.picking.package.preparation"]
         for picking in self:
             pack_to_update |= picking.ddt_ids
         res = super(StockPicking, self).unlink()
@@ -55,8 +56,8 @@ class StockPicking(models.Model):
         # this is mainly used in dropshipping configuration,
         # where self.partner_id is your supplier, but 'move_lines.partner_id'
         # is your customer
-        if not self.picking_type_code == 'internal':
-            move_partners = self.mapped('move_lines.partner_id')
+        if not self.picking_type_code == "internal":
+            move_partners = self.mapped("move_lines.partner_id")
             if len(move_partners) == 1:
                 return move_partners[0]
             else:
@@ -68,10 +69,10 @@ class StockPicking(models.Model):
     def open_form_current(self):
         self.ensure_one()
         return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': self._name,
-            'res_id': self.id,
-            'target': 'current'
+            "type": "ir.actions.act_window",
+            "view_type": "form",
+            "view_mode": "form",
+            "res_model": self._name,
+            "res_id": self.id,
+            "target": "current",
         }

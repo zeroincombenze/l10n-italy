@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="view_conai_partner_category_tree" model="ir.ui.view">
@@ -6,10 +6,10 @@
         <field name="model">italy.conai.partner.category</field>
         <field name="arch" type="xml">
             <tree string="CONAI Partner Category">
-                <field name="code"/>
-                <field name="name"/>
-                <field name="sector"/>
-                <field name="conai_percent"/>
+                <field name="code" />
+                <field name="name" />
+                <field name="sector" />
+                <field name="conai_percent" />
             </tree>
         </field>
     </record>
@@ -21,13 +21,13 @@
             <form string="CONAI Partner Category">
                 <group>
                     <group col="2">
-                        <field name="code"/>
-                        <field name="name"/>
-                        <field name="sector"/>
-                        <field name="conai_percent"/>
+                        <field name="code" />
+                        <field name="name" />
+                        <field name="sector" />
+                        <field name="conai_percent" />
                     </group>
                     <group>
-                        <field name="active"/>
+                        <field name="active" />
                     </group>
                 </group>
             </form>
@@ -37,12 +37,16 @@
     <record id="action_conai_partner_category" model="ir.actions.act_window">
         <field name="name">CONAI Partner Category</field>
         <field name="res_model">italy.conai.partner.category</field>
-        <field name="view_id" ref="view_conai_partner_category_tree"/>
+        <field name="view_id" ref="view_conai_partner_category_tree" />
     </record>
 
-    <menuitem id="menu_conai_partner_category" name="CONAI Partner Category"
-              action="action_conai_partner_category" parent="menu_conai"
-              groups="account.group_account_manager" sequence="50"/>
+    <menuitem
+        id="menu_conai_partner_category"
+        name="CONAI Partner Category"
+        action="action_conai_partner_category"
+        parent="menu_conai"
+        groups="account.group_account_manager"
+        sequence="50"
+    />
 
 </odoo>
-

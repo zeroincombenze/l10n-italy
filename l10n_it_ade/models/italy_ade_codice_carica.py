@@ -11,18 +11,13 @@ from odoo import fields, models
 
 
 class ItalyAdeCodiceCarica(models.Model):
-    _name = 'italy.ade.codice.carica'
-    _description = 'Codice Carica'
+    _name = "italy.ade.codice.carica"
+    _description = "Codice Carica"
 
-    _sql_constraints = [('code',
-                         'unique(code)',
-                         'Code already exists!')]
+    _sql_constraints = [("code", "unique(code)", "Code already exists!")]
 
-    code = fields.Char(string='Code', size=2,
-                       help='Code assigned by Tax Authority')
-    name = fields.Char(string='Name')
-    help = fields.Text(string='Help')
-    scope = fields.Char(string='Scope',
-                        help='Reserved to specific scope')
-    active = fields.Boolean(string='Active',
-                            default=True)
+    code = fields.Char(string="Code", size=2, help="Code assigned by Tax Authority")
+    name = fields.Char(string="Name")
+    help = fields.Text(string="Help")
+    scope = fields.Char(string="Scope", help="Reserved to specific scope")
+    active = fields.Boolean(string="Active", default=True)

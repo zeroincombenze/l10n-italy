@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <data>
         <!-- ====================================================== -->
@@ -12,23 +12,41 @@
                     <group>
                         <field name="name" />
                         <field name="type" />
-                        <field name="bank_id" domain="[('partner_id.ref_company_ids', 'in', [company_id])]"/>
-                        <field name="company_id"  widget="selection" groups="base.group_multi_company"/>
+                        <field
+                            name="bank_id"
+                            domain="[('partner_id.ref_company_ids', 'in', [company_id])]"
+                        />
+                        <field
+                            name="company_id"
+                            widget="selection"
+                            groups="base.group_multi_company"
+                        />
                     </group>
-                    <group string="Salvo buon fine" attrs="{'invisible': [('type','!=','sbf')]}" colspan="4" col="4">
-                        <separator colspan="4" string="Acceptance"/>
-                        <field name="acceptance_journal_id" attrs="{'required':[('type','=','sbf')]}"/>
-                        <field name="acceptance_account_id" attrs="{'required':[('type','=','sbf')]}"/>
-                        <separator colspan="4" string="Accreditation"/>
+                    <group
+                        string="Salvo buon fine"
+                        attrs="{'invisible': [('type','!=','sbf')]}"
+                        colspan="4"
+                        col="4"
+                    >
+                        <separator colspan="4" string="Acceptance" />
+                        <field
+                            name="acceptance_journal_id"
+                            attrs="{'required':[('type','=','sbf')]}"
+                        />
+                        <field
+                            name="acceptance_account_id"
+                            attrs="{'required':[('type','=','sbf')]}"
+                        />
+                        <separator colspan="4" string="Accreditation" />
                         <field name="accreditation_journal_id" />
-                        <field name="accreditation_account_id"/>
+                        <field name="accreditation_account_id" />
                         <field name="bank_account_id" />
                         <field name="bank_expense_account_id" />
-                        <separator colspan="4" string="Unsolved"/>
+                        <separator colspan="4" string="Unsolved" />
                         <field name="unsolved_journal_id" />
                         <field name="overdue_effects_account_id" />
                         <field name="protest_charge_account_id" />
-                        <separator colspan="4" string="Settlement"/>
+                        <separator colspan="4" string="Settlement" />
                         <field name="settlement_journal_id" />
                     </group>
                 </form>
@@ -48,6 +66,11 @@
         <!-- ====================================================== -->
         <!-- 				CONFIGURAZIONE RIBA MENU 				-->
         <!-- ====================================================== -->
-        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="account.account_management_menu"/>
+        <menuitem
+            action="action_riba_configuration"
+            id="menu_riba_configuration"
+            name="Ri.Ba. Configuration"
+            parent="account.account_management_menu"
+        />
     </data>
 </odoo>

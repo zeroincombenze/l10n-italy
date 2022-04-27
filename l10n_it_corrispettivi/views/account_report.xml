@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2018 Simone Rubino - Agile Business Group
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
-
 <odoo>
     <report
         id="account_corrispettivi"
@@ -17,7 +16,10 @@
     <template id="report_corrispettivi">
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="l10n_it_corrispettivi.report_corrispettivi_document" t-lang="o.partner_id.lang"/>
+                <t
+                    t-call="l10n_it_corrispettivi.report_corrispettivi_document"
+                    t-lang="o.partner_id.lang"
+                />
             </t>
         </t>
     </template>
@@ -26,7 +28,7 @@
         <field name="name">Corrispettivi</field>
         <field name="model">account.invoice</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="account.report_invoice_document"/>
+        <field name="inherit_id" ref="account.report_invoice_document" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='invoice_address']" position="attributes">
                 <attribute name="style">display: none;</attribute>
@@ -34,17 +36,28 @@
             <xpath expr="//div[@t-if='o.partner_id.ref']" position="attributes">
                 <attribute name="style">display: none;</attribute>
             </xpath>
-            <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')" position="replace">
-                <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">
+            <span
+                t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')"
+                position="replace"
+            >
+                <span
+                    t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')"
+                >
                     Corrispettivo
                 </span>
             </span>
-            <span t-if="o.type == 'out_invoice' and o.state == 'draft'" position="replace">
+            <span
+                t-if="o.type == 'out_invoice' and o.state == 'draft'"
+                position="replace"
+            >
                 <span t-if="o.type == 'out_invoice' and o.state == 'draft'">
                     Draft Corrispettivo
                 </span>
             </span>
-            <span t-if="o.type == 'out_invoice' and o.state == 'cancel'" position="replace">
+            <span
+                t-if="o.type == 'out_invoice' and o.state == 'cancel'"
+                position="replace"
+            >
                 <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">
                     Cancelled Corrispettivo
                 </span>
@@ -52,7 +65,7 @@
             <div t-if="o.date_invoice" position="replace">
                 <div class="col-xs-2" t-if="o.date_invoice">
                     <strong>Corrispettivo Date:</strong>
-                    <p t-field="o.date_invoice"/>
+                    <p t-field="o.date_invoice" />
                 </div>
             </div>
         </field>

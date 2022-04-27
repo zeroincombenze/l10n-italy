@@ -7,23 +7,24 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp import fields, models, api
+from openerp import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     report_model_style = fields.Many2one(
-        'multireport.style', 'Multi-report style',
+        "multireport.style",
+        "Multi-report style",
         help="Select multi-report style",
-        )
+    )
 
 
 class ReportConfigSettings(models.TransientModel):
     _inherit = ["base.config.settings"]
 
     report_model_style = fields.Many2one(
-        related='company_id.report_model_style',
+        related="company_id.report_model_style",
         string="Multi-report style",
-        help='Select multi-report style'
-        )
+        help="Select multi-report style",
+    )

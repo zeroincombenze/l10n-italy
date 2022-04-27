@@ -12,25 +12,24 @@ from openerp import api, fields, models
 
 class AccountConfigSettings(models.TransientModel):
 
-    _inherit = 'account.config.settings'
+    _inherit = "account.config.settings"
 
     due_cost_service_id = fields.Many2one(
-        related='company_id.due_cost_service_id',
-        help='Default Service for RiBa Due Cost (collection fees) on invoice',
-        domain=[('type', '=', 'service')])
+        related="company_id.due_cost_service_id",
+        help="Default Service for RiBa Due Cost (collection fees) on invoice",
+        domain=[("type", "=", "service")],
+    )
 
     @api.model
     def default_get(self, fields):
         res = super(AccountConfigSettings, self).default_get(fields)
         if res:
-            res[
-                'due_cost_service_id'
-            ] = self.env.user.company_id.due_cost_service_id.id
+            res["due_cost_service_id"] = self.env.user.company_id.due_cost_service_id.id
         return res
 
 
 class ResCompany(models.Model):
 
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
-    due_cost_service_id = fields.Many2one('product.product')
+    due_cost_service_id = fields.Many2one("product.product")

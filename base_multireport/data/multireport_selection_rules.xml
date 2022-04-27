@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="0">
 
         <record id="odoo_sale_order" model="multireport.selection.rules">
             <field name="name">Original Odoo Sale Order</field>
             <field name="model_name">sale.order</field>
-            <field name="report_id" ref="sale.report_saleorder_document"/>
+            <field name="report_id" ref="sale.report_saleorder_document" />
             <field name="action">odoo</field>
             <field name="sequence">100</field>
             <field name="active">True</field>
@@ -12,7 +12,7 @@
         <record id="odoo_sale_order_watermark" model="multireport.selection.rules">
             <field name="name">Original Odoo Sale Order with watermark</field>
             <field name="model_name">sale.order</field>
-            <field name="report_id" ref="sale.report_saleorder_document"/>
+            <field name="report_id" ref="sale.report_saleorder_document" />
             <field name="action">report</field>
             <field name="sequence">110</field>
             <field name="active">True</field>
@@ -20,7 +20,7 @@
         <record id="odoo_account_invoice" model="multireport.selection.rules">
             <field name="name">Original Odoo Sale Invoice</field>
             <field name="model_name">account.invoice</field>
-            <field name="report_id" ref="account.report_invoice"/>
+            <field name="report_id" ref="account.report_invoice" />
             <field name="action">odoo</field>
             <field name="sequence">100</field>
             <field name="active">True</field>
@@ -28,7 +28,7 @@
         <record id="odoo_account_invoice_watermark" model="multireport.selection.rules">
             <field name="name">Original Odoo Sale Invoice with watermark</field>
             <field name="model_name">account.invoice</field>
-            <field name="report_id" ref="account.report_invoice"/>
+            <field name="report_id" ref="account.report_invoice" />
             <field name="action">report</field>
             <field name="sequence">110</field>
             <field name="active">True</field>

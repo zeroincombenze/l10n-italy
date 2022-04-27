@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
         <record id="view_multireport_selection_rules_tree" model="ir.ui.view">
@@ -6,10 +6,10 @@
             <field name="model">multireport.selection.rules</field>
             <field name="arch" type="xml">
                 <tree string="Document report selection rules">
-                    <field name="sequence"/>
-                    <field name="name"/>
-                    <field name="model_id"/>
-                    <field name="action"/>
+                    <field name="sequence" />
+                    <field name="name" />
+                    <field name="model_id" />
+                    <field name="action" />
                 </tree>
             </field>
         </record>
@@ -21,24 +21,24 @@
                 <form string="Document report selection rules">
                     <group name="main">
                         <group string="Technical values">
-                            <field name="name"/>
-                            <field name="model_id"/>
-                            <field name="model_name"/>
-                            <field name="sequence"/>
+                            <field name="name" />
+                            <field name="model_id" />
+                            <field name="model_name" />
+                            <field name="sequence" />
                         </group>
                         <group string="Selection criteria">
-                            <field name="lang"/>
-                            <field name="journal_id"/>
-                            <field name="partner_id"/>
-                            <field name="position_id"/>
-                            <field name="since_date"/>
-                            <field name="until_date"/>
-                            <field name="active"/>
+                            <field name="lang" />
+                            <field name="journal_id" />
+                            <field name="partner_id" />
+                            <field name="position_id" />
+                            <field name="since_date" />
+                            <field name="until_date" />
+                            <field name="active" />
                         </group>
                         <group string="User configuration values">
-                            <field name="action"/>
-                            <field name="report_id"/>
-                            <field name="purpose"/>
+                            <field name="action" />
+                            <field name="report_id" />
+                            <field name="purpose" />
                         </group>
                     </group>
                 </form>
@@ -48,16 +48,19 @@
     <record id="action_multireport_selection_rules" model="ir.actions.act_window">
         <field name="name">Multi-Report Selection Rules</field>
         <field name="res_model">multireport.selection.rules</field>
-        <field name="view_id" ref="view_multireport_selection_rules_tree"/>
+        <field name="view_id" ref="view_multireport_selection_rules_tree" />
     </record>
 
-    <menuitem id="menu_multireport_selection_rules" name="Multi-Report Selection Rules"
-              action="action_multireport_selection_rules"
-              parent="report.reporting_menuitem"
-              sequence="100"
-              groups="base.group_no_one"/>
+    <menuitem
+        id="menu_multireport_selection_rules"
+        name="Multi-Report Selection Rules"
+        action="action_multireport_selection_rules"
+        parent="report.reporting_menuitem"
+        sequence="100"
+        groups="base.group_no_one"
+    />
 
-        <!-- 
+        <!--
         <record id="action_show_reports" model="ir.ui.view">
             <field name="name">Odoo Reports</field>
             <field name="res_model">ir.ui.view</field>

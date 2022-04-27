@@ -10,7 +10,7 @@ This module may be conflict with some OCA modules with error:
 Lo schema di definizione xml, pubblicato con
 urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
 in formato xml da inviare all'Agenzia delle Entrate; come conseguenza
-nasce un conflitto tra moduli diversi che utilizzano uno schema che riferisce 
+nasce un conflitto tra moduli diversi che utilizzano uno schema che riferisce
 all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
 
 |exclamation| name CryptoBinary used for multiple values in typeBinding

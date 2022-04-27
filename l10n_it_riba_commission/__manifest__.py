@@ -6,16 +6,12 @@
     "summary": "Ricevute bancarie & commissioni",
     "version": "10.0.1.0.1",
     "category": "Accounting & Finance",
-    "website": "https://github.com/OCA/l10n-italy/tree/10.0/"
-               "l10n_it_riba_commission",
+    "website": "https://github.com/OCA/l10n-italy" "l10n_it_riba_commission",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": False,
-    "depends": [
-        "l10n_it_ricevute_bancarie",
-        "sale_commission"
-    ],
+    "depends": ["l10n_it_ricevute_bancarie", "sale_commission"],
     # "auto_install": True,
-    "data": ["views/sale_commission.xml"]
+    "data": ["views/sale_commission.xml"],
 }

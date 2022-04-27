@@ -5,7 +5,7 @@
 # (<http://www.agilebg.com>)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models, _
+from odoo import _, models
 from odoo.exceptions import Warning as UserError
 
 
@@ -77,10 +77,12 @@ class WizardRegistroIva(models.TransientModel):
           ) as moves
         ORDER BY date, protocollo
         """
-        params = {'from_date': wizard.from_date,
-                  'to_date': wizard.to_date,
-                  'journals': tuple([j.id for j in wizard.journal_ids]),
-                  'company_id': self.env.user.company_id.id}
+        params = {
+            "from_date": wizard.from_date,
+            "to_date": wizard.to_date,
+            "journals": tuple([j.id for j in wizard.journal_ids]),
+            "company_id": self.env.user.company_id.id,
+        }
 
         self.env.cr.execute(SQL_MOVES, params)
         res = self.env.cr.fetchall()
@@ -105,31 +107,27 @@ class WizardRegistroIva(models.TransientModel):
         move_ids, cash_move_ids = self._get_cash_basis_move_ids(wizard)
 
         if not move_ids:
-            raise UserError(_('No documents found in the current selection'))
+            raise UserError(_("No documents found in the current selection"))
 
         datas_form = {}
-        datas_form['from_date'] = wizard.from_date
-        datas_form['to_date'] = wizard.to_date
-        datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
-        datas_form['fiscal_page_base'] = wizard.fiscal_page_base
-        datas_form['registry_type'] = wizard.layout_type
-        datas_form['cash_move_ids'] = cash_move_ids
+        datas_form["from_date"] = wizard.from_date
+        datas_form["to_date"] = wizard.to_date
+        datas_form["journal_ids"] = [j.id for j in wizard.journal_ids]
+        datas_form["fiscal_page_base"] = wizard.fiscal_page_base
+        datas_form["registry_type"] = wizard.layout_type
+        datas_form["cash_move_ids"] = cash_move_ids
 
         lang_code = self.env.user.company_id.partner_id.lang
-        lang = self.env['res.lang']
+        lang = self.env["res.lang"]
         lang_id = lang._lang_get(lang_code)
         date_format = lang_id.date_format
-        datas_form['date_format'] = date_format
+        datas_form["date_format"] = date_format
 
         if wizard.tax_registry_id:
-            datas_form['tax_registry_name'] = wizard.tax_registry_id.name
+            datas_form["tax_registry_name"] = wizard.tax_registry_id.name
         else:
-            datas_form['tax_registry_name'] = ''
-        datas_form['only_totals'] = wizard.only_totals
-        report_name = 'l10n_it_vat_registries.report_registro_iva'
-        datas = {
-            'ids': move_ids,
-            'model': 'account.move',
-            'form': datas_form
-        }
-        return self.env['report'].get_action([], report_name, data=datas)
+            datas_form["tax_registry_name"] = ""
+        datas_form["only_totals"] = wizard.only_totals
+        report_name = "l10n_it_vat_registries.report_registro_iva"
+        datas = {"ids": move_ids, "model": "account.move", "form": datas_form}
+        return self.env["report"].get_action([], report_name, data=datas)

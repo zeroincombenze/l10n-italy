@@ -4,7 +4,7 @@
 {
     "name": "Fattura elettronica - Export ZIP",
     "summary": "Esportazione di file XML di fatture elettroniche "
-               "in uno ZIP da esportare.",
+    "in uno ZIP da esportare.",
     "version": "10.0.1.0.0",
     "development_status": "Beta",
     "category": "other",

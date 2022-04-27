@@ -8,17 +8,16 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 
 class AccountJournal(models.Model):
-    _inherit = ['account.journal']
+    _inherit = ["account.journal"]
 
     enable_date = fields.Boolean(
-        default=False,
-        help='If set, end-user can update account date')
+        default=False, help="If set, end-user can update account date"
+    )
 
     # @api.onchange('type')
     # def _onchange_type(self):
     #     self.check_4_sequence = False
-

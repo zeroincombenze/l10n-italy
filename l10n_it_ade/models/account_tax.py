@@ -11,12 +11,13 @@ from odoo import fields, models
 
 
 class AccountTax(models.Model):
-    _inherit = 'account.tax'
+    _inherit = "account.tax"
 
     nature_id = fields.Many2one(
-        'italy.ade.tax.nature',
-        string='Nature',
-        help='Nature of tax code: may be taxable, out of scope, etc ...')
+        "italy.ade.tax.nature",
+        string="Nature",
+        help="Nature of tax code: may be taxable, out of scope, etc ...",
+    )
     # non_taxable_nature = fields.Selection([
     #     ('N1', 'escluse ex art. 15'),
     #     ('N2', 'non soggette'),
@@ -27,20 +28,24 @@ class AccountTax(models.Model):
     #     ('N7', 'IVA assolta in altro stato UE'),
     #     ('FC', 'FC applicazione IVA'),
     # ], string="Non taxable nature (*DEPRECATED*)")
-    payability = fields.Selection([
-        ('I', 'Immediate payability'),
-        ('D', 'Deferred payability'),
-        ('S', 'Split payment'),
-    ], string="VAT payability",
-        default='I')
-    law_reference = fields.Char(
-        'Law reference', size=128)
+    payability = fields.Selection(
+        [
+            ("I", "Immediate payability"),
+            ("D", "Deferred payability"),
+            ("S", "Split payment"),
+        ],
+        string="VAT payability",
+        default="I",
+    )
+    law_reference = fields.Char("Law reference", size=128)
     type_tax_use = fields.Selection(
-        [('sale', 'Sales'),
-         ('purchase', 'Purchases'),
-         ('both', 'Both')],
-       string='Tax Scope', required=True, default="both")
+        [("sale", "Sales"), ("purchase", "Purchases"), ("both", "Both")],
+        string="Tax Scope",
+        required=True,
+        default="both",
+    )
     assosoftware_id = fields.Many2one(
-        'italy.ade.tax.assosoftware',
-        string='Assosoftware Code',
-        help='Tax Assosoftware classification')
+        "italy.ade.tax.assosoftware",
+        string="Assosoftware Code",
+        help="Tax Assosoftware classification",
+    )

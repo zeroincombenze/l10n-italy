@@ -7,20 +7,18 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Italian Localization - Registro REA',
-    'version': '10.0.1.1.2',
-    'category': 'Localisation/Italy',
-    'summary': 'Gestisce i campi del Repertorio Economico Amministrativo',
-    'author': 'Agile Business Group, Odoo Italia Network,'
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_rea',
-    'license': 'AGPL-3',
-    "depends": [
-        'account'
-    ],
+    "name": "Italian Localization - Registro REA",
+    "version": "10.0.1.1.2",
+    "category": "Localisation/Italy",
+    "summary": "Gestisce i campi del Repertorio Economico Amministrativo",
+    "author": "Agile Business Group, Odoo Italia Network,"
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "AGPL-3",
+    "depends": ["account"],
     "data": [
-        'views/partner_view.xml',
-        'views/company_view.xml',
+        "views/partner_view.xml",
+        "views/company_view.xml",
     ],
-    'installable': True,
+    "installable": True,
 }

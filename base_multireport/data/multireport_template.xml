@@ -1,63 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
     <record id="mr_t" model="multireport.template">
         <field name="name">Odoo template (read-only)</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
     </record>
     <record id="mr_t_odoo" model="multireport.template">
         <field name="name">Odoo based template</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
     </record>
     <record id="mr_t_vg7" model="multireport.template">
         <field name="name">VG7 template</field>
         <field name="header_mode">logo</field>
         <field name="description_mode">as_is</field>
         <field name="code_mode">noprint</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
     </record>
     <record id="mr_t_italy" model="multireport.template">
         <field name="name">Ordinary Italian template</field>
         <field name="header_mode">standard</field>
         <field name="description_mode">nocode</field>
         <field name="code_mode">print</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
     </record>
     <record id="mr_t_saleorder" model="multireport.template">
         <field name="name">Sale Order template</field>
         <field name="payment_term_position">auto</field>
         <field name="footer_mode">standard</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
-        <field name="ir_model_id" ref="sale.model_sale_order"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
+        <field name="ir_model_id" ref="sale.model_sale_order" />
     </record>
     <record id="mr_t_deliverydocument" model="multireport.template">
         <field name="name">Delivery Document template</field>
         <field name="payment_term_position">auto</field>
         <field name="footer_mode">standard</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
-        <field name="ir_model_id" ref="l10n_it_ddt.model_stock_picking_package_preparation"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
+        <field
+            name="ir_model_id"
+            ref="l10n_it_ddt.model_stock_picking_package_preparation"
+        />
     </record>
     <record id="mr_t_invoice" model="multireport.template">
         <field name="name">Account Invoice template</field>
         <field name="payment_term_position">auto</field>
         <field name="footer_mode">standard</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
-        <field name="ir_model_id" ref="account.model_account_invoice"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
+        <field name="ir_model_id" ref="account.model_account_invoice" />
     </record>
     <record id="mr_t_purchaseorder" model="multireport.template">
         <field name="name">Purchase Order template</field>
         <field name="payment_term_position">auto</field>
         <field name="footer_mode">standard</field>
-        <field name="header_id" ref="report.external_layout_header"/>
-        <field name="footer_id" ref="report.external_layout_footer"/>
-        <field name="ir_model_id" ref="purchase.model_purchase_order"/>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
+        <field name="ir_model_id" ref="purchase.model_purchase_order" />
     </record>
 
 </odoo>

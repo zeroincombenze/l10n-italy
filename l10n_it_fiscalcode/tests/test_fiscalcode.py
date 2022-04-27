@@ -7,23 +7,27 @@ from odoo.tests.common import TransactionCase
 
 
 class TestFiscalCode(TransactionCase):
-
     def setUp(self):
         super(TestFiscalCode, self).setUp()
-        self.partner = self.env.ref('base.res_partner_2')
-        self.partner_address = self.env.ref('base.res_partner_address_31')
+        self.partner = self.env.ref("base.res_partner_2")
+        self.partner_address = self.env.ref("base.res_partner_address_31")
 
     def test_fiscalcode_compute(self):
-        wizard = self.env['wizard.compute.fc'].with_context(
-            active_id=self.partner.id).create({
-                'fiscalcode_surname': 'ROSSI',
-                'fiscalcode_firstname': 'MARIO',
-                'birth_date': '1984-06-04',
-                'sex': 'M',
-                'birth_city': 10048,
-                'birth_province': 10048,
-            })
+        wizard = (
+            self.env["wizard.compute.fc"]
+            .with_context(active_id=self.partner.id)
+            .create(
+                {
+                    "fiscalcode_surname": "ROSSI",
+                    "fiscalcode_firstname": "MARIO",
+                    "birth_date": "1984-06-04",
+                    "sex": "M",
+                    "birth_city": 10048,
+                    "birth_province": 10048,
+                }
+            )
+        )
         # ---- Compute FiscalCode
         wizard.compute_fc()
-        self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
-        self.assertEqual(self.partner_address.fiscalcode, 'RSSMRA84H04H501X')
+        self.assertEqual(self.partner.fiscalcode, "RSSMRA84H04H501X")
+        self.assertEqual(self.partner_address.fiscalcode, "RSSMRA84H04H501X")

@@ -8,32 +8,35 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 
-from odoo import models, fields
+from odoo import fields, models
 
-HELP = 'Testo da inserire in fattura; può essere completato con:\n'\
-       '%(ns.prot)s Protocollo interno\n'\
-       '%(ns.data)s Data interna\n'\
-       '%(vs.prot)s Protocollo cliente\n'\
-       '%(vs.data)s Data cliente\n'\
-       '%(aut.min)s Autorizzazione ministeriale\n'
-DEFAULT = 'Operazione senza IVA Vs. lettera d\'intento n. %(vs.prot)s '\
-          'del %(vs.data)s, ns. prot. %(ns.prot)s del %(ns.data)s.'
+HELP = (
+    "Testo da inserire in fattura; può essere completato con:\n"
+    "%(ns.prot)s Protocollo interno\n"
+    "%(ns.data)s Data interna\n"
+    "%(vs.prot)s Protocollo cliente\n"
+    "%(vs.data)s Data cliente\n"
+    "%(aut.min)s Autorizzazione ministeriale\n"
+)
+DEFAULT = (
+    "Operazione senza IVA Vs. lettera d'intento n. %(vs.prot)s "
+    "del %(vs.data)s, ns. prot. %(ns.prot)s del %(ns.data)s."
+)
+
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
     text_lettera_intento = fields.Char(
-        'Note lettera intento',
-        help=HELP,
-        default=DEFAULT
+        "Note lettera intento", help=HELP, default=DEFAULT
     )
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = "account.config.settings"
 
     text_lettera_intento = fields.Char(
-        related='company_id.text_lettera_intento',
-        string='Note lettera intento',
+        related="company_id.text_lettera_intento",
+        string="Note lettera intento",
         help=HELP,
-        default=DEFAULT
+        default=DEFAULT,
     )

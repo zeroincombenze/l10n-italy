@@ -9,4 +9,3 @@ The module is built on follow concepts:
 * Module does not disable standard Odoo report: you can use them whenever you want
 * You can use this module as base for your custom report module
 * Configuration parameters are organized as a hierarchical tree
-

@@ -8,9 +8,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 
-from odoo import models, fields
+from odoo import models
 
 
 class FatturaAttachmentIn(models.Model):
-    _inherit = ['fatturapa.attachment.in']
-
+    _inherit = ["fatturapa.attachment.in"]

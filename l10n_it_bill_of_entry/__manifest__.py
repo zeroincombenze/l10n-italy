@@ -20,10 +20,10 @@
 #
 ##############################################################################
 {
-    'name': 'Italian Localisation - Bill of Entry',
-    'version': '0.1',
-    'category': 'Localisation/Italy',
-    'description': """
+    "name": "Italian Localisation - Bill of Entry",
+    "version": "0.1",
+    "category": "Localisation/Italy",
+    "description": """
 Bolle doganali
 ===============
 
@@ -37,7 +37,7 @@ Ci sono 3 documenti coinvolti:
  - Fattura fornitore
  - Fattura spedizioniere
  - Bolla doganale
- 
+
 Le relazioni:
 
 N bolle doganali -> N fatture fornitore
@@ -65,14 +65,14 @@ rappresenti(no) l'IVA anticipata alla dogana.
 Alla conferma della fattura spedizioniere, verrà generata la scrittura contabile di giroconto per chiudere la bolla doganale.
 
 """,
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": ['base', 'account_invoice_template'],
+    "author": "Agile Business Group,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "AGPL-3",
+    "depends": ["base", "account_invoice_template"],
     "data": [
-        'account_invoice_view.xml',
-        'company_view.xml',
+        "account_invoice_view.xml",
+        "company_view.xml",
     ],
     "demo": [],
-    'installable': False
+    "installable": False,
 }

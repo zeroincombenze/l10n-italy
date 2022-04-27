@@ -7,14 +7,16 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
     assigned_bank = fields.Many2one(
-        'res.partner.bank', string='Assigned Bank',
-        domain=lambda self:
-            [('partner_id', '=', self.env.user.company_id.partner_id.id)])
+        "res.partner.bank",
+        string="Assigned Bank",
+        domain=lambda self: [
+            ("partner_id", "=", self.env.user.company_id.partner_id.id)
+        ],
+    )

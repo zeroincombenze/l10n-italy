@@ -3,16 +3,16 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from openerp import api, SUPERUSER_ID
+from openerp import SUPERUSER_ID, api
 
 
 def migrate(cr, version):
-    """ Sync of fiscalcode field to descendants """
+    """Sync of fiscalcode field to descendants"""
     if not version:
         return
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        partners = env['res.partner'].search(
-            [('is_company', '=', True)])
+        partners = env["res.partner"].search([("is_company", "=", True)])
         for partner in partners:
-            partner._commercial_sync_to_children()
+            partner = env["res.partner"].browse(partner.id)
+            partner.with_prefetch()._commercial_sync_to_children()

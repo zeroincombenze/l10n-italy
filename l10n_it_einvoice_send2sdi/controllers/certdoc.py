@@ -8,11 +8,12 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 from odoo import http
+
 from odoo.addons.l10n_it_einvoice_send2sdi.models.attachment import Evolve
 
-class Certdoc(http.Controller):
 
-    @http.route('/certdoc', type='http', auth='public')
+class Certdoc(http.Controller):
+    @http.route("/certdoc", type="http", auth="public")
     def render_index_page(self, archive_id=None):
 
         ret = self.header()
@@ -27,12 +28,16 @@ class Certdoc(http.Controller):
 
     def filter_attive(self, archive_id):
 
-        return '<br><form action="/certdoc?archive_id='+archive_id+'"><label for="from">From</label><input name="from"> <label for="to">To</label><input name="to"><input type="submit"></form>'
+        return (
+            '<br><form action="/certdoc?archive_id='
+            + archive_id
+            + '"><label for="from">From</label><input name="from"> <label for="to">To</label><input name="to"><input type="submit"></form>'
+        )
 
     def get_attive(self):
 
         send_channel = http.request.env.user.company_id.einvoice_sender_id
-        headers = Evolve.header(send_channel)
+        Evolve.header(send_channel)
 
     def get_passive(self):
         return "prova"

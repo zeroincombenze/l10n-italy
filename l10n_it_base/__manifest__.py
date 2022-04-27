@@ -6,23 +6,23 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
-    'name': 'Italian Localisation - Base',
-    'version': '10.0.0.2.16',
-    'category': 'Generic Modules/Accounting',
-    'summary': 'Managing Italian addresses',
-    'author': 'Odoo Community Association (OCA), Pexego,',
-    'website': 'https://www.odoo-community.org',
-    'license': 'LGPL-3',
-    'depends': [
-        'base',
-        'sale',
+    "name": "Italian Localisation - Base",
+    "version": "10.0.0.2.16",
+    "category": "Generic Modules/Accounting",
+    "summary": "Managing Italian addresses",
+    "author": "Odoo Community Association (OCA), Pexego,",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "LGPL-3",
+    "depends": [
+        "base",
+        "sale",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/res_partner_view.xml',
-        'views/city_view.xml',
-        'data/res.city.xml',
+    "data": [
+        "security/ir.model.access.csv",
+        "views/res_partner_view.xml",
+        "views/city_view.xml",
+        "data/res.city.xml",
     ],
-    'installable': True,
-    'maintainer': 'Antonio Maria Vigliotti',
+    "installable": True,
+    "maintainer": "Antonio Maria Vigliotti",
 }

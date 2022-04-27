@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Italian OpenERP Community (<http://www.openerp-italia.com>)                            
+#    Copyright (C) 2012 Italian OpenERP Community (<http://www.openerp-italia.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,25 +20,26 @@
 ##############################################################################
 
 {
-    "name" : "Italy - 4th EU Directive - Consolidation Chart of Accounts",
-    "version" : "0.1",
-    "depends" : ['account_chart',],
-    "author" : "OpenERP Italian Community,Odoo Community Association (OCA)",
+    "name": "Italy - 4th EU Directive - Consolidation Chart of Accounts",
+    "version": "0.1",
+    "depends": [
+        "account_chart",
+    ],
+    "author": "OpenERP Italian Community,Odoo Community Association (OCA)",
     "description": """
     Riclassificazione IV direttiva UE per un piano dei conti italiano di un'impresa generica
     I nuovi conti inseriti non hanno relazioni con altri conti precedentemente esistenti
     Le eventuali relazioni debbono essere inserite manualmente
     """,
     "license": "AGPL-3",
-    "category" : "Localisation/Italy",
-    'website': 'http://www.openerp-italia.org/',
-    'data': [
-        'data/account.account.type.csv',
-        'data/account.account.csv',
-        'account_view.xml',
-        ],
-    'demo': [
-        ],
-    'installable': False,
-    'active': False,
+    "category": "Localisation/Italy",
+    "website": "https://github.com/OCA/l10n-italy",
+    "data": [
+        "data/account.account.type.csv",
+        "data/account.account.csv",
+        "account_view.xml",
+    ],
+    "demo": [],
+    "installable": False,
+    "active": False,
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="account.account.type" id="account_type_legalview1">
         <field name="name">Sezione Bilancio</field>

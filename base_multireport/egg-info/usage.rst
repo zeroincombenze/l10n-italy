@@ -72,7 +72,7 @@ May be on of 'standard', 'only_one'.
 |
 
 `Payment Term Position`
- 
+
 This parameter, named `payment_term_position` set where the payment datas (payment term, due date and payment term notes) are printed.
 May be one of 'odoo', 'auto', 'header', 'header_no_iban', 'footer', 'footer_no_iban', 'footer_notes', 'none'
 

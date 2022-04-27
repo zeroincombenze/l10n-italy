@@ -7,17 +7,15 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp import fields, models, api
+from openerp import api, models
 
 
 class SaleOrder(models.Model):
     _inherit = ["sale.order"]
 
-
     # Override print_quotation method in sale module
     @api.multi
     def print_quotation(self):
-        self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
-        reportname = self.env['report'].select_reportname(self)
-        return self.env['report'].get_action(
-             self, reportname)
+        self.filtered(lambda s: s.state == "draft").write({"state": "sent"})
+        reportname = self.env["report"].select_reportname(self)
+        return self.env["report"].get_action(self, reportname)

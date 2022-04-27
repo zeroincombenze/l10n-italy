@@ -8,7 +8,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 
-from odoo import models, api
+from odoo import api, models
 
 
 class WizardSetInvoiceType(models.TransientModel):
@@ -17,6 +17,7 @@ class WizardSetInvoiceType(models.TransientModel):
     @api.multi
     def set_einvoice_type(self):
         self.ensure_one()
-        invoices = self.env[self.env.context['active_model']].browse(
-            self.env.context['active_ids'])
+        invoices = self.env[self.env.context["active_model"]].browse(
+            self.env.context["active_ids"]
+        )
         return invoices.set_einvoice_type()

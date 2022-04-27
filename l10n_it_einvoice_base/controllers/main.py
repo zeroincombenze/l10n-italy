@@ -1,19 +1,25 @@
 # -*- coding: utf-8 -*-
 
-from odoo.http import Controller, route, request
+from odoo.http import Controller, request, route
 
 
 class FatturaElettronicaController(Controller):
-
-    @route([
-        '/fatturapa/preview/<attachment_id>',
-    ], type='http', auth='user', website=True)
+    @route(
+        [
+            "/fatturapa/preview/<attachment_id>",
+        ],
+        type="http",
+        auth="user",
+        website=True,
+    )
     def pdf_preview(self, attachment_id, **data):
-        attach = request.env['ir.attachment'].browse(int(attachment_id))
+        attach = request.env["ir.attachment"].browse(int(attachment_id))
         html = attach.get_fattura_elettronica_preview()
-        pdf = request.env['report']._run_wkhtmltopdf(
-            [], [], [[False, html]], None, None)
+        pdf = request.env["report"]._run_wkhtmltopdf(
+            [], [], [[False, html]], None, None
+        )
         pdfhttpheaders = [
-            ('Content-Type', 'application/pdf'), ('Content-Length', len(pdf))
+            ("Content-Type", "application/pdf"),
+            ("Content-Length", len(pdf)),
         ]
         return request.make_response(pdf, headers=pdfhttpheaders)

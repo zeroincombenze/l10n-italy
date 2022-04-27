@@ -24,10 +24,10 @@
 #
 {
     "name": "Period End VAT Statement",
-    'summary': 'Versamento Iva periodica (mensile o trimestrale) ',
+    "summary": "Versamento Iva periodica (mensile o trimestrale) ",
     "version": "10.0.1.5.1",
-    'category': 'Localization/Italy',
-    'license': 'AGPL-3',
+    "category": "Localization/Italy",
+    "license": "AGPL-3",
     "depends": [
         "account_accountant",
         "account_tax_balance",
@@ -36,20 +36,19 @@
         "l10n_it_ade",
         "l10n_it_fiscalcode",
         "report",
-        ],
-    "author": "Agile Business Group, Odoo Community Association (OCA)"
-              ", LinkIt Spa",
-    'website': 'http://www.agilebg.com',
-    'data': [
-        'wizard/add_period.xml',
-        'wizard/remove_period.xml',
-        'security/ir.model.access.csv',
-        'security/security.xml',
-        'report/reports.xml',
-        'views/report_vatperiodendstatement.xml',
-        'views/config.xml',
-        'views/account_view.xml',
     ],
-    'installable': True,
-    'development_status': 'Beta',
+    "author": "Agile Business Group, Odoo Community Association (OCA)" ", LinkIt Spa",
+    "website": "https://github.com/OCA/l10n-italy",
+    "data": [
+        "wizard/add_period.xml",
+        "wizard/remove_period.xml",
+        "security/ir.model.access.csv",
+        "security/security.xml",
+        "report/reports.xml",
+        "views/report_vatperiodendstatement.xml",
+        "views/config.xml",
+        "views/account_view.xml",
+    ],
+    "installable": True,
+    "development_status": "Beta",
 }

@@ -8,12 +8,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 
-import base64
-import io
-import zipfile
-from datetime import datetime
-from odoo import models, api, fields, _
-from odoo.exceptions import UserError
+from odoo import api, models
 
 
 class WizardAccountInvoiceExport(models.TransientModel):
@@ -22,8 +17,9 @@ class WizardAccountInvoiceExport(models.TransientModel):
     @api.multi
     def refresh_info(self):
         self.ensure_one()
-        attachments = self.env[self.env.context['active_model']].browse(
-            self.env.context['active_ids'])
+        attachments = self.env[self.env.context["active_model"]].browse(
+            self.env.context["active_ids"]
+        )
         attachments._compute_xml_data()
 
         return True
