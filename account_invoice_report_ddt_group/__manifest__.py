@@ -20,5 +20,5 @@
         "views/invoice_ddt.xml",
         "views/partner.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

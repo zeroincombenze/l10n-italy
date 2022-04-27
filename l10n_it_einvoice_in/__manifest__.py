@@ -5,7 +5,7 @@
 # Copyright 2018    - Lorenzo Battistini
 # Copyright 2018    - Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-21 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #

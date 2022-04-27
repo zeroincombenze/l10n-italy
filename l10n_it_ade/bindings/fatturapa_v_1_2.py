@@ -1,6 +1,6 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
-# Copyright 2017-2019 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>
+# Copyright 2017-2022 - SHS-AV s.r.l. <http://wiki.zeroincombenze.org/it/Odoo>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import pyxb

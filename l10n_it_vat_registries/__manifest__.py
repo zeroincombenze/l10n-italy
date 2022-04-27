@@ -9,7 +9,7 @@
 
 {
     "name": "ITA - Registri IVA",
-    "version": "10.0.1.3.1",
+    "version": "10.0.1.3.2",
     "category": "Localization/Italy",
     "author": "Agile Business Group, Odoo Community Association (OCA)" ", LinkIt Srl",
     "website": "https://github.com/OCA/l10n-italy",

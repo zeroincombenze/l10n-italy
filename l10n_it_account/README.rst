@@ -1,10 +1,10 @@
 
-================================================
-|icon| Italian Localization - Account 10.0.1.2.5
-================================================
+=================================================
+|icon| Italian Localization - Account 10.0.1.2.10
+=================================================
 
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/None/10.0//static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_account/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -21,12 +21,14 @@ Overview / Panoramica
 
 Used by modules like l10n_it_vat_registries and account_vat_period_end_statement
 
+
 |
 
 |it| Modulo di servizio contabile
 ---------------------------------
 
 Usato da moduli come l10n_it_vat_registries e account_vat_period_end_statement.
+
 
 |
 
@@ -87,14 +89,14 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository None -b 10.0 -O zero -o $HOME/10.0
+    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
     vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **** > Install
+* |menu| Setting > Apps |right_do| Select **l10n_it_account** > Install
 
 
 |
@@ -118,7 +120,7 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository None -b 10.0 -o $HOME/10.0 -U
+    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
     vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
@@ -127,7 +129,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **** > Update
+* |menu| Setting > Apps |right_do| Select **l10n_it_account** > Update
 
 |
 
@@ -146,7 +148,7 @@ Get involved / Ci mettiamo in gioco
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/zeroincombenze/None/issues>`_.
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
 
@@ -163,15 +165,26 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.10 (2022-04-21)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function tax.is_rc() / Funzione tax.is_rc()
+
+10.0.1.2.9 (2022-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Strange bug in print VAT registry
+* [IMP] New flag RC in tax / Nuovo flag RC in tassa
+
+10.0.1.2.8 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New function for einvoice
+
 10.0.1.2.7 (2021-07-19)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Journal page
-
-10.0.1.2.6 (2020-12-30)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Recongnize N6.* / Riconoscimento N6.*
 
 
 
@@ -198,6 +211,7 @@ Authors / Autori
 * `Link It Spa <http://www.linkgroup.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
+
 Contributors / Collaboratori
 ----------------------------
 
@@ -205,6 +219,7 @@ Contributors / Collaboratori
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Alex Comba <alex.comba@agilebg.com>
+
 
 Maintainer / Manutenzione
 -------------------------
@@ -233,15 +248,15 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 |
 
-This module is part of None project.
+This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-07-19
+Last Update / Ultimo aggiornamento: 2022-04-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/None.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/None
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
@@ -249,11 +264,11 @@ Last Update / Ultimo aggiornamento: 2021-07-19
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/None/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/None?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/None/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/None/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
@@ -264,8 +279,8 @@ Last Update / Ultimo aggiornamento: 2021-07-19
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/None/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/None/branch/10.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -294,5 +309,5 @@ Last Update / Ultimo aggiornamento: 2021-07-19
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
 
