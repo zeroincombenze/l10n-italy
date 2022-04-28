@@ -892,7 +892,7 @@ class CommitmentLine(models.AbstractModel):
             )
 
         if address.street:
-            res["xml_Indirizzo"] = address.street.replace("'", "").replace("’", "")
+            res["xml_Indirizzo"] = address.street.replace(u"'", u"").replace(u"’", u"")
         else:
             res["xml_Error1"] += self._get_error(
                 _("003XA - " "Partner %s without street on address") % partner.name,
