@@ -8,9 +8,8 @@
 #
 import time
 
-from odoo.exceptions import Warning as UserError
-
 from odoo import api, fields, models
+from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
 
 

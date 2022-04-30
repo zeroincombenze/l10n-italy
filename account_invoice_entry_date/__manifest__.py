@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 {
     "name": "Account Invoice entry Date",
     "version": "10.0.0.1.1",
