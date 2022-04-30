@@ -8,6 +8,7 @@
 from datetime import datetime
 
 from dateutil.rrule import MONTHLY
+
 from odoo.tests.common import TransactionCase
 
 

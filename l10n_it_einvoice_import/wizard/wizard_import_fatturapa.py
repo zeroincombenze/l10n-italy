@@ -1029,9 +1029,7 @@ class WizardImportFatturapa(models.TransientModel):
                 delivery_dict["carrier_id"] = delivery_id
 
             if Delivery.IndirizzoResa:
-                delivery_dict[
-                    "delivery_address"
-                ] = "{}, {}\n{} - {}\n{} {}".format(
+                delivery_dict["delivery_address"] = "{}, {}\n{} - {}\n{} {}".format(
                     repr(Delivery.IndirizzoResa.Indirizzo) or "",
                     Delivery.IndirizzoResa.NumeroCivico or "",
                     Delivery.IndirizzoResa.CAP or "",
