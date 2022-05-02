@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.29
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.30
 =========================================================================
 
 
@@ -283,6 +283,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.30 (2022-04-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] New foreign invoices w/o province / Fatture da estero senza provincia
+
 10.0.1.3.29 (2022-03-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -371,7 +376,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-04-27
+Last Update / Ultimo aggiornamento: 2022-05-02
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
