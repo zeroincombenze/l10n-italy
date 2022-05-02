@@ -1,3 +1,8 @@
+10.0.1.3.30 (2022-04-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] New foreign invoices w/o province / Fatture da estero senza provincia
+
 10.0.1.3.29 (2022-03-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
