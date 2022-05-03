@@ -194,17 +194,18 @@ class RibaUnsolved(models.TransientModel):
 
         if (
             wizard.overdue_effects_account_id
-            == distinta_line.move_line_ids.move_line_id.account_id
+            == distinta_line.move_line_ids[0].move_line_id.account_id
         ):
             for line in move.line_ids:
                 if line.name == _("Overdue Effects"):
                     overdue_line_id = line.id
                     break
-            move_ids = [
-                distinta_line.move_line_ids.move_line_id.id,
-                overdue_line_id,
-            ]
-            self.env["account.move.line"].browse(move_ids).remove_move_reconcile()
+            for line_dist in distinta_line.move_line_ids:
+                move_ids = [
+                    line_dist.move_line_id.id,
+                    overdue_line_id,
+                ]
+                self.env["account.move.line"].browse(move_ids).remove_move_reconcile()
 
             for acceptance_move_line in distinta_line.acceptance_move_id.line_ids:
                 if (
