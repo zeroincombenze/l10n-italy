@@ -107,7 +107,7 @@ class Partner(models.Model):
             "zip": partner_xml.Sede.CAP,
             "city": partner_xml.Sede.Comune,
         }
-        if partner_xml.Sede.Provincia and partner_xml.Sede.Provincia != 'EE':
+        if partner_xml.Sede.Provincia and partner_xml.Sede.Provincia != "EE":
             Provincia = partner_xml.Sede.Provincia
             prov_sede = self.ProvinceByCode(Provincia)
             if not prov_sede:
