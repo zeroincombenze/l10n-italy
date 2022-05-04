@@ -46,7 +46,7 @@
                     string="Last Response from Exchange System"
                     attrs="{'invisible':[('state', '=', 'ready')]}"
                 >
-                    <field name="last_sdi_response" nolabel="1"/>
+                    <field name="last_sdi_response" nolabel="1" />
                 </group>
             </xpath>
             <field name="datas" position="attributes">

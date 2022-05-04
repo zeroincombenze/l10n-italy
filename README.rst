@@ -551,7 +551,7 @@ Last Update / Ultimo aggiornamento: 2022-05-03
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: 
+    :alt:
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
@@ -607,5 +607,3 @@ Last Update / Ultimo aggiornamento: 2022-05-03
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
-
