@@ -10,7 +10,7 @@
 {
     "name": "Fattura elettronica - Import ZIP",
     "summary": "Importazione di file XML di fatture elettroniche da uno ZIP",
-    "version": "10.0.1.0.5",
+    "version": "10.0.1.0.6",
     "category": "Localization/Italy",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",

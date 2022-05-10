@@ -1,3 +1,8 @@
+10.0.1.0.6 (2022-05-09)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri (lost?)
+
 10.0.1.0.5 (2022-01-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
