@@ -170,14 +170,16 @@ class WizardImportFatturapa(models.TransientModel):
             "product.product", "supplier_taxes_id", company_id=company_id
         )
         def_purchase_tax = False
+        is_rc = account_tax_model.is_rc(nature=Natura)
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         domain = []
         domain.append(("company_id", "=", company_id))
         domain.append(("type_tax_use", "=", "purchase"))
-        # Some supplier use N6 w/o tax rate!
-        if AliquotaIVA_fp != 0.0:
+        # Some supplier use N6 w/o Vax rate!
+        if is_rc or AliquotaIVA_fp != 0.0:
             domain.append(("amount", "=", AliquotaIVA_fp))
+        domain.append(("rc", "=", is_rc))
         if Natura:
             if "." not in Natura:
                 # Code 2020
@@ -206,11 +208,6 @@ class WizardImportFatturapa(models.TransientModel):
                 account_taxes2 = account_tax_model.search(domain, order="sequence")
                 if len(account_taxes2):
                     account_taxes = account_taxes2
-        if len(account_taxes) > 1:
-            domain.append(("rc", "=", True))
-            account_taxes2 = account_tax_model.search(domain, order="sequence")
-            if len(account_taxes2):
-                account_taxes = account_taxes2
         if len(account_taxes) > 1:
             self.log_inconsistency(
                 _(
@@ -1141,14 +1138,17 @@ class WizardImportFatturapa(models.TransientModel):
 
     def check_invoice_amount(self, invoice, FatturaElettronicaBody):
         if (
-            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ScontoMaggiorazione
-            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ScontoMaggiorazione
+            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ImportoTotaleDocumento
         ):
             # assuming that, if someone uses
             # DatiGeneraliDocumento.ScontoMaggiorazione, also fills
             # DatiGeneraliDocumento.ImportoTotaleDocumento
             ImportoTotaleDocumento = float(
-                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+                ImportoTotaleDocumento
             )
             if not float_is_zero(
                 invoice.amount_total - ImportoTotaleDocumento, precision_digits=2

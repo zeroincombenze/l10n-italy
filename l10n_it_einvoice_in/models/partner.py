@@ -5,6 +5,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
+from past.builtins import basestring
 import logging
 
 from odoo import api, fields, models
