@@ -65,7 +65,7 @@ class WizardImportFatturapa(models.TransientModel):
             fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id
             )
-            if fatturapa_attachment.out_invoice_ids:
+            if fatturapa_attachment.in_invoice_ids:
                 raise UserError(
                     _("File %s is linked to bills yet.") % fatturapa_attachment.name
                 )
@@ -170,30 +170,32 @@ class WizardImportFatturapa(models.TransientModel):
             "product.product", "supplier_taxes_id", company_id=company_id
         )
         def_purchase_tax = False
+        is_rc = account_tax_model.is_rc(nature=Natura)
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         domain = []
         domain.append(("company_id", "=", company_id))
         domain.append(("type_tax_use", "=", "purchase"))
         # Some supplier use N6 w/o Vax rate!
-        if Natura != "N6" or AliquotaIVA_fp != 0.0:
+        if is_rc or AliquotaIVA_fp != 0.0:
             domain.append(("amount", "=", AliquotaIVA_fp))
+        domain.append(("rc", "=", is_rc))
         if Natura:
-            if Natura.find(".") < 0:
+            if "." not in Natura:
                 # Code 2020
                 nature_ids = nature_model.search([("code", "like", Natura)])
                 if nature_ids:
                     domain.append(("nature_id", "in", [x.id for x in nature_ids]))
-                else:
-                    domain.append(("nature_id", "=", -1))
+                # else:
+                #     domain.append(('nature_id', '=', -1))
             else:
                 nature_id = nature_model.search([("code", "=", Natura)])
                 if nature_id:
                     domain.append(("nature_id", "=", nature_id.id))
-                else:
-                    domain.append(("nature_id", "=", -1))
-        elif AliquotaIVA_fp != 0.0:
-            domain.append(("nature_id", "=", False))
+                # else:
+                #     domain.append(('nature_id', '=', -1))
+        # elif AliquotaIVA_fp != 0.0:
+        #     domain.append(('nature_id', '=', False))
         account_taxes = account_tax_model.search(domain, order="sequence")
         if not account_taxes:
             raise UserError(
@@ -852,7 +854,7 @@ class WizardImportFatturapa(models.TransientModel):
                 # 'origin': xmlData.datiOrdineAcquisto,
                 "fiscal_position_id": partner.property_account_position_id.id,
                 "company_id": company.id,
-                "fatturapa_attachment_out_id": fatturapa_attachment.id,
+                "fatturapa_attachment_in_id": fatturapa_attachment.id,
             }
         )
 
@@ -1183,7 +1185,7 @@ class WizardImportFatturapa(models.TransientModel):
             fatturapa_attachment = fatturapa_attachment_model.browse(
                 fatturapa_attachment_id
             )
-            if fatturapa_attachment.out_invoice_ids:
+            if fatturapa_attachment.in_invoice_ids:
                 raise UserError(_("File is linked to bills yet."))
             fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
