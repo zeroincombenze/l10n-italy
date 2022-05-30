@@ -8,16 +8,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-09 17:25+0000\n"
 "PO-Revision-Date: 2020-12-09 18:48+0100\n"
-"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail."
-"com>\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
-"X-Generator: Poedit 2.4.2\n"
+"Generated-By: Babel 2.10.1\n"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_document_vg7
@@ -141,7 +139,7 @@ msgstr "<strong>Indirizzo di spedizione:</strong>"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt_lines
 msgid "<strong>Lots/Serial Numbers</strong>"
-msgstr "<strong>Lotti/Numeri seriali</strong>"
+msgstr "<strong>Numeri di serie/lotti</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
@@ -314,12 +312,10 @@ msgstr ""
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_style_pdf_watermark_expression
 msgid ""
-"An expression yielding the base64 encoded data to be used as "
-"watermark. \n"
+"An expression yielding the base64 encoded data to be used as watermark. \n"
 "You have access to variables `env` and `docs`"
 msgstr ""
-"An expression yielding the base64 encoded data to be used as "
-"watermark. \n"
+"An expression yielding the base64 encoded data to be used as watermark. \n"
 "You have access to variables `env` and `docs`"
 
 #. module: base_multireport
@@ -365,6 +361,9 @@ msgstr ""
 #: selection:ir.actions.report.xml,description_mode
 #: selection:multireport.style,description_mode
 #: selection:multireport.template,description_mode
+#: selection:ir.actions.report.xml,description_mode
+#: selection:multireport.style,description_mode
+#: selection:multireport.template,description_mode
 msgid "As is"
 msgstr "Come è"
 
@@ -380,6 +379,9 @@ msgstr "Aspetto dei beni"
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 msgid "Auto"
 msgstr "Auto"
 
@@ -387,6 +389,9 @@ msgstr "Auto"
 #: selection:ir.actions.report.xml,footer_mode:0
 #: selection:multireport.style,footer_mode:0
 #: selection:multireport.template,footer_mode:0
+#: selection:ir.actions.report.xml,footer_mode
+#: selection:multireport.style,footer_mode
+#: selection:multireport.template,footer_mode
 #: selection:ir.actions.report.xml,footer_mode
 #: selection:multireport.style,footer_mode
 #: selection:multireport.template,footer_mode
@@ -552,6 +557,9 @@ msgstr "Creato il"
 #: selection:ir.actions.report.xml,footer_mode
 #: selection:multireport.style,footer_mode
 #: selection:multireport.template,footer_mode
+#: selection:ir.actions.report.xml,footer_mode
+#: selection:multireport.style,footer_mode
+#: selection:multireport.template,footer_mode
 msgid "Customized Footer"
 msgstr "Piede personalizzato"
 
@@ -654,6 +662,9 @@ msgstr "Nome visualizzato"
 #: selection:ir.actions.report.xml,address_mode:0
 #: selection:multireport.style,address_mode:0
 #: selection:multireport.template,address_mode:0
+#: selection:ir.actions.report.xml,address_mode
+#: selection:multireport.style,address_mode
+#: selection:multireport.template,address_mode
 #: selection:ir.actions.report.xml,address_mode
 #: selection:multireport.style,address_mode
 #: selection:multireport.template,address_mode
@@ -777,6 +788,12 @@ msgstr "Da data"
 #: selection:multireport.template,footer_mode
 #: selection:multireport.template,header_mode
 #: selection:multireport.template,payment_term_position
+#: selection:multireport.template,address_mode
+#: selection:multireport.template,code_mode
+#: selection:multireport.template,description_mode
+#: selection:multireport.template,footer_mode
+#: selection:multireport.template,header_mode
+#: selection:multireport.template,payment_term_position
 msgid "From style"
 msgstr "Dallo stile"
 
@@ -787,6 +804,12 @@ msgstr "Dallo stile"
 #: selection:ir.actions.report.xml,footer_mode:0
 #: selection:ir.actions.report.xml,header_mode:0
 #: selection:ir.actions.report.xml,payment_term_position:0
+#: selection:ir.actions.report.xml,address_mode
+#: selection:ir.actions.report.xml,code_mode
+#: selection:ir.actions.report.xml,description_mode
+#: selection:ir.actions.report.xml,footer_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:ir.actions.report.xml,payment_term_position
 #: selection:ir.actions.report.xml,address_mode
 #: selection:ir.actions.report.xml,code_mode
 #: selection:ir.actions.report.xml,description_mode
@@ -1104,6 +1127,9 @@ msgstr "Peso netto"
 #: selection:ir.actions.report.xml,description_mode
 #: selection:multireport.style,description_mode
 #: selection:multireport.template,description_mode
+#: selection:ir.actions.report.xml,description_mode
+#: selection:multireport.style,description_mode
+#: selection:multireport.template,description_mode
 msgid "No code"
 msgstr "No codice"
 
@@ -1111,6 +1137,9 @@ msgstr "No codice"
 #: selection:ir.actions.report.xml,description_mode:0
 #: selection:multireport.style,description_mode:0
 #: selection:multireport.template,description_mode:0
+#: selection:ir.actions.report.xml,description_mode
+#: selection:multireport.style,description_mode
+#: selection:multireport.template,description_mode
 #: selection:ir.actions.report.xml,description_mode
 #: selection:multireport.style,description_mode
 #: selection:multireport.template,description_mode
@@ -1124,6 +1153,9 @@ msgstr "No codice & solo 1° riga"
 #: selection:ir.actions.report.xml,code_mode
 #: selection:multireport.style,code_mode
 #: selection:multireport.template,code_mode
+#: selection:ir.actions.report.xml,code_mode
+#: selection:multireport.style,code_mode
+#: selection:multireport.template,code_mode
 msgid "No print"
 msgstr "No stampa"
 
@@ -1134,6 +1166,9 @@ msgstr "No stampa"
 #: selection:ir.actions.report.xml,footer_mode
 #: selection:multireport.style,footer_mode
 #: selection:multireport.template,footer_mode
+#: selection:ir.actions.report.xml,footer_mode
+#: selection:multireport.style,footer_mode
+#: selection:multireport.template,footer_mode
 msgid "No print Footer"
 msgstr "No stampa piede"
 
@@ -1141,6 +1176,9 @@ msgstr "No stampa piede"
 #: selection:ir.actions.report.xml,payment_term_position:0
 #: selection:multireport.style,payment_term_position:0
 #: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
@@ -1184,6 +1222,9 @@ msgstr "Numero DdT:"
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 msgid "Odoo"
 msgstr "Odoo"
 
@@ -1194,11 +1235,15 @@ msgstr "Odoo"
 #: selection:ir.actions.report.xml,footer_mode
 #: selection:multireport.style,footer_mode
 #: selection:multireport.template,footer_mode
+#: selection:ir.actions.report.xml,footer_mode
+#: selection:multireport.style,footer_mode
+#: selection:multireport.template,footer_mode
 msgid "Odoo Standard"
 msgstr "Odoo Standard"
 
 #. module: base_multireport
 #: selection:multireport.style,origin:0 selection:multireport.style,origin
+#: selection:multireport.style,origin
 msgid "Odoo based Model"
 msgstr "Modello basato su Odoo"
 
@@ -1206,6 +1251,9 @@ msgstr "Modello basato su Odoo"
 #: selection:ir.actions.report.xml,payment_term_position:0
 #: selection:multireport.style,payment_term_position:0
 #: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
@@ -1219,6 +1267,9 @@ msgstr "Nel piede"
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 msgid "On Footer, no IBAN"
 msgstr "Nel piede senza IBAN"
 
@@ -1226,6 +1277,9 @@ msgstr "Nel piede senza IBAN"
 #: selection:ir.actions.report.xml,payment_term_position:0
 #: selection:multireport.style,payment_term_position:0
 #: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
@@ -1239,6 +1293,9 @@ msgstr "Solo note nel piede"
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 msgid "On Header"
 msgstr "In intestazione"
 
@@ -1246,6 +1303,9 @@ msgstr "In intestazione"
 #: selection:ir.actions.report.xml,payment_term_position:0
 #: selection:multireport.style,payment_term_position:0
 #: selection:multireport.template,payment_term_position:0
+#: selection:ir.actions.report.xml,payment_term_position
+#: selection:multireport.style,payment_term_position
+#: selection:multireport.template,payment_term_position
 #: selection:ir.actions.report.xml,payment_term_position
 #: selection:multireport.style,payment_term_position
 #: selection:multireport.template,payment_term_position
@@ -1259,6 +1319,9 @@ msgstr "In intestazione senza IBAN"
 #: selection:ir.actions.report.xml,description_mode
 #: selection:multireport.style,description_mode
 #: selection:multireport.template,description_mode
+#: selection:ir.actions.report.xml,description_mode
+#: selection:multireport.style,description_mode
+#: selection:multireport.template,description_mode
 msgid "Only first line"
 msgstr "Solo 1° riga"
 
@@ -1266,6 +1329,9 @@ msgstr "Solo 1° riga"
 #: selection:ir.actions.report.xml,address_mode:0
 #: selection:multireport.style,address_mode:0
 #: selection:multireport.template,address_mode:0
+#: selection:ir.actions.report.xml,address_mode
+#: selection:multireport.style,address_mode
+#: selection:multireport.template,address_mode
 #: selection:ir.actions.report.xml,address_mode
 #: selection:multireport.style,address_mode
 #: selection:multireport.template,address_mode
@@ -1308,6 +1374,7 @@ msgstr "Ordine N."
 
 #. module: base_multireport
 #: selection:multireport.style,origin:0 selection:multireport.style,origin
+#: selection:multireport.style,origin
 msgid "Original Odoo Model"
 msgstr "Modello originale Odoo"
 
@@ -1406,6 +1473,9 @@ msgstr "Prezzo unitario"
 #: selection:ir.actions.report.xml,code_mode:0
 #: selection:multireport.style,code_mode:0
 #: selection:multireport.template,code_mode:0
+#: selection:ir.actions.report.xml,code_mode
+#: selection:multireport.style,code_mode
+#: selection:multireport.template,code_mode
 #: selection:ir.actions.report.xml,code_mode
 #: selection:multireport.style,code_mode
 #: selection:multireport.template,code_mode
@@ -1585,12 +1655,12 @@ msgstr "Selection criteria"
 #: model:ir.model.fields,help:base_multireport.field_multireport_selection_rules_action
 msgid ""
 "Set 'report' to get the internal report name field, 'company' to get "
-"preferred model of company (if any), 'customer' to get preferred model "
-"of customer (if any), 'odoo' to execute Odoo standard document printing."
+"preferred model of company (if any), 'customer' to get preferred model of"
+" customer (if any), 'odoo' to execute Odoo standard document printing."
 msgstr ""
 "Set 'report' to get the internal report name field, 'company' to get "
-"preferred model of company (if any), 'customer' to get preferred model "
-"of customer (if any), 'odoo' to execute Odoo standard document printing."
+"preferred model of company (if any), 'customer' to get preferred model of"
+" customer (if any), 'odoo' to execute Odoo standard document printing."
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_wizard_build_report_default_body_header
@@ -1621,6 +1691,9 @@ msgstr "Spettabile"
 #: selection:ir.actions.report.xml,address_mode:0
 #: selection:multireport.style,address_mode:0
 #: selection:multireport.template,address_mode:0
+#: selection:ir.actions.report.xml,address_mode
+#: selection:multireport.style,address_mode
+#: selection:multireport.template,address_mode
 #: selection:ir.actions.report.xml,address_mode
 #: selection:multireport.style,address_mode
 #: selection:multireport.template,address_mode
@@ -1666,7 +1739,7 @@ msgstr "Testo con riferimento ordine"
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_selection_rules_until_date
 msgid "To date"
-msgstr "To date"
+msgstr "Alla data"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_invoice_lines
@@ -1846,11 +1919,13 @@ msgstr "base.config.settings"
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action
+#: selection:multireport.selection.rules,action
 msgid "company"
 msgstr "azienda"
 
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 #: selection:multireport.selection.rules,action
 msgid "customer"
 msgstr "cliente"
@@ -1885,6 +1960,7 @@ msgstr "ir.ui.view"
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
 #: selection:multireport.selection.rules,action
+#: selection:multireport.selection.rules,action
 msgid "odoo"
 msgstr "odoo"
 
@@ -1895,6 +1971,7 @@ msgstr "q.tà"
 
 #. module: base_multireport
 #: selection:multireport.selection.rules,action:0
+#: selection:multireport.selection.rules,action
 #: selection:multireport.selection.rules,action
 msgid "report"
 msgstr "rapporto"
@@ -1926,6 +2003,9 @@ msgstr "valore"
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "⌘ Only wide logo"
 msgstr "⌘ Solo logo largo"
 
@@ -1936,13 +2016,19 @@ msgstr "⌘ Solo logo largo"
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "⌘ Only wide logo / no sep. line"
-msgstr "⌘ Solo logo largo senza riga sep."
+msgstr "⌘ Solo logo largo senza riga sep"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,header_mode:0
 #: selection:multireport.style,header_mode:0
 #: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
@@ -1956,13 +2042,19 @@ msgstr "⌘ ⌁ Logo lineare + slogan"
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "⌘ ⌁ Line-up logo / slogan / no sep. line"
-msgstr "⌘ ⌁ Logo lineare + slogan senza riga sep."
+msgstr "⌘ ⌁ Logo lineare + slogan senza riga sep"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,header_mode:0
 #: selection:multireport.style,header_mode:0
 #: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
@@ -1976,8 +2068,11 @@ msgstr "⌘ ┅ Logo lineare + dati azienda"
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "⌘ ┅ Line-up: logo / company data / no sep. line"
-msgstr "⌘ ┅ Logo lineare + dati azienda senza riga sep."
+msgstr "⌘ ┅ Logo lineare + dati azienda senza riga sep"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,header_mode:0
@@ -1986,13 +2081,19 @@ msgstr "⌘ ┅ Logo lineare + dati azienda senza riga sep."
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "⌘ ☷ Line-up: logo / custom header / no sep. line"
-msgstr "⌘ ☷ Logo lineare + intestaz. personalizzata senza riga sep."
+msgstr "⌘ ☷ Logo lineare + intestaz. personalizzata senza riga sep"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,header_mode:0
 #: selection:multireport.style,header_mode:0
 #: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
@@ -2006,6 +2107,9 @@ msgstr "⌘ ☷ Logo lineare + intestazione personalizzata"
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "ⓞ Full Odoo Standard"
 msgstr "ⓞ Odoo standard"
 
@@ -2013,6 +2117,9 @@ msgstr "ⓞ Odoo standard"
 #: selection:ir.actions.report.xml,header_mode:0
 #: selection:multireport.style,header_mode:0
 #: selection:multireport.template,header_mode:0
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
@@ -2026,8 +2133,11 @@ msgstr "▭ Non stampare intestazione"
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "☷ Two lines: logo / custom header / no sep. line"
-msgstr "☷ Due righe: logo / intestaz. personalizzata senza riga sep."
+msgstr "☷ Due righe: logo / intestaz. personalizzata senza riga sep"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,header_mode:0
@@ -2036,5 +2146,10 @@ msgstr "☷ Due righe: logo / intestaz. personalizzata senza riga sep."
 #: selection:ir.actions.report.xml,header_mode
 #: selection:multireport.style,header_mode
 #: selection:multireport.template,header_mode
+#: selection:ir.actions.report.xml,header_mode
+#: selection:multireport.style,header_mode
+#: selection:multireport.template,header_mode
 msgid "☷ Two lines: logo / custom_header"
 msgstr "☷ Due righe: logo / intestazione personalizzata"
+
+

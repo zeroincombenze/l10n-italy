@@ -7,4 +7,10 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from . import wizard_build_report
+from odoo.addons.base_multireport import update_template_ref
+
+
+def migrate(cr, version):
+    if not version:
+        return
+    update_template_ref(cr)

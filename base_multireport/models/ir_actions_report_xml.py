@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2016-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -70,13 +70,6 @@ class IrActionsReportXml(models.Model):
     @api.model
     def _domain_fields(self):
         return [("model", "=", self.line_model())]
-
-    # field2print_ids = fields.Many2many(
-    #     comodel_name='ir.model.fields',
-    #     string='Fields to print in document body',
-    #     default=lambda self: self._default_fields(),
-    #     domain=_domain_fields,
-    # )
 
     header_mode = fields.Selection(
         [
@@ -204,10 +197,6 @@ class IrActionsReportXml(models.Model):
         "encoded data to be used as Ending Page PDF.\n"
         "You have access to variables `env` and `docs`",
     )
-    # mr_model_id = fields.Many2one(
-    #     'multireport.model', 'Multi-report Model with fallback values.',
-    #     # domain=lambda self: [('model_id.name', '=', self.model)],
-    # )
     template = fields.Many2one(
         "multireport.template",
         "Model template",
@@ -225,24 +214,12 @@ class IrActionsReportXml(models.Model):
 class View(models.Model):
     _inherit = "ir.ui.view"
 
-    # @api.multi
-    # def name_get(self):
-    #     names = []
-    #     for view in self:
-    #         x = re.search('t-name *= *["\'][^"\']*["\']', view.arch)
-    #         if x:
-    #             name = view.arch[x.start():x.end()].split('=')[1][1:-1]
-    #         else:
-    #             name = view.name
-    #         names.append((name))
-    #    return names
-
     @api.depends("name", "arch")
     def _compute_display_name(self):
         for view in self:
             x = re.search("t-name *= *[\"'][^\"']*[\"']", view.arch)
             if x:
-                name = view.arch[x.start() : x.end()].split("=")[1][1:-1]
+                name = view.arch[x.start(): x.end()].split("=")[1][1:-1]
             else:
                 name = view.name
             view.display_name = name
