@@ -3,9 +3,9 @@
 
     <template id="report_saleorder_footer">
         <t
-            t-set="term_position"
-            t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"
-        />
+          t-set="term_position"
+          t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"
+          />
         <!--
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) == 'header' or (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &lt; 2)" t-set="term_position" t-value="'header'"/>
         <t t-if="report.get_report_attrib('payment_term_position',o,doc_opts) != 'header' and (report.get_report_attrib('payment_term_position',o,doc_opts) == 'auto' and len(o.due_records) &gt;= 2)" t-set="term_position" t-value="'footer'"/>
@@ -19,9 +19,9 @@
                         <td><strong>Imponibile</strong></td>
                         <td class="text-right">
                             <span
-                                t-field="o.amount_untaxed"
-                                t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
-                            />
+                                 t-field="o.amount_untaxed"
+                                 t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
+                                 />
                         </td>
                     </tr>
                     <t t-foreach="o._get_tax_amount_by_group()" t-as="amount_by_group">
@@ -29,9 +29,9 @@
                             <td><span t-esc="amount_by_group[0] or 'IVA'" /></td>
                             <td class="text-right">
                                 <span
-                                    t-esc="amount_by_group[1]"
-                                    t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
-                                />
+                                     t-esc="amount_by_group[1]"
+                                     t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
+                                     />
                             </td>
                         </tr>
                     </t>
@@ -39,9 +39,9 @@
                         <td><strong>Totale</strong></td>
                         <td class="text-right">
                             <strong><span
-                                    t-field="o.amount_total"
-                                    t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
-                                /></strong>
+                                         t-field="o.amount_total"
+                                         t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
+                                         /></strong>
                         </td>
                     </tr>
                 </table>
@@ -53,9 +53,9 @@
             <span t-field="o.payment_term_id.note" />
         </p>
         <p
-            id="fiscal_position_remark"
-            t-if="o.fiscal_position_id and o.fiscal_position_id.note"
-        >
+          id="fiscal_position_remark"
+          t-if="o.fiscal_position_id and o.fiscal_position_id.note"
+          >
             <strong>Fiscal Position Remark:</strong>
             <span t-field="o.fiscal_position_id.note" />
         </p>
@@ -66,3 +66,4 @@
     </template>
 
 </odoo>
+

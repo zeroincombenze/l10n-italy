@@ -9,39 +9,39 @@
                         <td><strong>Imponibile</strong></td>
                         <td class="text-right">
                             <span
-                                t-field="o.amount_untaxed"
-                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                            />
+                                 t-field="o.amount_untaxed"
+                                 t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                 />
                         </td>
                     </tr>
                     <tr>
                         <td>IVA</td>
                         <td class="text-right">
                             <span
-                                t-field="o.amount_tax"
-                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                            />
+                                 t-field="o.amount_tax"
+                                 t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                 />
                         </td>
                     </tr>
                     <tr class="border-black">
                         <td><strong>Totale</strong></td>
                         <td class="text-right">
                             <strong><span
-                                    t-field="o.amount_total"
-                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                                /></strong>
+                                         t-field="o.amount_total"
+                                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                         /></strong>
                         </td>
                     </tr>
                     <tr
-                        t-if="'amount_net_pay' in o and o.amount_net_pay != o.amount_total"
-                        class="border-black"
-                    >
+                       t-if="'amount_net_pay' in o and o.amount_net_pay != o.amount_total"
+                       class="border-black"
+                       >
                         <td><strong>Totale a pagare</strong></td>
                         <td class="text-right">
                             <strong><span
-                                    t-field="o.amount_net_pay"
-                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                                /></strong>
+                                         t-field="o.amount_net_pay"
+                                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                         /></strong>
                         </td>
                     </tr>
                 </table>
@@ -51,12 +51,12 @@
 
     <template id="delivery_data">
         <style type="text/css">
-table.delivery_data td h6 {
-    margin: 0;
-}
-.signature {
-    min-height: 4em;
-}
+               table.delivery_data td h6 {
+               margin: 0;
+               }
+               .signature {
+               min-height: 4em;
+               }
         </style>
         <table class="table table-condensed table-bordered delivery_data">
             <tr>
@@ -132,3 +132,4 @@ table.delivery_data td h6 {
     </template>
 
 </odoo>
+

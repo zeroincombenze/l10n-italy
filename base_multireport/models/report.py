@@ -47,11 +47,16 @@ class Report(models.Model):
         ir_ui_view_model = self.env["ir.ui.view"]
         model_id = ir_model_model.search([("model", "=", model)])
         if model_id:
-            where = [("active", "=", True), ("model_id", "=", model_id.id)]
+            domain = [
+                ("active", "=", True),
+                "|",
+                ("model_id", "=", model_id.id),
+                ("model_name", "=", model),
+            ]
         else:
-            where = [("active", "=", True)]
+            domain = [("active", "=", True)]
         reportname = self.RPT_BY_MODEL.get(model, None)
-        for rule in rule_model.search(where, order="sequence"):
+        for rule in rule_model.search(domain, order="sequence"):
             if rule.action == "odoo":
                 break
             elif rule.action == "report" and rule.report_id:
@@ -68,7 +73,7 @@ class Report(models.Model):
             company = document.company_id or self.env.user.company_id
             report_model_style = company.report_model_style or None
         if hasattr(document, "pdf_report"):
-            pdf_report = getattr(document, "pdf_report")
+            pdf_report = document.pdf_report
         else:
             pdf_report = False
         return reportname, company, report_model_style, pdf_report
@@ -272,7 +277,7 @@ class Report(models.Model):
                     resolution = resolution[0]
                 image.save(pdf_buffer, "pdf", resolution=resolution)
                 pdf_watermark = PdfFileReader(pdf_buffer)
-            except:
+            except BaseException:
                 logger.exception("Failed to load watermark")
 
         if not pdf_watermark:

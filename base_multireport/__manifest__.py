@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2016-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
     "name": "base_rule_multireport",
     "summary": "Manage document multiple reports",
-    "version": "10.0.0.2.21",
+    "version": "10.0.0.2.22",
     "category": "Generic Modules/Accounting",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
@@ -38,11 +38,12 @@
         "views/layout_templates.xml",
         "report/paper_format.xml",
         "report/header-footer.xml",
-        "report/header-footer_vg7.xml",
+        # "report/header-footer_vg7.xml",
         "report/multireport_sale_order.xml",
         "report/multireport_ddt.xml",
         "report/multireport_invoice.xml",
         "report/multireport_purchase_order.xml",
+        # "report/multireport_overdue.xml",
         "report_ddt/report_ddt.xml",
         "report_ddt/report_ddt_header.xml",
         "report_ddt/report_ddt_lines.xml",
@@ -51,7 +52,7 @@
         "report_sale_order/report_sale_order_header.xml",
         "report_sale_order/report_sale_order_lines.xml",
         "report_sale_order/report_sale_order_footer.xml",
-        "report_sale_order/report_sale_order_vg7.xml",
+        # "report_sale_order/report_sale_order_vg7.xml",
         "report_account_invoice/report_invoice.xml",
         "report_account_invoice/report_invoice_header.xml",
         "report_account_invoice/report_invoice_lines.xml",
@@ -70,5 +71,5 @@
         ],
     },
     "installable": True,
-    # 'post_init_hook': 'update_template_ref',
+    "post_init_hook": "update_template_ref_post",
 }

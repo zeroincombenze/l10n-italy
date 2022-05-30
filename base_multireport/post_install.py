@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2016-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -10,12 +10,32 @@
 from odoo import SUPERUSER_ID, api
 
 
-def update_template_ref(cr, registry):
-    """Set default values"""
+def update_template_ref(cr):
+    """Set the default values for variuos entities. This function is called by
+    migrate and post-install processes; both processes supply cr param.
+
+    Args:
+        cr (obj): sql cursor
+
+    Returns:
+        None
+    """
     with api.Environment.manage():
+        def set_vals(obj, def_vals):
+            vals = {}
+            for name in (
+                "template_sale_order",
+                "template_stock_picking_package_preparation",
+                "template_account_invoice",
+                "template_purchase_order"
+            ):
+                if not getattr(obj, name):
+                    vals[name] = def_vals[name]
+            return vals
+
         env = api.Environment(cr, SUPERUSER_ID, {})
         mr_style_model = env["multireport.style"]
-        vals = {
+        def_vals = {
             "template_sale_order": env.ref("base_multireport.mr_t_saleorder").id,
             "template_stock_picking_package_preparation": env.ref(
                 "base_multireport.mr_t_deliverydocument"
@@ -27,7 +47,9 @@ def update_template_ref(cr, registry):
         }
         domain = [("origin", "!=", "odoo")]
         for mr_style in mr_style_model.search(domain):
-            mr_style.write(vals)
+            vals = set_vals(mr_style, def_vals)
+            if vals:
+                mr_style.write(vals)
 
         ir_report_model = env["ir.actions.report.xml"]
         vals = {"template": False}
@@ -61,6 +83,18 @@ def update_template_ref(cr, registry):
             for mr_template in mr_template_model.search([]):
                 mr_template.write(vals)
 
+        rules_model = env["multireport.selection.rules"]
+        for rule in rules_model.search([]):
+            if rule.action == "report":
+                rule.write({
+                    "report_id": {
+                        "sale.order": env.ref("base_multireport.report_saleorder").id,
+                        "account.invoice": env.ref(
+                            "base_multireport.account_invoice_report_duplicate"
+                        ).id,
+                    }.get(rule.model_name, rule.report_id.id)
+                })
+
         mr_style_odoo = env.ref("base_multireport.mr_style_odoo").id
         company_model = env["res.company"]
         vals = {"report_model_style": mr_style_odoo}
@@ -69,3 +103,7 @@ def update_template_ref(cr, registry):
                 company.write(vals)
             except IOError:
                 pass
+
+
+def update_template_ref_post(cr, registry):
+    update_template_ref(cr)

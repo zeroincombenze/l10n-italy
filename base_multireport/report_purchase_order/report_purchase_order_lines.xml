@@ -7,13 +7,13 @@
         <table class="table table-condensed">
             <!-- <t t-set="code_mode" t-value="doc_opts.code_mode or doc_style.code_mode_account_purchase_order"/> -->
             <t
-                t-set="code_mode"
-                t-value="report.get_report_attrib('code_mode',o,doc_opts)"
-            />
+              t-set="code_mode"
+              t-value="report.get_report_attrib('code_mode',o,doc_opts)"
+              />
             <t
-                t-set="description_mode"
-                t-value="report.get_report_attrib('description_mode',o,doc_opts)"
-            />
+              t-set="description_mode"
+              t-value="report.get_report_attrib('description_mode',o,doc_opts)"
+              />
             <thead>
                 <tr>
                     <th t-if="code_mode == 'print'">Codice</th>
@@ -40,18 +40,18 @@
                     <td class="text-right" style="vertical-align: bottom;">
                         <span t-field="line.product_qty" />
                         <span
-                            t-field="line.product_uom.name"
-                            groups="product.group_uom"
-                        />
+                             t-field="line.product_uom.name"
+                             groups="product.group_uom"
+                             />
                     </td>
                     <td class="text-right" style="vertical-align: bottom;">
                         <span t-field="line.price_unit" />
                     </td>
                     <td class="text-right" style="vertical-align: bottom;">
                         <span
-                            t-field="line.price_subtotal"
-                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                        />
+                             t-field="line.price_subtotal"
+                             t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                             />
                     </td>
                 </tr>
             </tbody>
@@ -59,3 +59,4 @@
     </template>
 
 </odoo>
+

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2016-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -15,13 +15,6 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class AccountInvoice(models.Model):
     _inherit = ["account.invoice"]
-
-    # pdf_model = fields.Many2one(
-    #     'multireport.model',
-    #     'Quote/Order Report',
-    #     help="Select Report to use when printing the Invoice",
-    #     copy=False
-    # )
 
     due_records = fields.One2many(
         "account.move.line",

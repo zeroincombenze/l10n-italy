@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2016-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -26,6 +26,7 @@ def _lang_get(self):
 class MultireportSelectionRules(models.Model):
     _name = "multireport.selection.rules"
     _description = "Rules to select report name"
+    _order = "sequence"
 
     name = fields.Char(
         "Rule Name", required=True, help="Brief name of document to print"
@@ -88,12 +89,6 @@ class MultireportSelectionRules(models.Model):
         " invoice position; may be useful to print"
         " models to satisfy some fiscal law.",
     )
-    # section_id = fields.many2one(
-    #     'crm.case.section',
-    #     'If sales team',
-    #     help="Apply rule only if sales team matches"
-    #          " invoice position; may be useful to print"
-    #          " models to customize sale documents.")
     since_date = fields.Date("From date")
     until_date = fields.Date("To date")
     active = fields.Boolean("Active", help="Rule is evaluated only if is active.")
