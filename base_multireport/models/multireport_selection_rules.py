@@ -26,6 +26,7 @@ def _lang_get(self):
 class MultireportSelectionRules(models.Model):
     _name = "multireport.selection.rules"
     _description = "Rules to select report name"
+    _order = "sequence"
 
     name = fields.Char(
         "Rule Name", required=True, help="Brief name of document to print"
