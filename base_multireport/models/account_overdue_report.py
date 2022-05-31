@@ -6,22 +6,24 @@ from odoo import api, fields, models
 
 
 class ReportOverdue(models.AbstractModel):
-    _name = 'report.account.report_overdue'
+    _name = 'report.base_multireport.report_overdue'
 
     def fmt_date(self, date):
         return datetime.strftime(datetime.strptime(date, '%Y-%m-%d'), '%d-%m-%Y')
 
     def _get_account_move_lines(self, partner_ids):
-        res = dict(map(lambda x:(x,[]), partner_ids))
-        self.env.cr.execute("SELECT m.name AS move_id, l.date, l.name, l.ref, l.date_maturity, l.partner_id, l.blocked, l.amount_currency, l.currency_id, "
+        res = dict(map(lambda x:(x, []), partner_ids))
+        self.env.cr.execute(
+            "SELECT m.name AS move_id,l.date,l.name,l.ref,l.date_maturity,"
+            "l.partner_id,l.blocked,l.amount_currency,l.currency_id,"
             "CASE WHEN at.type = 'receivable' "
                 "THEN SUM(l.debit) "
                 "ELSE SUM(l.credit * -1) "
-            "END AS debit, "
+            "END AS debit,"
             "CASE WHEN at.type = 'receivable' "
                 "THEN SUM(l.credit) "
                 "ELSE SUM(l.debit * -1) "
-            "END AS credit, "
+            "END AS credit,"
             "CASE WHEN l.date_maturity < %s "
                 "THEN SUM(l.debit - l.credit) "
                 "ELSE 0 "
@@ -29,7 +31,13 @@ class ReportOverdue(models.AbstractModel):
             "FROM account_move_line l "
             "JOIN account_account_type at ON (l.user_type_id = at.id) "
             "JOIN account_move m ON (l.move_id = m.id) "
-            "WHERE l.partner_id IN %s AND at.type IN ('receivable', 'payable') AND l.full_reconcile_id IS NULL GROUP BY l.date, l.name, l.ref, l.date_maturity, l.partner_id, at.type, l.blocked, l.amount_currency, l.currency_id, l.move_id, m.name", (((fields.date.today(), ) + (tuple(partner_ids),))))
+            "WHERE l.partner_id IN %s AND "
+            "at.type IN ('receivable', 'payable') AND "
+            "l.full_reconcile_id IS NULL "
+            "GROUP BY l.date, l.name,l.ref,l.date_maturity,l.partner_id,"
+            "at.type,l.blocked,l.amount_currency,l.currency_id,l.move_id,m.name "
+            "ORDER BY l.date_maturity,l.date",
+            (((fields.date.today(), ) + (tuple(partner_ids),))))
         for row in self.env.cr.dictfetchall():
             row['date'] = self.fmt_date(row['date'])
             row['date_maturity'] = self.fmt_date(row['date_maturity'])
@@ -47,10 +55,12 @@ class ReportOverdue(models.AbstractModel):
             totals[partner_id] = {}
             for line_tmp in lines[partner_id]:
                 line = line_tmp.copy()
-                currency = line['currency_id'] and self.env['res.currency'].browse(line['currency_id']) or company_currency
+                currency = line['currency_id'] and self.env['res.currency'].browse(
+                    line['currency_id']) or company_currency
                 if currency not in lines_to_display[partner_id]:
                     lines_to_display[partner_id][currency] = []
-                    totals[partner_id][currency] = dict((fn, 0.0) for fn in ['due', 'paid', 'mat', 'total'])
+                    totals[partner_id][currency] = dict(
+                        (fn, 0.0) for fn in ['due', 'paid', 'mat', 'total'])
                 if line['debit'] and line['currency_id']:
                     line['debit'] = line['amount_currency']
                 if line['credit'] and line['currency_id']:
@@ -62,7 +72,8 @@ class ReportOverdue(models.AbstractModel):
                     totals[partner_id][currency]['due'] += line['debit']
                     totals[partner_id][currency]['paid'] += line['credit']
                     totals[partner_id][currency]['mat'] += line['mat']
-                    totals[partner_id][currency]['total'] += line['debit'] - line['credit']
+                    totals[partner_id][currency]['total'] += (
+                        line['debit'] - line['credit'])
         docargs = {
             'doc_ids': docids,
             'doc_model': 'res.partner',
@@ -72,4 +83,5 @@ class ReportOverdue(models.AbstractModel):
             'Totals': totals,
             'Date': datetime.strftime(fields.date.today(), '%d-%m-%Y')
         }
-        return self.env['report'].render('account.report_overdue', values=docargs)
+        return self.env['report'].render(
+            'base_multireport.report_overdue', values=docargs)

@@ -231,7 +231,7 @@ May be on of 'standard', 'only_one'.
 |
 
 `Payment Term Position`
- 
+
 This parameter, named `payment_term_position` set where the payment datas (payment term, due date and payment term notes) are printed.
 May be one of 'odoo', 'auto', 'header', 'header_no_iban', 'footer', 'footer_no_iban', 'footer_notes', 'none'
 
@@ -387,7 +387,7 @@ Installation / Installazione
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
+* |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **base_multireport** > Install
 
@@ -553,7 +553,7 @@ ChangeLog History / Cronologia modifiche
 * [FIX] Does not print fiscalcode on custom invoice
 
 
-10.0.0.2.6 (2019-05-20)
+10.0.0.2.6 (2019-05-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Print code in document details
@@ -674,4 +674,3 @@ Last Update / Ultimo aggiornamento: 2021-05-04
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/axitec_helpdesk
-

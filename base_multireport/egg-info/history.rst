@@ -100,7 +100,7 @@
 * [FIX] Does not print fiscalcode on custom invoice
 
 
-10.0.0.2.6 (2019-05-20)
+10.0.0.2.6 (2019-05-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Print code in document details
