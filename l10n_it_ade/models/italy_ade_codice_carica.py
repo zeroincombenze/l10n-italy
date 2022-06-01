@@ -2,9 +2,10 @@
 #
 # Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Contributions to development, thanks to:
+# * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
-# Code partially inherited by l10n_it_codice_carica OCA
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 from openerp import fields, models
 

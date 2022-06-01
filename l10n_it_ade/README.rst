@@ -1,10 +1,10 @@
 
-===========================================================
-|icon| Definizioni di Base Agenzia delle Entrate 8.0.0.1.10
-===========================================================
+======================================
+|icon| Agenzia delle Entrate 8.0.0.3.3
+======================================
 
 
-**Codice con le definizioni dei file xml Agenzia delle Entrate**
+**Codice e definizioni come da Agenzia delle Entrate**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_ade/static/description/icon.png
 
@@ -14,13 +14,11 @@
 .. contents::
 
 
+
 Overview / Panoramica
 =====================
 
-|en| Tax Authority Definitions
-==============================
-
-This module has no specific function for End-user.
+|en| This module has no specific function for End-user.
 
 It defines the structures by Italian IRS (Tax Authority) to manage
 all fiscal communications.
@@ -30,15 +28,35 @@ This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.
 
 This code partially inherits some parts from l10n_it_account of OCA.
 
+
 |
 
 |it| Definizioni Agenzia delle Entrate
-======================================
+
+::
+
+    Cosa è:
 
 Questo modulo non ha funzioni specifiche per l'utente finale.
 Contiene dati e definizioni come stabilito dall'Agenzia delle Entrate
 All'interno sono presenti gli schemi xml usati da FatturaPA,
 Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
+
+::
+
+    Destinatari:
+
+Tutti i soggetti passivi IVA in regime non forfettario
+
+::
+
+    Normativa e prassi:
+
+* `DPR n. 633/72 <https://www.gazzettaufficiale.it/eli/id/1972/11/11/072U0633/sg>`__
+* DL 331/93
+* DL 41/95
+
+::
 
 |info| Questo modulo è incompatibile con alcuni moduli OCA.
 
@@ -145,9 +163,9 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
-| These instruction are just an   | Istruzioni di esempio valide solo per    |
-| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
-| you have to do on Linux.        | e Debian 8+                              |
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
@@ -155,20 +173,26 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /home/odoo/8.0/l10n-italy/                                                 |
+| $HOME/8.0                                                                  |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo installation
-    odoo_install_repository l10n-italy -b 8.0 -O zero
-    vem create /opt/odoo/VENV-8.0 -O 8.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository installation; OCB repository must be installed
+    odoo_install_repository l10n-italy -b 8.0 -O zero -o $HOME/8.0
+    vem create $HOME/8.0/venv_odoo -O 8.0 -a "*" -DI -o $HOME/8.0
 
 From UI: go to:
 
@@ -182,25 +206,23 @@ Upgrade / Aggiornamento
 -----------------------
 
 
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| When you want upgrade and you   | Per aggiornare, se avete installato con  |
-| installed using above           | le istruzioni di cui sopra:              |
-| statements:                     |                                          |
-+---------------------------------+------------------------------------------+
-
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo upgrade
-    odoo_install_repository l10n-italy -b 8.0 -O zero -U
-    vem amend /opt/odoo/VENV-8.0 -O 8.0 -DI
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository upgrade
+    odoo_install_repository l10n-italy -b 8.0 -o $HOME/8.0 -U
+    vem amend $HOME/8.0/venv_odoo -o $HOME/8.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -239,27 +261,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.0.1.13 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~~
+8.0.0.3.3 (2022-04-26)
+~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Symbols quotes and double quotes / Conversione simboli '«»' e apostrofo
-
-
-10.0.0.1.13 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Dim_text function / field to search for similarity 
+* [IMP] Regression test
 
 
-< 10.0.0.1.13 (2018)
-~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Use both pyxb 1.2.4 both 1.2.5 (automatic detection)
-* [IMP] File xml without characters not accepted by Tax Authority
-* [FIX] Link fiscal type refund by refund / Riconoscimento NC fiscale da documento Odoo
 
 |
 |
@@ -293,18 +304,22 @@ Acknowledges / Riconoscimenti
 
 +-----------------------------------+-------------------------------------------+
 | |en|                              | |it|                                      |
-+-----------------------------------+-------------------------------------------+
 | This software inherits from past  | Questo software eredita da versioni       |
 | versions some parts of code. Even | passate alcune parti di codice. Anche     |
 | if people did not actively        | se non hanno partecipato attivamente allo |
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+
-
-* Davide Corio <info@davidecorio.com>
++-----------------------------------+-------------------------------------------+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Davide Corio <info@davidecorio.com>
+
+
+Maintainer / Manutenzione
+-------------------------
+
+
+
 
 |
 
@@ -321,6 +336,7 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
@@ -328,19 +344,19 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-10-14
+Last Update / Ultimo aggiornamento: 2022-06-01
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=8.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=8.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=8.0
@@ -387,5 +403,5 @@ Last Update / Ultimo aggiornamento: 2020-10-14
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
 

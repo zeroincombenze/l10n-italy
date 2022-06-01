@@ -1,6 +1,3 @@
-Tax Authority Definitions
-=========================
-
 This module has no specific function for End-user.
 
 It defines the structures by Italian IRS (Tax Authority) to manage

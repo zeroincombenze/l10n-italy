@@ -1,13 +1,39 @@
-10.0.0.1.13 (2019-06-13)
+8.0.0.3.3 (2022-04-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Regression test
+
+8.0.0.3.2 (2021-03-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Discount amount +2 decs / Sconto con più di 2 decimali
+
+8.0.0.3.1 (2020-12-21)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] MP23 / Pagamento MP23
+
+8.0.0.3.0 (2020-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New 1.2.1 standard / Implementazione standard e-fattura 1.2.1
+
+8.0.0.1.14 (2020-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New xml schema binding / Nuovi file xml
+
+
+8.0.0.1.13 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Symbols quotes and double quotes / Conversione simboli '«»' e apostrofo
 
 
-10.0.0.1.13 (2019-06-13)
+8.0.0.1.13 (2019-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Dim_text function / field to search for similarity 
+* [IMP] Dim_text function, field to search for similarity
 
 
 < 10.0.0.1.13 (2018)
