@@ -189,7 +189,7 @@ id,code,name,user_type_id:id,group_id:id,reconcile,chart_template_id:id
 152320,152320,Crediti v/clienti Extra-UE (+!12M),account.data_account_type_receivable,152,TRUE,l10n_chart_it_zeroincombenze
 152400,152400,Cambiali attive (+12M),account.data_account_type_receivable,152,TRUE,l10n_chart_it_zeroincombenze
 152410,152410,Effetti all'incasso (+12M),account.data_account_type_receivable,152,TRUE,l10n_chart_it_zeroincombenze
-152420,152420,Effetti allo sconto (+12M),account.data_account_type_receivable,152,TRUE,l10n_chart_it_zeroincombenze
+152420,152420,Effetti allo sconto (+12M),account.data_account_type_non_current_assets,152,TRUE,l10n_chart_it_zeroincombenze
 152430,152430,Effetti insoluti o protestati( credito +12M),account.data_account_type_receivable,152,TRUE,l10n_chart_it_zeroincombenze
 152500,152500,Crediti v/Imprese Controllate ( a breve ),account.data_account_type_current_assets,152,FALSE,l10n_chart_it_zeroincombenze
 152550,152550,Crediti v/Imprese Controllate (+12 M),account.data_account_type_non_current_assets,152,FALSE,l10n_chart_it_zeroincombenze
