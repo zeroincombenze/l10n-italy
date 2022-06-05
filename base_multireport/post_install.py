@@ -90,7 +90,7 @@ def update_template_ref(cr):
                     "report_id": {
                         "sale.order": env.ref("base_multireport.report_saleorder").id,
                         "account.invoice": env.ref(
-                            "base_multireport.account_invoice_report_duplicate"
+                            "base_multireport.account_invoice_report_duplicate_main"
                         ).id,
                     }.get(rule.model_name, rule.report_id.id)
                 })
