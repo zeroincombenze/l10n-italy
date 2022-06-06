@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.10.1\n"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_sender_url
@@ -34,9 +34,9 @@ msgid ""
 "information element 1.2.3.4 <Comune> belongs. Must be filled if the "
 "information element 1.2.3.6 <Nazione> is equal to IT"
 msgstr ""
-"Acronimo della Provincia a cui appartiene il Comune indicato "
-"nell'elemento informativo 1.2.3.4 <Comune>. Da compilare se l'elemento "
-"informativo 1.2.3.6 <Nazione> è uguale a IT"
+"Sigla della provincia a cui appartiene il comune indicato nell'elemento "
+"informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo "
+"1.2.3.6 <Nazione> è uguale a IT"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_active
@@ -55,6 +55,7 @@ msgstr "Rif. ammin."
 
 #. module: l10n_it_einvoice_base
 #: selection:fatturapa.related_document_type,type:0
+#: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
@@ -95,13 +96,15 @@ msgstr "Art. 73"
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:63
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:63
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:63
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:63
 #, python-format
 msgid "As a Public Administration, partner %s IPA Code must be 6 characters long."
 msgstr ""
-"Il soggetto %s, pubblica amministrazione, deve avere un codice IPA lungo "
-"6 caratteri."
+"Il Nominativo %s, pubblica amministrazione, deve avere un codice IPA "
+"lungo 6 caratteri."
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:70
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:70
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:70
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:70
@@ -109,10 +112,11 @@ msgstr ""
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:70
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
-msgstr "Il soggetto %s, persona fisica, deve avere nome e cognome."
+msgstr "Il Nominativo %s, persona fisica, deve avere nome e cognome."
 
 #. module: l10n_it_einvoice_base
 #: selection:account.invoice,sender:0
+#: selection:account.invoice,sender
 #: selection:account.invoice,sender
 #: selection:account.invoice,sender
 #: selection:account.invoice,sender
@@ -122,6 +126,7 @@ msgstr "Cessionario / Committente"
 
 #. module: l10n_it_einvoice_base
 #: selection:res.company,fatturapa_preview_style:0
+#: selection:res.company,fatturapa_preview_style
 #: selection:res.company,fatturapa_preview_style
 #: selection:res.company,fatturapa_preview_style
 #: selection:res.company,fatturapa_preview_style
@@ -155,6 +160,7 @@ msgid "Bank Name"
 msgstr "Nome banca"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:94
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:94
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:94
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:94
@@ -259,10 +265,12 @@ msgstr "Configurazione"
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type
 msgid "Contract"
 msgstr "Contratto"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:84
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:84
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:84
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:84
@@ -359,11 +367,13 @@ msgstr "Valore personalizzato da utilizzare per la comunicazione, se richiesto"
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:96
 #, python-format
 msgid "Customer %s: ZIP is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessario il CAP."
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:100
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:100
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:100
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:100
@@ -379,11 +389,13 @@ msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:104
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:104
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:104
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:104
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:90
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:90
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:90
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:90
@@ -420,6 +432,7 @@ msgstr "Data"
 #: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
+#: selection:faturapa.summary.data,payability
 msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
@@ -443,6 +456,7 @@ msgstr "Descrizione"
 
 #. module: l10n_it_einvoice_base
 #: selection:discount.rise.price,name:0
+#: selection:discount.rise.price,name
 #: selection:discount.rise.price,name
 #: selection:discount.rise.price,name
 #: selection:discount.rise.price,name
@@ -597,6 +611,7 @@ msgstr "Indirizzo sistema SdI"
 #: selection:res.company,fatturapa_preview_style
 #: selection:res.company,fatturapa_preview_style
 #: selection:res.company,fatturapa_preview_style
+#: selection:res.company,fatturapa_preview_style
 msgid "FatturaOrdinaria v1.2.1"
 msgstr "FatturaOrdinaria v1.2.1"
 
@@ -692,6 +707,7 @@ msgstr ""
 #: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
+#: selection:faturapa.summary.data,payability
 msgid "Immediate payability"
 msgstr "Esigibilità immediata"
 
@@ -703,7 +719,7 @@ msgstr "Spese accessorie"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_ftpa_incoterms
 msgid "Incoterms"
-msgstr "Condizioni di consegna"
+msgstr "Incoterms"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_index_content
@@ -742,6 +758,7 @@ msgid "Intermediary"
 msgstr "Intermediario"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:117
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:117
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:117
 #: code:addons/l10n_it_einvoice_base/models/ir_attachment.py:117
@@ -836,6 +853,7 @@ msgstr "Riferimento legislativo"
 #: selection:account.invoice,ftpa_withholding_type
 #: selection:account.invoice,ftpa_withholding_type
 #: selection:account.invoice,ftpa_withholding_type
+#: selection:account.invoice,ftpa_withholding_type
 msgid "Legal Person"
 msgstr "Persona giuridica"
 
@@ -898,11 +916,13 @@ msgstr "Descrizione"
 #: selection:account.invoice,ftpa_withholding_type
 #: selection:account.invoice,ftpa_withholding_type
 #: selection:account.invoice,ftpa_withholding_type
+#: selection:account.invoice,ftpa_withholding_type
 msgid "Natural Person"
 msgstr "Persona fisica"
 
 #. module: l10n_it_einvoice_base
 #: selection:italy.ade.sender,method:0
+#: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
@@ -978,6 +998,7 @@ msgstr "Numero di righe"
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type
 msgid "Order"
 msgstr "Ordine"
 
@@ -1020,7 +1041,7 @@ msgstr "CAP organizzazione"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_partner_pa_partner_code
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_users_pa_partner_code
 msgid "PA Code for Partner"
-msgstr "Codice PA del soggetto"
+msgstr "Codice PA del nominativo"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_pa_line_code
@@ -1045,9 +1066,10 @@ msgstr "Server POP/IMAP"
 #. module: l10n_it_einvoice_base
 #: model:ir.model,name:l10n_it_einvoice_base.model_res_partner
 msgid "Partner"
-msgstr "Soggetto"
+msgstr "Nominativo"
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:78
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:78
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:78
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:78
@@ -1055,7 +1077,7 @@ msgstr "Soggetto"
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:78
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
-msgstr "Il codice destinatario del soggetto %s deve essere lungo 7 caratteri."
+msgstr "Il codice destinatario del nominativo %s deve essere lungo 7 caratteri."
 
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:86
@@ -1063,9 +1085,10 @@ msgstr "Il codice destinatario del soggetto %s deve essere lungo 7 caratteri."
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:86
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:86
 #: code:addons/l10n_it_einvoice_base/models/res_partner.py:86
+#: code:addons/l10n_it_einvoice_base/models/res_partner.py:86
 #, python-format
 msgid "Partner %s must have VAT Number or Fiscal Code."
-msgstr "Il soggetto %s deve avere una partita IVA o un codice fiscale."
+msgstr "Il nominativo %s deve avere una partita IVA o un codice fiscale."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_amount
@@ -1239,6 +1262,7 @@ msgstr "Titolo in ricevuta"
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
+#: selection:fatturapa.related_document_type,type
 msgid "Reception"
 msgstr "Entrata merce"
 
@@ -1284,7 +1308,7 @@ msgstr "Numero di iscrizione all’albo"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_ftpa_related_ddts
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_line_ftpa_related_ddts
 msgid "Related DdT"
-msgstr "DdT collegati"
+msgstr "Related DdT"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_related_documents
@@ -1308,6 +1332,7 @@ msgstr "Tipo documenti collegati"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_activity_progress_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_invoice_id
+#: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
 #: selection:fatturapa.related_document_type,type
@@ -1418,11 +1443,13 @@ msgstr "Sequenza"
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:108
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:108
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:108
+#: code:addons/l10n_it_einvoice_base/models/res_company.py:108
 #, python-format
 msgid "Sequence %s already used by journal %s. Please select another one."
 msgstr "Sequence %s already used by journal %s. Please select another one."
 
 #. module: l10n_it_einvoice_base
+#: code:addons/l10n_it_einvoice_base/models/res_company.py:101
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:101
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:101
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:101
@@ -1454,6 +1481,7 @@ msgstr "Impostare tipo fattura"
 
 #. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,payability:0
+#: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
 #: selection:faturapa.summary.data,payability
@@ -1498,6 +1526,7 @@ msgstr "Soggetto a RA"
 
 #. module: l10n_it_einvoice_base
 #: selection:discount.rise.price,name:0
+#: selection:discount.rise.price,name
 #: selection:discount.rise.price,name
 #: selection:discount.rise.price,name
 #: selection:discount.rise.price,name
@@ -1584,6 +1613,7 @@ msgstr "Terzo incaricato/Mittente"
 #: selection:account.invoice,sender
 #: selection:account.invoice,sender
 #: selection:account.invoice,sender
+#: selection:account.invoice,sender
 msgid "Third Person"
 msgstr "Soggetto terzo"
 
@@ -1614,6 +1644,7 @@ msgstr ""
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
+#: selection:italy.ade.sender,method
 msgid "Tramite FTP"
 msgstr "Tramite FTP"
 
@@ -1623,11 +1654,13 @@ msgstr "Tramite FTP"
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
+#: selection:italy.ade.sender,method
 msgid "Tramite JSON"
 msgstr "Tramite JSON"
 
 #. module: l10n_it_einvoice_base
 #: selection:italy.ade.sender,method:0
+#: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
 #: selection:italy.ade.sender,method
@@ -1649,7 +1682,7 @@ msgstr "Travel in hours or Km"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_discount_rise_price_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_type
 msgid "Type"
-msgstr "Tipologia"
+msgstr "Tipo"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_attachments_url
