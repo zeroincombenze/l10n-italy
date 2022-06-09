@@ -31,6 +31,7 @@
                             placeholder="IPA123"
                             attrs="{'invisible': [('is_pa','=', False)]}"
                         />
+                         <field name="pa_partner_code" />
                         <field name="eori_code" />
                         <field name="license_number" />
                     </group>

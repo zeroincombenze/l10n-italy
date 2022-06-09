@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2016-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -115,7 +115,8 @@ class Report(models.Model):
         reportname, company, report_model_style, pdf_report = self.env[
             "report"
         ].get_doc_n_repo_params(doc, report)
-        model = report.model.replace(".", "_")
+        # model = report.model.replace(".", "_")
+        model = doc._name.replace(".", "_")
         # Fallback value path: report, template, style, partner, company
         value = get_obj_value(param)
         template = False
@@ -200,6 +201,12 @@ class Report(models.Model):
             # elif param == 'custom_footer':
             #    value = 'div class="footer">%s</div>' % value
         return value or None
+
+    @api.multi
+    def render(self, template, values=None):
+        if "report" not in values:
+            values["report"] = self
+        return super(Report, self).render(template, values=values)
 
     @api.model
     def get_html(self, docids, report_name, data=None):
