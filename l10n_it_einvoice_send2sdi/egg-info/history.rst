@@ -1,3 +1,8 @@
+10.0.1.0.22 (2022-06-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Now import invoices for all companies / Ora importa le fatture per tutte le aziende
+
 10.0.1.0.21 (2022-02-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
