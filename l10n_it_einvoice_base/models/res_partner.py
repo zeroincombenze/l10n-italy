@@ -20,8 +20,6 @@ class AccountFiscalPosition(models.Model):
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    # 1.2.6 RiferimentoAmministrazione
-    pa_partner_code = fields.Char("PA Code for Partner", size=20)
     # 1.2.1.4
     register = fields.Char("Professional Register", size=60)
     # 1.2.1.5
@@ -34,14 +32,14 @@ class ResPartner(models.Model):
     register_fiscalpos = fields.Many2one(
         "fatturapa.fiscal_position", string="Register Fiscal Position"
     )
-    # 1.1.6
-    pec_destinatario = fields.Char(
-        "Addressee PEC",
-        help="PEC to which the electronic invoice will be sent. "
-        "Must be filled "
-        "ONLY when the information element "
-        "<CodiceDestinatario> is '0000000'",
-    )
+    # # 1.1.6
+    # pec_destinatario = fields.Char(
+    #     "Addressee PEC",
+    #     help="PEC to which the electronic invoice will be sent. "
+    #     "Must be filled "
+    #     "ONLY when the information element "
+    #     "<CodiceDestinatario> is '0000000'",
+    # )
 
     @api.multi
     @api.constrains(

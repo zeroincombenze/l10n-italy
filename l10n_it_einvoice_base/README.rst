@@ -1,12 +1,12 @@
 
-============================================
-|icon| EInvoice + FatturaPA 12.0.10.0.2.1.15
-============================================
+=======================================
+|icon| EInvoice + FatturaPA 10.0.2.1.16
+=======================================
 
 
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_einvoice_base/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_base/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -24,12 +24,13 @@ Overview / Panoramica
 This module manage infrastructure to manage Italian E Invoice and FatturaPA
 as per send to the SdI (Exchange System by Italian Tax Authority)
 
+
 |
 
 |it| Fattura Elettronica + FatturaPA
 ------------------------------------
 
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura 
+Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
 Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di interscambio SdI.
 
 In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".
@@ -146,6 +147,7 @@ Certifications / Certificazioni
 | |FatturaPA|          | `FatturaPA <https://www.fatturapa.gov.it/export/fatturazione/it/index.htm>`__                        | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
+
 |
 
 Usage / Utilizzo
@@ -208,7 +210,7 @@ Installation / Installazione
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/12.0                                                                 |
+| $HOME/10.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -226,8 +228,8 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 12.0 -O zero -o $HOME/12.0
-    vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
+    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
+    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 From UI: go to:
 
@@ -257,12 +259,16 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
-    vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
+    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
+    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
 From UI: go to:
+
+* |menu| Setting > Activate Developer mode
+* |menu| Apps > Update Apps List
+* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Update
 
 |
 
@@ -302,7 +308,7 @@ This module may be conflict with some OCA modules with error:
 Lo schema di definizione xml, pubblicato con
 urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
 in formato xml da inviare all'Agenzia delle Entrate; come conseguenza
-nasce un conflitto tra moduli diversi che utilizzano uno schema che riferisce 
+nasce un conflitto tra moduli diversi che utilizzano uno schema che riferisce
 all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
 
 |exclamation| name CryptoBinary used for multiple values in typeBinding
@@ -317,6 +323,7 @@ all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
 * Do not install l10n_it_ipa module of OCA distribution
 * Do not install l10n_it_esigibilita_iva of OCA distribution
 
+
 Proposals for enhancement
 -------------------------
 
@@ -330,16 +337,10 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.2.1.15 (2021-04-06)
+10.0.2.1.16 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Withholding tax 2021 law / Normativa 2021 Enasarco
-
-10.0.2.1.14 (2021-04-01)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Update preview label to 2021 law / Aggiornamento preview normativa 2021
-
+* [FIX] Style sheet / Aggiornamento fogli di stile fattura XML
 
 
 
@@ -372,26 +373,6 @@ Contributors / Collaboratori
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-Translations by / Traduzioni a cura di
---------------------------------------
-
-* Sergio Zanchetta <https://github.com/primes2h>
-
-
-Acknowledges / Riconoscimenti
------------------------------
-
-+-----------------------------------+-------------------------------------------+
-| |en|                              | |it|                                      |
-| This software inherits from past  | Questo software eredita da versioni       |
-| versions some parts of code. Even | passate alcune parti di codice. Anche     |
-| if people did not actively        | se non hanno partecipato attivamente allo |
-| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
-| acknowledge them for their prior  | persone che precedentemente vi hanno      |
-| contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-
-
 
 
 Translations by / Traduzioni a cura di
@@ -430,12 +411,12 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-18
+Last Update / Ultimo aggiornamento: 2022-06-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
@@ -444,23 +425,23 @@ Last Update / Ultimo aggiornamento: 2022-01-18
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=12.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=12.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
+    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
     :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
+.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
+    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
     :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
+.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
+    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
     :alt: Technical Documentation
-.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
-    :target: https://erp12.zeroincombenze.it
+.. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
+    :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org

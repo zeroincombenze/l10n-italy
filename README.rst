@@ -111,7 +111,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_in                  | 10.0.1.3.3 | |no_check| | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out                 | 10.0.1.0.1 | |no_check| | E-Invoice emission                                                               |
+| l10n_it_einvoice_out                 | 10.0.1.0.2 | |no_check| | E-Invoice emission                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -153,7 +153,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscal_document_type         | |no_check| | 10.0.2.0.0 | Italian Localization - Tipi di documento fiscale per dichiarativi                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fiscal_ipa                   | 10.0.1.1.1 | |no_check| | IPA Code and Destination Code in Partner Record                                  |
+| l10n_it_fiscal_ipa                   | 10.0.1.1.2 | |no_check| | IPA Code and Destination Code in Partner Record                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscal_payment_term          | 10.0.1.0.1 | 10.0.2.0.0 | Electronic & Fiscal invoices payment                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -370,6 +370,31 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_fiscal_ipa: 10.0.1.1.2 (2022-06-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Account Reference / Riferimento amministrativo
+
+
+l10n_it_einvoice_out: 10.0.1.0.20 (2022-06-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Account Reference / Riferimento amministrativo
+
+
+l10n_it_einvoice_base: 10.0.2.1.16 (2022-06-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Style sheet / Aggiornamento fogli di stile fattura XML
+
+
+
+l10n_it_base: 10.0.0.2.17 (2022-06-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Emoji for address & invoice partner / Simboli di riconoscimento indirizzi fatturazione e spedizione
+
+
 l10n_it_einvoice_import: 10.0.1.3.29 (2022-05-21)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -499,7 +524,6 @@ l10n_it_account: 10.0.1.2.8 (2022-01-28)
 * [IMP] New function for einvoice
 
 
-
 l10n_it_base: 10.0.0.2.16 (2022-01-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -592,19 +616,6 @@ l10n_it_fiscal: 10.0.0.2.4 (2021-12-29)
 * [IMP] Taxes for all EU countries
 
 
-assigned_bank: 10.0.0.1.2 (2021-12-04)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Default from company partner / Valore predefinito da soggetto azienda
-
-
-l10n_it_fiscal: 10.0.0.2.3 (2021-11-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Tax for NL
-* [IMP] Fiscal position for EU-OSS
-
-
 
 
 
@@ -637,7 +648,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-05-23
+Last Update / Ultimo aggiornamento: 2022-06-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
