@@ -129,7 +129,7 @@ def update_template_ref(cr):
             elif "overdue_msg" in vals:
                 del vals["overdue_msg"]
             try:
-                company.write(vals)
+                company.with_context({"lang": "it_IT"}).write(vals)
             except IOError:
                 pass
 
