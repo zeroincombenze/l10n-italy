@@ -96,7 +96,7 @@
                                   >
                                     <tr class="text-right">
                                         <td colspan="6">
-                                            <strong>Subtotal: </strong>
+                                            <strong>Subtotal:</strong>
                                             <t
                                               t-set="subtotal"
                                               t-value="sum(line.price_subtotal for line in layout_category['lines'])"
@@ -178,4 +178,3 @@
     </template>
 
 </odoo>
-

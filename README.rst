@@ -370,6 +370,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+base_multireport: 10.0.0.2.23 (2022-06-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Overdue print / Stampa E/C scaduto
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.22 (2022-06-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Now import invoices for all companies / Ora importa le fatture per tutte le aziende
+
+
 l10n_it_fiscal_ipa: 10.0.1.1.2 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -393,6 +405,13 @@ l10n_it_base: 10.0.0.2.17 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Emoji for address & invoice partner / Simboli di riconoscimento indirizzi fatturazione e spedizione
+
+
+base_multireport: 10.0.0.2.22 (2022-05-23)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] No more VG7 data
+* [IMP] Activate selection rules
 
 
 l10n_it_einvoice_import: 10.0.1.3.29 (2022-05-21)
@@ -648,7 +667,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-06-09
+Last Update / Ultimo aggiornamento: 2022-06-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
