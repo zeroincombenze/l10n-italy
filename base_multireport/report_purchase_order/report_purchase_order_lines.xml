@@ -20,7 +20,7 @@
                     <th>Descrizione</th>
                     <th><strong>C.IVA</strong></th>
                     <th class="text-center"><strong>Data Rich.</strong></th>
-                    <th class="text-right"><strong>Q.tà</strong></th>
+                    <th class="text-right"><strong>Q.ty</strong></th>
                     <th class="text-right"><strong>Prezzo unitario</strong></th>
                     <th class="text-right"><strong>Totale riga</strong></th>
                 </tr>
@@ -59,4 +59,3 @@
     </template>
 
 </odoo>
-

@@ -65,78 +65,80 @@ class FatturaPAAttachmentIn(models.Model):
 
     @api.multi
     def import_xml_invoice(self):
-        send_channel = self.env.user.company_id.einvoice_sender_id
-        if send_channel is False:
-            _logger.error("Undefined SDI channel")
-            return
-        if not send_channel.sender_url:
-            _logger.error("Undefined URL of SDI channel")
-            return
+        for company in self.env["res.company"].search([]):
+            send_channel = company.einvoice_sender_id
+            if send_channel is False:
+                _logger.error("Undefined SDI channel for company %s" % company.name)
+                continue
+            if not send_channel.sender_url:
+                _logger.error(
+                    "Undefined URL of SDI channel for company %s" % company.name)
+                continue
 
-        headers = Evolve.header(send_channel)
-        url = os.path.join(send_channel.sender_url, "Cerca")
-        archive = int(send_channel.param2) if send_channel.param2 else 2
-        domain_mode = int(send_channel.param4) if send_channel.param4 else 0
+            headers = Evolve.header(send_channel)
+            url = os.path.join(send_channel.sender_url, "Cerca")
+            archive = int(send_channel.param2) if send_channel.param2 else 2
+            domain_mode = int(send_channel.param4) if send_channel.param4 else 0
 
-        data = {
-            "IdAzienda": int(send_channel.sender_company_id),
-            "IdArchivio": archive,
-            "Filtri": [],
-        }
-        if 0 < domain_mode <= 60:
-            limit_date = (
-                datetime.datetime.now() - timedelta(days=domain_mode)
-            ).strftime("%Y-%m-%dT%H:%M:%S")
-            data["Filtri"] = [
-                {
-                    "NomeCampo": "DataRicezione",
-                    "Criterio": ">",
-                    "FromValue": limit_date,
-                }
-            ]
-        elif domain_mode == 0:
-            limit_date = (datetime.datetime.now() - timedelta(days=59)).strftime(
-                "%Y-%m-%dT%H:%M:%S"
-            )
-            data["Filtri"] = [
-                {
-                    "NomeCampo": "DataDownload",
-                    "Criterio": "nullo",
-                },
-                {
-                    "NomeCampo": "DataRicezione",
-                    "Criterio": ">",
-                    "FromValue": limit_date,
-                },
-            ]
-        _logger.info(json.dumps(data, ensure_ascii=False))
+            data = {
+                "IdAzienda": int(send_channel.sender_company_id),
+                "IdArchivio": archive,
+                "Filtri": [],
+            }
+            if 0 < domain_mode <= 60:
+                limit_date = (
+                    datetime.datetime.now() - timedelta(days=domain_mode)
+                ).strftime("%Y-%m-%dT%H:%M:%S")
+                data["Filtri"] = [
+                    {
+                        "NomeCampo": "DataRicezione",
+                        "Criterio": ">",
+                        "FromValue": limit_date,
+                    }
+                ]
+            elif domain_mode == 0:
+                limit_date = (datetime.datetime.now() - timedelta(days=59)).strftime(
+                    "%Y-%m-%dT%H:%M:%S"
+                )
+                data["Filtri"] = [
+                    {
+                        "NomeCampo": "DataDownload",
+                        "Criterio": "nullo",
+                    },
+                    {
+                        "NomeCampo": "DataRicezione",
+                        "Criterio": ">",
+                        "FromValue": limit_date,
+                    },
+                ]
+            _logger.info(json.dumps(data, ensure_ascii=False))
 
-        try:
-            response = requests.post(
-                url, headers=headers, data=json.dumps(data, ensure_ascii=False)
-            )
-        except BaseException:
-            _logger.error("request.post FAILED")
-            return
-        if not (200 <= response.status_code < 300):
-            _logger.error("FAILED request.post: %s" % response.status_code)
-            return
-
-        try:
-            documenti = response.json()
-            if documenti["EsitoChiamata"] > 0:
-                _logger.info(response.text.replace(r"\r\n", "\n"))
-                return
-        except BaseException:
-            return
-
-        for value in documenti["Documenti"]:
-            documento = Evolve.parse_documento(value)
             try:
-                self.import_xml_invoice_single(documento, send_channel, headers)
-                self.env.cr.commit()  # pylint: disable=invalid-commit
+                response = requests.post(
+                    url, headers=headers, data=json.dumps(data, ensure_ascii=False)
+                )
             except BaseException:
-                break
+                _logger.error("request.post FAILED for company %s" % company.name)
+                continue
+            if not (200 <= response.status_code < 300):
+                _logger.error("FAILED request.post: %s" % response.status_code)
+                continue
+
+            try:
+                documenti = response.json()
+                if documenti["EsitoChiamata"] > 0:
+                    _logger.info(response.text.replace(r"\r\n", "\n"))
+                    continue
+            except BaseException:
+                continue
+
+            for value in documenti["Documenti"]:
+                documento = Evolve.parse_documento(value)
+                try:
+                    self.import_xml_invoice_single(documento, send_channel, headers)
+                    self.env.cr.commit()  # pylint: disable=invalid-commit
+                except BaseException:
+                    break
 
     # Import singolo documento
     def import_xml_invoice_single(self, documento, send_channel, headers):

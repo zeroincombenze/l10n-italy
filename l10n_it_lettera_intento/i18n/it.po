@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 10:18+0000\n"
-"PO-Revision-Date: 2020-06-23 10:18+0000\n"
+"POT-Creation-Date: 2022-06-11 14:54+0000\n"
+"PO-Revision-Date: 2022-06-11 14:54+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -134,6 +134,11 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:l10n_it_lettera_intento.field_res_company_text_lettera_intento
 msgid "Note lettera intento"
 msgstr "Note lettera intento"
+
+#. module: l10n_it_lettera_intento
+#: model:ir.model.fields,field_description:l10n_it_lettera_intento.field_account_invoice_lettera_intento_id
+msgid "Num. Lettera di intento"
+msgstr "Num. Lettera di intento"
 
 #. module: l10n_it_lettera_intento
 #: model:ir.model.fields,field_description:l10n_it_lettera_intento.field_italy_lettera_intento_partner_id

@@ -34,9 +34,9 @@ class ReportOverdue(models.AbstractModel):
             "WHERE l.partner_id IN %s AND "
             "at.type IN ('receivable', 'payable') AND "
             "l.full_reconcile_id IS NULL "
-            "GROUP BY l.date, l.name,l.ref,l.date_maturity,l.partner_id,"
-            "at.type,l.blocked,l.amount_currency,l.currency_id,l.move_id,m.name "
-            "ORDER BY l.date_maturity,l.date",
+            "GROUP BY l.partner_id,l.date_maturity,l.date,l.name,l.ref,"
+            "at.type,l.blocked,l.amount_currency,l.currency_id,m.name,move_id "
+            "ORDER BY l.partner_id,l.date_maturity,l.date",
             (((fields.date.today(), ) + (tuple(partner_ids),))))
         for row in self.env.cr.dictfetchall():
             row['date'] = self.fmt_date(row['date'])

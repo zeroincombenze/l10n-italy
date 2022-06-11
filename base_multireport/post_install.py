@@ -9,6 +9,27 @@
 #
 from odoo import SUPERUSER_ID, api
 
+OVERDUE_MSG = u"""Gentile cliente,
+
+le nostre scritture contabili evidenziano alcune fatture ancora aperte.
+
+Per favore, controllate l'estratto conto riportato qui sotto e se coincide \
+con la Vostra contabilità, \
+Vi chiediamo di procedere con il pagamento tramite bonifico bancario al seguente IBAN:
+
+%(bank)s
+
+Se avete già provveduto al pagamento, Vi ringraziamo per averlo fatto e \
+potete considerate nulla la presente.
+
+Se avete qualche dubbio non esitate a contattarci al nostro numero %(phone)s.
+
+Grazie per averci scelto e per la Vostra collaborazione.
+
+Cordiali Saluti
+
+"""
+
 
 def update_template_ref(cr):
     """Set the default values for variuos entities. This function is called by
@@ -99,6 +120,14 @@ def update_template_ref(cr):
         company_model = env["res.company"]
         vals = {"report_model_style": mr_style_odoo}
         for company in company_model.search([]):
+            if "Dear Sir/Madam," in company.overdue_msg:
+                params = {
+                    'bank': company.bank_ids[0].acc_number if company.bank_ids else "",
+                    'phone': company.phone,
+                }
+                vals["overdue_msg"] = (OVERDUE_MSG.replace("\\\n", "") % params)
+            elif "overdue_msg" in vals:
+                del vals["overdue_msg"]
             try:
                 company.write(vals)
             except IOError:

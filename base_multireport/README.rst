@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.21
+|icon| base_rule_multireport 10.0.0.2.23
 ========================================
 
 
@@ -12,6 +12,7 @@
 
 
 .. contents::
+
 
 
 Overview / Panoramica
@@ -28,7 +29,6 @@ The module is built on follow concepts:
 * Module does not disable standard Odoo report: you can use them whenever you want
 * You can use this module as base for your custom report module
 * Configuration parameters are organized as a hierarchical tree
-
 
 
 |
@@ -336,6 +336,7 @@ OCA comparation / Confronto con OCA
 
 This module is exclusive of Zeroincombenze® and is not avaiable on OCA repository.
 
+
 |
 |
 
@@ -387,7 +388,7 @@ Installation / Installazione
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode
+* |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **base_multireport** > Install
 
@@ -454,109 +455,21 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.0.2.21 (2021-05-09)
+10.0.0.2.23 (2022-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Custome footer / Piede personalizzato
+* [IMP] Overdue print / Stampa E/C scaduto
 
-10.0.0.2.20 (2021-01-09)
+10.0.0.2.22 (2022-05-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] No purchase order code / Errore in stampa ordine di acquisto con codice
+* [IMP] No more VG7 data
+* [IMP] Activate selection rules
 
-
-10.0.0.2.19 (2020-12-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Bank IBAN (new module partner bank) / Stampa (a seguito modifica modulo partner bank)
-
-
-10.0.0.2.18 (2020-03-26)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Total amount in Delivery document / Totale documento in DdT
-* [FIX] M2M banks/journal error / Errore in caso di relazioni m2m tra banche e sezionali
-* [IMP] Order ref in delivery documenti lines / Riferimento ordine in stampa DdT
-
-
-10.0.0.2.17 (2020-03-24)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Ending pag / Pagina finale
-* [FIX] Bottom text / Test fondo pagina
-* [IMP] Customized block (initial dev) / Blocchi personalizzabili (in ulteriore sviluppo)
-
-
-10.0.0.2.16 (2020-01-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Customized header and/or footer / Intestazione e piede personalizzati
-
-
-10.0.0.2.15 (2020-01-03)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Payment footer improvements / Miglioramenti nella stampa del castelletto totali
-
-
-10.0.0.2.14 (2019-11-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Text refund / Test NC personalizzata
-
-
-10.0.0.2.13 (2019-09-04)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Due payments + IBAN / Scadenze + IBAN
-
-
-10.0.0.2.12 (2019-09-03)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Line-up header / Intestazione con allineamento logo + dati
-
-
-10.0.0.2.11 (2019-09-02)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Address mode / MOdalità stampa indirizzo
-
-
-10.0.0.2.10 (2019-08-26)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Fallback parameters / Parametri a cascata
-
-
-10.0.0.2.9 (2019-08-07)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Description with NL / Stampa descrizione con NL
-
-
-10.0.0.2.8 (2019-07-05)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Print Bank account base on payment type / Stampa banca d'appoggio in base al tipo di pagamento
-* [IMP] Payment datas on header or on footer / Dati di pagamento in intestazione o nel piede
-* [IMP] Print due dates and due amounts / STampa data e importo scadenze
-
-
-10.0.0.2.7 (2019-06-21)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Error "description_2_print() takes exactly 2 arguments (1 given)"
-* [FIX] Does not print fiscalcode on custom invoice
-
-
-10.0.0.2.6 (2019-05-22)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Print code in document details
 
 
 |
@@ -607,6 +520,7 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
@@ -614,19 +528,19 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-05-04
+Last Update / Ultimo aggiornamento: 2022-06-11
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
@@ -673,4 +587,5 @@ Last Update / Ultimo aggiornamento: 2021-05-04
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
+
