@@ -54,7 +54,7 @@
         id="menu_lettera_intento"
         name="Registro lettere d'intento"
         action="action_lettera_intento"
-        parent="account.menu_account_customer"
+        parent="account.menu_finance_entries"
         sequence="90"
     />
 
