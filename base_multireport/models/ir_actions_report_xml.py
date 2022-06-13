@@ -219,7 +219,7 @@ class View(models.Model):
         for view in self:
             x = re.search("t-name *= *[\"'][^\"']*[\"']", view.arch)
             if x:
-                name = view.arch[x.start(): x.end()].split("=")[1][1:-1]
+                name = view.arch[x.start() : x.end()].split("=")[1][1:-1]
             else:
                 name = view.name
             view.display_name = name

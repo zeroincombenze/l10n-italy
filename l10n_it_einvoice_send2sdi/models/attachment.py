@@ -72,8 +72,16 @@ class FatturaPAAttachmentIn(models.Model):
                 continue
             if not send_channel.sender_url:
                 _logger.error(
-                    "Undefined URL of SDI channel for company %s" % company.name)
+                    "Undefined URL of SDI channel for company %s" % company.name
+                )
                 continue
+
+            if send_channel.max_invoices_ctr > 0 and send_channel.used_invoices_ctr == 0:
+                # Get used invoices
+                out_invs, in_invs = send_channel.count_xml_invoice()
+                send_channel.used_invoices_ctr = out_invs + in_invs
+                send_channel._compute_available()
+                self.env.cr.commit()  # pylint: disable=invalid-commit
 
             headers = Evolve.header(send_channel)
             url = os.path.join(send_channel.sender_url, "Cerca")
@@ -136,6 +144,8 @@ class FatturaPAAttachmentIn(models.Model):
                 documento = Evolve.parse_documento(value)
                 try:
                     self.import_xml_invoice_single(documento, send_channel, headers)
+                    send_channel.used_invoices_ctr = send_channel.used_invoices_ctr + 1
+                    send_channel._compute_available()
                     self.env.cr.commit()  # pylint: disable=invalid-commit
                 except BaseException:
                     break
@@ -399,6 +409,19 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.model
     def primitive_json_send(self, send_channel, req, chn_inv, action, attachment=None):
+        if action == "Salva" and self.env['ir.config_parameter'].get_param(
+                "einvoice_send2sdi", "") == "debug":
+            # For debug
+            req["EsitoChiamata"] = 0
+            req["Documento"]["CampiDinamici"].append(
+                {
+                    "Nome": "StatoInvioSdi",
+                    "Valore": "Il documento è in fase di invio",
+                    "CriterioPredefinito": "=",
+                }
+            )
+            req["Documenti"] = [req["Documento"]]
+            return req, False
         if "Documento" in req:
             req["Documento"]["IdAzienda"] = int(send_channel.sender_company_id)
             req["Documento"]["IdArchivio"] = chn_inv
@@ -415,7 +438,7 @@ class FatturaPAAttachmentOut(models.Model):
             response = requests.post(
                 url, headers=headers, data=json.dumps(req, ensure_ascii=False)
             )
-        except:
+        except BaseException:
             errmsg = "<p>requests.post() FAILED!</p>"
             if send_channel.trace:
                 _logger.info(">>> %s" % errmsg)
@@ -449,7 +472,7 @@ class FatturaPAAttachmentOut(models.Model):
                         errmsg = errmsg[:-3]
                     attachment.last_sdi_response = "<p>%s" % errmsg
                 return False, errmsg
-        except:
+        except BaseException:
             errmsg = "<p>response.json() FAILED!</p>"
             if send_channel.trace:
                 _logger.info(">>> %s" % errmsg)
@@ -568,7 +591,7 @@ class FatturaPAAttachmentOut(models.Model):
 
     def build_history(self, documenti, valid_ix):
         line_fmt = ""
-        for ii in range(11):
+        for _ii in range(11):
             line_fmt += "<td>%s</td>"
         row_fmt = "<tr>" + line_fmt + "</tr>\n"
         history = (
@@ -860,12 +883,38 @@ class FatturaPAAttachmentOut(models.Model):
         if set(states) != {"ready"}:
             raise UserError(_("You can only send 'Ready to Send' files."))
         send_channel = self.get_send_channel()
-        if send_channel.avail_invoices_ctr < 10:
+        if send_channel.max_invoices_ctr > 0 and send_channel.used_invoices_ctr == 0:
+            # Get used invoices
+            out_invs, in_invs = send_channel.count_xml_invoice()
+            send_channel.used_invoices_ctr = out_invs + in_invs
+            send_channel._compute_available()
+            self.env.cr.commit()  # pylint: disable=invalid-commit
+        if send_channel.avail_invoices_ctr < 0:
             raise UserError(
                 _("You cannot send invoices. Please buy a new invoices pack!")
             )
         if send_channel.method == "JSON":
-            return self.send_via_json(send_channel)
+            result = self.send_via_json(send_channel)
+            if result:
+                send_channel.used_invoices_ctr = send_channel.used_invoices_ctr + 1
+                send_channel._compute_available()
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            if send_channel.avail_invoices_ctr <= 20:
+                return {
+                    "name": "Import result",
+                    "type": "ir.actions.act_window",
+                    "res_model": "italy.ade.sender",
+                    "view_type": "form",
+                    "view_mode": "form",
+                    'res_id': send_channel.id,
+                    "target": "new",
+                    "view_id": self.env.ref(
+                        "l10n_it_einvoice_send2sdi.view_available_invoices"
+                    ).id,
+                    'domain': [('id', '=', send_channel.id)],
+                }
+            return result
+
         elif send_channel.method == "PEC":
             return self.send_via_pec(send_channel)
         else:

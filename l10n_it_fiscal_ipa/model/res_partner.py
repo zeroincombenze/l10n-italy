@@ -9,7 +9,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-STANDARD_ADDRESSEE_CODE = '0000000'
+STANDARD_ADDRESSEE_CODE = "0000000"
 
 
 class ResPartner(models.Model):
@@ -21,10 +21,10 @@ class ResPartner(models.Model):
     codice_destinatario = fields.Char(
         "Recipient Code",
         help="Tag 1.1.4 <CodiceDestinatario>\n"
-             "Il codice, di 7 caratteri, assegnato dal SdI ai soggetti che "
-             "hanno accreditato un canale; qualora il destinatario non abbia "
-             "accreditato un canale presso Sdi e riceva via PEC le fatture, "
-             "l'elemento deve essere valorizzato con'%s'. " % STANDARD_ADDRESSEE_CODE,
+        "Il codice, di 7 caratteri, assegnato dal SdI ai soggetti che "
+        "hanno accreditato un canale; qualora il destinatario non abbia "
+        "accreditato un canale presso Sdi e riceva via PEC le fatture, "
+        "l'elemento deve essere valorizzato con'%s'. " % STANDARD_ADDRESSEE_CODE,
         default="0000000",
     )
     electronic_invoice_subjected = fields.Boolean("Subjected to electronic invoice")
@@ -34,13 +34,14 @@ class ResPartner(models.Model):
     pec_destinatario = fields.Char(
         "PEC destinatario",
         help="Tag 1.1.6 <PECDestinatario>\n"
-             "PEC usata per l'invio della fattura elettronica. "
-             "Da compilare solo se "
-             "<CodiceDestinatario> is '%s'" % STANDARD_ADDRESSEE_CODE
+        "PEC usata per l'invio della fattura elettronica. "
+        "Da compilare solo se "
+        "<CodiceDestinatario> is '%s'" % STANDARD_ADDRESSEE_CODE,
     )
     # 1.2.6 RiferimentoAmministrazione
     pa_partner_code = fields.Char(
-        "PA Code for Partner", size=20, help="Tag 1.2.6 <RiferimentoAmministrazione>")
+        "PA Code for Partner", size=20, help="Tag 1.2.6 <RiferimentoAmministrazione>"
+    )
     type_inv_addr = fields.Selection(
         [
             ("0", "Simple"),

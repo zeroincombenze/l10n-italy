@@ -333,7 +333,7 @@ class WizardExportFatturapa(models.TransientModel):
             ("fatturapa_rea_office", "ufficio REA"),
             ("fatturapa_rea_number", "numero REA"),
             # ('fatturapa_rea_capital', 'Capitale sociale'),
-            ("fatturapa_rea_partner", "nipersonale?"),
+            ("fatturapa_rea_partner", "unipersonale?"),
         ):
             if not getattr(company, item):
                 raise UserError(_("Your company %s is not set.") % name)
@@ -406,8 +406,7 @@ class WizardExportFatturapa(models.TransientModel):
         )
 
     def _setPubAdministrationRef(self, CedentePrestatore, company, partner, parent):
-        pa_partner_code = self._get_partner_field(
-            partner, parent, "pa_partner_code")
+        pa_partner_code = self._get_partner_field(partner, parent, "pa_partner_code")
         if pa_partner_code:
             CedentePrestatore.RiferimentoAmministrazione = pa_partner_code
         elif company.fatturapa_pub_administration_ref:
@@ -434,7 +433,9 @@ class WizardExportFatturapa(models.TransientModel):
         self._setContatti(fatturapa.FatturaElettronicaHeader.CedentePrestatore, company)
         self._setPubAdministrationRef(
             fatturapa.FatturaElettronicaHeader.CedentePrestatore,
-            company, partner, parent
+            company,
+            partner,
+            parent,
         )
 
     def _setDatiAnagraficiCessionario(self, company, partner, parent, fatturapa):

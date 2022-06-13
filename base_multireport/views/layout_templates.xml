@@ -5,9 +5,9 @@
     <template id="assets_pdf" inherit_id="report.assets_pdf">
         <link position="after">
             <link
-                 href="/base_multireport/static/src/css/report_qweb_pdf_watermark.css"
-                 rel="stylesheet"
-                 />
+                href="/base_multireport/static/src/css/report_qweb_pdf_watermark.css"
+                rel="stylesheet"
+            />
         </link>
     </template>
     <!--
@@ -19,4 +19,3 @@
     </template>
     -->
 </odoo>
-

@@ -1138,17 +1138,14 @@ class WizardImportFatturapa(models.TransientModel):
 
     def check_invoice_amount(self, invoice, FatturaElettronicaBody):
         if (
-            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
-            ScontoMaggiorazione
-            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
-            ImportoTotaleDocumento
+            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ScontoMaggiorazione
+            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
         ):
             # assuming that, if someone uses
             # DatiGeneraliDocumento.ScontoMaggiorazione, also fills
             # DatiGeneraliDocumento.ImportoTotaleDocumento
             ImportoTotaleDocumento = float(
-                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
-                ImportoTotaleDocumento
+                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
             )
             if not float_is_zero(
                 invoice.amount_total - ImportoTotaleDocumento, precision_digits=2
