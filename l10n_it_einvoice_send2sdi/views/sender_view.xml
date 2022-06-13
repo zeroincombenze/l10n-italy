@@ -21,7 +21,7 @@
     <record id="view_available_invoices" model="ir.ui.view">
         <field name="name">view.available.invoices</field>
         <field name="model">italy.ade.sender</field>
-        <field name="sequence" eval="999" />
+        <field name="priority" eval="999" />
         <field name="arch" type="xml">
             <form string="Result of Account Opening" >
                 <group>
