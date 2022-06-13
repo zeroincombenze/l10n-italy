@@ -44,9 +44,9 @@
         <field name="header_id" ref="report.external_layout_header" />
         <field name="footer_id" ref="report.external_layout_footer" />
         <field
-              name="ir_model_id"
-              ref="l10n_it_ddt.model_stock_picking_package_preparation"
-              />
+            name="ir_model_id"
+            ref="l10n_it_ddt.model_stock_picking_package_preparation"
+        />
     </record>
     <record id="mr_t_invoice" model="multireport.template">
         <field name="name">Account Invoice template</field>
@@ -66,4 +66,3 @@
     </record>
 
 </odoo>
-

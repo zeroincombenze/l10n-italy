@@ -21,10 +21,10 @@
             <form string="Multi Report Template values">
                 <header>
                     <button
-                           name="%(action_wizard_build_report)d"
-                           type="action"
-                           string="Build report"
-                           />
+                        name="%(action_wizard_build_report)d"
+                        type="action"
+                        string="Build report"
+                    />
                 </header>
                 <group string="Header and Footer">
                     <field name="name" />
@@ -65,13 +65,12 @@
     </record>
 
     <menuitem
-             id="menu_multireport_template"
-             name="Multi-Report Template"
-             action="action_multireport_template"
-             parent="report.reporting_menuitem"
-             sequence="80"
-             groups="base.group_no_one"
-             />
+        id="menu_multireport_template"
+        name="Multi-Report Template"
+        action="action_multireport_template"
+        parent="report.reporting_menuitem"
+        sequence="80"
+        groups="base.group_no_one"
+    />
 
 </odoo>
-

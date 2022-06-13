@@ -52,13 +52,13 @@
     </record>
 
     <menuitem
-             id="menu_multireport_selection_rules"
-             name="Multi-Report Selection Rules"
-             action="action_multireport_selection_rules"
-             parent="report.reporting_menuitem"
-             sequence="100"
-             groups="base.group_no_one"
-             />
+        id="menu_multireport_selection_rules"
+        name="Multi-Report Selection Rules"
+        action="action_multireport_selection_rules"
+        parent="report.reporting_menuitem"
+        sequence="100"
+        groups="base.group_no_one"
+    />
 
     <!--
         <record id="action_show_reports" model="ir.ui.view">
@@ -76,4 +76,3 @@
         -->
 
 </odoo>
-

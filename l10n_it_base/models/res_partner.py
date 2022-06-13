@@ -15,18 +15,21 @@ class ResPartner(models.Model):
     @api.multi
     def name_get(self):
         res = super(ResPartner, self).name_get()
-        if (not self._context.get('html_format') and
-                not self._context.get('show_address_only') and
-                # not self._context.get('show_address') and
-                not self._context.get('show_email')):
+        if (
+            not self._context.get("html_format")
+            and not self._context.get("show_address_only")
+            and
+            # not self._context.get('show_address') and
+            not self._context.get("show_email")
+        ):
             result = []
             for item in res:
                 res_id, name = item[0], item[1]
                 partner = self.browse(res_id)
                 if partner.type == "delivery":
-                    name = '%s %s' % (u'\U0001f69a', name)
+                    name = "%s %s" % ("\U0001f69a", name)
                 elif partner.type == "invoice":
-                    name = '%s %s' % (u'\U0001f4b6', name)
+                    name = "%s %s" % ("\U0001f4b6", name)
                 result.append((res_id, name))
             res = result
         return res

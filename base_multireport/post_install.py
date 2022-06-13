@@ -7,9 +7,10 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
+from python_plus import _u
 from odoo import SUPERUSER_ID, api
 
-OVERDUE_MSG = u"""Gentile cliente,
+OVERDUE_MSG = """Gentile cliente,
 
 le nostre scritture contabili evidenziano alcune fatture ancora aperte.
 
@@ -42,13 +43,14 @@ def update_template_ref(cr):
         None
     """
     with api.Environment.manage():
+
         def set_vals(obj, def_vals):
             vals = {}
             for name in (
                 "template_sale_order",
                 "template_stock_picking_package_preparation",
                 "template_account_invoice",
-                "template_purchase_order"
+                "template_purchase_order",
             ):
                 if not getattr(obj, name):
                     vals[name] = def_vals[name]
@@ -107,14 +109,18 @@ def update_template_ref(cr):
         rules_model = env["multireport.selection.rules"]
         for rule in rules_model.search([]):
             if rule.action == "report":
-                rule.write({
-                    "report_id": {
-                        "sale.order": env.ref("base_multireport.report_saleorder").id,
-                        "account.invoice": env.ref(
-                            "base_multireport.account_invoice_report_duplicate_main"
-                        ).id,
-                    }.get(rule.model_name, rule.report_id.id)
-                })
+                rule.write(
+                    {
+                        "report_id": {
+                            "sale.order": env.ref(
+                                "base_multireport.report_saleorder"
+                            ).id,
+                            "account.invoice": env.ref(
+                                "base_multireport.account_invoice_report_duplicate_main"
+                            ).id,
+                        }.get(rule.model_name, rule.report_id.id)
+                    }
+                )
 
         mr_style_odoo = env.ref("base_multireport.mr_style_odoo").id
         company_model = env["res.company"]
@@ -122,14 +128,14 @@ def update_template_ref(cr):
         for company in company_model.search([]):
             if "Dear Sir/Madam," in company.overdue_msg:
                 params = {
-                    'bank': company.bank_ids[0].acc_number if company.bank_ids else "",
-                    'phone': company.phone,
+                    "bank": company.bank_ids[0].acc_number if company.bank_ids else "",
+                    "phone": company.phone,
                 }
-                vals["overdue_msg"] = (OVERDUE_MSG.replace("\\\n", "") % params)
+                vals["overdue_msg"] = _u(OVERDUE_MSG.replace("\\\n", "")) % _u(params)
             elif "overdue_msg" in vals:
                 del vals["overdue_msg"]
             try:
-                company.with_context({"lang": "it_IT"}).write(vals)
+                company.with_context({"lang": "en_US"}).write(vals)
             except IOError:
                 pass
 

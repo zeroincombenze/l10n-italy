@@ -4,9 +4,9 @@
     <template id="report_purchase_order_header">
         <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
         <t
-          t-set="address_mode"
-          t-value="report.get_report_attrib('address_mode',o,doc_opts)"
-          />
+            t-set="address_mode"
+            t-value="report.get_report_attrib('address_mode',o,doc_opts)"
+        />
         <div class="oe_structure">
             <div class="row">
                 <div class="col-xs-6">
@@ -16,16 +16,16 @@
                             <div
                                 t-field="o.dest_address_id"
                                 t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'
-                                />
+                            />
                         </div>
                         <div
                             t-if="not o.dest_address_id and o.picking_type_id and o.picking_type_id.warehouse_id"
-                            >
+                        >
                             <span t-field="o.picking_type_id.warehouse_id.name" />
                             <div
                                 t-field="o.picking_type_id.warehouse_id.partner_id"
                                 t-options='{"widget": "contact", "fields": ["address", "phone", "fax"], "no_marker": True, "phone_icons": True}'
-                                />
+                            />
                         </div>
                     </div>
                 </div>
@@ -33,18 +33,18 @@
                     <div
                         t-field="o.partner_id"
                         t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'
-                        />
+                    />
                     <p t-if="o.partner_id.vat">VAT: <span
-                              t-field="o.partner_id.vat"
-                              /></p>
+                            t-field="o.partner_id.vat"
+                        /></p>
                 </div>
             </div>
         </div>
 
         <h2 t-if="o.state != 'draft'">Conferma Ordine #<span t-field="o.name" /></h2>
         <h2 t-if="o.state == 'draft'">Richiesta di Acquisto #<span
-                  t-field="o.name"
-                  /></h2>
+                t-field="o.name"
+            /></h2>
 
         <!--
         <t t-set="term_position" t-value="report.get_report_attrib('payment_term_position',o,doc_opts)"/>
@@ -73,4 +73,3 @@
     </template>
 
 </odoo>
-

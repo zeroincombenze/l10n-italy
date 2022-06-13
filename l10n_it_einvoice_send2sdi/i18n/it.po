@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-03 13:31+0000\n"
-"PO-Revision-Date: 2022-02-03 13:31+0000\n"
+"POT-Creation-Date: 2022-06-13 19:07+0000\n"
+"PO-Revision-Date: 2022-06-13 19:07+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -18,15 +18,19 @@ msgstr ""
 "Generated-By: Babel 2.10.1\n"
 
 #. module: l10n_it_einvoice_send2sdi
-#: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_italy_ade_sender_avail_invoices_ctr
-msgid "# of invoices available"
-msgstr "N. fatture disponibili"
+#: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_italy_ade_sender_bonus_invoices_ctr
+msgid "# of bonus invoices"
+msgstr "N. fatture bonus/malus"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:128
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:128
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:128
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:128
+#: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_italy_ade_sender_avail_invoices_ctr
+msgid "# of invoices available"
+msgstr "N. fatture a disposizione"
+
+#. module: l10n_it_einvoice_send2sdi
+#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:149
+#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:149
+#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:149
 #, python-format
 msgid ""
 "<p>PEC message with Message-Id %s has been read but not processed, as not"
@@ -44,10 +48,18 @@ msgstr ""
 #: selection:fatturapa.attachment.out,state
 #: selection:account.invoice,fatturapa_state
 #: selection:fatturapa.attachment.out,state
-#: selection:account.invoice,fatturapa_state
-#: selection:fatturapa.attachment.out,state
 msgid "Accepted"
 msgstr "Accettata"
+
+#. module: l10n_it_einvoice_send2sdi
+#: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_italy_ade_sender_avail_message
+msgid "Availability message"
+msgstr "Messaggio disponibilità fatture"
+
+#. module: l10n_it_einvoice_send2sdi
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_available_invoices
+msgid "Cancel"
+msgstr "Annullare"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_fetchmail_server_e_inv_notify_partner_ids
@@ -67,8 +79,6 @@ msgstr "Contatti da notificare quando PEC non può essere processata"
 #: selection:fatturapa.attachment.out,state
 #: selection:account.invoice,fatturapa_state
 #: selection:fatturapa.attachment.out,state
-#: selection:account.invoice,fatturapa_state
-#: selection:fatturapa.attachment.out,state
 msgid "Delivered"
 msgstr "Consegnata"
 
@@ -79,7 +89,6 @@ msgstr "Data di consegna"
 
 #. module: l10n_it_einvoice_send2sdi
 #: selection:fatturapa.attachment.out,state:0
-#: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
 msgid "Discarted by PA"
@@ -129,7 +138,6 @@ msgstr "Discussione e-mail"
 #: selection:account.invoice,fatturapa_state:0
 #: selection:account.invoice,fatturapa_state
 #: selection:account.invoice,fatturapa_state
-#: selection:account.invoice,fatturapa_state
 msgid "Error"
 msgstr "Errore"
 
@@ -161,30 +169,33 @@ msgid "Max invoices"
 msgstr "N. massimo di fatture"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:597
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:702
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:597
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:702
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:597
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:702
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:597
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:702
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:661
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:772
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:661
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:772
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:661
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:772
 msgid "Multiple invoice to one xml"
 msgstr "Fatture multiple di un unico xml"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:836
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:836
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:836
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:836
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:938
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:938
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:938
 msgid "No incoming PEC server found. Please configure it."
 msgstr "Nessun server di PEC in ricezione. Configurarne almeno uno."
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:125
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:125
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:125
-#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:125
+#: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:43
+#: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:43
+#: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:43
+msgid "Not many invoices!"
+msgstr "Fatture in esaurimento!"
+
+#. module: l10n_it_einvoice_send2sdi
+#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:147
+#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:147
+#: code:addons/l10n_it_einvoice_send2sdi/models/mail_thread.py:147
 #, python-format
 msgid "PEC message [%s] not processed"
 msgstr "Messaggio PEC [%s] non processato"
@@ -201,8 +212,6 @@ msgstr "Server POP/IMAP"
 #: selection:fatturapa.attachment.out,state
 #: selection:account.invoice,fatturapa_state
 #: selection:fatturapa.attachment.out,state
-#: selection:account.invoice,fatturapa_state
-#: selection:fatturapa.attachment.out,state
 msgid "Ready to Send"
 msgstr "Pronta per invio"
 
@@ -210,13 +219,11 @@ msgstr "Pronta per invio"
 #: selection:fatturapa.attachment.out,state:0
 #: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
-#: selection:fatturapa.attachment.out,state
 msgid "Recipient Error"
 msgstr "Errore destinatario"
 
 #. module: l10n_it_einvoice_send2sdi
 #: selection:fatturapa.attachment.out,state:0
-#: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
 msgid "Rejected"
@@ -228,8 +235,12 @@ msgid "Reset to ready"
 msgstr "Reimposta da inviare"
 
 #. module: l10n_it_einvoice_send2sdi
+#: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_available_invoices
+msgid "Result of Account Opening"
+msgstr "Risultato apertura conti"
+
+#. module: l10n_it_einvoice_send2sdi
 #: selection:fatturapa.attachment.out,state:0
-#: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
 #: selection:fatturapa.attachment.out,state
 msgid "Sender Error"
@@ -243,8 +254,6 @@ msgstr "Utente invio"
 #. module: l10n_it_einvoice_send2sdi
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
-#: selection:account.invoice,fatturapa_state
-#: selection:fatturapa.attachment.out,state
 #: selection:account.invoice,fatturapa_state
 #: selection:fatturapa.attachment.out,state
 #: selection:account.invoice,fatturapa_state
@@ -278,6 +287,11 @@ msgid "State"
 msgstr "Provincia"
 
 #. module: l10n_it_einvoice_send2sdi
+#: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_bonus_invoices_ctr
+msgid "Total # of bonus invoices"
+msgstr "Totale fatture bouns/malus"
+
+#. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_used_invoices_ctr
 msgid "Total # of invoices sent and received"
 msgstr "Numero totale di fatture inviate e ricevute"
@@ -293,22 +307,19 @@ msgid "Total # of invoices you can still send or receive"
 msgstr "Numero totale di fatture che possono essere inviate o ricevute"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:593
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:593
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:593
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:593
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:657
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:657
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:657
 msgid "Undefined SDI channel"
 msgstr "Canale SDI non definito"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:604
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:819
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:604
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:819
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:604
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:819
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:604
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:819
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:668
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:921
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:668
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:921
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:668
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:921
 msgid "Unsupported sending method"
 msgstr "Metodo di consegna non supportato"
 
@@ -318,42 +329,40 @@ msgid "Verifica invio"
 msgstr "Verifica invio"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:632
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:632
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:632
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:632
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:701
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:701
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:701
 msgid "You can not reset files in 'Delivered' state."
 msgstr "Non è possibile ripristinare i file consegnati."
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:641
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:641
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:641
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:641
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:709
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:709
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:709
 msgid "You can not reset files in 'recipient_error' state."
 msgstr "Non è possibile ripristinare i file con errato destinatario."
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:825
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:825
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:825
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:825
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:927
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:927
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:927
 msgid "You can only delete 'ready to send' files."
 msgstr "Si possono eliminare solo file pronti all’invio."
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:809
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:809
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:809
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:809
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:884
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:884
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:884
 msgid "You can only send 'Ready to Send' files."
 msgstr "Si possono inviare solo file pronti all’invio."
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:813
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:813
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:813
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:813
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:894
+#: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:41
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:894
+#: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:41
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:894
+#: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:41
 msgid "You cannot send invoices. Please buy a new invoices pack!"
 msgstr "Non è possibile inviare fatture. Per favore acquistare un nuovo pacchetto!"
 

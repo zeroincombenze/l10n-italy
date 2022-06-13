@@ -94,9 +94,9 @@ class AccountInvoice(models.Model):
         #
         invoice_data = {
             "invoice_type_id": docType_id,
-            "date_invoice":
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
-                    "%Y-%m-%d"),
+            "date_invoice": FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
+                "%Y-%m-%d"
+            ),
             "reference": FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             "sender": fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             "type": invtype,
@@ -105,8 +105,7 @@ class AccountInvoice(models.Model):
             "payment_term_id": partner.property_supplier_payment_term_id.id,
             "company_id": company.id,
             "comment": comment,
-            "check_total":
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento,
+            "check_total": FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento,
         }
         # 2.1.1.10
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
