@@ -14,11 +14,11 @@
                 </sheet>
                 <footer>
                     <button
-                           name="build_report"
-                           string="Build"
-                           type="object"
-                           class="oe_highlight"
-                           />
+                        name="build_report"
+                        string="Build"
+                        type="object"
+                        class="oe_highlight"
+                    />
                     <button special="cancel" string="Cancel" />
                 </footer>
             </form>
@@ -33,6 +33,5 @@
         target="new"
         view_id="wizard_build_report_view"
         view_mode="form"
-        />
+    />
 </odoo>
-

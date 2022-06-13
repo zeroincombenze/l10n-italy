@@ -27,15 +27,14 @@ class Certdoc(http.Controller):
         return ret
 
     def filter_attive(self, archive_id):
-
         return (
             '<br><form action="/certdoc?archive_id='
             + archive_id
-            + '"><label for="from">From</label><input name="from"> <label for="to">To</label><input name="to"><input type="submit"></form>'
+            + '"><label for="from">From</label><input name="from"> '
+            + '<label for="to">To</label><input name="to"><input type="submit"></form>'
         )
 
     def get_attive(self):
-
         send_channel = http.request.env.user.company_id.einvoice_sender_id
         Evolve.header(send_channel)
 
@@ -43,5 +42,7 @@ class Certdoc(http.Controller):
         return "prova"
 
     def header(self):
-
-        return '<a href="/certdoc?archive_id=1">Fatture attive</a> - <a href="/certdoc?archive_id=2">Passive</a>'
+        return (
+            '<a href="/certdoc?archive_id=1">Fatture attive</a> - '
+            '<a href="/certdoc?archive_id=2">Passive</a>'
+        )

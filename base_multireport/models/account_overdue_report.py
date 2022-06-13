@@ -2,31 +2,32 @@
 
 import time
 from datetime import datetime
+
 from odoo import api, fields, models
 
 
 class ReportOverdue(models.AbstractModel):
-    _name = 'report.base_multireport.report_overdue'
+    _name = "report.base_multireport.report_overdue"
 
     def fmt_date(self, date):
-        return datetime.strftime(datetime.strptime(date, '%Y-%m-%d'), '%d-%m-%Y')
+        return datetime.strftime(datetime.strptime(date, "%Y-%m-%d"), "%d-%m-%Y")
 
     def _get_account_move_lines(self, partner_ids):
-        res = dict(map(lambda x:(x, []), partner_ids))
+        res = dict(map(lambda x: (x, []), partner_ids))
         self.env.cr.execute(
             "SELECT m.name AS move_id,l.date,l.name,l.ref,l.date_maturity,"
             "l.partner_id,l.blocked,l.amount_currency,l.currency_id,"
             "CASE WHEN at.type = 'receivable' "
-                "THEN SUM(l.debit) "
-                "ELSE SUM(l.credit * -1) "
+            "THEN SUM(l.debit) "
+            "ELSE SUM(l.credit * -1) "
             "END AS debit,"
             "CASE WHEN at.type = 'receivable' "
-                "THEN SUM(l.credit) "
-                "ELSE SUM(l.debit * -1) "
+            "THEN SUM(l.credit) "
+            "ELSE SUM(l.debit * -1) "
             "END AS credit,"
             "CASE WHEN l.date_maturity < %s "
-                "THEN SUM(l.debit - l.credit) "
-                "ELSE 0 "
+            "THEN SUM(l.debit - l.credit) "
+            "ELSE 0 "
             "END AS mat "
             "FROM account_move_line l "
             "JOIN account_account_type at ON (l.user_type_id = at.id) "
@@ -37,11 +38,12 @@ class ReportOverdue(models.AbstractModel):
             "GROUP BY l.partner_id,l.date_maturity,l.date,l.name,l.ref,"
             "at.type,l.blocked,l.amount_currency,l.currency_id,m.name,move_id "
             "ORDER BY l.partner_id,l.date_maturity,l.date",
-            (((fields.date.today(), ) + (tuple(partner_ids),))))
+            ((fields.date.today(),) + (tuple(partner_ids),)),
+        )
         for row in self.env.cr.dictfetchall():
-            row['date'] = self.fmt_date(row['date'])
-            row['date_maturity'] = self.fmt_date(row['date_maturity'])
-            res[row.pop('partner_id')].append(row)
+            row["date"] = self.fmt_date(row["date"])
+            row["date_maturity"] = self.fmt_date(row["date_maturity"])
+            res[row.pop("partner_id")].append(row)
         return res
 
     @api.model
@@ -55,33 +57,39 @@ class ReportOverdue(models.AbstractModel):
             totals[partner_id] = {}
             for line_tmp in lines[partner_id]:
                 line = line_tmp.copy()
-                currency = line['currency_id'] and self.env['res.currency'].browse(
-                    line['currency_id']) or company_currency
+                currency = (
+                    line["currency_id"]
+                    and self.env["res.currency"].browse(line["currency_id"])
+                    or company_currency
+                )
                 if currency not in lines_to_display[partner_id]:
                     lines_to_display[partner_id][currency] = []
-                    totals[partner_id][currency] = dict(
-                        (fn, 0.0) for fn in ['due', 'paid', 'mat', 'total'])
-                if line['debit'] and line['currency_id']:
-                    line['debit'] = line['amount_currency']
-                if line['credit'] and line['currency_id']:
-                    line['credit'] = line['amount_currency']
-                if line['mat'] and line['currency_id']:
-                    line['mat'] = line['amount_currency']
+                    totals[partner_id][currency] = {
+                        fn: 0.0 for fn in ["due", "paid", "mat", "total"]
+                    }
+                if line["debit"] and line["currency_id"]:
+                    line["debit"] = line["amount_currency"]
+                if line["credit"] and line["currency_id"]:
+                    line["credit"] = line["amount_currency"]
+                if line["mat"] and line["currency_id"]:
+                    line["mat"] = line["amount_currency"]
                 lines_to_display[partner_id][currency].append(line)
-                if not line['blocked']:
-                    totals[partner_id][currency]['due'] += line['debit']
-                    totals[partner_id][currency]['paid'] += line['credit']
-                    totals[partner_id][currency]['mat'] += line['mat']
-                    totals[partner_id][currency]['total'] += (
-                        line['debit'] - line['credit'])
+                if not line["blocked"]:
+                    totals[partner_id][currency]["due"] += line["debit"]
+                    totals[partner_id][currency]["paid"] += line["credit"]
+                    totals[partner_id][currency]["mat"] += line["mat"]
+                    totals[partner_id][currency]["total"] += (
+                        line["debit"] - line["credit"]
+                    )
         docargs = {
-            'doc_ids': docids,
-            'doc_model': 'res.partner',
-            'docs': self.env['res.partner'].browse(docids),
-            'time': time,
-            'Lines': lines_to_display,
-            'Totals': totals,
-            'Date': datetime.strftime(fields.date.today(), '%d-%m-%Y')
+            "doc_ids": docids,
+            "doc_model": "res.partner",
+            "docs": self.env["res.partner"].browse(docids),
+            "time": time,
+            "Lines": lines_to_display,
+            "Totals": totals,
+            "Date": datetime.strftime(fields.date.today(), "%d-%m-%Y"),
         }
-        return self.env['report'].render(
-            'base_multireport.report_overdue', values=docargs)
+        return self.env["report"].render(
+            "base_multireport.report_overdue", values=docargs
+        )

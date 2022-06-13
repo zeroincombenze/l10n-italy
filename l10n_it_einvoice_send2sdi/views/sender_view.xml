@@ -8,11 +8,30 @@
         <field name="arch" type="xml">
             <xpath expr="//group[2]" position="after">
                 <group>
+                    <field name="avail_message" />
                     <field name="max_invoices_ctr" />
                     <field name="used_invoices_ctr" />
+                    <field name="bonus_invoices_ctr" />
                     <field name="avail_invoices_ctr" />
                 </group>
             </xpath>
+        </field>
+    </record>
+
+    <record id="view_available_invoices" model="ir.ui.view">
+        <field name="name">view.available.invoices</field>
+        <field name="model">italy.ade.sender</field>
+        <field name="sequence" eval="999" />
+        <field name="arch" type="xml">
+            <form string="Result of Account Opening" >
+                <group>
+                    <field name="avail_message" />
+                    <field name="avail_invoices_ctr" />
+                </group>
+                <footer>
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
         </field>
     </record>
 
