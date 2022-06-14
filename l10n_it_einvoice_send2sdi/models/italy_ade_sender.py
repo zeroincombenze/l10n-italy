@@ -7,11 +7,14 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import json
 import os
 from datetime import datetime
-import json
+
 import requests
-from odoo import fields, models, api
+
+from odoo import _, api, fields, models
+
 from odoo.addons.l10n_it_einvoice_send2sdi.models.attachment import Evolve
 
 
@@ -26,9 +29,11 @@ class ItalyAdeSender(models.Model):
                 - chn.bonus_invoices_ctr
                 - 10
             )
-            if (chn.avail_invoices_ctr < 0
-                    and datetime.today() < datetime(2022, 6, 26)
-                    and chn.bonus_invoices_ctr == 0):
+            if (
+                chn.avail_invoices_ctr < 0
+                and datetime.today() < datetime(2022, 6, 26)
+                and chn.bonus_invoices_ctr == 0
+            ):
                 chn.bonus_invoices_ctr = 5 - chn.avail_invoices_ctr
                 chn.avail_invoices_ctr = (
                     chn.max_invoices_ctr
@@ -37,8 +42,9 @@ class ItalyAdeSender(models.Model):
                     - 10
                 )
         if chn.avail_invoices_ctr <= 0:
-            chn.avail_message = (
-                _("You cannot send invoices. Please buy a new invoices pack!"))
+            chn.avail_message = _(
+                "You cannot send invoices. Please buy a new invoices pack!"
+            )
         elif chn.avail_invoices_ctr <= 20:
             chn.avail_message = _("Not many invoices!")
         else:
