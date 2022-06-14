@@ -76,7 +76,10 @@ class FatturaPAAttachmentIn(models.Model):
                 )
                 continue
 
-            if send_channel.max_invoices_ctr > 0 and send_channel.used_invoices_ctr == 0:
+            if (
+                send_channel.max_invoices_ctr > 0
+                and send_channel.used_invoices_ctr == 0
+            ):
                 # Get used invoices
                 out_invs, in_invs = send_channel.count_xml_invoice()
                 send_channel.used_invoices_ctr = out_invs + in_invs
@@ -409,8 +412,11 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.model
     def primitive_json_send(self, send_channel, req, chn_inv, action, attachment=None):
-        if action == "Salva" and self.env['ir.config_parameter'].get_param(
-                "einvoice_send2sdi", "") == "debug":
+        if (
+            action == "Salva"
+            and self.env["ir.config_parameter"].get_param("einvoice_send2sdi", "")
+            == "debug"
+        ):
             # For debug
             req["EsitoChiamata"] = 0
             req["Documento"]["CampiDinamici"].append(
@@ -906,12 +912,12 @@ class FatturaPAAttachmentOut(models.Model):
                     "res_model": "italy.ade.sender",
                     "view_type": "form",
                     "view_mode": "form",
-                    'res_id': send_channel.id,
+                    "res_id": send_channel.id,
                     "target": "new",
                     "view_id": self.env.ref(
                         "l10n_it_einvoice_send2sdi.view_available_invoices"
                     ).id,
-                    'domain': [('id', '=', send_channel.id)],
+                    "domain": [("id", "=", send_channel.id)],
                 }
             return result
 
