@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # flake8: noqa - pylint: skip-file
 # -*- coding: utf-8 -*-
 #

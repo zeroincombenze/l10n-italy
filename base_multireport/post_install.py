@@ -8,6 +8,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 from python_plus import _u
+
 from odoo import SUPERUSER_ID, api
 
 OVERDUE_MSG = """Gentile cliente,
