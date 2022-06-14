@@ -1,6 +1,6 @@
 
 ====================================
-|icon| Lettere di intento 10.0.0.1.5
+|icon| Lettere di intento 10.0.0.1.6
 ====================================
 
 
@@ -146,6 +146,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.1.6 (2022-06-14)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with massive edit / Crash per modifiche massive
+
 10.0.0.1.5 (2022-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -214,7 +219,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-11
+Last Update / Ultimo aggiornamento: 2022-06-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
