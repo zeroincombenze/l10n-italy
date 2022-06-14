@@ -919,7 +919,10 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_lines.append(invoice_line_id)
         invoice_data["invoice_line_ids"] = [(6, 0, invoice_lines)]
         invoice_data["e_invoice_line_ids"] = [(6, 0, e_invoice_line_ids)]
-        invoice = invoice_model.create(invoice_data)
+        try:
+            invoice = invoice_model.create(invoice_data)
+        except BaseException as e:
+            raise UserError(e)
         if wt_found:
             invoice._onchange_invoice_line_wt_ids()
             invoice._amount_withholding_tax()
@@ -1138,14 +1141,17 @@ class WizardImportFatturapa(models.TransientModel):
 
     def check_invoice_amount(self, invoice, FatturaElettronicaBody):
         if (
-            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ScontoMaggiorazione
-            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ScontoMaggiorazione
+            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ImportoTotaleDocumento
         ):
             # assuming that, if someone uses
             # DatiGeneraliDocumento.ScontoMaggiorazione, also fills
             # DatiGeneraliDocumento.ImportoTotaleDocumento
             ImportoTotaleDocumento = float(
-                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+                ImportoTotaleDocumento
             )
             if not float_is_zero(
                 invoice.amount_total - ImportoTotaleDocumento, precision_digits=2

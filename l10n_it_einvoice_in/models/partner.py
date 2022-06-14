@@ -252,7 +252,20 @@ class Partner(models.Model):
         def is_the_same(rec, vals):
             for field in ("name", "street", "zip", "city"):
                 if self.dim_text(rec[field]) != self.dim_text(vals.get(field, "")):
+                    rec = None
                     break
+            return rec
+
+        def rec_with_valid_vat(rec):
+            if (
+                rec and
+                rec.vat and
+                rec.parent_id and
+                rec.parent_id.vat and
+                rec.vat != rec.parent_id.vat
+            ):
+                rec.parent_id = False
+                return None
             return rec
 
         def clear_dup_rea_code(vals):
@@ -300,8 +313,9 @@ class Partner(models.Model):
                         domain.append(constr)
                 rec = self.search(domain)
                 if rec:
-                    rec = rec[0]
-                    break
+                    rec = rec_with_valid_vat(rec[0])
+                    if rec:
+                        break
                 if repeat:
                     for i, kk in enumerate(domain):
                         if kk[0] == "type":
@@ -309,8 +323,9 @@ class Partner(models.Model):
                     domain.append(("parent_id", "=", False))
                     rec = self.search(domain)
                     if rec:
-                        rec = rec[0]
-                        break
+                        rec = rec_with_valid_vat(rec[0])
+                        if rec:
+                            break
         if rec:
             if rec.parent_id and is_the_same(rec.parent_id, vals):
                 defvals = {}
@@ -323,7 +338,7 @@ class Partner(models.Model):
                 if defvals:
                     rec.write(defvals)
                 rec = rec.parent_id
-            if not rec.parent_id and not is_the_same(rec, vals):
+            if rec and not rec.parent_id and not is_the_same(rec, vals):
                 vals["parent_id"] = rec.id
                 vals["type"] = "invoice"
                 rec = False

@@ -124,7 +124,8 @@ class FatturaPAAttachmentIn(models.Model):
                     att.invoices_total = 0
                     for invoice_body in inv_xml.FatturaElettronicaBody:
                         att.invoices_total += float(
-                            invoice_body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+                            invoice_body.DatiGenerali.DatiGeneraliDocumento.
+                            ImportoTotaleDocumento
                             or 0
                         )
                         if not att.in_invoice_ids:
