@@ -23,7 +23,7 @@
         <field name="model">italy.ade.sender</field>
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
-            <form string="Result of Account Opening" >
+            <form string="Result of Account Opening">
                 <group>
                     <field name="avail_message" />
                     <field name="avail_invoices_ctr" />
