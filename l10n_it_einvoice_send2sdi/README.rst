@@ -1,6 +1,6 @@
 
 ========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.24
+|icon| Send E-Invoice to SdI 10.0.1.0.25
 ========================================
 
 
@@ -171,6 +171,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.25 (2022-06-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Old "recipient error" to ready / Stato ready di vecchie fatture
 
 10.0.1.0.22 (2022-06-09)
 ~~~~~~~~~~~~~~~~~~~~~~~~
