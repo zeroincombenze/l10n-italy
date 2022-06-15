@@ -258,11 +258,11 @@ class Partner(models.Model):
 
         def rec_with_valid_vat(rec):
             if (
-                rec and
-                rec.vat and
-                rec.parent_id and
-                rec.parent_id.vat and
-                rec.vat != rec.parent_id.vat
+                rec
+                and rec.vat
+                and rec.parent_id
+                and rec.parent_id.vat
+                and rec.vat != rec.parent_id.vat
             ):
                 rec.parent_id = False
                 return None

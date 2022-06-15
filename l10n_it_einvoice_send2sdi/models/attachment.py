@@ -896,8 +896,10 @@ class FatturaPAAttachmentOut(models.Model):
             )
         if send_channel.method == "JSON":
             result = self.send_via_json(send_channel)
-            if (send_channel.avail_invoices_ctr <= 20
-                    or send_channel.avail_invoices_ctr in (500, 250, 100, 50)):
+            if (
+                send_channel.avail_invoices_ctr <= 20
+                or send_channel.avail_invoices_ctr in (500, 250, 100, 50)
+            ):
                 return {
                     "name": "Import result",
                     "type": "ir.actions.act_window",
