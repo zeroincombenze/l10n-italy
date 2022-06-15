@@ -578,7 +578,7 @@ class FatturaPAAttachmentOut(models.Model):
                     ):
                         # Invoice sent for a long time w/o error: it is ok
                         att_state = "validated"
-                if att_state == "sender_error":
+                if att_state in ("sender_error", "validated"):
                     if store_mesg:
                         att.last_sdi_response = "<div>%s</div>\n" % (
                             text2html(documenti[last_ix].get("Note", ""))
