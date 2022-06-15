@@ -27,9 +27,9 @@ class ResPartner(models.Model):
                 res_id, name = item[0], item[1]
                 partner = self.browse(res_id)
                 if partner.type == "delivery":
-                    name = "%s %s" % ("\U0001f69a", name)
+                    name = "%s %s" % (u"🚚", name)
                 elif partner.type == "invoice":
-                    name = "%s %s" % ("\U0001f4b6", name)
+                    name = "%s %s" % (u"💶", name)
                 result.append((res_id, name))
             res = result
         return res
