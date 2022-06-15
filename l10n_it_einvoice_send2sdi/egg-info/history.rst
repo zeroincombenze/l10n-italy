@@ -1,3 +1,8 @@
+10.0.1.0.25 (2022-06-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Old "recipient error" to ready / Stato ready di vecchie fatture
+
 10.0.1.0.22 (2022-06-09)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
