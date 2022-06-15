@@ -895,7 +895,7 @@ class FatturaPAAttachmentOut(models.Model):
             send_channel.used_invoices_ctr = out_invs + in_invs
             send_channel._compute_available()
             self.env.cr.commit()  # pylint: disable=invalid-commit
-        if send_channel.avail_invoices_ctr < 0:
+        if send_channel.avail_invoices_ctr < -100:
             raise UserError(
                 _("You cannot send invoices. Please buy a new invoices pack!")
             )
