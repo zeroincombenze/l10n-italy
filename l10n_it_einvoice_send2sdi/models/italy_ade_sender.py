@@ -79,56 +79,65 @@ class ItalyAdeSender(models.Model):
 
     @api.multi
     def count_xml_invoice(self):
-        out_invs = in_invs = 0
-        if not self.sender_url:
-            return out_invs, in_invs
-        headers = Evolve.header(self)
-        url = os.path.join(self.sender_url, "Cerca")
-        chn_inv_in = int(self.param2) if self.param2 else 2
-        chn_inv_out = int(self.param1) if self.param1 else 1
-        # chn_inv_sent = int(self.param3) if self.param3 else 3
+        for channel in self:
+            if not channel.sender_url:
+                channel.used_invoices_ctr = 0
+                channel._compute_available()
+                return
+            headers = Evolve.header(channel)
+            url = os.path.join(channel.sender_url, "Cerca")
+            chn_inv_in = int(channel.param2) if channel.param2 else 2
+            chn_inv_out = int(channel.param1) if channel.param1 else 1
+            # chn_inv_sent = int(channel.param3) if channel.param3 else 3
 
-        data = {
-            "IdAzienda": int(self.sender_company_id),
-            "IdArchivio": chn_inv_in,
-            "Filtri": [],
-        }
-        try:
-            response = requests.post(
-                url, headers=headers, data=json.dumps(data, ensure_ascii=False)
-            )
-        except BaseException:
-            return out_invs, in_invs
-        if not (200 <= response.status_code < 300):
-            return out_invs, in_invs
-        try:
-            documenti = response.json()
-            if documenti["EsitoChiamata"] > 0:
-                return out_invs, in_invs
-        except BaseException:
-            return out_invs, in_invs
-        in_invs = len(documenti["Documenti"])
+            data = {
+                "IdAzienda": int(channel.sender_company_id),
+                "IdArchivio": chn_inv_in,
+                "Filtri": [],
+            }
+            try:
+                response = requests.post(
+                    url, headers=headers, data=json.dumps(data, ensure_ascii=False)
+                )
+            except BaseException:
+                return
+            if not (200 <= response.status_code < 300):
+                return
+            try:
+                documenti = response.json()
+                if documenti["EsitoChiamata"] > 0:
+                    return
+            except BaseException:
+                return
+            in_invs = len(documenti["Documenti"])
 
-        data = {
-            "IdAzienda": int(self.sender_company_id),
-            "IdArchivio": chn_inv_out,
-            "Filtri": [],
-        }
-        try:
-            response = requests.post(
-                url, headers=headers, data=json.dumps(data, ensure_ascii=False)
-            )
-        except BaseException:
-            return out_invs, in_invs
-        if not (200 <= response.status_code < 300):
-            return out_invs, in_invs
-        try:
-            documenti = response.json()
-            if documenti["EsitoChiamata"] > 0:
-                return out_invs, in_invs
-        except BaseException:
-            return out_invs, in_invs
+            data = {
+                "IdAzienda": int(channel.sender_company_id),
+                "IdArchivio": chn_inv_out,
+                "Filtri": [],
+            }
+            try:
+                response = requests.post(
+                    url, headers=headers, data=json.dumps(data, ensure_ascii=False)
+                )
+            except BaseException:
+                return
+            if not (200 <= response.status_code < 300):
+                return
+            try:
+                documenti = response.json()
+                if documenti["EsitoChiamata"] > 0:
+                    return
+            except BaseException:
+                return
 
-        out_invs = len(documenti["Documenti"])
+            out_invs = len(documenti["Documenti"])
+            channel.used_invoices_ctr = in_invs + out_invs
+            channel._compute_available()
 
-        return out_invs, in_invs
+        return
+
+    def incr_invoice_counter(self):
+        for channel in self:
+            channel.used_invoices_ctr = channel.used_invoices_ctr + 1
+            channel._compute_available()

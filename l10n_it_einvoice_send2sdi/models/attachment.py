@@ -81,9 +81,7 @@ class FatturaPAAttachmentIn(models.Model):
                 and send_channel.used_invoices_ctr == 0
             ):
                 # Get used invoices
-                out_invs, in_invs = send_channel.count_xml_invoice()
-                send_channel.used_invoices_ctr = out_invs + in_invs
-                send_channel._compute_available()
+                send_channel.count_xml_invoice()
                 self.env.cr.commit()  # pylint: disable=invalid-commit
 
             headers = Evolve.header(send_channel)
@@ -147,9 +145,6 @@ class FatturaPAAttachmentIn(models.Model):
                 documento = Evolve.parse_documento(value)
                 try:
                     self.import_xml_invoice_single(documento, send_channel, headers)
-                    send_channel.used_invoices_ctr = send_channel.used_invoices_ctr + 1
-                    send_channel._compute_available()
-                    self.env.cr.commit()  # pylint: disable=invalid-commit
                 except BaseException:
                     break
 
@@ -215,6 +210,7 @@ class FatturaPAAttachmentIn(models.Model):
 
         try:
             attach_model.create(attach_vals)
+            send_channel.incr_invoice_counter()
         except BaseException as e:
             _logger.error("Error <%s> creating XML attachment" % e)
 
@@ -831,6 +827,7 @@ class FatturaPAAttachmentOut(models.Model):
                     att.sending_date = fields.Datetime.now()
                     att.sending_user = self.env.user.id
                     att.last_sdi_response = "Fattura Importata"
+                    send_channel.incr_invoice_counter()
                     return True
                 else:
                     if send_channel.trace:
@@ -891,21 +888,16 @@ class FatturaPAAttachmentOut(models.Model):
         send_channel = self.get_send_channel()
         if send_channel.max_invoices_ctr > 0 and send_channel.used_invoices_ctr == 0:
             # Get used invoices
-            out_invs, in_invs = send_channel.count_xml_invoice()
-            send_channel.used_invoices_ctr = out_invs + in_invs
-            send_channel._compute_available()
+            send_channel.count_xml_invoice()
             self.env.cr.commit()  # pylint: disable=invalid-commit
-        if send_channel.avail_invoices_ctr < -100:
+        if send_channel.avail_invoices_ctr < 0:
             raise UserError(
                 _("You cannot send invoices. Please buy a new invoices pack!")
             )
         if send_channel.method == "JSON":
             result = self.send_via_json(send_channel)
-            if result:
-                send_channel.used_invoices_ctr = send_channel.used_invoices_ctr + 1
-                send_channel._compute_available()
-                self.env.cr.commit()  # pylint: disable=invalid-commit
-            if send_channel.avail_invoices_ctr <= 20:
+            if (send_channel.avail_invoices_ctr <= 20
+                    or send_channel.avail_invoices_ctr in (500, 250, 100, 50)):
                 return {
                     "name": "Import result",
                     "type": "ir.actions.act_window",

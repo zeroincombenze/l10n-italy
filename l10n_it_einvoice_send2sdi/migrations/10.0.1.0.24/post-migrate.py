@@ -35,9 +35,12 @@ def update_voucher(cr):
         for channel in channel_model.search([]):
             if not channel.client_id or "shs-av@evolve.srl" not in channel.client_id:
                 continue
-            channel.max_invoices_ctr, channel.bonus_invoices_ctr = load_data_xlsx(env)
-            channel.used_invoices_ctr = 0
-            break
+            tot, bonus = load_data_xlsx(env)
+            channel.write({
+                "max_invoices_ctr": tot,
+                "bonus_invoices_ctr": bonus,
+                "used_invoices_ctr": 0,
+            })
 
 
 def migrate(cr, version):
