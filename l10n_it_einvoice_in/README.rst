@@ -286,6 +286,7 @@ ChangeLog History / Cronologia modifiche
 10.0.1.3.31 (2022-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+* [FIX] DdT number = space
 * [FIX] New check on partner / Controlli su fornitore
 
 10.0.1.3.30 (2022-04-30)
@@ -381,7 +382,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-14
+Last Update / Ultimo aggiornamento: 2022-06-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
