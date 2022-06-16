@@ -1,6 +1,7 @@
 10.0.1.3.31 (2022-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+* [FIX] DdT number = space
 * [FIX] New check on partner / Controlli su fornitore
 
 10.0.1.3.30 (2022-04-30)

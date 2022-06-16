@@ -73,10 +73,21 @@ class FatturaPAAttachmentIn(models.Model):
             "DatiConvenzione",
             "DatiRicezione",
             "NumeroCivico",
-            "NumeroDDT",
         ):
             token = r"<%s>[ \t\n]*</%s>" % (tag, tag)
-            xml_string = re.sub(token, "", xml_string)
+            xml_string = re.sub(token, "", xml_string, flags=re.DOTALL)
+        ctr = 0
+        for tag in (
+            "NumeroDDT",
+            "DataDDT",
+        ):
+            token = r"<%s>[ \t\n]*</%s>" % (tag, tag)
+            if re.search(token, xml_string, flags=re.DOTALL):
+                ctr += 1
+        if ctr:
+            tag = "DatiDDT"
+            token = r"<%s>.*</%s>" % (tag, tag)
+            xml_string = re.sub(token, "", xml_string, flags=re.DOTALL)
         for tag in ("Data",):
             token = r"<%s>[0-9]{4}-[0-9]{2}-[0-9]{2}[^<]+?</%s>" % (tag, tag)
             x = re.search(token, xml_string)
