@@ -171,7 +171,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ipa                          | |no_check| | 10.0.2.0.0 | IPA Code (IndicePA)                                                              |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_lettera_intento              | 10.0.0.1.5 | |no_check| | Lettere di intento                                                               |
+| l10n_it_lettera_intento              | 10.0.0.1.6 | |no_check| | Lettere di intento                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_location_nuts                | |no_check| | 10.0.1.0.1 | NUTS specific options for Italy                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -370,6 +370,31 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_causali_pagamento: 10.0.2.0.0 (2022-06-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New 2021 data / Nuove causali 2021
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.25 (2022-06-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Old "recipient error" to ready / Stato ready di vecchie fatture
+
+
+l10n_it_lettera_intento: 10.0.0.1.6 (2022-06-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with massive edit / Crash per modifiche massive
+
+
+l10n_it_einvoice_in: 10.0.1.3.31 (2022-06-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] DdT number = space
+* [FIX] New check on partner / Controlli su fornitore
+
+
 l10n_it_lettera_intento: 10.0.0.1.5 (2022-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -460,12 +485,6 @@ l10n_it_fiscalcode: 10.0.1.0.3 (2022-04-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Regression tests
-
-
-l10n_it_causali_pagamento: 10.0.2.0.0 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] New 2021 data / Nuove causali 2021
 
 
 l10n_it_ade: 10.0.0.3.3 (2022-04-26)
@@ -673,11 +692,11 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-06-11
+Last Update / Ultimo aggiornamento: 2022-06-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt:
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
@@ -733,3 +752,5 @@ Last Update / Ultimo aggiornamento: 2022-06-11
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
+
+
