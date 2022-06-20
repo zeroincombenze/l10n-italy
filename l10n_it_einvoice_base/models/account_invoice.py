@@ -130,18 +130,15 @@ class WelfareFundType(models.Model):
 
     code = fields.Char("Code")
     name = fields.Char("Name")
-    display_name = fields.Char(string='Code',
-                               compute='_compute_clean_display_name')
+    display_name = fields.Char(string="Code", compute="_compute_clean_display_name")
 
     @api.multi
-    @api.depends(
-        'code', 'name'
-    )
+    @api.depends("code", "name")
     def _compute_clean_display_name(self):
         for record in self:
             name = record.name
             if record.name and record.description:
-                name = u'[%s] %s' % (record.code, record.name)
+                name = u"[%s] %s" % (record.code, record.name)
             record.display_name = name
 
 
@@ -165,23 +162,22 @@ class WelfareFundDataLine(models.Model):
 
 class WithholdingDataLine(models.Model):
     _name = "withholding.data.line"
-    _description = 'E-invoice Withholding Data'
+    _description = "E-invoice Withholding Data"
 
     name = fields.Selection(
         selection=[
-            ('RT01', 'Natural Person'),
-            ('RT02', 'Legal Person'),
-            ('RT03', 'INPS'),
-            ('RT04', 'ENASARCO'),
-            ('RT05', 'ENPAM'),
-            ('RT06', 'OTHER'),
+            ("RT01", "Natural Person"),
+            ("RT02", "Legal Person"),
+            ("RT03", "INPS"),
+            ("RT04", "ENASARCO"),
+            ("RT05", "ENPAM"),
+            ("RT06", "OTHER"),
         ],
-        string='Withholding Type'
+        string="Withholding Type",
     )
-    amount = fields.Float('Withholding amount')
+    amount = fields.Float("Withholding amount")
     invoice_id = fields.Many2one(
-        'account.invoice', 'Related Invoice',
-        ondelete='cascade', index=True
+        "account.invoice", "Related Invoice", ondelete="cascade", index=True
     )
 
 

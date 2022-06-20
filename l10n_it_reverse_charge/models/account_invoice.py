@@ -78,9 +78,9 @@ class AccountInvoice(models.Model):
         rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
         supplier_invoices = self.env["account.invoice"]
         for rc_purchase_invoice in rc_purchase_invoices:
-            current_supplier_invoices = self.search([
-                ("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)
-            ])
+            current_supplier_invoices = self.search(
+                [("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)]
+            )
             if current_supplier_invoices:
                 supplier_invoices |= current_supplier_invoices
             else:
