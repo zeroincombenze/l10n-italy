@@ -3,7 +3,7 @@
 # Copyright 2014    - Davide Corio
 # Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
@@ -43,6 +43,7 @@ class FatturaPAAttachment(models.Model):
     invoices_number = fields.Char(
         "Invoice Number", compute="_compute_xml_data", store=True
     )
+
 
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
@@ -104,6 +105,14 @@ class FatturaPAAttachment(models.Model):
                     % self.env.user.login,
                 )
         return res
+
+    @api.multi
+    def unlink(self):
+        for attachment_out in self:
+            for invoice in attachment_out.out_invoice_ids:
+                invoice.fatturapa_doc_attachments.filtered(
+                    'is_pdf_invoice_print').unlink()
+        return super(FatturaPAAttachment, self).unlink()
 
 
 class FatturaAttachments(models.Model):

@@ -3,13 +3,15 @@
 # Copyright 2014    - Davide Corio
 # Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 import base64
 import logging
 import re
+
+from python_plus import _u
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -145,7 +147,7 @@ class WizardExportFatturapa(models.TransientModel):
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             msg = _(
                 "FatturaElettronicaHeader.DatiTrasmissione." "ProgressivoInvio:\n%s"
-            ) % unicode(e)
+            ) % _u(e)
             raise UserError(msg)
         return number
 
@@ -273,6 +275,7 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
+
         if not company.phone:
             raise UserError(_("Company Telephone number not set."))
         Telefono = self._wep_phone_number(company.phone)
@@ -292,6 +295,7 @@ class WizardExportFatturapa(models.TransientModel):
         self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
+
         if not company.vat:
             raise UserError(_("Company TIN not set."))
         CedentePrestatore.DatiAnagrafici = DatiAnagraficiCedenteType()
@@ -668,7 +672,7 @@ class WizardExportFatturapa(models.TransientModel):
         if not country_id:
             raise UserError(_("Customer Stabile Organization country is not set."))
         vat = self._get_partner_field(partner, parent, "vat", mode=mode)
-        fiscalcode = self._get_partner_field(partner, parent, "fiscalcode", mode=mode)
+        # fiscalcode = self._get_partner_field(partner, parent, "fiscalcode", mode=mode)
         if not vat:
             raise UserError(_("Customer Stabile Organization vat is not set."))
         country_code, vat_number = self._split_vat_n_country(vat)
@@ -1098,6 +1102,58 @@ class WizardExportFatturapa(models.TransientModel):
         xml_string = fatturapa_attachment.get_xml_string()
         return fatturapa_v_1_2.CreateFromDocument(xml_string)
 
+    def exportInvoiceXML(
+            self, company, partner, parent, invoice, attach=False, context=None):
+        context = context or {}
+        fatturapa = FatturaElettronica(
+            versione=self._getFormatoTrasmissione(partner, parent)
+        )
+
+        try:
+            self.with_context(context).setFatturaElettronicaHeader(
+                company, partner, parent, fatturapa
+            )
+            if invoice.type not in ["out_invoice", "out_refund"]:
+                raise UserError(
+                    _("Impossible to generate XML: not a customer invoice"))
+            if invoice.fatturapa_attachment_out_id:
+                raise UserError(
+                    _("Invoice %s has e-invoice export file yet.") % (invoice.number)
+                )
+            if (
+                invoice.fiscal_position_id
+                and hasattr(invoice.fiscal_position_id, "lettera_intento")
+                and invoice.fiscal_position_id.lettera_intento
+            ):
+                if not self.env["ir.module.module"].search(
+                    [
+                        ("name", "=", "l10n_it_einvoice_out_li"),
+                        ("state", "=", "installed"),
+                    ]
+                ):
+                    raise UserError(
+                        _(
+                            "Questo software non supporta la normativa 2002 "
+                            "delle lettere di intento.\n"
+                            "Per favore, contattare l'assistenza "
+                            "per ottenere l'aggiornamento fiscale!"
+                        )
+                    )
+            if self.report_print_menu:
+                self.generate_attach_report(invoice)
+            invoice_body = FatturaElettronicaBodyType()
+            self.with_context(context).setFatturaElettronicaBody(
+                invoice, invoice_body
+            )
+            fatturapa.FatturaElettronicaBody.append(invoice_body)
+            # TODO DatiVeicoli
+
+            number = self.setProgressivoInvio(fatturapa)
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
+            raise UserError(_u(e))
+
+        return fatturapa, number
+
     def exportFatturaPA(self):
         invoice_model = self.env["account.invoice"]
         attachments = self.env["fatturapa.attachment.out"]
@@ -1109,57 +1165,15 @@ class WizardExportFatturapa(models.TransientModel):
                 partner, parent, "electronic_invoice_subjected"
             ) and not self._get_partner_field(partner, parent, "is_pa"):
                 raise UserError(_("Unauthorized e-invoice to %s ") % (partner.name))
-            fatturapa = FatturaElettronica(
-                versione=self._getFormatoTrasmissione(partner, parent)
-            )
             context_partner = self.env.context.copy()
             context_partner.update({"lang": partner.lang, "company_id": company.id})
-            try:
-                self.with_context(context_partner).setFatturaElettronicaHeader(
-                    company, partner, parent, fatturapa
-                )
-
-                inv = invoice_model.with_context(context_partner).browse(invoice_id)
-                if inv.fatturapa_attachment_out_id:
-                    raise UserError(
-                        _("Invoice %s has e-invoice export file yet.") % (inv.number)
-                    )
-                if (
-                    inv.fiscal_position_id
-                    and hasattr(inv.fiscal_position_id, "lettera_intento")
-                    and inv.fiscal_position_id.lettera_intento
-                ):
-                    if not self.env["ir.module.module"].search(
-                        [
-                            ("name", "=", "l10n_it_einvoice_out_li"),
-                            ("state", "=", "installed"),
-                        ]
-                    ):
-                        raise UserError(
-                            _(
-                                "Questo software non supporta la normativa 2002 "
-                                "delle lettere di intento.\n"
-                                "Per favore, contattare l'assistenza "
-                                "per ottenere l'aggiornamento fiscale!"
-                            )
-                        )
-                if self.report_print_menu:
-                    self.generate_attach_report(inv)
-                invoice_body = FatturaElettronicaBodyType()
-                self.with_context(context_partner).setFatturaElettronicaBody(
-                    inv, invoice_body
-                )
-                fatturapa.FatturaElettronicaBody.append(invoice_body)
-                # TODO DatiVeicoli
-
-                number = self.setProgressivoInvio(fatturapa)
-            except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise UserError(unicode(e))
+            invoice = invoice_model.with_context(context_partner).browse(invoice_id)
+            fatturapa, number = self.exportInvoiceXML(
+                company, partner, parent, invoice, context=context_partner)
 
             attach = self.saveAttachment(fatturapa, number)
             attachments |= attach
-
-            inv.write({"fatturapa_attachment_out_id": attach.id})
+            invoice.write({"fatturapa_attachment_out_id": attach.id})
 
         action = {
             "view_type": "form",
