@@ -2,7 +2,9 @@
 #
 # Copyright 2014    - Davide Corio
 # Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018 Simone Rubino - Agile Business Group
+# Copyright 2018 Sergio Corato
+# Copyright 2019 Alex Comba - Agile Business Group
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
@@ -23,6 +25,7 @@ from odoo.tools.float_utils import float_round
 from odoo.addons.l10n_it_ade.bindings import fatturapa_v_1_2
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     AllegatiType,
+    AltriDatiGestionaliType,
     AnagraficaType,
     CedentePrestatoreType,
     CessionarioCommittenteType,
@@ -126,33 +129,38 @@ class WizardExportFatturapa(models.TransientModel):
             vat = company.fatturapa_sender_partner.vat
         vat = self.env["res.partner"].wep_vat(vat)
         attach_vals = {
-            "name": "%s_%s.xml" % (vat, str(number)),
-            "datas_fname": "%s_%s.xml" % (vat, str(number)),
+            "name": "%s_%s.xml" % (vat, number),
+            "datas_fname": "%s_%s.xml" % (vat, number),
             "datas": base64.encodestring(fatturapa.toxml("UTF-8")),
         }
         return attach_model.create(attach_vals)
 
-    def setProgressivoInvio(self, fatturapa):
-        if "company_id" in self.env.context:
-            company_model = self.env["res.company"]
-            company = company_model.browse(self.env.context["company_id"])
+    def setProgressivoInvio(self, fatturapa, attach=False):
+        # if the attachment is given than we will reuse its file_id
+        if attach:
+            # Xml file name uses the format VAT_XXXXX.xml and we are interested
+            # to get XXXXX
+            file_id = attach.name.split("_")[1].split(".")[0]
         else:
-            company = self.env.user.company_id
-
-        fatturapa_sequence = company.fatturapa_sequence_id
-        if not fatturapa_sequence:
-            raise UserError(_("E-invoice sequence not configured."))
-        number = fatturapa_sequence.next_by_id()
+            if "company_id" in self.env.context:
+                company_model = self.env["res.company"]
+                company = company_model.browse(self.env.context["company_id"])
+            else:
+                company = self.env.user.company_id
+            fatturapa_sequence = company.fatturapa_sequence_id
+            if not fatturapa_sequence:
+                raise UserError(_("E-invoice sequence not configured."))
+            file_id = fatturapa_sequence.next_by_id()
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio = (
-                number
+                file_id
             )
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             msg = _(
                 "FatturaElettronicaHeader.DatiTrasmissione." "ProgressivoInvio:\n%s"
             ) % _u(e)
             raise UserError(msg)
-        return number
+        return file_id
 
     def _wep_phone_number(self, phone):
         """ "Remove trailing +39 and all no numeric chars"""
@@ -202,8 +210,8 @@ class WizardExportFatturapa(models.TransientModel):
                 value = partner[field] or parent[field]
             else:
                 value = partner[field]
-        if field == "name":
-            return partner.wep_text(value)
+        # if field == "name":
+        #     return partner.wep_text(value)
         return value
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -277,6 +285,7 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.PECDestinatario = (
                 pec_destinatario
             )
+
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
@@ -448,7 +457,7 @@ class WizardExportFatturapa(models.TransientModel):
             partner,
         )
 
-    def _setDatiAnagraficiCessionario(self, company, partner, fatturapa):
+    def _setDatiAnagraficiCessionario(self, partner, fatturapa):
         mode = partner.type_inv_addr
         mode = mode if mode not in ("SO", "FR") else "parent"
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici = (
@@ -709,11 +718,11 @@ class WizardExportFatturapa(models.TransientModel):
             )
         return True
 
-    def setCessionarioCommittente(self, company, partner, fatturapa):
+    def setCessionarioCommittente(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
             CessionarioCommittenteType()
         )
-        self._setDatiAnagraficiCessionario(company, partner, fatturapa)
+        self._setDatiAnagraficiCessionario(partner, fatturapa)
         self._setSedeCessionario(partner, fatturapa)
         mode = partner.type_inv_addr
         if mode == "SO":
@@ -768,7 +777,6 @@ class WizardExportFatturapa(models.TransientModel):
             for causale in caus_list:
                 if not causale:
                     continue
-                causale = invoice.wep_text(causale)
                 causale_list_200 = [
                     causale[i : i + 200] for i in range(0, len(causale), 200)
                 ]
@@ -780,6 +788,7 @@ class WizardExportFatturapa(models.TransientModel):
 
         if invoice.company_id.fatturapa_art73:
             body.DatiGenerali.DatiGeneraliDocumento.Art73 = "SI"
+
         return True
 
     def setRelatedDocumentTypes(self, invoice, body):
@@ -849,18 +858,14 @@ class WizardExportFatturapa(models.TransientModel):
             line_no += 1
 
     def setDettaglioLinea(self, line_no, line, body, price_precision, uom_precision):
-        if not line.invoice_line_tax_ids and line.price_subtotal:
-            raise UserError(_("Invoice line %s does not have tax") % line.name)
+        if not line.invoice_line_tax_ids:
+            raise UserError(_("Invoice line %s does not have tax.") % line.name)
         if len(line.invoice_line_tax_ids) > 1:
             raise UserError(_("Too many taxes for invoice line %s.") % line.name)
-        if line.invoice_line_tax_ids:
-            aliquota = line.invoice_line_tax_ids[0].amount
-        else:
-            aliquota = 0.0
+        aliquota = line.invoice_line_tax_ids[0].amount
         AliquotaIVA = "%.2f" % float_round(aliquota, 2)
         line.ftpa_line_number = line_no
         prezzo_unitario = self._get_prezzo_unitario(line)
-        # FIX
         DettaglioLinea = DettaglioLineeType(
             NumeroLinea=str(line_no),
             Descrizione=encode_for_export(line.name, 1000),
@@ -888,6 +893,40 @@ class WizardExportFatturapa(models.TransientModel):
                     % (natura, line.invoice_line_tax_ids[0].description)
                 )
             self.line_desc = DettaglioLinea.Natura = natura
+            if line.invoice_line_tax_ids[
+                0
+            ].kind_id.code == "N2.1" and line.invoice_id.partner_id.country_id.code in [
+                "AT",
+                "BE",
+                "BG",
+                "CY",
+                "HR",
+                "DK",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "IE",
+                "IT",
+                "LV",
+                "LT",
+                "LU",
+                "MT",
+                "NL",
+                "PL",
+                "PT",
+                "CZ",
+                "RO",
+                "SK",
+                "SI",
+                "ES",
+                "SE",
+                "HU",
+            ]:
+                dati_gestionali = AltriDatiGestionaliType()
+                dati_gestionali.TipoDato = "INVCONT"
+                DettaglioLinea.AltriDatiGestionali.append(dati_gestionali)
         if line.admin_ref:
             DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
         if line.product_id:
@@ -985,6 +1024,9 @@ class WizardExportFatturapa(models.TransientModel):
 
     def setDatiPagamento(self, invoice, body):
         if invoice.payment_term_id:
+            payment_line_ids = invoice.get_receivable_line_ids()
+            if not payment_line_ids:
+                return True
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term_id.fatturapa_pt_id:
                 raise UserError(
@@ -1006,9 +1048,6 @@ class WizardExportFatturapa(models.TransientModel):
                 invoice.payment_term_id.fatturapa_pt_id.code
             )
             move_line_pool = self.env["account.move.line"]
-            payment_line_ids = invoice.get_receivable_line_ids()
-            if len(payment_line_ids) == 0:
-                raise UserError(_("Invalid invoice structure: no credit line found"))
             TipoDocumento = self.setTipoDocumento(invoice)
             credit_amount = 0.0
             for move_line_id in payment_line_ids:
@@ -1078,7 +1117,7 @@ class WizardExportFatturapa(models.TransientModel):
         self.setDatiTrasmissione(company, partner, fatturapa)
         self.setCedentePrestatore(company, fatturapa, partner)
         self.setRappresentanteFiscale(company, fatturapa)
-        self.setCessionarioCommittente(company, partner, fatturapa)
+        self.setCessionarioCommittente(partner, fatturapa)
         self.setTerzoIntermediarioOSoggettoEmittente(company, fatturapa)
 
     def setFatturaElettronicaBody(self, inv, FatturaElettronicaBody):
@@ -1092,26 +1131,6 @@ class WizardExportFatturapa(models.TransientModel):
         self.setDatiRiepilogo(inv, FatturaElettronicaBody)
         self.setDatiPagamento(inv, FatturaElettronicaBody)
         self.setAttachments(inv, FatturaElettronicaBody)
-
-    def getPartnerCompanyId(self, invoice_ids):
-
-        invoice_model = self.env["account.invoice"]
-        partner = False
-        parent = False
-        company = False
-        invoices = invoice_model.browse(invoice_ids)
-        for invoice in invoices:
-            if not partner:
-                partner = invoice.partner_id
-            if invoice.partner_id != partner:
-                raise UserError(_("Invoices must belong to the same partner."))
-            if not company:
-                company = invoice.company_id
-            if invoice.company_id != company:
-                raise UserError(_("Invoices must belong to the same company"))
-        if partner and partner.type == "invoice":
-            parent = partner.parent_id
-        return company, partner, parent
 
     def group_invoices_by_partner(self):
         def split_list(my_list, size):
@@ -1196,7 +1215,7 @@ class WizardExportFatturapa(models.TransientModel):
                 fatturapa.FatturaElettronicaBody.append(invoice_body)
                 # TODO DatiVeicoli
 
-            number = self.setProgressivoInvio(fatturapa)
+            number = self.setProgressivoInvio(fatturapa, attach=attach)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise UserError(_u(e))
         return fatturapa, number
