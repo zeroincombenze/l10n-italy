@@ -73,6 +73,20 @@ class AccountInvoice(models.Model):
         self.onchange_rc_fiscal_position_id()
         return res
 
+    @api.multi
+    def _get_original_suppliers(self):
+        rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
+        supplier_invoices = self.env["account.invoice"]
+        for rc_purchase_invoice in rc_purchase_invoices:
+            current_supplier_invoices = self.search([
+                ("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)
+            ])
+            if current_supplier_invoices:
+                supplier_invoices |= current_supplier_invoices
+            else:
+                supplier_invoices |= rc_purchase_invoice
+        return supplier_invoices.mapped("partner_id")
+
     def rc_inv_line_vals(self, line):
         return {
             "product_id": line.product_id.id,

@@ -167,7 +167,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.2.0.0 (2022-04-26)
+10.0.2.0.0 (2022-06-16)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] New 2021 data / Nuove causali 2021
@@ -232,7 +232,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-04-27
+Last Update / Ultimo aggiornamento: 2022-06-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

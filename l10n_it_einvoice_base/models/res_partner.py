@@ -10,6 +10,8 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
+STANDARD_ADDRESSEE_CODE = '0000000'
+
 
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
