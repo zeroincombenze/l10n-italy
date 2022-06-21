@@ -18,7 +18,7 @@ class AccountFiscalPosition(models.Model):
 
     regime_fiscale = fields.Many2one("fatturapa.fiscal_position", string="Tax Regime")
     fiscal_document_type_id = fields.Many2one(
-        'fiscal.document.type',
+        'italy.ade.invoice.type',
         string="Fiscal Document Type",
         oldname="invoice_type_id",
         help="To be used when sending self invoices to the exchange system")

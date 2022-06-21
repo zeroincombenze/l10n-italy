@@ -6,19 +6,19 @@
 # Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-italy (10.0)\n"
+"Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
 "PO-Revision-Date: 2018-12-16 23:58+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
-"language/it/)\n"
-"Language: it\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
+"Language: it_IT\n"
+"italy-10-0/language/it/)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_ateco_category
@@ -93,7 +93,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_name
 msgid "Name"
-msgstr "Nome"
+msgstr "Descrizione"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_parent_id
@@ -103,14 +103,16 @@ msgstr "Categoria madre"
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Nominativo"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_partner_ids
 msgid "Partners"
-msgstr "Partner"
+msgstr "Nominativi"
 
 #. module: l10n_it_ateco
 #: model:ir.ui.view,arch_db:l10n_it_ateco.ateco_category_search
 msgid "Search Ateco categories"
 msgstr "Ricerca categorie Ateco"
+
+

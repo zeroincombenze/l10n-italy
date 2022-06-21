@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-21 12:15+0000\n"
-"PO-Revision-Date: 2022-06-21 12:15+0000\n"
+"POT-Creation-Date: 2022-06-21 13:46+0000\n"
+"PO-Revision-Date: 2022-06-21 13:46+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -119,7 +119,7 @@ msgstr "Importo IVA Erario"
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Base"
-msgstr "Base"
+msgstr "Riferimento"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_base_amount
@@ -141,12 +141,12 @@ msgstr "Annullare"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_res_company
 msgid "Companies"
-msgstr "Aziende"
+msgstr "Companies"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_company_id
 msgid "Company"
-msgstr "Azienda"
+msgstr "Company"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_interest
@@ -175,7 +175,7 @@ msgstr "Creare registrazione"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_create_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_create_uid
 msgid "Created by"
-msgstr "Creato da"
+msgstr "Created by"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_create_date
@@ -189,7 +189,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_create_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Created on"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -242,12 +242,12 @@ msgstr "Dichiarazione non trovata"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_date
 msgid "Date"
-msgstr "Data"
+msgstr "Date"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_date_range
 msgid "Date Range"
-msgstr "Intervallo data"
+msgstr "Date Range"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -319,7 +319,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_display_name
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr "Display Name"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_advance_account_id
@@ -418,7 +418,7 @@ msgstr "Sezionale"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature___last_update
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Last Modified on"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_write_uid
@@ -432,7 +432,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_write_uid
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
+msgstr "Last Updated by"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_write_date
@@ -446,7 +446,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_write_date
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Last Updated on"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_fiscal_page_base
@@ -616,7 +616,7 @@ msgstr "Mostrare righe con importi a zero"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_state
 msgid "State"
-msgstr "Provincia"
+msgstr "State"
 
 #. module: account_vat_period_end_statement
 #: model:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -671,6 +671,15 @@ msgstr "Crediti d'imposta"
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement_tax_credit_amount
 msgid "Tax credits Amount"
 msgstr "Ammontare crediti d'imposta"
+
+#. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_kind_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_kind_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_kind_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line_nature_kind_id
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line_kind_id
+msgid "Tax nature"
+msgstr "Tax nature"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line_nature_nature_code
@@ -735,6 +744,7 @@ msgid "Undeductible"
 msgstr "Indetraibile"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line_move
 msgid "VAT Statement credit account line"
 msgstr "Riga liquidazione IVA conto credito"
@@ -743,11 +753,6 @@ msgstr "Riga liquidazione IVA conto credito"
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line_nature
 msgid "VAT Statement credit nature line"
 msgstr "Riga liquidazione natura a credito"
-
-#. module: account_vat_period_end_statement
-#: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line
-msgid "VAT Statement credit tax line"
-msgstr "Riga liquidazione cod. IVA a credito"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line_move

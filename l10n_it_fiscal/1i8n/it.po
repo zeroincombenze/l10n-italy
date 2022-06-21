@@ -1,0 +1,1864 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fiscal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo (10.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-21 14:01+0000\n"
+"PO-Revision-Date: 2022-06-21 14:01+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_-SP
+msgid "-SP"
+msgstr "-SP"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-AT-v
+msgid "1-AT-v"
+msgstr "1-AT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-BE-v
+msgid "1-BE-v"
+msgstr "1-BE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-BG-v
+msgid "1-BG-v"
+msgstr "1-BG-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-CY-v
+msgid "1-CY-v"
+msgstr "1-CY-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-CZ-v
+msgid "1-CZ-v"
+msgstr "1-CZ-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-DE-v
+msgid "1-DE-v"
+msgstr "1-DE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-DK-v
+msgid "1-DK-v"
+msgstr "1-DK-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-EE-v
+msgid "1-EE-v"
+msgstr "1-EE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-EL-v
+msgid "1-EL-v"
+msgstr "1-EL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-ES-v
+msgid "1-ES-v"
+msgstr "1-ES-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-FI-v
+msgid "1-FI-v"
+msgstr "1-FI-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-FR-v
+msgid "1-FR-v"
+msgstr "1-FR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-HR-v
+msgid "1-HR-v"
+msgstr "1-HR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-HU-v
+msgid "1-HU-v"
+msgstr "1-HU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-IE-v
+msgid "1-IE-v"
+msgstr "1-IE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-LT-v
+msgid "1-LT-v"
+msgstr "1-LT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-LU-v
+msgid "1-LU-v"
+msgstr "1-LU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-LV-v
+msgid "1-LV-v"
+msgstr "1-LV-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-MT-v
+msgid "1-MT-v"
+msgstr "1-MT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-NL-v
+msgid "1-NL-v"
+msgstr "1-NL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-PL-v
+msgid "1-PL-v"
+msgstr "1-PL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-PT-v
+msgid "1-PT-v"
+msgstr "1-PT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-RO-v
+msgid "1-RO-v"
+msgstr "1-RO-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-SE-v
+msgid "1-SE-v"
+msgstr "1-SE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-SI-v
+msgid "1-SI-v"
+msgstr "1-SI-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1-SK-v
+msgid "1-SK-v"
+msgstr "1-SK-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1050
+msgid "1050"
+msgstr "1050"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1050a
+msgid "1050a"
+msgstr "1050a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_1050b
+msgid "1050b"
+msgstr "1050b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_10a
+msgid "10a"
+msgstr "10a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_10a0
+msgid "10a0"
+msgstr "10a0"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_10a0a
+msgid "10a0a"
+msgstr "10a0a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_10a0b
+msgid "10a0b"
+msgstr "10a0b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_10v
+msgid "10v"
+msgstr "10v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_10vINC
+msgid "10vINC"
+msgstr "10vINC"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-AT-v
+msgid "2-AT-v"
+msgstr "2-AT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-BE-v
+msgid "2-BE-v"
+msgstr "2-BE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-BG-v
+msgid "2-BG-v"
+msgstr "2-BG-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-CY-v
+msgid "2-CY-v"
+msgstr "2-CY-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-CZ-v
+msgid "2-CZ-v"
+msgstr "2-CZ-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-DE-v
+msgid "2-DE-v"
+msgstr "2-DE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-EE-v
+msgid "2-EE-v"
+msgstr "2-EE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-EL-v
+msgid "2-EL-v"
+msgstr "2-EL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-ES-v
+msgid "2-ES-v"
+msgstr "2-ES-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-FI-v
+msgid "2-FI-v"
+msgstr "2-FI-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-FR-v
+msgid "2-FR-v"
+msgstr "2-FR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-HR-v
+msgid "2-HR-v"
+msgstr "2-HR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-HU-v
+msgid "2-HU-v"
+msgstr "2-HU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-IE-v
+msgid "2-IE-v"
+msgstr "2-IE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-LT-v
+msgid "2-LT-v"
+msgstr "2-LT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-LU-v
+msgid "2-LU-v"
+msgstr "2-LU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-LV-v
+msgid "2-LV-v"
+msgstr "2-LV-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-MT-v
+msgid "2-MT-v"
+msgstr "2-MT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-NL-v
+msgid "2-NL-v"
+msgstr "2-NL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-PL-v
+msgid "2-PL-v"
+msgstr "2-PL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-PT-v
+msgid "2-PT-v"
+msgstr "2-PT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-RO-v
+msgid "2-RO-v"
+msgstr "2-RO-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-SE-v
+msgid "2-SE-v"
+msgstr "2-SE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-SI-v
+msgid "2-SI-v"
+msgstr "2-SI-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2-SK-v
+msgid "2-SK-v"
+msgstr "2-SK-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2220
+msgid "2220"
+msgstr "2220"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2220a
+msgid "2220a"
+msgstr "2220a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2220b
+msgid "2220b"
+msgstr "2220b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2250
+msgid "2250"
+msgstr "2250"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2250a
+msgid "2250a"
+msgstr "2250a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2250b
+msgid "2250b"
+msgstr "2250b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2270
+msgid "2270"
+msgstr "2270"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2270a
+msgid "2270a"
+msgstr "2270a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2270b
+msgid "2270b"
+msgstr "2270b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2280
+msgid "2280"
+msgstr "2280"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2280a
+msgid "2280a"
+msgstr "2280a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_2280b
+msgid "2280b"
+msgstr "2280b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22SPv
+msgid "22SPv"
+msgstr "22SPv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22a
+msgid "22a"
+msgstr "22a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22a0
+msgid "22a0"
+msgstr "22a0"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22a0a
+msgid "22a0a"
+msgstr "22a0a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22a0b
+msgid "22a0b"
+msgstr "22a0b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22c
+msgid "22c"
+msgstr "22c"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22s
+msgid "22s"
+msgstr "22s"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22v
+msgid "22v"
+msgstr "22v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_22vINC
+msgid "22vINC"
+msgstr "22vINC"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-AT-v
+msgid "3-AT-v"
+msgstr "3-AT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-BE-v
+msgid "3-BE-v"
+msgstr "3-BE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-CY-v
+msgid "3-CY-v"
+msgstr "3-CY-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-CZ-v
+msgid "3-CZ-v"
+msgstr "3-CZ-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-EL-v
+msgid "3-EL-v"
+msgstr "3-EL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-ES-v
+msgid "3-ES-v"
+msgstr "3-ES-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-FI-v
+msgid "3-FI-v"
+msgstr "3-FI-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-FR-v
+msgid "3-FR-v"
+msgstr "3-FR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-HR-v
+msgid "3-HR-v"
+msgstr "3-HR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-HU-v
+msgid "3-HU-v"
+msgstr "3-HU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-IE-v
+msgid "3-IE-v"
+msgstr "3-IE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-LT-v
+msgid "3-LT-v"
+msgstr "3-LT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-LU-v
+msgid "3-LU-v"
+msgstr "3-LU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-LV-v
+msgid "3-LV-v"
+msgstr "3-LV-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-MT-v
+msgid "3-MT-v"
+msgstr "3-MT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-PL-v
+msgid "3-PL-v"
+msgstr "3-PL-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-PT-v
+msgid "3-PT-v"
+msgstr "3-PT-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-RO-v
+msgid "3-RO-v"
+msgstr "3-RO-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_3-SE-v
+msgid "3-SE-v"
+msgstr "3-SE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4-FR-v
+msgid "4-FR-v"
+msgstr "4-FR-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4-IE-v
+msgid "4-IE-v"
+msgstr "4-IE-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4-LU-v
+msgid "4-LU-v"
+msgstr "4-LU-v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_450
+msgid "450"
+msgstr "450"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_450a
+msgid "450a"
+msgstr "450a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_450b
+msgid "450b"
+msgstr "450b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4a
+msgid "4a"
+msgstr "4a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4a0
+msgid "4a0"
+msgstr "4a0"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4a0a
+msgid "4a0a"
+msgstr "4a0a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4a0b
+msgid "4a0b"
+msgstr "4a0b"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4v
+msgid "4v"
+msgstr "4v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_4vINC
+msgid "4vINC"
+msgstr "4vINC"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_5a
+msgid "5a"
+msgstr "5a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_5v
+msgid "5v"
+msgstr "5v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l190a1a
+msgid "Acq.  Esente Art.1 commi 54-89 L.190/14 (R. Forfetario)"
+msgstr "Acq.  Esente Art.1 commi 54-89 L.190/14 (R. Forfetario)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6ata
+msgid "Acq. (RC 22%) N.I. Art.17 c.6 lett. A-ter DPR633"
+msgstr "Acq. (RC 22%) N.I. Art.17 c.6 lett. A-ter DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6ca
+msgid "Acq. (RC 22%) N.I. Art.17 c.6 lett. C DPR633 (Elettronici)"
+msgstr "Acq. (RC 22%) N.I. Art.17 c.6 lett. C DPR633 (Elettronici)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c2a
+msgid "Acq. (RC 22%) N.I. art.17 c.2 DPR633"
+msgstr "Acq. (RC 22%) N.I. art.17 c.2 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6a
+msgid "Acq. (RC 22%) N.I. art.17 c.6 DPR633"
+msgstr "Acq. (RC 22%) N.I. art.17 c.6 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6ba
+msgid "Acq. (RC 22%) N.I. art.17 c.6 lett. B DPR633 (Cellulari)"
+msgstr "Acq. (RC 22%) N.I. art.17 c.6 lett. B DPR633 (Cellulari)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a38a
+msgid "Acq. (RC 22%) N.I. art.38 L.427/93"
+msgstr "Acq. (RC 22%) N.I. art.38 L.427/93"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a41a
+msgid "Acq. (RC 22%) N.I. art.41 L.427/93"
+msgstr "Acq. (RC 22%) N.I. art.41 L.427/93"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a8aa
+msgid "Acq. (RC 22%) N.I. art.8a DPR633 (Dogana)"
+msgstr "Acq. (RC 22%) N.I. art.8a DPR633 (Dogana)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a2a
+msgid "Acq. Escluso IVA (art.2 DPR633)"
+msgstr "Acq. Escluso IVA (art.2 DPR633)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17a
+msgid "Acq. FC IVA Art.17 DPR633"
+msgstr "Acq. FC IVA Art.17 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a7a
+msgid "Acq. N.I. art.7 DPR633"
+msgstr "Acq. N.I. art.7 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a8c2a
+msgid "Acq. N.I. art.8c2 DPR633 (lett.Intento)"
+msgstr "Acq. N.I. art.8c2 DPR633 (lett.Intento)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a9a
+msgid "Acq. N.I. art.9 DPR633"
+msgstr "Acq. N.I. art.9 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l41a36a
+msgid "Acq. N.Sogg. reg.Marg. (art.36 L41/95)"
+msgstr "Acq. N.Sogg. reg.Marg. (art.36 L41/95)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a7ta
+msgid "Acq. NI art.7ter DPR633 (servizi xUE)"
+msgstr "Acq. NI art.7ter DPR633 (servizi xUE)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l41a37a
+msgid "Acq. Op.UE reg.Margine (art.37 L41/95)"
+msgstr "Acq. Op.UE reg.Margine (art.37 L41/95)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l244a
+msgid "Acq. art.1c96-117 L.244/07 (reg.Minimo)"
+msgstr "Acq. art.1c96-117 L.244/07 (reg.Minimo)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a13a
+msgid "Acq. escluso art.13 DPR633"
+msgstr "Acq. escluso art.13 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a15a
+msgid "Acq. escluso art.15 DPR633"
+msgstr "Acq. escluso art.15 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a10a
+msgid "Acq. esente art.10 DPR633"
+msgstr "Acq. esente art.10 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a10c5a
+msgid "Acq. esente art.10n27-quinques DPR633"
+msgstr "Acq. esente art.10n27-quinques DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a1a
+msgid "Acq. fuori campo IVA (art.1 DPR633)"
+msgstr "Acq. fuori campo IVA (art.1 DPR633)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l98a27a
+msgid "Acq. senza IVA art.27 L.98/11"
+msgstr "Acq. senza IVA art.27 L.98/11"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22SPv
+msgid "Art. 17ter - split-payment"
+msgstr "Art. 17ter - split-payment"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-AT-v
+msgid "EU-AT 10% v"
+msgstr "EU-AT 10% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-AT-v
+msgid "EU-AT 13% v"
+msgstr "EU-AT 13% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-AT-v
+msgid "EU-AT 20% v"
+msgstr "EU-AT 20% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-BE-v
+msgid "EU-BE 12% v"
+msgstr "EU-BE 12% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-BE-v
+msgid "EU-BE 21% v"
+msgstr "EU-BE 21% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-BE-v
+msgid "EU-BE 6% v"
+msgstr "EU-BE 6% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-BG-v
+msgid "EU-BG 20% v"
+msgstr "EU-BG 20% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-BG-v
+msgid "EU-BG 9% v"
+msgstr "EU-BG 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-CY-v
+msgid "EU-CY 19% v"
+msgstr "EU-CY 19% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-CY-v
+msgid "EU-CY 5% v"
+msgstr "EU-CY 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-CY-v
+msgid "EU-CY 9% v"
+msgstr "EU-CY 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-CZ-v
+msgid "EU-CZ 10% v"
+msgstr "EU-CZ 10% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-CZ-v
+msgid "EU-CZ 15% v"
+msgstr "EU-CZ 15% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-CZ-v
+msgid "EU-CZ 21% v"
+msgstr "EU-CZ 21% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-DE-v
+msgid "EU-DE 19% v"
+msgstr "EU-DE 19% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-DE-v
+msgid "EU-DE 7% v"
+msgstr "EU-DE 7% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-DK-v
+msgid "EU-DK 25% v"
+msgstr "EU-DK 25% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-EE-v
+msgid "EU-EE 20% v"
+msgstr "EU-EE 20% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-EE-v
+msgid "EU-EE 9% v"
+msgstr "EU-EE 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-EL-v
+msgid "EU-EL 13% v"
+msgstr "EU-EL 13% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-EL-v
+msgid "EU-EL 24% v"
+msgstr "EU-EL 24% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-EL-v
+msgid "EU-EL 6% v"
+msgstr "EU-EL 6% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-ES-v
+msgid "EU-ES 10% v"
+msgstr "EU-ES 10% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-ES-v
+msgid "EU-ES 21% v"
+msgstr "EU-ES 21% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-ES-v
+msgid "EU-ES 4% v"
+msgstr "EU-ES 4% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-FI-v
+msgid "EU-FI 10% v"
+msgstr "EU-FI 10% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-FI-v
+msgid "EU-FI 14% v"
+msgstr "EU-FI 14% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-FI-v
+msgid "EU-FI 24% v"
+msgstr "EU-FI 24% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-FR-v
+msgid "EU-FR 10% v"
+msgstr "EU-FR 10% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4-FR-v
+msgid "EU-FR 2.1% v"
+msgstr "EU-FR 2.1% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-FR-v
+msgid "EU-FR 20% v"
+msgstr "EU-FR 20% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-FR-v
+msgid "EU-FR 5.5% v"
+msgstr "EU-FR 5.5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-HR-v
+msgid "EU-HR 13% v"
+msgstr "EU-HR 13% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-HR-v
+msgid "EU-HR 25% v"
+msgstr "EU-HR 25% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-HR-v
+msgid "EU-HR 5% v"
+msgstr "EU-HR 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-HU-v
+msgid "EU-HU 18% v"
+msgstr "EU-HU 18% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-HU-v
+msgid "EU-HU 27% v"
+msgstr "EU-HU 27% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-HU-v
+msgid "EU-HU 5% v"
+msgstr "EU-HU 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-IE-v
+msgid "EU-IE 13.5% v"
+msgstr "EU-IE 13.5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-IE-v
+msgid "EU-IE 23% v"
+msgstr "EU-IE 23% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4-IE-v
+msgid "EU-IE 4.8% v"
+msgstr "EU-IE 4.8% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-IE-v
+msgid "EU-IE 9% v"
+msgstr "EU-IE 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-LT-v
+msgid "EU-LT 21% v"
+msgstr "EU-LT 21% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-LT-v
+msgid "EU-LT 5% v"
+msgstr "EU-LT 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-LT-v
+msgid "EU-LT 9% v"
+msgstr "EU-LT 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-LU-v
+msgid "EU-LU 14% v"
+msgstr "EU-LU 14% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-LU-v
+msgid "EU-LU 17% v"
+msgstr "EU-LU 17% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4-LU-v
+msgid "EU-LU 3% v"
+msgstr "EU-LU 3% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-LU-v
+msgid "EU-LU 8% v"
+msgstr "EU-LU 8% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-LV-v
+msgid "EU-LV 12% v"
+msgstr "EU-LV 12% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-LV-v
+msgid "EU-LV 21% v"
+msgstr "EU-LV 21% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-LV-v
+msgid "EU-LV 5% v"
+msgstr "EU-LV 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-MT-v
+msgid "EU-MT 18% v"
+msgstr "EU-MT 18% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-MT-v
+msgid "EU-MT 5% v"
+msgstr "EU-MT 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-MT-v
+msgid "EU-MT 7% v"
+msgstr "EU-MT 7% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-NL-v
+msgid "EU-NL 21% v"
+msgstr "EU-NL 21% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-NL-v
+msgid "EU-NL 9% v"
+msgstr "EU-NL 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_at
+msgid "EU-OSS AT - Austria"
+msgstr "EU-OSS AT - Austria"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_be
+msgid "EU-OSS BE – Belgio"
+msgstr "EU-OSS BE – Belgio"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_bg
+msgid "EU-OSS BG – Bulgaria"
+msgstr "EU-OSS BG – Bulgaria"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_cy
+msgid "EU-OSS CY – Cipro"
+msgstr "EU-OSS CY – Cipro"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_cz
+msgid "EU-OSS CZ – Rep. Ceca"
+msgstr "EU-OSS CZ – Rep. Ceca"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_de
+msgid "EU-OSS DE – Germania"
+msgstr "EU-OSS DE – Germania"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_dk
+msgid "EU-OSS DK – Danimarca"
+msgstr "EU-OSS DK – Danimarca"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_ee
+msgid "EU-OSS EE – Estonia"
+msgstr "EU-OSS EE – Estonia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_el
+msgid "EU-OSS EL – Grecia"
+msgstr "EU-OSS EL – Grecia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_es
+msgid "EU-OSS ES – Spagna"
+msgstr "EU-OSS ES – Spagna"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_fi
+msgid "EU-OSS FI – Finlandia"
+msgstr "EU-OSS FI – Finlandia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_fr
+msgid "EU-OSS FR – Francia"
+msgstr "EU-OSS FR – Francia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_hr
+msgid "EU-OSS HR – Croazia"
+msgstr "EU-OSS HR – Croazia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_hu
+msgid "EU-OSS HU – Ungheria"
+msgstr "EU-OSS HU – Ungheria"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_ie
+msgid "EU-OSS IE – Eire"
+msgstr "EU-OSS IE – Eire"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_it
+msgid "EU-OSS IT – Italia"
+msgstr "EU-OSS IT – Italia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_lt
+msgid "EU-OSS LT – Lituania"
+msgstr "EU-OSS LT – Lituania"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_lu
+msgid "EU-OSS LU – Lussemburgo"
+msgstr "EU-OSS LU – Lussemburgo"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_lv
+msgid "EU-OSS LV – Lettonia"
+msgstr "EU-OSS LV – Lettonia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_mt
+msgid "EU-OSS MT – Malta"
+msgstr "EU-OSS MT – Malta"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_nl
+msgid "EU-OSS NL – Paesi Bassi"
+msgstr "EU-OSS NL – Paesi Bassi"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_pl
+msgid "EU-OSS PL – Polonia"
+msgstr "EU-OSS PL – Polonia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_pt
+msgid "EU-OSS PT – Portogallo"
+msgstr "EU-OSS PT – Portogallo"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_ro
+msgid "EU-OSS RO – Romania"
+msgstr "EU-OSS RO – Romania"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_se
+msgid "EU-OSS SE – Svezia"
+msgstr "EU-OSS SE – Svezia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_si
+msgid "EU-OSS SI – Slovenia"
+msgstr "EU-OSS SI – Slovenia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax.group,name:l10n_it_fiscal.tax_group_sk
+msgid "EU-OSS SK – Slovacchia"
+msgstr "EU-OSS SK – Slovacchia"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-PL-v
+msgid "EU-PL 18% v"
+msgstr "EU-PL 18% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-PL-v
+msgid "EU-PL 5% v"
+msgstr "EU-PL 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-PL-v
+msgid "EU-PL 7% v"
+msgstr "EU-PL 7% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-PT-v
+msgid "EU-PT 13% v"
+msgstr "EU-PT 13% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-PT-v
+msgid "EU-PT 23% v"
+msgstr "EU-PT 23% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-PT-v
+msgid "EU-PT 6% v"
+msgstr "EU-PT 6% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-RO-v
+msgid "EU-RO 19% v"
+msgstr "EU-RO 19% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-RO-v
+msgid "EU-RO 5% v"
+msgstr "EU-RO 5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-RO-v
+msgid "EU-RO 9% v"
+msgstr "EU-RO 9% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-SE-v
+msgid "EU-SE 12% v"
+msgstr "EU-SE 12% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-SE-v
+msgid "EU-SE 25% v"
+msgstr "EU-SE 25% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_3-SE-v
+msgid "EU-SE 6% v"
+msgstr "EU-SE 6% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-SI-v
+msgid "EU-SI 22% v"
+msgstr "EU-SI 22% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-SI-v
+msgid "EU-SI 9.5% v"
+msgstr "EU-SI 9.5% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2-SK-v
+msgid "EU-SK 10% v"
+msgstr "EU-SK 10% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1-SK-v
+msgid "EU-SK 20% v"
+msgstr "EU-SK 20% v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_10a0a
+msgid "IVA 10% (100% indetraibile)"
+msgstr "IVA 10% (100% indetraibile)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_10a0b
+msgid "IVA 10% (quota 0% detr.)"
+msgstr "IVA 10% (quota 0% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1050b
+msgid "IVA 10% (quota 50% detr.)"
+msgstr "IVA 10% (quota 50% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1050a
+msgid "IVA 10% (quota 50% indet.)"
+msgstr "IVA 10% (quota 50% indet.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_10a
+msgid "IVA 10% da acquisti"
+msgstr "IVA 10% da acquisti"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_10vINC
+msgid "IVA 10% da scorporare"
+msgstr "IVA 10% da scorporare"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_1050
+msgid "IVA 10% detraibile 50%"
+msgstr "IVA 10% detraibile 50%"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_10a0
+msgid "IVA 10% indetraibile"
+msgstr "IVA 10% indetraibile"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_10v
+msgid "IVA 10% su vendite"
+msgstr "IVA 10% su vendite"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22a0a
+msgid "IVA 22% (100% indetraibile)"
+msgstr "IVA 22% (100% indetraibile)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22a0b
+msgid "IVA 22% (quota 0% detr.)"
+msgstr "IVA 22% (quota 0% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2220b
+msgid "IVA 22% (quota 20% detr.)"
+msgstr "IVA 22% (quota 20% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2280a
+msgid "IVA 22% (quota 20% indet.)"
+msgstr "IVA 22% (quota 20% indet.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2270a
+msgid "IVA 22% (quota 30% indet.)"
+msgstr "IVA 22% (quota 30% indet.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2250b
+msgid "IVA 22% (quota 50% detr.)"
+msgstr "IVA 22% (quota 50% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2250a
+msgid "IVA 22% (quota 50% indet.)"
+msgstr "IVA 22% (quota 50% indet.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2270b
+msgid "IVA 22% (quota 70% detr.)"
+msgstr "IVA 22% (quota 70% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2280b
+msgid "IVA 22% (quota 80% detr.)"
+msgstr "IVA 22% (quota 80% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2220a
+msgid "IVA 22% (quota 80% indet.)"
+msgstr "IVA 22% (quota 80% indet.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22a
+msgid "IVA 22% da acquisti"
+msgstr "IVA 22% da acquisti"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22vINC
+msgid "IVA 22% da scorporare"
+msgstr "IVA 22% da scorporare"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2220
+msgid "IVA 22% detraibile 20%"
+msgstr "IVA 22% detraibile 20%"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2250
+msgid "IVA 22% detraibile 50%"
+msgstr "IVA 22% detraibile 50%"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2270
+msgid "IVA 22% detraibile 70%"
+msgstr "IVA 22% detraibile 70%"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_2280
+msgid "IVA 22% detraibile 80%"
+msgstr "IVA 22% detraibile 80%"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22a0
+msgid "IVA 22% indetraibile"
+msgstr "IVA 22% indetraibile"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22c
+msgid "IVA 22% per cassa (art. 32 bis DPR 83/2012) su acquisti"
+msgstr "IVA 22% per cassa (art. 32 bis DPR 83/2012) su acquisti"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22s
+msgid "IVA 22% per cassa (art. 32 bis DPR 83/2012) su vendite"
+msgstr "IVA 22% per cassa (art. 32 bis DPR 83/2012) su vendite"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_22v
+msgid "IVA 22% su vendite"
+msgstr "IVA 22% su vendite"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4a0a
+msgid "IVA 4% (100% indetraibile)"
+msgstr "IVA 4% (100% indetraibile)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4a0b
+msgid "IVA 4% (quota 0% detr.)"
+msgstr "IVA 4% (quota 0% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_450b
+msgid "IVA 4% (quota 50% detr.)"
+msgstr "IVA 4% (quota 50% detr.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_450a
+msgid "IVA 4% (quota 50% indet.)"
+msgstr "IVA 4% (quota 50% indet.)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4a
+msgid "IVA 4% da acquisti"
+msgstr "IVA 4% da acquisti"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4vINC
+msgid "IVA 4% da scorporare"
+msgstr "IVA 4% da scorporare"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_450
+msgid "IVA 4% detraibile 50%"
+msgstr "IVA 4% detraibile 50%"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4a0
+msgid "IVA 4% indetraibile"
+msgstr "IVA 4% indetraibile"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_4v
+msgid "IVA 4% su vendite"
+msgstr "IVA 4% su vendite"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_5a
+msgid "IVA 5% da acquisti"
+msgstr "IVA 5% da acquisti"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_5v
+msgid "IVA 5% su vendite"
+msgstr "IVA 5% su vendite"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa17c6atv
+msgid "Rev. Charge Art.17 c.6 lett. A-ter DPR633"
+msgstr "Rev. Charge Art.17 c.6 lett. A-ter DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa17c6cv
+msgid "Rev. Charge Art.17 c.6 lett. C DPR633 (Elettronici)"
+msgstr "Rev. Charge Art.17 c.6 lett. C DPR633 (Elettronici)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa17c6bv
+msgid "Rev. Charge art.17 c.6 lett. B DPR633 (Cellulari)"
+msgstr "Rev. Charge art.17 c.6 lett. B DPR633 (Cellulari)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa8av
+msgid "Rev. Charge art.8a DPR633 (Dogana)"
+msgstr "Rev. Charge art.8a DPR633 (Dogana)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa17c2v
+msgid "Rev. charge art.17 c.2 DPR633"
+msgstr "Rev. charge art.17 c.2 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa17c6v
+msgid "Rev. charge art.17c6 DPR633"
+msgstr "Rev. charge art.17c6 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa38v
+msgid "Rev. charge art.38 L.427/93"
+msgstr "Rev. charge art.38 L.427/93"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_aa41v
+msgid "Rev.Charge N.I. art.41 L.427/93"
+msgstr "Rev.Charge N.I. art.41 L.427/93"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_-SP
+msgid "Storno Split Payment"
+msgstr "Storno Split Payment"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l190a1v
+msgid "Ven. Esente Art.1 commi 54-89 L.190/14 (R. Forfetario)"
+msgstr "Ven. Esente Art.1 commi 54-89 L.190/14 (R. Forfetario)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6cv
+msgid "Vend. (RC 22%) Art.17 c.6 lett. C DPR633 (Elettronici)"
+msgstr "Vend. (RC 22%) Art.17 c.6 lett. C DPR633 (Elettronici)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c2v
+msgid "Vend. (RC 22%) N.I. art.17 c.2 DPR633"
+msgstr "Vend. (RC 22%) N.I. art.17 c.2 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6v
+msgid "Vend. (RC 22%) N.I. art.17c6 DPR633"
+msgstr "Vend. (RC 22%) N.I. art.17c6 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6bv
+msgid "Vend. (RC 22%) art.17 c.6 lett. B DPR633 (Cellulari)"
+msgstr "Vend. (RC 22%) art.17 c.6 lett. B DPR633 (Cellulari)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a38v
+msgid "Vend. N.I. Art.38 L.427/93"
+msgstr "Vend. N.I. Art.38 L.427/93"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17c6atv
+msgid "Vend.(RC 22%) N.I. Art.17 c.6 lett. A-ter DPR633"
+msgstr "Vend.(RC 22%) N.I. Art.17 c.6 lett. A-ter DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a2v
+msgid "Vend.Escluso IVA (art.2 DPR633)"
+msgstr "Vend.Escluso IVA (art.2 DPR633)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a17v
+msgid "Vend.FC IVA Art.17 DPR633"
+msgstr "Vend.FC IVA Art.17 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a41v
+msgid "Vend.N.I. art.41 L.427/93"
+msgstr "Vend.N.I. art.41 L.427/93"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a7v
+msgid "Vend.N.I. art.7 DPR633"
+msgstr "Vend.N.I. art.7 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a8av
+msgid "Vend.N.I. art.8a DPR633 (Dogana)"
+msgstr "Vend.N.I. art.8a DPR633 (Dogana)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a8c2v
+msgid "Vend.N.I. art.8c2 DPR633 (lett.Intento)"
+msgstr "Vend.N.I. art.8c2 DPR633 (lett.Intento)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a9v
+msgid "Vend.N.I. art.9 DPR633"
+msgstr "Vend.N.I. art.9 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l41a36v
+msgid "Vend.N.Sogg. reg.Marg. (art.36 L41/95)"
+msgstr "Vend.N.Sogg. reg.Marg. (art.36 L41/95)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a7tv
+msgid "Vend.NI art.7ter DPR633 (servizi xUE)"
+msgstr "Vend.NI art.7ter DPR633 (servizi xUE)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l41a37v
+msgid "Vend.Op.UE reg.Margine (art.37 L41/95)"
+msgstr "Vend.Op.UE reg.Margine (art.37 L41/95)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l244v
+msgid "Vend.art.1c96-117 L.244/07 (reg.Minimo)"
+msgstr "Vend.art.1c96-117 L.244/07 (reg.Minimo)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a13v
+msgid "Vend.escluso art.13 DPR633"
+msgstr "Vend.escluso art.13 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a15v
+msgid "Vend.escluso art.15 DPR633"
+msgstr "Vend.escluso art.15 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a10v
+msgid "Vend.esente art.10 DPR633"
+msgstr "Vend.esente art.10 DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a10c5v
+msgid "Vend.esente art.10n27-quinques DPR633"
+msgstr "Vend.esente art.10n27-quinques DPR633"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_a1v
+msgid "Vend.fuori campo IVA (art.1 DPR633)"
+msgstr "Vend.fuori campo IVA (art.1 DPR633)"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,name:l10n_it_fiscal.1_l98a27v
+msgid "Vend.senza IVA art.27 L.98/11"
+msgstr "Vend.senza IVA art.27 L.98/11"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a10a
+msgid "a10a"
+msgstr "a10a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a10c5a
+msgid "a10c5a"
+msgstr "a10c5a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a10c5v
+msgid "a10c5v"
+msgstr "a10c5v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a10v
+msgid "a10v"
+msgstr "a10v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a13a
+msgid "a13a"
+msgstr "a13a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a13v
+msgid "a13v"
+msgstr "a13v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a15a
+msgid "a15a"
+msgstr "a15a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a15v
+msgid "a15v"
+msgstr "a15v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17a
+msgid "a17a"
+msgstr "a17a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c2a
+msgid "a17c2a"
+msgstr "a17c2a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c2v
+msgid "a17c2v"
+msgstr "a17c2v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6a
+msgid "a17c6a"
+msgstr "a17c6a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6ata
+msgid "a17c6ata"
+msgstr "a17c6ata"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6atv
+msgid "a17c6atv"
+msgstr "a17c6atv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6ba
+msgid "a17c6ba"
+msgstr "a17c6ba"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6bv
+msgid "a17c6bv"
+msgstr "a17c6bv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6ca
+msgid "a17c6ca"
+msgstr "a17c6ca"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6cv
+msgid "a17c6cv"
+msgstr "a17c6cv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17c6v
+msgid "a17c6v"
+msgstr "a17c6v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a17v
+msgid "a17v"
+msgstr "a17v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a1a
+msgid "a1a"
+msgstr "a1a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a1v
+msgid "a1v"
+msgstr "a1v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a2a
+msgid "a2a"
+msgstr "a2a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a2v
+msgid "a2v"
+msgstr "a2v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a38a
+msgid "a38a"
+msgstr "a38a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a38v
+msgid "a38v"
+msgstr "a38v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a41a
+msgid "a41a"
+msgstr "a41a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a41v
+msgid "a41v"
+msgstr "a41v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a7a
+msgid "a7a"
+msgstr "a7a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a7ta
+msgid "a7ta"
+msgstr "a7ta"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a7tv
+msgid "a7tv"
+msgstr "a7tv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a7v
+msgid "a7v"
+msgstr "a7v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a8aa
+msgid "a8aa"
+msgstr "a8aa"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a8av
+msgid "a8av"
+msgstr "a8av"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a8c2a
+msgid "a8c2a"
+msgstr "a8c2a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a8c2v
+msgid "a8c2v"
+msgstr "a8c2v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a9a
+msgid "a9a"
+msgstr "a9a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_a9v
+msgid "a9v"
+msgstr "a9v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa17c2v
+msgid "aa17c2v"
+msgstr "aa17c2v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa17c6atv
+msgid "aa17c6atv"
+msgstr "aa17c6atv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa17c6bv
+msgid "aa17c6bv"
+msgstr "aa17c6bv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa17c6cv
+msgid "aa17c6cv"
+msgstr "aa17c6cv"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa17c6v
+msgid "aa17c6v"
+msgstr "aa17c6v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa38v
+msgid "aa38v"
+msgstr "aa38v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa41v
+msgid "aa41v"
+msgstr "aa41v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_aa8av
+msgid "aa8av"
+msgstr "aa8av"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l190a1a
+msgid "l190a1a"
+msgstr "l190a1a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l190a1v
+msgid "l190a1v"
+msgstr "l190a1v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l244a
+msgid "l244a"
+msgstr "l244a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l244v
+msgid "l244v"
+msgstr "l244v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l41a36a
+msgid "l41a36a"
+msgstr "l41a36a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l41a36v
+msgid "l41a36v"
+msgstr "l41a36v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l41a37a
+msgid "l41a37a"
+msgstr "l41a37a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l41a37v
+msgid "l41a37v"
+msgstr "l41a37v"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l98a27a
+msgid "l98a27a"
+msgstr "l98a27a"
+
+#. module: l10n_it_fiscal
+#: model:account.tax,description:l10n_it_fiscal.1_l98a27v
+msgid "l98a27v"
+msgstr "l98a27v"
+
+

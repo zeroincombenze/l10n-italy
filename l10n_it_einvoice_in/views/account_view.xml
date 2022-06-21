@@ -337,7 +337,7 @@
                             <tree editable="bottom" string="Welfare Fund Details">
                                 <field name="name" />
                                 <field
-                                    name="tax_nature_id"
+                                    name="tax_kind_id"
                                     options="{'no_create': True}"
                                 />
                                 <field name="welfare_rate_tax" readonly="1" />

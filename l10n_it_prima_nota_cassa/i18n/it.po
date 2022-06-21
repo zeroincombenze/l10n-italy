@@ -15,9 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_prima_nota_cassa
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:8
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:8
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:8
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:8
@@ -28,11 +29,13 @@ msgstr "Prima Nota"
 #: selection:account.report.prima_nota_cassa,filter:0
 #: selection:account.report.prima_nota_cassa,filter
 #: selection:account.report.prima_nota_cassa,filter
+#: selection:account.report.prima_nota_cassa,filter
 msgid "No Filters"
 msgstr "Nessun Filtro"
 
 #. module: l10n_it_prima_nota_cassa
 #: view:account.report.prima_nota_cassa:0
+#: view:account.report.prima_nota_cassa
 #: view:account.report.prima_nota_cassa
 #: view:account.report.prima_nota_cassa
 msgid ""
@@ -51,10 +54,13 @@ msgstr ""
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:43
 #: code:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.py:38
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:43
+#: code:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.py:38
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:43
 msgid "Debit"
 msgstr "Dare"
 
 #. module: l10n_it_prima_nota_cassa
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:16
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:16
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:16
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:16
@@ -65,10 +71,12 @@ msgstr "Filtra Per"
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:42
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:42
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:42
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:42
 msgid "Entry"
 msgstr "Registrazione"
 
 #. module: l10n_it_prima_nota_cassa
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:40
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:40
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:40
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:40
@@ -77,6 +85,7 @@ msgstr "Rif"
 
 #. module: l10n_it_prima_nota_cassa
 #: field:account.report.prima_nota_cassa,company_id:0
+#: field:account.report.prima_nota_cassa,company_id
 #: field:account.report.prima_nota_cassa,company_id
 #: field:account.report.prima_nota_cassa,company_id
 msgid "Company"
@@ -91,11 +100,13 @@ msgstr "Stampa Prima Nota"
 #: field:account.report.prima_nota_cassa,initial_balance:0
 #: field:account.report.prima_nota_cassa,initial_balance
 #: field:account.report.prima_nota_cassa,initial_balance
+#: field:account.report.prima_nota_cassa,initial_balance
 msgid "Include initial balances"
 msgstr "Includi saldi iniziali"
 
 #. module: l10n_it_prima_nota_cassa
 #: selection:account.report.prima_nota_cassa,display_account:0
+#: selection:account.report.prima_nota_cassa,display_account
 #: selection:account.report.prima_nota_cassa,display_account
 #: selection:account.report.prima_nota_cassa,display_account
 msgid "With balance is not equal to 0"
@@ -105,12 +116,15 @@ msgstr "Con saldo diverso da 0"
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:15
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:15
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:15
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:15
 msgid "Jounal"
 msgstr "Sezionale"
 
 #. module: l10n_it_prima_nota_cassa
 #: selection:account.report.prima_nota_cassa,filter:0
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:37
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:37
+#: selection:account.report.prima_nota_cassa,filter
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:37
 #: selection:account.report.prima_nota_cassa,filter
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:37
@@ -125,11 +139,14 @@ msgstr "Data"
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:13
 #: field:account.report.prima_nota_cassa,chart_account_id
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:13
+#: field:account.report.prima_nota_cassa,chart_account_id
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:13
 msgid "Chart of Account"
 msgstr "Piano dei conti"
 
 #. module: l10n_it_prima_nota_cassa
 #: field:account.report.prima_nota_cassa,journal_ids:0
+#: field:account.report.prima_nota_cassa,journal_ids
 #: field:account.report.prima_nota_cassa,journal_ids
 #: field:account.report.prima_nota_cassa,journal_ids
 msgid "Journals"
@@ -142,11 +159,14 @@ msgstr "Registri sezionali"
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:17
 #: field:account.report.prima_nota_cassa,target_move
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:17
+#: field:account.report.prima_nota_cassa,target_move
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:17
 msgid "Target Moves"
 msgstr "Finalità registrazioni"
 
 #. module: l10n_it_prima_nota_cassa
 #: help:account.report.prima_nota_cassa,chart_account_id:0
+#: help:account.report.prima_nota_cassa,chart_account_id
 #: help:account.report.prima_nota_cassa,chart_account_id
 #: help:account.report.prima_nota_cassa,chart_account_id
 msgid "Select Charts of Accounts"
@@ -156,11 +176,13 @@ msgstr "Seleziona Piano dei Conti"
 #: field:account.report.prima_nota_cassa,date_to:0
 #: field:account.report.prima_nota_cassa,date_to
 #: field:account.report.prima_nota_cassa,date_to
+#: field:account.report.prima_nota_cassa,date_to
 msgid "End Date"
 msgstr "Data finale"
 
 #. module: l10n_it_prima_nota_cassa
 #: field:account.report.prima_nota_cassa,period_from:0
+#: field:account.report.prima_nota_cassa,period_from
 #: field:account.report.prima_nota_cassa,period_from
 #: field:account.report.prima_nota_cassa,period_from
 msgid "Start Period"
@@ -170,11 +192,13 @@ msgstr "Periodo Iniziale"
 #: selection:account.report.prima_nota_cassa,target_move:0
 #: selection:account.report.prima_nota_cassa,target_move
 #: selection:account.report.prima_nota_cassa,target_move
+#: selection:account.report.prima_nota_cassa,target_move
 msgid "All Posted Entries"
 msgstr "Tutte le registrazioni contabilizzate"
 
 #. module: l10n_it_prima_nota_cassa
 #: help:account.report.prima_nota_cassa,fiscalyear_id:0
+#: help:account.report.prima_nota_cassa,fiscalyear_id
 #: help:account.report.prima_nota_cassa,fiscalyear_id
 #: help:account.report.prima_nota_cassa,fiscalyear_id
 msgid "Keep empty for all open fiscal year"
@@ -184,10 +208,12 @@ msgstr "Lasciare vuoto per tutti gli anni fiscali aperti"
 #: field:account.report.prima_nota_cassa,period_to:0
 #: field:account.report.prima_nota_cassa,period_to
 #: field:account.report.prima_nota_cassa,period_to
+#: field:account.report.prima_nota_cassa,period_to
 msgid "End Period"
 msgstr "Periodo Finale"
 
 #. module: l10n_it_prima_nota_cassa
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:44
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:44
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:44
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:44
@@ -201,6 +227,8 @@ msgstr "Avere"
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:14
 #: field:account.report.prima_nota_cassa,fiscalyear_id
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:14
+#: field:account.report.prima_nota_cassa,fiscalyear_id
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:14
 msgid "Fiscal Year"
 msgstr "Anno fiscale"
 
@@ -208,10 +236,12 @@ msgstr "Anno fiscale"
 #: field:account.report.prima_nota_cassa,display_account:0
 #: field:account.report.prima_nota_cassa,display_account
 #: field:account.report.prima_nota_cassa,display_account
+#: field:account.report.prima_nota_cassa,display_account
 msgid "Display Accounts"
 msgstr "Mostra Conti"
 
 #. module: l10n_it_prima_nota_cassa
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:45
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:45
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:45
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:45
@@ -225,11 +255,13 @@ msgstr "Saldo"
 #: model:ir.ui.menu,name:l10n_it_prima_nota_cassa.menu_print_prima_nota_cassa
 #: view:account.report.prima_nota_cassa
 #: view:account.report.prima_nota_cassa
+#: view:account.report.prima_nota_cassa
 msgid "Prima Nota Cassa"
 msgstr "Prima Nota Cassa"
 
 #. module: l10n_it_prima_nota_cassa
 #: selection:account.report.prima_nota_cassa,display_account:0
+#: selection:account.report.prima_nota_cassa,display_account
 #: selection:account.report.prima_nota_cassa,display_account
 #: selection:account.report.prima_nota_cassa,display_account
 msgid "With movements"
@@ -239,11 +271,13 @@ msgstr "Con movimenti"
 #: selection:account.report.prima_nota_cassa,display_account:0
 #: selection:account.report.prima_nota_cassa,display_account
 #: selection:account.report.prima_nota_cassa,display_account
+#: selection:account.report.prima_nota_cassa,display_account
 msgid "All"
-msgstr "Tutto"
+msgstr "Tutto/i"
 
 #. module: l10n_it_prima_nota_cassa
 #: help:account.report.prima_nota_cassa,initial_balance:0
+#: help:account.report.prima_nota_cassa,initial_balance
 #: help:account.report.prima_nota_cassa,initial_balance
 #: help:account.report.prima_nota_cassa,initial_balance
 msgid ""
@@ -257,6 +291,7 @@ msgstr ""
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:41
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:41
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:41
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:41
 msgid "Move"
 msgstr "Movimento"
 
@@ -264,10 +299,12 @@ msgstr "Movimento"
 #: selection:account.report.prima_nota_cassa,filter:0
 #: selection:account.report.prima_nota_cassa,filter
 #: selection:account.report.prima_nota_cassa,filter
+#: selection:account.report.prima_nota_cassa,filter
 msgid "Periods"
 msgstr "Periodi"
 
 #. module: l10n_it_prima_nota_cassa
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:38
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:38
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:38
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:38
@@ -278,11 +315,13 @@ msgstr "Sezionale"
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:39
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:39
 #: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:39
+#: report:addons/l10n_it_prima_nota_cassa/report/prima_nota_cassa.mako:39
 msgid "Partner"
 msgstr "Nominativo"
 
 #. module: l10n_it_prima_nota_cassa
 #: field:account.report.prima_nota_cassa,date_from:0
+#: field:account.report.prima_nota_cassa,date_from
 #: field:account.report.prima_nota_cassa,date_from
 #: field:account.report.prima_nota_cassa,date_from
 msgid "Start Date"
@@ -292,11 +331,13 @@ msgstr "Data iniziale"
 #: field:account.report.prima_nota_cassa,filter:0
 #: field:account.report.prima_nota_cassa,filter
 #: field:account.report.prima_nota_cassa,filter
+#: field:account.report.prima_nota_cassa,filter
 msgid "Filter by"
 msgstr "Filtra per"
 
 #. module: l10n_it_prima_nota_cassa
 #: selection:account.report.prima_nota_cassa,target_move:0
+#: selection:account.report.prima_nota_cassa,target_move
 #: selection:account.report.prima_nota_cassa,target_move
 #: selection:account.report.prima_nota_cassa,target_move
 msgid "All Entries"

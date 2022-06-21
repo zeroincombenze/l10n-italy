@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-21 10:41+0000\n"
-"PO-Revision-Date: 2022-06-21 10:41+0000\n"
+"POT-Creation-Date: 2022-06-21 14:00+0000\n"
+"PO-Revision-Date: 2022-06-21 14:00+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -29,12 +29,12 @@ msgstr "Allegato"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_name
 msgid "Attachment Name"
-msgstr "Nome allegato"
+msgstr "Attachment Name"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_local_url
 msgid "Attachment URL"
-msgstr "URL allegato"
+msgstr "Attachment URL"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:1296
@@ -56,7 +56,7 @@ msgstr "Annullare"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_checksum
 msgid "Checksum/SHA1"
-msgstr "Somma di controllo/SHA1"
+msgstr "Checksum/SHA1"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:384
@@ -67,7 +67,7 @@ msgstr "Città non impostata per %s."
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_company_id
 msgid "Company"
-msgstr "Azienda"
+msgstr "Company"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:119
@@ -124,7 +124,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_attachment_out_refresh_create_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_export_fatturapa_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Created on"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_invoice_partner_id
@@ -219,7 +219,7 @@ msgstr "Indirizzo cliente non impostato."
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_db_datas
 msgid "Database Data"
-msgstr "Dati database"
+msgstr "Database Data"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_date_invoice0
@@ -229,14 +229,14 @@ msgstr "Data fattura"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_description
 msgid "Description"
-msgstr "Descrizione"
+msgstr "Description"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_attachment_out_refresh_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_export_fatturapa_display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr "Display Name"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_out.view_account_invoice_filter_fatturapa
@@ -349,17 +349,17 @@ msgstr "File %s già presente."
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_datas
 msgid "File Content"
-msgstr "Contenuto file"
+msgstr "File Content"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_datas_fname
 msgid "File Name"
-msgstr "Nome file"
+msgstr "File Name"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_file_size
 msgid "File Size"
-msgstr "Dimensione file"
+msgstr "File Size"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_account_invoice_has_pdf_invoice_print
@@ -393,7 +393,7 @@ msgstr "Impossible to generate XML: not a customer invoice"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_index_content
 msgid "Indexed Content"
-msgstr "Contenuto indicizzato"
+msgstr "Indexed Content"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:892
@@ -460,33 +460,33 @@ msgstr "È una stampa fattura in PDF"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_public
 msgid "Is public document"
-msgstr "Documento pubblico"
+msgstr "Is public document"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_attachment_out_refresh___last_update
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_export_fatturapa___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Last Modified on"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_attachment_out_refresh_write_uid
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_export_fatturapa_write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
+msgstr "Last Updated by"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_attachment_out_refresh_write_date
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_wizard_export_fatturapa_write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Last Updated on"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_mimetype
 msgid "Mime Type"
-msgstr "Tipo MIME"
+msgstr "Mime Type"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:983
@@ -596,22 +596,22 @@ msgstr "Menù di stampa rapporti"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_res_field
 msgid "Resource Field"
-msgstr "Campo risorsa"
+msgstr "Resource Field"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_res_id
 msgid "Resource ID"
-msgstr "ID risorsa"
+msgstr "Resource ID"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_res_model
 msgid "Resource Model"
-msgstr "Modello risorsa"
+msgstr "Resource Model"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_res_name
 msgid "Resource Name"
-msgstr "Nome risorsa"
+msgstr "Resource Name"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_out.view_invoice_form_fatturapa
@@ -621,7 +621,7 @@ msgstr "Risultati"
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_store_fname
 msgid "Stored Filename"
-msgstr "Nome file registrato"
+msgstr "Stored Filename"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:376
@@ -632,12 +632,12 @@ msgstr "Indirizzo non impostato per %s."
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,help:l10n_it_einvoice_out.field_fatturapa_attachment_out_res_model
 msgid "The database object this attachment will be attached to."
-msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
+msgstr "The database object this attachment will be attached to."
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,help:l10n_it_einvoice_out.field_fatturapa_attachment_out_res_id
 msgid "The record id this is attached to."
-msgstr "L'ID del record a cui è collegato."
+msgstr "The record id this is attached to."
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,help:l10n_it_einvoice_out.field_fatturapa_attachments_is_pdf_invoice_print
@@ -664,12 +664,12 @@ msgstr "Vero se tutte le fatture hanno un documento di stampa allegato all'XML, 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_type
 msgid "Type"
-msgstr "Tipo"
+msgstr "Type"
 
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,field_description:l10n_it_einvoice_out.field_fatturapa_attachment_out_url
 msgid "Url"
-msgstr "URL"
+msgstr "Url"
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/models/attachment.py:103
@@ -687,7 +687,7 @@ msgstr "P:IVA e codice fiscale non impostati per %s."
 #. module: l10n_it_einvoice_out
 #: model:ir.model.fields,help:l10n_it_einvoice_out.field_fatturapa_attachment_out_type
 msgid "You can either upload a file from your computer or copy/paste an internet link to your file."
-msgstr "È possibile caricare un file dal computer oppure fare copia/incolla di un collegamento Internet nel file."
+msgstr "You can either upload a file from your computer or copy/paste an internet link to your file."
 
 #. module: l10n_it_einvoice_out
 #: code:addons/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py:358

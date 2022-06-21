@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -53,6 +53,8 @@ msgstr "Azienda"
 #: selection:wizard.registro.iva,layout_type
 #: selection:account.tax.registry,layout_type
 #: selection:wizard.registro.iva,layout_type
+#: selection:account.tax.registry,layout_type
+#: selection:wizard.registro.iva,layout_type
 msgid "Corrispettivi"
 msgstr "Corrispettivi"
 
@@ -73,6 +75,8 @@ msgstr "Creato il"
 #: selection:wizard.registro.iva,layout_type:0
 #: selection:account.tax.registry,layout_type:0
 #: selection:wizard.registro.iva,layout_type:0
+#: selection:account.tax.registry,layout_type
+#: selection:wizard.registro.iva,layout_type
 #: selection:account.tax.registry,layout_type
 #: selection:wizard.registro.iva,layout_type
 #: selection:account.tax.registry,layout_type
@@ -232,10 +236,13 @@ msgstr "Descrizione"
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:74
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:61
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:74
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:61
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:74
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato per la selezione corrente"
 
 #. module: l10n_it_vat_registries
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:70
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:70
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:70
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:70
@@ -257,6 +264,7 @@ msgstr "P.IVA"
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:167
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:167
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:167
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:167
 msgid ""
 "Please set 'Split Payment Write-off Account' field in accounting "
 "configuration"
@@ -269,13 +277,14 @@ msgstr ""
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:171
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:171
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:171
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:171
 msgid "Please set 'Split Payment Write-off Tax' field in accounting configuration"
 msgstr "Please set 'Split Payment Write-off Tax' field in accounting configuration"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Print"
-msgstr "Stampa"
+msgstr "Stampare"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_only_totals
@@ -297,6 +306,8 @@ msgstr "Selezionare i sezionali da cui si vuole ottenere i documenti"
 #: selection:wizard.registro.iva,layout_type:0
 #: selection:account.tax.registry,layout_type:0
 #: selection:wizard.registro.iva,layout_type:0
+#: selection:account.tax.registry,layout_type
+#: selection:wizard.registro.iva,layout_type
 #: selection:account.tax.registry,layout_type
 #: selection:wizard.registro.iva,layout_type
 #: selection:account.tax.registry,layout_type

@@ -70,6 +70,8 @@ msgstr "Codice"
 #: sql_constraint:italy.ade.tax.nature
 #: sql_constraint:italy.ade.codice.carica sql_constraint:italy.ade.invoice.type
 #: sql_constraint:italy.ade.tax.nature
+#: sql_constraint:italy.ade.codice.carica sql_constraint:italy.ade.invoice.type
+#: sql_constraint:italy.ade.tax.nature
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
 
@@ -131,6 +133,7 @@ msgstr "Fattura cliente"
 #: selection:account.tax,payability
 #: selection:account.tax,payability
 #: selection:account.tax,payability
+#: selection:account.tax,payability
 msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
@@ -148,6 +151,7 @@ msgstr "Sezionale e-fatture"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
@@ -194,11 +198,13 @@ msgstr "ID"
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "IVA assolta in altro stato UE"
 msgstr "IVA assolta in altro stato UE"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
+#: selection:account.tax,payability
 #: selection:account.tax,payability
 #: selection:account.tax,payability
 #: selection:account.tax,payability
@@ -319,6 +325,7 @@ msgstr "Scope"
 #: selection:account.tax,payability
 #: selection:account.tax,payability
 #: selection:account.tax,payability
+#: selection:account.tax,payability
 msgid "Split payment"
 msgstr "Scissione pagamenti"
 
@@ -366,11 +373,13 @@ msgstr "Nota credito fornitore"
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "escluse ex art. 15"
 msgstr "escluse ex art. 15"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
@@ -386,11 +395,13 @@ msgstr "esenti"
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "inversione contabile (acq. in reverse charge)"
 msgstr "inversione contabile (acq. in reverse charge)"
 
 #. module: l10n_it_ade
 #: selection:account.tax,non_taxable_nature:0
+#: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
@@ -406,6 +417,7 @@ msgstr "non imponibili"
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "non soggette"
 msgstr "non soggette"
 
@@ -416,5 +428,8 @@ msgstr "non soggette"
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
 #: selection:account.tax,non_taxable_nature
+#: selection:account.tax,non_taxable_nature
 msgid "regime del margine/IVA non esposta"
 msgstr "regime del margine/IVA non esposta"
+
+

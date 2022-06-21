@@ -431,7 +431,7 @@ class WizardImportFatturapa(models.TransientModel):
             "welfare_taxable": ImponibileCassa,
             "welfare_Iva_tax": AliquotaIVA,
             "subjected_withholding": Ritenuta,
-            "tax_nature_id": tax_nature_id,
+            "tax_kind_id": tax_kind_id,
             "pa_line_code": RiferimentoAmministrazione,
             "invoice_id": invoice_id,
         }

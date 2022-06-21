@@ -50,11 +50,13 @@ msgstr "Imposte genitori"
 #: selection:account.tax,cee_type
 #: selection:account.tax,cee_type
 #: selection:account.tax,cee_type
+#: selection:account.tax,cee_type
 msgid "Purchase"
 msgstr "Acquisto"
 
 #. module: l10n_it_account
 #: selection:account.tax,cee_type:0
+#: selection:account.tax,cee_type
 #: selection:account.tax,cee_type
 #: selection:account.tax,cee_type
 #: selection:account.tax,cee_type

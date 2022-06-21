@@ -31,6 +31,7 @@ msgstr "Esportare e-fattura"
 #: selection:wizard.export.fatturapa,include_ddt_data:0
 #: selection:wizard.export.fatturapa,include_ddt_data
 #: selection:wizard.export.fatturapa,include_ddt_data
+#: selection:wizard.export.fatturapa,include_ddt_data
 msgid "Include DDT Data"
 msgstr "Includere dati DDT"
 
@@ -51,10 +52,12 @@ msgstr ""
 #: selection:wizard.export.fatturapa,include_ddt_data:0
 #: selection:wizard.export.fatturapa,include_ddt_data
 #: selection:wizard.export.fatturapa,include_ddt_data
+#: selection:wizard.export.fatturapa,include_ddt_data
 msgid "Include transport data"
 msgstr "Includere dati trasporto"
 
 #. module: l10n_it_einvoice_out_ddt
+#: code:addons/l10n_it_einvoice_out_ddt/wizard/wizard_export_fatturapa.py:81
 #: code:addons/l10n_it_einvoice_out_ddt/wizard/wizard_export_fatturapa.py:81
 #: code:addons/l10n_it_einvoice_out_ddt/wizard/wizard_export_fatturapa.py:81
 #: code:addons/l10n_it_einvoice_out_ddt/wizard/wizard_export_fatturapa.py:81
