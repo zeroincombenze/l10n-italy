@@ -13,5 +13,5 @@
         "l10n_it_fatturapa_in",
         "l10n_it_reverse_charge",
     ],
-    "installable": True,
+    "installable": False,
 }
