@@ -293,11 +293,11 @@ def migrate(cr, version):
                 tax = tax_model.search([("description", "=", res[item]["des"])])[0]
                 vals = {}
                 if res[item].get("nat"):
-                    vals["nature_id"] = nature_model.search(
+                    vals["kind_id"] = nature_model.search(
                         [("code", "=", res[item]["nat"])]
                     )[0].id
                 elif "nat" in res[item]:
-                    vals["nature_id"] = False
+                    vals["kind_id"] = False
                 if "pay" in res[item]:
                     vals["payability"] = res[item]["pay"]
                 if res[item].get("axc"):

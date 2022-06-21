@@ -183,7 +183,7 @@ msgstr "Guida"
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_id
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_id
-#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_id
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_kind_id
 msgid "ID"
 msgstr "ID"
 
@@ -266,12 +266,12 @@ msgid "Natura IVA"
 msgstr "Natura IVA"
 
 #. module: l10n_it_ade
-#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_nature_id
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_kind_id
 msgid "Nature"
 msgstr "Nature"
 
 #. module: l10n_it_ade
-#: model:ir.model.fields,help:l10n_it_ade.field_account_tax_nature_id
+#: model:ir.model.fields,help:l10n_it_ade.field_account_tax_kind_id
 msgid "Nature of tax code: may be taxable, out of scope, etc ..."
 msgstr "Natura del codice: può essere imponibile, fuori campo, eccetera … ..."
 
@@ -418,5 +418,3 @@ msgstr "non soggette"
 #: selection:account.tax,non_taxable_nature
 msgid "regime del margine/IVA non esposta"
 msgstr "regime del margine/IVA non esposta"
-
-

@@ -1,7 +1,8 @@
 10.0.0.3.4 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Best record dispaly / Migliorie visualizzazione codice
+* [IMP] Best record display/ Migliorie visualizzazione codice
+* [IMP] Tax nature renamed
 
 10.0.0.3.3 (2022-04-26)
 ~~~~~~~~~~~~~~~~~~~~~~~

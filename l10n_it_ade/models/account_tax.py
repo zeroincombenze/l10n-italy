@@ -13,9 +13,10 @@ from odoo import fields, models
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    nature_id = fields.Many2one(
+    kind_id = fields.Many2one(
         "italy.ade.tax.nature",
         string="Nature",
+        oldname="kind_id",
         help="Nature of tax code: may be taxable, out of scope, etc ...",
     )
     # non_taxable_nature = fields.Selection([

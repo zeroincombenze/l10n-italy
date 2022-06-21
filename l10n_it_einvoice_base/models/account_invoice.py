@@ -148,7 +148,8 @@ class WelfareFundDataLine(models.Model):
     _description = "E-invoice Welfare Fund Data"
 
     name = fields.Many2one("welfare.fund.type", string="Welfare Fund Type")
-    tax_nature_id = fields.Many2one("italy.ade.tax.nature", string="Non taxable nature")
+    tax_kind_id = fields.Many2one(
+        "italy.ade.tax.nature", string="Non taxable nature", oldname="tax_nature_id")
     welfare_rate_tax = fields.Float("Welfare Tax Rate")
     welfare_amount_tax = fields.Float("Welfare Tax Amount")
     welfare_taxable = fields.Float("Welfare Taxable")
@@ -350,7 +351,10 @@ class AccountInvoice(models.Model):
     )
     # 2.1.1.1 doc_type
     fiscal_document_type_id = fields.Many2one(
-        "italy.ade.invoice.type", string="Fiscal Document Type", copy=False
+        "italy.ade.invoice.type",
+        string="Fiscal Document Type",
+        oldname="invoice_type_id",
+        copy=False
     )
     #  2.1.1.5
     #  2.1.1.5.1

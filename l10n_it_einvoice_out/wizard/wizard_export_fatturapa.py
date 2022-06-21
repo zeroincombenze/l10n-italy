@@ -879,12 +879,12 @@ class WizardExportFatturapa(models.TransientModel):
         DettaglioLinea.ScontoMaggiorazione.extend(self.setScontoMaggiorazione(line))
         if aliquota == 0.0:
             if line.invoice_line_tax_ids:
-                if not line.invoice_line_tax_ids[0].nature_id:
+                if not line.invoice_line_tax_ids[0].kind_id:
                     raise UserError(
                         _("No 'nature' field for tax %s.")
                         % line.invoice_line_tax_ids[0].name
                     )
-                natura = line.invoice_line_tax_ids[0].nature_id.code
+                natura = line.invoice_line_tax_ids[0].kind_id.code
             else:
                 natura = "N2.2"
             if natura in ("N2", "N3", "N6"):
@@ -975,9 +975,9 @@ class WizardExportFatturapa(models.TransientModel):
                 Imposta="%.2f" % float_round(tax_line.amount, 2),
             )
             if tax.amount == 0.0:
-                if not tax.nature_id:
+                if not tax.kind_id:
                     raise UserError(_("No 'nature' field for tax %s") % tax.name)
-                riepilogo.Natura = tax.nature_id.code
+                riepilogo.Natura = tax.kind_id.code
                 if not tax.law_reference:
                     raise UserError(
                         _("No 'law reference' field for tax %s.") % tax.name
@@ -985,7 +985,7 @@ class WizardExportFatturapa(models.TransientModel):
                 riepilogo.RiferimentoNormativo = encode_for_export(
                     tax.law_reference, 100
                 )
-                if tax.nature_id.code == self.line_desc:
+                if tax.kind_id.code == self.line_desc:
                     found_code_line_desc = True
             if tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability

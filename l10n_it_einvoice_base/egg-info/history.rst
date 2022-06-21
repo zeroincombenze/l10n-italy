@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
 
 10.0.2.1.17 (2022-06-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~

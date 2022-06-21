@@ -7,20 +7,6 @@
 #    Copyright (C) 2015 Associazione Odoo Italia
 #    (<http://www.odoo-italia.org>).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
 
 import math
 from datetime import datetime
@@ -753,7 +739,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 ),
             )
         return {
-            "nature_id": tax.nature_id.id if tax.nature_id else False,
+            "kind_id": tax.kind_id.id if tax.kind_id else False,
             "account_id": tax.account_id.id if tax.account_id else False,
             "tax_id": tax.id,
             "base_amount": total_base,
@@ -769,7 +755,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "level": level,
                 }
                 if level == "N":
-                    for nm in ("nature_id", "nature_code"):
+                    for nm in ("kind_id", "nature_code"):
                         total[hash][nm] = vals.get(nm, False)
                 else:
                     total[hash]["account_id"] = vals.get("account_id", False)
@@ -793,7 +779,7 @@ class AccountVatPeriodEndStatement(models.Model):
         vals, valid = self.evaluate_tax_values(tax, statement)
         if self.show_zero or valid:
             line_ids.append(vals)
-            vals["nature_code"] = tax.nature_id.code if tax.nature_id else " "
+            vals["nature_code"] = tax.kind_id.code if tax.kind_id else " "
             total = self.sum_to_account(vals, total)
         return line_ids, total
 
@@ -819,11 +805,12 @@ class AccountVatPeriodEndStatement(models.Model):
         taxes = tax_model.search(
             [
                 # ('exclude_from_registries', '=', False),
+                ("type_tax_use", "in", ["sale", "purchase"]),
                 ("company_id", "=", self.company_id.id),
             ]
         )
         for tax in taxes:
-            # se ho una tassa padre con figli cee_type, considero le figlie
+            # se ho una tassa padre con figlie cee_type, condidero le figlie
             if any(
                 tax_child
                 for tax_child in tax.children_tax_ids
@@ -889,7 +876,8 @@ class StatementDebitAccountLineNature(models.Model):
 
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
     nature_code = fields.Char("Tax nature code")
-    nature_id = fields.Many2one("italy.ade.tax.nature", "Tax nature")
+    kind_id = fields.Many2one(
+        "italy.ade.tax.nature", "Tax nature", oldname="nature_id")
     amount = fields.Float("Amount", required=True, digits=dp.get_precision("Account"))
     base_amount = fields.Float("Base Amount", digits=dp.get_precision("Account"))
     vat_amount = fields.Float("Vat Amount", digits=dp.get_precision("Account"))
@@ -901,7 +889,8 @@ class StatementCreditAccountLineNature(models.Model):
 
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
     nature_code = fields.Char("Tax nature code")
-    nature_id = fields.Many2one("italy.ade.tax.nature", "Tax nature")
+    kind_id = fields.Many2one(
+        "italy.ade.tax.nature", "Tax nature", oldname="nature_id")
     amount = fields.Float("Amount", required=True, digits=dp.get_precision("Account"))
     base_amount = fields.Float("Base Amount", digits=dp.get_precision("Account"))
     vat_amount = fields.Float("Vat Amount", digits=dp.get_precision("Account"))
@@ -950,12 +939,13 @@ class StatementDebitAccountLine(models.Model):
     amount = fields.Float("Amount", required=True, digits=dp.get_precision("Account"))
     base_amount = fields.Float("Base Amount", digits=dp.get_precision("Account"))
     vat_amount = fields.Float("Vat Amount", digits=dp.get_precision("Account"))
-    nature_id = fields.Many2one("italy.ade.tax.nature", "Tax nature")
+    kind_id = fields.Many2one(
+        "italy.ade.tax.nature", "Tax nature", oldname="nature_id")
 
 
 class StatementCreditAccountLine(models.Model):
     _name = "statement.credit.account.line"
-    _description = "VAT Statement credit tax line"
+    _description = "VAT Statement credit account line"
 
     account_id = fields.Many2one("account.account", "Account")
     tax_id = fields.Many2one(
@@ -966,20 +956,22 @@ class StatementCreditAccountLine(models.Model):
     amount = fields.Float("Amount", required=True, digits=dp.get_precision("Account"))
     base_amount = fields.Float("Base Amount", digits=dp.get_precision("Account"))
     vat_amount = fields.Float("Vat Amount", digits=dp.get_precision("Account"))
-    nature_id = fields.Many2one("italy.ade.tax.nature", "Tax nature")
+    kind_id = fields.Many2one(
+        "italy.ade.tax.nature", "Tax nature", oldname="nature_id")
 
 
 class StatementGenericAccountLine(models.Model):
     _name = "statement.generic.account.line"
     _description = "VAT Statement generic account line"
-    _sort = "nature_id, account_id, tax_id"
+    _sort = "kind_id, account_id, tax_id"
 
     account_id = fields.Many2one("account.account", "Account", required=True)
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
     amount = fields.Float("Amount", required=True, digits=dp.get_precision("Account"))
     base_amount = fields.Float("Base Amount", digits=dp.get_precision("Account"))
     vat_amount = fields.Float("Vat Amount", digits=dp.get_precision("Account"))
-    nature_id = fields.Many2one("italy.ade.tax.nature_id", "Tax nature")
+    kind_id = fields.Many2one(
+        "italy.ade.tax.kind_id", "Tax nature", oldname="nature_id")
     name = fields.Char("Description")
 
 

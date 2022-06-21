@@ -20,6 +20,7 @@ class AccountFiscalPosition(models.Model):
     fiscal_document_type_id = fields.Many2one(
         'fiscal.document.type',
         string="Fiscal Document Type",
+        oldname="invoice_type_id",
         help="To be used when sending self invoices to the exchange system")
 
 

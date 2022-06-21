@@ -129,7 +129,7 @@ OCA comparation / Confronto con OCA
 +--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
 | Schema di definizione xsd      | l10n_it_ade                 |                           |                              | l10n_it_fatturapa           |                           |                              | Il modulo di zeroincombenze serve anche alla liquidazione IVA e comunicazione IVA (ex Spesometro)        |
 +--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Natura dell'IVA                | l10n_it_ade                 | italy.ade.tax.nature      | nature_id                    | l10n_it_account_tax_kind    | account.tax.kind          | tax_kind_id                  | Estensione della tabella account.tax usata anche da liquidazione IVA e comunicazione IVA (ex Spesometro) |
+| Natura dell'IVA                | l10n_it_ade                 | italy.ade.tax.nature      | kind_id                    | l10n_it_account_tax_kind    | account.tax.kind          | tax_kind_id                  | Estensione della tabella account.tax usata anche da liquidazione IVA e comunicazione IVA (ex Spesometro) |
 +--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
 | Termini di pagamento           | l10n_it_fiscal_payment_term | fatturapa.payment_term    |                              | l10n_it_fiscal_payment_term | fatturapa.payment_term    |                              | Modelle in comune                                                                                        |
 +--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
@@ -196,7 +196,7 @@ Installation / Installazione
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
+* |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
 
@@ -270,7 +270,8 @@ ChangeLog History / Cronologia modifiche
 10.0.0.3.4 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Best record dispaly / Migliorie visualizzazione codice
+* [IMP] Best record display/ Migliorie visualizzazione codice
+* [IMP] Tax nature renamed
 
 10.0.0.3.3 (2022-04-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -317,9 +318,9 @@ Acknowledges / Riconoscimenti
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
++-----------------------------------+-------------------------------------------+* Alex Comba <alex.comba@agilebg.com>
 * Davide Corio <info@davidecorio.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 
 Maintainer / Manutenzione
@@ -355,7 +356,7 @@ Last Update / Ultimo aggiornamento: 2022-06-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: 
+    :alt:
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
@@ -411,4 +412,3 @@ Last Update / Ultimo aggiornamento: 2022-06-21
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-21 10:35+0000\n"
-"PO-Revision-Date: 2022-06-21 10:35+0000\n"
+"POT-Creation-Date: 2022-06-21 12:18+0000\n"
+"PO-Revision-Date: 2022-06-21 12:18+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -168,7 +168,7 @@ msgstr "Guida"
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_id
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_id
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_assosoftware_id
-#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_id
+#: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_kind_id
 msgid "ID"
 msgstr "ID"
 
@@ -241,13 +241,13 @@ msgid "Natura IVA"
 msgstr "Natura IVA"
 
 #. module: l10n_it_ade
-#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_nature_id
+#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_kind_id
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_assosoftware_nature
 msgid "Nature"
 msgstr "Natura IVA"
 
 #. module: l10n_it_ade
-#: model:ir.model.fields,help:l10n_it_ade.field_account_tax_nature_id
+#: model:ir.model.fields,help:l10n_it_ade.field_account_tax_kind_id
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_tax_assosoftware_nature
 msgid "Nature of tax code: may be taxable, out of scope, etc ..."
 msgstr "Nature of tax code: may be taxable, out of scope, etc ..."
@@ -338,5 +338,3 @@ msgstr "Fattura fornitore"
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_in_refund
 msgid "Vendor Credit Note"
 msgstr "Nota credito fornitore"
-
-

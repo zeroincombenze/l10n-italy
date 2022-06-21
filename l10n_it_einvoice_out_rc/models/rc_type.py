@@ -8,4 +8,6 @@ class AccountRCType(models.Model):
     fiscal_document_type_id = fields.Many2one(
         "italy.ade.invoice.type",
         string="Fiscal Document Type",
-        help="To be used when sending self invoices to the exchange system")
+        oldname="invoice_type_id",
+        help="To be used when sending self invoices to the exchange system"
+    )
