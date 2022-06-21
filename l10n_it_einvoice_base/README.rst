@@ -1,6 +1,6 @@
 
 =======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.16
+|icon| EInvoice + FatturaPA 10.0.2.1.18
 =======================================
 
 
@@ -337,6 +337,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.18 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+
+10.0.2.1.17 (2022-06-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor internal improvements / Migliorie interne minori
+
 10.0.2.1.16 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -411,7 +421,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-09
+Last Update / Ultimo aggiornamento: 2022-06-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

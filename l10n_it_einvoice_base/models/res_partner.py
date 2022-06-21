@@ -17,6 +17,10 @@ class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
     regime_fiscale = fields.Many2one("fatturapa.fiscal_position", string="Tax Regime")
+    fiscal_document_type_id = fields.Many2one(
+        'fiscal.document.type',
+        string="Fiscal Document Type",
+        help="To be used when sending self invoices to the exchange system")
 
 
 class ResPartner(models.Model):

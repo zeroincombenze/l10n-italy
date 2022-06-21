@@ -349,7 +349,7 @@ class AccountInvoice(models.Model):
         [("CC", "Assignee / Partner"), ("TZ", "Third Person")], "Sender"
     )
     # 2.1.1.1 doc_type
-    invoice_type_id = fields.Many2one(
+    fiscal_document_type_id = fields.Many2one(
         "italy.ade.invoice.type", string="Fiscal Document Type", copy=False
     )
     #  2.1.1.5
@@ -529,9 +529,9 @@ class AccountInvoice(models.Model):
         else:
             ids = self.einvoice_type_selection(self.type, "IT", self.amount_total)
         if not ids:
-            self.invoice_type_id = False
-        elif not self.invoice_type_id or self.invoice_type_id not in ids:
-            self.invoice_type_id = ids[0]
+            self.fiscal_document_type_id = False
+        elif not self.fiscal_document_type_id or self.fiscal_document_type_id not in ids:
+            self.fiscal_document_type_id = ids[0]
 
     @api.multi
     @api.depends("partner_id", "type", "amount_total")
@@ -547,7 +547,7 @@ class AccountInvoice(models.Model):
             res.get("type"), "IT", res.get("amount_total")
         )
         if len(ids) == 1:
-            res.update({"invoice_type_id": ids[0]})
+            res.update({"fiscal_document_type_id": ids[0]})
         return res
 
     @api.model
@@ -561,5 +561,5 @@ class AccountInvoice(models.Model):
             description=description,
             journal_id=journal_id,
         )
-        res["invoice_type_id"] = False
+        res["fiscal_document_type_id"] = False
         return res

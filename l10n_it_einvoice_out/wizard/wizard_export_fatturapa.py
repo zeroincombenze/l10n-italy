@@ -738,8 +738,8 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setTipoDocumento(self, invoice):
-        if invoice.invoice_type_id:
-            TipoDocumento = invoice.invoice_type_id.code
+        if invoice.fiscal_document_type_id:
+            TipoDocumento = invoice.fiscal_document_type_id.code
         elif invoice.type == "out_refund":
             TipoDocumento = "TD04"
         else:

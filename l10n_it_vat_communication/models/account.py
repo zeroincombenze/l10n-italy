@@ -892,7 +892,7 @@ class CommitmentLine(models.AbstractModel):
             )
 
         if address.street:
-            res["xml_Indirizzo"] = address.street.replace(u"'", "").replace(u"’", "")
+            res["xml_Indirizzo"] = address.street.replace(u"'", u"").replace(u"’", "")
         else:
             res["xml_Error1"] += self._get_error(
                 _("003XA - " "Partner %s without street on address") % partner.name,
@@ -956,8 +956,8 @@ class CommitmentLine(models.AbstractModel):
         country_code = self.env["account.vat.communication"].get_country_code(
             invoice.partner_id
         )
-        if invoice.invoice_type_id:
-            return invoice.invoice_type_id.code
+        if invoice.fiscal_document_type_id:
+            return invoice.fiscal_document_type_id.code
         elif (
             doctype == "out_invoice"
             and not invoice.partner_id.vat
