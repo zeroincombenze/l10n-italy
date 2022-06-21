@@ -10,9 +10,9 @@
     "development_status": "Beta",
     "license": "AGPL-3",
     "depends": [
-        "",
-        "",
-        "",
+        "l10n_it_einvoice_out",
+        "l10n_it_einvoice_in",
+        "l10n_it_reverse_charge",
     ],
     "data": ['views/rc_type_views.xml'],
     "installable": True,
