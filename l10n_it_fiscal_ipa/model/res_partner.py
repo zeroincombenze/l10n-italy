@@ -25,10 +25,17 @@ class ResPartner(models.Model):
         "hanno accreditato un canale; qualora il destinatario non abbia "
         "accreditato un canale presso Sdi e riceva via PEC le fatture, "
         "l'elemento deve essere valorizzato con'%s'. " % STANDARD_ADDRESSEE_CODE,
-        default="0000000",
+        default=STANDARD_ADDRESSEE_CODE,
     )
     electronic_invoice_subjected = fields.Boolean("Subjected to electronic invoice")
-    eori_code = fields.Char("EORI Code", size=20)
+    eori_code = fields.Char(
+        "EORI Code",
+        size=20,
+        help="Tag 1.4.1.3.5 <CodEORI>\n"
+             "Numero Codice EORI (Economic Operator Registration and Identification)"
+             " in base al Regolamento (CE) n. 312 del 16 aprile 2009."
+             " In vigore dal 1 luglio 2009"
+    )
     license_number = fields.Char("License Code", size=20)
     # FatturaPA 1.1.6
     pec_destinatario = fields.Char(

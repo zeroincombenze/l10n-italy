@@ -307,7 +307,10 @@ class AccountInvoiceLine(models.Model):
         "Discount or Supplement Details",
         copy=False,
     )
-    ftpa_line_number = fields.Integer("Line Number", readonly=True, copy=False)
+    ftpa_line_number = fields.Integer(
+        "Line Number", readonly=True, copy=False,
+        help="Tag 2.2.1.1 <NumeroLinea>"
+    )
 
 
 class FaturapaSummaryData(models.Model):
@@ -347,14 +350,21 @@ class AccountInvoice(models.Model):
     intermediary = fields.Many2one("res.partner", string="Intermediary")
     #  1.6
     sender = fields.Selection(
-        [("CC", "Assignee / Partner"), ("TZ", "Third Person")], "Sender"
+        [("CC", "Assignee / Partner"), ("TZ", "Third Person")],
+        "Sender",
+        help="Tag 2.1.1.1 <TipoDocumento>\n"
+             "Tipologia di documento come da tabella ministeriale"
     )
     # 2.1.1.1 doc_type
     fiscal_document_type_id = fields.Many2one(
         "italy.ade.invoice.type",
         string="Fiscal Document Type",
         oldname="invoice_type_id",
-        copy=False
+        copy=False,
+        help="Tag 1.6 <SoggettoEmittente>\n"
+             "Da valorizzare in tutti i casi in cui la fattura è emessa da un soggetto diverso dal cedente/prestatore;"
+             " indica se la fattura è emessa dal cessionario/committente oppure"
+             " da un terzo per conto del cedente/prestatore"
     )
     #  2.1.1.5
     #  2.1.1.5.1
@@ -368,15 +378,34 @@ class AccountInvoice(models.Model):
             ("RT06", "Other"),
         ],
         "Withholding Type",
+        help="Tag 2.1.1.5.1 <TipoRitenuta>\n"
+             "Valore da tabella ministeriale"
     )
     #  2.1.1.5.2 withholding_amount in module
     #  2.1.1.5.3
-    ftpa_withholding_rate = fields.Float("Withholding rate")
+    ftpa_withholding_rate = fields.Float(
+        "Withholding rate",
+        help="Tag 2.1.1.5.3 <AliquotaRitenuta>\n"
+             "Aliquota ritenuta d'acconto"
+    )
     #  2.1.1.5.4
-    ftpa_withholding_payment_reason = fields.Char("Withholding reason", size=2)
+    ftpa_withholding_payment_reason = fields.Char(
+        "Withholding reason",
+        size=2,
+        help="Tag 2.1.1.5.4 <CausalePagamento>\n"
+             "Valore da tabella ministeriale"
+    )
     #  2.1.1.6
-    virtual_stamp = fields.Boolean("Virtual Stamp", default=False, copy=False)
-    stamp_amount = fields.Float("Stamp Amount", copy=False)
+    virtual_stamp = fields.Boolean(
+        "Virtual Stamp", default=False, copy=False,
+        help="Tag 2.1.1.6.1 <BolloVirtuale>\n"
+             "Bollo assolto ai sensi del decreto MEF 17 giugno 2014 (art. 6)"
+    )
+    stamp_amount = fields.Float(
+        "Stamp Amount", copy=False,
+        help="Tag 2.1.1.6.2 <ImportoBollo>\n"
+             "Importo del bollo"
+    )
     #  2.1.1.7
     welfare_fund_ids = fields.One2many(
         "welfare.fund.data.line", "invoice_id", "Welfare Fund", copy=False
@@ -397,9 +426,18 @@ class AccountInvoice(models.Model):
         "fatturapa.related_ddt", "invoice_id", "Related DdT", copy=False
     )
     #  2.1.9
-    carrier_id = fields.Many2one("res.partner", string="Carrier", copy=False)
-    transport_vehicle = fields.Char("Vehicle", size=80, copy=False)
-    transport_reason = fields.Char("Reason", size=80, copy=False)
+    carrier_id = fields.Many2one(
+        "res.partner", string="Carrier", copy=False,
+        help="Tag 2.1.9.1.3 <Anagrafica>"
+    )
+    transport_vehicle = fields.Char(
+        "Vehicle", size=80, copy=False,
+        help="Tag 2.1.9.2 <MezzoTrasporto>"
+    )
+    transport_reason = fields.Char(
+        "Reason", size=80, copy=False,
+        help="Tag 2.1.9.3 <CausaleTrasporto>"
+    )
     number_items = fields.Integer("Number of Items", copy=False)
     description = fields.Char("Description", size=100, copy=False)
     unit_weight = fields.Char("Weight Unit", size=10, copy=False)
