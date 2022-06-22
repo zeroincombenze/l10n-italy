@@ -6,7 +6,7 @@
 #
 {
     "name": "Italian Localization - Fattura elettronica - Import",
-    "version": "110.0.1.3.29",
+    "version": "110.0.1.3.30",
     "category": "Localization/Italy",
     "summary": "Import fatture elettroniche clienti",
     "author": "Odoo Community Association (OCA)",

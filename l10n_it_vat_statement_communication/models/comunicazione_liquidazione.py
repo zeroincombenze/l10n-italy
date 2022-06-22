@@ -619,14 +619,14 @@ class ComunicazioneLiquidazioneVp(models.Model):
         credit_lines = self.env["statement.credit.account.line"]
         for debit_line in liq.debit_vat_account_line_ids:
             if debit_line.tax_id.vsc_exclude_operation or (
-                debit_line.tax_id.nature_id and debit_line.tax_id.nature_id.code == "N1"
+                debit_line.tax_id.kind_id and debit_line.tax_id.kind_id.code == "N1"
             ):
                 continue
             debit_lines |= debit_line
         for credit_line in liq.credit_vat_account_line_ids:
             if credit_line.tax_id.vsc_exclude_operation or (
-                credit_line.tax_id.nature_id
-                and credit_line.tax_id.nature_id.code == "N1"
+                credit_line.tax_id.kind_id
+                and credit_line.tax_id.kind_id.code == "N1"
             ):
                 continue
             credit_lines |= credit_line

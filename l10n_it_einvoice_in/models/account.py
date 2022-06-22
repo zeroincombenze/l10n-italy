@@ -93,7 +93,7 @@ class AccountInvoice(models.Model):
                 comment += item + "\n"
         #
         invoice_data = {
-            "invoice_type_id": docType_id,
+            "fiscal_document_type_id": docType_id,
             "date_invoice": FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
                 "%Y-%m-%d"
             ),
@@ -105,8 +105,7 @@ class AccountInvoice(models.Model):
             "payment_term_id": partner.property_supplier_payment_term_id.id,
             "company_id": company.id,
             "comment": comment,
-            "check_total":
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento,
+            "check_total": FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento,
         }
         # 2.1.1.10
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:

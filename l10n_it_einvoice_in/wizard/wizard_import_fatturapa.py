@@ -185,17 +185,17 @@ class WizardImportFatturapa(models.TransientModel):
                 # Code 2020
                 nature_ids = nature_model.search([("code", "like", Natura)])
                 if nature_ids:
-                    domain.append(("nature_id", "in", [x.id for x in nature_ids]))
+                    domain.append(("kind_id", "in", [x.id for x in nature_ids]))
                 # else:
-                #     domain.append(('nature_id', '=', -1))
+                #     domain.append(('kind_id', '=', -1))
             else:
-                nature_id = nature_model.search([("code", "=", Natura)])
-                if nature_id:
-                    domain.append(("nature_id", "=", nature_id.id))
+                kind_id = nature_model.search([("code", "=", Natura)])
+                if kind_id:
+                    domain.append(("kind_id", "=", kind_id.id))
                 # else:
-                #     domain.append(('nature_id', '=', -1))
+                #     domain.append(('kind_id', '=', -1))
         # elif AliquotaIVA_fp != 0.0:
-        #     domain.append(('nature_id', '=', False))
+        #     domain.append(('kind_id', '=', False))
         account_taxes = account_tax_model.search(domain, order="sequence")
         if not account_taxes:
             raise UserError(
@@ -418,7 +418,7 @@ class WizardImportFatturapa(models.TransientModel):
         AliquotaIVA = line.AliquotaIVA and (float(line.AliquotaIVA) / 100) or None
         Ritenuta = line.Ritenuta or ""
         Natura = line.Natura or False
-        tax_nature_id = self.get_natura(Natura)
+        tax_kind_id = self.get_natura(Natura)
         RiferimentoAmministrazione = line.RiferimentoAmministrazione or ""
         WelfareTypeModel = self.env["welfare.fund.type"]
         if not TipoCassa:
@@ -431,7 +431,7 @@ class WizardImportFatturapa(models.TransientModel):
             "welfare_taxable": ImponibileCassa,
             "welfare_Iva_tax": AliquotaIVA,
             "subjected_withholding": Ritenuta,
-            "tax_nature_id": tax_nature_id,
+            "tax_kind_id": tax_kind_id,
             "pa_line_code": RiferimentoAmministrazione,
             "invoice_id": invoice_id,
         }

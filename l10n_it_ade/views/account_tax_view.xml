@@ -9,10 +9,10 @@
             <notebook position="inside">
                 <page string="Italy AdE">
                     <group>
-                        <field name="nature_id" options="{'no_create': True}" />
+                        <field name="kind_id" options="{'no_create': True}" />
                         <field
                             name="law_reference"
-                            attrs="{'required': [('nature_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('nature_id', '=', False),('type_tax_use', '=', 'purchase')]}"
+                            attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"
                         />
                         <field name="payability" />
                         <field name="assosoftware_id" options="{'no_create': True}" />

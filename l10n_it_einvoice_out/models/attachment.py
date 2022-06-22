@@ -44,7 +44,6 @@ class FatturaPAAttachment(models.Model):
         "Invoice Number", compute="_compute_xml_data", store=True
     )
 
-
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
 
@@ -111,7 +110,8 @@ class FatturaPAAttachment(models.Model):
         for attachment_out in self:
             for invoice in attachment_out.out_invoice_ids:
                 invoice.fatturapa_doc_attachments.filtered(
-                    'is_pdf_invoice_print').unlink()
+                    "is_pdf_invoice_print"
+                ).unlink()
         return super(FatturaPAAttachment, self).unlink()
 
 

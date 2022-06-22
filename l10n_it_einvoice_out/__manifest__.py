@@ -3,13 +3,13 @@
 # Copyright 2014    - Davide Corio
 # Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
     "name": "Italian Localization - FatturaPA - Emission",
-    "version": "10.0.1.0.21",
+    "version": "10.0.1.0.22",
     "category": "Localization/Italy",
     "summary": "E-Invoice emission",
     "author": "Odoo Community Association (OCA) and other subjects",

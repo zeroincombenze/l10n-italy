@@ -694,7 +694,7 @@ class StockPickingPackagePreparation(models.Model):
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
                 "volume": self.volume,
-                "invoice_type_id": self.env.ref("l10n_it_ade.fatturapa_TD24").id,
+                "fiscal_document_type_id": self.env.ref("l10n_it_ade.fatturapa_TD24").id,
             }
         )
         return invoice_vals

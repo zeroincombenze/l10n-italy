@@ -2,24 +2,30 @@
 #
 # Copyright 2014    - Davide Corio
 # Copyright 2015-16 - Lorenzo Battistini - Agile Business Group
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
+# Copyright 2018 Simone Rubino - Agile Business Group
+# Copyright 2018 Sergio Corato
+# Copyright 2019 Alex Comba - Agile Business Group
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 import base64
+import itertools
 import logging
 import re
 
 from python_plus import _u
 
 from odoo import api, fields, models
-from odoo.exceptions import UserError
 from odoo.tools.translate import _
+from odoo.exceptions import UserError
+from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+from odoo.tools.float_utils import float_round
 
 from odoo.addons.l10n_it_ade.bindings import fatturapa_v_1_2
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     AllegatiType,
+    AltriDatiGestionaliType,
     AnagraficaType,
     CedentePrestatoreType,
     CessionarioCommittenteType,
@@ -103,6 +109,7 @@ class WizardExportFatturapa(models.TransientModel):
     )
 
     def saveAttachment(self, fatturapa, number):
+        attach_model = self.env["fatturapa.attachment.out"]
         if "company_id" in self.env.context:
             company_model = self.env["res.company"]
             company = company_model.browse(self.env.context["company_id"])
@@ -121,35 +128,39 @@ class WizardExportFatturapa(models.TransientModel):
         if company.fatturapa_sender_partner:
             vat = company.fatturapa_sender_partner.vat
         vat = self.env["res.partner"].wep_vat(vat)
-        attach_model = self.env["fatturapa.attachment.out"]
         attach_vals = {
-            "name": "%s_%s.xml" % (vat, str(number)),
-            "datas_fname": "%s_%s.xml" % (vat, str(number)),
+            "name": "%s_%s.xml" % (vat, number),
+            "datas_fname": "%s_%s.xml" % (vat, number),
             "datas": base64.encodestring(fatturapa.toxml("UTF-8")),
         }
         return attach_model.create(attach_vals)
 
-    def setProgressivoInvio(self, fatturapa):
-        if "company_id" in self.env.context:
-            company_model = self.env["res.company"]
-            company = company_model.browse(self.env.context["company_id"])
+    def setProgressivoInvio(self, fatturapa, attach=False):
+        # if the attachment is given than we will reuse its file_id
+        if attach:
+            # Xml file name uses the format VAT_XXXXX.xml and we are interested
+            # to get XXXXX
+            file_id = attach.name.split("_")[1].split(".")[0]
         else:
-            company = self.env.user.company_id
-
-        fatturapa_sequence = company.fatturapa_sequence_id
-        if not fatturapa_sequence:
-            raise UserError(_("E-invoice sequence not configured."))
-        number = fatturapa_sequence.next_by_id()
+            if "company_id" in self.env.context:
+                company_model = self.env["res.company"]
+                company = company_model.browse(self.env.context["company_id"])
+            else:
+                company = self.env.user.company_id
+            fatturapa_sequence = company.fatturapa_sequence_id
+            if not fatturapa_sequence:
+                raise UserError(_("E-invoice sequence not configured."))
+            file_id = fatturapa_sequence.next_by_id()
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.ProgressivoInvio = (
-                number
+                file_id
             )
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             msg = _(
                 "FatturaElettronicaHeader.DatiTrasmissione." "ProgressivoInvio:\n%s"
             ) % _u(e)
             raise UserError(msg)
-        return number
+        return file_id
 
     def _wep_phone_number(self, phone):
         """ "Remove trailing +39 and all no numeric chars"""
@@ -164,7 +175,7 @@ class WizardExportFatturapa(models.TransientModel):
                     wep_phone += phone[i]
         return wep_phone.strip()
 
-    def _get_partner_field(self, partner, parent, field, mode=None):
+    def _get_partner_field(self, partner, field, mode=None):
         """Select field from <invoice address> or <parent>
         Order refers to a <customer> and an <invoice address>.
         <invoice address> should be child of <customer>, when they differ.
@@ -184,29 +195,29 @@ class WizardExportFatturapa(models.TransientModel):
         some fields are not inherited from <parent>
         """
         mode = mode or "fallback"
-        inherit = False
-        if field in INHERITED_FLDS or mode == "fallback":
-            inherit = True
+        inherit = True if field in INHERITED_FLDS or mode == "fallback" else False
         value = False
+        parent = partner.commercial_partner_id
         if field == "company_type":
             if partner.name:
-                value = partner[field] or (parent and parent[field])
+                value = partner[field] or parent[field]
             else:
-                value = (parent and parent[field]) or "company"
+                value = (parent != partner and parent[field]) or "company"
         elif mode == "parent":
-            value = parent and parent[field] or False
+            value = (parent != partner and field in parent and parent[field]) or False
         elif field in partner:
             if inherit:
-                value = partner[field] or (parent and parent[field])
+                value = partner[field] or parent[field]
             else:
                 value = partner[field]
-        if field == "name":
-            return partner.wep_text(value)
+        # if field == "name":
+        #     return partner.wep_text(value)
         return value
 
     def _setIdTrasmittente(self, company, fatturapa):
+
         if not company.country_id:
-            raise UserError(_("Company Country not set."))
+            raise UserError(_("Company %s, Country not set.") % company.display_name)
         IdPaese = company.country_id.code
 
         IdCodice = company.partner_id.fiscalcode
@@ -214,7 +225,10 @@ class WizardExportFatturapa(models.TransientModel):
             if company.vat:
                 IdCodice = company.vat[2:]
         if not IdCodice:
-            raise UserError(_("Company does not have fiscal code or VAT number."))
+            raise UserError(
+                _("Company %s does not have fiscal code or VAT number.")
+                % company.display_name
+            )
 
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.IdTrasmittente = (
             IdFiscaleType(IdPaese=IdPaese, IdCodice=IdCodice)
@@ -222,36 +236,39 @@ class WizardExportFatturapa(models.TransientModel):
 
         return True
 
-    def _getFormatoTrasmissione(self, partner, parent):
-        if self._get_partner_field(partner, parent, "is_pa"):
-            return "FPA12"
+    def _getFormatoTrasmissione(self, partner):
+        if partner.commercial_partner_id.is_pa:
+            formato = "FPA12"
         else:
-            return "FPR12"
+            formato = "FPR12"
+        return formato
 
-    def _setFormatoTrasmissione(self, partner, parent, fatturapa):
+    def _setFormatoTrasmissione(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.FormatoTrasmissione = (
-            self._getFormatoTrasmissione(partner, parent)
+            self._getFormatoTrasmissione(partner)
         )
         return True
 
-    def _setCodiceDestinatario(self, partner, parent, fatturapa):
+    def _setCodiceDestinatario(self, partner, fatturapa):
         pec_destinatario = None
-        if self._get_partner_field(partner, parent, "is_pa"):
-            code = self._get_partner_field(partner, parent, "ipa_code")
+        if partner.commercial_partner_id.is_pa:
+            code = self._get_partner_field(partner, "ipa_code")
             if not code:
                 raise UserError(
-                    _("Partner %s is PA but has not IPA code") % partner.name
+                    _("Partner %s is PA but does not have IPA code.") % partner.name
                 )
         else:
-            code = self._get_partner_field(partner, parent, "codice_destinatario")
+            code = self._get_partner_field(partner, "codice_destinatario")
             if not code:
                 raise UserError(
                     _("Partner %s is not PA but does not have Addressee Code.")
                     % partner.name
                 )
-            vat = self._get_partner_field(partner, parent, "vat")
+            if code == CODE_NONE_IT:
+                pec_destinatario = self._get_partner_field(partner, "pec_destinatario")
+            vat = self._get_partner_field(partner, "vat")
             fiscalcode = partner.wep_fiscalcode(
-                self._get_partner_field(partner, parent, "fiscalcode")
+                self._get_partner_field(partner, "fiscalcode")
             )
             if code not in (CODE_NONE_IT, CODE_NONE_EU) and not vat and not fiscalcode:
                 raise UserError(
@@ -264,18 +281,14 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.CodiceDestinatario = (
             code.upper()
         )
-        if code == CODE_NONE_IT:
-            pec_destinatario = self._get_partner_field(
-                partner, parent, "pec_destinatario"
-            )
         if pec_destinatario:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.PECDestinatario = (
                 pec_destinatario
             )
+
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
-
         if not company.phone:
             raise UserError(_("Company Telephone number not set."))
         Telefono = self._wep_phone_number(company.phone)
@@ -285,13 +298,14 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.ContattiTrasmittente = (
             ContattiTrasmittenteType(Telefono=Telefono, Email=Email)
         )
+
         return True
 
-    def setDatiTrasmissione(self, company, partner, parent, fatturapa):
+    def setDatiTrasmissione(self, company, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = DatiTrasmissioneType()
         self._setIdTrasmittente(company, fatturapa)
-        self._setFormatoTrasmissione(partner, parent, fatturapa)
-        self._setCodiceDestinatario(partner, parent, fatturapa)
+        self._setFormatoTrasmissione(partner, fatturapa)
+        self._setCodiceDestinatario(partner, fatturapa)
         self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
@@ -305,7 +319,7 @@ class WizardExportFatturapa(models.TransientModel):
         # CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
         #     IdPaese=company.country_id.code, IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-            IdPaese=company.vat[0:2], IdCodice=company.vat[2:]
+            IdPaese=company.country_id.code, IdCodice=company.vat[2:]
         )
         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
             Denominazione=company.name
@@ -328,6 +342,7 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setSedeCedente(self, CedentePrestatore, company):
+
         for (item, name) in (
             ("country_id", "nazione"),
             ("street", "indirizzo"),
@@ -344,12 +359,13 @@ class WizardExportFatturapa(models.TransientModel):
         # TODO: manage address number in <NumeroCivico>
         # see https://github.com/OCA/partner-contact/pull/96
         CedentePrestatore.Sede = IndirizzoType(
-            Indirizzo=company.street,
+            Indirizzo=encode_for_export(company.street, 60),
             CAP=company.zip,
-            Comune=company.city[:60],
+            Comune=encode_for_export(company.city, 60),
             Provincia=company.partner_id.state_id.code,
             Nazione=company.country_id.code,
         )
+
         return True
 
     def _setStabileOrganizzazione(self, CedentePrestatore, company):
@@ -409,8 +425,8 @@ class WizardExportFatturapa(models.TransientModel):
             Email=company.partner_id.email or None,
         )
 
-    def _setPubAdministrationRef(self, CedentePrestatore, company, partner, parent):
-        pa_partner_code = self._get_partner_field(partner, parent, "pa_partner_code")
+    def _setPubAdministrationRef(self, CedentePrestatore, company, partner):
+        pa_partner_code = self._get_partner_field(partner, "pa_partner_code")
         if pa_partner_code:
             CedentePrestatore.RiferimentoAmministrazione = pa_partner_code
         elif company.fatturapa_pub_administration_ref:
@@ -418,7 +434,7 @@ class WizardExportFatturapa(models.TransientModel):
                 company.fatturapa_pub_administration_ref
             )
 
-    def setCedentePrestatore(self, company, fatturapa, partner, parent):
+    def setCedentePrestatore(self, company, fatturapa, partner):
         fatturapa.FatturaElettronicaHeader.CedentePrestatore = CedentePrestatoreType()
         self._setDatiAnagraficiCedente(
             fatturapa.FatturaElettronicaHeader.CedentePrestatore, company
@@ -439,28 +455,37 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CedentePrestatore,
             company,
             partner,
-            parent,
         )
 
-    def _setDatiAnagraficiCessionario(self, company, partner, parent, fatturapa):
+    def _setDatiAnagraficiCessionario(self, partner, fatturapa):
         mode = partner.type_inv_addr
         mode = mode if mode not in ("SO", "FR") else "parent"
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici = (
             DatiAnagraficiCessionarioType()
         )
-        vat = self._get_partner_field(partner, parent, "vat", mode=mode)
-        is_pa = self._get_partner_field(partner, parent, "is_pa", mode=mode)
+        vat = self._get_partner_field(partner, "vat", mode=mode)
+        is_pa = self._get_partner_field(partner, "is_pa", mode=mode)
         fiscalcode = partner.wep_fiscalcode(
-            self._get_partner_field(partner, parent, "fiscalcode", mode=mode)
+            self._get_partner_field(partner, "fiscalcode", mode=mode)
         )
         codice_destinatario = self._get_partner_field(
-            partner, parent, "codice_destinatario", mode=mode
+            partner, "codice_destinatario", mode=mode
         )
-        PART_DATA = {
-            "iso": partner.country_id.code,
-            "9x11": "99999999999",
-        }
-        if vat and is_pa:
+        if not vat and not fiscalcode:
+            if (
+                codice_destinatario == CODE_NONE_EU
+                and partner.country_id.code
+                and partner.country_id.code != "IT"
+            ):
+                # SDI accepts missing VAT# for foreign customers by setting a
+                # fake IdCodice and a valid IdPaese
+                # Otherwise raise error if we have no VAT# and no Fiscal code
+                vat = "%s99999999999" % partner.country_id.code
+            else:
+                raise UserError(
+                    _("VAT number and fiscal code are not set for %s.") % partner.name
+                )
+        elif vat and is_pa:
             if not fiscalcode:
                 fiscalcode = vat[2:]
                 vat = ""
@@ -472,53 +497,38 @@ class WizardExportFatturapa(models.TransientModel):
                 vat = ""
             elif fiscalcode == vat[2:]:
                 vat = ""
-        elif company.einvoice_no_eq_cf_pi and vat and fiscalcode == vat[2:]:
-            fiscalcode = ""
+        # elif company.einvoice_no_eq_cf_pi and vat and fiscalcode == vat[2:]:
+        #     fiscalcode = ""
 
+        FatturaCessionarioCommittente = (
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente
+        )
+        if fiscalcode:
+            (FatturaCessionarioCommittente.DatiAnagrafici.CodiceFiscale) = fiscalcode
         if vat:
             country_code, vat_number = partner.split_vat_n_country(vat)
             if country_code and vat_number:
-                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=country_code, IdCodice=vat_number
-                )
-        elif codice_destinatario == CODE_NONE_EU and company.einvoice_xeu_vat_none:
-            vat = company.einvoice_xeu_vat_none % PART_DATA
-            country_code, vat_number = partner.split_vat_n_country(vat)
-            if country_code and vat_number:
-                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=country_code, IdCodice=vat_number
-                )
-        if fiscalcode:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.CodiceFiscale = (
-                fiscalcode
-            )
-        elif codice_destinatario == CODE_NONE_EU and company.einvoice_xeu_fc_none:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.CodiceFiscale = (
-                company.einvoice_xeu_fc_none % PART_DATA
-            )
+                (
+                    FatturaCessionarioCommittente.DatiAnagrafici.IdFiscaleIVA
+                ) = IdFiscaleType(IdPaese=country_code, IdCodice=vat_number)
 
-        company_type = self._get_partner_field(
-            partner, parent, "company_type", mode=mode
-        )
+        company_type = self._get_partner_field(partner, "company_type", mode=mode)
         if company_type == "company":
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=self._get_partner_field(
-                    partner, parent, "name", mode=mode
-                )
+            (FatturaCessionarioCommittente.DatiAnagrafici.Anagrafica) = AnagraficaType(
+                Denominazione=self._get_partner_field(partner, "name", mode=mode)
             )
         elif company_type == "person":
             if not partner.lastname or not partner.firstname:
                 raise UserError(
                     _("Partner %s must have name and surname.") % partner.name
                 )
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.Anagrafica = AnagraficaType(
+            FatturaCessionarioCommittente.DatiAnagrafici.Anagrafica = AnagraficaType(
                 Cognome=partner.lastname, Nome=partner.firstname
             )
-        eori_code = self._get_partner_field(partner, parent, "eori_code", mode=mode)
+
+        eori_code = self._get_partner_field(partner, "eori_code", mode=mode)
         if eori_code:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.Anagrafica.CodEORI = (
-                eori_code
-            )
+            FatturaCessionarioCommittente.DatiAnagrafici.Anagrafica.CodEORI = eori_code
 
         return True
 
@@ -533,19 +543,22 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _("VAT number and fiscal code are not set for %s.") % partner.name
             )
+        FatturaRappresentanteFiscale = (
+            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale
+        )
         if partner.fiscalcode:
-            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.DatiAnagrafici.CodiceFiscale = (
+            FatturaRappresentanteFiscale.DatiAnagrafici.CodiceFiscale = (
                 partner.fiscalcode
             )
         if partner.vat:
-            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+            FatturaRappresentanteFiscale.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                 IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:]
             )
-        fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.DatiAnagrafici.Anagrafica = AnagraficaType(
+        FatturaRappresentanteFiscale.DatiAnagrafici.Anagrafica = AnagraficaType(
             Denominazione=partner.name
         )
         if partner.eori_code:
-            fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.DatiAnagrafici.Anagrafica.CodEORI = (
+            FatturaRappresentanteFiscale.DatiAnagrafici.Anagrafica.CodEORI = (
                 partner.eori_code
             )
 
@@ -555,47 +568,48 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente = (
             TerzoIntermediarioSoggettoEmittenteType()
         )
-        fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente.DatiAnagrafici = (
+        FatturaTerzoIntermediario = (
+            fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente
+        )
+        FatturaTerzoIntermediario.DatiAnagrafici = (
             DatiAnagraficiTerzoIntermediarioType()
         )
         if not partner.vat and not partner.fiscalcode:
             raise UserError(_("Partner VAT number and fiscal code are not set."))
         if partner.fiscalcode:
-            fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente.DatiAnagrafici.CodiceFiscale = (
-                partner.fiscalcode
-            )
+            FatturaTerzoIntermediario.DatiAnagrafici.CodiceFiscale = partner.fiscalcode
         if partner.vat:
-            fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+            FatturaTerzoIntermediario.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                 IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:]
             )
-        fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente.DatiAnagrafici.Anagrafica = AnagraficaType(
+        FatturaTerzoIntermediario.DatiAnagrafici.Anagrafica = AnagraficaType(
             Denominazione=partner.name
         )
         if partner.eori_code:
-            fatturapa.FatturaElettronicaHeader.TerzoIntermediarioOSoggettoEmittente.DatiAnagrafici.Anagrafica.CodEORI = (
+            FatturaTerzoIntermediario.DatiAnagrafici.Anagrafica.CodEORI = (
                 partner.eori_code
             )
         fatturapa.FatturaElettronicaHeader.SoggettoEmittente = "TZ"
         return True
 
-    def _setSedeCessionario(self, partner, parent, fatturapa):
+    def _setSedeCessionario(self, partner, fatturapa):
 
         mode = partner.type_inv_addr
         mode = mode if mode not in ("SO", "FR") else "parent"
-        country_id = self._get_partner_field(partner, parent, "country_id", mode=mode)
+        country_id = self._get_partner_field(partner, "country_id", mode=mode)
         if not country_id:
             raise UserError(_("Customer country is not set."))
-        street = self._get_partner_field(partner, parent, "street", mode=mode)
-        zip = self._get_partner_field(partner, parent, "zip", mode=mode)
-        city = self._get_partner_field(partner, parent, "city", mode=mode)
-        state_id = self._get_partner_field(partner, parent, "state_id", mode=mode)
+        street = self._get_partner_field(partner, "street", mode=mode)
+        zip = self._get_partner_field(partner, "zip", mode=mode)
+        city = self._get_partner_field(partner, "city", mode=mode)
+        state_id = self._get_partner_field(partner, "state_id", mode=mode)
         if not street:
             raise UserError(_("Customer street is not set."))
         if mode == "parent":
             codice_destinatario = CODE_NONE_EU
         else:
             codice_destinatario = self._get_partner_field(
-                partner, parent, "codice_destinatario", mode=mode
+                partner, "codice_destinatario", mode=mode
             )
         if codice_destinatario != CODE_NONE_EU and not zip:
             raise UserError(_("Customer ZIP is not set."))
@@ -614,9 +628,9 @@ class WizardExportFatturapa(models.TransientModel):
             province = "EE"
         # TODO: manage address number in <NumeroCivico>
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = IndirizzoType(
-            Indirizzo=street,
+            Indirizzo=encode_for_export(street, 60),
             CAP=zip,
-            Comune=city[:60],
+            Comune=encode_for_export(city, 60),
             Provincia=province,
             Nazione=country_id.code,
         )
@@ -624,14 +638,14 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setCessionarioStabileOrganizzazione(self, partner, parent, fatturapa):
         mode = "SO"
-        country_id = self._get_partner_field(partner, parent, "country_id", mode=mode)
+        country_id = self._get_partner_field(partner, "country_id", mode=mode)
         if not country_id:
             raise UserError(_("Customer Stabile Organization country is not set."))
         country_code = country_id.code
-        street = self._get_partner_field(partner, parent, "street", mode=mode)
-        zip = self._get_partner_field(partner, parent, "zip", mode=mode)
-        city = self._get_partner_field(partner, parent, "city", mode=mode)
-        state_id = self._get_partner_field(partner, parent, "state_id", mode=mode)
+        street = self._get_partner_field(partner, "street", mode=mode)
+        zip = self._get_partner_field(partner, "zip", mode=mode)
+        city = self._get_partner_field(partner, "city", mode=mode)
+        state_id = self._get_partner_field(partner, "state_id", mode=mode)
         if not street:
             raise UserError(_("Customer Stabile Organization street is not set."))
         if not zip:
@@ -643,7 +657,8 @@ class WizardExportFatturapa(models.TransientModel):
 
         zip = zip
         province = state_id.code
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.StabileOrganizzazione = IndirizzoType(
+        Fattura = fatturapa.FatturaElettronicaHeader
+        Fattura.CessionarioCommittente.StabileOrganizzazione = IndirizzoType(
             Indirizzo=street,
             CAP=zip,
             Comune=city,
@@ -654,25 +669,23 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setCessionarioRappresentanteFiscale(self, partner, parent, fatturapa):
         mode = "FR"
-        company_type = self._get_partner_field(
-            partner, parent, "company_type", mode=mode
-        )
+        company_type = self._get_partner_field(partner, "company_type", mode=mode)
         if company_type == "company":
-            name = self._get_partner_field(partner, parent, "name", mode=mode)
+            name = self._get_partner_field(partner, "name", mode=mode)
             if not name:
                 raise UserError(_("Customer Fiscal Representative name is not set."))
         elif company_type == "person":
-            lastname = self._get_partner_field(partner, parent, "lastname", mode=mode)
-            firstname = self._get_partner_field(partner, parent, "firstname", mode=mode)
+            lastname = self._get_partner_field(partner, "lastname", mode=mode)
+            firstname = self._get_partner_field(partner, "firstname", mode=mode)
             if not lastname or not firstname:
                 raise UserError(
                     _("Customer Stabile Organization must have " "name and surname.")
                 )
-        country_id = self._get_partner_field(partner, parent, "country_id", mode=mode)
+        country_id = self._get_partner_field(partner, "country_id", mode=mode)
         if not country_id:
             raise UserError(_("Customer Stabile Organization country is not set."))
-        vat = self._get_partner_field(partner, parent, "vat", mode=mode)
-        # fiscalcode = self._get_partner_field(partner, parent, "fiscalcode", mode=mode)
+        vat = self._get_partner_field(partner, "vat", mode=mode)
+        # fiscalcode = self._get_partner_field(partner, "fiscalcode", mode=mode)
         if not vat:
             raise UserError(_("Customer Stabile Organization vat is not set."))
         country_code, vat_number = self._split_vat_n_country(vat)
@@ -683,20 +696,17 @@ class WizardExportFatturapa(models.TransientModel):
                     " is different from from address country."
                 )
             )
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.RappresentanteFiscale = (
-            RappresentanteFiscaleCessionarioType()
-        )
+        FatturaCommitente = fatturapa.FatturaElettronicaHeader.CessionarioCommittente
+        FatturaCommitente.RappresentanteFiscale = RappresentanteFiscaleCessionarioType()
         if company_type == "company":
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.RappresentanteFiscale.Denominazione = (
-                name
-            )
+            FatturaCommitente.RappresentanteFiscale.Denominazione = name
         else:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.RappresentanteFiscale(
+            FatturaCommitente.RappresentanteFiscale(
                 Nome=firstname,
                 Cognome=lastname,
             )
         if partner.vat:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.RappresentanteFiscale.IdFiscaleIVA = IdFiscaleType(
+            FatturaCommitente.RappresentanteFiscale.IdFiscaleIVA = IdFiscaleType(
                 IdPaese=country_code, IdCodice=vat_number
             )
         return True
@@ -708,17 +718,17 @@ class WizardExportFatturapa(models.TransientModel):
             )
         return True
 
-    def setCessionarioCommittente(self, company, partner, parent, fatturapa):
+    def setCessionarioCommittente(self, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
             CessionarioCommittenteType()
         )
-        self._setDatiAnagraficiCessionario(company, partner, parent, fatturapa)
-        self._setSedeCessionario(partner, parent, fatturapa)
+        self._setDatiAnagraficiCessionario(partner, fatturapa)
+        self._setSedeCessionario(partner, fatturapa)
         mode = partner.type_inv_addr
         if mode == "SO":
-            self._setCessionarioStabileOrganizzazione(partner, parent, fatturapa)
+            self._setCessionarioStabileOrganizzazione(partner, fatturapa)
         elif mode == "FR":
-            self._setCessionarioRappresentanteFiscale(partner, parent, fatturapa)
+            self._setCessionarioRappresentanteFiscale(partner, fatturapa)
 
     def setTerzoIntermediarioOSoggettoEmittente(self, company, fatturapa):
         if company.fatturapa_sender_partner:
@@ -728,8 +738,8 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setTipoDocumento(self, invoice):
-        if invoice.invoice_type_id:
-            TipoDocumento = invoice.invoice_type_id.code
+        if invoice.fiscal_document_type_id:
+            TipoDocumento = invoice.fiscal_document_type_id.code
         elif invoice.type == "out_refund":
             TipoDocumento = "TD04"
         else:
@@ -755,7 +765,7 @@ class WizardExportFatturapa(models.TransientModel):
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
             Numero=invoice.number,
-            ImportoTotaleDocumento="%.2f" % ImportoTotaleDocumento,
+            ImportoTotaleDocumento="%.2f" % float_round(ImportoTotaleDocumento, 2),
         )
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
@@ -767,11 +777,18 @@ class WizardExportFatturapa(models.TransientModel):
             for causale in caus_list:
                 if not causale:
                     continue
-                causale = invoice.wep_text(causale)
-                body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
+                causale_list_200 = [
+                    causale[i : i + 200] for i in range(0, len(causale), 200)
+                ]
+                for causale200 in causale_list_200:
+                    # Remove non latin chars, but go back to unicode string,
+                    # as expected by String200LatinType
+                    causale = encode_for_export(causale200, 200)
+                    body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 
         if invoice.company_id.fatturapa_art73:
             body.DatiGenerali.DatiGeneraliDocumento.Art73 = "SI"
+
         return True
 
     def setRelatedDocumentTypes(self, invoice, body):
@@ -837,93 +854,138 @@ class WizardExportFatturapa(models.TransientModel):
             2, self.env["decimal.precision"].precision_get("Product Unit of Measure")
         )
         for line in invoice.invoice_line_ids:
-            if not line.invoice_line_tax_ids and line.price_subtotal:
-                raise UserError(_("Invoice line %s does not have tax") % line.name)
-            if len(line.invoice_line_tax_ids) > 1:
-                raise UserError(_("Too many taxes for invoice line %s.") % line.name)
-            if line.invoice_line_tax_ids:
-                aliquota = line.invoice_line_tax_ids[0].amount
-            else:
-                aliquota = 0.0
-            AliquotaIVA = "%.2f" % (aliquota)
-            line.ftpa_line_number = line_no
-            prezzo_unitario = self._get_prezzo_unitario(line)
-            # FIX
-            DettaglioLinea = DettaglioLineeType(
-                NumeroLinea=str(line_no),
-                # can't insert newline with pyxb
-                # see https://tinyurl.com/ycem923t
-                # and '&#10;' would not be correctly visualized anyway
-                # (for example firefox replaces '&#10;' with space
-                Descrizione=invoice.wep_text(line.name),
-                PrezzoUnitario=("%." + str(price_precision) + "f") % prezzo_unitario,
-                UnitaMisura=line.uom_id and (unidecode(line.uom_id.name)) or None,
-                PrezzoTotale="%.2f" % line.price_subtotal,
-                AliquotaIVA=AliquotaIVA,
-            )
-            if line.quantity:
-                DettaglioLinea.Quantita = (
-                    "%." + str(uom_precision) + "f"
-                ) % line.quantity
-            if line.discount:
-                ScontoMaggiorazione = ScontoMaggiorazioneType(
-                    Tipo="SC", Percentuale="%.2f" % line.discount
-                )
-                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
-            if aliquota == 0.0:
-                if line.invoice_line_tax_ids:
-                    if not line.invoice_line_tax_ids[0].nature_id:
-                        raise UserError(
-                            _("No 'nature' field for tax %s.")
-                            % line.invoice_line_tax_ids[0].name
-                        )
-                    natura = line.invoice_line_tax_ids[0].nature_id.code
-                else:
-                    natura = "N2.2"
-                if natura in ("N2", "N3", "N6"):
-                    raise UserError(
-                        _("Invalid nature code %s for %s VAT code!")
-                        % (natura, line.invoice_line_tax_ids[0].description)
-                    )
-                self.line_desc = DettaglioLinea.Natura = natura
-            if line.admin_ref:
-                DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
-            if line.product_id:
-                if line.product_id.default_code:
-                    CodiceArticolo = CodiceArticoloType(
-                        CodiceTipo="ODOO", CodiceValore=line.product_id.default_code
-                    )
-                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-                if line.product_id.barcode:
-                    CodiceArticolo = CodiceArticoloType(
-                        CodiceTipo="EAN", CodiceValore=line.product_id.barcode
-                    )
-                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+            self.setDettaglioLinea(line_no, line, body, price_precision, uom_precision)
             line_no += 1
 
-            body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
+    def setDettaglioLinea(self, line_no, line, body, price_precision, uom_precision):
+        if not line.invoice_line_tax_ids:
+            raise UserError(_("Invoice line %s does not have tax.") % line.name)
+        if len(line.invoice_line_tax_ids) > 1:
+            raise UserError(_("Too many taxes for invoice line %s.") % line.name)
+        aliquota = line.invoice_line_tax_ids[0].amount
+        AliquotaIVA = "%.2f" % float_round(aliquota, 2)
+        line.ftpa_line_number = line_no
+        prezzo_unitario = self._get_prezzo_unitario(line)
+        DettaglioLinea = DettaglioLineeType(
+            NumeroLinea=str(line_no),
+            Descrizione=encode_for_export(line.name, 1000),
+            PrezzoUnitario=("%." + str(price_precision) + "f") % prezzo_unitario,
+            UnitaMisura=line.uom_id and (unidecode(line.uom_id.name)) or None,
+            PrezzoTotale="%.2f" % float_round(line.price_subtotal, 2),
+            AliquotaIVA=AliquotaIVA,
+        )
+        if line.quantity:
+            DettaglioLinea.Quantita = ("%." + str(uom_precision) + "f") % line.quantity
+        DettaglioLinea.ScontoMaggiorazione.extend(self.setScontoMaggiorazione(line))
+        if aliquota == 0.0:
+            if line.invoice_line_tax_ids:
+                if not line.invoice_line_tax_ids[0].kind_id:
+                    raise UserError(
+                        _("No 'nature' field for tax %s.")
+                        % line.invoice_line_tax_ids[0].name
+                    )
+                natura = line.invoice_line_tax_ids[0].kind_id.code
+            else:
+                natura = "N2.2"
+            if natura in ("N2", "N3", "N6"):
+                raise UserError(
+                    _("Invalid nature code %s for %s VAT code!")
+                    % (natura, line.invoice_line_tax_ids[0].description)
+                )
+            self.line_desc = DettaglioLinea.Natura = natura
+            if line.invoice_line_tax_ids[
+                0
+            ].kind_id.code == "N2.1" and line.invoice_id.partner_id.country_id.code in [
+                "AT",
+                "BE",
+                "BG",
+                "CY",
+                "HR",
+                "DK",
+                "EE",
+                "FI",
+                "FR",
+                "DE",
+                "GR",
+                "IE",
+                "IT",
+                "LV",
+                "LT",
+                "LU",
+                "MT",
+                "NL",
+                "PL",
+                "PT",
+                "CZ",
+                "RO",
+                "SK",
+                "SI",
+                "ES",
+                "SE",
+                "HU",
+            ]:
+                dati_gestionali = AltriDatiGestionaliType()
+                dati_gestionali.TipoDato = "INVCONT"
+                DettaglioLinea.AltriDatiGestionali.append(dati_gestionali)
+        if line.admin_ref:
+            DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
+        if line.product_id:
+            product_code = line.product_id.default_code
+            if product_code:
+                CodiceArticolo = CodiceArticoloType(
+                    CodiceTipo=self.env["ir.config_parameter"]
+                    .sudo()
+                    .get_param("fatturapa.codicetipo.odoo", "ODOO"),
+                    CodiceValore=product_code[:35],
+                )
+                DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+            product_barcode = line.product_id.barcode
+            if product_barcode:
+                CodiceArticolo = CodiceArticoloType(
+                    CodiceTipo="EAN",
+                    CodiceValore=product_barcode[:35],
+                )
+                DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+        body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
+        return DettaglioLinea
 
-        return True
+    def setScontoMaggiorazione(self, line):
+        res = []
+        if line.discount:
+            res.append(
+                ScontoMaggiorazioneType(
+                    Tipo="SC", Percentuale="%.2f" % float_round(line.discount, 8)
+                )
+            )
+        return res
 
     def setDatiRiepilogo(self, invoice, body):
+        if not invoice.tax_line_ids:
+            raise UserError(
+                _("Invoice {invoice} has no tax lines").format(
+                    invoice=invoice.display_name
+                )
+            )
         found_code_line_desc = False
         for tax_line in invoice.tax_line_ids:
             tax = tax_line.tax_id
             riepilogo = DatiRiepilogoType(
-                AliquotaIVA="%.2f" % tax.amount,
-                ImponibileImporto="%.2f" % tax_line.base,
-                Imposta="%.2f" % tax_line.amount,
+                AliquotaIVA="%.2f" % float_round(tax.amount, 2),
+                ImponibileImporto="%.2f" % float_round(tax_line.base, 2),
+                Imposta="%.2f" % float_round(tax_line.amount, 2),
             )
             if tax.amount == 0.0:
-                if not tax.nature_id:
+                if not tax.kind_id:
                     raise UserError(_("No 'nature' field for tax %s") % tax.name)
-                riepilogo.Natura = tax.nature_id.code
+                riepilogo.Natura = tax.kind_id.code
                 if not tax.law_reference:
                     raise UserError(
                         _("No 'law reference' field for tax %s.") % tax.name
                     )
-                riepilogo.RiferimentoNormativo = tax.law_reference
-                if tax.nature_id.code == self.line_desc:
+                riepilogo.RiferimentoNormativo = encode_for_export(
+                    tax.law_reference, 100
+                )
+                if tax.kind_id.code == self.line_desc:
                     found_code_line_desc = True
             if tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability
@@ -933,6 +995,7 @@ class WizardExportFatturapa(models.TransientModel):
             # el.remove(el.find('Arrotondamento'))
 
             body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
+        # TODO> What is the purpose?
         if self.line_desc and not found_code_line_desc:
             riepilogo = DatiRiepilogoType(
                 AliquotaIVA="%.2f" % 0.0,
@@ -961,6 +1024,9 @@ class WizardExportFatturapa(models.TransientModel):
 
     def setDatiPagamento(self, invoice, body):
         if invoice.payment_term_id:
+            payment_line_ids = invoice.get_receivable_line_ids()
+            if not payment_line_ids:
+                return True
             DatiPagamento = DatiPagamentoType()
             if not invoice.payment_term_id.fatturapa_pt_id:
                 raise UserError(
@@ -982,9 +1048,6 @@ class WizardExportFatturapa(models.TransientModel):
                 invoice.payment_term_id.fatturapa_pt_id.code
             )
             move_line_pool = self.env["account.move.line"]
-            payment_line_ids = invoice.get_receivable_line_ids()
-            if len(payment_line_ids) == 0:
-                raise UserError(_("Invalid invoice structure: no credit line found"))
             TipoDocumento = self.setTipoDocumento(invoice)
             credit_amount = 0.0
             for move_line_id in payment_line_ids:
@@ -1049,12 +1112,12 @@ class WizardExportFatturapa(models.TransientModel):
                 body.Allegati.append(AttachDoc)
         return True
 
-    def setFatturaElettronicaHeader(self, company, partner, parent, fatturapa):
+    def setFatturaElettronicaHeader(self, company, partner, fatturapa):
         fatturapa.FatturaElettronicaHeader = FatturaElettronicaHeaderType()
-        self.setDatiTrasmissione(company, partner, parent, fatturapa)
-        self.setCedentePrestatore(company, fatturapa, partner, parent)
+        self.setDatiTrasmissione(company, partner, fatturapa)
+        self.setCedentePrestatore(company, fatturapa, partner)
         self.setRappresentanteFiscale(company, fatturapa)
-        self.setCessionarioCommittente(company, partner, parent, fatturapa)
+        self.setCessionarioCommittente(partner, fatturapa)
         self.setTerzoIntermediarioOSoggettoEmittente(company, fatturapa)
 
     def setFatturaElettronicaBody(self, inv, FatturaElettronicaBody):
@@ -1069,111 +1132,113 @@ class WizardExportFatturapa(models.TransientModel):
         self.setDatiPagamento(inv, FatturaElettronicaBody)
         self.setAttachments(inv, FatturaElettronicaBody)
 
-    def getPartnerCompanyId(self, invoice_ids):
-
-        invoice_model = self.env["account.invoice"]
-        partner = False
-        parent = False
-        company = False
-        invoices = invoice_model.browse(invoice_ids)
-        for invoice in invoices:
-            if not partner:
-                partner = invoice.partner_id
-            if invoice.partner_id != partner:
-                raise UserError(_("Invoices must belong to the same partner."))
-            if not company:
-                company = invoice.company_id
-            if invoice.company_id != company:
-                raise UserError(_("Invoices must belong to the same company"))
-        if partner and partner.type == "invoice":
-            parent = partner.parent_id
-        return company, partner, parent
-
     def group_invoices_by_partner(self):
+        def split_list(my_list, size):
+            it = iter(my_list)
+            item = list(itertools.islice(it, size))
+            while item:
+                yield item
+                item = list(itertools.islice(it, size))
+
         invoice_ids = self.env.context.get("active_ids", False)
         res = {}
+        company = False
         for invoice in self.env["account.invoice"].browse(invoice_ids):
-            if invoice.partner_id.id not in res:
-                res[invoice.partner_id.id] = []
-            res[invoice.partner_id.id].append(invoice.id)
-        return res
+            company = company or invoice.company_id
+            if company != invoice.company_id:
+                raise UserError(_("Invoices must belong to the same company"))
+            if invoice.partner_id not in res:
+                res[invoice.partner_id] = []
+            res[invoice.partner_id].append(invoice.id)
+
+        for partner_id in res.keys():
+            # Currently max_invoice_in_xml is not supported
+            # if partner_id.max_invoice_in_xml:
+            #     res[partner_id] = list(
+            #         split_list(res[partner_id], partner_id.max_invoice_in_xml))
+            # else:
+            #     res[partner_id] = [res[partner_id]]
+            res[partner_id] = list(split_list(res[partner_id], 1))
+        return res, company
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
         return fatturapa_v_1_2.CreateFromDocument(xml_string)
 
     def exportInvoiceXML(
-            self, company, partner, parent, invoice, attach=False, context=None):
+        self, company, partner, invoice_ids, attach=False, context=None
+    ):
         context = context or {}
-        fatturapa = FatturaElettronica(
-            versione=self._getFormatoTrasmissione(partner, parent)
-        )
+        invoice_model = self.env["account.invoice"]
+        fatturapa = FatturaElettronica(versione=self._getFormatoTrasmissione(partner))
 
         try:
             self.with_context(context).setFatturaElettronicaHeader(
-                company, partner, parent, fatturapa
+                company, partner, fatturapa
             )
-            if invoice.type not in ["out_invoice", "out_refund"]:
-                raise UserError(
-                    _("Impossible to generate XML: not a customer invoice"))
-            if invoice.fatturapa_attachment_out_id:
-                raise UserError(
-                    _("Invoice %s has e-invoice export file yet.") % (invoice.number)
-                )
-            if (
-                invoice.fiscal_position_id
-                and hasattr(invoice.fiscal_position_id, "lettera_intento")
-                and invoice.fiscal_position_id.lettera_intento
-            ):
-                if not self.env["ir.module.module"].search(
-                    [
-                        ("name", "=", "l10n_it_einvoice_out_li"),
-                        ("state", "=", "installed"),
-                    ]
-                ):
+            for invoice_id in invoice_ids:
+                inv = invoice_model.with_context(context).browse(invoice_id)
+                if inv.type not in ["out_invoice", "out_refund"]:
                     raise UserError(
-                        _(
-                            "Questo software non supporta la normativa 2002 "
-                            "delle lettere di intento.\n"
-                            "Per favore, contattare l'assistenza "
-                            "per ottenere l'aggiornamento fiscale!"
-                        )
+                        _("Impossible to generate XML: not a customer invoice")
                     )
-            if self.report_print_menu:
-                self.generate_attach_report(invoice)
-            invoice_body = FatturaElettronicaBodyType()
-            self.with_context(context).setFatturaElettronicaBody(
-                invoice, invoice_body
-            )
-            fatturapa.FatturaElettronicaBody.append(invoice_body)
-            # TODO DatiVeicoli
+                # inv.set_taxes_for_descriptive_lines()
+                if not attach and inv.fatturapa_attachment_out_id:
+                    raise UserError(
+                        _("E-invoice export file still present for invoice %s.")
+                        % (inv.number)
+                    )
+                if (
+                    inv.fiscal_position_id
+                    and hasattr(inv.fiscal_position_id, "lettera_intento")
+                    and inv.fiscal_position_id.lettera_intento
+                ):
+                    if not self.env["ir.module.module"].search(
+                        [
+                            ("name", "=", "l10n_it_einvoice_out_li"),
+                            ("state", "=", "installed"),
+                        ]
+                    ):
+                        raise UserError(
+                            _(
+                                "Questo software non supporta la normativa 2002 "
+                                "delle lettere di intento.\n"
+                                "Per favore, contattare l'assistenza "
+                                "per ottenere l'aggiornamento fiscale!"
+                            )
+                        )
+                if self.report_print_menu:
+                    self.generate_attach_report(inv)
+                invoice_body = FatturaElettronicaBodyType()
+                inv.preventive_checks()
+                self.with_context(context).setFatturaElettronicaBody(inv, invoice_body)
+                fatturapa.FatturaElettronicaBody.append(invoice_body)
+                # TODO DatiVeicoli
 
-            number = self.setProgressivoInvio(fatturapa)
+            number = self.setProgressivoInvio(fatturapa, attach=attach)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise UserError(_u(e))
-
         return fatturapa, number
 
     def exportFatturaPA(self):
         invoice_model = self.env["account.invoice"]
         attachments = self.env["fatturapa.attachment.out"]
+        invoices_by_partner, company = self.group_invoices_by_partner()
 
-        invoice_ids = self.env.context.get("active_ids", False)
-        for invoice_id in invoice_ids:
-            company, partner, parent = self.getPartnerCompanyId([invoice_id])
-            if not self._get_partner_field(
-                partner, parent, "electronic_invoice_subjected"
-            ) and not self._get_partner_field(partner, parent, "is_pa"):
-                raise UserError(_("Unauthorized e-invoice to %s ") % (partner.name))
+        for partner in invoices_by_partner:
             context_partner = self.env.context.copy()
-            context_partner.update({"lang": partner.lang, "company_id": company.id})
-            invoice = invoice_model.with_context(context_partner).browse(invoice_id)
-            fatturapa, number = self.exportInvoiceXML(
-                company, partner, parent, invoice, context=context_partner)
+            context_partner.update({"lang": partner.lang})
+            for invoice_ids in invoices_by_partner[partner]:
+                fatturapa, number = self.exportInvoiceXML(
+                    company, partner, invoice_ids, context=context_partner
+                )
 
-            attach = self.saveAttachment(fatturapa, number)
-            attachments |= attach
-            invoice.write({"fatturapa_attachment_out_id": attach.id})
+                attach = self.saveAttachment(fatturapa, number)
+                attachments |= attach
+
+                for invoice_id in invoice_ids:
+                    inv = invoice_model.browse(invoice_id)
+                    inv.write({"fatturapa_attachment_out_id": attach.id})
 
         action = {
             "view_type": "form",

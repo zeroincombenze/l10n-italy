@@ -401,8 +401,8 @@ class AccountVatCommunication(models.Model):
                     if tax:
                         if tax.tax_id.amount > tax_rate:
                             tax_rate = tax.tax_id.amount / 100
-                        if tax.tax_id.nature_id:
-                            tax_nature = tax.tax_id.nature_id.code
+                        if tax.tax_id.kind_id:
+                            tax_nature = tax.tax_id.kind_id.code
                         if tax_payability:
                             tax_payability = tax.tax_id.payability
                         if tax.tax_id.type_tax_use:
@@ -892,7 +892,7 @@ class CommitmentLine(models.AbstractModel):
             )
 
         if address.street:
-            res["xml_Indirizzo"] = address.street.replace(u"'", u"").replace(u"’", u"")
+            res["xml_Indirizzo"] = address.street.replace(u"'", "").replace(u"’", "")
         else:
             res["xml_Error1"] += self._get_error(
                 _("003XA - " "Partner %s without street on address") % partner.name,
@@ -938,10 +938,10 @@ class CommitmentLine(models.AbstractModel):
         res["xml_Aliquota"] = line.tax_rate * 100
         res["xml_Detraibile"] = 100.0 - line.tax_nodet_rate * 100
         if line.tax_nature:
-            res["xml_Natura"] = line.tax_id.nature_id.code
+            res["xml_Natura"] = line.tax_id.kind_id.code
         else:
             res["xml_Natura"] = line.tax_nature
-        # res['xml_Natura'] = line.tax_id.nature_id.code
+        # res['xml_Natura'] = line.tax_id.kind_id.code
         res["xml_EsigibilitaIVA"] = line.tax_payability
         res["xml_Error2"] = line.xml_Error2
         return res
@@ -956,8 +956,8 @@ class CommitmentLine(models.AbstractModel):
         country_code = self.env["account.vat.communication"].get_country_code(
             invoice.partner_id
         )
-        if invoice.invoice_type_id:
-            return invoice.invoice_type_id.code
+        if invoice.fiscal_document_type_id:
+            return invoice.fiscal_document_type_id.code
         elif (
             doctype == "out_invoice"
             and not invoice.partner_id.vat

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_lettera_intento
 #: model:ir.model.fields,field_description:l10n_it_lettera_intento.field_italy_lettera_intento_customer_autmin

@@ -130,18 +130,15 @@ class WelfareFundType(models.Model):
 
     code = fields.Char("Code")
     name = fields.Char("Name")
-    display_name = fields.Char(string='Code',
-                               compute='_compute_clean_display_name')
+    display_name = fields.Char(string="Code", compute="_compute_clean_display_name")
 
     @api.multi
-    @api.depends(
-        'code', 'name'
-    )
+    @api.depends("code", "name")
     def _compute_clean_display_name(self):
         for record in self:
             name = record.name
             if record.name and record.description:
-                name = u'[%s] %s' % (record.code, record.name)
+                name = u"[%s] %s" % (record.code, record.name)
             record.display_name = name
 
 
@@ -151,7 +148,8 @@ class WelfareFundDataLine(models.Model):
     _description = "E-invoice Welfare Fund Data"
 
     name = fields.Many2one("welfare.fund.type", string="Welfare Fund Type")
-    tax_nature_id = fields.Many2one("italy.ade.tax.nature", string="Non taxable nature")
+    tax_kind_id = fields.Many2one(
+        "italy.ade.tax.nature", string="Non taxable nature", oldname="tax_nature_id")
     welfare_rate_tax = fields.Float("Welfare Tax Rate")
     welfare_amount_tax = fields.Float("Welfare Tax Amount")
     welfare_taxable = fields.Float("Welfare Taxable")
@@ -165,23 +163,22 @@ class WelfareFundDataLine(models.Model):
 
 class WithholdingDataLine(models.Model):
     _name = "withholding.data.line"
-    _description = 'E-invoice Withholding Data'
+    _description = "E-invoice Withholding Data"
 
     name = fields.Selection(
         selection=[
-            ('RT01', 'Natural Person'),
-            ('RT02', 'Legal Person'),
-            ('RT03', 'INPS'),
-            ('RT04', 'ENASARCO'),
-            ('RT05', 'ENPAM'),
-            ('RT06', 'OTHER'),
+            ("RT01", "Natural Person"),
+            ("RT02", "Legal Person"),
+            ("RT03", "INPS"),
+            ("RT04", "ENASARCO"),
+            ("RT05", "ENPAM"),
+            ("RT06", "OTHER"),
         ],
-        string='Withholding Type'
+        string="Withholding Type",
     )
-    amount = fields.Float('Withholding amount')
+    amount = fields.Float("Withholding amount")
     invoice_id = fields.Many2one(
-        'account.invoice', 'Related Invoice',
-        ondelete='cascade', index=True
+        "account.invoice", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -216,20 +213,32 @@ class FatturapaRelatedDocumentType(models.Model):
         ],
         "Document Type",
         required=True,
+        help="Seleziona il tipo di documento collegato\n"
+             "Ordine: ordini di acquisto Tag 2.1.2 <DatiOrdineAcquisto>\n"
+             "Contratto: riferimento contratto Tag 2.1.3 <DatiContratto>\n"
+             "Convenzione: riferimento convenzione 2.1.4 <DatiConvenzione>\n"
+             "Ricezione: dati di ricezione presso PA 2.1.5 <DatiRicezione>\n"
+             "Fatture: fatture collegate 2.1.6 <DatiFattureCollegate>\n"
     )
-    name = fields.Char("Document ID", size=20, required=True)
-    lineRef = fields.Integer("Line Ref.")
+    name = fields.Char(
+        "Document ID", size=20, required=True,
+        help="Tag 2.1.*.2 <IdDocumento>"
+    )
+    lineRef = fields.Integer("Line Ref.", help="2.1.*.1 <RiferimentoNumeroLinea>")
     invoice_line_id = fields.Many2one(
         "account.invoice.line", "Related Invoice Line", ondelete="cascade", index=True
     )
     invoice_id = fields.Many2one(
         "account.invoice", "Related Invoice", ondelete="cascade", index=True
     )
-    date = fields.Date("Date")
-    numitem = fields.Char("Item Num.", size=20)
-    code = fields.Char("Order Agreement Code", size=100)
-    cig = fields.Char("CIG Code", size=15)
-    cup = fields.Char("CUP Code", size=15)
+    date = fields.Date("Date", help="Tag 2.1.*.3 <Data>")
+    numitem = fields.Char("Item Num.", size=20, help="Tag 2.1.*.4 <NumItem>")
+    code = fields.Char(
+        "Order Agreement Code", size=100,
+        help="Tag 2.1.*.5 <CodiceCommessaConvenzione>"
+    )
+    cig = fields.Char("CIG Code", size=15, help="Tag 2.1.*.7 <CodiceCIG>")
+    cup = fields.Char("CUP Code", size=15, help="Tag 2.1.*.6 <CodiceCUP>")
 
     @api.model
     def create(self, vals):
@@ -303,14 +312,20 @@ class AccountInvoiceLine(models.Model):
     ftpa_related_ddts = fields.One2many(
         "fatturapa.related_ddt", "invoice_line_id", "Related DdT", copy=False
     )
-    admin_ref = fields.Char("Admin. ref.", size=20, copy=False)
+    admin_ref = fields.Char(
+        "Admin. ref.", size=20, copy=False,
+        help="Tag 2.2.1.15 <RiferimentoAmministrazione>"
+    )
     discount_rise_price_ids = fields.One2many(
         "discount.rise.price",
         "invoice_line_id",
         "Discount or Supplement Details",
         copy=False,
     )
-    ftpa_line_number = fields.Integer("Line Number", readonly=True, copy=False)
+    ftpa_line_number = fields.Integer(
+        "Line Number", readonly=True, copy=False,
+        help="Tag 2.2.1.1 <NumeroLinea>"
+    )
 
 
 class FaturapaSummaryData(models.Model):
@@ -350,11 +365,22 @@ class AccountInvoice(models.Model):
     intermediary = fields.Many2one("res.partner", string="Intermediary")
     #  1.6
     sender = fields.Selection(
-        [("CC", "Assignee / Partner"), ("TZ", "Third Person")], "Sender"
+        [("CC", "Assignee / Partner"), ("TZ", "Third Person")],
+        "Sender",
+        help="Tag 1.6 <SoggettoEmittente>\n"
+             "Da valorizzare in tutti i casi in cui la fattura è emessa"
+             " da un soggetto diverso dal cedente/prestatore;"
+             " indica se la fattura è emessa dal cessionario/committente"
+             " oppure da un terzo per conto del cedente/prestatore"
     )
     # 2.1.1.1 doc_type
-    invoice_type_id = fields.Many2one(
-        "italy.ade.invoice.type", string="Fiscal Document Type", copy=False
+    fiscal_document_type_id = fields.Many2one(
+        "italy.ade.invoice.type",
+        string="Fiscal Document Type",
+        oldname="invoice_type_id",
+        copy=False,
+        help="Tag 2.1.1.1 <TipoDocumento>\n"
+             "Tipo documento fiscale."
     )
     #  2.1.1.5
     #  2.1.1.5.1
@@ -368,15 +394,34 @@ class AccountInvoice(models.Model):
             ("RT06", "Other"),
         ],
         "Withholding Type",
+        help="Tag 2.1.1.5.1 <TipoRitenuta>\n"
+             "Valore da tabella ministeriale"
     )
     #  2.1.1.5.2 withholding_amount in module
     #  2.1.1.5.3
-    ftpa_withholding_rate = fields.Float("Withholding rate")
+    ftpa_withholding_rate = fields.Float(
+        "Withholding rate",
+        help="Tag 2.1.1.5.3 <AliquotaRitenuta>\n"
+             "Aliquota ritenuta d'acconto"
+    )
     #  2.1.1.5.4
-    ftpa_withholding_payment_reason = fields.Char("Withholding reason", size=2)
+    ftpa_withholding_payment_reason = fields.Char(
+        "Withholding reason",
+        size=2,
+        help="Tag 2.1.1.5.4 <CausalePagamento>\n"
+             "Valore da tabella ministeriale"
+    )
     #  2.1.1.6
-    virtual_stamp = fields.Boolean("Virtual Stamp", default=False, copy=False)
-    stamp_amount = fields.Float("Stamp Amount", copy=False)
+    virtual_stamp = fields.Boolean(
+        "Virtual Stamp", default=False, copy=False,
+        help="Tag 2.1.1.6.1 <BolloVirtuale>\n"
+             "Bollo assolto ai sensi del decreto MEF 17 giugno 2014 (art. 6)"
+    )
+    stamp_amount = fields.Float(
+        "Stamp Amount", copy=False,
+        help="Tag 2.1.1.6.2 <ImportoBollo>\n"
+             "Importo del bollo"
+    )
     #  2.1.1.7
     welfare_fund_ids = fields.One2many(
         "welfare.fund.data.line", "invoice_id", "Welfare Fund", copy=False
@@ -397,9 +442,18 @@ class AccountInvoice(models.Model):
         "fatturapa.related_ddt", "invoice_id", "Related DdT", copy=False
     )
     #  2.1.9
-    carrier_id = fields.Many2one("res.partner", string="Carrier", copy=False)
-    transport_vehicle = fields.Char("Vehicle", size=80, copy=False)
-    transport_reason = fields.Char("Reason", size=80, copy=False)
+    carrier_id = fields.Many2one(
+        "res.partner", string="Carrier", copy=False,
+        help="Tag 2.1.9.1.3 <Anagrafica>"
+    )
+    transport_vehicle = fields.Char(
+        "Vehicle", size=80, copy=False,
+        help="Tag 2.1.9.2 <MezzoTrasporto>"
+    )
+    transport_reason = fields.Char(
+        "Reason", size=80, copy=False,
+        help="Tag 2.1.9.3 <CausaleTrasporto>"
+    )
     number_items = fields.Integer("Number of Items", copy=False)
     description = fields.Char("Description", size=100, copy=False)
     unit_weight = fields.Char("Weight Unit", size=10, copy=False)
@@ -533,9 +587,9 @@ class AccountInvoice(models.Model):
         else:
             ids = self.einvoice_type_selection(self.type, "IT", self.amount_total)
         if not ids:
-            self.invoice_type_id = False
-        elif not self.invoice_type_id or self.invoice_type_id not in ids:
-            self.invoice_type_id = ids[0]
+            self.fiscal_document_type_id = False
+        elif not self.fiscal_document_type_id or self.fiscal_document_type_id not in ids:
+            self.fiscal_document_type_id = ids[0]
 
     @api.multi
     @api.depends("partner_id", "type", "amount_total")
@@ -551,7 +605,7 @@ class AccountInvoice(models.Model):
             res.get("type"), "IT", res.get("amount_total")
         )
         if len(ids) == 1:
-            res.update({"invoice_type_id": ids[0]})
+            res.update({"fiscal_document_type_id": ids[0]})
         return res
 
     @api.model
@@ -565,5 +619,5 @@ class AccountInvoice(models.Model):
             description=description,
             journal_id=journal_id,
         )
-        res["invoice_type_id"] = False
+        res["fiscal_document_type_id"] = False
         return res

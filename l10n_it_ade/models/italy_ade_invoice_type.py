@@ -7,7 +7,7 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class ItalyAdeInvoiceType(models.Model):
@@ -29,3 +29,11 @@ class ItalyAdeInvoiceType(models.Model):
     priority = fields.Integer(string="Priority", default="3")
     scope = fields.Char(string="Scope", help="Reserved to specific scope")
     active = fields.Boolean(string="Active", default=True)
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for doc_type in self:
+            res.append(
+                (doc_type.id, '[%s] %s' % (doc_type.code, doc_type.name)))
+        return res

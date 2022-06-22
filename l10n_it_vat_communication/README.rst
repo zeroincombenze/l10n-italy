@@ -1,7 +1,7 @@
 
-==============================================
-|icon| Comunicazione periodica IVA 10.0.0.1.18
-==============================================
+=============================================
+|icon| Comunicazione periodica IVA 10.0.0.2.3
+=============================================
 
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_vat_communication/static/description/icon.png
@@ -12,6 +12,7 @@
 .. contents::
 
 
+
 Overview / Panoramica
 =====================
 
@@ -19,6 +20,7 @@ Overview / Panoramica
 -------------------------------
 
 Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
+
 
 |
 
@@ -61,6 +63,7 @@ la seguente istruzione:
 ::
 
      export SPESOMETRO_VERSION=2.0
+
 
 |
 
@@ -146,6 +149,20 @@ Usage / Utilizzo
 * |menu| Contabilità > Fornitori > Fornitori :point_right: Impostare nazione, partita IVA, codice fiscale e Cognome/nome
 * |menu| Contabilità > Elaborazione periodica > Fine periodo > Comunicazione :point_right: Gestione Comunicazione e scarico file xml
 
+
+|
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+
+
 |
 |
 
@@ -160,31 +177,40 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
+
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
-| These instruction are just an   | Istruzioni di esempio valide solo per    |
-| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
-| you have to do on Linux.        | e Debian 8+                              |
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /opt/odoo/10.0/l10n-italy/                                                 |
+| $HOME/10.0                                                                 |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
+    cd $HOME/tools
     ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    odoo_install_repository l10n-italy -b 10.0 -O zero
-    sudo manage_odoo requirements -b 10.0 -vsy -o /opt/odoo/10.0
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository installation; OCB repository must be installed
+    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
+    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
 
 From UI: go to:
 
@@ -192,22 +218,30 @@ From UI: go to:
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_vat_communication** > Install
 
+
 |
 
 Upgrade / Aggiornamento
 -----------------------
 
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| When you want upgrade and you   | Per aggiornare, se avete installato con  |
-| installed using above           | le istruzioni di cui sopra:              |
-| statements:                     |                                          |
-+---------------------------------+------------------------------------------+
 
 ::
 
-    odoo_install_repository l10n-italy -b 10.0 -O zero -U
+    cd $HOME
+    # *** Tools installation & activation ***
+    # Case 1: you have not installed zeroincombenze tools
+    git clone https://github.com/zeroincombenze/tools.git
+    cd $HOME/tools
+    ./install_tools.sh -p
+    source $HOME/devel/activate_tools
+    # Case 2: you have already installed zeroincombenze tools
+    cd $HOME/tools
+    ./install_tools.sh -U
+    source $HOME/devel/activate_tools
+    # *** End of tools installation or upgrade ***
+    # Odoo repository upgrade
+    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
+    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -251,6 +285,7 @@ Known issues / Roadmap
 * Do not use l10n_it_split_payment module of OCA distribution
 * Do not use l10n_it_reverse_charge of OCA distribution
 
+
 Proposals for enhancement
 -------------------------
 
@@ -259,6 +294,17 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.0.2.3 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+
+
 
 |
 |
@@ -278,16 +324,13 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 Contributors / Collaboratori
 ----------------------------
 
-
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-
 
 
 Acknowledges / Riconoscimenti
@@ -295,17 +338,21 @@ Acknowledges / Riconoscimenti
 
 +-----------------------------------+-------------------------------------------+
 | |en|                              | |it|                                      |
-+-----------------------------------+-------------------------------------------+
 | This software inherits from past  | Questo software eredita da versioni       |
 | versions some parts of code. Even | passate alcune parti di codice. Anche     |
 | if people did not actively        | se non hanno partecipato attivamente allo |
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+
-
-* Carlo Vettore <carlo.vettore@didotech.com>
++-----------------------------------+-------------------------------------------+* Carlo Vettore <carlo.vettore@didotech.com>
 * Andrei Levin <andrei.levin@didotech.com>
+
+
+Maintainer / Manutenzione
+-------------------------
+
+
+
 
 |
 
@@ -322,6 +369,7 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
@@ -329,19 +377,19 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-12-31
+Last Update / Ultimo aggiornamento: 2022-06-21
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
@@ -388,4 +436,5 @@ Last Update / Ultimo aggiornamento: 2019-12-31
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
+   :target: https://t.me/Assitenza_clienti_powERP
+

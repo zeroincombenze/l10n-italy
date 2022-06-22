@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -121,11 +121,13 @@ msgstr "Chiudere"
 #: selection:comunicazione.liquidazione.vp,exceptional_events
 #: selection:comunicazione.liquidazione.vp,exceptional_events
 #: selection:comunicazione.liquidazione.vp,exceptional_events
+#: selection:comunicazione.liquidazione.vp,exceptional_events
 msgid "Code 1"
 msgstr "Codice 1"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,exceptional_events:0
+#: selection:comunicazione.liquidazione.vp,exceptional_events
 #: selection:comunicazione.liquidazione.vp,exceptional_events
 #: selection:comunicazione.liquidazione.vp,exceptional_events
 #: selection:comunicazione.liquidazione.vp,exceptional_events
@@ -147,6 +149,7 @@ msgstr "Comunicazione"
 #: selection:comunicazione.liquidazione,delegate_commitment
 #: selection:comunicazione.liquidazione,delegate_commitment
 #: selection:comunicazione.liquidazione,delegate_commitment
+#: selection:comunicazione.liquidazione,delegate_commitment
 msgid "Communication prepared by sender"
 msgstr "Comunicazione preparata da chi effettua l'invio"
 
@@ -155,10 +158,12 @@ msgstr "Comunicazione preparata da chi effettua l'invio"
 #: selection:comunicazione.liquidazione,delegate_commitment
 #: selection:comunicazione.liquidazione,delegate_commitment
 #: selection:comunicazione.liquidazione,delegate_commitment
+#: selection:comunicazione.liquidazione,delegate_commitment
 msgid "Communication prepared by taxpayer"
 msgstr "Comunicazione preparata dal contribuente"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
@@ -237,6 +242,7 @@ msgid "Declarant Fiscalcode"
 msgstr "Codice fiscale dichiarante"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
@@ -356,6 +362,7 @@ msgstr "Codice fiscale dell’azienda"
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
 msgid "For group's statement, controller's TIN must be empty"
 msgstr ""
 "Per la liquidazione del gruppo, la P.IVA del controllante deve essere "
@@ -377,6 +384,7 @@ msgid "Group's statement"
 msgstr "Liquidazione IVA di gruppo"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
@@ -440,6 +448,7 @@ msgstr "Mese"
 #: selection:comunicazione.liquidazione.vp,period_type
 #: selection:comunicazione.liquidazione.vp,period_type
 #: selection:comunicazione.liquidazione.vp,period_type
+#: selection:comunicazione.liquidazione.vp,period_type
 msgid "Monthly"
 msgstr "Mensile"
 
@@ -449,6 +458,7 @@ msgid "Name"
 msgstr "Descrizione"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
@@ -491,6 +501,7 @@ msgstr "Trimestre"
 #: selection:comunicazione.liquidazione.vp,period_type
 #: selection:comunicazione.liquidazione.vp,period_type
 #: selection:comunicazione.liquidazione.vp,period_type
+#: selection:comunicazione.liquidazione.vp,period_type
 msgid "Quarterly"
 msgstr "Trimestrale"
 
@@ -515,6 +526,7 @@ msgid "Signature"
 msgstr "Firma"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
@@ -558,6 +570,7 @@ msgid "Taxpayer Fiscalcode"
 msgstr "Codice fiscale contribuente"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
@@ -663,12 +676,14 @@ msgstr "Vat statement communication supply code"
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
 msgid "With delegate in commitment section, you need to check 'delegate sign'"
 msgstr ""
 "Con l'incaricato nella sezione impegno, è necessario selezionare 'firma "
 "incaricato'"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
@@ -683,12 +698,14 @@ msgstr ""
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
 msgid "With intermediary fiscal code, you need to specify commitment date"
 msgstr ""
 "Con il codice fiscale dell'intermediario, è necessario specificare la "
 "data impegno"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
@@ -708,6 +725,7 @@ msgstr "Anno"
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
 msgid "Year required"
 msgstr "Anno di imposta"
 
@@ -716,10 +734,12 @@ msgstr "Anno di imposta"
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
 msgid "You can export only 1 communication at a time"
 msgstr "È possibile esportare solo una comunicazione alla volta"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
@@ -733,6 +753,7 @@ msgid "or"
 msgstr "o"
 
 #. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48

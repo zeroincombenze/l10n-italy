@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
+from odoo.addons.l10n_it_einvoice_out.tests.fatturapa_common import FatturaPACommon
 
 
 class TestInvoiceDDT(FatturaPACommon):
@@ -108,7 +108,7 @@ class TestInvoiceDDT(FatturaPACommon):
         self.check_content(
             xml_content,
             "IT06363391001_00006.xml",
-            module_name="l10n_it_fatturapa_out_ddt",
+            module_name="l10n_it_einvoice_out_ddt",
         )
 
         # fattura accompagnatoria

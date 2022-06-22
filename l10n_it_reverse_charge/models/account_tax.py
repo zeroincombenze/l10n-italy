@@ -7,12 +7,12 @@ from odoo import api, fields, models
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    @api.onchange("nature_id")
+    @api.onchange("kind_id")
     def _onchange_nature(self):
         rc = False
-        if self.nature_id and (
-            self.nature_id.code.startswith("N6")
-            or (self.nature_id.code.startswith("N3") and self.nature_id.code != "N3.5")
+        if self.kind_id and (
+            self.kind_id.code.startswith("N6")
+            or (self.kind_id.code.startswith("N3") and self.kind_id.code != "N3.5")
         ):
             rc = True
         self.rc = rc

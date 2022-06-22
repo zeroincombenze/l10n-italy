@@ -15,9 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_rea
+#: code:addons/l10n_it_rea/models/res_company.py:51
 #: code:addons/l10n_it_rea/models/res_company.py:51
 #: code:addons/l10n_it_rea/models/res_company.py:51
 #: code:addons/l10n_it_rea/models/res_company.py:51
@@ -35,6 +36,10 @@ msgstr "Aziende"
 #: selection:res.partner.invoice,rea_liquidation_state:0
 #: selection:res.partner.shipping,rea_liquidation_state:0
 #: selection:res.partner.supplier,rea_liquidation_state:0
+#: selection:res.partner,rea_liquidation_state
+#: selection:res.partner.invoice,rea_liquidation_state
+#: selection:res.partner.shipping,rea_liquidation_state
+#: selection:res.partner.supplier,rea_liquidation_state
 #: selection:res.partner,rea_liquidation_state
 #: selection:res.partner.invoice,rea_liquidation_state
 #: selection:res.partner.shipping,rea_liquidation_state
@@ -79,6 +84,10 @@ msgstr "Tipo socio"
 #: selection:res.partner.invoice,rea_member_type
 #: selection:res.partner.shipping,rea_member_type
 #: selection:res.partner.supplier,rea_member_type
+#: selection:res.partner,rea_member_type
+#: selection:res.partner.invoice,rea_member_type
+#: selection:res.partner.shipping,rea_member_type
+#: selection:res.partner.supplier,rea_member_type
 msgid "Multiple Members"
 msgstr "Soci multipli"
 
@@ -87,6 +96,10 @@ msgstr "Soci multipli"
 #: selection:res.partner.invoice,rea_liquidation_state:0
 #: selection:res.partner.shipping,rea_liquidation_state:0
 #: selection:res.partner.supplier,rea_liquidation_state:0
+#: selection:res.partner,rea_liquidation_state
+#: selection:res.partner.invoice,rea_liquidation_state
+#: selection:res.partner.shipping,rea_liquidation_state
+#: selection:res.partner.supplier,rea_liquidation_state
 #: selection:res.partner,rea_liquidation_state
 #: selection:res.partner.invoice,rea_liquidation_state
 #: selection:res.partner.shipping,rea_liquidation_state
@@ -147,6 +160,7 @@ msgstr "Share Capital"
 #: sql_constraint:res.partner:0
 #: sql_constraint:res.partner
 #: sql_constraint:res.partner
+#: sql_constraint:res.partner
 msgid "The rea code code must be unique per company !"
 msgstr "Il codice REA è unico per ogni Azieda !"
 
@@ -155,6 +169,10 @@ msgstr "Il codice REA è unico per ogni Azieda !"
 #: selection:res.partner.invoice,rea_member_type:0
 #: selection:res.partner.shipping,rea_member_type:0
 #: selection:res.partner.supplier,rea_member_type:0
+#: selection:res.partner,rea_member_type
+#: selection:res.partner.invoice,rea_member_type
+#: selection:res.partner.shipping,rea_member_type
+#: selection:res.partner.supplier,rea_member_type
 #: selection:res.partner,rea_member_type
 #: selection:res.partner.invoice,rea_member_type
 #: selection:res.partner.shipping,rea_member_type

@@ -21,15 +21,15 @@ class WizardExportFatturapa(models.TransientModel):
             line_no, line, body, price_precision, uom_precision
         )
 
-        if line.force_dichiarazione_intento_id:
-            dati_gestionali = AltriDatiGestionaliType(
-                TipoDato="INTENTO",
-                RiferimentoTesto=encode_for_export(
-                    line.force_dichiarazione_intento_id.telematic_protocol, 60
-                ),
-                RiferimentoData=line.force_dichiarazione_intento_id.date,
-            )
-            DettaglioLinea.AltriDatiGestionali.append(dati_gestionali)
+        # if line.force_dichiarazione_intento_id:
+        #     dati_gestionali = AltriDatiGestionaliType(
+        #         TipoDato="INTENTO",
+        #         RiferimentoTesto=encode_for_export(
+        #             line.force_dichiarazione_intento_id.telematic_protocol, 60
+        #         ),
+        #         RiferimentoData=line.force_dichiarazione_intento_id.date,
+        #     )
+        #     DettaglioLinea.AltriDatiGestionali.append(dati_gestionali)
         return DettaglioLinea
 
     def setDettaglioLinee(self, invoice, body):

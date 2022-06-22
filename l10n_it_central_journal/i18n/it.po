@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.report.xml,name:l10n_it_central_journal.action_report_giornale
@@ -41,8 +41,9 @@ msgstr "Nome conto"
 #: selection:wizard.giornale,target_move:0
 #: selection:wizard.giornale,target_move
 #: selection:wizard.giornale,target_move
+#: selection:wizard.giornale,target_move
 msgid "All"
-msgstr "Tutto"
+msgstr "Tutto/i"
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
@@ -96,6 +97,7 @@ msgstr "Intervallo data"
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
 msgid "Date already printed"
 msgstr "Data già stampata"
 
@@ -117,6 +119,7 @@ msgstr "Nome visualizzato"
 
 #. module: l10n_it_central_journal
 #: selection:wizard.giornale,target_move:0
+#: selection:wizard.giornale,target_move
 #: selection:wizard.giornale,target_move
 #: selection:wizard.giornale,target_move
 msgid "Draft"
@@ -213,6 +216,8 @@ msgstr "Descrizione"
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:131
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:95
 #: code:addons/l10n_it_central_journal/wizard/print_giornale.py:131
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:95
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:131
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato per la selezione corrente"
 
@@ -225,16 +230,18 @@ msgstr "Nome soggetto"
 #: selection:wizard.giornale,target_move:0
 #: selection:wizard.giornale,target_move
 #: selection:wizard.giornale,target_move
+#: selection:wizard.giornale,target_move
 msgid "Posted"
 msgstr "Pubblicato"
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Print"
-msgstr "Stampa"
+msgstr "Stampare"
 
 #. module: l10n_it_central_journal
 #: selection:wizard.giornale,print_state:0
+#: selection:wizard.giornale,print_state
 #: selection:wizard.giornale,print_state
 #: selection:wizard.giornale,print_state
 msgid "Printed"
@@ -268,6 +275,7 @@ msgstr "Progressivo della pagina"
 
 #. module: l10n_it_central_journal
 #: selection:wizard.giornale,print_state:0
+#: selection:wizard.giornale,print_state
 #: selection:wizard.giornale,print_state
 #: selection:wizard.giornale,print_state
 msgid "Ready for printing"

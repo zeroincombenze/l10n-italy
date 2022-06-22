@@ -97,7 +97,7 @@ class AccountInvoice(models.Model):
                 comment += item + "\n"
         #
         invoice_data = {
-            "invoice_type_id": docType_id,
+            "fiscal_document_type_id": docType_id,
             "date_invoice": FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
                 "%Y-%m-%d"
             ),

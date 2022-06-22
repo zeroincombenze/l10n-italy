@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #. module: l10n_it_corrispettivi
 #: model:ir.ui.view,arch_db:l10n_it_corrispettivi.report_corrispettivi_document
@@ -67,6 +67,7 @@ msgstr "Sezionale"
 #. module: l10n_it_corrispettivi
 #: code:addons/l10n_it_corrispettivi/models/account.py:81
 #: code:addons/l10n_it_corrispettivi/models/account.py:81
+#: code:addons/l10n_it_corrispettivi/models/account.py:81
 msgid "No journal found for corrispettivi"
 msgstr "Nessun registro trovato per i corrispettivi"
 
@@ -78,7 +79,7 @@ msgstr "Nominativo"
 #. module: l10n_it_corrispettivi
 #: model:ir.ui.view,arch_db:l10n_it_corrispettivi.corrispettivi_form
 msgid "Print"
-msgstr "Stampa"
+msgstr "Stampare"
 
 #. module: l10n_it_corrispettivi
 #: model:ir.ui.view,arch_db:l10n_it_corrispettivi.corrispettivi_form
