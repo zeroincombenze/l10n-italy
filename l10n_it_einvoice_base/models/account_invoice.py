@@ -213,20 +213,32 @@ class FatturapaRelatedDocumentType(models.Model):
         ],
         "Document Type",
         required=True,
+        help="Seleziona il tipo di documento collegato\n"
+             "Ordine: ordini di acquisto Tag 2.1.2 <DatiOrdineAcquisto>\n"
+             "Contratto: riferimento contratto Tag 2.1.3 <DatiContratto>\n"
+             "Convenzione: riferimento convenzione 2.1.4 <DatiConvenzione>\n"
+             "Ricezione: dati di ricezione presso PA 2.1.5 <DatiRicezione>\n"
+             "Fatture: fatture collegate 2.1.6 <DatiFattureCollegate>\n"
     )
-    name = fields.Char("Document ID", size=20, required=True)
-    lineRef = fields.Integer("Line Ref.")
+    name = fields.Char(
+        "Document ID", size=20, required=True,
+        help="Tag 2.1.*.2 <IdDocumento>"
+    )
+    lineRef = fields.Integer("Line Ref.", help="2.1.*.1 <RiferimentoNumeroLinea>")
     invoice_line_id = fields.Many2one(
         "account.invoice.line", "Related Invoice Line", ondelete="cascade", index=True
     )
     invoice_id = fields.Many2one(
         "account.invoice", "Related Invoice", ondelete="cascade", index=True
     )
-    date = fields.Date("Date")
-    numitem = fields.Char("Item Num.", size=20)
-    code = fields.Char("Order Agreement Code", size=100)
-    cig = fields.Char("CIG Code", size=15)
-    cup = fields.Char("CUP Code", size=15)
+    date = fields.Date("Date", help="Tag 2.1.*.3 <Data>")
+    numitem = fields.Char("Item Num.", size=20, help="Tag 2.1.*.4 <NumItem>")
+    code = fields.Char(
+        "Order Agreement Code", size=100,
+        help="Tag 2.1.*.5 <CodiceCommessaConvenzione>"
+    )
+    cig = fields.Char("CIG Code", size=15, help="Tag 2.1.*.7 <CodiceCIG>")
+    cup = fields.Char("CUP Code", size=15, help="Tag 2.1.*.6 <CodiceCUP>")
 
     @api.model
     def create(self, vals):
@@ -300,7 +312,10 @@ class AccountInvoiceLine(models.Model):
     ftpa_related_ddts = fields.One2many(
         "fatturapa.related_ddt", "invoice_line_id", "Related DdT", copy=False
     )
-    admin_ref = fields.Char("Admin. ref.", size=20, copy=False)
+    admin_ref = fields.Char(
+        "Admin. ref.", size=20, copy=False,
+        help="Tag 2.2.1.15 <RiferimentoAmministrazione>"
+    )
     discount_rise_price_ids = fields.One2many(
         "discount.rise.price",
         "invoice_line_id",
@@ -352,8 +367,11 @@ class AccountInvoice(models.Model):
     sender = fields.Selection(
         [("CC", "Assignee / Partner"), ("TZ", "Third Person")],
         "Sender",
-        help="Tag 2.1.1.1 <TipoDocumento>\n"
-             "Tipologia di documento come da tabella ministeriale"
+        help="Tag 1.6 <SoggettoEmittente>\n"
+             "Da valorizzare in tutti i casi in cui la fattura è emessa"
+             " da un soggetto diverso dal cedente/prestatore;"
+             " indica se la fattura è emessa dal cessionario/committente"
+             " oppure da un terzo per conto del cedente/prestatore"
     )
     # 2.1.1.1 doc_type
     fiscal_document_type_id = fields.Many2one(
@@ -361,10 +379,8 @@ class AccountInvoice(models.Model):
         string="Fiscal Document Type",
         oldname="invoice_type_id",
         copy=False,
-        help="Tag 1.6 <SoggettoEmittente>\n"
-             "Da valorizzare in tutti i casi in cui la fattura è emessa da un soggetto diverso dal cedente/prestatore;"
-             " indica se la fattura è emessa dal cessionario/committente oppure"
-             " da un terzo per conto del cedente/prestatore"
+        help="Tag 2.1.1.1 <TipoDocumento>\n"
+             "Tipo documento fiscale."
     )
     #  2.1.1.5
     #  2.1.1.5.1
