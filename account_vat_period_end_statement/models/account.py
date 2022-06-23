@@ -971,7 +971,7 @@ class StatementGenericAccountLine(models.Model):
     base_amount = fields.Float("Base Amount", digits=dp.get_precision("Account"))
     vat_amount = fields.Float("Vat Amount", digits=dp.get_precision("Account"))
     kind_id = fields.Many2one(
-        "italy.ade.tax.kind_id", "Tax nature", oldname="nature_id")
+        "italy.ade.tax.nature", "Tax nature", oldname="nature_id")
     name = fields.Char("Description")
 
 
