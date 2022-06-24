@@ -23,4 +23,4 @@ access_fatturapa_related_ddt,access_fatturapa_related_ddt,model_fatturapa_relate
 access_faturapa_summary_data_manager,access_faturapa_summary_data_manager,model_faturapa_summary_data,account.group_account_manager,1,1,1,1
 access_faturapa_summary_data,access_faturapa_summary_data,model_faturapa_summary_data,account.group_account_invoice,1,0,0,0
 access_italy_ade_sender,italy.ade.sender.manager,model_italy_ade_sender,account.group_account_manager,1,1,1,1
-access_italy_ade_sender,italy.ade.sender.user,model_italy_ade_sender,account.group_account_user,1,0,0,0
+access_italy_ade_sender,italy.ade.sender.user,model_italy_ade_sender,account.group_account_user,1,1,1,1
