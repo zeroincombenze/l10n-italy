@@ -5,7 +5,9 @@ from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IdFiscaleType,
     AnagraficaType,
-    IndirizzoType
+    CessionarioCommittenteType,
+    DatiTrasmissioneType,
+    IndirizzoType,
 )
 
 
@@ -50,9 +52,36 @@ class WizardExportFatturapa(models.TransientModel):
             context[
                 "invoices_fiscal_document_type_codes"
             ] = invoice.fiscal_document_type_id.code
+            context["company_partner"] = company.partner_id
         return super(WizardExportFatturapa, self).exportInvoiceXML(
             company, partner, invoice_ids, attach, context=context
         )
+
+    def _setIdTrasmittente_rc(self, partner, fatturapa):
+        if not partner.country_id:
+            raise UserError(_("Partner %s, Country not set.") % partner.display_name)
+        IdPaese = partner.country_id.code
+        IdCodice = partner.fiscalcode
+        if not IdCodice:
+            if partner.vat:
+                IdCodice = partner.vat[2:]
+        if not IdCodice:
+            IdCodice = "%s99999999999" % IdPaese
+        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.IdTrasmittente = (
+            IdFiscaleType(IdPaese=IdPaese, IdCodice=IdCodice)
+        )
+        return True
+
+    def setDatiTrasmissione(self, company, partner, fatturapa):
+        res = super(WizardExportFatturapa, self).setDatiTrasmissione(
+            company, partner, fatturapa)
+        if self.env.context.get("company_partner"):
+            company, partner = partner, company.partner_id
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione = DatiTrasmissioneType()
+            self._setIdTrasmittente_rc(company, fatturapa)
+            self._setFormatoTrasmissione(partner, fatturapa)
+            self._setCodiceDestinatario(partner, fatturapa)
+            # self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
         res = super(WizardExportFatturapa, self)._setDatiAnagraficiCedente(
@@ -150,6 +179,17 @@ class WizardExportFatturapa(models.TransientModel):
         if self.env.context.get("rc_supplier"):
             CedentePrestatore.RiferimentoAmministrazione = None
         return res
+
+    def setCessionarioCommittente(self, partner, fatturapa):
+        res = super(WizardExportFatturapa, self).setCessionarioCommittente(
+            partner, fatturapa)
+        if self.env.context.get("company_partner"):
+            partner = self.env.context["company_partner"]
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
+                CessionarioCommittenteType()
+            )
+            self._setDatiAnagraficiCessionario(partner, fatturapa)
+            self._setSedeCessionario(partner, fatturapa)
 
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
