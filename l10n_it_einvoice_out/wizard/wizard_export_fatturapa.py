@@ -1192,21 +1192,41 @@ class WizardExportFatturapa(models.TransientModel):
                     inv.fiscal_position_id
                     and hasattr(inv.fiscal_position_id, "lettera_intento")
                     and inv.fiscal_position_id.lettera_intento
-                ):
-                    if not self.env["ir.module.module"].search(
+                    and not self.env["ir.module.module"].search(
                         [
                             ("name", "=", "l10n_it_einvoice_out_li"),
                             ("state", "=", "installed"),
                         ]
-                    ):
-                        raise UserError(
-                            _(
-                                "Questo software non supporta la normativa 2002 "
-                                "delle lettere di intento.\n"
-                                "Per favore, contattare l'assistenza "
-                                "per ottenere l'aggiornamento fiscale!"
-                            )
+                    )
+                ):
+                    raise UserError(
+                        _(
+                            "Questo software non supporta la normativa 2002 "
+                            "delle lettere di intento.\n"
+                            "Per favore, contattare il fornitore di servizi software "
+                            "per ottenere l'aggiornamento fiscale!"
                         )
+                    )
+                if (
+                    inv.fiscal_document_type_id.code in ("TD16",
+                                                         "TD17",
+                                                         "TD18",
+                                                         "TD19")
+                    and not self.env["ir.module.module"].search(
+                        [
+                            ("name", "=", "l10n_it_einvoice_out_rc"),
+                            ("state", "=", "installed"),
+                        ]
+                    )
+                ):
+                    raise UserError(
+                        _(
+                            "Questo software non supporta la normativa 2002 "
+                            "delle autofatture in reverse-charge.\n"
+                            "Per favore, contattare il fornitore di servizi software "
+                            "per ottenere l'aggiornamento fiscale!"
+                        )
+                    )
                 if self.report_print_menu:
                     self.generate_attach_report(inv)
                 invoice_body = FatturaElettronicaBodyType()
