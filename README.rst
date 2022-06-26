@@ -53,7 +53,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_period                       | 10.0.0.1.0 | |no_check| | Account Period                                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_vat_period_end_statement     | 10.0.1.5.1 | |same|     | Versamento Iva periodica (mensile o trimestrale)                                 |
+| account_vat_period_end_statement     | 10.0.1.5.2 | 10.0.1.5.1 | Versamento Iva periodica (mensile o trimestrale)                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | assigned_bank                        | 10.0.0.1.2 | |no_check| | Assign internal bank to customers or supplier                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -73,7 +73,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.2.0.0 | Italian Localisation - Natura delle aliquote IVA                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                          | 10.0.0.3.3 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
+| l10n_it_ade                          | 10.0.0.3.4 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |same|     | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -116,6 +116,8 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_li              | 10.0.1.0.2 | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_einvoice_out_rc              | 10.0.1.0.0 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 10.0.1.0.2 | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -187,7 +189,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_rea                          | 10.0.1.1.2 | 10.0.1.1.3 | Gestisce i campi del Repertorio Economico Amministrativo                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_reverse_charge               | 10.0.1.3   | 10.0.1.2.4 | Reverse Charge for Italy                                                         |
+| l10n_it_reverse_charge               | 10.0.1.4   | 10.0.1.2.4 | Reverse Charge for Italy                                                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -197,7 +199,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_split_payment                | 10.0.1.1.0 | |same|     | Split Payment                                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_vat_communication            | 10.0.0.2.2 | |no_check| | Comunicazione periodica IVA                                                      |
+| l10n_it_vat_communication            | 10.0.0.2.3 | |no_check| | Comunicazione periodica IVA                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_vat_registries               | 10.0.1.3.2 | 10.0.1.3.1 | ITA - Registri IVA                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -369,6 +371,87 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 History / Cronologia
 --------------------
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.26 (2022-06-24)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Module migration
+
+
+l10n_it_einvoice_out_rc: 10.0.1.0.0 (2022-06-21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Created documentation directory
+
+
+l10n_it_vat_communication: 10.0.0.2.3 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+
+
+l10n_it_reverse_charge: 10.0.1.4 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+
+
+l10n_it_einvoice_out: 10.0.1.0.22 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+
+
+l10n_it_einvoice_in: 10.0.1.3.32 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+
+
+l10n_it_einvoice_import: 10.0.1.3.30 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
+
+
+l10n_it_einvoice_base: 10.0.2.1.18 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
+
+
+l10n_it_ddt: 10.0.1.8.13 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+
+
+l10n_it_ade: 10.0.0.3.4 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Best record display/ Migliorie visualizzazione codice
+* [IMP] Tax nature renamed
+
+
+account_vat_period_end_statement: 10.0.1.5.2 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+
+
+l10n_it_einvoice_out: 10.0.1.0.21 (2022-06-17)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PDF attachment removed when XML deleted / Stampe PDF eliminate quanto file XML rimosso
+
+
+l10n_it_einvoice_base: 10.0.2.1.17 (2022-06-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor internal improvements / Migliorie interne minori
+
 
 l10n_it_causali_pagamento: 10.0.2.0.0 (2022-06-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -692,11 +775,11 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-06-18
+Last Update / Ultimo aggiornamento: 2022-06-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt:
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
@@ -752,3 +835,5 @@ Last Update / Ultimo aggiornamento: 2022-06-18
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
+
+

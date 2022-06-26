@@ -18,7 +18,47 @@
 Overview / Panoramica
 =====================
 
+|en| ====================================================================================
+|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.0
+====================================================================================
+
+
+**Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge**
+
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_out_rc/static/description/icon.png
+
+|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+
+
+.. contents::
+
+
+
+Overview / Panoramica
+=====================
+
 |en| 
+
+|
+
+|it| N/D
+
+|
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
++-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+
+
+|
+|
+
 
 |
 
@@ -156,6 +196,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.1.0.0 (2022-06-21)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Created documentation directory
+
+
+
 |
 |
 
@@ -212,7 +262,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-06-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
