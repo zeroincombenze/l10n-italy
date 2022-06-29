@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-21 14:04+0000\n"
-"PO-Revision-Date: 2022-06-21 14:04+0000\n"
+"POT-Creation-Date: 2022-06-29 09:16+0000\n"
+"PO-Revision-Date: 2022-06-29 09:16+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -67,7 +67,7 @@ msgstr "Accettata"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move
 msgid "Account Entry"
-msgstr "Registrazione"
+msgstr "Registrazione Contabile"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_bank_account_id
@@ -180,7 +180,7 @@ msgstr "Banca"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr "Bank Accounts"
+msgstr "Conti bancari"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_bank_expense_account_id
@@ -238,13 +238,13 @@ msgstr "Imposto spese d'incasso. Se diverso da 0, per ogni scadenza del pagament
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_company
 msgid "Companies"
-msgstr "Companies"
+msgstr "Aziende"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_company_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_company_id
 msgid "Company"
-msgstr "Company"
+msgstr "Azienda"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_config_id
@@ -280,7 +280,7 @@ msgstr "Creare"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_create_date
@@ -292,7 +292,7 @@ msgstr "Created by"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_create_date
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_date_created
@@ -344,7 +344,7 @@ msgstr "Servizio di default per costi RiBa (spese di incasso) su fattura"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_name
 msgid "Description"
-msgstr "Description"
+msgstr "Descrizione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -368,7 +368,7 @@ msgstr "Dettaglio riba"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.distinta_riba_action
@@ -487,7 +487,7 @@ msgstr "Nome file"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_full_reconcile
 msgid "Full Reconcile"
-msgstr "Riconciliazione totale"
+msgstr "Riconciliazione Completa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -520,7 +520,7 @@ msgstr "Raggruppa per fattura"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "Group by..."
-msgstr "Raggruppa per."
+msgstr "Raggruppa per..."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line_iban
@@ -635,7 +635,7 @@ msgstr "Lasciare vuoto per usare la data odierna"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue___last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_write_uid
@@ -647,7 +647,7 @@ msgstr "Last Modified on"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_write_date
@@ -659,7 +659,7 @@ msgstr "Last Updated by"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue_write_date
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_distinta_id
@@ -739,7 +739,7 @@ msgstr "Numero"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Other Info"
-msgstr "Altre informazioni"
+msgstr "Altre info"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:157
@@ -784,13 +784,13 @@ msgstr "Riconciliazione parziale"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Nominativo"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:80
 #, python-format
 msgid "Partner %s has not bank!!!"
-msgstr "Il partner %s non ha banca!"
+msgstr "Il partner %s non ha banca!!!"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_payment_term
@@ -829,7 +829,7 @@ msgstr "Riconciliato"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_name
 msgid "Reference"
-msgstr "Reference"
+msgstr "Riferimento"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_registration_date
@@ -1028,7 +1028,7 @@ msgstr "Stampa distinta"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_state
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_file_export_state
 msgid "State"
-msgstr "State"
+msgstr "Provincia"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -1084,7 +1084,7 @@ msgstr "Totale Dare"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_type
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_type
 msgid "Type"
-msgstr "Type"
+msgstr "Tipo"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -1151,7 +1151,7 @@ msgstr "Registrazioni insoluti"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_user_id
 msgid "User"
-msgstr "User"
+msgstr "Utente"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
