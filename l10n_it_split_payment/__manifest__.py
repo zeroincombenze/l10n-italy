@@ -7,13 +7,16 @@
 
 {
     "name": "Split Payment",
-    "version": "10.0.1.1.0",
+    "version": "10.0.1.1.1",
     "category": "Localization/Italy",
     "summary": "Split Payment",
     "author": "Abstract, Agile Business Group, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "depends": ["account"],
+    "depends": [
+        "account",
+        "l10n_it_account",
+    ],
     "data": [
         "views/account_view.xml",
         "views/config_view.xml",

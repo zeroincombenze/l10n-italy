@@ -197,7 +197,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_sdi_channel                  | |no_check| | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_split_payment                | 10.0.1.1.0 | |same|     | Split Payment                                                                    |
+| l10n_it_split_payment                | 10.0.1.1.1 | 10.0.1.1.0 | Split Payment                                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_vat_communication            | 10.0.0.2.3 | |no_check| | Comunicazione periodica IVA                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -219,7 +219,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_website_sale_fiscalcode      | 10.0.1.0.1 | 10.0.1.0.2 | Website Sale FiscalCode                                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_withholding_tax              | 10.0.1.2.6 | 10.0.2.0.1 | Italian Withholding Tax                                                          |
+| l10n_it_withholding_tax              | 10.0.1.2.7 | 10.0.2.0.1 | Italian Withholding Tax                                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_withholding_tax_causali      | |no_check| | 10.0.1.0.0 | Causali pagamento per ritenute d'acconto                                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -371,6 +371,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 History / Cronologia
 --------------------
+
+l10n_it_split_payment: 10.0.1.1.1 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depending on l10n_it_account for amount_net_pay
+
+
+l10n_it_account: 10.0.1.2.11 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field amount_net_pay from withholding tax
+
 
 l10n_it_einvoice_send2sdi: 10.0.1.0.26 (2022-06-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -728,21 +740,6 @@ l10n_it_einvoice_out: 10.0.1.0.18 (2022-01-03)
 * [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
 
 
-l10n_it_fiscal: 10.0.0.2.5 (2021-12-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Account group no change on module upgrade
-* [FIX] Installation error
-
-
-l10n_it_fiscal: 10.0.0.2.4 (2021-12-29)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Tax 5%
-* [FIX] Wrong tax Dogana
-* [IMP] Taxes for all EU countries
-
-
 
 
 
@@ -775,7 +772,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-06-26
+Last Update / Ultimo aggiornamento: 2022-06-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

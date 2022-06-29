@@ -228,7 +228,7 @@ class account_payment(models.Model):
     @api.model
     def default_get(self, fields):
         """
-        Redifine  amount to pay proportionally to amount total less wt
+        Redefine  amount to pay proportionally to amount total less wt
         """
         rec = super(account_payment, self).default_get(fields)
         invoice_defaults = self.resolve_2many_commands(
@@ -376,12 +376,13 @@ class AccountInvoice(models.Model):
     @api.depends(
         "invoice_line_ids.price_subtotal",
         "withholding_tax_line_ids.tax",
+        "amount_total",
         "currency_id",
         "company_id",
         "date_invoice",
     )
-    def _amount_withholding_tax(self):
-        res = {}
+    def _compute_amount(self):
+        super(AccountInvoice, self)._compute_amount()
         dp_obj = self.env["decimal.precision"]
         for invoice in self:
             withholding_tax_amount = 0.0
@@ -389,9 +390,10 @@ class AccountInvoice(models.Model):
                 withholding_tax_amount += round(
                     wt_line.tax, dp_obj.precision_get("Account")
                 )
-            invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
-            invoice.withholding_tax_amount = withholding_tax_amount
-        return res
+            if withholding_tax_amount:
+                invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
+                invoice.withholding_tax_amount = withholding_tax_amount
+        # return res
 
     withholding_tax = fields.Boolean("Withholding Tax")
     withholding_tax_line_ids = fields.One2many(
@@ -403,20 +405,20 @@ class AccountInvoice(models.Model):
         states={"draft": [("readonly", False)]},
     )
     withholding_tax_amount = fields.Float(
-        compute="_amount_withholding_tax",
+        compute="_compute_amount",
         digits=dp.get_precision("Account"),
         string="Withholding tax",
         store=True,
         readonly=True,
         copy=False,
     )
-    amount_net_pay = fields.Float(
-        compute="_amount_withholding_tax",
-        digits=dp.get_precision("Account"),
-        string="Net To Pay",
-        store=True,
-        readonly=True,
-    )
+    # amount_net_pay = fields.Float(
+    #     compute="_amount_withholding_tax",
+    #     digits=dp.get_precision("Account"),
+    #     string="Net To Pay",
+    #     store=True,
+    #     readonly=True,
+    # )
 
     @api.model
     def create(self, vals):

@@ -38,18 +38,18 @@ class AccountInvoice(models.Model):
     @api.depends(
         "invoice_line_ids.price_subtotal",
         "tax_line_ids.amount",
+        "amount_total",
         "currency_id",
         "company_id",
         "date_invoice",
     )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        self.amount_sp = 0
-        if self.fiscal_position_id.split_payment:
-            self.amount_sp = -self.amount_tax
-            # self.amount_tax = 0
-            self.amount_net_pay = self.amount_total + self.amount_sp
-        # self.amount_total = self.amount_untaxed + self.amount_tax
+        for invoice in self:
+            invoice.amount_sp = 0.0
+            if invoice.fiscal_position_id.split_payment:
+                invoice.amount_sp = -invoice.amount_tax
+                invoice.amount_net_pay = invoice.amount_total + invoice.amount_sp
 
     def reconcile_sp_invoice(self, invoice):
         reconcile_model = self.env["account.move.line.reconcile"]

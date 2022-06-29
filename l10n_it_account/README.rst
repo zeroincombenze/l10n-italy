@@ -1,6 +1,6 @@
 
 =================================================
-|icon| Italian Localization - Account 10.0.1.2.10
+|icon| Italian Localization - Account 10.0.1.2.11
 =================================================
 
 
@@ -165,6 +165,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.11 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field amount_net_pay from withholding tax
+
 10.0.1.2.10 (2022-04-21)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -250,7 +255,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-06-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

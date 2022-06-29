@@ -5,13 +5,14 @@
 #
 {
     "name": "Italian Withholding Tax",
-    "version": "10.0.1.2.6",
+    "version": "10.0.1.2.7",
     "category": "Account",
     "author": "Odoo Community Association (OCA) and other subjects",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "LGPL-3",
     "depends": [
         "account",
+        "l10n_it_account",
         "l10n_it_causali_pagamento",
         "l10n_it_einvoice_base",
     ],

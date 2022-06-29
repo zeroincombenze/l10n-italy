@@ -1,6 +1,6 @@
 
 =========================================
-|icon| Italian Withholding Tax 10.0.1.2.6
+|icon| Italian Withholding Tax 10.0.1.2.7
 =========================================
 
 
@@ -16,18 +16,12 @@
 Overview / Panoramica
 =====================
 
-|en| Withholding tax
---------------------
-
-Italian withholding tax management.
+|en| Italian withholding tax management.
 
 
 |
 
-|it| Ritenuta d'acconto
------------------------
-
-Questo modulo permette di calcolare automaticamente i valori delle diverse tipologie di ritenuta d'acconto.
+|it| Questo modulo permette di calcolare automaticamente i valori delle diverse tipologie di ritenuta d'acconto.
 
 Le ritenute devono collegate alle causali di pagamento fiscali per la gestione della fatturazione eleettronica.
 
@@ -249,7 +243,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-04-27
+Last Update / Ultimo aggiornamento: 2022-06-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
