@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
-# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
-# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
+# Copyright (C) 2012 Andrea Cometa.
+# Email: info@andreacometa.it
+# Web site: http://www.andreacometa.it
+# Copyright (C) 2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from datetime import date
 
 from odoo import _, api, fields, models, workflow

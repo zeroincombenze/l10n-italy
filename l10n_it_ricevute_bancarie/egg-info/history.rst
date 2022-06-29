@@ -1,3 +1,9 @@
+10.0.1.3.8 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [TNL] Translation
+* [IMP] Riba flag updatable / Scadenza Riba modificabile
+
 10.0.1.3.7 (2022-05-03)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

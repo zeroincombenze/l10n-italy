@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
-#
-# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
-# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
-# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
+# Copyright (C) 2012 Andrea Cometa.
+# Email: info@andreacometa.it
+# Web site: http://www.andreacometa.it
+# Copyright (C) 2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     "name": "Ricevute Bancarie",
-    "version": "10.0.1.3.7",
+    "version": "10.0.1.3.8",
     "category": "Accounting & Finance",
     "author": "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy",
+    "category": "Accounting & Finance",
+    "website": "https://odoo-community.org/",
     "license": "AGPL-3",
     "depends": [
         "account",
@@ -24,7 +25,6 @@
         "l10n_it_abicab",
     ],
     "data": [
-        # 'data/base.xml',
         "views/partner_view.xml",
         "views/configuration_view.xml",
         "riba_sequence.xml",
