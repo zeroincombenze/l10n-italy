@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Ricevute Bancarie 10.0.1.3.7
+|icon| Ricevute Bancarie 10.0.1.3.8
 ===================================
 
 
@@ -302,6 +302,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.8 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [TNL] Translation
+* [IMP] Riba flag updatable / Scadenza Riba modificabile
+
 10.0.1.3.7 (2022-05-03)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -381,7 +387,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-05-03
+Last Update / Ultimo aggiornamento: 2022-06-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

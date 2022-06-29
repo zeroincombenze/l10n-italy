@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
-# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
-# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+# Copyright (C) 2012 Andrea Cometa.
+# Email: info@andreacometa.it
+# Web site: http://www.andreacometa.it
+# Copyright (C) 2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
@@ -43,6 +44,7 @@ class ResPartnerBankAdd(models.Model):
 
 class AccountMove(models.Model):
     _inherit = "account.move"
+
     riba_accredited_ids = fields.One2many(
         "riba.distinta",
         "accreditation_move_id",
@@ -65,9 +67,9 @@ class AccountMoveLine(models.Model):
         "riba.distinta.move.line", "move_line_id", "Dettaglio riba", copy=False
     )
     riba = fields.Boolean(
-        related="invoice_id.payment_term_id.riba",
+        # related="invoice_id.payment_term_id.riba",
         string="RiBa",
-        store=False,
+        # store=False,
         copy=False,
     )
     unsolved_invoice_ids = fields.Many2many(
@@ -187,9 +189,14 @@ class AccountInvoice(models.Model):
                 invoice.type != "out_invoice"
                 or not invoice.payment_term_id
                 or not invoice.payment_term_id.riba
-                or invoice.payment_term_id.riba_payment_cost == 0.0
             ):
                 continue
+            for move_line in invoice.move_id.line_ids:
+                if move_line.account_id.internal_type == "receivable":
+                    move_line.riba = invoice.payment_term_id.riba
+            if invoice.payment_term_id.riba_payment_cost == 0.0:
+                continue
+
             if not invoice.company_id.due_cost_service_id:
                 raise UserError(_("Set a Service for Due Cost in Company Config"))
             # ---- Apply Due Cost on invoice only on first due of the month

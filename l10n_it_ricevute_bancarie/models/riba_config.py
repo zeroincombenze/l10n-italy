@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
-# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
-# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
-from odoo import fields, models
+# Copyright (C) 2012 Andrea Cometa.
+# Email: info@andreacometa.it
+# Web site: http://www.andreacometa.it
+# Copyright (C) 2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import models, fields
 
 
 class RibaConfiguration(models.Model):
@@ -18,7 +19,7 @@ class RibaConfiguration(models.Model):
     name = fields.Char("Description", size=64, required=True)
     type = fields.Selection(
         (("sbf", "Salvo buon fine"), ("incasso", "Al dopo incasso")),
-        "Modalità Emissione",
+        "Emission mode",
         required=True,
     )
     bank_id = fields.Many2one(
@@ -51,12 +52,12 @@ class RibaConfiguration(models.Model):
         "account.journal",
         "Accreditation journal",
         domain=[("type", "=", "bank")],
-        help="Journal used when Ri.Ba. list is accredited by the bank",
+        help="Journal used when Ri.Ba. amount is accredited by the bank",
     )
     accreditation_account_id = fields.Many2one(
         "account.account",
-        "Ri.Ba. transitory bank account",
-        help="Account used when Ri.Ba. list is accepted by the bank",
+        "Ri.Ba. bank account",
+        help="Account used when Ri.Ba. is accepted by the bank",
         domain=[("internal_type", "!=", "liquidity")],
     )
     bank_account_id = fields.Many2one(

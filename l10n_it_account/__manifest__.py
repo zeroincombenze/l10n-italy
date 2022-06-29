@@ -7,7 +7,7 @@
 
 {
     "name": "Italian Localization - Account",
-    "version": "10.0.1.2.10",
+    "version": "10.0.1.2.11",
     "category": "Hidden",
     "author": "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
