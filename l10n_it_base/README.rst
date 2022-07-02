@@ -1,6 +1,6 @@
 
 ==============================================
-|icon| Italian Localisation - Base 10.0.0.2.17
+|icon| Italian Localisation - Base 10.0.0.2.18
 ==============================================
 
 
@@ -206,6 +206,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.18 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Added regression tests
+
 10.0.0.2.17 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -293,7 +298,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-09
+Last Update / Ultimo aggiornamento: 2022-07-02
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
