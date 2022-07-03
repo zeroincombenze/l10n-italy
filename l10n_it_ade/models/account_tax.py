@@ -16,7 +16,7 @@ class AccountTax(models.Model):
     kind_id = fields.Many2one(
         "italy.ade.tax.nature",
         string="Nature",
-        oldname="kind_id",
+        oldname="nature_id",
         help="Nature of tax code: may be taxable, out of scope, etc ...",
     )
     # non_taxable_nature = fields.Selection([

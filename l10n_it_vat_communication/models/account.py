@@ -382,7 +382,7 @@ class AccountVatCommunication(models.Model):
             invoice_id = invoice.id
             for invoice_tax in invoice.tax_line_ids:
                 xml_Error2 = ""
-                tax_nature = False
+                tax_kind = False
                 tax_payability = "I"
                 tax_rate = 0.0
                 tax_nodet_rate = 0.0
@@ -402,7 +402,7 @@ class AccountVatCommunication(models.Model):
                         if tax.tax_id.amount > tax_rate:
                             tax_rate = tax.tax_id.amount / 100
                         if tax.tax_id.kind_id:
-                            tax_nature = tax.tax_id.kind_id.code
+                            tax_kind = tax.tax_id.kind_id.code
                         if tax_payability:
                             tax_payability = tax.tax_id.payability
                         if tax.tax_id.type_tax_use:
@@ -425,8 +425,8 @@ class AccountVatCommunication(models.Model):
                                 tax_rate = tax.amount
                 if tax_type in ("sale", "purchase"):
                     if tax_rate == 0.0 and (
-                        not tax_nature
-                        or (dte_dtr_id == "DTR" and tax_nature.startswith("N6"))
+                        not tax_kind
+                        or (dte_dtr_id == "DTR" and tax_kind.startswith("N6"))
                     ):
                         xml_Error2 += self._get_error(
                             _("00400 - Missed/wrong tax nature in %s")
@@ -435,15 +435,15 @@ class AccountVatCommunication(models.Model):
                         )
                     elif (
                         tax_rate
-                        and tax_nature
-                        and (dte_dtr_id == "DTE" or not tax_nature.startswith("N6"))
+                        and tax_kind
+                        and (dte_dtr_id == "DTE" or not tax_kind.startswith("N6"))
                     ):
                         xml_Error2 += self._get_error(
                             _("00401 - Invalid/wrong tax nature in %s")
                             % invoice_tax.name,
                             context,
                         )
-                    if tax_payability == "S" and tax_nature.startswith("N6"):
+                    if tax_payability == "S" and tax_kind.startswith("N6"):
                         xml_Error2 += self._get_error(
                             _("00420 - Wrong tax payability in %s") % invoice_tax.name,
                             context,
@@ -452,9 +452,9 @@ class AccountVatCommunication(models.Model):
                     xml_Error2 += self._get_error(
                         _("00424 - Invalid tax rate in %s") % invoice_tax.name, context
                     )
-                if tax_nature:
-                    if (tax_nature == "FC") or (
-                        tax_nature == "N2" and not invoice.partner_id.vat
+                if tax_kind:
+                    if (tax_kind == "FC") or (
+                        tax_kind == "N2" and not invoice.partner_id.vat
                     ):
                         if invoice.type[-7:] == "_refund":
                             sum_amounts["discarded"] -= round(
@@ -479,7 +479,7 @@ class AccountVatCommunication(models.Model):
                     inv_line[taxcode_base_id]["tax_vat_id"] = taxcode_vat_id
                     inv_line[taxcode_base_id]["tax_rate"] = tax_rate
                     inv_line[taxcode_base_id]["tax_nodet_rate"] = tax_nodet_rate
-                    inv_line[taxcode_base_id]["tax_nature"] = tax_nature
+                    inv_line[taxcode_base_id]["tax_kind"] = tax_kind
                     inv_line[taxcode_base_id]["tax_payability"] = tax_payability
                     inv_line[taxcode_base_id]["xml_Error2"] = xml_Error2
                 if tax_rate and not inv_line[taxcode_base_id]["tax_rate"]:
@@ -579,7 +579,7 @@ class AccountVatCommunication(models.Model):
                     "tax_vat_id",
                     "tax_rate",
                     "tax_nodet_rate",
-                    "tax_nature",
+                    "tax_kind",
                     "tax_payability",
                     "xml_Error2",
                 ):
@@ -937,10 +937,10 @@ class CommitmentLine(models.AbstractModel):
         res["xml_Imposta"] = abs(line.amount_tax)
         res["xml_Aliquota"] = line.tax_rate * 100
         res["xml_Detraibile"] = 100.0 - line.tax_nodet_rate * 100
-        if line.tax_nature:
+        if line.tax_kind:
             res["xml_Natura"] = line.tax_id.kind_id.code
         else:
-            res["xml_Natura"] = line.tax_nature
+            res["xml_Natura"] = line.tax_kind
         # res['xml_Natura'] = line.tax_id.kind_id.code
         res["xml_EsigibilitaIVA"] = line.tax_payability
         res["xml_Error2"] = line.xml_Error2
@@ -1054,7 +1054,7 @@ class CommitmentDTELine(models.Model):
     tax_vat_id = fields.Many2one("account.tax.code", "VAT code", readony=True)
     tax_rate = fields.Float("VAT rate", readony=True)
     tax_nodet_rate = fields.Float("VAT non deductible rate", readony=True)
-    tax_nature = fields.Char("Non taxable nature", readony=True)
+    tax_kind = fields.Char("Non taxable nature", readony=True, oldname="tax_nature")
     tax_payability = fields.Char("VAT payability", readony=True)
     amount_total = fields.Float("Amount", digits=dp.get_precision("Account"))
     amount_taxable = fields.Float("Taxable amount", digits=dp.get_precision("Account"))
@@ -1192,7 +1192,7 @@ class CommitmentDTRLine(models.Model):
     tax_vat_id = fields.Many2one("account.tax.code", "VAT code", readony=True)
     tax_rate = fields.Float("VAT rate", readony=True)
     tax_nodet_rate = fields.Float("VAT non deductible rate", readony=True)
-    tax_nature = fields.Char("Non taxable nature", readony=True)
+    tax_kind = fields.Char("Non taxable nature", readony=True, oldname="tax_nature")
     tax_payability = fields.Char("VAT payability", readony=True)
     amount_total = fields.Float("Amount", digits=dp.get_precision("Account"))
     amount_taxable = fields.Float("Taxable amount", digits=dp.get_precision("Account"))
