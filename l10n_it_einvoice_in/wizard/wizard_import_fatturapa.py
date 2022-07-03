@@ -925,7 +925,7 @@ class WizardImportFatturapa(models.TransientModel):
             raise UserError(e)
         if wt_found:
             invoice._onchange_invoice_line_wt_ids()
-            invoice._amount_withholding_tax()
+            # invoice._amount_withholding_tax()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 

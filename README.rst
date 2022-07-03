@@ -193,7 +193,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ricevute_bancarie            | 10.0.1.3.7 | 10.0.1.3.0 | Ricevute Bancarie                                                                |
+| l10n_it_ricevute_bancarie            | 10.0.1.3.8 | 10.0.1.3.0 | Ricevute Bancarie                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_sdi_channel                  | |no_check| | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -372,10 +372,23 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_base: 10.0.0.2.18 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Added regression tests
+
+
 l10n_it_split_payment: 10.0.1.1.1 (2022-06-29)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Depending on l10n_it_account for amount_net_pay
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.8 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [TNL] Translation
+* [IMP] Riba flag updatable / Scadenza Riba modificabile
 
 
 l10n_it_account: 10.0.1.2.11 (2022-06-29)
@@ -418,6 +431,7 @@ l10n_it_einvoice_in: 10.0.1.3.32 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Tax nature renamed
+* [FIX] Error _amount_withholding_tax
 
 
 l10n_it_einvoice_import: 10.0.1.3.30 (2022-06-20)
@@ -734,12 +748,6 @@ l10n_it_fiscal: 10.0.0.2.6 (2022-01-04)
 * [IMP] Module name changed (l10n_it_coa -> l10n_it_coa)
 
 
-l10n_it_einvoice_out: 10.0.1.0.18 (2022-01-03)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
-
-
 
 
 
@@ -772,7 +780,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-06-29
+Last Update / Ultimo aggiornamento: 2022-07-03
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
