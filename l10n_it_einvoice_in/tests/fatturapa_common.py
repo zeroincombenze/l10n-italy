@@ -18,6 +18,67 @@ class FatturapaCommon(SingleTransactionCase):
                 out.seek(0)
                 return path, out.read()
 
+    def create_tax_22a(self):
+        tax_model = self.env["account.tax"]
+        tax_id = tax_model.search([("description", "=", "22a")])
+        if tax_id:
+            return tax_model.browse(tax_id)
+        account_id = (
+            self.env["account.account"]
+            .search(
+                [
+                    (
+                        "user_type_id",
+                        "=",
+                        self.env.ref("account.data_account_type_current_assets").id,
+                    )
+                ],
+                limit=1,
+            )
+            .id
+        )
+        return tax_model.create(
+            {
+                "name": "22% e-bill",
+                "description": "22a",
+                "type_tax_use": "purchase",
+                "amount_type": "percent",
+                "amount": 22.0,
+                "account_id": account_id,
+                "refund_account_id": account_id,
+            }
+        )
+
+    def create_tax_a10a(self):
+        tax_model = self.env["account.tax"]
+        tax_id = tax_model.search([("description", "=", "a10a")])
+        if tax_id:
+            return tax_model.browse(tax_id)
+        kind_id = (
+            self.env["italy.ade.tax.nature"]
+            .search(
+                [
+                    (
+                        "code",
+                        "=",
+                        "N4"
+                    )
+                ],
+                limit=1,
+            )
+            .id
+        )
+        return tax_model.create(
+            {
+                "name": "art. 10",
+                "description": "a10a",
+                "type_tax_use": "purchase",
+                "amount_type": "percent",
+                "amount": 0.0,
+                "kind_id": kind_id,
+            }
+        )
+
     def create_wt(self):
         return self.env["withholding.tax"].create(
             {

@@ -219,7 +219,7 @@
                                         <field name="period_start_date" />
                                         <field name="period_end_date" />
                                         <field name="wt_amount" />
-                                        <field name="tax_nature" />
+                                        <field name="tax_kind" />
                                         <field name="admin_ref" />
                                     </group>
                                     <separator string="Articles Code" />
