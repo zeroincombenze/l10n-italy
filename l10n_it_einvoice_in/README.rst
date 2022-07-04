@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.31
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.32
 =========================================================================
 
 
@@ -283,6 +283,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.32 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+* [FIX] Error _amount_withholding_tax
+
 10.0.1.3.31 (2022-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -382,7 +388,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-07-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

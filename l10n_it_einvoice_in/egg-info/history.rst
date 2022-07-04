@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Tax nature renamed
+* [FIX] Error _amount_withholding_tax
 
 10.0.1.3.31 (2022-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~

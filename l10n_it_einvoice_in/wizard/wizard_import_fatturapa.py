@@ -183,9 +183,9 @@ class WizardImportFatturapa(models.TransientModel):
         if Natura:
             if "." not in Natura:
                 # Code 2020
-                nature_ids = nature_model.search([("code", "like", Natura)])
-                if nature_ids:
-                    domain.append(("kind_id", "in", [x.id for x in nature_ids]))
+                kind_ids = nature_model.search([("code", "like", Natura)])
+                if kind_ids:
+                    domain.append(("kind_id", "in", [x.id for x in kind_ids]))
                 # else:
                 #     domain.append(('kind_id', '=', -1))
             else:
@@ -224,14 +224,14 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_natura(self, Natura):
         if Natura:
-            tax_nature_ids = self.env["italy.ade.tax.nature"].search(
+            tax_kind_ids = self.env["italy.ade.tax.nature"].search(
                 [("code", "=", Natura)]
             )
-            if not tax_nature_ids:
+            if not tax_kind_ids:
                 self.log_inconsistency(_("Natura %s non trovata") % Natura)
                 return False
             else:
-                return tax_nature_ids[0].id
+                return tax_kind_ids[0].id
         return False
 
     def _prepare_generic_line_data(self, line, partner_id=False):
@@ -784,7 +784,7 @@ class WizardImportFatturapa(models.TransientModel):
             "total_price": float(line.PrezzoTotale or 0),
             "tax_amount": float(line.AliquotaIVA or 0),
             "wt_amount": line.Ritenuta,
-            "tax_nature": line.Natura,
+            "tax_kind": line.Natura,
             "admin_ref": line.RiferimentoAmministrazione,
         }
         einvoiceline = self.env["einvoice.line"].create(vals)
@@ -925,7 +925,7 @@ class WizardImportFatturapa(models.TransientModel):
             raise UserError(e)
         if wt_found:
             invoice._onchange_invoice_line_wt_ids()
-            invoice._amount_withholding_tax()
+            # invoice._amount_withholding_tax()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
