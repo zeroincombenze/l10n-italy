@@ -43,9 +43,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_check_total          | 10.0.1.0.0 | |no_check| |  Check if the verification total is equal to the bill's total                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_invoice_entry_date           | 10.0.0.1.1 | |halt|     | Account Invoice Entry Dates                                                      |
+| account_invoice_entry_date           | 10.0.0.2.0 | |halt|     | Account Invoice Entry Dates                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_invoice_entry_dates          | 10.0.1.0.4 | |no_check| | Registration, vat/balance application dates                                      |
+| account_invoice_entry_dates          | |halt|     | |no_check| | Registration, vat/balance application dates                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_report_ddt_group     | |halt|     | 10.0.0.3.2 | Account invoice report grouped by DDT                                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -371,6 +371,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 History / Cronologia
 --------------------
+
+account_invoice_entry_date: 10.0.0.2.0 (2022-07-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Entry date = date / Data di registrazione = Data contabile
+
 
 l10n_it_base: 10.0.0.2.18 (2022-06-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -742,12 +748,6 @@ l10n_it_einvoice_import: 10.0.1.3.27 (2022-01-05)
 * [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
 
 
-l10n_it_fiscal: 10.0.0.2.6 (2022-01-04)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Module name changed (l10n_it_coa -> l10n_it_coa)
-
-
 
 
 
@@ -780,7 +780,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-07-03
+Last Update / Ultimo aggiornamento: 2022-07-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

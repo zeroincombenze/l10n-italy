@@ -17,6 +17,6 @@
     "license": "AGPL-3",
     "depends": ["account"],
     "data": ["view/account_view.xml"],
-    "installable": True,
+    "installable": False,
     "maintainer": "Antonio Maria Vigliotti",
 }
