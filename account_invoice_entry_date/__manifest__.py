@@ -7,7 +7,7 @@
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "LGPL-3",
-    "depends": ["account", "account_payment_partner"],
+    "depends": ["account"],
     "data": [
         "views/account_invoice_view.xml",
     ],

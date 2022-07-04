@@ -22,7 +22,7 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account_payment_partner.invoice_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='payment_mode_id']" position="replace">
+            <xpath expr="//field[@name='esidual_signed']" position="after">
                 <field name="payment_term_id"/>
             </xpath>
         </field>
@@ -59,7 +59,7 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account_payment_partner.invoice_supplier_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='payment_mode_id']" position="replace">
+            <xpath expr="//field[@name='esidual_signed']" position="after">
                 <field name="payment_term_id"/>
             </xpath>
         </field>
