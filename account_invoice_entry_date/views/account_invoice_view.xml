@@ -31,6 +31,9 @@
             <xpath expr="//field[@name='amount_total_signed']" position="before">
                 <field name="amount_untaxed_signed"  sum="Total Untaxed"/>
             </xpath>
+            <xpath expr="//field[@name='residual_signed']" position="after">
+                <field name="payment_term_id"/>
+            </xpath>
         </field>
     </record>
 
@@ -43,10 +46,6 @@
             <field name="date_invoice" position="after">
                 <field name="date" />
             </field>
-            <xpath expr="//field[@name='residual_signed']" position="after">
-                <field name="payment_term_id"/>
-            </xpath>
-
         </field>
     </record>
 
