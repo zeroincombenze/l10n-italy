@@ -428,6 +428,7 @@ class StockPickingPackagePreparation(models.Model):
         vals = {"partner_id": False}
         for picking in picking_ids:
             # check if picking is already linked to a DDT
+            # self.check_linked_picking(picking)
             picking.check_linked_picking()
             current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
             if not partner:
