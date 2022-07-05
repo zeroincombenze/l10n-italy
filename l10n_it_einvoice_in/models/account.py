@@ -195,23 +195,24 @@ class AccountInvoice(models.Model):
         error_message = ""
         # ftpa_withholding_type is set when DatiRitenuta is set,
         # withholding_tax is not set if no lines with Ritenuta = SI are found
-        if self.ftpa_withholding_ids and not self.withholding_tax:
-            error_message += _(
-                "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
-                "found. Please manually check Withholding tax Amount\n"
-            )
-        if (
-            sum(self.ftpa_withholding_ids.mapped("amount"))
-            != self.withholding_tax_amount
-        ):
-            error_message += _(
-                "E-bill contains ImportoRitenuta %s but created invoice has got"
-                " %s\n"
-                % (
-                    sum(self.ftpa_withholding_ids.mapped("amount")),
-                    self.withholding_tax_amount,
-                )
-            )
+        # TODO> is it to reactivate?
+        # if self.ftpa_withholding_ids and not self.withholding_tax:
+        #     error_message += _(
+        #         "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
+        #         "found. Please manually check Withholding tax Amount\n"
+        #     )
+        # if (
+        #     sum(self.ftpa_withholding_ids.mapped("amount"))
+        #     != self.withholding_tax_amount
+        # ):
+        #     error_message += _(
+        #         "E-bill contains ImportoRitenuta %s but created invoice has got"
+        #         " %s\n"
+        #         % (
+        #             sum(self.ftpa_withholding_ids.mapped("amount")),
+        #             self.withholding_tax_amount,
+        #         )
+        #     )
         return error_message
 
     @api.depends(
