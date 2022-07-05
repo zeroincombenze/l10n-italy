@@ -1,6 +1,6 @@
 
 =============================================
-|icon| Comunicazione periodica IVA 10.0.0.2.3
+|icon| Comunicazione periodica IVA 10.0.0.2.4
 =============================================
 
 
@@ -299,6 +299,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.4 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature_id renamed
+
 10.0.0.2.3 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -344,8 +349,8 @@ Acknowledges / Riconoscimenti
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Carlo Vettore <carlo.vettore@didotech.com>
-* Andrei Levin <andrei.levin@didotech.com>
++-----------------------------------+-------------------------------------------+* Andrei Levin <andrei.levin@didotech.com>
+* Carlo Vettore <carlo.vettore@didotech.com>
 
 
 Maintainer / Manutenzione
@@ -377,7 +382,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-07-04
+Last Update / Ultimo aggiornamento: 2022-07-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

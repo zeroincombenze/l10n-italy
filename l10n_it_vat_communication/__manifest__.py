@@ -5,7 +5,7 @@
 #
 {
     "name": "Comunicazione periodica IVA",
-    "version": "10.0.0.2.3",
+    "version": "10.0.0.2.4",
     "category": "Generic Modules/Accounting",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
