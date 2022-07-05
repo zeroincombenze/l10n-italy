@@ -7,7 +7,7 @@
 #
 {
     "name": "Italian Localisation - Base",
-    "version": "10.0.0.2.17",
+    "version": "10.0.0.2.18",
     "category": "Generic Modules/Accounting",
     "summary": "Managing Italian addresses",
     "author": "Odoo Community Association (OCA), Pexego,",

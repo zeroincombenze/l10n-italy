@@ -664,8 +664,8 @@ class AccountVatPeriodEndStatement(models.Model):
                 debit_tax_ids,
                 debit_line_ids,
                 credit_line_ids,
-                debit_nature_ids,
-                credit_nature_ids,
+                debit_kind_ids,
+                credit_kind_ids,
             ) = self._get_credit_debit_lines(statement)
 
             for debit_line in statement.debit_vat_nature_line_ids:
@@ -681,10 +681,10 @@ class AccountVatPeriodEndStatement(models.Model):
             for credit_line in statement.credit_vat_move_line_ids:
                 credit_line.unlink()
 
-            for debit_vals in debit_nature_ids:
+            for debit_vals in debit_kind_ids:
                 debit_vals["statement_id"] = statement.id
                 debit_nature_model.create(debit_vals)
-            for credit_vals in credit_nature_ids:
+            for credit_vals in credit_kind_ids:
                 credit_vals["statement_id"] = statement.id
                 credit_nature_model.create(credit_vals)
             for debit_vals in debit_line_ids:
@@ -784,17 +784,17 @@ class AccountVatPeriodEndStatement(models.Model):
         return line_ids, total
 
     def split_line_total(self, total):
-        nature_ids = []
+        kind_ids = []
         line_ids = []
         for hash in sorted(total.keys()):
             vals = total[hash]
             level = vals["level"]
             del vals["level"]
             if level == "N":
-                nature_ids.append(vals)
+                kind_ids.append(vals)
             else:
                 line_ids.append(vals)
-        return nature_ids, line_ids
+        return kind_ids, line_ids
 
     def _get_credit_debit_lines(self, statement):
         credit_tax_ids = []
@@ -836,15 +836,15 @@ class AccountVatPeriodEndStatement(models.Model):
                     tax, statement, credit_tax_ids, credit_total
                 )
 
-        debit_nature_ids, debit_line_ids = self.split_line_total(debit_total)
-        credit_nature_ids, credit_line_ids = self.split_line_total(credit_total)
+        debit_kind_ids, debit_line_ids = self.split_line_total(debit_total)
+        credit_kind_ids, credit_line_ids = self.split_line_total(credit_total)
         return (
             credit_tax_ids,
             debit_tax_ids,
             debit_line_ids,
             credit_line_ids,
-            debit_nature_ids,
-            credit_nature_ids,
+            debit_kind_ids,
+            credit_kind_ids,
         )
 
     @api.onchange("authority_partner_id")
