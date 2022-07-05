@@ -287,6 +287,7 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
 
 10.0.1.3.29 (2022-05-21)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -376,7 +377,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-07-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
