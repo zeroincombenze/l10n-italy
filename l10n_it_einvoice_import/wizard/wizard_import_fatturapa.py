@@ -183,9 +183,9 @@ class WizardImportFatturapa(models.TransientModel):
         if Natura:
             if "." not in Natura:
                 # Code 2020
-                nature_ids = nature_model.search([("code", "like", Natura)])
-                if nature_ids:
-                    domain.append(("kind_id", "in", [x.id for x in nature_ids]))
+                kind_ids = nature_model.search([("code", "like", Natura)])
+                if kind_ids:
+                    domain.append(("kind_id", "in", [x.id for x in kind_ids]))
                 # else:
                 #     domain.append(('kind_id', '=', -1))
             else:
@@ -224,14 +224,14 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_natura(self, Natura):
         if Natura:
-            tax_nature_ids = self.env["italy.ade.tax.nature"].search(
+            tax_kind_ids = self.env["italy.ade.tax.nature"].search(
                 [("code", "=", Natura)]
             )
-            if not tax_nature_ids:
+            if not tax_kind_ids:
                 self.log_inconsistency(_("Natura %s non trovata") % Natura)
                 return False
             else:
-                return tax_nature_ids[0].id
+                return tax_kind_ids[0].id
         return False
 
     def _prepare_generic_line_data(self, line, partner_id=False):
@@ -418,7 +418,7 @@ class WizardImportFatturapa(models.TransientModel):
         AliquotaIVA = line.AliquotaIVA and (float(line.AliquotaIVA) / 100) or None
         Ritenuta = line.Ritenuta or ""
         Natura = line.Natura or False
-        tax_nature_id = self.get_natura(Natura)
+        tax_kind_id = self.get_natura(Natura)
         RiferimentoAmministrazione = line.RiferimentoAmministrazione or ""
         WelfareTypeModel = self.env["welfare.fund.type"]
         if not TipoCassa:
@@ -431,7 +431,7 @@ class WizardImportFatturapa(models.TransientModel):
             "welfare_taxable": ImponibileCassa,
             "welfare_Iva_tax": AliquotaIVA,
             "subjected_withholding": Ritenuta,
-            "tax_nature_id": tax_nature_id,
+            "tax_kind_id": tax_kind_id,
             "pa_line_code": RiferimentoAmministrazione,
             "invoice_id": invoice_id,
         }
@@ -784,7 +784,7 @@ class WizardImportFatturapa(models.TransientModel):
             "total_price": float(line.PrezzoTotale or 0),
             "tax_amount": float(line.AliquotaIVA or 0),
             "wt_amount": line.Ritenuta,
-            "tax_nature": line.Natura,
+            "tax_kind": line.Natura,
             "admin_ref": line.RiferimentoAmministrazione,
         }
         einvoiceline = self.env["einvoice.line"].create(vals)
