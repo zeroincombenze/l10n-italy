@@ -5,7 +5,7 @@
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
     "name": "EInvoice + FatturaPA",
@@ -14,7 +14,7 @@
     "category": "Localization/Italy",
     "author": "Odoo Italia Associazione,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "account",
         "l10n_it_fiscalcode",
