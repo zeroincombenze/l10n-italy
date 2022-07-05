@@ -196,7 +196,7 @@ Installation / Installazione
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode
+* |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
 
@@ -318,8 +318,8 @@ Acknowledges / Riconoscimenti
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Alex Comba <alex.comba@agilebg.com>
-* Davide Corio <info@davidecorio.com>
++-----------------------------------+-------------------------------------------+* Davide Corio <info@davidecorio.com>
+* Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 
@@ -352,11 +352,11 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-07-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt:
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
@@ -412,3 +412,4 @@ Last Update / Ultimo aggiornamento: 2022-06-21
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
+
