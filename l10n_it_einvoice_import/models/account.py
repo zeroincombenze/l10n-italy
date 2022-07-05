@@ -266,7 +266,7 @@ class EInvoiceLine(models.Model):
     total_price = fields.Float("Total Price", readonly=True)
     tax_amount = fields.Float("VAT Rate", readonly=True)
     wt_amount = fields.Char("Tax Withholding", readonly=True)
-    tax_nature = fields.Char("Nature", readonly=True)
+    tax_kind = fields.Char("Nature", readonly=True, oldname="tax_nature")
     admin_ref = fields.Char("Administration Reference", readonly=True)
     other_data_ids = fields.One2many(
         "einvoice.line.other.data",
