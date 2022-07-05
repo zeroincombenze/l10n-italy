@@ -337,10 +337,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.19 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Model acces for withholding.data.line
+
 10.0.2.1.18 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
 
 10.0.2.1.17 (2022-06-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -421,7 +427,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-07-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
