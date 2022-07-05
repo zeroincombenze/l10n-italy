@@ -100,7 +100,7 @@
                                 <field name="amount_tax" sum="Tax Amount" />
                                 <field name="xml_Aliquota" />
                                 <field name="xml_Detraibile" />
-                                <field name="tax_nature" />
+                                <field name="tax_kind" />
                                 <field name="tax_payability" />
                                 <field name="xml_Error1" />
                                 <field name="xml_Error2" />
@@ -119,7 +119,7 @@
                                     <field name="amount_taxable" readonly="1" />
                                     <field name="xml_Aliquota" readonly="1" />
                                     <field name="xml_Detraibile" readonly="1" />
-                                    <field name="tax_nature" readonly="1" />
+                                    <field name="tax_kind" readonly="1" />
                                     <field name="tax_payability" readonly="1" />
                                     <field name="xml_Error1" readonly="1" />
                                     <field name="xml_Error2" readonly="1" />
@@ -145,7 +145,7 @@
                                 <field name="amount_tax" sum="Tax Amount" />
                                 <field name="xml_Aliquota" />
                                 <field name="xml_Detraibile" />
-                                <field name="tax_nature" />
+                                <field name="tax_kind" />
                                 <field name="tax_payability" />
                                 <field name="xml_Error1" />
                                 <field name="xml_Error2" />
@@ -164,7 +164,7 @@
                                     <field name="amount_taxable" readonly="1" />
                                     <field name="xml_Aliquota" readonly="1" />
                                     <field name="xml_Detraibile" readonly="1" />
-                                    <field name="tax_nature" readonly="1" />
+                                    <field name="tax_kind" readonly="1" />
                                     <field name="tax_payability" readonly="1" />
                                     <field name="xml_Error1" readonly="1" />
                                     <field name="xml_Error2" readonly="1" />

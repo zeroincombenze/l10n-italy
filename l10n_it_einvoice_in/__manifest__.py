@@ -7,7 +7,7 @@
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
     "name": "Italian Localization - Fattura elettronica - Ricezione",
@@ -16,7 +16,7 @@
     "summary": "Ricezione fatture elettroniche",
     "author": "Agile Business Group, Innoviu, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "account",
         "l10n_it_account",
