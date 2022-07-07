@@ -22,5 +22,5 @@
         "views/action_generate_ddt.xml",
         "wizard/wizard_create_ddt_espresso_view.xml",
     ],
-    "installable": True,
+    "installable": False,
 }
