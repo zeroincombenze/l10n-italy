@@ -10,7 +10,7 @@
 {
     "name": "EInvoice + FatturaPA",
     "summary": "Infrastructure for Italian Electronic Invoice + FatturaPA",
-    "version": "10.0.2.1.18",
+    "version": "10.0.2.1.20",
     "category": "Localization/Italy",
     "author": "Odoo Italia Associazione,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",

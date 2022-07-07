@@ -1,6 +1,6 @@
 
 ==============================================================
-|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.21
+|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.23
 ==============================================================
 
 
@@ -251,6 +251,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.23 (2022-07-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PA with vat / PA con partita IVA invece che CF
+
+10.0.1.0.22 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+
 10.0.1.0.21 (2022-06-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -345,7 +355,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-07-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
