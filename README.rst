@@ -53,7 +53,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_period                       | 10.0.0.1.0 | |no_check| | Account Period                                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_vat_period_end_statement     | 10.0.1.5.2 | 10.0.1.5.1 | Versamento Iva periodica (mensile o trimestrale)                                 |
+| account_vat_period_end_statement     | 10.0.1.5.3 | 10.0.1.5.1 | Versamento Iva periodica (mensile o trimestrale)                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | assigned_bank                        | 10.0.0.1.2 | |no_check| | Assign internal bank to customers or supplier                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -101,7 +101,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_dichiarazione_intento        | |no_check| | 10.0.1.0.2 | Gestione dichiarazioni di intento                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_base                | 10.0.2.1.1 | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
+| l10n_it_einvoice_base                | 10.0.2.1.2 | |no_check| | Infrastructure for Italian Electronic Invoice + FatturaPA                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 10.0.1.0.0 | |no_check| | Esportazione di file XML di fatture elettroniche in uno ZIP da esportare.        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -199,7 +199,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_split_payment                | 10.0.1.1.1 | 10.0.1.1.0 | Split Payment                                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_vat_communication            | 10.0.0.2.3 | |no_check| | Comunicazione periodica IVA                                                      |
+| l10n_it_vat_communication            | 10.0.0.2.4 | |no_check| | Comunicazione periodica IVA                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_vat_registries               | 10.0.1.3.2 | 10.0.1.3.1 | ITA - Registri IVA                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -228,6 +228,8 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_withholding_tax_payment_orde | |no_check| | 10.0.1.0.0 | Modulo ponte tra ritenuta d'acconto e ordine di pagamento                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | multibase_plus                       | 10.0.0.1.4 | |no_check| | Enhanced Odoo Features                                                           |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| prodotti_espresso                    | |halt|     | |no_check| | Prodotti espresso                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 
 
@@ -372,10 +374,40 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_out: 10.0.1.0.23 (2022-07-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PA with vat / PA con partita IVA invece che CF
+
+
+l10n_it_einvoice_base: 10.0.2.1.20 (2022-07-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field einvoice_no_eq_cf_pi & pa_move_pi_2_fc hidden
+
+
+account_vat_period_end_statement: 10.0.1.5.3 (2022-07-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor updates
+
+
 account_invoice_entry_date: 10.0.0.2.0 (2022-07-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Entry date = date / Data di registrazione = Data contabile
+
+
+l10n_it_vat_communication: 10.0.0.2.4 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature_id renamed
+
+
+l10n_it_einvoice_base: 10.0.2.1.19 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Model acces for withholding.data.line
 
 
 l10n_it_base: 10.0.0.2.18 (2022-06-30)
@@ -553,6 +585,12 @@ l10n_it_base: 10.0.0.2.17 (2022-06-08)
 * [IMP] Emoji for address & invoice partner / Simboli di riconoscimento indirizzi fatturazione e spedizione
 
 
+prodotti_espresso: 12.0.1.0.0 (2022-05-25)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Impostazione modulo
+
+
 base_multireport: 10.0.0.2.22 (2022-05-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -720,34 +758,6 @@ l10n_it_fiscal: 10.0.0.2.8 (2022-01-10)
 * [FIX] Memorandum accounts (wrongly set as costs) are set as liability
 
 
-l10n_it_fiscal: 10.0.0.2.7 (2022-01-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Tax for RC with wrong account code / Alcuni codici IVA per RC con conti errati
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.19 (2022-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Limit read to max 59 days / Limite lettura a 59 giorni
-
-
-l10n_it_einvoice_in: 10.0.1.3.27 (2022-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
-* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
-* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
-
-
-l10n_it_einvoice_import: 10.0.1.3.27 (2022-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
-* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
-* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
-
-
 
 
 
@@ -780,7 +790,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-07-04
+Last Update / Ultimo aggiornamento: 2022-07-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
