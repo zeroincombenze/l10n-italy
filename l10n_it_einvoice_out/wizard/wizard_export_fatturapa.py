@@ -485,12 +485,6 @@ class WizardExportFatturapa(models.TransientModel):
                 raise UserError(
                     _("VAT number and fiscal code are not set for %s.") % partner.name
                 )
-        elif vat and is_pa:
-            if not fiscalcode:
-                fiscalcode = vat[2:]
-                vat = ""
-            else:
-                vat = ""
         elif vat and vat[0:3] in ("IT9", "IT8"):
             if not fiscalcode:
                 fiscalcode = vat[2:]
