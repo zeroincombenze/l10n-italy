@@ -19,4 +19,5 @@ def update_riba_flag(cr):
 def migrate(cr, version):
     if not version:
         return
-    update_riba_flag(cr)
+    # update_riba_flag(cr)
+    pass
