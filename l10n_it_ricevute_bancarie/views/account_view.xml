@@ -61,17 +61,17 @@
                     string="Issue Ri.Ba."
                     colors="grey:reconciled!=False;red:date_maturity&lt;current_date"
                 >
-                <field name="stored_invoice_id" readonly="1"/>
-                <field name="invoice_date" readonly="1"/>
-                <field name="invoice_origin" readonly="1"/>
-                <field name="partner_id" readonly="1"/>
-                <field name="iban" readonly="1"/>
-                <field name="partner_ref" readonly="1"/>
-                <field name="payment_term_id" readonly="1"/>
-                <field name="account_id" readonly="1"/>
-                <field name="debit" readonly="1" sum="Total Debit"/>
+                <field name="stored_invoice_id" readonly="1" />
+                <field name="invoice_date" readonly="1" />
+                <field name="invoice_origin" readonly="1" />
+                <field name="partner_id" readonly="1" />
+                <field name="iban" readonly="1" />
+                <field name="partner_ref" readonly="1" />
+                <field name="payment_term_id" readonly="1" />
+                <field name="account_id" readonly="1" />
+                <field name="debit" readonly="1" sum="Total Debit" />
                 <field name="amount_residual" readonly="1" sum="Total Amount" />
-                <field name="date_maturity"/>
+                <field name="date_maturity" />
                 <field name="riba" />
                 <field name="distinta_line_ids" invisible="1" />
                 <field name="reconciled" invisible="1" />

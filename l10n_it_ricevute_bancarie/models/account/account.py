@@ -67,9 +67,9 @@ class AccountMoveLine(models.Model):
         "riba.distinta.move.line", "move_line_id", "Dettaglio riba", copy=False
     )
     riba = fields.Boolean(
-        # related="invoice_id.payment_term_id.riba",
+        related="invoice_id.payment_term_id.riba",
         string="RiBa",
-        # store=False,
+        store=False,
         copy=False,
     )
     unsolved_invoice_ids = fields.Many2many(
@@ -189,13 +189,14 @@ class AccountInvoice(models.Model):
                 invoice.type != "out_invoice"
                 or not invoice.payment_term_id
                 or not invoice.payment_term_id.riba
+                or invoice.payment_term_id.riba_payment_cost == 0.0
             ):
                 continue
-            for move_line in invoice.move_id.line_ids:
-                if move_line.account_id.internal_type == "receivable":
-                    move_line.riba = invoice.payment_term_id.riba
-            if invoice.payment_term_id.riba_payment_cost == 0.0:
-                continue
+            # for move_line in invoice.move_id.line_ids:
+            #     if move_line.account_id.internal_type == "receivable":
+            #         move_line.riba = invoice.payment_term_id.riba
+            # if invoice.payment_term_id.riba_payment_cost == 0.0:
+            #     continue
 
             if not invoice.company_id.due_cost_service_id:
                 raise UserError(_("Set a Service for Due Cost in Company Config"))
