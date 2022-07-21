@@ -11,7 +11,7 @@
 {
     "name": "ITA - Liquidazione IVA",
     "summary": "Versamento Iva periodica (mensile o trimestrale) ",
-    "version": "10.0.1.5.3",
+    "version": "10.0.1.5.4",
     "category": "Localization/Italy",
     "license": "AGPL-3",
     "depends": [
