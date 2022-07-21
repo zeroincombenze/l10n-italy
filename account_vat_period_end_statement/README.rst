@@ -1,6 +1,6 @@
 
 ========================================
-|icon| ITA - Liquidazione IVA 10.0.1.5.3
+|icon| ITA - Liquidazione IVA 10.0.1.5.4
 ========================================
 
 
@@ -253,6 +253,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.5.4 (2022-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Journal entry creation error / Errore creazione movimento contabile
+
 10.0.1.5.3 (2022-07-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -335,7 +340,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-07-05
+Last Update / Ultimo aggiornamento: 2022-07-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

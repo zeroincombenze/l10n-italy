@@ -9,6 +9,9 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Vat statement">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
                 <group>
                     <field name="journal_id" widget="selection" select="1" />
                     <field name="date" select="1" />
@@ -260,7 +263,7 @@
                             states="draft"
                         />
                         <group>
-                            <field name="state" select="1" />
+                            <!-- <field name="state" select="1" /> -->
                             <field name="reconciled" />
                         </group>
                         <button

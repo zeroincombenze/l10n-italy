@@ -415,10 +415,10 @@ class AccountVatPeriodEndStatement(models.Model):
     def create_move(self):
         move_obj = self.env["account.move"]
         for statement in self:
-            statement_date = fields.Date.to_string(statement.date)
+            # statement_date = fields.Date.to_string(statement.date)
             move_data = {
-                "name": _("VAT statement") + " - " + statement_date,
-                "date": statement_date,
+                "name": _("VAT statement") + " - " + statement.date,
+                "date": statement.date,
                 "journal_id": statement.journal_id.id,
             }
             move = move_obj.create(move_data)
@@ -429,13 +429,14 @@ class AccountVatPeriodEndStatement(models.Model):
             for debit_line in statement.debit_vat_account_line_ids:
                 if debit_line.amount != 0.0:
                     debit_vat_data = {
-                        "name": _("Debit VAT"),
+                        "name": "%s: %-16.16s" % (_("Debit VAT"),
+                                                  debit_line.tax_id.description),
                         "account_id": debit_line.account_id.id,
                         "move_id": move_id,
                         "journal_id": statement.journal_id.id,
                         "debit": 0.0,
                         "credit": 0.0,
-                        "date": statement_date,
+                        "date": statement.date,
                         "company_id": statement.company_id.id,
                     }
 
@@ -448,13 +449,14 @@ class AccountVatPeriodEndStatement(models.Model):
             for credit_line in statement.credit_vat_account_line_ids:
                 if credit_line.amount != 0.0:
                     credit_vat_data = {
-                        "name": _("Credit VAT"),
+                        "name": "%s: %-16.16s" % (_("Credit VAT"),
+                                                  credit_line.tax_id.description),
                         "account_id": credit_line.account_id.id,
                         "move_id": move_id,
                         "journal_id": statement.journal_id.id,
                         "debit": 0.0,
                         "credit": 0.0,
-                        "date": statement_date,
+                        "date": statement.date,
                         "company_id": statement.company_id.id,
                     }
                     if credit_line.amount < 0:
@@ -471,7 +473,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "journal_id": statement.journal_id.id,
                     "debit": 0.0,
                     "credit": 0.0,
-                    "date": statement_date,
+                    "date": statement.date,
                     "company_id": statement.company_id.id,
                 }
                 if statement.previous_credit_vat_amount < 0:
@@ -492,7 +494,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "journal_id": statement.journal_id.id,
                     "debit": 0.0,
                     "credit": 0.0,
-                    "date": statement_date,
+                    "date": statement.date,
                     "company_id": statement.company_id.id,
                 }
                 if statement.tax_credit_amount < 0:
@@ -513,7 +515,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "journal_id": statement.journal_id.id,
                     "debit": 0.0,
                     "credit": 0.0,
-                    "date": statement_date,
+                    "date": statement.date,
                     "company_id": statement.company_id.id,
                 }
                 if statement.advance_amount < 0:
@@ -530,7 +532,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "journal_id": statement.journal_id.id,
                     "debit": 0.0,
                     "credit": 0.0,
-                    "date": statement_date,
+                    "date": statement.date,
                     "company_id": statement.company_id.id,
                 }
                 if statement.previous_debit_vat_amount > 0:
@@ -551,7 +553,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "journal_id": statement.journal_id.id,
                     "debit": 0.0,
                     "credit": 0.0,
-                    "date": statement_date,
+                    "date": statement.date,
                     "company_id": statement.company_id.id,
                 }
                 if statement.interests_debit_vat_amount > 0:
@@ -572,7 +574,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "journal_id": statement.journal_id.id,
                     "debit": 0.0,
                     "credit": 0.0,
-                    "date": statement_date,
+                    "date": statement.date,
                     "company_id": statement.company_id.id,
                 }
                 if generic_line.amount < 0:
@@ -587,7 +589,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 "partner_id": statement.authority_partner_id.id,
                 "move_id": move_id,
                 "journal_id": statement.journal_id.id,
-                "date": statement_date,
+                "date": statement.date,
                 "company_id": statement.company_id.id,
             }
             if statement.authority_vat_amount > 0:
@@ -595,7 +597,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 end_debit_vat_data["credit"] = math.fabs(statement.authority_vat_amount)
                 if statement.payment_term_id:
                     due_list = statement.payment_term_id.compute(
-                        statement.authority_vat_amount, statement_date
+                        statement.authority_vat_amount, statement.date
                     )[0]
                     for term in due_list:
                         current_line = end_debit_vat_data
@@ -738,9 +740,18 @@ class AccountVatPeriodEndStatement(models.Model):
                     )[1:4],
                 ),
             )
+
+        account_id = False
+        if not tax.children_tax_ids:
+            account_id = tax.account_id.id if tax.account_id else False
+        else:
+            for tax_child in tax.children_tax_ids:
+                if tax_child.account_id:
+                    account_id = tax_child.account_id.id
+                    break
         return {
             "kind_id": tax.kind_id.id if tax.kind_id else False,
-            "account_id": tax.account_id.id if tax.account_id else False,
+            "account_id": account_id,
             "tax_id": tax.id,
             "base_amount": total_base,
             "vat_amount": total_vat,
