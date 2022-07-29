@@ -372,6 +372,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_send2sdi: 10.0.1.0.27 (2022-07-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Module migration
+
+
 l10n_it_ricevute_bancarie: 10.0.1.3.9 (2022-07-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -706,49 +712,6 @@ l10n_it_einvoice_out: 10.0.1.0.19 (2022-01-30)
 * [FIX] Rea capital / controllo capitale sociale
 
 
-l10n_it_ricevute_bancarie: 10.0.1.3.6 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
-* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
-
-
-l10n_it_lettera_intento: 10.0.0.1.4 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Editable Lettera intento id in invoice / Numero lettera intento in fattura modificabile
-
-
-l10n_it_account: 10.0.1.2.8 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] New function for einvoice
-
-
-l10n_it_base: 10.0.0.2.16 (2022-01-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Foreign country w/o zip code / Stati esteri senza CAP
-
-
-l10n_it_einvoice_in: 10.0.1.3.28 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Link existent invoice / Collegamento a fattura esistente
-
-
-l10n_it_einvoice_import_zip: 10.0.1.0.5 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri
-
-
-l10n_it_einvoice_import: 10.0.1.3.28 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Link existent invoice / Collegamento a fattura esistente
-
-
 
 
 
@@ -781,7 +744,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-07-21
+Last Update / Ultimo aggiornamento: 2022-07-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
