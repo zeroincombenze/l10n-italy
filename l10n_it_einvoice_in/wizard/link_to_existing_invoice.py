@@ -78,10 +78,6 @@ class WizardLinkToInvoice(models.TransientModel):
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = partner_model.getPartnerBase(cedentePrestatore, fatturapa=self)
-            # generic_inconsistencies = ""
-            # if self.env.context.get("inconsistencies"):
-            #     generic_inconsistencies = self.env.context["inconsistencies"] + "\n\n"
-            # 2
             for FatturaBody in fatt.FatturaElettronicaBody:
                 # reset inconsistencies
                 self.__dict__.update(self.with_context(inconsistencies="").__dict__)
@@ -94,8 +90,4 @@ class WizardLinkToInvoice(models.TransientModel):
                     partner_id,
                     wizard=self,
                 )
-                # 2.5
-                # AttachmentsData = FatturaBody.Allegati
-                # if AttachmentsData and self.invoice_id:
-                #     fatturapa_attachment_model.extract_attachments(
-                #         AttachmentsData, self.invoice_id.id)
+
