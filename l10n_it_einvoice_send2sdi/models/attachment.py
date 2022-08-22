@@ -47,6 +47,7 @@ evolve_stato_mapping = {
     "Il documento non può essere preso in carico": "rejected",
     "Il documento non ha superato i controlli di validazione": "rejected",
     "Ricevuta di consegna": "validated",
+    "Ricevuta di ritorno": "validated",
     "Notifica di mancata consegna": "recipient_error",
     "Notifica di esito: documento rifiutato dalla PA": "discarted",
     "Notifica di esito: documento accettato": "accepted",
@@ -86,12 +87,12 @@ class FatturaPAAttachmentIn(models.Model):
 
             headers = Evolve.header(send_channel)
             url = os.path.join(send_channel.sender_url, "Cerca")
-            archive = int(send_channel.param2) if send_channel.param2 else 2
+            archive_in = int(send_channel.param2) if send_channel.param2 else 2
             domain_mode = int(send_channel.param4) if send_channel.param4 else 0
 
             data = {
                 "IdAzienda": int(send_channel.sender_company_id),
-                "IdArchivio": archive,
+                "IdArchivio": archive_in,
                 "Filtri": [],
             }
             if 0 < domain_mode <= 60:
@@ -407,7 +408,7 @@ class FatturaPAAttachmentOut(models.Model):
         return send_channel
 
     @api.model
-    def primitive_json_send(self, send_channel, req, chn_inv, action, attachment=None):
+    def primitive_json_send(self, send_channel, req, archive, action, attachment=None):
         if (
             action == "Salva"
             and self.env["ir.config_parameter"].get_param("einvoice_send2sdi", "")
@@ -426,10 +427,10 @@ class FatturaPAAttachmentOut(models.Model):
             return req, False
         if "Documento" in req:
             req["Documento"]["IdAzienda"] = int(send_channel.sender_company_id)
-            req["Documento"]["IdArchivio"] = chn_inv
+            req["Documento"]["IdArchivio"] = archive
         else:
             req["IdAzienda"] = int(send_channel.sender_company_id)
-            req["IdArchivio"] = chn_inv
+            req["IdArchivio"] = archive
         headers = Evolve.header(send_channel)
         url = os.path.join(send_channel.sender_url, action)
         if send_channel.trace:
@@ -639,7 +640,7 @@ class FatturaPAAttachmentOut(models.Model):
     def send_verify_via_json(self, send_channel, invoice):
         for att in self:
             data, errmsg, documenti = self.search_via_json(
-                send_channel, invoice.number, full_info=True
+                send_channel, invoice, full_info=True
             )
             att, last_ix = self.analyze_data_list(
                 att, data, errmsg, documenti, store_mesg=True
@@ -713,7 +714,7 @@ class FatturaPAAttachmentOut(models.Model):
             att.state = "validated"
 
     @api.model
-    def search_via_json(self, send_channel, invoice_number, full_info=None):
+    def search_via_json(self, send_channel, invoice, full_info=None):
         def merge(documenti, documenti2):
             for doc in documenti:
                 for doc2 in documenti2:
@@ -729,26 +730,34 @@ class FatturaPAAttachmentOut(models.Model):
                     documenti.append(doc2)
             return documenti
 
-        chn_inv_out = int(send_channel.param1) if send_channel.param1 else 1
-        chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
+        archive_out = int(send_channel.param1) if send_channel.param1 else 1
+        archive_in = int(send_channel.param2) if send_channel.param2 else 2
+        archive_sent = int(send_channel.param3) if send_channel.param3 else 3
         request = {
             "Filtri": [
                 {
                     "NomeCampo": "NumeroFattura",
                     "Criterio": "=",
-                    "FromValue": invoice_number,
+                    "FromValue": invoice.number,
                 }
             ]
         }
         documenti = []
-        data, errmsg = self.primitive_json_send(
-            send_channel, request, chn_inv_out, "Cerca"
-        )
+        if invoice.fiscal_document_type_id.code in ('TD17', 'TD18', 'TD19'):
+            data, errmsg = self.primitive_json_send(
+                send_channel, request, archive_in, "Cerca"
+            )
+        else:
+            data, errmsg = self.primitive_json_send(
+                send_channel, request, archive_out, "Cerca"
+            )
         if Evolve.has_document(data) and data["EsitoChiamata"] == 0 and not errmsg:
             documenti = Evolve.document_list(data["Documenti"])
+            if invoice.fiscal_document_type_id.code in ('TD17', 'TD18', 'TD19'):
+                documenti[0]['TD'] = invoice.fiscal_document_type_id.code
             if full_info:
                 data2, errmsg = self.primitive_json_send(
-                    send_channel, request, chn_inv_sent, "Cerca"
+                    send_channel, request, archive_sent, "Cerca"
                 )
                 if (
                     Evolve.has_document(data2)
@@ -760,7 +769,7 @@ class FatturaPAAttachmentOut(models.Model):
                     )
         else:
             data, errmsg = self.primitive_json_send(
-                send_channel, request, chn_inv_sent, "Cerca"
+                send_channel, request, archive_sent, "Cerca"
             )
             if Evolve.has_document(data) and data["EsitoChiamata"] == 0 and not errmsg:
                 documenti = Evolve.document_list(data["Documenti"])
@@ -773,9 +782,9 @@ class FatturaPAAttachmentOut(models.Model):
         if len(invoice) > 1:
             raise UserError(_("Multiple invoice to one xml"))
 
-        chn_inv_sent = int(send_channel.param3) if send_channel.param3 else 3
+        archive_sent = int(send_channel.param3) if send_channel.param3 else 3
         for att in self:
-            data, errmsg, documenti = self.search_via_json(send_channel, invoice.number)
+            data, errmsg, documenti = self.search_via_json(send_channel, invoice)
             att, last_ix = self.analyze_data_list(att, data, errmsg, documenti)
             if documenti and att.state in (
                 "validated",
@@ -817,7 +826,7 @@ class FatturaPAAttachmentOut(models.Model):
                 },
             }
             data, errmsg = self.primitive_json_send(
-                send_channel, request, chn_inv_sent, "Salva", attachment=att
+                send_channel, request, archive_sent, "Salva", attachment=att
             )
 
             if data and data["EsitoChiamata"] == 0:
@@ -955,7 +964,9 @@ class Evolve:
 
     @staticmethod
     def document_state(documento):
-        if "StatoFattura" in documento:
+        if documento.get('TD') in ('TD17', 'TD18', 'TD19'):
+            return "Ricevuta di ritorno"
+        elif "StatoFattura" in documento:
             return documento["StatoFattura"]
         elif "StatoInvioSdi" in documento:
             return documento["StatoInvioSdi"]
