@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # from psycopg2 import IntegrityError
 
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, IntegrityError
 
 from .fatturapa_common import FatturapaCommon
 
@@ -17,9 +17,9 @@ class TestDuplicatedAttachment(FatturapaCommon):
         # Note that all the tests in TestFatturaPAXMLValidation
         # are executed in the same transaction.
         # TODO> must be checked
-        self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
+        self.run_wizard("🎺 test_duplicated", "IT02780790107_11005.xml")
         with self.assertRaises(IntegrityError) as ie:
-            self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
+            self.run_wizard("🎺 test_duplicated", "IT02780790107_11005.xml")
         self.assertEqual(ie.exception.pgcode, "23505")
 
 
