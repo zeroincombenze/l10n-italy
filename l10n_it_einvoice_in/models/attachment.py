@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+
 import logging
 import re
 
@@ -47,7 +42,9 @@ class FatturaPAAttachmentIn(models.Model):
         "any discount and including tax charged to the buyer/ordered",
     )
     registered = fields.Boolean("Registered", compute="_compute_xml_data", store=True)
+
     e_invoice_received_date = fields.Datetime(string="E-Bill Received Date")
+
     uid = fields.Char("Uid", size=255)
     date_invoice0 = fields.Date("Date Invoice", store=True, compute="_compute_xml_data")
     company_id = fields.Many2one("res.company", string="Company")

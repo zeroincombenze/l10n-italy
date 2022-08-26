@@ -305,6 +305,47 @@ class AccountInvoice(models.Model):
         self.fatturapa_attachment_in_id = False
         return {"type": "ir.actions.client", "tag": "reload"}
 
+    @api.model
+    def compute_xml_amount_untaxed(self, FatturaBody):
+        amount_untaxed = 0.0
+        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+            amount_untaxed += float(Riepilogo.ImponibileImporto or 0.0)
+        return amount_untaxed
+
+    @api.model
+    def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
+        rounding = float(
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento or 0.0
+        )
+        return amount_untaxed + amount_tax + rounding
+
+    @api.model
+    def compute_xml_amount_tax(self, DatiRiepilogo):
+        amount_tax = 0.0
+        for Riepilogo in DatiRiepilogo:
+            amount_tax += float(Riepilogo.Imposta or 0.0)
+        return amount_tax
+
+    def set_einvoice_data(self, fattura):
+        self.ensure_one()
+        amount_untaxed = self.compute_xml_amount_untaxed(fattura)
+        amount_tax = self.compute_xml_amount_tax(fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_total = self.compute_xml_amount_total(
+            fattura, amount_untaxed, amount_tax
+        )
+        reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
+        date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
+
+        self.update(
+            {
+                "e_invoice_amount_untaxed": amount_untaxed,
+                "e_invoice_amount_tax": amount_tax,
+                "e_invoice_amount_total": amount_total,
+                "e_invoice_reference": reference,
+                "e_invoice_date_invoice": date_invoice,
+            }
+        )
+
     def xml_get_header_data(
         self,
         wizard,
@@ -453,8 +494,7 @@ class AccountInvoice(models.Model):
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
 
-
-class fatturapa_article_code(models.Model):
+class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
     _description = "E-bill Article Code"
