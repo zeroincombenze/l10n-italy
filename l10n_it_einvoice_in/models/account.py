@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
-# import odoo.addons.decimal_precision as dp
+
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.translate import _, float_compare
+# import odoo.addons.decimal_precision as dp
+from odoo.tools import float_compare
+from odoo.tools.translate import _
 
 
 class AccountInvoice(models.Model):
