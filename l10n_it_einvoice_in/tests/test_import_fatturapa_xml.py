@@ -33,7 +33,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = self.service.id
-        res = self.run_wizard("test0", "IT05979361218_001.xml")
+        res = self.run_wizard("🎺 test0", "IT05979361218_001.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.register_code, "TO1258B")
