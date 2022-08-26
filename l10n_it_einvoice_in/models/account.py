@@ -1,21 +1,18 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
-# import odoo.addons.decimal_precision as dp
+
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.translate import _, float_compare
+# import odoo.addons.decimal_precision as dp
+from odoo.tools import float_compare
+from odoo.tools.translate import _
 
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     fatturapa_attachment_in_id = fields.Many2one(
-        "fatturapa.attachment.in", "E-bill Import File", ondelete="restrict", copy=False
+        "fatturapa.attachment.in", "E-bill Import File",
+        ondelete="restrict", copy=False
     )
     inconsistencies = fields.Text("Import Inconsistencies", copy=False)
     e_invoice_line_ids = fields.One2many(
