@@ -79,19 +79,6 @@ class StockDdtType(models.Model):
     )
 
 
-class StockPicking(models.Model):
-    _inherit = "stock.picking"
-
-    @api.model
-    def check_linked_picking(self, raise_if_linked=True):
-        ddt = self.search([("picking_ids", "=", self.id)])
-        if ddt and raise_if_linked:
-            raise UserError(
-                _("Selected Picking is already linked to DDT: %s") % ddt.display_name
-            )
-        return ddt
-
-
 class StockPickingPackagePreparation(models.Model):
 
     _inherit = "stock.picking.package.preparation"
@@ -428,8 +415,7 @@ class StockPickingPackagePreparation(models.Model):
         vals = {"partner_id": False}
         for picking in picking_ids:
             # check if picking is already linked to a DDT
-            # self.check_linked_picking(picking)
-            picking.check_linked_picking()
+            self.check_linked_picking(picking)
             current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
             if not partner:
                 partner = current_ddt_shipping_partner

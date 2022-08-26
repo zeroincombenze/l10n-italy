@@ -53,7 +53,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_period                       | 10.0.0.1.0 | |no_check| | Account Period                                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_vat_period_end_statement     | 10.0.1.5.3 | 10.0.1.5.1 | Versamento Iva periodica (mensile o trimestrale)                                 |
+| account_vat_period_end_statement     | 10.0.1.5.4 | 10.0.1.5.1 | Versamento Iva periodica (mensile o trimestrale)                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | assigned_bank                        | 10.0.0.1.2 | |no_check| | Assign internal bank to customers or supplier                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -193,7 +193,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ricevute_bancarie            | 10.0.1.3.8 | 10.0.1.3.0 | Ricevute Bancarie                                                                |
+| l10n_it_ricevute_bancarie            | 10.0.1.3.9 | 10.0.1.3.0 | Ricevute Bancarie                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_sdi_channel                  | |no_check| | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -228,8 +228,6 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_withholding_tax_payment_orde | |no_check| | 10.0.1.0.0 | Modulo ponte tra ritenuta d'acconto e ordine di pagamento                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | multibase_plus                       | 10.0.0.1.4 | |no_check| | Enhanced Odoo Features                                                           |
-+--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| prodotti_espresso                    | |halt|     | |no_check| | Prodotti espresso                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 
 
@@ -373,6 +371,24 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 History / Cronologia
 --------------------
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.27 (2022-07-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Module migration
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.9 (2022-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Riba flag read-only / Scadenza Riba non modificabile
+
+
+account_vat_period_end_statement: 10.0.1.5.4 (2022-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Journal entry creation error / Errore creazione movimento contabile
+
 
 l10n_it_einvoice_out: 10.0.1.0.23 (2022-07-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -585,12 +601,6 @@ l10n_it_base: 10.0.0.2.17 (2022-06-08)
 * [IMP] Emoji for address & invoice partner / Simboli di riconoscimento indirizzi fatturazione e spedizione
 
 
-prodotti_espresso: 12.0.1.0.0 (2022-05-25)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Impostazione modulo
-
-
 base_multireport: 10.0.0.2.22 (2022-05-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -702,62 +712,6 @@ l10n_it_einvoice_out: 10.0.1.0.19 (2022-01-30)
 * [FIX] Rea capital / controllo capitale sociale
 
 
-l10n_it_ricevute_bancarie: 10.0.1.3.6 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
-* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
-
-
-l10n_it_lettera_intento: 10.0.0.1.4 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Editable Lettera intento id in invoice / Numero lettera intento in fattura modificabile
-
-
-l10n_it_account: 10.0.1.2.8 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] New function for einvoice
-
-
-l10n_it_base: 10.0.0.2.16 (2022-01-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Foreign country w/o zip code / Stati esteri senza CAP
-
-
-l10n_it_einvoice_in: 10.0.1.3.28 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Link existent invoice / Collegamento a fattura esistente
-
-
-l10n_it_einvoice_import_zip: 10.0.1.0.5 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri
-
-
-l10n_it_einvoice_import: 10.0.1.3.28 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Link existent invoice / Collegamento a fattura esistente
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.20 (2022-01-17)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Invoices counters / Contatori fatture
-* [IMP] Lock send if negative counter / Blocco invio se contatore negativo
-
-
-l10n_it_fiscal: 10.0.0.2.8 (2022-01-10)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Memorandum accounts (wrongly set as costs) are set as liability
-
-
 
 
 
@@ -790,11 +744,11 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-07-07
+Last Update / Ultimo aggiornamento: 2022-07-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: 
+    :alt:
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com

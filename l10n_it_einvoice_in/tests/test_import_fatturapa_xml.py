@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from psycopg2 import IntegrityError
+# from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError
 
@@ -7,6 +7,7 @@ from .fatturapa_common import FatturapaCommon
 
 
 class TestDuplicatedAttachment(FatturapaCommon):
+
     def test_duplicated_attachment(self):
         """Attachment name must be unique"""
         self.tax_22a = self.create_tax_22a()
@@ -17,9 +18,9 @@ class TestDuplicatedAttachment(FatturapaCommon):
         # are executed in the same transaction.
         # TODO> must be checked
         self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
-        # with self.assertRaises(IntegrityError) as ie:
-        #     self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
-        # self.assertEqual(ie.exception.pgcode, "23505")
+        with self.assertRaises(IntegrityError) as ie:
+            self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
+        self.assertEqual(ie.exception.pgcode, "23505")
 
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
@@ -29,7 +30,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.tax_22a = self.create_tax_22a()
         self.tax_a10a = self.create_tax_a10a()
         self.invoice_model = self.env["account.invoice"]
-
 
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = self.service.id

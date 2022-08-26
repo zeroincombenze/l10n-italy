@@ -90,4 +90,3 @@ class WizardLinkToInvoice(models.TransientModel):
                     partner_id,
                     wizard=self,
                 )
-

@@ -49,8 +49,7 @@ class AddPickingToDdt(models.TransientModel):
         pickings = self.env["stock.picking"].browse(self.env.context["active_ids"])
         for picking in pickings:
             # check if picking is already linked to a DDT
-            # self.env["stock.picking.package.preparation"].check_linked_picking(picking)
-            picking.check_linked_picking()
+            self.env["stock.picking.package.preparation"].check_linked_picking(picking)
             current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
             if picking.ddt_ids and self.ddt_id.id in [d.id for d in picking.ddt_ids]:
                 raise UserError(_("Picking %s already in ddt") % picking.name)
