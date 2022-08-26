@@ -199,8 +199,7 @@ class DdTFromPickings(models.TransientModel):
         partner = False
         for picking in self.picking_ids:
             # check if picking is already linked to a DDT
-            # self.env["stock.picking.package.preparation"].check_linked_picking(picking)
-            picking.check_linked_picking()
+            self.env["stock.picking.package.preparation"].check_linked_picking(picking)
             current_ddt_shipping_partner = picking.get_ddt_shipping_partner()
             if partner and partner != current_ddt_shipping_partner:
                 raise UserError(_("Selected Pickings have different Partner"))
