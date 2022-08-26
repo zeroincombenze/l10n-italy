@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from psycopg2 import IntegrityError
+from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError, IntegrityError
 
