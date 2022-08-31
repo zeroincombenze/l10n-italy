@@ -30,7 +30,7 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setDatiTrasmissione(self, company, partner, fatturapa):
-        res = super(WizardExportFatturapa, self).setDatiTrasmissione(
+        super(WizardExportFatturapa, self).setDatiTrasmissione(
             company, partner, fatturapa)
         if self.env.context.get("company_partner"):
             company, partner = partner, company.partner_id
@@ -140,7 +140,7 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     def setCessionarioCommittente(self, partner, fatturapa):
-        res = super(WizardExportFatturapa, self).setCessionarioCommittente(
+        super(WizardExportFatturapa, self).setCessionarioCommittente(
             partner, fatturapa)
         if self.env.context.get("company_partner"):
             partner = self.env.context["company_partner"]
