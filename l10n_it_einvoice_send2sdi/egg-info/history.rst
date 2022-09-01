@@ -1,3 +1,9 @@
+10.0.1.0.29 (2022-08-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with multiple attachments
+* [FIX] Check for existent attachment (avoid raise)
+
 10.0.1.0.28 (2022-08-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
