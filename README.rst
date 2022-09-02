@@ -748,7 +748,7 @@ Last Update / Ultimo aggiornamento: 2022-07-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: 
+    :alt:
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
