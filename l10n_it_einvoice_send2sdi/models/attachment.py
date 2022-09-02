@@ -68,7 +68,7 @@ class FatturaPAAttachmentIn(models.Model):
     def import_xml_invoice(self):
         for company in self.env["res.company"].search([]):
             send_channel = company.einvoice_sender_id
-            if send_channel is False:
+            if not send_channel:
                 _logger.error("Undefined SDI channel for company %s" % company.name)
                 continue
             if not send_channel.sender_url:
@@ -154,10 +154,10 @@ class FatturaPAAttachmentIn(models.Model):
 
         attach_model = self.env["fatturapa.attachment.in"]
         data_ricezione = documento["DataRicezione"]
-        attachments = attach_model.search([("uid", "=", documento["Uid"])])
-        if len(attachments) > 0:
-            attachments[0].write({"e_invoice_received_date": data_ricezione})
-            return
+        # attachments = attach_model.search([("uid", "=", documento["Uid"])])
+        # if len(attachments) > 0:
+        #     attachments[0].write({"e_invoice_received_date": data_ricezione})
+        #     return
         archive = int(send_channel.param2) if send_channel.param2 else 2
 
         data = {
@@ -208,6 +208,14 @@ class FatturaPAAttachmentIn(models.Model):
             "datas": filein["Bytes"],
             "uid": documento["Uid"],
         }
+
+        if attach_model.search(
+            [
+                ("name", "=", attach_vals["name"]),
+                ("uid", "=", attach_vals["uid"])
+            ]
+        ):
+            return
 
         try:
             attach_model.create(attach_vals)
