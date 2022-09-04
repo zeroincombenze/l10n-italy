@@ -15,5 +15,4 @@
     "depends": ["l10n_it_vat_registries", "account_tax_cash_basis"],
     "data": [],
     "installable": False,
-    "auto_install": True,
 }
