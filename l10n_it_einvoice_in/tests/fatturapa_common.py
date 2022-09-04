@@ -2,7 +2,6 @@
 
 import base64
 import tempfile
-
 from odoo.modules import get_module_resource
 from odoo.tests.common import SingleTransactionCase
 
@@ -180,20 +179,16 @@ class FatturapaCommon(SingleTransactionCase):
         self.journal_misc = self.env["account.journal"].search(
             [("type", "=", "general")]
         )[0]
-        self.payable_account_id = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_payable").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
+        self.payable_account_id = self.env["account.account"].search(
+            [
+                (
+                    "user_type_id",
+                    "=",
+                    self.env.ref("account.data_account_type_payable").id,
+                )
+            ],
+            limit=1,
+        ).id
         self.headphones = self.env.ref("product.product_product_7_product_template")
         self.imac = self.env.ref("product.product_product_8_product_template")
         self.service = self.env.ref("product.service_delivery")

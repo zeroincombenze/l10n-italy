@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+
 # from datetime import datetime, date
 import base64
 import logging
@@ -1140,15 +1138,16 @@ class WizardImportFatturapa(models.TransientModel):
         return amount_untaxed
 
     def check_invoice_amount(self, invoice, FatturaElettronicaBody):
-        if (
-            FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ScontoMaggiorazione
-            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
-        ):
+        if (FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+            ScontoMaggiorazione
+            and FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+                ImportoTotaleDocumento):
             # assuming that, if someone uses
             # DatiGeneraliDocumento.ScontoMaggiorazione, also fills
             # DatiGeneraliDocumento.ImportoTotaleDocumento
             ImportoTotaleDocumento = float(
-                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+                FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
+                ImportoTotaleDocumento
             )
             if not float_is_zero(
                 invoice.amount_total - ImportoTotaleDocumento, precision_digits=2
