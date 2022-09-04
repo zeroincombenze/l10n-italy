@@ -11,8 +11,7 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     fatturapa_attachment_in_id = fields.Many2one(
-        "fatturapa.attachment.in", "E-bill Import File",
-        ondelete="restrict", copy=False
+        "fatturapa.attachment.in", "E-bill Import File", ondelete="restrict", copy=False
     )
     inconsistencies = fields.Text("Import Inconsistencies", copy=False)
     e_invoice_line_ids = fields.One2many(
@@ -493,6 +492,7 @@ class AccountInvoice(models.Model):
 
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
+
 
 class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']

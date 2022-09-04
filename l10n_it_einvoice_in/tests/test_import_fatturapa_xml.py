@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from psycopg2 import IntegrityError
 
-from odoo.exceptions import UserError, IntegrityError
+from odoo.exceptions import UserError
 
 from .fatturapa_common import FatturapaCommon
 
