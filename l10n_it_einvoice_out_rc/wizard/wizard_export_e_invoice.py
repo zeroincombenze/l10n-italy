@@ -51,20 +51,22 @@ class WizardExportFatturapa(models.TransientModel):
             # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
             # TD17, TD18 e TD19; in caso contrario il file viene scartato
             if partner.vat:
-                if partner.vat[0:2] == 'IT' and any([x in ['TD17', 'TD18', 'TD19'] for
-                                                     x in fiscal_document_type_codes]):
-                    raise UserError(_(
-                        "A self-invoice cannot be issued with IT country code and "
-                        "fiscal document type in 'TD17', 'TD18', 'TD19'."
-                    ))
-                if partner.vat[0:2] not in self.env['res.country'].search([]).\
-                        mapped('code'):
+                IdPaese = partner.vat[0:2]
+                IdCodice = partner.vat[2:]
+                if any([x in ['TD17', 'TD18', 'TD19'] for
+                        x in fiscal_document_type_codes]):
+                    if IdPaese == 'IT':
+                        IdPaese = partner.country_id.code
+                        IdCodice = "99999999999"
+                if (IdPaese != 'EU' and
+                    IdPaese not in self.env['res.country'].search(
+                        []).mapped('code')):
                     raise ValueError(_(
                         "Country code does not exist or it is not mapped in countries: "
                         "%s" % partner.vat[0:2]
                     ))
                 CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=IdPaese, IdCodice=IdCodice)
             elif partner.country_id.code and partner.country_id.code != 'IT':
                 CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.country_id.code, IdCodice='99999999999')
@@ -234,7 +236,8 @@ class WizardExportFatturapa(models.TransientModel):
             context["rc_supplier"] = rc_suppliers[0]
             context[
                 "invoices_fiscal_document_type_codes"
-            ] = invoice.fiscal_document_type_id.code
+            ] = [x.fiscal_document_type_id.code
+                 for x in invoices_fiscal_document_type_codes]
             context["company_partner"] = company.partner_id
         return super(WizardExportFatturapa, self).exportInvoiceXML(
             company, partner, invoice_ids, attach, context=context
