@@ -191,7 +191,7 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 kind_id = nature_model.search([("code", "=", Natura)])
                 if kind_id:
-                    domain.append(("kind_id", "=", nature_id.id))
+                    domain.append(("kind_id", "=", kind_id.id))
                 # else:
                 #     domain.append(('nature_id', '=', -1))
         # elif AliquotaIVA_fp != 0.0:

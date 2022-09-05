@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
-# import odoo.addons.decimal_precision as dp
+
 from odoo import fields, models, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+# import odoo.addons.decimal_precision as dp
+from odoo.tools import float_compare
 from odoo.tools.translate import _
 
 
@@ -308,6 +304,47 @@ class AccountInvoice(models.Model):
         self.fatturapa_attachment_in_id = False
         return {"type": "ir.actions.client", "tag": "reload"}
 
+    @api.model
+    def compute_xml_amount_untaxed(self, FatturaBody):
+        amount_untaxed = 0.0
+        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+            amount_untaxed += float(Riepilogo.ImponibileImporto or 0.0)
+        return amount_untaxed
+
+    @api.model
+    def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
+        rounding = float(
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento or 0.0
+        )
+        return amount_untaxed + amount_tax + rounding
+
+    @api.model
+    def compute_xml_amount_tax(self, DatiRiepilogo):
+        amount_tax = 0.0
+        for Riepilogo in DatiRiepilogo:
+            amount_tax += float(Riepilogo.Imposta or 0.0)
+        return amount_tax
+
+    def set_einvoice_data(self, fattura):
+        self.ensure_one()
+        amount_untaxed = self.compute_xml_amount_untaxed(fattura)
+        amount_tax = self.compute_xml_amount_tax(fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_total = self.compute_xml_amount_total(
+            fattura, amount_untaxed, amount_tax
+        )
+        reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
+        date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
+
+        self.update(
+            {
+                "e_invoice_amount_untaxed": amount_untaxed,
+                "e_invoice_amount_tax": amount_tax,
+                "e_invoice_amount_total": amount_total,
+                "e_invoice_reference": reference,
+                "e_invoice_date_invoice": date_invoice,
+            }
+        )
+
     def xml_get_header_data(
         self,
         wizard,
@@ -354,9 +391,9 @@ class AccountInvoice(models.Model):
         #
         invoice_data = {
             "fiscal_document_type_id": docType_id,
-            "date_invoice": FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
-                "%Y-%m-%d"
-            ),
+            "date_invoice":
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
+                    "%Y-%m-%d"),
             "reference": FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             "sender": fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             "type": invtype,
@@ -365,7 +402,8 @@ class AccountInvoice(models.Model):
             "payment_term_id": partner.property_supplier_payment_term_id.id,
             "company_id": company.id,
             "comment": comment,
-            "check_total": FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento,
+            "check_total":
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento,
         }
         # 2.1.1.10
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
@@ -456,7 +494,7 @@ class AccountInvoice(models.Model):
             e_invoice_line_ids.append(einvoiceline.id)
 
 
-class fatturapa_article_code(models.Model):
+class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
     _description = "E-bill Article Code"

@@ -2,7 +2,7 @@
 # Copyright 2021 Marco Colombo - Phi srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models
+from odoo import models, _
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export

@@ -12,6 +12,5 @@
     "application": False,
     "installable": False,
     "depends": ["l10n_it_ricevute_bancarie", "sale_commission"],
-    # "auto_install": True,
     "data": ["views/sale_commission.xml"],
 }

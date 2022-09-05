@@ -7,6 +7,7 @@ from .fatturapa_common import FatturapaCommon
 
 
 class TestDuplicatedAttachment(FatturapaCommon):
+
     def test_duplicated_attachment(self):
         """Attachment name must be unique"""
         self.tax_22a = self.create_tax_22a()
@@ -16,10 +17,10 @@ class TestDuplicatedAttachment(FatturapaCommon):
         # Note that all the tests in TestFatturaPAXMLValidation
         # are executed in the same transaction.
         # TODO> must be checked
-        self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
-        # with self.assertRaises(IntegrityError) as ie:
-        #     self.run_wizard("test_duplicated", "IT02780790107_11005.xml")
-        # self.assertEqual(ie.exception.pgcode, "23505")
+        self.run_wizard("🎺 test_duplicated", "IT02780790107_11005.xml")
+        with self.assertRaises(IntegrityError) as ie:
+            self.run_wizard("🎺 test_duplicated", "IT02780790107_11005.xml")
+        self.assertEqual(ie.exception.pgcode, "23505")
 
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
@@ -30,10 +31,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.tax_a10a = self.create_tax_a10a()
         self.invoice_model = self.env["account.invoice"]
 
-
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = self.service.id
-        res = self.run_wizard("test0", "IT05979361218_001.xml")
+        res = self.run_wizard("🎺 test0", "IT05979361218_001.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.register_code, "TO1258B")
