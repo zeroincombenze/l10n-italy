@@ -1,3 +1,12 @@
+10.0.1.8.14 (2022-09-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] Functions refactoring
+* [IMP] Addes regression tests
+* [FIX] l10n_it_ade dependency
+* [IMP] More check for <add_to_ddt> function
+* [FIX] All picking states driven by DdT
+
 10.0.1.8.13 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

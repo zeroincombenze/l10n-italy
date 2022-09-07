@@ -4,13 +4,14 @@
 #
 {
     "name": "DDT",
-    "summary": "Delivery Document to Transfer",
-    "version": "10.0.1.8.13",
+    "summary": "Delivery Document Type",
+    "version": "10.0.1.8.14",
     "category": "Localization/Italy",
     "author": "Odoo Community Association (OCA) and other subjects",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "LGPL-3",
     "depends": [
+        "l10n_it_ade",
         "sale_stock",
         "stock_account",
         "delivery",

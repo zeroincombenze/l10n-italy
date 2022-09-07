@@ -89,6 +89,57 @@ class StockPickingPackagePreparation(models.Model):
         ("ddt_number", "unique(ddt_number)", "DdT number already exists!")
     ]
 
+    FIELD_MAP = {
+        "res.partner": {
+            "ddt_type_id": False,
+            "carrier_id": "property_carrier_id",
+            "parcels": False,
+            "ddt_carrier_id": False,
+            "show_price": "ddt_show_price",
+            "note": False,
+        },
+        "stock.ddt.type": {
+            "ddt_type_id": "",
+            "carrier_id": False,
+            "goods_description_id": "default_goods_description_id",
+            "carriage_condition_id": "default_carriage_condition_id",
+            "transportation_reason_id": "default_transportation_reason_id",
+            "transportation_method_id": "default_transportation_method_id",
+            "parcels": False,
+            "ddt_carrier_id": False,
+            "show_price": False,
+        },
+        "delivery.carrier": {
+            "ddt_type_id": False,
+            "carrier_id": "",
+            "parcels": False,
+            "show_price": False,
+        },
+        "sale.order": {"ddt_carrier_id": False, "parcels": False, "show_price": False},
+        "stock.picking": {
+            "ddt_type_id": "ddt_type",
+            "goods_description_id": False,
+            "carriage_condition_id": False,
+            "transportation_reason_id": False,
+            "transportation_method_id": False,
+            "parcels": "number_of_packages",
+            "ddt_carrier_id": False,
+            "show_price": False,
+            "note": False,
+            "gross_weight": "shipping_weight",
+        },
+        "stock.picking.package.preparation": {
+            "carrier_id": False,
+            "weight": "weight_manual",
+            "ddt_carrier_id": "carrier_id",
+        },
+    }
+
+    def fieldname_of_model(self, model, fieldname):
+        if fieldname not in self.FIELD_MAP[model]:
+            return fieldname
+        return self.FIELD_MAP[model][fieldname]
+
     @api.multi
     @api.depends("transportation_reason_id.to_be_invoiced")
     @api.depends("transportation_reason_id.to_be_invoiced")
@@ -460,14 +511,18 @@ class StockPickingPackagePreparation(models.Model):
         return vals
 
     @api.multi
-    def action_put_in_pack(self):
-        # ----- Check if exist a stock picking whose state is 'done'
-        for record_picking in self.picking_ids:
-            if record_picking.state == "done":
-                raise UserError(
-                    _("Impossible to put in pack a picking whose state is 'done'")
-                )
+    def action_put_in_pack(self, raise_any_done=None):
+        raise_any_done = True if raise_any_done is None else raise_any_done
+        if raise_any_done and any(
+            [x for x in self.picking_ids if x.state == "done"]
+        ):
+            raise UserError(
+                _("Impossible to put in pack a picking whose state is 'done'")
+            )
+        packages = self.env["stock.picking.package.preparation"]
         for package in self:
+            if package.state == "done":
+                continue
             # ----- Check if package has details
             if not package.line_ids:
                 raise UserError(
@@ -476,7 +531,8 @@ class StockPickingPackagePreparation(models.Model):
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
                 package.ddt_number = package.ddt_type_id.sequence_id.next_by_id()
-        return super(StockPickingPackagePreparation, self).action_put_in_pack()
+            packages += package
+        return super(StockPickingPackagePreparation, packages).action_put_in_pack()
 
     @api.multi
     def set_draft(self):
@@ -509,22 +565,31 @@ class StockPickingPackagePreparation(models.Model):
                         _("Required value for %s")
                         % _(self.fields_get()[field]["string"])
                     )
-                    # Another solution: return original (english) name
-                    # raise UserError(
-                    #     _('Required value for %s') %
-                    #     _(self._fields[field].string))
-
-            do_put_in_pack = False
             for picking in ddt.picking_ids:
-                if picking.state == "assigned":
-                    do_put_in_pack = True
-                else:
-                    do_put_in_pack = False
-            if do_put_in_pack:
-                return ddt.action_put_in_pack()
+                if picking.state == "done":
+                    continue
+                if picking.state in ("draft",
+                                     "waiting",
+                                     "partially_available",
+                                     "confirmed"):
+                    picking.action_assign()
+                if picking.state != "assigned":
+                    raise UserError(
+                        _("Could not reserve all requested products. "
+                          "Please use the \'Mark as Todo\' button "
+                          "to handle the reservation manually."))
+                for pack in picking.pack_operation_ids:
+                    if pack.product_qty > 0:
+                        pack.write({'qty_done': pack.product_qty})
+                    else:
+                        pack.unlink()
             for picking in ddt.picking_ids:
                 if picking.state != "done":
-                    raise UserError(_("Not every picking is in done status"))
+                    picking.do_new_transfer()
+            if any(
+                [x for x in ddt.picking_ids if x.state != 'done']
+            ):
+                raise UserError(_("Not every picking is in done status"))
             for package in ddt:
                 if not package.ddt_number:
                     package.ddt_number = package.ddt_type_id.sequence_id.next_by_id()
@@ -694,7 +759,8 @@ class StockPickingPackagePreparation(models.Model):
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
                 "volume": self.volume,
-                "fiscal_document_type_id": self.env.ref("l10n_it_ade.fatturapa_TD24").id,
+                "fiscal_document_type_id":
+                    self.env.ref("l10n_it_ade.fatturapa_TD24").id,
             }
         )
         return invoice_vals
@@ -723,7 +789,8 @@ class StockPickingPackagePreparation(models.Model):
             else:
                 if ddt.partner_shipping_id:
                     group_method = (
-                        ddt.partner_shipping_id.commercial_partner_id.ddt_invoicing_group
+                        ddt.partner_shipping_id.commercial_partner_id.
+                        ddt_invoicing_group
                     )
                 else:
                     group_method = (
@@ -1110,7 +1177,8 @@ class StockPickingPackagePreparationLine(models.Model):
             if self.sale_line_id:
                 fpos = (
                     self.sale_line_id.order_id.fiscal_position_id
-                    or self.sale_line_id.order_id.partner_id.property_account_position_id
+                    or self.sale_line_id.order_id.partner_id.
+                    property_account_position_id
                 )
             if fpos:
                 account = fpos.map_account(account)
@@ -1146,10 +1214,10 @@ class StockPickingPackagePreparationLine(models.Model):
         :param invoice_id: integer
         :param qty: float quantity to invoice
         """
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
-        offset = offset or 0
+        # precision = self.env["decimal.precision"].precision_get(
+        #     "Product Unit of Measure"
+        # )
+        # offset = offset or 0
         for line in self:
             # vals = line._prepare_invoice_line(
             #     qty=qty, invoice_id=invoice_id, offset=offset)

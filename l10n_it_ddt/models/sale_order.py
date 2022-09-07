@@ -153,22 +153,68 @@ class SaleOrder(models.Model):
     @api.multi
     def action_create_ddt(self):
         ddt_model = self.env["stock.picking.package.preparation"]
-        ddt = False
+        pickings = []
+        orders = []
         for order in self:
-            picking_ids = []
             for picking in order.picking_ids:
                 if (
-                    picking.state in ("assigned", "done")
+                    picking.state in ("draft",
+                                      "waiting",
+                                      "partially_available",
+                                      "confirmed",
+                                      "assigned",
+                                      "done")
                     and len(picking.mapped("ddt_ids")) == 0
                 ):
-                    picking_ids.append(picking)
-            if not picking_ids:
-                raise UserError(_("There are not picking to create a DdT"))
-            ddt = ddt_model.create(
-                ddt_model.preparare_ddt_data(
-                    picking_ids, partner=self.partner_shipping_id
-                )
+                    pickings.append(picking)
+                if picking.sale_id not in orders:
+                    orders.append(picking.sale_id)
+        if not pickings:
+            raise UserError(_("There are not picking to create a DdT"))
+        pick0 = pickings[0]
+        if len(pickings) > 1:
+            for picking in pickings[1:]:
+                order = picking.sale_id
+                if picking.partner_id != pick0.partner_id:
+                    raise UserError(
+                        _("Selected Pickings have different Partners")
+                    )
+                if order.partner_id != pick0.sale_id.partner_id:
+                    raise UserError(
+                        _("Selected Sale Orders have different Partners")
+                    )
+                if (order.partner_shipping_id
+                        != pick0.sale_id.partner_shipping_id):
+                    raise UserError(
+                        _("Selected Sale Orders have different Partners")
+                    )
+                if (order.partner_invoice_id
+                        != pick0.sale_id.partner_invoice_id):
+                    raise UserError(
+                        _("Selected Sale Orders have different Partners")
+                    )
+                for fieldname, condition_help in (
+                    ("carriage_condition_id", _("carriage condition")),
+                    ("goods_description_id", _("goods description")),
+                    ("transportation_reason_id", _("transportation reason")),
+                    ("transportation_method_id", _("transportation method")),
+                    ("ddt_carrier_id", _("carrier")),
+                ):
+                    if (
+                        order[fieldname] and
+                        pick0.sale_id[fieldname] and
+                        order[fieldname] != pick0.sale_id[fieldname]
+                    ):
+                        raise UserError(
+                            _("Selected Sale Orders %s has different %s") %
+                            condition_help
+                        )
+        ddt = ddt_model.create(
+            ddt_model.preparare_ddt_data(
+                pickings, partner=pick0.sale_id.partner_shipping_id
             )
+        )
+        for order in orders:
             if order.invoice_status == "no":
                 order.invoice_status = "to invoice"
         ir_model_data = self.env["ir.model.data"]

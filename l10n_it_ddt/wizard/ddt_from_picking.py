@@ -7,61 +7,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
 
-class StockPickingPackagePreparation(models.Model):
-    _inherit = "stock.picking.package.preparation"
-
-    FIELD_MAP = {
-        "res.partner": {
-            "ddt_type_id": False,
-            "carrier_id": "property_carrier_id",
-            "parcels": False,
-            "ddt_carrier_id": False,
-            "show_price": "ddt_show_price",
-            "note": False,
-        },
-        "stock.ddt.type": {
-            "ddt_type_id": "",
-            "carrier_id": False,
-            "goods_description_id": "default_goods_description_id",
-            "carriage_condition_id": "default_carriage_condition_id",
-            "transportation_reason_id": "default_transportation_reason_id",
-            "transportation_method_id": "default_transportation_method_id",
-            "parcels": False,
-            "ddt_carrier_id": False,
-            "show_price": False,
-        },
-        "delivery.carrier": {
-            "ddt_type_id": False,
-            "carrier_id": "",
-            "parcels": False,
-            "show_price": False,
-        },
-        "sale.order": {"ddt_carrier_id": False, "parcels": False, "show_price": False},
-        "stock.picking": {
-            "ddt_type_id": "ddt_type",
-            "goods_description_id": False,
-            "carriage_condition_id": False,
-            "transportation_reason_id": False,
-            "transportation_method_id": False,
-            "parcels": "number_of_packages",
-            "ddt_carrier_id": False,
-            "show_price": False,
-            "note": False,
-            "gross_weight": "shipping_weight",
-        },
-        "stock.picking.package.preparation": {
-            "carrier_id": False,
-            "weight": "weight_manual",
-            "ddt_carrier_id": "carrier_id",
-        },
-    }
-
-    def fieldname_of_model(self, model, fieldname):
-        if fieldname not in self.FIELD_MAP[model]:
-            return fieldname
-        return self.FIELD_MAP[model][fieldname]
-
-
 class DdTFromPickings(models.TransientModel):
     _name = "ddt.from.pickings"
 
