@@ -462,7 +462,7 @@ class StockPickingPackagePreparation(models.Model):
         return vals
 
     @api.model
-    def preparare_ddt_data(self, picking_ids, partner=None):
+    def preparare_ddt_data(self, picking_ids, partner=None, order=None):
         vals = {"partner_id": False}
         for picking in picking_ids:
             # check if picking is already linked to a DDT
@@ -472,7 +472,7 @@ class StockPickingPackagePreparation(models.Model):
                 partner = current_ddt_shipping_partner
             elif partner != current_ddt_shipping_partner:
                 raise UserError(_("Selected Pickings have different Partner"))
-            sale_order = picking.sale_id
+            sale_order = order or picking.sale_id
             if sale_order:
                 vals["partner_id"] = sale_order.partner_id.id
             else:

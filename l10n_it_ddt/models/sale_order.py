@@ -171,6 +171,8 @@ class SaleOrder(models.Model):
                     orders.append(picking.sale_id)
         if not pickings:
             raise UserError(_("There are not picking to create a DdT"))
+        if orders.filtered(lambda x: x.state != "sale"):
+            raise UserError("There are some unconfirmed sale orders!")
         pick0 = pickings[0]
         if len(pickings) > 1:
             for picking in pickings[1:]:
