@@ -10,4 +10,7 @@ class WizardCreateDdtEspresso(models.TransientModel):
     _name = "wizard.create.ddt.espresso"
 
     def create_ddt_espresso(self):
-        self.env["sale.order"].generate_ddt_espresso()
+        orders = self.env["sale.order"]
+        for sale_id in self.env.context['active_ids']:
+            orders += self.env["sale.order"].browse(sale_id)
+        return orders.generate_ddt_espresso()

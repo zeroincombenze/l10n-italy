@@ -76,6 +76,16 @@ TEST_ACCOUNT_TAX = {
         "description": "22v",
     },
 }
+TEST_DLIVERY_CARRIER = {
+    "delivery.delivery_carrier": {
+        "goods_description_id": "l10n_it_ddt.goods_description_CAR",
+    }
+}
+TEST_DDT_TYPE = {
+    "l10n_it_ddt.ddt_type_ddt": {
+        "default_transportation_reason_id": "l10n_it_ddt.transportation_reason_VEN"
+    }
+}
 TEST_PRODUCT_TEMPLATE = {
     "by": "default_code",
     "z0bug.product_template_1": {
@@ -161,13 +171,17 @@ TEST_RES_PARTNER = {
 TEST_SETUP_LIST = [
     "account.account",
     "account.tax",
+    "delivery.carrier",
     "product.template",
+    "stock.ddt.type",
     "res.partner",
 ]
 TEST_SETUP = {
     "account.account": TEST_ACCOUNT_ACCOUNT,
     "account.tax": TEST_ACCOUNT_TAX,
+    "delivery.carrier": TEST_DLIVERY_CARRIER,
     "product.template": TEST_PRODUCT_TEMPLATE,
+    "stock.ddt.type": TEST_DDT_TYPE,
     "res.partner": TEST_RES_PARTNER,
 }
 
@@ -578,6 +592,21 @@ class SaleOrder(common.TransactionCase):
                 model,
                 TEST_SALE_ORDER[xref])
             order = self.model_make(model, vals, xref)
+            order.onchange_partner_id()
+            if order.partner_id == self.env.ref("z0bug.res_partner_2"):
+                self.assertEqual(
+                    order.transportation_method_id,
+                    self.env.ref("l10n_it_ddt.transportation_method_COR"),
+                    msg="Invalid order transportation method %s!" % order.transportation_method_id)
+                self.assertEqual(
+                    order.carriage_condition_id,
+                    self.env.ref("l10n_it_ddt.carriage_condition_PAF"),
+                    msg="Invalid order carriage condition %s!" % order.carriage_condition_id)
+                self.assertEqual(
+                    order.goods_description_id,
+                    self.env.ref("l10n_it_ddt.goods_description_SFU"),
+                    msg="Invalid order goods description %s!" % order.goods_description_id)
+            order.carrier_id = self.env.ref("delivery.delivery_carrier").id
 
             for xref_child in TEST_SALE_ORDER_LINE.values():
                 if xref_child["order_id"] == xref:
@@ -603,9 +632,10 @@ class SaleOrder(common.TransactionCase):
                 self.assertEqual(
                     order.picking_ids, self.ddt.picking_ids,
                     msg="Order picking different from DdT picking")
-                self.ddt.transportation_reason_id = self.env.ref(
-                    "l10n_it_ddt.transportation_reason_VEN")
-
+                self.assertEqual(
+                    self.ddt.goods_description_id,
+                    self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                    msg="Invalid order goods description %s!" % self.ddt.goods_description_id)
             else:
                 # 2. Add picking of sale order to DdT
                 picking = order.picking_ids[0]
@@ -668,8 +698,13 @@ class SaleOrder(common.TransactionCase):
                 order.ddt_ids[0], self.ddt,
                 msg="No new Delivery Note found!")
         self.ddt = self.sales[0].ddt_ids[0]
-        self.ddt.transportation_reason_id = self.env.ref(
-            "l10n_it_ddt.transportation_reason_VEN")
+        # self.ddt.transportation_reason_id = self.env.ref(
+        #     "l10n_it_ddt.transportation_reason_VEN")
+        self.assertEqual(
+            self.ddt.transportation_reason_id.id,
+            self.env.ref("l10n_it_ddt.transportation_reason_VEN").id,
+            msg="Invalid DdT transportation reason %s!" %
+                self.ddt.transportation_reason_id)
         self.ddt.set_done()
         self.assertEqual(
             self.ddt.state, "done",

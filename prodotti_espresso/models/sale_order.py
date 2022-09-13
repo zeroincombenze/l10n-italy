@@ -9,16 +9,25 @@ class SaleOrder(models.Model):
 
     @api.multi
     def generate_ddt_espresso(self):
-        import pdb; pdb.set_trace()
+
+        def exec_wizard(action):
+            res_model = action['res_model']
+            ctx = action['context'] or {}
+            wiz = self.env[res_model].browse(action['res_id']).with_context(ctx)
+            fct = 'process'
+            if hasattr(wiz, fct):
+                return getattr(wiz, fct)()
+            return False
+
         ddt_model = self.env["stock.picking.package.preparation"]
         orders = []
         ddts = {}
         for order in self:
             if (
-                orders.state != "sale" or
+                order.state != "sale" or
                 not order.order_line.filtered(
                     lambda x: (
-                        x.product_id.product_espresso and
+                        x.product_id.espresso and
                         x.product_id.type != "service"
                     )
                 )
@@ -26,9 +35,9 @@ class SaleOrder(models.Model):
                 # Sale Order without espresso products
                 continue
             for picking in order.picking_ids:
-                if not picking.move_line.filtered(
+                if len(picking.ddt_ids) or not picking.move_lines.filtered(
                     lambda x: (
-                        x.product_id.product_espresso and
+                        x.product_id.espresso and
                         x.product_id.type != "service"
                     )
                 ):
@@ -40,44 +49,47 @@ class SaleOrder(models.Model):
                                      "partially_available",
                                      "confirmed"):
                     picking.action_assign()
-                if (
-                    picking.state == "assigned"
-                    and len(picking.mapped("ddt_ids")) == 0
-                ):
+                if picking.state != "assigned":
+                    picking.force_assign()
+                if picking.state == "assigned":
                     for pack in picking.pack_operation_ids:
-                        if pack.product_id.product_espresso and pack.product_qty > 0:
+                        if pack.product_id.espresso and pack.product_qty > 0:
                             pack.write({'qty_done': pack.product_qty})
                             nro_lines += 1
                         else:
                             pack.unlink()
                 if nro_lines:
-                    hash_key = '%s|%d|%d|%d|%d' % (
-                        order.name,
-                        order.id,
+                    action = picking.do_new_transfer()
+                    if isinstance(action, dict):
+                        exec_wizard(action)
+                    hash_key = '%d|%d|%d' % (
                         order.partner_id.id,
                         order.partner_shipping_id.id,
                         order.payment_term_id.id)
                     if hash_key not in ddts:
-                        ddts[hash_key] = []
-                    ddts[hash_key].append(picking)
+                        ddts[hash_key] = self.env["stock.picking"]
+                    ddts[hash_key] += picking
                     if picking.sale_id not in orders:
                         orders.append(picking.sale_id)
         for hash_key in ddts.keys():
-            items = hash_key.split("|")
-            order = self.browse(items[1])
-            ddt = ddt_model.create(
+            ddt_model.create(
                 ddt_model.preparare_ddt_data(
                     ddts[hash_key],
-                    order=order,
+                    defaults={
+                        "transportation_reason_id":
+                            self.env.ref("l10n_it_ddt.transportation_reason_VEN").id,
+                        "goods_description_id":
+                            self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                    }
                 )
             )
-        return ddt
+        return True
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    product_espresso = fields.Boolean(
+    espresso = fields.Boolean(
         string="Prodotto espresso",
         related="product_id.espresso",
     )

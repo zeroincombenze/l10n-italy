@@ -91,6 +91,7 @@ TEST_PRODUCT_TEMPLATE = {
         "property_account_expense_id": "external.4101",
         "uom_po_id": "product.product_uom_unit",
         "taxes_id": "external.22v",
+        "espresso": True,
     },
     "z0bug.product_template_2": {
         "property_account_income_id": "external.3112",
@@ -105,6 +106,7 @@ TEST_PRODUCT_TEMPLATE = {
         "property_account_expense_id": "external.4101",
         "uom_po_id": "product.product_uom_unit",
         "taxes_id": "external.22v",
+        "espresso": False,
     },
     "z0bug.product_template_18": {
         "property_account_income_id": "external.3112",
@@ -119,6 +121,7 @@ TEST_PRODUCT_TEMPLATE = {
         "property_account_expense_id": "external.4101",
         "uom_po_id": "product.product_uom_unit",
         "taxes_id": "external.22v",
+        "espresso": True,
     },
 }
 TEST_RES_PARTNER = {
@@ -605,7 +608,7 @@ class SaleOrder(common.TransactionCase):
         model_child = "sale.order.line"
         self.ddt = False
         self.ddt_number = False
-        self.sales = []
+        self.orders = self.env["sale.order"]
         for xref in TEST_SALE_ORDER:
             _logger.info(
                 "🎺 Testing %s[%s]" % (model, xref)
@@ -624,28 +627,25 @@ class SaleOrder(common.TransactionCase):
             self.assertEqual(
                 order.state, "sale",
                 msg="Invalid order state %s!" % order.state)
-            self.sales.append(order)
+            self.orders += order
 
         # 1. Create a new DdT form 2 sale orders
-        orders = self.env["sale.order"]
-        for order in self.sales:
-            orders += order
-        orders.action_create_ddt()
-        for order in self.sales:
-            self.assertTrue(
-                order.ddt_ids,
-                msg="No Delivery Note found!")
-            self.assertNotEqual(
-                order.ddt_ids[0], self.ddt,
-                msg="No new Delivery Note found!")
-        self.ddt = self.sales[0].ddt_ids[0]
-        self.ddt.transportation_reason_id = self.env.ref(
-            "l10n_it_ddt.transportation_reason_VEN")
-        self.ddt.set_done()
-        self.assertEqual(
-            self.ddt.state, "done",
-            msg="Invalid DdT state %s!" % self.ddt.state)
-        for picking in self.ddt.picking_ids:
-            self.assertEqual(
-                picking.state, "done",
-                msg="Invalid picking state %s!" % picking.state)
+        self.orders.generate_ddt_espresso()
+        # for order in self.orders:
+        #     self.assertTrue(
+        #         order.ddt_ids,
+        #         msg="No Delivery Note found!")
+        #     self.assertNotEqual(
+        #         order.ddt_ids[0], self.ddt,
+        #         msg="No new Delivery Note found!")
+        # self.ddt = self.orders[0].ddt_ids[0]
+        # self.ddt.transportation_reason_id = self.env.ref(
+        #     "l10n_it_ddt.transportation_reason_VEN")
+        # self.ddt.set_done()
+        # self.assertEqual(
+        #     self.ddt.state, "done",
+        #     msg="Invalid DdT state %s!" % self.ddt.state)
+        # for picking in self.ddt.picking_ids:
+        #     self.assertEqual(
+        #         picking.state, "done",
+        #         msg="Invalid picking state %s!" % picking.state)
