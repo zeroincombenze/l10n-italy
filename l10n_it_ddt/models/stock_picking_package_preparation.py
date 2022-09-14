@@ -483,6 +483,8 @@ class StockPickingPackagePreparation(models.Model):
             elif vals["partner_shipping_id"] != shipping_partner.id:
                 raise UserError(_("Selected Pickings have different Shipping Partner"))
             partner = shipping_partner.commercial_partner_id
+            if partner.type != "contact" and partner.parent_id:
+                partner = partner.parent_id
             if not vals["partner_id"]:
                 vals["partner_id"] = partner.id
             elif vals["partner_id"] != partner.id:
