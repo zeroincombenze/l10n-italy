@@ -4,7 +4,8 @@
 #
 
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import Warning as UserError
 
 
 class StockPicking(models.Model):
@@ -76,3 +77,85 @@ class StockPicking(models.Model):
             "res_id": self.id,
             "target": "current",
         }
+
+    @api.model
+    def check_is_linked_ddt(self):
+        if self.ddt_ids:
+            raise UserError(
+                _("Selected Picking %s is already linked to DDT: %s") % (
+                    self.name, self.ddt_ids[0].ddt_number,
+                )
+            )
+
+    @api.model
+    def check_4_delivery_value(self, target_ddt, fieldname, condition_help):
+        """Check if current delivery condition is equal to DdT condition.
+        See file "ddt_from_self" to furthermo information."""
+        ddt_fieldname = target_ddt.fieldname_of_model(
+            "stock.picking.package.preparation", fieldname
+        )
+        sp_fieldname = target_ddt.fieldname_of_model("stock.picking", fieldname)
+        so_fieldname = target_ddt.fieldname_of_model("sale.order", fieldname)
+
+        if (
+            sp_fieldname and
+            ddt_fieldname and
+            self[sp_fieldname] and
+            target_ddt[ddt_fieldname] and
+            self[sp_fieldname] != target_ddt[ddt_fieldname]
+        ):
+            raise UserError(
+                _(
+                    "Selected Picking %s has different %s"
+                    % (self.name, condition_help)
+                )
+            )
+        elif (
+            so_fieldname and
+            not sp_fieldname and
+            ddt_fieldname and
+            self.sale_id and
+            self.sale_id[so_fieldname] and
+            self.sale_id[so_fieldname] != target_ddt[ddt_fieldname]
+        ):
+            raise UserError(
+                _(
+                    "Selected Picking %s has different %s"
+                    % (self.name, condition_help)
+                )
+            )
+
+    @api.multi
+    def add_to_ddt(self, target_ddt):
+        for picking in self:
+            picking.check_is_linked_ddt()
+
+            if (
+                picking.state in ("cancel", "done") or
+                (picking.state != target_ddt.state and
+                 (picking.state not in (
+                     "waiting", "partially_available", "confirmed", "assigned") or
+                  target_ddt.state != "draft"))
+            ):
+                raise UserError(
+                    _("Selected Picking %s has invalid state %s") % (
+                        picking.name, picking.state,
+                    )
+                )
+
+            if picking.partner_id != target_ddt.partner_shipping_id:
+                raise UserError(
+                    _("Selected Picking %s has different Partner") % picking.name
+                )
+
+            for fieldname, condition_help in (
+                ("carriage_condition_id", _("carriage condition")),
+                ("goods_description_id", _("goods description")),
+                ("transportation_reason_id", _("transportation reason")),
+                ("transportation_method_id", _("transportation method")),
+                ("ddt_carrier_id", _("carrier")),
+            ):
+                self.check_4_delivery_value(
+                    target_ddt, fieldname, condition_help)
+
+            target_ddt.picking_ids = [(4, picking.id)]

@@ -1,3 +1,13 @@
+10.0.1.8.14 (2022-09-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] Functions refactoring / Sotware ristrutturato
+* [IMP] Added regression tests / Aggiunti test automatici
+* [FIX] l10n_it_ade dependency / Corretta dipendenza
+* [IMP] More check for <add_to_ddt> function / Nuovi controlli
+* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
+* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
+
 10.0.1.8.13 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
