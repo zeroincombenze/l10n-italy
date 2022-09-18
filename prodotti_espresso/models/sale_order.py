@@ -71,19 +71,22 @@ class SaleOrder(models.Model):
                     ddts[hash_key] += picking
                     if picking.sale_id not in orders:
                         orders.append(picking.sale_id)
+        ddt_ids = []
         for hash_key in ddts.keys():
-            ddt_model.create(
-                ddt_model.preparare_ddt_data(
-                    ddts[hash_key],
-                    defaults={
-                        "transportation_reason_id":
-                            self.env.ref("l10n_it_ddt.transportation_reason_VEN").id,
-                        "goods_description_id":
-                            self.env.ref("l10n_it_ddt.goods_description_CAR"),
-                    }
-                )
+            ddt_ids.append(
+                ddt_model.create(
+                    ddt_model.preparare_ddt_data(
+                        ddts[hash_key],
+                        defaults={
+                            "transportation_reason_id": self.env.ref(
+                                "l10n_it_ddt.transportation_reason_VEN").id,
+                            "goods_description_id":
+                                self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                        }
+                    )
+                ).id
             )
-        return True
+        return ddt_ids
 
 
 class SaleOrderLine(models.Model):
