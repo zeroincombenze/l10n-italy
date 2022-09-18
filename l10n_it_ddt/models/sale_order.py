@@ -179,27 +179,7 @@ class SaleOrder(models.Model):
         for order in orders:
             if order.invoice_status == "no":
                 order.invoice_status = "to invoice"
-        ir_model_data = self.env["ir.model.data"]
-        form_res = ir_model_data.get_object_reference(
-            "stock_picking_package_preparation",
-            "stock_picking_package_preparation_form",
-        )
-        form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference(
-            "stock_picking_package_preparation",
-            "stock_picking_package_preparation_tree",
-        )
-        tree_id = tree_res and tree_res[1] or False
-        return {
-            "name": "DdT",
-            "view_type": "form",
-            "view_mode": "form,tree",
-            "res_model": "stock.picking.package.preparation",
-            "res_id": ddt.id,
-            "view_id": False,
-            "views": [(form_id, "form"), (tree_id, "tree")],
-            "type": "ir.actions.act_window",
-        }
+        return [ddt.id]
 
     @api.multi
     def action_cancel(self):

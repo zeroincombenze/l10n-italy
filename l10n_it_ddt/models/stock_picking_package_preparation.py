@@ -496,12 +496,14 @@ class StockPickingPackagePreparation(models.Model):
                 elif vals["partner_id"] != order.partner_id.id:
                     raise UserError(_("Selected Pickings have different Partner"))
                 if vals["partner_shipping_id"] != order.partner_shipping_id.id:
-                    raise UserError(_("Selected Pickings have different Shipping Partner"))
+                    raise UserError(_(
+                        "Selected Pickings have different Shipping Partner"))
                 if not partner_invoice_id:
                     partner_invoice_id = order.partner_invoice_id
                 if partner_invoice_id != order.partner_invoice_id:
                     if vals["partner_shipping_id"] != order.partner_shipping_id:
-                        raise UserError(_("Selected Pickings have different Invoice Partner"))
+                        raise UserError(_(
+                            "Selected Pickings have different Invoice Partner"))
                 for fieldname, condition_help in (
                     ("carriage_condition_id", _("carriage condition")),
                     ("transportation_reason_id", _("transportation reason")),

@@ -35,6 +35,7 @@
         "wizard/ddt_create_invoice.xml",
         "wizard/ddt_line_create_invoice.xml",
         "wizard/ddt_invoicing.xml",
+        "wizard/create_ddt.xml",
         "views/report_ddt.xml",
         "data/mail_template_data.xml",
     ],

@@ -224,11 +224,12 @@ ChangeLog History / Cronologia modifiche
 10.0.1.8.14 (2022-09-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [REF] Functions refactoring
-* [IMP] Addes regression tests
-* [FIX] l10n_it_ade dependency
-* [IMP] More check for <add_to_ddt> function
-* [FIX] All picking states driven by DdT
+* [REF] Functions refactoring / Sotware ristrutturato
+* [IMP] Added regression tests / Aggiunti test automatici
+* [FIX] l10n_it_ade dependency / Corretta dipendenza
+* [IMP] More check for <add_to_ddt> function / Nuovi controlli
+* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
+* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
 
 10.0.1.8.13 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -311,7 +312,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-08
+Last Update / Ultimo aggiornamento: 2022-09-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

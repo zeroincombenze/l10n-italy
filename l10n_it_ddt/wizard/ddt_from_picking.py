@@ -3,8 +3,8 @@
 #    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 
-from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo import api, fields, models
+# from odoo.exceptions import Warning as UserError
 
 
 class DdTFromPickings(models.TransientModel):

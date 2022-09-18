@@ -597,15 +597,18 @@ class SaleOrder(common.TransactionCase):
                 self.assertEqual(
                     order.transportation_method_id,
                     self.env.ref("l10n_it_ddt.transportation_method_COR"),
-                    msg="Invalid order transportation method %s!" % order.transportation_method_id)
+                    msg="Invalid order transportation method %s!" %
+                        order.transportation_method_id)
                 self.assertEqual(
                     order.carriage_condition_id,
                     self.env.ref("l10n_it_ddt.carriage_condition_PAF"),
-                    msg="Invalid order carriage condition %s!" % order.carriage_condition_id)
+                    msg="Invalid order carriage condition %s!" %
+                        order.carriage_condition_id)
                 self.assertEqual(
                     order.goods_description_id,
                     self.env.ref("l10n_it_ddt.goods_description_SFU"),
-                    msg="Invalid order goods description %s!" % order.goods_description_id)
+                    msg="Invalid order goods description %s!" %
+                        order.goods_description_id)
             order.carrier_id = self.env.ref("delivery.delivery_carrier").id
 
             for xref_child in TEST_SALE_ORDER_LINE.values():
@@ -635,7 +638,8 @@ class SaleOrder(common.TransactionCase):
                 self.assertEqual(
                     self.ddt.goods_description_id,
                     self.env.ref("l10n_it_ddt.goods_description_CAR"),
-                    msg="Invalid order goods description %s!" % self.ddt.goods_description_id)
+                    msg="Invalid order goods description %s!" %
+                        self.ddt.goods_description_id)
             else:
                 # 2. Add picking of sale order to DdT
                 picking = order.picking_ids[0]
