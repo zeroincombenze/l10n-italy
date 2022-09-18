@@ -9,3 +9,4 @@ from . import ddt_from_picking
 from . import ddt_create_invoice
 from . import ddt_invoicing
 from . import ddt_line_create_invoice
+from . import create_ddt

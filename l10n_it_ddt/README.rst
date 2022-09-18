@@ -1,10 +1,10 @@
 
 ======================
-|icon| DDT 10.0.1.8.13
+|icon| DDT 10.0.1.8.14
 ======================
 
 
-**Delivery Document to Transfer**
+**Delivery Document Type**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/icon.png
 
@@ -18,7 +18,7 @@
 Overview / Panoramica
 =====================
 
-|en| This module print the Italian deliver document AKA DdT
+|en| This module manages the Italian deliver document AKA DdT
 
 You can automatically create a DDT From a Sale Order, setting
 'Automatically create the DDT' field that will automatically create the DDT on
@@ -51,7 +51,7 @@ invoice lines
 
 |
 
-|it| Stampa documento di trasporto, conosciuto anche come DdT
+|it| Gestione documento di trasporto, conosciuto anche come DdT
 
 È possibile creare automaticamente un DDT da un ordine di vendita, impostando
 il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
@@ -221,6 +221,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.14 (2022-09-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] Functions refactoring / Sotware ristrutturato
+* [IMP] Added regression tests / Aggiunti test automatici
+* [FIX] l10n_it_ade dependency / Corretta dipendenza
+* [IMP] More check for <add_to_ddt> function / Nuovi controlli
+* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
+* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
+
 10.0.1.8.13 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -302,7 +312,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-21
+Last Update / Ultimo aggiornamento: 2022-09-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

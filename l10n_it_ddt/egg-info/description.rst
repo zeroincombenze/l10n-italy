@@ -1,4 +1,4 @@
-This module print the Italian deliver document AKA DdT
+This module manages the Italian deliver document AKA DdT
 
 You can automatically create a DDT From a Sale Order, setting
 'Automatically create the DDT' field that will automatically create the DDT on

@@ -15,7 +15,6 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
-    "auto_install": True,
     "depends": [
         "l10n_it_einvoice_out",
         "l10n_it_ddt",

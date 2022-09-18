@@ -153,45 +153,33 @@ class SaleOrder(models.Model):
     @api.multi
     def action_create_ddt(self):
         ddt_model = self.env["stock.picking.package.preparation"]
-        ddt = False
+        pickings = self.env["stock.picking"]
+        orders = []
         for order in self:
-            picking_ids = []
             for picking in order.picking_ids:
                 if (
-                    picking.state in ("assigned", "done")
+                    picking.state in ("draft",
+                                      "waiting",
+                                      "partially_available",
+                                      "confirmed",
+                                      "assigned",
+                                      "done")
                     and len(picking.mapped("ddt_ids")) == 0
                 ):
-                    picking_ids.append(picking)
-            if not picking_ids:
-                raise UserError(_("There are not picking to create a DdT"))
-            ddt = ddt_model.create(
-                ddt_model.preparare_ddt_data(
-                    picking_ids, partner=self.partner_shipping_id
-                )
-            )
+                    pickings += picking
+                if picking.sale_id not in orders:
+                    orders.append(picking.sale_id)
+        if not pickings:
+            raise UserError(_("There are not picking to create a DdT"))
+        if any([x for x in orders if x.state != 'sale']):
+            raise UserError("There are some unconfirmed sale orders!")
+        ddt = ddt_model.create(
+            ddt_model.preparare_ddt_data(pickings=pickings)
+        )
+        for order in orders:
             if order.invoice_status == "no":
                 order.invoice_status = "to invoice"
-        ir_model_data = self.env["ir.model.data"]
-        form_res = ir_model_data.get_object_reference(
-            "stock_picking_package_preparation",
-            "stock_picking_package_preparation_form",
-        )
-        form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference(
-            "stock_picking_package_preparation",
-            "stock_picking_package_preparation_tree",
-        )
-        tree_id = tree_res and tree_res[1] or False
-        return {
-            "name": "DdT",
-            "view_type": "form",
-            "view_mode": "form,tree",
-            "res_model": "stock.picking.package.preparation",
-            "res_id": ddt.id,
-            "view_id": False,
-            "views": [(form_id, "form"), (tree_id, "tree")],
-            "type": "ir.actions.act_window",
-        }
+        return [ddt.id]
 
     @api.multi
     def action_cancel(self):
