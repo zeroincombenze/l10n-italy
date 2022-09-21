@@ -83,7 +83,7 @@ class StockPickingPackagePreparation(models.Model):
 
     _inherit = "stock.picking.package.preparation"
     _rec_name = "display_name"
-    _order = "ddt_number, date desc"
+    _order = "ddt_number desc, date desc"
 
     _sql_constraints = [
         ("ddt_number", "unique(ddt_number)", "DdT number already exists!")
