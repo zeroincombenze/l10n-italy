@@ -6,6 +6,9 @@
             <field name="model">wizard.create.ddt.espresso</field>
             <field name="arch" type="xml">
                 <form string="Create Express Delivery Note">
+                    <group>
+                        <field name="delivery_cost_product"/>
+                    </group>
                     <footer>
                         <button name="create_ddt_espresso" string="Create" type="object"
                             class="btn-primary"/>
