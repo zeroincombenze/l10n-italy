@@ -350,7 +350,7 @@ def main(args):
             correct_future(lines)
         else:
             robust_source(lines, FILE_SCHEMA)
-            topep8(lines, FILE_SCHEMA)
+            # topep8(lines, FILE_SCHEMA)
         fd = open(args[0], "w")
         fd.write("".join("%s\n" % l for l in lines))
         fd.close()
