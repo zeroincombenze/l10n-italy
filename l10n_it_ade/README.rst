@@ -1,6 +1,6 @@
 
 =======================================
-|icon| Agenzia delle Entrate 10.0.0.3.4
+|icon| Agenzia delle Entrate 10.0.0.3.5
 =======================================
 
 
@@ -267,6 +267,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.3.5 (2022-09-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] l10n_it_ade/binding refactoring
+
 10.0.0.3.4 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -352,7 +357,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-07-05
+Last Update / Ultimo aggiornamento: 2022-09-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
