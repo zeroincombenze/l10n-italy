@@ -1,6 +1,6 @@
 
 =======================================
-|icon| Agenzia delle Entrate 10.0.0.3.5
+|icon| Agenzia delle Entrate 10.0.0.3.6
 =======================================
 
 
@@ -267,6 +267,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.3.6 (2022-09-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] l10n_it_ade/binding numeric data with 2 decimals
+
 10.0.0.3.5 (2022-09-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -324,8 +329,8 @@ Acknowledges / Riconoscimenti
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
 +-----------------------------------+-------------------------------------------+* Davide Corio <info@davidecorio.com>
-* Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 
 Maintainer / Manutenzione
@@ -357,7 +362,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-22
+Last Update / Ultimo aggiornamento: 2022-09-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
