@@ -132,7 +132,7 @@ bin_path=${PATH//:/ }
 PYXBGEN_BIN=
 [[ -z $opt_odoo ]] && opt_odoo=$PWD
 [[ -z $opt_venv && -d $(readlink -f $opt_odoo/../../venv_odoo) ]] && opt_venv="$(readlink -f $opt_odoo/../../venv_odoo)"
-[[ -z $opt_venv && -n $opt_branch ]] && [[ -d $HOME/$opt_branch/venv_odoo ]] && $opt_venv="$HOME/$opt_branch/venv_odoo"
+[[ -z $opt_venv && -n $opt_branch && -d $HOME/$opt_branch/venv_odoo ]] && opt_venv="$HOME/$opt_branch/venv_odoo"
 if [[ -n $opt_venv ]]; then
     [[ -x $(readlink -e $opt_venv)/bin/pyxbgen ]] && PYXBGEN_BIN="$(readlink -e $opt_venv)/bin/pyxbgen"
 fi
@@ -198,6 +198,7 @@ if [[ $opt_list -eq 0 ]]; then
     [[ -d $BINDINGS.bak ]] && run_traced "rm -fR $BINDINGS.bak"
     run_traced "mv $BINDINGS $BINDINGS.bak"
   fi
+  [[ -f $SCHEMAS//fattura_elettronica_B2B/Fattura_VFPR12.xsd && -f $SCHEMAS/fatturapa/FatturaPA_versione_1.2.1.xsd ]] && run_traced "cp $SCHEMAS/fatturapa/FatturaPA_versione_1.2.1.xsd $SCHEMAS//fattura_elettronica_B2B/Fattura_VFPR12.xsd"
 fi
 run_traced "mkdir -p $BINDINGS"
 run_traced "pushd $BINDINGS >/dev/null"
@@ -272,6 +273,9 @@ if [[ $opt_list -eq 0 ]]; then
       fi
       [[ $opt_py3 -ne 0 ]] && opts="-3" || opts=""
       run_traced "$PYTHON $PYXBGEN_PY $fn $opts"
+      for x in TD16 TD17 TD18 TD19 TD24; do
+        grep -q $x $BINDINGS/fatturapa*.py || echo "*** Error: TD16 not found! ***"
+      done
       if [[ $opt_mult -gt 0 ]]; then
         if [[ ${fn: -3} == ".py" ]]; then
           tgt="${fn:0:-3}__${pyxb_ver//./_}${fn: -3}"
@@ -286,4 +290,11 @@ run_traced "popd >/dev/null"
 if [[ $opt_list -eq 0 && $opt_keep -eq 0 ]]; then
   find $TDIR -type f -name "*.bak" -delete
   find $TDIR -type f -name "*.pyc" -delete
+fi
+echo ""
+echo "You should copy ..."
+if [[ $opt_mult -gt 0 ]]; then
+  echo "cp $BINDINGS/*__${pyxb_ver}.py <PATH_TO_MODULE>"
+else
+  echo "cp $BINDINGS/*.py <PATH_TO_MODULE>"
 fi
