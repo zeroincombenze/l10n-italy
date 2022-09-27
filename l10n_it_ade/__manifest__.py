@@ -9,7 +9,7 @@
 #
 {
     "name": "Agenzia delle Entrate",
-    "version": "10.0.0.3.5",
+    "version": "10.0.0.3.6",
     "category": "Localization/Italy",
     "summary": "Codice e definizioni come da Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.",

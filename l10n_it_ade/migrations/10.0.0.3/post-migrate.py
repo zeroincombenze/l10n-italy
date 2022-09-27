@@ -191,7 +191,7 @@ def migrate(cr, version):
                     code = cr.fetchone()[0]
                     if code in ("RF16", "RF17"):
                         cur_company_pay = "D"
-                except:
+                except BaseException:
                     pass
                 cur_company_id = tax.company_id.id
             res[tax.description] = {
