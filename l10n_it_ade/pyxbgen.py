@@ -200,6 +200,7 @@ def correct_future(lines):
             state = lineno
         elif state >= 0 and binding_line:
             lines.insert(lineno, binding_line)
+            lineno += 1
             binding_line = ""
         lineno += 1
 
@@ -210,39 +211,22 @@ LEX_RULES = {}
 def cvt_decimal_2_str(lines):
     schema_root = os.path.dirname(os.getcwd())
     lineno = 0
-    prior_left_indent = True
-    empty_lines = 0
     token = ""
+    class_converted = False
     while lineno < len(lines):
         if schema_root in lines[lineno]:
             lines[lineno] = lines[lineno].replace(
                 "'%s" % schema_root, "'..").replace("\"%s" % schema_root, "\"..")
-        if not lines[lineno]:
-            empty_lines += 1
-            lineno += 1
-            continue
-        elif lines[lineno].count("(") != lines[lineno].count(")"):
-            pass
-        elif lines[lineno].count("[") != lines[lineno].count("]"):
-            pass
-        elif lines[lineno].count("{") != lines[lineno].count("}"):
-            pass
-        elif lines[lineno][0] == " ":
-            empty_lines = 0
-            prior_left_indent = False
-        else:
-            if not prior_left_indent and lines[lineno][0:6] != "except":
-                while empty_lines <= 2:
-                    lines.insert(lineno, "")
-                    empty_lines += 1
-            empty_lines = 0
-            prior_left_indent = True
-        if lines[lineno] == "#" * len(lines[lineno]):
+        if (
+            lines[lineno] == ("#" * len(lines[lineno])) or
+            lines[lineno] == (" " * len(lines[lineno]))
+        ):
             del lines[lineno]
             continue
         x = re.match("[ ]*class[ ]+[A-Za-z0-9_]+", lines[lineno])
         if x:
             token = ""
+            class_converted = False
         if token:
             t = ",%s" % token
             x = re.match(t, lines[lineno])
@@ -258,6 +242,9 @@ def cvt_decimal_2_str(lines):
         x = re.match(r"[ ]*class[ ]+[A-Za-z0-9_]+ \(", lines[lineno])
         if x:
             lines[lineno] = lines[lineno].replace(" (", "(")
+        # if "Amount8DecimalType" in lines[lineno]:
+        #     x = None
+        # else:
         x = re.match(
             r"class[ ]+[A-Za-z0-9_]+[ ]*\(.*pyxb.binding.datatypes.decimal",
             lines[lineno],
@@ -266,14 +253,35 @@ def cvt_decimal_2_str(lines):
             lines[lineno] = lines[lineno].replace(
                 "datatypes.decimal", "datatypes.string"
             )
-        x = re.match("[ ]*[^#].*pyxb.binding.datatypes.decimal", lines[lineno])
-        if x:
-            i = lines[lineno].find("=")
-            token = lines[lineno][0:i].rstrip()
-            lines[lineno] = "# " + lines[lineno]
             lines.insert(
-                lineno, "# Follow statement ignored due conversion decimal > string"
+                lineno, "# Follow decimal class updated to string"
             )
+            lineno += 1
+            class_converted = True
+        # x = re.match("[ ]*[^#].*pyxb.binding.datatypes.decimal", lines[lineno])
+        # if x:
+        #     i = lines[lineno].find("=")
+        #     token = lines[lineno][0:i].rstrip()
+        #     lines[lineno] = "# " + lines[lineno]
+        #     lines.insert(
+        #         lineno, "# Follow statement ignored due conversion decimal > string"
+        #     )
+        if class_converted:
+            x = re.match("^[^#].*\._?CF_maxInclusive", lines[lineno])
+            if x:
+                # import pdb; pdb.set_trace()
+                last_lineno = lineno + 1
+                x = re.match( r"^[ ]+[A-Za-z0-9_]", lines[last_lineno])
+                while x:
+                    last_lineno += 1
+                    x = re.match(r"^[ ]+[A-Za-z0-9_]", lines[last_lineno])
+                for ix in (lineno, last_lineno - 1):
+                    lines[ix] = "# " + lines[ix]
+                lines.insert(
+                    lineno,
+                    "# Follow(s) line(s) are ignored because string class"
+                )
+                lineno += 1
 
         # if len(lines[lineno]) > 80:
         #     ipos = 0
@@ -317,8 +325,7 @@ def cvt_decimal_2_str(lines):
 
 
 def main(args):
-    # import pdb
-    # pdb.set_trace()
+    # import pdb;  pdb.set_trace()
     filepy = args[0][0:-3]
     FILE_SCHEMA = ""
     ix = 2

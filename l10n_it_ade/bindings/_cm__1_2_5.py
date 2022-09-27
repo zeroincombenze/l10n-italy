@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./_cm.py
 # PyXB bindings for NM:6d05a298a781c71d177aab761a79c5e637d7f467
-# Generated 2022-09-26 14:34:44.577484 by PyXB version 1.2.5 using Python 2.7.18.final.0
+# Generated 2022-09-26 17:54:30.499243 by PyXB version 1.2.5 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
@@ -21,18 +21,14 @@ try:
     import pyxb.utils.six as _six
 except ImportError as err:
     _logger.debug(err)
-
-
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:99560e0c-3d97-11ed-af42-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:818ca012-3db3-11ed-b516-00155da0804a')
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.5'
 # Generated bindings are not compatible across PyXB versions
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
-
-
 # A holder for module-level binding classes so we can access them from
 # inside class definitions where property names may conflict.
 _module_typeBindings = pyxb.utils.utility.Object()
@@ -41,8 +37,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-
-
 SCHEMA_FILE = ''
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('urn:www.agenziaentrate.gov.it:specificheTecniche:common', create_if_missing=True)
@@ -75,8 +69,6 @@ def CreateFromDocument(xml_text, default_namespace=None, location_base=None):
     saxer.parse(io.BytesIO(xmld))
     instance = handler.rootObject()
     return instance
-
-
 def CreateFromDOM(node, default_namespace=None):
     """Create a Python instance from the given DOM node.
     The node tag must correspond to an element declaration in this module.
@@ -84,16 +76,12 @@ def CreateFromDOM(node, default_namespace=None):
     if default_namespace is None:
         default_namespace = Namespace.fallbackNamespace()
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, default_namespace)
-
-
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}Identificativo_Type
 class Identificativo_Type(pyxb.binding.datatypes.string):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Identificativo_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/fornitura_v3.xsd', 27, 1)
     _Documentation = None
-
-
 Identificativo_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 Identificativo_Type._CF_pattern.addPattern(pattern='[0-9]{4}[1-9]|[0-9]{3}[1-9][0-9]|[0-9]{2}[1-9][0-9]{2}|[0-9][1-9][0-9]{3}|[1-9][0-9]{4}')
 Identificativo_Type._InitializeFacetMap(Identificativo_Type._CF_pattern)
@@ -105,8 +93,6 @@ class DatoAN_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoAN_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 15, 1)
     _Documentation = 'Tipo semplice costituito da caratteri alfanumerici maiuscoli e dai caratteri: punto, virgola, apice, trattino, spazio, barra semplice, \xb0, ^, ampersand, parentesi aperta e chiusa, doppie virgolette, barra rovesciata, la barra dritta, il pi\xf9, le maiuscole accentate e la \xdc. Tali caratteri non sono ammesi come primo carattere tranne: i numeri da 0 a 9, i caratteri maiuscoli da A a Z, il meno e le dopppie virgolette.'
-
-
 DatoAN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoAN_Type._CF_pattern.addPattern(pattern='([0-9A-Z\\-]|"){1}([ 0-9A-Z&]|\'|\\-|\\.|,|/|\xb0|\\^|\\(|\\)|\xc0|\xc8|\xc9|\xcc|\xd2|\xd9|\xdc|"|\\\\|\\||\\+)*')
 DatoAN_Type._InitializeFacetMap(DatoAN_Type._CF_pattern)
@@ -118,8 +104,6 @@ class DatoNU_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoNU_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 23, 1)
     _Documentation = 'Tipo semplice che identifica numeri naturali positivi e negativi con al massimo 16 cifre.'
-
-
 DatoNU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoNU_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoNU_Type._CF_pattern.addPattern(pattern='(\\-[1-9]|[1-9])[0-9]*')
@@ -133,8 +117,6 @@ class DatoPC_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoPC_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 32, 1)
     _Documentation = 'Tipo semplice che esprime una percentuale e dunque consente valori positivi non superiori a 100, con al massimo 2 cifre decimali. Il separatore decimale previsto \xe8 la virgola.'
-
-
 DatoPC_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoPC_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoPC_Type._CF_pattern.addPattern(pattern='[0-9]?[0-9](,\\d{1,3})?|100(,0{1,3})?')
@@ -148,8 +130,6 @@ class DatoQU_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoQU_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 41, 1)
     _Documentation = 'Tipo semplice che identifica numeri positivi con al massimo 5 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
-
-
 DatoQU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoQU_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoQU_Type._CF_pattern.addPattern(pattern='[0-9]+(,[0-9]{1,5})?')
@@ -163,8 +143,6 @@ class DatoVP_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoVP_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 50, 1)
     _Documentation = 'Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
-
-
 DatoVP_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoVP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoVP_Type._CF_pattern.addPattern(pattern='[0-9]+,[0-9]{2}')
@@ -178,8 +156,6 @@ class DatoN1_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoN1_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 59, 1)
     _Documentation = 'Tipo semplice che identifica i numeri naturali da 1 a 9.'
-
-
 DatoN1_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 DatoN1_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoN1_Type._CF_pattern.addPattern(pattern='[1-9]')
@@ -193,8 +169,6 @@ class DatoNP_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoNP_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 68, 1)
     _Documentation = 'Tipo semplice che identifica numeri naturali positivi con al massimo 16 cifre.'
-
-
 DatoNP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoNP_Type._CF_pattern.addPattern(pattern='[1-9]{1}[0-9]*')
 DatoNP_Type._InitializeFacetMap(DatoNP_Type._CF_pattern)
@@ -206,8 +180,6 @@ class DatoPI_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoPI_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 76, 1)
     _Documentation = 'Tipo semplice che identifica la partita IVA rispettandone i vincoli di struttura. '
-
-
 DatoPI_Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(11))
 DatoPI_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoPI_Type._CF_pattern.addPattern(pattern='[0-7][0-9]{10}')
@@ -221,8 +193,6 @@ class DatoCN_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoCN_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 85, 1)
     _Documentation = 'Tipo semplice che identifica un codice fiscale numerico rispettandone i vincoli di struttura.'
-
-
 DatoCN_Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(11))
 DatoCN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoCN_Type._CF_pattern.addPattern(pattern='[0-9]{11}')
@@ -236,8 +206,6 @@ class DatoCF_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoCF_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 94, 1)
     _Documentation = 'Tipo semplice che identifica un codice fiscale provvisorio o alfanumerico rispettandone i vincoli di struttura.'
-
-
 DatoCF_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoCF_Type._CF_pattern.addPattern(pattern='[0-9]{11}|[A-Z]{6}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1}')
 DatoCF_Type._InitializeFacetMap(DatoCF_Type._CF_pattern)
@@ -249,8 +217,6 @@ class DatoCB_Type(pyxb.binding.datatypes.byte):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoCB_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 102, 1)
     _Documentation = 'Tipo semplice che consente esclusivamente i valori 0 e 1.'
-
-
 DatoCB_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoCB_Type._CF_pattern.addPattern(pattern='[01]')
 DatoCB_Type._InitializeFacetMap(DatoCB_Type._CF_pattern)
@@ -262,8 +228,6 @@ class DatoCB12_Type(pyxb.binding.datatypes.byte):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoCB12_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 110, 1)
     _Documentation = 'Tipo semplice che consente esclusivamente 12 caratteri con i valori 0 e 1.'
-
-
 DatoCB12_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoCB12_Type._CF_pattern.addPattern(pattern='[10]{12}')
 DatoCB12_Type._InitializeFacetMap(DatoCB12_Type._CF_pattern)
@@ -275,8 +239,6 @@ class DatoDT_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoDT_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 118, 1)
     _Documentation = 'Tipo semplice che identifica una data nel formato ggmmaaaa. La data indicata non deve essere successiva alla data corrente.'
-
-
 DatoDT_Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(8))
 DatoDT_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoDT_Type._CF_pattern.addPattern(pattern='(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12)(\\d{4}))|(([0][1-9]|[12][0-9]|30)(0[469]|11)(\\d{4}))|((0[1-9]|1[0-9]|2[0-8])(02)(\\d{4}))|((29)(02)([02468][048]00))|((29)(02)([13579][26]00))|((29)(02)([0-9][0-9][0][48]))|((29)(02)([0-9][0-9][2468][048]))|((29)(02)([0-9][0-9][13579][26])))')
@@ -290,8 +252,6 @@ class DatoDA_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoDA_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 127, 1)
     _Documentation = 'Tipo semplice che identifica un anno nel formato aaaa. Sono ammessi anni dal 1800 al 2099.'
-
-
 DatoDA_Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 DatoDA_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoDA_Type._CF_pattern.addPattern(pattern='(18|19|20)[0-9]{2}')
@@ -305,8 +265,6 @@ class DatoDN_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoDN_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 136, 1)
     _Documentation = 'Tipo semplice che identifica una data nel formato ggmmaaaa.'
-
-
 DatoDN_Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(8))
 DatoDN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoDN_Type._CF_pattern.addPattern(pattern='(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12)(\\d{4}))|(([0][1-9]|[12][0-9]|30)(0[469]|11)(\\d{4}))|((0[1-9]|1[0-9]|2[0-8])(02)(\\d{4}))|((29)(02)([02468][048]00))|((29)(02)([13579][26]00))|((29)(02)([0-9][0-9][0][48]))|((29)(02)([0-9][0-9][2468][048]))|((29)(02)([0-9][0-9][13579][26])))')
@@ -320,8 +278,6 @@ class DatoD6_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoD6_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 145, 1)
     _Documentation = 'Tipo semplice che identifica una data nel formato mmaaaa.'
-
-
 DatoD6_Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(6))
 DatoD6_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoD6_Type._CF_pattern.addPattern(pattern='((0[0-9])|(1[0-2]))((19|20)[0-9][0-9])')
@@ -335,8 +291,6 @@ class DatoEM_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoEM_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 154, 1)
     _Documentation = 'Tipo semplice che identifica un elemento di tipo email'
-
-
 DatoEM_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoEM_Type._CF_pattern.addPattern(pattern='[a-zA-Z0-9._%\\-\'"?^~=]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,4}')
 DatoEM_Type._InitializeFacetMap(DatoEM_Type._CF_pattern)
@@ -348,8 +302,6 @@ class DatoGA_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoGA_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 162, 1)
     _Documentation = 'Tipo semplice che identifica il numero di giorni in un anno e va da 1 a 365'
-
-
 DatoGA_Type._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 DatoGA_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(3))
 DatoGA_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
@@ -357,8 +309,6 @@ DatoGA_Type._CF_pattern.addPattern(pattern='[1-9]|([1-9][0-9])|([12][0-9][0-9])|
 DatoGA_Type._InitializeFacetMap(DatoGA_Type._CF_minLength,
    DatoGA_Type._CF_maxLength,
    DatoGA_Type._CF_pattern)
-
-
 Namespace.addCategoryObject('typeBinding', 'DatoGA_Type', DatoGA_Type)
 _module_typeBindings.DatoGA_Type = DatoGA_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoTL_Type
@@ -367,8 +317,6 @@ class DatoTL_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoTL_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 172, 1)
     _Documentation = 'Tipo semplice che identifica un elemento di tipo telefono'
-
-
 DatoTL_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoTL_Type._CF_pattern.addPattern(pattern='[0-9]*')
 DatoTL_Type._InitializeFacetMap(DatoTL_Type._CF_pattern)
@@ -380,8 +328,6 @@ class DatoCP_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoCP_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 180, 1)
     _Documentation = 'Tipo semplice che identifica un elemento di tipo cap'
-
-
 DatoCP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoCP_Type._CF_pattern.addPattern(pattern='[0-9]{5}')
 DatoCP_Type._InitializeFacetMap(DatoCP_Type._CF_pattern)
@@ -390,8 +336,6 @@ _module_typeBindings.DatoCP_Type = DatoCP_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}ProvincieItaliane
 class ProvincieItaliane(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """
-
-
 			Elenco delle provincie italiane in vigore, valori ammessi:
 			
 				Agrigento				AG
@@ -509,8 +453,6 @@ class ProvincieItaliane(pyxb.binding.datatypes.string, pyxb.binding.basis.enumer
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ProvincieItaliane')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesProvincie_v3.xsd', 30, 1)
     _Documentation = "\n\t\t\tElenco delle provincie italiane in vigore, valori ammessi:\n\t\t\t\n\t\t\t\tAgrigento\t\t\t\tAG\n\t\t\t\tAlessandria\t\t\t\tAL\n\t\t\t\tAncona\t\t\t\t\tAN\n\t\t\t\tAosta   \t\t\t\tAO\n\t\t\t\tAscoli Piceno\t\t\tAP\n\t\t\t\tL'Aquila\t\t\t\tAQ\n\t\t\t\tArezzo\t\t\t\t\tAR\n\t\t\t\tAsti\t\t\t\t\tAT\n\t\t\t\tAvellino\t\t\t\tAV\n\t\t\t\tBari\t\t\t\t\tBA\n\t\t\t\tBergamo\t\t\t\t\tBG\n\t\t\t\tBiella\t\t\t\t\tBI\n\t\t\t\tBelluno\t\t\t\t\tBL\n\t\t\t\tBenevento\t\t\t\tBN\n\t\t\t\tBologna\t\t\t\t\tBO\n\t\t\t\tBrindisi\t\t\t\tBR\n\t\t\t\tBrescia\t\t\t\t\tBS\n\t\t\t\tBarletta-Andria-Trani\tBT\n\t\t\t\tBolzano\t\t\t\t\tBZ\n\t\t\t\tCagliari\t\t\t\tCA\n\t\t\t\tCampobasso\t\t\t\tCB\n\t\t\t\tCaserta\t\t\t\t\tCE\n\t\t\t\tChieti\t\t\t\t\tCH\n\t\t\t\tCarbonia-Iglessias\t\tCI\n\t\t\t\tCaltanissetta\t\t\tCL\n\t\t\t\tCuneo\t\t\t\t\tCN\n\t\t\t\tComo\t\t\t\t\tCO\n\t\t\t\tCremona\t\t\t\t\tCR\n\t\t\t\tCosenza\t\t\t\t\tCS\n\t\t\t\tCatania\t\t\t\t\tCT\n\t\t\t\tCatanzaro\t\t\t\tCZ\n\t\t\t\tEnna\t\t\t\t\tEN\n\t\t\t\tForl\xec-Cesena\t\t\tFC\n\t\t\t\tFerrara\t\t\t\t\tFE\n\t\t\t\tFoggia\t\t\t\t\tFG\n\t\t\t\tFirenze\t\t\t\t\tFI\n\t\t\t\tFermo\t\t\t\t\tFM\n\t\t\t\tFrosinone\t\t\t\tFR\n\t\t\t\tGenova\t\t\t\t\tGE\n\t\t\t\tGorizia\t\t\t\t\tGO\n\t\t\t\tGrosseto\t\t\t\tGR\n\t\t\t\tImperia\t\t\t\t\tIM\n\t\t\t\tIsernia\t\t\t\t\tIS\n\t\t\t\tCrotone\t\t\t\t\tKR\n\t\t\t\tLecco\t\t\t\t\tLC\n\t\t\t\tLecce\t\t\t\t\tLE\n\t\t\t\tLivorno\t\t\t\t\tLI\n\t\t\t\tLodi\t\t\t\t\tLO\n\t\t\t\tLatina\t\t\t\t\tLT\n\t\t\t\tLucca\t\t\t\t\tLU\n\t\t\t\tMonza e Brianza\t\t\tMB\n\t\t\t\tMacerata\t\t\t\tMC\n\t\t\t\tMessina\t\t\t\t\tME\n\t\t\t\tMilano\t\t\t\t\tMI\n\t\t\t\tMantova\t\t\t\t\tMN\n\t\t\t\tModena\t\t\t\t\tMO\n\t\t\t\tMassa e Carrara\t\t\tMS\n\t\t\t\tMatera\t\t\t\t\tMT\n\t\t\t\tNapoli\t\t\t\t\tNA\n\t\t\t\tNovara\t\t\t\t\tNO\n\t\t\t\tNuoro\t\t\t\t\tNU\n\t\t\t\tOgliastra\t\t\t\tOG\n\t\t\t\tOristano\t\t\t\tOR\n\t\t\t\tOlbia-Tempio\t\t\tOT\n\t\t\t\tPalermo\t\t\t\t\tPA\n\t\t\t\tPiacenza\t\t\t\tPC\n\t\t\t\tPadova\t\t\t\t\tPD\n\t\t\t\tPescara\t\t\t\t\tPE\n\t\t\t\tPerugia\t\t\t\t\tPG\n\t\t\t\tPisa\t\t\t\t\tPI\n\t\t\t\tPordenone\t\t\t\tPN\n\t\t\t\tPrato\t\t\t\t\tPO\n\t\t\t\tParma\t\t\t\t\tPR\n\t\t\t\tPistoia\t\t\t\t\tPT\n\t\t\t\tPesaro e Urbino\t\t\tPU\n\t\t\t\tPavia\t\t\t\t\tPV\n\t\t\t\tPotenza\t\t\t\t\tPZ\n\t\t\t\tRavenna\t\t\t\t\tRA\n\t\t\t\tReggio Calabria\t\t\tRC\n\t\t\t\tReggio Emilia\t\t\tRE\n\t\t\t\tRagusa\t\t\t\t\tRG\n\t\t\t\tRieti\t\t\t\t\tRI\n\t\t\t\tRoma\t\t\t\t\tRM\n\t\t\t\tRimini\t\t\t\t\tRN\n\t\t\t\tRovigo\t\t\t\t\tRO\n\t\t\t\tSalerno\t\t\t\t\tSA\n\t\t\t\tiena\t\t\t\t\tSI\n\t\t\t\tSondrio\t\t\t\t\tSO\n\t\t\t\tLa Spezia\t\t\t\tSP\n\t\t\t\tSiracusa\t\t\t\tSR\n\t\t\t\tSassari\t\t\t\t\tSS\n\t\t\t\tSavona\t\t\t\t\tSV\n\t\t\t\tTaranto\t\t\t\t\tTA\n\t\t\t\tTeramo\t\t\t\t\tTE\n\t\t\t\tTrento \t\t\t\t\tTN\n\t\t\t\tTorino\t\t\t\t\tTO\n\t\t\t\tTrapani\t\t\t\t\tTP\n\t\t\t\tTerni\t\t\t\t\tTR\n\t\t\t\tTrieste\t\t\t\t\tTS\n\t\t\t\tTreviso\t\t\t\t\tTV\n\t\t\t\tUdine\t\t\t\t\tUD\n\t\t\t\tVarese\t\t\t\t\tVA\n\t\t\t\tVerbano-Cusio-Ossola\tVB\n\t\t\t\tVercelli\t\t\t\tVC\n\t\t\t\tVenezia\t\t\t\t\tVE\n\t\t\t\tVicenza\t\t\t\t\tVI\n\t\t\t\tVerona\t\t\t\t\tVR\n\t\t\t\tMedio Campidano\t\t\tVS\n\t\t\t\tViterbo\t\t\t\t\tVT\n\t\t\t\tVibo Valentia\t\t\tVV\n\t\t\t\n\t\t\t"
-
-
 ProvincieItaliane._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=ProvincieItaliane, enum_prefix=None)
 ProvincieItaliane.AG = ProvincieItaliane._CF_enumeration.addEnumeration(unicode_value='AG', tag='AG')
 ProvincieItaliane.AL = ProvincieItaliane._CF_enumeration.addEnumeration(unicode_value='AL', tag='AL')
@@ -631,8 +573,6 @@ class ProvincieCroate(pyxb.binding.datatypes.string, pyxb.binding.basis.enumerat
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ProvincieCroate')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesProvincie_v3.xsd', 261, 1)
     _Documentation = None
-
-
 ProvincieCroate._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=ProvincieCroate, enum_prefix=None)
 ProvincieCroate.FU = ProvincieCroate._CF_enumeration.addEnumeration(unicode_value='FU', tag='FU')
 ProvincieCroate.PL = ProvincieCroate._CF_enumeration.addEnumeration(unicode_value='PL', tag='PL')
@@ -646,8 +586,6 @@ class Estero(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Estero')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesProvincie_v3.xsd', 280, 1)
     _Documentation = None
-
-
 Estero._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=Estero, enum_prefix=None)
 Estero.EE = Estero._CF_enumeration.addEnumeration(unicode_value='EE', tag='EE')
 Estero._InitializeFacetMap(Estero._CF_enumeration)
@@ -661,8 +599,6 @@ class PR_Type(pyxb.binding.basis.STD_union):
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesProvincie_v3.xsd', 12, 1)
     _Documentation = 'Tipo semplice costituito dalle sigle delle provincie italiane in vigore.'
     _MemberTypes = ( ProvincieItaliane, )
-
-
 PR_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=PR_Type)
 PR_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PR_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
@@ -787,8 +723,6 @@ class PN_Type(pyxb.binding.basis.STD_union):
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesProvincie_v3.xsd', 18, 1)
     _Documentation = 'Tipo semplice costituito dalle sigle delle provincie italiane in vigore,  dalle sigle delle provincie croate di Fiume, Pola e Zara e dalla sigla \u201cEE\u201d che indica un paese estero.'
     _MemberTypes = ( ProvincieItaliane, ProvincieCroate, Estero, )
-
-
 PN_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=PN_Type)
 PN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PN_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
@@ -917,8 +851,6 @@ class PE_Type(pyxb.binding.basis.STD_union):
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesProvincie_v3.xsd', 24, 1)
     _Documentation = 'Tipo semplice costituito dalle sigle delle provincie italiane in vigore e dalla sigla \u201cEE\u201d che indica un paese estero.'
     _MemberTypes = ( ProvincieItaliane, Estero, )
-
-
 PE_Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=PE_Type)
 PE_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 PE_Type.AG = 'AG'                                 # originally ProvincieItaliane.AG
@@ -1047,21 +979,16 @@ class Documento_Type(pyxb.binding.basis.complexTypeDefinition):
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
     # Attribute identificativo uses Python identifier identificativo
     __identificativo = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'identificativo'), 'identificativo', '__urnwww_agenziaentrate_gov_itspecificheTecnichecommon_Documento_Type_identificativo', _module_typeBindings.Identificativo_Type, required=True)
     __identificativo._DeclarationLocation = pyxb.utils.utility.Location('../data/common/fornitura_v3.xsd', 25, 2)
     __identificativo._UseLocation = pyxb.utils.utility.Location('../data/common/fornitura_v3.xsd', 25, 2)
-    
     identificativo = property(__identificativo.value, __identificativo.set, None, None)
     _ElementMap.update({
-        
     })
     _AttributeMap.update({
         __identificativo.name() : __identificativo
     })
-
-
 _module_typeBindings.Documento_Type = Documento_Type
 Namespace.addCategoryObject('typeBinding', 'Documento_Type', Documento_Type)
 Documento = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Documento'), Documento_Type, abstract=pyxb.binding.datatypes.boolean(1), location=pyxb.utils.utility.Location('../data/common/fornitura_v3.xsd', 20, 1))

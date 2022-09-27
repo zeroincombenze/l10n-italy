@@ -328,9 +328,9 @@ Acknowledges / Riconoscimenti
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Davide Corio <info@davidecorio.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
++-----------------------------------+-------------------------------------------+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alex Comba <alex.comba@agilebg.com>
+* Davide Corio <info@davidecorio.com>
 
 
 Maintainer / Manutenzione
@@ -362,7 +362,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-26
+Last Update / Ultimo aggiornamento: 2022-09-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
