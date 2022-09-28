@@ -1,6 +1,6 @@
 
 ====================================================================================
-|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.0
+|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.1
 ====================================================================================
 
 
@@ -199,6 +199,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.1 (2022-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Refund of TD17..TD19 / Nota credito con TD17..TD19
+
 10.0.1.0.0 (2022-06-21)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -262,7 +267,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-08-31
+Last Update / Ultimo aggiornamento: 2022-09-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
