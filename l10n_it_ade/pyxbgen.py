@@ -13,8 +13,10 @@
 import os
 import re
 import sys
+import argparse
 
-__version__ = "0.1.5.10"
+
+__version__ = "10.0.0.3.6"
 
 
 def wash_source(lines, kind):
@@ -124,8 +126,8 @@ def robust_source(lines, file_schema):
             lines.insert(lineno, "    _logger.debug(err)")
             lineno += 1
             lines.insert(lineno, "")
-            lineno += 1
-            lines.insert(lineno, "SCHEMA_FILE = '%s'" % file_schema)
+            # lineno += 1
+            # lines.insert(lineno, "SCHEMA_FILE = '%s'" % file_schema)
             lineno += 1
             lines.insert(lineno, "")
             lineno += 1
@@ -208,7 +210,7 @@ def correct_future(lines):
 LEX_RULES = {}
 
 
-def cvt_decimal_2_str(lines):
+def cvt_decimal_2_str(lines, convert=None):
     schema_root = os.path.dirname(os.getcwd())
     lineno = 0
     token = ""
@@ -242,128 +244,78 @@ def cvt_decimal_2_str(lines):
         x = re.match(r"[ ]*class[ ]+[A-Za-z0-9_]+ \(", lines[lineno])
         if x:
             lines[lineno] = lines[lineno].replace(" (", "(")
-        # if "Amount8DecimalType" in lines[lineno]:
-        #     x = None
-        # else:
-        x = re.match(
-            r"class[ ]+[A-Za-z0-9_]+[ ]*\(.*pyxb.binding.datatypes.decimal",
-            lines[lineno],
-        )
-        if x:
-            lines[lineno] = lines[lineno].replace(
-                "datatypes.decimal", "datatypes.string"
+        if convert:
+            # if "Amount8DecimalType" in lines[lineno]:
+            #     x = None
+            # else:
+            x = re.match(
+                r"class[ ]+[A-Za-z0-9_]+[ ]*\(.*pyxb.binding.datatypes.decimal",
+                lines[lineno],
             )
-            lines.insert(
-                lineno, "# Follow decimal class updated to string"
-            )
-            lineno += 1
-            class_converted = True
-        # x = re.match("[ ]*[^#].*pyxb.binding.datatypes.decimal", lines[lineno])
-        # if x:
-        #     i = lines[lineno].find("=")
-        #     token = lines[lineno][0:i].rstrip()
-        #     lines[lineno] = "# " + lines[lineno]
-        #     lines.insert(
-        #         lineno, "# Follow statement ignored due conversion decimal > string"
-        #     )
+            if x:
+                lines[lineno] = lines[lineno].replace(
+                    "datatypes.decimal", "datatypes.string"
+                )
+                lines.insert(
+                    lineno, "# Follow decimal class updated to string"
+                )
+                lineno += 1
+                class_converted = True
         if class_converted:
             x = re.match("^[^#].*\._?CF_maxInclusive", lines[lineno])
             if x:
                 # import pdb; pdb.set_trace()
+                first_lineno = lineno
+                x = re.match(r"^[ ]+[A-Za-z0-9_]", lines[first_lineno])
+                while x:
+                    first_lineno -= 1
+                    x = re.match(r"^[ ]+[A-Za-z0-9_]", lines[first_lineno])
                 last_lineno = lineno + 1
                 x = re.match( r"^[ ]+[A-Za-z0-9_]", lines[last_lineno])
                 while x:
                     last_lineno += 1
                     x = re.match(r"^[ ]+[A-Za-z0-9_]", lines[last_lineno])
-                for ix in (lineno, last_lineno - 1):
+                for ix in (first_lineno, last_lineno - 1):
                     lines[ix] = "# " + lines[ix]
                 lines.insert(
                     lineno,
                     "# Follow(s) line(s) are ignored because string class"
                 )
                 lineno += 1
-
-        # if len(lines[lineno]) > 80:
-        #     ipos = 0
-        #     x = re.match("[A-Za-z0-9_.= ]+", lines[lineno][ipos:])
-        #     if x:
-        #         npos = ipos + x.end()
-        #         if npos < len(lines[lineno]) and lines[lineno][npos] == "(":
-        #             lm = ""
-        #             i = 0
-        #             while lines[lineno][i] == " ":
-        #                 i += 1
-        #                 lm += " "
-        #             new_line = lm + "    " + lines[lineno][npos + 1 :]
-        #             lines[lineno] = lines[lineno][0 : npos + 1]
-        #             lines.insert(lineno + 1, new_line.rstrip())
-        #     else:
-        #         x = re.match("[ ]*#", lines[lineno][ipos:])
-        #         if x:
-        #             npos = -1
-        #             i = 3
-        #             if lines[lineno].find("# Atomic simple type:") == 0:
-        #                 rl = 25
-        #             else:
-        #                 rl = min(80, len(lines[lineno]) - 75)
-        #             while i < rl:
-        #                 while i < rl and lines[lineno][i] != " ":
-        #                     i += 1
-        #                 if i < rl and lines[lineno][i] == " ":
-        #                     npos = i
-        #                 i += 1
-        #             if npos >= 0:
-        #                 lm = ""
-        #                 i = 0
-        #                 while lines[lineno][i] == " ":
-        #                     i += 1
-        #                     lm += " "
-        #                 new_line = lm + "#" + lines[lineno][npos:]
-        #                 lines[lineno] = lines[lineno][0:npos]
-        #                 lines.insert(lineno + 1, new_line.rstrip())
         lineno += 1
 
 
-def main(args):
-    # import pdb;  pdb.set_trace()
-    filepy = args[0][0:-3]
-    FILE_SCHEMA = ""
-    ix = 2
-    while ix < len(args) and args[ix] == "-u":
-        ix += 1
-        cur_file = args[ix]
-        ix += 1
-        if args[ix] != "-m":
-            break
-        ix += 1
-        cur_module = args[ix]
-        ix += 1
-        # SCHEMA_FILES.append(cur_file)
-        # SCHEMA_FILES.append(os.path.abspath(cur_file))
-        if cur_module.find(filepy) == 0:
-            FILE_SCHEMA = cur_file
-            break
+def main(cli_args=None):
+    cli_args = cli_args or sys.argv[1:]
+    parser = argparse.ArgumentParser(
+        description="Generate file to generate XML files",
+        epilog="© 2017-2022 by SHS-AV s.r.l."
+    )
+    parser.add_argument('-3', '--python3', action='store_true')
+    parser.add_argument('-S', '--dec2str', action='store_false', default=True)
+    parser.add_argument('-v', '--verbose', action='count', default=0)
+    parser.add_argument('-V', '--version', action="version", version=__version__)
+    parser.add_argument('filepy')
+    parser.add_argument('fileschema', nargs='?', default='')
+    parser.add_argument('fmlist', nargs='?', default='')
+    opt_args = parser.parse_args(cli_args)
+    sts = 0
     try:
-        fd = open(args[0], "r")
-        source = fd.read()
-        fd.close()
-        lines = source.split("\n")
-        if args[1] == "-3":
+        with open(opt_args.filepy, "r") as fd:
+            source = fd.read()
+            lines = source.split("\n")
+        if opt_args.python3:
             correct_future(lines)
         else:
-            robust_source(lines, FILE_SCHEMA)
-        cvt_decimal_2_str(lines)
-        fd = open(args[0], "w")
-        fd.write("".join("%s\n" % l for l in lines))
-        fd.close()
+            robust_source(lines, opt_args.fileschema)
+        cvt_decimal_2_str(lines, convert=opt_args.dec2str)
+        with open(opt_args.filepy, "w") as fd:
+            fd.write("".join("%s\n" % l for l in lines))
     except BaseException:
         print("**** Error *****")
+        sts = 1
+    return sts
 
 
 if __name__ == "__main__":
-    # pyxbgeb.py filename [schema] [fmlist]
-    # fmlist is -u file -m module
-    args = sys.argv[1:]
-    while len(args) < 3:
-        args.append("")
-    main(args)
+    exit(main())

@@ -210,8 +210,8 @@ class WizardExportFatturapa(models.TransientModel):
                 value = partner[field] or parent[field]
             else:
                 value = partner[field]
-        # if field == "name":
-        #     return partner.wep_text(value)
+        if field in ("name", "street", "city"):
+            return partner.wep_text(value)
         return value
 
     def _setIdTrasmittente(self, company, fatturapa):
@@ -464,7 +464,7 @@ class WizardExportFatturapa(models.TransientModel):
             DatiAnagraficiCessionarioType()
         )
         vat = self._get_partner_field(partner, "vat", mode=mode)
-        is_pa = self._get_partner_field(partner, "is_pa", mode=mode)
+        # is_pa = self._get_partner_field(partner, "is_pa", mode=mode)
         fiscalcode = partner.wep_fiscalcode(
             self._get_partner_field(partner, "fiscalcode", mode=mode)
         )

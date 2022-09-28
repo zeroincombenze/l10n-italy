@@ -1,6 +1,6 @@
 
 ==============================================================
-|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.23
+|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.24
 ==============================================================
 
 
@@ -251,6 +251,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.24 (2022-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Partner name w/o quote / Rimosso carattere apostrofo da nome
+
 10.0.1.0.23 (2022-07-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -355,7 +360,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-07-07
+Last Update / Ultimo aggiornamento: 2022-09-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
