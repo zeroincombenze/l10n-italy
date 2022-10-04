@@ -485,10 +485,10 @@ class StockPickingPackagePreparation(models.Model):
             partner = shipping_partner.commercial_partner_id
             if partner.type != "contact" and partner.parent_id:
                 partner = partner.parent_id
-            if not vals["partner_id"]:
-                vals["partner_id"] = partner.id
-            elif vals["partner_id"] != partner.id:
-                raise UserError(_("Selected Pickings have different Partner"))
+            # if not vals["partner_id"]:
+            #     vals["partner_id"] = partner.id
+            # elif vals["partner_id"] != partner.id:
+            #     raise UserError(_("Selected Pickings have different Partner"))
             order = picking.sale_id
             if order:
                 if not vals["partner_id"]:
@@ -519,6 +519,8 @@ class StockPickingPackagePreparation(models.Model):
                             _("Selected Sale Orders %s has different %s") %
                             condition_help
                         )
+            if not vals["partner_id"]:
+                vals["partner_id"] = partner.id
         # Search for DdT type
         for picking in all_pickings:
             vals = self.get_delivery_value(

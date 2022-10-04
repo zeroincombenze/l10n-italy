@@ -1,3 +1,8 @@
+10.0.1.8.15 (2022-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
+
 10.0.1.8.14 (2022-09-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
