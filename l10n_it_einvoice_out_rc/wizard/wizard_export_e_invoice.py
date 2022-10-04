@@ -74,7 +74,7 @@ class WizardExportFatturapa(models.TransientModel):
                 raise UserError(
                     _("Impossible to set IdFiscaleIVA for %s") % partner.display_name)
             CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=partner.name)
+                Denominazione=partner.wep_text(partner.name))
         return res
 
     def _setSedeCedente(self, CedentePrestatore, company):
