@@ -32,6 +32,7 @@ Final notes:
 * Many2one value must be declared as external identifier
 * Written on 2022-07-05 18:14:38.278288 by mk_test_env 10.0.0.7.5
 """
+import time
 from datetime import datetime
 import logging
 from odoo.tests import common
@@ -76,8 +77,9 @@ TEST_ACCOUNT_TAX = {
         "description": "22v",
     },
 }
-TEST_DLIVERY_CARRIER = {
+TEST_DELIVERY_CARRIER = {
     "delivery.delivery_carrier": {
+        "name": "Consegna",
         "goods_description_id": "l10n_it_ddt.goods_description_CAR",
     }
 }
@@ -179,7 +181,7 @@ TEST_SETUP_LIST = [
 TEST_SETUP = {
     "account.account": TEST_ACCOUNT_ACCOUNT,
     "account.tax": TEST_ACCOUNT_TAX,
-    "delivery.carrier": TEST_DLIVERY_CARRIER,
+    "delivery.carrier": TEST_DELIVERY_CARRIER,
     "product.template": TEST_PRODUCT_TEMPLATE,
     "stock.ddt.type": TEST_DDT_TYPE,
     "res.partner": TEST_RES_PARTNER,
@@ -672,6 +674,15 @@ class SaleOrder(common.TransactionCase):
                 msg="Sale order %s not set to invoiced!" % order.name)
         # 4. Remove invoice just created
         invoice = self.env["account.invoice"].browse(invoice_ids[0])
+        # invoice.action_invoice_cancel()
+        # invoice.action_invoice_draft()
+        # for ddt_line in self.ddt.line_ids:
+        #     if ddt_line.invoice_line_id:
+        #         break
+        # for inv_line in invoice.invoice_line_ids:
+        #     if inv_line == ddt_line.invoice_line_id:
+        #         inv_line.unlink()
+        # self.assertFalse(ddt_line.invoice_line_id)
         invoice.action_invoice_cancel()
         invoice.unlink()
         self.assertFalse(
@@ -720,3 +731,10 @@ class SaleOrder(common.TransactionCase):
         self.assertEqual(
             self.ddt.ddt_number, self.ddt_number,
             msg="Invalid DdT number change!")
+        # 7. Edit DdT
+        self.ddt.set_draft()
+        saved_partner = self.ddt.partner_id
+        self.ddt.partner_id = self.env_ref("z0bug.res_partner_13")
+        self.ddt.on_change_partner()
+        self.ddt.partner_id = saved_partner
+        self.ddt.on_change_partner()

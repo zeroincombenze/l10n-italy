@@ -23,7 +23,16 @@ class AccountInvoice(models.Model):
     transportation_method_id = fields.Many2one(
         "stock.picking.transportation_method", string="Method of Transportation"
     )
-    carrier_id = fields.Many2one("res.partner", string="Carrier")
+    delivery_carrier_id = fields.Many2one(
+        "delivery.carrier",
+        string="Delivery Method",
+        help="Fill this field if you plan to invoice the shipping based on picking."
+    )
+    partner_carrier_id = fields.Many2one(
+        "res.partner",
+        string="Carrier",
+        oldname="carrier_id",
+    )
     parcels = fields.Integer("Parcels")
     weight = fields.Float(string="Weight", digits=dp.get_precision("Stock Weight"))
     gross_weight = fields.Float(

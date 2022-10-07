@@ -64,7 +64,7 @@ class AddPickingToDdt(models.TransientModel):
                     ("goods_description_id", _("goods description")),
                     ("transportation_reason_id", _("transportation reason")),
                     ("transportation_method_id", _("transportation method")),
-                    ("ddt_carrier_id", _("carrier")),
+                    ("partner_carrier_id", _("carrier")),
                 ):
                     self.check_4_delivery_value(picking, fieldname, condition_help)
             self.ddt_id.picking_ids = [(4, picking.id)]

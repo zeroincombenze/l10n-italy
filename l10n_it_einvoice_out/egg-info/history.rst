@@ -1,3 +1,8 @@
+10.0.1.0.24 (2022-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Partner name w/o quote / Rimosso carattere apostrofo da nome
+
 10.0.1.0.23 (2022-07-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

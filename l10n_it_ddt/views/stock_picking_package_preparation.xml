@@ -237,6 +237,7 @@
                     attrs="{'invisible':[('ddt_type_id', '=', False)]}"
                 >
                     <group>
+                        <field name="delivery_carrier_id" />
                         <field name="carriage_condition_id" />
                         <field name="goods_description_id" />
                         <field
@@ -244,7 +245,7 @@
                             attrs="{'required':[('ddt_type_id', '!=', False)]}"
                         />
                         <field name="transportation_method_id" />
-                        <field name="carrier_id" />
+                        <field name="partner_carrier_id" />
                         <field name="parcels" />
                         <field name="volume" />
                         <field name="weight" />

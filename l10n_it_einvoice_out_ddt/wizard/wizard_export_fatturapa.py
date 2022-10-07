@@ -73,20 +73,20 @@ class WizardExportFatturapa(models.TransientModel):
                 PesoNetto="%.2f" % invoice.weight,
                 TipoResa=invoice.incoterms_id.code or None,
             )
-            if invoice.carrier_id:
-                if not invoice.carrier_id.vat:
-                    raise UserError(_("TIN not set for %s.") % invoice.carrier_id.name)
+            if invoice.partner_carrier_id:
+                if not invoice.partner_carrier_id.vat:
+                    raise UserError(_("TIN not set for %s.") % invoice.partner_carrier_id.name)
                 body.DatiGenerali.DatiTrasporto.DatiAnagraficiVettore = (
                     DatiAnagraficiVettoreType()
                 )
-                if invoice.carrier_id.fiscalcode:
+                if invoice.partner_carrier_id.fiscalcode:
                     body.DatiGenerali.DatiTrasporto.DatiAnagraficiVettore.CodiceFiscale = (
-                        invoice.carrier_id.fiscalcode
+                        invoice.partner_carrier_id.fiscalcode
                     )
                 body.DatiGenerali.DatiTrasporto.DatiAnagraficiVettore.IdFiscaleIVA = (
                     IdFiscaleType(
-                        IdPaese=invoice.carrier_id.vat[0:2],
-                        IdCodice=invoice.carrier_id.vat[2:],
+                        IdPaese=invoice.partner_carrier_id.vat[0:2],
+                        IdCodice=invoice.partner_carrier_id.vat[2:],
                     )
                 )
                 body.DatiGenerali.DatiTrasporto.DatiAnagraficiVettore.Anagrafica = (

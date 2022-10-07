@@ -74,7 +74,7 @@ class WizardExportFatturapa(models.TransientModel):
                 raise UserError(
                     _("Impossible to set IdFiscaleIVA for %s") % partner.display_name)
             CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=partner.name)
+                Denominazione=partner.wep_text(partner.name))
         return res
 
     def _setSedeCedente(self, CedentePrestatore, company):
@@ -166,8 +166,9 @@ class WizardExportFatturapa(models.TransientModel):
             )
         if invoice.type in ['out_refund', 'in_refund'] \
                 and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
-            body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento = \
-                - body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+            body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento = (
+                "%.2f" % -float(
+                body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento))
         return res
 
     def setDettaglioLinea(
@@ -177,8 +178,10 @@ class WizardExportFatturapa(models.TransientModel):
             line_no, line, body, price_precision, uom_precision)
         if line.invoice_id.type in ['out_refund', 'in_refund'] and \
                 line.invoice_id.fiscal_document_type_id.code not in ['TD04', 'TD08']:
-            DettaglioLinea.PrezzoUnitario = - DettaglioLinea.PrezzoUnitario
-            DettaglioLinea.PrezzoTotale = - DettaglioLinea.PrezzoTotale
+            DettaglioLinea.PrezzoUnitario = (("%." + str(price_precision) + "f") %
+                                             -float(DettaglioLinea.PrezzoUnitario))
+            DettaglioLinea.PrezzoTotale = (
+                "%.2f" % -float(DettaglioLinea.PrezzoTotale))
         return DettaglioLinea
 
     def setDatiRiepilogo(self, invoice, body):
@@ -186,8 +189,9 @@ class WizardExportFatturapa(models.TransientModel):
         for DatiRiepilogo in body.DatiBeniServizi.DatiRiepilogo:
             if invoice.type in ['out_refund', 'in_refund'] \
                     and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
-                DatiRiepilogo.ImponibileImporto = - DatiRiepilogo.ImponibileImporto
-                DatiRiepilogo.Imposta = - DatiRiepilogo.Imposta
+                DatiRiepilogo.ImponibileImporto = (
+                    "%.2f" % -float(DatiRiepilogo.ImponibileImporto))
+                DatiRiepilogo.Imposta = ("%.2f" % -float(DatiRiepilogo.Imposta))
         return True
 
     def setDatiPagamento(self, invoice, body):
@@ -196,7 +200,8 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.type in ['out_refund', 'in_refund'] \
                     and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']\
                     and DatiPagamento.ImportoPagamento:
-                DatiPagamento.ImportoPagamento = - DatiPagamento.ImportoPagamento
+                DatiPagamento.ImportoPagamento = (
+                    "%.2f" % -float(DatiPagamento.ImportoPagamento))
         return True
 
     def exportInvoiceXML(

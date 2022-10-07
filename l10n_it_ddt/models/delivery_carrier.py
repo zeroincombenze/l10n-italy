@@ -8,7 +8,11 @@ from odoo import fields, models
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
-    ddt_carrier_id = fields.Many2one("res.partner", string="Carrier")
+    partner_carrier_id = fields.Many2one(
+        "res.partner",
+        string="Carrier",
+        oldname="ddt_carrier_id",
+    )
     carriage_condition_id = fields.Many2one(
         "stock.picking.carriage_condition", string="Carriage Condition"
     )

@@ -94,7 +94,7 @@ class StockPickingPackagePreparation(models.Model):
             "ddt_type_id": False,
             "carrier_id": "property_carrier_id",
             "parcels": False,
-            "ddt_carrier_id": False,
+            "partner_carrier_id": False,
             "show_price": "ddt_show_price",
             "note": False,
         },
@@ -106,7 +106,7 @@ class StockPickingPackagePreparation(models.Model):
             "transportation_reason_id": "default_transportation_reason_id",
             "transportation_method_id": "default_transportation_method_id",
             "parcels": False,
-            "ddt_carrier_id": False,
+            "partner_carrier_id": False,
             "show_price": False,
         },
         "delivery.carrier": {
@@ -115,7 +115,7 @@ class StockPickingPackagePreparation(models.Model):
             "parcels": False,
             "show_price": False,
         },
-        "sale.order": {"ddt_carrier_id": False, "parcels": False, "show_price": False},
+        "sale.order": {"partner_carrier_id": False, "parcels": False, "show_price": False},
         "stock.picking": {
             "ddt_type_id": "ddt_type",
             "goods_description_id": False,
@@ -123,15 +123,14 @@ class StockPickingPackagePreparation(models.Model):
             "transportation_reason_id": False,
             "transportation_method_id": False,
             "parcels": "number_of_packages",
-            "ddt_carrier_id": False,
+            "partner_carrier_id": False,
             "show_price": False,
             "note": False,
             "gross_weight": "shipping_weight",
         },
         "stock.picking.package.preparation": {
-            "carrier_id": False,
+            "carrier_id": "delivery_carrier_id",
             "weight": "weight_manual",
-            "ddt_carrier_id": "carrier_id",
         },
     }
 
@@ -223,7 +222,16 @@ class StockPickingPackagePreparation(models.Model):
     transportation_method_id = fields.Many2one(
         "stock.picking.transportation_method", string="Method of Transportation"
     )
-    carrier_id = fields.Many2one("res.partner", string="Carrier")
+    delivery_carrier_id = fields.Many2one(
+        "delivery.carrier",
+        string="Delivery Method",
+        help="Fill this field if you plan to invoice the shipping based on picking."
+    )
+    partner_carrier_id = fields.Many2one(
+        "res.partner",
+        string="Carrier",
+        oldname="carrier_id",
+    )
     parcels = fields.Integer("Parcels", default=_set_parcel_qty)
     display_name = fields.Char(string="Name", compute="_compute_clean_display_name")
     volume = fields.Float("Volume")
@@ -332,31 +340,32 @@ class StockPickingPackagePreparation(models.Model):
         Workflow (rp=res.partner, dt=stock.ddt.type dc=delivery.carrier,
                   so=sale.order, sp=stock.picking,
                   pp=stock.picking.package.preparation):
-        Field name               | rp | dt | dc | so | sp | pp
+        Standard field name      | rp | dt | dc | so | sp | pp
         -------------------------|----|----|----|----|----|---
         ddt_type_id              | X  | ID | X  | Ok | 3. | Ok
-        carrier_id               | 1. | X  | ID | Ok | Ok | X
+        (delivery_)carrier_id    | 1. | X  | ID | Ok | Ok | 5.
         goods_description_id     | Ok | 2. | Ok | Ok | X  | Ok
         carriage_condition_id    | Ok | 2. | Ok | Ok | X  | Ok
         transportation_reason_id | Ok | 2. | Ok | Ok | X  | Ok
         transportation_method_id | Ok | 2. | Ok | Ok | X  | Ok
-        ddt_carrier_id           | X  | X  | Ok | X  | X  | 5.
+        partner_carrier_id       | X  | X  | Ok | Ok | X  | Ok
         show_price               | 6. | X  | X  | X  | X  | Ok
         note                     | X  | Ok | Ok | Ok | X  | Ok
         parcels (*)              |    |    |    | Ok | 4. | Ok
         weight (*)               |    |    |    | Ok | Ok | Ok
         gross_weight (*)         |    |    |    | Ok | 7. | Ok
         where:
-        Ok: field in model
-        X:  field not in model
-        ID: field is key of model
+            Ok: field in model
+            X:  field not in model
+            ID: field is key of model
         1.  field name is "property_carrier_id"
         2.  field name is prefixed with "default_"
         3.  field name is ddt_type
         4.  field name is "number_of packages"
-        5.  field name is "carrier_id"
+        5.  field name is "delivery_carrier_id"
         6.  field name is "ddt_show_price"
         7.  field name is "shipping_weight"
+
         (*) field evaluated by sum, searched only in <sp> and <so>
         """
         ddt_model = self.env["stock.picking.package.preparation"]
@@ -377,12 +386,6 @@ class StockPickingPackagePreparation(models.Model):
             if dc_fieldname:
                 if picking.sale_id and picking.sale_id.carrier_id:
                     delivery_carrier = picking.sale_id.carrier_id
-                # Warning: carrier_id in DdT has different meaning from the same
-                # field in sale.order and picking
-                # TODO: change name from carrier_id to ddt_carrier_id
-                # elif vals.get('carrier_id'):
-                #     delivery_carrier = self.env[
-                #         'delivery.carrier'].browse(vals['carrier_id'])
             ddt_type = False
             if dt_fieldname:
                 if picking.ddt_type:
@@ -508,7 +511,7 @@ class StockPickingPackagePreparation(models.Model):
                     ("carriage_condition_id", _("carriage condition")),
                     ("transportation_reason_id", _("transportation reason")),
                     ("transportation_method_id", _("transportation method")),
-                    ("ddt_carrier_id", _("carrier")),
+                    ("partner_carrier_id", _("carrier")),
                 ):
                     if (
                         order[fieldname] and
@@ -532,7 +535,7 @@ class StockPickingPackagePreparation(models.Model):
         for picking in all_pickings:
             # Load specific delivery value
             for field, field_help in (
-                ("ddt_carrier_id", _("carrier")),
+                ("partner_carrier_id", _("carrier")),
                 ("show_price", _("show price")),
                 ("note", _("note")),
                 ("carriage_condition_id", _("carriage condition")),
@@ -796,13 +799,14 @@ class StockPickingPackagePreparation(models.Model):
                 "goods_description_id": self.goods_description_id.id,
                 "transportation_reason_id": self.transportation_reason_id.id,
                 "transportation_method_id": self.transportation_method_id.id,
-                "carrier_id": self.carrier_id.id,
+                "partner_carrier_id": self.partner_carrier_id.id,
+                "delivery_carrier_id": self.delivery_carrier_id.id,
                 "parcels": self.parcels,
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
                 "volume": self.volume,
-                "fiscal_document_type_id":
-                    self.env.ref("l10n_it_ade.fatturapa_TD24").id,
+                # "fiscal_document_type_id":
+                #     self.env.ref("l10n_it_ade.fatturapa_TD24").id,
             }
         )
         return invoice_vals

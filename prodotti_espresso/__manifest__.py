@@ -4,7 +4,7 @@
 #
 {
     "name": "Prodotti Espresso",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Accounting",
     "summary": "Prodotti espresso",
     "author": "SHS-AV s.r.l. and other partners",

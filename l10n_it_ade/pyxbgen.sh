@@ -39,7 +39,7 @@ RED="\e[1;31m"
 GREEN="\e[1;32m"
 CLR="\e[0m"
 
-__version__=0.2.0.0
+__version__=10.0.0.3.6
 
 gen_init() {
   local mdl="${1//,/ }"
@@ -54,7 +54,7 @@ gen_init() {
     echo "# by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>" >>$i
     echo "#" >>$i
     for m in $mdl; do
-      if [[ $opt_mod == $PWD ]]; then
+      if [[ -z $opt_mod ]]; then
         echo "from . import $m" >>$i
       else
         echo "import odoo.addons.${opt_mod}.bindings.$m" >>$i
@@ -75,7 +75,7 @@ create_hook() {
     stmt="if"
     for v in 1.2.4 1.2.5 1.2.6; do
       echo "$stmt pyxb.__version__ == '$v':" >>$fn
-      if [[ $opt_mod == $PWD ]]; then
+      if [[ -z $opt_mod ]]; then
         echo "    from ${fn:0:-3}__${v//./_} import *" >>$fn
       else
         echo "    from odoo.addons.${opt_mod}.${fn:0:-3}__${v//./_} import *" >>$fn
@@ -91,29 +91,31 @@ create_hook() {
 excl="DatiFatturaMessaggi,Fattura_VFSM10.xsd,FatturaPA_versione_1.1,FatturaPA_versione_1.2,MessaggiTypes"
 
 
-OPTOPTS=(h        b          K        k        l        I         M        m       n           o        p          q            u       V           v           w        x         3)
-OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_mod opt_dry_run opt_odoo opt_pep8 opt_verbose  opt_uri opt_version opt_verbose opt_venv opt_exclude opt_py3)
-OPTACTI=("+"      "="        1        1        "1>"     "=>"      1        "="     1           "=>"     1          0            "1>"    "*"         1           "="      "=>"      1)
-OPTDEFL=(1        ""         0        0        0        ""        0        "."     0           ""       0          -1            0       ""         -1          ""       "$excl"   0)
-OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       "name"  ""          "path"   ""         "silent"     ""      "version"   "verbose"   "path"   "file"    "")
+OPTOPTS=(h        b          K        k        l        I         M        m       n           o        p        q           S       u       V           v           w        x         3)
+OPTDEST=(opt_help opt_branch opt_cont opt_keep opt_list opt_ginit opt_mult opt_mod opt_dry_run opt_odoo opt_pep8 opt_verbose opt_str opt_uri opt_version opt_verbose opt_venv opt_exclude opt_py3)
+OPTACTI=("+"      "="        1        1        "1>"     "=>"      1        "="     1           "=>"     1        0           1       "1>"    "*"         1           "="      "=>"      1)
+OPTDEFL=(1        ""         0        0        0        ""        0        ""      0           ""       0        -1          0       0       ""         -1          ""       "$excl"   0)
+OPTMETA=("help"   "vers"     ""       ""       ""       "files"   ""       "name"  ""          "path"   ""       "silent"    ""      ""      "version"   "verbose"   "path"   "file"    "")
 OPTHELP=("this help"
-  "odoo branch for topep8; may be 6.1 7.0 8.0 9.0 10.0 11.0 12.0 13.0 or 14.0"
+  "odoo branch; may be 6.1 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 or 16.0"
   "keep binding directory, if found"
   "keep temporary files"
   "list xml schemas and module names"
   "generate __init__.py with modules list"
   "multi version (append pyxb version to file names)"
-  "copy file to module path (i.e. ~/10.0/l10n-italy/l10n_it_ade/"
+  "import module path (i.e. ~/10.0/l10n-italy/l10n_it_ade/"
   "do nothing (dry-run)"
   "odoo module name (def='.')"
   "do apply pep8"
   "silent mode"
+  "do not convert Decimal to String"
   "execute uri Agenzia delle Entrate"
   "show version"
   "verbose mode"
   "virtual env (with pyxb) path"
   "modules exclusion list; i.e. fornituraIvp,FatturaPA,DatiFattura,DatiFatturaMessaggi"
-  "generate for python3")
+  "generate for python3"
+)
 OPTARGS=()
 
 parseoptargs "$@"
@@ -151,6 +153,10 @@ BINDINGS=$TDIR/bindings
 [[ ! -d $BINDINGS ]] && echo "Directory $BINDINGS not found!" && exit 1
 SCHEMAS=$TDIR/data
 [[ ! -d $SCHEMAS ]] && echo "Directory $SCHEMAS not found!" && exit 1
+if [[ -z $opt_mod ]]; then
+  x=$(find $(dirname $opt_venv) -name $(basename $0))
+  opt_mod=$(basename $(dirname $x))
+fi
 
 TOPEP8=$(which topep8 2>/dev/null)
 if [[ -z "$TOPEP8" ]]; then
@@ -263,15 +269,17 @@ if [[ $opt_list -eq 0 ]]; then
     fn=$f.py
     if [[ ! -f $fn ]]; then
       echo "File $fn not found!"
-      echo "Cannot execute $PYXBGEN_PY $fn $SCHEMAS $FMLIST"
+      echo "Cannot execute $PYXBGEN_PY $fn $SCHEMAS"
     else
       [[ $opt_keep -ne 0 ]] && run_traced "cp $fn $fn.bak"
-      run_traced "$PYTHON $PYXBGEN_PY $fn $SCHEMAS \"$FMLIST\""
+      run_traced "$PYTHON $PYXBGEN_PY $fn $SCHEMAS"
       if [[ $opt_pep8 -ne 0 ]]; then
         run_traced "$TOPEP8 $fn"
         run_traced "oca-autopep8 -i $fn"
       fi
-      [[ $opt_py3 -ne 0 ]] && opts="-3" || opts=""
+      [[ $opt_py3 -ne 0 ]] && opts="3" || opts=""
+      [[ $opt_str -ne 0 ]] && opts="${opts}S"
+      [[ -n $opts ]] && opts="-$opts"
       run_traced "$PYTHON $PYXBGEN_PY $fn $opts"
       for x in TD16 TD17 TD18 TD19 TD24; do
         grep -q $x $BINDINGS/fatturapa*.py || echo "*** Error: TD16 not found! ***"
