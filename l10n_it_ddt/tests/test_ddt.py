@@ -32,7 +32,7 @@ Final notes:
 * Many2one value must be declared as external identifier
 * Written on 2022-07-05 18:14:38.278288 by mk_test_env 10.0.0.7.5
 """
-import time
+# import time
 from datetime import datetime
 import logging
 from odoo.tests import common
@@ -642,6 +642,12 @@ class SaleOrder(common.TransactionCase):
                     self.env.ref("l10n_it_ddt.goods_description_CAR"),
                     msg="Invalid order goods description %s!" %
                         self.ddt.goods_description_id)
+                # self.assertEqual(
+                #     order.carrier_id, self.ddt.carrier_id,
+                #     msg="Order delivery method different from DdT picking")
+                self.assertEqual(
+                    order.ddt_type_id, self.ddt.ddt_type_id,
+                    msg="Order DdT type different from DdT picking")
             else:
                 # 2. Add picking of sale order to DdT
                 picking = order.picking_ids[0]

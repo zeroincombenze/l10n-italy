@@ -236,8 +236,7 @@
                     string="Shipping Informations"
                     attrs="{'invisible':[('ddt_type_id', '=', False)]}"
                 >
-                    <group>
-                        <field name="delivery_carrier_id" />
+                    <group colspan="2">
                         <field name="carriage_condition_id" />
                         <field name="goods_description_id" />
                         <field
@@ -252,6 +251,9 @@
                         <field name="weight_manual" />
                         <field name="gross_weight" />
                         <field name="show_price" />
+                    </group>
+                    <group colspan="2">
+                        <field name="carrier_id" />
                     </group>
                 </page>
             </notebook>

@@ -8,6 +8,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from odoo.tools.misc import formatLang
+from odoo.tools.safe_eval import safe_eval
 
 import odoo.addons.decimal_precision as dp
 
@@ -115,7 +116,9 @@ class StockPickingPackagePreparation(models.Model):
             "parcels": False,
             "show_price": False,
         },
-        "sale.order": {"partner_carrier_id": False, "parcels": False, "show_price": False},
+        "sale.order": {
+            "carrier_id": False, "parcels": False, "show_price": False
+        },
         "stock.picking": {
             "ddt_type_id": "ddt_type",
             "goods_description_id": False,
@@ -129,7 +132,6 @@ class StockPickingPackagePreparation(models.Model):
             "gross_weight": "shipping_weight",
         },
         "stock.picking.package.preparation": {
-            "carrier_id": "delivery_carrier_id",
             "weight": "weight_manual",
         },
     }
@@ -205,6 +207,18 @@ class StockPickingPackagePreparation(models.Model):
                 }
             )
 
+    @api.depends('carrier_id', 'line_ids')
+    def _compute_delivery_price(self):
+        for ddt in self:
+            if (
+                ddt.state != 'draft' or
+                not ddt.carrier_id or
+                not ddt.line_ids
+            ):
+                continue
+            else:
+                ddt.delivery_set()
+
     ddt_type_id = fields.Many2one(
         "stock.ddt.type", string="DdT Type", default=_default_ddt_type
     )
@@ -222,10 +236,15 @@ class StockPickingPackagePreparation(models.Model):
     transportation_method_id = fields.Many2one(
         "stock.picking.transportation_method", string="Method of Transportation"
     )
-    delivery_carrier_id = fields.Many2one(
+    carrier_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery Method",
         help="Fill this field if you plan to invoice the shipping based on picking."
+    )
+    delivery_price = fields.Float(
+        string='Estimated Delivery Price',
+        compute='_compute_delivery_price',
+        store=True
     )
     partner_carrier_id = fields.Many2one(
         "res.partner",
@@ -362,7 +381,7 @@ class StockPickingPackagePreparation(models.Model):
         2.  field name is prefixed with "default_"
         3.  field name is ddt_type
         4.  field name is "number_of packages"
-        5.  field name is "delivery_carrier_id"
+        5.  field name is "carrier_id"
         6.  field name is "ddt_show_price"
         7.  field name is "shipping_weight"
 
@@ -535,6 +554,7 @@ class StockPickingPackagePreparation(models.Model):
         for picking in all_pickings:
             # Load specific delivery value
             for field, field_help in (
+                # ("carrier_id", _("carrier")),
                 ("partner_carrier_id", _("carrier")),
                 ("show_price", _("show price")),
                 ("note", _("note")),
@@ -800,7 +820,7 @@ class StockPickingPackagePreparation(models.Model):
                 "transportation_reason_id": self.transportation_reason_id.id,
                 "transportation_method_id": self.transportation_method_id.id,
                 "partner_carrier_id": self.partner_carrier_id.id,
-                "delivery_carrier_id": self.delivery_carrier_id.id,
+                "carrier_id": self.carrier_id.id,
                 "parcels": self.parcels,
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
@@ -1003,6 +1023,55 @@ class StockPickingPackagePreparation(models.Model):
             if ddt.ddt_number:
                 ddt.ddt_type_id.sequence_id.unnext_by_id(ddt.ddt_number)
         return super(StockPickingPackagePreparation, self).unlink()
+
+    @api.multi
+    def delivery_set(self):
+        for ddt in self:
+            carrier = ddt.carrier_id
+            if carrier:
+                if ddt.state != 'draft':
+                    raise UserError(_(
+                        'The delivery note state have to be draft '
+                        'to add delivery lines.'))
+
+                if carrier.delivery_type in ['fixed', 'base_on_rule']:
+                    price_unit = ddt.get_price_from_picking()
+                    if ddt.company_id.currency_id.id != ddt.pricelist_id.currency_id.id:
+                        price_unit = ddt.company_id.currency_id.with_context(
+                            date=ddt.date).compute(
+                            price_unit, ddt.pricelist_id.currency_id)
+                ddt.delivery_price = price_unit * (
+                    1.0 + (float(self.carrier_id.margin) / 100.0))
+
+            else:
+                raise UserError(_('No carrier set for this order.'))
+
+        return True
+
+    def get_price_from_picking(self, total, weight, volume, quantity):
+        price = 0.0
+        criteria_found = False
+        price_dict = {
+            'price': self.amount_untaxed,
+            'volume': self.volume,
+            'weight': self.weight_manual,
+            'wv': volume * weight,
+            'quantity': self.parcels,
+        }
+        for line in self.price_rule_ids:
+            test = safe_eval(
+                line.variable + line.operator + str(line.max_value), price_dict)
+            if test:
+                price = (line.list_base_price +
+                         line.list_price * price_dict[line.variable_factor])
+                criteria_found = True
+                break
+        if not criteria_found:
+            raise UserError(_(
+                "Selected product in the delivery method doesn't fulfill "
+                "any of the delivery carrier(s) criteria."))
+
+        return price
 
 
 class StockPickingPackagePreparationLine(models.Model):

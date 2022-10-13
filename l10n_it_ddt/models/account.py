@@ -23,7 +23,7 @@ class AccountInvoice(models.Model):
     transportation_method_id = fields.Many2one(
         "stock.picking.transportation_method", string="Method of Transportation"
     )
-    delivery_carrier_id = fields.Many2one(
+    carrier_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery Method",
         help="Fill this field if you plan to invoice the shipping based on picking."
