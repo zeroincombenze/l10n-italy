@@ -81,6 +81,9 @@ TEST_DELIVERY_CARRIER = {
     "delivery.delivery_carrier": {
         "name": "Consegna",
         "goods_description_id": "l10n_it_ddt.goods_description_CAR",
+        "fixed_price": 4.9,
+        "free_if_more_than": True,
+        "amount": 50.0,
     }
 }
 TEST_DDT_TYPE = {
@@ -642,9 +645,9 @@ class SaleOrder(common.TransactionCase):
                     self.env.ref("l10n_it_ddt.goods_description_CAR"),
                     msg="Invalid order goods description %s!" %
                         self.ddt.goods_description_id)
-                # self.assertEqual(
-                #     order.carrier_id, self.ddt.carrier_id,
-                #     msg="Order delivery method different from DdT picking")
+                self.assertEqual(
+                    order.carrier_id, self.ddt.carrier_id,
+                    msg="Order delivery method different from DdT picking")
                 self.assertEqual(
                     order.ddt_type_id, self.ddt.ddt_type_id,
                     msg="Order DdT type different from DdT picking")

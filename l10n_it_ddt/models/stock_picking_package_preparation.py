@@ -97,6 +97,7 @@ class StockPickingPackagePreparation(models.Model):
             "parcels": False,
             "partner_carrier_id": False,
             "show_price": "ddt_show_price",
+            "pricelist_id": False,
             "note": False,
         },
         "stock.ddt.type": {
@@ -109,12 +110,14 @@ class StockPickingPackagePreparation(models.Model):
             "parcels": False,
             "partner_carrier_id": False,
             "show_price": False,
+            "pricelist_id": False,
         },
         "delivery.carrier": {
             "ddt_type_id": False,
             "carrier_id": "",
             "parcels": False,
             "show_price": False,
+            "pricelist_id": False,
         },
         "sale.order": {
             "carrier_id": False, "parcels": False, "show_price": False
@@ -130,6 +133,7 @@ class StockPickingPackagePreparation(models.Model):
             "show_price": False,
             "note": False,
             "gross_weight": "shipping_weight",
+            "pricelist_id": False,
         },
         "stock.picking.package.preparation": {
             "weight": "weight_manual",
@@ -170,6 +174,13 @@ class StockPickingPackagePreparation(models.Model):
             return False
         return ids[0].id
 
+    def _default_pricelist(self):
+        for line in self:
+            if line.sale_id:
+                return line.sale_line_id.pricelist_id.id
+        return (self.partner_id.property_product_pricelist and
+                self.partner_id.property_product_pricelist.id or False)
+
     def _set_parcel_qty(self):
         if self.parcels == 0:
             return 1
@@ -181,8 +192,10 @@ class StockPickingPackagePreparation(models.Model):
         Compute the total amounts of the SO.
         """
         for ddt in self:
-            amount_untaxed = amount_tax = 0.0
+            amount_untaxed = amount_tax = tax_rate = 0.0
             for line in ddt.line_ids:
+                tax_rate = max([tax_rate] + [
+                    x.amount for x in line.tax_ids if x.amount_type == "percent"])
                 amount_untaxed += line.price_subtotal
                 # FORWARDPORT UP TO 10.0
                 if ddt.company_id.tax_calculation_rounding_method == "round_globally":
@@ -199,6 +212,9 @@ class StockPickingPackagePreparation(models.Model):
                     )
                 else:
                     amount_tax += line.price_tax
+            if ddt.delivery_price:
+                amount_untaxed += ddt.delivery_price
+                amount_tax += ddt.delivery_price * tax_rate / 100
             ddt.update(
                 {
                     "amount_untaxed": ddt.currency_id.round(amount_untaxed),
@@ -235,6 +251,15 @@ class StockPickingPackagePreparation(models.Model):
     )
     transportation_method_id = fields.Many2one(
         "stock.picking.transportation_method", string="Method of Transportation"
+    )
+    pricelist_id = fields.Many2one(
+        'product.pricelist',
+        string='Pricelist',
+        required=True,
+        default=_default_pricelist,
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        help="Pricelist for current sales order."
     )
     carrier_id = fields.Many2one(
         "delivery.carrier",
@@ -362,17 +387,18 @@ class StockPickingPackagePreparation(models.Model):
         Standard field name      | rp | dt | dc | so | sp | pp
         -------------------------|----|----|----|----|----|---
         ddt_type_id              | X  | ID | X  | Ok | 3. | Ok
-        (delivery_)carrier_id    | 1. | X  | ID | Ok | Ok | 5.
+        (delivery_)carrier_id    | 1. | X  | ID | Ok | Ok | Ok
         goods_description_id     | Ok | 2. | Ok | Ok | X  | Ok
         carriage_condition_id    | Ok | 2. | Ok | Ok | X  | Ok
         transportation_reason_id | Ok | 2. | Ok | Ok | X  | Ok
         transportation_method_id | Ok | 2. | Ok | Ok | X  | Ok
         partner_carrier_id       | X  | X  | Ok | Ok | X  | Ok
-        show_price               | 6. | X  | X  | X  | X  | Ok
+        show_price               | 5. | X  | X  | X  | X  | Ok
+        pricelist_id             | Ok | X  | X  | X  | X  | Ok
         note                     | X  | Ok | Ok | Ok | X  | Ok
         parcels (*)              |    |    |    | Ok | 4. | Ok
         weight (*)               |    |    |    | Ok | Ok | Ok
-        gross_weight (*)         |    |    |    | Ok | 7. | Ok
+        gross_weight (*)         |    |    |    | Ok | 6. | Ok
         where:
             Ok: field in model
             X:  field not in model
@@ -381,9 +407,8 @@ class StockPickingPackagePreparation(models.Model):
         2.  field name is prefixed with "default_"
         3.  field name is ddt_type
         4.  field name is "number_of packages"
-        5.  field name is "carrier_id"
-        6.  field name is "ddt_show_price"
-        7.  field name is "shipping_weight"
+        5.  field name is "ddt_show_price"
+        6.  field name is "shipping_weight"
 
         (*) field evaluated by sum, searched only in <sp> and <so>
         """
@@ -527,6 +552,7 @@ class StockPickingPackagePreparation(models.Model):
                         raise UserError(_(
                             "Selected Pickings have different Invoice Partner"))
                 for fieldname, condition_help in (
+                    ("carrier_id", _("delivery method")),
                     ("carriage_condition_id", _("carriage condition")),
                     ("transportation_reason_id", _("transportation reason")),
                     ("transportation_method_id", _("transportation method")),
@@ -554,7 +580,7 @@ class StockPickingPackagePreparation(models.Model):
         for picking in all_pickings:
             # Load specific delivery value
             for field, field_help in (
-                # ("carrier_id", _("carrier")),
+                ("carrier_id", _("delivery method")),
                 ("partner_carrier_id", _("carrier")),
                 ("show_price", _("show price")),
                 ("note", _("note")),
@@ -562,6 +588,7 @@ class StockPickingPackagePreparation(models.Model):
                 ("goods_description_id", _("goods description")),
                 ("transportation_reason_id", _("transportation reason")),
                 ("transportation_method_id", _("transportation method")),
+                ("pricelist_id", _("pricelist")),
             ):
                 vals = self.get_delivery_value(
                     vals, picking, field, field_help, defaults=defaults)
@@ -821,6 +848,7 @@ class StockPickingPackagePreparation(models.Model):
                 "transportation_method_id": self.transportation_method_id.id,
                 "partner_carrier_id": self.partner_carrier_id.id,
                 "carrier_id": self.carrier_id.id,
+                "pricelist_id": self.pricelist_id.id,
                 "parcels": self.parcels,
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
@@ -935,11 +963,16 @@ class StockPickingPackagePreparation(models.Model):
             for order in orders:
                 for line in order.order_line:
                     if line not in invoiced_order_lines and (
-                        not line.product_id or line.product_id.type == "service"
+                        not line.product_id or line.product_id.type == "service" and
+                        not line.is_delivery
                     ):
                         line.invoice_line_create(
                             invoices[group_key].id, line.qty_to_invoice
                         )
+                    elif (line not in invoiced_order_lines and
+                          line.is_delivery and
+                          line.qty_invoiced != line.product_uom_qty):
+                        line.qty_invoiced = line.product_uom_qty
             # Allow additional operations from ddt
             # ddt.other_operations_on_ddt(invoice)
 
@@ -962,6 +995,7 @@ class StockPickingPackagePreparation(models.Model):
             # Necessary to force computation of taxes. In account_invoice,
             # they are triggered
             # by onchanges, which are not triggered when doing a create.
+            invoice.delivery_set()
             invoice.compute_taxes()
             invoice.message_post_with_view(
                 "mail.message_origin_link",
@@ -1048,30 +1082,12 @@ class StockPickingPackagePreparation(models.Model):
 
         return True
 
-    def get_price_from_picking(self, total, weight, volume, quantity):
-        price = 0.0
-        criteria_found = False
-        price_dict = {
-            'price': self.amount_untaxed,
-            'volume': self.volume,
-            'weight': self.weight_manual,
-            'wv': volume * weight,
-            'quantity': self.parcels,
-        }
-        for line in self.price_rule_ids:
-            test = safe_eval(
-                line.variable + line.operator + str(line.max_value), price_dict)
-            if test:
-                price = (line.list_base_price +
-                         line.list_price * price_dict[line.variable_factor])
-                criteria_found = True
-                break
-        if not criteria_found:
-            raise UserError(_(
-                "Selected product in the delivery method doesn't fulfill "
-                "any of the delivery carrier(s) criteria."))
-
-        return price
+    def get_price_from_picking(self):
+        return self.carrier_id.get_price_from_picking(
+            self.amount_untaxed,
+            self.weight_manual,
+            self.volume,
+            self.parcels)
 
 
 class StockPickingPackagePreparationLine(models.Model):

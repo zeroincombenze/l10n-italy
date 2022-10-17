@@ -16,6 +16,7 @@
         "stock_account",
         "delivery",
         "stock_picking_package_preparation_line",
+        "account_invoice_pricelist",
     ],
     "data": [
         "security/ir.model.access.csv",

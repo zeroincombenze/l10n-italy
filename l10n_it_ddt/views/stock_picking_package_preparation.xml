@@ -236,24 +236,28 @@
                     string="Shipping Informations"
                     attrs="{'invisible':[('ddt_type_id', '=', False)]}"
                 >
-                    <group colspan="2">
-                        <field name="carriage_condition_id" />
-                        <field name="goods_description_id" />
-                        <field
-                            name="transportation_reason_id"
-                            attrs="{'required':[('ddt_type_id', '!=', False)]}"
-                        />
-                        <field name="transportation_method_id" />
-                        <field name="partner_carrier_id" />
-                        <field name="parcels" />
-                        <field name="volume" />
-                        <field name="weight" />
-                        <field name="weight_manual" />
-                        <field name="gross_weight" />
-                        <field name="show_price" />
-                    </group>
-                    <group colspan="2">
-                        <field name="carrier_id" />
+                    <group string="Shipping Informations">
+                        <group>
+                            <field name="carriage_condition_id" />
+                            <field name="goods_description_id" />
+                            <field
+                                name="transportation_reason_id"
+                                attrs="{'required':[('ddt_type_id', '!=', False)]}"
+                            />
+                            <field name="transportation_method_id" />
+                            <field name="partner_carrier_id" />
+                            <field name="parcels" />
+                            <field name="volume" />
+                            <field name="weight" />
+                            <field name="weight_manual" />
+                            <field name="gross_weight" />
+                            <field name="show_price" />
+                        </group>
+                        <group>
+                            <field name="pricelist_id" />
+                            <field name="carrier_id" />
+                            <field name="delivery_price" />
+                        </group>
                     </group>
                 </page>
             </notebook>
