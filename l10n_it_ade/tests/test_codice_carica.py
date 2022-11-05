@@ -7,9 +7,9 @@
 
 from z0bug_odoo import test_common
 
-CODICE_CARICA_CODE = "99"
-CODICE_CARICA_NAME = "Please, do not use this record!"
-CODICE_CARICA_NAME2 = "Please, delete this record!"
+CODICE_CARICA_CODE = u"99"
+CODICE_CARICA_NAME = u"Please, do not use this record!"
+CODICE_CARICA_NAME2 = u"Please, delete this record!"
 
 
 class TestAdeCodiceCarica(test_common.SingleTransactionCase):

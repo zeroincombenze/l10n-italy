@@ -536,4 +536,4 @@ class AccountInvoice(common.TransactionCase):
             inv.action_invoice_open()
             self.assertEqual(
                 inv.state, "open",
-                msg="Invalid invoice state %s!" % self.inv.state)
+                msg="Invalid invoice state %s!" % inv.state)

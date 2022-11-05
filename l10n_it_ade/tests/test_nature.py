@@ -7,9 +7,9 @@
 
 from z0bug_odoo import test_common
 
-NATURA_CODE = "N9.9"
-NATURA_NAME = "Please, do not use this record!"
-NATURA_NAME2 = "Please, delete this record!"
+NATURA_CODE = u"N9.9"
+NATURA_NAME = u"Please, do not use this record!"
+NATURA_NAME2 = u"Please, delete this record!"
 
 
 class TestNatura(test_common.SingleTransactionCase):
@@ -27,4 +27,4 @@ class TestNatura(test_common.SingleTransactionCase):
         rec = self.browse_rec(model_name, self.natura_id)
         self.assertEqual(rec.name, NATURA_NAME2)
         names = rec.name_get()
-        self.assertEqual(names[0], '[%s] %s' % (NATURA_CODE, NATURA_NAME2))
+        self.assertEqual(names[0][1], '[%s] %s' % (NATURA_CODE, NATURA_NAME2))
