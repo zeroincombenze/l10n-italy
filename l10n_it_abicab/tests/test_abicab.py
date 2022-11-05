@@ -8,7 +8,8 @@ from odoo.tests.common import TransactionCase
 class BankCase(TransactionCase):
     def setUp(self):
         super(BankCase, self).setUp()
-        self.partner1 = self.env["res.partner"].create({"name": "Partner1"})
+        # self.partner1 = self.env["res.partner"].create({"name": "Partner1"})
+        self.partner1 = self.env.ref("base.res_partner_1")
 
     def test_create_bank(self):
         bank_model = self.env["res.bank"]
