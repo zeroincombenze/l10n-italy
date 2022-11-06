@@ -39,6 +39,8 @@ msgstr "Fattura elettronica"
 #: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr
+#: selection:res.partner,type_inv_addr
+#: selection:res.partner,type_inv_addr
 msgid "Fiscal Representative"
 msgstr "Rappresentante fiscale"
 
@@ -55,6 +57,8 @@ msgid "IPA123"
 msgstr "IPA123"
 
 #. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:75
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:75
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:75
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:75
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:75
@@ -85,11 +89,15 @@ msgstr "Nominativo"
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:71
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:71
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:71
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:71
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:71
 #, python-format
 msgid "Partner %s dichiarato sia PA che Fattura B2B!"
 msgstr "Partner %s dichiarato sia PA che Fattura B2B!"
 
 #. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:91
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:91
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:91
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:91
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:91
@@ -103,6 +111,8 @@ msgstr ""
 "fiscale"
 
 #. module: l10n_it_fiscal_ipa
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:102
+#: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:102
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:102
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:102
 #: code:addons/l10n_it_fiscal_ipa/model/res_partner.py:102
@@ -132,11 +142,15 @@ msgstr "Codice destinatario"
 #: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr
+#: selection:res.partner,type_inv_addr
+#: selection:res.partner,type_inv_addr
 msgid "Simple"
 msgstr "Semplice"
 
 #. module: l10n_it_fiscal_ipa
 #: selection:res.partner,type_inv_addr:0
+#: selection:res.partner,type_inv_addr
+#: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr
 #: selection:res.partner,type_inv_addr

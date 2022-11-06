@@ -1,7 +1,8 @@
 # generated from manifests external_dependencies
 asn1crypto
 codicefiscale
-Crypto.Cipher
+# #Crypto.Cipher
+pycrypto
 os0
 past
 pkcs7

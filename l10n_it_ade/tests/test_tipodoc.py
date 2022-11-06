@@ -7,9 +7,9 @@
 
 from z0bug_odoo import test_common
 
-TIPODOC_CODE = "TD99"
-TIPODOC_NAME = "Please, do not use this record!"
-TIPODOC_NAME2 = "Please, delete this record!"
+TIPODOC_CODE = u"TD99"
+TIPODOC_NAME = u"Please, do not use this record!"
+TIPODOC_NAME2 = u"Please, delete this record!"
 
 
 class TestTipoDoc(test_common.SingleTransactionCase):
@@ -24,7 +24,7 @@ class TestTipoDoc(test_common.SingleTransactionCase):
         rec = self.browse_rec(model_name, self.tipo_fattura_id)
         self.assertEqual(rec.name, TIPODOC_NAME)
         names = rec.name_get()
-        self.assertEqual(names[0], '[%s] %s' % (TIPODOC_CODE, TIPODOC_NAME))
+        self.assertEqual(names[0][1], '[%s] %s' % (TIPODOC_CODE, TIPODOC_NAME))
         self.write_rec(model_name, self.tipo_fattura_id, {"name": TIPODOC_NAME2})
         rec = self.browse_rec(model_name, self.tipo_fattura_id)
         self.assertEqual(rec.name, TIPODOC_NAME2)

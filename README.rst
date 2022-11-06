@@ -73,7 +73,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.2.0.0 | Italian Localisation - Natura delle aliquote IVA                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                          | 10.0.0.3.4 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
+| l10n_it_ade                          | 10.0.0.3.6 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |same|     | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -97,7 +97,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi_sale           | |no_check| | 10.0.1.0.3 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt                          | 10.0.1.8.1 | 10.0.1.9.0 | Delivery Document to Transfer                                                    |
+| l10n_it_ddt                          | 10.0.1.8.1 | 10.0.1.9.0 | Delivery Document Type                                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_dichiarazione_intento        | |no_check| | 10.0.1.0.2 | Gestione dichiarazioni di intento                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -117,7 +117,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_li              | 10.0.1.0.2 | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_rc              | 10.0.1.0.0 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
+| l10n_it_einvoice_out_rc              | 10.0.1.0.2 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 10.0.1.0.2 | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -129,11 +129,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_export_zip         | |no_check| | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_in                 | |no_check| | 10.0.3.0.2 | Ricezione fatture elettroniche                                                   |
+| l10n_it_fatturapa_in                 | |no_check| | 10.0.3.1.0 | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_in_purchase        | |no_check| | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_in_rc              | |no_check| | 10.0.2.0.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge                |
+| l10n_it_fatturapa_in_rc              | |no_check| | 10.0.2.1.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_out                | |no_check| | 10.0.2.0.0 | Emissione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -141,7 +141,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_out_di             | |no_check| | 10.0.1.0.0 | Dichiarazioni d'intento in fatturapa                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fatturapa_out_rc             | |no_check| | 10.0.1.0.1 | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
+| l10n_it_fatturapa_out_rc             | |no_check| | 10.0.1.1.0 | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fatturapa_out_stamp          | |no_check| | 10.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -189,7 +189,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_rea                          | 10.0.1.1.2 | 10.0.1.1.3 | Gestisce i campi del Repertorio Economico Amministrativo                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_reverse_charge               | 10.0.1.4   | 10.0.1.2.4 | Reverse Charge for Italy                                                         |
+| l10n_it_reverse_charge               | 10.0.1.4   | 10.0.1.3.0 | Reverse Charge for Italy                                                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -228,6 +228,8 @@ Avaiable Addons / Moduli disponibili
 | l10n_it_withholding_tax_payment_orde | |no_check| | 10.0.1.0.0 | Modulo ponte tra ritenuta d'acconto e ordine di pagamento                        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | multibase_plus                       | 10.0.0.1.4 | |no_check| | Enhanced Odoo Features                                                           |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| prodotti_espresso                    | 10.0.1.0.0 | |no_check| | Prodotti espresso                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 
 
@@ -372,6 +374,72 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_out_rc: 10.0.1.0.2 (2022-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No latin charr in partner / Anagrafica estera con caratteri non latini
+
+
+l10n_it_ddt: 10.0.1.8.15 (2022-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
+
+
+l10n_it_einvoice_out_rc: 10.0.1.0.1 (2022-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Refund of TD17..TD19 / Nota credito con TD17..TD19
+
+
+l10n_it_einvoice_out: 10.0.1.0.24 (2022-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Partner name w/o quote / Rimosso carattere apostrofo da nome
+
+
+l10n_it_ade: 10.0.0.3.6 (2022-09-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] l10n_it_ade/binding numeric data with 2 decimals
+
+
+l10n_it_ade: 10.0.0.3.5 (2022-09-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] l10n_it_ade/binding refactoring
+
+
+l10n_it_ddt: 10.0.1.8.14 (2022-09-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] Functions refactoring / Sotware ristrutturato
+* [IMP] Added regression tests / Aggiunti test automatici
+* [FIX] l10n_it_ade dependency / Corretta dipendenza
+* [IMP] More check for <add_to_ddt> function / Nuovi controlli
+* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
+* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.29 (2022-08-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with multiple attachments
+* [FIX] Check for existent attachment (avoid raise)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.28 (2022-08-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] TD17/18/19 recognition
+
+
+l10n_it_einvoice_in: 10.0.1.3.33 (2022-08-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Link to opened invoice too
+
+
 l10n_it_einvoice_send2sdi: 10.0.1.0.27 (2022-07-28)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -461,6 +529,7 @@ l10n_it_einvoice_out_rc: 10.0.1.0.0 (2022-06-21)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Created documentation directory
+
 
 
 l10n_it_vat_communication: 10.0.0.2.3 (2022-06-20)
@@ -594,11 +663,16 @@ l10n_it_einvoice_base: 10.0.2.1.16 (2022-06-08)
 * [FIX] Style sheet / Aggiornamento fogli di stile fattura XML
 
 
-
 l10n_it_base: 10.0.0.2.17 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Emoji for address & invoice partner / Simboli di riconoscimento indirizzi fatturazione e spedizione
+
+
+prodotti_espresso: 12.0.1.0.0 (2022-05-25)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Impostazione modulo
 
 
 base_multireport: 10.0.0.2.22 (2022-05-23)
@@ -662,56 +736,6 @@ l10n_it_account: 10.0.1.2.10 (2022-04-21)
 * [IMP] Function tax.is_rc() / Funzione tax.is_rc()
 
 
-l10n_it_reverse_charge: 10.0.1.3 (2022-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Flag RC in account.tax / Flag RC in tasse
-
-
-l10n_it_einvoice_in: 10.0.1.3.29 (2022-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Detect RC by rc flag / Riconoscimento RC tramite flag rc
-
-
-l10n_it_account: 10.0.1.2.9 (2022-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Strange bug in print VAT registry
-* [IMP] New flag RC in tax / Nuovo flag RC in tassa
-
-
-l10n_it_fiscal: 10.0.0.2.10 (2022-02-15)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Duplicate key during installation / Chiave duplicata in installazion
-
-
-l10n_it_ddt: 10.0.1.8.12 (2022-02-10)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Selected journal / Registro selezionato
-
-
-l10n_it_fiscal: 10.0.0.2.9 (2022-02-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Currency accounts / Conti di cambio
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.21 (2022-02-02)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Sometime "ready" state / Errato stato "ready" in alcuni casi
-
-
-l10n_it_einvoice_out: 10.0.1.0.19 (2022-01-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Check lettere intento / Test su lettere di intento
-* [FIX] Rea capital / controllo capitale sociale
-
-
 
 
 
@@ -744,11 +768,11 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-07-29
+Last Update / Ultimo aggiornamento: 2022-10-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt:
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
     :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com

@@ -442,9 +442,8 @@ class AccountInvoice(models.Model):
         "fatturapa.related_ddt", "invoice_id", "Related DdT", copy=False
     )
     #  2.1.9
-    partner_carrier_id = fields.Many2one(
+    carrier_id = fields.Many2one(
         "res.partner", string="Carrier", copy=False,
-        oldname="carrier_id",
         help="Tag 2.1.9.1.3 <Anagrafica>"
     )
     transport_vehicle = fields.Char(
