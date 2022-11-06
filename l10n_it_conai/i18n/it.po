@@ -207,6 +207,10 @@ msgstr "Codice"
 #: sql_constraint:italy.conai.product.category
 #: sql_constraint:italy.conai.partner.category
 #: sql_constraint:italy.conai.product.category
+#: sql_constraint:italy.conai.partner.category
+#: sql_constraint:italy.conai.product.category
+#: sql_constraint:italy.conai.partner.category
+#: sql_constraint:italy.conai.product.category
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
 
@@ -250,6 +254,8 @@ msgstr "ID prodotto CONAI"
 #. module: l10n_it_conai
 #: model:product.product,name:l10n_it_conai.Contributo ambientale conai
 #: model:product.template,name:l10n_it_conai.Contributo conai_product_template
+#: ambientale conai conai_product_template
+#: ambientale conai conai_product_template
 #: ambientale conai conai_product_template
 #: ambientale conai conai_product_template
 #: ambientale conai conai_product_template
@@ -318,6 +324,8 @@ msgstr ""
 
 #. module: l10n_it_conai
 #: selection:italy.conai.partner.category,sector:0
+#: selection:italy.conai.partner.category,sector
+#: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
@@ -427,6 +435,8 @@ msgstr "Riga preparazione collo"
 #: selection:italy.conai.product.category,type
 #: selection:italy.conai.product.category,type
 #: selection:italy.conai.product.category,type
+#: selection:italy.conai.product.category,type
+#: selection:italy.conai.product.category,type
 msgid "Packing"
 msgstr "Imballo"
 
@@ -472,12 +482,16 @@ msgstr ""
 #: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
+#: selection:italy.conai.partner.category,sector
+#: selection:italy.conai.partner.category,sector
 msgid "Producer"
 msgstr ""
 
 #. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_product_product
 #: selection:italy.conai.product.category,type:0
+#: selection:italy.conai.product.category,type
+#: selection:italy.conai.product.category,type
 #: selection:italy.conai.product.category,type
 #: selection:italy.conai.product.category,type
 #: selection:italy.conai.product.category,type
@@ -570,6 +584,8 @@ msgstr "Unità di misura"
 
 #. module: l10n_it_conai
 #: selection:italy.conai.partner.category,sector:0
+#: selection:italy.conai.partner.category,sector
+#: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
 #: selection:italy.conai.partner.category,sector
