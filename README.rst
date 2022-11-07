@@ -41,8 +41,6 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_central_journal              | |no_check| | |halt|     | Account Central Journal                                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_invoice_check_total          | 10.0.1.0.0 | |no_check| |  Check if the verification total is equal to the bill's total                    |
-+--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_entry_date           | 10.0.0.2.0 | |halt|     | Account Invoice Entry Dates                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_entry_dates          | |halt|     | |no_check| | Registration, vat/balance application dates                                      |
@@ -115,9 +113,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_li              | 10.0.1.0.2 | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
+| l10n_it_einvoice_out_li              | |halt|     | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_rc              | 10.0.1.0.2 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
+| l10n_it_einvoice_out_rc              | |halt|     | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 10.0.1.0.2 | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -269,7 +267,7 @@ Prerequisites / Prerequisiti
 * postgresql 9.2+ (best 9.5)
 * asn1crypto
 * codicefiscale
-* Crypto.Cipher
+* pycrypto
 * os0
 * past
 * pkcs7
@@ -694,48 +692,6 @@ l10n_it_einvoice_import_zip: 10.0.1.0.6 (2022-05-09)
 * [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri (lost?)
 
 
-l10n_it_ricevute_bancarie: 10.0.1.3.7 (2022-05-03)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Unsoved with 2 or more invoices / Insoluto di 2 o più fatture
-
-
-l10n_it_einvoice_in: 10.0.1.3.30 (2022-04-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] New foreign invoices w/o province / Fatture da estero senza provincia
-
-
-l10n_it_split_payment: 10.0.1.1.0 (2022-04-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Created documentation directory
-
-
-l10n_it_vat_registries: 10.0.1.3.2 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Regression tests
-
-
-l10n_it_fiscalcode: 10.0.1.0.3 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Regression tests
-
-
-l10n_it_ade: 10.0.0.3.3 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Regression test
-
-
-l10n_it_account: 10.0.1.2.10 (2022-04-21)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Function tax.is_rc() / Funzione tax.is_rc()
-
-
 
 
 
@@ -768,7 +724,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-10-04
+Last Update / Ultimo aggiornamento: 2022-11-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
