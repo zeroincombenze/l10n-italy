@@ -28,5 +28,5 @@
         "wizard/attachment_refresh_info_view.xml",
         "wizard/link_to_existing_invoice.xml",
     ],
-    "installable": True,
+    "installable": False,
 }
