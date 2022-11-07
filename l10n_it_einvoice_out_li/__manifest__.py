@@ -14,5 +14,5 @@
         "l10n_it_einvoice_out",
         "l10n_it_lettera_intento",
     ],
-    "installable": False
+    "installable": True
 }

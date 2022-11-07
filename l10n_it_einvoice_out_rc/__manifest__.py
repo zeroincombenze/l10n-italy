@@ -15,5 +15,5 @@
         "l10n_it_reverse_charge",
     ],
     "data": ['views/rc_type_views.xml'],
-    "installable": False,
+    "installable": True,
 }
