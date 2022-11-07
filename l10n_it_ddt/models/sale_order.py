@@ -7,7 +7,6 @@ from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
-
     _inherit = "sale.order"
 
     @api.multi
@@ -145,7 +144,7 @@ class SaleOrder(models.Model):
                 "goods_description_id": self.goods_description_id.id,
                 "transportation_reason_id": self.transportation_reason_id.id,
                 "transportation_method_id": self.transportation_method_id.id,
-                "carrier_id": self.partner_carrier_id.id,
+                "partner_carrier_id": self.partner_carrier_id.id,
                 "parcels": self.parcels,
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,

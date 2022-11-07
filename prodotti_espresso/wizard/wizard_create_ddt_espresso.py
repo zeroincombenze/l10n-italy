@@ -9,23 +9,15 @@ from odoo import models, _, fields, api
 class WizardCreateDdtEspresso(models.TransientModel):
     _name = "wizard.create.ddt.espresso"
 
-    @api.model
-    def _default_delivery_cost(self):
-        ids = self.env["product.product"].search([("default_code", "=", "SHIP")])
-        return ids[0] if ids else False
-
-    delivery_cost_product = fields.Many2one(
-        comodel_name="product.product",
-        string="Delivery Cost",
-        help="Delivery cost",
-        default=_default_delivery_cost
-    )
+    validate_ddt = fields.Boolean(
+        string="Validate DdT",
+        default=True)
 
     def create_ddt_espresso(self):
         orders = self.env["sale.order"]
         for sale_id in self.env.context['active_ids']:
             orders += self.env["sale.order"].browse(sale_id)
-        ddt_ids = orders.generate_ddt_espresso(shipping=self.delivery_cost_product)
+        ddt_ids = orders.generate_ddt_espresso(validate=self.validate_ddt)
         # ----- Show new DdTs
         if ddt_ids:
             ir_model_data = self.env["ir.model.data"]

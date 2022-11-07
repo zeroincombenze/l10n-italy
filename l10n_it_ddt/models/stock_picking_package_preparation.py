@@ -93,7 +93,7 @@ class StockPickingPackagePreparation(models.Model):
     FIELD_MAP = {
         "res.partner": {
             "ddt_type_id": False,
-            "carrier_id": "property_carrier_id",
+            "carrier_id": "property_delivery_carrier_id",
             "parcels": False,
             "partner_carrier_id": False,
             "show_price": "ddt_show_price",
@@ -532,10 +532,6 @@ class StockPickingPackagePreparation(models.Model):
             partner = shipping_partner.commercial_partner_id
             if partner.type != "contact" and partner.parent_id:
                 partner = partner.parent_id
-            # if not vals["partner_id"]:
-            #     vals["partner_id"] = partner.id
-            # elif vals["partner_id"] != partner.id:
-            #     raise UserError(_("Selected Pickings have different Partner"))
             order = picking.sale_id
             if order:
                 if not vals["partner_id"]:
