@@ -59,9 +59,6 @@ coverage.xml
 *.komodoproject
 .komodotools
 
-# pyCharm
-.idea
-
 # *.pot is used for translations templates
 
 # Sphinx documentation
@@ -72,3 +69,5 @@ stdout.log
 *.oca
 *.z0i
 setup/
+node_modules/
+
