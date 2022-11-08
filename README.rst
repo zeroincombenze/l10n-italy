@@ -103,7 +103,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 10.0.1.0.0 | |no_check| | Esportazione di file XML di fatture elettroniche in uno ZIP da esportare.        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_import              | 10.0.110.0 | |no_check| | Import fatture elettroniche clienti                                              |
+| l10n_it_einvoice_import              | |halt|     | |no_check| | Import fatture elettroniche clienti                                              |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_import_zip          | 10.0.1.0.6 | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -371,6 +371,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 History / Cronologia
 --------------------
+
+l10n_it_einvoice_in: 10.0.1.3.34 (2022-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with WH / Errore importazione fatture con RA
+
 
 l10n_it_einvoice_out_rc: 10.0.1.0.2 (2022-10-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -686,12 +692,6 @@ l10n_it_einvoice_import: 10.0.1.3.29 (2022-05-21)
 * [FIX] Wrong tax code / Errato rilevamento codici IVA
 
 
-l10n_it_einvoice_import_zip: 10.0.1.0.6 (2022-05-09)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri (lost?)
-
-
 
 
 
@@ -724,7 +724,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-11-05
+Last Update / Ultimo aggiornamento: 2022-11-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

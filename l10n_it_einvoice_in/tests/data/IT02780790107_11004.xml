@@ -81,7 +81,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2014-12-18</Data>
+                <Data>2022-12-18</Data>
                 <Numero>123</Numero>
                 <DatiCassaPrevidenziale>
                     <TipoCassa>TC01</TipoCassa>
@@ -104,7 +104,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <DatiContratto>
                 <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
                 <IdDocumento>123</IdDocumento>
-                <Data>2012-09-01</Data>
+                <Data>2021-09-01</Data>
                 <NumItem>5</NumItem>
                 <CodiceCUP>123abc</CodiceCUP>
                 <CodiceCIG>456def</CodiceCIG>
@@ -136,14 +136,14 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <UnitaMisuraPeso>KGM</UnitaMisuraPeso>
                 <TipoResa>DAP</TipoResa>
                 <IndirizzoResa>
-                    <Indirizzo>strada dei test tostißimi</Indirizzo>
+                    <Indirizzo>strada dei test</Indirizzo>
                     <NumeroCivico>150/B</NumeroCivico>
                     <CAP>12042</CAP>
                     <Comune>Bra</Comune>
                     <Provincia>CN</Provincia>
                     <Nazione>IT</Nazione>
                 </IndirizzoResa>
-                <DataOraConsegna>2012-10-22T16:46:12.000+02:00</DataOraConsegna>
+                <DataOraConsegna>2022-10-22T16:46:12.000+02:00</DataOraConsegna>
             </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
@@ -174,36 +174,36 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <CondizioniPagamento>TP01</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-04-30</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2023-04-30</DataScadenzaPagamento>
                 <ImportoPagamento>20.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2015-05-01</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2023-05-01</DataDecorrenzaPenale>
             </DettaglioPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-05-30</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2023-05-30</DataScadenzaPagamento>
                 <ImportoPagamento>9.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>1.00</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2015-05-31</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2023-05-31</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>
         <DatiPagamento>
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-06-30</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2023-06-30</DataScadenzaPagamento>
                 <ImportoPagamento>1.50</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>0.15</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2015-07-01</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2023-07-01</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>
         <Allegati>

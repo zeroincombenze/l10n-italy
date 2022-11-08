@@ -414,9 +414,8 @@ class AccountInvoice(models.Model):
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Art73:
             invoice_data["art73"] = True
         # 2.1.1.5
-        Withholding = FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta
         wt_found = None
-        if Withholding:
+        for Withholding in FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta:
             wts = self.env["withholding.tax"].search(
                 [("causale_pagamento_id.code", "=", Withholding.CausalePagamento)]
             )
