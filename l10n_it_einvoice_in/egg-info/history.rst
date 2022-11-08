@@ -1,3 +1,8 @@
+10.0.1.3.34 (2022-11-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with WH / Errore importazione fatture con RA
+
 10.0.1.3.33 (2022-08-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
