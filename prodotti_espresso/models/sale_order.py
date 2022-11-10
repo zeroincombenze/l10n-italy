@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
         ddt_model = self.env["stock.picking.package.preparation"]
         orders = []
         ddts = {}
-        # shippings = {}
+        default_carrier = False
         for order in self:
             if (
                 order.state != "sale" or
@@ -32,10 +32,8 @@ class SaleOrder(models.Model):
             ):
                 # Sale Order without espresso products
                 continue
-            if order.carrier_id:
-                ship_prod = order.carrier_id.product_id
-            else:
-                ship_prod = False
+            if not default_carrier and order.carrier_id:
+                default_carrier = order.carrier_id
             hash_key = '%d|%d|%d' % (
                 order.partner_id.id,
                 order.partner_shipping_id.id,
@@ -56,6 +54,9 @@ class SaleOrder(models.Model):
                     picking.force_assign()
                 if picking.state == "assigned":
                     for pack in picking.pack_operation_ids:
+                        if not default_carrier and pack.product_id.is_delivery:
+                            default_carrier = self.env["delivery.carrier"].search(
+                                [("product_id", "=", pack.product_id.id)])
                         if (
                             not pack.product_id.is_delivery
                             and pack.product_id.espresso
@@ -84,18 +85,10 @@ class SaleOrder(models.Model):
                             "l10n_it_ddt.transportation_reason_VEN").id,
                         "goods_description_id":
                             self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                        "carrier_id": default_carrier.id if default_carrier else False,
                     }
                 )
             )
-            if validate:
-                ddt.set_done()
-            # carrier_id = False
-            # ship_prod = False
-            # for line in ddt.line_ids:
-            #     if not ship_prod and line.sale_id and line.sale_id.carrier_id:
-            #         carrier_id = line.sale_id.carrier_id
-            #         ship_prod = line.sale_id.carrier_id.product_id
-            #         break
             # if not ship_prod:
             #     ship_prod = shipping
             #     carrier_id = self.env["delivery.carrier"].search(
@@ -122,6 +115,8 @@ class SaleOrder(models.Model):
             #             'sequence': 9999,
             #         }
             #         self.env["stock.picking.package.preparation.line"].create(vals)
+            if validate:
+                ddt.set_done()
             ddt_ids.append(ddt.id)
         return ddt_ids
 

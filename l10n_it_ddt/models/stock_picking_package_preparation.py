@@ -175,9 +175,9 @@ class StockPickingPackagePreparation(models.Model):
         return ids[0].id
 
     def _default_pricelist(self):
-        for line in self:
+        for line in self.line_ids:
             if line.sale_id:
-                return line.sale_line_id.pricelist_id.id
+                return line.sale_line_id.order_id.pricelist_id.id
         return (self.partner_id.property_product_pricelist and
                 self.partner_id.property_product_pricelist.id or False)
 
@@ -255,7 +255,6 @@ class StockPickingPackagePreparation(models.Model):
     pricelist_id = fields.Many2one(
         'product.pricelist',
         string='Pricelist',
-        required=True,
         default=_default_pricelist,
         readonly=True,
         states={'draft': [('readonly', False)]},
@@ -844,7 +843,8 @@ class StockPickingPackagePreparation(models.Model):
                 "transportation_method_id": self.transportation_method_id.id,
                 "partner_carrier_id": self.partner_carrier_id.id,
                 "carrier_id": self.carrier_id.id,
-                "pricelist_id": self.pricelist_id.id,
+                "pricelist_id": self.pricelist_id and self.pricelist_id.id
+                                or self._default_pricelist(),
                 "parcels": self.parcels,
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
@@ -1057,6 +1057,8 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def delivery_set(self):
         for ddt in self:
+            if not ddt.pricelist_id:
+                ddt.pricelist_id = self._default_pricelist()
             carrier = ddt.carrier_id
             if carrier:
                 if ddt.state != 'draft':
