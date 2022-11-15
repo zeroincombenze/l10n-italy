@@ -7,6 +7,7 @@ from odoo.tests.common import SingleTransactionCase
 
 
 class FatturapaCommon(SingleTransactionCase):
+
     def getFile(self, filename, module_name=None):
         if module_name is None:
             module_name = "l10n_it_einvoice_in"
@@ -48,9 +49,9 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
-    def create_tax_a10a(self):
+    def create_tax_a27a(self):
         tax_model = self.env["account.tax"]
-        tax_id = tax_model.search([("description", "=", "a10a")])
+        tax_id = tax_model.search([("description", "=", "a27a")])
         if tax_id:
             return tax_model.browse(tax_id)
         kind_id = (
@@ -60,7 +61,7 @@ class FatturapaCommon(SingleTransactionCase):
                     (
                         "code",
                         "=",
-                        "N4"
+                        "N2.2"
                     )
                 ],
                 limit=1,
@@ -69,8 +70,8 @@ class FatturapaCommon(SingleTransactionCase):
         )
         return tax_model.create(
             {
-                "name": "art. 10",
-                "description": "a10a",
+                "name": "art. 27 regime minimi",
+                "description": "a27a",
                 "type_tax_use": "purchase",
                 "amount_type": "percent",
                 "amount": 0.0,
@@ -130,25 +131,26 @@ class FatturapaCommon(SingleTransactionCase):
         wiz_values=None,
         module_name=None,
     ):
-        if module_name is None:
-            module_name = "l10n_it_einvoice_in"
-        if datas_fname is None:
-            datas_fname = file_name
-        attach_id = self.attach_model.create(
+        module_name = module_name or "l10n_it_einvoice_in"
+        datas_fname = datas_fname or file_name
+        attachment = self.attach_model.create(
             {
                 "name": name,
                 "datas": self.getFile(file_name, module_name=module_name)[1],
                 "datas_fname": datas_fname,
             }
-        ).id
+        )
+        # Test for duplicate
+        attachment.onchange_datas_fname()
+        attach_id = attachment.id
         if mode == "import":
             wizard = self.wizard_model.with_context(
-                active_ids=[attach_id], active_model="fatturapa.attachment.in"
+                active_ids=[attach_id], active_model=self.attach_model_name
             ).create(wiz_values or {})
             return wizard.importFatturaPA()
         if mode == "link":
             wizard = self.wizard_link_model.with_context(
-                active_ids=[attach_id], active_model="fatturapa.attachment.in"
+                active_ids=[attach_id], active_model=self.attach_model_name
             ).create(wiz_values or {})
             return wizard.link()
 
@@ -174,7 +176,8 @@ class FatturapaCommon(SingleTransactionCase):
         self.wizard_model = self.env["wizard.import.fatturapa"]
         self.wizard_link_model = self.env["wizard.link.to.invoice"]
         self.data_model = self.env["ir.model.data"]
-        self.attach_model = self.env["fatturapa.attachment.in"]
+        self.attach_model_name = "fatturapa.attachment.in"
+        self.attach_model = self.env[self.attach_model_name]
         self.invoice_model = self.env["account.invoice"]
         self.journal_misc = self.env["account.journal"].search(
             [("type", "=", "general")]
@@ -192,6 +195,7 @@ class FatturapaCommon(SingleTransactionCase):
         self.headphones = self.env.ref("product.product_product_7_product_template")
         self.imac = self.env.ref("product.product_product_8_product_template")
         self.service = self.env.ref("product.service_delivery")
+        self.env.user.company_id.cassa_previdenziale_product_id = self.service.id
         # Set both active and passive account rounding
         arrotondamenti_attivi_account_id = (
             self.env["account.account"]

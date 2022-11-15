@@ -1,6 +1,6 @@
 
 =======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.20
+|icon| EInvoice + FatturaPA 10.0.2.1.21
 =======================================
 
 
@@ -337,6 +337,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.21 (2022-11-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Company data view with name for field extentions
+
+
 10.0.2.1.20 (2022-07-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -432,7 +438,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-07-07
+Last Update / Ultimo aggiornamento: 2022-11-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

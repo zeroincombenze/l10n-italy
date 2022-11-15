@@ -77,7 +77,8 @@ class FatturaPAAttachmentIn(models.Model):
             "Descrizione",
         ):
             token = r"<%s>[ \t\n]*</%s>" % (tag, tag)
-            xml_string = re.sub(token, r"<%s>N/D</%s>" % (tag, tag), xml_string, flags=re.DOTALL)
+            xml_string = re.sub(
+                token, r"<%s>N/D</%s>" % (tag, tag), xml_string, flags=re.DOTALL)
         ctr = 0
         for tag in (
             "NumeroDDT",

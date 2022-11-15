@@ -1,3 +1,8 @@
+10.0.1.3.35 (2022-11-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with round amount / Errore importazione fatture con arrotondamenti
+
 10.0.1.3.34 (2022-11-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -11,8 +11,8 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             </IdTrasmittente>
             <ProgressivoInvio>11005</ProgressivoInvio>
             <FormatoTrasmissione>FPA12</FormatoTrasmissione>
-            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
-            <ContattiTrasmittente></ContattiTrasmittente>
+            <CodiceDestinatario>ZERODOO</CodiceDestinatario>
+            <ContattiTrasmittente/>
         </DatiTrasmissione>
         <CedentePrestatore>
             <DatiAnagrafici>
@@ -48,16 +48,16 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
         </RappresentanteFiscale>
         <CessionarioCommittente>
             <DatiAnagrafici>
-                <CodiceFiscale>80213330584</CodiceFiscale>
+                <CodiceFiscale>05111810015</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+                    <Denominazione>TEST COMPANY</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>
-                <Indirizzo>VIA TORINO 38-B</Indirizzo>
-                <CAP>00145</CAP>
-                <Comune>ROMA</Comune>
-                <Provincia>RM</Provincia>
+                <Indirizzo>Via dei Matti, 0</Indirizzo>
+                <CAP>20080</CAP>
+                <Comune>Ozzero</Comune>
+                <Provincia>MI</Provincia>
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>

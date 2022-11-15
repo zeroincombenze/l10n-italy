@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-from psycopg2 import IntegrityError
-
+"""Test e-invoice import
+Test various xml files with many properties.
+See file ./tests/data/README.txt for furthermore information about specific
+checkpoint of every xml file.
+"""
 from odoo.exceptions import UserError
 
 from .fatturapa_common import FatturapaCommon
@@ -8,37 +11,41 @@ from .fatturapa_common import FatturapaCommon
 
 class TestDuplicatedAttachment(FatturapaCommon):
 
-    def __test_duplicated_attachment(self):
-        """Attachment name must be unique"""
+    def setUp(self):
+        super(TestDuplicatedAttachment, self).setUp()
+        # Set VAT number of e-invoices
+        self.env.user.company_id.vat = "IT05111810015"
         self.tax_22a = self.create_tax_22a()
-        # This test breaks the current transaction
-        # and every test executed after this in the
-        # same transaction would fail.
-        # Note that all the tests in TestFatturaPAXMLValidation
-        # are executed in the same transaction.
-        # TODO> must be checked
-        self.run_wizard("🎺 test_duplicated", "IT02780790107_11005.xml")
-        with self.assertRaises(IntegrityError) as ie:
-            self.run_wizard("🎺 test_duplicated", "IT02780790107_11005.xml")
-        self.assertEqual(ie.exception.pgcode, "23505")
+        self.tax_a27a = self.create_tax_a27a()
+        self.invoice_model = self.env["account.invoice"]
+
+    def test_00001_xml_import(self):
+        """Attachment name must be unique"""
+        # This test breaks the current transaction and every test executed after this
+        # would fail.
+        # So this test ir executed isolated form the other test.
+        self.run_wizard("🎺 test001", "IT12345670892_00001.xml")
+        with self.assertRaises(UserError):
+            self.run_wizard("🎺 test_duplicated", "IT12345670892_00001.xml")
 
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
+        # Set VAT number of e-invoices
+        self.env.user.company_id.vat = "IT05111810015"
         self.tax_22a = self.create_tax_22a()
-        self.tax_a10a = self.create_tax_a10a()
+        self.tax_a27a = self.create_tax_a27a()
         self.invoice_model = self.env["account.invoice"]
 
-    def test_001_xml_import(self):
-        self.env.user.company_id.cassa_previdenziale_product_id = self.service.id
-        res = self.run_wizard("🎺 test01", "IT05979361218_001.xml")
+    def test_00002_xml_import(self):
+        res = self.run_wizard("🎺 test002", "IT10242670015_00002.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.partner_id.register_code, "TO1258B")
+        self.assertEqual(invoice.partner_id.register_code, "SS1234")
         self.assertEqual(invoice.partner_id.register_fiscalpos.code, "RF02")
-        self.assertEqual(invoice.reference, "FT/2015/0006")
+        self.assertEqual(invoice.reference, "FT/2022/0006")
         self.assertEqual(invoice.amount_total, 57.00)
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
@@ -61,13 +68,19 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.e_invoice_line_ids[0].unit_price, 3.6)
         self.assertEqual(invoice.e_invoice_line_ids[0].total_price, 54.0)
         self.assertEqual(invoice.e_invoice_line_ids[0].tax_amount, 0.0)
-        self.assertEqual(invoice.e_invoice_line_ids[0].tax_kind, "N4")
+        self.assertEqual(invoice.e_invoice_line_ids[0].tax_kind, "N2.2")
         self.assertTrue(len(invoice.e_invoice_line_ids[0].other_data_ids) == 2)
         self.assertEqual(
             invoice.e_invoice_line_ids[0].other_data_ids[0].text_ref, "Riferimento"
         )
 
-    def test_11004_xml_import(self):
+    def test_00014_xml_import(self):
+        res = self.run_wizard("🎺 test014", "IT00488410010_00014.xml")
+
+    def test_00015_xml_import(self):
+        res = self.run_wizard("🎺 test015", "IT01641790702_00015.xml")
+
+    def __test_11004_xml_import(self):
         res = self.run_wizard("🎺 test11004", "IT02780790107_11004.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -167,7 +180,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             orig_invoice.date_invoice,
         )
 
-    def test_11005_xml_import(self):
+    def __test_11005_xml_import(self):
         res = self.run_wizard("🎺 test11005", "IT02780790107_11005.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -197,7 +210,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         #     "Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         # )
 
-    def test_003_xml_import(self):
+    def __test_003_xml_import(self):
         res = self.run_wizard("🎺 test003", "IT05979361218_003.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -227,7 +240,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "IT05979361218_fake.xml.p7m",
         )
 
-    def test_004_xml_import(self):
+    def __test_004_xml_import(self):
         # 2 lines with quantity != 1 and discounts
         res = self.run_wizard("🎺 test004", "IT05979361218_004.xml")
         invoice_id = res.get("domain")[0][2][0]
@@ -466,7 +479,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[2].price_unit, 0.0)
         self.assertEqual(invoice.invoice_line_ids[2].discount, 0.0)
 
-    def test_11x04_xml_import(self):
+    def __test_11x04_xml_import(self):
         res = self.run_wizard("🎺 test11x04", "IT02780790107_11x04.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
