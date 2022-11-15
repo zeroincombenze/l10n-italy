@@ -83,8 +83,8 @@
                 <field name="create_date" />
                 <field name="xml_supplier_id" />
                 <field name="date_invoice0" />
-                <field name="invoices_total" sum="Bills Total" />
                 <field name="invoices_number" />
+                <field name="invoices_total" sum="Bills Total" />
                 <field name="e_invoice_received_date" />
                 <field name="registered" />
                 <field name="in_invoice_ids" />
@@ -269,7 +269,7 @@
                                 <!--
                                 <form string="Payments Methods">
                                     <field name="payment_due_date"/>
-                                    <field name="payment_amount "/>
+                                    <field name="payment_amount"/>
                                 </form>
                                 -->
                             </tree>

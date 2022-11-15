@@ -10,7 +10,7 @@
                 <separator string="Electronic Invoice" />
                 <group name="fatturapa_settings">
                     <label for="id" string="Configuration" />
-                    <div>
+                    <div id="fatturapa_settings">
                         <div>
                             <label
                                 for="fatturapa_fiscal_position_id"

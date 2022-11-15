@@ -11,13 +11,13 @@
 #
 {
     "name": "Italian Localization - Fattura elettronica - Ricezione",
-    "version": "10.0.1.3.34",
+    "version": "10.0.1.3.35",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",
     "author": "Agile Business Group, Innoviu, SHS-AV "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "account",
         "l10n_it_account",
@@ -33,7 +33,7 @@
         "security/ir.model.access.csv",
         "views/account_view.xml",
         "views/partner_view.xml",
-        # 'views/company_view.xml',
+        'views/company_view.xml',
         "wizard/wizard_import_fatturapa_view.xml",
         "wizard/attachment_refresh_info_view.xml",
         "wizard/link_to_existing_invoice.xml",
