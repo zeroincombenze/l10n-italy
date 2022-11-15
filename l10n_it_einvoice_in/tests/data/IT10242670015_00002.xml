@@ -9,22 +9,22 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <IdPaese>IT</IdPaese>
                 <IdCodice>05979361218</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>001</ProgressivoInvio>
+            <ProgressivoInvio>00275</ProgressivoInvio>
             <FormatoTrasmissione>FPA12</FormatoTrasmissione>
-            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
+            <CodiceDestinatario>CE961TO</CodiceDestinatario>
         </DatiTrasmissione>
         <CedentePrestatore>
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>05979361218</IdCodice>
+                    <IdCodice>10242670015</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
-                    <Denominazione>SOCIETA' ALPHA BETA SRL</Denominazione>
+                    <Denominazione>STUDIO NOTARILE JACKON E ASSOCIATI</Denominazione>
                 </Anagrafica>
                 <AlboProfessionale>Albo di test</AlboProfessionale>
-                <ProvinciaAlbo>TO</ProvinciaAlbo>
-                <NumeroIscrizioneAlbo>TO1258B</NumeroIscrizioneAlbo>
+                <ProvinciaAlbo>SS</ProvinciaAlbo>
+                <NumeroIscrizioneAlbo>SS1234</NumeroIscrizioneAlbo>
                 <DataIscrizioneAlbo>2010-01-16</DataIscrizioneAlbo>
                 <RegimeFiscale>RF02</RegimeFiscale>
             </DatiAnagrafici>
@@ -33,21 +33,21 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <CAP>07100</CAP>
                 <Comune>SASSARI</Comune>
                 <Provincia>SS</Provincia>
-                <Nazione></Nazione>
+                <Nazione/>
             </Sede>
         </CedentePrestatore>
         <CessionarioCommittente>
             <DatiAnagrafici>
-                <CodiceFiscale>80213330584</CodiceFiscale>
+                <CodiceFiscale>05111810015</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+                    <Denominazione>TEST COMPANY</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>
-                <Indirizzo>VIA TORINO 38-B</Indirizzo>
-                <CAP>00145</CAP>
-                <Comune>ROMA</Comune>
-                <Provincia>RM</Provincia>
+                <Indirizzo>Via dei Matti, 0</Indirizzo>
+                <CAP>20080</CAP>
+                <Comune>Ozzero</Comune>
+                <Provincia>MI</Provincia>
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
@@ -55,17 +55,17 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
     <FatturaElettronicaBody>
         <DatiGenerali>
             <DatiGeneraliDocumento>
-                <TipoDocumento>TD01</TipoDocumento>
+                <TipoDocumento>TD24</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2015-02-16</Data>
-                <Numero>FT/2015/0006</Numero>
+                <Data>2022-10-31</Data>
+                <Numero>FT/2022/0006</Numero>
                 <DatiCassaPrevidenziale>
                     <TipoCassa>TC22</TipoCassa>
                     <AlCassa>0.00</AlCassa>
                     <ImportoContributoCassa>3.00</ImportoContributoCassa>
                     <ImponibileCassa>3.00</ImponibileCassa>
                     <AliquotaIVA>0.00</AliquotaIVA>
-                    <Natura>N4</Natura>
+                    <Natura>N2.2</Natura>
                 </DatiCassaPrevidenziale>
                 <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
@@ -83,7 +83,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <PrezzoUnitario>3.60</PrezzoUnitario>
                 <PrezzoTotale>54.00</PrezzoTotale>
                 <AliquotaIVA>0.00</AliquotaIVA>
-                <Natura>N4</Natura>
+                <Natura>N2.2</Natura>
                 <AltriDatiGestionali>
                     <TipoDato>Vostro RIF</TipoDato>
                     <RiferimentoTesto>Riferimento</RiferimentoTesto>
@@ -96,7 +96,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>
-                <Natura>N4</Natura>
+                <Natura>N2.2</Natura>
                 <ImponibileImporto>57.00</ImponibileImporto>
                 <Imposta>0.00</Imposta>
                 <RiferimentoNormativo>Operazioni senza addebito imposta regime contribuenti minimi art.27 c.1-2 DL.98/11</RiferimentoNormativo>
@@ -106,14 +106,15 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <CondizioniPagamento>TP01</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-03-18</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2022-11-30</DataScadenzaPagamento>
                 <ImportoPagamento>27.00</ImportoPagamento>
             </DettaglioPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2015-04-17</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2022-12-31</DataScadenzaPagamento>
                 <ImportoPagamento>27.00</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
 </p:FatturaElettronica>
+

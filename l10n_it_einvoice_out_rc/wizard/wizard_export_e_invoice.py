@@ -160,10 +160,12 @@ class WizardExportFatturapa(models.TransientModel):
             invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
                 fiscal_document_type_id
         ):
+            # body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento = (
+            #     invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
+            #     fiscal_document_type_id.code
+            # )
             body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento = (
-                invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
-                fiscal_document_type_id.code
-            )
+                invoice.fiscal_document_type_id.code)
         if invoice.type in ['out_refund', 'in_refund'] \
                 and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
             body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento = (
