@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 {
     "name": "DDT",
@@ -9,7 +9,7 @@
     "category": "Localization/Italy",
     "author": "Odoo Community Association (OCA) and other subjects",
     "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "l10n_it_ade",
         "sale_stock",

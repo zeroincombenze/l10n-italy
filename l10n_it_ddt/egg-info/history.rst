@@ -1,3 +1,9 @@
+10.0.1.8.17 (2022-11-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Order.carrier_id when import / Metodo di consegna impostato durante import record
+
+
 10.0.1.8.16 (2022-10-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

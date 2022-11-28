@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.8.16
+|icon| DDT 10.0.1.8.17
 ======================
 
 
@@ -221,6 +221,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.17 (2022-11-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Order.carrier_id when import / Metodo di consegna impostato durante import record
+
+
 10.0.1.8.16 (2022-10-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -322,7 +328,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-10-17
+Last Update / Ultimo aggiornamento: 2022-11-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

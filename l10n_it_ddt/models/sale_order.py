@@ -228,6 +228,9 @@ class SaleOrder(models.Model):
         if not vals.get("delivery_data_set"):
             if vals.get("partner_id"):
                 partner = self.env["res.partner"].browse(vals["partner_id"])
+            elif self.id:
+                partner = self.partner_id
+            if partner:
                 for field in (
                     "carriage_condition_id",
                     "goods_description_id",
@@ -241,10 +244,18 @@ class SaleOrder(models.Model):
                             vals[field] = partner[field].id
                         else:
                             vals[field] = partner[field]
+                if (
+                    partner["property_delivery_carrier_id"]
+                    and not vals.get("carrier_id")
+                ):
+                    vals["carrier_id"] = partner["property_delivery_carrier_id"].id
                 if not vals.get("ddt_type_id"):
                     vals["ddt_type_id"] = self.env["sale.order"]._default_ddt_type()
             if vals.get("ddt_type_id"):
                 ddt_type = self.env["stock.ddt.type"].browse(vals["ddt_type_id"])
+            elif self.id:
+                ddt_type = self.ddt_type_id
+            if ddt_type:
                 for field in (
                     "carriage_condition_id",
                     "goods_description_id",
@@ -258,6 +269,9 @@ class SaleOrder(models.Model):
                     self.note = self.ddt_type_id.note
             if vals.get("carrier_id"):
                 carrier = self.env["delivery.carrier"].browse(vals["carrier_id"])
+            elif self.id:
+                carrier = self.carrier_id
+            if carrier:
                 for field in (
                     "carriage_condition_id",
                     "goods_description_id",
@@ -293,3 +307,16 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             self.weight = self.product_id.weight * self.product_uom_qty
         # return super(SaleOrderLine, self)._compute_weight()
+
+    @api.model
+    def create(self, vals):
+        if vals.get("product_id"):
+            order = self.env["sale.order"].browse(vals["order_id"])
+            if not order.carrier_id:
+                product = self.env["product.product"].browse(vals["product_id"])
+                if product.is_delivery:
+                    carrier = self.env['delivery.carrier'].search(
+                        [('product_id', '=', vals["product_id"])])
+                    if carrier:
+                        order.carrier_id = carrier.id
+        return super(SaleOrderLine, self).create(vals)
