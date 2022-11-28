@@ -226,6 +226,7 @@ class SaleOrder(models.Model):
         delivery data will be empty even if ddt_type and/or carrier_id are set
         In ordinary edit by end-user, delivery_data_set is True"""
         if not vals.get("delivery_data_set"):
+            partner = False
             if vals.get("partner_id"):
                 partner = self.env["res.partner"].browse(vals["partner_id"])
             elif self.id:
@@ -251,6 +252,7 @@ class SaleOrder(models.Model):
                     vals["carrier_id"] = partner["property_delivery_carrier_id"].id
                 if not vals.get("ddt_type_id"):
                     vals["ddt_type_id"] = self.env["sale.order"]._default_ddt_type()
+            ddt_type = False
             if vals.get("ddt_type_id"):
                 ddt_type = self.env["stock.ddt.type"].browse(vals["ddt_type_id"])
             elif self.id:
@@ -267,6 +269,7 @@ class SaleOrder(models.Model):
                         vals[field] = ddt_type[default_field].id
                 if self.ddt_type_id.note and not self.note:
                     self.note = self.ddt_type_id.note
+            carrier = False
             if vals.get("carrier_id"):
                 carrier = self.env["delivery.carrier"].browse(vals["carrier_id"])
             elif self.id:

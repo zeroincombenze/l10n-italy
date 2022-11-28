@@ -23,7 +23,7 @@ class ProductTemplate(models.Model):
             if (
                 not template.is_delivery
                 and self.env['delivery.carrier'].search(
-                [('product_id', 'in', template.product_variant_ids.ids)])
+                    [('product_id', 'in', template.product_variant_ids.ids)])
             ):
                 template.is_delivery = True
         return res
@@ -38,7 +38,7 @@ class ProductTemplate(models.Model):
             if (
                 not template.is_delivery
                 and self.env['delivery.carrier'].search(
-                [('product_id', 'in', template.product_variant_ids.ids)])
+                    [('product_id', 'in', template.product_variant_ids.ids)])
             ):
                 template.is_delivery = True
         return template
