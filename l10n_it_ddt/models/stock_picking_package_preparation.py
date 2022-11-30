@@ -8,7 +8,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from odoo.tools.misc import formatLang
-from odoo.tools.safe_eval import safe_eval
 
 import odoo.addons.decimal_precision as dp
 
@@ -93,48 +92,26 @@ class StockPickingPackagePreparation(models.Model):
     # All fields name are base on stock.picking.package.preparation (DdT) names
     FIELD_MAP = {
         "res.partner": {
-            "ddt_type_id": False,
+            "partner_id": "id",
             "carrier_id": "property_delivery_carrier_id",
-            "parcels": False,
-            "partner_carrier_id": False,
             "show_price": "ddt_show_price",
-            "pricelist_id": False,
-            "note": False,
+            "pricelist_id": "property_product_pricelist",
         },
         "stock.ddt.type": {
-            "ddt_type_id": "",
-            "carrier_id": False,
+            "ddt_type_id": "id",
             "goods_description_id": "default_goods_description_id",
             "carriage_condition_id": "default_carriage_condition_id",
             "transportation_reason_id": "default_transportation_reason_id",
             "transportation_method_id": "default_transportation_method_id",
-            "parcels": False,
-            "partner_carrier_id": False,
-            "show_price": False,
-            "pricelist_id": False,
         },
         "delivery.carrier": {
-            "ddt_type_id": False,
-            "carrier_id": "",
-            "parcels": False,
-            "show_price": False,
-            "pricelist_id": False,
+            "carrier_id": "id",
         },
         "sale.order": {
-            "carrier_id": False, "parcels": False, "show_price": False
         },
         "stock.picking": {
             "ddt_type_id": "ddt_type",
-            "goods_description_id": False,
-            "carriage_condition_id": False,
-            "transportation_reason_id": False,
-            "transportation_method_id": False,
-            "parcels": "number_of_packages",
-            "partner_carrier_id": False,
-            "show_price": False,
-            "note": False,
             "gross_weight": "shipping_weight",
-            "pricelist_id": False,
         },
         "stock.picking.package.preparation": {
             "weight": "weight_manual",
@@ -142,9 +119,19 @@ class StockPickingPackagePreparation(models.Model):
     }
 
     def fieldname_of_model(self, model, fieldname):
-        if fieldname not in self.FIELD_MAP[model]:
-            return fieldname
-        return self.FIELD_MAP[model][fieldname]
+        fieldname = self.FIELD_MAP[model].get(fieldname, fieldname)
+        if fieldname not in self.env[model]:
+            fieldname = False
+        return fieldname
+
+    def reverse_fieldname_of_model(self, model, fieldname):
+        for (name, pp_name) in self.FIELD_MAP[model].items():
+            if pp_name and fieldname == pp_name:
+                fieldname = name
+                break
+        if fieldname not in self.env[model]:
+            fieldname = False
+        return fieldname
 
     @api.multi
     @api.depends("transportation_reason_id.to_be_invoiced")
@@ -378,12 +365,16 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.model
     def get_delivery_value(
-            self, vals, picking, fieldname, condition_help, defaults=None):
-        """Set specific condition of delivery. Inherit condition from
-        picking > sale order > ddt type > delivery method > customer
+        self, vals, source, fieldname, defaults=None, target=None,
+        partner=None, order=None, carrier=None, ddt_type=None
+    ):
+        """Return specific conditions in the document (mainly DdT).
+        Inherit fallback condition:
+        current (picking) > sale order > delivery method > ddt type > customer
         Workflow (rp=res.partner, dt=stock.ddt.type dc=delivery.carrier,
                   so=sale.order, sp=stock.picking,
-                  pp=stock.picking.package.preparation):
+                  pp=stock.picking.package.preparation/DdT):
+
         Standard field name      | rp | dt | dc | so | sp | pp
         -------------------------|----|----|----|----|----|---
         ddt_type_id              | X  | ID | X  | Ok | 3. | Ok
@@ -400,97 +391,152 @@ class StockPickingPackagePreparation(models.Model):
         weight (*)               |    |    |    | Ok | Ok | Ok
         gross_weight (*)         |    |    |    | Ok | 6. | Ok
         where:
-            Ok: field in model
+            Ok: field in the model
             X:  field not in model
             ID: field is key of model
         1.  field name is "property_delivery_carrier_id"
-        2.  field name is prefixed with "default_"
+        2.  field name is prefixed by "default_"
         3.  field name is ddt_type
         4.  field name is "number_of packages"
         5.  field name is "ddt_show_price"
         6.  field name is "shipping_weight"
 
         (*) field evaluated by sum, searched only in <sp> and <so>
+
+        Field names of pp/DdT are used as Rosetta Stone
+
+        Args:
+            vals (dict): values dictionary of target model to upgrade
+            source (obj): source record of sale.order (may be None) or stock.picking
+            fieldname (str): name of field to upgrade (name refers to pp/DdT model)
+            defaults (dict): default values
+            target (str): target model: may be pp/Ddt or sale.order
+                          (default stock.picking.package.preparation/DdT)
+            partner (obj): customer record
+            order (obj): sale order record
+            carrier (obj): delivery carrier record
+            ddt_type (obj): ddt type record
+        return:
+            vals (dict)
         """
-        ddt_model = self.env["stock.picking.package.preparation"]
-        pp_fieldname = ddt_model.fieldname_of_model(
-            "stock.picking.package.preparation", fieldname
-        )
-        if not pp_fieldname:
+        def store_value(vals, tgt_fieldname, src_fieldname, src_obj):
+            if src_fieldname and src_obj and src_fieldname in src_obj:
+                if src_fieldname == "id":
+                    vals[tgt_fieldname] = src_obj.id
+                elif src_obj[src_fieldname]:
+                    if src_fieldname.endswith("_id"):
+                        vals[tgt_fieldname] = src_obj[src_fieldname].id
+                    else:
+                        vals[tgt_fieldname] = src_obj[src_fieldname]
             return vals
-        sp_fieldname = ""
-        so_fieldname = ""
-        if not vals.get(fieldname):
-            sp_fieldname = ddt_model.fieldname_of_model("stock.picking", fieldname)
-            so_fieldname = ddt_model.fieldname_of_model("sale.order", fieldname)
-            dc_fieldname = ddt_model.fieldname_of_model("delivery.carrier", fieldname)
-            dt_fieldname = ddt_model.fieldname_of_model("stock.ddt.type", fieldname)
-            rp_fieldname = ddt_model.fieldname_of_model("res.partner", fieldname)
-            delivery_carrier = False
-            if dc_fieldname:
-                if picking.sale_id and picking.sale_id.carrier_id:
-                    delivery_carrier = picking.sale_id.carrier_id
-            ddt_type = False
-            if dt_fieldname:
-                if picking.ddt_type:
-                    ddt_type = picking.ddt_type
-                elif vals.get("ddt_type_id"):
-                    ddt_type = self.env["stock.ddt.type"].browse(vals["ddt_type_id"])
-            if picking.sale_id and picking.sale_id.partner_id:
-                inv_partner_id = picking.sale_id.partner_id
-            elif picking.partner_id and picking.partner_id.parent_id:
-                inv_partner_id = picking.partner_id.parent_id
-            else:
-                inv_partner_id = False
-            # field from picking ?
-            if sp_fieldname and picking[sp_fieldname]:
-                if fieldname.endswith("_id"):
-                    vals[pp_fieldname] = picking[sp_fieldname].id
-                else:
-                    vals[pp_fieldname] = picking[sp_fieldname]
-            # field from sale.order ?
-            elif so_fieldname and picking.sale_id and picking.sale_id[so_fieldname]:
-                if fieldname.endswith("_id"):
-                    vals[pp_fieldname] = picking.sale_id[so_fieldname].id
-                else:
-                    vals[pp_fieldname] = picking.sale_id[so_fieldname]
-            # field from delivery.carrier?
-            elif dc_fieldname and delivery_carrier and delivery_carrier[dc_fieldname]:
-                if fieldname.endswith("_id"):
-                    vals[pp_fieldname] = delivery_carrier[dc_fieldname].id
-                else:
-                    vals[pp_fieldname] = delivery_carrier[dc_fieldname]
-            # field from stock.ddt.type ?
-            elif dt_fieldname and ddt_type and ddt_type[dt_fieldname]:
-                if fieldname.endswith("_id"):
-                    vals[pp_fieldname] = ddt_type[dt_fieldname].id
-                else:
-                    vals[pp_fieldname] = ddt_type[dt_fieldname]
-            # field from partner ?
-            elif rp_fieldname and inv_partner_id and inv_partner_id[rp_fieldname]:
-                if fieldname.endswith("_id"):
-                    vals[pp_fieldname] = inv_partner_id[rp_fieldname].id
-                else:
-                    vals[pp_fieldname] = inv_partner_id[rp_fieldname]
-            elif defaults and fieldname in defaults:
-                vals[pp_fieldname] = defaults[fieldname]
-        elif fieldname != "note":
-            # check on picking, if field is valid
-            if sp_fieldname and picking[sp_fieldname]:
-                if picking[sp_fieldname].id != vals[pp_fieldname]:
-                    raise UserError(
-                        _("Selected Pickings have different %s" % condition_help)
-                    )
-            # otherwise check in sale order of picking (if exists)
-            elif (
-                picking.sale_id
-                and so_fieldname
-                and picking.sale_id[so_fieldname]
-                and picking.sale_id[so_fieldname].id != vals[pp_fieldname]
-            ):
-                raise UserError(
-                    _("Selected Pickings have different %s" % condition_help)
-                )
+
+        def get_ref_obj(
+            vals, fieldname, ref_fieldname, obj_name, source, source_name, obj,
+        ):
+            if not obj:
+                # Object (carrier/partner/...) does not exist
+                obj_fieldname = self.fieldname_of_model(obj_name, fieldname)
+                if obj_fieldname:
+                    # Object can supply field value: search to load object
+                    tgt_ref_name = self.fieldname_of_model(target, ref_fieldname)
+                    src_ref_name = self.fieldname_of_model(source_name,
+                                                                ref_fieldname)
+                    if vals.get(tgt_ref_name):
+                        # Load form vals ID
+                        obj = self.env[obj_name].browse(vals[tgt_ref_name])
+                    elif src_ref_name and source[src_ref_name]:
+                        # Load object from source
+                        obj = source[src_ref_name]
+                    elif source_name == "stock.picking":
+                        # Load object from sale.order
+                        src_ref_name = self.fieldname_of_model("sale.order",
+                                                                    ref_fieldname)
+                        obj = source.sale_id[src_ref_name]
+                if obj and obj_name:
+                    tgt_fieldname = self.fieldname_of_model(target, fieldname)
+                    vals = store_value(vals, tgt_fieldname, obj_fieldname, obj)
+            return vals
+
+        if source and source._name not in ("stock.picking", "sale.order"):
+            raise UserError(
+                _("Invalid document record type")
+            )
+        target = target or "stock.picking.package.preparation"
+        source_name = source and source._name or target
+        if fieldname in self.env[target]:
+            # Issued target model name
+            tgt_fieldname = fieldname
+            pp_fieldname = self.reverse_fieldname_of_model(target, fieldname)
+        else:
+            # Old way, pp/DdT name
+            tgt_fieldname = self.fieldname_of_model(target, fieldname)
+            pp_fieldname = fieldname
+
+        if vals.get(tgt_fieldname):
+            # There is already the current document value
+            return vals
+        if source_name == "stock.picking":
+            so_fieldname = self.fieldname_of_model("sale.order", pp_fieldname)
+            # sp_fieldname = self.reverse_fieldname_of_model(source_name, pp_fieldname)
+        elif source_name == "sale.order":
+            so_fieldname = self.reverse_fieldname_of_model(source_name, pp_fieldname)
+            # sp_fieldname = self.fieldname_of_model("stock.picking", pp_fieldname)
+        # Searching in document chain
+
+        # 1.st in sale order (id picking)
+        if source_name != "sale.order" and so_fieldname:
+            if not order:
+                if (
+                    source_name == "stock.picking"
+                    and source.sale_id
+                    and source.sale_id[so_fieldname]
+                ):
+                    order = source.sale_id
+            vals = store_value(vals, tgt_fieldname, so_fieldname, order)
+
+        # 2.nd in delivery carrier
+        if not vals.get(tgt_fieldname):
+            vals = get_ref_obj(
+                vals,
+                pp_fieldname,
+                "carrier_id",
+                "delivery.carrier",
+                source,
+                source_name,
+                carrier
+        )
+
+        # 3.th in ddt type
+        if not vals.get(tgt_fieldname):
+            vals = get_ref_obj(
+                vals,
+                pp_fieldname,
+                "ddt_type_id",
+                "stock.ddt.type",
+                source,
+                source_name,
+                ddt_type
+            )
+
+        # 4.th from customer
+        if not vals.get(tgt_fieldname):
+            vals = get_ref_obj(
+                vals,
+                pp_fieldname,
+                "partner_id",
+                "res.partner",
+                source,
+                source_name,
+                partner
+            )
+
+        # Last: from defaults
+        if not vals.get(tgt_fieldname):
+            if defaults and fieldname in defaults:
+                vals[tgt_fieldname] = defaults[fieldname]
+            elif defaults and tgt_fieldname in defaults:
+                vals[tgt_fieldname] = defaults[tgt_fieldname]
+
         return vals
 
     @api.model
@@ -568,7 +614,7 @@ class StockPickingPackagePreparation(models.Model):
         # Search for DdT type
         for picking in all_pickings:
             vals = self.get_delivery_value(
-                vals, picking, "ddt_type_id", _("ddt type"), defaults=defaults)
+                vals, picking, "ddt_type_id", defaults=defaults)
         if not vals.get("ddt_type_id"):
             ddt_type = self.env["stock.ddt.type"].search([], limit=1)
             if ddt_type:
@@ -587,7 +633,7 @@ class StockPickingPackagePreparation(models.Model):
                 ("pricelist_id", _("pricelist")),
             ):
                 vals = self.get_delivery_value(
-                    vals, picking, field, field_help, defaults=defaults)
+                    vals, picking, field, defaults=defaults)
             # Evaluate sum of numeric values
             vals = self.sum_delivery_value(vals, picking, "parcels")
             vals = self.sum_delivery_value(vals, picking, "weight")
@@ -844,8 +890,11 @@ class StockPickingPackagePreparation(models.Model):
                 "transportation_method_id": self.transportation_method_id.id,
                 "partner_carrier_id": self.partner_carrier_id.id,
                 "carrier_id": self.carrier_id.id,
-                "pricelist_id": self.pricelist_id and self.pricelist_id.id
-                                or self._default_pricelist(),
+                "pricelist_id": (
+                    self.pricelist_id
+                    and self.pricelist_id.id
+                    or self._default_pricelist()
+                ),
                 "parcels": self.parcels,
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,

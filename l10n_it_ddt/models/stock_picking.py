@@ -150,7 +150,6 @@ class StockPicking(models.Model):
 
             for fieldname, condition_help in (
                 ("carriage_condition_id", _("carriage condition")),
-                ("goods_description_id", _("goods description")),
                 ("transportation_reason_id", _("transportation reason")),
                 ("transportation_method_id", _("transportation method")),
                 ("partner_carrier_id", _("carrier")),

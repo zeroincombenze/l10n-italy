@@ -85,18 +85,37 @@ class SaleOrder(models.Model):
     )
     delivery_data_set = fields.Boolean(string="Delivery Data is Set")
 
+    @api.model
+    def get_delivery_value(self, fieldname):
+        if not self[fieldname]:
+            ddt_model = self.env["stock.picking.package.preparation"]
+            dc_fieldname = ddt_model.fieldname_of_model("delivery.carrier", fieldname)
+            dt_fieldname = ddt_model.fieldname_of_model("stock.ddt.type", fieldname)
+            rp_fieldname = ddt_model.fieldname_of_model("res.partner", fieldname)
+            if self.carrier_id and dc_fieldname and self.carrier_id[dc_fieldname]:
+                self[fieldname] = self.carrier_id[dc_fieldname]
+            elif self.ddt_type_id and dt_fieldname and self.ddt_type_id[dt_fieldname]:
+                self[fieldname] = self.carrier_id[dt_fieldname]
+            elif self.partner_id and rp_fieldname and self.partner_id[rp_fieldname]:
+                self[fieldname] = self.carrier_id[rp_fieldname]
+
     @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         result = super(SaleOrder, self).onchange_partner_id()
-        if self.partner_id:
-            self.carriage_condition_id = self.partner_id.carriage_condition_id.id
-            self.goods_description_id = self.partner_id.goods_description_id.id
-            self.transportation_reason_id = self.partner_id.transportation_reason_id.id
-            self.transportation_method_id = self.partner_id.transportation_method_id.id
-            self.ddt_invoicing_group = self.partner_id.ddt_invoicing_group
-            self.ddt_invoice_exclude = self.partner_id.ddt_invoice_exclude
-            self.ddt_type = self._default_ddt_type()
+        for fieldname in (
+            "carrier_id",
+            "ddt_type_id",
+            "goods_description_id",
+            "carriage_condition_id",
+            "transportation_reason_id",
+            "transportation_method_id",
+            "partner_carrier_id",
+            "ddt_invoicing_group",
+            "ddt_invoice_exclude",
+        ):
+            self.get_delivery_value(fieldname)
+        self.delivery_data_set = True
         return result
 
     @api.multi
@@ -106,33 +125,36 @@ class SaleOrder(models.Model):
             not self.ddt_type_id.company_id
             or self.ddt_type_id.company_id == self.company_id
         ):
-            for field in (
-                "carriage_condition_id",
+            for fieldname in (
+                "carrier_id",
+                "ddt_type_id",
                 "goods_description_id",
+                "carriage_condition_id",
                 "transportation_reason_id",
                 "transportation_method_id",
+                "partner_carrier_id",
+                "ddt_invoicing_group",
+                "ddt_invoice_exclude",
             ):
-                default_field = "default_%s" % field
-                if self.ddt_type_id[default_field]:
-                    setattr(self, field, self.ddt_type_id[default_field])
-            if self.ddt_type_id.note and not self.note:
-                self.note = self.ddt_type_id.note
+                self.get_delivery_value(fieldname)
             self.delivery_data_set = True
 
     @api.multi
     @api.onchange("carrier_id")
     def onchange_carrier_id(self):
         if self.carrier_id:
-            for field in (
-                "carriage_condition_id",
+            for fieldname in (
+                "carrier_id",
+                "ddt_type_id",
                 "goods_description_id",
+                "carriage_condition_id",
                 "transportation_reason_id",
                 "transportation_method_id",
+                "partner_carrier_id",
+                "ddt_invoicing_group",
+                "ddt_invoice_exclude",
             ):
-                if self.carrier_id[field]:
-                    setattr(self, field, self.carrier_id[field])
-            if self.carrier_id.note and not self.note:
-                self.note = self.carrier_id.note
+                self.get_delivery_value(fieldname)
             self.delivery_data_set = True
 
     @api.multi
@@ -222,69 +244,30 @@ class SaleOrder(models.Model):
         return result
 
     def get_delivery_values(self, vals):
-        """If write is called from exteranl partner (i.e. e-commerce)
+        """If write is called from external partner (i.e. e-commerce)
         delivery data will be empty even if ddt_type and/or carrier_id are set
         In ordinary edit by end-user, delivery_data_set is True"""
+        if self.id and self.delivery_data_set:
+            vals["delivery_data_set"] = True
         if not vals.get("delivery_data_set"):
-            partner = False
-            if vals.get("partner_id"):
-                partner = self.env["res.partner"].browse(vals["partner_id"])
-            elif self.id:
-                partner = self.partner_id
-            if partner:
-                for field in (
-                    "carriage_condition_id",
-                    "goods_description_id",
-                    "transportation_reason_id",
-                    "transportation_method_id",
-                    "ddt_invoicing_group",
-                    "ddt_invoice_exclude",
-                ):
-                    if partner[field] and not vals.get(field):
-                        if field.endswith("_id"):
-                            vals[field] = partner[field].id
-                        else:
-                            vals[field] = partner[field]
-                if (
-                    partner["property_delivery_carrier_id"]
-                    and not vals.get("carrier_id")
-                ):
-                    vals["carrier_id"] = partner["property_delivery_carrier_id"].id
-                if not vals.get("ddt_type_id"):
-                    vals["ddt_type_id"] = self.env["sale.order"]._default_ddt_type()
-            ddt_type = False
-            if vals.get("ddt_type_id"):
-                ddt_type = self.env["stock.ddt.type"].browse(vals["ddt_type_id"])
-            elif self.id:
-                ddt_type = self.ddt_type_id
-            if ddt_type:
-                for field in (
-                    "carriage_condition_id",
-                    "goods_description_id",
-                    "transportation_reason_id",
-                    "transportation_method_id",
-                ):
-                    default_field = "default_%s" % field
-                    if ddt_type[default_field] and not vals.get(field):
-                        vals[field] = ddt_type[default_field].id
-                if self.ddt_type_id.note and not self.note:
-                    self.note = self.ddt_type_id.note
-            carrier = False
-            if vals.get("carrier_id"):
-                carrier = self.env["delivery.carrier"].browse(vals["carrier_id"])
-            elif self.id:
-                carrier = self.carrier_id
-            if carrier:
-                for field in (
-                    "carriage_condition_id",
-                    "goods_description_id",
-                    "transportation_reason_id",
-                    "transportation_method_id",
-                    "partner_carrier_id",
-                ):
-                    if carrier[field] and not vals.get(field):
-                        vals[field] = carrier[field].id
-        vals["delivery_data_set"] = True
+            for fieldname in (
+                "carrier_id",
+                "ddt_type_id",
+                "goods_description_id",
+                "carriage_condition_id",
+                "transportation_reason_id",
+                "transportation_method_id",
+                "partner_carrier_id",
+                "ddt_invoicing_group",
+                "ddt_invoice_exclude",
+            ):
+                vals = self.env["stock.picking.package.preparation"].get_delivery_value(
+                    vals,
+                    self if self.id else None,
+                    fieldname,
+                    target="sale.order",
+                )
+            vals["delivery_data_set"] = True
         return vals
 
     @api.multi

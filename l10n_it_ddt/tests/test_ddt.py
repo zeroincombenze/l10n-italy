@@ -230,6 +230,7 @@ TEST_SALE_ORDER = {
         "date_order": "2022-06-25",
         "partner_id": "z0bug.res_partner_2",
         "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
+        "carrier_id": "delivery.delivery_carrier",
     },
     # Sale Order without Picking
     "z0bug.sale_order_Z0_4": {
@@ -239,6 +240,7 @@ TEST_SALE_ORDER = {
         "date_order": "2022-06-26",
         "partner_id": "z0bug.res_partner_2",
         "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
+        "carrier_id": "delivery.normal_delivery_carrier",
     },
 }
 
@@ -598,7 +600,12 @@ class SaleOrder(common.TransactionCase):
                 TEST_SALE_ORDER[xref])
             order = self.model_make(model, vals, xref)
             order.onchange_partner_id()
-            if order.partner_id == self.env.ref("z0bug.res_partner_2"):
+            if order.origin == "Test2":
+                self.assertEqual(
+                    order.carrier_id,
+                    self.env.ref("delivery.delivery_carrier"),
+                    msg="Invalid order delivery carrier %s!" %
+                        order.carrier_id)
                 self.assertEqual(
                     order.transportation_method_id,
                     self.env.ref("l10n_it_ddt.transportation_method_COR"),
@@ -609,12 +616,35 @@ class SaleOrder(common.TransactionCase):
                     self.env.ref("l10n_it_ddt.carriage_condition_PAF"),
                     msg="Invalid order carriage condition %s!" %
                         order.carriage_condition_id)
+                # Good description from Carrier Delivery
+                self.assertEqual(
+                    order.goods_description_id,
+                    self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                    msg="Invalid order goods description %s!" %
+                        order.goods_description_id)
+            else:
+                self.assertEqual(
+                    order.carrier_id,
+                    self.env.ref("delivery.normal_delivery_carrier"),
+                    msg="Invalid order delivery carrier %s!" %
+                        order.carrier_id)
+                self.assertEqual(
+                    order.transportation_method_id,
+                    self.env.ref("l10n_it_ddt.transportation_method_COR"),
+                    msg="Invalid order transportation method %s!" %
+                        order.transportation_method_id)
+                self.assertEqual(
+                    order.carriage_condition_id,
+                    self.env.ref("l10n_it_ddt.carriage_condition_PAF"),
+                    msg="Invalid order carriage condition %s!" %
+                        order.carriage_condition_id)
+                # Good description from Customer
                 self.assertEqual(
                     order.goods_description_id,
                     self.env.ref("l10n_it_ddt.goods_description_SFU"),
                     msg="Invalid order goods description %s!" %
                         order.goods_description_id)
-            order.carrier_id = self.env.ref("delivery.delivery_carrier").id
+            order.carrier_id = self.env.ref("delivery.normal_delivery_carrier").id
 
             for xref_child in TEST_SALE_ORDER_LINE.values():
                 if xref_child["order_id"] == xref:
@@ -640,6 +670,7 @@ class SaleOrder(common.TransactionCase):
                 self.assertEqual(
                     order.picking_ids, self.ddt.picking_ids,
                     msg="Order picking different from DdT picking")
+                # Good description from Sale Order
                 self.assertEqual(
                     self.ddt.goods_description_id,
                     self.env.ref("l10n_it_ddt.goods_description_CAR"),
