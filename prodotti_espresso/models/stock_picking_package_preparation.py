@@ -34,7 +34,6 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     def cron_send_all_ddt_mail(self):
-        import pdb; pdb.set_trace()
         for ddt in self.search([("to_send_mail", "=", True)]):
             ddt.action_auto_send_ddt_mail()
 
