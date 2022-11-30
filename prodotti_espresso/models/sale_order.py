@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.multi
-    def generate_ddt_espresso(self, validate=None):
+    def generate_ddt_espresso(self, validate=None, to_send_mail=None):
 
         def exec_wizard(action):
             res_model = action['res_model']
@@ -89,32 +89,7 @@ class SaleOrder(models.Model):
                     }
                 )
             )
-            # if not ship_prod:
-            #     ship_prod = shipping
-            #     carrier_id = self.env["delivery.carrier"].search(
-            #         [("name", "=", shipping.name)])[0]
-            # ship_line = False
-            # for line in ddt.line_ids:
-            #     if line.product_id and line.product_id in (ship_prod, shipping):
-            #         ship_line = line
-            #         break
-            # if carrier_id:
-            #     shipping_cost = (False if ddt.amount_untaxed >= carrier_id.amount
-            #                      else True)
-            #     if ship_line and not shipping_cost:
-            #         line.unlink()
-            #     elif not ship_line and shipping_cost:
-            #         vals = {
-            #             'package_preparation_id': ddt.id,
-            #             'product_id': ship_prod.id,
-            #             'product_uom_id': ship_prod.uom_id,
-            #             'product_qty_uom': 1.0,
-            #             'price_unit': carrier_id.fixed_price,
-            #             'name': ship_prod.name,
-            #             'tax_ids': [6, 0, [False]],
-            #             'sequence': 9999,
-            #         }
-            #         self.env["stock.picking.package.preparation.line"].create(vals)
+            ddt.to_send_mail = to_send_mail or True
             if validate:
                 ddt.set_done()
             ddt_ids.append(ddt.id)

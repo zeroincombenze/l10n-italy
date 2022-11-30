@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Prodotti Espresso 10.0.1.0.2
+|icon| Prodotti Espresso 10.0.1.0.3
 ===================================
 
 
@@ -161,6 +161,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.3 (2022-11-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invio mail
+
 12.0.1.0.2 (2022-10-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -237,7 +242,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-11-07
+Last Update / Ultimo aggiornamento: 2022-11-30
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

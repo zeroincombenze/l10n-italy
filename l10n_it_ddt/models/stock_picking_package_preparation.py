@@ -451,7 +451,7 @@ class StockPickingPackagePreparation(models.Model):
                     if vals.get(tgt_ref_name):
                         # Load form vals ID
                         obj = self.env[obj_name].browse(vals[tgt_ref_name])
-                    elif src_ref_name and source[src_ref_name]:
+                    elif src_ref_name and source and source[src_ref_name]:
                         # Load object from source
                         obj = source[src_ref_name]
                     elif source_name == "stock.picking":
