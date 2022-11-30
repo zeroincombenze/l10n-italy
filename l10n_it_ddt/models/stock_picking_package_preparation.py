@@ -174,10 +174,10 @@ class StockPickingPackagePreparation(models.Model):
             return 1
         return self.parcels
 
-    @api.depends("line_ids.price_total")
+    @api.depends("line_ids.price_total", "delivery_price")
     def _amount_all(self):
         """
-        Compute the total amounts of the SO.
+        Compute the total amounts of the DdT.
         """
         for ddt in self:
             amount_untaxed = amount_tax = tax_rate = 0.0
@@ -354,6 +354,13 @@ class StockPickingPackagePreparation(models.Model):
                 else self.ddt_type_id.default_transportation_method_id
             )
             self.show_price = self.partner_id.ddt_show_price
+
+    @api.multi
+    @api.onchange("carrier_id")
+    def onchange_carrier_id(self):
+        if self.state == 'draft':
+            self.delivery_set()
+            # self._amount_all()
 
     @api.model
     def check_linked_picking(self, picking):
