@@ -95,9 +95,9 @@ class SaleOrder(models.Model):
             if self.carrier_id and dc_fieldname and self.carrier_id[dc_fieldname]:
                 self[fieldname] = self.carrier_id[dc_fieldname]
             elif self.ddt_type_id and dt_fieldname and self.ddt_type_id[dt_fieldname]:
-                self[fieldname] = self.carrier_id[dt_fieldname]
+                self[fieldname] = self.ddt_type_id[dt_fieldname]
             elif self.partner_id and rp_fieldname and self.partner_id[rp_fieldname]:
-                self[fieldname] = self.carrier_id[rp_fieldname]
+                self[fieldname] = self.partner_id[rp_fieldname]
 
     @api.multi
     @api.onchange("partner_id")
