@@ -70,7 +70,7 @@ class AccountInvoice(models.Model):
     @api.depends('carrier_id', 'invoice_line_ids')
     def _compute_delivery_price(self):
         for inv in self:
-            if inv.state != 'draft':
+            if inv.state != 'draft' or not inv.carrier_id:
                 continue
             elif inv.carrier_id.delivery_type != 'grid' and not inv.invoice_line_ids:
                 continue

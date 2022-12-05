@@ -3,7 +3,7 @@
 #    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 from odoo import api, fields, models
-from odoo.tools.safe_eval import safe_eval
+# from odoo.tools.safe_eval import safe_eval
 
 
 class StockPickingPackagePreparation(models.Model):

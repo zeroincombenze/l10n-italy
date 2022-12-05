@@ -162,6 +162,7 @@ class SaleOrder(models.Model):
         vals = super(SaleOrder, self)._prepare_invoice()
         vals.update(
             {
+                "carrier_id": self.carrier_id.id,
                 "carriage_condition_id": self.carriage_condition_id.id,
                 "goods_description_id": self.goods_description_id.id,
                 "transportation_reason_id": self.transportation_reason_id.id,

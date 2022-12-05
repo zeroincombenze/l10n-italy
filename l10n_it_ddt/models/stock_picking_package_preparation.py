@@ -447,7 +447,7 @@ class StockPickingPackagePreparation(models.Model):
                     # Object can supply field value: search to load object
                     tgt_ref_name = self.fieldname_of_model(target, ref_fieldname)
                     src_ref_name = self.fieldname_of_model(source_name,
-                                                                ref_fieldname)
+                                                           ref_fieldname)
                     if vals.get(tgt_ref_name):
                         # Load form vals ID
                         obj = self.env[obj_name].browse(vals[tgt_ref_name])
@@ -457,7 +457,7 @@ class StockPickingPackagePreparation(models.Model):
                     elif source_name == "stock.picking":
                         # Load object from sale.order
                         src_ref_name = self.fieldname_of_model("sale.order",
-                                                                    ref_fieldname)
+                                                               ref_fieldname)
                         obj = source.sale_id[src_ref_name]
                 if obj and obj_name:
                     tgt_fieldname = self.fieldname_of_model(target, fieldname)
@@ -511,7 +511,7 @@ class StockPickingPackagePreparation(models.Model):
                 source,
                 source_name,
                 carrier
-        )
+            )
 
         # 3.th in ddt type
         if not vals.get(tgt_fieldname):
@@ -628,7 +628,7 @@ class StockPickingPackagePreparation(models.Model):
                 vals["ddt_type_id"] = ddt_type[0].id
         for picking in all_pickings:
             # Load specific delivery value
-            for field, field_help in (
+            for field, _field_help in (
                 ("carrier_id", _("delivery method")),
                 ("partner_carrier_id", _("carrier")),
                 ("show_price", _("show price")),
@@ -918,12 +918,13 @@ class StockPickingPackagePreparation(models.Model):
         Create the invoice associated to the DDT.
         :returns: list of created invoices
         """
+
         inv_model = self.env["account.invoice"]
         invoices = {}
         references = {}
         seq_offset = 0
         for ddt in self:
-            if not ddt.to_be_invoiced or ddt.invoice_id:
+            if not ddt.to_be_invoiced or ddt.invoice_id or ddt.state != "done":
                 continue
             order = ddt._get_sale_order_ref()
             invoiced_order_lines = []
@@ -1004,6 +1005,8 @@ class StockPickingPackagePreparation(models.Model):
                     invoices[group_key].id, line.product_uom_qty, offset=seq_offset
                 )
                 max_ddt_seq = max(max_ddt_seq, line.sequence)
+            if invoice and ddt.delivery_price and ddt.carrier_id:
+                invoice._create_delivery_line(ddt.carrier_id, ddt.delivery_price)
 
             seq_offset += max_ddt_seq
             if ddt_invoiced and invoice:
@@ -1048,7 +1051,7 @@ class StockPickingPackagePreparation(models.Model):
             # Necessary to force computation of taxes. In account_invoice,
             # they are triggered
             # by onchanges, which are not triggered when doing a create.
-            invoice.delivery_set()
+            # invoice.delivery_set()
             invoice.compute_taxes()
             invoice.message_post_with_view(
                 "mail.message_origin_link",
