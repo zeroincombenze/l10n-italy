@@ -66,6 +66,46 @@ class StockPicking(models.Model):
         else:
             return self.location_dest_id.partner_id
 
+    @api.model
+    def exec_wizard(self, act_windows, res_model, action, default=None, ctx=None):
+        default = default or {}
+        if act_windows:
+            ctx = act_windows['context'] or {}
+            res_model = act_windows['res_model']
+            res_id = act_windows['res_id']
+        else:
+            ctx = ctx or {}
+            res_id = False
+        if res_id:
+            wizard = self.env[res_model].with_context(ctx).browse(res_id)
+        else:
+            wizard = self.env[res_model].with_context(ctx).create(default)
+        if hasattr(wizard, action):
+            return getattr(wizard, action)()
+        return False
+
+    @api.multi
+    def action_cancel(self):
+        for picking in self:
+            if picking.state == "done":
+                act_windows = self.exec_wizard(
+                    False,
+                    "stock.return.picking",
+                    "create_returns",
+                    ctx={
+                        "active_id": picking.id,
+                        "active_ids": [picking.id],
+                    }
+                )
+                act_windows = self.browse(act_windows["res_id"]).do_new_transfer()
+                act_windows = self.exec_wizard(
+                    act_windows,
+                    False,
+                    "process",
+                )
+                return False
+        return super(StockPicking, self).action_cancel()
+
     @api.multi
     def open_form_current(self):
         self.ensure_one()

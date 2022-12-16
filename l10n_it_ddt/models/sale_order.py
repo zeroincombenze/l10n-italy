@@ -183,6 +183,8 @@ class SaleOrder(models.Model):
         orders = []
         for order in self:
             for picking in order.picking_ids:
+                if picking.picking_type_code != "outgoing":
+                    continue
                 if (
                     picking.state in ("draft",
                                       "waiting",
@@ -196,9 +198,11 @@ class SaleOrder(models.Model):
                 if picking.sale_id not in orders:
                     orders.append(picking.sale_id)
         if not pickings:
-            raise UserError(_("There are not picking to create a DdT"))
+            raise UserError(                                         # pragma: no cover
+                _("There are not picking to create a DdT"))          # pragma: no cover
         if any([x for x in orders if x.state != 'sale']):
-            raise UserError("There are some unconfirmed sale orders!")
+            raise UserError(                                         # pragma: no cover
+                "There are some unconfirmed sale orders!")           # pragma: no cover
         ddt = ddt_model.create(
             ddt_model.preparare_ddt_data(pickings=pickings)
         )
@@ -211,10 +215,13 @@ class SaleOrder(models.Model):
     def action_cancel(self):
         for order in self:
             for ddt in order.ddt_ids:
-                if ddt.state == "draft":
+                if ddt.state == "cancel":
                     ddt.unlink()
                 else:
                     raise UserError(_("Document has ddt %s linked" % ddt.ddt_number))
+            for picking in order.picking_ids:
+                if picking.state == "done":
+                    picking.action_cancel()
         return super(SaleOrder, self).action_cancel()
 
     @api.multi

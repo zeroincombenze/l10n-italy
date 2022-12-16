@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 
 
@@ -13,14 +13,11 @@ class StockPicking(models.Model):
     # @api.multi
     # def action_cancel(self):
     #     for move in self:
-    #         if move.procurement_id:
-    #             move.procurement_id.cancel()
-    #         for quant in move.quant_ids:
-    #             quant.quants_move(
-    #                 quant, move, move.location_id,
-    #                 location_from=move.location_dest_id,
-    #                 lot_id=move.lot_ids and move.lot_ids[0] or False)
-    #         move.write({'state': 'cancel', 'date': False})
-    #         if move.picking_id:
-    #             move.picking_id.action_revert_done()
-    #     return True
+    #         if move.state == "done":
+    #             # Force cancel of "done" state !?!?!?
+    #             if move.procurement_id and move.procurement_id == "done":
+    #                 move.procurement_id.write({'state': 'running'})
+    #             move.write({'state': 'assigned'})
+    #             if move.picking_id and move.picking_id.state == "done":
+    #                 move.picking_id.write({'state': 'assigned'})
+    #     return super(StockPicking, self).action_cancel()

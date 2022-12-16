@@ -89,6 +89,8 @@ class SaleOrder(models.Model):
                     }
                 )
             )
+            # Workaround?
+            ddt._amount_all()
             ddt.to_send_mail = to_send_mail or True
             if validate:
                 ddt.set_done()

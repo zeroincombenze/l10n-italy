@@ -70,15 +70,13 @@ class AccountInvoice(models.Model):
     @api.depends('carrier_id', 'invoice_line_ids')
     def _compute_delivery_price(self):
         for inv in self:
-            if inv.state != 'draft' or not inv.carrier_id:
+            if inv.state != 'draft' or not inv.invoice_line_ids:
                 continue
-            elif inv.carrier_id.delivery_type != 'grid' and not inv.invoice_line_ids:
-                continue
-            else:
-                inv.delivery_price = inv.company_id.currency_id.with_context(
-                    date=inv.date_invoice).compute(
-                    inv.carrier_id.with_context(
-                        order_id=inv.id).price, inv.pricelist_id.currency_id)
+            delivery_price = 0.0
+            for line in inv.invoice_line_ids:
+                if line.is_delivery:
+                    delivery_price += line.price_subtotal
+            inv.delivery_price = delivery_price
 
     @api.multi
     def _delivery_unset(self):
@@ -92,31 +90,32 @@ class AccountInvoice(models.Model):
         self._delivery_unset()
 
         for inv in self:
-            carrier = inv.carrier_id
-            if carrier:
-                if inv.state not in ('draft', 'sent'):
-                    raise UserError(_(
-                        'The invoice state have to be draft to add delivery lines.'))
-
-                if carrier.delivery_type not in ['fixed', 'base_on_rule']:
-                    price_unit = inv.carrier_id.get_shipping_price_from_so(inv)[0]
-                else:
-                    carrier = inv.carrier_id.verify_carrier(inv.partner_shipping_id)
-                    if not carrier:
-                        raise UserError(_('No carrier matching.'))
-                    price_unit = carrier.get_invoice_price_available(inv)
-                    if inv.company_id.currency_id.id != inv.pricelist_id.currency_id.id:
-                        price_unit = inv.company_id.currency_id.with_context(
-                            date=inv.date_invoice).compute(
-                            price_unit, inv.pricelist_id.currency_id)
-
-                final_price = price_unit * (1.0 +
-                                            (float(self.carrier_id.margin) / 100.0))
-                inv._create_delivery_line(carrier, final_price)
-
-            else:
-                raise UserError(_('No carrier set for this order.'))
-
+            if inv.state not in ('draft', 'sent'):
+                raise UserError(_(
+                    'The invoice state have to be draft to add delivery lines.'))
+            carriers = {}
+            delivery_price = 0.0
+            for line in inv.invoice_line_ids:
+                if line.ddt_line_id:
+                    ddt = line.ddt_line_id.package_preparation_id
+                    if ddt not in carriers:
+                        carriers[ddt] = {}
+                        if ddt.carrier_id:
+                            carriers[ddt]["carrier"] = ddt.carrier_id
+                        elif (
+                            line.sale_line_id
+                            and line.sale_line_id.order_id
+                            and line.sale_line_id.order_id.carrier_id
+                        ):
+                            carriers[ddt]["carrier"] = (
+                                line.sale_line_id.order_id.carrier_id
+                            )
+                        carriers[ddt]["delivery_price"] = ddt.delivery_price
+                        delivery_price += ddt.delivery_price
+            for ddt in carriers.keys():
+                inv._create_delivery_line(carriers[ddt]["carrier"],
+                                          carriers[ddt]["delivery_price"])
+            inv.delivery_price = delivery_price
         return True
 
     def _create_delivery_line(self, carrier, price_unit):

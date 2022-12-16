@@ -676,6 +676,14 @@ class StockPickingPackagePreparation(models.Model):
         return super(StockPickingPackagePreparation, packages).action_put_in_pack()
 
     @api.multi
+    def action_cancel(self):
+        for ddt in self:
+            for picking in ddt.picking_ids:
+                if picking.state == "done":
+                    picking.action_cancel()
+        return super(StockPickingPackagePreparation, self).action_cancel()
+
+    @api.multi
     def set_draft(self):
         invoiced = bool(self.invoice_id)
         picking_ids = []
