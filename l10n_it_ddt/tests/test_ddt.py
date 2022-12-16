@@ -36,16 +36,6 @@ TEST_ACCOUNT_ACCOUNT = {
     },
 }
 TEST_ACCOUNT_TAX = {
-    # "external.22a": {
-    #     "amount_type": "percent",
-    #     "account_id": "external.1601",
-    #     "name": "IVA 22% da acquisti",
-    #     "refund_account_id": "external.1601",
-    #     "amount": 22,
-    #     "type_tax_use": "purchase",
-    #     "price_include": False,
-    #     "description": "22a",
-    # },
     "external.22v": {
         "amount_type": "percent",
         "account_id": "external.2601",
@@ -73,7 +63,6 @@ TEST_PRODUCT_TEMPLATE = {
         "weight": 0.1,
         "type": "consu",
         "standard_price": 0.42,
-        # "supplier_taxes_id": "external.22a",
         "uom_id": "product.product_uom_unit",
         "lst_price": 0.84,
         "default_code": "AA",
@@ -87,7 +76,6 @@ TEST_PRODUCT_TEMPLATE = {
         "weight": 0.2,
         "type": "consu",
         "standard_price": 1.69,
-        # "supplier_taxes_id": "external.22a",
         "uom_id": "product.product_uom_unit",
         "lst_price": 3.38,
         "default_code": "BB",
@@ -101,7 +89,6 @@ TEST_PRODUCT_TEMPLATE = {
         "weight": 0.06,
         "type": "product",
         "standard_price": 0.59,
-        # "supplier_taxes_id": "external.22a",
         "uom_id": "product.product_uom_unit",
         "lst_price": 1.19,
         "default_code": "WW",
@@ -113,11 +100,9 @@ TEST_PRODUCT_TEMPLATE = {
 TEST_RES_PARTNER = {
     "z0bug.res_partner_2": {
         "street": "Via Dueville, 2",
-        # "property_payment_term_id": "z0bug.payment_2",
         "city": "S. Secondo Pinerolo",
         "zip": "10060",
         "country_id": "base.it",
-        # "property_account_position_id": "z0bug.fiscalpos_it",
         "supplier": False,
         "email": "agrolait2@libero.it",
         "vat": "IT02345670018",
@@ -134,11 +119,9 @@ TEST_RES_PARTNER = {
     },
     "z0bug.res_partner_13": {
         "street": "Christophstraße 13",
-        # "property_payment_term_id": "z0bug.payment_5",
         "city": "Määnz",
         "zip": "55113",
         "country_id": "base.de",
-        # "property_account_position_id": "z0bug.fiscalpos_eu",
         "supplier": False,
         "vat": "DE812526315",
         "lang": "en_US",
@@ -202,9 +185,8 @@ TEST_SALE_ORDER = {
     # Sale Order with Picking
     "z0bug.sale_order_Z0_2": {
         "origin": "Test2",
-        # "payment_term_id": "z0bug.payment_2",
         "client_order_ref": "220123",
-        "date_order": "2022-06-25",
+        "date_order": "####-##-<#",
         "partner_id": "z0bug.res_partner_2",
         "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
         "carrier_id": "delivery.delivery_carrier",
@@ -212,9 +194,8 @@ TEST_SALE_ORDER = {
     # Sale Order without Picking
     "z0bug.sale_order_Z0_4": {
         "origin": "Test4",
-        # "payment_term_id": "z0bug.payment_2",
         "client_order_ref": "IT/22/004",
-        "date_order": "2022-06-26",
+        "date_order": "####-##-##",
         "partner_id": "z0bug.res_partner_2",
         "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
         "carrier_id": "delivery.normal_delivery_carrier",
@@ -223,7 +204,7 @@ TEST_SALE_ORDER = {
 
 TEST_STOCK_INVENTORY = {
     "z0bug.inventory_1": {
-        "date": "####-##-##",
+        "date": "####-##-<#",
         "name": "Test Inventory",
         "filter": "none",
         "location_id": "stock.stock_location_stock",
@@ -243,7 +224,7 @@ TEST_STOCK_INVENTORY_LINE = {
 class TestDdt(SingleTransactionCase):
     def setUp(self):
         super(TestDdt, self).setUp()
-        self.debug_level = 0
+        self.debug_level = 1
         data = {"TEST_SETUP_LIST": TEST_SETUP_LIST}
         for resource in TEST_SETUP_LIST:
             item = "TEST_%s" % resource.upper().replace(".", "_")
