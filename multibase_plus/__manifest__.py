@@ -8,11 +8,12 @@
     "website": "https://github.com/OCA/l10n-italy",
     "category": "Base",
     "license": "LGPL-3",
-    "version": "10.0.0.1.4",
-    "depends": ["base", "account", "sale"],
+    "version": "10.0.0.1.5",
+    "depends": ["base", "account", "sale", "purchase"],
     "data": [
         "views/sale_order_view.xml",
         "views/account_invoice_view.xml",
+        "views/purchase_order_view.xml",
     ],
     "installable": True,
 }
