@@ -67,9 +67,9 @@ class AccountMoveLine(models.Model):
         "riba.distinta.move.line", "move_line_id", "Dettaglio riba", copy=False
     )
     riba = fields.Boolean(
-        related="invoice_id.payment_term_id.riba",
+        # related="invoice_id.payment_term_id.riba",
         string="RiBa",
-        store=False,
+        # store=False,
         copy=False,
     )
     unsolved_invoice_ids = fields.Many2many(
@@ -123,7 +123,7 @@ class AccountMoveLine(models.Model):
             for riba_line in riba_lines:
                 # allowed transitions:
                 # accredited_to_paid and accepted_to_paid. See workflow
-                if riba_line.state in ["confirmed", "accredited"]:
+                if riba_line.state in ["accepted", "accredited"]:
                     if riba_line.test_reconciled():
                         riba_line.state = "paid"
                         riba_line.distinta_id.signal_workflow("paid")
@@ -192,11 +192,6 @@ class AccountInvoice(models.Model):
                 or invoice.payment_term_id.riba_payment_cost == 0.0
             ):
                 continue
-            # for move_line in invoice.move_id.line_ids:
-            #     if move_line.account_id.internal_type == "receivable":
-            #         move_line.riba = invoice.payment_term_id.riba
-            # if invoice.payment_term_id.riba_payment_cost == 0.0:
-            #     continue
 
             if not invoice.company_id.due_cost_service_id:
                 raise UserError(_("Set a Service for Due Cost in Company Config"))
@@ -206,7 +201,7 @@ class AccountInvoice(models.Model):
                 [("partner_id", "=", invoice.partner_id.id)]
             )
             # ---- Filtered recordset with date_maturity
-            move_line = move_line.filtered(lambda l: l.date_maturity is not False)
+            move_line = move_line.filtered(lambda ln: ln.date_maturity is not False)
             # ---- Sorted
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
             # ---- Get date
@@ -227,11 +222,6 @@ class AccountInvoice(models.Model):
                         "invoice_id": invoice.id,
                         "price_unit": (invoice.payment_term_id.riba_payment_cost),
                         "due_cost_line": True,
-                        # 'name': _('{line_name} for {month}-{year}').format(
-                        #     line_name=service_prod.name,
-                        #     month=pay_date[0][5:7],
-                        #     year=pay_date[0][:4],
-                        # ),
                         "name": _("{line_name}").format(
                             line_name=service_prod.name,
                         ),
@@ -246,6 +236,17 @@ class AccountInvoice(models.Model):
                     # ---- recompute invoice taxes
                     invoice.compute_taxes()
         super(AccountInvoice, self).action_move_create()
+        for invoice in self:
+            if (
+                invoice.type != "out_invoice"
+                or not invoice.payment_term_id
+                or not invoice.payment_term_id.riba
+            ):
+                continue
+            for move_line in invoice.move_id.line_ids:
+                if move_line.account_id.internal_type == "receivable":
+                    move_line.riba = invoice.payment_term_id.riba
+        return True
 
     @api.multi
     def action_invoice_draft(self):
@@ -322,7 +323,7 @@ class AccountFullReconcile(models.Model):
                         riba_line.state = "accredited"
                         riba_line.distinta_id.signal_workflow("accredited")
                     else:
-                        riba_line.state = "confirmed"
+                        riba_line.state = "accepted"
                         riba_line.distinta_id.signal_workflow("accepted")
 
     @api.multi
@@ -358,3 +359,20 @@ class AccountPartialReconcile(models.Model):
             [("acceptance_move_id", "=", self.credit_move_id.move_id.id)]
         )
         return riba_lines
+
+
+class account_payment(models.Model):
+    _inherit = 'account.payment'
+
+    def post(self):
+        res = super(account_payment, self).post()
+        for pay_line in self.move_line_ids:
+            if (
+                pay_line.full_reconcile_id
+                    and pay_line.full_reconcile_id.reconciled_line_ids
+            ):
+                for move_line in pay_line.full_reconcile_id.reconciled_line_ids:
+                    for riba_move_line in move_line.distinta_line_ids:
+                        riba_line = riba_move_line.riba_line_id
+                        riba_line.riba_line_back2state("paid")
+        return res

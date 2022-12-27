@@ -38,8 +38,6 @@ class RibaIssue(models.TransientModel):
 
         self.ensure_one()
         # Qui creiamo la distinta
-        # wizard_obj = self.browse(cr, uid, ids)[0]
-        # active_ids = context and context.get('active_ids', [])
         riba_list = self.env["riba.distinta"]
         riba_list_line = self.env["riba.distinta.line"]
         riba_list_move_line = self.env["riba.distinta.move.line"]

@@ -28,26 +28,33 @@
                         colspan="4"
                         col="4"
                     >
-                        <separator colspan="4" string="Acceptance" />
-                        <field
-                            name="acceptance_journal_id"
-                            attrs="{'required':[('type','=','sbf')]}"
-                        />
+                        <separator colspan="4" string="Acceptance (debit / credit)" />
                         <field
                             name="acceptance_account_id"
                             attrs="{'required':[('type','=','sbf')]}"
                         />
-                        <separator colspan="4" string="Accreditation" />
-                        <field name="accreditation_journal_id" />
-                        <field name="accreditation_account_id" />
-                        <field name="bank_account_id" />
+
+                        <field
+                            name="acceptance_journal_id"
+                            attrs="{'required':[('type','=','sbf')]}"
+                        />
+                        <separator colspan="4" string="Accreditation (debit / credit)" />
+                        <field name="accreditation_account_debit_id" />
+                        <field name="accreditation_account_credit_id" />
                         <field name="bank_expense_account_id" />
-                        <separator colspan="4" string="Unsolved" />
-                        <field name="unsolved_journal_id" />
-                        <field name="overdue_effects_account_id" />
-                        <field name="protest_charge_account_id" />
-                        <separator colspan="4" string="Settlement" />
+                        <field name="accreditation_journal_id" />
+
+                        <separator colspan="4" string="Settlement (debit / credit)" />
+                        <field name="settlement_account_debit_id" />
+                        <field name="settlement_account_credit_id" />
                         <field name="settlement_journal_id" />
+
+                        <separator colspan="4" string="Unsolved (debit / credit)" />
+                        <field name="overdue_account_debit_id" />
+                        <field name="overdue_account_credit_id" />
+                        <field name="overdue_expenses_account_id" />
+                        <field name="unsolved_journal_id" />
+
                     </group>
                 </form>
             </field>

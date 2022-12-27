@@ -79,7 +79,7 @@ msgid "Account Entry"
 msgstr "Registrazione Contabile"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_bank_account_id
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_debit_id
 msgid ""
 "Account receiving amount when list is accepted by the bank.\n"
 "May be the liquidity bank account or a transitory account."
@@ -93,7 +93,7 @@ msgid "Account used when Ri.Ba. is accepted by the bank"
 msgstr "Il conto degli effetti attivi"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_credit_id
 msgid "Account used when Ri.Ba. list is accepted by the bank"
 msgstr "Conto contabile di effetti all’incasso"
 
@@ -255,9 +255,9 @@ msgid "Bank Expenses account"
 msgstr "Conto spese bancarie"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_bank_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_bank_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_bank_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_debit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_debit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_accreditation_account_debit_id
 msgid "Bank account"
 msgstr "Conto bancario"
 
@@ -985,13 +985,13 @@ msgid "Overdue Effects"
 msgstr "Effetti insoluti"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_effects_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_effects_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_account_debit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_account_debit_id
 msgid "Overdue Effects account"
 msgstr "Conto effetti insoluti"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_effects_amount
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_account_credit_id
 msgid "Overdue Effects amount"
 msgstr "Importo effetti insoluti"
 
@@ -1076,7 +1076,7 @@ msgid "Pos."
 msgstr "Pos."
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_protest_charge_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_expenses_account_id
 msgid "Protest charge account"
 msgstr "Conto spese di protesto"
 
@@ -1156,8 +1156,8 @@ msgid "Ri.Ba. Unsolved"
 msgstr "Ri.Ba. Insoluta"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_riba_bank_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_credit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_riba_accreditation_account_debit_id
 msgid "Ri.Ba. bank account"
 msgstr "Conto anticipo SBF (se presente)"
 
@@ -1177,7 +1177,7 @@ msgid "Ri.Ba. properties"
 msgstr "Proprietà Ri.Ba"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_credit_id
 msgid "Ri.Ba. transitory bank account"
 msgstr "Ri.Ba. transitory bank account"
 

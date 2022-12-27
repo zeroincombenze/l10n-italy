@@ -68,7 +68,7 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_account_id
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_credit_id
 msgid "Account used when Ri.Ba. is accepted by the bank"
 msgstr ""
 
@@ -158,9 +158,9 @@ msgid "Bank Expenses account"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_bank_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_bank_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_bank_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_debit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_debit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_accreditation_account_debit_id
 msgid "Bank account"
 msgstr ""
 
@@ -707,13 +707,13 @@ msgid "Overdue Effects"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_effects_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_effects_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_account_debit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_account_debit_id
 msgid "Overdue Effects account"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_effects_amount
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_account_credit_id
 msgid "Overdue Effects amount"
 msgstr ""
 
@@ -768,7 +768,7 @@ msgid "Please define a Settlement journal"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_protest_charge_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_expenses_account_id
 msgid "Protest charge account"
 msgstr ""
 
@@ -841,9 +841,9 @@ msgid "Ri.Ba. Unsolved"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_id
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_riba_bank_account_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_accreditation_account_credit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_credit_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_riba_accreditation_account_debit_id
 msgid "Ri.Ba. bank account"
 msgstr ""
 
