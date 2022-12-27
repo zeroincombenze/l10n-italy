@@ -9,7 +9,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Shipping Informations">
                     <group string="Shipping Informations">
-                        <field name="ddt_carrier_id" />
+                        <field name="partner_carrier_id" />
                         <field name="goods_description_id" widget="selection" />
                         <field name="carriage_condition_id" widget="selection" />
                         <field name="transportation_reason_id" widget="selection" />

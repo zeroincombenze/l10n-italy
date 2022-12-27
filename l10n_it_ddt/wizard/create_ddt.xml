@@ -19,7 +19,6 @@
         </field>
     </record>
 
-
     <act_window
         name="Create DdT"
         res_model="wizard.create.ddt"

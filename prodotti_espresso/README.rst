@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Prodotti Espresso 10.0.1.0.0
+|icon| Prodotti Espresso 10.0.1.0.3
 ===================================
 
 
@@ -18,13 +18,12 @@
 Overview / Panoramica
 =====================
 
-|en| Questo moduli permette di creare dei ddt dagli ordini di vendita con prodotti "espresso" raggruppati per indirizzo di spedizione.
+|en| This module manages Ordini Espresso Delivery Document Type.
 
 
 |
 
-|it| Questo moduli permette di creare dei ddt dagli ordini di vendita con prodotti "espresso" raggruppati per indirizzo di spedizione.
-
+|it| Questo modulo permette di creare dei ddt dagli ordini di vendita con prodotti "espresso" raggruppati per indirizzo di spedizione.
 
 
 |
@@ -162,6 +161,21 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.3 (2022-11-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invio mail
+
+12.0.1.0.2 (2022-10-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Gestione costi spedizione da DdT
+
+12.0.1.0.1 (2022-10-05)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Prodotto spedizione espresso
+
 12.0.1.0.0 (2022-05-25)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -228,7 +242,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-13
+Last Update / Ultimo aggiornamento: 2022-12-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.8.14
+|icon| DDT 10.0.1.8.18
 ======================
 
 
@@ -221,6 +221,28 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.18 (2022-12-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Delivery price in invoice / Calcolo totale spedizioni
+* [IMP] Test coverage increased
+
+10.0.1.8.17 (2022-11-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Order.carrier_id when import / Metodo di consegna impostato durante import record
+
+
+10.0.1.8.16 (2022-10-06)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Delivery carrier / Metodo di consegna
+
+10.0.1.8.15 (2022-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
+
 10.0.1.8.14 (2022-09-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -312,7 +334,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-18
+Last Update / Ultimo aggiornamento: 2022-12-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
