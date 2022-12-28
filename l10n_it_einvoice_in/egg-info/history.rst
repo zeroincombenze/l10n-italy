@@ -1,3 +1,8 @@
+10.0.1.3.36 (2022-12-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Import e-invoice with carrier / Errore importazione fatture con spedizioniere
+
 10.0.1.3.35 (2022-11-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

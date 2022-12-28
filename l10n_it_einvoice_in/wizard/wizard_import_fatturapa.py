@@ -1029,7 +1029,7 @@ class WizardImportFatturapa(models.TransientModel):
             }
             delivery_id = self.getCarrirerPartner(Delivery)
             if delivery_id > 0:
-                delivery_dict["carrier_id"] = delivery_id
+                delivery_dict["delivery_carrier_id"] = delivery_id
 
             if Delivery.IndirizzoResa:
                 delivery_dict["delivery_address"] = "{}, {}\n{} - {}\n{} {}".format(
