@@ -278,7 +278,7 @@
                     <group string="Delivery">
                         <group>
                             <field name="delivery_address" readonly="1" />
-                            <field name="carrier_id" readonly="1" />
+                            <field name="partner_carrier_id" readonly="1" />
                             <field name="transport_vehicle" readonly="1" />
                             <field name="description" readonly="1" />
                             <field name="pickup_datetime" readonly="1" />
