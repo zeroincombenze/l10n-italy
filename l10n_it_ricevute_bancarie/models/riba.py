@@ -337,9 +337,9 @@ class RibaListLine(models.Model):
         for riba_line in self:
             if all([x.move_line_id.reconciled for x in riba_line.move_line_ids]):
                 reconciled_lines = [
-                        x.move_line_id.full_reconcile_id.reconciled_line_ids
-                        for x in riba_line.move_line_ids
-                    ][0]
+                    x.move_line_id.full_reconcile_id.reconciled_line_ids
+                    for x in riba_line.move_line_ids
+                ][0]
                 reconciled_ids = [x.id for x in reconciled_lines]
                 inv_ids = [x.move_line_id.id for x in riba_line.move_line_ids]
                 riba_ids = riba_line.acceptance_move_id.line_ids.ids
@@ -352,7 +352,7 @@ class RibaListLine(models.Model):
                             if (
                                 ln != line
                                 and ln.user_type_id == self.env.ref(
-                                "account.data_account_type_liquidity")
+                                    "account.data_account_type_liquidity")
                             ):
                                 extra_payment_ids |= ln
                     riba_line.extra_payment_ids = extra_payment_ids
@@ -542,8 +542,9 @@ class RibaListLine(models.Model):
                 ).create(
                     {
                         "name": move_ref,
-                        "account_id":
-                            riba_line.distinta_id.config_id.settlement_account_debit_id.id,
+                        "account_id": (
+                            riba_line.distinta_id.config_id.
+                            settlement_account_debit_id.id),
                         "debit": settlement_move_amount,
                         "credit": 0.0,
                         "move_id": settlement_move.id,
@@ -556,8 +557,9 @@ class RibaListLine(models.Model):
                     {
                         "name": move_ref,
                         "partner_id": riba_line.partner_id.id,
-                        "account_id":
-                            riba_line.distinta_id.config_id.settlement_account_credit_id.id,
+                        "account_id": (
+                            riba_line.distinta_id.config_id.
+                            settlement_account_credit_id.id),
                         "debit": 0.0,
                         "credit": settlement_move_amount,
                         "move_id": settlement_move.id,
