@@ -131,13 +131,15 @@ class RibaConfiguration(models.Model):
     def get_default_account_receivable(self, company):
         code = company.chart_template_id.property_account_receivable_id.code
         digits = company.chart_template_id.code_digits
-        code = (code + ("0" * digits))[:digits]
-        return self.env["account.account"].search(
+        if len(code) < digits:
+            code = (code + ("0" * digits))[:digits]
+        res = self.env["account.account"].search(
             [
                 ("company_id", "=", company.id),
                 ("code", "=", code)
             ]
-        )[0]
+        )
+        return res[0] if res else False
 
     @api.onchange("acceptance_journal_id",
                   "acceptance_account_id",
