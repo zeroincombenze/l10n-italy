@@ -113,9 +113,9 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_li              | 10.0.1.0.2 | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
+| l10n_it_einvoice_out_li              | |halt|     | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_rc              | 10.0.1.0.2 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
+| l10n_it_einvoice_out_rc              | |halt|     | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 10.0.1.0.2 | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+

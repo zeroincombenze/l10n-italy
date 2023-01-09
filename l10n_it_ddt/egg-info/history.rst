@@ -1,3 +1,20 @@
+10.0.1.8.18 (2022-12-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Delivery price in invoice / Calcolo totale spedizioni
+* [IMP] Test coverage increased
+
+10.0.1.8.17 (2022-11-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Order.carrier_id when import / Metodo di consegna impostato durante import record
+
+
+10.0.1.8.16 (2022-10-06)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Delivery carrier / Metodo di consegna
+
 10.0.1.8.15 (2022-10-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

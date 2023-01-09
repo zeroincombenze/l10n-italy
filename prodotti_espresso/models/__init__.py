@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
-# from . import stock_picking
+
 from . import product
 from . import sale_order
+from . import stock_picking_package_preparation

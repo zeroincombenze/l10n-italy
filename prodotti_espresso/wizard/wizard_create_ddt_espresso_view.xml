@@ -7,7 +7,8 @@
             <field name="arch" type="xml">
                 <form string="Create Express Delivery Note">
                     <group>
-                        <field name="delivery_cost_product"/>
+                        <field name="validate_ddt"/>
+                        <field name="to_send_mail"/>
                     </group>
                     <footer>
                         <button name="create_ddt_espresso" string="Create" type="object"

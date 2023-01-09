@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.multi
-    def generate_ddt_espresso(self, shipping=None):
+    def generate_ddt_espresso(self, validate=None, to_send_mail=None):
 
         def exec_wizard(action):
             res_model = action['res_model']
@@ -22,23 +22,25 @@ class SaleOrder(models.Model):
         ddt_model = self.env["stock.picking.package.preparation"]
         orders = []
         ddts = {}
-        shippings = {}
+        default_carrier = False
         for order in self:
             if (
                 order.state != "sale" or
                 not order.order_line.filtered(
-                    lambda ln: ln.line_with_product_espresso(shipping=shipping)
+                    lambda ln: ln.line_with_product_espresso()
                 )
             ):
                 # Sale Order without espresso products
                 continue
+            if not default_carrier and order.carrier_id:
+                default_carrier = order.carrier_id
             hash_key = '%d|%d|%d' % (
                 order.partner_id.id,
                 order.partner_shipping_id.id,
                 order.payment_term_id.id)
             for picking in order.picking_ids:
                 if len(picking.ddt_ids) or not picking.move_lines.filtered(
-                    lambda ln: ln.line_with_product_espresso(shipping=shipping)
+                    lambda ln: ln.line_with_product_espresso()
                 ):
                     # Picking without espresso products
                     continue
@@ -52,13 +54,14 @@ class SaleOrder(models.Model):
                     picking.force_assign()
                 if picking.state == "assigned":
                     for pack in picking.pack_operation_ids:
-                        if pack.product_id == shipping:
-                            if hash_key not in shippings:
-                                shippings[hash_key] = pack.product_id
-                                pack.write({'qty_done': pack.product_qty})
-                            else:
-                                pack.unlink()
-                        elif pack.product_id.espresso and pack.product_qty > 0:
+                        if not default_carrier and pack.product_id.is_delivery:
+                            default_carrier = self.env["delivery.carrier"].search(
+                                [("product_id", "=", pack.product_id.id)])
+                        if (
+                            not pack.product_id.is_delivery
+                            and pack.product_id.espresso
+                            and pack.product_qty > 0
+                        ):
                             pack.write({'qty_done': pack.product_qty})
                             nro_lines += 1
                         else:
@@ -74,19 +77,24 @@ class SaleOrder(models.Model):
                         orders.append(picking.sale_id)
         ddt_ids = []
         for hash_key in ddts.keys():
-            ddt_ids.append(
-                ddt_model.create(
-                    ddt_model.preparare_ddt_data(
-                        ddts[hash_key],
-                        defaults={
-                            "transportation_reason_id": self.env.ref(
-                                "l10n_it_ddt.transportation_reason_VEN").id,
-                            "goods_description_id":
-                                self.env.ref("l10n_it_ddt.goods_description_CAR"),
-                        }
-                    )
-                ).id
+            ddt = ddt_model.create(
+                ddt_model.preparare_ddt_data(
+                    ddts[hash_key],
+                    defaults={
+                        "transportation_reason_id": self.env.ref(
+                            "l10n_it_ddt.transportation_reason_VEN").id,
+                        "goods_description_id":
+                            self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                        "carrier_id": default_carrier.id if default_carrier else False,
+                    }
+                )
             )
+            # Workaround?
+            ddt._amount_all()
+            ddt.to_send_mail = to_send_mail or True
+            if validate:
+                ddt.set_done()
+            ddt_ids.append(ddt.id)
         return ddt_ids
 
 
@@ -99,17 +107,13 @@ class SaleOrderLine(models.Model):
     )
 
     @api.model
-    def line_with_product_espresso(self, shipping=None):
-        return (self.product_id.espresso and
-                self.product_id.type != "service" and
-                self.product_id != shipping)
+    def line_with_product_espresso(self):
+        return (self.product_id.espresso and not self.product_id.is_delivery)
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
     @api.model
-    def line_with_product_espresso(self, shipping=None):
-        return (self.product_id.espresso and
-                self.product_id.type != "service" and
-                self.product_id != shipping)
+    def line_with_product_espresso(self):
+        return (self.product_id.espresso and not self.product_id.is_delivery)
