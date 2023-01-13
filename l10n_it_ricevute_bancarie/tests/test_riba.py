@@ -236,7 +236,7 @@ class TestRiba(SingleTransactionCase):
     def setUp(self):
         super(TestRiba, self).setUp()
         # Add following statement just for get debug information
-        self.debug_level = 3
+        self.debug_level = 2
         data = {"TEST_SETUP_LIST": TEST_SETUP_LIST}
         for resource in TEST_SETUP_LIST:
             item = "TEST_%s" % resource.upper().replace(".", "_")
