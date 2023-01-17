@@ -216,9 +216,9 @@ class RibaUnsolved(models.TransientModel):
         distinta_line.write(
             {
                 "unsolved_move_id": move.id,
-                "state": "unsolved",
             }
         )
+        distinta_line.riba_line_set_state("unsolved")
         to_be_reconciled_lines = move_line_model.with_context(
             {"unsolved_reconciliation": True}
         ).browse(to_be_reconciled)

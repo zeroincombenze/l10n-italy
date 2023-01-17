@@ -374,5 +374,5 @@ class account_payment(models.Model):
                 for move_line in pay_line.full_reconcile_id.reconciled_line_ids:
                     for riba_move_line in move_line.distinta_line_ids:
                         riba_line = riba_move_line.riba_line_id
-                        riba_line.riba_line_back2state("paid")
+                        riba_line.riba_line_set_state("paid")
         return res

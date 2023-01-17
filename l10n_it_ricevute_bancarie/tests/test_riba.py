@@ -564,6 +564,9 @@ class TestRiba(SingleTransactionCase):
         self._riba_confirm_all_payments(distinta)
         self._validate_payment_moves(distinta, due_records)
 
+        _logger.info(
+            "🎺 Reset test_riba()"
+        )
         self._distinta_back_accreditated(distinta)
         self._distinta_back_accepted(distinta)
         self._distinta_back_draft(distinta)
@@ -581,6 +584,9 @@ class TestRiba(SingleTransactionCase):
         self._riba_confirm_all_payments(distinta)
         self._validate_payment_moves(distinta, due_records)
 
+        _logger.info(
+            "🎺 Test unsolved and pay test_riba()"
+        )
         self._riba_unsolved(distinta)
         self._riba_solved(distinta)
         self._riba_unsolved(distinta)
