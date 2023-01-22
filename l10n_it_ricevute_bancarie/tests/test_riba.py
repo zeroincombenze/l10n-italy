@@ -7,41 +7,42 @@ _logger = logging.getLogger(__name__)
 
 
 TEST_ACCOUNT_ACCOUNT = {
-    "external.1101": {
-        "code": "1101",
+    # The bank account is linked to demo dat: usually is 101401
+    # "z0bug.coa_bnk1": {
+    #     "code": "101401",
+    #     "name": "Banca",
+    #     "reconcile": True,
+    #     "user_type_id": "account.data_account_type_liquidity",
+    # },
+    "z0bug.coa_liq_tra1": {
+        "code": "101710",
+        "name": "Effetti attivi",
         "reconcile": True,
         "user_type_id": "account.data_account_type_receivable",
-        "name": "Effetti attivi",
     },
-    "external.1102": {
-        "code": "1102",
-        "reconcile": False,
-        "user_type_id": "account.data_account_type_liquidity",
+    "z0bug.coa_liq_tra2": {
+        "code": "101720",
         "name": "Effetti SBF",
-    },
-    "external.101401": {
-        "code": "101401",
         "reconcile": False,
         "user_type_id": "account.data_account_type_liquidity",
-        "name": "Banca",
     },
-    "external.212300": {
-        "code": "212300",
-        "reconcile": False,
-        "user_type_id": "account.data_account_type_expenses",
-        "name": "Costi bancari",
-    },
-    "external.2601": {
-        "code": "2601",
+    "z0bug.coa_tax_recv": {
+        "code": "111200",
         "reconcile": False,
         "user_type_id": "account.data_account_type_current_liabilities",
         "name": "IVA n/debito",
     },
-    "external.3112": {
-        "code": "3112",
-        "name": "Ricavi da merci e servizi",
+    "z0bug.coa_sale": {
+        "code": "200000",
+        "name": "Merci c/vendita",
         "user_type_id": "account.data_account_type_revenue",
         "reconcile": False,
+    },
+    "z0bug.coa_bnk_fee": {
+        "code": "212300",
+        "reconcile": False,
+        "user_type_id": "account.data_account_type_expenses",
+        "name": "Costi bancari",
     },
 }
 
@@ -78,7 +79,7 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "product_id": "z0bug.product_product_1",
         "invoice_id": "z0bug.invoice_Z0_2",
         "price_unit": 0.42,
-        "account_id": "external.3112",
+        "account_id": "z0bug.coa_sale",
         "name": "Prodotto Alpha",
         "invoice_line_tax_ids": "external.22v",
         "quantity": 100,
@@ -88,7 +89,7 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "product_id": "z0bug.product_product_2",
         "invoice_id": "z0bug.invoice_Z0_2",
         "price_unit": 1.69,
-        "account_id": "external.3112",
+        "account_id": "z0bug.coa_sale",
         "name": "Prodotto Beta",
         "invoice_line_tax_ids": "external.22v",
         "quantity": 10,
@@ -96,43 +97,57 @@ TEST_ACCOUNT_INVOICE_LINE = {
 }
 
 TEST_ACCOUNT_PAYMENT_TERM = {
-    "z0bug.payment_2": {
-        "name": "RiBA 30/60 GG/FM",
+    'z0bug.payment_1': {
+        'name': 'RiBA 30GG',
+        "riba": True,
+    },
+    'z0bug.payment_2': {
+        'name': 'RiBA 30/60 GG',
         "riba": True,
     },
 }
 
 TEST_ACCOUNT_PAYMENT_TERM_LINE = {
-    "z0bug.payment_2_1": {
-        "payment_id": "z0bug.payment_2",
-        "sequence": 1,
-        "days": 30,
-        "value": "percent",
-        "value_amount": 50,
+    'z0bug.payment_1_1': {
+        'payment_id': 'z0bug.payment_1',
+        'sequence': 1,
+        'days': 30,
+        'value': 'balance',
+        'payment_method_credit': 'account_banking_riba.riba',
     },
-    "z0bug.payment_2_2": {
-        "payment_id": "z0bug.payment_2",
-        "sequence": 2,
-        "days": 60,
-        "value": "balance",
+    'z0bug.payment_2_1': {
+        'payment_id': 'z0bug.payment_2',
+        'sequence': 1,
+        'days': 30,
+        'value': 'percent',
+        'value_amount': 50,
+        'payment_method_credit': 'account_banking_riba.riba',
+    },
+    'z0bug.payment_2_2': {
+        'payment_id': 'z0bug.payment_2',
+        'sequence': 2,
+        'days': 60,
+        'value': 'balance',
+        'payment_method_credit': 'account_banking_riba.riba',
     },
 }
 
 TEST_ACCOUNT_TAX = {
     "external.22v": {
-        "amount_type": "percent",
-        "account_id": "external.2601",
+        "description": "22v",
         "name": "IVA 22% su vendite",
-        "refund_account_id": "external.2601",
+        "amount_type": "percent",
+        "account_id": "z0bug.coa_tax_recv",
+        "refund_account_id": "z0bug.coa_tax_recv",
         "amount": 22,
         "type_tax_use": "sale",
         "price_include": False,
-        "description": "22v",
     },
 }
+
 TEST_PRODUCT_TEMPLATE = {
     "z0bug.product_template_1": {
-        "property_account_income_id": "external.3112",
+        "property_account_income_id": "z0bug.coa_sale",
         "name": "Prodotto Alpha",
         "weight": 0.1,
         "type": "consu",
@@ -144,7 +159,7 @@ TEST_PRODUCT_TEMPLATE = {
         "taxes_id": "external.22v",
     },
     "z0bug.product_template_2": {
-        "property_account_income_id": "external.3112",
+        "property_account_income_id": "z0bug.coa_sale",
         "name": "Prodotto Beta",
         "weight": 0.2,
         "type": "consu",
@@ -158,34 +173,39 @@ TEST_PRODUCT_TEMPLATE = {
 }
 
 TEST_RES_PARTNER = {
-    "z0bug.partner_mycompany": {
-        "name": "Test Company",
-        "street": "Via dei Matti, 0",
+    "z0bug.res_partner_1": {
+        "name": "Prima Alpha S.p.A.",
+        "street": "Via I Maggio, 101",
         "country_id": "base.it",
-        "zip": "20080",
-        "city": "Ozzero",
+        "zip": "20022",
+        "city": "Castano Primo",
         "state_id": "base.state_it_mi",
-        "customer": False,
-        "supplier": False,
+        "customer": True,
+        "supplier": True,
         "is_company": True,
-        "email": "info@testcompany.org",
-        "phone": "+39 025551234",
-        "vat": "IT05111810015",
-        "website": "https://www.testcompany.org",
+        "email": "info@prima-alpha.it",
+        "phone": "+39 0255582285",
+        "vat": "IT00115719999",
+        "website": "http://www.prima-alpha.it",
+        # "property_account_position_id": "z0bug.fiscalpos_it",
+        "property_payment_term_id": "z0bug.payment_1",
+        "property_supplier_payment_term_id": "z0bug.payment_1",
+        # "electronic_invoice_subjected": True,
+        # "codice_destinatario": "A1B2C3X",
     },
     "z0bug.res_partner_2": {
+        "name": "Latte Beta Due s.n.c.",
         "street": "Via Dueville, 2",
+        "country_id": "base.it",
         "property_payment_term_id": "z0bug.payment_2",
         "city": "S. Secondo Pinerolo",
         "zip": "10060",
-        "country_id": "base.it",
         "supplier": False,
         "email": "agrolait2@libero.it",
         "vat": "IT02345670018",
         "website": "http://www.agrolait2.it/",
         "phone": "+39 0121555123",
         "customer": True,
-        "name": "Latte Beta Due s.n.c.",
         "is_company": True,
         "state_id": "base.state_it_to",
     },
@@ -193,15 +213,20 @@ TEST_RES_PARTNER = {
 
 TEST_RES_PARTNER_BANK = {
     "z0bug.bank_company_1": {
+        "partner_id": "base.main_partner",
         "sequence": 1,
         "acc_type": "iban",
-        "partner_id": "base.main_partner",
         "acc_number": "IT15A0123412345100000123456",
         "codice_sia": "A7721",
     },
-    "z0bug.bank_partner_2": {
+    "z0bug.bank_partner_1": {
+        "partner_id": "z0bug.res_partner_1",
         "acc_type": "iban",
+        "acc_number": "IT73C0102001011010101987654",
+    },
+    "z0bug.bank_partner_2": {
         "partner_id": "z0bug.res_partner_2",
+        "acc_type": "iban",
         "acc_number": "IT82B0200802002200000000022",
     },
 }
@@ -212,16 +237,16 @@ TEST_RIBA_CONFIGURATION = {
         "type": "sbf",
         "bank_id": "z0bug.bank_company_1",
         "acceptance_journal_id": "external.BNK1",
-        "acceptance_account_id": "external.1101",
+        "acceptance_account_id": "z0bug.coa_liq_tra1",
     },
 }
 
 TEST_SETUP_LIST = [
     "account.account",
+    "account.tax",
     "account.journal",
     "account.payment.term",
     "account.payment.term.line",
-    "account.tax",
     "product.template",
     "res.partner",
     "res.partner.bank",
@@ -245,7 +270,23 @@ class TestRiba(SingleTransactionCase):
         # Add alias to company
         self.setup_company(self.default_company(),
                            xref="z0bug.mycompany",
-                           partner_xref="z0bug.partner_mycompany")
+                           partner_xref="z0bug.partner_mycompany",
+                           bnk1_xref="z0bug.coa_bnk1",
+                           values={
+                               "name": "Test Company",
+                               "street": "Via dei Matti, 0",
+                               "country_id": "base.it",
+                               "zip": "20080",
+                               "city": "Ozzero",
+                               "state_id": "base.state_it_mi",
+                               "customer": False,
+                               "supplier": False,
+                               "is_company": True,
+                               "email": "info@testcompany.org",
+                               "phone": "+39 025551234",
+                               "vat": "IT05111810015",
+                               "website": "https://www.testcompany.org",
+                           })
         self.setup_env()                                # Create test environment
 
     def tearDown(self):
@@ -388,26 +429,31 @@ class TestRiba(SingleTransactionCase):
         self.resource_edit(
             resource=riba_config,
             web_changes=[
-                ("accreditation_account_credit_id", "external.1102"),
-                ("accreditation_account_debit_id", "external.101401"),
-                ("bank_expense_account_id", "external.212300"),
+                ("accreditation_account_credit_id", "z0bug.coa_liq_tra2"),
+                ("accreditation_account_debit_id", "z0bug.coa_bnk1"),
+                ("bank_expense_account_id", "z0bug.coa_bnk_fee"),
             ]
         )
-        invoice = self.resource_bind("z0bug.invoice_Z0_2")
-        invoice.action_invoice_open()
+
+        invoices = self.env["account.invoice"]
+        for xref in TEST_ACCOUNT_INVOICE.keys():
+            invoice = self.resource_bind(xref)
+            invoice.compute_taxes()
+            invoice.action_invoice_open()
+            invoices |= invoice
+
         due_records = self.env["account.move.line"].search(
             [
-                ("invoice_id", "=", invoice.id),
+                ("invoice_id", "in", [x.id for x in invoices]),
                 ("account_id.user_type_id", "=", self.env.ref(
                     "account.data_account_type_receivable").id),
             ]
         )
-        self.assertEqual(len(due_records), 2)
         for due_record in due_records:
             self.assertTrue(due_record.riba)
-        return invoice, due_records
+        return invoices, due_records
 
-    def _riba_list(self, due_records):
+    def _generate_payment_order(self, due_records):
         act_windows = self.wizard(
             module=".",
             action_name="riba_issue_action",
@@ -555,40 +601,40 @@ class TestRiba(SingleTransactionCase):
             "🎺 Starting test_riba()"
         )
         invoice, due_records = self._validate_invoice()
-        distinta = self._riba_list(due_records)
-        self._download_cbi(distinta)
-        self._riba_list_accepted(distinta)
-        self._validate_accepted_moves(distinta, due_records)
-        self._riba_list_accreditation(distinta, due_records)
-        self._validate_accreditation_moves(distinta, due_records)
-        self._riba_confirm_all_payments(distinta)
-        self._validate_payment_moves(distinta, due_records)
+        payment_order = self._generate_payment_order(due_records)
+        self._download_cbi(payment_order)
+        self._riba_list_accepted(payment_order)
+        self._validate_accepted_moves(payment_order, due_records)
+        self._riba_list_accreditation(payment_order, due_records)
+        self._validate_accreditation_moves(payment_order, due_records)
+        self._riba_confirm_all_payments(payment_order)
+        self._validate_payment_moves(payment_order, due_records)
 
         _logger.info(
             "🎺 Reset test_riba()"
         )
-        self._distinta_back_accreditated(distinta)
-        self._distinta_back_accepted(distinta)
-        self._distinta_back_draft(distinta)
-        self._distinta_cancel(distinta)
-        self._distinta_reset_draft(distinta)
+        self._distinta_back_accreditated(payment_order)
+        self._distinta_back_accepted(payment_order)
+        self._distinta_back_draft(payment_order)
+        self._distinta_cancel(payment_order)
+        self._distinta_reset_draft(payment_order)
 
         _logger.info(
             "🎺 Repeat test_riba()"
         )
-        self._download_cbi(distinta)
-        self._riba_list_accepted(distinta)
-        self._validate_accepted_moves(distinta, due_records)
-        self._riba_list_accreditation(distinta, due_records)
-        self._validate_accreditation_moves(distinta, due_records)
-        self._riba_confirm_all_payments(distinta)
-        self._validate_payment_moves(distinta, due_records)
+        self._download_cbi(payment_order)
+        self._riba_list_accepted(payment_order)
+        self._validate_accepted_moves(payment_order, due_records)
+        self._riba_list_accreditation(payment_order, due_records)
+        self._validate_accreditation_moves(payment_order, due_records)
+        self._riba_confirm_all_payments(payment_order)
+        self._validate_payment_moves(payment_order, due_records)
 
         _logger.info(
             "🎺 Test unsolved and pay test_riba()"
         )
-        self._riba_unsolved(distinta)
-        self._riba_solved(distinta)
-        self._riba_unsolved(distinta)
+        self._riba_unsolved(payment_order)
+        self._riba_solved(payment_order)
+        self._riba_unsolved(payment_order)
 
-        self.pay_invoice(invoice, distinta)
+        self.pay_invoice(invoice, payment_order)

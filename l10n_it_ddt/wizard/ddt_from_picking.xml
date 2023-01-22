@@ -37,6 +37,7 @@
     <record id="action_ddt_from_pickings" model="ir.actions.act_window">
         <field name="name">DDT from Pickings</field>
         <field name="res_model">ddt.from.pickings</field>
+        <!-- <field name="src_model">stock.picking</field> -->
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_ddt_from_pickings" />

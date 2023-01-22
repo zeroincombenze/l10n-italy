@@ -85,6 +85,18 @@ class SaleOrder(models.Model):
     )
     delivery_data_set = fields.Boolean(string="Delivery Data is Set")
 
+    def mark_real_delivery_lines(self):
+        shipping_ids = [
+            delivery.product_id.id
+            for delivery in self.env["delivery.carrier"].search([])
+        ]
+        for line in self.env['sale.order.line'].search(
+            [('order_id', 'in', self.ids),
+             ('is_delivery', '=', False),
+             ('product_id', '=', shipping_ids)]
+        ):
+            line.is_delivery = True
+
     @api.model
     def get_delivery_value(self, fieldname):
         if not self[fieldname]:
@@ -223,6 +235,11 @@ class SaleOrder(models.Model):
                 if picking.state == "done":
                     picking.action_cancel()
         return super(SaleOrder, self).action_cancel()
+
+    @api.multi
+    def action_confirm(self):
+        self.mark_real_delivery_lines()
+        return super(SaleOrder, self).action_confirm()
 
     @api.multi
     def action_view_ddt(self):

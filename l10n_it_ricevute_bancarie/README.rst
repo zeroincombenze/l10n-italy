@@ -324,12 +324,6 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Unsoved with 2 or more invoices / Insoluto di 2 o più fatture
 
-10.0.1.3.6 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
-* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
-
 
 
 |
@@ -398,7 +392,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-01-17
+Last Update / Ultimo aggiornamento: 2023-01-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

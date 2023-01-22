@@ -39,6 +39,7 @@
     <record id="action_ddt_create_invoice" model="ir.actions.act_window">
         <field name="name">DDT Create Invoice</field>
         <field name="res_model">ddt.create.invoice</field>
+        <!-- <field name="src_model">stock.picking.package.preparation</field> -->
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_ddt_create_invoice" />
