@@ -212,7 +212,7 @@
                     </t>
                 </p>
             </div>
-            <div class="col-xs-2" t-if="address_mode != 'docnum' and  o.state in ('open', 'paid') and 'pro_forma_number' in o">
+            <div class="col-xs-2" t-if="address_mode != 'docnum' and  o.state in ('open', 'paid') and 'pro_forma_number' in o and o.pro_forma_number">
                 <strong>Ns. pro-forma:</strong>
                 <p t-field="o.pro_forma_number" />
             </div>
