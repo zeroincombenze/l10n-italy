@@ -37,7 +37,7 @@ class RibaList(models.Model):
             riba.unsolved_move_ids = move_ids
 
     @api.multi
-    @api.depends('line_ids')
+    @api.depends("line_ids")
     def _compute_payment_ids(self):
         for riba in self:
             payment_lines = self.env["account.move.line"]
@@ -316,7 +316,7 @@ class RibaListLine(models.Model):
                         move_line.move_line_id.invoice_id.date_invoice
                     ).strftime("%d/%m/%Y")
                     invoice_number = move_line.move_line_id.invoice_id.move_name
-                else:                                                # pragma: no cover
+                else:  # pragma: no cover
                     # Avoid crash in some case which the invoice is deleted
                     invoice_date = "???"
                     invoice_number = "???"
@@ -349,10 +349,8 @@ class RibaListLine(models.Model):
                     extra_payment_ids = self.env["account.move.line"]
                     for line in extra_payments[0]:
                         for ln in line.move_id.line_ids:
-                            if (
-                                ln != line
-                                and ln.user_type_id == self.env.ref(
-                                    "account.data_account_type_liquidity")
+                            if ln != line and ln.user_type_id == self.env.ref(
+                                "account.data_account_type_liquidity"
                             ):
                                 extra_payment_ids |= ln
                     riba_line.extra_payment_ids = extra_payment_ids
@@ -372,7 +370,7 @@ class RibaListLine(models.Model):
     @api.multi
     def move_line_id_payment_get(self):
         # return the move line ids with the same account as the distinta line
-        if not self.id:                                              # pragma: no cover
+        if not self.id:  # pragma: no cover
             return []
         query = """ SELECT l.id
                     FROM account_move_line l, riba_distinta_line rdl
@@ -386,7 +384,7 @@ class RibaListLine(models.Model):
     def test_reconciled(self):
         # check whether all corresponding account move lines are reconciled
         line_ids = self.move_line_id_payment_get()
-        if not line_ids:                                             # pragma: no cover
+        if not line_ids:  # pragma: no cover
             return False
         move_lines = self.env["account.move.line"].browse(line_ids)
         reconcilied = all(line.reconciled for line in move_lines)
@@ -430,9 +428,7 @@ class RibaListLine(models.Model):
         readonly=True,
         track_visibility="onchange",
     )
-    payment_ids = fields.Many2many(
-        "account.move.line", string="Payments"
-    )
+    payment_ids = fields.Many2many("account.move.line", string="Payments")
     extra_payment_ids = fields.Many2many(
         "account.move.line", string="Extra Payments", compute="_compute_extra_payments"
     )
@@ -514,18 +510,20 @@ class RibaListLine(models.Model):
         config = riba_line.distinta_id.config_id
         this["config"]["bank_id"] = config.bank_id
         this["config"]["acceptance_account_id"] = riba_line.acceptance_account_id
-        this["config"]["accreditation_account_debit_id"] = (
-            config.accreditation_account_debit_id)
-        this["config"]["accreditation_account_credit_id"] = (
-            config.accreditation_account_credit_id)
-        this["config"]["overdue_account_debit_id"] = (
-            config.overdue_account_debit_id)
-        this["config"]["overdue_account_credit_id"] = (
-            config.overdue_account_credit_id)
-        this["config"]["settlement_account_debit_id"] = (
-            config.settlement_account_debit_id)
-        this["config"]["settlement_account_credit_id"] = (
-            config.settlement_account_credit_id)
+        this["config"][
+            "accreditation_account_debit_id"
+        ] = config.accreditation_account_debit_id
+        this["config"][
+            "accreditation_account_credit_id"
+        ] = config.accreditation_account_credit_id
+        this["config"]["overdue_account_debit_id"] = config.overdue_account_debit_id
+        this["config"]["overdue_account_credit_id"] = config.overdue_account_credit_id
+        this["config"][
+            "settlement_account_debit_id"
+        ] = config.settlement_account_debit_id
+        this["config"][
+            "settlement_account_credit_id"
+        ] = config.settlement_account_credit_id
         this["config"]["settlement_journal_id"] = config.settlement_journal_id
         this["config"]["distinta_name"] = riba_line.distinta_id.name
         this["config"]["partner_id"] = riba_line.partner_id
@@ -536,12 +534,10 @@ class RibaListLine(models.Model):
             this = self._open_items__add_move_line(this, line, "accreditation")
         # remove debit/credit pair lines
         for account in this["account_ids"].keys():
-            if this["account_ids"].get("debit") and  this["account_ids"].get("credit"):
+            if this["account_ids"].get("debit") and this["account_ids"].get("credit"):
                 for move_type in ("acceptance", "accreditation"):
                     for move_line in this["move_line_ids"][move_type].copy().keys():
-                        if (
-                            this["move_line_ids"][move_line].account_id == account
-                        ):
+                        if this["move_line_ids"][move_line].account_id == account:
                             del this["move_line_ids"][move_line]
                 del this["account_ids"][account]
         return this
@@ -556,9 +552,11 @@ class RibaListLine(models.Model):
             elif move_line.credit > 0.0:
                 side = "credit"
             acc_type = move_line.account_id.user_type_id.type
-            if (side
+            if (
+                side
                 and move_line.account_id != this["config"]["overdue_account_credit_id"]
-                and move_line.account_id.user_type_id in (
+                and move_line.account_id.user_type_id
+                in (
                     self.env.ref("account.data_account_type_current_assets"),
                     self.env.ref("account.data_account_type_current_liabilities"),
                     self.env.ref("account.data_account_type_liquidity"),
@@ -583,9 +581,7 @@ class RibaListLine(models.Model):
 
     def _open_items__load_line_values(self, this, account, side, amount):
         if side not in ("debit", "credit"):
-            raise UserError(
-                "Invalid %s value: must be 'debit' or 'credit'" % side
-            )
+            raise UserError("Invalid %s value: must be 'debit' or 'credit'" % side)
         opposite_side = "debit" if side == "credit" else "credit"
         move_ref = _("Settlement RIBA {} - {}").format(
             this["config"]["distinta_name"],
@@ -618,10 +614,7 @@ class RibaListLine(models.Model):
         for account in this["account_ids"].keys():
             side = this["account_ids"][account].keys()[0]
             line_vals = self._open_items__load_line_values(
-                this,
-                account,
-                side,
-                this["move_line_ids"]["acceptance"]["debit"].debit
+                this, account, side, this["move_line_ids"]["acceptance"]["debit"].debit
             )
             vals["line_ids"].append((0, 0, line_vals))
             totals["debit"] += line_vals["credit"]
@@ -632,7 +625,7 @@ class RibaListLine(models.Model):
                 this,
                 this["config"]["overdue_account_credit_id"],
                 "credit",
-                totals["debit"] - totals["credit"]
+                totals["debit"] - totals["credit"],
             )
             vals["line_ids"].append((0, 0, line_vals))
         elif totals["debit"] < totals["credit"]:
@@ -640,7 +633,7 @@ class RibaListLine(models.Model):
                 this,
                 this["config"]["settlement_account_credit_id"],
                 "debit",
-                totals["credit"] - totals["debit"]
+                totals["credit"] - totals["debit"],
             )
             vals["line_ids"].append((0, 0, line_vals))
         return vals
@@ -651,10 +644,7 @@ class RibaListLine(models.Model):
             for side in this["move_line_ids"][move_type]:
                 for move_line in this["move_line_ids"][move_type][side]:
                     account = move_line.account_id
-                    if (
-                        account in this["account_ids"]
-                        and account.reconcile
-                    ):
+                    if account in this["account_ids"] and account.reconcile:
                         if account not in reconciles:
                             reconciles[account] = {}
                         reconciles[account][side] = move_line
@@ -670,7 +660,7 @@ class RibaListLine(models.Model):
         for riba_line in self:
             if (
                 not riba_line.distinta_id.config_id.settlement_journal_id
-            ):                                                       # pragma: no cover
+            ):  # pragma: no cover
                 raise UserError(_("Please define a Settlement journal"))
 
             if not riba_line.extra_payment_ids:
@@ -678,7 +668,8 @@ class RibaListLine(models.Model):
                 open_items = self._open_items__init()
                 open_items = self._open_items__load_config(open_items, riba_line)
                 settlement_move = move_model.create(
-                    self._open_items__get_move_vals(open_items))
+                    self._open_items__get_move_vals(open_items)
+                )
                 settlement_move.post()
                 move_line_debit = False
                 for move_line in settlement_move.line_ids:
@@ -687,8 +678,7 @@ class RibaListLine(models.Model):
                             move_line_debit = move_line
                         elif (
                             move_line.account_id
-                            ==
-                            open_items["config"]["settlement_account_debit_id"]
+                            == open_items["config"]["settlement_account_debit_id"]
                         ):
                             move_line_debit = move_line
                 riba_line.payment_ids = [(4, move_line_debit.id)]
@@ -697,13 +687,15 @@ class RibaListLine(models.Model):
 
     @api.multi
     def riba_line_set_state(self, state, harmless=None):
-        if state not in ("draft",
-                         "accepted",
-                         "accredited",
-                         "cancel",
-                         "paid",
-                         "unsolved"):
-            return                                                   # pragma: no cover
+        if state not in (
+            "draft",
+            "accepted",
+            "accredited",
+            "cancel",
+            "paid",
+            "unsolved",
+        ):
+            return  # pragma: no cover
         states = {}
         for line in self:
             if state == "paid":

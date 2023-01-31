@@ -3,6 +3,8 @@ import os
 import logging
 from .testenv import MainTest as SingleTransactionCase
 
+import python_plus
+
 _logger = logging.getLogger(__name__)
 
 
@@ -97,38 +99,38 @@ TEST_ACCOUNT_INVOICE_LINE = {
 }
 
 TEST_ACCOUNT_PAYMENT_TERM = {
-    'z0bug.payment_1': {
-        'name': 'RiBA 30GG',
+    "z0bug.payment_1": {
+        "name": "RiBA 30GG",
         "riba": True,
     },
-    'z0bug.payment_2': {
-        'name': 'RiBA 30/60 GG',
+    "z0bug.payment_2": {
+        "name": "RiBA 30/60 GG",
         "riba": True,
     },
 }
 
 TEST_ACCOUNT_PAYMENT_TERM_LINE = {
-    'z0bug.payment_1_1': {
-        'payment_id': 'z0bug.payment_1',
-        'sequence': 1,
-        'days': 30,
-        'value': 'balance',
-        'payment_method_credit': 'account_banking_riba.riba',
+    "z0bug.payment_1_1": {
+        "payment_id": "z0bug.payment_1",
+        "sequence": 1,
+        "days": 30,
+        "value": "balance",
+        "payment_method_credit": "account_banking_riba.riba",
     },
-    'z0bug.payment_2_1': {
-        'payment_id': 'z0bug.payment_2',
-        'sequence': 1,
-        'days': 30,
-        'value': 'percent',
-        'value_amount': 50,
-        'payment_method_credit': 'account_banking_riba.riba',
+    "z0bug.payment_2_1": {
+        "payment_id": "z0bug.payment_2",
+        "sequence": 1,
+        "days": 30,
+        "value": "percent",
+        "value_amount": 50,
+        "payment_method_credit": "account_banking_riba.riba",
     },
-    'z0bug.payment_2_2': {
-        'payment_id': 'z0bug.payment_2',
-        'sequence': 2,
-        'days': 60,
-        'value': 'balance',
-        'payment_method_credit': 'account_banking_riba.riba',
+    "z0bug.payment_2_2": {
+        "payment_id": "z0bug.payment_2",
+        "sequence": 2,
+        "days": 60,
+        "value": "balance",
+        "payment_method_credit": "account_banking_riba.riba",
     },
 }
 
@@ -257,7 +259,6 @@ TEST_SETUP_LIST = [
 
 
 class TestRiba(SingleTransactionCase):
-
     def setUp(self):
         super(TestRiba, self).setUp()
         # Add following statement just for get debug information
@@ -266,119 +267,97 @@ class TestRiba(SingleTransactionCase):
         for resource in TEST_SETUP_LIST:
             item = "TEST_%s" % resource.upper().replace(".", "_")
             data[item] = globals()[item]
-        self.declare_all_data(data)                     # TestEnv swallows the data
+        self.declare_all_data(data)  # TestEnv swallows the data
         # Add alias to company
-        self.setup_company(self.default_company(),
-                           xref="z0bug.mycompany",
-                           partner_xref="z0bug.partner_mycompany",
-                           bnk1_xref="z0bug.coa_bnk1",
-                           values={
-                               "name": "Test Company",
-                               "street": "Via dei Matti, 0",
-                               "country_id": "base.it",
-                               "zip": "20080",
-                               "city": "Ozzero",
-                               "state_id": "base.state_it_mi",
-                               "customer": False,
-                               "supplier": False,
-                               "is_company": True,
-                               "email": "info@testcompany.org",
-                               "phone": "+39 025551234",
-                               "vat": "IT05111810015",
-                               "website": "https://www.testcompany.org",
-                           })
-        self.setup_env()                                # Create test environment
+        self.setup_company(
+            self.default_company(),
+            xref="z0bug.mycompany",
+            partner_xref="z0bug.partner_mycompany",
+            bnk1_xref="z0bug.coa_bnk1",
+            values={
+                "name": "Test Company",
+                "street": "Via dei Matti, 0",
+                "country_id": "base.it",
+                "zip": "20080",
+                "city": "Ozzero",
+                "state_id": "base.state_it_mi",
+                "customer": False,
+                "supplier": False,
+                "is_company": True,
+                "email": "info@testcompany.org",
+                "phone": "+39 025551234",
+                "vat": "IT05111810015",
+                "website": "https://www.testcompany.org",
+            },
+        )
+        self.setup_env()  # Create test environment
 
     def tearDown(self):
         super(TestRiba, self).tearDown()
         if os.environ.get("ODOO_COMMIT_TEST", ""):
             # Save test environment, so it is available to dump
-            self.env.cr.commit()                        # pylint: disable=invalid-commit
+            self.env.cr.commit()  # pylint: disable=invalid-commit
             _logger.info("✨ Test data committed")
 
     def _validate_cbi_file(self, riba_cbi):
         # Simple file validator
-        for ln in riba_cbi.split("\n"):
+        state = ""
+        ctr_recs = ctr_dues = 0
+        for ln in python_plus._u(riba_cbi).split("\n"):
             if not ln:
+                self.assertFalse(state, "Empty line in CBI file")
                 continue
             line_id = ln[:3]
             self.assertTrue(
-                line_id in (" IB",
-                            " 14",
-                            " 20",
-                            " 30",
-                            " 40",
-                            " 50",
-                            " 51",
-                            " 70",
-                            " EF"),
-                "Invalid CBI contents!")
+                line_id
+                in (" IB", " 14", " 20", " 30", " 40", " 50", " 51", " 70", " EF"),
+                "Invalid CBI contents!",
+            )
+            ctr_recs += 1
+            if line_id.startswith(" IB"):
+                state = "body"
+            elif line_id.startswith(" 14"):
+                ctr_dues += 1
+            elif line_id.startswith(" EF"):
+                state = ""
+                self.assertEqual(
+                    int(ln[46:52]), ctr_dues, "Invalid # of dues in CBI file"
+                )
+                self.assertEqual(
+                    int(ln[83:89]), ctr_recs, "Invalid # of records in CBI file"
+                )
 
-    def _validate_moves(self, template, moves):
-        for ix, move in enumerate(moves):
-            for move_line in move.line_ids:
-                for tmpl_line in template[ix]:
-                    if (
-                        move_line.credit > 0.0
-                        and tmpl_line.get("credit")
-                        and not tmpl_line["checked"]
-                    ):
-                        self.assertEqual(
-                            move_line.account_id.id,
-                            tmpl_line["account_id"],
-                        )
-                        self.assertEqual(
-                            move_line.credit,
-                            tmpl_line["credit"],
-                        )
-                        tmpl_line["checked"] = True
-                        break
-                    elif (
-                        move_line.debit > 0.0
-                        and tmpl_line.get("debit")
-                        and not tmpl_line["checked"]
-                    ):
-                        self.assertEqual(
-                            move_line.account_id.id,
-                            tmpl_line["account_id"],
-                        )
-                        self.assertEqual(
-                            move_line.debit,
-                            tmpl_line["debit"],
-                        )
-                        tmpl_line["checked"] = True
-                        break
-        self.assertTrue(all([(x[0]["checked"] and x[1]["checked"]) for x in template]))
-
-    def _validate_accepted_moves(self, distinta, due_records):
-        acceptance_account_id = distinta.config_id.acceptance_account_id
+    def _validate_accepted_moves(self, payment_order, due_records):
+        acceptance_account_id = payment_order.config_id.acceptance_account_id
         template = []
         for due in due_records:
             tmpl_move = []
             vals = {
                 "account_id": acceptance_account_id.id,
                 "debit": due.debit or due.credit,
-                "checked": False,
+                "credit": 0.0,
             }
             tmpl_move.append(vals)
             vals = {
                 "account_id": due.account_id.id,
-                "credit": due.debit or due.credit,
-                "checked": False,
+                "debit": 0.0,
+                "credit": due.credit or due.debit,
             }
             tmpl_move.append(vals)
-            template.append(tmpl_move)
+            template.append({"line_ids": tmpl_move})
 
-        self._validate_moves(template, distinta.acceptance_move_ids)
+        self.validate_records(template, payment_order.acceptance_move_ids)
 
     def _validate_accreditation_moves(self, distinta, due_records):
         accreditation_account_debit_id = (
-            distinta.config_id.accreditation_account_debit_id.id)
+            distinta.config_id.accreditation_account_debit_id.id
+        )
         accreditation_account_credit_id = (
-            distinta.config_id.accreditation_account_credit_id.id)
+            distinta.config_id.accreditation_account_credit_id.id
+        )
         bank_amount = 0.0
         for line in due_records:
-            bank_amount += (line.debit - line.credit)
+            bank_amount += line.debit - line.credit
         for line in distinta.accreditation_move_id.line_ids:
             if line.credit > 0.0:
                 self.assertEqual(
@@ -411,18 +390,18 @@ class TestRiba(SingleTransactionCase):
             vals = {
                 "account_id": settlement_account_debit_id,
                 "debit": due.debit or due.credit,
-                "checked": False,
+                "credit": 0.0,
             }
             tmpl_move.append(vals)
             vals = {
                 "account_id": settlement_account_credit_id,
-                "credit": due.debit or due.credit,
-                "checked": False,
+                "debit": 0.0,
+                "credit": due.credit or due.debit,
             }
             tmpl_move.append(vals)
-            template.append(tmpl_move)
+            template.append({"line_ids": tmpl_move})
 
-        self._validate_moves(template, [ln.move_id for ln in distinta.payment_ids])
+        self.validate_records(template, [ln.move_id for ln in distinta.payment_ids])
 
     def _validate_invoice(self):
         riba_config = self.resource_bind("z0bug.riba_config")
@@ -432,7 +411,7 @@ class TestRiba(SingleTransactionCase):
                 ("accreditation_account_credit_id", "z0bug.coa_liq_tra2"),
                 ("accreditation_account_debit_id", "z0bug.coa_bnk1"),
                 ("bank_expense_account_id", "z0bug.coa_bnk_fee"),
-            ]
+            ],
         )
 
         invoices = self.env["account.invoice"]
@@ -445,12 +424,44 @@ class TestRiba(SingleTransactionCase):
         due_records = self.env["account.move.line"].search(
             [
                 ("invoice_id", "in", [x.id for x in invoices]),
-                ("account_id.user_type_id", "=", self.env.ref(
-                    "account.data_account_type_receivable").id),
+                (
+                    "account_id.user_type_id",
+                    "=",
+                    self.env.ref("account.data_account_type_receivable").id,
+                ),
             ]
         )
-        for due_record in due_records:
-            self.assertTrue(due_record.riba)
+
+        date_invoice = self.compute_date("####-<#-99")
+        date_due1 = self.compute_date(+30, refdate=date_invoice)
+        date_due2 = self.compute_date(+60, refdate=date_invoice)
+        template_dues = []
+        # vals = {
+        #     "account_id": invoice[0].account_id.id,
+        #     "partner_id": "z0bug.res_partner_1",
+        #     "date": date_invoice,
+        #     "date_maturity": date_due1,
+        #     "riba": True,
+        # }
+        # template_dues.append(vals)
+        vals = {
+            "account_id": invoice[0].account_id.id,
+            "partner_id": "z0bug.res_partner_2",
+            "date": date_invoice,
+            "date_maturity": date_due1,
+            "riba": True,
+        }
+        template_dues.append(vals)
+        vals = {
+            "account_id": invoice[0].account_id.id,
+            "partner_id": "z0bug.res_partner_2",
+            "date": date_invoice,
+            "date_maturity": date_due2,
+            "riba": True,
+        }
+        template_dues.append(vals)
+        self.validate_records(template_dues, due_records)
+
         return invoices, due_records
 
     def _generate_payment_order(self, due_records):
@@ -462,7 +473,7 @@ class TestRiba(SingleTransactionCase):
             button_name="create_list",
         )
         self.assertTrue(self.is_action(act_windows))
-        return self.env[act_windows["res_model"]].browse(act_windows["res_id"])
+        return self.get_records_from_act_windows(act_windows)
 
     def _download_cbi(self, distinta):
         riba_cbi = self.resource_download(
@@ -475,18 +486,18 @@ class TestRiba(SingleTransactionCase):
         self.assertTrue(riba_cbi)
         self._validate_cbi_file(riba_cbi)
 
-    def _riba_list_accepted(self, distinta):
+    def _payorder_accepted(self, payment_order):
         self.resource_edit(
-            resource=distinta,
+            resource=payment_order,
             actions="confirm",
         )
-        self.assertEqual(distinta.state, "accepted")
-        self.assertTrue(distinta.acceptance_move_ids)
+        self.assertEqual(payment_order.state, "accepted")
+        self.assertTrue(payment_order.acceptance_move_ids)
 
     def _riba_list_accreditation(self, distinta, due_records):
         bank_amount = 0.0
         for line in due_records:
-            bank_amount += (line.debit - line.credit)
+            bank_amount += line.debit - line.credit
         act_windows = self.wizard(
             module=".",
             action_name="riba_accreditation_action",
@@ -597,42 +608,34 @@ class TestRiba(SingleTransactionCase):
         self.assertTrue(distinta.payment_ids)
 
     def test_riba(self):
-        _logger.info(
-            "🎺 Starting test_riba()"
-        )
+        _logger.info("🎺 Starting test_riba()")
         invoice, due_records = self._validate_invoice()
         payment_order = self._generate_payment_order(due_records)
         self._download_cbi(payment_order)
-        self._riba_list_accepted(payment_order)
+        self._payorder_accepted(payment_order)
         self._validate_accepted_moves(payment_order, due_records)
         self._riba_list_accreditation(payment_order, due_records)
         self._validate_accreditation_moves(payment_order, due_records)
         self._riba_confirm_all_payments(payment_order)
         self._validate_payment_moves(payment_order, due_records)
 
-        _logger.info(
-            "🎺 Reset test_riba()"
-        )
+        _logger.info("🎺 Reset test_riba()")
         self._distinta_back_accreditated(payment_order)
         self._distinta_back_accepted(payment_order)
         self._distinta_back_draft(payment_order)
         self._distinta_cancel(payment_order)
         self._distinta_reset_draft(payment_order)
 
-        _logger.info(
-            "🎺 Repeat test_riba()"
-        )
+        _logger.info("🎺 Repeat test_riba()")
         self._download_cbi(payment_order)
-        self._riba_list_accepted(payment_order)
+        self._payorder_accepted(payment_order)
         self._validate_accepted_moves(payment_order, due_records)
         self._riba_list_accreditation(payment_order, due_records)
         self._validate_accreditation_moves(payment_order, due_records)
         self._riba_confirm_all_payments(payment_order)
         self._validate_payment_moves(payment_order, due_records)
 
-        _logger.info(
-            "🎺 Test unsolved and pay test_riba()"
-        )
+        _logger.info("🎺 Test unsolved and pay test_riba()")
         self._riba_unsolved(payment_order)
         self._riba_solved(payment_order)
         self._riba_unsolved(payment_order)

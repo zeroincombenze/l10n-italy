@@ -48,9 +48,9 @@
                 <div t-if="address_mode == 'docnum'">
                     <h2 style="color: #90BF3F;">
                         <t
-                            t-if="o.state == 'proforma2'"
+                            t-if="o.state.startswith('proforma')"
                             t-set="desdoc"
-                            t-value="doctype + ' PRO-FORMA'"
+                            t-value="'PRO-FORMA'"
                         />
                         <t
                             t-if="o.state == 'draft'"
@@ -65,12 +65,16 @@
                         <t t-if="not desdoc" t-set="desdoc" t-value="doctype" />
                         <span t-esc="desdoc" />
                         <span
-                            t-if="o.state not in ('draft','cancel')"
+                            t-if="o.state not in ('draft','cancel', 'proforma', 'proforma2')"
                             t-field="o.number"
                         />
                         <span
                             t-if="o.state in ('draft','cancel')"
                             t-field="o.move_name"
+                        />
+                        <span
+                            t-if="o.state in ('proforma', 'proforma2') and 'pro_forma_number' in o"
+                            t-field="o.pro_forma_number"
                         />
                         <p
                             style="color: #90BF3F; font-size: 2em;"
@@ -137,9 +141,9 @@
         />
         <t t-if="not doctype" t-set="doctype" t-value="'Fattura'" />
         <t
-            t-if="o.state == 'proforma2'"
+            t-if="o.state.startswith('proforma')"
             t-set="desdoc"
-            t-value="doctype + ' PRO-FORMA'"
+            t-value="'PRO-FORMA'"
         />
         <t t-if="o.state == 'draft'" t-set="desdoc" t-value="'bozza ' + doctype" />
         <t
@@ -176,8 +180,9 @@
         <t t-if="not partner_bank" t-set="partner_bank" t-value="'none'" />
         <h2 t-if="address_mode != 'docnum'">
             <span t-esc="desdoc" />
-            <span t-if="o.state not in ('draft','cancel')" t-field="o.number" />
+            <span t-if="o.state not in ('draft','cancel', 'proforma', 'proforma2')" t-field="o.number" />
             <span t-if="o.state in ('draft','cancel')" t-field="o.move_name" />
+            <span t-if="o.state in ('proforma', 'proforma2') and 'pro_forma_number' in o" t-field="o.pro_forma_number" />
         </h2>
         <div class="row mt32 mb32">
             <div class="col-xs-2" t-if="o.name">
@@ -206,6 +211,10 @@
                         <span t-field="p.date_maturity" />
                     </t>
                 </p>
+            </div>
+            <div class="col-xs-2" t-if="address_mode != 'docnum' and  o.state in ('open', 'paid') and 'pro_forma_number' in o and o.pro_forma_number">
+                <strong>Ns. pro-forma:</strong>
+                <p t-field="o.pro_forma_number" />
             </div>
             <div class="col-xs-2" t-if="address_mode != 'docnum' and o.origin">
                 <strong>Origine:</strong>

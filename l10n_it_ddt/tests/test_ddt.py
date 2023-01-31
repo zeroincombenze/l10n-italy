@@ -236,8 +236,7 @@ class TestDdt(SingleTransactionCase):
             "TEST_SALE_ORDER_LINE": TEST_SALE_ORDER_LINE,
         }
         self.declare_all_data(data, group="order")
-        # self.setup_env(lang="it_IT")  # Create test environment
-        self.setup_env(enable_cancel_journal=True)
+        self.setup_env()
         self.resource_make("product.template",
                            "delivery.delivery_carrier_product_template",
                            {
@@ -408,15 +407,15 @@ class TestDdt(SingleTransactionCase):
         _logger.info(
             u"🎺 Creating DdT from order %s" % (order.name)
         )
-        ## act_windows = self.resource_edit(
-        ##     resource=[order],
-        ##     actions="l10n_it_ddt.action_create_ddt",
-        ## )
-        ## self.wizard(
-        ##     act_windows=act_windows,
-        ##     records=order,
-        ##     button_name="create_ddt",
-        ## )
+        # ## act_windows = self.resource_edit(
+        # ##     resource=[order],
+        # ##     actions="l10n_it_ddt.action_create_ddt",
+        # ## )
+        # ## self.wizard(
+        # ##     act_windows=act_windows,
+        # ##     records=order,
+        # ##     button_name="create_ddt",
+        # ## )
         order.action_create_ddt()
         self.assertTrue(
             order.ddt_ids,

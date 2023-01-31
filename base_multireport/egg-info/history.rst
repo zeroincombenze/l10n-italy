@@ -1,3 +1,8 @@
+10.0.0.2.24 (2022-01-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Pro-forma with number (reuiqres module) / Pro-forma numerata (richiede modulo aggiuntivo)
+
 10.0.0.2.23 (2022-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

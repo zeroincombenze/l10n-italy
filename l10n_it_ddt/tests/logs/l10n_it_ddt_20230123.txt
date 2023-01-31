@@ -1,0 +1,1134 @@
+2023-01-23 01:45:21,399 1931 INFO ? odoo: Odoo version 10.0
+2023-01-23 01:45:21,400 1931 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/logs/zero10.l10n-italy.l10n_it_ddt.conf
+2023-01-23 01:45:21,400 1931 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-01-23 01:45:21,400 1931 INFO ? odoo: database: odoo10@localhost:default
+2023-01-23 01:45:21,417 1931 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:57314
+2023-01-23 01:45:21,433 1931 INFO test_odoo_10 odoo.modules.loading: loading 1 modules...
+2023-01-23 01:45:21,522 1931 INFO test_odoo_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2023-01-23 01:45:23,410 1931 INFO test_odoo_10 odoo.modules.loading: loading 44 modules...
+2023-01-23 01:45:23,512 1931 INFO test_odoo_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2023-01-23 01:45:23,684 1931 INFO test_odoo_10 odoo.modules.loading: 44 modules loaded in 0.27s, 0 queries
+2023-01-23 01:45:23,690 1931 INFO test_odoo_10 odoo.modules.loading: loading 45 modules...
+2023-01-23 01:45:24,598 1931 INFO test_odoo_10 odoo.modules.registry: module l10n_it_ddt: creating or updating database tables
+2023-01-23 01:45:26,411 1931 INFO test_odoo_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-01-23 01:45:26,674 1931 INFO test_odoo_10 odoo.models: Storing computed values of account.invoice.line fields ddt_id, ddt_sequence
+2023-01-23 01:45:26,677 1931 INFO test_odoo_10 odoo.models: Storing computed values of account.invoice fields delivery_price
+2023-01-23 01:45:26,678 1931 INFO test_odoo_10 odoo.models: Storing computed values of stock.picking.package.preparation.line fields currency_id, date, ddt_number, partner_id, price_subtotal, price_tax, price_total, sale_id, sale_line_id
+2023-01-23 01:45:26,681 1931 INFO test_odoo_10 odoo.models: Storing computed values of stock.picking.package.preparation fields amount_tax, amount_total, amount_untaxed, currency_id, delivery_price, to_be_invoiced
+2023-01-23 01:45:26,845 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/security/ir.model.access.csv
+2023-01-23 01:45:27,074 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/security/security.xml
+2023-01-23 01:45:27,093 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/data/ddt_data.xml
+2023-01-23 01:45:27,167 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking_package_preparation.xml
+2023-01-23 01:45:27,554 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/ddt_data.xml
+2023-01-23 01:45:27,886 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking.xml
+2023-01-23 01:45:27,992 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/partner.xml
+2023-01-23 01:45:28,079 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/product.xml
+2023-01-23 01:45:28,216 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/account.xml
+2023-01-23 01:45:28,296 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/sale.xml
+2023-01-23 01:45:28,432 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_location.xml
+2023-01-23 01:45:28,481 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/delivery_carrier_view.xml
+2023-01-23 01:45:28,530 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/add_picking_to_ddt.xml
+2023-01-23 01:45:28,570 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_from_picking.xml
+2023-01-23 01:45:28,617 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_create_invoice.xml
+2023-01-23 01:45:28,668 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_line_create_invoice.xml
+2023-01-23 01:45:28,719 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_invoicing.xml
+2023-01-23 01:45:28,772 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/create_ddt.xml
+2023-01-23 01:45:28,809 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/report_ddt.xml
+2023-01-23 01:45:28,896 1931 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/data/mail_template_data.xml
+2023-01-23 01:45:28,942 1931 INFO test_odoo_10 odoo.addons.base.ir.ir_translation: module l10n_it_ddt: loading base translation file en for language en_US
+2023-01-23 01:45:28,942 1931 INFO test_odoo_10 odoo.tools.translate: loading /home/odoo/10.0/l10n-italy/l10n_it_ddt/i18n/en.po
+2023-01-23 01:45:29,667 1931 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt running tests.
+2023-01-23 01:45:29,668 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: test_ddt (odoo.addons.l10n_it_ddt.tests.test_ddt.TestDdt)
+2023-01-23 01:45:29,668 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(account.account,group=base)
+2023-01-23 01:45:29,669 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[account.account] = [u'code']
+2023-01-23 01:45:29,673 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.1601,name=account.account,group=base)
+2023-01-23 01:45:29,675 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.2601,name=account.account,group=base)
+2023-01-23 01:45:29,677 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.3112,name=account.account,group=base)
+2023-01-23 01:45:29,678 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.4101,name=account.account,group=base)
+2023-01-23 01:45:29,678 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(account.tax,group=base)
+2023-01-23 01:45:29,679 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[account.tax] = [u'description']
+2023-01-23 01:45:29,681 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-01-23 01:45:29,681 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(delivery.carrier,group=base)
+2023-01-23 01:45:29,685 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[delivery.carrier] = [u'default_code']
+2023-01-23 01:45:29,688 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.store_resource_data(delivery.delivery_carrier,name=delivery.carrier,group=base)
+2023-01-23 01:45:29,688 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(product.template,group=base)
+2023-01-23 01:45:29,691 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_resource[product.template] = product.product
+2023-01-23 01:45:29,691 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_name[product.template] = product_variant_ids
+2023-01-23 01:45:29,692 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_resource[product.template] = product.product
+2023-01-23 01:45:29,692 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_name[product.template] = product_variant_id
+2023-01-23 01:45:29,695 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  parent_resource[product.product] = product.template
+2023-01-23 01:45:29,695 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  parent_name[product.product] = product_tmpl_id
+2023-01-23 01:45:29,695 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[product.product] = [u'default_code']
+2023-01-23 01:45:29,695 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[product.template] = [u'default_code']
+2023-01-23 01:45:29,702 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-01-23 01:45:29,705 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_18,name=product.template,group=base)
+2023-01-23 01:45:29,708 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-01-23 01:45:29,708 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(stock.ddt.type,group=base)
+2023-01-23 01:45:29,709 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[stock.ddt.type] = [u'name']
+2023-01-23 01:45:29,711 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.store_resource_data(l10n_it_ddt.ddt_type_ddt,name=stock.ddt.type,group=base)
+2023-01-23 01:45:29,711 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(res.partner,group=base)
+2023-01-23 01:45:29,714 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[res.partner] = [u'name']
+2023-01-23 01:45:29,716 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_13,name=res.partner,group=base)
+2023-01-23 01:45:29,726 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-01-23 01:45:29,726 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(sale.order,group=order)
+2023-01-23 01:45:29,727 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_resource[sale.order] = sale.order.line
+2023-01-23 01:45:29,728 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_name[sale.order] = order_line
+2023-01-23 01:45:29,729 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  parent_resource[sale.order.line] = sale.order
+2023-01-23 01:45:29,729 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  parent_name[sale.order.line] = order_id
+2023-01-23 01:45:29,729 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[sale.order.line] = [u'sequence']
+2023-01-23 01:45:29,729 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[sale.order] = [u'partner_id']
+2023-01-23 01:45:29,734 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.store_resource_data(z0bug.sale_order_Z0_2,name=sale.order,group=order)
+2023-01-23 01:45:29,737 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.store_resource_data(z0bug.sale_order_Z0_4,name=sale.order,group=order)
+2023-01-23 01:45:29,738 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞declare_all_data(sale.order.line,group=order)
+2023-01-23 01:45:29,740 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.store_resource_data(z0bug.sale_order_Z0_2_1,name=sale.order.line,group=order)
+2023-01-23 01:45:29,743 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.store_resource_data(z0bug.sale_order_Z0_2_2,name=sale.order.line,group=order)
+2023-01-23 01:45:29,745 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.store_resource_data(z0bug.sale_order_Z0_4_1,name=sale.order.line,group=order)
+2023-01-23 01:45:29,745 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺 Starting test v2.0.4 (debug_level=3)
+2023-01-23 01:45:29,748 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-01-23 01:45:29,748 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.4101)
+2023-01-23 01:45:29,748 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-01-23 01:45:29,758 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 17, 
+    "code": "4101", 
+    "name": "Acq. Merce", 
+    "reconcile": false
+},xref=external.4101)
+2023-01-23 01:45:29,780 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.4101,name=account.account,group=base)
+2023-01-23 01:45:29,780 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.2601)
+2023-01-23 01:45:29,781 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.2601)
+2023-01-23 01:45:29,782 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 9, 
+    "code": "2601", 
+    "reconcile": false, 
+    "name": "IVA n/debito"
+},xref=external.2601)
+2023-01-23 01:45:29,794 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.2601,name=account.account,group=base)
+2023-01-23 01:45:29,794 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.1601)
+2023-01-23 01:45:29,795 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.1601)
+2023-01-23 01:45:29,796 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 5, 
+    "code": "1601", 
+    "reconcile": false, 
+    "name": "IVA n/credito"
+},xref=external.1601)
+2023-01-23 01:45:29,805 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.1601,name=account.account,group=base)
+2023-01-23 01:45:29,805 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.3112)
+2023-01-23 01:45:29,805 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-01-23 01:45:29,807 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 14, 
+    "code": "3112", 
+    "name": "Ricavi da merci e servizi", 
+    "reconcile": false
+},xref=external.3112)
+2023-01-23 01:45:29,818 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.store_resource_data(external.3112,name=account.account,group=base)
+2023-01-23 01:45:29,819 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_make(None,xref=external.22v)
+2023-01-23 01:45:29,819 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:29,827 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_create({
+    "amount_type": "percent", 
+    "amount": 22, 
+    "account_id": "external.2601", 
+    "price_include": false, 
+    "description": "22v", 
+    "refund_account_id": "external.2601", 
+    "type_tax_use": "sale", 
+    "name": "IVA 22% su vendite"
+},xref=external.22v)
+2023-01-23 01:45:29,827 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.2601)
+2023-01-23 01:45:29,829 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.2601)
+2023-01-23 01:45:29,838 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-01-23 01:45:29,838 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.resource_make(None,xref=delivery.delivery_carrier)
+2023-01-23 01:45:29,838 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.resource_bind(delivery.delivery_carrier)
+2023-01-23 01:45:29,839 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.resource_write(2,{
+    "amount": 50.0, 
+    "fixed_price": 4.9, 
+    "free_if_more_than": true, 
+    "name": "Consegna", 
+    "goods_description_id": 1
+},xref=delivery.delivery_carrier)
+2023-01-23 01:45:29,898 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make(None,xref=z0bug.product_template_1)
+2023-01-23 01:45:29,898 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(z0bug.product_template_1)
+2023-01-23 01:45:29,900 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_create({
+    "property_account_income_id": "external.3112", 
+    "weight": 0.1, 
+    "standard_price": 0.42, 
+    "uom_id": 1, 
+    "default_code": "AA", 
+    "name": "Prodotto Alpha", 
+    "property_account_expense_id": "external.4101", 
+    "lst_price": 0.84, 
+    "taxes_id": [
+        "external.22v"
+    ], 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "product_variant_id": []
+},xref=z0bug.product_template_1)
+2023-01-23 01:45:29,900 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-01-23 01:45:29,902 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-01-23 01:45:29,903 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:29,906 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del product.template.vals[product_variant_id]
+2023-01-23 01:45:30,204 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-01-23 01:45:30,204 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_1' -> ('product.product') 'z0bug.product_product_1'
+2023-01-23 01:45:30,207 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.store_resource_data(z0bug.product_product_1,name=product.product,group=base)
+2023-01-23 01:45:30,207 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make(None,xref=z0bug.product_template_18)
+2023-01-23 01:45:30,207 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(z0bug.product_template_18)
+2023-01-23 01:45:30,209 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_create({
+    "property_account_income_id": "external.3112", 
+    "weight": 0.06, 
+    "standard_price": 0.59, 
+    "uom_id": 1, 
+    "default_code": "WW", 
+    "name": "Prodotto Rho", 
+    "property_account_expense_id": "external.4101", 
+    "lst_price": 1.19, 
+    "taxes_id": [
+        "external.22v"
+    ], 
+    "uom_po_id": 1, 
+    "type": "product", 
+    "product_variant_id": []
+},xref=z0bug.product_template_18)
+2023-01-23 01:45:30,209 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-01-23 01:45:30,211 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-01-23 01:45:30,213 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:30,218 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del product.template.vals[product_variant_id]
+2023-01-23 01:45:30,444 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_18,name=product.template,group=base)
+2023-01-23 01:45:30,444 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_18' -> ('product.product') 'z0bug.product_product_18'
+2023-01-23 01:45:30,447 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.store_resource_data(z0bug.product_product_18,name=product.product,group=base)
+2023-01-23 01:45:30,447 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make(None,xref=z0bug.product_template_2)
+2023-01-23 01:45:30,447 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(z0bug.product_template_2)
+2023-01-23 01:45:30,448 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_create({
+    "property_account_income_id": "external.3112", 
+    "weight": 0.2, 
+    "standard_price": 1.69, 
+    "uom_id": 1, 
+    "default_code": "BB", 
+    "name": "Prodotto Beta", 
+    "property_account_expense_id": "external.4101", 
+    "lst_price": 3.38, 
+    "taxes_id": [
+        "external.22v"
+    ], 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "product_variant_id": []
+},xref=z0bug.product_template_2)
+2023-01-23 01:45:30,449 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-01-23 01:45:30,450 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-01-23 01:45:30,452 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:30,456 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del product.template.vals[product_variant_id]
+2023-01-23 01:45:30,672 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-01-23 01:45:30,672 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_2' -> ('product.product') 'z0bug.product_product_2'
+2023-01-23 01:45:30,675 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.store_resource_data(z0bug.product_product_2,name=product.product,group=base)
+2023-01-23 01:45:30,675 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.resource_make(None,xref=l10n_it_ddt.ddt_type_ddt)
+2023-01-23 01:45:30,675 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.resource_bind(l10n_it_ddt.ddt_type_ddt)
+2023-01-23 01:45:30,676 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.resource_write(1,{
+    "default_transportation_reason_id": 1
+},xref=l10n_it_ddt.ddt_type_ddt)
+2023-01-23 01:45:30,678 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_make(None,xref=z0bug.res_partner_13)
+2023-01-23 01:45:30,678 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_13)
+2023-01-23 01:45:30,680 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_create({
+    "lang": "en_US", 
+    "city": "M\u00e4\u00e4nz", 
+    "street": "Christophstra\u00dfe 13", 
+    "customer": true, 
+    "zip": "55113", 
+    "is_company": true, 
+    "supplier": false, 
+    "country_id": 58, 
+    "vat": "DE812526315", 
+    "name": "Axilor GmbH"
+},xref=z0bug.res_partner_13)
+2023-01-23 01:45:30,843 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del res.partner.vals[image_small]
+2023-01-23 01:45:30,844 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del res.partner.vals[image]
+2023-01-23 01:45:30,844 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del res.partner.vals[image_medium]
+2023-01-23 01:45:30,844 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_13,name=res.partner,group=base)
+2023-01-23 01:45:30,844 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_make(None,xref=z0bug.res_partner_2)
+2023-01-23 01:45:30,844 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_2)
+2023-01-23 01:45:30,846 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_create({
+    "website": "http://www.agrolait2.it/", 
+    "city": "S. Secondo Pinerolo", 
+    "transportation_method_id": 3, 
+    "zip": "10060", 
+    "carriage_condition_id": 3, 
+    "country_id": 110, 
+    "phone": "+39 0121555123", 
+    "street": "Via Dueville, 2", 
+    "is_company": true, 
+    "supplier": false, 
+    "state_id": 402, 
+    "goods_description_id": 3, 
+    "customer": true, 
+    "email": "agrolait2@libero.it", 
+    "vat": "IT02345670018", 
+    "name": "Latte Beta Due s.n.c."
+},xref=z0bug.res_partner_2)
+2023-01-23 01:45:30,977 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del res.partner.vals[image_medium]
+2023-01-23 01:45:30,978 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del res.partner.vals[image]
+2023-01-23 01:45:30,978 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del res.partner.vals[image_small]
+2023-01-23 01:45:30,978 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-01-23 01:45:30,978 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_make(None,xref=z0bug.product_product_18)
+2023-01-23 01:45:30,978 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_18)
+2023-01-23 01:45:30,980 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_write(44,{
+    "property_account_income_id": 33, 
+    "name": "Prodotto Rho", 
+    "weight": 0.06, 
+    "property_account_expense_id": 30, 
+    "standard_price": 0.59, 
+    "product_tmpl_id": 40, 
+    "uom_id": 1, 
+    "lst_price": 1.19, 
+    "default_code": "WW", 
+    "uom_po_id": 1, 
+    "type": "product", 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=z0bug.product_product_18)
+2023-01-23 01:45:31,063 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_make(None,xref=z0bug.product_product_1)
+2023-01-23 01:45:31,063 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_1)
+2023-01-23 01:45:31,066 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_write(43,{
+    "property_account_income_id": 33, 
+    "name": "Prodotto Alpha", 
+    "weight": 0.1, 
+    "property_account_expense_id": 30, 
+    "standard_price": 0.42, 
+    "product_tmpl_id": 39, 
+    "uom_id": 1, 
+    "lst_price": 0.84, 
+    "default_code": "AA", 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=z0bug.product_product_1)
+2023-01-23 01:45:31,151 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_make(None,xref=z0bug.product_product_2)
+2023-01-23 01:45:31,151 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_2)
+2023-01-23 01:45:31,153 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_write(45,{
+    "property_account_income_id": 33, 
+    "name": "Prodotto Beta", 
+    "weight": 0.2, 
+    "property_account_expense_id": 30, 
+    "standard_price": 1.69, 
+    "product_tmpl_id": 41, 
+    "uom_id": 1, 
+    "lst_price": 3.38, 
+    "default_code": "BB", 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=z0bug.product_product_2)
+2023-01-23 01:45:31,244 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make({
+    "property_account_income_id": "external.3112", 
+    "taxes_id": "external.22v"
+},xref=delivery.delivery_carrier_product_template)
+2023-01-23 01:45:31,244 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(delivery.delivery_carrier_product_template)
+2023-01-23 01:45:31,246 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-01-23 01:45:31,247 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:31,249 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del product.template.vals[product_variant_id]
+2023-01-23 01:45:31,249 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_write(37,{
+    "property_account_income_id": 33, 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=delivery.delivery_carrier_product_template)
+2023-01-23 01:45:31,423 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_2]
+2023-01-23 01:45:31,423 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_make(None,xref=z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,424 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,426 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.resource_bind(z0bug.sale_order_Z0_2_2)
+2023-01-23 01:45:31,427 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,430 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.resource_bind(z0bug.sale_order_Z0_2_1)
+2023-01-23 01:45:31,431 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,434 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_create({
+    "origin": "Test2", 
+    "order_line": [
+        [
+            0, 
+            0, 
+            "z0bug.sale_order_Z0_2_2"
+        ], 
+        [
+            0, 
+            0, 
+            "z0bug.sale_order_Z0_2_1"
+        ]
+    ], 
+    "carrier_id": 2, 
+    "client_order_ref": "220123", 
+    "date_order": "2023-01-22", 
+    "partner_id": "z0bug.res_partner_2", 
+    "ddt_type_id": 1
+},xref=z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,434 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_2)
+2023-01-23 01:45:31,435 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,437 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ External reference z0bug.sale_order_Z0_2 not found
+2023-01-23 01:45:31,437 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del sale.order.line.vals[order_id]
+2023-01-23 01:45:31,437 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:31,440 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_1)
+2023-01-23 01:45:31,441 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-01-23 01:45:31,444 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ External reference z0bug.sale_order_Z0_2 not found
+2023-01-23 01:45:31,444 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del sale.order.line.vals[order_id]
+2023-01-23 01:45:31,444 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:31,447 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_2)
+2023-01-23 01:45:31,744 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.store_resource_data(z0bug.sale_order_Z0_2,name=sale.order,group=order)
+2023-01-23 01:45:31,748 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞None.resource_bind(z0bug.res_partner_13)
+2023-01-23 01:45:31,750 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order(9,).resource_edit(def={},chng=[('partner_id', 47), ('partner_id', 48), ('carrier_id', 3)],act=['action_confirm'],ctx={})
+2023-01-23 01:45:31,837 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order(9,).onchange(partner_id=47)
+2023-01-23 01:45:32,055 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order(9,).onchange(partner_id=48)
+2023-01-23 01:45:32,287 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order(9,).onchange(carrier_id=3)
+2023-01-23 01:45:32,325 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order.action_confirm()
+2023-01-23 01:45:32,328 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:45:33,997 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_4]
+2023-01-23 01:45:33,997 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_make(None,xref=z0bug.sale_order_Z0_4)
+2023-01-23 01:45:33,997 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_4)
+2023-01-23 01:45:34,002 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.resource_bind(z0bug.sale_order_Z0_4_1)
+2023-01-23 01:45:34,004 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_4)
+2023-01-23 01:45:34,007 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_create({
+    "origin": "Test4", 
+    "order_line": [
+        [
+            0, 
+            0, 
+            "z0bug.sale_order_Z0_4_1"
+        ]
+    ], 
+    "carrier_id": 3, 
+    "client_order_ref": "IT/22/004", 
+    "date_order": "2023-01-23", 
+    "partner_id": "z0bug.res_partner_2", 
+    "ddt_type_id": 1
+},xref=z0bug.sale_order_Z0_4)
+2023-01-23 01:45:34,007 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_18)
+2023-01-23 01:45:34,008 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_4)
+2023-01-23 01:45:34,011 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ External reference z0bug.sale_order_Z0_4 not found
+2023-01-23 01:45:34,011 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞del sale.order.line.vals[order_id]
+2023-01-23 01:45:34,011 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-01-23 01:45:34,014 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_2)
+2023-01-23 01:45:34,315 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.store_resource_data(z0bug.sale_order_Z0_4,name=sale.order,group=order)
+2023-01-23 01:45:34,319 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞None.resource_bind(z0bug.res_partner_13)
+2023-01-23 01:45:34,320 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order(10,).resource_edit(def={},chng=[('partner_id', 47), ('partner_id', 48), ('carrier_id', 3)],act=['action_confirm'],ctx={
+    "active_ids": [
+        9
+    ], 
+    "active_id": 9
+})
+2023-01-23 01:45:34,380 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order(10,).onchange(partner_id=47)
+2023-01-23 01:45:34,595 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order(10,).onchange(partner_id=48)
+2023-01-23 01:45:34,814 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order(10,).onchange(carrier_id=3)
+2023-01-23 01:45:34,850 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order.action_confirm()
+2023-01-23 01:45:34,853 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:45:35,744 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT and then add picking to it
+2023-01-23 01:45:35,746 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO008
+2023-01-23 01:45:36,031 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order(9,).resource_edit(def={},chng=[],act=['action_view_ddt'],ctx={
+    "active_ids": [
+        10
+    ], 
+    "active_id": 10
+})
+2023-01-23 01:45:36,108 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order.action_view_ddt()
+2023-01-23 01:45:36,132 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Adding picking to DdT
+2023-01-23 01:45:36,297 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [12, 13]
+2023-01-23 01:45:36,343 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [15, 16]
+2023-01-23 01:45:36,369 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [17, 18]
+2023-01-23 01:45:36,535 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [1]
+2023-01-23 01:45:36,570 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [2]
+2023-01-23 01:45:36,593 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [3]
+2023-01-23 01:45:36,914 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [4]
+2023-01-23 01:45:36,953 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [5]
+2023-01-23 01:45:36,975 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [6]
+2023-01-23 01:45:37,198 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [7]
+2023-01-23 01:45:37,242 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [8]
+2023-01-23 01:45:37,268 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [9]
+2023-01-23 01:45:37,607 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [14]
+2023-01-23 01:45:37,651 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [21]
+2023-01-23 01:45:37,784 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [10]
+2023-01-23 01:45:37,822 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [11]
+2023-01-23 01:45:37,843 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [12]
+2023-01-23 01:45:38,114 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [13]
+2023-01-23 01:45:38,151 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [14]
+2023-01-23 01:45:38,175 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [15]
+2023-01-23 01:45:39,632 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [316, 315, 314]
+2023-01-23 01:45:39,707 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [7]
+2023-01-23 01:45:39,713 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [170]
+2023-01-23 01:45:40,800 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [23, 24]
+2023-01-23 01:45:40,865 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [25, 26]
+2023-01-23 01:45:41,516 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [29]
+2023-01-23 01:45:41,714 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [306, 305, 304]
+2023-01-23 01:45:41,731 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [1]
+2023-01-23 01:45:41,738 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [169]
+2023-01-23 01:45:42,347 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [31, 32]
+2023-01-23 01:45:42,412 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [33, 34]
+2023-01-23 01:45:43,204 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [37, 38]
+2023-01-23 01:45:43,269 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [39, 40]
+2023-01-23 01:45:44,268 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [43]
+2023-01-23 01:45:45,162 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [45]
+2023-01-23 01:45:46,097 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:45:47,938 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:45:50,100 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from 2 orders
+2023-01-23 01:45:50,100 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating ddt from more orders
+2023-01-23 01:45:50,384 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [47, 48]
+2023-01-23 01:45:50,433 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [50, 51]
+2023-01-23 01:45:50,464 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [52, 53]
+2023-01-23 01:45:50,643 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [19]
+2023-01-23 01:45:50,699 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [20]
+2023-01-23 01:45:50,726 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [21]
+2023-01-23 01:45:51,209 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [22]
+2023-01-23 01:45:51,257 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [23]
+2023-01-23 01:45:51,287 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [24]
+2023-01-23 01:45:51,532 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [25]
+2023-01-23 01:45:51,578 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [26]
+2023-01-23 01:45:51,606 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [27]
+2023-01-23 01:45:51,843 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [49]
+2023-01-23 01:45:51,893 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [56]
+2023-01-23 01:45:52,042 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [28]
+2023-01-23 01:45:52,085 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [29]
+2023-01-23 01:45:52,110 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [30]
+2023-01-23 01:45:52,411 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [31]
+2023-01-23 01:45:52,459 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [32]
+2023-01-23 01:45:52,487 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [33]
+2023-01-23 01:45:53,795 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [394, 393, 392]
+2023-01-23 01:45:53,874 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [8]
+2023-01-23 01:45:53,879 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [183]
+2023-01-23 01:45:54,996 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [58, 59]
+2023-01-23 01:45:55,059 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [60, 61]
+2023-01-23 01:45:55,785 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [64]
+2023-01-23 01:45:55,974 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [386, 385]
+2023-01-23 01:45:55,989 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [2]
+2023-01-23 01:45:55,996 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [182]
+2023-01-23 01:45:56,595 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [66, 67]
+2023-01-23 01:45:56,658 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [68, 69]
+2023-01-23 01:45:57,442 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [72, 73]
+2023-01-23 01:45:57,509 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [74, 75]
+2023-01-23 01:45:58,339 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [78]
+2023-01-23 01:45:59,077 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [80]
+2023-01-23 01:46:00,014 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:46:01,544 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:46:02,454 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating invoice from 2 DdTs
+2023-01-23 01:46:02,454 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO008
+2023-01-23 01:46:02,664 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order(9,).resource_edit(def={},chng=[],act=['action_view_ddt'],ctx={
+    "active_ids": [
+        9
+    ], 
+    "active_id": 9
+})
+2023-01-23 01:46:02,779 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order.action_view_ddt()
+2023-01-23 01:46:02,801 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO009
+2023-01-23 01:46:02,994 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order(10,).resource_edit(def={},chng=[],act=['action_view_ddt'],ctx={
+    "active_ids": [
+        9
+    ], 
+    "active_id": 9
+})
+2023-01-23 01:46:03,074 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  sale.order.action_view_ddt()
+2023-01-23 01:46:03,114 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞None.resource_bind(z0bug.res_partner_13)
+2023-01-23 01:46:03,115 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.picking.package.preparation(3,).resource_edit(def={},chng=[('partner_id', 47), ('partner_id', 48)],act=['delivery_set'],ctx={
+    "active_ids": [
+        10
+    ], 
+    "active_id": 10
+})
+2023-01-23 01:46:03,153 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_resource[stock.picking.package.preparation] = stock.picking.package.preparation.line
+2023-01-23 01:46:03,154 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞childs_name[stock.picking.package.preparation] = line_ids
+2023-01-23 01:46:03,155 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  parent_resource[stock.picking.package.preparation.line] = stock.picking.package.preparation
+2023-01-23 01:46:03,155 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  parent_name[stock.picking.package.preparation.line] = package_preparation_id
+2023-01-23 01:46:03,155 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[stock.picking.package.preparation.line] = [u'sequence']
+2023-01-23 01:46:03,155 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  skeys[stock.picking.package.preparation] = [u'partner_id']
+2023-01-23 01:46:03,155 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  stock.picking.package.preparation(3,).onchange(partner_id=47)
+2023-01-23 01:46:03,222 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  stock.picking.package.preparation(3,).onchange(partner_id=48)
+2023-01-23 01:46:03,259 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  stock.picking.package.preparation.delivery_set()
+2023-01-23 01:46:03,304 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [82, 83]
+2023-01-23 01:46:03,346 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [85, 86]
+2023-01-23 01:46:03,374 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [87, 88]
+2023-01-23 01:46:03,524 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [37]
+2023-01-23 01:46:03,550 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [38]
+2023-01-23 01:46:03,862 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [40]
+2023-01-23 01:46:03,887 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [41]
+2023-01-23 01:46:04,069 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [42]
+2023-01-23 01:46:04,094 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [43]
+2023-01-23 01:46:04,320 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [84]
+2023-01-23 01:46:04,359 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [91]
+2023-01-23 01:46:04,492 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [39]
+2023-01-23 01:46:04,683 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [46]
+2023-01-23 01:46:06,366 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [474, 473, 472]
+2023-01-23 01:46:06,497 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [9]
+2023-01-23 01:46:06,505 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [197]
+2023-01-23 01:46:08,166 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [93, 94]
+2023-01-23 01:46:08,282 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [95, 96]
+2023-01-23 01:46:09,808 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [99]
+2023-01-23 01:46:10,334 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [464, 463]
+2023-01-23 01:46:10,358 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [3]
+2023-01-23 01:46:10,367 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [195]
+2023-01-23 01:46:10,992 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [101, 102]
+2023-01-23 01:46:11,069 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [103, 104]
+2023-01-23 01:46:11,895 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [107, 108]
+2023-01-23 01:46:11,968 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [109, 110]
+2023-01-23 01:46:12,431 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [466, 465]
+2023-01-23 01:46:12,455 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [4]
+2023-01-23 01:46:12,463 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [196]
+2023-01-23 01:46:13,148 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [113]
+2023-01-23 01:46:14,197 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [115]
+2023-01-23 01:46:15,386 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:46:17,175 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:46:18,368 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Wizard: creating DdT from 2 orders
+2023-01-23 01:46:18,380 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard starting(Create DdT,{
+    "groups_id": [], 
+    "domain": "[]", 
+    "xml_id": "l10n_it_ddt.action_create_ddt", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "wizard.create.ddt", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 333, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "Create DdT", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            false, 
+            "form"
+        ]
+    ], 
+    "src_model": "sale.order", 
+    "usage": "", 
+    "res_id": 0, 
+    "view_type": "form", 
+    "view_id": false, 
+    "view_mode": "form", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "Create DdT", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"wizard.create.ddt\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'wizard.create.ddt', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 0, 
+    "context": "{}"
+},
+rec=None,
+def=None,
+ctx={
+    "active_ids": [
+        9, 
+        10
+    ]
+})
+2023-01-23 01:46:18,385 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard running(Create DdT, {
+    "groups_id": [], 
+    "domain": "[]", 
+    "xml_id": "l10n_it_ddt.action_create_ddt", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "wizard.create.ddt", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 333, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "Create DdT", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            false, 
+            "form"
+        ]
+    ], 
+    "src_model": "sale.order", 
+    "usage": "", 
+    "res_id": 1, 
+    "view_type": "form", 
+    "view_id": false, 
+    "view_mode": "form", 
+    "_wizard_": "[...]", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "Create DdT", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"wizard.create.ddt\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'wizard.create.ddt', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 0, 
+    "context": {
+        "dateutil": "[...]", 
+        "uid": 1, 
+        "datetime": "[...]", 
+        "user": "[...]", 
+        "time": "[...]", 
+        "timezone": "[...]", 
+        "active_ids": [
+            9, 
+            10
+        ]
+    }
+})
+2023-01-23 01:46:18,385 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  wizard.create.ddt.create_ddt()
+2023-01-23 01:46:18,759 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [117, 118]
+2023-01-23 01:46:18,823 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [120, 121]
+2023-01-23 01:46:18,857 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [122, 123]
+2023-01-23 01:46:19,054 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [48]
+2023-01-23 01:46:19,100 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [49]
+2023-01-23 01:46:19,127 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [50]
+2023-01-23 01:46:19,544 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [51]
+2023-01-23 01:46:19,593 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [52]
+2023-01-23 01:46:19,622 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [53]
+2023-01-23 01:46:19,879 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [54]
+2023-01-23 01:46:19,920 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [55]
+2023-01-23 01:46:19,947 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [56]
+2023-01-23 01:46:20,209 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [119]
+2023-01-23 01:46:20,263 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [126]
+2023-01-23 01:46:20,433 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [57]
+2023-01-23 01:46:20,483 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [58]
+2023-01-23 01:46:20,511 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [59]
+2023-01-23 01:46:20,866 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [60]
+2023-01-23 01:46:20,910 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [61]
+2023-01-23 01:46:20,940 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [62]
+2023-01-23 01:46:21,207 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard starting(DDT Create Invoice,{
+    "groups_id": [], 
+    "domain": false, 
+    "xml_id": "l10n_it_ddt.action_ddt_create_invoice", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "ddt.create.invoice", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 330, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "DDT Create Invoice", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            748, 
+            "form"
+        ]
+    ], 
+    "src_model": false, 
+    "usage": false, 
+    "res_id": 0, 
+    "view_type": "form", 
+    "view_id": [
+        748, 
+        "DdT Create Invoice"
+    ], 
+    "view_mode": "form", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "DDT Create Invoice", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"ddt.create.invoice\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'ddt.create.invoice', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 80, 
+    "context": "{}"
+},
+rec=None,
+def=None,
+ctx={
+    "active_ids": [
+        5
+    ]
+})
+2023-01-23 01:46:21,213 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard running(DDT Create Invoice, {
+    "groups_id": [], 
+    "domain": false, 
+    "xml_id": "l10n_it_ddt.action_ddt_create_invoice", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "ddt.create.invoice", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 330, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "DDT Create Invoice", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            748, 
+            "form"
+        ]
+    ], 
+    "src_model": false, 
+    "usage": false, 
+    "res_id": 1, 
+    "view_type": "form", 
+    "view_id": [
+        748, 
+        "DdT Create Invoice"
+    ], 
+    "view_mode": "form", 
+    "_wizard_": "[...]", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "DDT Create Invoice", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"ddt.create.invoice\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'ddt.create.invoice', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 80, 
+    "context": {
+        "dateutil": "[...]", 
+        "uid": 1, 
+        "datetime": "[...]", 
+        "user": "[...]", 
+        "time": "[...]", 
+        "timezone": "[...]", 
+        "active_ids": [
+            5
+        ]
+    }
+})
+2023-01-23 01:46:21,214 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  ddt.create.invoice.create_invoice()
+2023-01-23 01:46:23,633 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [552, 551, 550]
+2023-01-23 01:46:23,746 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [10]
+2023-01-23 01:46:23,755 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [210]
+2023-01-23 01:46:25,074 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [128, 129]
+2023-01-23 01:46:25,167 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [130, 131]
+2023-01-23 01:46:26,115 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [134]
+2023-01-23 01:46:26,390 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [544, 543]
+2023-01-23 01:46:26,412 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [5]
+2023-01-23 01:46:26,420 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [209]
+2023-01-23 01:46:27,309 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [136, 137]
+2023-01-23 01:46:27,401 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [138, 139]
+2023-01-23 01:46:29,099 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [142, 143]
+2023-01-23 01:46:29,210 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [144, 145]
+2023-01-23 01:46:30,275 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [148]
+2023-01-23 01:46:31,163 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [150]
+2023-01-23 01:46:32,128 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:46:33,931 1931 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-01-23 01:46:35,029 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Wizard: creating DdT from pickings
+2023-01-23 01:46:35,042 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard starting(DDT from Pickings,{
+    "groups_id": [], 
+    "domain": false, 
+    "xml_id": "l10n_it_ddt.action_ddt_from_pickings", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "ddt.from.pickings", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 329, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "DDT from Pickings", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            747, 
+            "form"
+        ]
+    ], 
+    "src_model": false, 
+    "usage": false, 
+    "res_id": 0, 
+    "view_type": "form", 
+    "view_id": [
+        747, 
+        "DdT from Pickings"
+    ], 
+    "view_mode": "form", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "DDT from Pickings", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"ddt.from.pickings\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'ddt.from.pickings', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 80, 
+    "context": "{}"
+},
+rec=None,
+def=None,
+ctx={
+    "active_ids": [
+        52, 
+        53
+    ]
+})
+2023-01-23 01:46:35,048 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard running(DDT from Pickings, {
+    "groups_id": [], 
+    "domain": false, 
+    "xml_id": "l10n_it_ddt.action_ddt_from_pickings", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "ddt.from.pickings", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 329, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "DDT from Pickings", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            747, 
+            "form"
+        ]
+    ], 
+    "src_model": false, 
+    "usage": false, 
+    "res_id": 1, 
+    "view_type": "form", 
+    "view_id": [
+        747, 
+        "DdT from Pickings"
+    ], 
+    "view_mode": "form", 
+    "_wizard_": "[...]", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "DDT from Pickings", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"ddt.from.pickings\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'ddt.from.pickings', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 80, 
+    "context": {
+        "dateutil": "[...]", 
+        "uid": 1, 
+        "datetime": "[...]", 
+        "user": "[...]", 
+        "time": "[...]", 
+        "timezone": "[...]", 
+        "active_ids": [
+            52, 
+            53
+        ]
+    }
+})
+2023-01-23 01:46:35,049 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  ddt.from.pickings.create_ddt()
+2023-01-23 01:46:35,412 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [152, 153]
+2023-01-23 01:46:35,476 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [155, 156]
+2023-01-23 01:46:35,518 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [157, 158]
+2023-01-23 01:46:35,764 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [66]
+2023-01-23 01:46:35,820 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [67]
+2023-01-23 01:46:35,849 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [68]
+2023-01-23 01:46:36,391 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [69]
+2023-01-23 01:46:36,440 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [70]
+2023-01-23 01:46:36,468 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [71]
+2023-01-23 01:46:36,718 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [72]
+2023-01-23 01:46:36,763 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [73]
+2023-01-23 01:46:36,794 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [74]
+2023-01-23 01:46:37,122 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [154]
+2023-01-23 01:46:37,180 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [161]
+2023-01-23 01:46:37,413 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [75]
+2023-01-23 01:46:37,526 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [76]
+2023-01-23 01:46:37,561 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [77]
+2023-01-23 01:46:37,931 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [78]
+2023-01-23 01:46:38,102 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [79]
+2023-01-23 01:46:38,193 1931 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation.line records with IDs: [80]
+2023-01-23 01:46:38,872 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard starting(DDT Create Invoice,{
+    "groups_id": [], 
+    "domain": false, 
+    "xml_id": "l10n_it_ddt.action_ddt_create_invoice", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "ddt.create.invoice", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 330, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "DDT Create Invoice", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            748, 
+            "form"
+        ]
+    ], 
+    "src_model": false, 
+    "usage": false, 
+    "res_id": 0, 
+    "view_type": "form", 
+    "view_id": [
+        748, 
+        "DdT Create Invoice"
+    ], 
+    "view_mode": "form", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "DDT Create Invoice", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"ddt.create.invoice\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'ddt.create.invoice', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 80, 
+    "context": "{}"
+},
+rec=None,
+def=None,
+ctx={
+    "active_ids": [
+        6
+    ]
+})
+2023-01-23 01:46:38,879 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞wizard running(DDT Create Invoice, {
+    "groups_id": [], 
+    "domain": false, 
+    "xml_id": "l10n_it_ddt.action_ddt_create_invoice", 
+    "create_date": "2023-01-23 01:45:26", 
+    "help": false, 
+    "res_model": "ddt.create.invoice", 
+    "search_view_id": false, 
+    "write_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "id": 330, 
+    "create_uid": [
+        1, 
+        "Administrator"
+    ], 
+    "display_name": "DDT Create Invoice", 
+    "__last_update": "2023-01-23 01:45:26", 
+    "views": [
+        [
+            748, 
+            "form"
+        ]
+    ], 
+    "src_model": false, 
+    "usage": false, 
+    "res_id": 2, 
+    "view_type": "form", 
+    "view_id": [
+        748, 
+        "DdT Create Invoice"
+    ], 
+    "view_mode": "form", 
+    "_wizard_": "[...]", 
+    "write_date": "2023-01-23 01:45:26", 
+    "view_ids": [], 
+    "name": "DDT Create Invoice", 
+    "multi": false, 
+    "target": "new", 
+    "auto_search": true, 
+    "type": "ir.actions.act_window", 
+    "search_view": "{'name': 'default', 'arch': '<search string=\"ddt.create.invoice\"><field name=\"id\" modifiers=\"{&quot;readonly&quot;: true}\"/></search>', 'fields': {'id': {'change_default': False, 'string': 'ID', 'searchable': True, 'views': {}, 'required': False, 'manual': False, 'readonly': True, 'depends': (), 'company_dependent': False, 'sortable': True, 'type': 'integer', 'store': True}}, 'model': 'ddt.create.invoice', 'type': 'search', 'field_parent': False}", 
+    "filter": false, 
+    "limit": 80, 
+    "context": {
+        "dateutil": "[...]", 
+        "uid": 1, 
+        "datetime": "[...]", 
+        "user": "[...]", 
+        "time": "[...]", 
+        "timezone": "[...]", 
+        "active_ids": [
+            6
+        ]
+    }
+})
+2023-01-23 01:46:38,880 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞  ddt.create.invoice.create_invoice()
+2023-01-23 01:46:40,085 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ✨ Test data committed
+2023-01-23 01:46:40,087 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: Ran 1 test in 70.420s
+2023-01-23 01:46:40,087 1931 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: OK
+2023-01-23 01:46:40,087 1931 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt tested in 70.42s, 57932 queries
+2023-01-23 01:46:40,141 1931 INFO test_odoo_10 odoo.modules.loading: 45 modules loaded in 76.45s, 57985 queries
+2023-01-23 01:46:40,743 1931 INFO test_odoo_10 odoo.modules.loading: Modules loaded.
+2023-01-23 01:46:40,751 1931 INFO test_odoo_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-01-23 01:46:40,752 1931 INFO test_odoo_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-01-23 01:46:40,852 1931 INFO test_odoo_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-01-23 01:46:40,853 1931 INFO test_odoo_10 odoo.service.server: Initiating shutdown
+2023-01-23 01:46:40,853 1931 INFO test_odoo_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ddt[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                 Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_ddt/models/account.py                               102     38    63%   61, 71, 82-83, 87-119, 130, 141, 192-194, 197-203
+l10n-italy/l10n_it_ddt/models/delivery_carrier.py                       26     16    38%   31-50
+l10n-italy/l10n_it_ddt/models/ir_sequence.py                            27      6    78%   22, 33, 36, 45-47
+l10n-italy/l10n_it_ddt/models/partner.py                                11      0   100%
+l10n-italy/l10n_it_ddt/models/product.py                                23      4    83%   20, 32, 38-43
+l10n-italy/l10n_it_ddt/models/sale_order.py                            169     30    82%   13, 33, 98, 101, 108, 110, 112, 116, 135, 156, 173, 192, 199, 223, 227, 233, 240, 245, 261, 299, 304, 317-319, 323, 327-332
+l10n-italy/l10n_it_ddt/models/stock_location.py                          4      0   100%
+l10n-italy/l10n_it_ddt/models/stock_picking.py                          91     31    66%   28, 31-33, 36, 40-47, 50, 53, 65-67, 85, 88, 107, 110-112, 122, 124, 131, 147, 161, 169, 180, 187
+l10n-italy/l10n_it_ddt/models/stock_picking_package_preparation.py     724    241    67%   130-131, 133, 139, 159, 162, 169, 174, 178, 190-198, 215, 318-320, 324, 329, 332, 360, 366, 369, 432, 454-461, 468, 479-480, 543, 545, 550, 574, 584, 587, 593, 595, 600-601, 615, 620, 626-628, 656-676, 679, 687, 692-693, 697, 704, 713, 724, 726, 734, 741, 750, 754-757, 760, 763-766, 779, 784-793, 812, 819, 831, 848, 861, 924, 936, 946-956, 959-967, 975-976, 979-983, 1033, 1044, 1050, 1053-1055, 1072-1097, 1109, 1112, 1114, 1126, 1129, 1133, 1140, 1147, 1164, 1250-1296, 1299-1310, 1313, 1353-1387, 1433-1447, 1450, 1459-1521
+l10n-italy/l10n_it_ddt/wizard/add_picking_to_ddt.py                     36     29    19%   18-40, 48-82
+l10n-italy/l10n_it_ddt/wizard/create_ddt.py                             15      0   100%
+l10n-italy/l10n_it_ddt/wizard/ddt_create_invoice.py                     23      2    91%   18, 35
+l10n-italy/l10n_it_ddt/wizard/ddt_from_picking.py                       19      1    95%   19
+l10n-italy/l10n_it_ddt/wizard/ddt_invoicing.py                          21     11    48%   15-16, 31-56
+l10n-italy/l10n_it_ddt/wizard/ddt_line_create_invoice.py                40     30    25%   13, 18-26, 35-45, 58-67
+--------------------------------------------------------------------------------------------------
+TOTAL                                                                 1331    439    67%

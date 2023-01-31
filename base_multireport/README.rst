@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.23
+|icon| base_rule_multireport 10.0.0.2.24
 ========================================
 
 
@@ -456,22 +456,6 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
-----------------------------------------
-
-10.0.0.2.23 (2022-06-10)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Overdue print / Stampa E/C scaduto
-
-10.0.0.2.22 (2022-05-23)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] No more VG7 data
-* [IMP] Activate selection rules
-
-
-
 |
 |
 
@@ -491,12 +475,17 @@ Authors / Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -528,7 +517,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-11
+Last Update / Ultimo aggiornamento: 2023-01-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
