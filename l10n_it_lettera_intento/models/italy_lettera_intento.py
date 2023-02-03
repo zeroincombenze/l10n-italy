@@ -22,19 +22,21 @@ class ItalyLetteraIntento(models.Model):
                 partner_id = lett.partner_id.id
                 company_id = lett.company_id.id
                 query = """SELECT SUM(credit) - SUM(debit)
-                FROM account_move_line
+                FROM account_move_line l, account_invoice i
                 WHERE
-                partner_id = %(partner_id)d AND
-                company_id = %(company_id)d AND
-                journal_id in (SELECT id FROM account_journal WHERE
+                i.id=l.invoice_id AND
+                i.lettera_intento_id=%(lett)d AND
+                i.partner_id = %(partner_id)d AND
+                i.company_id = %(company_id)d AND
+                i.journal_id in (SELECT id FROM account_journal WHERE
                                type='sale' AND company_id=%(company_id)d) AND
-                account_id in (SELECT id FROM account_account WHERE
-                               internal_type='receivable') AND
-                date >= '%(date)s'
+                l.account_id in (SELECT id FROM account_account WHERE
+                               internal_type='receivable')
                 """ % {
                     "company_id": company_id,
                     "partner_id": partner_id,
                     "date": lett.customer_date,
+                    "lett": lett.id,
                 }
                 self.env.cr.execute(query)
                 res = self.env.cr.fetchall()
