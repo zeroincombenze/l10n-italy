@@ -1,6 +1,6 @@
 
 ====================================
-|icon| Lettere di intento 10.0.0.1.6
+|icon| Lettere di intento 10.0.0.1.7
 ====================================
 
 
@@ -146,6 +146,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.1.7 (2023-01-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Amount based on document id / Calcolo plafond basato su id lettera intento
+
 10.0.0.1.6 (2022-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -155,11 +160,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] New menu / Nuovo menù
-
-10.0.0.1.4 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Editable Lettera intento id in invoice / Numero lettera intento in fattura modificabile
 
 
 
@@ -182,12 +182,17 @@ Authors / Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -219,7 +224,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-06-14
+Last Update / Ultimo aggiornamento: 2023-02-03
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
