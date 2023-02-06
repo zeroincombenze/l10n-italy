@@ -1,6 +1,6 @@
 
 ========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.29
+|icon| Send E-Invoice to SdI 10.0.1.0.30
 ========================================
 
 
@@ -203,22 +203,6 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Now import invoices for all companies / Ora importa le fatture per tutte le aziende
 
-10.0.1.0.21 (2022-02-02)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Sometime "ready" state / Errato stato "ready" in alcuni casi
-
-10.0.1.0.20 (2022-01-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Invoices counters / Contatori fatture
-* [IMP] Lock send if negative counter / Blocco invio se contatore negativo
-
-10.0.1.0.19 (2022-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Limit read to max 59 days / Limite lettura a 59 giorni
-
 
 
 |
@@ -241,6 +225,8 @@ Authors / Autori
 
 * `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
@@ -248,6 +234,9 @@ Contributors / Collaboratori
 
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -279,7 +268,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-01
+Last Update / Ultimo aggiornamento: 2023-02-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
