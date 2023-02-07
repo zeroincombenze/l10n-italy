@@ -19,15 +19,15 @@ class RibaAccreditation(models.TransientModel):
         )
 
     @api.model
-    def _get_accreditation_account_id(self):
+    def _get_accreditation_account_credit_id(self):
         return self.env["riba.configuration"].get_default_value_by_list(
-            "accreditation_account_id"
+            "accreditation_account_credit_id"
         )
 
     @api.model
-    def _get_bank_account_id(self):
+    def _get_accreditation_account_debit_id(self):
         return self.env["riba.configuration"].get_default_value_by_list(
-            "bank_account_id"
+            "accreditation_account_debit_id"
         )
 
     @api.model
@@ -55,17 +55,18 @@ class RibaAccreditation(models.TransientModel):
         domain=[("type", "=", "bank")],
         default=_get_accreditation_journal_id,
     )
-    accreditation_account_id = fields.Many2one(
-        "account.account", "Ri.Ba. bank account", default=_get_accreditation_account_id
+    accreditation_account_credit_id = fields.Many2one(
+        "account.account", "Ri.Ba. bank account",
+        default=_get_accreditation_account_credit_id
     )
     accreditation_amount = fields.Float(
         "Credit amount", default=_get_accreditation_amount
     )
-    bank_account_id = fields.Many2one(
+    accreditation_account_debit_id = fields.Many2one(
         "account.account",
         "Bank account",
         domain=[("internal_type", "=", "liquidity")],
-        default=_get_bank_account_id,
+        default=_get_accreditation_account_debit_id,
     )
     bank_amount = fields.Float("Paid amount")
     bank_expense_account_id = fields.Many2one(
@@ -90,8 +91,8 @@ class RibaAccreditation(models.TransientModel):
         wizard = self
         if (
             not wizard.accreditation_journal_id
-            or not wizard.accreditation_account_id
-            or not wizard.bank_account_id
+            or not wizard.accreditation_account_credit_id
+            or not wizard.accreditation_account_debit_id
             or not wizard.bank_expense_account_id
         ):
             raise UserError(_("Every account is mandatory"))
@@ -104,7 +105,7 @@ class RibaAccreditation(models.TransientModel):
                     0,
                     {
                         "name": _("Credit"),
-                        "account_id": wizard.accreditation_account_id.id,
+                        "account_id": wizard.accreditation_account_credit_id.id,
                         "credit": wizard.accreditation_amount,
                         "debit": 0.0,
                     },
@@ -114,7 +115,7 @@ class RibaAccreditation(models.TransientModel):
                     0,
                     {
                         "name": _("Bank"),
-                        "account_id": wizard.bank_account_id.id,
+                        "account_id": wizard.accreditation_account_debit_id.id,
                         "debit": wizard.bank_amount,
                         "credit": 0.0,
                     },
@@ -137,6 +138,7 @@ class RibaAccreditation(models.TransientModel):
             )
 
         move = move_model.create(move_vals)
+        move.post()
         distinta.write({"accreditation_move_id": move.id})
         distinta_model.browse(active_id).signal_workflow("accredited")
         return {

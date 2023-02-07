@@ -1,3 +1,9 @@
+10.0.1.3.10 (2022-12-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Riba flag updatable / Scadenza Riba modificabile
+* [REF] Process refactoring
+
 10.0.1.3.9 (2022-07-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

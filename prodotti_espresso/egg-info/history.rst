@@ -1,3 +1,8 @@
+12.0.1.0.4 (2023-01-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
+
 12.0.1.0.3 (2022-11-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

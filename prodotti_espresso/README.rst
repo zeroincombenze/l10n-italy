@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Prodotti Espresso 10.0.1.0.3
+|icon| Prodotti Espresso 10.0.1.0.4
 ===================================
 
 
@@ -161,6 +161,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.4 (2023-01-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
+
 12.0.1.0.3 (2022-11-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -242,7 +247,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-12-16
+Last Update / Ultimo aggiornamento: 2023-01-23
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

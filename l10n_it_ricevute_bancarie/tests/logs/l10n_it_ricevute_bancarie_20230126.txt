@@ -1,0 +1,286 @@
+2023-01-26 15:38:31,083 10106 INFO ? odoo: Odoo version 10.0
+2023-01-26 15:38:31,084 10106 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/logs/zero10.l10n-italy.l10n_it_ricevute_bancarie.conf
+2023-01-26 15:38:31,084 10106 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-01-26 15:38:31,086 10106 INFO ? odoo: database: odoo10@localhost:default
+2023-01-26 15:38:31,137 10106 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:44502
+2023-01-26 15:38:31,158 10106 INFO test_odoo_10 odoo.modules.loading: loading 1 modules...
+2023-01-26 15:38:31,337 10106 INFO test_odoo_10 odoo.modules.loading: 1 modules loaded in 0.18s, 0 queries
+2023-01-26 15:38:32,830 10106 INFO test_odoo_10 odoo.modules.loading: loading 36 modules...
+2023-01-26 15:38:32,972 10106 INFO test_odoo_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2023-01-26 15:38:33,165 10106 INFO test_odoo_10 odoo.modules.loading: 36 modules loaded in 0.34s, 0 queries
+2023-01-26 15:38:33,173 10106 INFO test_odoo_10 odoo.modules.loading: loading 37 modules...
+2023-01-26 15:38:33,747 10106 INFO test_odoo_10 odoo.modules.registry: module l10n_it_ricevute_bancarie: creating or updating database tables
+2023-01-26 15:38:33,973 10106 WARNING test_odoo_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2023-01-26 15:38:35,555 10106 INFO test_odoo_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-01-26 15:38:35,738 10106 INFO test_odoo_10 odoo.models: Storing computed values of account.invoice fields is_unsolved
+2023-01-26 15:38:35,880 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/partner_view.xml
+2023-01-26 15:38:36,010 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/configuration_view.xml
+2023-01-26 15:38:36,090 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/data/riba_sequence.xml
+2023-01-26 15:38:36,105 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_accreditation.xml
+2023-01-26 15:38:36,159 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_unsolved.xml
+2023-01-26 15:38:36,210 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/riba_view.xml
+2023-01-26 15:38:36,438 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/account_view.xml
+2023-01-26 15:38:36,825 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.xml
+2023-01-26 15:38:36,870 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.xml
+2023-01-26 15:38:36,917 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/account_config_view.xml
+2023-01-26 15:38:36,980 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/data/riba_workflow.xml
+2023-01-26 15:38:37,075 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/distinta_report.xml
+2023-01-26 15:38:37,144 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/report.xml
+2023-01-26 15:38:37,169 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/security/ir.model.access.csv
+2023-01-26 15:38:37,452 10106 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/demo/riba_demo.xml
+2023-01-26 15:38:38,372 10106 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba running tests.
+2023-01-26 15:38:38,373 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: test_riba (odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba.TestRiba)
+2023-01-26 15:38:38,375 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.account,group=base)
+2023-01-26 15:38:38,376 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.account] = [u'code']
+2023-01-26 15:38:38,379 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_bnk_fee,name=account.account,group=base)
+2023-01-26 15:38:38,380 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_liq_tra1,name=account.account,group=base)
+2023-01-26 15:38:38,382 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_liq_tra2,name=account.account,group=base)
+2023-01-26 15:38:38,384 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_sale,name=account.account,group=base)
+2023-01-26 15:38:38,385 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_tax_recv,name=account.account,group=base)
+2023-01-26 15:38:38,385 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.tax,group=base)
+2023-01-26 15:38:38,386 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.tax] = [u'description']
+2023-01-26 15:38:38,388 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-01-26 15:38:38,388 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.journal,group=base)
+2023-01-26 15:38:38,390 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.journal] = [u'code']
+2023-01-26 15:38:38,390 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.journal.store_resource_data(external.BNK1,name=account.journal,group=base)
+2023-01-26 15:38:38,390 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.journal.store_resource_data(external.INV,name=account.journal,group=base)
+2023-01-26 15:38:38,390 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.payment.term,group=base)
+2023-01-26 15:38:38,391 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_resource[account.payment.term] = account.payment.term.line
+2023-01-26 15:38:38,391 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_name[account.payment.term] = line_ids
+2023-01-26 15:38:38,399 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_resource[account.payment.term.line] = account.payment.term
+2023-01-26 15:38:38,400 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_name[account.payment.term.line] = payment_id
+2023-01-26 15:38:38,400 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.payment.term.line] = [u'sequence']
+2023-01-26 15:38:38,400 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.payment.term] = [u'name']
+2023-01-26 15:38:38,400 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.store_resource_data(z0bug.payment_1,name=account.payment.term,group=base)
+2023-01-26 15:38:38,400 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.store_resource_data(z0bug.payment_2,name=account.payment.term,group=base)
+2023-01-26 15:38:38,400 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.payment.term.line,group=base)
+2023-01-26 15:38:38,401 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞field payment_method_credit does not exist in account.payment.term.line
+2023-01-26 15:38:38,401 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.line.store_resource_data(z0bug.payment_1_1,name=account.payment.term.line,group=base)
+2023-01-26 15:38:38,402 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞field payment_method_credit does not exist in account.payment.term.line
+2023-01-26 15:38:38,402 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.line.store_resource_data(z0bug.payment_2_1,name=account.payment.term.line,group=base)
+2023-01-26 15:38:38,403 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞field payment_method_credit does not exist in account.payment.term.line
+2023-01-26 15:38:38,403 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.line.store_resource_data(z0bug.payment_2_2,name=account.payment.term.line,group=base)
+2023-01-26 15:38:38,403 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(product.template,group=base)
+2023-01-26 15:38:38,406 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_resource[product.template] = product.product
+2023-01-26 15:38:38,406 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_name[product.template] = product_variant_ids
+2023-01-26 15:38:38,406 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_resource[product.template] = product.product
+2023-01-26 15:38:38,406 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_name[product.template] = product_variant_id
+2023-01-26 15:38:38,409 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_resource[product.product] = product.template
+2023-01-26 15:38:38,409 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_name[product.product] = product_tmpl_id
+2023-01-26 15:38:38,409 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[product.product] = [u'default_code']
+2023-01-26 15:38:38,409 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[product.template] = [u'default_code']
+2023-01-26 15:38:38,415 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-01-26 15:38:38,418 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-01-26 15:38:38,418 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(res.partner,group=base)
+2023-01-26 15:38:38,421 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[res.partner] = [u'name']
+2023-01-26 15:38:38,428 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_1,name=res.partner,group=base)
+2023-01-26 15:38:38,432 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-01-26 15:38:38,432 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(res.partner.bank,group=base)
+2023-01-26 15:38:38,432 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_resource[res.partner.bank] = res.partner
+2023-01-26 15:38:38,432 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_name[res.partner.bank] = partner_id
+2023-01-26 15:38:38,432 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[res.partner.bank] = [u'acc_number']
+2023-01-26 15:38:38,435 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.bank.store_resource_data(z0bug.bank_company_1,name=res.partner.bank,group=base)
+2023-01-26 15:38:38,436 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.bank.store_resource_data(z0bug.bank_partner_1,name=res.partner.bank,group=base)
+2023-01-26 15:38:38,437 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.bank.store_resource_data(z0bug.bank_partner_2,name=res.partner.bank,group=base)
+2023-01-26 15:38:38,437 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(riba.configuration,group=base)
+2023-01-26 15:38:38,438 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[riba.configuration] = [u'name']
+2023-01-26 15:38:38,441 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.configuration.store_resource_data(z0bug.riba_config,name=riba.configuration,group=base)
+2023-01-26 15:38:38,441 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.invoice,group=base)
+2023-01-26 15:38:38,442 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_resource[account.invoice] = account.invoice.line
+2023-01-26 15:38:38,443 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_name[account.invoice] = invoice_line_ids
+2023-01-26 15:38:38,443 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_resource[account.invoice.line] = account.invoice
+2023-01-26 15:38:38,443 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_name[account.invoice.line] = invoice_id
+2023-01-26 15:38:38,444 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.invoice.line] = [u'sequence']
+2023-01-26 15:38:38,444 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.invoice] = [u'number']
+2023-01-26 15:38:38,447 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.invoice.store_resource_data(z0bug.invoice_Z0_2,name=account.invoice,group=base)
+2023-01-26 15:38:38,447 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞declare_all_data(account.invoice.line,group=base)
+2023-01-26 15:38:38,451 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.invoice.line.store_resource_data(z0bug.invoice_Z0_2_1,name=account.invoice.line,group=base)
+2023-01-26 15:38:38,454 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.invoice.line.store_resource_data(z0bug.invoice_Z0_2_2,name=account.invoice.line,group=base)
+2023-01-26 15:38:38,458 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[res.company] = [u'partner_id']
+2023-01-26 15:38:38,458 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞field customer does not exist in res.company
+2023-01-26 15:38:38,459 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞field supplier does not exist in res.company
+2023-01-26 15:38:38,460 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞field is_company does not exist in res.company
+2023-01-26 15:38:38,707 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2023-01-26 15:38:38,708 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2023-01-26 15:38:38,716 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺 Starting test v2.0.5 (debug_level=2)
+2023-01-26 15:38:38,723 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺 Testing module: l10n_it_ricevute_bancarie (10.0.1.3.10)
+2023-01-26 15:38:38,725 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ product.product[type]: 'product' -> 'consu'
+2023-01-26 15:38:38,725 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ product.template[type]: 'product' -> 'consu'
+2023-01-26 15:38:38,726 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-01-26 15:38:38,748 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_liq_tra2,name=account.account,group=base)
+2023-01-26 15:38:38,847 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.account.store_resource_data(z0bug.coa_liq_tra1,name=account.account,group=base)
+2023-01-26 15:38:38,889 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-01-26 15:38:38,931 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.store_resource_data(z0bug.payment_2,name=account.payment.term,group=base)
+2023-01-26 15:38:38,953 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.payment.term.store_resource_data(z0bug.payment_1,name=account.payment.term,group=base)
+2023-01-26 15:38:39,220 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-01-26 15:38:39,220 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: xref ('product.template') 'z0bug.product_template_1' -> ('product.product') 'z0bug.product_product_1'
+2023-01-26 15:38:39,223 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞product.product.store_resource_data(z0bug.product_product_1,name=product.product,group=base)
+2023-01-26 15:38:39,442 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-01-26 15:38:39,442 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: xref ('product.template') 'z0bug.product_template_2' -> ('product.product') 'z0bug.product_product_2'
+2023-01-26 15:38:39,445 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞product.product.store_resource_data(z0bug.product_product_2,name=product.product,group=base)
+2023-01-26 15:38:39,597 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_1,name=res.partner,group=base)
+2023-01-26 15:38:39,732 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-01-26 15:38:39,743 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.bank.store_resource_data(z0bug.bank_company_1,name=res.partner.bank,group=base)
+2023-01-26 15:38:39,756 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.bank.store_resource_data(z0bug.bank_partner_2,name=res.partner.bank,group=base)
+2023-01-26 15:38:39,770 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞res.partner.bank.store_resource_data(z0bug.bank_partner_1,name=res.partner.bank,group=base)
+2023-01-26 15:38:39,786 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.configuration.store_resource_data(z0bug.riba_config,name=riba.configuration,group=base)
+2023-01-26 15:38:40,140 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.invoice.store_resource_data(z0bug.invoice_Z0_2,name=account.invoice,group=base)
+2023-01-26 15:38:40,358 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Starting test_riba()
+2023-01-26 15:38:40,360 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.configuration(1,).resource_edit([u'save'])
+2023-01-26 15:38:41,114 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_resource[account.move.line] = account.move
+2023-01-26 15:38:41,114 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_name[account.move.line] = move_id
+2023-01-26 15:38:41,115 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_resource[account.move] = account.move.line
+2023-01-26 15:38:41,115 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_name[account.move] = line_ids
+2023-01-26 15:38:41,115 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.move] = [u'partner_id']
+2023-01-26 15:38:41,115 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.move.line] = [u'partner_id']
+2023-01-26 15:38:41,116 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(21, 20))
+2023-01-26 15:38:41,123 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞10 assertion validated for validate_records([{u'_CHECK': {account.move.line(20,): {u'_COUNT': 5, u'_MATCH': 5}}, 'account_id': 7, 'riba': True, 'date_maturity': '2023-01-30', 'date': u'2022-12-31', 'partner_id': 'z0bug.res_partner_2'}, {u'_CHECK': {account.move.line(21,): {u'_COUNT': 5, u'_MATCH': 5}}, 'account_id': 7, 'riba': True, 'date_maturity': '2023-03-01', 'date': u'2022-12-31', 'partner_id': 'z0bug.res_partner_2'}], account.move.line(21, 20))
+2023-01-26 15:38:41,139 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Issue Ri.Ba.)
+2023-01-26 15:38:41,147 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.issue.create_list()
+2023-01-26 15:38:41,231 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Export Ri.Ba.)
+2023-01-26 15:38:41,236 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.file.export.act_getfile()
+2023-01-26 15:38:41,278 10106 WARNING test_odoo_10 py.warnings: /home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/unidecode/__init__.py:64: RuntimeWarning: Argument <type 'str'> is not an unicode object. Passing an encoded string will likely have unexpected results.
+  _warn_if_not_unicode(string)
+
+2023-01-26 15:38:41,283 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['confirm'])
+2023-01-26 15:38:41,293 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_resource[riba.distinta] = riba.distinta.line
+2023-01-26 15:38:41,293 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞childs_name[riba.distinta] = line_ids
+2023-01-26 15:38:41,294 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_resource[riba.distinta.line] = riba.distinta
+2023-01-26 15:38:41,294 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  parent_name[riba.distinta.line] = distinta_id
+2023-01-26 15:38:41,294 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[riba.distinta.line] = [u'sequence']
+2023-01-26 15:38:41,295 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[riba.distinta] = [u'name']
+2023-01-26 15:38:41,295 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.confirm()
+2023-01-26 15:38:42,041 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move(9, 10))
+2023-01-26 15:38:42,045 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(23, 22))
+2023-01-26 15:38:42,050 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(23,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(22,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(23, 22))
+2023-01-26 15:38:42,050 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(23, 22))
+2023-01-26 15:38:42,051 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(23,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(22,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(23, 22))
+2023-01-26 15:38:42,051 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(25, 24))
+2023-01-26 15:38:42,052 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(25,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(23,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(22,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(24,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(25, 24))
+2023-01-26 15:38:42,052 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(25, 24))
+2023-01-26 15:38:42,052 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(25,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(23,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(22,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(24,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(25, 24))
+2023-01-26 15:38:42,053 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞36 assertion validated for validate_records([{'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(25,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(23,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(22,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(24,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], u'_CHECK': {account.move(9,): {u'_COUNT': 6, u'_MATCH': 6}, account.move(10,): {u'_COUNT': 12, u'_MATCH': 12}}}, {'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(25,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(23,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(22,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(24,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], u'_CHECK': {account.move(9,): {u'_COUNT': 6, u'_MATCH': 6}, account.move(10,): {u'_COUNT': 12, u'_MATCH': 12}}}], account.move(9, 10))
+2023-01-26 15:38:42,067 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Ri.Ba. Accreditation)
+2023-01-26 15:38:42,092 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.accreditation.create_move()
+2023-01-26 15:38:42,314 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['settle_all_line'])
+2023-01-26 15:38:42,322 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.settle_all_line()
+2023-01-26 15:38:42,794 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], [account.move(12,), account.move(13,)])
+2023-01-26 15:38:42,798 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(29, 28))
+2023-01-26 15:38:42,801 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(29,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(28,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(29, 28))
+2023-01-26 15:38:42,802 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(29, 28))
+2023-01-26 15:38:42,802 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(29,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(28,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(29, 28))
+2023-01-26 15:38:42,802 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(31, 30))
+2023-01-26 15:38:42,803 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(31,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(29,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(30,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(28,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(31, 30))
+2023-01-26 15:38:42,803 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(31, 30))
+2023-01-26 15:38:42,804 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(31,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(29,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(30,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(28,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(31, 30))
+2023-01-26 15:38:42,804 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞36 assertion validated for validate_records([{'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(31,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(29,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(30,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(28,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], u'_CHECK': {account.move(13,): {u'_COUNT': 12, u'_MATCH': 12}, account.move(12,): {u'_COUNT': 6, u'_MATCH': 6}}}, {'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(31,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(29,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(30,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(28,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], u'_CHECK': {account.move(13,): {u'_COUNT': 12, u'_MATCH': 12}, account.move(12,): {u'_COUNT': 6, u'_MATCH': 6}}}], [account.move(12,), account.move(13,)])
+2023-01-26 15:38:42,804 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Reset test_riba()
+2023-01-26 15:38:42,804 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['back_to_accredited'])
+2023-01-26 15:38:42,808 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.back_to_accredited()
+2023-01-26 15:38:42,914 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [29, 28]
+2023-01-26 15:38:42,932 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [12]
+2023-01-26 15:38:43,063 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [31, 30]
+2023-01-26 15:38:43,081 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [13]
+2023-01-26 15:38:43,131 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['back_to_accepted'])
+2023-01-26 15:38:43,139 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.back_to_accepted()
+2023-01-26 15:38:43,254 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [27, 26]
+2023-01-26 15:38:43,270 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [11]
+2023-01-26 15:38:43,294 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['back_to_draft'])
+2023-01-26 15:38:43,304 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.back_to_draft()
+2023-01-26 15:38:43,554 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [1]
+2023-01-26 15:38:43,566 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [1]
+2023-01-26 15:38:43,650 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [23, 22]
+2023-01-26 15:38:43,669 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [9]
+2023-01-26 15:38:43,792 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [2]
+2023-01-26 15:38:43,801 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [2]
+2023-01-26 15:38:43,870 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [25, 24]
+2023-01-26 15:38:43,885 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [10]
+2023-01-26 15:38:43,907 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['riba_cancel'])
+2023-01-26 15:38:43,917 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.riba_cancel()
+2023-01-26 15:38:43,923 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['action_draft'])
+2023-01-26 15:38:43,926 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.action_draft()
+2023-01-26 15:38:43,938 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Repeat test_riba()
+2023-01-26 15:38:43,952 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Export Ri.Ba.)
+2023-01-26 15:38:43,955 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.file.export.act_getfile()
+2023-01-26 15:38:43,985 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['confirm'])
+2023-01-26 15:38:43,989 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.confirm()
+2023-01-26 15:38:44,938 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move(14, 15))
+2023-01-26 15:38:44,942 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(33, 32))
+2023-01-26 15:38:44,954 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(33,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(32,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(33, 32))
+2023-01-26 15:38:44,954 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(33, 32))
+2023-01-26 15:38:44,955 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(33,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(32,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(33, 32))
+2023-01-26 15:38:44,955 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(35, 34))
+2023-01-26 15:38:44,956 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(33,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(35,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(34,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(32,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(35, 34))
+2023-01-26 15:38:44,956 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(35, 34))
+2023-01-26 15:38:44,956 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(33,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(35,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(34,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(32,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], account.move.line(35, 34))
+2023-01-26 15:38:44,957 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞36 assertion validated for validate_records([{'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(33,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(35,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(34,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(32,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], u'_CHECK': {account.move(14,): {u'_COUNT': 6, u'_MATCH': 6}, account.move(15,): {u'_COUNT': 12, u'_MATCH': 12}}}, {'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(33,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(35,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(34,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(32,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 7, 'debit': 0.0}], u'_CHECK': {account.move(14,): {u'_COUNT': 6, u'_MATCH': 6}, account.move(15,): {u'_COUNT': 12, u'_MATCH': 12}}}], account.move(14, 15))
+2023-01-26 15:38:44,969 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Ri.Ba. Accreditation)
+2023-01-26 15:38:44,986 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.accreditation.create_move()
+2023-01-26 15:38:45,196 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta(1,).resource_edit(['settle_all_line'])
+2023-01-26 15:38:45,204 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.settle_all_line()
+2023-01-26 15:38:45,575 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], [account.move(17,), account.move(18,)])
+2023-01-26 15:38:45,579 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(39, 38))
+2023-01-26 15:38:45,582 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(39,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(38,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(39, 38))
+2023-01-26 15:38:45,582 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(39, 38))
+2023-01-26 15:38:45,583 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞6 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(39,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(38,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(39, 38))
+2023-01-26 15:38:45,583 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(41, 40))
+2023-01-26 15:38:45,584 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(41,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(39,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(38,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(40,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(41, 40))
+2023-01-26 15:38:45,584 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞validate_records([u'<...>', u'<...>'], account.move.line(41, 40))
+2023-01-26 15:38:45,585 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞12 assertion validated for validate_records([{'credit': 0.0, u'_CHECK': {account.move.line(41,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(39,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(38,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(40,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], account.move.line(41, 40))
+2023-01-26 15:38:45,585 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞36 assertion validated for validate_records([{'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(41,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(39,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(38,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(40,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], u'_CHECK': {account.move(17,): {u'_COUNT': 6, u'_MATCH': 6}, account.move(18,): {u'_COUNT': 12, u'_MATCH': 12}}}, {'line_ids': [{'credit': 0.0, u'_CHECK': {account.move.line(41,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(39,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 30, 'debit': 35.93}, {'credit': 35.93, u'_CHECK': {account.move.line(38,): {u'_COUNT': 3, u'_MATCH': 3}, account.move.line(40,): {u'_COUNT': 3, u'_MATCH': 3}}, 'account_id': 31, 'debit': 0.0}], u'_CHECK': {account.move(17,): {u'_COUNT': 6, u'_MATCH': 6}, account.move(18,): {u'_COUNT': 12, u'_MATCH': 12}}}], [account.move(17,), account.move(18,)])
+2023-01-26 15:38:45,585 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Test unsolved and pay test_riba()
+2023-01-26 15:38:45,586 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta.line(1,).resource_edit(['riba_line_back2accredited'])
+2023-01-26 15:38:45,587 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.line.riba_line_back2accredited()
+2023-01-26 15:38:45,657 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [39, 38]
+2023-01-26 15:38:45,673 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [17]
+2023-01-26 15:38:45,709 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Ri.Ba. Unsolved)
+2023-01-26 15:38:45,724 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.unsolved.create_move()
+2023-01-26 15:38:46,071 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [3]
+2023-01-26 15:38:46,081 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [3]
+2023-01-26 15:38:46,254 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta.line(1,).resource_edit(['riba_line_back2solved'])
+2023-01-26 15:38:46,257 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.line.riba_line_back2solved()
+2023-01-26 15:38:46,359 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [5]
+2023-01-26 15:38:46,391 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [5]
+2023-01-26 15:38:46,509 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [43, 42]
+2023-01-26 15:38:46,528 10106 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [19]
+2023-01-26 15:38:46,536 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞riba.distinta.line(1,).resource_edit(['riba_line_back2accredited'])
+2023-01-26 15:38:46,540 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.distinta.line.riba_line_back2accredited()
+2023-01-26 15:38:46,574 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Ri.Ba. Unsolved)
+2023-01-26 15:38:46,585 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  riba.unsolved.create_move()
+2023-01-26 15:38:46,920 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞account.invoice(7,).resource_edit(['account.action_account_invoice_payment'])
+2023-01-26 15:38:46,961 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  act_windows(account.action_account_invoice_payment)
+2023-01-26 15:38:46,961 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞wizard starting(Register Payment)
+2023-01-26 15:38:46,962 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  skeys[account.payment] = [u'partner_id']
+2023-01-26 15:38:47,058 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🐞  account.payment.post()
+2023-01-26 15:38:47,628 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: ✨ Test data committed
+2023-01-26 15:38:47,630 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: Ran 1 test in 9.257s
+2023-01-26 15:38:47,630 10106 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: OK
+2023-01-26 15:38:47,630 10106 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba tested in 9.26s, 10211 queries
+2023-01-26 15:38:47,668 10106 INFO test_odoo_10 odoo.modules.loading: 37 modules loaded in 14.49s, 10232 queries
+2023-01-26 15:38:48,194 10106 INFO test_odoo_10 odoo.modules.loading: Modules loaded.
+2023-01-26 15:38:48,198 10106 INFO test_odoo_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-01-26 15:38:48,200 10106 INFO test_odoo_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-01-26 15:38:48,344 10106 INFO test_odoo_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-01-26 15:38:48,346 10106 INFO test_odoo_10 odoo.service.server: Initiating shutdown
+2023-01-26 15:38:48,346 10106 INFO test_odoo_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ricevute_bancarie[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                     Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_ricevute_bancarie/models/account.py                     188     66    65%   91-113, 128-129, 149, 178-181, 184, 196-237, 245, 252-260, 263-284, 289-296, 326-327, 330, 344
+l10n-italy/l10n_it_ricevute_bancarie/models/account_config.py               16      6    62%   32-39
+l10n-italy/l10n_it_ricevute_bancarie/models/partner.py                       5      0   100%
+l10n-italy/l10n_it_ricevute_bancarie/models/riba.py                        419     57    86%   24, 32, 41, 145, 148, 156-166, 169, 176, 187, 199, 207, 215, 232, 237, 247, 257, 264, 271, 279, 281, 285, 289, 293, 297, 307, 326, 330, 336, 361-362, 373, 386, 442, 540-546, 578, 586, 631-637, 639-645, 663-666, 669, 688-693, 722, 765
+l10n-italy/l10n_it_ricevute_bancarie/models/riba_config.py                  53      1    98%   150
+l10n-italy/l10n_it_ricevute_bancarie/report/distinta_qweb.py                 8      3    62%   15-21
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py         58     14    76%   16, 22, 28, 34, 40, 42, 78-82, 87, 98, 127
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py     119     10    92%   22-23, 289, 296, 306, 332-333, 339, 349, 356
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py            50     12    76%   24, 60-66, 77, 81-105
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py              83     19    77%   16, 28, 30, 42, 48, 54, 96-103, 108, 120, 154, 205-206
+------------------------------------------------------------------------------------------------------
+TOTAL                                                                      999    188    81%

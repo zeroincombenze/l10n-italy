@@ -37,12 +37,16 @@ class RibaList(models.Model):
             riba.unsolved_move_ids = move_ids
 
     @api.multi
+    @api.depends("line_ids")
     def _compute_payment_ids(self):
         for riba in self:
-            move_lines = self.env["account.move.line"]
+            payment_lines = self.env["account.move.line"]
+            extra_lines = self.env["account.move.line"]
             for line in riba.line_ids:
-                move_lines |= line.payment_ids
-            riba.payment_ids = move_lines
+                payment_lines |= line.payment_ids
+                extra_lines |= line.extra_payment_ids
+            riba.payment_ids = payment_lines
+            riba.extra_payment_ids = extra_lines
 
     name = fields.Char(
         "Reference",
@@ -65,7 +69,7 @@ class RibaList(models.Model):
             ("draft", "Draft"),
             ("accepted", "Accepted"),
             ("accredited", "Accredited"),
-            ("paid", "Paid"),
+            ("paid", "Full Paid"),
             ("unsolved", "Unsolved"),
             ("cancel", "Canceled"),
         ],
@@ -118,6 +122,9 @@ class RibaList(models.Model):
     payment_ids = fields.Many2many(
         "account.move.line", compute="_compute_payment_ids", string="Payments"
     )
+    extra_payment_ids = fields.Many2many(
+        "account.move.line", compute="_compute_payment_ids", string="Extra Payments"
+    )
     unsolved_move_ids = fields.Many2many(
         "account.move", compute="_compute_unsolved_move_ids", string="Unsolved Entries"
     )
@@ -133,6 +140,17 @@ class RibaList(models.Model):
         default=lambda self: fields.Date.context_today(self),
         help="Keep empty to use the current date",
     )
+
+    @api.onchange("date_accepted", "date_accreditation")
+    def _onchange_date(self):
+        if self.date_accepted and self.date_accreditation:
+            if self.date_accepted > self.date_accreditation:
+                raise UserError(
+                    _(
+                        "Date accreditation must be greater or equal to"
+                        " date acceptance"
+                    )
+                )
 
     @api.multi
     def unlink(self):
@@ -152,10 +170,7 @@ class RibaList(models.Model):
         for ribalist in self:
             for line in ribalist.line_ids:
                 line.confirm()
-
-    @api.multi
-    def riba_new(self):
-        self.state = "draft"
+            ribalist.signal_workflow("accepted")
 
     @api.multi
     def back_to_draft(self):
@@ -166,8 +181,7 @@ class RibaList(models.Model):
                     move.line_ids.remove_move_reconcile()
                     move.button_cancel()
                     move.unlink()
-            # riba_list.signal_workflow('cancel')
-        self.action_draft()
+            riba_list.action_draft()
 
     @api.multi
     def back_to_accepted(self):
@@ -177,57 +191,17 @@ class RibaList(models.Model):
                 riba_list.accreditation_move_id.line_ids.remove_move_reconcile()
                 riba_list.accreditation_move_id.button_cancel()
                 riba_list.accreditation_move_id.unlink()
-            for riba in riba_list.line_ids:
-                if riba.payment_ids:
-                    for move in riba_list.payment_ids:
-                        move.remove_move_reconcile()
-                        move.move_id.button_cancel()
-                        move.move_id.unlink()
-                if riba.unsolved_move_id:
-                    for move in riba.unsolved_move_id:
-                        move.line_ids.remove_move_reconcile()
-                        move.button_cancel()
-                        move.unlink()
-        riba_list.signal_workflow("accepted")
+            for line in riba_list.line_ids:
+                line.riba_line_back2accepted(harmless=True)
+            riba_list.signal_workflow("accepted")
 
     @api.multi
     def back_to_accredited(self):
         for riba_list in self:
             riba_list.date_paid = False
-            if riba_list.payment_ids:
-                for line in riba_list.payment_ids:
-                    line.remove_move_reconcile()
-                    line.move_id.button_cancel()
-                    line.move_id.unlink()
-        riba_list.signal_workflow("accredited")
-
-    @api.multi
-    def riba_cancel(self):
-        for riba_list in self:
             for line in riba_list.line_ids:
-                if line.state == "paid":
-                    if line.payment_ids:
-                        # RiBA list is paid
-                        line.payment_ids.remove_move_reconcile()
-                        for move in line.payment_ids:
-                            move.move_id.button_cancel()
-                            move.move_id.unlink(move.id)
-                    line.state = "accredited"
-                elif riba_list.state == "accredited":
-                    riba_list.back_to_accepted()
-                elif riba_list.state == "accepted":
-                    riba_list.back_to_draft()
-                elif riba_list.state == "draft":
-                    riba_list.state = "cancel"
-                    for line in riba_list.line_ids:
-                        line.state = "cancel"
-                        if line.acceptance_move_id:
-                            line.acceptance_move_id.unlink()
-                        if line.unsolved_move_id:
-                            line.unsolved_move_id.unlink()
-                    if riba_list.accreditation_move_id:
-                        riba_list.accreditation_move_id.unlink()
-                    riba_list.state = "cancel"
+                line.riba_line_back2accredited(harmless=True)
+            riba_list.signal_workflow("accredited")
 
     @api.multi
     def settle_all_line(self):
@@ -235,65 +209,7 @@ class RibaList(models.Model):
             for line in riba_list.line_ids:
                 if line.state == "accredited":
                     line.riba_line_settlement()
-
-    @api.onchange("date_accepted", "date_accreditation")
-    def _onchange_date(self):
-        if self.date_accepted and self.date_accreditation:
-            if self.date_accepted > self.date_accreditation:
-                raise UserError(
-                    _(
-                        "Date accreditation must be greater or equal to"
-                        " date acceptance"
-                    )
-                )
-
-    @api.multi
-    def riba_accepted(self):
-        for riba_list in self:
-            riba_list.state = "accepted"
-            if not riba_list.date_accepted:
-                riba_list.date_accepted = fields.Date.context_today(riba_list)
-            for line in riba_list.line_ids:
-                line.state = "confirmed"
-
-    @api.multi
-    def riba_accredited(self):
-        self.state = "accredited"
-        if not self.date_accreditation:
-            self.date_accreditation = fields.Date.context_today(self)
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                line.state = "accredited"
-
-    @api.multi
-    def riba_paid(self):
-        self.state = "paid"
-        self.date_paid = fields.Date.context_today(self)
-
-    @api.multi
-    def riba_unsolved(self):
-        self.state = "unsolved"
-        self.date_unsolved = fields.Date.context_today(self)
-
-    @api.multi
-    def test_state(self, state):
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                if line.state != state:
-                    return False
-        return True
-
-    @api.multi
-    def test_accepted(self):
-        return self.test_state("confirmed")
-
-    @api.multi
-    def test_unsolved(self):
-        return self.test_state("unsolved")
-
-    @api.multi
-    def test_paid(self):
-        return self.test_state("paid")
+            riba_list.signal_workflow("paid")
 
     @api.multi
     def action_draft(self):
@@ -306,7 +222,80 @@ class RibaList(models.Model):
             )
             riba_list.state = "draft"
             for line in riba_list.line_ids:
-                line.state = "draft"
+                line.riba_line_back2draft(harmless=True)
+
+    #
+    # --- WORKFLOW ---
+    #
+
+    @api.multi
+    def riba_new(self):
+        for riba_list in self:
+            riba_list.state = "draft"
+
+    @api.multi
+    def riba_accepted(self):
+        # Workflow internal function
+        for riba_list in self:
+            riba_list.state = "accepted"
+            if not riba_list.date_accepted:
+                riba_list.date_accepted = fields.Date.context_today(riba_list)
+            for line in riba_list.line_ids:
+                line.state = "accepted"
+
+    @api.multi
+    def riba_accredited(self):
+        # Workflow internal function
+        for riba_list in self:
+            riba_list.state = "accredited"
+            if not riba_list.date_accreditation:
+                riba_list.date_accreditation = fields.Date.context_today(self)
+            for line in riba_list.line_ids:
+                line.state = "paid" if line.payment_ids else "accredited"
+
+    @api.multi
+    def riba_paid(self):
+        # Workflow internal function
+        for riba_list in self:
+            riba_list.state = "paid"
+            riba_list.date_paid = fields.Date.context_today(self)
+
+    @api.multi
+    def riba_unsolved(self):
+        # Workflow internal function
+        for riba_list in self:
+            riba_list.state = "unsolved"
+            riba_list.date_unsolved = fields.Date.context_today(self)
+
+    @api.multi
+    def riba_cancel(self):
+        # Workflow internal function
+        for riba_list in self:
+            riba_list.state = "cancel"
+            for line in riba_list.line_ids:
+                line.state = "cancel"
+
+    @api.multi
+    def test_state(self, states):
+        if not iter(states):
+            states = [states]
+        for riba_list in self:
+            for line in riba_list.line_ids:
+                if line.state not in states:
+                    return False
+        return True
+
+    @api.multi
+    def test_accepted(self):
+        return self.test_state("accepted")
+
+    @api.multi
+    def test_unsolved(self):
+        return self.test_state(["unsolved", "paid"])
+
+    @api.multi
+    def test_paid(self):
+        return self.test_state("paid")
 
 
 class RibaListLine(models.Model):
@@ -327,7 +316,7 @@ class RibaListLine(models.Model):
                         move_line.move_line_id.invoice_id.date_invoice
                     ).strftime("%d/%m/%Y")
                     invoice_number = move_line.move_line_id.invoice_id.move_name
-                else:
+                else:  # pragma: no cover
                     # Avoid crash in some case which the invoice is deleted
                     invoice_date = "???"
                     invoice_number = "???"
@@ -343,6 +332,33 @@ class RibaListLine(models.Model):
                         invoice_number,
                     )
 
+    @api.multi
+    def _compute_extra_payments(self):
+        for riba_line in self:
+            if all([x.move_line_id.reconciled for x in riba_line.move_line_ids]):
+                reconciled_lines = [
+                    x.move_line_id.full_reconcile_id.reconciled_line_ids
+                    for x in riba_line.move_line_ids
+                ][0]
+                reconciled_ids = [x.id for x in reconciled_lines]
+                inv_ids = [x.move_line_id.id for x in riba_line.move_line_ids]
+                riba_ids = riba_line.acceptance_move_id.line_ids.ids
+                extra_ids = list((set(reconciled_ids) - set(inv_ids)) - set(riba_ids))
+                extra_payments = [x for x in reconciled_lines if x.id in extra_ids]
+                if extra_payments:
+                    extra_payment_ids = self.env["account.move.line"]
+                    for line in extra_payments[0]:
+                        for ln in line.move_id.line_ids:
+                            if ln != line and ln.user_type_id == self.env.ref(
+                                "account.data_account_type_liquidity"
+                            ):
+                                extra_payment_ids |= ln
+                    riba_line.extra_payment_ids = extra_payment_ids
+
+    def _compute_has_unsolved(self):
+        for riba_line in self:
+            riba_line.has_unsolved = bool(riba_line.unsolved_move_id)
+
     amount = fields.Float(compute="_compute_line_values", string="Amount")
     invoice_date = fields.Char(
         compute="_compute_line_values", string="Invoice Date", size=256
@@ -354,7 +370,7 @@ class RibaListLine(models.Model):
     @api.multi
     def move_line_id_payment_get(self):
         # return the move line ids with the same account as the distinta line
-        if not self.id:
+        if not self.id:  # pragma: no cover
             return []
         query = """ SELECT l.id
                     FROM account_move_line l, riba_distinta_line rdl
@@ -368,27 +384,11 @@ class RibaListLine(models.Model):
     def test_reconciled(self):
         # check whether all corresponding account move lines are reconciled
         line_ids = self.move_line_id_payment_get()
-        if not line_ids:
+        if not line_ids:  # pragma: no cover
             return False
         move_lines = self.env["account.move.line"].browse(line_ids)
         reconcilied = all(line.reconciled for line in move_lines)
         return reconcilied
-
-    @api.multi
-    def _compute_lines(self):
-        for riba_line in self:
-            payment_lines = []
-            if riba_line.acceptance_move_id and not riba_line.state == "unsolved":
-                for line in riba_line.acceptance_move_id.line_ids:
-                    payment_lines.extend(
-                        filter(
-                            None,
-                            [rp.credit_move_id.id for rp in line.matched_credit_ids],
-                        )
-                    )
-            riba_line.payment_ids = self.env["account.move.line"].browse(
-                list(set(payment_lines))
-            )
 
     sequence = fields.Integer("Number")
     move_line_ids = fields.One2many(
@@ -399,6 +399,9 @@ class RibaListLine(models.Model):
     )
     unsolved_move_id = fields.Many2one(
         "account.move", string="Unsolved Entry", readonly=True
+    )
+    has_unsolved = fields.Boolean(
+        string="Has Unsolved", compute="_compute_has_unsolved"
     )
     acceptance_account_id = fields.Many2one(
         "account.account", string="Acceptance Account"
@@ -415,7 +418,7 @@ class RibaListLine(models.Model):
     state = fields.Selection(
         [
             ("draft", "Draft"),
-            ("confirmed", "Confirmed"),
+            ("accepted", "Confirmed"),
             ("accredited", "Accredited"),
             ("paid", "Paid"),
             ("unsolved", "Unsolved"),
@@ -425,12 +428,11 @@ class RibaListLine(models.Model):
         readonly=True,
         track_visibility="onchange",
     )
-    payment_ids = fields.Many2many(
-        "account.move.line", compute="_compute_lines", string="Payments"
+    payment_ids = fields.Many2many("account.move.line", string="Payments")
+    extra_payment_ids = fields.Many2many(
+        "account.move.line", string="Extra Payments", compute="_compute_extra_payments"
     )
-    type = fields.Char(
-        relation="distinta_id.type", size=32, string="Type", readonly=True
-    )
+    type = fields.Selection(string="Type", related="distinta_id.type", readonly=True)
 
     @api.multi
     def confirm(self):
@@ -466,8 +468,9 @@ class RibaListLine(models.Model):
                         "move_id": move.id,
                     }
                 )
-                to_be_reconciled |= move_line
-                to_be_reconciled |= riba_move_line.move_line_id
+                if move_line.account_id == riba_move_line.move_line_id.account_id:
+                    to_be_reconciled |= move_line
+                    to_be_reconciled |= riba_move_line.move_line_id
             move_line_model.with_context({"check_move_validity": False}).create(
                 {
                     "name": "Ri.Ba. %s - line %s"
@@ -475,8 +478,6 @@ class RibaListLine(models.Model):
                     "account_id": (
                         line.acceptance_account_id.id
                         or line.distinta_id.config_id.acceptance_account_id.id
-                        # in questo modo se la riga non ha conto accettazione
-                        # viene prelevato il conto in configuration riba
                     ),
                     "partner_id": line.partner_id.id,
                     "date_maturity": line.due_date,
@@ -486,93 +487,274 @@ class RibaListLine(models.Model):
                 }
             )
             move.post()
-            to_be_reconciled.reconcile()
+            if to_be_reconciled:
+                to_be_reconciled.reconcile()
             line.write(
                 {
                     "acceptance_move_id": move.id,
-                    "state": "confirmed",
+                    "state": "accepted",
                 }
             )
-            line.distinta_id.signal_workflow("accepted")
+
+    def _open_items__init(self):
+        # open_items is managed like an object
+        return {
+            "config": {},
+            "account_ids": {},
+            "move_line_ids": {},
+        }
+
+    def _open_items__load_config(self, this, riba_line):
+        # this is the open_items object created by _init__open_items()
+        # Load configuration accounts
+        config = riba_line.distinta_id.config_id
+        this["config"]["bank_id"] = config.bank_id
+        this["config"]["acceptance_account_id"] = riba_line.acceptance_account_id
+        this["config"][
+            "accreditation_account_debit_id"
+        ] = config.accreditation_account_debit_id
+        this["config"][
+            "accreditation_account_credit_id"
+        ] = config.accreditation_account_credit_id
+        this["config"]["overdue_account_debit_id"] = config.overdue_account_debit_id
+        this["config"]["overdue_account_credit_id"] = config.overdue_account_credit_id
+        this["config"][
+            "settlement_account_debit_id"
+        ] = config.settlement_account_debit_id
+        this["config"][
+            "settlement_account_credit_id"
+        ] = config.settlement_account_credit_id
+        this["config"]["settlement_journal_id"] = config.settlement_journal_id
+        this["config"]["distinta_name"] = riba_line.distinta_id.name
+        this["config"]["partner_id"] = riba_line.partner_id
+
+        for line in riba_line.acceptance_move_id.line_ids:
+            this = self._open_items__add_move_line(this, line, "acceptance")
+        for line in riba_line.distinta_id.accreditation_move_id.line_ids:
+            this = self._open_items__add_move_line(this, line, "accreditation")
+        # remove debit/credit pair lines
+        for account in this["account_ids"].keys():
+            if this["account_ids"].get("debit") and this["account_ids"].get("credit"):
+                for move_type in ("acceptance", "accreditation"):
+                    for move_line in this["move_line_ids"][move_type].copy().keys():
+                        if this["move_line_ids"][move_line].account_id == account:
+                            del this["move_line_ids"][move_line]
+                del this["account_ids"][account]
+        return this
+
+    def _open_items__add_move_line(self, this, move_line, move_type):
+        # this is the open_items object created by _init__open_items()
+        # Process move line and data in internal structure
+        side = ""
+        if not move_line.reconciled:
+            if move_line.debit > 0.0:
+                side = "debit"
+            elif move_line.credit > 0.0:
+                side = "credit"
+            acc_type = move_line.account_id.user_type_id.type
+            if (
+                side
+                and move_line.account_id != this["config"]["overdue_account_credit_id"]
+                and move_line.account_id.user_type_id
+                in (
+                    self.env.ref("account.data_account_type_current_assets"),
+                    self.env.ref("account.data_account_type_current_liabilities"),
+                    self.env.ref("account.data_account_type_liquidity"),
+                    self.env.ref("account.data_account_type_receivable"),
+                    self.env.ref("account.data_account_type_payable"),
+                )
+            ):
+                if move_line.account_id not in this["account_ids"]:
+                    this["account_ids"][move_line.account_id] = {}
+                this["account_ids"][move_line.account_id][side] = acc_type
+
+                if move_type in ("acceptance", "accreditation"):
+                    if move_type not in this["move_line_ids"]:
+                        this["move_line_ids"][move_type] = {}
+                    this["move_line_ids"][move_type][side] = move_line
+                else:
+                    raise UserError(
+                        "Invalid %s value: must be 'acceptance' or 'accreditation'"
+                        % side
+                    )
+        return this
+
+    def _open_items__load_line_values(self, this, account, side, amount):
+        if side not in ("debit", "credit"):
+            raise UserError("Invalid %s value: must be 'debit' or 'credit'" % side)
+        opposite_side = "debit" if side == "credit" else "credit"
+        move_ref = _("Settlement RIBA {} - {}").format(
+            this["config"]["distinta_name"],
+            this["config"]["partner_id"].name,
+        )
+        return {
+            "name": move_ref,
+            "partner_id": this["config"]["partner_id"].id,
+            "account_id": account.id,
+            side: 0.0,
+            opposite_side: amount,
+        }
+
+    def _open_items__get_move_vals(self, this):
+        # this is the open_items object created by _init__open_items()
+        # Return dict for create settlement move from internal data
+        move_ref = _("Settlement RIBA {} - {}").format(
+            this["config"]["distinta_name"],
+            this["config"]["partner_id"].name,
+        )
+        vals = {
+            "journal_id": this["config"]["settlement_journal_id"].id,
+            "date": date.today().strftime("%Y-%m-%d"),
+            "ref": move_ref,
+            "line_ids": [],
+        }
+
+        # Prepare line values. All lines must close acceptance and accreditation lines.
+        totals = {"debit": 0.0, "credit": 0.0}
+        for account in this["account_ids"].keys():
+            side = this["account_ids"][account].keys()[0]
+            line_vals = self._open_items__load_line_values(
+                this, account, side, this["move_line_ids"]["acceptance"]["debit"].debit
+            )
+            vals["line_ids"].append((0, 0, line_vals))
+            totals["debit"] += line_vals["credit"]
+            totals["credit"] += line_vals["debit"]
+
+        if totals["debit"] > totals["credit"]:
+            line_vals = self._open_items__load_line_values(
+                this,
+                this["config"]["overdue_account_credit_id"],
+                "credit",
+                totals["debit"] - totals["credit"],
+            )
+            vals["line_ids"].append((0, 0, line_vals))
+        elif totals["debit"] < totals["credit"]:
+            line_vals = self._open_items__load_line_values(
+                this,
+                this["config"]["settlement_account_credit_id"],
+                "debit",
+                totals["credit"] - totals["debit"],
+            )
+            vals["line_ids"].append((0, 0, line_vals))
+        return vals
+
+    def _open_items__do_reconciles(self, this):
+        reconciles = {}
+        for move_type in this["move_line_ids"]:
+            for side in this["move_line_ids"][move_type]:
+                for move_line in this["move_line_ids"][move_type][side]:
+                    account = move_line.account_id
+                    if account in this["account_ids"] and account.reconcile:
+                        if account not in reconciles:
+                            reconciles[account] = {}
+                        reconciles[account][side] = move_line
+        for account in reconciles:
+            if reconciles[account].get("debit") and reconciles[account].get("credit"):
+                to_be_reconciled = self.env["account.move.line"]
+                to_be_reconciled |= reconciles[account]["debit"]
+                to_be_reconciled |= reconciles[account]["credit"]
+                to_be_reconciled.reconcile()
 
     @api.multi
     def riba_line_settlement(self):
         for riba_line in self:
-            if not riba_line.distinta_id.config_id.settlement_journal_id:
+            if (
+                not riba_line.distinta_id.config_id.settlement_journal_id
+            ):  # pragma: no cover
                 raise UserError(_("Please define a Settlement journal"))
 
-            # trovare le move line delle scritture da chiudere
-            move_model = self.env["account.move"]
-            move_line_model = self.env["account.move.line"]
-
-            settlement_move_line = move_line_model.search(
-                [
-                    ("account_id", "=", riba_line.acceptance_account_id.id),
-                    ("move_id", "=", riba_line.acceptance_move_id.id),
-                    ("debit", "!=", 0),
-                ]
-            )
-
-            settlement_move_amount = settlement_move_line.debit
-
-            move_ref = "Settlement RIBA {} - {}".format(
-                riba_line.distinta_id.name,
-                riba_line.partner_id.name,
-            )
-            settlement_move = move_model.create(
-                {
-                    "journal_id": riba_line.distinta_id.config_id.settlement_journal_id.id,
-                    "date": date.today().strftime("%Y-%m-%d"),
-                    "ref": move_ref,
-                }
-            )
-
-            move_line_credit = move_line_model.with_context(
-                {"check_move_validity": False}
-            ).create(
-                {
-                    "name": move_ref,
-                    "partner_id": riba_line.partner_id.id,
-                    "account_id": riba_line.acceptance_account_id.id,
-                    "credit": settlement_move_amount,
-                    "debit": 0.0,
-                    "move_id": settlement_move.id,
-                }
-            )
-
-            accr_acc = riba_line.distinta_id.config_id.accreditation_account_id
-            move_line_model.with_context({"check_move_validity": False}).create(
-                {
-                    "name": move_ref,
-                    "account_id": accr_acc.id,
-                    "credit": 0.0,
-                    "debit": settlement_move_amount,
-                    "move_id": settlement_move.id,
-                }
-            )
-
-            to_be_settled = self.env["account.move.line"]
-            to_be_settled |= move_line_credit
-            to_be_settled |= settlement_move_line
-
-            to_be_settled.reconcile()
-            settlement_move.post()
+            if not riba_line.extra_payment_ids:
+                move_model = self.env["account.move"]
+                open_items = self._open_items__init()
+                open_items = self._open_items__load_config(open_items, riba_line)
+                settlement_move = move_model.create(
+                    self._open_items__get_move_vals(open_items)
+                )
+                settlement_move.post()
+                move_line_debit = False
+                for move_line in settlement_move.line_ids:
+                    if move_line.debit > 0.0:
+                        if not move_line_debit:
+                            move_line_debit = move_line
+                        elif (
+                            move_line.account_id
+                            == open_items["config"]["settlement_account_debit_id"]
+                        ):
+                            move_line_debit = move_line
+                riba_line.payment_ids = [(4, move_line_debit.id)]
+                self._open_items__do_reconciles(open_items)
+            self.riba_line_set_state("paid")
 
     @api.multi
-    def riba_line_back2accredited(self):
-        for riba in self:
-            if riba.payment_ids:
-                for move in riba.payment_ids:
-                    move.remove_move_reconcile()
-                    move.move_id.button_cancel()
-                    move.move_id.unlink()
-                riba.state = "accredited"
-            if riba.unsolved_move_id:
-                for move in riba.unsolved_move_id:
+    def riba_line_set_state(self, state, harmless=None):
+        if state not in (
+            "draft",
+            "accepted",
+            "accredited",
+            "cancel",
+            "paid",
+            "unsolved",
+        ):
+            return  # pragma: no cover
+        states = {}
+        for line in self:
+            if state == "paid":
+                if all([x.move_line_id.reconciled for x in line.move_line_ids]):
+                    line.state = state
+            elif state == "unsolved":
+                if line.unsolved_move_id:
+                    line.state = state
+            else:
+                line.riba_line_back2solved(harmless=True)
+                if line.payment_ids:
+                    for move_line in line.payment_ids:
+                        line.payment_ids = [(3, move_line.id)]
+                        for ln in move_line.move_id.line_ids:
+                            if ln.reconciled:
+                                ln.remove_move_reconcile()
+                        move_line.move_id.button_cancel()
+                        move_line.move_id.unlink()
+                    line.state = state
+            if not harmless:
+                if line.distinta_id not in states:
+                    states[line.distinta_id] = []
+                    for ln in line.distinta_id.line_ids:
+                        if ln.state not in states[line.distinta_id]:
+                            states[line.distinta_id].append(ln.state)
+        for (distinta, state) in states.items():
+            if len(state) == 1:
+                distinta.state = state[0]
+            elif "unsolved" in state:
+                distinta.state = "unsolved"
+
+    @api.multi
+    def riba_line_back2solved(self, harmless=None):
+        for line in self:
+            if line.unsolved_move_id:
+                for move in line.unsolved_move_id:
                     move.line_ids.remove_move_reconcile()
                     move.button_cancel()
                     move.unlink()
-                riba.state = "accredited"
+            if line.payment_ids:
+                line.state = "paid"
+            else:
+                line.state = "accredited"
+
+    @api.multi
+    def riba_line_back2accredited(self, harmless=None):
+        self.riba_line_set_state("accredited", harmless=harmless)
+
+    @api.multi
+    def riba_line_back2accepted(self, harmless=None):
+        self.riba_line_set_state("accepted", harmless=harmless)
+
+    @api.multi
+    def riba_line_back2draft(self, harmless=None):
+        self.riba_line_set_state("draft", harmless=harmless)
+
+    @api.multi
+    def riba_line_back2cancel(self, harmless=None):
+        self.riba_line_set_state("cancel", harmless=harmless)
 
 
 class RibaListMoveLine(models.Model):

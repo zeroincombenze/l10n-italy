@@ -8,6 +8,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.multi
+    def _delivery_unset(self):
+        self.mark_real_delivery_lines()
+        return super(SaleOrder, self)._delivery_unset()
+
+    @api.multi
     def generate_ddt_espresso(self, validate=None, to_send_mail=None):
 
         def exec_wizard(action):

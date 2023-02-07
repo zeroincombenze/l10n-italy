@@ -8,7 +8,7 @@
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class RibaConfiguration(models.Model):
@@ -54,18 +54,20 @@ class RibaConfiguration(models.Model):
         domain=[("type", "=", "bank")],
         help="Journal used when Ri.Ba. amount is accredited by the bank",
     )
-    accreditation_account_id = fields.Many2one(
+    accreditation_account_credit_id = fields.Many2one(
         "account.account",
-        "Ri.Ba. bank account",
+        "Accreditation credit (Ri.Ba. bank account)",
+        oldname="accreditation_account_id",
         help="Account used when Ri.Ba. is accepted by the bank",
-        domain=[("internal_type", "!=", "liquidity")],
+        # domain=[("internal_type", "!=", "liquidity")],
     )
-    bank_account_id = fields.Many2one(
+    accreditation_account_debit_id = fields.Many2one(
         "account.account",
-        "Bank account",
+        "Accreditation debit (Bank account)",
+        oldname="bank_account_id",
         help="Account receiving amount when list is accepted by the bank.\n"
         "May be the liquidity bank account or a transitory account.",
-        domain=[("internal_type", "=", "liquidity")],
+        # domain=[("internal_type", "=", "liquidity")],
     )
     bank_expense_account_id = fields.Many2one(
         "account.account", "Bank Expenses account"
@@ -76,12 +78,17 @@ class RibaConfiguration(models.Model):
         domain=[("type", "=", "bank")],
         help="Journal used when Ri.Ba. is unsolved",
     )
-    overdue_effects_account_id = fields.Many2one(
+    overdue_account_debit_id = fields.Many2one(
         "account.account",
-        "Overdue Effects account",
+        "Overdue Effects account (receivable)",
+        oldname="overdue_account_credit_id",
         domain=[("internal_type", "=", "receivable")],
     )
-    protest_charge_account_id = fields.Many2one(
+    overdue_account_credit_id = fields.Many2one(
+        "account.account",
+        "Overdue Bank account",
+    )
+    overdue_expenses_account_id = fields.Many2one(
         "account.account", "Protest charge account"
     )
     settlement_journal_id = fields.Many2one(
@@ -89,9 +96,17 @@ class RibaConfiguration(models.Model):
         "Settlement Journal",
         help="Journal used when the clients finally pays the invoice to bank",
     )
+    settlement_account_debit_id = fields.Many2one(
+        "account.account",
+        "Settlement debit account",
+    )
+    settlement_account_credit_id = fields.Many2one(
+        "account.account",
+        "Settlement credit account",
+    )
 
     def get_default_value_by_list(self, field_name):
-        if not self.env.context.get("active_id", False):
+        if not self.env.context.get("active_id", False):             # pragma: no cover
             return False
         ribalist_model = self.env["riba.distinta"]
         ribalist = ribalist_model.browse(self.env.context["active_id"])
@@ -102,7 +117,7 @@ class RibaConfiguration(models.Model):
         )
 
     def get_default_value_by_list_line(self, field_name):
-        if not self.env.context.get("active_id", False):
+        if not self.env.context.get("active_id", False):             # pragma: no cover
             return False
         ribalist_line = self.env["riba.distinta.line"].browse(
             self.env.context["active_id"]
@@ -112,3 +127,44 @@ class RibaConfiguration(models.Model):
             and ribalist_line.distinta_id.config_id[field_name].id
             or False
         )
+
+    def get_default_account_receivable(self, company):
+        code = company.chart_template_id.property_account_receivable_id.code
+        digits = company.chart_template_id.code_digits
+        if len(code) < digits:
+            code = (code + ("0" * digits))[:digits]
+        res = self.env["account.account"].search(
+            [
+                ("company_id", "=", company.id),
+                ("code", "=", code)
+            ]
+        )
+        return res[0] if res else False
+
+    @api.onchange("acceptance_journal_id",
+                  "acceptance_account_id",
+                  "accreditation_journal_id",
+                  "accreditation_account_debit_id",
+                  "accreditation_account_credit_id",
+                  "bank_expense_account_id")
+    def onchange_some_fields(self):
+        if self.acceptance_account_id and not self.settlement_account_credit_id:
+            self.settlement_account_credit_id = self.acceptance_account_id
+        if (
+            self.accreditation_account_credit_id
+            and not self.settlement_account_debit_id
+        ):
+            self.settlement_account_debit_id = self.accreditation_account_credit_id
+        if self.bank_expense_account_id and not self.overdue_expenses_account_id:
+            self.overdue_expenses_account_id = self.bank_expense_account_id
+        if self.accreditation_account_debit_id and not self.overdue_account_credit_id:
+            self.overdue_account_credit_id = self.accreditation_account_debit_id
+        if self.acceptance_journal_id and not self.settlement_journal_id:
+            self.settlement_journal_id = self.acceptance_journal_id
+        if self.acceptance_journal_id and not self.accreditation_journal_id:
+            self.accreditation_journal_id = self.acceptance_journal_id
+        if self.acceptance_journal_id and not self.unsolved_journal_id:
+            self.unsolved_journal_id = self.acceptance_journal_id
+        if not self.overdue_account_debit_id:
+            self.overdue_account_debit_id = self.get_default_account_receivable(
+                self.company_id)
