@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2022 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2022-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 {
     "name": "Prodotti Espresso",
-    "version": "10.0.1.0.4",
+    "version": "10.0.1.0.5",
     "category": "Accounting",
     "summary": "Prodotti espresso",
     "author": "SHS-AV s.r.l. and other partners",
@@ -23,6 +23,7 @@
         "views/action_generate_ddt.xml",
         "wizard/wizard_create_ddt_espresso_view.xml",
         "data/ir_cron.xml",
+        "report/account_invoice_report_view.xml",
     ],
     "installable": True,
 }

@@ -1,3 +1,8 @@
+12.0.1.0.5 (2023-02-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] flag espresso on invoice line / righe fattura con flag prodotto espresso
+
 12.0.1.0.4 (2023-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

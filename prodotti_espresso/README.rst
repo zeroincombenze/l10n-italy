@@ -1,6 +1,6 @@
 
 ===================================
-|icon| Prodotti Espresso 10.0.1.0.4
+|icon| Prodotti Espresso 10.0.1.0.5
 ===================================
 
 
@@ -161,6 +161,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.5 (2023-02-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] flag espresso on invoice line / righe fattura con flag prodotto espresso
+
 12.0.1.0.4 (2023-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -208,6 +213,8 @@ Authors / Autori
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 * `Didotech s.r.l. <https://www.didotech.com>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
@@ -216,6 +223,9 @@ Contributors / Collaboratori
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Marco Tosato <marco.tosato@didotech.com>
 * Fabio Giovannelli <fabio.giovannelli@didotech.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -247,7 +257,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-01-23
+Last Update / Ultimo aggiornamento: 2023-02-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

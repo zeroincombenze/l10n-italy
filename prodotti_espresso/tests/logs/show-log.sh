@@ -1,1 +1,1 @@
-less -R $(readlink -f $(dirname $0))/prodotti_espresso_20230123.txt
+less -R $(readlink -f $(dirname $0))/prodotti_espresso_20230209.txt
