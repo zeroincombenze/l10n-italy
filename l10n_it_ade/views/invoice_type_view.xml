@@ -27,6 +27,7 @@
                     <field name="name" />
                     <field name="scope" />
                     <field name="active" />
+                    <field name="is_self_invoice" />
                 </group>
                 <group>
                     <field name="out_invoice" />

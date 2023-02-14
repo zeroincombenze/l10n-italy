@@ -29,6 +29,7 @@ class ItalyAdeInvoiceType(models.Model):
     priority = fields.Integer(string="Priority", default="3")
     scope = fields.Char(string="Scope", help="Reserved to specific scope")
     active = fields.Boolean(string="Active", default=True)
+    is_self_invoice = fields.Boolean(string="It is self invoice")
 
     @api.multi
     def name_get(self):

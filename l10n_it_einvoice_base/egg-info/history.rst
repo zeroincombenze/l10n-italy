@@ -1,3 +1,9 @@
+10.0.2.1.22 (2023-02-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Self invoice flag / Identificatore documento autofattura
+* [IMP] Date updatable for self invoice / Data contabile modificabile per le auto-fatture
+
 10.0.2.1.21 (2022-11-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

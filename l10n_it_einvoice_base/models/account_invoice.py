@@ -555,6 +555,10 @@ class AccountInvoice(models.Model):
         related="partner_id.electronic_invoice_subjected",
         readonly=True,
     )
+    is_self_invoice = fields.Boolean(
+        string="Self invoice",
+        related="fiscal_document_type_id.is_self_invoice"
+    )
 
     @api.one
     def einvoice_type_selection(self, type, partner_vat, amount=None):
@@ -588,7 +592,10 @@ class AccountInvoice(models.Model):
             ids = self.einvoice_type_selection(self.type, "IT", self.amount_total)
         if not ids:
             self.fiscal_document_type_id = False
-        elif not self.fiscal_document_type_id or self.fiscal_document_type_id not in ids:
+        elif (
+            not self.fiscal_document_type_id
+            or self.fiscal_document_type_id not in ids
+        ):
             self.fiscal_document_type_id = ids[0]
 
     @api.multi

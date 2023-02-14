@@ -1,6 +1,6 @@
 
 =======================================
-|icon| Agenzia delle Entrate 10.0.0.3.6
+|icon| Agenzia delle Entrate 10.0.0.3.7
 =======================================
 
 
@@ -267,6 +267,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.3.7 (2023-02-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Self invoice flag / Identificatore documento autofattura
+
 10.0.0.3.6 (2022-09-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -309,12 +314,17 @@ Authors / Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Acknowledges / Riconoscimenti
@@ -328,9 +338,9 @@ Acknowledges / Riconoscimenti
 | participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
 | acknowledge them for their prior  | persone che precedentemente vi hanno      |
 | contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Alex Comba <alex.comba@agilebg.com>
++-----------------------------------+-------------------------------------------+* Davide Corio <info@davidecorio.com>
+* Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Davide Corio <info@davidecorio.com>
 
 
 Maintainer / Manutenzione
@@ -362,7 +372,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-28
+Last Update / Ultimo aggiornamento: 2023-02-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

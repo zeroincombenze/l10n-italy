@@ -7,8 +7,13 @@
         <field name="inherit_id" ref="account.invoice_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other_info']/group/group[2]" position="inside">
+                <field name="date"
+                       domain="[('state', '=', 'draft'), ('company_id', '=', company_id)]"
+                       attrs="{'readonly': [('is_self_invoice', '=', False}"
+                       groups="account.group_account_user"/>
                 <field name="fiscal_document_type_id" options="{'no_create': True}" />
                 <field name="type" readonly="1" />
+                <field name="is_self_invoice" invisible="1"/>
             </xpath>
             <field name="partner_bank_id" position="attributes">
                 <attribute name="readonly">0</attribute>

@@ -1,6 +1,6 @@
 
 =======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.21
+|icon| EInvoice + FatturaPA 10.0.2.1.22
 =======================================
 
 
@@ -337,6 +337,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.22 (2023-02-13)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Self invoice flag / Identificatore documento autofattura
+* [IMP] Date updatable for self invoice / Data contabile modificabile per le auto-fatture
+
 10.0.2.1.21 (2022-11-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -392,6 +398,8 @@ Authors / Autori
 * `Abstract <https://abstract.it/>`__
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
@@ -400,6 +408,9 @@ Contributors / Collaboratori
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Translations by / Traduzioni a cura di
@@ -438,7 +449,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-11-14
+Last Update / Ultimo aggiornamento: 2023-02-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

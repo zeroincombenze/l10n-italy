@@ -13,6 +13,7 @@
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">1</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD02" model="italy.ade.invoice.type">
         <field name="code">TD02</field>
@@ -26,6 +27,7 @@ Attesta la ricezione di un anticipo che verrà detratto nella fattura di saldo.<
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD03" model="italy.ade.invoice.type">
         <field name="code">TD03</field>
@@ -39,6 +41,7 @@ il cui ammontare verrà detratto nella parcella di saldo.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD04" model="italy.ade.invoice.type">
         <field name="code">TD04</field>
@@ -51,6 +54,7 @@ il cui ammontare verrà detratto nella parcella di saldo.</field>
         <field name="out_refund">True</field>
         <field name="in_refund">True</field>
         <field name="priority">1</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD05" model="italy.ade.invoice.type">
         <field name="code">TD05</field>
@@ -63,6 +67,7 @@ il cui ammontare verrà detratto nella parcella di saldo.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD06" model="italy.ade.invoice.type">
         <field name="code">TD06</field>
@@ -75,6 +80,7 @@ il cui ammontare verrà detratto nella parcella di saldo.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD07" model="italy.ade.invoice.type">
         <field name="code">TD07</field>
@@ -88,6 +94,7 @@ Usata ad esempio nella ristorazione.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD08" model="italy.ade.invoice.type">
         <field name="code">TD08</field>
@@ -101,6 +108,7 @@ Usata ad esempio nella ristorazione.</field>
         <field name="out_refund">True</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD09" model="italy.ade.invoice.type">
         <field name="code">TD09</field>
@@ -114,6 +122,7 @@ Usata ad esempio nella ristorazione.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD10" model="italy.ade.invoice.type">
         <field name="code">TD10</field>
@@ -127,6 +136,7 @@ Deve essere registrata con la procedura di integrazione (documento TD18).</field
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD11" model="italy.ade.invoice.type">
         <field name="code">TD11</field>
@@ -140,6 +150,7 @@ Deve essere registrata con la procedura di integrazione (documento TD17).</field
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD12" model="italy.ade.invoice.type">
         <field name="code">TD12</field>
@@ -152,6 +163,7 @@ Deve essere registrata con la procedura di integrazione (documento TD17).</field
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD16" model="italy.ade.invoice.type">
         <field name="code">TD16</field>
@@ -166,6 +178,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD17" model="italy.ade.invoice.type">
         <field name="code">TD17</field>
@@ -179,6 +192,7 @@ L'invio di questo documento allo SdI sostituisce la presentazione dell'esteromet
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD18" model="italy.ade.invoice.type">
         <field name="code">TD18</field>
@@ -192,6 +206,7 @@ L'invio di questo documento allo SdI sostituisce la presentazione dell'esteromet
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD19" model="italy.ade.invoice.type">
         <field name="code">TD19</field>
@@ -206,6 +221,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD20" model="italy.ade.invoice.type">
         <field name="code">TD20</field>
@@ -218,6 +234,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD21" model="italy.ade.invoice.type">
         <field name="code">TD21</field>
@@ -230,6 +247,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD22" model="italy.ade.invoice.type">
         <field name="code">TD22</field>
@@ -242,6 +260,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD23" model="italy.ade.invoice.type">
         <field name="code">TD23</field>
@@ -254,6 +273,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD24" model="italy.ade.invoice.type">
         <field name="code">TD24</field>
@@ -266,6 +286,7 @@ Cedente/prestatore e cessionario/committente devono identici.</field>
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD25" model="italy.ade.invoice.type">
         <field name="code">TD25</field>
@@ -279,6 +300,7 @@ La fattura può essere emessa entro il mese successivo alla consegna merce.</fie
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
     <record id="fatturapa_TD26" model="italy.ade.invoice.type">
         <field name="code">TD26</field>
@@ -291,6 +313,7 @@ La fattura può essere emessa entro il mese successivo alla consegna merce.</fie
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
     <record id="fatturapa_TD27" model="italy.ade.invoice.type">
         <field name="code">TD27</field>
@@ -303,6 +326,7 @@ La fattura può essere emessa entro il mese successivo alla consegna merce.</fie
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
+        <field name="is_self_invoice">0</field>
     </record>
 
 </odoo>

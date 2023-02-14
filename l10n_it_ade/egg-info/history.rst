@@ -1,3 +1,8 @@
+10.0.0.3.7 (2023-02-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Self invoice flag / Identificatore documento autofattura
+
 10.0.0.3.6 (2022-09-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
