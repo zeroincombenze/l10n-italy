@@ -22,7 +22,6 @@
                             <field name="goods_description_id" />
                             <field name="transportation_reason_id"  />
                             <field name="transportation_method_id" />
-                            <field name="partner_carrier_id" />
                             <field name="parcels" />
                             <field name="volume" />
                             <field name="weight" />

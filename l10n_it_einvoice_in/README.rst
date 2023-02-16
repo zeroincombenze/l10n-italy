@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.36
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.37
 =========================================================================
 
 
@@ -283,10 +283,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.37 (2023-02-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Now module does not depend on l10n_it_ddt / Ora il modulo non richiede l'installazione del DdT
+
 10.0.1.3.36 (2022-12-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Import e-invoice with carrier / Errore importazione fatture con spedizioniere
+
 
 10.0.1.3.35 (2022-11-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -325,18 +331,6 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Detect RC by rc flag / Riconoscimento RC tramite flag rc
 
-10.0.1.3.28 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Link existent invoice / Collegamento a fattura esistente
-
-10.0.1.3.27 (2022-01-05)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
-* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
-* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
-
 
 
 |
@@ -361,6 +355,8 @@ Authors / Autori
 * `Innoviu srl <http://www.innoviu.com>`__
 * `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
@@ -371,6 +367,9 @@ Contributors / Collaboratori
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Translations by / Traduzioni a cura di
@@ -408,7 +407,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-12-28
+Last Update / Ultimo aggiornamento: 2023-02-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

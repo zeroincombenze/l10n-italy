@@ -11,7 +11,7 @@
 #
 {
     "name": "Italian Localization - Fattura elettronica - Ricezione",
-    "version": "10.0.1.3.36",
+    "version": "10.0.1.3.37",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",
     "author": "Agile Business Group, Innoviu, SHS-AV "
@@ -20,6 +20,7 @@
     "license": "AGPL-3",
     "depends": [
         "account",
+        "account_invoice_partner_carrier",
         "l10n_it_account",
         "l10n_it_ade",
         "account_invoice_check_total",

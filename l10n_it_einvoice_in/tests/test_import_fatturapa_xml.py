@@ -75,10 +75,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         )
 
     def test_00014_xml_import(self):
-        res = self.run_wizard("🎺 test014", "IT00488410010_00014.xml")
+        self.run_wizard("🎺 test014", "IT00488410010_00014.xml")
 
     def test_00015_xml_import(self):
-        res = self.run_wizard("🎺 test015", "IT01641790702_00015.xml")
+        self.run_wizard("🎺 test015", "IT01641790702_00015.xml")
 
     def __test_11004_xml_import(self):
         res = self.run_wizard("🎺 test11004", "IT02780790107_11004.xml")

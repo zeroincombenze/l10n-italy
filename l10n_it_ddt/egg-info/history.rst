@@ -1,3 +1,8 @@
+10.0.1.8.20 (2023-02-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field carrie_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
+
 10.0.1.8.19 (2023-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

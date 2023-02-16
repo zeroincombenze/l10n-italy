@@ -42,11 +42,11 @@ class AccountInvoice(models.Model):
         compute='_compute_delivery_price',
         store=True
     )
-    partner_carrier_id = fields.Many2one(
-        "res.partner",
-        string="Carrier",
-        oldname="carrier_id",
-    )
+    # partner_carrier_id = fields.Many2one(
+    #     "res.partner",
+    #     string="Carrier",
+    #     oldname="carrier_id",
+    # )
     parcels = fields.Integer("Parcels")
     weight = fields.Float(string="Weight", digits=dp.get_precision("Stock Weight"))
     gross_weight = fields.Float(

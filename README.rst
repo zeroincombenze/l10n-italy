@@ -45,6 +45,8 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_entry_dates          | |halt|     | |no_check| | Registration, vat/balance application dates                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| account_invoice_partner_carrier      | 10.0.0.1.0 | |no_check| | Add the Partner Carrier field on account.invoice                                 |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_report_ddt_group     | |halt|     | 10.0.0.3.2 | Account invoice report grouped by DDT                                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_sequential_dates     | |no_check| | |halt|     | Check invoice date consistency                                                   |
@@ -95,7 +97,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi_sale           | |no_check| | 10.0.1.0.3 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ddt                          | 10.0.1.8.1 | 10.0.1.9.0 | Delivery Document Type                                                           |
+| l10n_it_ddt                          | 10.0.1.8.2 | 10.0.1.9.0 | Delivery Document Type                                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_dichiarazione_intento        | |no_check| | 10.0.1.0.2 | Gestione dichiarazioni di intento                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -372,6 +374,24 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_in: 10.0.1.3.37 (2023-02-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Now module does not depend on l10n_it_ddt / Ora il modulo non richiede l'installazione del DdT
+
+
+l10n_it_ddt: 10.0.1.8.20 (2023-02-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field carrie_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
+
+
+multibase_plus: 10.0.0.1.6 (2023-02-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] multibase_plus: invoice data in invoice tree / Data contabile in vista fatture
+
+
 l10n_it_reverse_charge: 10.0.1.5 (2023-02-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -416,6 +436,12 @@ l10n_it_ddt: 10.0.1.8.19 (2023-01-20)
 
 
 
+account_invoice_partner_carrier: 10.0.0.1.0 (2023-01-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] First release / Prima versione
+
+
 l10n_it_ricevute_bancarie: 10.0.1.3.10 (2022-12-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -427,6 +453,7 @@ l10n_it_einvoice_in: 10.0.1.3.36 (2022-12-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Import e-invoice with carrier / Errore importazione fatture con spedizioniere
+
 
 
 multibase_plus: 10.0.0.1.5 (2022-12-23)
@@ -592,7 +619,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2023-02-14
+Last Update / Ultimo aggiornamento: 2023-02-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

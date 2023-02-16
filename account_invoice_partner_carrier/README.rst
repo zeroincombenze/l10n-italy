@@ -1,12 +1,12 @@
 
-======================
-|icon| DDT 10.0.1.8.20
-======================
+============================================
+|icon| Partner Carrier on invoice 10.0.0.1.0
+============================================
 
 
-**Delivery Document Type**
+**Add the Partner Carrier field on account.invoice**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_invoice_partner_carrier/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -18,72 +18,12 @@
 Overview / Panoramica
 =====================
 
-|en| This module manages the Italian deliver document AKA DdT
-
-You can automatically create a DDT From a Sale Order, setting
-'Automatically create the DDT' field that will automatically create the DDT on
-Sale Order confirmation.
-
-You can also directly create a DDT using
-Inventory -> Operations -> DDT
-menu and add existings delivery orders to it, in the 'transfers' tab.
-
-You can add lines to an existing DDT using the 'Details' tab.
-Lines can be descriptive or linked to a product. If linked to a product,
-the stock movement will also be created.
-
-When you work with delivery orders, you can create a DDT selecting 1 or more
-pickings and launching the action 'DDT from pickings'.
-
-Also, you can select 1 or more pickings and run 'add pickings to DDT' to add
-the selected delivery orders to an existing DDT
-
-If the state of the delivery orders allows it, you can deliver them from the
-DDT directly, clicking 'put in pack' and 'package done'.
-
-Otherwise, you can process delivery orders separately, then go to the DDT and
-click on 'set done'.
-
-Finally you can create your invoice directly from the DDT using the
-'Create Invoice' button that creates a new Invoice with the ddt lines as
-invoice lines
+|en| This module add the field partner_carrier on invoice
 
 
 |
 
-|it| Gestione documento di trasporto, conosciuto anche come DdT
-
-È possibile creare automaticamente un DDT da un ordine di vendita, impostando
-il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
-dell'ordine.
-
-È anche possibile creare un DDT direttamente, usando
-Inventario -> Operazioni -> DDT
-e aggiungendo degli ordini di consegna esistenti al DDT, nel tab
-'trasferimenti'.
-
-È possibile aggiungere righe ad un DDT esistente usando il tab 'Dettaglio'.
-Le righe possono essere descrittive o collegate a prodotti. Le righe collegate
-ad un prodotto creeranno anche i movimenti di magazzino.
-
-Se si lavora con gli ordini di consegna, è possibile creare un DDT selezionando
-1 o più ordini di consegna ed eseguendo l'azione 'DDT da Picking'.
-
-Inoltre, è possibile selezionare 1 o più ordini di consegna ed eseguire
-'aggiungi Picking al DDT' per aggiungere gli ordini selezionati ad un DDT
-esistente.
-
-Se lo stato degli ordini di consegna lo permette, è possibile consegnarli tutti
-direttamente dal DDT, cliccando sui bottoni 'metti nel pacco' e
-'pacco completato'.
-
-Altrimenti, è possibile processare gli ordini di consegna separatamente, poi
-andare sul DDT e cliccare su 'imposta completato'.
-
-Infine, è possibile creare la fattura direttamente dal DDT usando il bottone
-'crea fattura' il quale crea una nuova fattura usando le righe del DDT.
-
-E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'da fatturare'
+|it| QUesto modulo aggiunge il campo nominativo vettore in fattura.
 
 
 |
@@ -152,7 +92,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Install
+* |menu| Setting > Apps |right_do| Select **account_invoice_partner_carrier** > Install
 
 
 |
@@ -185,7 +125,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Update
+* |menu| Setting > Apps |right_do| Select **account_invoice_partner_carrier** > Update
 
 |
 
@@ -221,53 +161,10 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.1.8.20 (2023-02-16)
-~~~~~~~~~~~~~~~~~~~~~~~~
+10.0.0.1.0 (2023-01-20)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Field carrie_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
-
-10.0.1.8.19 (2023-01-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
-
-
-10.0.1.8.18 (2022-12-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Delivery price in invoice / Calcolo totale spedizioni
-* [IMP] Test coverage increased
-
-10.0.1.8.17 (2022-11-24)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Order.carrier_id when import / Metodo di consegna impostato durante import record
-
-
-10.0.1.8.16 (2022-10-06)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Delivery carrier / Metodo di consegna
-
-10.0.1.8.15 (2022-10-04)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
-
-10.0.1.8.14 (2022-09-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Functions refactoring / Sotware ristrutturato
-* [IMP] Added regression tests / Aggiunti test automatici
-* [FIX] l10n_it_ade dependency / Corretta dipendenza
-* [IMP] More check for <add_to_ddt> function / Nuovi controlli
-* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
-* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
-
-10.0.1.8.13 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Fiscal document type renamed
+* [IMP] First release / Prima versione
 
 
 
@@ -289,31 +186,20 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `Abstract <https://www.abstract.it>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `Apulia Software <https://www.apuliasoftware.it>`__
-* `Open Force <https://www.openforce.it/>`__
-* `Dinamiche Aziendali <http://www.dinamicheaziendali.it>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 Authors
 -------
+
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 Contributors / Collaboratori
 ----------------------------
 
-* Davide Corio <davide.corio@abstract.it>
-* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Antonio M. Vigliotti <info@shs-av.com>
 Contributors
 ------------
 
+* Antonio M. Vigliotti <info@shs-av.com>
 
 
 Maintainer / Manutenzione
