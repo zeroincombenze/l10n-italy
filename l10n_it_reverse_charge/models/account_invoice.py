@@ -119,7 +119,7 @@ class AccountInvoice(models.Model):
             "account_id": account.id,
             "journal_id": rc_type.journal_id.id,
             "invoice_line_ids": lines,
-            "date_invoice": self.date_invoice,
+            "date_invoice": self.date,
             "date": self.date,
             "origin": self.number,
             "rc_purchase_invoice_id": self.id,

@@ -1,6 +1,6 @@
 
 ==================================
-|icon| Reverse Charge IVA 10.0.1.5
+|icon| Reverse Charge IVA 10.0.1.6
 ==================================
 
 
@@ -247,10 +247,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.6 (2023-02-20)
+~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] The invoice date of self invoice is the same of the date of purchase invoice / Data auto-fattura come data contabile fattura di acquisto
+
 10.0.1.5 (2023-02-13)
 ~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] The date may be different form invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture
+* [IMP] The date may be different from invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture
 
 10.0.1.4 (2022-06-20)
 ~~~~~~~~~~~~~~~~~~~~~
@@ -328,7 +333,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-02-14
+Last Update / Ultimo aggiornamento: 2023-02-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
