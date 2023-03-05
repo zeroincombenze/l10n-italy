@@ -1,6 +1,6 @@
 
 ==============================================================
-|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.24
+|icon| Italian Localization - FatturaPA - Emission 10.0.1.0.25
 ==============================================================
 
 
@@ -251,6 +251,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.25 (2023-03-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] First regression tests: coverage 60% (733/296)
+
 10.0.1.0.24 (2022-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -275,17 +280,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Account Reference / Riferimento amministrativo
-
-10.0.1.0.19 (2022-01-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Check lettere intento / Test su lettere di intento
-* [FIX] Rea capital / controllo capitale sociale
-
-10.0.1.0.18 (2022-01-03)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Avoid old VAT nature code / Controllo anti utilizzo codici natura scaduti
 
 
 
@@ -312,6 +306,8 @@ Authors / Autori
 * `Innoviu srl <http://www.innoviu.com>`__
 * `Odoo Italia Network`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
@@ -322,6 +318,9 @@ Contributors / Collaboratori
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Translations by / Traduzioni a cura di
@@ -360,7 +359,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-28
+Last Update / Ultimo aggiornamento: 2023-03-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
