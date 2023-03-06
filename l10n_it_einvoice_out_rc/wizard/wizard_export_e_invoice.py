@@ -58,7 +58,8 @@ class WizardExportFatturapa(models.TransientModel):
                     if IdPaese == 'IT':
                         IdPaese = partner.country_id.code
                     if IdPaese == 'IT':
-                        IdPaese = "XX"
+                        IdPaese = "EU"
+                        IdCodice = partner.vat
                 if (IdPaese != 'EU' and
                     IdPaese not in self.env['res.country'].search(
                         []).mapped('code')):
