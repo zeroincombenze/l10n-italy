@@ -1,3 +1,8 @@
+10.0.1.0.3 (2023-03-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sel-invoice TD17-19 with "IT" vat / Codice IVA italiano modificato eper autofatture TD17-19
+
 10.0.1.0.2 (2022-10-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

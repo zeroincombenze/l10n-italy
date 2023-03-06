@@ -57,7 +57,8 @@ class WizardExportFatturapa(models.TransientModel):
                         x in fiscal_document_type_codes]):
                     if IdPaese == 'IT':
                         IdPaese = partner.country_id.code
-                        IdCodice = "99999999999"
+                    if IdPaese == 'IT':
+                        IdPaese = "XX"
                 if (IdPaese != 'EU' and
                     IdPaese not in self.env['res.country'].search(
                         []).mapped('code')):
@@ -170,7 +171,7 @@ class WizardExportFatturapa(models.TransientModel):
                 and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
             body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento = (
                 "%.2f" % -float(
-                body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento))
+                    body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento))
         return res
 
     def setDettaglioLinea(

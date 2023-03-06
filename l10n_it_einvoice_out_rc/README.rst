@@ -1,6 +1,6 @@
 
 ====================================================================================
-|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.2
+|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.3
 ====================================================================================
 
 
@@ -199,6 +199,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.3 (2023-03-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sel-invoice TD17-19 with "IT" vat / Codice IVA italiano modificato eper autofatture TD17-19
+
 10.0.1.0.2 (2022-10-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -235,12 +240,17 @@ Authors / Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -272,7 +282,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-10-04
+Last Update / Ultimo aggiornamento: 2023-03-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
