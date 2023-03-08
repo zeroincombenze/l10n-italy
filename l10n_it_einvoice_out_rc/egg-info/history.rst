@@ -1,3 +1,8 @@
+10.0.1.0.4 (2023-03-07)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] AttributeError: 'DatiPagamentoType' object has no attribute 'ImportoPagamento'
+
 10.0.1.0.3 (2023-03-06)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

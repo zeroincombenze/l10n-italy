@@ -203,9 +203,9 @@ class WizardExportFatturapa(models.TransientModel):
         for DatiPagamento in body.DatiPagamento:
             if invoice.type in ['out_refund', 'in_refund'] \
                     and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']\
-                    and DatiPagamento.ImportoPagamento:
-                DatiPagamento.ImportoPagamento = (
-                    "%.2f" % -float(DatiPagamento.ImportoPagamento))
+                    and DatiPagamento.DettaglioPagamento.ImportoPagamento:
+                DatiPagamento.DettaglioPagamento.ImportoPagamento = (
+                    "%.2f" % -float(DatiPagamento.DettaglioPagamento.ImportoPagamento))
         return True
 
     def exportInvoiceXML(

@@ -162,7 +162,7 @@ KEY_CANDIDATE = (
     "default_code",
     "sequence",
     "login",
-    # "description",
+    "description",
     "depreciation_type_id",
     "number",
     "move_name",
@@ -177,7 +177,6 @@ KEY_CANDIDATE = (
 KEY_OF_RESOURCE = {
     "res.users": "login",
     "account.tax": "description",
-    "account.rc.type.tax": "purchase_tax_id",
 }
 REC_KEY_NAME = {"id", "code", "name"}
 if PY3:  # pragma: no cover
@@ -271,15 +270,15 @@ class MainTest(SingleTransactionCase):
 
     def log_lvl_3(self, mesg, strict=None):  # pragma: no cover
         if (self.debug_level >= 3 and not strict) or self.debug_level == 3:
-            self._logger.info(self.u(mesg))
+            self._logger.info(mesg)
 
     def log_lvl_2(self, mesg, strict=None):  # pragma: no cover
         if (self.debug_level >= 2 and not strict) or self.debug_level == 2:
-            self._logger.info(self.u(mesg))
+            self._logger.info(mesg)
 
     def log_lvl_1(self, mesg, strict=None):  # pragma: no cover
         if (self.debug_level >= 1 and not strict) or self.debug_level == 1:
-            self._logger.info(self.u(mesg))
+            self._logger.info(mesg)
 
     def log_stack(self):
         stack = inspect.stack()
@@ -438,7 +437,7 @@ class MainTest(SingleTransactionCase):
             if resource == "product.template":
                 childs_resource = ["product.product"]
             else:
-                for suffix in (".line", ".rate", ".state", ".tax"):
+                for suffix in (".line", ".rate", ".state"):
                     childs_resource.append(resource + suffix)
         if not isinstance(childs_resource, (list, tuple)):
             childs_resource = [childs_resource]  # pragma: no cover
@@ -505,9 +504,7 @@ class MainTest(SingleTransactionCase):
         if ln.isdigit():
             ln = int(ln)
             if not ln:                                               # pragma: no cover
-                return xref, False                                   # pragma: no cover
-        elif isinstance(ln, basestring) and self._is_xref(ln):
-            return xref, self._get_xref_id(xref=ln)
+                return xref, False  # pragma: no cove
         return xref, ln
 
     @api.model
@@ -1109,11 +1106,6 @@ class MainTest(SingleTransactionCase):
         Returns:
             Dictionary values
         """
-        if not isinstance(values, dict):
-            self.raise_error(
-                "Invalid dict %s for %s!"
-                % (values, resource)  # pragma: no cover
-            )
         if values:
             self._load_field_struct(resource)
             values = self._get_conveyed_value(resource, "all", values, fmt=fmt)

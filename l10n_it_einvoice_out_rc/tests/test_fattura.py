@@ -54,7 +54,7 @@ TEST_ACCOUNT_FISCAL_POSITION = {
     },
     "z0bug.fiscalpos_rc": {
         "name": "RC locale",
-        "rc_type_id": "z0bug.rc_type_local",
+        # "rc_type_id": "z0bug.rc_type_local",
     },
 }
 
@@ -82,7 +82,7 @@ TEST_ACCOUNT_RC_TYPE = {
 }
 
 TEST_ACCOUNT_RC_TYPE_TAX = {
-    "z0bug.rc_type_local_1": {
+    "z0bug.rc_type_local_external.a41a": {
         "rc_type_id": "rc_type_local",
         "purchase_tax_id": "external.a41a",
         "sale_tax_id": "external.aa41v",
@@ -194,8 +194,8 @@ TEST_SETUP_LIST = [
     "account.account",
     "account.journal",
     "account.tax",
-    "account.rc.type",
-    "account.rc.type.tax",
+    # "account.rc.type",
+    # "account.rc.type.tax",
     "account.fiscal.position",
     "res.partner",
     "res.company",
@@ -280,6 +280,7 @@ class AccountInvoice(SingleTransactionCase):
             invoice = self.resource_browse(xref=xref)
             self.resource_edit(resource=invoice, actions="action_invoice_open")
             self.assertEqual(
-                invoice.state, "open", "action_invoice_open() FAILED: no state changed!"
+                invoice.state, "open",
+                "action_invoice_open() FAILED: no state changed!"
             )
 

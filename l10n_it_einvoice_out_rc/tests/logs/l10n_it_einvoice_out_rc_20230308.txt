@@ -1,0 +1,467 @@
+2023-03-08 08:22:29,951 8978 INFO ? odoo: Odoo version 10.0
+2023-03-08 08:22:29,952 8978 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_einvoice_out_rc/tests/logs/zero10.l10n-italy.l10n_it_einvoice_out_rc.conf
+2023-03-08 08:22:29,952 8978 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-03-08 08:22:29,952 8978 INFO ? odoo: database: odoo10@localhost:default
+2023-03-08 08:22:29,969 8978 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:64739
+2023-03-08 08:22:29,985 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: loading 1 modules...
+2023-03-08 08:22:30,096 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: 1 modules loaded in 0.11s, 0 queries
+2023-03-08 08:22:34,336 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: loading 54 modules...
+2023-03-08 08:22:34,475 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-03-08 08:22:34,987 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: 54 modules loaded in 0.65s, 0 queries
+2023-03-08 08:22:34,992 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: loading 55 modules...
+2023-03-08 08:22:35,289 8978 WARNING test_l10n_it_einvoice_out_rc_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-03-08 08:22:35,414 8978 WARNING test_l10n_it_einvoice_out_rc_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-03-08 08:22:35,425 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.registry: module l10n_it_einvoice_out_rc: creating or updating database tables
+2023-03-08 08:22:35,487 8978 WARNING test_l10n_it_einvoice_out_rc_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2023-03-08 08:22:35,690 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: loading l10n_it_einvoice_out_rc/views/rc_type_views.xml
+2023-03-08 08:22:36,213 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_out_rc.tests.test_fattura running tests.
+2023-03-08 08:22:36,215 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.test_fattura: test_account_invoice (odoo.addons.l10n_it_einvoice_out_rc.tests.test_fattura.AccountInvoice)
+2023-03-08 08:22:36,307 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(217)/setUp()
+['        self.declare_all_data(data)                 # TestEnv swallows the data\n']
+2023-03-08 08:22:36,307 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(account.account,group=base)
+2023-03-08 08:22:36,308 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[account.account] = [u'code']
+2023-03-08 08:22:36,311 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(external.490050,name=account.account,group=base)
+2023-03-08 08:22:36,312 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_cog,name=account.account,group=base)
+2023-03-08 08:22:36,315 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_sale,name=account.account,group=base)
+2023-03-08 08:22:36,316 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_sale2,name=account.account,group=base)
+2023-03-08 08:22:36,316 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_tax_iva,name=account.account,group=base)
+2023-03-08 08:22:36,318 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_tax_ova,name=account.account,group=base)
+2023-03-08 08:22:36,318 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(account.journal,group=base)
+2023-03-08 08:22:36,320 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[account.journal] = [u'code']
+2023-03-08 08:22:36,321 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.journal.store_resource_data(external.CG,name=account.journal,group=base)
+2023-03-08 08:22:36,321 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(account.tax,group=base)
+2023-03-08 08:22:36,322 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[account.tax] = [u'description']
+2023-03-08 08:22:36,323 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.tax.store_resource_data(external.a41a,name=account.tax,group=base)
+2023-03-08 08:22:36,333 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.tax.store_resource_data(external.aa41v,name=account.tax,group=base)
+2023-03-08 08:22:36,334 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(account.fiscal.position,group=base)
+2023-03-08 08:22:36,334 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[account.fiscal.position] = [u'name']
+2023-03-08 08:22:36,335 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.fiscal.position.store_resource_data(z0bug.fiscalpos_it,name=account.fiscal.position,group=base)
+2023-03-08 08:22:36,335 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.fiscal.position.store_resource_data(z0bug.fiscalpos_rc,name=account.fiscal.position,group=base)
+2023-03-08 08:22:36,335 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(res.partner,group=base)
+2023-03-08 08:22:36,341 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[res.partner] = [u'name']
+2023-03-08 08:22:36,343 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 res.partner.store_resource_data(z0bug.partner_mycompany,name=res.partner,group=base)
+2023-03-08 08:22:36,349 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_1,name=res.partner,group=base)
+2023-03-08 08:22:36,352 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-03-08 08:22:36,352 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(res.company,group=base)
+2023-03-08 08:22:36,355 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[res.company] = [u'partner_id']
+2023-03-08 08:22:36,361 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 res.company.store_resource_data(z0bug.mycompany,name=res.company,group=base)
+2023-03-08 08:22:36,361 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(account.invoice,group=base)
+2023-03-08 08:22:36,385 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 childs_resource[account.invoice] = account.invoice.line
+2023-03-08 08:22:36,385 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 childs_name[account.invoice] = invoice_line_ids
+2023-03-08 08:22:36,389 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 parent_resource[account.invoice.line] = account.invoice
+2023-03-08 08:22:36,389 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 parent_name[account.invoice.line] = invoice_id
+2023-03-08 08:22:36,389 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[account.invoice.line] = [u'sequence']
+2023-03-08 08:22:36,389 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[account.invoice] = [u'description']
+2023-03-08 08:22:36,394 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.invoice.store_resource_data(z0bug.invoice_Z0_1,name=account.invoice,group=base)
+2023-03-08 08:22:36,394 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🐜 declare_all_data(account.invoice.line,group=base)
+2023-03-08 08:22:36,397 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.invoice.line.store_resource_data(z0bug.invoice_Z0_1_1,name=account.invoice.line,group=base)
+2023-03-08 08:22:36,398 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(228)/setUp()
+['                "country_id": "base.it",\n']
+2023-03-08 08:22:36,400 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(228)/setUp()
+['                "country_id": "base.it",\n']
+2023-03-08 08:22:36,400 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.country.resource_browse(base.it)
+2023-03-08 08:22:36,563 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2023-03-08 08:22:36,565 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2023-03-08 08:22:36,586 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🎺🎺🎺 Starting test v2.0.6 (debug_level=3)
+2023-03-08 08:22:36,590 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🎺🎺 Testing module: l10n_it_einvoice_out_rc (10.0.1.0.4)
+2023-03-08 08:22:36,593 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,594 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: ⚠ product.product[type]: 'product' -> 'consu'
+2023-03-08 08:22:36,594 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: ⚠ product.template[type]: 'product' -> 'consu'
+2023-03-08 08:22:36,596 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-03-08 08:22:36,596 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,597 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_make(None,xref=z0bug.coa_cog)
+2023-03-08 08:22:36,598 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,599 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,599 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_cog)
+2023-03-08 08:22:36,601 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_write(18,{
+    "user_type_id": 17, 
+    "code": "210000", 
+    "name": "Merci conto vendita", 
+    "reconcile": false
+},xref=z0bug.coa_cog)
+2023-03-08 08:22:36,613 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,613 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_make(None,xref=z0bug.coa_tax_iva)
+2023-03-08 08:22:36,616 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,617 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,617 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_tax_iva)
+2023-03-08 08:22:36,620 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_write(14,{
+    "user_type_id": 9, 
+    "code": "111200", 
+    "reconcile": false, 
+    "name": "IVA n/debito"
+},xref=z0bug.coa_tax_iva)
+2023-03-08 08:22:36,630 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,630 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_make(None,xref=z0bug.coa_sale2)
+2023-03-08 08:22:36,631 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,632 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,632 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_sale2)
+2023-03-08 08:22:36,636 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,637 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 14, 
+    "code": "200010", 
+    "name": "Ricavi da servizi", 
+    "reconcile": false
+},xref=z0bug.coa_sale2)
+2023-03-08 08:22:36,652 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_sale2,name=account.account,group=base)
+2023-03-08 08:22:36,653 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,653 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_make(None,xref=external.490050)
+2023-03-08 08:22:36,654 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,655 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,655 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(external.490050)
+2023-03-08 08:22:36,657 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,658 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 9, 
+    "code": "490050", 
+    "name": "G/C RC", 
+    "reconcile": false
+},xref=external.490050)
+2023-03-08 08:22:36,671 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.account.store_resource_data(external.490050,name=account.account,group=base)
+2023-03-08 08:22:36,672 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,672 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_make(None,xref=z0bug.coa_sale)
+2023-03-08 08:22:36,673 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,673 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,673 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_sale)
+2023-03-08 08:22:36,675 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_write(17,{
+    "user_type_id": 14, 
+    "code": "200000", 
+    "name": "Merci c/vendita", 
+    "reconcile": false
+},xref=z0bug.coa_sale)
+2023-03-08 08:22:36,742 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,742 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_make(None,xref=z0bug.coa_tax_ova)
+2023-03-08 08:22:36,743 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,744 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,744 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_tax_ova)
+2023-03-08 08:22:36,746 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_write(8,{
+    "user_type_id": 5, 
+    "code": "101300", 
+    "reconcile": false, 
+    "name": "IVA n/credito"
+},xref=z0bug.coa_tax_ova)
+2023-03-08 08:22:36,784 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,784 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.journal.resource_make(None,xref=external.CG)
+2023-03-08 08:22:36,786 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,787 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,787 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.journal.resource_browse(external.CG)
+2023-03-08 08:22:36,791 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,791 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.journal.resource_create({
+    "default_debit_account_id": "external.490050", 
+    "update_posted": true, 
+    "code": "CG", 
+    "name": "Giroconti tecnici", 
+    "sequence": 100, 
+    "default_credit_account_id": "external.490050", 
+    "type": "general"
+},xref=external.CG)
+2023-03-08 08:22:36,792 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,792 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(external.490050)
+2023-03-08 08:22:36,794 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,794 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(external.490050)
+2023-03-08 08:22:36,817 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.journal.store_resource_data(external.CG,name=account.journal,group=base)
+2023-03-08 08:22:36,818 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,818 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_make(None,xref=external.a41a)
+2023-03-08 08:22:36,819 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,820 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,820 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_browse(external.a41a)
+2023-03-08 08:22:36,824 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,824 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_create({
+    "amount_type": "percent", 
+    "amount": 22, 
+    "name": "Acquisti art. 41", 
+    "price_include": false, 
+    "description": "a41a", 
+    "refund_account_id": "z0bug.coa_tax_ova", 
+    "type_tax_use": "purchase", 
+    "account_id": "z0bug.coa_tax_ova"
+},xref=external.a41a)
+2023-03-08 08:22:36,825 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,825 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_tax_ova)
+2023-03-08 08:22:36,828 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,828 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_tax_ova)
+2023-03-08 08:22:36,837 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.tax.store_resource_data(external.a41a,name=account.tax,group=base)
+2023-03-08 08:22:36,838 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,838 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_make(None,xref=external.aa41v)
+2023-03-08 08:22:36,839 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,839 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,839 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_browse(external.aa41v)
+2023-03-08 08:22:36,843 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,843 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_create({
+    "amount_type": "percent", 
+    "amount": 22, 
+    "law_reference": "art.41", 
+    "name": "R/C art. 41", 
+    "kind_id": 12, 
+    "price_include": false, 
+    "description": "a41v", 
+    "refund_account_id": "z0bug.coa_tax_iva", 
+    "type_tax_use": "sale", 
+    "account_id": "z0bug.coa_tax_iva"
+},xref=external.aa41v)
+2023-03-08 08:22:36,845 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,845 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_tax_iva)
+2023-03-08 08:22:36,847 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,847 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_tax_iva)
+2023-03-08 08:22:36,856 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.tax.store_resource_data(external.aa41v,name=account.tax,group=base)
+2023-03-08 08:22:36,857 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,857 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_make(None,xref=z0bug.fiscalpos_it)
+2023-03-08 08:22:36,858 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,859 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,859 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_browse(z0bug.fiscalpos_it)
+2023-03-08 08:22:36,862 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,862 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_create({
+    "name": "Italia"
+},xref=z0bug.fiscalpos_it)
+2023-03-08 08:22:36,869 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.fiscal.position.store_resource_data(z0bug.fiscalpos_it,name=account.fiscal.position,group=base)
+2023-03-08 08:22:36,870 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,870 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_make(None,xref=z0bug.fiscalpos_rc)
+2023-03-08 08:22:36,871 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,872 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,872 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_browse(z0bug.fiscalpos_rc)
+2023-03-08 08:22:36,874 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,874 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_create({
+    "name": "RC locale"
+},xref=z0bug.fiscalpos_rc)
+2023-03-08 08:22:36,880 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.fiscal.position.store_resource_data(z0bug.fiscalpos_rc,name=account.fiscal.position,group=base)
+2023-03-08 08:22:36,882 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,882 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_make(None,xref=z0bug.res_partner_1)
+2023-03-08 08:22:36,884 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,885 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,885 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_browse(z0bug.res_partner_1)
+2023-03-08 08:22:36,888 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,888 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_create({
+    "street": "Via I Maggio, 101", 
+    "customer": true, 
+    "city": "Castano Primo", 
+    "name": "Prima Alpha S.p.A.", 
+    "zip": "20022", 
+    "country_id": 110, 
+    "property_account_position_id": "z0bug.fiscalpos_rc", 
+    "vat": "IT00115719999", 
+    "supplier": true, 
+    "state_id": 363, 
+    "is_company": true
+},xref=z0bug.res_partner_1)
+2023-03-08 08:22:36,889 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:36,889 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_browse(z0bug.fiscalpos_rc)
+2023-03-08 08:22:37,024 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🌍 skeys[mail.followers] = [u'partner_id']
+2023-03-08 08:22:37,024 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del res.partner.vals[image_small]
+2023-03-08 08:22:37,024 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del res.partner.vals[image]
+2023-03-08 08:22:37,024 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del res.partner.vals[image_medium]
+2023-03-08 08:22:37,024 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_1,name=res.partner,group=base)
+2023-03-08 08:22:37,025 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,025 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_make(None,xref=base.main_partner)
+2023-03-08 08:22:37,026 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,027 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,027 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_browse(base.main_partner)
+2023-03-08 08:22:37,029 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_write(1,{
+    "website": "https://www.testcompany.org", 
+    "phone": "+39 025551234", 
+    "street": "Via dei Matti, 0", 
+    "customer": false, 
+    "city": "Ozzero", 
+    "name": "Test Company", 
+    "zip": "20080", 
+    "supplier": false, 
+    "state_id": 363, 
+    "email": "info@testcompany.org", 
+    "is_company": true
+},xref=base.main_partner)
+2023-03-08 08:22:37,145 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,145 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_make(None,xref=z0bug.res_partner_2)
+2023-03-08 08:22:37,146 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,147 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,147 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_browse(z0bug.res_partner_2)
+2023-03-08 08:22:37,150 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,150 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_create({
+    "codice_destinatario": "XXXXXXX", 
+    "country_id": 58, 
+    "street": "Kaiserswerther Stra\u00dfe 12-24", 
+    "customer": true, 
+    "city": "Berlin", 
+    "name": "Freie Universit\u00e4t Berlin", 
+    "zip": "14195", 
+    "electronic_invoice_subjected": true, 
+    "vat": "DE123456788", 
+    "supplier": false, 
+    "is_company": true
+},xref=z0bug.res_partner_2)
+2023-03-08 08:22:37,268 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del res.partner.vals[image]
+2023-03-08 08:22:37,268 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del res.partner.vals[image_small]
+2023-03-08 08:22:37,268 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del res.partner.vals[image_medium]
+2023-03-08 08:22:37,269 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-03-08 08:22:37,269 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,270 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.company.resource_make(None,xref=base.main_company)
+2023-03-08 08:22:37,270 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,271 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,271 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.company.resource_browse(base.main_company)
+2023-03-08 08:22:37,273 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.company.resource_write(1,{
+    "fatturapa_rea_number": "123456", 
+    "fatturapa_rea_office": 363, 
+    "fatturapa_rea_capital": 10000, 
+    "fatturapa_rea_partner": "SU", 
+    "fatturapa_sequence_id": 8, 
+    "fatturapa_fiscal_position_id": 1
+},xref=base.main_company)
+2023-03-08 08:22:37,304 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,304 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.resource_make(None,xref=z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,305 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,305 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,305 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.resource_browse(z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,308 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,309 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.resource_create({
+    "type": "in_invoice", 
+    "journal_id": "external.BILL", 
+    "date_invoice": "[...]", 
+    "invoice_line_ids": [
+        "z0bug.invoice_Z0_1_1"
+    ], 
+    "date": "[...]", 
+    "partner_id": "z0bug.res_partner_1", 
+    "fiscal_position_id": "z0bug.fiscalpos_rc"
+},xref=z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,311 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,311 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.journal.resource_browse(external.BILL)
+2023-03-08 08:22:37,314 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.line.resource_browse(z0bug.invoice_Z0_1_1)
+2023-03-08 08:22:37,317 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.resource_browse(z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,320 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.account.resource_browse(z0bug.coa_cog)
+2023-03-08 08:22:37,322 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.resource_browse(z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,324 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv:  🕶️ del account.invoice.line.vals[invoice_id]
+2023-03-08 08:22:37,325 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.tax.resource_browse(external.a41a)
+2023-03-08 08:22:37,329 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,329 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞res.partner.resource_browse(z0bug.res_partner_1)
+2023-03-08 08:22:37,332 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,332 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.fiscal.position.resource_browse(z0bug.fiscalpos_rc)
+2023-03-08 08:22:37,735 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.invoice.store_resource_data(z0bug.invoice_Z0_1,name=account.invoice,group=base)
+2023-03-08 08:22:37,736 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,736 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.line.resource_make(None,xref=z0bug.invoice_Z0_1_1)
+2023-03-08 08:22:37,738 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,739 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,740 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.line.resource_browse(z0bug.invoice_Z0_1_1)
+2023-03-08 08:22:37,742 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,742 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.resource_browse(z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,746 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(231)/setUp()
+['        self.setup_env()                            # Create test environment\n']
+2023-03-08 08:22:37,746 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice.line.resource_create({
+    "account_id": 18, 
+    "invoice_id": 7, 
+    "price_unit": 100, 
+    "name": "Prodotto Alpha", 
+    "invoice_line_tax_ids": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ], 
+    "quantity": 1
+},xref=z0bug.invoice_Z0_1_1)
+2023-03-08 08:22:37,810 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 💼 account.invoice.line.store_resource_data(z0bug.invoice_Z0_1_1,name=account.invoice.line,group=base)
+2023-03-08 08:22:37,814 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🎺 Testing account.invoice[z0bug.invoice_Z0_1]
+2023-03-08 08:22:37,815 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(280)/test_account_invoice()
+['            invoice = self.resource_browse(xref=xref)\n']
+2023-03-08 08:22:37,815 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞None.resource_browse(z0bug.invoice_Z0_1)
+2023-03-08 08:22:37,817 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚧 test_fattura.py(281)/test_account_invoice()
+['            self.resource_edit(resource=invoice, actions="action_invoice_open")\n']
+2023-03-08 08:22:37,817 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🐞account.invoice(7,).resource_edit(def={},chng=[],act=['action_invoice_open'],ctx={})
+2023-03-08 08:22:37,854 8978 WARNING test_l10n_it_einvoice_out_rc_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:597)
+2023-03-08 08:22:37,862 8978 WARNING test_l10n_it_einvoice_out_rc_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:597)
+2023-03-08 08:22:37,863 8978 WARNING test_l10n_it_einvoice_out_rc_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:597)
+2023-03-08 08:22:37,863 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.testenv: 🚴‍♂️  account.invoice.action_invoice_open()
+2023-03-08 08:22:38,332 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.test_fattura: Ran 1 test in 2.118s
+2023-03-08 08:22:38,332 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.addons.l10n_it_einvoice_out_rc.tests.test_fattura: OK
+2023-03-08 08:22:38,345 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: 55 modules loaded in 3.35s, 2007 queries
+2023-03-08 08:22:38,453 8978 WARNING test_l10n_it_einvoice_out_rc_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-03-08 08:22:38,817 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: Modules loaded.
+2023-03-08 08:22:38,822 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-03-08 08:22:38,822 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-03-08 08:22:38,823 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.service.server: Initiating shutdown
+2023-03-08 08:22:38,823 8978 INFO test_l10n_it_einvoice_out_rc_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_out_rc[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                   Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_einvoice_out_rc/models/account_invoice.py              14     10    29%   10-27
+l10n-italy/l10n_it_einvoice_out_rc/models/rc_type.py                       4      0   100%
+l10n-italy/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py     143    123    14%   18-30, 33-40, 44-80, 83-115, 118-122, 125-128, 131-135, 138-142, 145-153, 156-176, 181-189, 192-199, 202-209, 214-251
+----------------------------------------------------------------------------------------------------
+TOTAL                                                                    161    133    17%

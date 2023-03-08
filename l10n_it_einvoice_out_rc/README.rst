@@ -1,6 +1,6 @@
 
 ====================================================================================
-|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.3
+|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.4
 ====================================================================================
 
 
@@ -199,6 +199,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.4 (2023-03-07)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] AttributeError: 'DatiPagamentoType' object has no attribute 'ImportoPagamento'
+
 10.0.1.0.3 (2023-03-06)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -282,7 +287,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-03-06
+Last Update / Ultimo aggiornamento: 2023-03-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
