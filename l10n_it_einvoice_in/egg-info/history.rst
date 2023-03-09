@@ -1,3 +1,8 @@
+10.0.1.3.38 (2023-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Import RC invoice w/o tax rate / Import fatture RC senza aliquota IVA
+
 10.0.1.3.37 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

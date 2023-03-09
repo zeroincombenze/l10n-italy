@@ -201,11 +201,14 @@ class WizardExportFatturapa(models.TransientModel):
     def setDatiPagamento(self, invoice, body):
         super(WizardExportFatturapa, self).setDatiPagamento(invoice, body)
         for DatiPagamento in body.DatiPagamento:
-            if invoice.type in ['out_refund', 'in_refund'] \
-                    and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']\
-                    and DatiPagamento.DettaglioPagamento.ImportoPagamento:
-                DatiPagamento.DettaglioPagamento.ImportoPagamento = (
-                    "%.2f" % -float(DatiPagamento.DettaglioPagamento.ImportoPagamento))
+            if (
+                invoice.type in ['out_refund', 'in_refund']
+                and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']
+                and "ImportoPagamento" in DatiPagamento
+                and DatiPagamento.ImportoPagamento
+            ):
+                DatiPagamento.ImportoPagamento = (
+                    "%.2f" % -float(DatiPagamento.ImportoPagamento))
         return True
 
     def exportInvoiceXML(

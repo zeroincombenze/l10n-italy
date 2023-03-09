@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.37
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.38
 =========================================================================
 
 
@@ -283,6 +283,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.38 (2023-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Import RC invoice w/o tax rate / Import fatture RC senza aliquota IVA
+
 10.0.1.3.37 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -325,11 +330,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] New foreign invoices w/o province / Fatture da estero senza provincia
-
-10.0.1.3.29 (2022-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Detect RC by rc flag / Riconoscimento RC tramite flag rc
 
 
 
@@ -407,7 +407,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-02-16
+Last Update / Ultimo aggiornamento: 2023-03-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

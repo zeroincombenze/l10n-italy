@@ -117,7 +117,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_li              | 10.0.1.0.2 | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_rc              | 10.0.1.0.2 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
+| l10n_it_einvoice_out_rc              | 10.0.1.0.4 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 10.0.1.0.3 | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -189,7 +189,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_rea                          | 10.0.1.1.2 | 10.0.1.1.3 | Gestisce i campi del Repertorio Economico Amministrativo                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_reverse_charge               | 10.0.1.5   | 10.0.1.3.0 | Reverse Charge for Italy                                                         |
+| l10n_it_reverse_charge               | 10.0.1.6   | 10.0.1.3.0 | Reverse Charge for Italy                                                         |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_riba_commission              | |halt|     | |same|     | Ricevute bancarie & commissioni                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -374,6 +374,42 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_einvoice_out: 10.0.1.0.25 (2023-03-24)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] First regression tests: coverage 60% (733/296)
+
+
+l10n_it_einvoice_in: 10.0.1.3.38 (2023-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Import RC invoice w/o tax rate / Import fatture RC senza aliquota IVA
+
+
+l10n_it_einvoice_base: 10.0.2.1.23 (2023-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Fiscal document type for refund / TD04 per note credito
+
+
+l10n_it_einvoice_out_rc: 10.0.1.0.4 (2023-03-07)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] AttributeError: 'DatiPagamentoType' object has no attribute 'ImportoPagamento'
+
+
+l10n_it_einvoice_out_rc: 10.0.1.0.3 (2023-03-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Self-invoice TD17-19 with "IT" vat / Codice IVA italiano modificato eper autofatture TD17-19
+
+
+l10n_it_reverse_charge: 10.0.1.6 (2023-02-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] The invoice date of self invoice is the same of the date of purchase invoice / Data auto-fattura come data contabile fattura di acquisto
+
+
 l10n_it_einvoice_in: 10.0.1.3.37 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -395,7 +431,7 @@ multibase_plus: 10.0.0.1.6 (2023-02-15)
 l10n_it_reverse_charge: 10.0.1.5 (2023-02-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] The date may be different form invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture
+* [IMP] The date may be different from invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture
 
 
 l10n_it_einvoice_base: 10.0.2.1.22 (2023-02-13)
@@ -557,36 +593,6 @@ l10n_it_ade: 10.0.0.3.5 (2022-09-22)
 * [REF] l10n_it_ade/binding refactoring
 
 
-l10n_it_ddt: 10.0.1.8.14 (2022-09-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Functions refactoring / Sotware ristrutturato
-* [IMP] Added regression tests / Aggiunti test automatici
-* [FIX] l10n_it_ade dependency / Corretta dipendenza
-* [IMP] More check for <add_to_ddt> function / Nuovi controlli
-* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
-* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.29 (2022-08-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import e-invoice with multiple attachments
-* [FIX] Check for existent attachment (avoid raise)
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.28 (2022-08-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] TD17/18/19 recognition
-
-
-l10n_it_einvoice_in: 10.0.1.3.33 (2022-08-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Link to opened invoice too
-
-
 
 
 
@@ -619,7 +625,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2023-02-16
+Last Update / Ultimo aggiornamento: 2023-03-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status

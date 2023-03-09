@@ -169,14 +169,21 @@ class WizardImportFatturapa(models.TransientModel):
         )
         def_purchase_tax = False
         is_rc = account_tax_model.is_rc(nature=Natura)
+        default_tax = account_tax_model.search(
+            [("type_tax_use", "=", "purchase"),
+             ("amount", "!=", 0.0)], order="sequence")
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         domain = []
         domain.append(("company_id", "=", company_id))
         domain.append(("type_tax_use", "=", "purchase"))
-        # Some supplier use N6 w/o Vax rate!
-        if is_rc or AliquotaIVA_fp != 0.0:
+        if AliquotaIVA_fp != 0.0:
             domain.append(("amount", "=", AliquotaIVA_fp))
+        elif is_rc:
+            # Some supplier use N6 w/o Vax rate!
+            domain.append("|")
+            domain.append(("amount", "=", default_tax[0].amount))
+            domain.append(("amount", "=", 0.0))
         domain.append(("rc", "=", is_rc))
         if Natura:
             if "." not in Natura:
@@ -184,14 +191,10 @@ class WizardImportFatturapa(models.TransientModel):
                 kind_ids = nature_model.search([("code", "like", Natura)])
                 if kind_ids:
                     domain.append(("kind_id", "in", [x.id for x in kind_ids]))
-                # else:
-                #     domain.append(('kind_id', '=', -1))
             else:
                 kind_id = nature_model.search([("code", "=", Natura)])
                 if kind_id:
                     domain.append(("kind_id", "=", kind_id.id))
-                # else:
-                #     domain.append(('kind_id', '=', -1))
         # elif AliquotaIVA_fp != 0.0:
         #     domain.append(('kind_id', '=', False))
         account_taxes = account_tax_model.search(domain, order="sequence")

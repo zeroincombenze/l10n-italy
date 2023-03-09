@@ -563,14 +563,15 @@ class AccountInvoice(models.Model):
     @api.one
     def einvoice_type_selection(self, type, partner_vat, amount=None):
         einv_type_model = self.env["italy.ade.invoice.type"]
-        scope = "NN"
         if partner_vat:
-            if partner_vat[0:2] == "IT":
+            if partner_vat.startswith("IT"):
                 scope = "IT%"
-            elif partner_vat[0:2] in EU_COUNTRIES:
+            elif partner_vat.startswith("EU") or partner_vat[0:2] in EU_COUNTRIES:
                 scope = "EU%"
             else:
                 scope = "XX%"
+        else:
+            scope = "IT%"
         if amount:
             if amount >= 0.0:
                 scope += type
@@ -584,7 +585,7 @@ class AccountInvoice(models.Model):
 
     @api.onchange("partner_id", "type", "amount_total")
     def onchange_set_einvoice_type(self):
-        if self.partner_id and self.partner_id.vat:
+        if self.partner_id:
             ids = self.einvoice_type_selection(
                 self.type, self.partner_id.vat, self.amount_total
             )
@@ -626,5 +627,11 @@ class AccountInvoice(models.Model):
             description=description,
             journal_id=journal_id,
         )
-        res["fiscal_document_type_id"] = False
+        ids = self.einvoice_type_selection(
+            res["type"], invoice.partner_id.vat, invoice.amount_total
+        )
+        if len(ids) == 1:
+            res.update({"fiscal_document_type_id": ids[0]})
+        else:
+            res.update({"fiscal_document_type_id": False})
         return res
