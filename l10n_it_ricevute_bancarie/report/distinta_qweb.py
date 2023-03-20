@@ -1,23 +1,19 @@
-# -*- coding: utf-8 -*-
 # © 2016 Andrea Cometa
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import api, models
 
 
 class DistintaReportQweb(models.AbstractModel):
 
-    _name = "report.l10n_it_ricevute_bancarie.distinta_qweb"
+    _name = 'report.l10n_it_ricevute_bancarie.distinta_qweb'
+    _description = "C/O Slip Report"
 
     @api.multi
-    def render_html(self, docids, data=None):
-        report_obj = self.env["report"]
-        docargs = {
-            "doc_ids": docids,
-            "doc_model": "riba.distinta",
-            "docs": self.env["riba.distinta"].browse(docids),
+    def _get_report_values(self, docids, data=None):
+        return {
+            'doc_ids': docids,
+            'doc_model': 'riba.distinta',
+            'docs': self.env['riba.distinta'].browse(docids),
+            'data': data,
         }
-        return report_obj.render(
-            "l10n_it_ricevute_bancarie.distinta_qweb", values=docargs
-        )

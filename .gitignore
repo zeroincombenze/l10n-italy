@@ -1,10 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*~
-*~*
-*gitignore
-*.csync_journal.db
+/.venv
+/.pytest_cache
 
 # C extensions
 *.so
@@ -17,7 +15,6 @@ build/
 develop-eggs/
 dist/
 eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -25,6 +22,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+*.eggs
 
 # Installer logs
 pip-log.txt
@@ -44,6 +42,19 @@ coverage.xml
 # Pycharm
 .idea
 
+# Eclipse
+.settings
+
+# Visual Studio cache/options directory
+.vs/
+.vscode
+
+# OSX Files
+.DS_Store
+
+# Django stuff:
+*.log
+
 # Mr Developer
 .mr.developer.cfg
 .project
@@ -52,22 +63,12 @@ coverage.xml
 # Rope
 .ropeproject
 
-# Django stuff:
-*.log
-
-# Komodo
-*.komodoproject
-.komodotools
-
-# *.pot is used for translations templates
-
 # Sphinx documentation
 docs/_build/
 
-/.settings/
-stdout.log
-*.oca
-*.z0i
-setup/
-node_modules/
+# Backup files
+*~
+*.swp
 
+# OCA rules
+!static/lib/

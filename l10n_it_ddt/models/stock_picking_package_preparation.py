@@ -1,15 +1,18 @@
-# -*- coding: utf-8 -*-
-#
-#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-#
-from datetime import datetime
+# Copyright 2014 Abstract (http://www.abstract.it)
+# Copyright Davide Corio <davide.corio@abstract.it>
+# Copyright 2014-2018 Agile Business Group (http://www.agilebg.com)
+# Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# Copyright Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
-from odoo.tools.misc import formatLang
-
 import odoo.addons.decimal_precision as dp
+
+from odoo.fields import first
+from odoo.tools import float_is_zero
+from odoo.tools.misc import formatLang, format_date
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -17,813 +20,296 @@ class StockPickingCarriageCondition(models.Model):
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
 
-    name = fields.Char(string="Carriage Condition", required=True, translate=True)
-    note = fields.Text(string="Note", translate=True)
+    name = fields.Char(string='Carriage Condition', required=True)
+    note = fields.Text(string='Note')
 
 
 class StockPickingGoodsDescription(models.Model):
 
-    _name = "stock.picking.goods_description"
+    _name = 'stock.picking.goods_description'
     _description = "Description of Goods"
 
-    name = fields.Char(string="Description of Goods", required=True, translate=True)
-    note = fields.Text(string="Note", translate=True)
+    name = fields.Char(string='Description of Goods', required=True)
+    note = fields.Text(string='Note')
 
 
 class StockPickingTransportationReason(models.Model):
 
-    _name = "stock.picking.transportation_reason"
-    _description = "Reason for Transportation"
+    _name = 'stock.picking.transportation_reason'
+    _description = 'Reason for Transportation'
 
-    name = fields.Char(
-        string="Reason For Transportation", required=True, translate=True
-    )
-    note = fields.Text(string="Note", translate=True)
-    to_be_invoiced = fields.Boolean(string="To be Invoiced")
+    name = fields.Char(string='Reason For Transportation', required=True)
+    note = fields.Text(string='Note')
+    to_be_invoiced = fields.Boolean(string='To be Invoiced')
 
 
 class StockPickingTransportationMethod(models.Model):
 
-    _name = "stock.picking.transportation_method"
-    _description = "Method of Transportation"
+    _name = 'stock.picking.transportation_method'
+    _description = 'Method of Transportation'
 
-    name = fields.Char(string="Method of Transportation", required=True, translate=True)
-    note = fields.Text(string="Note", translate=True)
+    name = fields.Char(string='Method of Transportation', required=True)
+    note = fields.Text(string='Note')
 
 
 class StockDdtType(models.Model):
 
-    _name = "stock.ddt.type"
-    _description = "Stock DdT Type"
+    _name = 'stock.ddt.type'
+    _description = 'Stock TD Type'
 
     name = fields.Char(required=True)
-    sequence_id = fields.Many2one("ir.sequence", required=True)
-    note = fields.Text(string="Note")
+    sequence_id = fields.Many2one('ir.sequence', required=True)
+    note = fields.Text(string='Note')
     default_carriage_condition_id = fields.Many2one(
-        "stock.picking.carriage_condition", string="Default Carriage Condition"
-    )
+        'stock.picking.carriage_condition',
+        string='Default Carriage Condition')
     default_goods_description_id = fields.Many2one(
-        "stock.picking.goods_description", string="Default Description of Goods"
-    )
+        'stock.picking.goods_description',
+        string='Default Description of Goods')
     default_transportation_reason_id = fields.Many2one(
-        "stock.picking.transportation_reason",
-        string="Default Reason for Transportation",
-    )
+        'stock.picking.transportation_reason',
+        string='Default Reason for Transportation')
     default_transportation_method_id = fields.Many2one(
-        "stock.picking.transportation_method", string="Default Method of Transportation"
+        'stock.picking.transportation_method',
+        string='Default Method of Transportation')
+    default_note = fields.Text(
+        string='Default Note',
     )
     company_id = fields.Many2one(
-        comodel_name="res.company",
-        string="Company",
-        default=lambda self: self.env.user.company_id.id,
-    )
+        comodel_name='res.company', string='Company',
+        default=lambda self: self.env.user.company_id.id)
 
 
 class StockPickingPackagePreparation(models.Model):
 
-    _inherit = "stock.picking.package.preparation"
-    _rec_name = "display_name"
-    _order = "ddt_number desc, date desc"
+    _inherit = 'stock.picking.package.preparation'
+    _rec_name = 'display_name'
+    _order = 'date desc'
 
-    _sql_constraints = [
-        ("ddt_number", "unique(ddt_number)", "DdT number already exists!")
-    ]
-
-    # All fields name are base on stock.picking.package.preparation (DdT) names
-    FIELD_MAP = {
-        "res.partner": {
-            "partner_id": "id",
-            "carrier_id": "property_delivery_carrier_id",
-            "show_price": "ddt_show_price",
-            "pricelist_id": "property_product_pricelist",
-        },
-        "stock.ddt.type": {
-            "ddt_type_id": "id",
-            "goods_description_id": "default_goods_description_id",
-            "carriage_condition_id": "default_carriage_condition_id",
-            "transportation_reason_id": "default_transportation_reason_id",
-            "transportation_method_id": "default_transportation_method_id",
-        },
-        "delivery.carrier": {
-            "carrier_id": "id",
-        },
-        "sale.order": {
-        },
-        "stock.picking": {
-            "ddt_type_id": "ddt_type",
-            "gross_weight": "shipping_weight",
-        },
-        "stock.picking.package.preparation": {
-            "weight": "weight_manual",
-        },
-    }
-
-    def fieldname_of_model(self, model, fieldname):
-        fieldname = self.FIELD_MAP[model].get(fieldname, fieldname)
-        if fieldname not in self.env[model]:
-            fieldname = False
-        return fieldname
-
-    def reverse_fieldname_of_model(self, model, fieldname):
-        for (name, pp_name) in self.FIELD_MAP[model].items():
-            if pp_name and fieldname == pp_name:
-                fieldname = name
-                break
-        if fieldname not in self.env[model]:
-            fieldname = False
-        return fieldname
-
-    @api.multi
-    @api.depends("transportation_reason_id.to_be_invoiced")
-    @api.depends("transportation_reason_id.to_be_invoiced")
-    def _compute_to_be_invoiced(self):
-        for ddt in self:
-            ddt.to_be_invoiced = (
-                ddt.transportation_reason_id
-                and ddt.transportation_reason_id.to_be_invoiced
-                or False
-            )
+    @api.onchange('transportation_reason_id')
+    def _onchange_to_be_invoiced(self):
+        self.to_be_invoiced = self.transportation_reason_id and \
+            self.transportation_reason_id.to_be_invoiced
 
     def _default_ddt_type(self):
-        # TODO: FIX in separate module
-        # signature = BeautifulSoup(self.env.user.signature).get_text()
-        signature = self.env.user.signature
-        if signature:
-            a = signature.find(">")
-            b = signature.find("<", a)
-            signature = signature[a + 1 : b]
-            res = self.env["stock.ddt.type"].search(
-                [("name", "ilike", signature)], limit=1
-            )
-            if res:
-                return res.id
-        ids = self.env["stock.ddt.type"].search([], limit=1)
-        if not ids:
-            return False
-        return ids[0].id
-
-    def _default_pricelist(self):
-        for line in self.line_ids:
-            if line.sale_id:
-                return line.sale_line_id.order_id.pricelist_id.id
-        return (self.partner_id.property_product_pricelist and
-                self.partner_id.property_product_pricelist.id or False)
-
-    def _set_parcel_qty(self):
-        if self.parcels == 0:
-            return 1
-        return self.parcels
-
-    @api.depends("line_ids.price_total", "delivery_price")
-    def _amount_all(self):
-        """
-        Compute the total amounts of the DdT.
-        """
-        for ddt in self:
-            amount_untaxed = amount_tax = tax_rate = 0.0
-            for line in ddt.line_ids:
-                tax_rate = max([tax_rate] + [
-                    x.amount for x in line.tax_ids if x.amount_type == "percent"])
-                amount_untaxed += line.price_subtotal
-                # FORWARDPORT UP TO 10.0
-                if ddt.company_id.tax_calculation_rounding_method == "round_globally":
-                    price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-                    taxes = line.tax_ids.compute_all(
-                        price,
-                        line.currency_id,
-                        line.product_uom_qty,
-                        product=line.product_id,
-                        partner=ddt.partner_shipping_id,
-                    )
-                    amount_tax += sum(
-                        t.get("amount", 0.0) for t in taxes.get("taxes", [])
-                    )
-                else:
-                    amount_tax += line.price_tax
-            if ddt.delivery_price:
-                amount_untaxed += ddt.delivery_price
-                amount_tax += ddt.delivery_price * tax_rate / 100
-            ddt.update(
-                {
-                    "amount_untaxed": ddt.currency_id.round(amount_untaxed),
-                    "amount_tax": ddt.currency_id.round(amount_tax),
-                    "amount_total": amount_untaxed + amount_tax,
-                }
-            )
-
-    @api.depends('carrier_id', 'line_ids')
-    def _compute_delivery_price(self):
-        for ddt in self:
-            if (
-                ddt.state != 'draft' or
-                not ddt.carrier_id or
-                not ddt.line_ids
-            ):
-                continue
-            else:
-                ddt.delivery_set()
+        return self.env['stock.ddt.type'].search([], limit=1)
 
     ddt_type_id = fields.Many2one(
-        "stock.ddt.type", string="DdT Type", default=_default_ddt_type
-    )
-    ddt_number = fields.Char(string="DdT Number", copy=False)
-    partner_shipping_id = fields.Many2one("res.partner", string="Shipping Address")
+        'stock.ddt.type', string='TD Type', default=_default_ddt_type,
+        states={
+            'done': [('readonly', True)],
+            'cancel': [('readonly', True)]
+        })
+    ddt_number = fields.Char(string='TD Number', copy=False)
+    partner_shipping_id = fields.Many2one(
+        'res.partner', string="Shipping Address")
     carriage_condition_id = fields.Many2one(
-        "stock.picking.carriage_condition", string="Carriage Condition"
-    )
+        'stock.picking.carriage_condition', string='Carriage Condition')
     goods_description_id = fields.Many2one(
-        "stock.picking.goods_description", string="Description of Goods"
-    )
+        'stock.picking.goods_description',
+        string='Description of Goods')
     transportation_reason_id = fields.Many2one(
-        "stock.picking.transportation_reason", string="Reason for Transportation"
-    )
+        'stock.picking.transportation_reason',
+        string='Reason for Transportation')
     transportation_method_id = fields.Many2one(
-        "stock.picking.transportation_method", string="Method of Transportation"
-    )
-    pricelist_id = fields.Many2one(
-        'product.pricelist',
-        string='Pricelist',
-        default=_default_pricelist,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
-        help="Pricelist for current sales order."
-    )
+        'stock.picking.transportation_method',
+        string='Method of Transportation')
     carrier_id = fields.Many2one(
-        "delivery.carrier",
-        string="Delivery Method",
-        help="Fill this field if you plan to invoice the shipping based on picking."
-    )
-    delivery_price = fields.Float(
-        string='Estimated Delivery Price',
-        compute='_compute_delivery_price',
-        store=True
-    )
-    partner_carrier_id = fields.Many2one(
-        "res.partner",
-        string="Carrier",
-        oldname="carrier_id",
-    )
-    parcels = fields.Integer("Parcels", default=_set_parcel_qty)
-    display_name = fields.Char(string="Name", compute="_compute_clean_display_name")
-    volume = fields.Float("Volume")
+        'res.partner', string='Carrier')
+    carrier_tracking_ref = fields.Char(string='Tracking Reference', copy=False)
+    dimension = fields.Char()
+    # TODO align terms: parcels > packages
+    parcels = fields.Integer('Packages')
+    display_name = fields.Char(
+        string='Name', compute='_compute_clean_display_name')
+    volume = fields.Float('Volume')
+    volume_uom_id = fields.Many2one(
+        'uom.uom', 'Volume UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_litre', raise_if_not_found=False))
     invoice_id = fields.Many2one(
-        "account.invoice", string="Invoice", readonly=True, copy=False
-    )
-    invoice_ids = fields.Many2many(
-        "account.invoice", string="Invoices", readonly=True, copy=False
-    )
+        'account.invoice', string='Invoice', readonly=True, copy=False)
     to_be_invoiced = fields.Boolean(
-        string="To be Invoiced",
-        store=True,
-        compute="_compute_to_be_invoiced",
+        string='To be Invoiced',
         help="This depends on 'To be Invoiced' field of the Reason for "
-        "Transportation of this DDT",
-    )
-    show_price = fields.Boolean(string="Show prices on report")
+             "Transportation of this TD")
+    ddt_show_price = fields.Boolean(string='Show prices on report')
+    show_deadline_date = fields.Selection([
+        ('life_date', 'End of Life Date'),
+        ('use_date', 'Best before Date'),
+        ('removal_date', 'Removal Date'),
+    ], string='Show lot deadline on report')
     weight_manual = fields.Float(
         string="Force Net Weight",
         help="Fill this field with the value you want to be used as weight. "
-        "Leave empty to let the system to compute it",
-    )
+             "Leave empty to let the system to compute it")
+    weight_manual_uom_id = fields.Many2one(
+        'uom.uom', 'Net Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
     gross_weight = fields.Float(string="Gross Weight")
+    gross_weight_uom_id = fields.Many2one(
+        'uom.uom', 'Gross Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
     check_if_picking_done = fields.Boolean(
-        compute="_compute_check_if_picking_done",
-    )
-    currency_id = fields.Many2one(
-        related="company_id.currency_id", string="Currency", store=True, readonly=True
-    )
-    amount_untaxed = fields.Monetary(
-        string="Untaxed Amount",
-        store=True,
-        readonly=True,
-        compute="_amount_all",
-        track_visibility="always",
-    )
-    amount_tax = fields.Monetary(
-        string="Taxes",
-        store=True,
-        readonly=True,
-        compute="_amount_all",
-        track_visibility="always",
-    )
-    amount_total = fields.Monetary(
-        string="Total",
-        store=True,
-        readonly=True,
-        compute="_amount_all",
-        track_visibility="always",
-    )
+        compute='_compute_check_if_picking_done',
+        )
 
     @api.multi
-    def button_dummy(self):
-        self._amount_all()
-        return True
-
-    @api.multi
-    @api.depends("picking_ids", "picking_ids.state")
+    @api.depends('picking_ids',
+                 'picking_ids.state')
     def _compute_check_if_picking_done(self):
         for record in self:
             record.check_if_picking_done = False
-            for package in record.picking_ids:
-                if package.state == "done":
+            for picking in record.picking_ids:
+                if picking.state == 'done':
                     record.check_if_picking_done = True
 
-    @api.onchange("partner_id", "ddt_type_id")
+    @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
         if self.ddt_type_id:
-            addr = self.partner_id.address_get(["delivery", "invoice"])
-            self.partner_shipping_id = addr["delivery"]
+            addr = self.partner_id.address_get(['delivery', 'invoice'])
+            self.partner_shipping_id = addr['delivery']
             self.carriage_condition_id = (
                 self.partner_id.carriage_condition_id.id
                 if self.partner_id.carriage_condition_id
-                else self.ddt_type_id.default_carriage_condition_id
-            )
+                else self.ddt_type_id.default_carriage_condition_id)
             self.goods_description_id = (
                 self.partner_id.goods_description_id.id
                 if self.partner_id.goods_description_id
-                else self.ddt_type_id.default_goods_description_id
-            )
+                else self.ddt_type_id.default_goods_description_id)
             self.transportation_reason_id = (
                 self.partner_id.transportation_reason_id.id
                 if self.partner_id.transportation_reason_id
-                else self.ddt_type_id.default_transportation_reason_id
-            )
+                else self.ddt_type_id.default_transportation_reason_id)
             self.transportation_method_id = (
                 self.partner_id.transportation_method_id.id
                 if self.partner_id.transportation_method_id
-                else self.ddt_type_id.default_transportation_method_id
-            )
-            self.show_price = self.partner_id.ddt_show_price
-
-    @api.multi
-    @api.onchange("carrier_id")
-    def onchange_carrier_id(self):
-        if self.state == 'draft':
-            self.delivery_set()
-            # self._amount_all()
+                else self.ddt_type_id.default_transportation_method_id)
+            self.note = self.ddt_type_id.default_note
 
     @api.model
     def check_linked_picking(self, picking):
-        ddt = self.search([("picking_ids", "=", picking.id)])
+        ddt = self.search([('picking_ids', '=', picking.id)])
         if ddt:
             raise UserError(
-                _("Selected Picking is already linked to DDT: %s") % ddt.display_name
+                _("Selected Picking is already linked to TD: %s")
+                % ", ".join(ddt.mapped("display_name"))
             )
-
-    @api.model
-    def get_delivery_value(
-        self, vals, source, fieldname, defaults=None, target=None,
-        partner=None, order=None, carrier=None, ddt_type=None
-    ):
-        """Return specific conditions in the document (mainly DdT).
-        Inherit fallback condition:
-        current (picking) > sale order > delivery method > ddt type > customer
-        Workflow (rp=res.partner, dt=stock.ddt.type dc=delivery.carrier,
-                  so=sale.order, sp=stock.picking,
-                  pp=stock.picking.package.preparation/DdT):
-
-        Standard field name      | rp | dt | dc | so | sp | pp
-        -------------------------|----|----|----|----|----|---
-        ddt_type_id              | X  | ID | X  | Ok | 3. | Ok
-        (delivery_)carrier_id    | 1. | X  | ID | Ok | Ok | Ok
-        goods_description_id     | Ok | 2. | Ok | Ok | X  | Ok
-        carriage_condition_id    | Ok | 2. | Ok | Ok | X  | Ok
-        transportation_reason_id | Ok | 2. | Ok | Ok | X  | Ok
-        transportation_method_id | Ok | 2. | Ok | Ok | X  | Ok
-        partner_carrier_id       | X  | X  | Ok | Ok | X  | Ok
-        show_price               | 5. | X  | X  | X  | X  | Ok
-        pricelist_id             | Ok | X  | X  | X  | X  | Ok
-        note                     | X  | Ok | Ok | Ok | X  | Ok
-        parcels (*)              |    |    |    | Ok | 4. | Ok
-        weight (*)               |    |    |    | Ok | Ok | Ok
-        gross_weight (*)         |    |    |    | Ok | 6. | Ok
-        where:
-            Ok: field in the model
-            X:  field not in model
-            ID: field is key of model
-        1.  field name is "property_delivery_carrier_id"
-        2.  field name is prefixed by "default_"
-        3.  field name is ddt_type
-        4.  field name is "number_of packages"
-        5.  field name is "ddt_show_price"
-        6.  field name is "shipping_weight"
-
-        (*) field evaluated by sum, searched only in <sp> and <so>
-
-        Field names of pp/DdT are used as Rosetta Stone
-
-        Args:
-            vals (dict): values dictionary of target model to upgrade
-            source (obj): source record of sale.order (may be None) or stock.picking
-            fieldname (str): name of field to upgrade (name refers to pp/DdT model)
-            defaults (dict): default values
-            target (str): target model: may be pp/Ddt or sale.order
-                          (default stock.picking.package.preparation/DdT)
-            partner (obj): customer record
-            order (obj): sale order record
-            carrier (obj): delivery carrier record
-            ddt_type (obj): ddt type record
-        return:
-            vals (dict)
-        """
-        def store_value(vals, tgt_fieldname, src_fieldname, src_obj):
-            if src_fieldname and src_obj and src_fieldname in src_obj:
-                if src_fieldname == "id":
-                    vals[tgt_fieldname] = src_obj.id
-                elif src_obj[src_fieldname]:
-                    if src_fieldname.endswith("_id"):
-                        vals[tgt_fieldname] = src_obj[src_fieldname].id
-                    else:
-                        vals[tgt_fieldname] = src_obj[src_fieldname]
-            return vals
-
-        def get_ref_obj(
-            vals, fieldname, ref_fieldname, obj_name, source, source_name, obj,
-        ):
-            if not obj:
-                # Object (carrier/partner/...) does not exist
-                obj_fieldname = self.fieldname_of_model(obj_name, fieldname)
-                if obj_fieldname:
-                    # Object can supply field value: search to load object
-                    tgt_ref_name = self.fieldname_of_model(target, ref_fieldname)
-                    src_ref_name = self.fieldname_of_model(source_name,
-                                                           ref_fieldname)
-                    if vals.get(tgt_ref_name):
-                        # Load form vals ID
-                        obj = self.env[obj_name].browse(vals[tgt_ref_name])
-                    elif src_ref_name and source and source[src_ref_name]:
-                        # Load object from source
-                        obj = source[src_ref_name]
-                    elif source_name == "stock.picking":
-                        # Load object from sale.order
-                        src_ref_name = self.fieldname_of_model("sale.order",
-                                                               ref_fieldname)
-                        obj = source.sale_id[src_ref_name]
-                if obj and obj_name:
-                    tgt_fieldname = self.fieldname_of_model(target, fieldname)
-                    vals = store_value(vals, tgt_fieldname, obj_fieldname, obj)
-            return vals
-
-        if source and source._name not in ("stock.picking", "sale.order"):
-            raise UserError(
-                _("Invalid document record type")
-            )
-        target = target or "stock.picking.package.preparation"
-        source_name = source and source._name or target
-        if fieldname in self.env[target]:
-            # Issued target model name
-            tgt_fieldname = fieldname
-            pp_fieldname = self.reverse_fieldname_of_model(target, fieldname)
-        else:
-            # Old way, pp/DdT name
-            tgt_fieldname = self.fieldname_of_model(target, fieldname)
-            pp_fieldname = fieldname
-
-        if vals.get(tgt_fieldname):
-            # There is already the current document value
-            return vals
-        if source_name == "stock.picking":
-            so_fieldname = self.fieldname_of_model("sale.order", pp_fieldname)
-            # sp_fieldname = self.reverse_fieldname_of_model(source_name, pp_fieldname)
-        elif source_name == "sale.order":
-            so_fieldname = self.reverse_fieldname_of_model(source_name, pp_fieldname)
-            # sp_fieldname = self.fieldname_of_model("stock.picking", pp_fieldname)
-        # Searching in document chain
-
-        # 1.st in sale order (id picking)
-        if source_name != "sale.order" and so_fieldname:
-            if not order:
-                if (
-                    source_name == "stock.picking"
-                    and source.sale_id
-                    and source.sale_id[so_fieldname]
-                ):
-                    order = source.sale_id
-            vals = store_value(vals, tgt_fieldname, so_fieldname, order)
-
-        # 2.nd in delivery carrier
-        if not vals.get(tgt_fieldname):
-            vals = get_ref_obj(
-                vals,
-                pp_fieldname,
-                "carrier_id",
-                "delivery.carrier",
-                source,
-                source_name,
-                carrier
-            )
-
-        # 3.th in ddt type
-        if not vals.get(tgt_fieldname):
-            vals = get_ref_obj(
-                vals,
-                pp_fieldname,
-                "ddt_type_id",
-                "stock.ddt.type",
-                source,
-                source_name,
-                ddt_type
-            )
-
-        # 4.th from customer
-        if not vals.get(tgt_fieldname):
-            vals = get_ref_obj(
-                vals,
-                pp_fieldname,
-                "partner_id",
-                "res.partner",
-                source,
-                source_name,
-                partner
-            )
-
-        # Last: from defaults
-        if not vals.get(tgt_fieldname):
-            if defaults and fieldname in defaults:
-                vals[tgt_fieldname] = defaults[fieldname]
-            elif defaults and tgt_fieldname in defaults:
-                vals[tgt_fieldname] = defaults[tgt_fieldname]
-
-        return vals
-
-    @api.model
-    def sum_delivery_value(self, vals, picking, fieldname):
-        ddt_model = self.env["stock.picking.package.preparation"]
-        pp_fieldname = ddt_model.fieldname_of_model(
-            "stock.picking.package.preparation", fieldname
-        )
-        so_fieldname = ddt_model.fieldname_of_model("sale.order", fieldname)
-        sp_fieldname = ddt_model.fieldname_of_model("stock.picking", fieldname)
-        if not vals.get(pp_fieldname):
-            vals[pp_fieldname] = 0
-        # field from picking ?
-        if sp_fieldname and picking[sp_fieldname]:
-            vals[pp_fieldname] += picking[sp_fieldname]
-        # field from sale.order ?
-        elif so_fieldname and picking.sale_id:
-            vals[pp_fieldname] += picking.sale_id[so_fieldname]
-        return vals
-
-    @api.model
-    def preparare_ddt_data(self, pickings=None, defaults=None):
-        pickings = pickings or self.env["stock.picking"]
-        all_pickings = self.picking_ids + pickings
-        vals = {"partner_id": False, "partner_shipping_id": False}
-        # check if selected picking have different destinations
-        if len(all_pickings.mapped("location_dest_id")) > 1:
-            raise UserError(_("Selected pickings have different destinations"))
-        partner_invoice_id = False
-        for picking in all_pickings:
-            if picking not in self.picking_ids:
-                # check if new picking is already linked to a DDT
-                self.check_linked_picking(picking)
-            shipping_partner = picking.get_ddt_shipping_partner()
-            if not vals["partner_shipping_id"]:
-                vals["partner_shipping_id"] = shipping_partner.id
-            elif vals["partner_shipping_id"] != shipping_partner.id:
-                raise UserError(_("Selected Pickings have different Shipping Partner"))
-            partner = shipping_partner.commercial_partner_id
-            if partner.type != "contact" and partner.parent_id:
-                partner = partner.parent_id
-            order = picking.sale_id
-            if order:
-                if not vals["partner_id"]:
-                    vals["partner_id"] = order.partner_id.id
-                elif vals["partner_id"] != order.partner_id.id:
-                    raise UserError(_("Selected Pickings have different Partner"))
-                if vals["partner_shipping_id"] != order.partner_shipping_id.id:
-                    raise UserError(_(
-                        "Selected Pickings have different Shipping Partner"))
-                if not partner_invoice_id:
-                    partner_invoice_id = order.partner_invoice_id
-                if partner_invoice_id != order.partner_invoice_id:
-                    if vals["partner_shipping_id"] != order.partner_shipping_id:
-                        raise UserError(_(
-                            "Selected Pickings have different Invoice Partner"))
-                for fieldname, condition_help in (
-                    ("carrier_id", _("delivery method")),
-                    ("carriage_condition_id", _("carriage condition")),
-                    ("transportation_reason_id", _("transportation reason")),
-                    ("transportation_method_id", _("transportation method")),
-                    ("partner_carrier_id", _("carrier")),
-                ):
-                    if (
-                        order[fieldname] and
-                        picking.sale_id[fieldname] and
-                        order[fieldname] != picking.sale_id[fieldname]
-                    ):
-                        raise UserError(
-                            _("Selected Sale Orders %s has different %s") %
-                            condition_help
-                        )
-            if not vals["partner_id"]:
-                vals["partner_id"] = partner.id
-        # Search for DdT type
-        for picking in all_pickings:
-            vals = self.get_delivery_value(
-                vals, picking, "ddt_type_id", defaults=defaults)
-        if not vals.get("ddt_type_id"):
-            ddt_type = self.env["stock.ddt.type"].search([], limit=1)
-            if ddt_type:
-                vals["ddt_type_id"] = ddt_type[0].id
-        for picking in all_pickings:
-            # Load specific delivery value
-            for field, _field_help in (
-                ("carrier_id", _("delivery method")),
-                ("partner_carrier_id", _("carrier")),
-                ("show_price", _("show price")),
-                ("note", _("note")),
-                ("carriage_condition_id", _("carriage condition")),
-                ("goods_description_id", _("goods description")),
-                ("transportation_reason_id", _("transportation reason")),
-                ("transportation_method_id", _("transportation method")),
-                ("pricelist_id", _("pricelist")),
-            ):
-                vals = self.get_delivery_value(
-                    vals, picking, field, defaults=defaults)
-            # Evaluate sum of numeric values
-            vals = self.sum_delivery_value(vals, picking, "parcels")
-            vals = self.sum_delivery_value(vals, picking, "weight")
-            vals = self.sum_delivery_value(vals, picking, "gross_weight")
-            vals = self.sum_delivery_value(vals, picking, "volume")
-        if not vals.get("parcels"):
-            vals["parcels"] = 1
-        vals.update({"picking_ids": [(6, 0, [p.id for p in all_pickings])]})
-        return vals
 
     @api.multi
-    def action_put_in_pack(self, raise_any_done=None):
-        raise_any_done = True if raise_any_done is None else raise_any_done
-        if raise_any_done and any(
-            [x for x in self.picking_ids if x.state == "done"]
-        ):
-            raise UserError(
-                _("Impossible to put in pack a picking whose state is 'done'")
-            )
-        packages = self.env["stock.picking.package.preparation"]
+    def action_put_in_pack(self):
+        # ----- Check if exist a stock picking whose state is 'done'
+        for record_picking in self.picking_ids:
+            if record_picking.state == 'done':
+                raise UserError(_(
+                    "Impossible to put in pack a picking whose state "
+                    "is 'done'"))
         for package in self:
-            if package.state == "done":
-                continue
             # ----- Check if package has details
             if not package.line_ids:
                 raise UserError(
-                    _("Impossible to put in pack a package without details")
-                )
+                    _("Impossible to put in pack a package without details"))
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
-                package.ddt_number = package.ddt_type_id.sequence_id.next_by_id()
-            packages += package
-        return super(StockPickingPackagePreparation, packages).action_put_in_pack()
-
-    @api.multi
-    def action_cancel(self):
-        for ddt in self:
-            for picking in ddt.picking_ids:
-                if picking.state == "done":
-                    picking.action_cancel()
-        return super(StockPickingPackagePreparation, self).action_cancel()
-
-    @api.multi
-    def set_draft(self):
-        invoiced = bool(self.invoice_id)
-        picking_ids = []
-        for line in self.line_ids:
-            if line.invoice_line_id:
-                invoiced = True
-                break
-            if line.move_id.picking_id not in picking_ids:
-                picking_ids.append(line.move_id.picking_id)
-        if invoiced:
-            raise UserError(_("Impossible to set draft document when invoiced!"))
-        # for picking in picking_ids:
-        #     picking.write({'state': 'draft'})
-        self.write({"state": "draft", "date_done": False})
-        return True
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.with_context(
+                        ir_sequence_date=package.date).next_by_id())
+        return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.multi
     def set_done(self):
-        for ddt in self:
-            for field in (
-                "carriage_condition_id",
-                "goods_description_id",
-                "transportation_reason_id",
-                "transportation_method_id",
-            ):
-                if not ddt[field]:
-                    raise UserError(
-                        _("Required value for %s")
-                        % _(self.fields_get()[field]["string"])
-                    )
-            for picking in ddt.picking_ids:
-                if picking.state == "done":
-                    continue
-                if picking.state in ("draft",
-                                     "waiting",
-                                     "partially_available",
-                                     "confirmed"):
-                    picking.action_assign()
-                if picking.state != "assigned":
-                    raise UserError(
-                        _("Could not reserve all requested products. "
-                          "Please use the \'Mark as Todo\' button "
-                          "to handle the reservation manually."))
-                for pack in picking.pack_operation_ids:
-                    if pack.product_qty > 0:
-                        pack.write({'qty_done': pack.product_qty})
-                    else:
-                        pack.unlink()
-            for picking in ddt.picking_ids:
-                if picking.state != "done":
-                    picking.do_new_transfer()
-            if any(
-                [x for x in ddt.picking_ids if x.state != 'done']
-            ):
-                raise UserError(_("Not every picking is in done status"))
-            for package in ddt:
-                if not package.ddt_number:
-                    package.ddt_number = package.ddt_type_id.sequence_id.next_by_id()
-            ddt.write({"state": "done", "date_done": fields.Datetime.now()})
+        for picking in self.picking_ids:
+            if picking.state != 'done':
+                raise UserError(
+                    _("Not every picking is in done status"))
+        for package in self:
+            if not package.ddt_number:
+                package.ddt_number = (
+                    package.ddt_type_id.sequence_id.with_context(
+                        ir_sequence_date=package.date).next_by_id())
+        self.write({'state': 'done', 'date_done': fields.Datetime.now()})
         return True
 
     @api.multi
-    @api.depends("name", "ddt_number", "partner_id.name", "date")
-    def _compute_clean_display_name(self):
-        for prep in self:
-            name = ""
-            if prep.ddt_number:
-                if prep.name:
-                    name = "[%s] %s" % (prep.name, prep.ddt_number)
-                else:
-                    name = prep.ddt_number
-            elif prep.partner_id:
-                if prep.name:
-                    name = "%s - %s" % (prep.partner_id.name, prep.name)
-                else:
-                    name = "%s" % prep.partner_id.name
-            elif prep.name:
-                name = prep.name
-            else:
-                name = "%d" % prep.id
-            prep.display_name = name
+    def action_done(self):
+        # Avoid to overwrite price_unit.
+        # We don't use price_unit field of stock.move because it is a cost
+        # price, while here we have the sale price
+        return super(StockPickingPackagePreparation, self.with_context(
+            skip_update_line_ids=True)).action_done()
 
     @api.multi
     @api.depends(
-        "package_id",
-        "package_id.children_ids",
-        "package_id.quant_ids",
-        "picking_ids",
-        "picking_ids.move_lines",
-        "picking_ids.move_lines.quant_ids",
-        "weight_manual",
+        'name', 'ddt_number', 'partner_id.name', 'date'
     )
+    def _compute_clean_display_name(self):
+        for prep in self:
+            name = u''
+            if prep.name:
+                name = prep.name
+            if prep.ddt_number and prep.name:
+                name = u'[%s] %s' % (prep.name, prep.ddt_number)
+            if prep.ddt_number and not prep.name:
+                name = prep.ddt_number
+            if not name:
+                name = u'%s - %s' % (prep.partner_id.name, prep.date)
+            prep.display_name = name
+
+    @api.multi
+    @api.depends('package_id',
+                 'package_id.quant_ids',
+                 'picking_ids',
+                 'picking_ids.move_lines',
+                 'picking_ids.move_lines.quantity_done',
+                 'weight_manual')
     def _compute_weight(self):
         super(StockPickingPackagePreparation, self)._compute_weight()
         for prep in self:
             if prep.weight_manual:
                 prep.weight = prep.weight_manual
             elif not prep.package_id:
-                quants = self.env["stock.quant"]
+                stock_moves = []
                 for picking in prep.picking_ids:
-                    for line in picking.move_lines:
-                        for quant in line.quant_ids:
-                            if quant.qty >= 0:
-                                quants |= quant
-                weight = sum(ln.product_id.weight * ln.qty for ln in quants)
+                    for move in picking.move_lines:
+                        if move.quantity_done > 0:
+                            stock_moves.append(move)
+                weight = sum(sm.product_id.weight * sm.quantity_done
+                             for sm in stock_moves)
                 prep.net_weight = weight
                 prep.weight = weight
 
+    @api.multi
     def _get_sale_order_ref(self):
         """
         It returns the first sale order of the ddt.
         """
-        sale_order = False
-        # for picking in self.picking_ids:
-        #     for sm in picking.move_lines:
-        #         if sm.procurement_id and sm.procurement_id.sale_line_id:
-        #             sale_order = sm.procurement_id.sale_line_id.order_id
-        #             return sale_order
-        for line in self.line_ids:
-            if line.sale_line_id:
-                sale_order = line.sale_line_id.order_id
-                break
-        return sale_order
+        self.ensure_one()
+        return first(self._get_sale_orders_ref())
+
+    @api.multi
+    def _get_sale_orders_ref(self):
+        """
+        Get all the sale orders involved in the TDs.
+        """
+        return self.mapped('picking_ids.move_lines.sale_line_id.order_id')
 
     @api.multi
     def _prepare_invoice_description(self):
-        invoice_description = ""
-        lang = self.env["res.lang"]._lang_get(self.env.lang)
+        invoice_description = ''
+        lang = self.env['res.lang']._lang_get(self.env.lang)
         date_format = lang.date_format
-        ddt_date_from = self._context.get("ddt_date_from", False)
-        ddt_date_to = self._context.get("ddt_date_to", False)
+        ddt_date_from = self._context.get('ddt_date_from', False)
+        ddt_date_to = self._context.get('ddt_date_to', False)
+        if isinstance(ddt_date_from, str):
+            ddt_date_from = fields.Date.from_string(ddt_date_from)
+        if isinstance(ddt_date_to, str):
+            ddt_date_to = fields.Date.from_string(ddt_date_to)
         if ddt_date_from and ddt_date_to:
-            invoice_description = "{} {} - {}".format(
-                _("Competenza:"),
-                datetime.strptime(ddt_date_from, DEFAULT_SERVER_DATE_FORMAT).strftime(
-                    date_format
-                ),
-                datetime.strptime(ddt_date_to, DEFAULT_SERVER_DATE_FORMAT).strftime(
-                    date_format
-                ),
+            invoice_description = '{} {} - {}'.format(
+                _('Relevant period:'), ddt_date_from.strftime(date_format),
+                ddt_date_to.strftime(date_format)
             )
         return invoice_description
 
@@ -841,458 +327,299 @@ class StockPickingPackagePreparation(models.Model):
         if order:
             # Most of the values will be overwritten below,
             # but this preserves inheritance chain
-            invoice_vals = order._prepare_invoice()
+            res = order._prepare_invoice()
         else:
             # Initialise res with the fields in sale._prepare_invoice
             # that won't be overwritten below
-            invoice_vals = {
-                "type": "out_invoice",
-                "partner_shipping_id": self.partner_id.address_get(["delivery"])[
-                    "delivery"
-                ],
-                "company_id": self.company_id.id,
+            res = {
+                'type': 'out_invoice',
+                'partner_shipping_id':
+                    self.partner_id.address_get(['delivery'])['delivery'],
+                'company_id': self.company_id.id
             }
-        journal_id = self._context.get("invoice_journal_id", False)
+        journal_id = self._context.get('invoice_journal_id', False)
         if not journal_id:
-            journal_id = self.env["account.invoice"].default_get(["journal_id"])[
-                "journal_id"
-            ]
+            journal_id = self.env['account.invoice'].default_get(
+                ['journal_id'])['journal_id']
         if not journal_id:
             raise UserError(
-                _("Please define an accounting sale journal for this company.")
+                _('Please define an accounting sale journal for this company.')
             )
-        journal = self.env["account.journal"].browse(journal_id)
+        journal = self.env['account.journal'].browse(journal_id)
         invoice_partner_id = (
-            order
-            and order.partner_invoice_id.id
-            or self.partner_id.address_get(["invoice"])["invoice"]
-        )
-        invoice_partner = self.env["res.partner"].browse(invoice_partner_id)
+            order and order.partner_invoice_id.id or
+            self.partner_id.address_get(['invoice'])['invoice'])
+        invoice_partner = self.env['res.partner'].browse(invoice_partner_id)
         invoice_description = self._prepare_invoice_description()
         currency_id = (
-            order
-            and order.pricelist_id.currency_id.id
-            or journal.currency_id.id
-            or journal.company_id.currency_id.id
-        )
+            order and order.pricelist_id.currency_id.id or
+            journal.currency_id.id or journal.company_id.currency_id.id)
         payment_term_id = (
-            order
-            and order.payment_term_id.id
-            or self.partner_id.property_payment_term_id.id
-        )
+            order and order.payment_term_id.id or
+            self.partner_id.property_payment_term_id.id)
         fiscal_position_id = (
-            order
-            and order.fiscal_position_id.id
-            or invoice_partner.property_account_position_id.id
-        )
-        invoice_vals.update(
-            {
-                "name": invoice_description or "",
-                "date_invoice": self._context.get("invoice_date", False),
-                "origin": self.ddt_number,
-                "type": "out_invoice",
-                "account_id": (invoice_partner.property_account_receivable_id.id),
-                "partner_id": invoice_partner_id,
-                "partner_shipping_id": self.partner_id.id,
-                "journal_id": journal_id,
-                "currency_id": currency_id,
-                # TO DO 'comment': self.note,
-                "payment_term_id": payment_term_id,
-                "fiscal_position_id": fiscal_position_id,
-                "carriage_condition_id": self.carriage_condition_id.id,
-                "goods_description_id": self.goods_description_id.id,
-                "transportation_reason_id": self.transportation_reason_id.id,
-                "transportation_method_id": self.transportation_method_id.id,
-                "partner_carrier_id": self.partner_carrier_id.id,
-                "carrier_id": self.carrier_id.id,
-                "pricelist_id": (
-                    self.pricelist_id
-                    and self.pricelist_id.id
-                    or self._default_pricelist()
-                ),
-                "parcels": self.parcels,
-                "weight": self.weight,
-                "gross_weight": self.gross_weight,
-                "volume": self.volume,
-                # "fiscal_document_type_id":
-                #     self.env.ref("l10n_it_ade.fatturapa_TD24").id,
-            }
-        )
-        return invoice_vals
+            order and order.fiscal_position_id.id or
+            invoice_partner.property_account_position_id.id)
+        res.update({
+            'name': invoice_description or '',
+            'origin': self.ddt_number,
+            'date_invoice': self._context.get('invoice_date', False),
+            'account_id': (
+                invoice_partner.property_account_receivable_id.id),
+            'partner_id': invoice_partner_id,
+            'journal_id': journal_id,
+            'currency_id': currency_id,
+            'fiscal_position_id': fiscal_position_id,
+            'payment_term_id': payment_term_id
+        })
+        # Now the rest of the fields dedicated to DDT
+        res.update({
+            'carriage_condition_id': self.carriage_condition_id.id,
+            'goods_description_id': self.goods_description_id.id,
+            'transportation_reason_id': self.transportation_reason_id.id,
+            'transportation_method_id': self.transportation_method_id.id,
+            'carrier_id': self.carrier_id.id,
+            'carrier_tracking_ref': self.carrier_tracking_ref,
+            'dimension': self.dimension,
+            'parcels': self.parcels,
+            'weight': self.weight,
+            'gross_weight': self.gross_weight,
+            'volume': self.volume,
+            'weight_manual_uom_id': self.weight_manual_uom_id.id,
+            'gross_weight_uom_id': self.gross_weight_uom_id.id,
+            'volume_uom_id': self.volume_uom_id.id,
+        })
+        return res
+
+    @api.multi
+    def other_operations_on_ddt(self, invoice):
+        """ Once invoices are created with stockable products, we add them
+        all the invoiceable services available in the SO related to the
+        DDTs linked to the invoice.
+
+        Override this method in order to execute other additional operation on
+        the invoices created from DDT.
+        """
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
+        for ddt in self:
+            order_ids = ddt.line_ids.mapped('sale_line_id.order_id').filtered(
+                lambda o: not o.ddt_invoice_exclude)
+            line_ids = order_ids.mapped('order_line').filtered(
+                lambda l: not float_is_zero(
+                    l.qty_to_invoice, precision_digits=precision) and
+                l.product_id.type == 'service' and
+                not l.product_id.ddt_invoice_exclude)
+
+            # we call the Sale method for creating invoice
+            for line in line_ids:
+                qty = line.qty_to_invoice
+                line.invoice_line_create(invoice.id, qty)
 
     @api.multi
     def action_invoice_create(self):
         """
-        Create the invoice associated to the DDT.
+        Create the invoice associated to the TD.
         :returns: list of created invoices
         """
+        grouped_invoices, references = self.create_td_grouped_invoices()
+        if not grouped_invoices:
+            raise UserError(_('There is no invoiceable line.'))
 
-        inv_model = self.env["account.invoice"]
-        invoices = {}
-        references = {}
-        seq_offset = 0
-        for ddt in self:
-            if not ddt.to_be_invoiced or ddt.invoice_id or ddt.state != "done":
-                continue
-            order = ddt._get_sale_order_ref()
-            invoiced_order_lines = []
-            orders = []
-
-            if order:
-                group_method = order and order.ddt_invoicing_group or "shipping_partner"
-                group_partner_invoice_id = order.partner_invoice_id.id
-                group_currency_id = order.currency_id.id
-            else:
-                if ddt.partner_shipping_id:
-                    group_method = (
-                        ddt.partner_shipping_id.commercial_partner_id.
-                        ddt_invoicing_group
-                    )
-                else:
-                    group_method = (
-                        ddt.partner_id.commercial_partner_id.ddt_invoicing_group
-                    )
-                group_partner_invoice_id = ddt.partner_id.id
-                group_currency_id = ddt.partner_id.currency_id.id
-            if group_method == "billing_partner":
-                group_key = (group_partner_invoice_id, group_currency_id)
-            elif group_method == "shipping_partner":
-                group_key = (ddt.partner_shipping_id.id, ddt.company_id.currency_id.id)
-            elif group_method == "code_group":
-                group_key = (
-                    ddt.partner_shipping_id.ddt_code_group,
-                    group_partner_invoice_id,
-                )
-            else:
-                group_key = ddt.id
-
-            ddt_invoiced = True
-            prior_group_key = order
-            max_ddt_seq = 0
-            invoice = False
-            for line in ddt.line_ids:
-                if not line.allow_invoice_line():
-                    ddt_invoiced = False
-                    continue
-
-                if group_method == "sale_order":
-                    if line.sale_line_id:
-                        group_key = line.sale_line_id.order_id
-                        prior_group_key = group_key
-                    else:
-                        group_key = prior_group_key
-                if line.sale_line_id:
-                    if line.sale_line_id.order_id not in orders:
-                        orders.append(line.sale_line_id.order_id)
-                    if line.sale_line_id not in invoiced_order_lines:
-                        invoiced_order_lines.append(line.sale_line_id)
-
-                if group_key not in invoices:
-                    inv_data = ddt._prepare_invoice()
-                    invoice = inv_model.create(inv_data)
-                    references[invoice] = ddt
-                    invoices[group_key] = invoice
-                    ddt.invoice_ids = [(4, invoice.id)]
-                    # ddt.invoice_id = invoice.id
-                elif group_key in invoices:
-                    vals = {}
-                    origin = invoices[group_key].origin
-                    if (
-                        origin
-                        and ddt.ddt_number
-                        and ddt.ddt_number not in origin.split(", ")
-                    ):
-                        vals["origin"] = (
-                            invoices[group_key].origin + ", " + ddt.ddt_number
-                        )
-                    invoices[group_key].write(vals)
-                    ddt.invoice_id = invoices[group_key].id
-                    invoice = invoices[group_key]
-
-                line.invoice_line_create(
-                    invoices[group_key].id, line.product_uom_qty, offset=seq_offset
-                )
-                max_ddt_seq = max(max_ddt_seq, line.sequence)
-            if invoice and ddt.delivery_price and ddt.carrier_id:
-                invoice._create_delivery_line(ddt.carrier_id, ddt.delivery_price)
-
-            seq_offset += max_ddt_seq
-            if ddt_invoiced and invoice:
-                ddt.invoice_id = invoice.id
-            if references.get(invoices.get(group_key)):
-                if ddt not in references[invoices[group_key]]:
-                    references[invoice] = references[invoice] | ddt
-
-            # Get order lines to invoice because not in ddt
-            for order in orders:
-                for line in order.order_line:
-                    if line not in invoiced_order_lines and (
-                        not line.product_id or line.product_id.type == "service" and
-                        not line.is_delivery
-                    ):
-                        line.invoice_line_create(
-                            invoices[group_key].id, line.qty_to_invoice
-                        )
-                    elif (line not in invoiced_order_lines and
-                          line.is_delivery and
-                          line.qty_invoiced != line.product_uom_qty):
-                        line.qty_invoiced = line.product_uom_qty
-            # Allow additional operations from ddt
-            # ddt.other_operations_on_ddt(invoice)
-
-        if not invoices:
-            raise UserError(_("There is no invoicable line."))
-
-        for invoice in invoices.values():
+        for invoice in list(grouped_invoices.values()):
             if not invoice.name:
-                invoice.write({"name": invoice.origin})
-            if not invoice.invoice_line_ids:
-                raise UserError(_("There is no invoicable line."))
-            # If invoice is negative, do a refund invoice instead
-            if invoice.amount_untaxed < 0:
-                invoice.type = "out_refund"
-                for line in invoice.invoice_line_ids:
-                    line.quantity = -line.quantity
-            # Use additional field helper function (for account extensions)
-            for line in invoice.invoice_line_ids:
-                line._set_additional_fields(invoice)
-            # Necessary to force computation of taxes. In account_invoice,
-            # they are triggered
-            # by onchanges, which are not triggered when doing a create.
-            # invoice.delivery_set()
-            invoice.compute_taxes()
-            invoice.message_post_with_view(
-                "mail.message_origin_link",
-                values={"self": invoice, "origin": references[invoice]},
-                subtype_id=self.env.ref("mail.mt_note").id,
+                invoice.update({
+                    'name': invoice.origin,
+                })
+
+        sale_orders = self._get_sale_orders_ref()
+        sale_orders._finalize_invoices(grouped_invoices, references)
+        return [inv.id for inv in list(grouped_invoices.values())]
+
+    @api.multi
+    def create_td_grouped_invoices(self):
+        """
+        Create the invoices, grouped by `group_key` (see `get_td_group_key`).
+        :return: (
+            dictionary group_key -> invoice record-set,
+            dictionary invoice -> TD record-set,
             )
-        return [inv.id for inv in invoices.values()]
+        """
+        inv_obj = self.env['account.invoice']
+        grouped_invoices = {}
+        references = {}
+        for td in self:
+            if not td.to_be_invoiced or td.invoice_id:
+                continue
+
+            group_key = td.get_td_group_key()
+            if group_key not in grouped_invoices:
+                inv_data = td._prepare_invoice()
+                grouped_invoices[group_key] = inv_obj.create(inv_data)
+
+            invoice = grouped_invoices.get(group_key)
+            td.invoice_id = invoice.id
+
+            if invoice not in references:
+                references[invoice] = td
+            else:
+                references[invoice] |= td
+
+            origin = invoice.origin
+            if origin and td.ddt_number not in origin.split(', '):
+                invoice.update({
+                    'origin': origin + ', ' + td.ddt_number
+                })
+
+            for line in td.line_ids:
+                if line.product_uom_qty > 0:
+                    line.invoice_line_create(invoice.id, line.product_uom_qty)
+
+            # Allow additional operations from td
+            td.other_operations_on_ddt(invoice)
+        return grouped_invoices, references
+
+    @api.multi
+    def get_td_group_key(self):
+        """
+        Get the grouping key for current TD.
+        """
+        self.ensure_one()
+
+        # Try to get the invoicing group from the order,
+        # fallback on the shipping partner's invoicing group.
+        order = self._get_sale_order_ref()
+        if order:
+            group_method = order.ddt_invoicing_group or 'shipping_partner'
+            group_partner_invoice_id = order.partner_invoice_id.id
+            group_currency_id = order.currency_id.id
+        else:
+            group_method = self.partner_shipping_id.ddt_invoicing_group
+            group_partner_invoice_id = self.partner_id.id
+            group_currency_id = self.partner_id.currency_id.id
+
+        group_key = ''
+        if group_method == 'billing_partner':
+            group_key = (group_partner_invoice_id,
+                         group_currency_id)
+        elif group_method == 'shipping_partner':
+            group_key = (self.partner_shipping_id.id,
+                         self.company_id.currency_id.id)
+        elif group_method == 'code_group':
+            group_key = (self.partner_shipping_id.ddt_code_group,
+                         group_partner_invoice_id)
+        elif group_method == 'nothing':
+            group_key = self.id
+        return group_key
 
     @api.multi
     def action_send_ddt_mail(self):
         self.ensure_one()
-        ir_model_data = self.env["ir.model.data"]
+        ir_model_data = self.env['ir.model.data']
         try:
-            template_id = ir_model_data.get_object_reference(
-                "l10n_it_ddt", "email_template_edi_ddt"
-            )[1]
+            template_id = ir_model_data.\
+                get_object_reference('l10n_it_ddt',
+                                     'email_template_edi_ddt')[1]
         except ValueError:
             template_id = False
 
         try:
-            compose_form_id = ir_model_data.get_object_reference(
-                "mail", "email_compose_message_wizard_form"
-            )[1]
+            compose_form_id = ir_model_data.\
+                get_object_reference('mail',
+                                     'email_compose_message_wizard_form')[1]
         except ValueError:
             compose_form_id = False
 
         ctx = {
-            "default_model": "stock.picking.package.preparation",
-            "default_res_id": self.ids[0],
-            "default_use_template": bool(template_id),
-            "default_template_id": template_id,
-            "mark_so_as_sent": True,
-            "custom_layout": "l10n_it_ddt.mail_template_data_notification_email_ddt",
+            'default_model': 'stock.picking.package.preparation',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'force_email': True,
         }
         return {
-            "type": "ir.actions.act_window",
-            "view_type": "form",
-            "view_mode": "form",
-            "res_model": "mail.compose.message",
-            "views": [(compose_form_id, "form")],
-            "view_id": compose_form_id,
-            "target": "new",
-            "context": ctx,
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
         }
 
     @api.multi
     def unlink(self):
         for ddt in self:
             if ddt.invoice_id:
-                raise UserError(_("Document %s has invoice linked" % ddt.ddt_number))
-            if ddt.state != "cancel":
                 raise UserError(
-                    _(
-                        "You can not delete document %s! "
-                        "Try to cancel it before." % ddt.ddt_number
-                    )
-                )
-            # Decrement ddt number if last DdT
-            if ddt.ddt_number:
-                ddt.ddt_type_id.sequence_id.unnext_by_id(ddt.ddt_number)
+                    _("Document {d} has invoice linked".format(
+                        d=ddt.ddt_number)))
         return super(StockPickingPackagePreparation, self).unlink()
 
-    @api.multi
-    def delivery_set(self):
-        for ddt in self:
-            if not ddt.pricelist_id:
-                ddt.pricelist_id = self._default_pricelist()
-            carrier = ddt.carrier_id
-            if carrier:
-                if ddt.state != 'draft':
-                    raise UserError(_(
-                        'The delivery note state have to be draft '
-                        'to add delivery lines.'))
-
-                if carrier.delivery_type in ['fixed', 'base_on_rule']:
-                    price_unit = ddt.get_price_from_picking()
-                    if ddt.company_id.currency_id.id != ddt.pricelist_id.currency_id.id:
-                        price_unit = ddt.company_id.currency_id.with_context(
-                            date=ddt.date).compute(
-                            price_unit, ddt.pricelist_id.currency_id)
-                ddt.delivery_price = price_unit * (
-                    1.0 + (float(self.carrier_id.margin) / 100.0))
-
-            else:
-                raise UserError(_('No carrier set for this order.'))
-
-        return True
-
-    def get_price_from_picking(self):
-        return self.carrier_id.get_price_from_picking(
-            self.amount_untaxed,
-            self.weight_manual,
-            self.volume,
-            self.parcels)
+    def _get_lot_deadline(self, lot):
+        if self.show_deadline_date:
+            lot.ensure_one()
+            deadline = lot.read()[0][self.show_deadline_date]
+            if deadline:
+                return format_date(self.env, deadline)
 
 
 class StockPickingPackagePreparationLine(models.Model):
-    _inherit = "stock.picking.package.preparation.line"
-    _order = "partner_id, package_preparation_id, sequence, id"
 
-    @api.depends("product_uom_qty", "discount", "price_unit", "tax_ids")
-    def _compute_amount(self):
-        """
-        Compute the amounts of the line.
-        """
-        for line in self:
-            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            taxes = line.tax_ids.compute_all(
-                price,
-                line.currency_id,
-                line.product_uom_qty,
-                product=line.product_id,
-                partner=line.sale_id.partner_shipping_id,
-            )
-            # line.price_subtotal = taxes['total_excluded']
-            line.update(
-                {
-                    "price_tax": taxes["total_included"] - taxes["total_excluded"],
-                    "price_total": taxes["total_included"],
-                    "price_subtotal": taxes["total_excluded"],
-                }
-            )
+    _inherit = 'stock.picking.package.preparation.line'
 
-    sale_id = fields.Many2one(
-        related="move_id.procurement_id.sale_line_id.order_id",
-        string="Sale order",
-        store=True,
-        readonly=True,
-    )
     sale_line_id = fields.Many2one(
-        related="move_id.procurement_id.sale_line_id",
-        string="Sale order line",
-        store=True,
-        readonly=True,
-    )
-    price_unit = fields.Float(
-        "Unit Price", digits=dp.get_precision("Product Price"), default=0.0
-    )
-    tax_ids = fields.Many2many("account.tax", string="Taxes")
+        related='move_id.sale_line_id',
+        string='Sale order line',
+        store=True, readonly=True)
+    price_unit = fields.Float('Unit Price', digits=dp.get_precision(
+        'Product Price'), default=0.0)
+    tax_ids = fields.Many2many('account.tax', string='Taxes')
     discount = fields.Float(
-        string="Discount (%)", digits=dp.get_precision("Discount"), default=0.0
-    )
-    ddt_id = fields.Many2one("stock.picking.package.preparation", string="Deprecated")
-    ddt_number = fields.Char(
-        related="package_preparation_id.ddt_number",
-        string="Ddt number",
-        store=True,
-        readonly=True,
-    )
-    currency_id = fields.Many2one(
-        related="move_id.procurement_id.sale_line_id.order_id.currency_id",
-        string="Currency",
-        store=True,
-        readonly=True,
-    )
-    price_subtotal = fields.Monetary(
-        compute="_compute_amount", string="Subtotal", readonly=True, store=True
-    )
-    price_tax = fields.Monetary(
-        compute="_compute_amount", string="Taxes", readonly=True, store=True
-    )
-    price_total = fields.Monetary(
-        compute="_compute_amount", string="Total", readonly=True, store=True
-    )
-    weight = fields.Float(string="Line Weight")
-    invoice_line_id = fields.Many2one(
-        "account.invoice.line", string="Invoice line", readonly=True, copy=False
-    )
-    invoice_number = fields.Char(
-        related="invoice_line_id.invoice_id.number",
-        string="Invoice",
-        readonly=True,
-        copy=False,
-    )
-    partner_id = fields.Many2one(
-        "res.partner",
-        string="Partner",
-        related="package_preparation_id.partner_id",
-        store=True,
-        readonly=True,
-        related_sudo=False,
-    )
-    date = fields.Datetime(
-        related="package_preparation_id.date", string="Date", store=True, readonly=True
-    )
+        string='Discount (%)', digits=dp.get_precision('Discount'),
+        default=0.0)
 
-    @api.onchange("product_id")
+    @api.onchange('product_id')
     def _onchange_product_id(self):
         super(StockPickingPackagePreparationLine, self)._onchange_product_id()
         if self.product_id:
             order = self.package_preparation_id._get_sale_order_ref()
-            partner = (
-                order and order.partner_id or self.package_preparation_id.partner_id
-            )
+            partner = order and order.partner_id \
+                or self.package_preparation_id.partner_id
             product = self.product_id.with_context(
                 lang=self.package_preparation_id.partner_id.lang,
                 partner=partner.id,
                 quantity=self.product_uom_qty,
                 date=self.package_preparation_id.date,
                 pricelist=order and order.pricelist_id.id or False,
-                uom=self.product_uom_id.id,
+                uom=self.product_uom_id.id
             )
             # Tax
             taxes = product.taxes_id
-            fpos = (
-                order
-                and order.fiscal_position_id
-                or self.package_preparation_id.partner_id.property_account_position_id
-            )
-            self.tax_ids = fpos.map_tax(taxes, product, partner) if fpos else taxes
+            fpos = order and order.fiscal_position_id or \
+                self.package_preparation_id.partner_id.\
+                property_account_position_id
+            self.tax_ids = fpos.map_tax(
+                taxes, product, partner) if fpos else taxes
             # Price and discount
             self.price_unit = product.price
             if order:
-                context_partner = dict(self.env.context, partner_id=partner.id)
+                context_partner = dict(
+                    self.env.context, partner_id=partner.id)
                 pricelist_context = dict(
-                    context_partner, uom=self.product_uom_id.id, date=order.date_order
-                )
+                    context_partner, uom=self.product_uom_id.id,
+                    date=order.date_order)
                 price, rule_id = order.pricelist_id.with_context(
-                    pricelist_context
-                ).get_product_price_rule(product, self.product_uom_qty or 1.0, partner)
-                new_list_price, currency_id = (
-                    self.env["sale.order.line"]
-                    .with_context(context_partner)
-                    ._get_real_price_currency(
-                        self.product_id,
-                        rule_id,
-                        self.product_uom_qty,
-                        self.product_uom_id,
-                        order.pricelist_id.id,
-                    )
-                )
+                    pricelist_context).get_product_price_rule(
+                    product, self.product_uom_qty or 1.0, partner)
+                new_list_price, currency_id = self.env['sale.order.line']\
+                    .with_context(context_partner)._get_real_price_currency(
+                    self.product_id, rule_id, self.product_uom_qty,
+                    self.product_uom_id, order.pricelist_id.id)
                 datas = self._prepare_price_discount(new_list_price, rule_id)
-                for key in datas.keys():
+                for key in list(datas.keys()):
                     setattr(self, key, datas[key])
 
     @api.model
@@ -1301,12 +628,15 @@ class StockPickingPackagePreparationLine(models.Model):
         Use this method for other fields added in the line.
         Use key of dict to specify the field that will be updated
         """
-        res = {"price_unit": price}
+        res = {
+            'price_unit': price
+        }
         # Discount
         if rule_id:
-            rule = self.env["product.pricelist.item"].browse(rule_id)
-            if rule.pricelist_id.discount_policy == "without_discount":
-                res["discount"] = rule.price_discount
+            rule = self.env['product.pricelist.item'].browse(rule_id)
+            if rule.pricelist_id.discount_policy == \
+                    'without_discount':
+                res['discount'] = rule.price_discount
         return res
 
     @api.model
@@ -1314,23 +644,21 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         Add values used for invoice creation
         """
-        lines = super(
-            StockPickingPackagePreparationLine, self
-        )._prepare_lines_from_pickings(picking_ids)
+        lines = super(StockPickingPackagePreparationLine, self). \
+            _prepare_lines_from_pickings(picking_ids)
         for line in lines:
             sale_line = False
-            if line["move_id"]:
-                move = self.env["stock.move"].browse(line["move_id"])
-                line["weight"] = move.weight
-                sale_line = move.procurement_id.sale_line_id or False
+            if line['move_id']:
+                move = self.env['stock.move'].browse(line['move_id'])
+                sale_line = move.sale_line_id or False
             if sale_line:
-                line["price_unit"] = sale_line.price_unit or 0
-                line["discount"] = sale_line.discount or 0
-                line["tax_ids"] = [(6, 0, [x.id]) for x in sale_line.tax_id]
+                line['price_unit'] = sale_line.price_unit or 0
+                line['discount'] = sale_line.discount or 0
+                line['tax_ids'] = [(6, 0, [x.id]) for x in sale_line.tax_id]
         return lines
 
     @api.multi
-    def _prepare_invoice_line(self, qty, invoice_id=None, offset=None):
+    def _prepare_invoice_line(self, qty, invoice_id=None):
         """
         Prepare the dict of values to create the new invoice line for a
         ddt line.
@@ -1339,11 +667,11 @@ class StockPickingPackagePreparationLine(models.Model):
         :param invoice_id: possible existing invoice
         """
         self.ensure_one()
-        offset = offset or 0.0
         res = {}
         if (
-            self.sale_line_id.product_id.property_account_income_id
-            or self.sale_line_id.product_id.categ_id.property_account_income_categ_id
+            self.sale_line_id.product_id.property_account_income_id or
+            self.sale_line_id.product_id.categ_id.
+            property_account_income_categ_id
         ):
             # Without property_account_income_id or
             # property_account_income_categ_id
@@ -1351,171 +679,93 @@ class StockPickingPackagePreparationLine(models.Model):
             res = self.sale_line_id._prepare_invoice_line(qty)
         else:
             account = (
-                self.product_id.property_account_income_id
-                or self.product_id.categ_id.property_account_income_categ_id
-            )
+                self.product_id.property_account_income_id or
+                self.product_id.categ_id.property_account_income_categ_id)
             if not account:
                 if invoice_id:
-                    invoice = self.env["account.invoice"].browse(invoice_id)
+                    invoice = self.env['account.invoice'].browse(invoice_id)
                     account = invoice.journal_id.default_credit_account_id
             if not account:
                 raise UserError(
                     _(
                         'Please define income account for this product: "%s" '
                         '(id:%d) - or for its category: "%s".'
-                    )
-                    % (
-                        self.product_id.name,
-                        self.product_id.id,
-                        self.product_id.categ_id.name,
+                    ) % (
+                        self.product_id.name, self.product_id.id,
+                        self.product_id.categ_id.name
                     )
                 )
             fpos = None
             if self.sale_line_id:
                 fpos = (
-                    self.sale_line_id.order_id.fiscal_position_id
-                    or self.sale_line_id.order_id.partner_id.
+                    self.sale_line_id.order_id.fiscal_position_id or
+                    self.sale_line_id.order_id.partner_id.
                     property_account_position_id
                 )
             if fpos:
                 account = fpos.map_account(account)
-            res["account_id"] = account.id
+            res['account_id'] = account.id
 
-            if self.sale_line_id.order_id.project_id:
-                res["account_analytic_id"] = self.sale_line_id.order_id.project_id.id
+            if self.sale_line_id.order_id.analytic_account_id:
+                res[
+                    'account_analytic_id'
+                ] = self.sale_line_id.order_id.analytic_account_id.id
             if self.sale_line_id.analytic_tag_ids:
-                res["analytic_tag_ids"] = [
+                res['analytic_tag_ids'] = [
                     (6, 0, self.sale_line_id.analytic_tag_ids.ids)
                 ]
 
-        res.update(
-            {
-                "ddt_line_id": self.id,
-                "name": self.name,
-                "sequence": self.sequence + offset,
-                "origin": self.package_preparation_id.name or "",
-                "price_unit": self.price_unit,
-                "quantity": qty,
-                "discount": self.discount,
-                "uom_id": self.product_uom_id.id,
-                "product_id": self.product_id.id or False,
-                "invoice_line_tax_ids": [(6, 0, self.tax_ids.ids)],
-                "weight": self.weight,
-            }
-        )
+        res.update({
+            'ddt_line_id': self.id,
+            'name': self.name,
+            'sequence': self.sequence,
+            'origin': self.package_preparation_id.name or '',
+            'price_unit': self.price_unit,
+            'quantity': qty,
+            'discount': self.discount,
+            'uom_id': self.product_uom_id.id,
+            'product_id': self.product_id.id or False,
+            'invoice_line_tax_ids': [(6, 0, self.tax_ids.ids)],
+        })
         return res
 
     @api.multi
-    def invoice_line_create(self, invoice_id, qty, offset=None):
+    def invoice_line_create(self, invoice_id, qty):
         """
         :param invoice_id: integer
         :param qty: float quantity to invoice
         """
-        # precision = self.env["decimal.precision"].precision_get(
-        #     "Product Unit of Measure"
-        # )
-        # offset = offset or 0
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for line in self:
-            # vals = line._prepare_invoice_line(
-            #     qty=qty, invoice_id=invoice_id, offset=offset)
-            vals = line._prepare_invoice_line(qty=qty, invoice_id=invoice_id)
-            vals.update({"invoice_id": invoice_id})
-            if line.sale_line_id:
-                vals.update({"sale_line_ids": [(6, 0, [line.sale_line_id.id])]})
-            line_inv = (
-                self.env["account.invoice.line"]
-                .with_context(skip_update_line_ids=True)
-                .create(vals)
-            )
-            line.invoice_line_id = line_inv.id
+            if not float_is_zero(qty, precision_digits=precision):
+                vals = line._prepare_invoice_line(
+                    qty=qty, invoice_id=invoice_id)
+                vals.update({'invoice_id': invoice_id})
+                if line.sale_line_id:
+                    vals.update(
+                        {'sale_line_ids': [
+                            (6, 0, [line.sale_line_id.id])
+                        ]})
+                self.env['account.invoice.line'].with_context(
+                    skip_update_line_ids=True).create(vals)
 
+    @api.multi
     def quantity_by_lot(self):
+        """Build a dictionary mapping each lot in the current line
+        to its quantity (if the product is tracked with lots)"""
+        self.ensure_one()
         res = {}
-        for quant in self.move_id.quant_ids:
-            if quant.lot_id:
-                if quant.location_id.id == self.move_id.location_dest_id.id:
-                    if quant.lot_id not in res:
-                        res[quant.lot_id] = quant.qty
-                    else:
-                        res[quant.lot_id] += quant.qty
+        for move_line in self.move_id.move_line_ids:
+            if move_line.lot_id:
+                if move_line.lot_id not in res:
+                    res[move_line.lot_id] = move_line.qty_done
+                else:
+                    res[move_line.lot_id] += move_line.qty_done
         for lot in res:
-            if lot.product_id.tracking == "lot":
+            if lot.product_id.tracking == 'lot':
                 res[lot] = formatLang(self.env, res[lot])
             else:
                 # If not tracking by lots, quantity is not relevant
                 res[lot] = False
         return res
-
-    @api.multi
-    def allow_invoice_line(self):
-        """This method allows or not the invoicing of a specific DDT line.
-        It can be inherited for different purposes, e.g. for proper invoicing
-        of kit."""
-        self.ensure_one()
-        # return self.product_uom_qty > 0
-        return not self.invoice_line_id
-
-    @api.multi
-    def action_line_invoice_create(self):
-        """
-        Create the invoice selected by end-user.
-        :returns: list of created invoices
-        """
-        inv_model = self.env["account.invoice"]
-        # ddt_model = self.env['stock.picking.package.preparation']
-        invoice = False
-
-        ddt_line_list = []
-        ddt_list = []
-        partner_id = False
-        reference = False
-        for line in self:
-            if not line.allow_invoice_line():
-                continue
-            if not partner_id:
-                partner_id = line.package_preparation_id.partner_id
-            if line.package_preparation_id.partner_id != partner_id:
-                raise UserError(_("Too many partners."))
-            if not invoice:
-                inv_data = line.package_preparation_id._prepare_invoice()
-                invoice = inv_model.create(inv_data)
-            line.invoice_line_create(invoice.id, line.product_uom_qty)
-            if line.package_preparation_id not in ddt_list:
-                ddt_list.append(line.package_preparation_id)
-            ddt_line_list.append(line.id)
-
-        for ddt in ddt_list:
-            ddt_invoiced = True
-            reference = ddt
-            for line in ddt.line_ids:
-                if line.id not in ddt_line_list and not line.invoice_line_id:
-                    ddt_invoiced = False
-                    break
-            if ddt_invoiced:
-                ddt.invoice_id = invoice.id
-
-        if not invoice:
-            raise UserError(_("There is no invoicable line."))
-
-        if not invoice.name:
-            invoice.write({"name": invoice.origin})
-        if not invoice.invoice_line_ids:
-            raise UserError(_("There is no invoicable line."))
-        # If invoice is negative, do a refund invoice instead
-        if invoice.amount_untaxed < 0:
-            invoice.type = "out_refund"
-            for line in invoice.invoice_line_ids:
-                line.quantity = -line.quantity
-        # Use additional field helper function (for account extensions)
-        for line in invoice.invoice_line_ids:
-            line._set_additional_fields(invoice)
-        # Necessary to force computation of taxes. In account_invoice,
-        # they are triggered
-        # by onchanges, which are not triggered when doing a create.
-        invoice.compute_taxes()
-        invoice.message_post_with_view(
-            "mail.message_origin_link",
-            values={"self": invoice, "origin": reference},
-            subtype_id=self.env.ref("mail.mt_note").id,
-        )
-        return [invoice.id]

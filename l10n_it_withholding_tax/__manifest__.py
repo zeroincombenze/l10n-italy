@@ -1,27 +1,30 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
-#
+# Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2019 Giovanni - GSLabIt
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 {
-    "name": "Italian Withholding Tax",
-    "version": "10.0.1.2.7",
-    "category": "Account",
-    "author": "Odoo Community Association (OCA) and other subjects",
-    "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "name": "ITA - Ritenute d'acconto",
+    'version': '12.0.2.1.5',
+    'category': 'Account',
+    'author': 'Openforce, Odoo Italia Network, '
+              'Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_withholding_tax',
+    'license': 'AGPL-3',
     "depends": [
-        "account",
-        "l10n_it_account",
-        "l10n_it_causali_pagamento",
-        "l10n_it_einvoice_base",
+        'account',
+        'l10n_it_fatturapa',
     ],
     "data": [
-        "views/account.xml",
-        "views/withholding_tax.xml",
-        "security/ir.model.access.csv",
-        "workflow.xml",
-        "security/security.xml",
+        'views/account.xml',
+        'views/report_invoice.xml',
+        'views/withholding_tax.xml',
+        'security/ir.model.access.csv',
+        'security/security.xml',
     ],
-    "installable": True,
+    'qweb': [
+        "static/src/xml/account_payment.xml",
+    ],
+    "installable": True
 }

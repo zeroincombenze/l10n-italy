@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
-#
-#    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-#
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from . import stock_picking_package_preparation
 from . import partner
 from . import account
 from . import product
-# from . import stock
-from . import stock_picking
-from . import sale_order
+from . import stock
+from . import sale
 from . import stock_location
-from . import delivery_carrier
-from . import ir_sequence

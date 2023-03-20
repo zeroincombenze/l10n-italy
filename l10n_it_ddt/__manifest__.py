@@ -1,45 +1,46 @@
-# -*- coding: utf-8 -*-
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-#
+# Copyright 2014 Abstract (http://www.abstract.it)
+# Copyright Davide Corio <davide.corio@abstract.it>
+# Copyright 2014-2018 Agile Business Group (http://www.agilebg.com)
+# Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
+# Copyright Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 {
-    "name": "DDT",
-    "summary": "Delivery Document Type",
-    "version": "10.0.1.8.20",
-    "category": "Localization/Italy",
-    "author": "Odoo Community Association (OCA) and other subjects",
-    "website": "https://github.com/OCA/l10n-italy",
-    "license": "AGPL-3",
-    "depends": [
-        "l10n_it_ade",
-        "sale_stock",
-        "stock_account",
-        "delivery",
-        "stock_picking_package_preparation_line",
-        "account_invoice_pricelist",
-        "account_invoice_partner_carrier",
+    'name': 'ITA - DDT: documento di trasporto',
+    'version': '12.0.1.10.0',
+    'category': 'Localization/Italy',
+    'summary': 'Documento di Trasporto',
+    'author': 'Davide Corio, Odoo Community Association (OCA),'
+              'Agile Business Group, Francesco Apruzzese, '
+              'Openforce di Camilli Alessandro',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_ddt',
+    'license': 'AGPL-3',
+    'depends': [
+        'sale_stock',
+        'stock_account',
+        'stock_picking_package_preparation_line',
+        'product_expiry',
+        'uom',
     ],
-    "data": [
-        "security/ir.model.access.csv",
-        "security/security.xml",
-        "data/ddt_data.xml",
-        "views/stock_picking_package_preparation.xml",
-        "views/ddt_data.xml",
-        "views/stock_picking.xml",
-        "views/partner.xml",
-        "views/product.xml",
-        "views/account.xml",
-        "views/sale.xml",
-        "views/stock_location.xml",
-        "views/delivery_carrier_view.xml",
-        "wizard/add_picking_to_ddt.xml",
-        "wizard/ddt_from_picking.xml",
-        "wizard/ddt_create_invoice.xml",
-        "wizard/ddt_line_create_invoice.xml",
-        "wizard/ddt_invoicing.xml",
-        "wizard/create_ddt.xml",
-        "views/report_ddt.xml",
-        "data/mail_template_data.xml",
+    'data': [
+        'security/ir.model.access.csv',
+        'security/security.xml',
+        'data/ddt_data.xml',
+        'views/stock_picking_package_preparation.xml',
+        'views/stock_picking.xml',
+        'views/partner.xml',
+        'views/product.xml',
+        'views/account.xml',
+        'views/sale.xml',
+        'views/stock_location.xml',
+        'wizard/add_picking_to_ddt.xml',
+        'wizard/ddt_from_picking.xml',
+        'wizard/ddt_create_invoice.xml',
+        'wizard/ddt_invoicing.xml',
+        'views/report_ddt.xml',
+        'data/mail_template_data.xml',
     ],
-    "installable": True,
+    'installable': True
 }

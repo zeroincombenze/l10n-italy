@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <record id="invoice_form_view_ddt" model="ir.ui.view">
-        <field name="name">account.invoice.form.ddt</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form" />
-        <field name="arch" type="xml">
-
-            <!--
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
-                <field name="weight"/>
-                <field name="sale_line_id" options="{'no_create': True}"/>
-            </xpath>
-            -->
-
-            <notebook position="inside">
-                <page string="Shipping Informations">
-                    <group string="Shipping Informations">
-                        <group>
-                            <field name="carriage_condition_id" />
-                            <field name="goods_description_id" />
-                            <field name="transportation_reason_id"  />
-                            <field name="transportation_method_id" />
-                            <field name="parcels" />
-                            <field name="volume" />
-                            <field name="weight" />
-                            <field name="gross_weight" />
-                        </group>
-                        <group>
+        <record id="invoice_form_view_ddt" model="ir.ui.view">
+            <field name="name">account.invoice.form.ddt</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Shipping Informations">
+                        <group string="Shipping Informations">
+                            <field name="goods_description_id"
+                                widget="selection"/>
+                            <field name="carriage_condition_id"
+                                widget="selection"/>
+                            <field name="transportation_reason_id"
+                                widget="selection"/>
+                            <field name="transportation_method_id"
+                                widget="selection"/>
                             <field name="carrier_id" />
-                            <field name='delivery_price'
-                                   widget='monetary'
-                                   class="oe_inline"
-                                   options="{'currency_field': 'currency_id'}"
-                                   nolabel="1"
-                                   attrs="{'invisible': [('carrier_id','=', False)]}"/>
-                            <button name="delivery_set"
-                                    string="Set price"
-                                    type="object"
-                                    class="oe_inline fa fa-arrow-right oe_link"
-                                    attrs="{'invisible':['|',('carrier_id','=',False),('state','!=','draft')]}"/>
+                            <field name="carrier_tracking_ref" />
+                            <field name="dimension" />
+                            <field name="parcels" />
+                            <label for="weight"/>
+                            <div class="o_row">
+                                <field name="weight"/>
+                                <field name="weight_manual_uom_id" groups="uom.group_uom" widget="selection"/>
+                            </div>
+                            <label for="gross_weight"/>
+                            <div class="o_row">
+                                <field name="gross_weight"/>
+                                <field name="gross_weight_uom_id" groups="uom.group_uom" widget="selection"/>
+                            </div>
+                            <label for="volume"/>
+                            <div class="o_row">
+                                <field name="volume"/>
+                                <field name="volume_uom_id" groups="uom.group_uom" widget="selection"/>
+                            </div>
                         </group>
-                    </group>
-                    <newline />
-                    <group string="DDT" name="ddt">
-                        <field name="ddt_ids" nolabel="1" />
-                    </group>
-                </page>
-            </notebook>
-
-        </field>
-    </record>
+                        <newline/>
+                        <group string="TD" name="ddt">
+                            <field name="ddt_ids" nolabel="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
 
 </odoo>

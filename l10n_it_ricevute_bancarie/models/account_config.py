@@ -1,52 +1,38 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
 
 
-class AccountConfigSettings(models.TransientModel):
+class ResConfigSettings(models.TransientModel):
 
-    _inherit = "account.config.settings"
+    _inherit = 'res.config.settings'
 
     due_cost_service_id = fields.Many2one(
-        related="company_id.due_cost_service_id",
-        help="Default Service for RiBa Due Cost (collection fees) on invoice",
-        domain=[("type", "=", "service")],
-    )
-
-    riba_payment_response = fields.Selection(
-        [("1", "Required"), ("2", "Not Required"), (" ", "Bank Agreement")],
-        related="company_id.riba_payment_response",
-        default=" ",
-        string="Require to send back the response of the RiBa payment",
-    )
+        string='Default Collection Fees Service',
+        related='company_id.due_cost_service_id',
+        help='Default Service for C/O Collection Fees on invoice.',
+        domain=[('type', '=', 'service')],
+        readonly=False
+        )
 
     @api.model
     def default_get(self, fields):
-        res = super(AccountConfigSettings, self).default_get(fields)
+        res = super(ResConfigSettings, self).default_get(fields)
         if res:
-            res["due_cost_service_id"] = self.env.user.company_id.due_cost_service_id.id
             res[
-                "riba_payment_response"
-            ] = self.env.user.company_id.riba_payment_response
+                'due_cost_service_id'
+            ] = self.env.user.company_id.due_cost_service_id.id
         return res
 
 
 class ResCompany(models.Model):
 
-    _inherit = "res.company"
+    _inherit = 'res.company'
 
-    due_cost_service_id = fields.Many2one("product.product")
-
-    riba_payment_response = fields.Selection(
-        [("1", "Required"), ("2", "Not Required"), (" ", "Bank Agreement")],
-        default=" ",
-        string="Require to send back the response of the RiBa payment",
-    )
+    due_cost_service_id = fields.Many2one('product.product', 'Collection Fees Service')

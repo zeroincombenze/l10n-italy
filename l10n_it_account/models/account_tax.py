@@ -1,47 +1,26 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Agile Business Group (<http://www.agilebg.com>)
-# Copyright 2018-2022 SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import models, fields
 
 
 class AccountTax(models.Model):
-    _inherit = "account.tax"
+    _inherit = 'account.tax'
 
-    cee_type = fields.Selection(
-        [("sale", "Sale"), ("purchase", "Purchase")],
-        string="Include in VAT register",
+    cee_type = fields.Selection([
+        ('sale', 'Sale'),
+        ('purchase', 'Purchase')
+    ], string='Include in VAT register',
         help="Use in the case of tax with 'VAT integration'. This "
-        "specifies the VAT register (sales / purchases) where the "
-        "tax must be computed.",
-    )
+             "specifies the VAT register (sales / purchases) where the "
+             "tax must be computed.")
     parent_tax_ids = fields.Many2many(
-        "account.tax",
-        "account_tax_filiation_rel",
-        "child_tax",
-        "parent_tax",
-        string="Parent Taxes",
-    )
-
-    def is_rc(self, nature=None):
-        nature = (
-            nature
-            or (hasattr(self, "nature_id") and self.nature_id.code)
-            or (hasattr(self, "kind_id") and self.kind_id.code)
-        )
-        return bool(
-            nature
-            and (
-                nature.startswith("N6")
-                or (nature.startswith("N3") and nature != "N3.5")
-            )
-        )
+        'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
+        string='Parent Taxes')
 
     def _get_tax_amount(self):
         self.ensure_one()
         res = 0.0
-        if self.amount_type == "group":
+        if self.amount_type == 'group':
             for child in self.children_tax_ids:
                 res += child.amount
         else:
@@ -65,54 +44,41 @@ class AccountTax(models.Model):
         """
         self.ensure_one()
         context = {
-            "from_date": data["from_date"],
-            "to_date": data["to_date"],
+            'from_date': data['from_date'],
+            'to_date': data['to_date'],
         }
-        registry_type = data.get("registry_type", "customer")
-        if data.get("journal_ids"):
-            context["vat_registry_journal_ids"] = data["journal_ids"]
+        registry_type = data.get('registry_type', 'customer')
+        if data.get('journal_ids'):
+            context['vat_registry_journal_ids'] = data['journal_ids']
 
-        tax = self.env["account.tax"].with_context(context).browse(self.id)
-        if "payability" in tax and tax.payability == "S":
-            # deferred_vat = False
-            split_payment = True
-        elif "payability" in tax and tax.payability == "D":
-            # deferred_vat = True
-            split_payment = False
-        else:
-            # deferred_vat = False
-            split_payment = False
-        # [antoniov: 2022-03-08] strange bug
-        # tax_name = tax._get_tax_name()
-        tax_name = self.name
-        deductible = 0
-        undeductible = 0
-        if tax.parent_tax_ids:
-            return (tax_name, 0, 0, 0, 0)
-        elif not tax.children_tax_ids:
+        tax = self.env['account.tax'].with_context(context).browse(self.id)
+        tax_name = tax._get_tax_name()
+        if not tax.children_tax_ids:
             base_balance = tax.base_balance
-            deductible = tax_balance = tax.balance
-            if base_balance >= 0 and tax_balance < 0:
-                base_balance = 0
-            if registry_type == "supplier":
-                return (
-                    tax_name,
-                    -base_balance,
-                    -tax_balance,
-                    -deductible,
-                    -undeductible,
-                )
-            if split_payment and registry_type == "customer":
-                return (tax_name, base_balance, tax_balance, 0, tax_balance)
-            return (tax_name, base_balance, tax_balance, deductible, undeductible)
+            balance = tax.balance
+            if registry_type == 'supplier':
+                base_balance = -base_balance
+                balance = -balance
+            return (
+                tax_name, base_balance, balance, balance, 0
+            )
         else:
             base_balance = tax.base_balance
 
             tax_balance = 0
+            deductible = 0
+            undeductible = 0
             for child in tax.children_tax_ids:
                 child_balance = child.balance
-                if (registry_type == "customer" and child.cee_type == "sale") or (
-                    registry_type == "supplier" and child.cee_type == "purchase"
+                if (
+                    (
+                        data['registry_type'] == 'customer' and
+                        child.cee_type == 'sale'
+                    ) or
+                    (
+                        data['registry_type'] == 'supplier' and
+                        child.cee_type == 'purchase'
+                    )
                 ):
                     # Prendo la parte di competenza di ogni registro e lo
                     # sommo sempre
@@ -126,19 +92,11 @@ class AccountTax(models.Model):
                     deductible += child_balance
                 else:
                     undeductible += child_balance
-            if base_balance >= 0 and tax_balance < 0:
-                base_balance = 0
-            if (hasattr(tax, "rc") and tax.rc) or tax.is_rc():
-                undeductible = tax_balance
-                deductible = 0
-            if registry_type == "supplier":
-                return (
-                    tax_name,
-                    -base_balance,
-                    -tax_balance,
-                    -deductible,
-                    -undeductible,
-                )
-            if split_payment and registry_type == "customer":
-                return (tax_name, base_balance, tax_balance, undeductible, deductible)
-            return (tax_name, base_balance, tax_balance, deductible, undeductible)
+            if registry_type == 'supplier':
+                base_balance = -base_balance
+                tax_balance = -tax_balance
+                deductible = -deductible
+                undeductible = -undeductible
+            return (
+                tax_name, base_balance, tax_balance, deductible, undeductible
+            )
