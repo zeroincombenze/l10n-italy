@@ -3,11 +3,10 @@
 {
     "name": "ITA - Emissione e-fattura con reverse charge",
     "summary": "Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.0.4",
     "development_status": "Beta",
     "category": "Hidden",
-    "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_fatturapa_out_rc",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "TAKOBI, Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",
@@ -19,7 +18,5 @@
         "l10n_it_fatturapa_in",
         "l10n_it_reverse_charge",
     ],
-    "data": [
-        "views/rc_type_views.xml",
-    ],
+    "data": [],
 }

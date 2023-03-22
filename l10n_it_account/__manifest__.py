@@ -3,18 +3,20 @@
 # Copyright 2015 Link It Spa (<http://www.linkgroup.it/>)
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# Copyright 2021-22 LibrERP enterprise network <https://www.librerp.it>
+# Copyright 2021-22 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2021-22 Didotech s.r.l. <https://www.didotech.com>
+#
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'ITA - Contabilità base',
     'summary': 'Modulo base usato come dipendenza di altri moduli contabili',
-    'version': '12.0.1.4.5',
-    "development_status": "Production/Stable",
+    'version': '12.0.1.4.5_2',
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_account',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_account',
     'license': 'AGPL-3',
     "depends": [
         'account_fiscal_year',
@@ -30,7 +32,10 @@
         'views/res_config_settings_views.xml',
         'reports/account_reports_view.xml',
         'views/account_view.xml',
+        'views/account_invoice_view.xml',
     ],
     'installable': True,
     "post_init_hook": "_l10n_it_account_post_init",
+    'pre_init_hook': 'pre_init_hook',
+    "maintainer": "powERP enterprise network",
 }

@@ -1,29 +1,32 @@
-# Copyright 2017 Davide Corio
-# Copyright 2017 Alex Comba - Agile Business Group
-# Copyright 2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2021-22 LibrERP enterprise network <https://www.librerp.it>
+# Copyright 2021-22 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2021-22 Didotech s.r.l. <https://www.didotech.com>
+#
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+#
 {
-    'name': 'ITA - Inversione contabile',
-    'version': '12.0.1.3.1',
-    'category': 'Localization/Italy',
-    'summary': 'Inversione contabile',
-    'author': 'Odoo Italia Network, Odoo Community Association (OCA)',
-    'license': 'LGPL-3',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_reverse_charge',
-    'depends': [
-        'account',
-        'account_cancel',
+    "name": "ITA - Inversione contabile",
+    "version": "12.0.1.2.7_46",
+    "category": "Localization/Italy",
+    "summary": "Inversione contabile",
+    "author": "LibrERP enterprise network and other partners",
+    "website": "https://www.librerp.it",
+    "development_status": "Beta",
+    "license": "LGPL-3",
+    "depends": [
+        "account",
+        "account_cancel",
+        "l10n_it_account_tax_kind",
+        "account_move_line_type",
+        "l10n_it_fatturapa_in",
+        "l10n_it_fatturapa_out",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/rc_type.xml',
-        'views/account_invoice_view.xml',
-        'views/account_fiscal_position_view.xml',
-        'views/account_rc_type_view.xml',
-        'security/reverse_charge_security.xml',
+    "data": [
+        "views/account_invoice_view.xml",
+        "views/account_fiscal_position_view.xml",
+        "views/account_tax_view.xml",
+        "views/account_journal_view.xml",
     ],
-    'installable': True,
+    "maintainer": "LibrERP enterprise network",
+    "installable": True,
 }

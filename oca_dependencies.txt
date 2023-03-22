@@ -7,3 +7,5 @@ intrastat-extrastat
 server-ux
 pos
 account-payment
+account-fiscal-rule
+l10n-italy-supplemental
