@@ -1,0 +1,747 @@
+2023-03-24 05:56:01,177 18924 INFO ? odoo: Odoo version 12.0 
+2023-03-24 05:56:01,178 18924 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/l10n_it_corrispettivi/tests/logs/zero12.l10n-italy.l10n_it_corrispettivi.conf 
+2023-03-24 05:56:01,178 18924 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/apps-store', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/business-requirement', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/geospatial', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/iot', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/mgmtsystem', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/manufacture-reporting', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/mis-builder-contrib', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/pos', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/project-agile', '/home/odoo/12.0/project-reporting', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2023-03-24 05:56:01,179 18924 INFO ? odoo: database: odoo12@localhost:default 
+2023-03-24 05:56:01,237 18924 INFO ? odoo.addons.server_environment.serv_config: not using server_environment_files for configuration, no directory found 
+2023-03-24 05:56:01,237 18924 INFO ? odoo.addons.server_environment.serv_config: `running_env` not found. Using default = `test`. 
+2023-03-24 05:56:01,238 18924 INFO ? odoo.addons.server_environment.serv_config: We strongly recommend against using the rc file but instead use an explicit config file or env variable. 
+2023-03-24 05:56:01,442 18924 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2023-03-24 05:56:01,684 18924 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:58346 
+2023-03-24 05:56:01,752 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading 1 modules... 
+2023-03-24 05:56:01,770 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries 
+2023-03-24 05:56:02,032 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: updating modules list 
+2023-03-24 05:56:02,047 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2023-03-24 05:56:19,500 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['l10n_it_corrispettivi'] to user __system__ #1 via n/a 
+2023-03-24 05:56:20,034 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading 34 modules... 
+2023-03-24 05:56:20,556 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: 34 modules loaded in 0.52s, 0 queries 
+2023-03-24 05:56:20,567 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading 36 modules... 
+2023-03-24 05:56:21,656 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.registry: module l10n_it_corrispettivi: creating or updating database tables 
+2023-03-24 05:56:22,190 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading l10n_it_corrispettivi/data/account_journal_data.xml 
+2023-03-24 05:56:22,257 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading l10n_it_corrispettivi/views/account_report.xml 
+2023-03-24 05:56:22,356 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading l10n_it_corrispettivi/views/account_view.xml 
+2023-03-24 05:56:22,911 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: Module l10n_it_corrispettivi: loading demo 
+2023-03-24 05:56:22,943 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.module: odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi running tests. 
+2023-03-24 05:56:22,943 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_corrispettivi_invoice_default (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:22,943 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test default values for invoice. 
+2023-03-24 05:56:23,693 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_corrispettivi_invoice_onchange (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:23,693 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test onchange methods for invoice. 
+2023-03-24 05:56:24,195 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_corrispettivi_partner_onchange (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:24,195 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test onchange in partner. 
+2023-03-24 05:56:24,375 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_corrispettivo_print_sent (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:24,375 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test receipt report. 
+2023-03-24 05:56:24,822 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/d5/d5cce68bf4bb4ab57beaf766f3fb775cf8df0c83 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('res.company(1,).logo', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('res.partner(1,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(1,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/d5/d5cce68bf4bb4ab57beaf766f3fb775cf8df0c83'
+2023-03-24 05:56:24,837 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_get_corr_fiscal_pos (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:24,837 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test that get_corr_fiscal_pos gets a receipts (corrispettivi) fiscal position 
+2023-03-24 05:56:25,017 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_get_corr_journal (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:25,017 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test that get_corr_journal gets a receipts journal or raises an UserError if none found 
+2023-03-24 05:56:25,262 18924 INFO test_l10n_it_corrispettivi_12 odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [10501] 
+2023-03-24 05:56:25,278 18924 INFO test_l10n_it_corrispettivi_12 odoo.models.unlink: User #1 deleted account.journal records with IDs: [8] 
+2023-03-24 05:56:25,284 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_invoice_creation_ko (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:25,284 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test invoice creation fails . 
+2023-03-24 05:56:25,503 18924 INFO test_l10n_it_corrispettivi_12 odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [10501] 
+2023-03-24 05:56:25,519 18924 INFO test_l10n_it_corrispettivi_12 odoo.models.unlink: User #1 deleted account.journal records with IDs: [8] 
+2023-03-24 05:56:25,539 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_invoice_creation_ok (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:25,540 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test invoice creation. 
+2023-03-24 05:56:26,014 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_invoice_refund_cancel_ok (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:26,014 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test invoice creation. 
+2023-03-24 05:56:26,715 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/63/63223421cd26ddc30d0cebce613cdaad294926fb 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 17
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(17,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image_medium', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 388
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(388,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/63/63223421cd26ddc30d0cebce613cdaad294926fb'
+2023-03-24 05:56:26,721 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/73/7397229cba4e05bcff3dec270e645ea5b9e3b946 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 17
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(17,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image_small', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 389
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(389,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/73/7397229cba4e05bcff3dec270e645ea5b9e3b946'
+2023-03-24 05:56:26,727 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/53/538290e442bbf974e9352e43331042cb2c786a07 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 17
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(17,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 387
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(387,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/53/538290e442bbf974e9352e43331042cb2c786a07'
+2023-03-24 05:56:27,279 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_invoice_refund_modify_ok (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:27,279 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test invoice creation. 
+2023-03-24 05:56:27,902 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/63/63223421cd26ddc30d0cebce613cdaad294926fb 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 19
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(19,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image_medium', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 388
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(388,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/63/63223421cd26ddc30d0cebce613cdaad294926fb'
+2023-03-24 05:56:27,907 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/73/7397229cba4e05bcff3dec270e645ea5b9e3b946 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 19
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(19,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image_small', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 389
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(389,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/73/7397229cba4e05bcff3dec270e645ea5b9e3b946'
+2023-03-24 05:56:27,912 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/53/538290e442bbf974e9352e43331042cb2c786a07 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 19
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(19,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 387
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(387,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/53/538290e442bbf974e9352e43331042cb2c786a07'
+2023-03-24 05:56:28,778 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: test_invoice_refund_ok (odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi.TestCorrispettivi) 
+2023-03-24 05:56:28,779 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: ` Test invoice creation. 
+2023-03-24 05:56:29,423 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/63/63223421cd26ddc30d0cebce613cdaad294926fb 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(22,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image_medium', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 388
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(388,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/63/63223421cd26ddc30d0cebce613cdaad294926fb'
+2023-03-24 05:56:29,428 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/73/7397229cba4e05bcff3dec270e645ea5b9e3b946 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(22,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image_small', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 389
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(389,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/73/7397229cba4e05bcff3dec270e645ea5b9e3b946'
+2023-03-24 05:56:29,432 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.base.models.ir_attachment: _read_file reading /home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/53/538290e442bbf974e9352e43331042cb2c786a07 
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('account.invoice.line(22,).product_image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.product(14,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 10
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('product.template(10,).image', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/api.py", line 1049, in get
+    value = self._data[key][field][record._ids[0]]
+KeyError: 387
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/fields.py", line 1064, in __get__
+    value = record.env.cache.get(record, self)
+  File "/home/odoo/12.0/odoo/api.py", line 1051, in get
+    raise CacheMiss(record, field)
+odoo.exceptions.CacheMiss: ('ir.attachment(387,).datas', None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/odoo/12.0/odoo/addons/base/models/ir_attachment.py", line 113, in _file_read
+    r = base64.b64encode(open(full_path,'rb').read())
+FileNotFoundError: [Errno 2] No such file or directory: '/home/odoo/.local/share/Odoo12/filestore/test_l10n_it_corrispettivi_12/53/538290e442bbf974e9352e43331042cb2c786a07'
+2023-03-24 05:56:29,832 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: Ran 11 tests in 6.889s 
+2023-03-24 05:56:29,832 18924 INFO test_l10n_it_corrispettivi_12 odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi: OK 
+2023-03-24 05:56:29,832 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.module: odoo.addons.l10n_it_corrispettivi.tests.test_corrispettivi tested in 6.89s, 4743 queries 
+2023-03-24 05:56:30,426 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.registry: module l10n_it_website_portal_corrispettivi: creating or updating database tables 
+2023-03-24 05:56:30,563 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: loading l10n_it_website_portal_corrispettivi/views/l10n_it_website_portal_corrispettivi_templates.xml 
+2023-03-24 05:56:30,631 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: Module l10n_it_website_portal_corrispettivi: loading demo 
+2023-03-24 05:56:30,662 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: 36 modules loaded in 10.09s, 4754 queries 
+2023-03-24 05:56:31,387 18924 INFO test_l10n_it_corrispettivi_12 odoo.modules.loading: Modules loaded. 
+2023-03-24 05:56:31,393 18924 INFO test_l10n_it_corrispettivi_12 odoo.service.server: Starting post tests 
+2023-03-24 05:56:31,394 18924 INFO test_l10n_it_corrispettivi_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2023-03-24 05:56:31,394 18924 INFO test_l10n_it_corrispettivi_12 odoo.service.server: Initiating shutdown 
+2023-03-24 05:56:31,394 18924 INFO test_l10n_it_corrispettivi_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36ml10n_it_corrispettivi[0m (12.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                 Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_corrispettivi/controllers/main.py                     6      3    50%   9-11
+l10n-italy/l10n_it_corrispettivi/models/account.py                      70     16    77%   12, 15, 19, 22, 36-41, 44, 51, 54, 60, 105, 122, 127-129
+l10n-italy/l10n_it_corrispettivi/wizards/account_invoice_refund.py      20      2    90%   21, 31
+--------------------------------------------------------------------------------------------------
+TOTAL                                                                   96     21    78%

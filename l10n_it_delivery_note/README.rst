@@ -142,7 +142,7 @@ Di seguito, una piccola lista di passi da seguire per portare a termine la migra
 
 4. Lanciare Odoo, nella maniera in cui si è soliti fare, aggiungendo alcuni parametri al comando d’avvio:
 
-   `./odoo-bin migratel10nitddt --database <nome_database> [...]`
+   `./odoo-bin migrate_ddt_data --database <nome_database> [...]`
 
 5. Una volta terminata l’esecuzione della procedura, verificare che tutti i documenti siano stati migrati con successo e nel modo atteso.
 
@@ -182,8 +182,6 @@ Contributors
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Letizia Freda <letizia.freda@netfarm.it>
 * Andrea Piovesana <andrea.m.piovesana@gmail.com>
-* Giovanni Serra <giovanni@gslab.it>
-* Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -201,10 +199,13 @@ promote its widespread use.
 .. |maintainer-As400it| image:: https://github.com/As400it.png?size=40px
     :target: https://github.com/As400it
     :alt: As400it
+.. |maintainer-Byloth| image:: https://github.com/Byloth.png?size=40px
+    :target: https://github.com/Byloth
+    :alt: Byloth
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-As400it| 
+|maintainer-As400it| |maintainer-Byloth| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_delivery_note>`_ project on GitHub.
 

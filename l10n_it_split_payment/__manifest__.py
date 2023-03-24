@@ -6,20 +6,25 @@
 
 {
     'name': 'Split Payment',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.0.1_11',
     'category': 'Localization/Italy',
     'summary': 'Split Payment',
     'author': 'Abstract, Agile Business Group, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_split_payment',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
+               'l10n_it_split_payment',
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'l10n_it_account',
+        'account_payment_method',
+        'account_move_line_type',
     ],
     'data': [
         'views/account_view.xml',
         'views/config_view.xml',
     ],
     'installable': True,
+    "maintainer": "powERP enterprise network",
+    'pre_init_hook': 'pre_init_hook',
 }

@@ -8,21 +8,20 @@
 
 {
     'name': 'ITA - DDT: documento di trasporto',
-    'version': '12.0.1.10.0',
+    'version': '12.0.1.10.2',
+    'version_ori': '12.0.2.9.1',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
               'Agile Business Group, Francesco Apruzzese, '
-              'Openforce di Camilli Alessandro',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_ddt',
+              'Openforce di Camilli Alessandro, Didotech srl',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_ddt',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',
         'stock_account',
         'stock_picking_package_preparation_line',
         'product_expiry',
-        'uom',
     ],
     'data': [
         'security/ir.model.access.csv',

@@ -11,8 +11,7 @@
     'category': 'Account',
     'author': "Agile Business Group,"
         "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_causali_pagamento',
+    'website': 'https://github.com/OCA/l10n-italy/',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_account',

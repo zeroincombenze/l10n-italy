@@ -9,12 +9,12 @@
 
 {
     'name': "ITA - Ricevute bancarie",
-    'version': "12.0.1.8.0",
+    'version': "12.0.1.7.0",
     'author': "Odoo Community Association (OCA)",
     'category': 'Localization/Italy',
     'summary': 'Ricevute bancarie',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_ricevute_bancarie',
+    'website': 'https://github.com/OCA/l10n-italy/tree/'
+               '12.0/l10n_it_ricevute_bancarie',
     'license': "AGPL-3",
     'depends': [
         'account',
@@ -28,7 +28,6 @@
         "data/riba_sequence.xml",
         "report/report.xml",
         "security/ir.model.access.csv",
-        "security/riba_security.xml",
         "views/wizard_accreditation.xml",
         "views/wizard_unsolved.xml",
         "views/riba_view.xml",

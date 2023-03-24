@@ -3,7 +3,7 @@
 import logging
 
 from odoo import _, models
-from odoo.tools.float_utils import float_compare, float_is_zero, float_round
+from odoo.tools.float_utils import float_compare, float_is_zero
 
 _logger = logging.getLogger(__name__)
 
@@ -151,8 +151,8 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 'indent_field': 'level',
                 'indent_unit': 2,
                 'width': 60},
-            2: {'field': 'final_balance',
-                'header': _("Final balance"),
+            2: {'field': 'period_balance',
+                'header': _("Period balance"),
                 'type': 'amount',
                 'width': 20}
         }
@@ -199,7 +199,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 1: {'field': 'partner_id',
                     'type': 'many2one',
                     'width': 60},
-                2: {'field': 'final_balance',
+                2: {'field': 'period_balance',
                     'type': 'amount',
                     'width': 20}
             })
@@ -210,7 +210,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 1 + len(cols): {'field': 'partner_id',
                                 'type': 'many2one',
                                 'width': 60},
-                2 + len(cols): {'field': 'final_balance',
+                2 + len(cols): {'field': 'period_balance',
                                 'type': 'amount',
                                 'width': 20}
             })
@@ -304,7 +304,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
             for (l, cell), (val, style, allow) in self.get_line_info().items():
                 col, row = cell
                 if allow:
-                    self.sheet.write(row, col, val, style)
+                    self.sheet.write_string(row, col, str(val), style)
 
         self.row_pos += 2
 
@@ -449,7 +449,9 @@ class AccountBalanceReportXslx(models.AbstractModel):
             else:
                 style = None
         elif cell_type == 'amount':
-            value = float_round(float(value), decimals)
+            value = self.format_value_by_lang(
+                round(float(value), decimals), decimals
+            )
             if getattr(line, 'account_group_id', False):
                 style = self.format_amount_bold_right
             else:
@@ -460,7 +462,9 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 or getattr(line, 'company_currency_id', False) \
                 or self.currency
             decimals = currency.decimal_places
-            value = float_round(float(value), decimals)
+            value = self.format_value_by_lang(
+                line.currency_id.round(float(value)), decimals
+            )
             if getattr(line, 'account_group_id', False):
                 style = self.format_amount_bold_right
             else:
@@ -468,11 +472,9 @@ class AccountBalanceReportXslx(models.AbstractModel):
             allow = True
 
         if value:
-            if isinstance(value, (int, float)) \
-                    and cell_type not in ('amount', 'amount_currency'):
+            if isinstance(value, (int, float)):
                 value = format(value, '.{}f'.format(decimals))
-            if not isinstance(value, str) \
-                    and cell_type not in ('amount', 'amount_currency'):
+            if not isinstance(value, str):
                 value = str(value)
             indent_field, indent_unit = self.get_indent_data(line, col_dict)
             if self.report.hierarchy_on != 'none' \

@@ -7,13 +7,12 @@
 
 {
     'name': 'Italian Localization - Imposta di bollo',
-    'version': '12.0.1.4.0',
+    'version': '12.0.1.2.0',
     'category': 'Localization/Italy',
     'summary': "Gestione automatica dell'imposta di bollo",
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_account_stamp',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'product',
@@ -24,7 +23,6 @@
         'views/invoice_view.xml',
         'views/product_view.xml',
         'views/company_view.xml',
-        "views/account_invoice_report.xml",
     ],
     'installable': True,
 }

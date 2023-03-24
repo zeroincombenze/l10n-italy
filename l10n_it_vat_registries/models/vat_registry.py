@@ -31,6 +31,7 @@ class ReportRegistroIva(models.AbstractModel):
                 data['form']['from_date'], date_format),
             'to_date': self._format_date(
                 data['form']['to_date'], date_format),
+            'filter_date': data['form']['filter_date'],
             'registry_type': data['form']['registry_type'],
             'invoice_total': self._get_move_total,
             'tax_registry_name': data['form']['tax_registry_name'],
@@ -111,9 +112,10 @@ class ReportRegistroIva(models.AbstractModel):
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
 
+            # refactoring con utilizzo del campo type al posto di move_type
             if (
-                'receivable' in move.move_type or
-                'payable_refund' == move.move_type
+                'out_invoice' in move.type or
+                'in_refund' == move.type
             ):
                 # otherwise refund would be positive and invoices
                 # negative.
@@ -150,7 +152,8 @@ class ReportRegistroIva(models.AbstractModel):
         # sono più codici IVA
         index = 0
         invoice = self._get_invoice_from_move(move)
-        if 'refund' in move.move_type:
+
+        if 'refund' in move.type:
             invoice_type = "NC"
         else:
             invoice_type = "FA"
@@ -193,21 +196,20 @@ class ReportRegistroIva(models.AbstractModel):
         return inv_taxes, used_taxes
 
     def _get_move_total(self, move):
-
         total = 0.0
         receivable_payable_found = False
         for move_line in move.line_ids:
-            if move_line.account_id.internal_type == 'receivable':
+            if move_line.line_type == 'receivable':
                 total += move_line.debit or (- move_line.credit)
                 receivable_payable_found = True
-            elif move_line.account_id.internal_type == 'payable':
+            elif move_line.line_type == 'payable':
                 total += (- move_line.debit) or move_line.credit
                 receivable_payable_found = True
         if receivable_payable_found:
             total = abs(total)
         else:
             total = abs(move.amount)
-        if 'refund' in move.move_type:
+        if 'refund' in move.type:
             total = -total
         return total
 
@@ -217,4 +219,17 @@ class ReportRegistroIva(models.AbstractModel):
             A tuple: (tax_name, base, tax, deductible, undeductible)
 
         """
-        return tax._compute_totals_tax(data)
+        context = {
+            'from_date': data['from_date'],
+            'to_date': data['to_date'],
+            'filter_date': data['filter_date'],
+        }
+        registry_type = data.get('registry_type', 'customer')
+        context.update({'registry_type': registry_type})
+        # journal needed to filter move lines
+        if data['journal_ids']:
+            context.update({'registry_ids': data['journal_ids']})
+        # end if
+
+        return tax.compute_totals_tax(context)
+

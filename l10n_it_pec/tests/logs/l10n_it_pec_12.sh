@@ -1,0 +1,1 @@
+cd /home/odoo/12.0; /home/odoo/12.0/odoo-bin --stop-after-init -d test_l10n_it_pec_12 --config=/home/odoo/12.0/l10n-italy/l10n_it_pec/tests/logs/zero12.l10n-italy.l10n_it_pec.conf --log-level=error -i base,base_setup,bus,mail,web,web_tour

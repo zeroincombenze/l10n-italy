@@ -10,8 +10,7 @@
     'category': 'Hidden',
     'author': "Agile Business Group, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_invoices_data_communication_fatturapa',
+    'website': 'https://github.com/OCA/l10n-italy/',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_invoices_data_communication',

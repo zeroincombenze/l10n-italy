@@ -61,7 +61,7 @@ class AccountGroup(models.Model):
                         accounts_message += _("\nSign: %s, accounts: %s\n") % (
                             sign, ", ".join(
                                 accounts_by_sign[sign].mapped("name")[:50]))
-                    # [antoniov: 2021-09-22] POW-507 - Conflicts with Powerp
+                    # [antoniov: 2021-09-22] POW-507 - Conflicts with Librerp
                     # raise ValidationError(
                     #     _("Incoherent balance signs for '{}' and its subgroups:\n{}")
                     #     .format(progenitor.name_get()[0][-1], accounts_message)

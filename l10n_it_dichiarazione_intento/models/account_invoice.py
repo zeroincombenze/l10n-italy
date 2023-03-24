@@ -181,6 +181,8 @@ class AccountInvoice(models.Model):
                         invoice.dichiarazione_intento_ids = [
                             (4, dichiarazione.id)]
                         if invoice.type in ("out_invoice", "out_refund"):
+                            # FIX Silvio Gregorini
+                            # 12.0-FIX-l10n_it_dichiarazione_intento
                             cmt = invoice.comment or ""
                             msg = "Vostra dichiarazione d'intento del %s,"\
                                   " protocollo telematico nr %s."\
@@ -193,7 +195,6 @@ class AccountInvoice(models.Model):
                                 else:
                                     cmt = msg
                             invoice.comment = cmt
-
         return res
 
     @api.multi

@@ -13,8 +13,7 @@
               "Apulia Software, "
               "Odoo Italia Network, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_fiscalcode',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': ['base_vat'],
     'external_dependencies': {

@@ -48,6 +48,13 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="launch_wizard_generate_open"
+                            string="Apertura bene"
+                            type="object"
+                            attrs="{'invisible': [
+                            '|', ('state', '!=', 'non_depreciated'),
+                            ('purchase_invoice_id', '!=', False)]}"
+                    />
                     <button name="launch_wizard_generate_depreciations"
                             string="Generate depreciations"
                             context="{'allow_reload_window': True}"
@@ -93,7 +100,7 @@
                             <field name="purchase_amount"/>
                             <field name="supplier_ref"/>
                         </group>
-                        <group name="purchase_info"
+                        <group name="sale_info"
                                string="Sale Info">
                             <field name="sale_invoice_id"
                                    attrs="{'invisible': [('sale_invoice_id', '=', False)], 'readonly': [('sale_invoice_id', '!=', False)]}"/>
@@ -102,6 +109,7 @@
                             <field name="customer_id"/>
                             <field name="sale_date"/>
                             <field name="sale_amount"/>
+                            <field name="partial_dismiss_percentage" />
                             <field name="sold"/>
                         </group>
                     </group>
@@ -111,7 +119,7 @@
                                 <field name="depreciation_ids"
                                        context="{'default_asset_id':id}"
                                        nolabel="1">
-                                    <tree>
+                                    <tree create="false" edit="false" delete="false">
                                         <field name="asset_id" invisible="1"/>
                                         <field name="type_id"/>
                                         <field name="mode_id"/>
@@ -122,7 +130,7 @@
                                         <field name="amount_depreciable"/>
                                         <field name="amount_depreciable_updated"/>
                                         <field name="amount_depreciated"/>
-                                        <field name="last_depreciation_date"/>
+                                        <!-- <field name="last_depreciation_date"/> -->
                                         <field name="amount_residual"/>
                                         <field name="state" invisible="1" force_save="1"/>
                                         <field name="currency_id"

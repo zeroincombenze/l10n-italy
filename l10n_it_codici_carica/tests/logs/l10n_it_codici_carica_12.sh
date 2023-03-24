@@ -1,0 +1,1 @@
+cd /home/odoo/12.0; /home/odoo/12.0/odoo-bin --stop-after-init -d test_l10n_it_codici_carica_12 --config=/home/odoo/12.0/l10n-italy/l10n_it_codici_carica/tests/logs/zero12.l10n-italy.l10n_it_codici_carica.conf --log-level=error -i account,analytic,base,base_setup,bus,decimal_precision,digest,http_routing,mail,portal,product,uom,web,web_tour

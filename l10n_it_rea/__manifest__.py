@@ -7,14 +7,13 @@
 
 {
     'name': 'ITA - Registro REA',
-    'version': '12.0.1.0.4',
+    'version': '12.0.1.0.3',
     'category': 'Localisation/Italy',
     'development_status': 'Production/Stable',
     'summary': 'Gestisce i campi del Repertorio Economico Amministrativo',
     'author': 'Agile Business Group, Odoo Italia Network,'
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_rea',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_rea',
     'license': 'AGPL-3',
     "depends": [
         'account'

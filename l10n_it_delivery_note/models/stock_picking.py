@@ -242,18 +242,16 @@ class StockPicking(models.Model):
                 not self.user_has_groups('l10n_it_delivery_note.'
                                          'use_advanced_delivery_notes'):
 
-            delivery_note = self._create_delivery_note()
+            partners = self.get_partners()
+            delivery_note = self.env['stock.delivery.note'].create({
+                'partner_sender_id': partners[0].id,
+                'partner_id': partners[1].id,
+                'partner_shipping_id': partners[1].id
+            })
+
             self.write({'delivery_note_id': delivery_note.id})
 
         return res
-
-    def _create_delivery_note(self):
-        partners = self.get_partners()
-        return self.env['stock.delivery.note'].create({
-            'partner_sender_id': partners[0].id,
-            'partner_id': partners[1].id,
-            'partner_shipping_id': partners[1].id
-        })
 
     def delivery_note_update_transport_datetime(self):
         self.delivery_note_id.update_transport_datetime()
@@ -294,8 +292,6 @@ class StockPicking(models.Model):
 
         if not src_partner_id:
             src_partner_id = partner_id
-            if not dest_partner_id:
-                dest_partner_id = self.mapped('move_lines.partner_id')
 
             if not dest_partner_id:
                 raise ValueError(
@@ -345,13 +341,3 @@ class StockPicking(models.Model):
                 self.mapped('delivery_note_id').update_detail_lines()
 
         return res
-
-    def _create_backorder(self, backorder_moves=None):
-        """When we make a backorder of a picking in a return request, we
-           want to have it linked to the return request itself """
-        if backorder_moves is None:
-            backorder_moves = []
-        backorders = super()._create_backorder(backorder_moves)
-        for backorder in backorders:
-            backorder.backorder_id.delivery_note_id.update_detail_lines()
-        return backorders

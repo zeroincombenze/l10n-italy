@@ -20,7 +20,7 @@ class StockPickingCarriageCondition(models.Model):
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
 
-    name = fields.Char(string='Carriage Condition', required=True)
+    name = fields.Char(string='Carriage Condition', translate=True, required=True)
     note = fields.Text(string='Note')
 
 
@@ -29,7 +29,7 @@ class StockPickingGoodsDescription(models.Model):
     _name = 'stock.picking.goods_description'
     _description = "Description of Goods"
 
-    name = fields.Char(string='Description of Goods', required=True)
+    name = fields.Char(string='Description of Goods', translate=True, required=True)
     note = fields.Text(string='Note')
 
 
@@ -38,7 +38,7 @@ class StockPickingTransportationReason(models.Model):
     _name = 'stock.picking.transportation_reason'
     _description = 'Reason for Transportation'
 
-    name = fields.Char(string='Reason For Transportation', required=True)
+    name = fields.Char(string='Reason For Transportation', translate=True, required=True)
     note = fields.Text(string='Note')
     to_be_invoiced = fields.Boolean(string='To be Invoiced')
 
@@ -48,7 +48,7 @@ class StockPickingTransportationMethod(models.Model):
     _name = 'stock.picking.transportation_method'
     _description = 'Method of Transportation'
 
-    name = fields.Char(string='Method of Transportation', required=True)
+    name = fields.Char(string='Method of Transportation', translate=True, required=True)
     note = fields.Text(string='Note')
 
 
@@ -72,9 +72,6 @@ class StockDdtType(models.Model):
     default_transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         string='Default Method of Transportation')
-    default_note = fields.Text(
-        string='Default Note',
-    )
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
         default=lambda self: self.env.user.company_id.id)
@@ -104,16 +101,16 @@ class StockPickingPackagePreparation(models.Model):
     partner_shipping_id = fields.Many2one(
         'res.partner', string="Shipping Address")
     carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition', string='Carriage Condition')
+        'stock.picking.carriage_condition', string='Carriage Condition', translate=True)
     goods_description_id = fields.Many2one(
         'stock.picking.goods_description',
-        string='Description of Goods')
+        string='Description of Goods', translate=True)
     transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        string='Reason for Transportation')
+        string='Reason for Transportation', translate=True)
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
-        string='Method of Transportation')
+        string='Method of Transportation', translate=True)
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
     carrier_tracking_ref = fields.Char(string='Tracking Reference', copy=False)
@@ -187,7 +184,6 @@ class StockPickingPackagePreparation(models.Model):
                 self.partner_id.transportation_method_id.id
                 if self.partner_id.transportation_method_id
                 else self.ddt_type_id.default_transportation_method_id)
-            self.note = self.ddt_type_id.default_note
 
     @api.model
     def check_linked_picking(self, picking):
@@ -195,7 +191,7 @@ class StockPickingPackagePreparation(models.Model):
         if ddt:
             raise UserError(
                 _("Selected Picking is already linked to TD: %s")
-                % ", ".join(ddt.mapped("display_name"))
+                % ddt.display_name
             )
 
     @api.multi
@@ -323,11 +319,17 @@ class StockPickingPackagePreparation(models.Model):
         a clean extension chain).
         """
         self.ensure_one()
+
+        journal_id_default = self.env['account.invoice'].default_get(
+            ['journal_id']
+        )['journal_id']
+
         order = self._get_sale_order_ref()
         if order:
             # Most of the values will be overwritten below,
             # but this preserves inheritance chain
             res = order._prepare_invoice()
+            journal_id = res.get('journal_id', journal_id_default)
         else:
             # Initialise res with the fields in sale._prepare_invoice
             # that won't be overwritten below
@@ -337,10 +339,9 @@ class StockPickingPackagePreparation(models.Model):
                     self.partner_id.address_get(['delivery'])['delivery'],
                 'company_id': self.company_id.id
             }
-        journal_id = self._context.get('invoice_journal_id', False)
-        if not journal_id:
-            journal_id = self.env['account.invoice'].default_get(
-                ['journal_id'])['journal_id']
+            journal_id = self._context.get('invoice_journal_id', journal_id_default)
+        # end if
+
         if not journal_id:
             raise UserError(
                 _('Please define an accounting sale journal for this company.')
@@ -385,9 +386,6 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
-            'weight_manual_uom_id': self.weight_manual_uom_id.id,
-            'gross_weight_uom_id': self.gross_weight_uom_id.id,
-            'volume_uom_id': self.volume_uom_id.id,
         })
         return res
 
@@ -452,6 +450,12 @@ class StockPickingPackagePreparation(models.Model):
             if not td.to_be_invoiced or td.invoice_id:
                 continue
 
+            for line in td.line_ids:
+                if line.sale_line_id.invoice_status != 'invoiced':
+                    break
+            else:
+                continue
+
             group_key = td.get_td_group_key()
             if group_key not in grouped_invoices:
                 inv_data = td._prepare_invoice()
@@ -472,7 +476,7 @@ class StockPickingPackagePreparation(models.Model):
                 })
 
             for line in td.line_ids:
-                if line.product_uom_qty > 0:
+                if line.product_uom_qty > 0 and line.sale_line_id.invoice_status != 'invoiced':
                     line.invoice_line_create(invoice.id, line.product_uom_qty)
 
             # Allow additional operations from td

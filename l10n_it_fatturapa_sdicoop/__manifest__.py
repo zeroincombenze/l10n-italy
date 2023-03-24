@@ -18,4 +18,5 @@
     'data': [
         'data/sdi_channel_data.xml',
     ],
+    'installable': False,
 }

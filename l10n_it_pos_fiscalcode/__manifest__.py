@@ -8,8 +8,7 @@
     "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "Point Of Sale",
-    "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_pos_fiscalcode",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",

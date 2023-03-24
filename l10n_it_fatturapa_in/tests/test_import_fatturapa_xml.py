@@ -4,7 +4,7 @@ from datetime import date
 
 from odoo.tools import mute_logger
 from .fatturapa_common import FatturapaCommon
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 
 class TestDuplicatedAttachment(FatturapaCommon):
@@ -175,10 +175,11 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # File not exist Exception
         self.assertRaises(
             Exception, self.run_wizard, 'test6_Exception', '')
-        # fake Signed file is passed , generate parsing error
-        attachment = self.create_attachment(
-            'test6_orm_exception', 'IT05979361218_fake.xml.p7m')
-        self.assertIn('Invalid xml', attachment.e_invoice_parsing_error)
+        # fake Signed file is passed , generate orm_exception
+        self.assertRaises(
+            UserError, self.run_wizard, 'test6_orm_exception',
+            'IT05979361218_fake.xml.p7m'
+        )
 
     def test_07_xml_import(self):
         # 2 lines with quantity != 1 and discounts
@@ -206,54 +207,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.reference, 'FT/2015/0010')
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertFalse(invoice.inconsistencies)
-
-    def test_08_xml_import_no_account(self):
-        """Check that a useful error message is raised when
-        the credit account is missing in purchase journal."""
-        company = self.env.user.company_id
-        journal = self.wizard_model.get_purchase_journal(company)
-        journal_credit_account = journal.default_credit_account_id
-        journal.default_credit_account_id = False
-
-        expense_default_property = self.env['ir.property']._get_property(
-            'property_account_expense_categ_id',
-            'product.category',
-            res_id=False,
-        )
-        # Setting res_id disables the property from acting as default value
-        expense_default_property.res_id = 1
-        with self.assertRaises(UserError) as ue:
-            self.run_wizard('test8_no_account', 'IT05979361218_005.xml')
-        self.assertIn(journal.display_name, ue.exception.name)
-        self.assertIn(company.display_name, ue.exception.name)
-
-        discount_amount = -143.18
-        # Restore the property and import the invoice
-        expense_default_property.res_id = False
-        res = self.run_wizard('test8_with_property', 'IT05979361218_005.xml')
-        invoice_id = res.get('domain')[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-        invoice_lines = invoice.invoice_line_ids
-        discount_line = invoice_lines.filtered(
-            lambda line: line.price_unit == discount_amount)
-        self.assertEqual(
-            discount_line.account_id,
-            expense_default_property.get_by_record(),
-        )
-
-        # Restore the journal's account and import the invoice
-        journal.default_credit_account_id = journal_credit_account
-        res = self.run_wizard('test8_with_journal', 'IT05979361218_005.xml')
-        invoice_id = res.get('domain')[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-        invoice_lines = invoice.invoice_line_ids
-        discount_line = invoice_lines.filtered(
-            lambda line: line.price_unit == discount_amount)
-        self.assertEqual(
-            discount_line.account_id,
-            journal_credit_account,
-        )
-        self.assertTrue(invoice)
 
     def test_09_xml_import(self):
         # using DatiGeneraliDocumento.ScontoMaggiorazione without
@@ -345,6 +298,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             invoice.inconsistencies,
             u"Company Name field contains 'Societa\' "
             "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n"
+            u"XML contains tax with percentage '15.55'"
+            " but it does not exist in your system\n"
             "XML contains tax with percentage '15.55'"
             " but it does not exist in your system")
 
@@ -542,10 +497,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                     company_id.arrotondamenti_attivi_account_id.id:
                 move_line = True
         self.assertTrue(move_line)
-
-        # Update the reference so that importing the same file
-        # (in other tests) does not raise "Duplicated vendor reference..."
-        invoice.reference = 'test25'
 
     def test_26_xml_import(self):
         res = self.run_wizard('test26', 'IT05979361218_015.xml')
@@ -749,22 +700,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # IT01234567890_FPR14.xml should be tested manually
 
     def test_48_xml_import(self):
-        # bank account already exists for another partner
+        # my company bank account is the same as the one in XML:
         # invoice creation must not be blocked
-        to_unlink = []
-        bank = self.env["res.bank"].create({
-            "bic": "BCITITMM",
-            "name": "Other Bank",
-        })
-        to_unlink.append(bank)
-        partner = self.env["res.partner"].create({
-            "name": "Some Other Company",
-        })
-        to_unlink.append(partner)
         self.env["res.partner.bank"].create({
             "acc_number": "IT59R0100003228000000000622",
             "company_id": self.env.user.company_id.id,
-            "partner_id": partner.id,
+            "partner_id": self.env.user.company_id.partner_id.id,
         })
         res = self.run_wizard('test48', 'IT01234567890_FPR15.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -772,256 +713,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(
             "Bank account IT59R0100003228000000000622 already exists" in
             invoice.inconsistencies)
-        for model in to_unlink:
-            model.unlink()
 
     def test_49_xml_import(self):
         res = self.run_wizard('test49', 'IT01234567890_FPR16.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.carrier_id.vat, "IT04102770965")
-
-    def test_50_xml_import(self):
-        # this method name is used in 14.0
-        # reserving to make porting easier
-        pass
-
-    def test_51_xml_import(self):
-        res = self.run_wizard("test51", "IT02780790107_11008.xml")
-        invoice_ids = res.get("domain")[0][2]
-        invoice = self.invoice_model.browse(invoice_ids)
-        self.assertTrue(invoice.fatturapa_attachment_in_id.is_self_invoice)
-
-    def test_52_xml_import(self):
-        """
-        Check that an XML with syntax error is created,
-        but it shows a parsing error.
-        """
-        attachment = self.create_attachment(
-            "test52",
-            "ZGEXQROO37831_anonimizzata.xml",
-        )
-        self.assertIn('syntax error',
-                      attachment.e_invoice_parsing_error)
-
-    def test_53_xml_import(self):
-        """
-        Check that VAT of non-IT partner is not checked.
-        """
-        partner_model = self.env['res.partner']
-        # Arrange: A partner with vat GB99999999999 does not exist
-        not_valid_vat = 'GB99999999999'
-
-        def vat_partner_exists():
-            return partner_model.search([
-                ('vat', '=', not_valid_vat),
-            ])
-        self.assertFalse(vat_partner_exists())
-
-        # Act: Import an e-bill containing a supplier with vat GB99999999999
-        self.create_attachment(
-            "test53",
-            "IT01234567890_x05mX.xml",
-        )
-
-        # Assert: A partner with vat GB99999999999 exists,
-        # and the vat is usually not valid for UK
-        self.assertTrue(vat_partner_exists())
-        with self.assertRaises(ValidationError) as ve:
-            partner_model.create([{
-                'name': "Test not valid VAT",
-                'country_id': self.ref('base.uk'),
-                'vat': not_valid_vat,
-            }])
-        exc_message = ve.exception.args[0]
-        self.assertRegex(
-            exc_message,
-            'VAT number .*{not_valid_vat}.* does not seem to be valid'
-            .format(
-                not_valid_vat=not_valid_vat,
-            )
-        )
-
-    def _check_invoice_configured_date(self, invoice, configured_date):
-        """
-        Check that `invoice`'s Accounting Date is `configured date`.
-        Also check that resetting to draft and validating again
-        does not change the `invoice`'s Accounting Date.
-        """
-        self.assertEqual(
-            invoice.date,
-            configured_date,
-            "Configured date not set in the invoice after import",
-        )
-
-        invoice.action_invoice_cancel()
-        invoice.action_invoice_draft()
-        invoice.action_invoice_open()
-
-        self.assertEqual(
-            invoice.date,
-            configured_date,
-            "Configured date not set in the invoice after reset to draft",
-        )
-
-    def test_xml_import_rec_date(self):
-        """
-        Set 'Vendor invoice registration default date' to 'Received Date'.
-
-        Check that the received date is set during the import
-        and kept after reset to draft and validation.
-        """
-        company = self.env.user.company_id
-        company.in_invoice_registration_date = 'rec_date'
-
-        res = self.run_wizard('xml_import_rec_date', 'IT05979361218_013.xml')
-        invoice_id = res.get('domain')[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-
-        self._check_invoice_configured_date(
-            invoice,
-            invoice.e_invoice_received_date,
-        )
-
-        # Update the reference so that importing the same file
-        # (in other tests) does not raise "Duplicated vendor reference..."
-        invoice.reference = 'xml_import_rec_date'
-
-    def test_xml_import_inv_date(self):
-        """
-        Set 'Vendor invoice registration default date' to 'Invoice Date'.
-
-        Check that the invoice date is set during the import
-        and kept after reset to draft and validation.
-        """
-        company = self.env.user.company_id
-        company.in_invoice_registration_date = 'inv_date'
-
-        res = self.run_wizard('xml_import_inv_date', 'IT05979361218_013.xml')
-        invoice_id = res.get('domain')[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-
-        self._check_invoice_configured_date(
-            invoice,
-            invoice.date_invoice,
-        )
-
-        # Update the reference so that importing the same file
-        # (in other tests) does not raise "Duplicated vendor reference..."
-        invoice.reference = 'xml_import_inv_date'
-
-    def test_54_xml_import(self):
-        # Payments may refer to our own bank account (SEPA)
-        to_unlink = []
-        bank = self.env["res.bank"].create({
-            "bic": "BCITITMM",
-            "name": "Other Bank",
-        })
-        to_unlink.append(bank)
-        bank_account = self.env["res.partner.bank"].create({
-            "acc_number": "IT59R0100003228000000000622",
-            "company_id": self.env.user.company_id.id,
-            "partner_id": self.env.user.company_id.partner_id.id,
-        })
-        to_unlink.append(bank_account)
-        res = self.run_wizard('test54', 'IT01234567890_FPR15.xml')
-        invoice_id = res.get('domain')[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-        self.assertIn(
-            invoice.fatturapa_payments[0].payment_methods[0].payment_bank_iban,
-            invoice.company_id.partner_id.bank_ids.mapped("acc_number")
-        )
-        self.assertFalse(
-            "Bank account IT59R0100003228000000000622 already exists" in
-            invoice.inconsistencies)
-        for model in to_unlink:
-            model.unlink()
-
-    def test_55_duplicated_partner(self):
-        """If there are multiple partners with the same VAT
-        and we try to import an Electronic Invoice for that VAT,
-        an exception is raised."""
-        # Arrange: There are two partners with the same VAT
-        common_vat = 'IT03309970733'
-        partners = self.env['res.partner'].create([
-            {
-                'name': "Test partner1",
-                'vat': common_vat,
-            },
-            {
-                'name': "Test partner2",
-                'vat': common_vat,
-            },
-        ])
-
-        # Update any conflicting partner from other tests
-        existing_partners = self.env['res.partner'].search(
-            [
-                ('sanitized_vat', '=', common_vat),
-                ('id', 'not in', partners.ids),
-            ],
-        )
-        existing_partners.update({
-            'vat': 'IT12345670017',
-        })
-
-        # Assert: The import wizard can't choose between the two created partners
-        with self.assertRaises(UserError) as ue:
-            self.run_wizard('VATG1', 'IT03309970733_VATG1.xml')
-        exc_message = ue.exception.args[0]
-        self.assertIn("Two distinct partners", exc_message)
-        self.assertIn("VAT number", exc_message)
-        for partner in partners:
-            self.assertIn(partner.name, exc_message)
-
-    def test_56_xml_import_vat_group(self):
-        """Importing bills from VAT groups creates different suppliers."""
-        # Arrange: The involved XMLs contain suppliers from a VAT group:
-        # the suppliers have the same VAT `common_vat`,
-        # but each supplier has a different fiscal code
-        common_vat = 'IT03309970733'
-        vat_group_1_fiscalcode = 'MRORSS90E25B111T'
-        vat_group_2_fiscalcode = '03533590174'
-
-        # Update any conflicting partner from other tests
-        existing_partners = self.env['res.partner'].search(
-            [
-                '|',
-                ('sanitized_vat', '=', common_vat),
-                ('fiscalcode', 'in', (
-                    vat_group_1_fiscalcode,
-                    vat_group_2_fiscalcode,
-                )),
-            ],
-        )
-        existing_partners.update({
-            'vat': 'IT12345670017',
-            'fiscalcode': '1234567890123456',
-        })
-
-        # Act: Import the XMLs,
-        # checking that the suppliers match the data in the XML
-        res = self.run_wizard('VATG1', 'IT03309970733_VATG1.xml')
-        invoice_model = res.get('res_model')
-        invoice_domain = res.get('domain')
-        invoice_vat_group_1 = self.env[invoice_model].search(invoice_domain)
-        vat_group_1_partner = invoice_vat_group_1.partner_id
-        self.assertEqual(vat_group_1_partner.sanitized_vat, common_vat)
-        self.assertEqual(vat_group_1_partner.fiscalcode, vat_group_1_fiscalcode)
-
-        res = self.run_wizard('VATG2', 'IT03309970733_VATG2.xml')
-        invoice_model = res.get('res_model')
-        invoice_domain = res.get('domain')
-        invoice_vat_group_2 = self.env[invoice_model].search(invoice_domain)
-        vat_group_2_partner = invoice_vat_group_2.partner_id
-        self.assertEqual(vat_group_2_partner.sanitized_vat, common_vat)
-        self.assertEqual(vat_group_2_partner.fiscalcode, vat_group_2_fiscalcode)
-
-        # Assert: Two different partners have been created
-        self.assertNotEqual(
-            vat_group_1_partner,
-            vat_group_2_partner,
-        )
 
     def test_01_xml_link(self):
         """

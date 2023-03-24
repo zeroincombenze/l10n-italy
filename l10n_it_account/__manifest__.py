@@ -16,7 +16,8 @@
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_account',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_account',
     'license': 'AGPL-3',
     "depends": [
         'account_fiscal_year',
@@ -37,5 +38,5 @@
     'installable': True,
     "post_init_hook": "_l10n_it_account_post_init",
     'pre_init_hook': 'pre_init_hook',
-    "maintainer": "powERP enterprise network",
+    "maintainer": "LibrERP enterprise network",
 }

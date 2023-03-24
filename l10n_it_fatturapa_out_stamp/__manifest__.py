@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2018 Lorenzo Battistini
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
@@ -7,8 +8,7 @@
     "version": "12.0.2.0.0",
     "development_status": "Beta",
     "category": "Hidden",
-    "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_fatturapa_out_stamp",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",

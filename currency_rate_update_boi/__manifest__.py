@@ -9,8 +9,6 @@
     'author':
         'TAKOBI, '
         'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/currency_rate_update_boi',
     'maintainers': ['eLBati'],
     'license': 'AGPL-3',
     'installable': True,

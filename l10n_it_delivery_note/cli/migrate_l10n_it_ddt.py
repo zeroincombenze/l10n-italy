@@ -93,8 +93,7 @@ class MigrateL10nItDdt(EasyCommand):
                 "You don't need to run this command."
             ))
 
-        new_sequence = self.env.ref(
-            'l10n_it_delivery_note_base.delivery_note_sequence_ddt')
+        new_sequence = self.env.ref('l10n_it_delivery_note.delivery_note_sequence_ddt')
         if new_sequence.number_next_actual > 1:
             raise ValidationError(_(
                 "It seems that at least one delivery note has been "
@@ -213,7 +212,7 @@ class MigrateL10nItDdt(EasyCommand):
         DeliveryNoteType = self.env['stock.delivery.note.type']
 
         old_type = self.env.ref('l10n_it_ddt.ddt_type_ddt')
-        new_type = self.env.ref('l10n_it_delivery_note_base.delivery_note_type_ddt')
+        new_type = self.env.ref('l10n_it_delivery_note.delivery_note_type_ddt')
         new_type.write({'sequence_id': old_type.sequence_id.id})
 
         self.env.cr.execute("""

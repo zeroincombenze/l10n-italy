@@ -1,0 +1,1 @@
+cd /home/odoo/12.0; /home/odoo/12.0/odoo-bin --stop-after-init -d test_currency_rate_update_boi_12 --config=/home/odoo/12.0/l10n-italy/currency_rate_update_boi/tests/logs/zero12.l10n-italy.currency_rate_update_boi.conf --log-level=error -i account,analytic,base,base_setup,bus,currency_rate_update,decimal_precision,digest,http_routing,mail,portal,product,uom,web,web_tour

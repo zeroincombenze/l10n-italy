@@ -48,8 +48,10 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     AllegatiType,
     ScontoMaggiorazioneType,
     CodiceArticoloType,
-    AltriDatiGestionaliType
+    AltriDatiGestionaliType,
+    DataFatturaType
 )
+from datetime import date
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
 
@@ -62,6 +64,10 @@ try:
     from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 except ImportError as err:
     _logger.debug(err)
+
+FORMATO_TRASMISSIONE_PA = 'FPA12'  # Valid for Format 1.2 and 1.2.1
+FORMATO_TRASMISSIONE_PR = 'FPR12'  # Valid for Format 1.2 and 1.2.1
+# SOFTWARE_IN_USE = 'powERP'
 
 
 def id_generator(
@@ -80,6 +86,8 @@ class FatturapaBDS(domutils.BindingDOMSupport):
             # We have to use directly the string value
             # instead of letting PyXB edit it
             return str(value)
+        elif isinstance(value, (DataFatturaType, date)):
+            value = value.date()
         return super(FatturapaBDS, self) \
             .valueAsText(value, enable_default_namespace)
 
@@ -90,20 +98,6 @@ fatturapaBDS = FatturapaBDS()
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export E-invoice"
-
-    @api.model
-    def _to_EUR(self, amount, invoice):
-        currency = invoice.currency_id
-        euro = self.env.ref('base.EUR')
-        if currency == euro:
-            return amount
-        return currency._convert(
-            amount,
-            euro,
-            invoice.company_id,
-            invoice.date_invoice,
-            False
-        )
 
     @api.model
     def _domain_ir_values(self):
@@ -179,12 +173,12 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setFormatoTrasmissione(self, partner, fatturapa):
-        if partner.is_pa:
+        if partner.is_pa or partner.parent_id and partner.parent_id.is_pa:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-                FormatoTrasmissione = 'FPA12'
+                FormatoTrasmissione = FORMATO_TRASMISSIONE_PA
         else:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
-                FormatoTrasmissione = 'FPR12'
+                FormatoTrasmissione = FORMATO_TRASMISSIONE_PR
 
         return True
 
@@ -214,13 +208,11 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
-        Telefono = company.phone_electronic_invoice or company.phone
+        Telefono = company.phone
         Email = company.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ContattiTrasmittente = ContattiTrasmittenteType(
-                Telefono=Telefono or None,
-                Email=Email or None
-            )
+                Telefono=Telefono or None, Email=Email or None)
 
         return True
 
@@ -515,6 +507,7 @@ class WizardExportFatturapa(models.TransientModel):
             if not partner.zip:
                 raise UserError(
                     _('Customer ZIP not set for %s.' % partner.name))
+
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
                 IndirizzoType(
                     Indirizzo=encode_for_export(partner.street, 60),
@@ -557,15 +550,12 @@ class WizardExportFatturapa(models.TransientModel):
 
         TipoDocumento = invoice.fiscal_document_type_id.code
         ImportoTotaleDocumento = invoice.amount_total
-        if invoice.split_payment:
-            ImportoTotaleDocumento += invoice.amount_sp
-        Divisa = invoice.currency_id.name
-        if not invoice.company_id.xml_divisa_value == 'keep_orig':
-            Divisa = self.env.ref('base.EUR').name
-            ImportoTotaleDocumento = self._to_EUR(ImportoTotaleDocumento, invoice)
+        # unecessary total has sp now
+        # if invoice.split_payment:
+        #     ImportoTotaleDocumento += invoice.amount_sp
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
-            Divisa=Divisa,
+            Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
             Numero=invoice.number,
             ImportoTotaleDocumento='%.2f' % float_round(ImportoTotaleDocumento, 2))
@@ -640,9 +630,6 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _get_prezzo_unitario(self, line):
         res = line.price_unit
-        if line.quantity < 0:
-            res = -1 * line.price_unit
-
         if (
             line.invoice_line_tax_ids and
             line.invoice_line_tax_ids[0].price_include
@@ -654,7 +641,6 @@ class WizardExportFatturapa(models.TransientModel):
     def setDettaglioLinee(self, invoice, body):
 
         body.DatiBeniServizi = DatiBeniServiziType()
-        # TipoCessionePrestazione not handled
 
         line_no = 1
         price_precision = self.env['decimal.precision'].precision_get(
@@ -666,20 +652,10 @@ class WizardExportFatturapa(models.TransientModel):
             'Product Unit of Measure')
         if uom_precision < 2:
             uom_precision = 2
-        for line in self._get_e_invoice_lines(invoice):
+        for line in invoice.invoice_line_ids:
             self.setDettaglioLinea(
                 line_no, line, body, price_precision, uom_precision)
             line_no += 1
-
-    @api.model
-    def _get_e_invoice_lines(self, invoice):
-        """
-        Invoice lines are not all to be translated to e-invoice lines.
-
-        For instance, some invoice lines will be translated
-        to DatiCassaPrevidenziale nodes.
-        """
-        return invoice.invoice_line_ids
 
     def setDettaglioLinea(
         self, line_no, line, body, price_precision, uom_precision
@@ -693,29 +669,21 @@ class WizardExportFatturapa(models.TransientModel):
         aliquota = line.invoice_line_tax_ids[0].amount
         AliquotaIVA = '%.2f' % float_round(aliquota, 2)
         line.ftpa_line_number = line_no
-        prezzo_unitario = self._to_EUR(self._get_prezzo_unitario(line), line.invoice_id)
-        quantity = abs(line.quantity)
+        prezzo_unitario = self._get_prezzo_unitario(line)
         DettaglioLinea = DettaglioLineeType(
             NumeroLinea=str(line_no),
             Descrizione=encode_for_export(line.name, 1000),
             PrezzoUnitario='{prezzo:.{precision}f}'.format(
                 prezzo=prezzo_unitario, precision=price_precision),
             Quantita='{qta:.{precision}f}'.format(
-                qta=quantity, precision=uom_precision),
+                qta=line.quantity, precision=uom_precision),
             UnitaMisura=line.uom_id and (
                 unidecode(line.uom_id.name)) or None,
-            PrezzoTotale='%.2f' % float_round(
-                self._to_EUR(line.price_subtotal, line.invoice_id), 2),
+            PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
             AliquotaIVA=AliquotaIVA)
-        if line.currency_id != self.env.ref('base.EUR'):
-            AltriDatiGestionali = AltriDatiGestionaliType(
-                TipoDato="Valuta",
-                RiferimentoTesto=line.currency_id.name,
-                RiferimentoNumero='{prezzo:.{precision}f}'.format(
-                    prezzo=self._get_prezzo_unitario(line), precision=price_precision),
-                RiferimentoData=line.invoice_id.date_invoice
-            )
-            DettaglioLinea.AltriDatiGestionali.append(AltriDatiGestionali)
+
+        if line.line_etype:
+            DettaglioLinea.TipoCessionePrestazione = line.line_etype
 
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
@@ -777,9 +745,8 @@ class WizardExportFatturapa(models.TransientModel):
             tax = tax_line.tax_id
             riepilogo = DatiRiepilogoType(
                 AliquotaIVA='%.2f' % float_round(tax.amount, 2),
-                ImponibileImporto='%.2f' % float_round(
-                    self._to_EUR(tax_line.base, invoice), 2),
-                Imposta='%.2f' % float_round(self._to_EUR(tax_line.amount, invoice), 2)
+                ImponibileImporto='%.2f' % float_round(tax_line.base, 2),
+                Imposta='%.2f' % float_round(tax_line.amount, 2)
                 )
             if tax.amount == 0.0:
                 if not tax.kind_id:
@@ -821,25 +788,32 @@ class WizardExportFatturapa(models.TransientModel):
             move_line_pool = self.env['account.move.line']
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = move_line.amount_currency or move_line.debit
-                if not invoice.company_id.xml_divisa_value == 'keep_orig':
-                    ImportoPagamento = self._to_EUR(ImportoPagamento, invoice)
-                ImportoPagamento = '%.2f' % float_round(ImportoPagamento, 2)
+                ImportoPagamento = '%.2f' % float_round(
+                    move_line.amount_currency or
+                    (move_line.debit - move_line.credit), 2)
                 # Create with only mandatory fields
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
-                    ImportoPagamento=ImportoPagamento
-                    )
+                    ImportoPagamento=ImportoPagamento,
+                    CodicePagamento=invoice.payment_term_id.note or invoice.payment_term_id.name
+                )
 
                 # Add only the existing optional fields
                 if move_line.date_maturity:
                     DettaglioPagamento.DataScadenzaPagamento = \
                         move_line.date_maturity
-                partner_bank = invoice.partner_bank_id
+
+                # partner_bank = invoice.partner_bank_id
+                if hasattr(invoice, 'bank_4_xml'):
+                    partner_bank = invoice.bank_4_xml
+                else:
+                    partner_bank = invoice.partner_bank_id
+                # end if
+
                 if partner_bank.bank_name:
                     DettaglioPagamento.IstitutoFinanziario = \
-                        partner_bank.bank_name
+                        partner_bank.bank_name[:80]  # String80LatinType
                 if partner_bank.acc_number and partner_bank.acc_type == 'iban':
                     DettaglioPagamento.IBAN = \
                         ''.join(partner_bank.acc_number.split())
@@ -896,7 +870,7 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.partner_id != partner:
                 raise UserError(
                     _('Invoices %s must belong to the same partner.') %
-                    ', '.join(invoices.mapped('number')))
+                    invoices.mapped('number'))
 
         return partner
 
@@ -935,11 +909,12 @@ class WizardExportFatturapa(models.TransientModel):
         if context is None:
             context = {}
         invoice_obj = self.env['account.invoice']
-        if partner.is_pa:
-            fatturapa = FatturaElettronica(versione='FPA12')
+        if partner.is_pa or partner.parent_id and partner.parent_id.is_pa:
+            # fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PA, SistemaEmittente=SOFTWARE_IN_USE)
+            fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PA)
         else:
-            fatturapa = FatturaElettronica(versione='FPR12')
-
+            # fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PR, SistemaEmittente=SOFTWARE_IN_USE)
+            fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PR)
         try:
             self.with_context(context). \
                 setFatturaElettronicaHeader(company, partner, fatturapa)
@@ -953,6 +928,9 @@ class WizardExportFatturapa(models.TransientModel):
                     raise UserError(
                         _("E-invoice export file still present for invoice %s.")
                         % (inv.number))
+
+                _logger.info(f"Creating XML for invoice {inv.number} ...")
+
                 if self.report_print_menu:
                     self.generate_attach_report(inv)
                 invoice_body = FatturaElettronicaBodyType()
@@ -975,19 +953,38 @@ class WizardExportFatturapa(models.TransientModel):
         invoices_by_partner = self.group_invoices_by_partner()
         company = self.env.user.company_id
 
+        count = 0
+        t_count = len(self._context['active_ids'])
         for partner in invoices_by_partner:
             context_partner = self.env.context.copy()
             context_partner.update({'lang': partner.lang})
             for invoice_ids in invoices_by_partner[partner]:
-                fatturapa, number = self.exportInvoiceXML(
-                    company, partner, invoice_ids, context=context_partner)
+                count += len(invoice_ids)
+                _logger.info(f"{count}/{t_count}")
+                try:
+                    fatturapa, number = self.exportInvoiceXML(
+                        company, partner, invoice_ids, context=context_partner)
 
-                attach = self.saveAttachment(fatturapa, number)
-                attachments |= attach
+                    if self._context.get('simulation', False):
+                        for invoice_id in invoice_ids:
+                            inv = invoice_obj.browse(invoice_id)
+                            inv.write({'simulation_data': 'Success'})
+                    else:
+                        attach = self.saveAttachment(fatturapa, number)
+                        attachments |= attach
 
-                for invoice_id in invoice_ids:
-                    inv = invoice_obj.browse(invoice_id)
-                    inv.write({'fatturapa_attachment_out_id': attach.id})
+                        for invoice_id in invoice_ids:
+                            inv = invoice_obj.browse(invoice_id)
+                            inv.write({'fatturapa_attachment_out_id': attach.id})
+
+                except Exception as e:
+                    if self._context.get('simulation', False):
+                        for invoice_id in invoice_ids:
+                            inv = invoice_obj.browse(invoice_id)
+                            inv.write({'simulation_data': str(e)})
+                        continue
+                    else:
+                        raise e
 
         action = {
             'view_type': 'form',
@@ -1003,6 +1000,18 @@ class WizardExportFatturapa(models.TransientModel):
             action['domain'] = [('id', 'in', attachments.ids)]
         return action
 
+    def action_simulate_xml(self):
+        self.with_context(simulation=True).exportFatturaPA()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': "Export FatturaPA",
+            'res_model': 'account.invoice',
+            'view_mode': 'tree',
+            'view_id': self.env.ref('l10n_it_fatturapa_out.view_export_fattura_simulation_tree').id,
+            "target": "current",
+            'domain': [('id', 'in', self._context['active_ids'])]
+        }
+
     def generate_attach_report(self, inv):
         binding_model_id = self.with_context(
             lang=None).report_print_menu.binding_model_id.id
@@ -1012,7 +1021,7 @@ class WizardExportFatturapa(models.TransientModel):
         ).search(
             [('binding_model_id', '=', binding_model_id),
              ('name', '=', name)]
-            )
+        )
         attachment, attachment_type = report_model.render_qweb_pdf(inv.ids)
         att_id = self.env['ir.attachment'].create({
             'name': inv.number,

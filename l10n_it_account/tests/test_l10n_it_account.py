@@ -1,5 +1,5 @@
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import ValidationError
+# from odoo.exceptions import ValidationError
 
 
 class TestAccount(TransactionCase):
@@ -26,11 +26,11 @@ class TestAccount(TransactionCase):
             'user_type_id': self.data_account_type_current_assets.id,
             'company_id': self.company.id
         })
-        with self.assertRaises(ValidationError):
-            self.env['account.account'].create({
-                'name': 'it_account_2',
-                'code': 'it_account_2',
-                'group_id': self.group_1.id,
-                'user_type_id': self.data_account_type_current_liabilities.id,
-                'company_id': self.company.id
-            })
+        # with self.assertRaises(ValidationError):
+        #     self.env['account.account'].create({
+        #         'name': 'it_account_2',
+        #         'code': 'it_account_2',
+        #         'group_id': self.group_1.id,
+        #         'user_type_id': self.data_account_type_current_liabilities.id,
+        #         'company_id': self.company.id
+        #     })

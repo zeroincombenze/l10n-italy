@@ -1,0 +1,54 @@
+2023-03-23 18:14:21,650 22552 INFO ? odoo: Odoo version 12.0 
+2023-03-23 18:14:21,650 22552 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/l10n_it_fatturapa/tests/logs/zero12.l10n-italy.l10n_it_fatturapa.conf 
+2023-03-23 18:14:21,651 22552 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/apps-store', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/business-requirement', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/geospatial', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/iot', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/mgmtsystem', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/manufacture-reporting', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/mis-builder-contrib', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/pos', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/project-agile', '/home/odoo/12.0/project-reporting', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2023-03-23 18:14:21,651 22552 INFO ? odoo: database: odoo12@localhost:default 
+2023-03-23 18:14:21,794 22552 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2023-03-23 18:14:21,914 22552 INFO ? odoo.addons.server_environment.serv_config: not using server_environment_files for configuration, no directory found 
+2023-03-23 18:14:21,914 22552 INFO ? odoo.addons.server_environment.serv_config: `running_env` not found. Using default = `test`. 
+2023-03-23 18:14:21,914 22552 INFO ? odoo.addons.server_environment.serv_config: We strongly recommend against using the rc file but instead use an explicit config file or env variable. 
+2023-03-23 18:14:21,936 22552 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:62254 
+2023-03-23 18:14:21,959 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading 1 modules... 
+2023-03-23 18:14:21,966 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries 
+2023-03-23 18:14:22,083 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: updating modules list 
+2023-03-23 18:14:22,092 22552 INFO test_l10n_it_fatturapa_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2023-03-23 18:14:30,798 22552 INFO test_l10n_it_fatturapa_12 odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['l10n_it_fatturapa'] to user __system__ #1 via n/a 
+2023-03-23 18:14:31,262 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading 55 modules... 
+2023-03-23 18:14:31,604 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: 55 modules loaded in 0.34s, 0 queries 
+2023-03-23 18:14:31,614 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading 57 modules... 
+2023-03-23 18:14:32,391 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.registry: module l10n_it_fatturapa: creating or updating database tables 
+2023-03-23 18:14:33,770 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/data/fatturapa_data.xml 
+2023-03-23 18:14:33,813 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/data/welfare.fund.type.csv 
+2023-03-23 18:14:33,832 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/views/account_view.xml 
+2023-03-23 18:14:33,902 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/views/company_view.xml 
+2023-03-23 18:14:34,084 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/views/partner_view.xml 
+2023-03-23 18:14:34,480 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/views/invoice_view.xml 
+2023-03-23 18:14:34,577 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/views/related_document_type_views.xml 
+2023-03-23 18:14:34,648 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/security/ir.model.access.csv 
+2023-03-23 18:14:34,763 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: Module l10n_it_fatturapa: loading demo 
+2023-03-23 18:14:34,763 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_fatturapa/demo/account_invoice_fatturapa.xml 
+2023-03-23 18:14:35,589 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.registry: module l10n_it_website_portal_fatturapa: creating or updating database tables 
+2023-03-23 18:14:35,598 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: loading l10n_it_website_portal_fatturapa/views/l10n_it_website_portal_fatturapa_templates.xml 
+2023-03-23 18:14:35,698 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: Module l10n_it_website_portal_fatturapa: loading demo 
+2023-03-23 18:14:35,724 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: 57 modules loaded in 4.11s, 17 queries 
+2023-03-23 18:14:36,324 22552 INFO test_l10n_it_fatturapa_12 odoo.modules.loading: Modules loaded. 
+2023-03-23 18:14:36,331 22552 INFO test_l10n_it_fatturapa_12 odoo.service.server: Starting post tests 
+2023-03-23 18:14:36,332 22552 INFO test_l10n_it_fatturapa_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2023-03-23 18:14:36,332 22552 INFO test_l10n_it_fatturapa_12 odoo.service.server: Initiating shutdown 
+2023-03-23 18:14:36,332 22552 INFO test_l10n_it_fatturapa_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36ml10n_it_fatturapa[0m (12.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                   Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------
+l10n-italy/l10n_it_fatturapa/bindings/_ds.py            1288     19    99%   25-26, 36, 69-83, 91-93
+l10n-italy/l10n_it_fatturapa/bindings/binding.py        4333     19    99%   26-27, 38, 74-88, 96-98
+l10n-italy/l10n_it_fatturapa/bindings/fatturapa.py       108     59    45%   15-16, 42, 49, 73, 84-107, 114-129, 134-137, 141-152, 156-161, 165-175
+l10n-italy/l10n_it_fatturapa/controllers/main.py           9      6    33%   13-22
+l10n-italy/l10n_it_fatturapa/models/account.py           200     20    90%   108-112, 218-223, 269-274, 521-523
+l10n-italy/l10n_it_fatturapa/models/company.py            52     27    48%   116-163
+l10n-italy/l10n_it_fatturapa/models/ir_attachment.py      75     50    33%   18-19, 26-28, 39-41, 50-56, 59-61, 64-66, 69-71, 74-103, 106-118
+l10n-italy/l10n_it_fatturapa/models/partner.py            76     48    37%   62-72, 92, 97-171, 177-181, 184-190, 193-197
+------------------------------------------------------------------------------------
+TOTAL                                                   6141    248    96%

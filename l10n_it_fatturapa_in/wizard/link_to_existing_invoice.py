@@ -2,6 +2,12 @@
 from odoo import models, api, fields
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
+from odoo.addons.l10n_it_fatturapa.bindings import fatturapa
+
+
+def get_invoice_obj(fatturapa_attachment):
+    xml_string = fatturapa_attachment.get_xml_string()
+    return fatturapa.CreateFromDocument(xml_string)
 
 
 class WizardLinkToInvoiceLine(models.TransientModel):
@@ -36,12 +42,7 @@ class WizardLinkToInvoiceLine(models.TransientModel):
             .new({
                 'e_invoice_detail_level': '2',
             })
-        fatt = fatturapa_attachment.get_invoice_obj()
-        if not fatt:
-            raise UserError(
-                _("Cannot link an attachment that could not be parsed.\n"
-                  "Please fix the parsing error first, then try again."))
-
+        fatt = get_invoice_obj(fatturapa_attachment)
         FatturaBody = fatt.FatturaElettronicaBody[self.e_invoice_nbr]
         cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
 
@@ -87,12 +88,7 @@ class WizardLinkToInvoice(models.TransientModel):
 
     @api.model
     def _get_default_lines_vals(self, attachment):
-        fatt = attachment.get_invoice_obj()
-        if not fatt:
-            raise UserError(
-                _("Cannot link an attachment that could not be parsed.\n"
-                  "Please fix the parsing error first, then try again."))
-
+        fatt = get_invoice_obj(attachment)
         invoice_model = self.env['account.invoice']
         line_vals = list()
         descr_template = _("Bill number {bill_nbr} of {bill_date}.\n"

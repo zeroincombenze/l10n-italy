@@ -4,55 +4,67 @@
     <record id="view_fatturapa_in_attachment_form" model="ir.ui.view">
         <field name="name">fatturapa.attachment.in.form</field>
         <field name="model">fatturapa.attachment.in</field>
-        <field name="inherit_id" ref="l10n_it_fatturapa.fatturapa_attachment_view_form"/>
-        <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <form position="attributes">
-                <attribute name="string">Import Electronic Bill</attribute>
-                <attribute name="duplicate">false</attribute>
-            </form>
-            <xpath expr="//sheet/group[1]" position="before">
+            <form string="Import e-bill" duplicate="false">
                 <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
                      <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
                 </div>
-                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_parsing_error','=',False)]}">
-                     <bold><field name="e_invoice_parsing_error" nolabel="1"/></bold>
-                </div>
                 <field name="e_invoice_validation_error" invisible="1"/>
-            </xpath>
-            <button name="ftpa_preview" position="after">
-                <button type="object" name="recompute_xml_fields" string="Recompute XML fields" icon="fa-refresh"
-                        attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False), ('linked_invoice_id_xml', '!=', False)]}"/>
-            </button>
-            <group name="preview" position="after">
-                <group name="e_bill_data">
-                    <field name="xml_supplier_id"/>
-                    <field name="invoices_number"/>
-                    <field name="e_invoice_received_date"/>
-                    <field name="registered"/>
-                    <field name="invoices_total"/>
-                    <field name="invoices_date"/>
-                    <field name="linked_invoice_id_xml"/>
-                </group>
-            </group>
-            <notebook position="inside">
-                <page string="Bills">
-                    <field name="in_invoice_ids"
-                           context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}">
-                        <tree>
-                            <field name="partner_id"/>
-                            <field name="date_invoice"/>
-                            <field name="reference"/>
-                            <field name="origin"/>
-                            <field name="amount_total"/>
-                            <field name="state"/>
-                            <button name="open_form_current" type="object" string="Open full-screen" icon="fa-external-link"
-                                    context="{'form_view_ref': 'account.invoice_supplier_form'}"/>
-                            <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
-                        </tree>
-                    </field>
-                </page>
-            </notebook>
+                <div>
+                    <group>
+                        <group>
+                            <field name='id' invisible="1"/>
+                            <label for="datas"/>
+                            <div>
+                                <field name="datas" filename="datas_fname"/>
+                                <field name="ftpa_preview_link" widget="url" text="Show preview"
+                                       attrs="{'invisible': [('id', '=', False)]}"/>
+                                <button type="object" name="recompute_xml_fields" string="Recompute XML fields" icon="fa-refresh"
+                                    attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False)]}"/>
+                            </div>
+                            <field name="datas_fname" invisible="1"></field>
+                            <field name="name" invisible="1"></field>
+                        </group>
+                        <group>
+                            <field name="xml_supplier_id"/>
+                            <field name="invoices_number"/>
+                            <field name="e_invoice_received_date"/>
+                            <field name="registered"/>
+                            <field name="invoices_total"/>
+                            <field name="invoices_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Bills">
+                            <field name="in_invoice_ids"
+                                   context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}">
+                                <tree>
+                                    <field name="partner_id"/>
+                                    <field name="date_invoice"/>
+                                    <field name="reference"/>
+                                    <field name="origin"/>
+                                    <field name="amount_total"/>
+                                    <field name="state"/>
+                                    <button name="open_form_current" type="object" string="Open full-screen" icon="fa-external-link"
+                                            context="{'form_view_ref': 'account.invoice_supplier_form'}"/>
+                                    <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
+                                </tree>
+                            </field>
+                            <group groups="base.group_no_one" string="History">
+                                <label for="create_uid" string="Creation"></label>
+                                <div name="creation_div">
+                                    <field class="oe_inline" name="create_uid" readonly="1"></field> on
+                                    <field class="oe_inline" name="create_date" readonly="1"></field>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </div>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"></field>
+                    <field name="message_ids" widget="mail_thread"></field>
+                </div>
+            </form>
         </field>
     </record>
     <record id="view_fatturapa_in_attachment_tree" model="ir.ui.view">
@@ -68,6 +80,9 @@
                 <field name="invoices_total" sum="Bills Total"/>
                 <field name="registered"/>
                 <field name="in_invoice_ids"/>
+                <field name="xml_has_attachment" invisible="1"/>
+                <button name="download_attachment" string="Download" icon="fa-download" type="object"
+                        attrs="{'invisible': [('xml_has_attachment','=',False)]}"/>
             </tree>
         </field>
     </record>
@@ -78,7 +93,15 @@
             <search>
                 <field name="name"/>
                 <field name="xml_supplier_id"/>
-                <filter name="to_register" string="To Register" domain="[('registered','=',False), ('is_self_invoice','=',False)]"/>
+                <filter name="to_register" string="To Register" domain="[('registered','=',False)]"/>
+                <filter name="last_month"
+                        string="Last Month"
+                        domain="[('e_invoice_received_date', '&lt;', datetime.date.today().strftime('%%Y-%%m-01 00:00:00')), ('e_invoice_received_date', '&gt;=', (datetime.date.today() - relativedelta(months=1)).strftime('%%Y-%%m-01 00:00:00'))]"
+                />
+                <filter name="current_month"
+                    string="Current Month"
+                    domain="[('e_invoice_received_date', '&lt;', (datetime.date.today() + relativedelta(months=1)).strftime('%%Y-%%m-01 00:00:00')), ('e_invoice_received_date', '&gt;=', (datetime.date.today()).strftime('%%Y-%%m-01 00:00:00'))]"
+                />
             </search>
         </field>
     </record>
@@ -103,20 +126,7 @@
             </field>
         </field>
     </record>
-
     <!-- Extend purchase invoice  -->
-
-    <record id="invoice_supplier_tree_fatturapa_in" model="ir.ui.view">
-        <field name="name">invoice_supplier_tree_fatturapa_in</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_supplier_tree"></field>
-        <field name="arch" type="xml">
-            <field name="date_invoice" position="after">
-                <field name="e_invoice_received_date"/>
-            </field>
-        </field>
-    </record>
-
     <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa_in</field>
         <field name="model">account.invoice</field>
@@ -298,7 +308,7 @@
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
                             <tree string="Payments">
                                 <field name="payment_terms"/>
-                                <field name="payment_methods" widget="many2many_tags"/>
+                                <field name="payment_methods"/>
                             </tree>
                             <form string="Payments" version="7.0">
                                 <sheet>

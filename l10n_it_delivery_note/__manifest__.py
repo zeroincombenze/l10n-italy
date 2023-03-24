@@ -13,12 +13,12 @@
 
     'author': "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/l10n_it_delivery_note',
-    'version': '12.0.1.2.1',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
+               'l10n_it_delivery_note',
+    'version': '12.0.1.0.0',
     'category': "Localization",
     'license': 'AGPL-3',
-    'maintainers': ['As400it'],
+    'maintainers': ['As400it', 'Byloth'],
 
     'depends': [
         'delivery',
@@ -45,7 +45,6 @@
         'views/stock_picking.xml',
 
         'wizard/delivery_note_create.xml',
-        'wizard/delivery_note_invoice.xml',
         'wizard/delivery_note_select.xml',
         'wizard/delivery_note_template.xml',
         'wizard/sale_advance_payment_inv.xml'

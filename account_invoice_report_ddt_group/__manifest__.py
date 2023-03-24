@@ -11,8 +11,7 @@
     'category': 'Localization/Italy',
     'author': 'Agile Business Group, Apulia Software, Openforce,'
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy'
-               '/tree/12.0/account_invoice_report_ddt_group',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': [
         'account', 'l10n_it_ddt',
