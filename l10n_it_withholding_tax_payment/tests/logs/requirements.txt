@@ -55,8 +55,10 @@ exceptiongroup==1.1.1
 extract-msg==0.29.6
 factur-x==2.4
 feedparser==5.2.1
+fintech==7.2.10
 flake8==3.4.1
 fonttools==4.38.0
+fpdf==1.7.2
 freezegun==1.2.2
 future==0.18.3
 gdata==2.0.18
@@ -102,6 +104,7 @@ multiprocess==0.70.14
 num2words==0.5.12
 numpy==1.21.6
 odoo==12.0
+odoo-client-lib==1.2.2
 OdooRPC==0.9.0
 OERPLib==0.8.4
 ofxparse==0.16
