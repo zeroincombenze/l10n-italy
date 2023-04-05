@@ -200,15 +200,13 @@ class Partner(models.Model):
             vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
         SKEYS = (
             ["vat", "fiscalcode", "type"],
-            ["vat", "name", "type"],
-            ["fiscalcode", "dim_name", "type"],
-            ["vat", "dim_name", "type"],
+            ["vat", "%name", "type"],
+            ["fiscalcode", "%name", "type"],
             ["rea_code"],
-            ["vat", "type"],
-            ["dim_name", "type"],
+            ["%name", "%city", "type"],
             ["vat", "fiscalcode", "is_company"],
             ["vat"],
-            ["name", "is_company"],
+            ["%name", "%street", "%city", "is_company"],
         )
         partner_id = self.synchro2(
             "res.partner",
@@ -246,6 +244,8 @@ class Partner(models.Model):
     ):
         def is_the_same(rec, vals):
             for field in ("name", "street", "zip", "city"):
+                if vals[field] == "00000" or rec[field] == "00000":
+                    continue
                 if self.dim_text(rec[field]) != self.dim_text(vals.get(field, "")):
                     rec = None
                     break
@@ -284,15 +284,21 @@ class Partner(models.Model):
             domain = []
             repeat = False
             for key in keys:
+                ilike = False
+                if key.startswith("%"):
+                    ilike = key[0]
+                    key = key[1:]
                 if key not in vals and key == "type":
                     domain.append([key, "=", "invoice"])
                     repeat = True
                 elif key not in vals and key in MAGIC_FIELDS:
                     if MAGIC_FIELDS[key]:
                         domain.append([key, "=", MAGIC_FIELDS[key]])
-                elif key not in vals:
+                elif key not in vals or not vals[key]:
                     domain = []
                     break
+                elif ilike:
+                    domain.append([key, "ilike", vals[key].replace(" ", ilike)])
                 else:
                     domain.append([key, "=", vals[key]])
             if domain:
@@ -355,6 +361,8 @@ class Partner(models.Model):
                         and rec[item] == vals[item]
                     ):
                         del vals[item]
+                if vals.get("vat") and vals["vat"][2:].startswith("999999999"):
+                    del vals["vat"]
                 if vals:
                     rec.write(vals)
                 id = rec.id
@@ -363,6 +371,8 @@ class Partner(models.Model):
         else:
             if vals.get("type") == "invoice" and "rea_code" in vals:
                 del vals["rea_code"]
+            if vals.get("vat") and vals["vat"][2:].startswith("999999999"):
+                del vals["vat"]
             try:
                 id = self.create(vals).id
             except BaseException as e:

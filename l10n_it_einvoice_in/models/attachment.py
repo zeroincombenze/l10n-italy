@@ -101,6 +101,16 @@ class FatturaPAAttachmentIn(models.Model):
                 )
                 xml_string = re.sub(token, new_token, xml_string)
                 x = re.search(token, xml_string)
+        token = r"<Email>[^@]+@[^@]+@.*</Email>"
+        token2 = r"<Email>[\w]+@[-\w.]+"
+        x = re.search(token, xml_string)
+        while x:
+            x2 = re.search(token2, xml_string[x.start():])
+            xml_string = (
+                xml_string[:x.start()]
+                + xml_string[x.start(): x.start() + x2.end()]
+                + "</Email>" + xml_string[x.end():])
+            x = re.search(token, xml_string)
         return xml_string
 
     def get_invoice_obj(self):

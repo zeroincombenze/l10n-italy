@@ -1,3 +1,9 @@
+10.0.1.3.39 (2023-04-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Check for double email / Controllo doppia mail
+* [IMP] New search method to avoid new partner when receiving self-invoice / Controlli per evitare duplicazione fornitore auto-fattura
+
 10.0.1.3.38 (2023-03-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
