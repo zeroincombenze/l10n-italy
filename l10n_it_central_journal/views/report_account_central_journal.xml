@@ -25,24 +25,31 @@
                     <thead>
                         <tr style="page-break-inside: avoid">
                             <th class="left_without_line">Row</th>
-                            <th class="left_without_line">Date</th>
+                            <th
+                                class="left_without_line"
+                                style="min-width:8%">Date</th>
                             <th
                                     class="left_without_line"
-                                    style="max-width:10%"
-                                >Account move</th>
-                            <th class="left_without_line">Ref</th>
-                            <th class="left_without_line">Account code</th>
+                                    style="min-width:8% max-width:12%">Account move</th>
+                            <th
+                                class="left_without_line"
+                                style="min-width:10% max-width:20%">Ref</th>
+                            <th
+                                class="left_without_line"
+                                style="min-width:6% max-width:10%">Account code</th>
                             <th
                                     class="left_without_line"
-                                    style="min-width:10%"
-                                >Account name</th>
+                                    style="min-width:10% max-width:16%">Account name</th>
                             <!-- <th class="left_without_line" style="min-width:15%">Partner name</th> -->
                             <th
                                     class="left_without_line"
-                                    style="max-width:15%"
-                                >Name</th>
-                            <th class="right_without_line">Debit</th>
-                            <th class="right_without_line">Credit</th>
+                                    style="min-width:10% max-width:20%">Name</th>
+                            <th
+                                class="right_without_line"
+                                style="min-width:9%">Debit</th>
+                            <th
+                                class="right_without_line"
+                                style="min-width:9%">Credit</th>
                         </tr>
                     </thead>
 
