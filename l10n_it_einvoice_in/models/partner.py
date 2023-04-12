@@ -104,7 +104,11 @@ class Partner(models.Model):
             "zip": partner_xml.Sede.CAP,
             "city": partner_xml.Sede.Comune,
         }
-        if partner_xml.Sede.Provincia and partner_xml.Sede.Provincia != "EE":
+        if (
+            partner_xml.Sede.Provincia
+            and partner_xml.Sede.Provincia != "EE"
+            and DatiAnagrafici.IdFiscaleIVA.IdPaese not in ("EU", "SM")
+        ):
             Provincia = partner_xml.Sede.Provincia
             prov_sede = self.ProvinceByCode(Provincia)
             if not prov_sede:
@@ -168,10 +172,16 @@ class Partner(models.Model):
         if DatiAnagrafici.CodiceFiscale:
             vals["fiscalcode"] = DatiAnagrafici.CodiceFiscale
         if DatiAnagrafici.IdFiscaleIVA:
-            vals["vat"] = "%s%s" % (
-                DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                DatiAnagrafici.IdFiscaleIVA.IdCodice,
-            )
+            if DatiAnagrafici.IdFiscaleIVA.IdPaese == "SM":
+                vals["vat"] = "%s%s" % (
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice[-5:],
+                )
+            else:
+                vals["vat"] = "%s%s" % (
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice,
+                )
 
         if (
             hasattr(partner_xml, "DatiAnagraficiVettore")
@@ -184,14 +194,15 @@ class Partner(models.Model):
 
         if DatiAnagrafici.IdFiscaleIVA:
             CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-            countries = self.CountryByCode(CountryCode)
-            if countries:
-                country_id = countries[0].id
-            else:
-                raise UserError(
-                    _("Country Code %s not found in the system.") % CountryCode
-                )
-            vals["country_id"] = country_id
+            if CountryCode != "EU":
+                countries = self.CountryByCode(CountryCode)
+                if countries:
+                    country_id = countries[0].id
+                else:
+                    raise UserError(
+                        _("Country Code %s not found in the system.") % CountryCode
+                    )
+                vals["country_id"] = country_id
         if Anagrafica.CodEORI:
             vals["eori_code"] = Anagrafica.CodEORI
         if Anagrafica.Denominazione:

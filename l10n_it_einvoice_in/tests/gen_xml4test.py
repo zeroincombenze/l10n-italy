@@ -13,10 +13,10 @@ __version__ = "10.0.1.3.35"
 
 def progressivo(opt_args):
     return "%3.3s%02s" % (
-        os.path.basename(
-            (opt_args.test_xml_fn or opt_args.real_xml_fn)
-        ).split(".")[0].split("_")[1][-3:],
-        randint(1, 99)
+        os.path.basename((opt_args.test_xml_fn or opt_args.real_xml_fn))
+        .split(".")[0]
+        .split("_")[1][-3:],
+        randint(1, 99),
     )
 
 
@@ -165,11 +165,13 @@ DATA_TO_UPDATE = [
             "DataScadenzaPagamento",
         ],
         "date": ["####-##-99", "####-1>-99", "####-2>-99", "####-3>-99", "####-4>-99"],
-        "date_shifted": ["####-1>-10",
-                         "####-2>-10",
-                         "####-3>-10",
-                         "####-4>-10",
-                         "####-5>-10"]
+        "date_shifted": [
+            "####-1>-10",
+            "####-2>-10",
+            "####-3>-10",
+            "####-4>-10",
+            "####-5>-10",
+        ],
     },
 ]
 """    <FatturaElettronicaHeader>
@@ -253,9 +255,10 @@ def convert_xml(opt_args, root):
         original_tags = action["tags"].copy()
         elems = find_nested_tag(root, action["tags"])
         if elems is None:
-            print("Warning: tag %s of %s not found!" % (".".join(action["tags"]),
-                                                        original_tags)
-                  )
+            print(
+                "Warning: tag %s of %s not found!"
+                % (".".join(action["tags"]), original_tags)
+            )
         else:
             if opt_args.verbose:
                 print("... %s" % ".".join(original_tags))
@@ -266,10 +269,9 @@ def convert_xml(opt_args, root):
                 if todo == "text":
                     elem.text = value
                 elif todo in ("date", "date_shifted"):
-                    if (
-                        opt_args.invoice_date
-                        and original_tags[-1] in ("Data",
-                                                  "DataRiferimentoTerminiPagamento")
+                    if opt_args.invoice_date and original_tags[-1] in (
+                        "Data",
+                        "DataRiferimentoTerminiPagamento",
                     ):
                         elem.text = compute_date(opt_args.invoice_date)
                     elif (
@@ -317,21 +319,30 @@ def main(cli_args=None):
     cli_args = cli_args or sys.argv[1:]
     parser = argparse.ArgumentParser(
         description="Generate xml file for test based on a real XML file",
-        epilog="© 2021-2022 by SHS-AV s.r.l."
+        epilog="© 2021-2023 by SHS-AV s.r.l.",
     )
-    parser.add_argument("-d", "--due-date",
-                        help="Date to pay: see python-plus for info")
-    parser.add_argument("-H", "--format-header",
-                        action="store_true",
-                        help="Format xml header and remove wrong header")
-    parser.add_argument("-i", "--invoice-date",
-                        help="Date to invoice: see python-plus for info")
+    parser.add_argument(
+        "-d", "--due-date", help="Date to pay: see python-plus for info"
+    )
+    parser.add_argument(
+        "-H",
+        "--format-header",
+        action="store_true",
+        help="Format xml header and remove wrong header",
+    )
+    parser.add_argument(
+        "-i", "--invoice-date", help="Date to invoice: see python-plus for info"
+    )
     parser.add_argument("-n", "--dry-run", dest="dry_run", action="store_true")
-    parser.add_argument("-s", "--shift-duedates",
-                        action="store_true",
-                        help="shift due date 10 days later")
-    parser.add_argument("-t", "--fiscal-document-type",
-                        help="may be TD01, TD04, TD24 or else")
+    parser.add_argument(
+        "-s",
+        "--shift-duedates",
+        action="store_true",
+        help="shift due date 10 days later",
+    )
+    parser.add_argument(
+        "-t", "--fiscal-document-type", help="may be TD01, TD04, TD24 or else"
+    )
     parser.add_argument('-v', '--verbose', action='count', default=0)
     parser.add_argument('-V', '--version', action="version", version=__version__)
     parser.add_argument('real_xml_fn')
@@ -339,9 +350,9 @@ def main(cli_args=None):
     opt_args = parser.parse_args(cli_args)
     if not os.path.isfile(opt_args.real_xml_fn):
         print('No file %s found!' % opt_args.real_xml_fn)
-    format_xml(opt_args,
-               opt_args.real_xml_fn,
-               opt_args.test_xml_fn or opt_args.real_xml_fn)
+    format_xml(
+        opt_args, opt_args.real_xml_fn, opt_args.test_xml_fn or opt_args.real_xml_fn
+    )
     return 0
 
 

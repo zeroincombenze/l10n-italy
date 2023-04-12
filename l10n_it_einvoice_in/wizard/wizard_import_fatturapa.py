@@ -171,7 +171,7 @@ class WizardImportFatturapa(models.TransientModel):
         is_rc = account_tax_model.is_rc(nature=Natura)
         default_tax = account_tax_model.search(
             [("type_tax_use", "=", "purchase"),
-             ("amount", "!=", 0.0)], order="sequence")
+             ("amount", "!=", 0.0)], limit=1, order="sequence")
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         domain = []
@@ -195,8 +195,6 @@ class WizardImportFatturapa(models.TransientModel):
                 kind_id = nature_model.search([("code", "=", Natura)])
                 if kind_id:
                     domain.append(("kind_id", "=", kind_id.id))
-        # elif AliquotaIVA_fp != 0.0:
-        #     domain.append(('kind_id', '=', False))
         account_taxes = account_tax_model.search(domain, order="sequence")
         if not account_taxes:
             raise UserError(

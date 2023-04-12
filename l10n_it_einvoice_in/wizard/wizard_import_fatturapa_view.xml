@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
         <record id="wizard_import_fatturapa_form_view" model="ir.ui.view">
             <field name="name">Electronic Bill Import</field>
@@ -12,14 +11,14 @@
                             colspan="2"
                             string="Take this action, if you want import data from e-invoice xml file"
                         />
-                        <field name="e_invoice_detail_level" />
+                        <field name="e_invoice_detail_level"/>
                         <footer>
                             <button
                                 name="importFatturaPA"
                                 string="Import"
                                 type="object"
                             />
-                            <button special="cancel" string="Cancel" />
+                            <button special="cancel" string="Cancel"/>
                         </footer>
                     </group>
                 </form>
@@ -36,5 +35,4 @@
             view_id="wizard_import_fatturapa_form_view"
             view_mode="form"
         />
-    </data>
 </odoo>

@@ -46,6 +46,7 @@ class FatturapaCommon(SingleTransactionCase):
                 "amount": 22.0,
                 "account_id": account_id,
                 "refund_account_id": account_id,
+                "sequence": 1,
             }
         )
 
@@ -76,6 +77,37 @@ class FatturapaCommon(SingleTransactionCase):
                 "amount_type": "percent",
                 "amount": 0.0,
                 "kind_id": kind_id,
+            }
+        )
+
+    def create_tax_a17c2a(self):
+        tax_model = self.env["account.tax"]
+        tax_id = tax_model.search([("description", "=", "a17c2a")])
+        if tax_id:
+            return tax_model.browse(tax_id)
+        kind_id = (
+            self.env["italy.ade.tax.nature"]
+            .search(
+                [
+                    (
+                        "code",
+                        "=",
+                        "N6.9"
+                    )
+                ],
+                limit=1,
+            )
+            .id
+        )
+        return tax_model.create(
+            {
+                "name": "art. 17 comma 2",
+                "description": "a17c2a",
+                "type_tax_use": "purchase",
+                "amount_type": "percent",
+                "amount": 0.0,
+                "kind_id": kind_id,
+                "rc": True,
             }
         )
 

@@ -17,6 +17,7 @@ class TestDuplicatedAttachment(FatturapaCommon):
         self.env.user.company_id.vat = "IT05111810015"
         self.tax_22a = self.create_tax_22a()
         self.tax_a27a = self.create_tax_a27a()
+        self.tax_a17c2a = self.create_tax_a17c2a()
         self.invoice_model = self.env["account.invoice"]
 
     def test_00001_xml_import(self):
@@ -37,6 +38,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.env.user.company_id.vat = "IT05111810015"
         self.tax_22a = self.create_tax_22a()
         self.tax_a27a = self.create_tax_a27a()
+        self.tax_a17c2a = self.create_tax_a17c2a()
         self.invoice_model = self.env["account.invoice"]
 
     def test_00002_xml_import(self):
@@ -73,6 +75,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.e_invoice_line_ids[0].other_data_ids[0].text_ref, "Riferimento"
         )
+
+    def test_00003_xml_import(self):
+        res = self.run_wizard("🎺 test003", "SM04298_00003.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        for line in invoice.invoice_line_ids:
+            self.assertEqual(line.invoice_line_tax_ids[0].kind_id.code, "N6.9")
 
     def test_00014_xml_import(self):
         self.run_wizard("🎺 test014", "IT00488410010_00014.xml")
