@@ -2,7 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Import e-invoice from RSM / Importazione file XML da San Marino
-* [FIX] Crash when two emailple 
+* [FIX] Crash when two emailple
 
 10.0.1.3.39 (2023-04-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~

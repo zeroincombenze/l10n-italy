@@ -59,6 +59,15 @@ class FatturaPAAttachmentIn(models.Model):
         if not self.ir_attachment_id:
             return False
         xml_string = self.ir_attachment_id.get_xml_string()
+        xml_string = re.sub(
+            '<p:FatturaElettronica.*v1.2.*versione="FPR12">',
+            ('<p:FatturaElettronica'
+             ' xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"'
+             ' xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+             ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
+             ' versione="FPR12">'),
+            xml_string)
+
         # Do not change order of parsing!!!
         for tag in (
             "RiferimentoAmministrazione",
