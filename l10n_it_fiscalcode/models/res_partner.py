@@ -44,7 +44,11 @@ class ResPartner(models.Model):
         for partner in self:
             if not partner.fiscalcode:
                 return True
-            elif len(partner.fiscalcode) != 16 and partner.individual:
+            elif (
+                len(partner.fiscalcode) != 16
+                and partner.parent_id == False
+                and partner.individual
+            ):
                 return False
             else:
                 return True
