@@ -11,7 +11,7 @@
 #
 {
     "name": "Italian Localization - Fattura elettronica - Ricezione",
-    "version": "10.0.1.3.39",
+    "version": "10.0.1.3.40",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",
     "author": "Agile Business Group, Innoviu, SHS-AV "
@@ -28,7 +28,7 @@
         "l10n_it_fiscal_ipa",
         "l10n_it_causali_pagamento",
         "l10n_it_reverse_charge",
-        # 'l10n_it_withholding_tax_causali',
+        'l10n_it_withholding_tax',
     ],
     "data": [
         "security/ir.model.access.csv",

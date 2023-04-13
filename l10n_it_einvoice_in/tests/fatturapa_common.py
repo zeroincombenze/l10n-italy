@@ -111,17 +111,31 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
-    def create_wt(self):
+    def create_wt_85(self):
         return self.env["withholding.tax"].create(
             {
-                "name": "1040",
-                "code": "1040",
+                "name": "850",
+                "code": "850",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
                 "journal_id": self.journal_misc.id,
                 "payment_term": self.env.ref("account.account_payment_term").id,
-                "rate_ids": [(0, 0, {"tax": 20.0})],
-                "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
+                "rate_ids": [(0, 0, {"tax": 8.50})],
+                "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.r").id,
+            }
+        )
+
+    def create_wt_115(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "1150",
+                "code": "1150",
+                "account_receivable_id": self.payable_account_id,
+                "account_payable_id": self.payable_account_id,
+                "journal_id": self.journal_misc.id,
+                "payment_term": self.env.ref("account.account_payment_term").id,
+                "rate_ids": [(0, 0, {"tax": 11.50})],
+                "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.r").id,
             }
         )
 

@@ -1,6 +1,6 @@
 
 =========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.39
+|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.40
 =========================================================================
 
 
@@ -285,6 +285,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.40 (2023-04-11)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Import e-invoice from RSM / Importazione file XML da San Marino
+* [FIX] Crash when two emailple 
+
 10.0.1.3.39 (2023-04-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -415,7 +421,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-04-12
+Last Update / Ultimo aggiornamento: 2023-04-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

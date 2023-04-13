@@ -255,7 +255,7 @@ class Partner(models.Model):
     ):
         def is_the_same(rec, vals):
             for field in ("name", "street", "zip", "city"):
-                if vals[field] == "00000" or rec[field] == "00000":
+                if field == "zip" and (vals[field] == "00000" or rec[field] == "00000"):
                     continue
                 if self.dim_text(rec[field]) != self.dim_text(vals.get(field, "")):
                     rec = None

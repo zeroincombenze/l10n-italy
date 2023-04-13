@@ -39,6 +39,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.tax_22a = self.create_tax_22a()
         self.tax_a27a = self.create_tax_a27a()
         self.tax_a17c2a = self.create_tax_a17c2a()
+        self.wt85 = self.create_wt_85()
+        self.wt115 = self.create_wt_115()
         self.invoice_model = self.env["account.invoice"]
 
     def test_00002_xml_import(self):
@@ -77,11 +79,14 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         )
 
     def test_00003_xml_import(self):
-        res = self.run_wizard("🎺 test003", "SM04298_00003.xml")
+        res = self.run_wizard("🎺 test003", "SM00000004298_00003.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         for line in invoice.invoice_line_ids:
             self.assertEqual(line.invoice_line_tax_ids[0].kind_id.code, "N6.9")
+
+    def test_00004_xml_import(self):
+        self.run_wizard("🎺 test004", "ITNREGCM80H30D612D_00004.xml")
 
     def test_00014_xml_import(self):
         self.run_wizard("🎺 test014", "IT00488410010_00014.xml")

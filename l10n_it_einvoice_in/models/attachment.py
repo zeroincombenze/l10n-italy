@@ -89,7 +89,7 @@ class FatturaPAAttachmentIn(models.Model):
                 ctr += 1
         if ctr:
             tag = "DatiDDT"
-            token = r"<%s>.*</%s>" % (tag, tag)
+            token = r"<%s>.*?</%s>" % (tag, tag)
             xml_string = re.sub(token, "", xml_string, flags=re.DOTALL)
         for tag in ("Data",):
             token = r"<%s>[0-9]{4}-[0-9]{2}-[0-9]{2}[^<]+?</%s>" % (tag, tag)
@@ -101,8 +101,8 @@ class FatturaPAAttachmentIn(models.Model):
                 )
                 xml_string = re.sub(token, new_token, xml_string)
                 x = re.search(token, xml_string)
-        token = r"<Email>[^@]+@[^@]+@.*</Email>"
-        token2 = r"<Email>[\w]+@[-\w.]+"
+        token = r"<Email>[^@<]+@[^@<]+@[^<]*</Email>"
+        token2 = r"<Email>[^@<]+@[\w]+"
         x = re.search(token, xml_string)
         while x:
             x2 = re.search(token2, xml_string[x.start():])
