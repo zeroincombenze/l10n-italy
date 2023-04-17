@@ -13,7 +13,6 @@ import odoo.addons.decimal_precision as dp
 
 
 class StockPickingCarriageCondition(models.Model):
-
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
 
@@ -22,7 +21,6 @@ class StockPickingCarriageCondition(models.Model):
 
 
 class StockPickingGoodsDescription(models.Model):
-
     _name = "stock.picking.goods_description"
     _description = "Description of Goods"
 
@@ -31,7 +29,6 @@ class StockPickingGoodsDescription(models.Model):
 
 
 class StockPickingTransportationReason(models.Model):
-
     _name = "stock.picking.transportation_reason"
     _description = "Reason for Transportation"
 
@@ -43,7 +40,6 @@ class StockPickingTransportationReason(models.Model):
 
 
 class StockPickingTransportationMethod(models.Model):
-
     _name = "stock.picking.transportation_method"
     _description = "Method of Transportation"
 
@@ -52,7 +48,6 @@ class StockPickingTransportationMethod(models.Model):
 
 
 class StockDdtType(models.Model):
-
     _name = "stock.ddt.type"
     _description = "Stock DdT Type"
 
@@ -80,7 +75,6 @@ class StockDdtType(models.Model):
 
 
 class StockPickingPackagePreparation(models.Model):
-
     _inherit = "stock.picking.package.preparation"
     _rec_name = "display_name"
     _order = "ddt_number desc, date desc"
@@ -107,8 +101,7 @@ class StockPickingPackagePreparation(models.Model):
         "delivery.carrier": {
             "carrier_id": "id",
         },
-        "sale.order": {
-        },
+        "sale.order": {},
         "stock.picking": {
             "ddt_type_id": "ddt_type",
             "gross_weight": "shipping_weight",
@@ -125,7 +118,7 @@ class StockPickingPackagePreparation(models.Model):
         return fieldname
 
     def reverse_fieldname_of_model(self, model, fieldname):
-        for (name, pp_name) in self.FIELD_MAP[model].items():
+        for name, pp_name in self.FIELD_MAP[model].items():
             if pp_name and fieldname == pp_name:
                 fieldname = name
                 break
@@ -166,8 +159,11 @@ class StockPickingPackagePreparation(models.Model):
         for line in self.line_ids:
             if line.sale_id:
                 return line.sale_line_id.order_id.pricelist_id.id
-        return (self.partner_id.property_product_pricelist and
-                self.partner_id.property_product_pricelist.id or False)
+        return (
+            self.partner_id.property_product_pricelist
+            and self.partner_id.property_product_pricelist.id
+            or False
+        )
 
     def _set_parcel_qty(self):
         if self.parcels == 0:
@@ -182,8 +178,10 @@ class StockPickingPackagePreparation(models.Model):
         for ddt in self:
             amount_untaxed = amount_tax = tax_rate = 0.0
             for line in ddt.line_ids:
-                tax_rate = max([tax_rate] + [
-                    x.amount for x in line.tax_ids if x.amount_type == "percent"])
+                tax_rate = max(
+                    [tax_rate]
+                    + [x.amount for x in line.tax_ids if x.amount_type == "percent"]
+                )
                 amount_untaxed += line.price_subtotal
                 # FORWARDPORT UP TO 10.0
                 if ddt.company_id.tax_calculation_rounding_method == "round_globally":
@@ -214,11 +212,7 @@ class StockPickingPackagePreparation(models.Model):
     @api.depends('carrier_id', 'line_ids')
     def _compute_delivery_price(self):
         for ddt in self:
-            if (
-                ddt.state != 'draft' or
-                not ddt.carrier_id or
-                not ddt.line_ids
-            ):
+            if ddt.state != 'draft' or not ddt.carrier_id or not ddt.line_ids:
                 continue
             else:
                 ddt.delivery_set()
@@ -246,17 +240,15 @@ class StockPickingPackagePreparation(models.Model):
         default=_default_pricelist,
         readonly=True,
         states={'draft': [('readonly', False)]},
-        help="Pricelist for current sales order."
+        help="Pricelist for current sales order.",
     )
     carrier_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery Method",
-        help="Fill this field if you plan to invoice the shipping based on picking."
+        help="Fill this field if you plan to invoice the shipping based on picking.",
     )
     delivery_price = fields.Float(
-        string='Estimated Delivery Price',
-        compute='_compute_delivery_price',
-        store=True
+        string='Estimated Delivery Price', compute='_compute_delivery_price', store=True
     )
     partner_carrier_id = fields.Many2one(
         "res.partner",
@@ -372,8 +364,16 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.model
     def get_delivery_value(
-        self, vals, source, fieldname, defaults=None, target=None,
-        partner=None, order=None, carrier=None, ddt_type=None
+        self,
+        vals,
+        source,
+        fieldname,
+        defaults=None,
+        target=None,
+        partner=None,
+        order=None,
+        carrier=None,
+        ddt_type=None,
     ):
         """Return specific conditions in the document (mainly DdT).
         Inherit fallback condition:
@@ -426,6 +426,7 @@ class StockPickingPackagePreparation(models.Model):
         return:
             vals (dict)
         """
+
         def store_value(vals, tgt_fieldname, src_fieldname, src_obj):
             if src_fieldname and src_obj and src_fieldname in src_obj:
                 if src_fieldname == "id":
@@ -438,7 +439,13 @@ class StockPickingPackagePreparation(models.Model):
             return vals
 
         def get_ref_obj(
-            vals, fieldname, ref_fieldname, obj_name, source, source_name, obj,
+            vals,
+            fieldname,
+            ref_fieldname,
+            obj_name,
+            source,
+            source_name,
+            obj,
         ):
             if not obj:
                 # Object (carrier/partner/...) does not exist
@@ -446,8 +453,7 @@ class StockPickingPackagePreparation(models.Model):
                 if obj_fieldname:
                     # Object can supply field value: search to load object
                     tgt_ref_name = self.fieldname_of_model(target, ref_fieldname)
-                    src_ref_name = self.fieldname_of_model(source_name,
-                                                           ref_fieldname)
+                    src_ref_name = self.fieldname_of_model(source_name, ref_fieldname)
                     if vals.get(tgt_ref_name):
                         # Load form vals ID
                         obj = self.env[obj_name].browse(vals[tgt_ref_name])
@@ -456,8 +462,9 @@ class StockPickingPackagePreparation(models.Model):
                         obj = source[src_ref_name]
                     elif source_name == "stock.picking":
                         # Load object from sale.order
-                        src_ref_name = self.fieldname_of_model("sale.order",
-                                                               ref_fieldname)
+                        src_ref_name = self.fieldname_of_model(
+                            "sale.order", ref_fieldname
+                        )
                         obj = source.sale_id[src_ref_name]
                 if obj and obj_name:
                     tgt_fieldname = self.fieldname_of_model(target, fieldname)
@@ -465,9 +472,7 @@ class StockPickingPackagePreparation(models.Model):
             return vals
 
         if source and source._name not in ("stock.picking", "sale.order"):
-            raise UserError(
-                _("Invalid document record type")
-            )
+            raise UserError(_("Invalid document record type"))
         target = target or "stock.picking.package.preparation"
         source_name = source and source._name or target
         if fieldname in self.env[target]:
@@ -510,7 +515,7 @@ class StockPickingPackagePreparation(models.Model):
                 "delivery.carrier",
                 source,
                 source_name,
-                carrier
+                carrier,
             )
 
         # 3.th in ddt type
@@ -522,7 +527,7 @@ class StockPickingPackagePreparation(models.Model):
                 "stock.ddt.type",
                 source,
                 source_name,
-                ddt_type
+                ddt_type,
             )
 
         # 4.th from customer
@@ -534,7 +539,7 @@ class StockPickingPackagePreparation(models.Model):
                 "res.partner",
                 source,
                 source_name,
-                partner
+                partner,
             )
 
         # Last: from defaults
@@ -592,14 +597,16 @@ class StockPickingPackagePreparation(models.Model):
                 elif vals["partner_id"] != order.partner_id.id:
                     raise UserError(_("Selected Pickings have different Partner"))
                 if vals["partner_shipping_id"] != order.partner_shipping_id.id:
-                    raise UserError(_(
-                        "Selected Pickings have different Shipping Partner"))
+                    raise UserError(
+                        _("Selected Pickings have different Shipping Partner")
+                    )
                 if not partner_invoice_id:
                     partner_invoice_id = order.partner_invoice_id
                 if partner_invoice_id != order.partner_invoice_id:
                     if vals["partner_shipping_id"] != order.partner_shipping_id:
-                        raise UserError(_(
-                            "Selected Pickings have different Invoice Partner"))
+                        raise UserError(
+                            _("Selected Pickings have different Invoice Partner")
+                        )
                 for fieldname, condition_help in (
                     ("carrier_id", _("delivery method")),
                     ("carriage_condition_id", _("carriage condition")),
@@ -608,20 +615,21 @@ class StockPickingPackagePreparation(models.Model):
                     ("partner_carrier_id", _("carrier")),
                 ):
                     if (
-                        order[fieldname] and
-                        picking.sale_id[fieldname] and
-                        order[fieldname] != picking.sale_id[fieldname]
+                        order[fieldname]
+                        and picking.sale_id[fieldname]
+                        and order[fieldname] != picking.sale_id[fieldname]
                     ):
                         raise UserError(
-                            _("Selected Sale Orders %s has different %s") %
-                            condition_help
+                            _("Selected Sale Orders %s has different %s")
+                            % condition_help
                         )
             if not vals["partner_id"]:
                 vals["partner_id"] = partner.id
         # Search for DdT type
         for picking in all_pickings:
             vals = self.get_delivery_value(
-                vals, picking, "ddt_type_id", defaults=defaults)
+                vals, picking, "ddt_type_id", defaults=defaults
+            )
         if not vals.get("ddt_type_id"):
             ddt_type = self.env["stock.ddt.type"].search([], limit=1)
             if ddt_type:
@@ -639,8 +647,7 @@ class StockPickingPackagePreparation(models.Model):
                 ("transportation_method_id", _("transportation method")),
                 ("pricelist_id", _("pricelist")),
             ):
-                vals = self.get_delivery_value(
-                    vals, picking, field, defaults=defaults)
+                vals = self.get_delivery_value(vals, picking, field, defaults=defaults)
             # Evaluate sum of numeric values
             vals = self.sum_delivery_value(vals, picking, "parcels")
             vals = self.sum_delivery_value(vals, picking, "weight")
@@ -654,9 +661,7 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def action_put_in_pack(self, raise_any_done=None):
         raise_any_done = True if raise_any_done is None else raise_any_done
-        if raise_any_done and any(
-            [x for x in self.picking_ids if x.state == "done"]
-        ):
+        if raise_any_done and any([x for x in self.picking_ids if x.state == "done"]):
             raise UserError(
                 _("Impossible to put in pack a picking whose state is 'done'")
             )
@@ -678,9 +683,10 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def action_cancel(self):
         for ddt in self:
-            for picking in ddt.picking_ids:
-                if picking.state == "done":
-                    picking.action_cancel()
+            if ddt.company_id.keep_pick_state_from_ddt:
+                for picking in ddt.picking_ids:
+                    if picking.state == "done":
+                        picking.action_cancel()
         return super(StockPickingPackagePreparation, self).action_cancel()
 
     @api.multi
@@ -717,16 +723,21 @@ class StockPickingPackagePreparation(models.Model):
             for picking in ddt.picking_ids:
                 if picking.state == "done":
                     continue
-                if picking.state in ("draft",
-                                     "waiting",
-                                     "partially_available",
-                                     "confirmed"):
+                if picking.state in (
+                    "draft",
+                    "waiting",
+                    "partially_available",
+                    "confirmed",
+                ):
                     picking.action_assign()
                 if picking.state != "assigned":
                     raise UserError(
-                        _("Could not reserve all requested products. "
-                          "Please use the \'Mark as Todo\' button "
-                          "to handle the reservation manually."))
+                        _(
+                            "Could not reserve all requested products. "
+                            "Please use the \'Mark as Todo\' button "
+                            "to handle the reservation manually."
+                        )
+                    )
                 for pack in picking.pack_operation_ids:
                     if pack.product_qty > 0:
                         pack.write({'qty_done': pack.product_qty})
@@ -735,9 +746,7 @@ class StockPickingPackagePreparation(models.Model):
             for picking in ddt.picking_ids:
                 if picking.state != "done":
                     picking.do_new_transfer()
-            if any(
-                [x for x in ddt.picking_ids if x.state != 'done']
-            ):
+            if any([x for x in ddt.picking_ids if x.state != 'done']):
                 raise UserError(_("Not every picking is in done status"))
             for package in ddt:
                 if not package.ddt_number:
@@ -833,7 +842,7 @@ class StockPickingPackagePreparation(models.Model):
         Prepare the dict of values to create the new invoice for a sales order.
         This method may be
         overridden to implement custom invoice generation (making sure to call
-        super() to establish
+        super(StockPickingPackagePreparation, self) to establish
         a clean extension chain).
         """
         self.ensure_one()
@@ -932,8 +941,20 @@ class StockPickingPackagePreparation(models.Model):
         references = {}
         seq_offset = 0
         for ddt in self:
-            if not ddt.to_be_invoiced or ddt.invoice_id or ddt.state != "done":
-                continue
+            if (
+                ddt.state != "done"
+                and (ddt.state != "in_pack"
+                     or ddt.company_id.delivery_price_policy != "delivery")
+            ):
+                raise UserError(_("Delivery note %s is not done" % ddt.ddt_number))
+            elif ddt.invoice_id:
+                raise UserError(
+                    _("Delivery note %s is already invoiced" % ddt.ddt_number)
+                )
+            elif not ddt.to_be_invoiced:
+                raise UserError(
+                    _("Delivery note %s is not invoiceable" % ddt.ddt_number)
+                )
             order = ddt._get_sale_order_ref()
             invoiced_order_lines = []
             orders = []
@@ -945,8 +966,7 @@ class StockPickingPackagePreparation(models.Model):
             else:
                 if ddt.partner_shipping_id:
                     group_method = (
-                        ddt.partner_shipping_id.commercial_partner_id.
-                        ddt_invoicing_group
+                        ddt.partner_shipping_id.commercial_partner_id.ddt_invoicing_group
                     )
                 else:
                     group_method = (
@@ -1013,7 +1033,12 @@ class StockPickingPackagePreparation(models.Model):
                     invoices[group_key].id, line.product_uom_qty, offset=seq_offset
                 )
                 max_ddt_seq = max(max_ddt_seq, line.sequence)
-            if invoice and ddt.delivery_price and ddt.carrier_id:
+            if (
+                invoice
+                and invoice.company_id.delivery_price_policy == "delivery"
+                and ddt.delivery_price
+                and ddt.carrier_id
+            ):
                 invoice._create_delivery_line(ddt.carrier_id, ddt.delivery_price)
 
             seq_offset += max_ddt_seq
@@ -1027,15 +1052,19 @@ class StockPickingPackagePreparation(models.Model):
             for order in orders:
                 for line in order.order_line:
                     if line not in invoiced_order_lines and (
-                        not line.product_id or line.product_id.type == "service" and
-                        not line.is_delivery
+                        not line.product_id
+                        or line.product_id.type == "service"
+                        and (not line.is_delivery
+                             or order.company_id.delivery_price_policy != "delivery")
                     ):
                         line.invoice_line_create(
                             invoices[group_key].id, line.qty_to_invoice
                         )
-                    elif (line not in invoiced_order_lines and
-                          line.is_delivery and
-                          line.qty_invoiced != line.product_uom_qty):
+                    elif (
+                        line not in invoiced_order_lines
+                        and line.is_delivery
+                        and line.qty_invoiced != line.product_uom_qty
+                    ):
                         line.qty_invoiced = line.product_uom_qty
             # Allow additional operations from ddt
             # ddt.other_operations_on_ddt(invoice)
@@ -1125,35 +1154,38 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def delivery_set(self):
         for ddt in self:
-            if not ddt.pricelist_id:
-                ddt.pricelist_id = self._default_pricelist()
-            carrier = ddt.carrier_id
-            if carrier:
-                if ddt.state != 'draft':
-                    raise UserError(_(
-                        'The delivery note state have to be draft '
-                        'to add delivery lines.'))
+            if ddt.company_id.delivery_price_policy == "delivery":
+                if not ddt.pricelist_id:
+                    ddt.pricelist_id = self._default_pricelist()
+                carrier = ddt.carrier_id
+                if carrier:
+                    if ddt.state != 'draft':
+                        raise UserError(
+                            _(
+                                'The delivery note state have to be draft '
+                                'to add delivery lines.'
+                            )
+                        )
 
-                if carrier.delivery_type in ['fixed', 'base_on_rule']:
-                    price_unit = ddt.get_price_from_picking()
-                    if ddt.company_id.currency_id.id != ddt.pricelist_id.currency_id.id:
-                        price_unit = ddt.company_id.currency_id.with_context(
-                            date=ddt.date).compute(
-                            price_unit, ddt.pricelist_id.currency_id)
-                ddt.delivery_price = price_unit * (
-                    1.0 + (float(self.carrier_id.margin) / 100.0))
+                    if carrier.delivery_type in ['fixed', 'base_on_rule']:
+                        price_unit = ddt.get_price_from_picking()
+                        if ddt.company_id.currency_id.id != ddt.pricelist_id.currency_id.id:
+                            price_unit = ddt.company_id.currency_id.with_context(
+                                date=ddt.date
+                            ).compute(price_unit, ddt.pricelist_id.currency_id)
+                    ddt.delivery_price = price_unit * (
+                        1.0 + (float(self.carrier_id.margin) / 100.0)
+                    )
 
-            else:
-                raise UserError(_('No carrier set for this order.'))
+                else:
+                    raise UserError(_('No carrier set for this delivery note.'))
 
         return True
 
     def get_price_from_picking(self):
         return self.carrier_id.get_price_from_picking(
-            self.amount_untaxed,
-            self.weight_manual,
-            self.volume,
-            self.parcels)
+            self.amount_untaxed, self.weight_manual, self.volume, self.parcels
+        )
 
 
 class StockPickingPackagePreparationLine(models.Model):
@@ -1374,8 +1406,7 @@ class StockPickingPackagePreparationLine(models.Model):
             if self.sale_line_id:
                 fpos = (
                     self.sale_line_id.order_id.fiscal_position_id
-                    or self.sale_line_id.order_id.partner_id.
-                    property_account_position_id
+                    or self.sale_line_id.order_id.partner_id.property_account_position_id
                 )
             if fpos:
                 account = fpos.map_account(account)

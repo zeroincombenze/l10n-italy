@@ -5,7 +5,7 @@
 {
     "name": "DDT",
     "summary": "Delivery Document Type",
-    "version": "10.0.1.8.20",
+    "version": "10.0.1.8.21",
     "category": "Localization/Italy",
     "author": "Odoo Community Association (OCA) and other subjects",
     "website": "https://github.com/OCA/l10n-italy",
@@ -13,6 +13,7 @@
     "depends": [
         "l10n_it_ade",
         "sale_stock",
+        "stock",
         "stock_account",
         "delivery",
         "stock_picking_package_preparation_line",
@@ -32,6 +33,7 @@
         "views/sale.xml",
         "views/stock_location.xml",
         "views/delivery_carrier_view.xml",
+        "views/config_view.xml",
         "wizard/add_picking_to_ddt.xml",
         "wizard/ddt_from_picking.xml",
         "wizard/ddt_create_invoice.xml",

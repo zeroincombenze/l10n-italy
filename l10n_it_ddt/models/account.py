@@ -72,11 +72,12 @@ class AccountInvoice(models.Model):
         for inv in self:
             if inv.state != 'draft' or not inv.invoice_line_ids:
                 continue
-            delivery_price = 0.0
-            for line in inv.invoice_line_ids:
-                if line.is_delivery:
-                    delivery_price += line.price_subtotal
-            inv.delivery_price = delivery_price
+            if inv.company_id.delivery_price_policy == "delivery":
+                delivery_price = 0.0
+                for line in inv.invoice_line_ids:
+                    if line.is_delivery:
+                        delivery_price += line.price_subtotal
+                inv.delivery_price = delivery_price
 
     @api.multi
     def _delivery_unset(self):
@@ -93,29 +94,30 @@ class AccountInvoice(models.Model):
             if inv.state not in ('draft', 'sent'):
                 raise UserError(_(
                     'The invoice state have to be draft to add delivery lines.'))
-            carriers = {}
-            delivery_price = 0.0
-            for line in inv.invoice_line_ids:
-                if line.ddt_line_id:
-                    ddt = line.ddt_line_id.package_preparation_id
-                    if ddt not in carriers:
-                        carriers[ddt] = {}
-                        if ddt.carrier_id:
-                            carriers[ddt]["carrier"] = ddt.carrier_id
-                        elif (
-                            line.sale_line_id
-                            and line.sale_line_id.order_id
-                            and line.sale_line_id.order_id.carrier_id
-                        ):
-                            carriers[ddt]["carrier"] = (
-                                line.sale_line_id.order_id.carrier_id
-                            )
-                        carriers[ddt]["delivery_price"] = ddt.delivery_price
-                        delivery_price += ddt.delivery_price
-            for ddt in carriers.keys():
-                inv._create_delivery_line(carriers[ddt]["carrier"],
-                                          carriers[ddt]["delivery_price"])
-            inv.delivery_price = delivery_price
+            if inv.company_id.delivery_price_policy == "delivery":
+                carriers = {}
+                delivery_price = 0.0
+                for line in inv.invoice_line_ids:
+                    if line.ddt_line_id:
+                        ddt = line.ddt_line_id.package_preparation_id
+                        if ddt not in carriers:
+                            carriers[ddt] = {}
+                            if ddt.carrier_id:
+                                carriers[ddt]["carrier"] = ddt.carrier_id
+                            elif (
+                                line.sale_line_id
+                                and line.sale_line_id.order_id
+                                and line.sale_line_id.order_id.carrier_id
+                            ):
+                                carriers[ddt]["carrier"] = (
+                                    line.sale_line_id.order_id.carrier_id
+                                )
+                            carriers[ddt]["delivery_price"] = ddt.delivery_price
+                            delivery_price += ddt.delivery_price
+                for ddt in carriers.keys():
+                    inv._create_delivery_line(carriers[ddt]["carrier"],
+                                              carriers[ddt]["delivery_price"])
+                inv.delivery_price = delivery_price
         return True
 
     def _create_delivery_line(self, carrier, price_unit):

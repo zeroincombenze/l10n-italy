@@ -1,0 +1,447 @@
+2023-04-17 20:07:04,134 10357 INFO ? odoo: Odoo version 10.0
+2023-04-17 20:07:04,135 10357 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/logs/zero10.l10n-italy.l10n_it_ddt.conf
+2023-04-17 20:07:04,135 10357 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-04-17 20:07:04,135 10357 INFO ? odoo: database: odoo10@localhost:default
+2023-04-17 20:07:04,164 10357 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:21012
+2023-04-17 20:07:04,180 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading 1 modules...
+2023-04-17 20:07:04,334 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: 1 modules loaded in 0.15s, 0 queries
+2023-04-17 20:07:07,375 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading 45 modules...
+2023-04-17 20:07:07,510 10357 INFO test_l10n_it_ddt_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-04-17 20:07:07,713 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: 45 modules loaded in 0.34s, 0 queries
+2023-04-17 20:07:07,720 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading 46 modules...
+2023-04-17 20:07:08,780 10357 INFO test_l10n_it_ddt_10 odoo.modules.registry: module l10n_it_ddt: creating or updating database tables
+2023-04-17 20:07:11,234 10357 INFO test_l10n_it_ddt_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-04-17 20:07:11,523 10357 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of account.invoice.line fields ddt_id, ddt_sequence
+2023-04-17 20:07:11,526 10357 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of stock.picking.package.preparation.line fields currency_id, date, ddt_number, partner_id, price_subtotal, price_tax, price_total, sale_id, sale_line_id
+2023-04-17 20:07:11,528 10357 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of account.invoice fields delivery_price
+2023-04-17 20:07:11,529 10357 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of stock.picking.package.preparation fields amount_tax, amount_total, amount_untaxed, currency_id, delivery_price, to_be_invoiced
+2023-04-17 20:07:11,677 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/security/ir.model.access.csv
+2023-04-17 20:07:11,893 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/security/security.xml
+2023-04-17 20:07:11,913 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/data/ddt_data.xml
+2023-04-17 20:07:11,989 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking_package_preparation.xml
+2023-04-17 20:07:12,475 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/ddt_data.xml
+2023-04-17 20:07:12,900 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking.xml
+2023-04-17 20:07:13,060 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/partner.xml
+2023-04-17 20:07:13,204 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/product.xml
+2023-04-17 20:07:13,370 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/account.xml
+2023-04-17 20:07:13,472 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/sale.xml
+2023-04-17 20:07:13,665 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_location.xml
+2023-04-17 20:07:13,729 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/delivery_carrier_view.xml
+2023-04-17 20:07:13,799 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/config_view.xml
+2023-04-17 20:07:13,877 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/add_picking_to_ddt.xml
+2023-04-17 20:07:13,930 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_from_picking.xml
+2023-04-17 20:07:13,990 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_create_invoice.xml
+2023-04-17 20:07:14,046 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_line_create_invoice.xml
+2023-04-17 20:07:14,105 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_invoicing.xml
+2023-04-17 20:07:14,169 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/create_ddt.xml
+2023-04-17 20:07:14,219 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/report_ddt.xml
+2023-04-17 20:07:14,336 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/data/mail_template_data.xml
+2023-04-17 20:07:14,391 10357 INFO test_l10n_it_ddt_10 odoo.addons.base.ir.ir_translation: module l10n_it_ddt: loading base translation file en for language en_US
+2023-04-17 20:07:14,392 10357 INFO test_l10n_it_ddt_10 odoo.tools.translate: loading /home/odoo/10.0/l10n-italy/l10n_it_ddt/i18n/en.po
+2023-04-17 20:07:15,316 10357 INFO test_l10n_it_ddt_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt running tests.
+2023-04-17 20:07:15,318 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: test_ddt (odoo.addons.l10n_it_ddt.tests.test_ddt.TestDdt)
+2023-04-17 20:07:15,320 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(account.account,group=base)
+2023-04-17 20:07:15,321 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[account.account] = [u'code']
+2023-04-17 20:07:15,322 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.1601,name=account.account,group=base)
+2023-04-17 20:07:15,325 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.2601,name=account.account,group=base)
+2023-04-17 20:07:15,326 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.3112,name=account.account,group=base)
+2023-04-17 20:07:15,328 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.4101,name=account.account,group=base)
+2023-04-17 20:07:15,328 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(account.tax,group=base)
+2023-04-17 20:07:15,329 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[account.tax] = [u'description']
+2023-04-17 20:07:15,332 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-04-17 20:07:15,332 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(delivery.carrier,group=base)
+2023-04-17 20:07:15,335 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[delivery.carrier] = [u'default_code']
+2023-04-17 20:07:15,338 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 delivery.carrier.store_resource_data(delivery.delivery_carrier,name=delivery.carrier,group=base)
+2023-04-17 20:07:15,339 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(product.template,group=base)
+2023-04-17 20:07:15,341 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 childs_resource[product.template] = product.product
+2023-04-17 20:07:15,342 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 childs_name[product.template] = product_variant_ids
+2023-04-17 20:07:15,342 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 childs_resource[product.template] = product.product
+2023-04-17 20:07:15,342 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 childs_name[product.template] = product_variant_id
+2023-04-17 20:07:15,344 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 parent_resource[product.product] = product.template
+2023-04-17 20:07:15,344 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 parent_name[product.product] = product_tmpl_id
+2023-04-17 20:07:15,344 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[product.product] = [u'default_code']
+2023-04-17 20:07:15,345 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[product.template] = [u'default_code']
+2023-04-17 20:07:15,350 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-04-17 20:07:15,353 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_18,name=product.template,group=base)
+2023-04-17 20:07:15,356 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-04-17 20:07:15,357 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(stock.ddt.type,group=base)
+2023-04-17 20:07:15,357 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[stock.ddt.type] = [u'name']
+2023-04-17 20:07:15,360 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 stock.ddt.type.store_resource_data(l10n_it_ddt.ddt_type_ddt,name=stock.ddt.type,group=base)
+2023-04-17 20:07:15,360 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(res.partner,group=base)
+2023-04-17 20:07:15,363 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[res.partner] = [u'name']
+2023-04-17 20:07:15,366 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_13,name=res.partner,group=base)
+2023-04-17 20:07:15,376 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-04-17 20:07:15,376 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(sale.order,group=order)
+2023-04-17 20:07:15,378 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 childs_resource[sale.order] = sale.order.line
+2023-04-17 20:07:15,378 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 childs_name[sale.order] = order_line
+2023-04-17 20:07:15,379 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 parent_resource[sale.order.line] = sale.order
+2023-04-17 20:07:15,380 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 parent_name[sale.order.line] = order_id
+2023-04-17 20:07:15,380 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[sale.order.line] = [u'sequence']
+2023-04-17 20:07:15,380 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🌍 skeys[sale.order] = [u'partner_id']
+2023-04-17 20:07:15,387 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 sale.order.store_resource_data(z0bug.sale_order_Z0_2,name=sale.order,group=order)
+2023-04-17 20:07:15,391 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 sale.order.store_resource_data(z0bug.sale_order_Z0_4,name=sale.order,group=order)
+2023-04-17 20:07:15,391 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🐜 declare_all_data(sale.order.line,group=order)
+2023-04-17 20:07:15,394 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 sale.order.line.store_resource_data(z0bug.sale_order_Z0_2_1,name=sale.order.line,group=order)
+2023-04-17 20:07:15,397 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 sale.order.line.store_resource_data(z0bug.sale_order_Z0_2_2,name=sale.order.line,group=order)
+2023-04-17 20:07:15,399 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 sale.order.line.store_resource_data(z0bug.sale_order_Z0_4_1,name=sale.order.line,group=order)
+2023-04-17 20:07:15,399 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺 Starting test v2.0.5.1 (debug_level=3)
+2023-04-17 20:07:15,405 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺 Testing module: l10n_it_ddt (10.0.1.8.21)
+2023-04-17 20:07:15,408 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-04-17 20:07:15,408 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.4101)
+2023-04-17 20:07:15,408 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-04-17 20:07:15,414 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 17, 
+    "code": "4101", 
+    "name": "Acq. Merce", 
+    "reconcile": false
+},xref=external.4101)
+2023-04-17 20:07:15,429 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.4101,name=account.account,group=base)
+2023-04-17 20:07:15,430 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.2601)
+2023-04-17 20:07:15,430 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.2601)
+2023-04-17 20:07:15,432 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 9, 
+    "code": "2601", 
+    "reconcile": false, 
+    "name": "IVA n/debito"
+},xref=external.2601)
+2023-04-17 20:07:15,443 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.2601,name=account.account,group=base)
+2023-04-17 20:07:15,444 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.1601)
+2023-04-17 20:07:15,444 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.1601)
+2023-04-17 20:07:15,446 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 5, 
+    "code": "1601", 
+    "reconcile": false, 
+    "name": "IVA n/credito"
+},xref=external.1601)
+2023-04-17 20:07:15,457 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.1601,name=account.account,group=base)
+2023-04-17 20:07:15,457 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_make(None,xref=external.3112)
+2023-04-17 20:07:15,457 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-04-17 20:07:15,459 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_create({
+    "user_type_id": 14, 
+    "code": "3112", 
+    "name": "Ricavi da merci e servizi", 
+    "reconcile": false
+},xref=external.3112)
+2023-04-17 20:07:15,469 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.account.store_resource_data(external.3112,name=account.account,group=base)
+2023-04-17 20:07:15,469 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_make(None,xref=external.22v)
+2023-04-17 20:07:15,469 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:15,472 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_create({
+    "amount_type": "percent", 
+    "amount": 22, 
+    "account_id": "external.2601", 
+    "price_include": false, 
+    "description": "22v", 
+    "refund_account_id": "external.2601", 
+    "type_tax_use": "sale", 
+    "name": "IVA 22% su vendite"
+},xref=external.22v)
+2023-04-17 20:07:15,472 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.2601)
+2023-04-17 20:07:15,475 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.2601)
+2023-04-17 20:07:15,484 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-04-17 20:07:15,484 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.resource_make(None,xref=delivery.delivery_carrier)
+2023-04-17 20:07:15,484 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.resource_bind(delivery.delivery_carrier)
+2023-04-17 20:07:15,485 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞delivery.carrier.resource_write(2,{
+    "amount": 50.0, 
+    "fixed_price": 4.9, 
+    "free_if_more_than": true, 
+    "name": "Consegna", 
+    "goods_description_id": 1
+},xref=delivery.delivery_carrier)
+2023-04-17 20:07:15,549 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make(None,xref=z0bug.product_template_1)
+2023-04-17 20:07:15,550 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(z0bug.product_template_1)
+2023-04-17 20:07:15,552 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_create({
+    "property_account_income_id": "external.3112", 
+    "weight": 0.1, 
+    "standard_price": 0.42, 
+    "uom_id": 1, 
+    "default_code": "AA", 
+    "name": "Prodotto Alpha", 
+    "property_account_expense_id": "external.4101", 
+    "lst_price": 0.84, 
+    "taxes_id": [
+        "external.22v"
+    ], 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "product_variant_id": []
+},xref=z0bug.product_template_1)
+2023-04-17 20:07:15,552 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-04-17 20:07:15,554 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-04-17 20:07:15,556 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:15,558 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del product.template.vals[product_variant_id]
+2023-04-17 20:07:15,878 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-04-17 20:07:15,878 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_1' -> ('product.product') 'z0bug.product_product_1'
+2023-04-17 20:07:15,881 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.product.store_resource_data(z0bug.product_product_1,name=product.product,group=base)
+2023-04-17 20:07:15,881 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make(None,xref=z0bug.product_template_18)
+2023-04-17 20:07:15,882 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(z0bug.product_template_18)
+2023-04-17 20:07:15,883 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_create({
+    "property_account_income_id": "external.3112", 
+    "weight": 0.06, 
+    "standard_price": 0.59, 
+    "uom_id": 1, 
+    "default_code": "WW", 
+    "name": "Prodotto Rho", 
+    "property_account_expense_id": "external.4101", 
+    "lst_price": 1.19, 
+    "taxes_id": [
+        "external.22v"
+    ], 
+    "uom_po_id": 1, 
+    "type": "product", 
+    "product_variant_id": []
+},xref=z0bug.product_template_18)
+2023-04-17 20:07:15,884 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-04-17 20:07:15,885 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-04-17 20:07:15,887 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:15,890 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del product.template.vals[product_variant_id]
+2023-04-17 20:07:16,141 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_18,name=product.template,group=base)
+2023-04-17 20:07:16,141 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_18' -> ('product.product') 'z0bug.product_product_18'
+2023-04-17 20:07:16,145 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.product.store_resource_data(z0bug.product_product_18,name=product.product,group=base)
+2023-04-17 20:07:16,145 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make(None,xref=z0bug.product_template_2)
+2023-04-17 20:07:16,145 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(z0bug.product_template_2)
+2023-04-17 20:07:16,147 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_create({
+    "property_account_income_id": "external.3112", 
+    "weight": 0.2, 
+    "standard_price": 1.69, 
+    "uom_id": 1, 
+    "default_code": "BB", 
+    "name": "Prodotto Beta", 
+    "property_account_expense_id": "external.4101", 
+    "lst_price": 3.38, 
+    "taxes_id": [
+        "external.22v"
+    ], 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "product_variant_id": []
+},xref=z0bug.product_template_2)
+2023-04-17 20:07:16,147 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-04-17 20:07:16,149 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.4101)
+2023-04-17 20:07:16,151 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:16,153 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del product.template.vals[product_variant_id]
+2023-04-17 20:07:16,409 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-04-17 20:07:16,409 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_2' -> ('product.product') 'z0bug.product_product_2'
+2023-04-17 20:07:16,412 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 product.product.store_resource_data(z0bug.product_product_2,name=product.product,group=base)
+2023-04-17 20:07:16,412 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.resource_make(None,xref=l10n_it_ddt.ddt_type_ddt)
+2023-04-17 20:07:16,412 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.resource_bind(l10n_it_ddt.ddt_type_ddt)
+2023-04-17 20:07:16,413 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞stock.ddt.type.resource_write(1,{
+    "default_transportation_reason_id": 1
+},xref=l10n_it_ddt.ddt_type_ddt)
+2023-04-17 20:07:16,414 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_make(None,xref=z0bug.res_partner_13)
+2023-04-17 20:07:16,414 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_13)
+2023-04-17 20:07:16,416 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_create({
+    "lang": "en_US", 
+    "city": "M\u00e4\u00e4nz", 
+    "street": "Christophstra\u00dfe 13", 
+    "customer": true, 
+    "zip": "55113", 
+    "is_company": true, 
+    "supplier": false, 
+    "country_id": 58, 
+    "vat": "DE812526315", 
+    "name": "Axilor GmbH"
+},xref=z0bug.res_partner_13)
+2023-04-17 20:07:16,576 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del res.partner.vals[image_small]
+2023-04-17 20:07:16,576 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del res.partner.vals[image]
+2023-04-17 20:07:16,576 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del res.partner.vals[image_medium]
+2023-04-17 20:07:16,577 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_13,name=res.partner,group=base)
+2023-04-17 20:07:16,577 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_make(None,xref=z0bug.res_partner_2)
+2023-04-17 20:07:16,577 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_2)
+2023-04-17 20:07:16,579 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_create({
+    "website": "http://www.agrolait2.it/", 
+    "city": "S. Secondo Pinerolo", 
+    "transportation_method_id": 3, 
+    "zip": "10060", 
+    "carriage_condition_id": 3, 
+    "country_id": 110, 
+    "phone": "+39 0121555123", 
+    "street": "Via Dueville, 2", 
+    "is_company": true, 
+    "supplier": false, 
+    "state_id": 402, 
+    "goods_description_id": 3, 
+    "customer": true, 
+    "email": "agrolait2@libero.it", 
+    "vat": "IT02345670018", 
+    "name": "Latte Beta Due s.n.c."
+},xref=z0bug.res_partner_2)
+2023-04-17 20:07:16,723 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del res.partner.vals[image_medium]
+2023-04-17 20:07:16,723 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del res.partner.vals[image]
+2023-04-17 20:07:16,723 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del res.partner.vals[image_small]
+2023-04-17 20:07:16,723 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-04-17 20:07:16,723 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_make(None,xref=z0bug.product_product_18)
+2023-04-17 20:07:16,723 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_18)
+2023-04-17 20:07:16,726 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_write(44,{
+    "property_account_income_id": 33, 
+    "name": "Prodotto Rho", 
+    "weight": 0.06, 
+    "property_account_expense_id": 30, 
+    "standard_price": 0.59, 
+    "product_tmpl_id": 40, 
+    "uom_id": 1, 
+    "lst_price": 1.19, 
+    "default_code": "WW", 
+    "uom_po_id": 1, 
+    "type": "product", 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=z0bug.product_product_18)
+2023-04-17 20:07:16,804 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_make(None,xref=z0bug.product_product_1)
+2023-04-17 20:07:16,804 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_1)
+2023-04-17 20:07:16,806 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_write(43,{
+    "property_account_income_id": 33, 
+    "name": "Prodotto Alpha", 
+    "weight": 0.1, 
+    "property_account_expense_id": 30, 
+    "standard_price": 0.42, 
+    "product_tmpl_id": 39, 
+    "uom_id": 1, 
+    "lst_price": 0.84, 
+    "default_code": "AA", 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=z0bug.product_product_1)
+2023-04-17 20:07:16,886 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_make(None,xref=z0bug.product_product_2)
+2023-04-17 20:07:16,886 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_2)
+2023-04-17 20:07:16,888 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_write(45,{
+    "property_account_income_id": 33, 
+    "name": "Prodotto Beta", 
+    "weight": 0.2, 
+    "property_account_expense_id": 30, 
+    "standard_price": 1.69, 
+    "product_tmpl_id": 41, 
+    "uom_id": 1, 
+    "lst_price": 3.38, 
+    "default_code": "BB", 
+    "uom_po_id": 1, 
+    "type": "consu", 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=z0bug.product_product_2)
+2023-04-17 20:07:16,971 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_make({
+    "property_account_income_id": "external.3112", 
+    "taxes_id": "external.22v"
+},xref=delivery.delivery_carrier_product_template)
+2023-04-17 20:07:16,971 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_bind(delivery.delivery_carrier_product_template)
+2023-04-17 20:07:16,974 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.account.resource_bind(external.3112)
+2023-04-17 20:07:16,976 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:16,979 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del product.template.vals[product_variant_id]
+2023-04-17 20:07:16,980 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.template.resource_write(37,{
+    "property_account_income_id": 33, 
+    "taxes_id": [
+        [
+            6, 
+            0, 
+            [
+                3
+            ]
+        ]
+    ]
+},xref=delivery.delivery_carrier_product_template)
+2023-04-17 20:07:17,162 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_2]
+2023-04-17 20:07:17,163 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_make(None,xref=z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,163 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,167 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.resource_bind(z0bug.sale_order_Z0_2_2)
+2023-04-17 20:07:17,168 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,172 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.line.resource_bind(z0bug.sale_order_Z0_2_1)
+2023-04-17 20:07:17,173 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,178 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_create({
+    "origin": "Test2", 
+    "order_line": [
+        [
+            0, 
+            0, 
+            "z0bug.sale_order_Z0_2_2"
+        ], 
+        [
+            0, 
+            0, 
+            "z0bug.sale_order_Z0_2_1"
+        ]
+    ], 
+    "carrier_id": 2, 
+    "client_order_ref": "220123", 
+    "date_order": "[...]", 
+    "partner_id": "z0bug.res_partner_2", 
+    "ddt_type_id": 1
+},xref=z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,179 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_2)
+2023-04-17 20:07:17,180 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,185 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ External reference z0bug.sale_order_Z0_2 not found
+2023-04-17 20:07:17,185 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del sale.order.line.vals[order_id]
+2023-04-17 20:07:17,185 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:17,189 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞product.product.resource_bind(z0bug.product_product_1)
+2023-04-17 20:07:17,190 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞sale.order.resource_bind(z0bug.sale_order_Z0_2)
+2023-04-17 20:07:17,194 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ External reference z0bug.sale_order_Z0_2 not found
+2023-04-17 20:07:17,194 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv:  🕶️ del sale.order.line.vals[order_id]
+2023-04-17 20:07:17,194 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞account.tax.resource_bind(external.22v)
+2023-04-17 20:07:17,198 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🐞res.partner.resource_bind(z0bug.res_partner_2)
+2023-04-17 20:07:17,550 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 💼 sale.order.store_resource_data(z0bug.sale_order_Z0_2,name=sale.order,group=order)
+2023-04-17 20:07:17,554 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: FAIL
+2023-04-17 20:07:17,558 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ======================================================================
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: FAIL: test_ddt (odoo.addons.l10n_it_ddt.tests.test_ddt.TestDdt)
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: Traceback (most recent call last):
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/test_ddt.py", line 686, in test_ddt
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     order = self._create_sale_order(xref)
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/test_ddt.py", line 306, in _create_sale_order
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     order.transportation_method_id)
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ` AssertionError: stock.picking.transportation_method() != stock.picking.transportation_method(3,) : Invalid order transportation method stock.picking.transportation_method()!
+2023-04-17 20:07:17,558 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: Ran 1 test in 2.240s
+2023-04-17 20:07:17,558 10357 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: FAILED
+2023-04-17 20:07:17,559 10357 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt:  (failures=1)
+2023-04-17 20:07:17,559 10357 ERROR test_l10n_it_ddt_10 odoo.modules.module: Module l10n_it_ddt: 1 failures, 0 errors
+2023-04-17 20:07:17,609 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: 46 modules loaded in 9.89s, 2507 queries
+2023-04-17 20:07:18,246 10357 ERROR test_l10n_it_ddt_10 odoo.modules.loading: At least one test failed when loading the modules.
+2023-04-17 20:07:18,310 10357 INFO test_l10n_it_ddt_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-04-17 20:07:18,311 10357 INFO test_l10n_it_ddt_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-04-17 20:07:18,525 10357 INFO test_l10n_it_ddt_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-04-17 20:07:18,527 10357 INFO test_l10n_it_ddt_10 odoo.service.server: Initiating shutdown
+2023-04-17 20:07:18,527 10357 INFO test_l10n_it_ddt_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ddt[0m (10.0): [31mFAILED![0m
++===================================================================
+
+Name                                                                 Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_ddt/models/account.py                               103     67    35%   61-68, 71, 74, 76-80, 83-84, 88-121, 124-162, 194-196, 199-205
+l10n-italy/l10n_it_ddt/models/delivery_carrier.py                       27     17    37%   31-52
+l10n-italy/l10n_it_ddt/models/ir_sequence.py                            27     18    33%   13-15, 18-33, 36-38, 45-47
+l10n-italy/l10n_it_ddt/models/partner.py                                11      0   100%
+l10n-italy/l10n_it_ddt/models/product.py                                23      4    83%   20, 32, 38-43
+l10n-italy/l10n_it_ddt/models/res_company.py                            18      8    56%   48-58
+l10n-italy/l10n_it_ddt/models/sale_order.py                            185    119    36%   13-19, 33, 37, 89-98, 101-112, 116-131, 135-152, 156-172, 175-191, 194-228, 231-241, 244-246, 249-273, 276, 281-303, 307, 312, 315-317, 320, 331-333, 336, 341-345, 347-350
+l10n-italy/l10n_it_ddt/models/stock_location.py                          4      0   100%
+l10n-italy/l10n_it_ddt/models/stock_picking.py                          91     69    24%   28, 31-33, 36, 40-47, 50-54, 60-67, 71-85, 88-107, 110-112, 122-124, 131-161, 169-200
+l10n-italy/l10n_it_ddt/models/stock_picking_package_preparation.py     730    592    19%   115-118, 121-127, 132-134, 143-156, 159-162, 169-171, 174-204, 213-218, 310-312, 316-321, 324-348, 352-354, 358-361, 430-552, 555-570, 574-659, 663-681, 684-690, 693-707, 710-755, 759-776, 788-802, 808-818, 821-837, 840-930, 933-1098, 1101-1126, 1138-1152, 1155-1183, 1186, 1196-1210, 1282-1328, 1331-1342, 1345-1362, 1373-1437, 1449-1461, 1464-1478, 1481-1487, 1490-1552
+l10n-italy/l10n_it_ddt/wizard/add_picking_to_ddt.py                     36     29    19%   18-40, 48-82
+l10n-italy/l10n_it_ddt/wizard/create_ddt.py                             15     11    27%   13-26
+l10n-italy/l10n_it_ddt/wizard/ddt_create_invoice.py                     23     14    39%   13, 18-19, 35-49
+l10n-italy/l10n_it_ddt/wizard/ddt_from_picking.py                       19     10    47%   14, 19-34
+l10n-italy/l10n_it_ddt/wizard/ddt_invoicing.py                          21     11    48%   15-16, 31-56
+l10n-italy/l10n_it_ddt/wizard/ddt_line_create_invoice.py                40     30    25%   13, 18-26, 35-45, 58-67
+--------------------------------------------------------------------------------------------------
+TOTAL                                                                 1373    999    27%

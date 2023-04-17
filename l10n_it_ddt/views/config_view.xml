@@ -1,18 +1,26 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="view_multireport_config_settings" model="ir.ui.view">
-        <field name="name">view_multireport_config_settings</field>
-        <field name="model">base.config.settings</field>
-        <field name="inherit_id" ref="base_setup.view_general_configuration" />
+    <record id="view_ddt_config_settings" model="ir.ui.view">
+        <field name="name">view.ddt.config.settings</field>
+        <field name="model">account.config.settings</field>
+        <field name="inherit_id" ref="account.view_account_config_settings"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='report']" position="inside">
-                <label for="report_model_style" />
-                <div>
-                    <field name="report_model_style" class="oe_inline" />
-                </div>
+            <xpath expr="/form/group[6]" position="after">
+                <separator string="Delivery + Invoice configuration"/>
+                <group name="delivery_invoice">
+                    <label for="id" string="Delivery + Invoice configuration"/>
+                    <div>
+                        <div>
+                            <label for="keep_pick_state_from_ddt"/>
+                            <field name="keep_pick_state_from_ddt"/>
+                        </div>
+                        <div>
+                            <label for="delivery_price_policy"/>
+                            <field name="delivery_price_policy"/>
+                        </div>
+                    </div>
+                </group>
             </xpath>
         </field>
     </record>
-
 </odoo>

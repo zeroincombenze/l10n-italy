@@ -155,6 +155,8 @@ class SaleOrder(models.Model):
     @api.onchange("carrier_id")
     def onchange_carrier_id(self):
         if self.carrier_id:
+            # Remove delivery products from the sale order
+            self._delivery_unset()
             for fieldname in (
                 "carrier_id",
                 "ddt_type_id",
@@ -219,6 +221,8 @@ class SaleOrder(models.Model):
             ddt_model.preparare_ddt_data(pickings=pickings)
         )
         for order in orders:
+            if not ddt.delivery_price:
+                ddt.delivery_price = order.delivery_price
             if order.invoice_status == "no":
                 order.invoice_status = "to invoice"
         return [ddt.id]
@@ -268,32 +272,44 @@ class SaleOrder(models.Model):
             result["res_id"] = ddt_ids and ddt_ids[0] or False
         return result
 
+    @api.multi
     def get_delivery_values(self, vals):
         """If write is called from external partner (i.e. e-commerce)
         delivery data will be empty even if ddt_type and/or carrier_id are set
         In ordinary edit by end-user, delivery_data_set is True"""
-        if self.id and self.delivery_data_set:
-            vals["delivery_data_set"] = True
-        if not vals.get("delivery_data_set"):
-            for fieldname in (
-                "carrier_id",
-                "ddt_type_id",
-                "goods_description_id",
-                "carriage_condition_id",
-                "transportation_reason_id",
-                "transportation_method_id",
-                "partner_carrier_id",
-                "ddt_invoicing_group",
-                "ddt_invoice_exclude",
-            ):
-                vals = self.env["stock.picking.package.preparation"].get_delivery_value(
-                    vals,
-                    self if self.id else None,
-                    fieldname,
-                    target="sale.order",
-                )
-            vals["delivery_data_set"] = True
+        for invoice in self:
+            if invoice.id and invoice.delivery_data_set:
+                vals["delivery_data_set"] = True
+            if not vals.get("delivery_data_set"):
+                for fieldname in (
+                    "carrier_id",
+                    "ddt_type_id",
+                    "goods_description_id",
+                    "carriage_condition_id",
+                    "transportation_reason_id",
+                    "transportation_method_id",
+                    "partner_carrier_id",
+                    "ddt_invoicing_group",
+                    "ddt_invoice_exclude",
+                ):
+                    vals = self.env[
+                        "stock.picking.package.preparation"].get_delivery_value(
+                        vals,
+                        invoice if invoice.id else None,
+                        fieldname,
+                        target="sale.order",
+                    )
+                vals["delivery_data_set"] = True
+                break
         return vals
+
+    @api.depends('carrier_id', 'order_line')
+    def _compute_delivery_price(self):
+        super(SaleOrder, self)._compute_delivery_price()
+        for order in self:
+            for line in order.order_line:
+                if line.product_id and line.product_id.is_delivery:
+                    order.delivery_price = line.price_subtotal
 
     @api.multi
     def write(self, vals):
@@ -307,27 +323,30 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
     weight = fields.Float(string="Line Weight")
 
-    @api.multi
-    @api.onchange("product_id", "product_uom_qty")
+    @api.depends("product_id", 'product_uom_qty')
     def _compute_weight(self):
         if self.product_id:
             self.weight = self.product_id.weight * self.product_uom_qty
-        # return super(SaleOrderLine, self)._compute_weight()
 
     @api.model
     def create(self, vals):
         if vals.get("product_id"):
             order = self.env["sale.order"].browse(vals["order_id"])
+            product = self.env["product.product"].browse(vals["product_id"])
             if not order.carrier_id:
-                product = self.env["product.product"].browse(vals["product_id"])
                 if product.is_delivery:
                     carrier = self.env['delivery.carrier'].search(
                         [('product_id', '=', vals["product_id"])])
                     if carrier:
                         order.carrier_id = carrier.id
+            if order.carrier_id and product.is_delivery:
+                delivery_price = (vals.get("price_subtotal", 0.0)
+                                  or vals.get("price_unit", 0.0))
+                if delivery_price:
+                    order.delivery_price = delivery_price
+
         return super(SaleOrderLine, self).create(vals)
