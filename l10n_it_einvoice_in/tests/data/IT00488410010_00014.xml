@@ -8,6 +8,9 @@
             <ProgressivoInvio>01422</ProgressivoInvio>
             <FormatoTrasmissione>FPR12</FormatoTrasmissione>
             <CodiceDestinatario>CE961TO</CodiceDestinatario>
+            <ContattiTrasmittente>
+                <Email>contatto: info@tim.it</Email>
+            </ContattiTrasmittente>
         </DatiTrasmissione>
         <CedentePrestatore>
             <DatiAnagrafici>
@@ -36,6 +39,9 @@
                 <SocioUnico>SM</SocioUnico>
                 <StatoLiquidazione>LN</StatoLiquidazione>
             </IscrizioneREA>
+            <Contatti>
+                <Email>amministrazione: amministrazione@tim.it</Email>
+            </Contatti>
         </CedentePrestatore>
         <CessionarioCommittente>
             <DatiAnagrafici>

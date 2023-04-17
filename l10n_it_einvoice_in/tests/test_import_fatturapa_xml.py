@@ -21,10 +21,9 @@ class TestDuplicatedAttachment(FatturapaCommon):
         self.invoice_model = self.env["account.invoice"]
 
     def test_00001_xml_import(self):
-        """Attachment name must be unique"""
         # This test breaks the current transaction and every test executed after this
         # would fail.
-        # So this test ir executed isolated form the other test.
+        # So this test ir executed isolated from the other tests.
         self.run_wizard("🎺 test001", "IT12345670892_00001.xml")
         with self.assertRaises(UserError):
             self.run_wizard("🎺 test_duplicated", "IT12345670892_00001.xml")

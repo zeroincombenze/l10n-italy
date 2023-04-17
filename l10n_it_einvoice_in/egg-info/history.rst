@@ -1,8 +1,13 @@
+10.0.1.3.41 (2023-04-11)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash in some strange email
+
 10.0.1.3.40 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Import e-invoice from RSM / Importazione file XML da San Marino
-* [FIX] Crash when two emailple
+* [FIX] Crash when two emails
 
 10.0.1.3.39 (2023-04-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~
