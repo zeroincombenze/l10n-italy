@@ -1,7 +1,13 @@
+10.0.1.8.21 (2023-04-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Delivery price form DN or Sale order / Calcolo trasporto da DdT o Ordine
++ [FIX] Crahs iwth module sale order revision
+
 10.0.1.8.20 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Field carrie_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
+* [IMP] Field carrier_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
 
 10.0.1.8.19 (2023-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~

@@ -66,6 +66,7 @@
                 position="after"
             >
                 <field name="weight" />
+                <field name="is_delivery" />
             </xpath>
         </field>
     </record>

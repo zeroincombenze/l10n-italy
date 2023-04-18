@@ -277,30 +277,30 @@ class SaleOrder(models.Model):
         """If write is called from external partner (i.e. e-commerce)
         delivery data will be empty even if ddt_type and/or carrier_id are set
         In ordinary edit by end-user, delivery_data_set is True"""
-        for invoice in self:
-            if invoice.id and invoice.delivery_data_set:
+        order = self
+        for order in self:
+            if order.id and order.delivery_data_set:
                 vals["delivery_data_set"] = True
-            if not vals.get("delivery_data_set"):
-                for fieldname in (
-                    "carrier_id",
-                    "ddt_type_id",
-                    "goods_description_id",
-                    "carriage_condition_id",
-                    "transportation_reason_id",
-                    "transportation_method_id",
-                    "partner_carrier_id",
-                    "ddt_invoicing_group",
-                    "ddt_invoice_exclude",
-                ):
-                    vals = self.env[
-                        "stock.picking.package.preparation"].get_delivery_value(
-                        vals,
-                        invoice if invoice.id else None,
-                        fieldname,
-                        target="sale.order",
-                    )
-                vals["delivery_data_set"] = True
-                break
+        if not vals.get("delivery_data_set"):
+            for fieldname in (
+                "carrier_id",
+                "ddt_type_id",
+                "goods_description_id",
+                "carriage_condition_id",
+                "transportation_reason_id",
+                "transportation_method_id",
+                "partner_carrier_id",
+                "ddt_invoicing_group",
+                "ddt_invoice_exclude",
+            ):
+                vals = self.env[
+                    "stock.picking.package.preparation"].get_delivery_value(
+                    vals,
+                    order if order.id else None,
+                    fieldname,
+                    target="sale.order",
+                )
+            vals["delivery_data_set"] = True
         return vals
 
     @api.depends('carrier_id', 'order_line')
@@ -331,6 +331,14 @@ class SaleOrderLine(models.Model):
     def _compute_weight(self):
         if self.product_id:
             self.weight = self.product_id.weight * self.product_uom_qty
+
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        res["is_delivery"] = self.is_delivery
+        if self.is_delivery:
+            res["sequence"] = int(res.get("sequence", "10")) + 100
+        return res
 
     @api.model
     def create(self, vals):

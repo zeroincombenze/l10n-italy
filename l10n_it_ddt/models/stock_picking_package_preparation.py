@@ -1058,7 +1058,7 @@ class StockPickingPackagePreparation(models.Model):
                              or order.company_id.delivery_price_policy != "delivery")
                     ):
                         line.invoice_line_create(
-                            invoices[group_key].id, line.qty_to_invoice
+                            invoices[group_key].id, line.qty_to_invoice,
                         )
                     elif (
                         line not in invoiced_order_lines
@@ -1371,7 +1371,7 @@ class StockPickingPackagePreparationLine(models.Model):
         :param invoice_id: possible existing invoice
         """
         self.ensure_one()
-        offset = offset or 0.0
+        offset = offset or 0
         res = {}
         if (
             self.sale_line_id.product_id.property_account_income_id
@@ -1432,6 +1432,8 @@ class StockPickingPackagePreparationLine(models.Model):
                 "product_id": self.product_id.id or False,
                 "invoice_line_tax_ids": [(6, 0, self.tax_ids.ids)],
                 "weight": self.weight,
+                "is_delivery":
+                    self.sale_line_id.is_delivery if self.sale_line_id else False,
             }
         )
         return res
@@ -1445,11 +1447,11 @@ class StockPickingPackagePreparationLine(models.Model):
         # precision = self.env["decimal.precision"].precision_get(
         #     "Product Unit of Measure"
         # )
-        # offset = offset or 0
+        offset = offset or 0
         for line in self:
-            # vals = line._prepare_invoice_line(
-            #     qty=qty, invoice_id=invoice_id, offset=offset)
-            vals = line._prepare_invoice_line(qty=qty, invoice_id=invoice_id)
+            vals = line._prepare_invoice_line(
+                qty=qty, invoice_id=invoice_id, offset=offset)
+            # vals = line._prepare_invoice_line(qty=qty, invoice_id=invoice_id)
             vals.update({"invoice_id": invoice_id})
             if line.sale_line_id:
                 vals.update({"sale_line_ids": [(6, 0, [line.sale_line_id.id])]})
