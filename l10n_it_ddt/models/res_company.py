@@ -44,15 +44,25 @@ class AccountConfigSettings(models.TransientModel):
         help="How to evaluate delivery cost on invoice",
     )
 
-    @api.onchange("company_id")
-    def onchange_company_id(self):
-        res = super(AccountConfigSettings, self).onchange_company_id()
-        if self.company_id:
-            self.delivery_price_policy = (
-                self.company_id.delivery_price_policy or "order"
-            )
-            self.keep_pick_state_from_ddt = self.company_id.keep_pick_state_from_ddt
-        else:
-            self.tax_stamp_product_id = "order"
-            self.keep_pick_state_from_ddt = False
+    @api.model
+    def default_get(self, fields):
+        res = super(AccountConfigSettings, self).default_get(fields)
+        if res:
+            res["delivery_price_policy"] = (
+                self.env.user.company_id.delivery_price_policy)
+            res["keep_pick_state_from_ddt"] = (
+                self.env.user.company_id.keep_pick_state_from_ddt)
         return res
+
+    # @api.onchange("company_id")
+    # def onchange_company_id(self):
+    #     res = super(AccountConfigSettings, self).onchange_company_id()
+    #     if self.company_id:
+    #         self.delivery_price_policy = (
+    #             self.company_id.delivery_price_policy or "order"
+    #         )
+    #         self.keep_pick_state_from_ddt = self.company_id.keep_pick_state_from_ddt
+    #     else:
+    #         self.delivery_price_policyd = "order"
+    #         self.keep_pick_state_from_ddt = False
+    #     return res

@@ -73,7 +73,7 @@ multipart==0.1.1
 num2words==0.5.12
 numpy==1.16.6
 odoo==10.0
-odoo-score==2.0.3
+odoo-score==2.0.5
 OdooRPC==0.9.0
 OERPLib==0.8.4
 ofxparse==0.16

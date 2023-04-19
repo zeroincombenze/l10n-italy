@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="view_ddt_config_settings" model="ir.ui.view">
         <field name="name">view.ddt.config.settings</field>
         <field name="model">account.config.settings</field>
@@ -8,7 +9,6 @@
             <xpath expr="/form/group[6]" position="after">
                 <separator string="Delivery + Invoice configuration"/>
                 <group name="delivery_invoice">
-                    <label for="id" string="Delivery + Invoice configuration"/>
                     <div>
                         <div>
                             <label for="keep_pick_state_from_ddt"/>
@@ -23,4 +23,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>

@@ -1449,10 +1449,11 @@ class StockPickingPackagePreparationLine(models.Model):
         # )
         offset = offset or 0
         for line in self:
-            vals = line._prepare_invoice_line(
-                qty=qty, invoice_id=invoice_id, offset=offset)
-            # vals = line._prepare_invoice_line(qty=qty, invoice_id=invoice_id)
-            vals.update({"invoice_id": invoice_id})
+            vals = line._prepare_invoice_line(qty=qty, invoice_id=invoice_id)
+            vals.update({
+                "invoice_id": invoice_id,
+                "sequence": vals.get("sequence", 16) + offset,
+            })
             if line.sale_line_id:
                 vals.update({"sale_line_ids": [(6, 0, [line.sale_line_id.id])]})
             line_inv = (
