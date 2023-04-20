@@ -64,6 +64,16 @@ class FatturaPAAttachmentIn(models.Model):
 
     _inherit = "fatturapa.attachment.in"
 
+    @api.model
+    def dict_2_print(self, values):  # pragma: no cover
+        def to_str(obj):
+            x = str(obj)
+            return x if (hasattr(obj, "len") and len(x) < 150) else "[...]"
+
+        if isinstance(values, dict):
+            return json.dumps(values, default=to_str, indent=4)
+        return values
+
     @api.multi
     def import_xml_invoice(self):
         for company in self.env["res.company"].search([]):
@@ -252,6 +262,16 @@ class FatturaPAAttachmentOut(models.Model):
     delivered_date = fields.Datetime("Delivered Date", readonly=True)
     sending_user = fields.Many2one("res.users", "Sending User", readonly=True)
 
+    @api.model
+    def dict_2_print(self, values):  # pragma: no cover
+        def to_str(obj):
+            x = str(obj)
+            return x if (hasattr(obj, "len") and len(x) < 150) else "[...]"
+
+        if isinstance(values, dict):
+            return json.dumps(values, default=to_str, indent=4)
+        return values
+
     @api.multi
     def parse_pec_response(self, message_dict):
         message_dict["model"] = self._name
@@ -417,22 +437,11 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.model
     def primitive_json_send(self, send_channel, req, archive, action, attachment=None):
-        if (
-            action == "Salva"
-            and self.env["ir.config_parameter"].get_param("einvoice_send2sdi", "")
-            == "debug"
-        ):
-            # For debug
-            req["EsitoChiamata"] = 0
-            req["Documento"]["CampiDinamici"].append(
-                {
-                    "Nome": "StatoInvioSdi",
-                    "Valore": "Il documento è in fase di invio",
-                    "CriterioPredefinito": "=",
-                }
+        if send_channel.trace:
+            _logger.info(
+                ">>> primitive_json_send(%s,%s,%s,%s)" % (
+                    send_channel, self.dict_2_print(req), archive, action)
             )
-            req["Documenti"] = [req["Documento"]]
-            return req, False
         if "Documento" in req:
             req["Documento"]["IdAzienda"] = int(send_channel.sender_company_id)
             req["Documento"]["IdArchivio"] = archive
@@ -443,7 +452,8 @@ class FatturaPAAttachmentOut(models.Model):
         url = os.path.join(send_channel.sender_url, action)
         if send_channel.trace:
             _logger.info(
-                ">>> %s.send_json(%s,%s,%s)" % (send_channel.name, url, headers, req)
+                ">>> requests.post(%s,headers=%s,req)" % (
+                    url, self.dict_2_print(headers))
             )
         try:
             response = requests.post(
@@ -455,6 +465,8 @@ class FatturaPAAttachmentOut(models.Model):
                 _logger.info(">>> %s" % errmsg)
             if attachment:
                 attachment.state = "sender_error"
+            if send_channel.trace:
+                _logger.info(">>> requests.post() FAILED!")
             return False, errmsg
         if not (200 <= response.status_code < 300):
             errmsg = "<p>request.post FAILED: %s</p>" % response.status_code
@@ -462,6 +474,8 @@ class FatturaPAAttachmentOut(models.Model):
             if attachment:
                 attachment.state = "sender_error"
                 attachment.last_sdi_response = errmsg
+            if send_channel.trace:
+                _logger.info(">>> requests.post() -> %s!" % response.status_code)
             return False, errmsg
         try:
             data = response.json()
@@ -482,6 +496,9 @@ class FatturaPAAttachmentOut(models.Model):
                     if errmsg.endswith("<p>"):
                         errmsg = errmsg[:-3]
                     attachment.last_sdi_response = "<p>%s" % errmsg
+                if send_channel.trace:
+                    _logger.info(">>> requests.post().esito_chiamata -> %s!"
+                                 % data["EsitoChiamata"])
                 return False, errmsg
         except BaseException:
             errmsg = "<p>response.json() FAILED!</p>"
@@ -489,7 +506,11 @@ class FatturaPAAttachmentOut(models.Model):
                 _logger.info(">>> %s" % errmsg)
             if attachment:
                 attachment.state = "sender_error"
+            if send_channel.trace:
+                _logger.info(">>> requests.post() FAILED!")
             return False, errmsg
+        if send_channel.trace:
+            _logger.info(">>> requests.post() -> %s" % self.dict_2_print(data))
         return data, False
 
     def analyze_data_list(self, att, data, errmsg, documenti, store_mesg=None):
@@ -738,9 +759,19 @@ class FatturaPAAttachmentOut(models.Model):
                     documenti.append(doc2)
             return documenti
 
+        if send_channel.trace:
+            _logger.info(
+                ">>> search_via_json(%s,%s)" % (send_channel, invoice.number)
+            )
+
         archive_out = int(send_channel.param1) if send_channel.param1 else 1
         archive_in = int(send_channel.param2) if send_channel.param2 else 2
         archive_sent = int(send_channel.param3) if send_channel.param3 else 3
+        if send_channel.trace:
+            _logger.info(
+                ">>> remote_archive_sent/in/out=%s,%s,%s" % (
+                    archive_sent, archive_in, archive_out)
+            )
         request = {
             "Filtri": [
                 {
@@ -785,6 +816,10 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.multi
     def send_via_json(self, send_channel):
+        if send_channel.trace:
+            _logger.info(
+                ">>> send_via_json(%s)" % (send_channel.name)
+            )
         # Recupero i dati della fattura
         invoice = self.out_invoice_ids
         if len(invoice) > 1:
@@ -860,6 +895,10 @@ class FatturaPAAttachmentOut(models.Model):
 
     @api.multi
     def send_via_pec(self, send_channel):
+        if send_channel.trace:
+            _logger.info(
+                ">>> send_via_pec(%s)" % (send_channel.name)
+            )
         self._check_fetchmail()
         for att in self:
             mail_message = self.env["mail.message"].create(
@@ -903,6 +942,13 @@ class FatturaPAAttachmentOut(models.Model):
         if set(states) != {"ready"}:
             raise UserError(_("You can only send 'Ready to Send' files."))
         send_channel = self.get_send_channel()
+        if send_channel.trace:
+            _logger.info(
+                ">>> %s.send_einvoice(max=%s,meth=%s)" % (
+                send_channel.name,
+                send_channel.max_invoices_ctr,
+                send_channel.method)
+            )
         if send_channel.max_invoices_ctr > 0 and send_channel.used_invoices_ctr == 0:
             # Get used invoices
             send_channel.count_xml_invoice()
