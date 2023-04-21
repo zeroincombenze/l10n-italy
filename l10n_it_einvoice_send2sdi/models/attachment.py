@@ -39,6 +39,7 @@ evolve_stato_mapping = {
     "Inviato": "sent",
     "Il documento è in fase di invio": "sent",
     "Inviata a Sdi": "sent",
+    "In attesa di conferma dall'utente": "sent",
     "In attesa di risposta dopo aver inviato il documento": "sent",
     "Importato": "sent",
     "Controlli validazione": "sent",
@@ -59,6 +60,20 @@ evolve_stato_mapping = {
 def text2html(text):
     return text.replace("<", "&lt;").replace(">", "&gt;")
 
+def map_response(state):
+    res = evolve_stato_mapping.get(state)
+    if not res:
+        if state.lower().startswith("inviat") or state.lower().startswith("in attesa "):
+            res = "sent"
+        elif state.lower().startswith("il documento non "):
+            res = "validated"
+        elif state.lower().startswith("ricevuta "):
+            res = "validated"
+        elif "rifiutato" in state.lower():
+            res = "discarted"
+        else:
+            res = "sender_error"
+    return res
 
 class FatturaPAAttachmentIn(models.Model):
 
@@ -557,7 +572,7 @@ class FatturaPAAttachmentOut(models.Model):
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
                     data_caricamento = doc.get("DataCaricamento", doc["DataFattura"])
-                    if evolve_stato_mapping[Evolve.document_state(doc)] in (
+                    if map_response(Evolve.document_state(doc))in (
                         "accepted",
                         "discarted",
                     ):
@@ -569,7 +584,7 @@ class FatturaPAAttachmentOut(models.Model):
                         last_date = data_caricamento
                         if "Fattura duplicata" not in doc.get("Note", ""):
                             last_ix = ii
-                    if evolve_stato_mapping[Evolve.document_state(doc)] == "validated":
+                    if map_response(Evolve.document_state(doc)) == "validated":
                         # No PA subject final workflow: validated
                         valid_ix = ii
                     elif "disponibile in consultazione nell'area riservata" in doc.get(
@@ -580,14 +595,13 @@ class FatturaPAAttachmentOut(models.Model):
                 if (
                     valid_ix >= 0
                     and last_ix >= 0
-                    and evolve_stato_mapping[Evolve.document_state(documenti[last_ix])]
-                    in ("sender_error", "sent", "rejected")
+                    and map_response(documenti[last_ix]) in ("sender_error",
+                                                             "sent",
+                                                             "rejected")
                 ):
                     # Final workflow for No PA subjects
                     last_ix = valid_ix
-                att_state = evolve_stato_mapping[
-                    Evolve.document_state(documenti[last_ix])
-                ]
+                att_state = map_response(Evolve.document_state(documenti[last_ix]))
                 limit_date = (datetime.datetime.now() - timedelta(days=10)).strftime(
                     "%Y-%m-%d %H:%M:%S"
                 )
@@ -615,9 +629,7 @@ class FatturaPAAttachmentOut(models.Model):
                         )
                 else:
                     # Found valid sent invoice: get specific state
-                    att_state = evolve_stato_mapping[
-                        Evolve.document_state(documenti[last_ix])
-                    ]
+                    att_state = map_response(Evolve.document_state(documenti[last_ix]))
         att.state = att_state
         return att, last_ix
 
@@ -875,7 +887,7 @@ class FatturaPAAttachmentOut(models.Model):
             if data and data["EsitoChiamata"] == 0:
                 stato = Evolve.parse_documento(data["Documenti"][-1])
                 if stato["StatoInvioSdi"]:
-                    att.state = evolve_stato_mapping[stato["StatoInvioSdi"]]
+                    att.state = map_response(stato["StatoInvioSdi"])
                     att.sending_date = fields.Datetime.now()
                     att.sending_user = self.env.user.id
                     att.last_sdi_response = "Fattura Importata"
