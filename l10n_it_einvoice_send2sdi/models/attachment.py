@@ -595,9 +595,8 @@ class FatturaPAAttachmentOut(models.Model):
                 if (
                     valid_ix >= 0
                     and last_ix >= 0
-                    and map_response(documenti[last_ix]) in ("sender_error",
-                                                             "sent",
-                                                             "rejected")
+                    and map_response(Evolve.document_state(
+                    documenti[last_ix])) in ("sender_error", "sent", "rejected")
                 ):
                     # Final workflow for No PA subjects
                     last_ix = valid_ix
