@@ -20,10 +20,8 @@ class ProductTemplate(models.Model):
     def write(self, vals):
         res = super(ProductTemplate, self).write(vals)
         for template in self:
-            if (
-                not template.is_delivery
-                and self.env['delivery.carrier'].search(
-                    [('product_id', 'in', template.product_variant_ids.ids)])
+            if not template.is_delivery and self.env['delivery.carrier'].search(
+                [('product_id', 'in', template.product_variant_ids.ids)]
             ):
                 template.is_delivery = True
         return res
@@ -31,14 +29,11 @@ class ProductTemplate(models.Model):
     @api.model
     def create(self, vals):
         template = super(ProductTemplate, self).create(vals)
-        if (
-            self.env['delivery.carrier'].search(
-                [('product_id', 'in', template.product_variant_ids.ids)])
+        if self.env['delivery.carrier'].search(
+            [('product_id', 'in', template.product_variant_ids.ids)]
         ):
-            if (
-                not template.is_delivery
-                and self.env['delivery.carrier'].search(
-                    [('product_id', 'in', template.product_variant_ids.ids)])
+            if not template.is_delivery and self.env['delivery.carrier'].search(
+                [('product_id', 'in', template.product_variant_ids.ids)]
             ):
                 template.is_delivery = True
         return template
@@ -53,5 +48,5 @@ class ProductProduct(models.Model):
         help="If flagged this service will not be automatically " "invoiced from DDT.",
     )
     is_delivery = fields.Boolean(
-        related="product_tmpl_id.is_delivery",
-        string="Is a Delivery")
+        related="product_tmpl_id.is_delivery", string="Is a Delivery"
+    )

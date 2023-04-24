@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_ddt_from_pickings" model="ir.ui.view">
@@ -6,18 +6,18 @@
         <field name="model">ddt.from.pickings</field>
         <field name="arch" type="xml">
             <form string="DDT from Pickings">
-                <separator string="Picking" />
+                <separator string="Picking"/>
                 <field string="Pickings" name="picking_ids">
                     <tree edit="false" delete="true" create="false">
-                        <field name="name" />
+                        <field name="name"/>
                         <!-- <field name="ddt_ids"/> -->
-                        <field name="ddt_type" />
-                        <field name="location_dest_id" />
-                        <field name="partner_id" />
-                        <field name="min_date" />
-                        <field name="origin" />
-                        <field name="backorder_id" />
-                        <field name="state" />
+                        <field name="ddt_type"/>
+                        <field name="location_dest_id"/>
+                        <field name="partner_id"/>
+                        <field name="min_date"/>
+                        <field name="origin"/>
+                        <field name="backorder_id"/>
+                        <field name="state"/>
                     </tree>
                 </field>
                 <footer>
@@ -28,7 +28,7 @@
                         class="oe_highlight"
                     />
                             or
-                    <button string="Cancel" class="oe_link" special="cancel" />
+                    <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
         </field>
@@ -40,7 +40,7 @@
         <!-- <field name="src_model">stock.picking</field> -->
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_ddt_from_pickings" />
+        <field name="view_id" ref="view_ddt_from_pickings"/>
         <field name="target">new</field>
     </record>
 

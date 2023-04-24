@@ -91,9 +91,11 @@ class SaleOrder(models.Model):
             for delivery in self.env["delivery.carrier"].search([])
         ]
         for line in self.env['sale.order.line'].search(
-            [('order_id', 'in', self.ids),
-             ('is_delivery', '=', False),
-             ('product_id', '=', shipping_ids)]
+            [
+                ('order_id', 'in', self.ids),
+                ('is_delivery', '=', False),
+                ('product_id', '=', shipping_ids),
+            ]
         ):
             line.is_delivery = True
 
@@ -200,26 +202,29 @@ class SaleOrder(models.Model):
                 if picking.picking_type_code != "outgoing":
                     continue
                 if (
-                    picking.state in ("draft",
-                                      "waiting",
-                                      "partially_available",
-                                      "confirmed",
-                                      "assigned",
-                                      "done")
+                    picking.state
+                    in (
+                        "draft",
+                        "waiting",
+                        "partially_available",
+                        "confirmed",
+                        "assigned",
+                        "done",
+                    )
                     and len(picking.mapped("ddt_ids")) == 0
                 ):
                     pickings += picking
                 if picking.sale_id not in orders:
                     orders.append(picking.sale_id)
         if not pickings:
-            raise UserError(                                         # pragma: no cover
-                _("There are not picking to create a DdT"))          # pragma: no cover
+            raise UserError(  # pragma: no cover
+                _("There are not picking to create a DdT")
+            )  # pragma: no cover
         if any([x for x in orders if x.state != 'sale']):
-            raise UserError(                                         # pragma: no cover
-                "There are some unconfirmed sale orders!")           # pragma: no cover
-        ddt = ddt_model.create(
-            ddt_model.preparare_ddt_data(pickings=pickings)
-        )
+            raise UserError(  # pragma: no cover
+                "There are some unconfirmed sale orders!"
+            )  # pragma: no cover
+        ddt = ddt_model.create(ddt_model.preparare_ddt_data(pickings=pickings))
         for order in orders:
             if not ddt.delivery_price:
                 ddt.delivery_price = order.delivery_price
@@ -293,8 +298,7 @@ class SaleOrder(models.Model):
                 "ddt_invoicing_group",
                 "ddt_invoice_exclude",
             ):
-                vals = self.env[
-                    "stock.picking.package.preparation"].get_delivery_value(
+                vals = self.env["stock.picking.package.preparation"].get_delivery_value(
                     vals,
                     order if order.id else None,
                     fieldname,
@@ -348,12 +352,14 @@ class SaleOrderLine(models.Model):
             if not order.carrier_id:
                 if product.is_delivery:
                     carrier = self.env['delivery.carrier'].search(
-                        [('product_id', '=', vals["product_id"])])
+                        [('product_id', '=', vals["product_id"])]
+                    )
                     if carrier:
                         order.carrier_id = carrier.id
             if order.carrier_id and product.is_delivery:
-                delivery_price = (vals.get("price_subtotal", 0.0)
-                                  or vals.get("price_unit", 0.0))
+                delivery_price = vals.get("price_subtotal", 0.0) or vals.get(
+                    "price_unit", 0.0
+                )
                 if delivery_price:
                     order.delivery_price = delivery_price
 

@@ -237,12 +237,14 @@ class TestDdt(SingleTransactionCase):
         }
         self.declare_all_data(data, group="order")
         self.setup_env()
-        self.resource_make("product.template",
-                           "delivery.delivery_carrier_product_template",
-                           {
-                               "property_account_income_id": "external.3112",
-                               "taxes_id": "external.22v",
-                           })
+        self.resource_make(
+            "product.template",
+            "delivery.delivery_carrier_product_template",
+            {
+                "property_account_income_id": "external.3112",
+                "taxes_id": "external.22v",
+            },
+        )
         self.setup_inventory()
 
     def tearDown(self):
@@ -276,67 +278,63 @@ class TestDdt(SingleTransactionCase):
                 "product_uom_id": product.uom_id.id,
             }
             inventory_line_model.create(vals)
-        # data = {
-        #     "TEST_SETUP_LIST": ["stock.inventory", "stock.inventory.line"],
-        #     "TEST_STOCK_INVENTORY": TEST_STOCK_INVENTORY,
-        #     "TEST_STOCK_INVENTORY_LINE": TEST_STOCK_INVENTORY_LINE,
-        # }
-        # self.declare_all_data(data, group="inventory")
-        # inventory = self.resource_make(
-        #     "stock.inventory", "z0bug.inventory_1", group="inventory")
         inventory.action_done()
+        self.default_company().keep_pick_state_from_ddt = True
+        self.default_company().delivery_price_policy = "order"
 
     def _create_sale_order(self, xref):
         model = "sale.order"
-        _logger.info(
-            u"🎺 Testing %s[%s]" % (model, xref)
-        )
+        _logger.info(u"🎺 Testing %s[%s]" % (model, xref))
         order = self.resource_make(model, xref, group="order")
         saved_partner = order.partner_id
         if order.origin == "Test2":
             self.assertEqual(
                 order.carrier_id,
                 self.env.ref("delivery.delivery_carrier"),
-                msg="Invalid order delivery carrier %s!" %
-                    order.carrier_id)
+                msg="Invalid order delivery carrier %s!" % order.carrier_id,
+            )
             self.assertEqual(
                 order.transportation_method_id,
                 self.env.ref("l10n_it_ddt.transportation_method_COR"),
-                msg="Invalid order transportation method %s!" %
-                    order.transportation_method_id)
+                msg="Invalid order transportation method %s!"
+                % order.transportation_method_id,
+            )
             self.assertEqual(
                 order.carriage_condition_id,
                 self.env.ref("l10n_it_ddt.carriage_condition_PAF"),
-                msg="Invalid order carriage condition %s!" %
-                    order.carriage_condition_id)
+                msg="Invalid order carriage condition %s!"
+                % order.carriage_condition_id,
+            )
             # Good description from Carrier Delivery
             self.assertEqual(
                 order.goods_description_id,
                 self.env.ref("l10n_it_ddt.goods_description_CAR"),
-                msg="Invalid order goods description %s!" %
-                    order.goods_description_id)
+                msg="Invalid order goods description %s!" % order.goods_description_id,
+            )
         else:
             self.assertEqual(
                 order.carrier_id,
                 self.env.ref("delivery.normal_delivery_carrier"),
-                msg="Invalid order delivery carrier %s!" %
-                    order.carrier_id)
+                msg="Invalid order delivery carrier %s!" % order.carrier_id,
+            )
             self.assertEqual(
                 order.transportation_method_id,
                 self.env.ref("l10n_it_ddt.transportation_method_COR"),
-                msg="Invalid order transportation method %s!" %
-                    order.transportation_method_id)
+                msg="Invalid order transportation method %s!"
+                % order.transportation_method_id,
+            )
             self.assertEqual(
                 order.carriage_condition_id,
                 self.env.ref("l10n_it_ddt.carriage_condition_PAF"),
-                msg="Invalid order carriage condition %s!" %
-                    order.carriage_condition_id)
+                msg="Invalid order carriage condition %s!"
+                % order.carriage_condition_id,
+            )
             # Good description from Customer
             self.assertEqual(
                 order.goods_description_id,
                 self.env.ref("l10n_it_ddt.goods_description_SFU"),
-                msg="Invalid order goods description %s!" %
-                    order.goods_description_id)
+                msg="Invalid order goods description %s!" % order.goods_description_id,
+            )
         # Now we set the same carrier for both sale orders
         # order.carrier_id = self.env.ref("delivery.normal_delivery_carrier").id
         # order.action_confirm()
@@ -347,11 +345,11 @@ class TestDdt(SingleTransactionCase):
                 ("partner_id", saved_partner.id),
                 ("carrier_id", self.env.ref("delivery.normal_delivery_carrier").id),
             ],
-            actions="action_confirm"
+            actions="action_confirm",
         )
         self.assertEqual(
-            order.state, "sale",
-            msg="Invalid order state %s!" % order.state)
+            order.state, "sale", msg="Invalid order state %s!" % order.state
+        )
         return order
 
     def _remove_invoice(self, invoice, ddts, orders):
@@ -360,16 +358,14 @@ class TestDdt(SingleTransactionCase):
         sleep(0.5)
         ddts = ddts if isinstance(ddts, (list, tuple)) else [ddts]
         for ddt in ddts:
-            self.assertFalse(
-                ddt.invoice_id,
-                msg="DdT still set to invoiced!")
-            self.assertFalse(
-                ddt.invoice_ids,
-                msg="DdT still set to invoiced!")
+            self.assertFalse(ddt.invoice_id, msg="DdT still set to invoiced!")
+            self.assertFalse(ddt.invoice_ids, msg="DdT still set to invoiced!")
         for order in orders:
             self.assertEqual(
-                order.invoice_status, "to invoice",
-                msg="Sale order %s still set to invoiced!" % order.name)
+                order.invoice_status,
+                "to invoice",
+                msg="Sale order %s still set to invoiced!" % order.name,
+            )
 
     def _remove_ddt(self, ddts, orders):
         ddts = ddts if isinstance(ddts, (list, tuple)) else [ddts]
@@ -383,11 +379,14 @@ class TestDdt(SingleTransactionCase):
         sleep(0.5)
         self.assertFalse(
             self.env["stock.picking.package.preparation"].search(
-                [("id", "in", ddt_ids)]))
+                [("id", "in", ddt_ids)]
+            )
+        )
         for order in orders:
             self.assertFalse(
                 order.ddt_ids,
-                msg="Delivery Note still linked to Sale Order %s!" % order.name)
+                msg="Delivery Note still linked to Sale Order %s!" % order.name,
+            )
             order.action_draft()
             order.action_confirm()
 
@@ -395,18 +394,16 @@ class TestDdt(SingleTransactionCase):
         ddts = ddts if isinstance(ddts, (list, tuple)) else [ddts]
         for ddt in ddts:
             ddt.set_done()
-            self.assertEqual(
-                ddt.state, "done",
-                msg="Invalid DdT state %s!" % ddt.state)
+            self.assertEqual(ddt.state, "done", msg="Invalid DdT state %s!" % ddt.state)
             for picking in ddt.picking_ids:
                 self.assertEqual(
-                    picking.state, "done",
-                    msg="Invalid picking state %s!" % picking.state)
+                    picking.state,
+                    "done",
+                    msg="Invalid picking state %s!" % picking.state,
+                )
 
     def _create_ddt_from_1_order(self, order, goods_description=None):
-        _logger.info(
-            u"🎺 Creating DdT from order %s" % (order.name)
-        )
+        _logger.info(u"🎺 Creating DdT from order %s" % (order.name))
         # ## act_windows = self.resource_edit(
         # ##     resource=[order],
         # ##     actions="l10n_it_ddt.action_create_ddt",
@@ -417,77 +414,72 @@ class TestDdt(SingleTransactionCase):
         # ##     button_name="create_ddt",
         # ## )
         order.action_create_ddt()
-        self.assertTrue(
-            order.ddt_ids,
-            msg="No Delivery Note found!")
+        self.assertTrue(order.ddt_ids, msg="No Delivery Note found!")
         ddt = order.ddt_ids[0]
+        self.assertEqual(ddt.state, "draft", msg="Invalid DdT state %s!" % ddt.state)
         self.assertEqual(
-            ddt.state, "draft",
-            msg="Invalid DdT state %s!" % ddt.state)
-        self.assertEqual(
-            order.picking_ids, ddt.picking_ids,
-            msg="Order picking different from DdT picking")
+            order.picking_ids,
+            ddt.picking_ids,
+            msg="Order picking different from DdT picking",
+        )
         # Goods description from Sale Order
         goods_description = goods_description or self.env.ref(
-            "l10n_it_ddt.goods_description_CAR")
+            "l10n_it_ddt.goods_description_CAR"
+        )
         self.assertEqual(
             ddt.goods_description_id,
             goods_description,
-            msg="Invalid order goods description %s!" %
-                ddt.goods_description_id)
+            msg="Invalid order goods description %s!" % ddt.goods_description_id,
+        )
         self.assertEqual(
-            order.carrier_id, ddt.carrier_id,
-            msg="Order delivery method different from DdT picking")
+            order.carrier_id,
+            ddt.carrier_id,
+            msg="Order delivery method different from DdT picking",
+        )
         self.assertEqual(
-            order.ddt_type_id, ddt.ddt_type_id,
-            msg="Order DdT type different from DdT picking")
+            order.ddt_type_id,
+            ddt.ddt_type_id,
+            msg="Order DdT type different from DdT picking",
+        )
         self.resource_edit(order, actions="action_view_ddt")
         return ddt
 
     def _add_picking_to_ddt(self, ddt, order):
-        _logger.info(
-            u"🎺 Adding picking to DdT"
-        )
+        _logger.info(u"🎺 Adding picking to DdT")
         picking = order.picking_ids[0]
         picking.add_to_ddt(ddt)
         self.assertEqual(
-            len(ddt.picking_ids), 2,
-            msg="Ddt %s is not linked to 2 picking!" % ddt.name)
+            len(ddt.picking_ids), 2, msg="Ddt %s is not linked to 2 picking!" % ddt.name
+        )
 
     def _create_ddt_from_more_orders(self, orders, old_ddt_number):
-        _logger.info(
-            u"🎺 Creating ddt from more orders"
-        )
+        _logger.info(u"🎺 Creating ddt from more orders")
         orders.action_create_ddt()
         for order in orders:
-            self.assertTrue(
-                order.ddt_ids,
-                msg="No Delivery Note found!")
+            self.assertTrue(order.ddt_ids, msg="No Delivery Note found!")
         ddt = orders[0].ddt_ids[0]
         self.assertEqual(
             ddt.transportation_reason_id.id,
             self.env.ref("l10n_it_ddt.transportation_reason_VEN").id,
-            msg="Invalid DdT transportation reason %s!" %
-                ddt.transportation_reason_id)
+            msg="Invalid DdT transportation reason %s!" % ddt.transportation_reason_id,
+        )
         self._set_ddt_done(ddt)
         # Check for DdT number reused
         self.assertEqual(
-            ddt.ddt_number, old_ddt_number,
-            msg="Invalid DdT number change!")
+            ddt.ddt_number, old_ddt_number, msg="Invalid DdT number change!"
+        )
         return ddt
 
     def _create_invoice_from_1_ddt(self, ddt, orders):
         invoice_ids = ddt.action_invoice_create()
-        self.assertTrue(
-            invoice_ids,
-            msg="Cannot create invoice!")
-        self.assertTrue(
-            ddt.invoice_id,
-            msg="DdT not set to invoiced!")
+        self.assertTrue(invoice_ids, msg="Cannot create invoice!")
+        self.assertTrue(ddt.invoice_id, msg="DdT not set to invoiced!")
         for order in orders:
             self.assertEqual(
-                order.invoice_status, "invoiced",
-                msg="Sale order %s not set to invoiced!" % order.name)
+                order.invoice_status,
+                "invoiced",
+                msg="Sale order %s not set to invoiced!" % order.name,
+            )
         # Check for delivery cost line
         invoice = self.env["account.invoice"].browse(invoice_ids[0])
         delivery_line = False
@@ -495,24 +487,20 @@ class TestDdt(SingleTransactionCase):
             if line.is_delivery:
                 delivery_line = line
                 break
-        self.assertTrue(
-            delivery_line,
-            msg="Invoice w/o delivery line!")
+        self.assertTrue(delivery_line, msg="Invoice w/o delivery line!")
         return invoice
 
     def _create_invoice_from_ddts(self, ddts, orders):
         invoice_ids = ddts.action_invoice_create()
-        self.assertTrue(
-            invoice_ids,
-            msg="Cannot create invoice!")
+        self.assertTrue(invoice_ids, msg="Cannot create invoice!")
         for ddt in ddts:
-            self.assertTrue(
-                ddt.invoice_id,
-                msg="DdT not set to invoiced!")
+            self.assertTrue(ddt.invoice_id, msg="DdT not set to invoiced!")
         for order in orders:
             self.assertEqual(
-                order.invoice_status, "invoiced",
-                msg="Sale order %s not set to invoiced!" % order.name)
+                order.invoice_status,
+                "invoiced",
+                msg="Sale order %s not set to invoiced!" % order.name,
+            )
         invoice = self.env["account.invoice"].browse(invoice_ids[0])
         return invoice
 
@@ -530,9 +518,7 @@ class TestDdt(SingleTransactionCase):
         self._set_ddt_done(ddt)
 
     def _test_1_ddt_then_picking(self, orders, purge=None):
-        _logger.info(
-            u"🎺 Creating DdT and then add picking to it"
-        )
+        _logger.info(u"🎺 Creating DdT and then add picking to it")
         ddt = old_ddt_number = None
         for order in orders:
             if not ddt:
@@ -551,9 +537,7 @@ class TestDdt(SingleTransactionCase):
         return invoice, old_ddt_number
 
     def _test_1_ddt_from_2_orders(self, orders, old_ddt_number, purge=None):
-        _logger.info(
-            u"🎺 Creating DdT from 2 orders"
-        )
+        _logger.info(u"🎺 Creating DdT from 2 orders")
         ddt = self._create_ddt_from_more_orders(orders, old_ddt_number)
         invoice = self._create_invoice_from_1_ddt(ddt, orders)
         if purge:
@@ -563,13 +547,13 @@ class TestDdt(SingleTransactionCase):
         return invoice
 
     def _test_2_ddts_1_invoice(self, orders, purge=None):
-        _logger.info(
-            u"🎺 Creating invoice from 2 DdTs"
-        )
+        _logger.info(u"🎺 Creating invoice from 2 DdTs")
         # Create a new DdT form 2 sale orders
         ddt1 = self._create_ddt_from_1_order(orders[0])
-        ddt2 = self._create_ddt_from_1_order(orders[1], goods_description=self.env.ref(
-            "l10n_it_ddt.goods_description_SFU"))
+        ddt2 = self._create_ddt_from_1_order(
+            orders[1],
+            goods_description=self.env.ref("l10n_it_ddt.goods_description_SFU"),
+        )
         self._edit_ddt(ddt1, actions="delivery_set")
         self._set_ddt_done([ddt1, ddt2])
         ddts = self.env["stock.picking.package.preparation"]
@@ -577,19 +561,15 @@ class TestDdt(SingleTransactionCase):
         ddts += ddt2
         # Create invoice again
         invoice = self._create_invoice_from_ddts(ddts, orders)
-        self.assertTrue(
-            invoice,
-            msg="Cannot create invoice!")
-        self.assertTrue(
-            ddt1.invoice_id,
-            msg="DdT not set to invoiced!")
-        self.assertTrue(
-            ddt2.invoice_id,
-            msg="DdT not set to invoiced!")
+        self.assertTrue(invoice, msg="Cannot create invoice!")
+        self.assertTrue(ddt1.invoice_id, msg="DdT not set to invoiced!")
+        self.assertTrue(ddt2.invoice_id, msg="DdT not set to invoiced!")
         for order in orders:
             self.assertEqual(
-                order.invoice_status, "invoiced",
-                msg="Sale order %s not set to invoiced!" % order.name)
+                order.invoice_status,
+                "invoiced",
+                msg="Sale order %s not set to invoiced!" % order.name,
+            )
         # Check for delivery cost line
         delivery_line_1 = delivery_line_2 = False
         for line in invoice.invoice_line_ids:
@@ -599,16 +579,9 @@ class TestDdt(SingleTransactionCase):
                 elif not delivery_line_2:
                     delivery_line_2 = line
                 else:
-                    self.assertTrue(
-                        False,
-                        msg="Too many delivery lines"
-                    )
-        self.assertTrue(
-            delivery_line_1,
-            msg="Invoice w/o delivery line!")
-        self.assertTrue(
-            delivery_line_2,
-            msg="Invoice w/o delivery line!")
+                    self.assertTrue(False, msg="Too many delivery lines")
+        self.assertTrue(delivery_line_1, msg="Invoice w/o delivery line!")
+        self.assertTrue(delivery_line_2, msg="Invoice w/o delivery line!")
         if purge:
             self._remove_invoice(invoice, [ddt1, ddt2], orders)
             self._remove_ddt([ddt1, ddt2], orders)
@@ -616,9 +589,7 @@ class TestDdt(SingleTransactionCase):
         return invoice
 
     def _test_wizard_1_ddt_from_2_orders(self, orders, purge=None):
-        _logger.info(
-            u"🎺 Wizard: creating DdT from 2 orders"
-        )
+        _logger.info(u"🎺 Wizard: creating DdT from 2 orders")
         act_windows = self.wizard(
             module="l10n_it_ddt",
             action_name="action_create_ddt",
@@ -629,7 +600,8 @@ class TestDdt(SingleTransactionCase):
         )
         self.assertTrue("domain" in act_windows)
         ddts = self.env["stock.picking.package.preparation"].search(
-            act_windows["domain"])
+            act_windows["domain"]
+        )
         ddt_ids = [x.id for x in ddts]
         self._set_ddt_done(ddts)
         act_windows = self.wizard(
@@ -647,9 +619,7 @@ class TestDdt(SingleTransactionCase):
             self._remove_ddt(ddts, orders)
 
     def _test_wizard_1_ddt_from_pickings(self, orders, purge=None):
-        _logger.info(
-            u"🎺 Wizard: creating DdT from pickings"
-        )
+        _logger.info(u"🎺 Wizard: creating DdT from pickings")
         picking_ids = []
         for order in orders:
             for picking in order.picking_ids:
@@ -664,7 +634,8 @@ class TestDdt(SingleTransactionCase):
         )
         self.assertTrue("res_id" in act_windows)
         ddt = self.env["stock.picking.package.preparation"].browse(
-            act_windows["res_id"])
+            act_windows["res_id"]
+        )
         self._set_ddt_done(ddt)
         act_windows = self.wizard(
             module="l10n_it_ddt",

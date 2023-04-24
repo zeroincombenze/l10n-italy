@@ -18,10 +18,12 @@ class WizardCreateDdt(models.TransientModel):
         if ddt_ids:
             ir_model_data = self.env["ir.model.data"]
             form_res = ir_model_data.get_object_reference(
-                "l10n_it_ddt", "sppp_line_stock_picking_package_preparation_form_ddt")
+                "l10n_it_ddt", "sppp_line_stock_picking_package_preparation_form_ddt"
+            )
             form_id = form_res and form_res[1] or False
             tree_res = ir_model_data.get_object_reference(
-                "l10n_it_ddt", "ddt_stock_picking_package_preparation_tree")
+                "l10n_it_ddt", "ddt_stock_picking_package_preparation_tree"
+            )
             tree_id = tree_res and tree_res[1] or False
             return {
                 "name": _("DdT"),

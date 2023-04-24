@@ -39,14 +39,15 @@ class DeliveryCarrier(models.Model):
                 if not line.product_id or line.is_delivery:
                     continue
                 qty = line.uom_id._compute_quantity(
-                    line.quantity, line.product_id.uom_id)
+                    line.quantity, line.product_id.uom_id
+                )
                 weight += (line.product_id.weight or 0.0) * qty
                 volume += (line.product_id.volume or 0.0) * qty
                 quantity += qty
             total = (invoice.amount_total or 0.0) - total_delivery
 
-            total = invoice.currency_id.with_context(
-                date=invoice.date_invoice).compute(total,
-                                                   invoice.company_id.currency_id)
+            total = invoice.currency_id.with_context(date=invoice.date_invoice).compute(
+                total, invoice.company_id.currency_id
+            )
 
         return self.get_price_from_picking(total, weight, volume, quantity)

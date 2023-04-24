@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_ddt_create_invoice" model="ir.ui.view">
@@ -7,19 +7,19 @@
         <field name="arch" type="xml">
             <form string="DDT Create Invoice">
                 <group>
-                    <field name="date_invoice" />
-                    <field name="journal_id" />
+                    <field name="date_invoice"/>
+                    <field name="journal_id"/>
                 </group>
-                <separator string="DDT" />
+                <separator string="DDT"/>
                 <field string="DDT" name="ddt_ids" readonly="0">
                     <tree create="false">
-                        <field name="ddt_number" />
-                        <field name="partner_id" />
-                        <field name="partner_shipping_id" />
-                        <field name="date" />
-                        <field name="date_done" />
-                        <field name="package_id" />
-                        <field name="state" />
+                        <field name="ddt_number"/>
+                        <field name="partner_id"/>
+                        <field name="partner_shipping_id"/>
+                        <field name="date"/>
+                        <field name="date_done"/>
+                        <field name="package_id"/>
+                        <field name="state"/>
                     </tree>
                 </field>
                 <footer>
@@ -30,7 +30,7 @@
                         class="oe_highlight"
                     />
                             or
-                    <button string="Cancel" class="oe_link" special="cancel" />
+                    <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
         </field>
@@ -42,7 +42,7 @@
         <!-- <field name="src_model">stock.picking.package.preparation</field> -->
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_ddt_create_invoice" />
+        <field name="view_id" ref="view_ddt_create_invoice"/>
         <field name="target">new</field>
     </record>
 

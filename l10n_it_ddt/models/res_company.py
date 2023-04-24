@@ -27,42 +27,11 @@ class ResCompany(models.Model):
         help="How to evaluate delivery cost on invoice",
     )
 
+
 class AccountConfigSettings(models.TransientModel):
     _inherit = "account.config.settings"
 
     keep_pick_state_from_ddt = fields.Boolean(
-        "Keep DdT state on picking",
-        help="Select multi-report style",
+        related='company_id.keep_pick_state_from_ddt'
     )
-    delivery_price_policy = fields.Selection(
-        [
-            ("order", "From Sale Order"),
-            ("delivery", "From Delivery Note"),
-        ],
-        string="Delivery Cost Policy",
-        defauly="order",
-        help="How to evaluate delivery cost on invoice",
-    )
-
-    @api.model
-    def default_get(self, fields):
-        res = super(AccountConfigSettings, self).default_get(fields)
-        if res:
-            res["delivery_price_policy"] = (
-                self.env.user.company_id.delivery_price_policy)
-            res["keep_pick_state_from_ddt"] = (
-                self.env.user.company_id.keep_pick_state_from_ddt)
-        return res
-
-    # @api.onchange("company_id")
-    # def onchange_company_id(self):
-    #     res = super(AccountConfigSettings, self).onchange_company_id()
-    #     if self.company_id:
-    #         self.delivery_price_policy = (
-    #             self.company_id.delivery_price_policy or "order"
-    #         )
-    #         self.keep_pick_state_from_ddt = self.company_id.keep_pick_state_from_ddt
-    #     else:
-    #         self.delivery_price_policyd = "order"
-    #         self.keep_pick_state_from_ddt = False
-    #     return res
+    delivery_price_policy = fields.Selection(related='company_id.delivery_price_policy')

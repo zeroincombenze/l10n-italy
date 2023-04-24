@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_add_pickings_to_ddt" model="ir.ui.view">
@@ -6,7 +6,7 @@
         <field name="model">add.pickings.to.ddt</field>
         <field name="arch" type="xml">
             <form string="Add Pickings to DDT">
-                <separator string="DDT" />
+                <separator string="DDT"/>
                 <field
                     name="ddt_id"
                     domain="[('state', 'in', ['draft', 'confirmed'])]"
@@ -19,7 +19,7 @@
                         class="oe_highlight"
                     />
                             or
-                    <button string="Cancel" class="oe_link" special="cancel" />
+                    <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
         </field>
@@ -31,7 +31,7 @@
         <field name="res_model">add.pickings.to.ddt</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_add_pickings_to_ddt" />
+        <field name="view_id" ref="view_add_pickings_to_ddt"/>
         <field name="target">new</field>
     </record>
 

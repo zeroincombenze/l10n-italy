@@ -9,7 +9,6 @@ from odoo.exceptions import Warning as UserError
 
 
 class StockPicking(models.Model):
-
     _inherit = "stock.picking"
 
     ddt_ids = fields.Many2many(
@@ -95,7 +94,7 @@ class StockPicking(models.Model):
                     ctx={
                         "active_id": picking.id,
                         "active_ids": [picking.id],
-                    }
+                    },
                 )
                 act_windows = self.browse(act_windows["res_id"]).do_new_transfer()
                 act_windows = self.exec_wizard(
@@ -122,8 +121,10 @@ class StockPicking(models.Model):
     def check_is_linked_ddt(self):
         if self.ddt_ids:
             raise UserError(
-                _("Selected Picking %s is already linked to DDT: %s") % (
-                    self.name, self.ddt_ids[0].ddt_number,
+                _("Selected Picking %s is already linked to DDT: %s")
+                % (
+                    self.name,
+                    self.ddt_ids[0].ddt_number,
                 )
             )
 
@@ -138,31 +139,25 @@ class StockPicking(models.Model):
         so_fieldname = target_ddt.fieldname_of_model("sale.order", fieldname)
 
         if (
-            sp_fieldname and
-            ddt_fieldname and
-            self[sp_fieldname] and
-            target_ddt[ddt_fieldname] and
-            self[sp_fieldname] != target_ddt[ddt_fieldname]
+            sp_fieldname
+            and ddt_fieldname
+            and self[sp_fieldname]
+            and target_ddt[ddt_fieldname]
+            and self[sp_fieldname] != target_ddt[ddt_fieldname]
         ):
             raise UserError(
-                _(
-                    "Selected Picking %s has different %s"
-                    % (self.name, condition_help)
-                )
+                _("Selected Picking %s has different %s" % (self.name, condition_help))
             )
         elif (
-            so_fieldname and
-            not sp_fieldname and
-            ddt_fieldname and
-            self.sale_id and
-            self.sale_id[so_fieldname] and
-            self.sale_id[so_fieldname] != target_ddt[ddt_fieldname]
+            so_fieldname
+            and not sp_fieldname
+            and ddt_fieldname
+            and self.sale_id
+            and self.sale_id[so_fieldname]
+            and self.sale_id[so_fieldname] != target_ddt[ddt_fieldname]
         ):
             raise UserError(
-                _(
-                    "Selected Picking %s has different %s"
-                    % (self.name, condition_help)
-                )
+                _("Selected Picking %s has different %s" % (self.name, condition_help))
             )
 
     @api.multi
@@ -170,16 +165,19 @@ class StockPicking(models.Model):
         for picking in self:
             picking.check_is_linked_ddt()
 
-            if (
-                picking.state in ("cancel", "done") or
-                (picking.state != target_ddt.state and
-                 (picking.state not in (
-                     "waiting", "partially_available", "confirmed", "assigned") or
-                  target_ddt.state != "draft"))
+            if picking.state in ("cancel", "done") or (
+                picking.state != target_ddt.state
+                and (
+                    picking.state
+                    not in ("waiting", "partially_available", "confirmed", "assigned")
+                    or target_ddt.state != "draft"
+                )
             ):
                 raise UserError(
-                    _("Selected Picking %s has invalid state %s") % (
-                        picking.name, picking.state,
+                    _("Selected Picking %s has invalid state %s")
+                    % (
+                        picking.name,
+                        picking.state,
                     )
                 )
 
@@ -194,7 +192,6 @@ class StockPicking(models.Model):
                 ("transportation_method_id", _("transportation method")),
                 ("partner_carrier_id", _("carrier")),
             ):
-                self.check_4_delivery_value(
-                    target_ddt, fieldname, condition_help)
+                self.check_4_delivery_value(target_ddt, fieldname, condition_help)
 
             target_ddt.picking_ids = [(4, picking.id)]

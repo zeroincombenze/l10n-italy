@@ -687,10 +687,15 @@ class StockPickingPackagePreparation(models.Model):
                 for picking in ddt.picking_ids:
                     if picking.state == "done":
                         picking.action_cancel()
+                self.mapped('line_ids').mapped('sale_line_id').mapped(
+                    'procurement_ids'
+                ).cancel()
         return super(StockPickingPackagePreparation, self).action_cancel()
 
     @api.multi
     def set_draft(self):
+        """Action from done to draft
+        Warning: it is differento from action_draft which acts from cancel to draft"""
         invoiced = bool(self.invoice_id)
         picking_ids = []
         for line in self.line_ids:
@@ -701,8 +706,6 @@ class StockPickingPackagePreparation(models.Model):
                 picking_ids.append(line.move_id.picking_id)
         if invoiced:
             raise UserError(_("Impossible to set draft document when invoiced!"))
-        # for picking in picking_ids:
-        #     picking.write({'state': 'draft'})
         self.write({"state": "draft", "date_done": False})
         return True
 
@@ -941,10 +944,9 @@ class StockPickingPackagePreparation(models.Model):
         references = {}
         seq_offset = 0
         for ddt in self:
-            if (
-                ddt.state != "done"
-                and (ddt.state != "in_pack"
-                     or ddt.company_id.delivery_price_policy != "delivery")
+            if ddt.state != "done" and (
+                ddt.state != "in_pack"
+                or ddt.company_id.delivery_price_policy == "delivery"
             ):
                 raise UserError(_("Delivery note %s is not done" % ddt.ddt_number))
             elif ddt.invoice_id:
@@ -1054,11 +1056,14 @@ class StockPickingPackagePreparation(models.Model):
                     if line not in invoiced_order_lines and (
                         not line.product_id
                         or line.product_id.type == "service"
-                        and (not line.is_delivery
-                             or order.company_id.delivery_price_policy != "delivery")
+                        and (
+                            not line.is_delivery
+                            or order.company_id.delivery_price_policy != "delivery"
+                        )
                     ):
                         line.invoice_line_create(
-                            invoices[group_key].id, line.qty_to_invoice,
+                            invoices[group_key].id,
+                            line.qty_to_invoice,
                         )
                     elif (
                         line not in invoiced_order_lines
@@ -1169,7 +1174,10 @@ class StockPickingPackagePreparation(models.Model):
 
                     if carrier.delivery_type in ['fixed', 'base_on_rule']:
                         price_unit = ddt.get_price_from_picking()
-                        if ddt.company_id.currency_id.id != ddt.pricelist_id.currency_id.id:
+                        if (
+                            ddt.company_id.currency_id.id
+                            != ddt.pricelist_id.currency_id.id
+                        ):
                             price_unit = ddt.company_id.currency_id.with_context(
                                 date=ddt.date
                             ).compute(price_unit, ddt.pricelist_id.currency_id)
@@ -1432,8 +1440,9 @@ class StockPickingPackagePreparationLine(models.Model):
                 "product_id": self.product_id.id or False,
                 "invoice_line_tax_ids": [(6, 0, self.tax_ids.ids)],
                 "weight": self.weight,
-                "is_delivery":
-                    self.sale_line_id.is_delivery if self.sale_line_id else False,
+                "is_delivery": self.sale_line_id.is_delivery
+                if self.sale_line_id
+                else False,
             }
         )
         return res
@@ -1450,10 +1459,12 @@ class StockPickingPackagePreparationLine(models.Model):
         offset = offset or 0
         for line in self:
             vals = line._prepare_invoice_line(qty=qty, invoice_id=invoice_id)
-            vals.update({
-                "invoice_id": invoice_id,
-                "sequence": vals.get("sequence", 16) + offset,
-            })
+            vals.update(
+                {
+                    "invoice_id": invoice_id,
+                    "sequence": vals.get("sequence", 16) + offset,
+                }
+            )
             if line.sale_line_id:
                 vals.update({"sale_line_ids": [(6, 0, [line.sale_line_id.id])]})
             line_inv = (

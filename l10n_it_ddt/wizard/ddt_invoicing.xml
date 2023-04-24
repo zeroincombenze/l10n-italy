@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_ddt_invoicing" model="ir.ui.view">
@@ -6,15 +6,15 @@
         <field name="model">ddt.invoicing</field>
         <field name="arch" type="xml">
             <form string="DDT Invoicing">
-                <separator string="DDT" />
+                <separator string="DDT"/>
                 <group>
-                    <field name="date_from" />
-                    <field name="date_to" />
+                    <field name="date_from"/>
+                    <field name="date_to"/>
                 </group>
-                <separator string="Setting" />
+                <separator string="Setting"/>
                 <group>
-                    <field name="journal_id" widget="selection" />
-                    <field name="date_invoice" />
+                    <field name="journal_id" widget="selection"/>
+                    <field name="date_invoice"/>
                 </group>
                 <footer>
                     <button
@@ -24,7 +24,7 @@
                         class="oe_highlight"
                     />
                             or
-                    <button string="Cancel" class="oe_link" special="cancel" />
+                    <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
         </field>
@@ -36,7 +36,7 @@
         <field name="res_model">ddt.invoicing</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_ddt_invoicing" />
+        <field name="view_id" ref="view_ddt_invoicing"/>
         <field name="target">new</field>
     </record>
 

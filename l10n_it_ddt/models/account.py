@@ -8,7 +8,6 @@ import odoo.addons.decimal_precision as dp
 
 
 class AccountInvoice(models.Model):
-
     _inherit = "account.invoice"
 
     carriage_condition_id = fields.Many2one(
@@ -35,12 +34,10 @@ class AccountInvoice(models.Model):
     carrier_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery Method",
-        help="Fill this field if you plan to invoice the shipping based on picking."
+        help="Fill this field if you plan to invoice the shipping based on picking.",
     )
     delivery_price = fields.Float(
-        string='Estimated Delivery Price',
-        compute='_compute_delivery_price',
-        store=True
+        string='Estimated Delivery Price', compute='_compute_delivery_price', store=True
     )
     # partner_carrier_id = fields.Many2one(
     #     "res.partner",
@@ -82,18 +79,19 @@ class AccountInvoice(models.Model):
     @api.multi
     def _delivery_unset(self):
         self.env['account.invoice.line'].search(
-            [('invoice_id', 'in', self.ids), ('is_delivery', '=', True)]).unlink()
+            [('invoice_id', 'in', self.ids), ('is_delivery', '=', True)]
+        ).unlink()
 
     @api.multi
     def delivery_set(self):
-
         # Remove delivery products from the account invoice
         self._delivery_unset()
 
         for inv in self:
             if inv.state not in ('draft', 'sent'):
-                raise UserError(_(
-                    'The invoice state have to be draft to add delivery lines.'))
+                raise UserError(
+                    _('The invoice state have to be draft to add delivery lines.')
+                )
             if inv.company_id.delivery_price_policy == "delivery":
                 carriers = {}
                 delivery_price = 0.0
@@ -109,14 +107,15 @@ class AccountInvoice(models.Model):
                                 and line.sale_line_id.order_id
                                 and line.sale_line_id.order_id.carrier_id
                             ):
-                                carriers[ddt]["carrier"] = (
-                                    line.sale_line_id.order_id.carrier_id
-                                )
+                                carriers[ddt][
+                                    "carrier"
+                                ] = line.sale_line_id.order_id.carrier_id
                             carriers[ddt]["delivery_price"] = ddt.delivery_price
                             delivery_price += ddt.delivery_price
                 for ddt in carriers.keys():
-                    inv._create_delivery_line(carriers[ddt]["carrier"],
-                                              carriers[ddt]["delivery_price"])
+                    inv._create_delivery_line(
+                        carriers[ddt]["carrier"], carriers[ddt]["delivery_price"]
+                    )
                 inv.delivery_price = delivery_price
         return True
 
@@ -126,23 +125,24 @@ class AccountInvoice(models.Model):
             carrier = carrier.with_context(lang=self.partner_id.lang)
 
         taxes = carrier.product_id.taxes_id.filtered(
-            lambda t: t.company_id.id == self.company_id.id)
+            lambda t: t.company_id.id == self.company_id.id
+        )
         taxes_ids = taxes.ids
         if self.partner_id and self.fiscal_position_id:
             taxes_ids = self.fiscal_position_id.map_tax(
-                taxes, carrier.product_id, self.partner_id).ids
+                taxes, carrier.product_id, self.partner_id
+            ).ids
 
         account_id = AccountInvoiceLine.get_invoice_line_account(
-            'out_invoice',
-            carrier.product_id,
-            self.fiscal_position_id,
-            self.company_id)
+            'out_invoice', carrier.product_id, self.fiscal_position_id, self.company_id
+        )
 
         carrier_with_partner_lang = carrier.with_context(lang=self.partner_id.lang)
         if carrier_with_partner_lang.product_id.description_sale:
             inv_description = '%s: %s' % (
                 carrier_with_partner_lang.name,
-                carrier_with_partner_lang.product_id.description_sale)
+                carrier_with_partner_lang.product_id.description_sale,
+            )
         else:
             inv_description = carrier_with_partner_lang.name
         values = {
@@ -163,7 +163,6 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
-
     _inherit = "account.invoice.line"
 
     ddt_id = fields.Many2one(

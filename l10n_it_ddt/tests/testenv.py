@@ -178,7 +178,6 @@ def is_iterable(obj):
 
 
 class MainTest(SingleTransactionCase):
-
     def setUp(self):
         super(MainTest, self).setUp()
         self.debug_level = 0
@@ -529,10 +528,12 @@ class MainTest(SingleTransactionCase):
                 resource = self.childs_resource.get(resource, resource)
         if not resource:
             resource, res_id = self.env['ir.model.data'].xmlid_to_res_model_res_id(
-                xref, raise_if_not_found=False)
+                xref, raise_if_not_found=False
+            )
             if not resource and name and ln:
                 resource, res_id = self.env['ir.model.data'].xmlid_to_res_model_res_id(
-                    name, raise_if_not_found=False)
+                    name, raise_if_not_found=False
+                )
                 resource = self.childs_resource.get(resource, resource)
             if resource:
                 self.setup_xrefs[xref] = (None, resource)
@@ -710,12 +711,14 @@ class MainTest(SingleTransactionCase):
     def _cvt_to_datetime(self, value):
         if isinstance(value, date):
             if isinstance(value, datetime):
-                value = datetime(value.year,
-                                 value.month,
-                                 value.day,
-                                 value.hour,
-                                 value.minute,
-                                 value.second)
+                value = datetime(
+                    value.year,
+                    value.month,
+                    value.day,
+                    value.hour,
+                    value.minute,
+                    value.second,
+                )
             else:
                 value = datetime(value.year, value.month, value.day, 0, 0, 0)
         elif isinstance(value, basestring):
@@ -872,7 +875,7 @@ class MainTest(SingleTransactionCase):
         for item in items:
             if isinstance(item, basestring):
                 xid = self._get_xref_id(resource, item, fmt=fmt, group=group)
-                if xid == item and fmt:                              # pragma: no cover
+                if xid == item and fmt:  # pragma: no cover
                     self.raise_error("Unknown value %s of %s" % (item, items))
                 if xid:
                     res.append(xid)
@@ -882,8 +885,9 @@ class MainTest(SingleTransactionCase):
                 and is_cmd
                 and isinstance(item, (list, tuple))
                 and len(item) == 3
-                and (item[0] == 0
-                     or (item[0] == 1 and isinstance(item[1], (int, long))))
+                and (
+                    item[0] == 0 or (item[0] == 1 and isinstance(item[1], (int, long)))
+                )
             ):
                 res.append(
                     (
@@ -904,7 +908,8 @@ class MainTest(SingleTransactionCase):
                     (
                         item[0],
                         self._cast_field_many2one(
-                            resource, field, item[1], fmt="id", group=None)
+                            resource, field, item[1], fmt="id", group=None
+                        ),
                     )
                 )
             elif (
@@ -927,12 +932,16 @@ class MainTest(SingleTransactionCase):
                         item[0],
                         item[1],
                         self._cast_2many(
-                            resource, field, item[2], fmt="id", group=group)
+                            resource, field, item[2], fmt="id", group=group
+                        ),
                     )
                 )
             elif isinstance(item, (list, tuple)):
-                res.append(self._cast_2many(
-                    resource, field, item, fmt="id" if fmt else None, group=group))
+                res.append(
+                    self._cast_2many(
+                        resource, field, item, fmt="id" if fmt else None, group=group
+                    )
+                )
                 is_cmd = False
             else:
                 res.append(item)
@@ -965,11 +974,7 @@ class MainTest(SingleTransactionCase):
 
     def _cast_field_many2many(self, resource, field, value, fmt=None, group=None):
         return self._cast_2many(
-            self.struct[resource][field]["relation"],
-            field,
-            value,
-            fmt=fmt,
-            group=group
+            self.struct[resource][field]["relation"], field, value, fmt=fmt, group=group
         )
 
     def _convert_one2many_to_write(self, record, field, value):
@@ -1018,7 +1023,8 @@ class MainTest(SingleTransactionCase):
                 if field not in self.struct[resource]:
                     del values[field]
                     self.log_lvl_2(
-                        " 🕶️ field %s does not exist in %s" % (field, resource))
+                        " 🕶️ field %s does not exist in %s" % (field, resource)
+                    )
                     continue
 
                 value = self._cast_field(
@@ -1038,10 +1044,7 @@ class MainTest(SingleTransactionCase):
     def _convert_to_write(self, record, new=None, orig=None):
         values = {}
         for field in list(record._fields.keys()):
-            if (
-                field in BLACKLIST_COLUMNS
-                or record._fields[field].readonly
-            ):
+            if field in BLACKLIST_COLUMNS or record._fields[field].readonly:
                 continue
             value = self._convert_field_to_write(record, field)
             if value is None:  # pragma: no cover
@@ -1283,9 +1286,9 @@ class MainTest(SingleTransactionCase):
                 act_windows["context"].update(
                     self._ctx_active_ids(records, ctx=act_windows["context"])
                 )
-            if not is_iterable(records):                             # pragma: no cover
+            if not is_iterable(records):  # pragma: no cover
                 records = [records]
-        if act_windows["type"] == "ir.actions.server":               # pragma: no cover
+        if act_windows["type"] == "ir.actions.server":  # pragma: no cover
             if not records:
                 self.raise_error("No any records supplied")
         else:
@@ -1544,7 +1547,7 @@ class MainTest(SingleTransactionCase):
         # Simulate external reference
         if not resource and not group:
             resource = self._get_model_of_xref(xref)
-        if not resource:                                             # pragma: no cover
+        if not resource:  # pragma: no cover
             if raise_if_not_found:
                 self.raise_error("No model issued for binding")
             return False
@@ -1947,7 +1950,8 @@ class MainTest(SingleTransactionCase):
             self._add_xref(bnk1_xref, banks[0].id, "account.account")
         if self.env.user.company_id != company:
             self.env.user.company_id = company  # pragma: no cover
-        return self.default_company()
+        self.default_company().keep_pick_state_from_ddt = True
+        self.default_company().delivery_price_policy = "order"
 
     def setup_env(
         self,
@@ -2425,7 +2429,7 @@ class MainTest(SingleTransactionCase):
                 )
                 self.assertEqual(
                     self._cast_field(resource, field, tmpl[field], fmt="py"),
-                    self._cast_field(resource, field, rec[field], fmt="py")
+                    self._cast_field(resource, field, rec[field], fmt="py"),
                 )
                 ctr_assertion += 1
         return ctr_assertion
