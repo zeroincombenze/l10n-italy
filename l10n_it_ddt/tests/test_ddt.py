@@ -35,6 +35,7 @@ TEST_ACCOUNT_ACCOUNT = {
         "reconcile": False,
     },
 }
+
 TEST_ACCOUNT_TAX = {
     "external.22v": {
         "amount_type": "percent",
@@ -47,15 +48,17 @@ TEST_ACCOUNT_TAX = {
         "description": "22v",
     },
 }
+
 TEST_DELIVERY_CARRIER = {
     "delivery.delivery_carrier": {
-        "name": "Consegna",
+        "name": "Consegna addebitata",
         "goods_description_id": "l10n_it_ddt.goods_description_CAR",
         "fixed_price": 4.9,
         "free_if_more_than": True,
         "amount": 50.0,
     }
 }
+
 TEST_PRODUCT_TEMPLATE = {
     "z0bug.product_template_1": {
         "property_account_income_id": "external.3112",
@@ -97,6 +100,7 @@ TEST_PRODUCT_TEMPLATE = {
         "taxes_id": "external.22v",
     },
 }
+
 TEST_RES_PARTNER = {
     "z0bug.res_partner_2": {
         "street": "Via Dueville, 2",
@@ -130,22 +134,34 @@ TEST_RES_PARTNER = {
         "is_company": True,
     },
 }
+
 TEST_STOCK_DDT_TYPE = {
     "l10n_it_ddt.ddt_type_ddt": {
         "default_transportation_reason_id": "l10n_it_ddt.transportation_reason_VEN"
     }
 }
-TEST_SETUP_LIST = [
-    "account.account",
-    "account.tax",
-    "delivery.carrier",
-    "product.template",
-    "stock.ddt.type",
-    "res.partner",
-]
 
+TEST_SALE_ORDER = {
+    # Sale Order with delivery price
+    "z0bug.sale_order_Z0_2": {
+        "origin": "Test2",
+        "client_order_ref": "220123",
+        "date_order": "####-##-<#",
+        "partner_id": "z0bug.res_partner_2",
+        "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
+        "carrier_id": "delivery.delivery_carrier",
+    },
+    # Sale Order without delivery price
+    "z0bug.sale_order_Z0_4": {
+        "origin": "Test4",
+        "client_order_ref": "IT/23/004",
+        "date_order": "####-##-##",
+        "partner_id": "z0bug.res_partner_2",
+        "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
+        "carrier_id": "delivery.normal_delivery_carrier",
+    },
+}
 
-# Record data for child models
 TEST_SALE_ORDER_LINE = {
     "z0bug.sale_order_Z0_2_1": {
         "sequence": 1,
@@ -180,28 +196,6 @@ TEST_SALE_ORDER_LINE = {
     },
 }
 
-# Record data for models to test
-TEST_SALE_ORDER = {
-    # Sale Order with Picking
-    "z0bug.sale_order_Z0_2": {
-        "origin": "Test2",
-        "client_order_ref": "220123",
-        "date_order": "####-##-<#",
-        "partner_id": "z0bug.res_partner_2",
-        "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
-        "carrier_id": "delivery.delivery_carrier",
-    },
-    # Sale Order without Picking
-    "z0bug.sale_order_Z0_4": {
-        "origin": "Test4",
-        "client_order_ref": "IT/22/004",
-        "date_order": "####-##-##",
-        "partner_id": "z0bug.res_partner_2",
-        "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
-        "carrier_id": "delivery.normal_delivery_carrier",
-    },
-}
-
 TEST_STOCK_INVENTORY = {
     "z0bug.inventory_1": {
         "date": "####-##-<#",
@@ -220,11 +214,20 @@ TEST_STOCK_INVENTORY_LINE = {
     }
 }
 
+TEST_SETUP_LIST = [
+    "account.account",
+    "account.tax",
+    "delivery.carrier",
+    "product.template",
+    "stock.ddt.type",
+    "res.partner",
+]
+
 
 class TestDdt(SingleTransactionCase):
     def setUp(self):
         super(TestDdt, self).setUp()
-        self.debug_level = 3
+        self.debug_level = 0
         data = {"TEST_SETUP_LIST": TEST_SETUP_LIST}
         for resource in TEST_SETUP_LIST:
             item = "TEST_%s" % resource.upper().replace(".", "_")
@@ -335,7 +338,7 @@ class TestDdt(SingleTransactionCase):
                 self.env.ref("l10n_it_ddt.goods_description_SFU"),
                 msg="Invalid order goods description %s!" % order.goods_description_id,
             )
-        # Now we set the same carrier for both sale orders
+        # Now we set the same carrier for both orders
         # order.carrier_id = self.env.ref("delivery.normal_delivery_carrier").id
         # order.action_confirm()
         self.resource_edit(
@@ -345,11 +348,22 @@ class TestDdt(SingleTransactionCase):
                 ("partner_id", saved_partner.id),
                 ("carrier_id", self.env.ref("delivery.normal_delivery_carrier").id),
             ],
-            actions="action_confirm",
+            actions=["delivery_set", "action_confirm"]
         )
         self.assertEqual(
             order.state, "sale", msg="Invalid order state %s!" % order.state
         )
+        self.assertEqual(
+            order.delivery_price, 10.0, msg="Wrong delivery price"
+        )
+        found = False
+        for line in order.order_line:
+            if line.is_delivery:
+                self.assertEqual(
+                    line.price_subtotal, 10.0, msg="Wrong delivery price in line"
+                )
+                found = True
+        self.assertTrue(found, msg="No delivery line found")
         return order
 
     def _remove_invoice(self, invoice, ddts, orders):
@@ -404,16 +418,16 @@ class TestDdt(SingleTransactionCase):
 
     def _create_ddt_from_1_order(self, order, goods_description=None):
         _logger.info(u"🎺 Creating DdT from order %s" % (order.name))
-        # ## act_windows = self.resource_edit(
-        # ##     resource=[order],
-        # ##     actions="l10n_it_ddt.action_create_ddt",
-        # ## )
-        # ## self.wizard(
-        # ##     act_windows=act_windows,
-        # ##     records=order,
-        # ##     button_name="create_ddt",
-        # ## )
-        order.action_create_ddt()
+        act_windows = self.resource_edit(
+            resource=[order],
+            actions="l10n_it_ddt.action_create_ddt",
+        )
+        self.wizard(
+            act_windows=act_windows,
+            records=order,
+            button_name="create_ddt",
+        )
+        # order.action_create_ddt()
         self.assertTrue(order.ddt_ids, msg="No Delivery Note found!")
         ddt = order.ddt_ids[0]
         self.assertEqual(ddt.state, "draft", msg="Invalid DdT state %s!" % ddt.state)
@@ -441,6 +455,11 @@ class TestDdt(SingleTransactionCase):
             ddt.ddt_type_id,
             msg="Order DdT type different from DdT picking",
         )
+        self.assertEqual(
+            ddt.delivery_price,
+            10.0,
+            msg="Wrong delivery price",
+        )
         self.resource_edit(order, actions="action_view_ddt")
         return ddt
 
@@ -463,6 +482,11 @@ class TestDdt(SingleTransactionCase):
             self.env.ref("l10n_it_ddt.transportation_reason_VEN").id,
             msg="Invalid DdT transportation reason %s!" % ddt.transportation_reason_id,
         )
+        self.assertEqual(
+            ddt.delivery_price,
+            10.0,
+            msg="Wrong delivery price",
+        )
         self._set_ddt_done(ddt)
         # Check for DdT number reused
         self.assertEqual(
@@ -470,7 +494,24 @@ class TestDdt(SingleTransactionCase):
         )
         return ddt
 
-    def _create_invoice_from_1_ddt(self, ddt, orders):
+    def _check_for_invoice(self, invoice, count_delivery=1, policy="order"):
+        if policy == "order":
+            # Invoice delivery price is zero because in invoice delivery price are in
+            # set in invoice lines
+            self.assertEqual(
+                invoice.delivery_price,
+                0.0,
+                msg="Wrong delivery price",
+            )
+        delivery_line_ctr = 0
+        for line in invoice.invoice_line_ids:
+            if line.is_delivery:
+                delivery_line_ctr += 1
+        self.assertEqual(count_delivery,
+                         delivery_line_ctr,
+                         msg="Wrong # of delivery lines!")
+
+    def _create_invoice_from_1_ddt(self, ddt, orders, count_delivery=1, policy="order"):
         invoice_ids = ddt.action_invoice_create()
         self.assertTrue(invoice_ids, msg="Cannot create invoice!")
         self.assertTrue(ddt.invoice_id, msg="DdT not set to invoiced!")
@@ -480,17 +521,11 @@ class TestDdt(SingleTransactionCase):
                 "invoiced",
                 msg="Sale order %s not set to invoiced!" % order.name,
             )
-        # Check for delivery cost line
         invoice = self.env["account.invoice"].browse(invoice_ids[0])
-        delivery_line = False
-        for line in invoice.invoice_line_ids:
-            if line.is_delivery:
-                delivery_line = line
-                break
-        self.assertTrue(delivery_line, msg="Invoice w/o delivery line!")
+        self._check_for_invoice(invoice, count_delivery=count_delivery, policy=policy)
         return invoice
 
-    def _create_invoice_from_ddts(self, ddts, orders):
+    def _create_invoice_from_ddts(self, ddts, orders, count_delivery=1, policy="order"):
         invoice_ids = ddts.action_invoice_create()
         self.assertTrue(invoice_ids, msg="Cannot create invoice!")
         for ddt in ddts:
@@ -502,6 +537,7 @@ class TestDdt(SingleTransactionCase):
                 msg="Sale order %s not set to invoiced!" % order.name,
             )
         invoice = self.env["account.invoice"].browse(invoice_ids[0])
+        self._check_for_invoice(invoice, count_delivery=count_delivery, policy=policy)
         return invoice
 
     def _edit_ddt(self, ddt, actions=None):
@@ -517,8 +553,9 @@ class TestDdt(SingleTransactionCase):
         )
         self._set_ddt_done(ddt)
 
-    def _test_1_ddt_then_picking(self, orders, purge=None):
+    def _test_add_picking_to_ddt(self, orders, purge=None, policy="order"):
         _logger.info(u"🎺 Creating DdT and then add picking to it")
+        count_delivery = 2 if policy != "delivery" else 1
         ddt = old_ddt_number = None
         for order in orders:
             if not ddt:
@@ -529,24 +566,29 @@ class TestDdt(SingleTransactionCase):
                 self._set_ddt_done(ddt)
                 old_ddt_number = ddt.ddt_number
         # Create invoice
-        invoice = self._create_invoice_from_1_ddt(ddt, orders)
+        invoice = self._create_invoice_from_1_ddt(
+            ddt, orders, count_delivery=count_delivery, policy=policy)
         if purge:
             self._remove_invoice(invoice, ddt, orders)
             self._remove_ddt(ddt, orders)
             invoice = None
         return invoice, old_ddt_number
 
-    def _test_1_ddt_from_2_orders(self, orders, old_ddt_number, purge=None):
+    def _test_1_ddt_from_2_orders(self, orders, old_ddt_number,
+                                  purge=None, policy="order"):
         _logger.info(u"🎺 Creating DdT from 2 orders")
         ddt = self._create_ddt_from_more_orders(orders, old_ddt_number)
-        invoice = self._create_invoice_from_1_ddt(ddt, orders)
+        invoice = self._create_invoice_from_1_ddt(
+            ddt, orders,
+            count_delivery=2 if policy=="order" else 1,
+            policy=policy)
         if purge:
             self._remove_invoice(invoice, ddt, orders)
             self._remove_ddt(ddt, orders)
             invoice = None
         return invoice
 
-    def _test_2_ddts_1_invoice(self, orders, purge=None):
+    def _test_2_ddts_1_invoice(self, orders, purge=None, policy="order"):
         _logger.info(u"🎺 Creating invoice from 2 DdTs")
         # Create a new DdT form 2 sale orders
         ddt1 = self._create_ddt_from_1_order(orders[0])
@@ -555,12 +597,33 @@ class TestDdt(SingleTransactionCase):
             goods_description=self.env.ref("l10n_it_ddt.goods_description_SFU"),
         )
         self._edit_ddt(ddt1, actions="delivery_set")
+        self.assertEqual(
+            ddt1.delivery_price,
+            10.0,
+            msg="Wrong delivery price",
+        )
+        self.assertEqual(
+            ddt2.delivery_price,
+            10.0,
+            msg="Wrong delivery price",
+        )
         self._set_ddt_done([ddt1, ddt2])
+        self.assertEqual(
+            ddt1.delivery_price,
+            10.0,
+            msg="Wrong delivery price",
+        )
+        self.assertEqual(
+            ddt2.delivery_price,
+            10.0,
+            msg="Wrong delivery price",
+        )
         ddts = self.env["stock.picking.package.preparation"]
         ddts += ddt1
         ddts += ddt2
         # Create invoice again
-        invoice = self._create_invoice_from_ddts(ddts, orders)
+        invoice = self._create_invoice_from_ddts(
+            ddts, orders, count_delivery=2, policy=policy)
         self.assertTrue(invoice, msg="Cannot create invoice!")
         self.assertTrue(ddt1.invoice_id, msg="DdT not set to invoiced!")
         self.assertTrue(ddt2.invoice_id, msg="DdT not set to invoiced!")
@@ -570,55 +633,42 @@ class TestDdt(SingleTransactionCase):
                 "invoiced",
                 msg="Sale order %s not set to invoiced!" % order.name,
             )
-        # Check for delivery cost line
-        delivery_line_1 = delivery_line_2 = False
-        for line in invoice.invoice_line_ids:
-            if line.is_delivery:
-                if not delivery_line_1:
-                    delivery_line_1 = line
-                elif not delivery_line_2:
-                    delivery_line_2 = line
-                else:
-                    self.assertTrue(False, msg="Too many delivery lines")
-        self.assertTrue(delivery_line_1, msg="Invoice w/o delivery line!")
-        self.assertTrue(delivery_line_2, msg="Invoice w/o delivery line!")
+        self._check_for_invoice(invoice, count_delivery=2, policy=policy)
         if purge:
             self._remove_invoice(invoice, [ddt1, ddt2], orders)
             self._remove_ddt([ddt1, ddt2], orders)
             invoice = None
         return invoice
 
-    def _test_wizard_1_ddt_from_2_orders(self, orders, purge=None):
+    def _test_wizard_1_ddt_from_2_orders(self, orders, purge=None, policy="order"):
         _logger.info(u"🎺 Wizard: creating DdT from 2 orders")
         act_windows = self.wizard(
             module="l10n_it_ddt",
             action_name="action_create_ddt",
-            ctx={
-                'active_ids': [x.id for x in orders],
-            },
+            records=orders,
             button_name="create_ddt",
         )
         self.assertTrue("domain" in act_windows)
         ddts = self.env["stock.picking.package.preparation"].search(
             act_windows["domain"]
         )
-        ddt_ids = [x.id for x in ddts]
         self._set_ddt_done(ddts)
         act_windows = self.wizard(
             module="l10n_it_ddt",
             action_name="action_ddt_create_invoice",
-            ctx={
-                "active_ids": ddt_ids,
-            },
+            records=ddts,
             button_name="create_invoice",
         )
         self.assertTrue("domain" in act_windows)
         invoice = self.env["account.invoice"].search(act_windows["domain"])[0]
+        self._check_for_invoice(invoice,
+                                count_delivery=2 if policy=="order" else 1,
+                                policy=policy)
         if purge:
             self._remove_invoice(invoice, ddts, orders)
             self._remove_ddt(ddts, orders)
 
-    def _test_wizard_1_ddt_from_pickings(self, orders, purge=None):
+    def _test_wizard_1_ddt_from_pickings(self, orders, purge=None, policy="order"):
         _logger.info(u"🎺 Wizard: creating DdT from pickings")
         picking_ids = []
         for order in orders:
@@ -640,16 +690,17 @@ class TestDdt(SingleTransactionCase):
         act_windows = self.wizard(
             module="l10n_it_ddt",
             action_name="action_ddt_create_invoice",
-            ctx={
-                "active_ids": [ddt.id],
-            },
+            records=ddt,
             button_name="create_invoice",
         )
         self.assertTrue("domain" in act_windows)
         invoice = self.env["account.invoice"].search(act_windows["domain"])[0]
+        self._check_for_invoice(invoice,
+                                count_delivery=2 if policy=="order" else 1,
+                                policy=policy)
         if purge:
-            self._remove_invoice(invoice, ddt.id, orders)
-            self._remove_ddt(ddt.id, orders)
+            self._remove_invoice(invoice, ddt, orders)
+            self._remove_ddt(ddt, orders)
 
     def test_ddt(self):
         orders = self.env["sale.order"]
@@ -657,8 +708,18 @@ class TestDdt(SingleTransactionCase):
             order = self._create_sale_order(xref)
             orders += order
 
-        invoice, old_ddt_number = self._test_1_ddt_then_picking(orders, purge=True)
+        invoice, old_ddt_number = self._test_add_picking_to_ddt(orders, purge=True)
         self._test_1_ddt_from_2_orders(orders, old_ddt_number, purge=True)
         self._test_2_ddts_1_invoice(orders, purge=True)
         self._test_wizard_1_ddt_from_2_orders(orders, purge=True)
-        self._test_wizard_1_ddt_from_pickings(orders, purge=None)
+        self._test_wizard_1_ddt_from_pickings(orders, purge=True)
+
+        # Now run test with delivery price based on DdT
+        self.default_company().delivery_price_policy = "delivery"
+        invoice, old_ddt_number = self._test_add_picking_to_ddt(
+            orders, purge=True, policy="delivery")
+        self._test_1_ddt_from_2_orders(
+            orders, old_ddt_number, purge=True, policy="delivery")
+        self._test_2_ddts_1_invoice(orders, purge=True, policy="delivery")
+        self._test_wizard_1_ddt_from_2_orders(orders, purge=True, policy="delivery")
+        self._test_wizard_1_ddt_from_pickings(orders, purge=None, policy="delivery")

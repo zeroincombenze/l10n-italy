@@ -1,8 +1,9 @@
 10.0.1.8.21 (2023-04-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Delivery price form DN or Sale order / Calcolo trasporto da DdT o Ordine
-+ [FIX] Crahs iwth module sale order revision
+* [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine
+* [FIX] Crash with module sale order revision
+* [IMP] New test coverage 67% (1373/449/+247)
 
 10.0.1.8.20 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +41,7 @@
 10.0.1.8.14 (2022-09-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [REF] Functions refactoring / Sotware ristrutturato
+* [REF] Functions refactoring / Software ristrutturato
 * [IMP] Added regression tests / Aggiunti test automatici
 * [FIX] l10n_it_ade dependency / Corretta dipendenza
 * [IMP] More check for <add_to_ddt> function / Nuovi controlli

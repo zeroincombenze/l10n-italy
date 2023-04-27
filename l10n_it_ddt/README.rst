@@ -226,8 +226,9 @@ ChangeLog History / Cronologia modifiche
 10.0.1.8.21 (2023-04-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Delivery price form DN or Sale order / Calcolo trasporto da DdT o Ordine
-+ [FIX] Crahs iwth module sale order revision
+* [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine
+* [FIX] Crash with module sale order revision
+* [IMP] New test coverage 67% (1373/449/+247)
 
 10.0.1.8.20 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,7 +266,7 @@ ChangeLog History / Cronologia modifiche
 10.0.1.8.14 (2022-09-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [REF] Functions refactoring / Sotware ristrutturato
+* [REF] Functions refactoring / Software ristrutturato
 * [IMP] Added regression tests / Aggiunti test automatici
 * [FIX] l10n_it_ade dependency / Corretta dipendenza
 * [IMP] More check for <add_to_ddt> function / Nuovi controlli
@@ -353,7 +354,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-04-24
+Last Update / Ultimo aggiornamento: 2023-04-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

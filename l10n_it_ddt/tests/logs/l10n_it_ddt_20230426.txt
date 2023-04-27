@@ -1,0 +1,319 @@
+2023-04-26 20:34:31,668 12525 INFO ? odoo: Odoo version 10.0
+2023-04-26 20:34:31,669 12525 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/logs/zero10.l10n-italy.l10n_it_ddt.conf
+2023-04-26 20:34:31,669 12525 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-04-26 20:34:31,669 12525 INFO ? odoo: database: odoo10@localhost:default
+2023-04-26 20:34:31,684 12525 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:64261
+2023-04-26 20:34:31,699 12525 INFO test_odoo_10 odoo.modules.loading: loading 1 modules...
+2023-04-26 20:34:31,772 12525 INFO test_odoo_10 odoo.modules.loading: 1 modules loaded in 0.07s, 0 queries
+2023-04-26 20:34:33,593 12525 INFO test_odoo_10 odoo.modules.loading: loading 45 modules...
+2023-04-26 20:34:33,681 12525 INFO test_odoo_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-04-26 20:34:33,842 12525 INFO test_odoo_10 odoo.modules.loading: 45 modules loaded in 0.25s, 0 queries
+2023-04-26 20:34:33,848 12525 INFO test_odoo_10 odoo.modules.loading: loading 46 modules...
+2023-04-26 20:34:34,717 12525 INFO test_odoo_10 odoo.modules.registry: module l10n_it_ddt: creating or updating database tables
+2023-04-26 20:34:36,524 12525 INFO test_odoo_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-04-26 20:34:36,738 12525 INFO test_odoo_10 odoo.models: Storing computed values of account.invoice.line fields ddt_id, ddt_sequence
+2023-04-26 20:34:36,740 12525 INFO test_odoo_10 odoo.models: Storing computed values of stock.picking.package.preparation.line fields currency_id, date, ddt_number, partner_id, price_subtotal, price_tax, price_total, sale_id, sale_line_id
+2023-04-26 20:34:36,742 12525 INFO test_odoo_10 odoo.models: Storing computed values of account.invoice fields delivery_price
+2023-04-26 20:34:36,743 12525 INFO test_odoo_10 odoo.models: Storing computed values of stock.picking.package.preparation fields amount_tax, amount_total, amount_untaxed, currency_id, delivery_price, to_be_invoiced
+2023-04-26 20:34:36,905 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/security/ir.model.access.csv
+2023-04-26 20:34:37,101 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/security/security.xml
+2023-04-26 20:34:37,122 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/data/ddt_data.xml
+2023-04-26 20:34:37,201 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking_package_preparation.xml
+2023-04-26 20:34:37,591 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/ddt_data.xml
+2023-04-26 20:34:37,958 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking.xml
+2023-04-26 20:34:38,066 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/partner.xml
+2023-04-26 20:34:38,164 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/product.xml
+2023-04-26 20:34:38,304 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/account.xml
+2023-04-26 20:34:38,382 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/sale.xml
+2023-04-26 20:34:38,508 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_location.xml
+2023-04-26 20:34:38,549 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/delivery_carrier_view.xml
+2023-04-26 20:34:38,594 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/config_view.xml
+2023-04-26 20:34:38,647 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/add_picking_to_ddt.xml
+2023-04-26 20:34:38,689 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_from_picking.xml
+2023-04-26 20:34:38,738 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_create_invoice.xml
+2023-04-26 20:34:38,780 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_line_create_invoice.xml
+2023-04-26 20:34:38,827 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_invoicing.xml
+2023-04-26 20:34:38,876 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/wizard/create_ddt.xml
+2023-04-26 20:34:38,915 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/views/report_ddt.xml
+2023-04-26 20:34:39,006 12525 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ddt/data/mail_template_data.xml
+2023-04-26 20:34:39,048 12525 INFO test_odoo_10 odoo.addons.base.ir.ir_translation: module l10n_it_ddt: loading base translation file en for language en_US
+2023-04-26 20:34:39,049 12525 INFO test_odoo_10 odoo.tools.translate: loading /home/odoo/10.0/l10n-italy/l10n_it_ddt/i18n/en.po
+2023-04-26 20:34:39,818 12525 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt running tests.
+2023-04-26 20:34:39,820 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: test_ddt (odoo.addons.l10n_it_ddt.tests.test_ddt.TestDdt)
+2023-04-26 20:34:39,965 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺🎺🎺 Starting test v2.0.7.1 (debug_level=0)
+2023-04-26 20:34:39,970 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺🎺 Testing module: l10n_it_ddt (10.0.1.8.21)
+2023-04-26 20:34:39,973 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-04-26 20:34:40,368 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_1' -> ('product.product') 'z0bug.product_product_1'
+2023-04-26 20:34:40,635 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_18' -> ('product.product') 'z0bug.product_product_18'
+2023-04-26 20:34:40,891 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: xref ('product.template') 'z0bug.product_template_2' -> ('product.product') 'z0bug.product_product_2'
+2023-04-26 20:34:41,611 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_2]
+2023-04-26 20:34:42,578 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:34:44,106 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_4]
+2023-04-26 20:34:44,968 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:34:45,893 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT and then add picking to it
+2023-04-26 20:34:45,895 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO008
+2023-04-26 20:34:46,476 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Adding picking to DdT
+2023-04-26 20:34:46,651 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [12, 13]
+2023-04-26 20:34:46,700 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [15, 16]
+2023-04-26 20:34:46,729 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [17, 18]
+2023-04-26 20:34:47,265 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [14]
+2023-04-26 20:34:47,311 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [21]
+2023-04-26 20:34:48,966 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [315, 314, 313]
+2023-04-26 20:34:49,057 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [7]
+2023-04-26 20:34:49,064 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [170]
+2023-04-26 20:34:50,206 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [23, 24]
+2023-04-26 20:34:50,279 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [25, 26]
+2023-04-26 20:34:51,022 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [29]
+2023-04-26 20:34:51,239 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [307, 306, 305, 304]
+2023-04-26 20:34:51,258 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [1]
+2023-04-26 20:34:51,266 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [169]
+2023-04-26 20:34:51,932 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [31, 32]
+2023-04-26 20:34:52,001 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [33, 34]
+2023-04-26 20:34:52,909 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [37, 38]
+2023-04-26 20:34:52,987 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [39, 40]
+2023-04-26 20:34:53,847 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [43]
+2023-04-26 20:34:54,507 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [45]
+2023-04-26 20:34:55,384 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:34:56,811 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:34:57,817 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from 2 orders
+2023-04-26 20:34:57,817 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating ddt from more orders
+2023-04-26 20:34:58,214 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [47, 48]
+2023-04-26 20:34:58,264 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [50, 51]
+2023-04-26 20:34:58,295 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [52, 53]
+2023-04-26 20:34:58,901 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [49]
+2023-04-26 20:34:58,946 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [56]
+2023-04-26 20:35:00,311 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.compose.message records with IDs: [1, 2, 3, 4, 5]
+2023-04-26 20:35:00,505 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [394, 393, 392]
+2023-04-26 20:35:00,590 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [8]
+2023-04-26 20:35:00,597 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [183]
+2023-04-26 20:35:01,667 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [58, 59]
+2023-04-26 20:35:01,736 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [60, 61]
+2023-04-26 20:35:02,335 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [64]
+2023-04-26 20:35:02,518 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [386, 385, 384]
+2023-04-26 20:35:02,532 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [2]
+2023-04-26 20:35:02,539 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [182]
+2023-04-26 20:35:03,074 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [66, 67]
+2023-04-26 20:35:03,136 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [68, 69]
+2023-04-26 20:35:03,874 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [72, 73]
+2023-04-26 20:35:03,939 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [74, 75]
+2023-04-26 20:35:04,675 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [78]
+2023-04-26 20:35:05,327 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [80]
+2023-04-26 20:35:06,220 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:07,585 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:08,475 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating invoice from 2 DdTs
+2023-04-26 20:35:08,476 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO008
+2023-04-26 20:35:08,957 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO009
+2023-04-26 20:35:09,530 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [82, 83]
+2023-04-26 20:35:09,568 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [85, 86]
+2023-04-26 20:35:09,596 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [87, 88]
+2023-04-26 20:35:10,081 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [84]
+2023-04-26 20:35:10,121 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [91]
+2023-04-26 20:35:11,685 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [476, 475, 474]
+2023-04-26 20:35:11,797 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [9]
+2023-04-26 20:35:11,804 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [197]
+2023-04-26 20:35:13,024 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [93, 94]
+2023-04-26 20:35:13,096 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [95, 96]
+2023-04-26 20:35:13,766 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [99]
+2023-04-26 20:35:13,955 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [465, 464, 463]
+2023-04-26 20:35:13,969 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [3]
+2023-04-26 20:35:13,975 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [195]
+2023-04-26 20:35:14,522 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [101, 102]
+2023-04-26 20:35:14,584 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [103, 104]
+2023-04-26 20:35:15,380 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [107, 108]
+2023-04-26 20:35:15,448 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [109, 110]
+2023-04-26 20:35:15,773 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [468, 467, 466]
+2023-04-26 20:35:15,790 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [4]
+2023-04-26 20:35:15,797 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [196]
+2023-04-26 20:35:16,287 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [113]
+2023-04-26 20:35:16,954 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [115]
+2023-04-26 20:35:17,829 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:19,357 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:20,283 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Wizard: creating DdT from 2 orders
+2023-04-26 20:35:20,671 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [117, 118]
+2023-04-26 20:35:20,721 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [120, 121]
+2023-04-26 20:35:20,749 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [122, 123]
+2023-04-26 20:35:21,258 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [119]
+2023-04-26 20:35:21,305 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [126]
+2023-04-26 20:35:22,974 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [555, 554, 553]
+2023-04-26 20:35:23,051 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [10]
+2023-04-26 20:35:23,057 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [210]
+2023-04-26 20:35:24,202 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [128, 129]
+2023-04-26 20:35:24,276 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [130, 131]
+2023-04-26 20:35:24,971 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [134]
+2023-04-26 20:35:25,189 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [547, 546, 545]
+2023-04-26 20:35:25,208 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [5]
+2023-04-26 20:35:25,217 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [209]
+2023-04-26 20:35:25,849 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [136, 137]
+2023-04-26 20:35:25,918 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [138, 139]
+2023-04-26 20:35:26,773 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [142, 143]
+2023-04-26 20:35:26,842 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [144, 145]
+2023-04-26 20:35:27,720 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [148]
+2023-04-26 20:35:28,423 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [150]
+2023-04-26 20:35:29,299 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:30,689 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:31,582 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Wizard: creating DdT from pickings
+2023-04-26 20:35:31,841 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [152, 153]
+2023-04-26 20:35:31,890 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [155, 156]
+2023-04-26 20:35:31,929 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [157, 158]
+2023-04-26 20:35:32,401 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [154]
+2023-04-26 20:35:32,441 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [161]
+2023-04-26 20:35:33,945 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [633, 632, 631]
+2023-04-26 20:35:34,022 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [11]
+2023-04-26 20:35:34,028 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [223]
+2023-04-26 20:35:35,073 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [163, 164]
+2023-04-26 20:35:35,134 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [165, 166]
+2023-04-26 20:35:35,786 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [169]
+2023-04-26 20:35:35,975 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [625, 624]
+2023-04-26 20:35:35,990 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [6]
+2023-04-26 20:35:35,999 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [222]
+2023-04-26 20:35:36,573 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [171, 172]
+2023-04-26 20:35:36,642 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [173, 174]
+2023-04-26 20:35:37,389 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [177, 178]
+2023-04-26 20:35:37,450 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [179, 180]
+2023-04-26 20:35:38,209 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [183]
+2023-04-26 20:35:38,880 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [185]
+2023-04-26 20:35:39,760 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:41,201 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:42,018 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT and then add picking to it
+2023-04-26 20:35:42,018 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO008
+2023-04-26 20:35:42,494 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Adding picking to DdT
+2023-04-26 20:35:42,673 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [187, 188]
+2023-04-26 20:35:42,755 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [190, 191]
+2023-04-26 20:35:42,783 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [192, 193]
+2023-04-26 20:35:43,321 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [189]
+2023-04-26 20:35:43,367 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [196]
+2023-04-26 20:35:44,802 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [712, 711, 710]
+2023-04-26 20:35:44,876 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [12]
+2023-04-26 20:35:44,882 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [236]
+2023-04-26 20:35:46,008 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [198, 199]
+2023-04-26 20:35:46,079 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [200, 201]
+2023-04-26 20:35:46,812 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [204]
+2023-04-26 20:35:47,033 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [704, 703, 702]
+2023-04-26 20:35:47,050 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [7]
+2023-04-26 20:35:47,057 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [235]
+2023-04-26 20:35:47,655 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [206, 207]
+2023-04-26 20:35:47,717 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [208, 209]
+2023-04-26 20:35:48,460 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [212, 213]
+2023-04-26 20:35:48,522 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [214, 215]
+2023-04-26 20:35:49,308 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [218]
+2023-04-26 20:35:49,987 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [220]
+2023-04-26 20:35:50,845 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:52,256 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:35:53,099 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from 2 orders
+2023-04-26 20:35:53,099 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating ddt from more orders
+2023-04-26 20:35:53,482 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [222, 223]
+2023-04-26 20:35:53,530 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [225, 226]
+2023-04-26 20:35:53,558 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [227, 228]
+2023-04-26 20:35:54,096 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [224]
+2023-04-26 20:35:54,143 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [231]
+2023-04-26 20:35:55,497 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [790, 789, 788]
+2023-04-26 20:35:55,563 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [13]
+2023-04-26 20:35:55,569 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [249]
+2023-04-26 20:35:56,594 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [233, 234]
+2023-04-26 20:35:56,653 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [235, 236]
+2023-04-26 20:35:57,274 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [239]
+2023-04-26 20:35:57,483 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [782, 781]
+2023-04-26 20:35:57,499 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [8]
+2023-04-26 20:35:57,508 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [248]
+2023-04-26 20:35:58,134 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [241, 242]
+2023-04-26 20:35:58,217 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [243, 244]
+2023-04-26 20:35:59,074 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [247, 248]
+2023-04-26 20:35:59,136 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [249, 250]
+2023-04-26 20:35:59,985 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [253]
+2023-04-26 20:36:00,742 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [255]
+2023-04-26 20:36:01,613 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:36:03,092 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:36:03,906 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating invoice from 2 DdTs
+2023-04-26 20:36:03,906 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO008
+2023-04-26 20:36:04,326 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO009
+2023-04-26 20:36:04,832 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [257, 258]
+2023-04-26 20:36:04,872 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [260, 261]
+2023-04-26 20:36:04,899 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [262, 263]
+2023-04-26 20:36:05,341 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [259]
+2023-04-26 20:36:05,380 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [266]
+2023-04-26 20:36:06,799 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [870, 869, 868]
+2023-04-26 20:36:06,888 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [14]
+2023-04-26 20:36:06,896 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [263]
+2023-04-26 20:36:07,974 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [268, 269]
+2023-04-26 20:36:08,040 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [270, 271]
+2023-04-26 20:36:08,734 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [274]
+2023-04-26 20:36:08,913 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [860, 859]
+2023-04-26 20:36:08,931 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [9]
+2023-04-26 20:36:08,939 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [261]
+2023-04-26 20:36:09,605 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [276, 277]
+2023-04-26 20:36:09,677 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [278, 279]
+2023-04-26 20:36:10,563 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [282, 283]
+2023-04-26 20:36:10,629 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [284, 285]
+2023-04-26 20:36:10,955 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [862, 861]
+2023-04-26 20:36:10,968 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [10]
+2023-04-26 20:36:10,974 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [262]
+2023-04-26 20:36:11,483 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [288]
+2023-04-26 20:36:12,226 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [290]
+2023-04-26 20:36:13,109 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:36:14,470 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:36:15,286 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Wizard: creating DdT from 2 orders
+2023-04-26 20:36:15,546 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [292, 293]
+2023-04-26 20:36:15,591 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [295, 296]
+2023-04-26 20:36:15,616 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [297, 298]
+2023-04-26 20:36:16,160 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [294]
+2023-04-26 20:36:16,210 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [301]
+2023-04-26 20:36:17,661 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [948, 947, 946]
+2023-04-26 20:36:17,739 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [15]
+2023-04-26 20:36:17,745 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [276]
+2023-04-26 20:36:18,942 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [303, 304]
+2023-04-26 20:36:19,003 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [305, 306]
+2023-04-26 20:36:19,742 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [309]
+2023-04-26 20:36:19,966 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.message records with IDs: [940, 939]
+2023-04-26 20:36:19,984 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.picking.package.preparation records with IDs: [11]
+2023-04-26 20:36:19,992 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [275]
+2023-04-26 20:36:20,665 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [311, 312]
+2023-04-26 20:36:20,727 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [313, 314]
+2023-04-26 20:36:21,532 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [317, 318]
+2023-04-26 20:36:21,595 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [319, 320]
+2023-04-26 20:36:22,467 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [323]
+2023-04-26 20:36:23,162 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [325]
+2023-04-26 20:36:24,060 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:36:25,456 12525 WARNING test_odoo_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-04-26 20:36:26,428 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Wizard: creating DdT from pickings
+2023-04-26 20:36:26,693 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [327, 328]
+2023-04-26 20:36:26,741 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [330, 331]
+2023-04-26 20:36:26,765 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [332, 333]
+2023-04-26 20:36:27,234 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [329]
+2023-04-26 20:36:27,276 12525 INFO test_odoo_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [336]
+2023-04-26 20:36:28,521 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.testenv: 🏆🥇 247 tests SUCCESSFULLY completed
+2023-04-26 20:36:28,526 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ✨ Test data committed
+2023-04-26 20:36:28,528 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: Ran 1 test in 108.709s
+2023-04-26 20:36:28,529 12525 INFO test_odoo_10 odoo.addons.l10n_it_ddt.tests.test_ddt: OK
+2023-04-26 20:36:28,529 12525 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt tested in 108.71s, 108099 queries
+2023-04-26 20:36:28,571 12525 INFO test_odoo_10 odoo.modules.loading: 46 modules loaded in 114.72s, 108152 queries
+2023-04-26 20:36:29,143 12525 INFO test_odoo_10 odoo.modules.loading: Modules loaded.
+2023-04-26 20:36:29,149 12525 INFO test_odoo_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-04-26 20:36:29,150 12525 INFO test_odoo_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-04-26 20:36:29,224 12525 INFO test_odoo_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-04-26 20:36:29,226 12525 INFO test_odoo_10 odoo.service.server: Initiating shutdown
+2023-04-26 20:36:29,226 12525 INFO test_odoo_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ddt[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                 Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_ddt/models/account.py                               103     39    62%   58, 68, 80-81, 86-120, 132, 142, 193-195, 198-204
+l10n-italy/l10n_it_ddt/models/delivery_carrier.py                       27     17    37%   31-53
+l10n-italy/l10n_it_ddt/models/ir_sequence.py                            27      6    78%   22, 33, 36, 45-47
+l10n-italy/l10n_it_ddt/models/partner.py                                11      0   100%
+l10n-italy/l10n_it_ddt/models/product.py                                23      4    83%   20, 30, 35-38
+l10n-italy/l10n_it_ddt/models/res_company.py                             9      0   100%
+l10n-italy/l10n_it_ddt/models/sale_order.py                            192     36    81%   13, 33, 100, 103, 110, 112, 114, 118, 137, 158, 177, 196, 203, 232, 236, 242, 249, 254, 270, 281, 311, 316, 319, 324, 335-337, 340, 348, 353-358, 360-364
+l10n-italy/l10n_it_ddt/models/stock_location.py                          4      0   100%
+l10n-italy/l10n_it_ddt/models/stock_picking.py                          91     31    66%   27, 30-32, 35, 39-46, 49, 52, 64-66, 84, 87, 106, 109-111, 121, 123, 132, 148, 159, 164, 176, 185
+l10n-italy/l10n_it_ddt/models/stock_picking_package_preparation.py     732    243    67%   123-124, 126, 132, 152, 155, 162, 170, 174, 188-196, 213, 216, 310-312, 316, 321, 324, 352, 358, 361, 433, 460-468, 475, 484-485, 548, 550, 555, 579, 589, 592, 598, 600, 606-607, 622, 627, 634-636, 663-681, 684, 696, 703-704, 708, 713, 722, 735, 737, 748, 753, 762, 766-769, 772, 775-778, 791, 796-805, 824, 831, 843, 860, 873, 936, 951, 953, 957, 969-978, 981-989, 997-998, 1001-1005, 1078, 1084, 1087-1089, 1106-1131, 1143, 1146, 1148, 1160, 1164, 1168, 1181, 1189, 1204, 1290-1336, 1339-1350, 1353, 1393-1426, 1478-1492, 1495, 1504-1566
+l10n-italy/l10n_it_ddt/wizard/add_picking_to_ddt.py                     36     29    19%   17-39, 47-81
+l10n-italy/l10n_it_ddt/wizard/create_ddt.py                             15      0   100%
+l10n-italy/l10n_it_ddt/wizard/ddt_create_invoice.py                     23      2    91%   18, 35
+l10n-italy/l10n_it_ddt/wizard/ddt_from_picking.py                       19      1    95%   20
+l10n-italy/l10n_it_ddt/wizard/ddt_invoicing.py                          21     11    48%   15-16, 31-56
+l10n-italy/l10n_it_ddt/wizard/ddt_line_create_invoice.py                40     30    25%   13, 18-26, 35-45, 58-67
+--------------------------------------------------------------------------------------------------
+TOTAL                                                                 1373    449    67%
