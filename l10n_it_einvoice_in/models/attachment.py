@@ -60,6 +60,10 @@ class FatturaPAAttachmentIn(models.Model):
             return False
         xml_string = self.ir_attachment_id.get_xml_string()
         xml_string = re.sub(
+            '<?xml version="1.0" encoding="utf-8"[^?]*?>',
+            '<?xml version="1.0" encoding="utf-8"?>',
+            xml_string)
+        xml_string = re.sub(
             '<p:FatturaElettronica.*v1.2.*versione="FPR12">',
             ('<p:FatturaElettronica'
              ' xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"'
