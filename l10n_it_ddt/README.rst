@@ -223,8 +223,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.1.8.21 (2023-04-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
+dir 10.0.1.8.21 (2023-04-17)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine
 * [FIX] Crash with module sale order revision
@@ -354,7 +354,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-04-27
+Last Update / Ultimo aggiornamento: 2023-04-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

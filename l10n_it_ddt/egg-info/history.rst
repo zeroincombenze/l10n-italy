@@ -1,4 +1,4 @@
-10.0.1.8.21 (2023-04-17)
+dir 10.0.1.8.21 (2023-04-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine

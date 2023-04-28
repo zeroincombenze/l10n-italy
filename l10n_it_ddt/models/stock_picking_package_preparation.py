@@ -212,7 +212,7 @@ class StockPickingPackagePreparation(models.Model):
     @api.depends('carrier_id', 'line_ids')
     def _compute_delivery_price(self):
         for ddt in self:
-            if ddt.state != 'draft' or not ddt.carrier_id or not ddt.line_ids:
+            if ddt.state == 'cancel' or not ddt.carrier_id or not ddt.line_ids:
                 continue
             else:
                 ddt.delivery_set()
@@ -350,7 +350,7 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     @api.onchange("carrier_id")
     def onchange_carrier_id(self):
-        if self.state == 'draft':
+        if self.state != 'cancel':
             self.delivery_set()
             # self._amount_all()
 
@@ -1164,11 +1164,11 @@ class StockPickingPackagePreparation(models.Model):
                     ddt.pricelist_id = self._default_pricelist()
                 carrier = ddt.carrier_id
                 if carrier:
-                    if ddt.state != 'draft':
+                    if ddt.state == 'cancel':
                         raise UserError(
                             _(
-                                'The delivery note state have to be draft '
-                                'to add delivery lines.'
+                                'The delivery note state cannot be cancel '
+                                'to update delivery price.'
                             )
                         )
 
