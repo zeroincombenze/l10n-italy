@@ -51,9 +51,16 @@ class ItalyConaiStatement(models.Model):
                 "conai_category_id": conai_category_id.id,
                 "conai_exemption_id": invoice.conai_exemption_id
                 and invoice.conai_exemption_id.id,
-                "conai_amount": conai_amount,
-                "weight": weight,
+                "conai_amount": conai_amount
+                if not inv_line.conai_summary_line else 0.0,
+                "weight": weight
+                if not inv_line.conai_summary_line else 0.0,
+                "conai_amount_due": inv_line.price_subtotal
+                if inv_line.conai_summary_line else 0.0,
+                "weight_due": inv_line.quantity
+                if inv_line.conai_summary_line else 0.0,
                 "conai_price_unit": conai_category_id.conai_price_unit,
+                "conai_summary_line": inv_line.conai_summary_line,
             }
             if len(statement_line_ids):
                 statement_line = line_model.browse(statement_line_ids.pop())
@@ -122,7 +129,7 @@ class ItalyConaiStatement(models.Model):
         category_model = self.env["italy.conai.statement.category"]
         for statement in self:
             category_total = {}
-            category_line_ids = sorted([x.id for x in statement.conai_category_ids])
+            category_line_ids = sorted([x for x in statement.conai_category_ids])
             for line in statement.conai_line_ids:
                 hash = "%s-%s" % (
                     line.conai_category_id.code,
@@ -134,10 +141,16 @@ class ItalyConaiStatement(models.Model):
                         "conai_exemption_id": line.invoice_id.conai_exemption_id,
                         "conai_amount": 0.0,
                         "weight": 0.0,
+                        "conai_amount_due": 0.0,
+                        "weight_due": 0.0,
                         "conai_price_unit": line.conai_category_id.conai_price_unit,
                     }
-                category_total[hash]["conai_amount"] += line.conai_amount
-                category_total[hash]["weight"] += line.weight
+                if line.conai_summary_line:
+                    category_total[hash]["conai_amount_due"] += line.conai_amount_due
+                    category_total[hash]["weight_due"] += line.weight_due
+                else:
+                    category_total[hash]["conai_amount"] += line.conai_amount
+                    category_total[hash]["weight"] += line.weight
             for category in category_total.keys():
                 vals = {
                     "statement_id": statement.id,
@@ -149,15 +162,17 @@ class ItalyConaiStatement(models.Model):
                     ].id,
                     "conai_amount": category_total[category]["conai_amount"],
                     "weight": category_total[category]["weight"],
+                    "conai_amount_due": category_total[category]["conai_amount_due"],
+                    "weight_due": category_total[category]["weight_due"],
                     "conai_price_unit": category_total[category]["conai_price_unit"],
                 }
                 if len(category_line_ids):
-                    category_line = category_model.browse(category_line_ids.pop())
+                    category_line = category_line_ids.pop()
                     category_line.write(vals)
                 else:
                     category_model.create(vals)
             while category_line_ids:
-                category_model.unlink(category_line_ids.pop())
+                category_line_ids.pop().unlink()
 
 
 class ItalyConaiStatementLine(models.Model):
@@ -179,9 +194,21 @@ class ItalyConaiStatementLine(models.Model):
     weight = fields.Float(
         string="CONAI Weight", digits=dp.get_precision("Stock Weight")
     )
+    conai_amount_due = fields.Float(
+        string="Due CONAI Amount", digits=dp.get_precision("Product Price")
+    )
+    weight_due = fields.Float(
+        string="Due CONAI Weight", digits=dp.get_precision("Stock Weight")
+    )
     conai_price_unit = fields.Float(
         string="Unit Price", digits=dp.get_precision("Product Price")
     )
+    conai_summary_line = fields.Boolean("CONAI summary line")
+    conai_manual = fields.Boolean("Manual CONAI amount")
+
+    @api.onchange("conai_amount", "weight", "conai_amount_due", "weight_due")
+    def _revaluate_totals(self):
+        self.statement_id.compute_category_total()
 
 
 class ItalyConaiStatementCategory(models.Model):
@@ -196,6 +223,12 @@ class ItalyConaiStatementCategory(models.Model):
     conai_exemption_id = fields.Many2one(string="CONAI Exemption")
     conai_amount = fields.Float(
         string="CONAI Amount", digits=dp.get_precision("Product Price")
+    )
+    conai_amount_due = fields.Float(
+        string="Due CONAI Amount", digits=dp.get_precision("Product Price")
+    )
+    weight_due = fields.Float(
+        string="Due CONAI Weight", digits=dp.get_precision("Stock Weight")
     )
     conai_price_unit = fields.Float(
         string="Unit Price", digits=dp.get_precision("Product Price")

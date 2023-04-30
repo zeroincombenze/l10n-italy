@@ -32,6 +32,8 @@
                 <field name="weight" />
                 <field name="conai_category_id" />
                 <field name="conai_amount" readonly="1" />
+                <field name="conai_manual" />
+                <field name="conai_summary_line" readonly="1" />
             </field>
 
         </field>
@@ -69,19 +71,23 @@
                 <field name="conai_exemption_id" />
                 <filter
                     string="Con conai"
-                    domain="[('conai_category_id','!=', False)]"
+                    domain="[('conai_category_id','!=',False),('conai_summary_line','=',False)]"
                 />
                 <filter
                     string="Senza conai"
-                    domain="[('conai_category_id','=', False)]"
+                    domain="[('conai_category_id','=',False),('conai_summary_line','=',False)]"
                 />
                 <filter
                     string="Con peso"
-                    domain="[('weight','!=', False), ('weight','!=', 0.0)]"
+                    domain="[('weight','!=',False),('weight','!=',0.0),('conai_summary_line','=',False)]"
                 />
                 <filter
                     string="Senza peso"
-                    domain="['|',('weight','=', False), ('weight','=', 0.0)]"
+                    domain="['|',('weight','=', False), ('weight','=', 0.0),('conai_summary_line','=',False)]"
+                />
+                <filter
+                    string="Righe conai"
+                    domain="[('conai_summary_line','!=',False)]"
                 />
                 <group expand="0" string="Group By">
                     <filter

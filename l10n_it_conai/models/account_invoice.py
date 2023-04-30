@@ -35,27 +35,28 @@ class AccountInvoice(models.Model):
     def action_move_create(self):
         def _calc_conai_value(conai_category, weight):
             conai_amount = conai_category.evaluate_conai_amount(weight)
-            conai_struct[conai_category]["amount"] = conai_amount
-            conai_struct[conai_category]["weight"] += weight
+            conai_summary[conai_category]["amount"] = conai_amount
+            conai_summary[conai_category]["weight"] += weight
             return conai_amount
 
-        def _process_category(conai_category):
+        def _process_category(conai_category, line):
             if not conai_category:
                 return
             weight_conv, uom = conai_category.evaluate_weight_conv()
             category2 = weight2 = False
-            if conai_category not in conai_struct:
-                conai = {}
-                conai["name"] = conai_category.name
-                conai["weight"] = 0.0
-                conai["um"] = uom
-                conai["price"] = conai_category.get_price()
-                conai["amount"] = 0.0
-                conai["account_id"] = conai_category.account_id.id
+            if conai_category not in conai_summary:
+                conai = {
+                    "name": conai_category.name,
+                    "weight": 0.0,
+                    "um": uom,
+                    "price_unit": conai_category.get_price(),
+                    "amount": 0.0,
+                    "account_id": conai_category.account_id.id,
+                    "tax": line.invoice_line_tax_ids,
+                }
                 if not conai["account_id"]:
                     conai["account_id"] = line.account_id.id
-                conai["tax"] = line.invoice_line_tax_ids
-                conai_struct[conai_category] = conai
+                conai_summary[conai_category] = conai
             if line.product_id:
                 weight2 = (
                     line.product_id.weight2 or line.product_id.product_tmpl_id.weight2
@@ -75,23 +76,37 @@ class AccountInvoice(models.Model):
 
         inv_line_model = self.env["account.invoice.line"]
         for invoice in self:
-            if invoice.type in ("in_invoice", "in_refund"):
+            if invoice.type not in ("out_invoice", "out_refund"):
                 continue
-            conai_struct = {}
+            conai_summary = {}
             if invoice.conai_exemption_id and invoice.conai_exemption_id.conai_percent:
                 percent = invoice.conai_exemption_id.conai_percent
-                p_name = invoice.conai_exemption_id.name
-                ii = p_name.lower().find("vs")
+                partner_expt_name = invoice.conai_exemption_id.name
+                ii = partner_expt_name.lower().find("vs")
                 if ii >= 0:
-                    p_name = p_name[ii:]
-                p_name = "Esenzione %s%% %s" % (percent, p_name)
+                    partner_expt_name = partner_expt_name[ii:]
+                partner_expt_name = "Esenzione %s%% %s" % (percent, partner_expt_name)
             else:
                 percent = 0.0
-                p_name = ""
-            supplemental_line_ids = []
+                partner_expt_name = ""
+            conai_invoice_lines = {}
+            lines_to_delete = []
             for line in invoice.invoice_line_ids:
-                if line.name.startswith("Contributo ambientale"):
-                    supplemental_line_ids.append(line.id)
+                if (
+                    line.conai_summary_line
+                    or (line.product_id
+                        and line.product_id == line.company_id.conai_product_id)
+                ):
+                    if line.conai_category_id:
+                        conai_invoice_lines[line.conai_category_id] = {
+                            "line": line,
+                            "remove": True,
+                            "conai_manual": line.conai_manual,
+                            "manual_price_unit": line.price_unit,
+                            "manual_weight": line.weight,
+                        }
+                    else:
+                        lines_to_delete.append(line)
                     continue
                 if not line.conai_category_id:
                     continue
@@ -99,54 +114,67 @@ class AccountInvoice(models.Model):
                     line.weight = (
                         line.product_id.weight or line.product_id.product_tmpl_id.weight
                     ) * line.quantity
-                _process_category(line.conai_category_id)
+                _process_category(line.conai_category_id, line)
                 if line.product_id:
                     _process_category(
                         line.product_id.conai_category2_id
-                        or line.product_id.product_tmpl_id.conai_category2_id
+                        or line.product_id.product_tmpl_id.conai_category2_id,
+                        line
                     )
 
             invoice.amount_conai = 0.0
-            for nr, conai_category in enumerate(conai_struct):
-                if p_name:
+            for conai_category, conai_item in conai_summary.items():
+                if partner_expt_name:
                     conai_name = "Contributo ambientale %s (%s %s)\n%s" % (
-                        conai_struct[conai_category]["name"],
-                        conai_struct[conai_category]["weight"],
-                        conai_struct[conai_category]["um"].name,
-                        p_name,
+                        conai_item["name"],
+                        conai_item["weight"],
+                        conai_item["um"].name,
+                        partner_expt_name,
                     )
                 else:
                     conai_name = "Contributo ambientale %s (%s %s)" % (
-                        conai_struct[conai_category]["name"],
-                        conai_struct[conai_category]["weight"],
-                        conai_struct[conai_category]["um"].name,
+                        conai_item["name"],
+                        conai_item["weight"],
+                        conai_item["um"].name,
                     )
                 line_vals = {
+                    "product_id": invoice.company_id.conai_product_id.id,
                     "name": conai_name,
                     "invoice_id": invoice.id,
-                    "uom_id": conai_struct[conai_category]["um"].id,
+                    "uom_id": conai_item["um"].id,
                     "quantity": conai_category.get_qty(
-                        conai_struct[conai_category]["weight"], percent=percent
+                        conai_item["weight"], percent=percent
                     ),
-                    "price_unit": conai_struct[conai_category]["price"],
-                    "account_id": conai_struct[conai_category]["account_id"],
+                    "price_unit": conai_item["price_unit"],
+                    "account_id": conai_item["account_id"],
                     "invoice_line_tax_ids": [
-                        (6, 0, [x.id for x in conai_struct[conai_category]["tax"]])
+                        (6, 0, [x.id for x in conai_item["tax"]])
                     ],
+                    "conai_category_id": conai_category.id,
+                    "conai_summary_line": True,
+                    "conai_manual": False,
                     "sequence": 99999,
                 }
-                if nr < len(supplemental_line_ids):
-                    inv_line_model.browse(supplemental_line_ids[nr]).write(line_vals)
-                    inv_line = inv_line_model.browse(supplemental_line_ids[nr])
+                if conai_category in conai_invoice_lines:
+                    inv_line = conai_invoice_lines[conai_category]["line"]
+                    if conai_invoice_lines[conai_category]["conai_manual"]:
+                        line_vals["conai_manual"] = True
+                        for field in ("price_unit", "quantity"):
+                            del line_vals[field]
+                        line_vals["name"] += " *"
+                    inv_line.write(line_vals)
+                    inv_line = inv_line_model.browse(inv_line.id)
+                    conai_invoice_lines[conai_category]["remove"] = False
                 else:
                     inv_line = inv_line_model.create(line_vals)
                 invoice.amount_conai += inv_line.price_subtotal
-            nr = len(conai_struct)
-            while nr < len(supplemental_line_ids):
-                inv_line_model.browse(supplemental_line_ids[nr]).unlink()
-                nr += 1
+            for conai_category in conai_invoice_lines.keys():
+                if conai_invoice_lines[conai_category]["remove"]:
+                    conai_invoice_lines[conai_category]["line"].unlink()
+            for line in lines_to_delete:
+                line.unlink()
             invoice.amount_goods_service = invoice.amount_untaxed - invoice.amount_conai
-            if len(conai_struct):
+            if len(conai_summary):
                 invoice.compute_taxes()
         return super(AccountInvoice, self).action_move_create()
 
@@ -176,6 +204,8 @@ class AccountInvoiceLine(models.Model):
     weight2 = fields.Float(
         string="CONAI 2nd Category Weight", digits=dp.get_precision("Stock Weight")
     )
+    conai_summary_line = fields.Boolean("CONAI summary line")
+    conai_manual = fields.Boolean("Manual CONAI amount")
 
     @api.multi
     @api.onchange("product_id")
@@ -189,10 +219,11 @@ class AccountInvoiceLine(models.Model):
                 )
             self.evaluate_conai_amount()
 
-    @api.multi
-    @api.onchange("quantity")
+    @api.onchange("price_unit", "quantity", "discount")
     def _set_conai_amount(self):
         self.evaluate_conai_amount()
+        if self.conai_summary_line:
+            self.conai_manual = True
 
     @api.model
     def evaluate_conai_amount(self):

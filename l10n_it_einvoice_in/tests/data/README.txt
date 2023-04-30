@@ -13,7 +13,7 @@ ITNREGCM80H30D612D_00004.xml
     Line with discount tag
 IT00488410010_00014:
     Utility, 4dec, round inside
-    xml header with extra property
+    xml tag with extra property
     Contains a line with negative amount
     RiBA
 IT01641790702_00015:

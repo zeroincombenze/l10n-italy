@@ -1,3 +1,8 @@
+10.0.0.1.8 (2023-04-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] CONAI summary line upgradable / Righe riepilogo CONAI modificabili da operatore
+
 10.0.0.1.7 (2021-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

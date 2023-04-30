@@ -1,6 +1,6 @@
 
 ==================================
-|icon| CONAI Management 10.0.0.1.6
+|icon| CONAI Management 10.0.0.1.8
 ==================================
 
 
@@ -14,6 +14,7 @@
 .. contents::
 
 
+
 Overview / Panoramica
 =====================
 
@@ -22,12 +23,14 @@ Overview / Panoramica
 
 CONAI Management
 
+
 |
 
 |it| Gestione CONAI
 -------------------
 
 Dati CONAI in fattura e calcolo importi
+
 
 |
 
@@ -80,20 +83,21 @@ Installation / Installazione
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    # Upgrade virtual environment
+    vem amend $HOME/10.0/venv_odoo
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
+* |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_conai** > Install
 
@@ -111,16 +115,16 @@ Upgrade / Aggiornamento
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -129,6 +133,7 @@ From UI: go to:
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_conai** > Update
+
 
 |
 
@@ -160,13 +165,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
+
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.0.1.6 (2020-12-21)
+10.0.0.1.8 (2023-04-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] CONAI on sale order / Dati CONAI in ordini di vendita
+* [IMP] CONAI summary line upgradable / Righe riepilogo CONAI modificabili da operatore
+
 
 
 |
@@ -188,12 +195,17 @@ Authors / Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -217,6 +229,7 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
 
 
+
 |chat_with_us|
 
 
@@ -224,19 +237,19 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-01-08
+Last Update / Ultimo aggiornamento: 2023-04-30
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
+    :target: https://travis-ci.com/zeroincombenze/l10n-italy
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
@@ -283,5 +296,6 @@ Last Update / Ultimo aggiornamento: 2021-01-08
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
+
 

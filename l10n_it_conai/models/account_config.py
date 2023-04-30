@@ -29,4 +29,4 @@ class ResCompany(models.Model):
 
     _inherit = "res.company"
 
-    conai_product_id = fields.Many2one("product.product")
+    conai_product_id = fields.Many2one("product.product", string="CONAI product")
