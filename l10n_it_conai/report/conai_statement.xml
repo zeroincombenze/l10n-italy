@@ -36,13 +36,13 @@
                     <table style="width:100%;" cellspacing="5px" cellpadding="5px">
                         <thead>
                             <tr>
-                                <th>Prodotto</th>
-                                <th>Descrizione</th>
-                                <th class="text-right">Quantità</th>
-                                <th class="text-right">Prezzo Un.</th>
-                                <th class="text-right">Peso</th>
-                                <th class="text-right">Cat. CONAI</th>
-                                <th class="text-right">Importo CONAI</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th class="text-right">Quantity</th>
+                                <th class="text-right">Unit Price</th>
+                                <th class="text-right">Weight</th>
+                                <th class="text-right">CONAI cat.</th>
+                                <th class="text-right">CONAI amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,7 +60,7 @@
     <report
         id="l10n_it_conai.action_report_conai_statement"
         model="account.invoice.line"
-        string="Dati per CONAI"
+        string="CONAI data"
         report_type="qweb-pdf"
         name="l10n_it_conai.conai_statement"
         file="l10n_it_conai.conai_statement"

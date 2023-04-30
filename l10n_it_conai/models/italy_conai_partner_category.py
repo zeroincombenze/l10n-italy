@@ -21,7 +21,7 @@ class ItalyConaiPartnerCategory(models.Model):
     code = fields.Char(string="Code", size=64, required=True, help="Category code")
     name = fields.Char(string="Name", required=True)
     conai_percent = fields.Float(
-        string="Exemtion percent",
+        string="Exemption percent",
         digits=dp.get_precision("Product Price"),
         default=100.0,
     )
