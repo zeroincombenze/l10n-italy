@@ -1,4 +1,9 @@
-dir 10.0.1.8.21 (2023-04-17)
+10.0.1.8.22 (2023-05-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Report wrong carrier value / Errato valore vettore in stampa
+
+10.0.1.8.21 (2023-04-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine

@@ -149,10 +149,12 @@ table.delivery_data td h6 {
                     <h6>Condizioni di trasporto/reso</h6>
                     <div t-field="o.carriage_condition_id" />
                 </td>
+                <!--
                 <td>
                     <h6>Metodo di trasporto</h6>
-                    <div t-field="o.transportation_method_id" />
+                    <div t-field="o.carrier_id/" />
                 </td>
+                -->
                 <td>
                     <h6>Aspetto dei beni</h6>
                     <div class="signature" t-field="o.goods_description_id" />
@@ -169,7 +171,7 @@ table.delivery_data td h6 {
             <tr>
                 <td colspan="2">
                     <h6>Corriere/Vettore</h6>
-                    <div class="signature" t-field="o.carrier_id.name" />
+                    <div class="signature" t-field="o.partner_carrier_id.name" />
                 </td>
                 <td>
                     <h6>Data trasporto</h6>

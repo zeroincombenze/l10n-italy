@@ -88,7 +88,7 @@ table.delivery_data td h6 {
             <tr>
                 <td colspan="2">
                     <h6>Carrier</h6>
-                    <div class="signature" t-field="o.carrier_id.name" />
+                    <div class="signature" t-field="o.partner_carrier_id.name" />
                 </td>
                 <td>
                     <h6>Date</h6>

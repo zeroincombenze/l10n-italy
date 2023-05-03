@@ -1,3 +1,8 @@
+10.0.0.2.25 (2023-05-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Report wrong carrier value / Errato valore vettore in stampa
+
 10.0.0.2.24 (2022-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

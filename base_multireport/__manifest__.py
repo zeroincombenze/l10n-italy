@@ -7,7 +7,7 @@
 {
     "name": "base_rule_multireport",
     "summary": "Manage document multiple reports",
-    "version": "10.0.0.2.24",
+    "version": "10.0.0.2.25",
     "category": "Generic Modules/Accounting",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
