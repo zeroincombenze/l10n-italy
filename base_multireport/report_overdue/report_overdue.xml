@@ -128,6 +128,11 @@
         </t>
     </template>
 
-    <template id="report_overdue_footer">
+<template id="report_overdue">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="account.report_overdue_document" t-lang="o.lang"/>
+        </t>
+    </t>
     </template>
 </odoo>

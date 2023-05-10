@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.8.21
+|icon| DDT 10.0.1.8.22
 ======================
 
 
@@ -223,6 +223,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.23 (2023-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong line weight evaluation / Errato calcolo peso riga
+
 10.0.1.8.22 (2023-05-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -359,7 +364,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-05-03
+Last Update / Ultimo aggiornamento: 2023-05-10
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

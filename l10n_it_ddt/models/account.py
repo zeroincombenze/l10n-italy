@@ -188,11 +188,13 @@ class AccountInvoiceLine(models.Model):
     )
     is_delivery = fields.Boolean(string="Is a Delivery", default=False)
 
-    @api.multi
     @api.onchange("product_id", "quantity")
     def _compute_weight(self):
         if self.product_id:
-            self.weight = self.product_id.weight * self.quantity
+            prod_weight = (self.product_id.weight
+                           or self.product_id.product_tmpl_id.weight)
+            if not self.weight or self.weight <= (prod_weight * 1.05):
+                self.weight = prod_weight * self.quantity
 
     @api.multi
     def unlink(self):

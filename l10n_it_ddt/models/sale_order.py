@@ -334,7 +334,9 @@ class SaleOrderLine(models.Model):
     @api.depends("product_id", 'product_uom_qty')
     def _compute_weight(self):
         if self.product_id:
-            self.weight = self.product_id.weight * self.product_uom_qty
+            self.weight = (
+                self.product_id.weight or self.product_id.product_tmpl_id.weight
+            ) * self.product_uom_qty
 
     @api.multi
     def _prepare_invoice_line(self, qty):
