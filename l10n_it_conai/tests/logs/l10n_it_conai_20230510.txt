@@ -1,0 +1,287 @@
+2023-05-10 12:43:54,158 23961 INFO ? odoo: Odoo version 10.0
+2023-05-10 12:43:54,158 23961 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_conai/tests/logs/zero10.l10n-italy.l10n_it_conai.conf
+2023-05-10 12:43:54,158 23961 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-05-10 12:43:54,158 23961 INFO ? odoo: database: odoo10@localhost:default
+2023-05-10 12:43:54,179 23961 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:49421
+2023-05-10 12:43:54,200 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading 1 modules...
+2023-05-10 12:43:54,309 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: 1 modules loaded in 0.11s, 0 queries
+2023-05-10 12:43:57,145 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading 46 modules...
+2023-05-10 12:43:57,262 23961 INFO test_l10n_it_conai_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-05-10 12:43:57,888 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: 46 modules loaded in 0.74s, 0 queries
+2023-05-10 12:43:57,894 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading 47 modules...
+2023-05-10 12:43:58,399 23961 WARNING test_l10n_it_conai_10 odoo.fields: Field italy.conai.statement.category.conai_exemption_id with unknown comodel_name None
+2023-05-10 12:43:58,421 23961 WARNING test_l10n_it_conai_10 odoo.fields: Field italy.conai.statement.line.conai_exemption_id with unknown comodel_name None
+2023-05-10 12:43:58,570 23961 INFO test_l10n_it_conai_10 odoo.modules.registry: module l10n_it_conai: creating or updating database tables
+2023-05-10 12:44:00,843 23961 INFO test_l10n_it_conai_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-05-10 12:44:01,079 23961 INFO test_l10n_it_conai_10 odoo.models: Storing computed values of account.invoice.line fields conai_exemption_id, date_invoice
+2023-05-10 12:44:01,081 23961 INFO test_l10n_it_conai_10 odoo.models: Storing computed values of sale.order.line fields conai_exemption_id, date_order
+2023-05-10 12:44:01,275 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/security/ir.model.access.csv
+2023-05-10 12:44:01,523 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/data/conai_product_category.xml
+2023-05-10 12:44:01,587 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/data/conai_partner_category.xml
+2023-05-10 12:44:01,608 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/data/product_template.xml
+2023-05-10 12:44:01,924 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/account_config_view.xml
+2023-05-10 12:44:02,009 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/product_category_view.xml
+2023-05-10 12:44:02,143 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/partner_category_view.xml
+2023-05-10 12:44:02,248 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/picking_view.xml
+2023-05-10 12:44:02,351 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/account_invoice_view.xml
+2023-05-10 12:44:02,639 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/product_view.xml
+2023-05-10 12:44:02,749 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/partner_view.xml
+2023-05-10 12:44:02,884 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/sale_order_view.xml
+2023-05-10 12:44:03,002 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/conai_statement.xml
+2023-05-10 12:44:03,121 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/report/conai_statement.xml
+2023-05-10 12:44:03,732 23961 INFO test_l10n_it_conai_10 odoo.modules.module: odoo.addons.l10n_it_conai.tests.test_conai running tests.
+2023-05-10 12:44:03,734 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: test_conai (odoo.addons.l10n_it_conai.tests.test_conai.TestConai)
+2023-05-10 12:44:03,845 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(174)/setUp()
+['        self.declare_all_data(data)  # TestEnv swallows the data\n']
+2023-05-10 12:44:03,845 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(account.account,group=base)
+2023-05-10 12:44:03,846 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[account.account] = [u'code']
+2023-05-10 12:44:03,849 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_sale,name=account.account,group=base)
+2023-05-10 12:44:03,852 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.account.store_resource_data(z0bug.coa_tax_iva,name=account.account,group=base)
+2023-05-10 12:44:03,852 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(account.tax,group=base)
+2023-05-10 12:44:03,853 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[account.tax] = [u'description']
+2023-05-10 12:44:03,855 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-05-10 12:44:03,855 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(product.template,group=base)
+2023-05-10 12:44:03,858 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_resource[product.template] = product.product
+2023-05-10 12:44:03,858 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_name[product.template] = product_variant_ids
+2023-05-10 12:44:03,858 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_resource[product.template] = product.product
+2023-05-10 12:44:03,858 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_name[product.template] = product_variant_id
+2023-05-10 12:44:03,861 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 parent_resource[product.product] = product.template
+2023-05-10 12:44:03,861 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 parent_name[product.product] = product_tmpl_id
+2023-05-10 12:44:03,861 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[product.product] = [u'default_code']
+2023-05-10 12:44:03,861 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[product.template] = [u'default_code']
+2023-05-10 12:44:03,869 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-05-10 12:44:03,875 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-05-10 12:44:03,875 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(res.partner,group=base)
+2023-05-10 12:44:03,878 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[res.partner] = [u'name']
+2023-05-10 12:44:03,885 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-05-10 12:44:03,886 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(sale.order,group=base)
+2023-05-10 12:44:03,887 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_resource[sale.order] = sale.order.line
+2023-05-10 12:44:03,887 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_name[sale.order] = order_line
+2023-05-10 12:44:03,889 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 parent_resource[sale.order.line] = sale.order
+2023-05-10 12:44:03,889 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 parent_name[sale.order.line] = order_id
+2023-05-10 12:44:03,889 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[sale.order.line] = [u'sequence']
+2023-05-10 12:44:03,889 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[sale.order] = [u'name']
+2023-05-10 12:44:03,891 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 sale.order.store_resource_data(z0bug.sale_order_Z0_1,name=sale.order,group=base)
+2023-05-10 12:44:03,891 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(sale.order.line,group=base)
+2023-05-10 12:44:03,894 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 sale.order.line.store_resource_data(z0bug.sale_order_Z0_1_1,name=sale.order.line,group=base)
+2023-05-10 12:44:03,898 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 sale.order.line.store_resource_data(z0bug.sale_order_Z0_1_2,name=sale.order.line,group=base)
+2023-05-10 12:44:03,898 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(account.invoice,group=base)
+2023-05-10 12:44:03,900 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_resource[account.invoice] = account.invoice.line
+2023-05-10 12:44:03,900 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 childs_name[account.invoice] = invoice_line_ids
+2023-05-10 12:44:03,901 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 parent_resource[account.invoice.line] = account.invoice
+2023-05-10 12:44:03,901 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 parent_name[account.invoice.line] = invoice_id
+2023-05-10 12:44:03,902 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[account.invoice.line] = [u'sequence']
+2023-05-10 12:44:03,902 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[account.invoice] = [u'number']
+2023-05-10 12:44:03,904 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.invoice.store_resource_data(z0bug.invoice_Z0_1,name=account.invoice,group=base)
+2023-05-10 12:44:03,905 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🐜 declare_all_data(account.invoice.line,group=base)
+2023-05-10 12:44:03,907 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🕶️ field product_uom does not exist in account.invoice.line
+2023-05-10 12:44:03,909 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.invoice.line.store_resource_data(z0bug.invoice_Z0_1_1,name=account.invoice.line,group=base)
+2023-05-10 12:44:03,911 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🕶️ field product_uom does not exist in account.invoice.line
+2023-05-10 12:44:03,913 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.invoice.line.store_resource_data(z0bug.invoice_Z0_1_2,name=account.invoice.line,group=base)
+2023-05-10 12:44:03,918 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(185)/setUp()
+['                "country_id": "base.it",\n']
+2023-05-10 12:44:03,920 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[res.company] = [u'partner_id']
+2023-05-10 12:44:03,922 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(185)/setUp()
+['                "country_id": "base.it",\n']
+2023-05-10 12:44:04,127 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2023-05-10 12:44:04,128 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2023-05-10 12:44:04,141 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🎺🎺🎺 Starting test v2.0.7.1 (debug_level=2)
+2023-05-10 12:44:04,147 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🎺🎺 Testing module: l10n_it_conai (10.0.0.1.9)
+2023-05-10 12:44:04,148 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,150 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-05-10 12:44:04,151 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,152 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,154 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,172 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,173 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,174 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,264 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,266 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,267 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,271 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,272 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,275 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,286 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.tax.store_resource_data(external.22v,name=account.tax,group=base)
+2023-05-10 12:44:04,288 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,289 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,290 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,293 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,294 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,630 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[mail.followers] = [u'partner_id']
+2023-05-10 12:44:04,630 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_1,name=product.template,group=base)
+2023-05-10 12:44:04,630 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: xref ('product.template') 'z0bug.product_template_1' -> ('product.product') 'z0bug.product_product_1'
+2023-05-10 12:44:04,634 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 product.product.store_resource_data(z0bug.product_product_1,name=product.product,group=base)
+2023-05-10 12:44:04,635 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,636 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,637 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,640 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,641 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,942 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 product.template.store_resource_data(z0bug.product_template_2,name=product.template,group=base)
+2023-05-10 12:44:04,942 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: xref ('product.template') 'z0bug.product_template_2' -> ('product.product') 'z0bug.product_product_2'
+2023-05-10 12:44:04,945 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 product.product.store_resource_data(z0bug.product_product_2,name=product.product,group=base)
+2023-05-10 12:44:04,946 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,948 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,949 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:04,952 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,129 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 res.partner.store_resource_data(z0bug.res_partner_2,name=res.partner,group=base)
+2023-05-10 12:44:05,130 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,131 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,132 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,135 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,136 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,647 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 sale.order.store_resource_data(z0bug.sale_order_Z0_1,name=sale.order,group=base)
+2023-05-10 12:44:05,648 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,649 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,651 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,653 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,828 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,829 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,830 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,833 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,964 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,965 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,966 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,969 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,971 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:05,973 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv:  🌍 skeys[account.journal] = [u'code']
+2023-05-10 12:44:06,018 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,530 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 💼 account.invoice.store_resource_data(z0bug.invoice_Z0_1,name=account.invoice,group=base)
+2023-05-10 12:44:06,531 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,532 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,533 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,535 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,630 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,631 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,632 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,634 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,714 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,715 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,717 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,810 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,811 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,812 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(188)/setUp()
+['        self.setup_env()  # Create test environment\n']
+2023-05-10 12:44:06,909 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: 🎺 Testing test_conai (order)
+2023-05-10 12:44:06,910 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(199)/_test_conai_order()
+['        order = self.resource_browse("z0bug.sale_order_Z0_1")\n']
+2023-05-10 12:44:07,333 23961 WARNING test_l10n_it_conai_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2023-05-10 12:44:09,167 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(222)/_test_conai_order()
+['        self.validate_records(templates, records)\n']
+2023-05-10 12:44:09,175 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞validate_records(template(1, 2), sale.order.line(22, 23))
+2023-05-10 12:44:09,175 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).price_unit:'0.02', rec(22):'0.02')
+2023-05-10 12:44:09,175 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).product_id:'43', rec(22):'product.product(43,)')
+2023-05-10 12:44:09,176 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).conai_category_id:'3', rec(22):'italy.conai.product.category(3,)')
+2023-05-10 12:44:09,176 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).price_subtotal:'0.2', rec(22):'0.2')
+2023-05-10 12:44:09,176 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).product_qty:'10.0', rec(22):'10.0')
+2023-05-10 12:44:09,176 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).price_unit:'0.02', rec(23):'0.02')
+2023-05-10 12:44:09,176 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).product_id:'43', rec(23):'product.product(43,)')
+2023-05-10 12:44:09,177 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).conai_category_id:'2', rec(23):'italy.conai.product.category(2,)')
+2023-05-10 12:44:09,177 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).price_subtotal:'0.08', rec(23):'0.08')
+2023-05-10 12:44:09,177 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).product_qty:'4.0', rec(23):'4.0')
+2023-05-10 12:44:09,177 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞10 assertion validated for validate_records(template(1{(None, sale.order.line(22,))=5}, 2{(None, sale.order.line(23,))=5}))
+2023-05-10 12:44:09,177 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: 🎺 Testing test_conai (invoice)
+2023-05-10 12:44:09,178 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(226)/_test_conai_invoice()
+['        invoice = self.resource_browse("z0bug.invoice_Z0_1")\n']
+2023-05-10 12:44:10,184 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🚧 test_conai.py(249)/_test_conai_invoice()
+['        self.validate_records(templates, records)\n']
+2023-05-10 12:44:10,184 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞validate_records(template(1, 2), account.invoice.line(13, 14))
+2023-05-10 12:44:10,185 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).price_unit:'0.02', rec(13):'0.02')
+2023-05-10 12:44:10,185 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).product_id:'43', rec(13):'product.product(43,)')
+2023-05-10 12:44:10,185 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).conai_category_id:'3', rec(13):'italy.conai.product.category(3,)')
+2023-05-10 12:44:10,185 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).price_subtotal:'0.2', rec(13):'0.2')
+2023-05-10 12:44:10,186 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(1).quantity:'10.0', rec(13):'10.0')
+2023-05-10 12:44:10,186 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).price_unit:'0.02', rec(14):'0.02')
+2023-05-10 12:44:10,186 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).product_id:'43', rec(14):'product.product(43,)')
+2023-05-10 12:44:10,186 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).conai_category_id:'2', rec(14):'italy.conai.product.category(2,)')
+2023-05-10 12:44:10,187 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).price_subtotal:'0.08', rec(14):'0.08')
+2023-05-10 12:44:10,187 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞 ... assertEqual(template(2).quantity:'4.0', rec(14):'4.0')
+2023-05-10 12:44:10,187 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🐞10 assertion validated for validate_records(template(1{(None, account.invoice.line(13,))=5}, 2{(None, account.invoice.line(14,))=5}))
+2023-05-10 12:44:10,187 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🏆🥇 20 tests SUCCESSFULLY completed
+2023-05-10 12:44:10,190 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: Ran 1 test in 6.457s
+2023-05-10 12:44:10,190 23961 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: OK
+2023-05-10 12:44:10,190 23961 INFO test_l10n_it_conai_10 odoo.modules.module: odoo.addons.l10n_it_conai.tests.test_conai tested in 6.46s, 5554 queries
+2023-05-10 12:44:10,231 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: 47 modules loaded in 12.34s, 5599 queries
+2023-05-10 12:44:11,004 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: Modules loaded.
+2023-05-10 12:44:11,012 23961 INFO test_l10n_it_conai_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-05-10 12:44:11,013 23961 INFO test_l10n_it_conai_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-05-10 12:44:11,214 23961 INFO test_l10n_it_conai_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-05-10 12:44:11,216 23961 INFO test_l10n_it_conai_10 odoo.service.server: Initiating shutdown
+2023-05-10 12:44:11,216 23961 INFO test_l10n_it_conai_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_conai[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                   Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_conai/models/account_config.py                          7      0   100%
+l10n-italy/l10n_it_conai/models/account_invoice.py                       140     48    66%   35, 69-72, 80, 84-89, 101-111, 113, 126, 157-165, 170-171, 173, 208, 213, 217-225, 228-233, 238, 244-246
+l10n-italy/l10n_it_conai/models/italy_conai_partner_category.py           11      0   100%
+l10n-italy/l10n_it_conai/models/italy_conai_product_category.py           37      2    95%   55, 64
+l10n-italy/l10n_it_conai/models/italy_conai_statement.py                  98     55    44%   40-125, 128-175, 210-211
+l10n-italy/l10n_it_conai/models/partner.py                                 4      0   100%
+l10n-italy/l10n_it_conai/models/product.py                                24      8    67%   30-33, 56-59
+l10n-italy/l10n_it_conai/models/sale_order.py                            133     46    65%   32, 63-66, 76-81, 93-103, 105, 119, 149-157, 162-163, 165, 199, 204, 207-215, 219-224, 229, 235-237
+l10n-italy/l10n_it_conai/models/stock_picking_package_preparation.py      41     29    29%   23-27, 42-76
+l10n-italy/l10n_it_conai/post_install.py                                   9      0   100%
+----------------------------------------------------------------------------------------------------
+TOTAL                                                                    504    188    63%

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-21 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -78,6 +78,7 @@ class AccountInvoice(models.Model):
         for invoice in self:
             if invoice.type not in ("out_invoice", "out_refund"):
                 continue
+            conai_product = invoice.company_id.conai_product_id
             conai_summary = {}
             if invoice.conai_exemption_id and invoice.conai_exemption_id.conai_percent:
                 percent = invoice.conai_exemption_id.conai_percent
@@ -95,7 +96,7 @@ class AccountInvoice(models.Model):
                 if (
                     line.conai_summary_line
                     or (line.product_id
-                        and line.product_id == line.company_id.conai_product_id)
+                        and line.product_id == conai_product)
                 ):
                     if line.conai_category_id:
                         conai_invoice_lines[line.conai_category_id] = {
@@ -110,10 +111,7 @@ class AccountInvoice(models.Model):
                     continue
                 if not line.conai_category_id:
                     continue
-                if not line.weight and line.product_id:
-                    line.weight = (
-                        line.product_id.weight or line.product_id.product_tmpl_id.weight
-                    ) * line.quantity
+                line._compute_weight()
                 _process_category(line.conai_category_id, line)
                 if line.product_id:
                     _process_category(
@@ -138,7 +136,7 @@ class AccountInvoice(models.Model):
                         conai_item["um"].name,
                     )
                 line_vals = {
-                    "product_id": invoice.company_id.conai_product_id.id,
+                    "product_id": conai_product.id,
                     "name": conai_name,
                     "invoice_id": invoice.id,
                     "uom_id": conai_item["um"].id,
@@ -180,7 +178,6 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
-
     _inherit = "account.invoice.line"
 
     date_invoice = fields.Date(
@@ -207,6 +204,14 @@ class AccountInvoiceLine(models.Model):
     conai_summary_line = fields.Boolean("CONAI summary line")
     conai_manual = fields.Boolean("Manual CONAI amount")
 
+    @api.depends("product_id", 'quantity')
+    def _compute_weight(self):
+        if self.product_id:
+            prod_weight = (self.product_id.weight
+                           or self.product_id.product_tmpl_id.weight)
+            if not self.weight or self.weight <= (prod_weight * 1.05):
+                self.weight = prod_weight * self.quantity
+
     @api.multi
     @api.onchange("product_id")
     def _set_conai_category(self):
@@ -219,19 +224,12 @@ class AccountInvoiceLine(models.Model):
                 )
             self.evaluate_conai_amount()
 
-    @api.onchange("price_unit", "quantity", "discount")
-    def _set_conai_amount(self):
-        self.evaluate_conai_amount()
+    @api.onchange("price_unit", "quantity", "discount", "conai_category_id")
+    def evaluate_conai_amount(self):
+        self._compute_weight()
         if self.conai_summary_line:
             self.conai_manual = True
-
-    @api.model
-    def evaluate_conai_amount(self):
-        if not self.weight and self.product_id and self.quantity:
-            self.weight = (
-                self.product_id.weight or self.product_id.product_tmpl_id.weight
-            ) * self.quantity
-        if self.weight and self.conai_category_id:
+        elif self.weight and self.conai_category_id:
             self.conai_amount = self.conai_category_id.evaluate_conai_amount(
                 self.weight
             )
@@ -257,5 +255,5 @@ class AccountInvoiceLine(models.Model):
             if conai_category_id:
                 vals["conai_category_id"] = conai_category_id
             if weight:
-                vals["weight"] = weight
+                vals["weight"] = weight * vals.get("quantity", 1.0)
         return super(AccountInvoiceLine, self).create(vals)

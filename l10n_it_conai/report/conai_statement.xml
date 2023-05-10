@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <template id="l10n_it_conai.conai_statement_document">
         <tr>
             <td>
-                <span t-field="line.product_id.name" />
+                <span t-field="line.product_id.name"/>
             </td>
             <td>
-                <span t-field="line.name" />
+                <span t-field="line.name"/>
             </td>
             <td class="text-right">
-                <span t-field="line.quantity" />
+                <span t-field="line.quantity"/>
             </td>
             <td class="text-right">
-                <span t-field="line.conai_category_id.conai_price_unit" />
+                <span t-field="line.conai_category_id.conai_price_unit"/>
             </td>
             <td class="text-right">
-                <span t-field="line.weight" />
+                <span t-field="line.weight"/>
             </td>
             <td class="text-right">
-                <span t-field="line.conai_category_id.name" />
+                <span t-field="line.conai_category_id.name"/>
             </td>
             <td class="text-right">
-                <span t-field="line.conai_amount" />
+                <span t-field="line.conai_amount"/>
             </td>
         </tr>
     </template>
@@ -30,7 +30,7 @@
 
     <template id="l10n_it_conai.conai_statement">
         <t t-call="report.html_container">
-            <t t-set="company" t-value="res_company" />
+            <t t-set="company" t-value="res_company"/>
             <t t-call="report.external_layout">
                 <div class="page">
                     <table style="width:100%;" cellspacing="5px" cellpadding="5px">
@@ -47,7 +47,7 @@
                         </thead>
                         <tbody>
                             <t t-foreach="docs" t-as="line">
-                                <t t-call="l10n_it_conai.conai_statement_document" />
+                                <t t-call="l10n_it_conai.conai_statement_document"/>
                             </t>
                         </tbody>
                     </table>

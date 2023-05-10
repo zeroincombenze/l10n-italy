@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-21 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -32,24 +32,25 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         def _calc_conai_value(conai_category, weight):
             conai_amount = conai_category.evaluate_conai_amount(weight)
-            conai_struct[conai_category]["amount"] = conai_amount
-            conai_struct[conai_category]["weight"] += weight
+            conai_summary[conai_category]["amount"] = conai_amount
+            conai_summary[conai_category]["weight"] += weight
             return conai_amount
 
-        def _process_category(conai_category):
+        def _process_category(conai_category, line):
             if not conai_category:
                 return
             weight_conv, uom = conai_category.evaluate_weight_conv()
             category2 = weight2 = False
-            if conai_category not in conai_struct:
-                conai = {}
-                conai["name"] = conai_category.name
-                conai["weight"] = 0.0
-                conai["um"] = uom
-                conai["price"] = conai_category.get_price()
-                conai["amount"] = 0.0
-                conai["tax"] = line.tax_id
-                conai_struct[conai_category] = conai
+            if conai_category not in conai_summary:
+                conai = {
+                    "name": conai_category.name,
+                    "weight": 0.0,
+                    "um": uom,
+                    "price_unit": conai_category.get_price(),
+                    "amount": 0.0,
+                    "tax": line.tax_id,
+                }
+                conai_summary[conai_category] = conai
             if line.product_id:
                 weight2 = (
                     line.product_id.weight2 or line.product_id.product_tmpl_id.weight2
@@ -70,75 +71,99 @@ class SaleOrder(models.Model):
         order_line_model = self.env["sale.order.line"]
         for order in self:
             conai_product = order.company_id.conai_product_id
-            conai_struct = {}
+            conai_summary = {}
             if order.conai_exemption_id and order.conai_exemption_id.conai_percent:
                 percent = order.conai_exemption_id.conai_percent
-                p_name = order.conai_exemption_id.name
-                ii = p_name.lower().find("vs")
+                partner_expt_name = order.conai_exemption_id.name
+                ii = partner_expt_name.lower().find("vs")
                 if ii >= 0:
-                    p_name = p_name[ii:]
-                p_name = "Esenzione %s%% %s" % (percent, p_name)
+                    partner_expt_name = partner_expt_name[ii:]
+                partner_expt_name = "Esenzione %s%% %s" % (percent, partner_expt_name)
             else:
                 percent = 0.0
-                p_name = ""
-            supplemental_line_ids = []
+                partner_expt_name = ""
+            conai_order_lines = {}
+            lines_to_delete = []
             for line in order.order_line:
-                if line.name.startswith("Contributo ambientale"):
-                    supplemental_line_ids.append(line.id)
+                if (
+                    line.conai_summary_line
+                    or (line.product_id
+                        and line.product_id == conai_product)
+                ):
+                    if line.conai_category_id:
+                        conai_order_lines[line.conai_category_id] = {
+                            "line": line,
+                            "remove": True,
+                            "conai_manual": line.conai_manual,
+                            "manual_price_unit": line.price_unit,
+                            "manual_weight": line.weight,
+                        }
+                    else:
+                        lines_to_delete.append(line)
                     continue
                 if not line.conai_category_id:
                     continue
-                if not line.weight and line.product_id:
-                    line.weight = (
-                        line.product_id.weight or line.product_id.product_tmpl_id.weight
-                    ) * line.product_uom_qty
-                _process_category(line.conai_category_id)
+                line._compute_weight()
+                _process_category(line.conai_category_id, line)
                 if line.product_id:
                     _process_category(
                         line.product_id.conai_category2_id
-                        or line.product_id.product_tmpl_id.conai_category2_id
+                        or line.product_id.product_tmpl_id.conai_category2_id,
+                        line
                     )
 
+            # order.amount_conai = 0.0
             if conai_product:
-                for nr, conai_category in enumerate(conai_struct):
-                    if p_name:
+                for conai_category, conai_item in conai_summary.items():
+                    if partner_expt_name:
                         conai_name = "Contributo ambientale %s (%s %s)\n%s" % (
-                            conai_struct[conai_category]["name"],
-                            conai_struct[conai_category]["weight"],
-                            conai_struct[conai_category]["um"].name,
-                            p_name,
+                            conai_item["name"],
+                            conai_item["weight"],
+                            conai_item["um"].name,
+                            partner_expt_name,
                         )
                     else:
                         conai_name = "Contributo ambientale %s (%s %s)" % (
-                            conai_struct[conai_category]["name"],
-                            conai_struct[conai_category]["weight"],
-                            conai_struct[conai_category]["um"].name,
+                            conai_item["name"],
+                            conai_item["weight"],
+                            conai_item["um"].name,
                         )
                     line_vals = {
                         "product_id": conai_product.id,
                         "name": conai_name,
                         "order_id": order.id,
-                        "product_uom": conai_struct[conai_category]["um"].id,
+                        "product_uom": conai_item["um"].id,
                         "product_uom_qty": conai_category.get_qty(
-                            conai_struct[conai_category]["weight"], percent=percent
+                            conai_item["weight"], percent=percent
                         ),
-                        "price_unit": conai_struct[conai_category]["price"],
+                        "price_unit": conai_item["price_unit"],
                         "tax_id": [
-                            (6, 0, [x.id for x in conai_struct[conai_category]["tax"]])
+                            (6, 0, [x.id for x in conai_item["tax"]])
                         ],
+                        "conai_category_id": conai_category.id,
+                        "conai_summary_line": True,
+                        "conai_manual": False,
                         "sequence": 99999,
                     }
-                    if nr < len(supplemental_line_ids):
-                        order_line_model.browse(supplemental_line_ids[nr]).write(
-                            line_vals
-                        )
+                    if conai_category in conai_order_lines:
+                        order_line = conai_order_lines[conai_category]["line"]
+                        if conai_order_lines[conai_category]["conai_manual"]:
+                            line_vals["conai_manual"] = True
+                            for field in ("price_unit", "quantity"):
+                                del line_vals[field]
+                            line_vals["name"] += " *"
+                        order_line.write(line_vals)
+                        # order_line = order_line_model.browse(order_line.id)
+                        conai_order_lines[conai_category]["remove"] = False
                     else:
                         order_line_model.create(line_vals)
-                nr = len(conai_struct)
-                while nr < len(supplemental_line_ids):
-                    order_line_model.browse(supplemental_line_ids[nr]).unlink()
-                    nr += 1
-                if len(conai_struct):
+                    # order.amount_conai += order_line.price_subtotal
+                for conai_category in conai_order_lines.keys():
+                    if conai_order_lines[conai_category]["remove"]:
+                        conai_order_lines[conai_category]["line"].unlink()
+                for line in lines_to_delete:
+                    line.unlink()
+                if len(conai_summary):
                     order._amount_all()
         return super(SaleOrder, self).action_confirm()
 
@@ -161,8 +186,23 @@ class SaleOrderLine(models.Model):
         store=True,
         readonly=True,
     )
+    conai_category2_id = fields.Many2one(
+        "italy.conai.product.category", string="CONAI 2nd Category"
+    )
+    weight2 = fields.Float(
+        string="CONAI 2nd Category Weight", digits=dp.get_precision("Stock Weight")
+    )
+    conai_summary_line = fields.Boolean("CONAI summary line")
+    conai_manual = fields.Boolean("Manual CONAI amount")
 
-    @api.multi
+    @api.depends("product_id", 'product_uom_qty')
+    def _compute_weight(self):
+        if self.product_id:
+            prod_weight = (self.product_id.weight
+                           or self.product_id.product_tmpl_id.weight)
+            if not self.weight or self.weight <= (prod_weight * 1.05):
+                self.weight = prod_weight * self.product_uom_qty
+
     @api.onchange("product_id")
     def _set_conai_category(self):
         if self.product_id:
@@ -175,17 +215,12 @@ class SaleOrderLine(models.Model):
             self.evaluate_conai_amount()
 
     @api.multi
-    @api.onchange("product_uom_qty", "conai_category_id")
-    def _set_conai_amount(self):
-        self.evaluate_conai_amount()
-
-    @api.model
+    @api.onchange("price_unit", "product_uom_qty", "discount", "conai_category_id")
     def evaluate_conai_amount(self):
-        if not self.weight and self.product_id and self.product_uom_qty:
-            self.weight = (
-                self.product_id.weight or self.product_id.product_tmpl_id.weight
-            ) * self.product_uom_qty
-        if self.weight and self.conai_category_id:
+        self._compute_weight()
+        if self.conai_summary_line:
+            self.conai_manual = True
+        elif self.weight and self.conai_category_id:
             self.conai_amount = self.conai_category_id.evaluate_conai_amount(
                 self.weight
             )
@@ -211,5 +246,5 @@ class SaleOrderLine(models.Model):
             if conai_category_id:
                 vals["conai_category_id"] = conai_category_id
             if weight:
-                vals["weight"] = weight
+                vals["weight"] = weight * vals.get("product_uom_qty", 1.0)
         return super(SaleOrderLine, self).create(vals)

@@ -7,6 +7,5 @@
 #
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 #
-from . import models
-from . import post_install
-from .post_install import set_company_conai_product_post, set_company_conai_product
+from . import testenv
+from . import test_conai

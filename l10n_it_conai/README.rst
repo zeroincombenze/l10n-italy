@@ -1,6 +1,6 @@
 
 ==================================
-|icon| CONAI Management 10.0.0.1.8
+|icon| CONAI Management 10.0.0.1.9
 ==================================
 
 
@@ -169,6 +169,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.1.9 (2023-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong CONAI quantity / Errata quantità CONAI
+* [IMP] Coverage test 63% (504, 188, +20)
+
 10.0.0.1.8 (2023-04-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -237,7 +243,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-04-30
+Last Update / Ultimo aggiornamento: 2023-05-10
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

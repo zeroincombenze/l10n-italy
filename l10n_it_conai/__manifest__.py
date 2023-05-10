@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-21 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -10,7 +10,7 @@
 {
     "name": "CONAI Management",
     "summary": "Dati CONAI in fattura e calcolo importi",
-    "version": "10.0.0.1.8",
+    "version": "10.0.0.1.9",
     "category": "Localization/Italy",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
@@ -25,7 +25,8 @@
         "security/ir.model.access.csv",
         "data/conai_product_category.xml",
         "data/conai_partner_category.xml",
-        "data/config.xml",
+        "data/product_template.xml",
+        # "data/res_company.xml",
         "views/account_config_view.xml",
         "views/product_category_view.xml",
         "views/partner_category_view.xml",
@@ -41,4 +42,5 @@
     "installable": True,
     "maintainer": "Zeroincombenze (R)",
     "development_status": "Beta",
+    "post_init_hook": "set_company_conai_product_post",
 }
