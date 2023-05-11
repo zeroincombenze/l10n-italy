@@ -209,8 +209,9 @@ class AccountInvoiceLine(models.Model):
         if self.product_id:
             prod_weight = (self.product_id.weight
                            or self.product_id.product_tmpl_id.weight)
-            if not self.weight:  #  or self.weight <= (prod_weight * 1.05):
-                self.weight = prod_weight * self.quantity
+            line_weight = self.weight = prod_weight * self.quantity
+            if (line_weight * 1.5) >= self.weight <= (line_weight * 0.7):
+                self.weight = line_weight
 
     @api.multi
     @api.onchange("product_id")
