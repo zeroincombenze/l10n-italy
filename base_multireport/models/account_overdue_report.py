@@ -17,17 +17,17 @@ class ReportOverdue(models.AbstractModel):
         self.env.cr.execute(
             "SELECT m.name AS move_id,l.date,l.name,l.ref,l.date_maturity,"
             "l.partner_id,l.blocked,l.amount_currency,l.currency_id,"
-            "CASE WHEN at.type = 'receivable' and l.amount_residual > 0.0"
-            "THEN SUM(l.amount_residual) "
-            "ELSE 0.0 "
+            "CASE WHEN at.type = 'receivable' and l.amount_residual > 0.0 "
+                "THEN SUM(l.amount_residual) "
+                "ELSE 0.0 "
             "END AS debit,"
-            "CASE WHEN at.type = 'receivable'  and l.amount_residual < 0.0"
-            "THEN SUM(l.amount_residual * -1) "
-            "ELSE 0.0 "
+            "CASE WHEN at.type = 'receivable'  and l.amount_residual < 0.0 "
+                "THEN SUM(l.amount_residual * -1) "
+                "ELSE 0.0 "
             "END AS credit,"
             "CASE WHEN l.date_maturity < %s "
-            "THEN SUM(l.amount_residual) "
-            "ELSE 0.0 "
+                "THEN SUM(l.amount_residual) "
+                "ELSE 0.0 "
             "END AS mat "
             "FROM account_move_line l "
             "JOIN account_account_type at ON (l.user_type_id = at.id) "
@@ -68,20 +68,18 @@ class ReportOverdue(models.AbstractModel):
                     totals[partner_id][currency] = {
                         fn: 0.0 for fn in ["due", "paid", "mat", "total"]
                     }
-                if line["debit"] and line["currency_id"]:
-                    line["debit"] = line["amount_currency"]
-                if line["credit"] and line["currency_id"]:
-                    line["credit"] = line["amount_currency"]
-                if line["mat"] and line["currency_id"]:
-                    line["mat"] = line["amount_currency"]
+                for (field, tot_field) in (("debit", "due"),
+                                           ("credit", "paid"),
+                                           ("mat", "mat")):
+                    if line[field] and line["currency_id"]:
+                        line[field] = line["amount_currency"]
+                    if not line["blocked"]:
+                        totals[partner_id][currency][tot_field] += line[field]
+                        totals[partner_id][currency]["total"] += (
+                            line["debit"] - line["credit"]
+                        )
                 lines_to_display[partner_id][currency].append(line)
-                if not line["blocked"]:
-                    totals[partner_id][currency]["due"] += line["debit"]
-                    totals[partner_id][currency]["paid"] += line["credit"]
-                    totals[partner_id][currency]["mat"] += line["mat"]
-                    totals[partner_id][currency]["total"] += (
-                        line["debit"] - line["credit"]
-                    )
+
         docargs = {
             "doc_ids": docids,
             "doc_model": "res.partner",

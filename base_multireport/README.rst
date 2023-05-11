@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.26
+|icon| base_rule_multireport 10.0.0.2.27
 ========================================
 
 
@@ -461,6 +461,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.27 (2023-05-10)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Layout review / Controllo formattazione stampa
+
 10.0.0.2.26 (2023-05-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -534,7 +539,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-05-10
+Last Update / Ultimo aggiornamento: 2023-05-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

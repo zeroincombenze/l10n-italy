@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <template id="report_overdue">
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="base_multireport.report_overdue_document" t-lang="o.lang" />
+                <t t-call="base_multireport.report_overdue_document" t-lang="o.lang"/>
             </t>
         </t>
     </template>
