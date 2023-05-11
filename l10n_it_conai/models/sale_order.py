@@ -200,7 +200,7 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             prod_weight = (self.product_id.weight
                            or self.product_id.product_tmpl_id.weight)
-            if not self.weight or self.weight <= (prod_weight * 1.05):
+            if not self.weight:     # or self.weight <= (prod_weight * 1.05):
                 self.weight = prod_weight * self.product_uom_qty
 
     @api.onchange("product_id")
