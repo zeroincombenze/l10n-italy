@@ -5,7 +5,7 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date
@@ -15,6 +15,142 @@ from odoo.exceptions import Warning as UserError
 
 import odoo.addons.decimal_precision as dp
 
+
+class OpenItems(object):
+    """To manage all account entries for due line.
+    Result is a list of accounts to close on payment confirmation (settlement)
+    """
+    def __init__(self, riba_line):
+        self.amount = 0.0
+        self.account_ids = {}
+        self.move_line_ids = {}
+        self.valid_account_types = (
+            riba_line.env.ref("account.data_account_type_current_assets"),
+            riba_line.env.ref("account.data_account_type_current_liabilities"),
+            riba_line.env.ref("account.data_account_type_liquidity"),
+            riba_line.env.ref("account.data_account_type_receivable"),
+            riba_line.env.ref("account.data_account_type_payable"),
+        )
+        self.load_config(riba_line)
+
+    def add_move_line(self, move_line, move_type):
+        if move_type == "invoice":
+            self.amount += (move_line.debit - move_line.credit)
+        side = ""
+        if not move_line.reconciled:
+            if move_line.debit > 0.0:
+                side = "debit"
+            elif move_line.credit > 0.0:
+                side = "credit"
+            acc_type = move_line.account_id.user_type_id.type
+            if (
+                side
+                and move_line.account_id.user_type_id
+                in self.valid_account_types
+            ):
+                if move_line.account_id not in self.account_ids:
+                    self.account_ids[move_line.account_id] = {}
+                self.account_ids[move_line.account_id][side] = acc_type
+
+                if move_type not in self.move_line_ids:
+                    self.move_line_ids[move_type] = {}
+                self.move_line_ids[move_type][side] = move_line
+
+    def load_config(self, riba_line):
+        config = riba_line.distinta_id.config_id
+        self.bank_id = config.bank_id
+        self.acceptance_account_id = riba_line.acceptance_account_id
+        self.accreditation_account_debit_id = config.accreditation_account_debit_id
+        self.accreditation_account_credit_id = config.accreditation_account_credit_id
+        self.overdue_account_debit_id = config.overdue_account_debit_id
+        self.overdue_account_credit_id = config.overdue_account_credit_id
+        self.settlement_account_debit_id = config.settlement_account_debit_id
+        self.settlement_account_credit_id = config.settlement_account_credit_id
+        self.settlement_journal_id = config.settlement_journal_id
+        self.distinta_name = riba_line.distinta_id.name
+        self.partner_id = riba_line.partner_id
+
+        for line in riba_line.move_line_ids.move_line_id:
+            self.add_move_line(line, "invoice")
+        for line in riba_line.acceptance_move_id.line_ids:
+            self.add_move_line(line, "acceptance")
+        for line in riba_line.distinta_id.accreditation_move_id.line_ids:
+            self.add_move_line(line, "accreditation")
+
+        # remove debit/credit pair lines
+        for account in self.account_ids:
+            if self.account_ids.get("debit") and self.account_ids.get("credit"):
+                for move_type in self.move_line_ids.keys():
+                    for move_line in self.move_line_ids[move_type].copy().keys():
+                        if self.move_line_ids[move_line].account_id == account:
+                            del self.move_line_ids[move_line]
+                del self.account_ids[account]
+
+    def _load_line_values(self, account, side, amount=None):
+        if side not in ("debit", "credit"):
+            raise UserError("Invalid %s value: must be 'debit' or 'credit'" % side)
+        opposite_side = "debit" if side == "credit" else "credit"
+        return {
+            "name": self.move_ref,
+            "partner_id": self.partner_id.id,
+            "account_id": account.id,
+            side: 0.0,
+            opposite_side: amount or abs(self.amount)
+        }
+
+    def load_move_vals(self):
+        self.move_ref = _("Settlement RIBA {} - {}").format(
+            self.distinta_name,
+            self.partner_id.name,
+        )
+        vals = {
+            "journal_id": self.settlement_journal_id.id,
+            "date": date.today().strftime("%Y-%m-%d"),
+            "ref": self.move_ref,
+            "line_ids": [],
+        }
+
+        # Prepare line values. All lines must close acceptance and accreditation lines.
+        total_debit = total_credit = 0.0
+        for account in self.account_ids.keys():
+            side = self.account_ids[account].keys()[0]
+            line_vals = self._load_line_values(account, side)
+            vals["line_ids"].append((0, 0, line_vals))
+            total_debit += line_vals["credit"]
+            total_credit += line_vals["debit"]
+
+        if total_debit > total_credit:
+            line_vals = self._load_line_values(
+                self.settlement_account_debit_id,
+                "credit",
+                amount=(total_debit - total_credit)
+            )
+            vals["line_ids"].append((0, 0, line_vals))
+        elif total_debit < total_credit:
+            line_vals = self._load_line_values(
+                self.settlement_account_credit_id,
+                "debit",
+                amount=(total_credit - total_debit)
+            )
+            vals["line_ids"].append((0, 0, line_vals))
+        return vals
+
+    def do_reconciles(self):
+        reconciles = {}
+        for move_type in self.move_line_ids:
+            for side in self.move_line_ids[move_type]:
+                for move_line in self.move_line_ids[move_type][side]:
+                    account = move_line.account_id
+                    if account in self.account_ids and account.reconcile:
+                        if account not in reconciles:
+                            reconciles[account] = {}
+                        reconciles[account][side] = move_line
+        for account in reconciles:
+            if reconciles[account].get("debit") and reconciles[account].get("credit"):
+                to_be_reconciled = self.env["account.move.line"]
+                to_be_reconciled |= reconciles[account]["debit"]
+                to_be_reconciled |= reconciles[account]["credit"]
+                to_be_reconciled.reconcile()
 
 class RibaList(models.Model):
     _name = "riba.distinta"
@@ -205,6 +341,7 @@ class RibaList(models.Model):
 
     @api.multi
     def settle_all_line(self):
+        # Set all payment order lines paid
         for riba_list in self:
             for line in riba_list.line_ids:
                 if line.state == "accredited":
@@ -369,7 +506,7 @@ class RibaListLine(models.Model):
 
     @api.multi
     def move_line_id_payment_get(self):
-        # return the move line ids with the same account as the distinta line
+        # return the move line ids with the same account as the payment order line
         if not self.id:  # pragma: no cover
             return []
         query = """ SELECT l.id
@@ -498,167 +635,9 @@ class RibaListLine(models.Model):
                 }
             )
 
-    def _open_items__init(self):
-        # open_items is managed like an object
-        return {
-            "config": {},
-            "account_ids": {},
-            "move_line_ids": {},
-        }
-
-    def _open_items__load_config(self, this, riba_line):
-        # this is the open_items object created by _init__open_items()
-        # Load configuration accounts
-        config = riba_line.distinta_id.config_id
-        this["config"]["bank_id"] = config.bank_id
-        this["config"]["acceptance_account_id"] = riba_line.acceptance_account_id
-        this["config"][
-            "accreditation_account_debit_id"
-        ] = config.accreditation_account_debit_id
-        this["config"][
-            "accreditation_account_credit_id"
-        ] = config.accreditation_account_credit_id
-        this["config"]["overdue_account_debit_id"] = config.overdue_account_debit_id
-        this["config"]["overdue_account_credit_id"] = config.overdue_account_credit_id
-        this["config"][
-            "settlement_account_debit_id"
-        ] = config.settlement_account_debit_id
-        this["config"][
-            "settlement_account_credit_id"
-        ] = config.settlement_account_credit_id
-        this["config"]["settlement_journal_id"] = config.settlement_journal_id
-        this["config"]["distinta_name"] = riba_line.distinta_id.name
-        this["config"]["partner_id"] = riba_line.partner_id
-
-        for line in riba_line.acceptance_move_id.line_ids:
-            this = self._open_items__add_move_line(this, line, "acceptance")
-        for line in riba_line.distinta_id.accreditation_move_id.line_ids:
-            this = self._open_items__add_move_line(this, line, "accreditation")
-        # remove debit/credit pair lines
-        for account in this["account_ids"].keys():
-            if this["account_ids"].get("debit") and this["account_ids"].get("credit"):
-                for move_type in ("acceptance", "accreditation"):
-                    for move_line in this["move_line_ids"][move_type].copy().keys():
-                        if this["move_line_ids"][move_line].account_id == account:
-                            del this["move_line_ids"][move_line]
-                del this["account_ids"][account]
-        return this
-
-    def _open_items__add_move_line(self, this, move_line, move_type):
-        # this is the open_items object created by _init__open_items()
-        # Process move line and data in internal structure
-        side = ""
-        if not move_line.reconciled:
-            if move_line.debit > 0.0:
-                side = "debit"
-            elif move_line.credit > 0.0:
-                side = "credit"
-            acc_type = move_line.account_id.user_type_id.type
-            if (
-                side
-                and move_line.account_id != this["config"]["overdue_account_credit_id"]
-                and move_line.account_id.user_type_id
-                in (
-                    self.env.ref("account.data_account_type_current_assets"),
-                    self.env.ref("account.data_account_type_current_liabilities"),
-                    self.env.ref("account.data_account_type_liquidity"),
-                    self.env.ref("account.data_account_type_receivable"),
-                    self.env.ref("account.data_account_type_payable"),
-                )
-            ):
-                if move_line.account_id not in this["account_ids"]:
-                    this["account_ids"][move_line.account_id] = {}
-                this["account_ids"][move_line.account_id][side] = acc_type
-
-                if move_type in ("acceptance", "accreditation"):
-                    if move_type not in this["move_line_ids"]:
-                        this["move_line_ids"][move_type] = {}
-                    this["move_line_ids"][move_type][side] = move_line
-                else:
-                    raise UserError(
-                        "Invalid %s value: must be 'acceptance' or 'accreditation'"
-                        % side
-                    )
-        return this
-
-    def _open_items__load_line_values(self, this, account, side, amount):
-        if side not in ("debit", "credit"):
-            raise UserError("Invalid %s value: must be 'debit' or 'credit'" % side)
-        opposite_side = "debit" if side == "credit" else "credit"
-        move_ref = _("Settlement RIBA {} - {}").format(
-            this["config"]["distinta_name"],
-            this["config"]["partner_id"].name,
-        )
-        return {
-            "name": move_ref,
-            "partner_id": this["config"]["partner_id"].id,
-            "account_id": account.id,
-            side: 0.0,
-            opposite_side: amount,
-        }
-
-    def _open_items__get_move_vals(self, this):
-        # this is the open_items object created by _init__open_items()
-        # Return dict for create settlement move from internal data
-        move_ref = _("Settlement RIBA {} - {}").format(
-            this["config"]["distinta_name"],
-            this["config"]["partner_id"].name,
-        )
-        vals = {
-            "journal_id": this["config"]["settlement_journal_id"].id,
-            "date": date.today().strftime("%Y-%m-%d"),
-            "ref": move_ref,
-            "line_ids": [],
-        }
-
-        # Prepare line values. All lines must close acceptance and accreditation lines.
-        totals = {"debit": 0.0, "credit": 0.0}
-        for account in this["account_ids"].keys():
-            side = this["account_ids"][account].keys()[0]
-            line_vals = self._open_items__load_line_values(
-                this, account, side, this["move_line_ids"]["acceptance"]["debit"].debit
-            )
-            vals["line_ids"].append((0, 0, line_vals))
-            totals["debit"] += line_vals["credit"]
-            totals["credit"] += line_vals["debit"]
-
-        if totals["debit"] > totals["credit"]:
-            line_vals = self._open_items__load_line_values(
-                this,
-                this["config"]["overdue_account_credit_id"],
-                "credit",
-                totals["debit"] - totals["credit"],
-            )
-            vals["line_ids"].append((0, 0, line_vals))
-        elif totals["debit"] < totals["credit"]:
-            line_vals = self._open_items__load_line_values(
-                this,
-                this["config"]["settlement_account_credit_id"],
-                "debit",
-                totals["credit"] - totals["debit"],
-            )
-            vals["line_ids"].append((0, 0, line_vals))
-        return vals
-
-    def _open_items__do_reconciles(self, this):
-        reconciles = {}
-        for move_type in this["move_line_ids"]:
-            for side in this["move_line_ids"][move_type]:
-                for move_line in this["move_line_ids"][move_type][side]:
-                    account = move_line.account_id
-                    if account in this["account_ids"] and account.reconcile:
-                        if account not in reconciles:
-                            reconciles[account] = {}
-                        reconciles[account][side] = move_line
-        for account in reconciles:
-            if reconciles[account].get("debit") and reconciles[account].get("credit"):
-                to_be_reconciled = self.env["account.move.line"]
-                to_be_reconciled |= reconciles[account]["debit"]
-                to_be_reconciled |= reconciles[account]["credit"]
-                to_be_reconciled.reconcile()
-
     @api.multi
     def riba_line_settlement(self):
+        # Set line of payment order paid
         for riba_line in self:
             if (
                 not riba_line.distinta_id.config_id.settlement_journal_id
@@ -667,10 +646,9 @@ class RibaListLine(models.Model):
 
             if not riba_line.extra_payment_ids:
                 move_model = self.env["account.move"]
-                open_items = self._open_items__init()
-                open_items = self._open_items__load_config(open_items, riba_line)
+                open_items = OpenItems(riba_line)
                 settlement_move = move_model.create(
-                    self._open_items__get_move_vals(open_items)
+                    open_items.load_move_vals()
                 )
                 settlement_move.post()
                 move_line_debit = False
@@ -680,11 +658,11 @@ class RibaListLine(models.Model):
                             move_line_debit = move_line
                         elif (
                             move_line.account_id
-                            == open_items["config"]["settlement_account_debit_id"]
+                            == open_items.settlement_account_debit_id
                         ):
                             move_line_debit = move_line
                 riba_line.payment_ids = [(4, move_line_debit.id)]
-                self._open_items__do_reconciles(open_items)
+                open_items.do_reconciles()
             self.riba_line_set_state("paid")
 
     @api.multi

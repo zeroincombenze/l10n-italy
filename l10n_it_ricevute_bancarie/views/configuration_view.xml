@@ -41,6 +41,8 @@
                         <separator colspan="4" string="Accreditation (debit / credit)" />
                         <field name="accreditation_account_debit_id" />
                         <field name="accreditation_account_credit_id" />
+                        <field name="accreditation2_account_debit_id" />
+                        <field name="accreditation2_account_credit_id" />
                         <field name="bank_expense_account_id" />
                         <field name="accreditation_journal_id" />
 
