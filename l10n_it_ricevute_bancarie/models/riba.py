@@ -23,7 +23,8 @@ class OpenItems(object):
     def __init__(self, riba_line):
         self.amount = 0.0
         self.account_ids = {}
-        self.move_line_ids = {}
+        self.move_type_ids = {}
+        self.env = riba_line.env
         self.valid_account_types = (
             riba_line.env.ref("account.data_account_type_current_assets"),
             riba_line.env.ref("account.data_account_type_current_liabilities"),
@@ -52,18 +53,20 @@ class OpenItems(object):
                     self.account_ids[move_line.account_id] = {}
                 self.account_ids[move_line.account_id][side] = acc_type
 
-                if move_type not in self.move_line_ids:
-                    self.move_line_ids[move_type] = {}
-                self.move_line_ids[move_type][side] = move_line
+                if move_type not in self.move_type_ids:
+                    self.move_type_ids[move_type] = {}
+                self.move_type_ids[move_type][side] = move_line
 
     def load_config(self, riba_line):
         config = riba_line.distinta_id.config_id
-        self.bank_id = config.bank_id
-        self.acceptance_account_id = riba_line.acceptance_account_id
-        self.accreditation_account_debit_id = config.accreditation_account_debit_id
-        self.accreditation_account_credit_id = config.accreditation_account_credit_id
-        self.overdue_account_debit_id = config.overdue_account_debit_id
-        self.overdue_account_credit_id = config.overdue_account_credit_id
+        # self.bank_id = config.bank_id
+        # self.acceptance_account_id = riba_line.acceptance_account_id
+        # self.accreditation_account_debit_id = config.accreditation_account_debit_id
+        # self.accreditation_account_credit_id = config.accreditation_account_credit_id
+        # self.accreditation2_account_debit_id = config.accreditation2_account_debit_id
+        # self.accreditation2_account_credit_id = config.accreditation2_account_credit_id
+        # self.overdue_account_debit_id = config.overdue_account_debit_id
+        # self.overdue_account_credit_id = config.overdue_account_credit_id
         self.settlement_account_debit_id = config.settlement_account_debit_id
         self.settlement_account_credit_id = config.settlement_account_credit_id
         self.settlement_journal_id = config.settlement_journal_id
@@ -80,10 +83,10 @@ class OpenItems(object):
         # remove debit/credit pair lines
         for account in self.account_ids:
             if self.account_ids.get("debit") and self.account_ids.get("credit"):
-                for move_type in self.move_line_ids.keys():
-                    for move_line in self.move_line_ids[move_type].copy().keys():
-                        if self.move_line_ids[move_line].account_id == account:
-                            del self.move_line_ids[move_line]
+                for move_type in self.move_type_ids.keys():
+                    for move_line in self.move_type_ids[move_type].copy().keys():
+                        if self.move_type_ids[move_line].account_id == account:
+                            del self.move_type_ids[move_line]
                 del self.account_ids[account]
 
     def _load_line_values(self, account, side, amount=None):
@@ -135,11 +138,18 @@ class OpenItems(object):
             vals["line_ids"].append((0, 0, line_vals))
         return vals
 
+    def couple_settlement(self, settlement_move):
+        move_type = "settlement"
+        for line in settlement_move.line_ids:
+            if line.account_id in (self.settlement_account_debit_id,
+                                   self.settlement_account_credit_id):
+                self.add_move_line(line, move_type)
+
     def do_reconciles(self):
         reconciles = {}
-        for move_type in self.move_line_ids:
-            for side in self.move_line_ids[move_type]:
-                for move_line in self.move_line_ids[move_type][side]:
+        for move_type in self.move_type_ids:
+            for side in self.move_type_ids[move_type]:
+                for move_line in self.move_type_ids[move_type][side]:
                     account = move_line.account_id
                     if account in self.account_ids and account.reconcile:
                         if account not in reconciles:
@@ -650,6 +660,7 @@ class RibaListLine(models.Model):
                 settlement_move = move_model.create(
                     open_items.load_move_vals()
                 )
+                open_items.couple_settlement(settlement_move)
                 settlement_move.post()
                 move_line_debit = False
                 for move_line in settlement_move.line_ids:
