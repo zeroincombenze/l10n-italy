@@ -15,7 +15,7 @@ import math
 from datetime import date, datetime
 
 try:
-    from openerp.addons.decimal_precision import decimal_precision as dp
+    import decimal_precision as dp
 except:
     import decimal_precision as dp
 from openerp.osv import fields, orm

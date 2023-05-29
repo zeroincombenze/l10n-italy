@@ -11,7 +11,7 @@ import logging
 from datetime import date
 
 try:
-    from openerp.addons.decimal_precision import decimal_precision as dp
+    import decimal_precision as dp
 except BaseException:
     import decimal_precision as dp
 import openerp.release as release
