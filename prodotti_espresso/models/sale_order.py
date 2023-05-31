@@ -7,6 +7,17 @@ from odoo import api, models, fields
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    @api.depends('order_line')
+    def _with_espresso(self):
+        for order in self:
+            order.espresso = any(line.espresso for line in order.order_line)
+
+    espresso = fields.Boolean(
+        string="Documento con prodotti espresso",
+        compute="_with_espresso",
+        stored=True,
+    )
+
     @api.multi
     def _delivery_unset(self):
         self.mark_real_delivery_lines()

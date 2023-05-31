@@ -4,7 +4,7 @@
 #
 {
     "name": "Prodotti Espresso",
-    "version": "10.0.1.0.5",
+    "version": "10.0.1.0.6",
     "category": "Accounting",
     "summary": "Prodotti espresso",
     "author": "SHS-AV s.r.l. and other partners",
@@ -20,10 +20,13 @@
     "data": [
         "views/product_views.xml",
         "views/stock_picking_package_preparation.xml",
+        "views/account_invoice_view.xml",
+        "views/sale_order_view.xml",
         "views/action_generate_ddt.xml",
         "wizard/wizard_create_ddt_espresso_view.xml",
         "data/ir_cron.xml",
         "report/account_invoice_report_view.xml",
+        "report/sale_order_report_view.xml",
     ],
     "installable": True,
 }
