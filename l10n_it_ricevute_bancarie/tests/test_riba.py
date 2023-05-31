@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from datetime import datetime
 import logging
 from .testenv import MainTest as SingleTransactionCase
 
@@ -87,7 +88,7 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "invoice_id": "z0bug.invoice_Z0_1",
         "product_id": "z0bug.product_product_1",
         "name": "Prodotto Alpha",
-        "quantity": 100,
+        "quantity": 200,
         "account_id": "z0bug.coa_sale",
         "price_unit": 0.84,
         "invoice_line_tax_ids": "external.22v",
@@ -107,7 +108,7 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "invoice_id": "z0bug.invoice_Z0_2",
         "product_id": "z0bug.product_product_2",
         "name": "Prodotto Beta",
-        "quantity": 10,
+        "quantity": 100,
         "account_id": "z0bug.coa_sale",
         "price_unit": 1.69,
         "invoice_line_tax_ids": "external.22v",
@@ -205,24 +206,22 @@ TEST_RES_PARTNER = {
         # "property_account_position_id": "z0bug.fiscalpos_it",
         "property_payment_term_id": "z0bug.payment_1",
         "property_supplier_payment_term_id": "z0bug.payment_1",
-        # "electronic_invoice_subjected": True,
-        # "codice_destinatario": "A1B2C3X",
     },
     "z0bug.res_partner_2": {
         "name": "Latte Beta Due s.n.c.",
         "street": "Via Dueville, 2",
         "country_id": "base.it",
-        "property_payment_term_id": "z0bug.payment_2",
-        "city": "S. Secondo Pinerolo",
         "zip": "10060",
+        "city": "S. Secondo Pinerolo",
+        "state_id": "base.state_it_to",
+        "customer": True,
         "supplier": False,
+        "is_company": True,
         "email": "agrolait2@libero.it",
+        "phone": "+39 0121555123",
         "vat": "IT02345670018",
         "website": "http://www.agrolait2.it/",
-        "phone": "+39 0121555123",
-        "customer": True,
-        "is_company": True,
-        "state_id": "base.state_it_to",
+        "property_payment_term_id": "z0bug.payment_2",
     },
 }
 
