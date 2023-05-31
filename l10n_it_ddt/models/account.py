@@ -22,15 +22,6 @@ class AccountInvoice(models.Model):
     transportation_method_id = fields.Many2one(
         "stock.picking.transportation_method", string="Method of Transportation"
     )
-    # pricelist_id = fields.Many2one(
-    #     'product.pricelist',
-    #     string='Pricelist',
-    #     required=True,
-    #     # default=_default_pricelist,
-    #     readonly=True,
-    #     states={'draft': [('readonly', False)]},
-    #     help="Pricelist for current sales order."
-    # )
     carrier_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery Method",

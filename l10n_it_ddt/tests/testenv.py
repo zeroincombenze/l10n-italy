@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Test Environment v2.0.7.1
+"""Test Environment v2.0.8.1
 
 Copy this file in tests directory of your module.
 Please copy the documentation testenv.rst file too in your module.
@@ -1417,12 +1417,9 @@ class MainTest(SingleTransactionCase):
 
     @api.model
     def _get_src_model_from_act_windows(self, act_windows):
-        model_name = act_windows.get(
-            "src_model",
-            act_windows.get(
-                "binding_model_id", self._get_model_from_act_windows(act_windows)
-            ),
-        )
+        model_name = act_windows.get("src_model")
+        if not model_name and "binding_model_id" in act_windows:
+            model_name = self.env.ref(act_windows["binding_model_id"])["model"]
         if not model_name or self._is_transient(model_name):
             model_name = None
             value = "%s,%d" % (act_windows["type"], act_windows["id"])
@@ -1463,6 +1460,8 @@ class MainTest(SingleTransactionCase):
         Returns:
             Odoo windows action to pass to wizard execution
         """
+        if not isinstance(act_windows, dict):  # pragma: no cover
+            self.raise_error("Invalid act_windows")
         self.log_lvl_2("🐞wizard starting(%s)" % act_windows.get("name"), strict=True)
         self.log_lvl_3(
             "🐞wizard starting(%s,%s,\nrec=%s,\ndef=%s,\nctx=%s)"
@@ -1475,8 +1474,6 @@ class MainTest(SingleTransactionCase):
             ),
             strict=True,
         )
-        if not isinstance(act_windows, dict):  # pragma: no cover
-            self.raise_error("Invalid act_windows")
         if (
             records
             and isinstance(records, (list, tuple))
@@ -1486,6 +1483,7 @@ class MainTest(SingleTransactionCase):
         self._finalize_ctx_act_windows(records, act_windows, ctx)
         if ctx and ctx.get("res_id"):
             act_windows["res_id"] = ctx.pop("res_id")
+
         if records:
             # The record type have to be the same of the action windows model
             # Warning: action windows may not contain any model declaration
@@ -1590,7 +1588,12 @@ class MainTest(SingleTransactionCase):
         """
         # act_model = "ir.actions.act_window"
         module = self.module.name if module == "." else module
-        act_windows = self.for_xml_id(module, action_name)
+        try:
+            act_windows = self.for_xml_id(module, action_name)
+        except BaseException:
+            if not records or len(records) != 1:
+                self.raise_error(
+                    "Invalid action_name %s" % action_name)
         return self._wiz_launch(
             act_windows,
             default=default,
@@ -1620,7 +1623,12 @@ class MainTest(SingleTransactionCase):
         cur_vals = {}
         for name in wizard._fields.keys():
             if name not in SUPERMAGIC_COLUMNS:
-                cur_vals[name] = getattr(wizard, name)
+                try:
+                    cur_vals[name] = getattr(wizard, name)
+                except BaseException:
+                    self.raise_error(
+                        "Wrong compute for %s.%s! Forgot @multi?" % (wizard._name,
+                                                                     name))
         value = self._cast_field(resource, field, value, fmt="cmd")
         if value is not None:
             setattr(wizard, field, value)
@@ -2476,6 +2484,7 @@ class MainTest(SingleTransactionCase):
         return isinstance(act_windows, dict) and act_windows.get("type") in (
             "ir.actions.act_window",
             "ir.actions.client",
+            "ir.actions.act_window_close"
         )
 
     @api.model
@@ -2681,6 +2690,8 @@ class MainTest(SingleTransactionCase):
             return match
 
         resource = self._get_model_from_records(record)
+        if not resource:
+            self.raise_error("No valid record supplied for comparation!")
         self._load_field_struct(resource)
         childs_name = self.childs_name.get(resource)
         resource_child = self.childs_resource.get(resource)
