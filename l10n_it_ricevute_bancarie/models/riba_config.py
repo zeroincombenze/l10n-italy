@@ -54,13 +54,6 @@ class RibaConfiguration(models.Model):
         domain=[("type", "=", "bank")],
         help="Journal used when Ri.Ba. amount is accredited by the bank",
     )
-    accreditation_account_credit_id = fields.Many2one(
-        "account.account",
-        "Accreditation credit (Ri.Ba. bank account)",
-        oldname="accreditation_account_id",
-        help="Account used when Ri.Ba. is accepted by the bank",
-        # domain=[("internal_type", "!=", "liquidity")],
-    )
     accreditation_account_debit_id = fields.Many2one(
         "account.account",
         "Accreditation debit (Bank account)",
@@ -68,6 +61,21 @@ class RibaConfiguration(models.Model):
         help="Account receiving amount when list is accepted by the bank.\n"
         "May be the liquidity bank account or a transitory account.",
         # domain=[("internal_type", "=", "liquidity")],
+    )
+    accreditation_account_credit_id = fields.Many2one(
+        "account.account",
+        "Accreditation credit (Ri.Ba. bank account)",
+        oldname="accreditation_account_id",
+        help="Account used when Ri.Ba. is accepted by the bank",
+        # domain=[("internal_type", "!=", "liquidity")],
+    )
+    accreditation2_account_debit_id = fields.Many2one(
+        string="Accreditation debit (2.nd account)",
+        comodel_name="account.account",
+    )
+    accreditation2_account_credit_id = fields.Many2one(
+        string="Accreditation credit (2.nd account)",
+        comodel_name="account.account",
     )
     bank_expense_account_id = fields.Many2one(
         "account.account", "Bank Expenses account"
@@ -150,11 +158,11 @@ class RibaConfiguration(models.Model):
     def onchange_some_fields(self):
         if self.acceptance_account_id and not self.settlement_account_credit_id:
             self.settlement_account_credit_id = self.acceptance_account_id
-        if (
-            self.accreditation_account_credit_id
-            and not self.settlement_account_debit_id
-        ):
-            self.settlement_account_debit_id = self.accreditation_account_credit_id
+        # if (
+        #     self.accreditation_account_credit_id
+        #     and not self.settlement_account_debit_id
+        # ):
+        #     self.settlement_account_debit_id = self.accreditation_account_credit_id
         if self.bank_expense_account_id and not self.overdue_expenses_account_id:
             self.overdue_expenses_account_id = self.bank_expense_account_id
         if self.accreditation_account_debit_id and not self.overdue_account_credit_id:
