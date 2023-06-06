@@ -1,6 +1,6 @@
 
 ===================
-|icon|  10.0.1.3.11
+|icon|  10.0.1.3.12
 ===================
 
 
@@ -308,11 +308,12 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Two supplemental accreditation accounts / Due conti aggiuntivi in accredito
+* [FIX] Confirm payment / Conferma pagamento
 
 10.0.1.3.11 (2023-04-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Confirm invoice+ refund / Errore accettazione fattura + NC
+* [FIX] Confirm invoice + refund / Errore accettazione fattura + NC
 
 10.0.1.3.10 (2022-12-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~
