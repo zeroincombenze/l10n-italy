@@ -5,9 +5,9 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+from . import open_items
 from . import riba_config
 from . import partner
 from . import riba

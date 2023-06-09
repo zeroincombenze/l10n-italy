@@ -5,7 +5,7 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2018 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -48,7 +48,7 @@ class AccountMove(models.Model):
     riba_accredited_ids = fields.One2many(
         "riba.distinta",
         "accreditation_move_id",
-        "Distinte RiBa accredited",
+        "Accredited C/O Slips",
         readonly=True,
     )
     riba_unsolved_ids = fields.One2many(
@@ -64,7 +64,7 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     distinta_line_ids = fields.One2many(
-        "riba.distinta.move.line", "move_line_id", "Dettaglio riba", copy=False
+        "riba.distinta.move.line", "move_line_id", "C/O slip lines", copy=False
     )
     riba = fields.Boolean(
         # related="invoice_id.payment_term_id.riba",

@@ -1,0 +1,137 @@
+2023-06-07 19:08:57,055 1455117 INFO ? odoo: Odoo version 10.0
+2023-06-07 19:08:57,055 1455117 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/logs/zero10.l10n-italy.l10n_it_ricevute_bancarie.conf
+2023-06-07 19:08:57,055 1455117 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-06-07 19:08:57,055 1455117 INFO ? odoo: database: odoo10@localhost:default
+Exception in thread odoo.service.httpd:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/home/odoo/10.0/odoo/service/server.py", line 308, in http_thread
+    self.httpd = ThreadedWSGIServerReloadable(self.interface, self.port, app)
+  File "/home/odoo/10.0/odoo/service/server.py", line 111, in __init__
+    handler=RequestHandler)
+  File "/home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 464, in __init__
+    HTTPServer.__init__(self, (host, int(port)), handler)
+  File "/usr/lib/python2.7/SocketServer.py", line 420, in __init__
+    self.server_bind()
+  File "/home/odoo/10.0/odoo/service/server.py", line 121, in server_bind
+    super(ThreadedWSGIServerReloadable, self).server_bind()
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
+    SocketServer.TCPServer.server_bind(self)
+  File "/usr/lib/python2.7/SocketServer.py", line 434, in server_bind
+    self.socket.bind(self.server_address)
+  File "/usr/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+error: [Errno 98] Address already in use
+
+2023-06-07 19:08:57,103 1455117 INFO test_odoo_10 odoo.modules.loading: loading 1 modules...
+2023-06-07 19:08:57,191 1455117 INFO test_odoo_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2023-06-07 19:08:58,509 1455117 INFO test_odoo_10 odoo.modules.loading: loading 36 modules...
+2023-06-07 19:08:58,620 1455117 INFO test_odoo_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-06-07 19:08:58,746 1455117 INFO test_odoo_10 odoo.modules.loading: 36 modules loaded in 0.24s, 0 queries
+2023-06-07 19:08:58,751 1455117 INFO test_odoo_10 odoo.modules.loading: loading 37 modules...
+2023-06-07 19:08:59,177 1455117 INFO test_odoo_10 odoo.modules.registry: module l10n_it_ricevute_bancarie: creating or updating database tables
+2023-06-07 19:08:59,617 1455117 WARNING test_odoo_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2023-06-07 19:09:01,685 1455117 INFO test_odoo_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-06-07 19:09:01,881 1455117 INFO test_odoo_10 odoo.models: Storing computed values of account.invoice fields is_unsolved
+2023-06-07 19:09:02,034 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/partner_view.xml
+2023-06-07 19:09:02,152 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/configuration_view.xml
+2023-06-07 19:09:02,220 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/data/riba_sequence.xml
+2023-06-07 19:09:02,235 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_accreditation.xml
+2023-06-07 19:09:02,321 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_unsolved.xml
+2023-06-07 19:09:02,367 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/riba_view.xml
+2023-06-07 19:09:02,566 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/account_view.xml
+2023-06-07 19:09:02,962 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.xml
+2023-06-07 19:09:03,012 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.xml
+2023-06-07 19:09:03,060 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/account_config_view.xml
+2023-06-07 19:09:03,125 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/data/riba_workflow.xml
+2023-06-07 19:09:03,229 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/distinta_report.xml
+2023-06-07 19:09:03,288 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/report.xml
+2023-06-07 19:09:03,312 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/security/ir.model.access.csv
+2023-06-07 19:09:03,634 1455117 INFO test_odoo_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/demo/riba_demo.xml
+2023-06-07 19:09:04,524 1455117 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba running tests.
+2023-06-07 19:09:04,526 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: test_riba (odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba.TestRiba)
+2023-06-07 19:09:04,912 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2023-06-07 19:09:04,914 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2023-06-07 19:09:04,922 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺🎺🎺 Starting test v2.0.8 (debug_level=0)
+2023-06-07 19:09:04,927 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺🎺 Testing module: l10n_it_ricevute_bancarie (10.0.1.3.12)
+2023-06-07 19:09:04,929 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ product.product[type]: 'product' -> 'consu'
+2023-06-07 19:09:04,929 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ product.template[type]: 'product' -> 'consu'
+2023-06-07 19:09:04,930 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ account.payment.term.line._cvt_account_payment_term_line(all)
+2023-06-07 19:09:05,407 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: xref ('product.template') 'z0bug.product_template_1' -> ('product.product') 'z0bug.product_product_1'
+2023-06-07 19:09:05,623 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: xref ('product.template') 'z0bug.product_template_2' -> ('product.product') 'z0bug.product_product_2'
+2023-06-07 19:09:06,946 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Starting test_riba()
+2023-06-07 19:09:08,715 1455117 WARNING test_odoo_10 py.warnings: /home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/unidecode/__init__.py:64: RuntimeWarning: Argument <type 'str'> is not an unicode object. Passing an encoded string will likely have unexpected results.
+  _warn_if_not_unicode(string)
+
+2023-06-07 19:09:11,436 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,436 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,436 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,437 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,439 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,439 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,439 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,439 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,448 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,449 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,449 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,449 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,451 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,451 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,451 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,451 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,453 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,453 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,453 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,454 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,455 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,455 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,455 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,455 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,458 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,459 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,459 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,459 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,461 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,462 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,462 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,462 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,464 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 28 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,464 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 30 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,464 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 32 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,464 1455117 WARNING test_odoo_10 odoo.models: Comparing apples and oranges: account.account(32,) == 31 (/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/testenv.py:2705)
+2023-06-07 19:09:11,482 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🏆🥇 109 tests SUCCESSFULLY completed
+2023-06-07 19:09:11,485 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: ✨ Test data committed
+2023-06-07 19:09:11,487 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: Ran 1 test in 6.962s
+2023-06-07 19:09:11,487 1455117 INFO test_odoo_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: OK
+2023-06-07 19:09:11,487 1455117 INFO test_odoo_10 odoo.modules.module: odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba tested in 6.96s, 6829 queries
+2023-06-07 19:09:11,526 1455117 INFO test_odoo_10 odoo.modules.loading: 37 modules loaded in 12.77s, 6850 queries
+2023-06-07 19:09:12,074 1455117 INFO test_odoo_10 odoo.modules.loading: Modules loaded.
+2023-06-07 19:09:12,080 1455117 INFO test_odoo_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-06-07 19:09:12,082 1455117 INFO test_odoo_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-06-07 19:09:12,599 1455117 INFO test_odoo_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-06-07 19:09:12,602 1455117 INFO test_odoo_10 odoo.service.server: Initiating shutdown
+2023-06-07 19:09:12,602 1455117 INFO test_odoo_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ricevute_bancarie[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                     Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_ricevute_bancarie/models/account.py                     188    107    43%   91-113, 126-129, 149, 154-155, 157, 178-181, 184, 196-237, 245, 252-260, 263-284, 289-296, 309-314, 317-327, 330-337, 344-351, 354-361, 368-378
+l10n-italy/l10n_it_ricevute_bancarie/models/account_config.py               16      6    62%   32-39
+l10n-italy/l10n_it_ricevute_bancarie/models/partner.py                       5      0   100%
+l10n-italy/l10n_it_ricevute_bancarie/models/riba.py                        480    163    66%   64, 67-86, 91, 98-99, 113, 119, 149-155, 163-168, 180-196, 231-238, 241-254, 279-282, 290, 298-303, 307, 411, 414, 422-432, 435, 442-450, 453-462, 465-470, 473, 482-492, 499, 504, 514, 524, 531-535, 538-543, 546, 548, 552, 556, 560-561, 564, 574, 593, 597, 603, 616-623, 626-627, 638-648, 651-658, 705, 769, 794, 815-828, 839, 843-852, 856, 860, 864, 868
+l10n-italy/l10n_it_ricevute_bancarie/models/riba_config.py                  50      3    94%   126-129, 154
+l10n-italy/l10n_it_ricevute_bancarie/report/distinta_qweb.py                 8      3    62%   15-21
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py         58     14    76%   16, 22, 28, 34, 40, 42, 78-82, 87, 98, 127
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py     119     10    92%   22-23, 289, 296, 306, 332-333, 339, 349, 356
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py            52     12    77%   24, 63-69, 80, 84-108
+l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py              83     64    23%   16-17, 28-31, 42-43, 48-49, 54-55, 96-103, 106-227
+------------------------------------------------------------------------------------------------------
+TOTAL                                                                     1059    382    64%

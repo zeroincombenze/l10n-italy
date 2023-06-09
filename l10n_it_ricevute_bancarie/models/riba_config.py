@@ -5,7 +5,7 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
@@ -56,7 +56,7 @@ class RibaConfiguration(models.Model):
     )
     accreditation_account_debit_id = fields.Many2one(
         "account.account",
-        "Accreditation debit (Bank account)",
+        "Accreditation account (debit side - Subject To Collection C/O)",
         oldname="bank_account_id",
         help="Account receiving amount when list is accepted by the bank.\n"
         "May be the liquidity bank account or a transitory account.",
@@ -64,18 +64,22 @@ class RibaConfiguration(models.Model):
     )
     accreditation_account_credit_id = fields.Many2one(
         "account.account",
-        "Accreditation credit (Ri.Ba. bank account)",
+        "Accreditation account (credit side - C/O portfolio bank)",
         oldname="accreditation_account_id",
         help="Account used when Ri.Ba. is accepted by the bank",
         # domain=[("internal_type", "!=", "liquidity")],
     )
     accreditation2_account_debit_id = fields.Many2one(
-        string="Accreditation debit (2.nd account)",
+        string="Accreditation account (debit side – supplemental)",
         comodel_name="account.account",
     )
     accreditation2_account_credit_id = fields.Many2one(
-        string="Accreditation credit (2.nd account)",
+        string="Accreditation account (credit side – supplemental)",
         comodel_name="account.account",
+    )
+    liquidity_account_id = fields.Many2one(
+        "account.account",
+        "A/C Bank Account",
     )
     bank_expense_account_id = fields.Many2one(
         "account.account", "Bank Expenses account"
@@ -103,14 +107,6 @@ class RibaConfiguration(models.Model):
         "account.journal",
         "Settlement Journal",
         help="Journal used when the clients finally pays the invoice to bank",
-    )
-    settlement_account_debit_id = fields.Many2one(
-        "account.account",
-        "Settlement debit account",
-    )
-    settlement_account_credit_id = fields.Many2one(
-        "account.account",
-        "Settlement credit account",
     )
 
     def get_default_value_by_list(self, field_name):
@@ -156,13 +152,6 @@ class RibaConfiguration(models.Model):
                   "accreditation_account_credit_id",
                   "bank_expense_account_id")
     def onchange_some_fields(self):
-        if self.acceptance_account_id and not self.settlement_account_credit_id:
-            self.settlement_account_credit_id = self.acceptance_account_id
-        # if (
-        #     self.accreditation_account_credit_id
-        #     and not self.settlement_account_debit_id
-        # ):
-        #     self.settlement_account_debit_id = self.accreditation_account_credit_id
         if self.bank_expense_account_id and not self.overdue_expenses_account_id:
             self.overdue_expenses_account_id = self.bank_expense_account_id
         if self.accreditation_account_debit_id and not self.overdue_account_credit_id:

@@ -46,9 +46,8 @@
                         <field name="bank_expense_account_id" />
                         <field name="accreditation_journal_id" />
 
-                        <separator colspan="4" string="Settlement (debit / credit)" />
-                        <field name="settlement_account_debit_id" />
-                        <field name="settlement_account_credit_id" />
+                        <separator colspan="4" string="Settlement" />
+                        <field name="liquidity_account_id" />
                         <field name="settlement_journal_id" />
 
                         <separator colspan="4" string="Unsolved (debit / credit)" />

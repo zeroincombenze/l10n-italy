@@ -54,7 +54,10 @@ class RibaIssue(models.TransientModel):
 
         # group by partner and due date
         grouped_lines = {}
-        move_lines = move_line_obj.search([("id", "in", self._context["active_ids"])])
+        # move_lines = move_line_obj.search([("id", "in", self._context["active_ids"])])
+        move_lines = move_line_obj
+        for id in self._context["active_ids"]:
+            move_lines += move_line_obj.browse(id)
         for move_line in move_lines:
             if move_line.partner_id.group_riba:
                 if not grouped_lines.get(
