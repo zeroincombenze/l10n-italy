@@ -5,3 +5,4 @@
 from . import models
 from . import wizard
 from . import tests
+from ._check4deps_ import check_4_depending

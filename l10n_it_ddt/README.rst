@@ -1,12 +1,10 @@
 
-======================
-|icon| DDT 10.0.1.8.22
-======================
+===================
+|icon|  10.0.1.8.22
+===================
 
 
-**Delivery Document Type**
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze//10.0//static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -145,7 +143,7 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    deploy_odoo clone -r  -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
@@ -153,7 +151,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Install
+* |menu| Setting > Apps |right_do| Select **** > Install
 
 
 |
@@ -177,7 +175,7 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    deploy_odoo update -r  -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
@@ -186,7 +184,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ddt** > Update
+* |menu| Setting > Apps |right_do| Select **** > Update
 
 
 |
@@ -206,7 +204,7 @@ Get involved / Ci mettiamo in gioco
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/zeroincombenze/l10n-italy/issues>`_.
+<https://github.com/zeroincombenze//issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
 
@@ -222,6 +220,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.8.24 (2023-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] DdT from 'done' order / Emissione DdT da ordini bloccati
+* [IMP] Check for dependecies version / Controllo versione dipendenze
 
 10.0.1.8.23 (2023-05-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -314,8 +318,6 @@ Authors / Autori
 * `Open Force <https://www.openforce.it/>`__
 * `Dinamiche Aziendali <http://www.dinamicheaziendali.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-Authors
--------
 
 
 Contributors / Collaboratori
@@ -330,9 +332,6 @@ Contributors / Collaboratori
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Antonio M. Vigliotti <info@shs-av.com>
-Contributors
-------------
-
 
 
 Maintainer / Manutenzione
@@ -362,15 +361,15 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 |
 
-This module is part of l10n-italy project.
+This module is part of  project.
 
-Last Update / Ultimo aggiornamento: 2023-05-10
+Last Update / Ultimo aggiornamento: 
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
+.. |Build Status| image:: https://travis-ci.org/zeroincombenze/.svg?branch=10.0
+    :target: https://travis-ci.com/zeroincombenze/
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
@@ -378,11 +377,11 @@ Last Update / Ultimo aggiornamento: 2023-05-10
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze//badge.svg?branch=10.0
+    :target: https://coveralls.io/github/zeroincombenze/?branch=10.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
+.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze//branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/zeroincombenze//branch/10.0
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
@@ -393,8 +392,8 @@ Last Update / Ultimo aggiornamento: 2023-05-10
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA//branch/10.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA//branch/10.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org

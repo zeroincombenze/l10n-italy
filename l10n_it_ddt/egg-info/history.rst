@@ -1,3 +1,9 @@
+10.0.1.8.24 (2023-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] DdT from 'done' order / Emissione DdT da ordini bloccati
+* [IMP] Check for dependecies version / Controllo versione dipendenze
+
 10.0.1.8.23 (2023-05-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

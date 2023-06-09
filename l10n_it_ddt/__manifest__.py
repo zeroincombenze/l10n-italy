@@ -20,6 +20,9 @@
         "account_invoice_pricelist",
         "account_invoice_partner_carrier",
     ],
+    "version_depends": [
+        "stock_picking_package_preparation_line>=10.0.1.0.5",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "security/security.xml",

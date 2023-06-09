@@ -220,7 +220,7 @@ class SaleOrder(models.Model):
             raise UserError(  # pragma: no cover
                 _("There are not picking to create a DdT")
             )  # pragma: no cover
-        if any([x for x in orders if x.state != 'sale']):
+        if any([x for x in orders if x.state not in ('sale', 'done')]):
             raise UserError(  # pragma: no cover
                 "There are some unconfirmed sale orders!"
             )  # pragma: no cover
