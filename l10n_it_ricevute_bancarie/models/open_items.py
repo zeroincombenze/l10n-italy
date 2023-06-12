@@ -301,7 +301,10 @@ class OpenItems(object):
             total_debit += line_vals["credit"]
             total_credit += line_vals["debit"]
 
-        if total_debit > total_credit:
+        if total_debit == total_credit and not vals["line_ids"]:
+            expenses_amount = 0.0
+            vals = {}
+        elif total_debit > total_credit:
             line_vals = self._load_line_values(
                 self.liquidity_account_id,
                 partners[0] if len(partners) == 1 else False,

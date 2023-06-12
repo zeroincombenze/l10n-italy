@@ -510,23 +510,23 @@ class RibaListLine(models.Model):
             if not riba_line.extra_payment_ids:
                 move_model = self.env["account.move"]
                 open_items = OpenItems().add_payorder_line(riba_line)
-                settlement_move = move_model.create(
-                    open_items.load_move_vals()
-                )
-                open_items.couple_settlement(settlement_move)
-                settlement_move.post()
-                move_line_debit = False
-                for move_line in settlement_move.line_ids:
-                    if move_line.debit > 0.0:
-                        if not move_line_debit:
-                            move_line_debit = move_line
-                        elif (
-                            move_line.account_id
-                            == open_items.liquidity_account_id
-                        ):
-                            move_line_debit = move_line
-                riba_line.payment_ids = [(4, move_line_debit.id)]
-                open_items.do_reconciles()
+                vals = open_items.load_move_vals()
+                if vals:
+                    settlement_move = move_model.create(vals)
+                    open_items.couple_settlement(settlement_move)
+                    settlement_move.post()
+                    move_line_debit = False
+                    for move_line in settlement_move.line_ids:
+                        if move_line.debit > 0.0:
+                            if not move_line_debit:
+                                move_line_debit = move_line
+                            elif (
+                                move_line.account_id
+                                == open_items.liquidity_account_id
+                            ):
+                                move_line_debit = move_line
+                    riba_line.payment_ids = [(4, move_line_debit.id)]
+                    open_items.do_reconciles()
             self.riba_line_set_state("paid")
 
     @api.multi
