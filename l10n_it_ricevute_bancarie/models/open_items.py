@@ -124,12 +124,12 @@ class OpenItems(object):
             ):
                 if not getattr(self, field):
                     if not getattr(config, cfgkey):
-                        raise NameError(
+                        raise UserError(
                             "Missing value for configuration field '%s'" % field
                         )
                     setattr(self, field, getattr(config, cfgkey))
                 elif getattr(self, field) != getattr(config, cfgkey):
-                    raise NameError(
+                    raise UserError(
                         "Conflict values for configuration field '%s'" % field
                     )
         elif self.odoo_version == 12:
@@ -144,12 +144,12 @@ class OpenItems(object):
             ):
                 if not getattr(self, field):
                     if not config[cfgkey]:
-                        raise NameError(
+                        raise UserError(
                             "Missing value for configuration field '%s'" % field
                         )
                     setattr(self, field, config[cfgkey])
                 elif getattr(self, field) != config[cfgkey]:
-                    raise NameError(
+                    raise UserError(
                         "Conflict values for configuration field '%s'" % field
                     )
 
@@ -229,7 +229,7 @@ class OpenItems(object):
 
             if self.odoo_version == 10:
                 # Invoice lines
-                for move_line in payorder_line.move_line_ids.move_line_id:
+                for move_line in [x.move_line_id for x in payorder_line.move_line_ids]:
                     self.add_move_line(move_line)
                 for move_line in payorder_line.acceptance_move_id.line_ids:
                     self.add_move_line(move_line)
