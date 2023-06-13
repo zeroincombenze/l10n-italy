@@ -685,11 +685,15 @@ class StockPickingPackagePreparation(models.Model):
         for ddt in self:
             if ddt.company_id.keep_pick_state_from_ddt:
                 for picking in ddt.picking_ids:
-                    if picking.state == "done":
+                    if not picking.backorder_id and picking.state == "done":
                         picking.action_cancel()
-                self.mapped('line_ids').mapped('sale_line_id').mapped(
-                    'procurement_ids').filtered(
-                    lambda picking: picking.state in ('waiting', 'confirmed')).cancel()
+                try:
+                    self.mapped('line_ids').mapped('sale_line_id').mapped(
+                        'procurement_ids').filtered(
+                        lambda picking: picking.state not in (
+                            'cancel', 'draft', 'done')).cancel()
+                except BaseException:
+                    pass
         return super(StockPickingPackagePreparation, self).action_cancel()
 
     @api.multi

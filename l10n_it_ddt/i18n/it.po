@@ -1,24 +1,26 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ddt
+# 	* l10n_it_ddt
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-30 12:01+0000\n"
-"PO-Revision-Date: 2023-04-30 12:01+0000\n"
+"POT-Creation-Date: 2023-06-13 15:22+0000\n"
+"PO-Revision-Date: 2023-06-13 17:26+0200\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
-msgid "\n"
+msgid ""
+"\n"
 "            <p>Dear ${object.partner_id.name},</p>\n"
 "            <p>Here is your document\n"
 "              %if object.date:\n"
@@ -33,7 +35,8 @@ msgid "\n"
 "            <p>You can reply to this email if you have any questions.</p>\n"
 "            <p>Thank you.</p>\n"
 "              "
-msgstr "\n"
+msgstr ""
+"\n"
 "            <p>Dear ${object.partner_id.name},</p>\n"
 "            <p>Here is your documento\n"
 "              %if object.date:\n"
@@ -56,9 +59,11 @@ msgstr "${(object.ddt_number)}"
 
 #. module: l10n_it_ddt
 #: model:mail.template,subject:l10n_it_ddt.email_template_edi_ddt
-msgid "${object.company_id.name} (${object.ddt_number})\n"
+msgid ""
+"${object.company_id.name} (${object.ddt_number})\n"
 "        "
-msgstr "${object.company_id.name} (${object.ddt_number})\n"
+msgstr ""
+"${object.company_id.name} (${object.ddt_number})\n"
 "        "
 
 #. module: l10n_it_ddt
@@ -73,7 +78,8 @@ msgstr "(attiva questo campo solo per specificare un modello diverso dal modello
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.mail_template_data_notification_email_ddt
-msgid "<html>\n"
+msgid ""
+"<html>\n"
 "            <head></head>\n"
 "                 % set record = ctx.get('record')\n"
 "                 % set company = record and record.company_id or user.company_id\n"
@@ -144,8 +150,8 @@ msgid "<html>\n"
 "                    </table>\n"
 "                </body>\n"
 "            </html>\n"
-""
-msgstr "<html>\n"
+msgstr ""
+"<html>\n"
 "            <head></head>\n"
 "                 % impostare record = ctx.get('record')\n"
 "                 % impostare azienda = record e record.company_id o user.company_id\n"
@@ -216,7 +222,6 @@ msgstr "<html>\n"
 "                    </table>\n"
 "                </body>\n"
 "            </html>\n"
-""
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -236,7 +241,7 @@ msgstr "<strong>Numeri di serie/lotti</strong>"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "<strong>Price</strong>"
-msgstr "<strong>Price</strong>"
+msgstr "<strong>Prezzo</strong>"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -375,7 +380,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:832
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:836
 #, python-format
 msgid "Competenza:"
 msgstr "Competenza:"
@@ -396,7 +401,7 @@ msgid "Corriere"
 msgstr "Corriere"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:738
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:742
 #, python-format
 msgid "Could not reserve all requested products. Please use the 'Mark as Todo' button to handle the reservation manually."
 msgstr "Non è possibile reservare tutti i prodotti richiesti. Per favore usae il bottone 'Marcare da fare' per riservare manualmente."
@@ -569,7 +574,7 @@ msgstr "Tipo DdT"
 #. module: l10n_it_ddt
 #: sql_constraint:stock.picking.package.preparation:0
 msgid "DdT number already exists!"
-msgstr "Numero DdT esiste già!"
+msgstr "Numero DdT esiste già"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_line_ddt_id
@@ -644,19 +649,19 @@ msgid "Delivery Method"
 msgstr "Metodo di consegna"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:954
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:958
 #, python-format
 msgid "Delivery note %s is already invoiced"
 msgstr "DDT %s già fatturato"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:951
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:955
 #, python-format
 msgid "Delivery note %s is not done"
 msgstr "DDT %s non concluso"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:958
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:962
 #, python-format
 msgid "Delivery note %s is not invoiceable"
 msgstr "DDT %s non fatturabile"
@@ -719,10 +724,10 @@ msgid "Do not invoice services from DDT"
 msgstr "Non fatturare servizi da DdT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1146
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1150
 #, python-format
 msgid "Document %s has invoice linked"
-msgstr "Il documento %s è collegato d una fattura"
+msgstr "Il documento %s è collegato ad una fattura"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/sale_order.py:242
@@ -805,7 +810,7 @@ msgstr "Raggruppare per"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_sppp_line_search
 msgid "Group By..."
-msgstr "Raggruppare per.."
+msgstr "Raggruppa per"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_account_config_settings_delivery_price_policy
@@ -859,10 +864,10 @@ msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Non si può inserite nel carico un prelievo con stato"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:708
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:712
 #, python-format
 msgid "Impossible to set draft document when invoiced!"
-msgstr "Impossibile riportare in bozza un documento con fattura!"
+msgstr "Impossibile riportare in bozza un documento con fattura"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:475
@@ -1036,13 +1041,13 @@ msgid "Net Weight"
 msgstr "Peso netto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1189
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1193
 #, python-format
 msgid "No carrier set for this delivery note."
 msgstr "Nessun vettore valido impostato per questo DDT."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:753
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:757
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i prelievi sono completati"
@@ -1142,13 +1147,13 @@ msgid "Pickings"
 msgstr "Prelievi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:874
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:878
 #, python-format
 msgid "Please define an accounting sale journal for this company."
-msgstr "Definire un registro sezionale vendita per questa azienda."
+msgstr "Definire un registro sezionale vendita per questa azienda"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1403
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1407
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
 msgstr "Definire un conto di ricavo per il prodotto: \"%s\" (id:%d) - o per la categoria: \"%s\"."
@@ -1230,7 +1235,7 @@ msgid "Related DdTs"
 msgstr "DdT correlati"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:723
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:727
 #, python-format
 msgid "Required value for %s"
 msgstr "Richiesto valore per %s"
@@ -1274,7 +1279,7 @@ msgstr "Scatola/Cartone"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Search DDT"
-msgstr "Cerca DdT"
+msgstr "Cercare DdT"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_sppp_line_search
@@ -1341,7 +1346,7 @@ msgstr "I prelievi selezionati hanno nominativi diversi"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:598
 #, python-format
 msgid "Selected Pickings have different Partner"
-msgstr "I prelievi selezionati hanno nominativi diversi"
+msgstr "Selezionati prelievi con soggetti diversi"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:589
@@ -1354,7 +1359,7 @@ msgstr "I prelievi selezionati hanno indirizzi di spedizione diversi"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:623
 #, python-format
 msgid "Selected Sale Orders %s has different %s"
-msgstr "Gli ordini selezionati hanno %s diversi/e"
+msgstr "Gli ordini selezionati %s hanno %s diversi/e"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:579
@@ -1414,12 +1419,12 @@ msgstr "Informazioni spedizione"
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
 msgid "Shipping Partner"
-msgstr "Nominativo di Consegna"
+msgstr "Consegna a nominativo"
 
 #. module: l10n_it_ddt
 #: selection:sale.order,ddt_invoicing_group:0
 msgid "Shipping Partners"
-msgstr "Nominatvi delle consegne"
+msgstr "Soggetti delle consegne"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner_ddt_show_price
@@ -1445,7 +1450,7 @@ msgstr "Data iniziale"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "State"
-msgstr "Stato"
+msgstr "Stato Federale"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
@@ -1470,13 +1475,13 @@ msgid "Telefono:"
 msgstr "Telefono:"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1169
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1173
 #, python-format
 msgid "The delivery note state cannot be cancel to update delivery price."
-msgstr "The delivery note state cannot be cancel to update delivery price."
+msgstr "Strumenti SEO a portata di mano consegna nota stato Federale cannot be annullare a attiva questo campo solo per specificare un modello diverso dal modello di base consegna price."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/account.py:93
+#: code:addons/l10n_it_ddt/models/account.py:84
 #, python-format
 msgid "The invoice state have to be draft to add delivery lines."
 msgstr "La fattura deve essere in bozza per aggiungere righe di consegna."
@@ -1488,13 +1493,13 @@ msgid "There are not picking to create a DdT"
 msgstr "Non ci sono prelievi per creare un DdT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1078
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1084
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1543
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1548
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1082
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1088
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1547
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1552
 #, python-format
 msgid "There is no invoicable line."
-msgstr "Non ci sono righe fatturabili."
+msgstr "Non ci sono righe fatturabili"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_to_be_invoiced
@@ -1513,10 +1518,10 @@ msgid "To be Invoiced"
 msgstr "Da fatturare"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1523
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1527
 #, python-format
 msgid "Too many partners."
-msgstr "Troppi clienti diversi."
+msgstr "Troppi clienti diversi"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_amount_total
@@ -1594,10 +1599,10 @@ msgid "Weight"
 msgstr "Peso"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1149
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1153
 #, python-format
 msgid "You can not delete document %s! Try to cancel it before."
-msgstr "Non è possibile eliminare il documento %s! Provare prima ad annullare."
+msgstr "Non è possibile eliminare il documento %s! Provare prima ad annullare"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_config_settings
@@ -1703,7 +1708,7 @@ msgid "show price"
 msgstr "mostrare prezzi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:724
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:728
 #, python-format
 msgid "string"
 msgstr "testo"
@@ -1730,5 +1735,3 @@ msgstr "causale del trasporto"
 #: model:ir.model,name:l10n_it_ddt.model_wizard_create_ddt
 msgid "wizard.create.ddt"
 msgstr "wizard.create.ddt"
-
-
