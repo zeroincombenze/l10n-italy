@@ -209,7 +209,7 @@ TEST_RES_PARTNER = {
         "property_supplier_payment_term_id": "z0bug.payment_1",
     },
     "z0bug.res_partner_2": {
-        "name": "Latte Beta Due s.n.c.",
+        "name": "Latte Beta Due Più s.n.c.",
         "street": "Via Dueville, 2",
         "country_id": "base.it",
         "zip": "10060",

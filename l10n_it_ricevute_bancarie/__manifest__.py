@@ -13,7 +13,6 @@
     "version": "10.0.1.3.12",
     "category": "Accounting & Finance",
     "author": "Odoo Community Association (OCA)",
-    "category": "Accounting & Finance",
     "website": "https://odoo-community.org/",
     "license": "AGPL-3",
     "depends": [
@@ -30,6 +29,7 @@
         "data/riba_sequence.xml",
         "wizard/wizard_accreditation.xml",
         "wizard/wizard_unsolved.xml",
+        "wizard/wizard_line_settlement.xml",
         "views/riba_view.xml",
         "views/account_view.xml",
         "wizard/wizard_riba_issue.xml",

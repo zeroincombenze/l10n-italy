@@ -10,7 +10,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
-
+from .open_items import OpenItems
 import odoo.addons.decimal_precision as dp
 
 
@@ -137,6 +137,22 @@ class AccountMoveLine(models.Model):
             line.update_paid_riba_lines()
         return res
 
+    @api.multi
+    def registra_incasso_riba(self):
+        open_items = OpenItems()
+        for move_line in self:
+            open_items.add_move_line(move_line)
+
+        vals = open_items.load_move_vals()
+        if vals:
+            settlement_move = self.env["account.move"].create(vals)
+            settlement_move.post()
+            open_items.couple_settlement(settlement_move)
+        open_items.do_reconciles()
+        for move_line in self:
+            for riba_move_line in move_line.distinta_line_ids:
+                riba_line = riba_move_line.riba_line_id
+                riba_line.riba_line_set_state("paid")
 
 class AccountInvoice(models.Model):
     @api.multi

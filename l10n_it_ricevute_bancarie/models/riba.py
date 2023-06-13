@@ -513,8 +513,8 @@ class RibaListLine(models.Model):
                 vals = open_items.load_move_vals()
                 if vals:
                     settlement_move = move_model.create(vals)
-                    open_items.couple_settlement(settlement_move)
                     settlement_move.post()
+                    open_items.couple_settlement(settlement_move)
                     move_line_debit = False
                     for move_line in settlement_move.line_ids:
                         if move_line.debit > 0.0:

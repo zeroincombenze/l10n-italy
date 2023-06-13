@@ -1,19 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+"""Open items manager
+This module manages Odoo open items of payment orders.
+Open items are created from move lines (add_move_line) and result is a list of couple
+(account, partner) to close on payment confirmation (settlement).
+Payment order (account.payment.order) or l10n-italy C/o list (riba.distinta) must be
+supplied in order to set configuration.
+
+The function load_move_vals returns the value for new payment confirmation move. Notice
+returned dict could be empty if there are no open items to close.
+The move values may be configured by end user (see _load_line_ref function).
+
+After added payment move created above to open items (function couple_settlement) you
+can also reconcile all move line records using do_reconcile() function.
+
+The class is designed to work on Odoo 10.0 and 12.0. It automatically recognizes the
+type of payment line supplied.
+"""
 
 from datetime import date
 import re
 
 from odoo import fields
-from odoo.exceptions import Warning as UserError
+try:
+    from odoo.exceptions import Warning as UserError
+except ImportError:
+    from odoo.exceptions import UserError
+
 
 
 class OpenItems(object):
-    """To manage all account entries for due line.
-    Result is a list of accounts to close on payment confirmation (settlement).
-    The class is designed to work on Odoo 10.0 and 12.0 with minimal updates.
-    """
 
     def __init__(self):
         self.amount = 0.0
@@ -37,16 +54,18 @@ class OpenItems(object):
         * %(name)s -> Customer name(s)
         * %(date)s -> Due date
         """
+        def _str(obj, name):
+            return str(getattr(obj, name)) if name == "sequence" else getattr(obj, name)
 
         def _load_multiple_refs(refs, name, maxlen=30):
             if len(refs) == 0:
                 return ""
             elif len(refs) == 1:
-                return str(getattr(refs[0], name))
+                return _str(refs[0], name)
             return ", ".join(
                 set(
                     [
-                        " ".join(str(getattr(x, name)).split(" ")[0:2])[0:maxlen]
+                        " ".join(_str(x, name).split(" ")[0:2])[0:maxlen]
                         for x in refs
                     ]
                 )
@@ -134,7 +153,6 @@ class OpenItems(object):
                     )
         elif self.odoo_version == 12:
             # Odoo 12.0: payment order line is <account.payment.line>
-
             self.move_date = fields.Date.today()
             config = payorder_line.order_id.get_move_config()
             for field, cfgkey in (
@@ -213,7 +231,12 @@ class OpenItems(object):
                     "payorder_lines": set(),
                 }
             self.account_ids[key][side] += move_line[side]
-            if self.odoo_version == 12:
+            if self.odoo_version == 10:
+                for riba_move_line in move_line.distinta_line_ids:
+                    self.account_ids[key]["payorder_lines"].add(
+                        riba_move_line.riba_line_id)
+                    self.add_payorder_line(riba_move_line.riba_line_id, force=False)
+            elif self.odoo_version == 12:
                 for payorder_line in move_line.payment_line_ids:
                     self.account_ids[key]["payorder_lines"].add(payorder_line)
                     self.add_payorder_line(payorder_line, force=False)
