@@ -1,3 +1,9 @@
+10.0.1.0.26 (2023-06-12)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Foreign customer w/o vat but with fiscalcode / Cliente estero senza PI ma con CF
+* [QUA] Coverage 60% (731/292) + 39cp
+
 10.0.1.0.25 (2023-03-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
