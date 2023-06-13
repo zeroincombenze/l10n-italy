@@ -36,6 +36,9 @@ TEST_ACCOUNT_FISCAL_POSITION = {
     "z0bug.fiscalpos_eu": {
         "name": "EU",
     },
+    "z0bug.fiscalpos_xx": {
+        "name": "xx",
+    },
 }
 
 TEST_ACCOUNT_JOURNAL = {
@@ -92,6 +95,16 @@ TEST_ACCOUNT_TAX = {
         "kind_id": "l10n_it_ade.n3_2",
         "law_reference": "art.41",
     },
+    "external.a7tv": {
+        "amount_type": "percent",
+        "name": "vendite art. 7ter",
+        "amount": 0,
+        "type_tax_use": "sale",
+        "price_include": False,
+        "description": "a7tv",
+        "kind_id": "l10n_it_ade.n3_1",
+        "law_reference": "art.7 ter",
+    },
 }
 
 # Record data for models to test
@@ -116,6 +129,15 @@ TEST_ACCOUNT_INVOICE = {
         "date_invoice": "####-<#-99",
         "partner_id": "z0bug.res_partner_2",
         "fiscal_position_id": "z0bug.fiscalpos_eu",
+    },
+    "z0bug.invoice_Z0_3": {
+        "origin": "mail",
+        "reference": "mail",
+        "type": "out_invoice",
+        "journal_id": "external.INV",
+        "date_invoice": "####-<#-99",
+        "partner_id": "z0bug.res_partner_3",
+        "fiscal_position_id": "z0bug.fiscalpos_xx",
     },
 }
 
@@ -146,6 +168,15 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "name": "Prodotto Beta",
         "invoice_line_tax_ids": "external.a41v",
         "quantity": 50,
+    },
+    "z0bug.invoice_Z0_3_1": {
+        "product_id": "z0bug.product_product_2",
+        "invoice_id": "z0bug.invoice_Z0_2",
+        "price_unit": 1.80,
+        "account_id": "z0bug.coa_sale",
+        "name": "Prodotto Beta",
+        "invoice_line_tax_ids": "external.a7tv",
+        "quantity": 20,
     },
 }
 
@@ -251,6 +282,19 @@ TEST_RES_PARTNER = {
         "electronic_invoice_subjected": True,
         "codice_destinatario": "XXXXXXX",
     },
+    "z0bug.res_partner_3": {
+        "name": "Antonio La Pacchia",
+        "street": "Kaiserswerther Straße 12-24",
+        "country_id": "base.ch",
+        "city": "Zurich",
+        "customer": True,
+        "supplier": False,
+        "is_company": True,
+        "fiscalcode": "VGLNTN59H26B963V",
+        "property_account_position_id": "z0bug.fiscalpos_xx",
+        "electronic_invoice_subjected": True,
+        "codice_destinatario": "XXXXXXX",
+    },
 }
 
 TEST_RES_PARTNER_BANK = {
@@ -336,14 +380,16 @@ class AccountInvoice(SingleTransactionCase):
                 self.default_company().vat[: 2],
             "CedentePrestatore/DatiAnagrafici/IdFiscaleIVA/IdCodice":
                 self.default_company().vat[2:],
-            "CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdPaese":
-                invoice.partner_id.vat[: 2],
-            "CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice":
-                invoice.partner_id.vat[2:],
             "DatiGenerali/DatiGeneraliDocumento/Data": invoice.date_invoice,
             "DatiGenerali/DatiGeneraliDocumento/Numero": invoice.number,
             "ImportoTotaleDocumento": "%1.2f" % invoice.amount_total,
             "TipoDocumento": "TD01",
+        })
+    def _validate_xml_vat(self, invoice, xml, vat=None):
+        vat = vat or invoice.partner_id.vat
+        self._test_file_xml(xml, {
+            "CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdPaese": vat[: 2],
+            "CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice": vat[2:],
         })
 
     def test_account_invoice(self):
@@ -361,3 +407,7 @@ class AccountInvoice(SingleTransactionCase):
                         button_name="exportFatturaPA")
             xml = self.field_download(invoice.fatturapa_attachment_out_id, "datas")
             self._validate_xml_common(invoice, xml)
+            if xref == "z0bug.invoice_Z0_3":
+                self._validate_xml_vat(invoice, xml, vat="CH99999999999")
+            else:
+                self._validate_xml_vat(invoice, xml)

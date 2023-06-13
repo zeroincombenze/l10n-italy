@@ -319,8 +319,6 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa_fp = company.fatturapa_fiscal_position_id
         if not fatturapa_fp:                                         # pragma: no cover
             raise UserError(_("E-invoice fiscal position not set."))
-        # CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-        #     IdPaese=company.country_id.code, IdCodice=company.vat[2:])
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:]
         )
@@ -474,28 +472,26 @@ class WizardExportFatturapa(models.TransientModel):
         codice_destinatario = self._get_partner_field(
             partner, "codice_destinatario", mode=mode
         )
-        if not vat and not fiscalcode:
-            if (
-                codice_destinatario == CODE_NONE_EU
-                and partner.country_id.code
-                and partner.country_id.code != "IT"
-            ):
-                # SDI accepts missing VAT# for foreign customers by setting a
-                # fake IdCodice and a valid IdPaese
-                # Otherwise raise error if we have no VAT# and no Fiscal code
-                vat = "%s99999999999" % partner.country_id.code
-            else:
-                raise UserError(
-                    _("VAT number and fiscal code are not set for %s.") % partner.name
-                )
+        if (
+            not vat
+            and codice_destinatario == CODE_NONE_EU
+            and partner.country_id.code
+            and partner.country_id.code != "IT"
+        ):
+            # SDI accepts missing VAT# for foreign customers by setting a
+            # fake IdCodice and a valid IdPaese
+            # Otherwise raise error if we have no VAT# and no Fiscal code
+            vat = "%s99999999999" % partner.country_id.code
         elif vat and vat[0:3] in ("IT9", "IT8"):
             if not fiscalcode:
                 fiscalcode = vat[2:]
                 vat = ""
             elif fiscalcode == vat[2:]:
                 vat = ""
-        # elif company.einvoice_no_eq_cf_pi and vat and fiscalcode == vat[2:]:
-        #     fiscalcode = ""
+        # elif not vat and not fiscalcode:
+        #     raise UserError(
+        #         _("VAT number and fiscal code are not set for %s.") % partner.name
+        #     )
 
         FatturaCessionarioCommittente = (
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente
