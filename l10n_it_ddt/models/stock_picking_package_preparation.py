@@ -688,8 +688,8 @@ class StockPickingPackagePreparation(models.Model):
                     if picking.state == "done":
                         picking.action_cancel()
                 self.mapped('line_ids').mapped('sale_line_id').mapped(
-                    'procurement_ids'
-                ).cancel()
+                    'procurement_ids').filtered(
+                    lambda picking: picking.state in ('waiting', 'confirmed')).cancel()
         return super(StockPickingPackagePreparation, self).action_cancel()
 
     @api.multi

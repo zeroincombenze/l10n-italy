@@ -5,7 +5,7 @@
 {
     "name": "DDT",
     "summary": "Delivery Document Type",
-    "version": "10.0.1.8.22",
+    "version": "10.0.1.8.25",
     "category": "Localization/Italy",
     "author": "Odoo Community Association (OCA) and other subjects",
     "website": "https://github.com/OCA/l10n-italy",

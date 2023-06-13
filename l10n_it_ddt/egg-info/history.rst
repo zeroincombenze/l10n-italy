@@ -1,3 +1,8 @@
+10.0.1.8.25 (2023-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Cancel DdT from order with invoice / Annullo DdT da ordine con fattura
+
 10.0.1.8.24 (2023-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
