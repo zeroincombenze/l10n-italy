@@ -46,9 +46,8 @@
 
         </record>
 
-        <!--
         <record model="ir.values" id="riba_issue_client_action">
-            <field name="name">Confirm paid</field>
+            <field name="name">Issue Ri.Ba.</field>
             <field name="key2">client_action_multi</field>
             <field
                 name="value"
@@ -57,7 +56,6 @@
             <field name="key">action</field>
             <field name="model">account.move.line</field>
         </record>
-        -->
 
     </data>
 </openerp>
