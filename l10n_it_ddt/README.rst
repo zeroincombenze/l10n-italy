@@ -225,6 +225,8 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Cancel DdT from order with invoice / Annullo DdT da ordine con fattura
+* [IMP] Cancel DdT check for backorder / Annullo DdT controlla se creato ordine saldo
+* [QUA] Coverage 67% (1377/453) + 247cp
 
 10.0.1.8.24 (2023-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
