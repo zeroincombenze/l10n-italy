@@ -1,0 +1,57 @@
+/home/odoo/8.0/venv_odoo/lib/python2.7/site-packages/OpenSSL/crypto.py:14: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography import utils, x509
+2023-06-14 06:46:56,928 2721823 INFO ? openerp: OpenERP version 8.0
+2023-06-14 06:46:56,928 2721823 INFO ? openerp: addons paths: ['/home/odoo/.local/share/Odoo8/addons/8.0', u'/home/odoo/8.0/openerp/addons', u'/home/odoo/8.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/8.0/account-analytic', u'/home/odoo/8.0/account-budgeting', u'/home/odoo/8.0/account-closing', u'/home/odoo/8.0/account-consolidation', u'/home/odoo/8.0/account-financial-reporting', u'/home/odoo/8.0/account-financial-tools', u'/home/odoo/8.0/account-fiscal-rule', u'/home/odoo/8.0/account-invoice-reporting', u'/home/odoo/8.0/account-invoicing', u'/home/odoo/8.0/account-payment', u'/home/odoo/8.0/account-reconcile', u'/home/odoo/8.0/bank-payment', u'/home/odoo/8.0/bank-statement-import', u'/home/odoo/8.0/business-requirement', u'/home/odoo/8.0/commission', u'/home/odoo/8.0/community-data-files', u'/home/odoo/8.0/connector', u'/home/odoo/8.0/contract', u'/home/odoo/8.0/crm', u'/home/odoo/8.0/data-protection', u'/home/odoo/8.0/delivery-carrier', u'/home/odoo/8.0/e-commerce', u'/home/odoo/8.0/edi', u'/home/odoo/8.0/geospatial', u'/home/odoo/8.0/hr', u'/home/odoo/8.0/intrastat-extrastat', u'/home/odoo/8.0/knowledge', u'/home/odoo/8.0/l10n-italy', u'/home/odoo/8.0/l10n-italy-supplemental', u'/home/odoo/8.0/manufacture', u'/home/odoo/8.0/manufacture-reporting', u'/home/odoo/8.0/margin-analysis', u'/home/odoo/8.0/mgmtsystem', u'/home/odoo/8.0/mis-builder', u'/home/odoo/8.0/multi-company', u'/home/odoo/8.0/partner-contact', u'/home/odoo/8.0/pos', u'/home/odoo/8.0/product-attribute', u'/home/odoo/8.0/product-variant', u'/home/odoo/8.0/profiles', u'/home/odoo/8.0/project', u'/home/odoo/8.0/project-reporting', u'/home/odoo/8.0/purchase-reporting', u'/home/odoo/8.0/purchase-workflow', u'/home/odoo/8.0/report-print-send', u'/home/odoo/8.0/reporting-engine', u'/home/odoo/8.0/rma', u'/home/odoo/8.0/sale-financial', u'/home/odoo/8.0/sale-reporting', u'/home/odoo/8.0/sale-workflow', u'/home/odoo/8.0/server-auth', u'/home/odoo/8.0/server-tools', u'/home/odoo/8.0/social', u'/home/odoo/8.0/stock-logistics-barcode', u'/home/odoo/8.0/stock-logistics-reporting', u'/home/odoo/8.0/stock-logistics-tracking', u'/home/odoo/8.0/stock-logistics-transport', u'/home/odoo/8.0/stock-logistics-warehouse', u'/home/odoo/8.0/stock-logistics-workflow', u'/home/odoo/8.0/timesheet', u'/home/odoo/8.0/uncovered', u'/home/odoo/8.0/web', u'/home/odoo/8.0/zerobug-test', u'/home/odoo/8.0/didotech_80']
+2023-06-14 06:46:56,928 2721823 INFO ? openerp: database hostname: localhost
+2023-06-14 06:46:56,928 2721823 INFO ? openerp: database port: 5432
+2023-06-14 06:46:56,928 2721823 INFO ? openerp: database user: odoo8
+2023-06-14 06:46:57,105 2721823 INFO ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:62050
+2023-06-14 06:46:57,118 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading 1 modules...
+2023-06-14 06:46:57,128 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: 1 modules loaded in 0.01s, 0 queries
+2023-06-14 06:46:57,307 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: updating modules list
+2023-06-14 06:47:04,729 2721823 INFO ? openerp.addons.bus.bus: Bus.loop listen imbus on db postgres
+2023-06-14 06:47:04,976 2721823 INFO test_l10n_it_vat_communication_8 openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2023-06-14 06:47:05,384 2721823 WARNING test_l10n_it_vat_communication_8 openerp.addons.account_bank_statement_import_ofx.account_bank_statement_import_ofx: ofxparse not found, OFX parsing disabled.
+2023-06-14 06:47:05,527 2721823 WARNING test_l10n_it_vat_communication_8 openerp.addons.base_geoengine.geo_field: Shapely or geojson are not available in the sys path
+2023-06-14 06:47:05,528 2721823 WARNING test_l10n_it_vat_communication_8 openerp.addons.base_geoengine.geo_helper.geo_convertion_helper: Shapely or geojson are not available in the sys path
+2023-06-14 06:47:05,528 2721823 WARNING test_l10n_it_vat_communication_8 openerp.addons.base_geoengine.fields: Shapely or geojson are not available in the sys path
+2023-06-14 06:47:06,778 2721823 INFO test_l10n_it_vat_communication_8 openerp.http: HTTP Configuring static files
+2023-06-14 06:47:07,565 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading 38 modules...
+2023-06-14 06:47:07,696 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: 38 modules loaded in 0.13s, 0 queries
+2023-06-14 06:47:07,700 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading 39 modules...
+2023-06-14 06:47:08,253 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.module: module l10n_it_vat_communication: creating or updating database tables
+2023-06-14 06:47:08,906 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/views/add_period.xml
+2023-06-14 06:47:08,934 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/views/remove_period.xml
+2023-06-14 06:47:08,955 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/views/account_view.xml
+2023-06-14 06:47:09,098 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/views/wizard_export_view.xml
+2023-06-14 06:47:09,124 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/views/set_invoice_commtype_view.xml
+2023-06-14 06:47:09,151 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/security/ir.model.access.csv
+2023-06-14 06:47:09,209 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: loading l10n_it_vat_communication/communication_workflow.xml
+2023-06-14 06:47:09,323 2721823 WARNING test_l10n_it_vat_communication_8 openerp.modules.module: Found deprecated fast_suite or checks attribute in test module openerp.addons.l10n_it_vat_communication.tests. These have no effect in or after version 8.0.
+2023-06-14 06:47:09,324 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.module: openerp.addons.l10n_it_vat_communication.tests.test_vat_communication running tests.
+2023-06-14 06:47:09,324 2721823 INFO test_l10n_it_vat_communication_8 openerp.addons.l10n_it_vat_communication.tests.test_vat_communication: test_vat_communication (openerp.addons.l10n_it_vat_communication.tests.test_vat_communication.TestCommunication)
+2023-06-14 06:47:09,469 2721823 WARNING test_l10n_it_vat_communication_8 openerp.models: res.company.create() with unknown fields: address
+2023-06-14 06:47:09,517 2721823 INFO test_l10n_it_vat_communication_8 openerp.addons.l10n_it_vat_communication.tests.test_vat_communication: Ran 1 test in 0.193s
+2023-06-14 06:47:09,518 2721823 INFO test_l10n_it_vat_communication_8 openerp.addons.l10n_it_vat_communication.tests.test_vat_communication: OK
+2023-06-14 06:47:09,547 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: 39 modules loaded in 1.85s, 275 queries
+2023-06-14 06:47:10,174 2721823 WARNING test_l10n_it_vat_communication_8 openerp.modules.loading: The transient model wizard.vat.communication (wizard.vat.communication) should not have explicit access rules!
+2023-06-14 06:47:10,474 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: Modules loaded.
+2023-06-14 06:47:10,476 2721823 WARNING test_l10n_it_vat_communication_8 openerp.modules.module: Found deprecated fast_suite or checks attribute in test module openerp.addons.l10n_it_vat_communication.tests. These have no effect in or after version 8.0.
+2023-06-14 06:47:10,476 2721823 INFO test_l10n_it_vat_communication_8 openerp.modules.loading: All post-tested in 0.00s, 0 queries
+2023-06-14 06:47:10,477 2721823 INFO test_l10n_it_vat_communication_8 openerp.models: Computing parent left and right for table ir_ui_menu...
+2023-06-14 06:47:10,561 2721823 INFO test_l10n_it_vat_communication_8 openerp.service.server: Initiating shutdown
+2023-06-14 06:47:10,561 2721823 INFO test_l10n_it_vat_communication_8 openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_vat_communication[0m (8.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                  Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_vat_communication/models/account.py                  538    467    13%   15-16, 25-26, 51-72, 75-99, 106-110, 204-207, 211, 221-233, 236-249, 252, 258, 276-303, 306-314, 319-468, 472-547, 551-556, 560-565, 568-579, 583-620, 628-632, 640-647, 654-666, 673-676, 685-698, 705-722, 730-741, 748-752, 760-764, 767-872, 875-892, 895-920, 932-945, 948-952, 955-959, 1081-1091, 1094-1098, 1101-1105
+l10n-italy/l10n_it_vat_communication/wizard/add_period.py                14      8    43%   22-36
+l10n-italy/l10n_it_vat_communication/wizard/remove_period.py             19      8    58%   20-23, 32-40
+l10n-italy/l10n_it_vat_communication/wizard/set_invoice_commtype.py       6      2    67%   11-14
+l10n-italy/l10n_it_vat_communication/wizard/wizard_export.py            227    200    12%   19-20, 81-82, 107, 110, 114-123, 126-194, 197-244, 250-281, 287-320, 324-441, 444-446, 449-451, 454-499
+---------------------------------------------------------------------------------------------------
+TOTAL                                                                   804    685    15%
