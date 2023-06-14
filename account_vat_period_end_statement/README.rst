@@ -200,6 +200,7 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] No admin now can create statement / Non amministratori possono creare liquidaz.
 * [IMP] Tax code sign=0 disable vat amount / Segno codice tassa azzera IVA
+* [IMP] Report reactivated / Riattivato stampa liquidazione
 * [QUA] Coverage 46% (964/519)
 
 

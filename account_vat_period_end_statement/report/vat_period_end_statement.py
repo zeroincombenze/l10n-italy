@@ -31,16 +31,16 @@ from openerp.report import report_sxw
 from openerp.tools.translate import _
 
 
-# class Report(orm.Model):
-#     _inherit = "report"
+class Report(orm.Model):
+    _inherit = "report"
 
 
 class VatPeriodEndStatementReport(report_sxw.rml_parse):
     _name = 'report.vat.period.end.statement'
+    _description = "VAT Statement report"
 
     def __init__(self, cr, uid, name, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
         super(VatPeriodEndStatementReport, self).__init__(
             cr, uid, name, context=context)
         self.query = ""
@@ -73,11 +73,28 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
                 self.cr, self.uid, statement_id, self.context)
         return statement.fiscal_page_base
 
-    def _get_tax_codes_amounts(self, period_id, tax_code_ids=None,
-                               context=None):
-        code_pool = self.pool.get('account.tax.code')
-        return code_pool._get_tax_codes_amounts(
-            self.cr, self.uid, period_id, tax_code_ids, context)
+    def _get_tax_codes_amounts(
+            self, period_id, type, statement_line_ids=None, context=None):
+        res = {}
+        for stmt_line in statement_line_ids:
+            if not stmt_line.tax_code_id and not stmt_line.base_code_id:
+                continue
+            res[stmt_line.tax_code_id] = {
+                'code': stmt_line.base_code_id.code
+                if stmt_line.base_code_id else stmt_line.tax_code_id.code,
+                'name': stmt_line.base_code_id.name
+                if stmt_line.base_code_id else stmt_line.tax_code_id.name,
+                'base': stmt_line.base_amount,
+                'vat': stmt_line.amount,
+                'vat_deductible': stmt_line.amount,
+                'vat_undeductible': 0.0,
+            }
+        return res
+    # def _get_tax_codes_amounts(self, period_id, tax_code_ids=None,
+    #                            context=None):
+    #     code_pool = self.pool.get('account.tax.code')
+    #     return code_pool._get_tax_codes_amounts(
+    #         self.cr, self.uid, period_id, tax_code_ids, context)
 
     def _get_account_vat_amounts(
         self, type='credit', statement_account_line=None, context=None

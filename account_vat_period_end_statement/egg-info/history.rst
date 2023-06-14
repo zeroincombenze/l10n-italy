@@ -3,7 +3,8 @@
 
 * [FIX] No admin now can create statement / Non amministratori possono creare liquidaz.
 * [IMP] Tax code sign=0 disable vat amount / Segno codice tassa azzera IVA
-* [QUA] Coverage 46% (964/519)
+* [IMP] Report reactivated / Riattivato stampa liquidazione
+* [QUA] Coverage 48% (927/483)
 
 8.0.3.0.5 (2017-06-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
