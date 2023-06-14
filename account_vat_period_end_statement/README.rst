@@ -1,6 +1,6 @@
 
 =================
-|icon|  8.0.3.0.5
+|icon|  8.0.3.0.6
 =================
 
 
@@ -190,6 +190,18 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+8.0.3.0.6 (2023-06-14)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] No admin now can create statement / Non amministratori possono creare liquidaz.
+* [IMP] Tax code sign=0 disable vat amount / Segno codice tassa azzera IVA
+* [QUA] Coverage 46% (964/519)
+
 
 
 |

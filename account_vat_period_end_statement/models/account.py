@@ -879,9 +879,11 @@ class AccountVatPeriodEndStatement(orm.Model):
                             dbt_crd = 'credit'
                         else:
                             dbt_crd = dbt_crd_tax_code.vat_statement_type
-                        if dbt_crd == 'debit':
+                        if dbt_crd == 'debit' and dbt_crd_tax_code.vat_statement_sign:
                             type_sign = 1
-                        elif dbt_crd == 'credit':
+                        elif (
+                                dbt_crd == 'credit' and dbt_crd_tax_code.vat_statement_sign
+                        ):
                             type_sign = -1
                         else:
                             type_sign = 0

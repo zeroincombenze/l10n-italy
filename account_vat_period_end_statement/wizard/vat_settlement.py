@@ -73,12 +73,12 @@ class WizardVatSettlement(orm.TransientModel):
         """
         base_amount = 0.0
         if type == 'credit':
-            credit_line_pool = self.pool.get('statement.credit.account.line')
+            # credit_line_pool = self.pool.get('statement.credit.account.line')
             for credit_line in statement.credit_vat_account_line_ids:
                 if credit_line.amount != 0.0:
                     base_amount += credit_line.base_amount
         elif type == 'debit':
-            debit_line_pool = self.pool.get('statement.debit.account.line')
+            # debit_line_pool = self.pool.get('statement.debit.account.line')
             for debit_line in statement.debit_vat_account_line_ids:
                 if debit_line.amount != 0.0:
                     base_amount += debit_line.base_amount
