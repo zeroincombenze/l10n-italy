@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-14 19:05+0000\n"
-"PO-Revision-Date: 2023-06-15 07:21+0200\n"
+"PO-Revision-Date: 2023-06-15 09:32+0200\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -83,12 +83,12 @@ msgstr "Interessi su liquidazione IVA"
 #. module: account_vat_period_end_statement
 #: field:account.vat.settlement.attachment,ir_attachment_id:0
 msgid "Attachment"
-msgstr "Attachment"
+msgstr "Allegato"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.settlement.attachment,name:0
 msgid "Attachment Name"
-msgstr "Attachment Name"
+msgstr "Nome allegato"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,authority_vat_amount:0
@@ -110,7 +110,7 @@ msgstr "Base"
 #: field:statement.debit.account.line,base_code_id:0
 #: field:statement.generic.account.line,base_code_id:0
 msgid "Base Tax Code"
-msgstr "Base Tax Code"
+msgstr "Codice IVA base"
 
 #. module: account_vat_period_end_statement
 #: field:statement.credit.account.line,base_amount:0

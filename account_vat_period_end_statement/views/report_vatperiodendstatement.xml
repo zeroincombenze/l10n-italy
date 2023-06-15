@@ -15,7 +15,6 @@
                         </h3>
 
                         <!-- Sale -->
-                        <!-- <t t-set="tax_code_amounts" t-value="tax_codes_amounts(period.id, [l.tax_code_id.id for l in statement.debit_vat_account_line_ids])"/> -->
                         <t t-set="tax_code_amounts"
                            t-value="tax_codes_amounts(period.id, 'debit', [ln for ln in statement.debit_vat_account_line_ids])"/>
                         <t t-set="tax_code_type" t-value="'debit'"/>
@@ -23,11 +22,30 @@
                         <t t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"/>
 
                         <!-- Purchase -->
-                        <!-- <t t-set="tax_code_amounts" t-value="tax_codes_amounts(period.id, [l.tax_code_id.id for l in statement.credit_vat_account_line_ids])"/> -->
                         <t t-set="tax_code_amounts"
                            t-value="tax_codes_amounts(period.id, 'credit', [ln for ln in statement.credit_vat_account_line_ids])"/>
                         <t t-set="tax_code_type" t-value="'credit'"/>
                         <t t-set="tax_code_section" t-value="'purchase'"/>
+                        <t t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"/>
+                    </t>
+
+                    <t t-set="debit_code_amounts" t-value="{}"/>
+                    <t t-set="credit_code_amounts" t-value="{}"/>
+                    <t t-foreach="statement.y_period_ids" t-as="period">
+                        <!-- Sale -->
+                        <t t-set="debit_code_amounts"
+                           t-value="tax_codes_year_amounts(debit_code_amounts, [ln for ln in statement.debit_vat_account_line_ids])"/>
+                        <!-- Purchase -->
+                        <t t-set="credit_code_amounts"
+                           t-value="tax_codes_year_amounts(credit_code_amounts, [ln for ln in statement.credit_vat_account_line_ids])"/>
+                    </t>
+
+                    <t t-if="debit_code_amounts">
+                        <t t-set="tax_code_amounts" t-value="debit_code_amounts"/>
+                        <t t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"/>
+                    </t>
+                    <t t-if="credit_code_amounts">
+                        <t t-set="tax_code_amounts" t-value="credit_code_amounts"/>
                         <t t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"/>
                     </t>
 

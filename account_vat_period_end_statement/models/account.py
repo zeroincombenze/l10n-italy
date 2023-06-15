@@ -801,7 +801,11 @@ class AccountVatPeriodEndStatement(orm.Model):
     def get_date_start_stop(self, statement, context=None):
         date_start = False
         date_stop = False
-        for period in statement.period_ids:
+        if statement.type == 'year':
+            periods = statement.y_period_ids
+        else:
+            periods = statement.period_ids
+        for period in periods:
             if not date_start:
                 date_start = period.date_start
             else:

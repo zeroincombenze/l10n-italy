@@ -52,6 +52,7 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
             'time': time,
             'statement': self._get_statement,
             'tax_codes_amounts': self._get_tax_codes_amounts,
+            'tax_codes_year_amounts': self._get_tax_codes_year_amounts,
             'account_vat_amounts': self._get_account_vat_amounts,
             'l10n_it_count_fiscal_page_base': self._get_fiscal_page_base,
         })
@@ -95,6 +96,29 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
     #     code_pool = self.pool.get('account.tax.code')
     #     return code_pool._get_tax_codes_amounts(
     #         self.cr, self.uid, period_id, tax_code_ids, context)
+
+    def _get_tax_codes_year_amounts(
+            self, code_amounts, statement_line_ids=None, context=None):
+        code_amounts = code_amounts or {}
+        for stmt_line in statement_line_ids:
+            if not stmt_line.tax_code_id and not stmt_line.base_code_id:
+                continue
+            if stmt_line.base_code_id not in code_amounts:
+                code_amounts[stmt_line.tax_code_id] = {
+                    'code': stmt_line.base_code_id.code
+                    if stmt_line.base_code_id else stmt_line.tax_code_id.code,
+                    'name': stmt_line.base_code_id.name
+                    if stmt_line.base_code_id else stmt_line.tax_code_id.name,
+                    'base': 0.0,
+                    'vat': 0.0,
+                    'vat_deductible': 0.0,
+                    'vat_undeductible': 0.0,
+                }
+            code_amounts[stmt_line.tax_code_id]['base'] += stmt_line.base_amount
+            code_amounts[stmt_line.tax_code_id]['vat'] += stmt_line.amount
+            code_amounts[stmt_line.tax_code_id]['vat_deductible'] += stmt_line.amount
+            # code_amounts[stmt_line.tax_code_id]['vat_undeductible'] += 0.0
+        return code_amounts
 
     def _get_account_vat_amounts(
         self, type='credit', statement_account_line=None, context=None

@@ -1,0 +1,60 @@
+/home/odoo/8.0/venv_odoo/lib/python2.7/site-packages/OpenSSL/crypto.py:14: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography import utils, x509
+2023-06-15 07:21:57,404 116282 INFO ? openerp: OpenERP version 8.0
+2023-06-15 07:21:57,404 116282 INFO ? openerp: addons paths: ['/home/odoo/.local/share/Odoo8/addons/8.0', u'/home/odoo/8.0/openerp/addons', u'/home/odoo/8.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/8.0/account-analytic', u'/home/odoo/8.0/account-budgeting', u'/home/odoo/8.0/account-closing', u'/home/odoo/8.0/account-consolidation', u'/home/odoo/8.0/account-financial-reporting', u'/home/odoo/8.0/account-financial-tools', u'/home/odoo/8.0/account-fiscal-rule', u'/home/odoo/8.0/account-invoice-reporting', u'/home/odoo/8.0/account-invoicing', u'/home/odoo/8.0/account-payment', u'/home/odoo/8.0/account-reconcile', u'/home/odoo/8.0/bank-payment', u'/home/odoo/8.0/bank-statement-import', u'/home/odoo/8.0/business-requirement', u'/home/odoo/8.0/commission', u'/home/odoo/8.0/community-data-files', u'/home/odoo/8.0/connector', u'/home/odoo/8.0/contract', u'/home/odoo/8.0/crm', u'/home/odoo/8.0/data-protection', u'/home/odoo/8.0/delivery-carrier', u'/home/odoo/8.0/e-commerce', u'/home/odoo/8.0/edi', u'/home/odoo/8.0/geospatial', u'/home/odoo/8.0/hr', u'/home/odoo/8.0/intrastat-extrastat', u'/home/odoo/8.0/knowledge', u'/home/odoo/8.0/l10n-italy', u'/home/odoo/8.0/l10n-italy-supplemental', u'/home/odoo/8.0/manufacture', u'/home/odoo/8.0/manufacture-reporting', u'/home/odoo/8.0/margin-analysis', u'/home/odoo/8.0/mgmtsystem', u'/home/odoo/8.0/mis-builder', u'/home/odoo/8.0/multi-company', u'/home/odoo/8.0/partner-contact', u'/home/odoo/8.0/pos', u'/home/odoo/8.0/product-attribute', u'/home/odoo/8.0/product-variant', u'/home/odoo/8.0/profiles', u'/home/odoo/8.0/project', u'/home/odoo/8.0/project-reporting', u'/home/odoo/8.0/purchase-reporting', u'/home/odoo/8.0/purchase-workflow', u'/home/odoo/8.0/report-print-send', u'/home/odoo/8.0/reporting-engine', u'/home/odoo/8.0/rma', u'/home/odoo/8.0/sale-financial', u'/home/odoo/8.0/sale-reporting', u'/home/odoo/8.0/sale-workflow', u'/home/odoo/8.0/server-auth', u'/home/odoo/8.0/server-tools', u'/home/odoo/8.0/social', u'/home/odoo/8.0/stock-logistics-barcode', u'/home/odoo/8.0/stock-logistics-reporting', u'/home/odoo/8.0/stock-logistics-tracking', u'/home/odoo/8.0/stock-logistics-transport', u'/home/odoo/8.0/stock-logistics-warehouse', u'/home/odoo/8.0/stock-logistics-workflow', u'/home/odoo/8.0/timesheet', u'/home/odoo/8.0/uncovered', u'/home/odoo/8.0/web', u'/home/odoo/8.0/zerobug-test', u'/home/odoo/8.0/didotech_80']
+2023-06-15 07:21:57,404 116282 INFO ? openerp: database hostname: localhost
+2023-06-15 07:21:57,404 116282 INFO ? openerp: database port: 5432
+2023-06-15 07:21:57,404 116282 INFO ? openerp: database user: odoo8
+2023-06-15 07:21:57,615 116282 INFO ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:58555
+2023-06-15 07:21:57,636 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading 1 modules...
+2023-06-15 07:21:57,647 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: 1 modules loaded in 0.01s, 0 queries
+2023-06-15 07:21:57,859 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: updating modules list
+2023-06-15 07:22:05,336 116282 INFO ? openerp.addons.bus.bus: Bus.loop listen imbus on db postgres
+2023-06-15 07:22:05,645 116282 INFO test_account_vat_period_end_statement_8 openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2023-06-15 07:22:06,018 116282 WARNING test_account_vat_period_end_statement_8 openerp.addons.account_bank_statement_import_ofx.account_bank_statement_import_ofx: ofxparse not found, OFX parsing disabled.
+2023-06-15 07:22:06,153 116282 WARNING test_account_vat_period_end_statement_8 openerp.addons.base_geoengine.geo_field: Shapely or geojson are not available in the sys path
+2023-06-15 07:22:06,154 116282 WARNING test_account_vat_period_end_statement_8 openerp.addons.base_geoengine.geo_helper.geo_convertion_helper: Shapely or geojson are not available in the sys path
+2023-06-15 07:22:06,155 116282 WARNING test_account_vat_period_end_statement_8 openerp.addons.base_geoengine.fields: Shapely or geojson are not available in the sys path
+2023-06-15 07:22:07,467 116282 INFO test_account_vat_period_end_statement_8 openerp.http: HTTP Configuring static files
+2023-06-15 07:22:08,403 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading 38 modules...
+2023-06-15 07:22:08,531 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: 38 modules loaded in 0.13s, 0 queries
+2023-06-15 07:22:08,536 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading 39 modules...
+2023-06-15 07:22:09,094 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.module: module account_vat_period_end_statement: creating or updating database tables
+2023-06-15 07:22:09,840 116282 INFO test_account_vat_period_end_statement_8 openerp.models: storing computed values of fields.function 'reconciled'
+2023-06-15 07:22:09,840 116282 INFO test_account_vat_period_end_statement_8 openerp.models: storing computed values of fields.function 'residual'
+2023-06-15 07:22:09,842 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/wizard/add_period.xml
+2023-06-15 07:22:09,870 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/wizard/remove_period.xml
+2023-06-15 07:22:09,887 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/wizard/vat_settlement.xml
+2023-06-15 07:22:09,918 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/statement_workflow.xml
+2023-06-15 07:22:09,957 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/security/ir.model.access.csv
+2023-06-15 07:22:10,028 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/security/security.xml
+2023-06-15 07:22:10,044 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/reports.xml
+2023-06-15 07:22:10,068 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/views/report_vatperiodendstatement.xml
+2023-06-15 07:22:10,107 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/views/config.xml
+2023-06-15 07:22:10,142 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: loading account_vat_period_end_statement/views/account_view.xml
+2023-06-15 07:22:10,373 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.module: openerp.addons.account_vat_period_end_statement.tests.test_vat_statement running tests.
+2023-06-15 07:22:10,373 116282 INFO test_account_vat_period_end_statement_8 openerp.addons.account_vat_period_end_statement.tests.test_vat_statement: test_vat_statement (openerp.addons.account_vat_period_end_statement.tests.test_vat_statement.TestTax)
+2023-06-15 07:22:11,840 116282 INFO test_account_vat_period_end_statement_8 openerp.addons.account_vat_period_end_statement.tests.test_vat_statement: Ran 1 test in 1.466s
+2023-06-15 07:22:11,840 116282 INFO test_account_vat_period_end_statement_8 openerp.addons.account_vat_period_end_statement.tests.test_vat_statement: OK
+2023-06-15 07:22:11,875 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: 39 modules loaded in 3.34s, 2055 queries
+2023-06-15 07:22:12,793 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: Modules loaded.
+2023-06-15 07:22:12,795 116282 INFO test_account_vat_period_end_statement_8 openerp.modules.loading: All post-tested in 0.00s, 0 queries
+2023-06-15 07:22:12,796 116282 INFO test_account_vat_period_end_statement_8 openerp.models: Computing parent left and right for table ir_ui_menu...
+2023-06-15 07:22:12,880 116282 INFO test_account_vat_period_end_statement_8 openerp.models: Computing parent left and right for table account_account...
+2023-06-15 07:22:12,891 116282 INFO test_account_vat_period_end_statement_8 openerp.service.server: Initiating shutdown
+2023-06-15 07:22:12,892 116282 INFO test_account_vat_period_end_statement_8 openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36maccount_vat_period_end_statement[0m (8.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                             Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------------------------------------
+l10n-italy/account_vat_period_end_statement/models/account.py                      595    211    65%   19-20, 29-30, 49, 93, 111, 133-134, 136-137, 140, 155-156, 160-174, 193-198, 211-230, 242, 245-249, 252-256, 262, 490-493, 497, 507-519, 522-535, 538-541, 546-555, 561-562, 568, 572, 583, 611, 627, 635-651, 654-670, 673-687, 708, 718-723, 734, 739, 747, 755-759, 761-769, 797-798, 805, 812-813, 817-818, 829, 839-844, 849, 859, 873, 879, 881, 883, 893, 899, 907-908, 941, 967-972, 978, 984-993, 1009, 1011, 1029, 1033, 1039-1044, 1048-1050, 1057-1065, 1069-1104, 1112-1113, 1120-1127, 1185-1191
+l10n-italy/account_vat_period_end_statement/models/config.py                         6      0   100%
+l10n-italy/account_vat_period_end_statement/report/vat_period_end_statement.py      66     46    30%   43-59, 62-67, 70-75, 79-93, 102-121, 128-145
+l10n-italy/account_vat_period_end_statement/wizard/add_period.py                    46     39    15%   25-52, 55-71
+l10n-italy/account_vat_period_end_statement/wizard/remove_period.py                 57     46    19%   21-44, 55-71, 74-83
+l10n-italy/account_vat_period_end_statement/wizard/vat_settlement.py               171    152    11%   46-63, 74-85, 88-89, 92-98, 102-372
+--------------------------------------------------------------------------------------------------------------
+TOTAL                                                                              941    494    48%
