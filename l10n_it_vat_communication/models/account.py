@@ -218,7 +218,7 @@ class AccountVatCommunication(orm.Model):
         """ Create new no_gap entry sequence for progressivo_telematico
         """
         # Company sent own communication, so set next number as the nth quarter
-        next_number = int((date.today().toordinal() - 
+        next_number = int((date.today().toordinal() -
                            date(2017, 7, 1).toordinal()) / 90) + 1
         sequence_model = self.pool['ir.sequence']
         vals = {
@@ -381,7 +381,7 @@ class AccountVatCommunication(orm.Model):
                                 tax_rate = tax.amount
                         elif release.major_version == '8.0':
                             if tax.type == 'percent':
-                                if tax.nondeductible: 
+                                if tax.nondeductible:
                                     tax_nodet_rate = tax.amount
                                 else:
                                     tax_nodet_rate = 1 - tax.amount

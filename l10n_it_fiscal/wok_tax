@@ -18,13 +18,13 @@
 #
 ##############################################################################
 # set -x
-# 
+#
 # Cooking italian tax codes to get them ready to use  [V1.00]
 # ===========================================================
-# 
+#
 # Ingredients
 # -----------
-# 
+#
 # Separator. May be "\t" "," ";"
 s=","
 # CSV tax code file
@@ -88,7 +88,7 @@ then
   yxv="v INC"
 else
   yxv="vINC"
-fi 
+fi
 # VAT account ammount suffix
 if [ $yICA -gt 0 ]
 then
@@ -126,7 +126,7 @@ else
 fi
 # VAT account unded. tax suffix
 ytcut="N"
-# Purchase VAT acount 
+# Purchase VAT acount
 ypa="153010"
 # Purchase cash VAT acount
 ypca="153030"
@@ -417,7 +417,7 @@ set_p_code () {
     t=""							# Null (included in selling code)
   elif [ "$2" == "v" ]						# v=Sell
   then
-    t="$ytca"							# Amount prefix 
+    t="$ytca"							# Amount prefix
   elif [ "$2" == "s" ]						# Cash VAT selling
   then
     t="$ytcca"							# Cash VAT amount prefix
@@ -610,7 +610,7 @@ wout_fp () {
 # Cooking
 # -------
 #
-wout_hdr_tc 
+wout_hdr_tc
 #
 wout_hdr_tt
 #
@@ -626,7 +626,7 @@ do
     ct=$(set_v_code "" "$spur" "$yqi")
   else
     ipr=$(xtl_spur2ipr "$spur" "t")
-    ctiv=$(set_v_tpl "root" "$ipr")  
+    ctiv=$(set_v_tpl "root" "$ipr")
     ct=$(set_v_code "" "$spur" "")
   fi
   if [ "$spur" == "v" ]
@@ -677,7 +677,7 @@ do
       rdes=$(xtl_vrate2des "$vrate" "$spur")
       seq="$sqctr"
     else
-      let seq=80-$vrate  
+      let seq=80-$vrate
     fi
     child="False"
     cppx=""
@@ -842,7 +842,7 @@ do
               wout_tt "$vtpcode" "$ctip" "Imponibile $des" "$prnt_ctip"
             fi
           fi
-        fi 
+        fi
       fi
 #
 #
@@ -971,4 +971,3 @@ do
     fi
   done
 done
-

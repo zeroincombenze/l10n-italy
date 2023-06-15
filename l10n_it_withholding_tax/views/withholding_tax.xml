@@ -76,7 +76,7 @@
             <field name="view_id" ref="view_withholding_tax_tree"/>
         </record>
 
-        <menuitem id="menu_withholding_tax" name="Withholding Tax" 
+        <menuitem id="menu_withholding_tax" name="Withholding Tax"
             action="action_withholding_tax" parent="account.menu_finance_configuration" sequence="45"/>
 
 
@@ -129,7 +129,7 @@
                                 <field name="amount"/>
                                 <field name="state"/>
                             </tree>
-                        </field>    
+                        </field>
                     </group>
                 </form>
             </field>
@@ -158,7 +158,7 @@
             <field name="search_view_id" ref="view_withholding_tax_statement_search" />
         </record>
 
-        <menuitem id="menu_withholding_tax_statement" name="WT Statements" 
+        <menuitem id="menu_withholding_tax_statement" name="WT Statements"
             action="action_withholding_tax_statement" parent="of_wt_main" sequence="5"/>
 
         <!--
@@ -239,7 +239,7 @@
             <field name="search_view_id" ref="view_withholding_move_search" />
         </record>
 
-        <menuitem id="menu_withholding_tax_move" name="WT Moves" 
+        <menuitem id="menu_withholding_tax_move" name="WT Moves"
             action="action_withholding_tax_move" parent="of_wt_main" sequence="10"/>
     </data>
 </openerp>

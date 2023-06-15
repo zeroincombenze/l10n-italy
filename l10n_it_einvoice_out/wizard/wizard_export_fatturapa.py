@@ -310,7 +310,7 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setDatiTrasmissione(self, cr, uid,
-                            company, partner, parent, fatturapa, 
+                            company, partner, parent, fatturapa,
                             context=None):
         context = context or {}
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione = (
@@ -1027,7 +1027,7 @@ class WizardExportFatturapa(models.TransientModel):
             context_partner.update({'lang': partner.lang,
                                     'company_id': company.id})
             try:
-                self.setFatturaElettronicaHeader(cr, uid, 
+                self.setFatturaElettronicaHeader(cr, uid,
                                                  company, partner, parent, fatturapa,
                                                  context=context_partner)
                 for invoice_id in invoice_ids:

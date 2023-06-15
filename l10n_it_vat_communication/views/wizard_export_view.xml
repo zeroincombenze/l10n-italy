@@ -42,10 +42,9 @@
                     target="new"
                     view_id="wizard_export_vat_communication_form_view"
                     view_mode="form"
-                    context="{'search_default_in_location':1}" 
+                    context="{'search_default_in_location':1}"
                     key2="client_action_multi">
         </act_window>
 -->
 </data>
 </openerp>
-

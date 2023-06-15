@@ -2,7 +2,7 @@
 
 <openerp>
     <data>
-        
+
         <record id="fyc_run_view" model="ir.ui.view">
             <field name="name">fyc.run.wizard</field>
             <field name="model">fyc.run</field>
@@ -15,7 +15,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="fyc_run_action" model="ir.actions.act_window">
             <field name="name">Fiscal Year Closing</field>
             <field name="type">ir.actions.act_window</field>
@@ -27,6 +27,6 @@
             <field name="view_id" ref="fyc_run_view"/>
 
         </record>
-        
+
     </data>
 </openerp>

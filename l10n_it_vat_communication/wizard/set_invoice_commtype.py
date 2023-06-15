@@ -13,4 +13,3 @@ class WizardSetInvoiceCommyype(orm.TransientModel):
         #     self.env.context['active_ids'])
         return self.pool['account.invoice'].set_einvoice_commtype(
             cr, uid, context.get('active_ids', []))
-

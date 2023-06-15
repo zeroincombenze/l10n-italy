@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # flake8: noqa
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
@@ -504,7 +505,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         """ Create new no_gap entry sequence for progressivo_telematico
         """
         # Company sent own statement, so set next number as the nth quarter
-        next_number = int((date.today().toordinal() - 
+        next_number = int((date.today().toordinal() -
                            date(2017, 7, 1).toordinal()) / 90) + 1
         sequence_model = self.pool['ir.sequence']
         vals = {

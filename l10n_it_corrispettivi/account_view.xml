@@ -249,7 +249,7 @@
             <!-- i've set the field in the "Accounting" page of the partner form -->
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <field name="last_reconciliation_date" position="after">    
+                <field name="last_reconciliation_date" position="after">
                     <field name="corrispettivi" groups="account.group_account_manager"/>
                 </field>
             </field>

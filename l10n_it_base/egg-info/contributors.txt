@@ -8,7 +8,7 @@
 * Lorenzo Battistini <lorenzo.battistini@domsense.com>
 * Roberto Onnis <onnis.roberto@gmail.com>
 * Antonio M. Vigliotti <info@shs-av.com>
-.. $elif branch in '8.0' 
+.. $elif branch in '8.0'
 * Davide Corio <davide.corio@abstract.it>
 * Mauro Soligo <mauro.soligo@katodo.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>

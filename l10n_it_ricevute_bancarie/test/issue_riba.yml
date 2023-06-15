@@ -28,7 +28,7 @@
         "tz": False,
         "active_model": "riba.distinta",
         "active_ids": [riba_list_id],
-        "active_id": riba_list_id, 
+        "active_id": riba_list_id,
         }
     accr_id = accreditation_pool.create(cr, uid, {
       'bank_amount': 445,

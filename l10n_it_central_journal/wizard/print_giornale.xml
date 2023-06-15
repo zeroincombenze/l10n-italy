@@ -18,15 +18,15 @@
                         <separator string="Journals" colspan="4"/>
                         <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('central_journal_exclude', '=', False)]"/>
                         <separator string="Layout" colspan="4"/>
-                        
+
                         <field name="target_move"/>
                         <field name="fiscal_page_base"/>
                         <field name="start_row"/>
-                        
+
                         <field name="progressive_credit" invisible="1"/>
                         <field name="progressive_debit2" invisible="1"/>
                         <newline/>
-                       
+
                     </group>
                     <footer>
                         <button name="print_giornale"       string="Print"       type="object" class="oe_highlight"/>

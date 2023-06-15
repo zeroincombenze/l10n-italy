@@ -662,14 +662,14 @@ id,code,name,parent_id:id,user_type:id,type,reconcile,note
 698050,698050,Insussistenze passive ordinarie diverse ,69,account.data_account_type_expense,other,FALSE,EB0010f
 699000,699000,Oneri vari ,69,account.data_account_type_expense,other,FALSE,EB0010f
 7,7,PROVENTI E ONERI FINANZIARI ,0,account.data_account_type_view,view,FALSE,EB0010f
-71,71,PROVENTI DA PARTECIPAZIONI,7,account.data_account_type_view,view,FALSE,EC0015 
+71,71,PROVENTI DA PARTECIPAZIONI,7,account.data_account_type_view,view,FALSE,EC0015
 710151,710151,Proventi da partecipazione ,71,account.data_account_type_income,other,FALSE,EC0015a
 72,72,ALTRI PROVENTI FINANZIARI ,7,account.data_account_type_view,view,FALSE,EC0016
 720161,720161,Crediti iscritti nelle immobilizzazioni,72,account.data_account_type_income,other,FALSE,EC0016a
 720162,720162,Crediti da tit. iscritti nelle  immobiliz. che non costituiscono partecipaz.,72,account.data_account_type_income,other,FALSE,EC0016b
 720163,720163,Crediti da tit. iscritti  nell'attivo circolante che non costituiscono partecipaz.,72,account.data_account_type_income,other,FALSE,EC0016c
 720164,720164,Crediti da proventi finanziari diversi,72,account.data_account_type_income,other,FALSE,EC0016d
-73,73,INTERESSI E ALTRI ONERI FINANZIARI,7,account.data_account_type_view,view,FALSE,EC0017 
+73,73,INTERESSI E ALTRI ONERI FINANZIARI,7,account.data_account_type_view,view,FALSE,EC0017
 730100,730100,Interessi e altri oneri finanziari da imprese controllate,73,account.data_account_type_expense,other,FALSE,EC0017a
 730200,730200,Interessi e altri oneri finanziari da imprese collegate,73,account.data_account_type_expense,other,FALSE,EC0017a
 730300,730300,Interessi e altri oneri finanziari da imprese controllanti,73,account.data_account_type_expense,other,FALSE,EC0017a
@@ -681,7 +681,7 @@ id,code,name,parent_id:id,user_type:id,type,reconcile,note
 731120,731120,Interessi passivi verso banche,73,account.data_account_type_expense,other,FALSE,EC0017a
 731130,731130,Interessi passivi c/c bancari,73,account.data_account_type_expense,other,FALSE,EC0017a
 731140,731140,Spese e commissioni bancarie,73,account.data_account_type_expense,other,FALSE,EC0017a
-8,8,PROVENTI E ONERI STRAORDINARI ,0,account.data_account_type_view,view,FALSE,ED 
+8,8,PROVENTI E ONERI STRAORDINARI ,0,account.data_account_type_view,view,FALSE,ED
 83,83,RETTIFICHE DI VALORE:  RIVALUTAZIONI,8,account.data_account_type_view,view,FALSE,ED0018
 831000,831000,Rivalutazioni da partecipazioni,83,account.data_account_type_income,other,FALSE,ED0018a
 832000,832000,Rivalutazioni di immobilizzazioni finanziarie,83,account.data_account_type_income,other,FALSE,ED0018b

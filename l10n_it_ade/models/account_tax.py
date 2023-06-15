@@ -51,6 +51,6 @@ class AccountTax(models.Model):
             raise UserError(
                 _('Error'), _('No tax %s found') % invoice_tax.name)
         if len(tax_ids) > 1:
-            # FIXME 
+            # FIXME
             pass
         return tax_ids[0]

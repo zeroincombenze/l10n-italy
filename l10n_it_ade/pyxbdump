@@ -1,4 +1,5 @@
 #!/usr/bin/python2
+# -*- coding: utf-8 -*-
 
 from __future__ import print_function
 import pyxb.namespace
@@ -44,4 +45,3 @@ for fn in sys.argv[1:]:
 # LocalVariables:
 # mode:python
 # End:
-

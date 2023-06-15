@@ -71,7 +71,7 @@
         "tz": False,
         "active_model": "riba.distinta",
         "active_ids": [riba_list_id],
-        "active_id": riba_list_id, 
+        "active_id": riba_list_id,
         }
     accr_id = accreditation_pool.create(cr, uid, {
       'bank_amount': 95,
@@ -86,7 +86,7 @@
         "tz": False,
         "active_model": "riba.distinta.line",
         "active_ids": [riba_list.line_ids[0].id],
-        "active_id": riba_list.line_ids[0].id, 
+        "active_id": riba_list.line_ids[0].id,
         }
     unsolved_id = unsolved_pool.create(cr, uid, {
       'bank_amount': 102,

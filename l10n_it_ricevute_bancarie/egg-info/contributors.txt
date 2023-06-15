@@ -5,4 +5,4 @@
 * Giacomo Grasso <giacomo.grasso@agilebg.com>
 * Gabriele Baldessari <gabriele.baldessari@gmail.com>
 * Alex Comba <alex.comba@agilebg.com>
-* Antonio M. Vigliotti <info@shs-av.com> 
+* Antonio M. Vigliotti <info@shs-av.com>
