@@ -7,4 +7,3 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] multibase_plus: supplier ref / Riferimento fornitori in lista ordini fornitori
-

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alex Comba - Agile Business Group
 # Copyright 2016 Andrea Cometa - Apulia Software
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group

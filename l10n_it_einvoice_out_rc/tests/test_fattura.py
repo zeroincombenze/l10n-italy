@@ -283,4 +283,3 @@ class AccountInvoice(SingleTransactionCase):
                 invoice.state, "open",
                 "action_invoice_open() FAILED: no state changed!"
             )
-
