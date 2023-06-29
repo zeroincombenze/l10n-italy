@@ -1,0 +1,44 @@
+/home/odoo/8.0/venv_odoo/lib/python2.7/site-packages/OpenSSL/crypto.py:14: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography import utils, x509
+2023-06-29 12:18:09,409 241129 INFO ? openerp: OpenERP version 8.0
+2023-06-29 12:18:09,409 241129 INFO ? openerp: addons paths: ['/home/odoo/.local/share/Odoo8/addons/8.0', u'/home/odoo/8.0/openerp/addons', u'/home/odoo/8.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/8.0/account-analytic', u'/home/odoo/8.0/account-budgeting', u'/home/odoo/8.0/account-closing', u'/home/odoo/8.0/account-consolidation', u'/home/odoo/8.0/account-financial-reporting', u'/home/odoo/8.0/account-financial-tools', u'/home/odoo/8.0/account-fiscal-rule', u'/home/odoo/8.0/account-invoice-reporting', u'/home/odoo/8.0/account-invoicing', u'/home/odoo/8.0/account-payment', u'/home/odoo/8.0/account-reconcile', u'/home/odoo/8.0/bank-payment', u'/home/odoo/8.0/bank-statement-import', u'/home/odoo/8.0/business-requirement', u'/home/odoo/8.0/commission', u'/home/odoo/8.0/community-data-files', u'/home/odoo/8.0/connector', u'/home/odoo/8.0/contract', u'/home/odoo/8.0/crm', u'/home/odoo/8.0/data-protection', u'/home/odoo/8.0/delivery-carrier', u'/home/odoo/8.0/e-commerce', u'/home/odoo/8.0/edi', u'/home/odoo/8.0/geospatial', u'/home/odoo/8.0/hr', u'/home/odoo/8.0/intrastat-extrastat', u'/home/odoo/8.0/knowledge', u'/home/odoo/8.0/l10n-italy', u'/home/odoo/8.0/l10n-italy-supplemental', u'/home/odoo/8.0/manufacture', u'/home/odoo/8.0/manufacture-reporting', u'/home/odoo/8.0/margin-analysis', u'/home/odoo/8.0/mgmtsystem', u'/home/odoo/8.0/mis-builder', u'/home/odoo/8.0/multi-company', u'/home/odoo/8.0/partner-contact', u'/home/odoo/8.0/pos', u'/home/odoo/8.0/product-attribute', u'/home/odoo/8.0/product-variant', u'/home/odoo/8.0/profiles', u'/home/odoo/8.0/project', u'/home/odoo/8.0/project-reporting', u'/home/odoo/8.0/purchase-reporting', u'/home/odoo/8.0/purchase-workflow', u'/home/odoo/8.0/report-print-send', u'/home/odoo/8.0/reporting-engine', u'/home/odoo/8.0/rma', u'/home/odoo/8.0/sale-financial', u'/home/odoo/8.0/sale-reporting', u'/home/odoo/8.0/sale-workflow', u'/home/odoo/8.0/server-auth', u'/home/odoo/8.0/server-tools', u'/home/odoo/8.0/social', u'/home/odoo/8.0/stock-logistics-barcode', u'/home/odoo/8.0/stock-logistics-reporting', u'/home/odoo/8.0/stock-logistics-tracking', u'/home/odoo/8.0/stock-logistics-transport', u'/home/odoo/8.0/stock-logistics-warehouse', u'/home/odoo/8.0/stock-logistics-workflow', u'/home/odoo/8.0/timesheet', u'/home/odoo/8.0/uncovered', u'/home/odoo/8.0/web', u'/home/odoo/8.0/zerobug-test', u'/home/odoo/8.0/didotech_80']
+2023-06-29 12:18:09,409 241129 INFO ? openerp: database hostname: localhost
+2023-06-29 12:18:09,409 241129 INFO ? openerp: database port: 5432
+2023-06-29 12:18:09,409 241129 INFO ? openerp: database user: odoo8
+2023-06-29 12:18:09,702 241129 INFO ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:43956
+2023-06-29 12:18:09,716 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading 1 modules...
+2023-06-29 12:18:09,723 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: 1 modules loaded in 0.01s, 0 queries
+2023-06-29 12:18:09,876 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: updating modules list
+2023-06-29 12:18:15,749 241129 INFO ? openerp.addons.bus.bus: Bus.loop listen imbus on db postgres
+2023-06-29 12:18:16,329 241129 INFO test_l10n_it_einvoice_out_8 openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2023-06-29 12:18:16,905 241129 WARNING test_l10n_it_einvoice_out_8 openerp.addons.account_bank_statement_import_ofx.account_bank_statement_import_ofx: ofxparse not found, OFX parsing disabled.
+2023-06-29 12:18:17,294 241129 WARNING test_l10n_it_einvoice_out_8 openerp.addons.base_geoengine.geo_field: Shapely or geojson are not available in the sys path
+2023-06-29 12:18:17,295 241129 WARNING test_l10n_it_einvoice_out_8 openerp.addons.base_geoengine.geo_helper.geo_convertion_helper: Shapely or geojson are not available in the sys path
+2023-06-29 12:18:17,297 241129 WARNING test_l10n_it_einvoice_out_8 openerp.addons.base_geoengine.fields: Shapely or geojson are not available in the sys path
+2023-06-29 12:18:19,479 241129 INFO test_l10n_it_einvoice_out_8 openerp.http: HTTP Configuring static files
+2023-06-29 12:18:20,289 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading 42 modules...
+2023-06-29 12:18:20,409 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: 42 modules loaded in 0.12s, 0 queries
+2023-06-29 12:18:20,413 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading 43 modules...
+2023-06-29 12:18:20,996 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.module: module l10n_it_einvoice_out: creating or updating database tables
+2023-06-29 12:18:21,235 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading l10n_it_einvoice_out/wizard/wizard_export_fatturapa_view.xml
+2023-06-29 12:18:21,275 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading l10n_it_einvoice_out/views/attachment_view.xml
+2023-06-29 12:18:21,339 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading l10n_it_einvoice_out/views/account_view.xml
+2023-06-29 12:18:21,419 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: loading l10n_it_einvoice_out/security/ir.model.access.csv
+2023-06-29 12:18:21,532 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: 43 modules loaded in 1.12s, 4 queries
+2023-06-29 12:18:22,476 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: Modules loaded.
+2023-06-29 12:18:22,478 241129 INFO test_l10n_it_einvoice_out_8 openerp.modules.loading: All post-tested in 0.00s, 0 queries
+2023-06-29 12:18:22,480 241129 INFO test_l10n_it_einvoice_out_8 openerp.models: Computing parent left and right for table ir_ui_menu...
+2023-06-29 12:18:22,645 241129 INFO test_l10n_it_einvoice_out_8 openerp.service.server: Initiating shutdown
+2023-06-29 12:18:22,646 241129 INFO test_l10n_it_einvoice_out_8 openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_out[0m (8.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_einvoice_out/models/account.py                       8      3    62%   23-25
+l10n-italy/l10n_it_einvoice_out/models/attachment.py                   32     17    47%   20-29, 32-35, 38-41
+l10n-italy/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py     545    475    13%   61-62, 108-140, 143-167, 171-180, 185-187, 190-193, 196-208, 211-227, 230-233, 237-241, 258-294, 299-310, 315-323, 329-346, 350-357, 361-386, 390-418, 421-423, 437-438, 446-448, 453-474, 480-523, 527-548, 552-580, 584-626, 630-634, 638-643, 647-651, 654-660, 663-704, 708-745, 748-749, 752, 755-762, 765-831, 834-864, 867-883, 886-927, 930-938, 943-956, 962-975, 979-998, 1001-1009, 1012-1065
+-------------------------------------------------------------------------------------------------
+TOTAL                                                                 585    495    15%

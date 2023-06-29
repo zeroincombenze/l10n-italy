@@ -17,7 +17,8 @@ class AccountInvoice(models.Model):
         'fatturapa.attachment.out', 'E-Fattura Export File',
         readonly=True)
 
-    @api.one
+    # @api.one
+    # def copy(self, defaults=None):
     def copy(self, cr, uid, ids, defaults=None, context=None):
         defaults = defaults or {}
         defaults.update({'fatturapa_attachment_out_id': False})
