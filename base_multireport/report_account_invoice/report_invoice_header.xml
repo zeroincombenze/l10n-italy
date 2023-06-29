@@ -202,8 +202,11 @@
             </div>
             <div class="col-xs-2" t-if="term_position in ('header', 'header_no_iban')">
                 <strong>Data scadenza:</strong>
+                <!--
                 <p t-if="len(o.due_records) &lt; 2" t-field="o.date_due" />
                 <p t-if="len(o.due_records) &gt;= 2">
+                -->
+                <p>
                     <t
                         t-foreach="o.due_records.sorted(key=lambda r: r.date_maturity)"
                         t-as="p"

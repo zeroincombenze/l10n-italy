@@ -1,3 +1,9 @@
+10.0.0.2.28 (2023-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice report with due dates from account lines / Date scadenza stampa fattura da righe contabili
+* [QUA] Test coverage 39% (650: 395+255) 
+
 10.0.0.2.27 (2023-05-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
