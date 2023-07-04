@@ -60,6 +60,7 @@ evolve_stato_mapping = {
 def text2html(text):
     return text.replace("<", "&lt;").replace(">", "&gt;")
 
+
 def map_response(state):
     res = evolve_stato_mapping.get(state)
     if not res:
@@ -74,6 +75,7 @@ def map_response(state):
         else:
             res = "sender_error"
     return res
+
 
 class FatturaPAAttachmentIn(models.Model):
 
@@ -572,7 +574,7 @@ class FatturaPAAttachmentOut(models.Model):
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
                     data_caricamento = doc.get("DataCaricamento", doc["DataFattura"])
-                    if map_response(Evolve.document_state(doc))in (
+                    if map_response(Evolve.document_state(doc)) in (
                         "accepted",
                         "discarted",
                     ):
@@ -596,7 +598,7 @@ class FatturaPAAttachmentOut(models.Model):
                     valid_ix >= 0
                     and last_ix >= 0
                     and map_response(Evolve.document_state(
-                    documenti[last_ix])) in ("sender_error", "sent", "rejected")
+                        documenti[last_ix])) in ("sender_error", "sent", "rejected")
                 ):
                     # Final workflow for No PA subjects
                     last_ix = valid_ix
@@ -956,9 +958,9 @@ class FatturaPAAttachmentOut(models.Model):
         if send_channel.trace:
             _logger.info(
                 ">>> %s.send_einvoice(max=%s,meth=%s)" % (
-                send_channel.name,
-                send_channel.max_invoices_ctr,
-                send_channel.method)
+                    send_channel.name,
+                    send_channel.max_invoices_ctr,
+                    send_channel.method)
             )
         if send_channel.max_invoices_ctr > 0 and send_channel.used_invoices_ctr == 0:
             # Get used invoices
