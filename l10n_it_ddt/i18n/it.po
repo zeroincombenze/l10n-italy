@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-13 15:22+0000\n"
-"PO-Revision-Date: 2023-06-13 17:26+0200\n"
+"PO-Revision-Date: 2023-07-04 14:09+0200\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
@@ -151,10 +151,10 @@ msgid ""
 "                </body>\n"
 "            </html>\n"
 msgstr ""
-"<html>\n"
+"html>\n"
 "            <head></head>\n"
-"                 % impostare record = ctx.get('record')\n"
-"                 % impostare azienda = record e record.company_id o user.company_id\n"
+"                 % set record = ctx.get('record')\n"
+"                 % set company = record and record.company_id or user.company_id\n"
 "            <body style=\"margin: 0; padding: 0;\">\n"
 "                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
 "                    <tbody>\n"
@@ -162,7 +162,7 @@ msgstr ""
 "                        <!-- HEADER -->\n"
 "                        <tr>\n"
 "                            <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                <tabella larghezza=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                                <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
 "                                    <tr>\n"
 "                                        <td valign=\"middle\">\n"
 "                                            <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
@@ -170,34 +170,34 @@ msgstr ""
 "                                            </span>\n"
 "                                        </td>\n"
 "                                        <td valign=\"middle\" align=\"right\">\n"
-"                                            <img sorgente2=\"/logo.png?azienda=${company.id}\" style=\"padding: 0px; margin: 0px; altezza: auto; larghezza: 80px;\" alt=\"${company.name}\">\n"
+"                                            <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${company.name}\">\n"
 "                                            </td>\n"
 "                                        </tr>\n"
-"                                    </tabella>\n"
+"                                    </table>\n"
 "                                </td>\n"
 "                            </tr>\n"
 "\n"
 "                            <!-- CONTENT -->\n"
 "                            <tr>\n"
 "                                <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                    <tabella larghezza=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
+"                                    <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
 "                                        <tbody>\n"
 "                                            <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
 "                                                ${object.body | safe}\n"
 "                                            </td>\n"
 "                                        </tbody>\n"
-"                                    </tabella>\n"
+"                                    </table>\n"
 "                                </td>\n"
 "                            </tr>\n"
 "\n"
 "                            <!-- FOOTER -->\n"
 "                            <tr>\n"
 "                                <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                    <tabella larghezza=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
+"                                    <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
 "                                        <tr>\n"
 "                                            <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
 "                                                ${company.name}<br/>\n"
-"                                                ${company.phone o ''}\n"
+"                                                ${company.phone or ''}\n"
 "                                            </td>\n"
 "                                            <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
 "                                                % if company.email:\n"
@@ -215,7 +215,7 @@ msgstr ""
 "                            </tr>\n"
 "                            <tr>\n"
 "                                <td align=\"center\">\n"
-"                                    Powered da <https=\"l'applicazione open source assunzioni://www.odoo.com\">Odoo</a>.\n"
+"                                    Powered by <a href=\"https://www.odoo.com\">Odoo</a>.\n"
 "                                </td>\n"
 "                            </tr>\n"
 "                        </tbody>\n"
@@ -267,7 +267,7 @@ msgstr "Aggiungere prelievo al DdT"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Add an internal note..."
-msgstr "Aggiungere una nota interna"
+msgstr "Aggiungere una nota interna…"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
@@ -528,7 +528,7 @@ msgstr "Raggr"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "DDT number:"
-msgstr "Numero DdT"
+msgstr "Numero DdT:"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_show_price
@@ -574,7 +574,7 @@ msgstr "Tipo DdT"
 #. module: l10n_it_ddt
 #: sql_constraint:stock.picking.package.preparation:0
 msgid "DdT number already exists!"
-msgstr "Numero DdT esiste già"
+msgstr "Numero DdT esiste già!"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_line_ddt_id
@@ -810,7 +810,7 @@ msgstr "Raggruppare per"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_sppp_line_search
 msgid "Group By..."
-msgstr "Raggruppa per"
+msgstr "Raggruppa per ..."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_account_config_settings_delivery_price_policy
@@ -867,7 +867,7 @@ msgstr "Non si può inserite nel carico un prelievo con stato"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:712
 #, python-format
 msgid "Impossible to set draft document when invoiced!"
-msgstr "Impossibile riportare in bozza un documento con fattura"
+msgstr "Impossibile riportare in bozza un documento con fattura!"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:475
@@ -1150,7 +1150,7 @@ msgstr "Prelievi"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:878
 #, python-format
 msgid "Please define an accounting sale journal for this company."
-msgstr "Definire un registro sezionale vendita per questa azienda"
+msgstr "Definire un registro sezionale vendita per questa azienda."
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1407
@@ -1304,19 +1304,19 @@ msgstr "Selezionati prelievi %s con %s differenti"
 #: code:addons/l10n_it_ddt/models/stock_picking.py:186
 #, python-format
 msgid "Selected Picking %s has different Partner"
-msgstr "Selezionati prelievi %s has different Nominativo"
+msgstr "Selezionato prelievo %s con nominativo diverso"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking.py:177
 #, python-format
 msgid "Selected Picking %s has invalid state %s"
-msgstr "Selezionati prelievi %s has invalid stato Federale %s"
+msgstr "Selezionati prelievi %s con stato %s non valido"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:57
 #, python-format
 msgid "Selected Picking %s have different Partner"
-msgstr "Selezionati prelievi %s di soggetti diversi"
+msgstr "Selezionati prelievi %s di nominativi diversi"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking.py:124
@@ -1450,7 +1450,7 @@ msgstr "Data iniziale"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "State"
-msgstr "Stato Federale"
+msgstr "Stato"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
@@ -1499,7 +1499,7 @@ msgstr "Non ci sono prelievi per creare un DdT"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1552
 #, python-format
 msgid "There is no invoicable line."
-msgstr "Non ci sono righe fatturabili"
+msgstr "Non ci sono righe da fatturare."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation_to_be_invoiced
@@ -1521,7 +1521,7 @@ msgstr "Da fatturare"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1527
 #, python-format
 msgid "Too many partners."
-msgstr "Troppi clienti diversi"
+msgstr "Troppi clienti diversi."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_amount_total
@@ -1573,7 +1573,7 @@ msgstr "Importo imponibile"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "VAT number:"
-msgstr "Partita IVA"
+msgstr "Partita IVA:"
 
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_reason,name:l10n_it_ddt.transportation_reason_VEN
@@ -1602,7 +1602,7 @@ msgstr "Peso"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:1153
 #, python-format
 msgid "You can not delete document %s! Try to cancel it before."
-msgstr "Non è possibile eliminare il documento %s! Provare prima ad annullare"
+msgstr "Non è possibile eliminare il documento %s! Provare prima ad annullare."
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_config_settings
