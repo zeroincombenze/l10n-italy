@@ -1,0 +1,52 @@
+/home/odoo/7.0/venv_odoo/lib/python2.7/site-packages/OpenSSL/crypto.py:14: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography import utils, x509
+2023-07-13 09:25:59,109 3736574 INFO ? openerp: OpenERP version 7.0
+2023-07-13 09:25:59,109 3736574 INFO ? openerp: addons paths: /home/odoo/7.0/openerp/addons,/home/odoo/7.0/addons,/home/odoo/7.0/account-analytic,/home/odoo/7.0/account-budgeting,/home/odoo/7.0/account-closing,/home/odoo/7.0/account-consolidation,/home/odoo/7.0/account-financial-reporting,/home/odoo/7.0/account-financial-tools,/home/odoo/7.0/account-fiscal-rule,/home/odoo/7.0/account-invoice-reporting,/home/odoo/7.0/account-invoicing,/home/odoo/7.0/account-payment,/home/odoo/7.0/account-reconcile,/home/odoo/7.0/bank-payment,/home/odoo/7.0/commission,/home/odoo/7.0/community-data-files,/home/odoo/7.0/connector,/home/odoo/7.0/contract,/home/odoo/7.0/crm,/home/odoo/7.0/delivery-carrier,/home/odoo/7.0/e-commerce,/home/odoo/7.0/geospatial,/home/odoo/7.0/hr,/home/odoo/7.0/knowledge,/home/odoo/7.0/l10n-italy,/home/odoo/7.0/l10n-italy-supplemental,/home/odoo/7.0/manufacture,/home/odoo/7.0/manufacture-reporting,/home/odoo/7.0/margin-analysis,/home/odoo/7.0/mgmtsystem,/home/odoo/7.0/mis-builder,/home/odoo/7.0/multi-company,/home/odoo/7.0/partner-contact,/home/odoo/7.0/pos,/home/odoo/7.0/product-attribute,/home/odoo/7.0/product-kitting,/home/odoo/7.0/product-variant,/home/odoo/7.0/project,/home/odoo/7.0/project-reporting,/home/odoo/7.0/purchase-reporting,/home/odoo/7.0/purchase-workflow,/home/odoo/7.0/report-print-send,/home/odoo/7.0/reporting-engine,/home/odoo/7.0/rma,/home/odoo/7.0/sale-financial,/home/odoo/7.0/sale-reporting,/home/odoo/7.0/sale-workflow,/home/odoo/7.0/server-tools,/home/odoo/7.0/stock-logistics-barcode,/home/odoo/7.0/stock-logistics-reporting,/home/odoo/7.0/stock-logistics-tracking,/home/odoo/7.0/stock-logistics-transport,/home/odoo/7.0/stock-logistics-warehouse,/home/odoo/7.0/stock-logistics-workflow,/home/odoo/7.0/timesheet,/home/odoo/7.0/uncovered,/home/odoo/7.0/web,/home/odoo/7.0/webkit-tools,/home/odoo/7.0/zerobug-test
+2023-07-13 09:25:59,109 3736574 INFO ? openerp: database hostname: localhost
+2023-07-13 09:25:59,109 3736574 INFO ? openerp: database port: 5432
+2023-07-13 09:25:59,109 3736574 INFO ? openerp: database user: odoo7
+2023-07-13 09:25:59,124 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: loading 1 modules...
+2023-07-13 09:25:59,334 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: loading 13 modules...
+2023-07-13 09:25:59,524 3736574 INFO test_l10n_it_base_7 openerp.addons.google_docs.google_docs: GData lib version `%s GData-Python/2.0.18` detected
+2023-07-13 09:26:00,057 3736574 WARNING test_l10n_it_base_7 openerp.addons.delivery_carrier_label_gls.report.label: Please install python lib pycountry
+2023-07-13 09:26:00,057 3736574 WARNING test_l10n_it_base_7 openerp.addons.delivery_carrier_label_gls.stock: Please install python lib pycountry
+2023-07-13 09:26:00,061 3736574 WARNING test_l10n_it_base_7 openerp.addons.base_geoengine.geo_helper.geo_convertion_helper: Shapely or geojson are not available in the sys path
+2023-07-13 09:26:00,062 3736574 WARNING test_l10n_it_base_7 openerp.addons.base_geoengine.geo_field: Shapely or geojson are not available in the sys path
+2023-07-13 09:26:00,522 3736574 WARNING test_l10n_it_base_7 root: Sentry DSN not defined in config file
+2023-07-13 09:26:00,572 3736574 WARNING test_l10n_it_base_7 openerp.addons.smsclient.smsclient: ERROR IMPORTING SOAPpy, if not installed, please install it: e.g.: apt-get install python-soappy
+2023-07-13 09:26:01,320 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: loading 14 modules...
+2023-07-13 09:26:01,323 3736574 INFO test_l10n_it_base_7 openerp.modules.module: module l10n_it_base: creating or updating database tables
+2023-07-13 09:26:01,710 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading security/ir.model.access.csv
+2023-07-13 09:26:01,761 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading views/partner_view.xml
+2023-07-13 09:26:01,898 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading views/company_view.xml
+2023-07-13 09:26:01,902 3736574 WARNING test_l10n_it_base_7 openerp.addons.base.ir.ir_ui_view: Setting the `type` field is deprecated in the `ir.ui.view` model.
+2023-07-13 09:26:01,921 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading views/city_view.xml
+2023-07-13 09:26:01,923 3736574 WARNING test_l10n_it_base_7 openerp.addons.base.ir.ir_ui_view: Setting the `type` field is deprecated in the `ir.ui.view` model.
+2023-07-13 09:26:01,935 3736574 WARNING test_l10n_it_base_7 openerp.addons.base.ir.ir_ui_view: Setting the `type` field is deprecated in the `ir.ui.view` model.
+2023-07-13 09:26:01,972 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading views/province_view.xml
+2023-07-13 09:26:01,974 3736574 WARNING test_l10n_it_base_7 openerp.addons.base.ir.ir_ui_view: Setting the `type` field is deprecated in the `ir.ui.view` model.
+2023-07-13 09:26:01,984 3736574 WARNING test_l10n_it_base_7 openerp.addons.base.ir.ir_ui_view: Setting the `type` field is deprecated in the `ir.ui.view` model.
+2023-07-13 09:26:02,020 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading data/res.region.csv
+2023-07-13 09:26:02,088 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading data/res.province.csv
+2023-07-13 09:26:02,450 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading data/res.country.state.xml
+2023-07-13 09:26:02,855 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading data/res.city.xml
+2023-07-13 09:26:23,768 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading data/res.partner.title.csv
+2023-07-13 09:26:23,828 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: module l10n_it_base: loading test/res_partner.yml
+2023-07-13 09:26:24,450 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: loading 14 modules...
+2023-07-13 09:26:24,454 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: loading 14 modules...
+2023-07-13 09:26:24,457 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: loading 14 modules...
+2023-07-13 09:26:24,546 3736574 INFO test_l10n_it_base_7 openerp.modules.loading: Modules loaded.
+2023-07-13 09:26:24,548 3736574 INFO test_l10n_it_base_7 openerp.osv.orm: Computing parent left and right for table ir_ui_menu...
+
++===================================================================
+| please test [36ml10n_it_base[0m (7.0): [31mFAILED![0m
++===================================================================
+
+Name                                             Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------
+l10n-italy/l10n_it_base/models/res_city.py           5      0   100%
+l10n-italy/l10n_it_base/models/res_partner.py      417     77    82%   45-47, 61-63, 111, 118-150, 198-228, 252-255, 290, 379-384, 440-441, 447, 449, 454-458, 496-499, 517, 526, 588-589, 594
+l10n-italy/l10n_it_base/models/res_province.py       6      0   100%
+l10n-italy/l10n_it_base/models/res_region.py         6      0   100%
+------------------------------------------------------------------------------
+TOTAL                                              434     77    82%
