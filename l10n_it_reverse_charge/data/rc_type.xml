@@ -26,5 +26,13 @@
             >Configuration of Extra-EU trade using the self-invoice method</field>
         </record>
 
+        <record id="account_rc_type_4" model="account.rc.type">
+            <field name="name">Intra-EU (Self-invoice)</field>
+            <field name="method">selfinvoice</field>
+            <field
+                name="description"
+            >Configuration of Intra-EU trade using the self-invoice method</field>
+        </record>
+
     </data>
 </odoo>

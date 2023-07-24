@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# Copyright 2019-22 Antonio M. Vigliotti - SHS-Av srl
 
 from odoo import fields, models
 

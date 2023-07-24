@@ -1,8 +1,0 @@
-Feature / Caratteristica,6.1,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0
-Customer ref in Sale Order tree / Rif. Cliente in lista ordini,✗,✔ ,✗,✗,✔ ,✗,🛈,🛈,🛈,🛈,🛈
-Subtotal in Sale Order tree / Imponibile in lista ordini,✗,✔ ,✗,✗,✔ ,✗,🛈,🛈,🛈,🛈,🛈
-Supplier ref in Purchase Order tree / Rif. Fornitore in lista ordini,✗,✗,✔ ,✗,✔ ,✗,🛈,🛈,🛈,🛈,🛈
-Refund (credit note) invoice menu / Menù Note Credito,🗘,🗘,🗘,🗘,✔ ,🗘,🛈,🛈,🛈,🛈,🛈
-Invoice group by company / Raggruppamento fatture per azienda,✗,✗,✗,✔ ,✔ ,✗,🛈,🛈,🛈,🛈,🛈
-Supplier ref in Purchase Order tree / Rif. Fornitore in lista ordini,✗,✗,✗,✗,✔ ,✗,✗,✗,✗,✗,✗
-Date in invoice tree / Data contabile in lista fatture,✗,✗,✗,✗,✔ ,✗,✗,✗,✗,✗,✗

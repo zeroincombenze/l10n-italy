@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from datetime import datetime
-
 from lxml import etree
 
 from odoo import _, api, fields, models
@@ -23,7 +20,7 @@ class ComunicazioneLiquidazione(models.Model):
 
     @api.model
     def _default_company(self):
-        company_id = self._context.get("company_id", self.env.user.company_id.id)
+        company_id = self._context.get("company_id", self.env.company.id)
         return company_id
 
     @api.constrains("identificativo")
@@ -37,7 +34,6 @@ class ComunicazioneLiquidazione(models.Model):
                 )
             )
 
-    @api.multi
     def _compute_name(self):
         for dich in self:
             name = ""
@@ -67,16 +63,18 @@ class ComunicazioneLiquidazione(models.Model):
     )
     identificativo = fields.Integer(string="Identifier", default=_get_identificativo)
     name = fields.Char(string="Name", compute="_compute_name")
-    year = fields.Integer(string="Year", required=True, size=4)
+    year = fields.Integer(string="Year", required=True)
     last_month = fields.Integer(string="Last month")
     liquidazione_del_gruppo = fields.Boolean(string="Group's statement")
     taxpayer_vat = fields.Char(string="Vat", required=True)
     controller_vat = fields.Char(string="Controller TIN")
     taxpayer_fiscalcode = fields.Char(string="Taxpayer Fiscalcode")
-    declarant_different = fields.Boolean(string="Declarant different from taxpayer")
+    declarant_different = fields.Boolean(
+        string="Declarant different from taxpayer", default=True
+    )
     declarant_fiscalcode = fields.Char(string="Declarant Fiscalcode")
     declarant_fiscalcode_company = fields.Char(string="Fiscalcode company")
-    codice_carica_id = fields.Many2one("italy.ade.codice.carica", string="Role code")
+    codice_carica_id = fields.Many2one("appointment.code", string="Role code")
     declarant_sign = fields.Boolean(string="Declarant sign", default=True)
 
     delegate_fiscalcode = fields.Char(string="Delegate Fiscalcode")
@@ -94,12 +92,6 @@ class ComunicazioneLiquidazione(models.Model):
     )
     iva_da_versare = fields.Float(string="VAT to pay", readonly=True)
     iva_a_credito = fields.Float(string="Credit VAT", readonly=True)
-    liquidazioni_debit_line_ids = fields.Many2many(
-        "statement.debit.account.line", string="VAT Statement debit tax line"
-    )
-    liquidazioni_credit_line_ids = fields.Many2many(
-        "statement.credit.account.line", string="VAT Statement credit tax line"
-    )
 
     @api.model
     def create(self, vals):
@@ -107,7 +99,6 @@ class ComunicazioneLiquidazione(models.Model):
         comunicazione._validate()
         return comunicazione
 
-    @api.multi
     def write(self, vals):
         super(ComunicazioneLiquidazione, self).write(vals)
         for comunicazione in self:
@@ -259,13 +250,13 @@ class ComunicazioneLiquidazione(models.Model):
             x1_1_2_CodiceFiscaleDichiarante = etree.SubElement(
                 x1_1_Intestazione, etree.QName(NS_IV, "CodiceFiscaleDichiarante")
             )
-            x1_1_2_CodiceFiscaleDichiarante.text = unicode(self.declarant_fiscalcode)
+            x1_1_2_CodiceFiscaleDichiarante.text = str(self.declarant_fiscalcode)
         # Codice Carica
         if self.codice_carica_id:
             x1_1_3_CodiceCarica = etree.SubElement(
                 x1_1_Intestazione, etree.QName(NS_IV, "CodiceCarica")
             )
-            x1_1_3_CodiceCarica.text = unicode(self.codice_carica_id.code)
+            x1_1_3_CodiceCarica.text = str(self.codice_carica_id.code)
         return x1_1_Intestazione
 
     def _export_xml_get_frontespizio(self):
@@ -275,7 +266,7 @@ class ComunicazioneLiquidazione(models.Model):
             x1_2_1_Frontespizio, etree.QName(NS_IV, "CodiceFiscale")
         )
         x1_2_1_1_CodiceFiscale.text = (
-            unicode(self.taxpayer_fiscalcode) if self.taxpayer_fiscalcode else ""
+            str(self.taxpayer_fiscalcode) if self.taxpayer_fiscalcode else ""
         )
         # Anno Imposta
         x1_2_1_2_AnnoImposta = etree.SubElement(
@@ -344,9 +335,7 @@ class ComunicazioneLiquidazione(models.Model):
             x1_2_1_13_DataImpegno = etree.SubElement(
                 x1_2_1_Frontespizio, etree.QName(NS_IV, "DataImpegno")
             )
-            x1_2_1_13_DataImpegno.text = datetime.strptime(
-                self.date_commitment, "%Y-%m-%d"
-            ).strftime("%d%m%Y")
+            x1_2_1_13_DataImpegno.text = self.date_commitment.strftime("%d%m%Y")
         # FirmaIntermediario
         if self.delegate_fiscalcode:
             x1_2_1_14_FirmaIntermediario = etree.SubElement(
@@ -477,7 +466,6 @@ class ComunicazioneLiquidazioneVp(models.Model):
     _name = "comunicazione.liquidazione.vp"
     _description = "VAT statement communication - VP table"
 
-    @api.multi
     @api.depends("iva_esigibile", "iva_detratta")
     def _compute_VP6_iva_dovuta_credito(self):
         for quadro in self:
@@ -488,7 +476,6 @@ class ComunicazioneLiquidazioneVp(models.Model):
             else:
                 quadro.iva_dovuta_credito = quadro.iva_detratta - quadro.iva_esigibile
 
-    @api.multi
     @api.depends(
         "iva_dovuta_debito",
         "iva_dovuta_credito",
@@ -569,13 +556,13 @@ class ComunicazioneLiquidazioneVp(models.Model):
     versamento_auto_UE = fields.Float(string="Auto UE payment")
     crediti_imposta = fields.Float(string="Tax credits")
     interessi_dovuti = fields.Float(string="Due interests for quarterly statements")
-    accounto_dovuto = fields.Float(string="Due down payment")
+    accounto_dovuto = fields.Float(string="Down payment due")
     metodo_calcolo_acconto = fields.Selection(
         [
-            ("1", "1"),
-            ("2", "2"),
-            ("3", "3"),
-            ("4", "4"),
+            ("1", "Storico"),
+            ("2", "Previsionale"),
+            ("3", "Analitico - effettivo"),
+            ("4", '"4" (soggetti particolari)'),
         ],
         string="Down payment computation method",
     )
@@ -606,6 +593,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
             quadro.crediti_imposta = 0
             quadro.interessi_dovuti = 0
             quadro.accounto_dovuto = 0
+            quadro.metodo_calcolo_acconto = False
 
     def _get_tax_context(self, period):
         return {
@@ -613,54 +601,81 @@ class ComunicazioneLiquidazioneVp(models.Model):
             "to_date": period.date_end,
         }
 
-    def _get_statement_line_list(self, liq):
+    def _compute_imponibile_operazioni_attive(self, liq, period):
         self.ensure_one()
-        debit_lines = self.env["statement.debit.account.line"]
-        credit_lines = self.env["statement.credit.account.line"]
-        for debit_line in liq.debit_vat_account_line_ids:
-            if debit_line.tax_id.vsc_exclude_operation or (
-                debit_line.tax_id.kind_id and debit_line.tax_id.kind_id.code == "N1"
-            ):
+        debit_taxes = self.env["account.tax"]
+        for debit in liq.debit_vat_account_line_ids:
+            debit_taxes |= debit.tax_id
+        for debit_tax in debit_taxes:
+            if debit_tax.vsc_exclude_operation:
                 continue
-            debit_lines |= debit_line
-        for credit_line in liq.credit_vat_account_line_ids:
-            if credit_line.tax_id.vsc_exclude_operation or (
-                credit_line.tax_id.kind_id
-                and credit_line.tax_id.kind_id.code == "N1"
-            ):
+            tax = debit_taxes.with_context(self._get_tax_context(period)).browse(
+                debit_tax.id
+            )
+            self.imponibile_operazioni_attive += tax.base_balance
+
+    def _compute_imponibile_operazioni_passive(self, liq, period):
+        self.ensure_one()
+        credit_taxes = self.env["account.tax"]
+        for credit in liq.credit_vat_account_line_ids:
+            credit_taxes |= credit.tax_id
+        for credit_tax in credit_taxes:
+            if credit_tax.vsc_exclude_operation:
                 continue
-            credit_lines |= credit_line
-        return debit_lines, credit_lines
+            tax = credit_taxes.with_context(self._get_tax_context(period)).browse(
+                credit_tax.id
+            )
+            self.imponibile_operazioni_passive -= tax.base_balance
 
-    def _compute_debit_amounts(self, debit_lines):
-        for line in debit_lines:
-            self.imponibile_operazioni_attive += line.base_amount
-            self.iva_esigibile += line.amount
-
-    def _compute_credit_amounts(self, credit_lines):
-        for line in credit_lines:
-            self.imponibile_operazioni_passive += line.base_amount
-            self.iva_detratta += line.amount
-
-    @api.multi
     @api.onchange("liquidazioni_ids")
     def compute_from_liquidazioni(self):
 
         for quadro in self:
             # Reset valori
             quadro._reset_values()
-            liquidazioni_debit_line_ids = []
-            liquidazioni_credit_line_ids = []
-            liq_1 = False
 
             for liq in quadro.liquidazioni_ids:
-                debit_lines, credit_lines = self._get_statement_line_list(liq)
-                quadro._compute_debit_amounts(debit_lines)
-                quadro._compute_credit_amounts(credit_lines)
-                if liq.interests_debit_vat_account_id:
-                    quadro.interessi_dovuti += liq.interests_debit_vat_amount
-                quadro.accounto_dovuto += liq.advance_amount
 
+                for period in liq.date_range_ids:
+                    quadro._compute_imponibile_operazioni_attive(liq, period)
+                    quadro._compute_imponibile_operazioni_passive(liq, period)
+
+                # Iva esigibile
+                for vat_amount in liq.debit_vat_account_line_ids:
+                    if vat_amount.tax_id.vsc_exclude_vat:
+                        continue
+                    quadro.iva_esigibile += vat_amount.amount
+                # Iva detratta
+                for vat_amount in liq.credit_vat_account_line_ids:
+                    if vat_amount.tax_id.vsc_exclude_vat:
+                        continue
+                    quadro.iva_detratta += vat_amount.amount
+                # credito/debito periodo precedente
+                quadro.debito_periodo_precedente = liq.previous_debit_vat_amount
+                if liq.previous_year_credit:
+                    quadro.credito_anno_precedente = liq.previous_credit_vat_amount
+                else:
+                    quadro.credito_periodo_precedente = liq.previous_credit_vat_amount
+                quadro.accounto_dovuto = liq.advance_amount
+                quadro.metodo_calcolo_acconto = liq.advance_computation_method
+                if (
+                    liq.interests_debit_vat_account_id
+                    and quadro.period_type != "quarter"
+                    and quadro.quarter != 5
+                ):
+                    # I contribuenti che eseguono liquidazioni trimestrali, ai sensi
+                    # dell’art. 7 del d.P.R. 14 ottobre 1999, n. 542, devono presentare
+                    # la Comunicazione anche per il quarto trimestre solare, senza
+                    # tenere conto delle eventuali operazioni di rettifica e di
+                    # conguaglio da effettuare in sede di dichiarazione annuale
+                    # (ad esempio calcolo definitivo del pro rata).
+                    # Tuttavia, il versamento dell’IVA dovuta per tale trimestre deve
+                    # essere effettuato, comprensivo degli interessi dell’1%, in sede
+                    # di conguaglio annuale, entro l’ordinario termine di versamento
+                    # previsto per la dichiarazione annuale. Pertanto, tali
+                    # contribuenti, nella Comunicazione relativa al quarto trimestre,
+                    # non devono compilare i righi VP11, VP12 e VP14
+                    quadro.interessi_dovuti += liq.interests_debit_vat_amount
                 # Versamenti auto UE (NON GESTITO)
                 # Crediti d’imposta (NON GESTITO)
                 # Da altri crediti e debiti calcolo:
@@ -671,23 +686,3 @@ class ComunicazioneLiquidazioneVp(models.Model):
                         quadro.iva_esigibile -= line.amount
                     else:
                         quadro.iva_detratta += line.amount
-
-                # TODO: compare date_from
-                if not liq_1 or liq.id < liq_1.id:
-                    liq_1 = liq
-                liquidazioni_debit_line_ids += [x.id for x in debit_lines]
-                liquidazioni_credit_line_ids += [x.id for x in credit_lines]
-
-            # credito/debito periodo precedente
-            if liq_1:
-                quadro.debito_periodo_precedente = liq_1.previous_debit_vat_amount
-                if liq.previous_year_credit:
-                    quadro.credito_anno_precedente = liq_1.previous_credit_vat_amount
-                else:
-                    quadro.credito_periodo_precedente = liq_1.previous_credit_vat_amount
-            quadro.comunicazione_id.liquidazioni_debit_line_ids = [
-                (6, 0, liquidazioni_debit_line_ids)
-            ]
-            quadro.comunicazione_id.liquidazioni_credit_line_ids = [
-                (6, 0, liquidazioni_credit_line_ids)
-            ]

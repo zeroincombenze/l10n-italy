@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-
 <template id="report_registro_iva">
-    <t t-call="report.html_container">
+    <t t-call="web.html_container">
         <t t-if="registry_type == 'customer'">
-            <t t-set="title" t-value="'Registro Iva Vendite'" />
+            <t t-set="title" t-value="tax_registry_name or 'Registro IVA vendite'" />
         </t>
         <t t-if="registry_type == 'supplier'">
-            <t t-set="title" t-value="'Registro Iva Acquisti'" />
+            <t t-set="title" t-value="tax_registry_name or 'Registro IVA acquisti'" />
         </t>
         <t t-if="registry_type == 'corrispettivi'">
-            <t t-set="title" t-value="'Registro Corrispettivi'" />
+            <t t-set="title" t-value="tax_registry_name or 'Registro corrispettivi'" />
         </t>
         <t t-set="l10n_it_count_fiscal_year" t-value="year_footer" />
         <t t-call="l10n_it_account.internal_layout">
-            <div class="page">
+            <div class="article">
                 <t t-set="print_details" t-value="1" />
                 <t t-if="only_totals == True">
                     <t t-set="print_details" t-value="0" />
@@ -44,17 +43,17 @@
                                     style="page-break-inside: avoid"
                                     name="vat_header_invoice"
                                 >
-                                <th class="left_without_line">DATA REG.</th>
-                                <th class="left_without_line">NUM. REG.</th>
+                                <th class="left_without_line">REG. DATE</th>
+                                <th class="left_without_line">REG. NUM.</th>
                                 <t t-if="registry_type != 'corrispettivi'">
-                                    <th class="left_without_line">CAUS.</th>
-                                    <th class="left_without_line">DT FATT.</th>
-                                    <th class="left_without_line">NUM FATT.</th>
-                                    <th class="left_without_line">RAGIONE SOCIALE</th>
-                                    <th class="left_without_line">P.IVA</th>
+                                    <th class="left_without_line">REASON</th>
+                                    <th class="left_without_line">INV. DATE</th>
+                                    <th class="left_without_line">INV. NUM.</th>
+                                    <th class="left_without_line">BUSINESS NAME</th>
+                                    <th class="left_without_line">TIN</th>
                                 </t>
                                 <th class="left_without_line" />
-                                <th class="right_without_line">TOTALE</th>
+                                <th class="right_without_line">TOTAL</th>
                             </tr>
                             <tr style="page-break-inside: avoid" name="vat_header_tax">
                                 <t t-if="registry_type != 'corrispettivi'">
@@ -64,11 +63,9 @@
                                     <th class="left_with_line_bottom" />
                                     <th class="left_with_line_bottom" />
                                 </t>
-                                <th
-                                        class="left_with_line_bottom"
-                                    >Descrizione Imposta</th>
-                                <th class="right_with_line_bottom">Imponibile</th>
-                                <th class="right_with_line_bottom">Imposta</th>
+                                <th class="left_with_line_bottom">Tax description</th>
+                                <th class="right_with_line_bottom">Taxable</th>
+                                <th class="right_with_line_bottom">Tax</th>
                                 <th class="right_with_line_bottom" />
                             </tr>
                         </t>
@@ -130,7 +127,7 @@
                                                             class="left_without_line_bold"
                                                         ><div
                                                                 style="page-break-inside: avoid"
-                                                                t-esc="line['reference']"
+                                                                t-esc="move.ref"
                                                             /></td>
                                                 </t>
                                                 <t
@@ -206,29 +203,27 @@
                     <table style="width:100%;">
                        <tr>
                             <td colspan="2" style="vertical-align:text-top;padding:10">
-                                <h3>Totali</h3>
+                                <h3>Totals</h3>
                                 <table style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th
                                                     class="left_without_line_bold"
-                                                >Descrizione</th>
+                                                >Description</th>
                                             <th
                                                     class="right_without_line_bold"
-                                                >Imponibile</th>
+                                                >Taxable</th>
+                                            <th class="right_without_line_bold">Tax</th>
                                             <th
                                                     class="right_without_line_bold"
-                                                >Imposta</th>
+                                                >Deductible</th>
                                             <th
                                                     class="right_without_line_bold"
-                                                >Detraibile</th>
-                                            <th
-                                                    class="right_without_line_bold"
-                                                >Indetraibile</th>
+                                                >Non-Deductible</th>
                                         </tr>
                                     </thead>
                                     <t
-                                            t-foreach="total_used_taxes"
+                                            t-foreach="total_used_taxes.sorted()"
                                             t-as="total_used_tax"
                                         >
                                         <t
@@ -277,7 +272,7 @@
                                     <tr>
                                         <td
                                                 class="left_without_line_bold"
-                                            >Totale generale euro</td>
+                                            >General Total EUR</td>
                                         <td
                                                 class="right_without_line_bold"
                                                 t-esc="formatLang(env, tot_base)"
@@ -304,4 +299,5 @@
         </t>
     </t>
 </template>
+
 </odoo>

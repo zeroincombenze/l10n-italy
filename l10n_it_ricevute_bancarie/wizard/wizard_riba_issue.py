@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2012    - Andrea Cometa <http://www.andreacometa.it>
-# Copyright 2012    - Associazione Odoo Italia <https://www.odoo-italia.org>
-# Copyright 2012-17 - Lorenzo Battistini <https://www.agilebg.com>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
-from odoo import _, api, exceptions, fields, models
+# Copyright (C) 2012 Andrea Cometa.
+# Email: info@andreacometa.it
+# Web site: http://www.andreacometa.it
+# Copyright (C) 2012 Associazione OpenERP Italia
+# (<http://www.odoo-italia.org>).
+# Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import _, exceptions, fields, models
 
 
 # -------------------------------------------------------
@@ -15,12 +14,11 @@ from odoo import _, api, exceptions, fields, models
 # -------------------------------------------------------
 class RibaIssue(models.TransientModel):
     _name = "riba.issue"
-    _description = "Ricevute bancarie issue"
+    _description = "Cash Orders Issue"
     configuration_id = fields.Many2one(
         "riba.configuration", string="Configuration", required=True
     )
 
-    @api.multi
     def create_list(self):
         def create_rdl(
             countme, bank_id, rd_id, date_maturity, partner_id, acceptance_account_id
@@ -38,6 +36,8 @@ class RibaIssue(models.TransientModel):
 
         self.ensure_one()
         # Qui creiamo la distinta
+        # wizard_obj = self.browse(cr, uid, ids)[0]
+        # active_ids = context and context.get('active_ids', [])
         riba_list = self.env["riba.distinta"]
         riba_list_line = self.env["riba.distinta.line"]
         riba_list_move_line = self.env["riba.distinta.move.line"]
@@ -54,33 +54,43 @@ class RibaIssue(models.TransientModel):
 
         # group by partner and due date
         grouped_lines = {}
-        # move_lines = move_line_obj.search([("id", "in", self._context["active_ids"])])
-        move_lines = move_line_obj
-        for id in self._context["active_ids"]:
-            move_lines += move_line_obj.browse(id)
-        for move_line in move_lines:
-            if move_line.partner_id.group_riba:
-                if not grouped_lines.get(
-                    (move_line.partner_id.id, move_line.date_maturity), False
-                ):
+        move_lines = move_line_obj.search([("id", "in", self._context["active_ids"])])
+        do_group_riba = True
+        if (
+            len(
+                {
+                    "{}{}".format(x.cig, x.cup)
+                    for x in move_lines.mapped("move_id.related_documents")
+                }
+            )
+            > 1
+        ):
+            do_group_riba = False
+        if do_group_riba:
+            for move_line in move_lines:
+                if move_line.partner_id.group_riba:
+                    if not grouped_lines.get(
+                        (move_line.partner_id.id, move_line.date_maturity), False
+                    ):
+                        grouped_lines[
+                            (move_line.partner_id.id, move_line.date_maturity)
+                        ] = []
                     grouped_lines[
                         (move_line.partner_id.id, move_line.date_maturity)
-                    ] = []
-                grouped_lines[
-                    (move_line.partner_id.id, move_line.date_maturity)
-                ].append(move_line)
+                    ].append(move_line)
 
         # create lines
         countme = 1
 
         for move_line in move_lines:
-            if move_line.partner_id.bank_ids:
-                bank_id = move_line.partner_id.bank_ids[0]
+            if move_line.move_id.riba_partner_bank_id:
+                bank_id = move_line.move_id.riba_partner_bank_id
             else:
                 raise exceptions.Warning(
-                    _("Partner %s has not bank!!!") % move_line.partner_id.name
+                    _("No bank has been specified for invoice %s")
+                    % move_line.move_id.name
                 )
-            if move_line.partner_id.group_riba:
+            if move_line.partner_id.group_riba and do_group_riba:
                 for key in grouped_lines:
                     if (
                         key[0] == move_line.partner_id.id
@@ -125,18 +135,9 @@ class RibaIssue(models.TransientModel):
 
             countme += 1
 
-        # ----- show list form
-        mod_obj = self.env["ir.model.data"]
-        act_obj = self.env["ir.actions.act_window"]
-        action = mod_obj.get_object_reference(
-            "l10n_it_ricevute_bancarie", "distinta_riba_action"
+        # ----- show slip form
+        action_vals = self.env["ir.actions.act_window"]._for_xml_id(
+            "l10n_it_ricevute_bancarie.distinta_riba_action"
         )
-        view = mod_obj.get_object_reference(
-            "l10n_it_ricevute_bancarie", "view_riba_distinta_form"
-        )
-        action_id = action and action[1] or False
-        action = act_obj.browse(action_id)
-        action_vals = action.read()[0]
-        action_vals["views"] = [(view and view[1] or False, "form")]
         action_vals["res_id"] = rd_id
         return action_vals

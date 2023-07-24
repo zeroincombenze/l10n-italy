@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2019 Matteo Bilotta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
-from odoo import _, api, fields, models, netsvc
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -11,7 +10,7 @@ class WithholdingTaxMove(models.Model):
     _inherit = "withholding.tax.move"
 
     wt_move_payment_id = fields.Many2one(
-        "withholding.tax.move.payment", "Move Payment", readonly=True
+        "withholding.tax.move.payment", "WT Payment Move", readonly=True
     )
 
     def unlink(self):
@@ -19,34 +18,32 @@ class WithholdingTaxMove(models.Model):
             if rec.wt_move_payment_id:
                 raise ValidationError(
                     _(
-                        (
-                            "Warning! Withholding tax move in payment {}: \
-                    you can not delete it"
-                        ).format(rec.wt_move_payment_id.name)
-                    )
+                        "Warning! Withholding tax move in a payment {}:"
+                        " you can not delete it"
+                    ).format(rec.wt_move_payment_id.name)
                 )
-        return super(WithholdingTaxMove, self).unlink()
 
-    @api.multi
+        return super().unlink()
+
     def check_unlink(self):
         wt_moves_not_eresable = []
         for move in self:
             if move.wt_move_payment_id:
                 wt_moves_not_eresable.append(move)
+
         if wt_moves_not_eresable:
             raise ValidationError(
-                _(
-                    "Warning! Withholding Tax moves in a payment: {}".format(
-                        wt_moves_not_eresable[0].sudo().wt_move_payment_id.name
-                    )
+                _("Warning! Withholding tax moves in a payment: {}").format(
+                    wt_moves_not_eresable[0].sudo().wt_move_payment_id.name
                 )
             )
-        super(WithholdingTaxMove, self).check_unlink()
+
+        super().check_unlink()
 
 
 class WithholdingTaxMovePayment(models.Model):
     _name = "withholding.tax.move.payment"
-    _description = "Withholding Tax Move Payment"
+    _description = "Withholding Tax Payment Move"
 
     @api.depends("line_ids.amount", "line_ids.wt_move_payment_id")
     def _compute_total(self):
@@ -70,22 +67,20 @@ class WithholdingTaxMovePayment(models.Model):
         "res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.account"
-        ),
+        default=lambda self: self.env.company,
     )
     name = fields.Char("Name")
-    date = fields.Char("Date")
-    date_payment = fields.Date("Date Payment")
-    date_start = fields.Date("Date Start", readonly=True)
-    date_stop = fields.Date("Date Stop", readonly=True)
-    move_id = fields.Many2one("account.move", string="Account move")
+    date = fields.Date(string="Date")
+    date_payment = fields.Date("Payment Date")
+    date_start = fields.Date("Start Date", readonly=True)
+    date_stop = fields.Date("Stop Date", readonly=True)
+    move_id = fields.Many2one("account.move", string="Account Move")
     account_id = fields.Many2one("account.account", string="Account")
     journal_id = fields.Many2one("account.journal", string="Journal")
     line_ids = fields.One2many(
         "withholding.tax.move", "wt_move_payment_id", string="Lines"
     )
-    amount = fields.Float("WT amount", compute="_compute_total")
+    amount = fields.Float("WT Amount", compute="_compute_total")
 
     def create_account_move(self):
         account_move_obj = self.env["account.move"]
@@ -93,10 +88,11 @@ class WithholdingTaxMovePayment(models.Model):
             if not mp.date_payment or not mp.journal_id or not mp.account_id:
                 raise ValidationError(
                     _(
-                        "Warning! Datas required for account move creation: \
-                        Date payment, journal, account"
+                        "Warning! Data required for account move creation:"
+                        " payment date, journal, account"
                     )
                 )
+
             # WT Moves
             wt_move_balance = 0
             move_lines = []
@@ -108,7 +104,9 @@ class WithholdingTaxMovePayment(models.Model):
                 else:
                     credit = wt_move.amount
                 vals = {
-                    "name": _("Withholding Tax Payment %s") % wt_move.partner_id.name,
+                    "name": _("Withholding tax payment {}").format(
+                        wt_move.partner_id.name
+                    ),
                     "account_id": wt_move.withholding_tax_id.account_payable_id.id,
                     "credit": credit,
                     "debit": debit,
@@ -133,14 +131,16 @@ class WithholdingTaxMovePayment(models.Model):
                 move_lines.append((0, 0, vals))
             # Move create
             move = account_move_obj.create(
-                {
-                    "ref": _("Withholding Tax Payment"),
-                    "journal_id": mp.journal_id.id,
-                    "date": mp.date_payment,
-                    "line_ids": move_lines,
-                }
+                [
+                    {
+                        "ref": _("Withholding Tax Payment"),
+                        "journal_id": mp.journal_id.id,
+                        "date": mp.date_payment,
+                        "line_ids": move_lines,
+                    }
+                ]
             )
-            move.post()
+            move.action_post()
             # Ref on payement
             mp.move_id = move.id
 
@@ -148,73 +148,62 @@ class WithholdingTaxMovePayment(models.Model):
         # Moves must have the same company
         if wt_moves and len(wt_moves.mapped("company_id")) > 1:
             raise ValidationError(_("The selected moves must have the same company!"))
+
         sequence_obj = self.env["ir.sequence"]
         for wt_move in wt_moves:
             if wt_move.state == "paid":
                 raise ValidationError(
-                    _("Wt move already paid! - %s - %s - %s")
-                    % (wt_move.partner_id.name, wt_move.date, str(wt_move.amount))
+                    _("WT move already paid! - {} - {} - {}").format(
+                        wt_move.partner_id.name, wt_move.date, str(wt_move.amount)
+                    )
                 )
+
             if wt_move.wt_move_payment_id:
                 raise ValidationError(
                     _(
-                        "Wt move already in a move payment! \
-                        Move paym. %s -Ref WT: %s - %s - %s"
-                    )
-                    % (
+                        "WT move already in a payment move! "
+                        "Paym. move {} - Ref WT: {} - {} - {}"
+                    ).format(
                         str(wt_move.wt_move_payment_id.id),
                         wt_move.partner_id.name,
                         wt_move.date,
                         str(wt_move.amount),
                     )
                 )
-        # Create Move payment
+
+        # Create Payment Move
         wt_payment = False
         if wt_moves:
             val = {
-                "name": sequence_obj.get("withholding.tax.move.payment"),
+                "name": sequence_obj.next_by_code("withholding.tax.move.payment"),
                 "date": fields.Date.today(),
                 "line_ids": [(6, 0, wt_moves.ids)],
             }
-            wt_payment = self.create(val)
+            wt_payment = self.create([val])
             # Update ref on moves
             for wt_move in wt_moves:
                 wt_move.wt_move_payment_id = wt_payment.id
         return wt_payment
 
     def action_confirmed(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                self.env.uid, self._name, pt.id, "confirmed", self.env.cr
-            )
-
-    def action_set_to_draft(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                self.env.uid, self._name, pt.id, "cancel", self.env.cr
-            )
-
-    def move_payment_to_draft(self):
-        for move in self:
-            if move.state in ["confirmed"]:
-                move.state = "draft"
-                # Wt move set to due
-                for wt_move in move.line_ids:
-                    wt_move.action_set_to_draft()
-
-    def move_payment_confirmed(self):
         for move in self:
             if move.state in ["draft"]:
                 move.state = "confirmed"
-                # Wt move set to due
+                # WT move set to due
                 for wt_move in move.line_ids:
                     wt_move.action_paid()
 
-    @api.multi
+    def action_set_to_draft(self):
+        for move in self:
+            if move.state in ["confirmed"]:
+                move.state = "draft"
+                # WT move set to due
+                for wt_move in move.line_ids:
+                    wt_move.action_set_to_draft()
+
     def unlink(self):
         for payment in self:
             if payment.state != "draft":
                 raise ValidationError(_("You can only delete draft payments"))
-        return super(WithholdingTaxMovePayment, self).unlink()
+
+        return super().unlink()

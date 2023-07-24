@@ -1,29 +1,9 @@
-# -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012-2017 Agile Business Group (<http://www.agilebg.com>)
-#    Copyright (C) 2015 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2015 Openforce di Alessandro Camilli
-#    Copyright (C) 2015 Link It S.p.a. (<http://www.linkgroup.it/>)
-#    <http://www.openforce.it>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+#  Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
+#  Copyright 2012-2017 Agile Business Group (<http://www.agilebg.com>)
+#  Copyright 2015 Associazione OpenERP Italia (<http://www.openerp-italia.org>)
+#  Copyright 2015 Openforce di Alessandro Camilli (<http://www.openforce.it>)
+#  Copyright 2015 Link It S.p.a. (<http://www.linkgroup.it/>)
+#  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
 
@@ -34,11 +14,12 @@ from odoo.tools.translate import _
 
 class VatPeriodEndStatementReport(models.AbstractModel):
     _name = "report.account_vat_period_end_statement.vat_statement"
+    _description = "VAT Statement report"
 
     @api.model
-    def render_html(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         docs = self.env["account.vat.period.end.statement"].browse(docids)
-        docargs = {
+        vals = {
             "docs": docs,
             "time": time,
             "tax_amounts": self._get_taxes_amounts,
@@ -46,9 +27,7 @@ class VatPeriodEndStatementReport(models.AbstractModel):
             "formatLang": formatLang,
             "env": self.env,
         }
-        return self.env["report"].render(
-            "account_vat_period_end_statement.vat_statement", docargs
-        )
+        return vals
 
     def _get_statement(self, statement_id):
         statement_obj = self.env["account.vat.period.end.statement"]
@@ -100,12 +79,12 @@ class VatPeriodEndStatementReport(models.AbstractModel):
 
     def _get_account_vat_amounts(
         self,
-        type="credit",
+        account_type="credit",
         statement_account_line=None,
     ):
         if statement_account_line is None:
             statement_account_line = []
-        if type != "credit" and type != "debit":
+        if account_type != "credit" and account_type != "debit":
             raise Exception(_("Account type neither credit and debit !"))
 
         account_amounts = {}

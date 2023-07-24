@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 import base64
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 
 class ComunicazioneLiquidazioneExportFile(models.TransientModel):
@@ -12,7 +10,6 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
     file_export = fields.Binary("File", readonly=True)
     name = fields.Char("File Name", readonly=True, default="liquidazione.xml")
 
-    @api.multi
     def export(self):
 
         comunicazione_ids = self._context.get("active_ids")
@@ -25,18 +22,12 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
             for comunicazione in self.env["comunicazione.liquidazione"].browse(
                 comunicazione_ids
             ):
-                out = base64.encodestring(comunicazione.get_export_xml())
-                wizard.file_export = out
-                if comunicazione.declarant_fiscalcode:
-                    wizard.name = "%s_LI_%s.xml" % (
-                        comunicazione.declarant_fiscalcode,
-                        str(comunicazione.identificativo).rjust(5, "0"),
-                    )
-                else:
-                    wizard.name = "%s_LI_%s.xml" % (
-                        comunicazione.taxpayer_fiscalcode,
-                        str(comunicazione.identificativo).rjust(5, "0"),
-                    )
+                out = base64.encodebytes(comunicazione.get_export_xml())
+                wizard.sudo().file_export = out
+                wizard.name = "{}_LI_{}.xml".format(
+                    comunicazione.declarant_fiscalcode,
+                    str(comunicazione.identificativo).rjust(5, "0"),
+                )
             model_data_obj = self.env["ir.model.data"]
             view_rec = model_data_obj.get_object_reference(
                 "l10n_it_vat_statement_communication",
@@ -45,7 +36,6 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
             view_id = view_rec and view_rec[1] or False
 
             return {
-                "view_type": "form",
                 "view_id": [view_id],
                 "view_mode": "form",
                 "res_model": "comunicazione.liquidazione.export.file",

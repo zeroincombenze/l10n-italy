@@ -1,28 +1,24 @@
-# -*- coding: utf-8 -*-
 # Copyright 2011-2013 Associazione OpenERP Italia
 # (<http://www.openerp-italia.org>).
 # Copyright 2012 Domsense srl (<http://www.domsense.com>)
 # Copyright 2012-2018 Lorenzo Battistini - Agile Business Group
-# Copyright 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
-# Copyright 2017-2022 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2012-15 LinkIt srl (<http://http://www.linkgroup.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
+    "version": "14.0.1.0.5",
     "name": "ITA - Registri IVA",
-    "version": "10.0.1.3.2",
     "category": "Localization/Italy",
-    "author": "Agile Business Group, Odoo Community Association (OCA)" ", LinkIt Srl",
+    "author": "Agile Business Group, Odoo Community Association (OCA), LinkIt Srl",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "development_status": "Production/Stable",
     "depends": [
         "base_setup",
-        "l10n_it_ade",
         "account",
         "l10n_it_account",
-        "report",
+        "web",
         "account_tax_balance",
-        "account_accountant",
         "date_range",
     ],
     "data": [

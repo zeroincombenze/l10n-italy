@@ -21,10 +21,10 @@
                 <sheet>
                     <group name="company">
                         <group>
-                            <field name="company_id" widget="selection" />
+                        <field name="company_id" widget="selection" />
                         </group>
                         <group>
-                            <field name="identificativo" />
+                        <field name="identificativo" />
                         </group>
                     </group>
                     <newline />
@@ -87,50 +87,17 @@
                         <page string="VP table" name="quadro_vp">
                             <group>
                                 <field name="quadri_vp_ids" nolabel="1">
-                                    <tree>
-                                        <field name="period_type" />
-                                        <field name="month" />
-                                        <field name="quarter" />
-                                        <field name="imponibile_operazioni_attive" />
-                                        <field name="iva_esigibile" />
-                                        <field name="imponibile_operazioni_passive" />
-                                        <field name="iva_detratta" />
-                                        <field name="iva_da_versare" />
-                                        <field name="iva_a_credito" />
-                                    </tree>
-                                </field>
-                            </group>
-                            <group>
-                                <field
-                                    string="Debit Tax Lines"
-                                    name="liquidazioni_debit_line_ids"
-                                    nolabel="1"
-                                >
-                                    <tree>
-                                        <field name="statement_id" />
-                                        <field name="tax_id" />
-                                        <field name="base_amount" sum="Total Base" />
-                                        <field name="vat_amount" sum="Total VAT" />
-                                        <field name="amount" sum="Total Amount" />
-                                    </tree>
-                                </field>
-                            </group>
-                            <group>
-                                <field
-                                    string="Credit Tax Lines"
-                                    name="liquidazioni_credit_line_ids"
-                                    nolabel="1"
-                                >
-                                    <tree>
-                                        <field name="statement_id" />
-                                        <field name="tax_id" />
-                                        <field name="base_amount" sum="Total Base" />
-                                        <field name="vat_amount" sum="Total VAT" />
-                                        <field name="amount" sum="Total Amount" />
-                                    </tree>
+                                   <tree>
+                                       <field name="period_type" />
+                                       <field name="month" />
+                                       <field name="quarter" />
+                                       <field name="iva_da_versare" />
+                                       <field name="iva_a_credito" />
+                                   </tree>
                                 </field>
                             </group>
                         </page>
+
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
@@ -162,19 +129,6 @@
             <form string="VP table">
                 <separator string="VAT statements to communicate" />
                 <field name="liquidazioni_ids" />
-                <!--
-                <tree>
-                    <field name="period_type"/>
-                    <field name="month"/>
-                    <field name="quarter"/>
-                    <field name="imponibile_operazioni_attive"/>
-                    <field name="iva_esigibile"/>
-                    <field name="imponibile_operazioni_passive"/>
-                    <field name="iva_detratta"/>
-                    <field name="iva_da_versare"/>
-                    <field name="iva_a_credito"/>
-                </tree>
-                -->
                 <group>
                     <button
                         name="compute_from_liquidazioni"
@@ -189,12 +143,12 @@
                         <field
                             name="month"
                             attrs="{'invisible': [('period_type', '!=', 'month')],
-                               'required': [('period_type', '=', 'month')]}"
+                                    'required': [('period_type', '=', 'month')]}"
                         />
                         <field
                             name="quarter"
                             attrs="{'invisible': [('period_type', '!=', 'quarter')],
-                               'required': [('period_type', '=', 'quarter')]}"
+                                    'required': [('period_type', '=', 'quarter')]}"
                         />
                     </group>
                     <group>

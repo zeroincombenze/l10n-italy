@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-#
-#    Copyright (C) 2014 Abstract (<http://abstract.it>).
-#    Copyright (C) 2016 Ciro Urselli (<http://www.apuliasoftware.it>).
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright (C) 2014 Abstract (<http://abstract.it>).
+# Copyright (C) 2016 Ciro Urselli (<http://www.apuliasoftware.it>).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
 
@@ -14,7 +11,7 @@ class AtecoCategory(models.Model):
     _description = "ATECO Code"
 
     name = fields.Char(required=True)
-    code = fields.Char(string="ATECO Code", size=9, required=False)
+    code = fields.Char(string="ATECO Code", required=False)
     description = fields.Text()
     parent_id = fields.Many2one("ateco.category", string="Parent Category", index=True)
     child_ids = fields.One2many(
@@ -27,3 +24,12 @@ class AtecoCategory(models.Model):
         "partner_id",
         string="Partners",
     )
+
+    def name_get(self):
+        res = []
+        for record in self:
+            name = record.name
+            if record.code:
+                name = record.code + " - " + name
+            res.append((record.id, name))
+        return res

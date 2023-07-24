@@ -1,11 +1,9 @@
 # generated from manifests external_dependencies
 asn1crypto
 codicefiscale
-os0
-past
-pkcs7
-# #Crypto.Cipher
-pycrypto
-PyPDF2
-pyxb==1.2.5
-Unidecode<1.3.0
+elementpath
+openupgradelib
+unidecode
+xlrd
+xlsxwriter
+xmlschema>=1.7.0
