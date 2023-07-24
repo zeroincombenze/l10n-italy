@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="0">
+<odoo noupdate="1">
 
         <!-- Payment Terms -->
         <record id="fatturapa_TP01" model="fatturapa.payment_term">
             <field name="code">TP01</field>
-            <field name="name">pagamento a rate</field>
+            <field name="name">(pagamento a rate)</field>
         </record>
         <record id="fatturapa_tp02" model="fatturapa.payment_term">
             <field name="code">TP02</field>
-            <field name="name">pagamento completo</field>
+            <field name="name">(pagamento completo)</field>
         </record>
         <record id="fatturapa_tp03" model="fatturapa.payment_term">
             <field name="code">TP03</field>
-            <field name="name">anticipo</field>
+            <field name="name">(anticipo)</field>
+        </record>
+        <record id="fatturapa_tp04" model="fatturapa.payment_term">
+            <field name="code" />
+            <field name="name">(!!! codice non previsto !!!)</field>
         </record>
 
         <!-- Payment Methods -->
@@ -50,11 +54,11 @@
         </record>
         <record id="fatturapa_mp09" model="fatturapa.payment_method">
             <field name="code">MP09</field>
-            <field name="name">RID (sostituito da SDD)</field>
+            <field name="name">RID</field>
         </record>
         <record id="fatturapa_mp10" model="fatturapa.payment_method">
             <field name="code">MP10</field>
-            <field name="name">RID utenze (sostituito da SDD)</field>
+            <field name="name">RID utenze</field>
         </record>
         <record id="fatturapa_mp11" model="fatturapa.payment_method">
             <field name="code">MP11</field>
@@ -108,5 +112,4 @@
             <field name="code">MP23</field>
             <field name="name">PagoPA</field>
         </record>
-
 </odoo>

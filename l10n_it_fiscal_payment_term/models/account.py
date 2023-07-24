@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2014    - Davide Corio <davide.corio@abstract.it>
-# Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
-# Copyright 2018-19 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#
+# Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-#
+
 from odoo import fields, models
 
 
@@ -15,7 +10,7 @@ class FatturapaPaymentTerm(models.Model):
     _description = "Fiscal Payment Term"
 
     name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=4)
+    code = fields.Char(size=4)
 
 
 class FatturapaPaymentMethod(models.Model):
@@ -24,7 +19,7 @@ class FatturapaPaymentMethod(models.Model):
     _description = "Fiscal Payment Method"
 
     name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=4)
+    code = fields.Char(size=4)
 
 
 #  used in fatturaPa export

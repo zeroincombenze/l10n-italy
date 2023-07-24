@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import _, api, fields, models, netsvc
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -11,48 +11,50 @@ class WithholdingTax(models.Model):
     _name = "withholding.tax"
     _description = "Withholding Tax"
 
-    @api.one
     @api.depends(
         "rate_ids.date_start", "rate_ids.date_stop", "rate_ids.base", "rate_ids.tax"
     )
-    def _get_rate(self):
-        self.env.cr.execute(
-            """
-            SELECT tax, base FROM withholding_tax_rate
-                WHERE withholding_tax_id = %s
-                 and (date_start <= current_date or date_start is null)
-                 and (date_stop >= current_date or date_stop is null)
-                ORDER by date_start LIMIT 1""",
-            (self.id,),
-        )
-        rate = self.env.cr.fetchone()
-        if rate:
-            self.tax = rate[0]
-            self.base = rate[1]
-        else:
-            self.tax = 0
-            self.base = 1
+    def _compute_get_rate(self):
+        for wt in self:
+            wt.tax = 0
+            wt.base = 1
+            wt_id = wt._origin.id or wt.id
+            if not wt_id:
+                continue
+            self.env.cr.execute(
+                """
+                SELECT tax, base FROM withholding_tax_rate
+                    WHERE withholding_tax_id = %s
+                     and (date_start <= current_date or date_start is null)
+                     and (date_stop >= current_date or date_stop is null)
+                    ORDER by date_start LIMIT 1""",
+                (wt_id,),
+            )
+            rate = self.env.cr.fetchone()
+            if rate:
+                wt.tax = rate[0]
+                wt.base = rate[1]
 
     def _default_wt_journal(self):
-        misc_journal = self.env["account.journal"].search([("code", "=", "MISC")])
+        misc_journal = self.env["account.journal"].search(
+            [("code", "=", _("MISC")), ("company_id", "=", self.env.company.id)]
+        )
         if misc_journal:
             return misc_journal[0].id
         return False
 
-    active = fields.Boolean("Active", default=True)
+    active = fields.Boolean(default=True)
     company_id = fields.Many2one(
         "res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.account"
-        ),
+        default=lambda self: self.env.company,
     )
-    name = fields.Char("Name", size=256, required=True)
-    code = fields.Char("Code", size=256, required=True)
-    certification = fields.Boolean("Certification")
+    name = fields.Char(size=256, required=True)
+    code = fields.Char(size=256, required=True)
+    certification = fields.Boolean()
     comment = fields.Text("Text")
-    sequence = fields.Integer("Sequence")
+    sequence = fields.Integer()
     account_receivable_id = fields.Many2one(
         "account.account", string="Account Receivable", required=True
     )
@@ -69,15 +71,12 @@ class WithholdingTax(models.Model):
     payment_term = fields.Many2one(
         "account.payment.term", "Payment Terms", required=True
     )
-    tax = fields.Float(string="Tax %", compute="_get_rate")
-    base = fields.Float(string="Base", compute="_get_rate")
+    tax = fields.Float(string="Tax %", compute="_compute_get_rate")
+    base = fields.Float(compute="_compute_get_rate")
     rate_ids = fields.One2many(
         "withholding.tax.rate", "withholding_tax_id", "Rates", required=True
     )
-    causale_pagamento_id = fields.Many2one(
-        "causale.pagamento", string="Causale pagamento"
-    )
-    welfare_fund_type_id = fields.Many2one("welfare.fund.type", "Welfare Fund Type")
+
     wt_types = fields.Selection(
         [
             ("enasarco", "Enasarco tax"),
@@ -92,15 +91,21 @@ class WithholdingTax(models.Model):
     )
     use_daticassaprev = fields.Boolean(
         "DatiCassa export",
-        oldname="use_daticassaprev_for_enasarco",
         help="Setting this, while exporting e-invoice XML, "
         "data will be also added to DatiCassaPrevidenziale",
     )
     daticassprev_tax_id = fields.Many2one("account.tax")
 
-    @api.one
+    def copy(self, default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        if "code" not in default:
+            default["code"] = _("%s (copy)") % self.code
+        return super(WithholdingTax, self).copy(default=default)
+
     @api.constrains("rate_ids")
     def _check_rate_ids(self):
+        self.ensure_one()
         if not self.rate_ids:
             raise ValidationError(_("Error! Rates are required"))
 
@@ -109,7 +114,7 @@ class WithholdingTax(models.Model):
         if self.env.context.get("currency_id"):
             currency = self.env["res.currency"].browse(self.env.context["currency_id"])
         else:
-            currency = self.env.user.company_id.currency_id
+            currency = self.env.company.currency_id
         prec = currency.decimal_places
         base = round(amount * self.base, prec)
         tax = round(base * ((self.tax or 0.0) / 100.0), prec)
@@ -125,13 +130,13 @@ class WithholdingTax(models.Model):
         self.ensure_one()
         return str(invoice_tax_val["withholding_tax_id"])
 
-    @api.one
     def get_base_from_tax(self, wt_amount):
         """
         100 * wt_amount        1
         ---------------  *  -------
               % tax          Coeff
         """
+        self.ensure_one()
         dp_obj = self.env["decimal.precision"]
         base = 0
         if wt_amount:
@@ -147,55 +152,58 @@ class WithholdingTaxRate(models.Model):
     _name = "withholding.tax.rate"
     _description = "Withholding Tax Rates"
 
-    @api.one
     @api.constrains("date_start", "date_stop")
     def _check_date(self):
-        if self.withholding_tax_id.active:
-            domain = [
-                ("withholding_tax_id", "=", self.withholding_tax_id.id),
-                ("id", "!=", self.id),
-            ]
-            if self.date_start:
-                domain.extend(
-                    [
-                        "|",
-                        ("date_stop", ">=", self.date_start),
-                        ("date_stop", "=", False),
-                    ]
-                )
-            if self.date_stop:
-                domain.extend(
-                    [
-                        "|",
-                        ("date_start", "<=", self.date_stop),
-                        ("date_start", "=", False),
-                    ]
-                )
+        for rate in self:
+            if rate.withholding_tax_id.active:
+                domain = [
+                    ("withholding_tax_id", "=", rate.withholding_tax_id.id),
+                    ("id", "!=", rate.id),
+                ]
+                if rate.date_start:
+                    domain.extend(
+                        [
+                            "|",
+                            ("date_stop", ">=", rate.date_start),
+                            ("date_stop", "=", False),
+                        ]
+                    )
+                if rate.date_stop:
+                    domain.extend(
+                        [
+                            "|",
+                            ("date_start", "<=", rate.date_stop),
+                            ("date_start", "=", False),
+                        ]
+                    )
 
-            overlapping_rate = self.env["withholding.tax.rate"].search(domain, limit=1)
-            if overlapping_rate:
-                raise ValidationError(_("Error! You cannot have 2 rates that overlap!"))
+                overlapping_rate = rate.env["withholding.tax.rate"].search(
+                    domain, limit=1
+                )
+                if overlapping_rate:
+                    raise ValidationError(
+                        _("Error! You cannot have 2 rates that overlap!")
+                    )
 
     withholding_tax_id = fields.Many2one(
         "withholding.tax", string="Withholding Tax", ondelete="cascade", readonly=True
     )
-    date_start = fields.Date(string="Date Start")
-    date_stop = fields.Date(string="Date Stop")
+    date_start = fields.Date()
+    date_stop = fields.Date()
     comment = fields.Text(string="Text")
     base = fields.Float(string="Base Coeff.", default=1)
     tax = fields.Float(string="Tax %")
 
 
 class WithholdingTaxStatement(models.Model):
-
     """
     The Withholding tax statement are created at the invoice validation
     """
 
     _name = "withholding.tax.statement"
     _description = "Withholding Tax Statement"
+    _order = "id desc"
 
-    @api.multi
     @api.depends("move_ids.amount", "move_ids.state", "move_ids.reconcile_partial_id")
     def _compute_total(self):
         for statement in self:
@@ -208,16 +216,25 @@ class WithholdingTaxStatement(models.Model):
             statement.amount = tot_wt_amount
             statement.amount_paid = tot_wt_amount_paid
 
-    date = fields.Date("Date")
+    date = fields.Date()
+    wt_type = fields.Selection(
+        [
+            ("in", "In"),
+            ("out", "Out"),
+        ],
+        "Type",
+        store=True,
+        compute="_compute_type",
+    )
     move_id = fields.Many2one("account.move", "Account move", ondelete="cascade")
-    invoice_id = fields.Many2one("account.invoice", "Invoice", ondelete="cascade")
+    invoice_id = fields.Many2one("account.move", "Invoice", ondelete="cascade")
     partner_id = fields.Many2one("res.partner", "Partner")
     withholding_tax_id = fields.Many2one("withholding.tax", string="Withholding Tax")
     company_id = fields.Many2one(
         "res.company", string="Company", related="withholding_tax_id.company_id"
     )
-    base = fields.Float("Base")
-    tax = fields.Float("Tax")
+    base = fields.Float()
+    tax = fields.Float()
     amount = fields.Float(
         string="WT amount applied", store=True, readonly=True, compute="_compute_total"
     )
@@ -226,6 +243,20 @@ class WithholdingTaxStatement(models.Model):
     )
     move_ids = fields.One2many("withholding.tax.move", "statement_id", "Moves")
     display_name = fields.Char(compute="_compute_display_name")
+
+    @api.depends("move_id.line_ids.account_id.account_type")
+    def _compute_type(self):
+        for st in self:
+            if st.move_id:
+                domain = [
+                    ("move_id", "=", st.move_id.id),
+                    ("account_id.account_type", "=", "liability_payable"),
+                ]
+                lines = self.env["account.move.line"].search(domain)
+                if lines:
+                    st.wt_type = "in"
+                else:
+                    st.wt_type = "out"
 
     def get_wt_competence(self, amount_reconcile):
         dp_obj = self.env["decimal.precision"]
@@ -247,7 +278,7 @@ class WithholdingTaxStatement(models.Model):
                     amount_wt = round(
                         base * wt_inv.tax_coeff, dp_obj.precision_get("Account")
                     )
-                if st.invoice_id.type in ["in_refund", "out_refund"]:
+                if st.invoice_id.move_type in ["in_refund", "out_refund"]:
                     amount_wt = -1 * amount_wt
             elif st.move_id:
                 tax_data = st.withholding_tax_id.compute_tax(amount_reconcile)
@@ -259,14 +290,13 @@ class WithholdingTaxStatement(models.Model):
 
 
 class WithholdingTaxMove(models.Model):
-
     """
-    The Withholding tax moves are created at the payment of invoice using
-    voucher
+    The Withholding tax moves are created at the payment of invoice
     """
 
     _name = "withholding.tax.move"
     _description = "Withholding Tax Move"
+    _order = "id desc"
 
     state = fields.Selection(
         [
@@ -279,9 +309,14 @@ class WithholdingTaxMove(models.Model):
         default="due",
     )
     statement_id = fields.Many2one("withholding.tax.statement", "Statement")
+    wt_type = fields.Selection(
+        string="Type",
+        store=True,
+        related="statement_id.wt_type",
+    )
     date = fields.Date("Date Competence")
     reconcile_partial_id = fields.Many2one(
-        "account.partial.reconcile", "Reconcile Partial", ondelete="cascade"
+        "account.partial.reconcile", "Invoice reconciliation", ondelete="cascade"
     )
     payment_line_id = fields.Many2one(
         "account.move.line", "Payment Line", ondelete="cascade"
@@ -299,25 +334,27 @@ class WithholdingTaxMove(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", related="withholding_tax_id.company_id"
     )
-    amount = fields.Float("Amount")
+    amount = fields.Float()
     partner_id = fields.Many2one("res.partner", "Partner")
-    date_maturity = fields.Date("Date Maturity")
+    date_maturity = fields.Date()
     account_move_id = fields.Many2one(
         "account.move", "Payment Move", ondelete="cascade"
     )
     wt_account_move_id = fields.Many2one("account.move", "WT Move", ondelete="cascade")
     display_name = fields.Char(compute="_compute_display_name")
+    full_reconcile_id = fields.Many2one(
+        "account.full.reconcile",
+        compute="_compute_full_reconcile_id",
+        string="WT reconciliation",
+    )
 
     def unlink(self):
         for rec in self:
             if rec.state not in ["due"]:
                 raise ValidationError(
                     _(
-                        (
-                            "Warning! You can not delete withholding tax move in\
-                     state: {}"
-                        ).format(rec.state)
-                    )
+                        "Warning! You can not delete withholding tax move in state: {}"
+                    ).format(rec.state)
                 )
         return super(WithholdingTaxMove, self).unlink()
 
@@ -332,17 +369,17 @@ class WithholdingTaxMove(models.Model):
             )
         # Move - head
         move_vals = {
-            "ref": _("WT %s - %s")
-            % (self.withholding_tax_id.code, self.credit_debit_line_id.move_id.name),
+            "ref": _("WT {0} - {1}").format(
+                self.withholding_tax_id.code, self.credit_debit_line_id.move_id.name
+            ),
             "journal_id": self.withholding_tax_id.journal_id.id,
             "date": self.payment_line_id.move_id.date,
         }
         # Move - lines
         move_lines = []
-        for type in ("partner", "tax"):
+        for _type in ("partner", "tax"):
             ml_vals = {
-                "ref": _("WT %s - %s - %s")
-                % (
+                "ref": _("WT {0} - {1} - {2}").format(
                     self.withholding_tax_id.code,
                     self.partner_id.name,
                     self.credit_debit_line_id.move_id.name,
@@ -351,7 +388,7 @@ class WithholdingTaxMove(models.Model):
                 "date": move_vals["date"],
             }
             # Credit/Debit line
-            if type == "partner":
+            if _type == "partner":
                 ml_vals["partner_id"] = self.payment_line_id.partner_id.id
                 ml_vals["account_id"] = self.credit_debit_line_id.account_id.id
                 ml_vals[
@@ -362,14 +399,14 @@ class WithholdingTaxMove(models.Model):
                 else:
                     ml_vals["debit"] = abs(self.amount)
             # Authority tax line
-            elif type == "tax":
-                ml_vals["name"] = "%s - %s" % (
+            elif _type == "tax":
+                ml_vals["name"] = "{} - {}".format(
                     self.withholding_tax_id.code,
                     self.credit_debit_line_id.move_id.name,
                 )
                 if self.payment_line_id.credit:
                     ml_vals["debit"] = abs(self.amount)
-                    if self.credit_debit_line_id.invoice_id.type in [
+                    if self.credit_debit_line_id.move_id.move_type in [
                         "in_refund",
                         "out_refund",
                     ]:
@@ -382,7 +419,7 @@ class WithholdingTaxMove(models.Model):
                         ] = self.withholding_tax_id.account_receivable_id.id
                 else:
                     ml_vals["credit"] = abs(self.amount)
-                    if self.credit_debit_line_id.invoice_id.type in [
+                    if self.credit_debit_line_id.move_id.move_type in [
                         "in_refund",
                         "out_refund",
                     ]:
@@ -397,8 +434,13 @@ class WithholdingTaxMove(models.Model):
             move_lines.append((0, 0, ml_vals))
 
         move_vals["line_ids"] = move_lines
-        move = self.env["account.move"].create(move_vals)
-        move.post()
+        move = (
+            self.env["account.move"]
+            .with_context(default_move_type="entry")
+            .create(move_vals)
+        )
+        move.action_post()
+
         # Save move in the wt move
         self.wt_account_move_id = move.id
 
@@ -406,13 +448,14 @@ class WithholdingTaxMove(models.Model):
         line_to_reconcile = False
         for line in move.line_ids:
             if (
-                line.account_id.user_type_id.type in ["payable", "receivable"]
+                line.account_id.account_type
+                in ["liability_payable", "asset_receivable"]
                 and line.partner_id
             ):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
-            if self.credit_debit_line_id.invoice_id.type in [
+            if self.credit_debit_line_id.move_id.move_type in [
                 "in_refund",
                 "out_invoice",
             ]:
@@ -428,41 +471,32 @@ class WithholdingTaxMove(models.Model):
                     "debit_move_id": debit_move_id,
                     "credit_move_id": credit_move_id,
                     "amount": abs(self.amount),
+                    "credit_amount_currency": abs(self.amount),
+                    "debit_amount_currency": abs(self.amount),
                 }
             )
 
     def _compute_display_name(self):
         self.display_name = self.partner_id.name + " - " + self.withholding_tax_id.name
 
-    @api.multi
     def action_paid(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                self.env.uid, self._name, pt.id, "paid", self.env.cr
-            )
-
-    @api.multi
-    def action_set_to_draft(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(
-                self.env.uid, self._name, pt.id, "cancel", self.env.cr
-            )
-
-    @api.multi
-    def move_paid(self):
         for move in self:
             if move.state in ["due"]:
                 move.write({"state": "paid"})
 
-    @api.multi
-    def move_set_due(self):
+    def action_set_to_draft(self):
         for move in self:
             if move.state in ["paid"]:
+                if move.full_reconcile_id:
+                    raise ValidationError(
+                        _(
+                            "Move {0.display_name} is reconciled "
+                            "({0.full_reconcile_id.display_name})."
+                            " You must unreconcile it first"
+                        ).format(move)
+                    )
                 move.write({"state": "due"})
 
-    @api.multi
     def check_unlink(self):
         wt_moves_not_eresable = []
         for move in self:
@@ -475,3 +509,17 @@ class WithholdingTaxMove(models.Model):
                     can be deleted"
                 )
             )
+
+    def _compute_full_reconcile_id(self):
+        for move in self:
+            move.full_reconcile_id = None
+            wt_lines = self.env["account.move.line"]
+            for move_line in move.wt_account_move_id.line_ids:
+                if not move_line.partner_id:
+                    # allora è la riga di ritenuta
+                    wt_lines |= move_line
+            if not wt_lines:
+                continue
+            full_reconciliations = wt_lines.mapped("full_reconcile_id")
+            if len(full_reconciliations) == 1:
+                move.full_reconcile_id = full_reconciliations[0].id

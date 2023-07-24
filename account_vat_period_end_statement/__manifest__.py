@@ -1,30 +1,25 @@
-# -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012-17 Agile Business Group (<http://www.agilebg.com>)
-#    Copyright (C) 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
-#    Copyright (C) 2015 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
+#  Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>)
+#  Copyright 2012-17 Agile Business Group (<http://www.agilebg.com>)
+#  Copyright 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
+#  Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+#  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 {
     "name": "ITA - Liquidazione IVA",
-    "summary": "Versamento Iva periodica (mensile o trimestrale) ",
-    "version": "10.0.1.5.4",
+    "version": "16.0.1.1.0",
     "category": "Localization/Italy",
+    "summary": "Allow to create the 'VAT Statement'.",
     "license": "AGPL-3",
+    "author": "Agile Business Group, Odoo Community Association (OCA), LinkIt Spa",
+    "website": "https://github.com/OCA/l10n-italy",
     "depends": [
-        "account_accountant",
+        "account",
         "account_tax_balance",
         "date_range",
         "l10n_it_account",
-        "l10n_it_ade",
         "l10n_it_fiscalcode",
-        "report",
+        "web",
     ],
-    "author": "Agile Business Group, Odoo Community Association (OCA)" ", LinkIt Spa",
-    "website": "https://github.com/OCA/l10n-italy",
     "data": [
         "wizard/add_period.xml",
         "wizard/remove_period.xml",
@@ -35,6 +30,10 @@
         "views/config.xml",
         "views/account_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "account_vat_period_end_statement/static/src/css/l10n_it_vat_registries.css",
+        ],
+    },
     "installable": True,
-    "development_status": "Beta",
 }

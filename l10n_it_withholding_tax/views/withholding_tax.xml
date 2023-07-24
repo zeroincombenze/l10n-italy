@@ -4,28 +4,25 @@
         <menuitem
         id="wt_main"
         name="Withholding tax"
-        parent="account.menu_finance"
-        sequence="5"
-        groups="account.group_account_user"
+        parent="account.menu_finance_entries"
+        groups="account.group_account_manager"
     />
 
-        <!--
+       <!--
         WITHHOLDING TAX
          -->
         <record id="view_withholding_tax_tree" model="ir.ui.view">
             <field name="name">view.withholding.tax.tree</field>
             <field name="model">withholding.tax</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax">
+                <tree>
                     <field name="name" />
                     <field name="code" />
-                    <field name="wt_types" />
                     <field name="tax" />
                     <field name="base" />
                     <field name="certification" />
                     <field name="active" />
                     <field name="comment" />
-                    <field name="welfare_fund_type_id" />
                     <field name="company_id" groups="base.group_multi_company" />
                 </tree>
             </field>
@@ -40,11 +37,21 @@
                         <group>
                             <field name="name" />
                             <field name="code" />
-                            <field name="wt_types" />
                             <field name="certification" />
                             <field name="account_receivable_id" />
                             <field name="account_payable_id" />
                             <field name="journal_id" />
+                            <field name="payment_term" />
+                            <field
+                            name="use_daticassaprev"
+                            attrs="{'invisible': [('wt_types', 'in', ('ritenuta', 'other'))]}"
+                        />
+                            <field
+                            name="daticassprev_tax_id"
+                            domain="[('amount', '=', 0.0)]"
+                            attrs="{'invisible': [('use_daticassaprev', '=', False)]}"
+                        />
+                            <field name="wt_types" widget='radio' />
                         </group>
                         <group>
                             <field name="active" />
@@ -53,15 +60,12 @@
                             options="{'no_create': True}"
                             groups="base.group_multi_company"
                         />
-                            <field name="payment_term" />
-                            <field name="causale_pagamento_id" />
-                            <field name="welfare_fund_type_id" />
                         </group>
                     </group>
                     <field name="comment" />
                     <newline />
                     <group string="Rates">
-                        <field name="rate_ids" nolabel="1">
+                        <field name="rate_ids" nolabel="1" colspan="2">
                             <tree>
                                 <field name="base" />
                                 <field name="tax" />
@@ -111,7 +115,8 @@
             <field name="name">view.withholding.tax.statement.tree</field>
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax statement" delete="false">
+                <tree create="false" edit="false" delete="false">
+                    <field name="wt_type" />
                     <field name="partner_id" />
                     <field name="date" />
                     <field name="move_id" />
@@ -131,7 +136,12 @@
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
 
-                <form string="Withholding Tax statement" delete="false">
+                <form
+                string="Withholding Tax statement"
+                create="false"
+                edit="false"
+                delete="false"
+            >
                     <sheet>
                         <group>
                             <group>
@@ -185,20 +195,35 @@
                     name="withholding_tax_id"
                     filter_domain="[('withholding_tax_id','ilike',self)]"
                 />
+                    <filter
+                    name="typeIn"
+                    string="In type"
+                    domain="[('wt_type','=','in')]"
+                    help="Supplier invoices"
+                />
+                    <filter
+                    name="typeOut"
+                    string="Out type"
+                    domain="[('wt_type','=','out')]"
+                    help="Customer invoices"
+                />
                     <group expand="0" string="Group By...">
                         <filter
+                        name="group_by_partners"
                         string="Partners"
                         icon="terp-personal"
                         domain="[]"
                         context="{'group_by':'partner_id'}"
                     />
                         <filter
+                        name="group_by_wt"
                         string="Withholding Tax"
                         icon="terp-personal"
                         domain="[]"
                         context="{'group_by':'withholding_tax_id'}"
                     />
                         <filter
+                        name="group_by_date"
                         string="Date"
                         icon="terp-go-month"
                         domain="[]"
@@ -231,7 +256,8 @@
             <field name="name">view.withholding.tax.move.tree</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax Move" delete="false">
+                <tree create="false" edit="false" delete="false">
+                    <field name="wt_type" />
                     <field name="partner_id" />
                     <field name="date" />
                     <field name="withholding_tax_id" />
@@ -248,12 +274,17 @@
             <field name="name">view.withholding.tax.move.form</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
-                <form string="Withholding Tax Move" delete="false">
+                <form
+                string="Withholding Tax Move"
+                create="false"
+                edit="false"
+                delete="false"
+            >
                     <header>
                         <button
                         name="action_set_to_draft"
                         states="paid"
-                        string="Set to Draft"
+                        string="Set to Due"
                         type="object"
                     />
                         <button
@@ -286,6 +317,7 @@
                                 <field name="reconcile_partial_id" />
                                 <field name="date_maturity" />
                                 <field name="wt_account_move_id" />
+                                <field name="full_reconcile_id" />
                                 <field
                                 name="company_id"
                                 groups="base.group_multi_company"
@@ -315,6 +347,19 @@
                     domain="[('state','=','paid')]"
                     help="Paid"
                 />
+                    <newline />
+                    <filter
+                    name="typeIn"
+                    string="In type"
+                    domain="[('wt_type','=','in')]"
+                    help="Supplier invoices"
+                />
+                    <filter
+                    name="typeOut"
+                    string="Out type"
+                    domain="[('wt_type','=','out')]"
+                    help="Customer invoices"
+                />
                     <field
                     name="partner_id"
                     filter_domain="[('partner_id','ilike',self)]"
@@ -330,30 +375,35 @@
                 />
                     <group expand="0" string="Group By...">
                         <filter
+                        name="group_by_partner"
                         string="Partners"
                         icon="terp-personal"
                         domain="[]"
                         context="{'group_by':'partner_id'}"
                     />
                         <filter
+                        name="group_by_wt"
                         string="Withholding Tax"
                         icon="terp-personal"
                         domain="[]"
                         context="{'group_by':'withholding_tax_id'}"
                     />
                         <filter
+                        name="group_by_date"
                         string="Date"
                         icon="terp-go-month"
                         domain="[]"
                         context="{'group_by':'date'}"
                     />
                         <filter
+                        name="group_by_maturity"
                         string="Date Maturity"
                         icon="terp-go-month"
                         domain="[]"
                         context="{'group_by':'date_maturity'}"
                     />
                         <filter
+                        name="group_by_company"
                         string="Company"
                         domain="[]"
                         context="{'group_by':'company_id'}"
@@ -369,6 +419,7 @@
             <field name="res_model">withholding.tax.move</field>
             <field name="view_id" ref="view_withholding_move_tree" />
             <field name="search_view_id" ref="view_withholding_move_search" />
+            <field name="context">{'search_default_due': True}</field>
         </record>
 
         <menuitem
