@@ -1,21 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_einvoice_send2sdi
+#	* l10n_it_einvoice_send2sdi
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-04 09:26+0000\n"
-"PO-Revision-Date: 2023-07-04 13:57+0200\n"
+"POT-Creation-Date: 2023-07-25 12:35+0000\n"
+"PO-Revision-Date: 2023-07-25 12:35+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_italy_ade_sender_bonus_invoices_ctr
@@ -47,7 +46,7 @@ msgstr "Messaggio disponibilità fatture"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_available_invoices
 msgid "Cancel"
-msgstr "Annullare"
+msgstr "Annulla"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_fetchmail_server_e_inv_notify_partner_ids
@@ -114,7 +113,7 @@ msgstr "Stato e-fattura"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model,name:l10n_it_einvoice_send2sdi.model_mail_thread
 msgid "Email Thread"
-msgstr "Discussione e-mail"
+msgstr "Thread Email"
 
 #. module: l10n_it_einvoice_send2sdi
 #: selection:account.invoice,fatturapa_state:0
@@ -130,7 +129,7 @@ msgstr "Inviare a SDI"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model,name:l10n_it_einvoice_send2sdi.model_account_invoice
 msgid "Invoice"
-msgstr "Fattura"
+msgstr "Invoice"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_fetchmail_server_last_pec_error_message
@@ -318,3 +317,5 @@ msgstr "Non è possibile inviare fatture. Per favore acquistare un nuovo pacchet
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "on"
 msgstr "il"
+
+
