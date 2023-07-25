@@ -154,6 +154,7 @@ class AccountMoveLine(models.Model):
                 riba_line = riba_move_line.riba_line_id
                 riba_line.riba_line_set_state("paid")
 
+
 class AccountInvoice(models.Model):
     @api.multi
     @api.depends(

@@ -28,5 +28,4 @@ class WizardLineSettlement(models.TransientModel):
                 if riba_move_line.riba_line_id.state not in ("accredited", "unsolved"):
                     raise UserError(_("Some entries is not accredited or unsolved"))
         move_lines.registra_incasso_riba()
-        return {"type": "ir.actions.act_window_close",
-    }
+        return {"type": "ir.actions.act_window_close"}
