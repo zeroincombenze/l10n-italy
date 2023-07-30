@@ -83,14 +83,14 @@
                             t-esc="l10n_it_count_fiscal_page_base"
                         />
                     <ul class="list-inline">Pag:
+                        <li>
                         <t t-if="l10n_it_count_fiscal_year">
-                            <li><span t-esc="l10n_it_count_fiscal_year" /></li>
+                            <span t-esc="l10n_it_count_fiscal_year" />
                         </t>
                         <t t-if="not l10n_it_count_fiscal_year">
-                            <li><span
-                                        t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
-                                    /></li>
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')" />
                         </t>
+                        </li>
                         <li>/</li>
                         <li><span class="page" /></li>
                     </ul>

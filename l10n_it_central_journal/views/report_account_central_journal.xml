@@ -142,7 +142,7 @@
                                             t-esc="line.account_id.name"
                                         />
                                 </td>
-                                <!-- partner name -->
+                                <!-- Name -->
                                 <td class="left_without_line">
                                     <t
                                             t-if="line.account_id.user_type_id.type in ['receivable', 'payable']"
@@ -159,11 +159,6 @@
                                             />
                                     </t>
                                 </td>
-                                <!-- Name -->
-                                <!-- <td class="left_without_line">
-                                    <div style="page-break-inside: avoid"
-                                    t-esc="line.name" />
-                                </td> -->
                                 <!-- Debit -->
                                 <td class="right_without_line">
                                     <div

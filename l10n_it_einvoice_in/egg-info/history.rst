@@ -2,7 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash in some strange email
-* [FIX] Crahs when xml tag with extra property
+* [FIX] Crash when xml tag with extra property
 
 10.0.1.3.40 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~

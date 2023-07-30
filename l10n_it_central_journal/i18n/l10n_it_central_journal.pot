@@ -230,7 +230,7 @@ msgid "Progressive Debit"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_debit2
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_debit
 msgid "Progressive debit"
 msgstr ""
 

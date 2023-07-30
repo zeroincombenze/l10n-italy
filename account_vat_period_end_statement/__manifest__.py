@@ -16,6 +16,7 @@
     "license": "AGPL-3",
     "depends": [
         "account_accountant",
+        "account_fiscal_year",
         "account_tax_balance",
         "date_range",
         "l10n_it_account",

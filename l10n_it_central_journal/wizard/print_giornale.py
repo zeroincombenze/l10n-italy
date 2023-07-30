@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
+# Copyright 2017 Gianmarco Conte (gconte@dinamicheaziendali.it)
 
 from datetime import datetime, timedelta
 
@@ -30,17 +30,39 @@ class WizardGiornale(models.TransientModel):
             )
         return journal_ids
 
+    @api.model
+    def _get_default_daterange(self):
+        daterange_cls = self.env["date.range"]
+        def_daterange = daterange_cls.search([
+            ("type_id.fiscal_year", "=", True),
+            ("date_last_print", "!=", False)],
+            order="date_last_print desc", limit=1)
+        if not def_daterange:
+            # Never printed
+            def_daterange = daterange_cls.search([("type_id.fiscal_year", "=", True)],
+                                                 order="date_start", limit=1)
+        elif def_daterange[0].date_last_print == def_daterange[0].date_end:
+            # Printed until end of year
+            def_daterange = daterange_cls.search([
+                ("type_id.fiscal_year", "=", True),
+                ("date_start", ">", def_daterange[0].date_end)],
+                order="date_start", limit=1)
+        return def_daterange[0].id if def_daterange else False
+
     date_move_line_from = fields.Date("From date", required=True)
     date_move_line_from_view = fields.Date("From date")
     last_def_date_print = fields.Date("Last definitive date print")
     first_date_print = fields.Date("First date to print")
     date_move_line_to = fields.Date("To date", required=True)
-    daterange = fields.Many2one("date.range", "Date Range", required=True)
+    daterange = fields.Many2one(
+        "date.range", "Date Range",
+        required=True,
+        default=_get_default_daterange)
     company_id = fields.Many2one(
         related="daterange.company_id", readonly=True, store=True
     )
     progressive_credit = fields.Float("Progressive Credit")
-    progressive_debit2 = fields.Float("Progressive debit")
+    progressive_debit = fields.Float("Progressive debit")
     print_state = fields.Selection(
         [("print", "Ready for printing"), ("printed", "Printed")],
         "State",
@@ -70,30 +92,8 @@ class WizardGiornale(models.TransientModel):
     @api.onchange("daterange")
     def on_change_daterange(self):
         if self.daterange:
-            date_start = datetime.strptime(self.daterange.date_start, "%Y-%m-%d").date()
-            date_end = datetime.strptime(self.daterange.date_end, "%Y-%m-%d").date()
-            if self.daterange.date_last_print:
-                date_last_print = datetime.strptime(
-                    self.daterange.date_last_print, "%Y-%m-%d"
-                ).date()
-                # First valid date to print final journal
-                self.first_date_print = date_start = date_last_print + timedelta(days=1)
-                self.last_def_date_print = date_last_print
-                # Read-only field does not pass to wizard, so we do backup
-                self.date_move_line_from_view = self.last_def_date_print
-            else:
-                self.last_def_date_print = None
-                self.first_date_print = date_start
-            self.date_move_line_from = date_start
-            self.date_move_line_to = date_end
-            if self.daterange.progressive_line_number != 0:
-                self.start_row = self.daterange.progressive_line_number + 1
-            else:
-                self.start_row = self.daterange.progressive_line_number
-            self.progressive_debit2 = self.daterange.progressive_debit
-            self.progressive_credit = self.daterange.progressive_credit
-
-            self.journal_ids = self._get_journal()
+            fiscal_daterange = self.daterange.get_fiscal_daterange()
+            self.load_values_from_fiscalyear(fiscal_daterange)
 
     @api.onchange("date_move_line_from")
     def on_change_date_start(self):
@@ -101,6 +101,43 @@ class WizardGiornale(models.TransientModel):
             self.year_footer = str(
                 datetime.strptime(self.date_move_line_from, "%Y-%m-%d").year
             )
+
+    def load_values_from_fiscalyear(self, fiscal_daterange):
+        date_start = datetime.strptime(
+            fiscal_daterange.date_start, "%Y-%m-%d").date()
+        if fiscal_daterange.date_last_print and (
+                self.daterange.date_start
+                <= fiscal_daterange.date_last_print
+                <= self.daterange.date_end
+        ):
+            # Selected valid fiscal year
+            date_last_print = datetime.strptime(
+                fiscal_daterange.date_last_print, "%Y-%m-%d"
+            ).date()
+            # First valid date to print final journal
+            self.last_def_date_print = date_last_print
+            # Read-only field does not pass to wizard, so we do backup
+            self.date_move_line_from_view = self.last_def_date_print
+            self.date_move_line_from = self.first_date_print = (date_last_print
+                                                                + timedelta(days=1))
+            if self.daterange.date_end > fiscal_daterange.date_last_print:
+                self.date_move_line_to = self.daterange.date_end
+            else:
+                self.date_move_line_to = fiscal_daterange.date_end
+        else:
+            self.last_def_date_print = None
+            self.first_date_print = date_start
+            self.date_move_line_from = date_start
+            self.date_move_line_to = self.daterange.date_end
+        if fiscal_daterange.progressive_line_number != 0:
+            self.start_row = fiscal_daterange.progressive_line_number + 1
+        else:
+            self.start_row = fiscal_daterange.progressive_line_number
+        self.progressive_debit = fiscal_daterange.progressive_debit
+        self.progressive_credit = fiscal_daterange.progressive_credit
+        self.fiscal_page_base = fiscal_daterange.progressive_page_number
+        self.year_footer = str(date_start.year)
+        self.journal_ids = self._get_journal()
 
     def get_line_ids(self):
         wizard = self
@@ -121,6 +158,7 @@ class WizardGiornale(models.TransientModel):
             "date_from": wizard.date_move_line_from,
             "date_to": wizard.date_move_line_to,
             "target_type": tuple(target_type),
+            "journal_ids": tuple(self.journal_ids.ids),
         }
         self.env.cr.execute(sql, params)
         res = self.env.cr.fetchall()
@@ -133,8 +171,8 @@ class WizardGiornale(models.TransientModel):
         datas_form["date_move_line_from"] = wizard.date_move_line_from
         datas_form["last_def_date_print"] = wizard.last_def_date_print
         datas_form["date_move_line_to"] = wizard.date_move_line_to
-        datas_form["fiscal_page_base"] = wizard.fiscal_page_base
-        datas_form["progressive_debit"] = wizard.progressive_debit2
+        datas_form["l10n_it_count_fiscal_page_base"] = wizard.fiscal_page_base
+        datas_form["progressive_debit"] = wizard.progressive_debit
         datas_form["progressive_credit"] = wizard.progressive_credit
         datas_form["start_row"] = wizard.start_row
         datas_form["daterange"] = wizard.daterange.id

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
+# Copyright 2017 Gianmarco Conte (gconte@dinamicheaziendali.it)
 
+from datetime import datetime
 from odoo import fields, models
-
 import odoo.addons.decimal_precision as dp
 
 
@@ -28,3 +28,15 @@ class DateRangeInherit(models.Model):
         digits=dp.get_precision("Account"),
         default=lambda *a: float(),
     )
+
+    def get_fiscal_daterange(self):
+        fiscal_daterange = self
+        if self:
+            date_start = datetime.strptime(self.date_start, "%Y-%m-%d").date()
+            date_end = datetime.strptime(self.date_end, "%Y-%m-%d").date()
+            fiscal_daterange = self.search([
+                ("type_id.fiscal_year", "=", True),
+                ("date_start", "<=", date_start),
+                ("date_end", ">=", date_end)])
+            fiscal_daterange = fiscal_daterange[0] if fiscal_daterange else self
+        return fiscal_daterange

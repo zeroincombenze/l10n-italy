@@ -5,6 +5,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
+from cStringIO import StringIO
+from pyPdf import PdfFileReader
 
 from odoo import api, models
 from odoo.tools.misc import formatLang
@@ -32,7 +34,8 @@ class ReportGiornale(models.AbstractModel):
             "save_print_info": self._save_print_info,
             "env": self.env,
             "formatLang": formatLang,
-            "l10n_it_count_fiscal_page_base": data["form"]["fiscal_page_base"],
+            "l10n_it_count_fiscal_page_base":
+                data["form"]["l10n_it_count_fiscal_page_base"],
             "start_row": data["form"]["start_row"],
             "year_footer": data["form"]["year_footer"],
             "date_move_line_to": data["form"]["date_move_line_to"],
@@ -54,14 +57,38 @@ class ReportGiornale(models.AbstractModel):
         self, daterange_id, print_state, end_date_print, end_row, end_debit, end_credit
     ):
         res = False
-        if print_state == "def":
-            datarange_obj = self.env["date.range"]
-            daterange_ids = datarange_obj.search([("id", "=", daterange_id)])
-            print_info = {
+        if print_state == "def" and daterange_id:
+            daterange = self.env["date.range"].search(
+                [("id", "=", daterange_id)]).get_fiscal_daterange()
+            res = daterange.write({
                 "date_last_print": end_date_print,
                 "progressive_line_number": end_row,
                 "progressive_debit": end_debit,
                 "progressive_credit": end_credit,
-            }
-            res = daterange_ids.write(print_info)
+            })
         return res
+
+
+class Report(models.Model):
+    _inherit = "report"
+
+    @api.model
+    def get_pdf(self, docids, report_name, html=None, data=None):
+        report = super(Report, self).get_pdf(docids, report_name, html, data)
+        page = PdfFileReader(StringIO(report)).getNumPages()
+        if (
+                data and "form" in data
+                and isinstance(data["form"]["l10n_it_count_fiscal_page_base"],
+                               (int, long))
+        ):
+            form = data["form"]
+            form["l10n_it_count_fiscal_page_base"] += page
+            if form["print_state"] == "def" and form["daterange"]:
+                daterange = self.env["date.range"].search(
+                    [("id", "=", form["daterange"])]).get_fiscal_daterange()
+                if daterange:
+                    daterange.write({
+                        "progressive_page_number":
+                            form["l10n_it_count_fiscal_page_base"]
+                    })
+        return report

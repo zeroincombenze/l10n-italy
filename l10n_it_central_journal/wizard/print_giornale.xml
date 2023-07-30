@@ -34,7 +34,7 @@
                     <field name="start_row" />
                     <field name="year_footer" />
                     <field name="progressive_credit" invisible="1" />
-                    <field name="progressive_debit2" invisible="1" />
+                    <field name="progressive_debit" invisible="1" />
                 </group>
                 <footer>
                     <button

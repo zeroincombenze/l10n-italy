@@ -9,7 +9,7 @@
     "version": "10.0.0.0.6",
     "category": "Localization/Italy",
     "author": "Dinamiche Aziendali, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "10.0/l10n_it_central_journal",
+    "website": "https://github.com/OCA/l10n-italy/10.0/l10n_it_central_journal",
     "license": "AGPL-3",
     "depends": ["account", "l10n_it_account", "date_range"],
     "data": [

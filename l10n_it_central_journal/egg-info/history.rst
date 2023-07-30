@@ -1,7 +1,9 @@
-10.0.0.0.6 (2023-04-06)
+10.0.0.0.6 (2023-07-29)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Upgraded layout / Aggiornamento impaginazione
+* [FIX] Final print: update result / Stampa ufficiale aggiorna dati su anno fiscale
+* [QUA] Test coverage 32% (189: 128+61) 
 
 10.0.0.0.5 (2021-09-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
