@@ -197,6 +197,9 @@ class WizardGiornale(models.TransientModel):
         res_company_obj = self.env["res.company"]
         if self.target_move != "posted":
             raise UserError(_("Only posted records"))
+        fiscal_daterange = self.daterange.get_fiscal_daterange()
+        if not fiscal_daterange.type_id.fiscal_year:
+            raise UserError(_("No fiscal date range found! Please create one"))
 
         if not self.first_date_print:
             raise UserError(_("Missing records"))

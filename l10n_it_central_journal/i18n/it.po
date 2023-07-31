@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-29 06:16+0000\n"
-"PO-Revision-Date: 2023-07-29 06:16+0000\n"
+"POT-Creation-Date: 2023-07-31 12:20+0000\n"
+"PO-Revision-Date: 2023-07-31 12:20+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
@@ -90,7 +90,7 @@ msgid "Date Range"
 msgstr "Intervallo data"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:195
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:207
 #, python-format
 msgid "Date already printed"
 msgstr "Data già stampata"
@@ -201,8 +201,8 @@ msgid "Layout"
 msgstr "Impaginazione"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:193
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:197
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:205
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:209
 #, python-format
 msgid "Missing records"
 msgstr "Missing records"
@@ -213,14 +213,20 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:178
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:201
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:187
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:213
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato per la selezione corrente"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:190
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:202
+#, python-format
+msgid "No fiscal date range found! Please create one"
+msgstr "No fiscal date range found! Please create one"
+
+#. module: l10n_it_central_journal
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:199
 #, python-format
 msgid "Only posted records"
 msgstr "Only posted records"
@@ -275,6 +281,11 @@ msgstr "Pronto per la stampa"
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Ref"
 msgstr "Rif"
+
+#. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_report
+msgid "Report"
+msgstr "Report"
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
