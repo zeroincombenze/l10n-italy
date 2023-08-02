@@ -132,7 +132,7 @@ python-gettext==4.1
 python-ldap==2.4.27
 python-magic==0.4.27
 python-openid==2.2.5
-python-plus==2.0.7
+python-plus==2.0.9
 python-stdnum==1.18
 pytz==2022.7.1
 pyusb==1.0.0
@@ -187,7 +187,7 @@ xlrd==1.0.0
 XlsxWriter==0.9.3
 xlwt==1.1.2
 z0bug-odoo==2.0.8
-z0lib==2.0.6
+z0lib==2.0.7
 z3c.pt==3.3.1
 zc.lockfile==2.0
 ZConfig==3.6.1

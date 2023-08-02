@@ -1,0 +1,48 @@
+2023-08-01 18:24:59,895 32404 INFO ? odoo: Odoo version 10.0
+2023-08-01 18:24:59,896 32404 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/tests/logs/zero10.l10n-italy.l10n_it_einvoice_send2sdi.conf
+2023-08-01 18:24:59,896 32404 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-08-01 18:24:59,896 32404 INFO ? odoo: database: odoo10@localhost:default
+2023-08-01 18:24:59,924 32404 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:19290
+2023-08-01 18:24:59,941 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading 1 modules...
+2023-08-01 18:25:00,130 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: 1 modules loaded in 0.19s, 0 queries
+2023-08-01 18:25:09,588 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading 55 modules...
+2023-08-01 18:25:09,829 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-08-01 18:25:10,499 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: 55 modules loaded in 0.91s, 0 queries
+2023-08-01 18:25:10,505 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading 56 modules...
+2023-08-01 18:25:10,904 32404 WARNING test_l10n_it_einvoice_send2sdi_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-08-01 18:25:10,905 32404 WARNING test_l10n_it_einvoice_send2sdi_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-08-01 18:25:11,131 32404 WARNING test_l10n_it_einvoice_send2sdi_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-08-01 18:25:11,132 32404 WARNING test_l10n_it_einvoice_send2sdi_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-08-01 18:25:11,143 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.registry: module l10n_it_einvoice_send2sdi: creating or updating database tables
+2023-08-01 18:25:11,153 32404 WARNING test_l10n_it_einvoice_send2sdi_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2023-08-01 18:25:11,741 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-08-01 18:25:11,756 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.models: Storing computed values of account.invoice fields fatturapa_state
+2023-08-01 18:25:11,873 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading l10n_it_einvoice_send2sdi/views/account.xml
+2023-08-01 18:25:12,079 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading l10n_it_einvoice_send2sdi/views/attachment_view.xml
+2023-08-01 18:25:12,129 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading l10n_it_einvoice_send2sdi/views/sender_view.xml
+2023-08-01 18:25:12,199 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: loading l10n_it_einvoice_send2sdi/data/ir_cron.xml
+2023-08-01 18:25:12,467 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: 56 modules loaded in 1.96s, 16 queries
+2023-08-01 18:25:12,572 32404 WARNING test_l10n_it_einvoice_send2sdi_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-08-01 18:25:12,573 32404 WARNING test_l10n_it_einvoice_send2sdi_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-08-01 18:25:12,974 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: Modules loaded.
+2023-08-01 18:25:12,979 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-08-01 18:25:12,980 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-08-01 18:25:12,981 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.service.server: Initiating shutdown
+2023-08-01 18:25:12,981 32404 INFO test_l10n_it_einvoice_send2sdi_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_send2sdi[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                              Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/controllers/certdoc.py          21     12    43%   19-27, 30, 38-39, 42, 45
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/models/account.py               14      4    71%   42, 49-51
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/models/attachment.py           541    480    11%   61, 65-77, 95-177, 182-251, 293-440, 443-453, 457-531, 535-635, 638-679, 682-692, 695-696, 699-713, 716-740, 743-747, 750-756, 760-828, 831-907, 910-950, 953-997, 1000-1004, 1007-1014, 1019-1022, 1025-1030, 1033-1040, 1043-1050, 1053-1057, 1060-1078
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/models/fetchmail.py             76     66    13%   23, 35-163
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py      70     54    23%   25-51, 81-138, 141-143
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_send2sdi/models/mail_thread.py           94     78    17%   29-32, 38-189, 198-212, 215-251
+---------------------------------------------------------------------------------------------------------------
+TOTAL                                                                               816    694    15%

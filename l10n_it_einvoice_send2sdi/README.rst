@@ -1,6 +1,6 @@
 
 ===================
-|icon|  10.0.1.0.35
+|icon|  10.0.1.0.36
 ===================
 
 
@@ -171,6 +171,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.36 (2023-08-01)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+ 
 
 10.0.1.0.35 (2023-07-25)
 ~~~~~~~~~~~~~~~~~~~~~~~~
