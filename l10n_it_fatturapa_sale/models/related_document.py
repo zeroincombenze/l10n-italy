@@ -43,8 +43,12 @@ class FatturapaRelatedDocumentType(models.Model):
         ]
         for related_document in self:
             for check_field in check_fields:
-                if related_document[check_field].exists():
-                    break
+                try:
+                    if related_document[check_field].exists():
+                        break
+                except BaseException:
+                    # Weird error: workaround
+                    pass
             else:
                 # `related_document` has to be deleted only
                 # if none of the records in `check_fields` exists

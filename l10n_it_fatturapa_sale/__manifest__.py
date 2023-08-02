@@ -4,9 +4,9 @@
     "name": "ITA - Fattura elettronica - Integrazione vendite",
     "summary": "Aggiunge alcuni dati per la "
                "fatturazione elettronica nell'ordine di vendita",
-    "version": "12.0.1.1.2",
-    "website": "https://github.com/OCA/l10n-italy/tree/"
-               "12.0/l10n_it_fatturapa_sale",
+    "version": "12.0.1.1.4",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_fatturapa_sale",
     "author": "Agile Business Group, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -17,6 +17,7 @@
         "sale_management",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/related_document_type_views.xml",
         "views/sale_order_line_views.xml",
         "views/sale_order_views.xml",

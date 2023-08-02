@@ -1,0 +1,62 @@
+2023-08-01 18:25:23,454 37974 INFO ? odoo: Odoo version 12.0 
+2023-08-01 18:25:23,455 37974 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/tests/logs/zero12.l10n-italy.l10n_it_fatturapa_sale.conf 
+2023-08-01 18:25:23,455 37974 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/apps-store', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/business-requirement', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/geospatial', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/iot', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/mgmtsystem', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/manufacture-reporting', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/mis-builder-contrib', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/pos', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/project-agile', '/home/odoo/12.0/project-reporting', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2023-08-01 18:25:23,455 37974 INFO ? odoo: database: odoo12@localhost:default 
+2023-08-01 18:25:23,574 37974 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2023-08-01 18:25:23,701 37974 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:19313 
+2023-08-01 18:25:23,715 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: loading 1 modules... 
+2023-08-01 18:25:23,726 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries 
+2023-08-01 18:25:23,864 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: updating modules list 
+2023-08-01 18:25:23,868 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2023-08-01 18:25:38,083 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: loading 65 modules... 
+2023-08-01 18:25:39,719 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.registry: module l10n_it_fatturapa_sale: creating or updating database tables 
+2023-08-01 18:25:40,028 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: loading l10n_it_fatturapa_sale/views/related_document_type_views.xml 
+2023-08-01 18:25:40,097 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: loading l10n_it_fatturapa_sale/views/sale_order_line_views.xml 
+2023-08-01 18:25:40,151 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: loading l10n_it_fatturapa_sale/views/sale_order_views.xml 
+2023-08-01 18:25:40,301 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: Module l10n_it_fatturapa_sale: loading demo 
+2023-08-01 18:25:40,377 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.module: odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale running tests. 
+2023-08-01 18:25:40,377 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: test_create_invoice (odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale.TestFatturapaSale) 
+2023-08-01 18:25:40,377 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: `  Generate an invoice from a sale order. Check that related documents are passed from the sale order (and its lines) to the invoice (and its lines). 
+2023-08-01 18:25:41,608 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: test_create_invoice_multiple (odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale.TestFatturapaSale) 
+2023-08-01 18:25:41,609 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: `  Generate a grouping invoice from multiple orders. Check that related documents are passed from the sale orders (and their lines) to the invoice (and its lines). 
+2023-08-01 18:25:42,717 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: FAIL 
+2023-08-01 18:25:42,717 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: test_keep_document (odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale.TestFatturapaSale) 
+2023-08-01 18:25:42,717 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: `  Delete an invoice having related documents. Check that the related documents are no more deleted if linked to a sale order. 
+2023-08-01 18:25:43,716 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted mail.message records with IDs: [237, 236] 
+2023-08-01 18:25:43,780 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted account.invoice records with IDs: [11] 
+2023-08-01 18:25:43,796 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [190] 
+2023-08-01 18:25:43,855 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted mail.message records with IDs: [238, 235, 234, 233] 
+2023-08-01 18:25:43,875 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted sale.order records with IDs: [24] 
+2023-08-01 18:25:43,888 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted mail.followers records with IDs: [188, 189] 
+2023-08-01 18:25:43,900 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.models.unlink: User #1 deleted fatturapa.related_document_type records with IDs: [7] 
+2023-08-01 18:25:43,904 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: ====================================================================== 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: FAIL: test_create_invoice_multiple (odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale.TestFatturapaSale) 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: `  Generate a grouping invoice from multiple orders. Check that related documents are passed from the sale orders (and their lines) to the invoice (and its lines). 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: Traceback (most recent call last): 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: `   File "/home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/tests/test_fatturapa_sale.py", line 86, in test_create_invoice_multiple 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: `     sale_orders.mapped('related_documents')) 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: ` AssertionError: fatturapa.related_document_type(3,) != fatturapa.related_document_type(3, 5) 
+2023-08-01 18:25:43,904 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: Ran 3 tests in 3.527s 
+2023-08-01 18:25:43,904 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale: FAILED 
+2023-08-01 18:25:43,905 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.addons.l10n_it_fatturapa_sale.tests.test_fatturapa_sale:  (failures=1) 
+2023-08-01 18:25:43,905 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.modules.module: Module l10n_it_fatturapa_sale: 1 failures, 0 errors 
+2023-08-01 18:25:43,932 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.modules.loading: 65 modules loaded in 5.85s, 2474 queries 
+2023-08-01 18:25:44,682 37974 ERROR test_l10n_it_fatturapa_sale_12 odoo.modules.loading: At least one test failed when loading the modules. 
+2023-08-01 18:25:44,694 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.service.server: Starting post tests 
+2023-08-01 18:25:44,695 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2023-08-01 18:25:44,695 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.service.server: Initiating shutdown 
+2023-08-01 18:25:44,695 37974 INFO test_l10n_it_fatturapa_sale_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36ml10n_it_fatturapa_sale[0m (12.0): [31mFAILED![0m
++===================================================================
+
+Name                                                                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------------------------
+/home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/models/account_invoice.py            9      1    89%   11
+/home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/models/account_invoice_line.py       9      5    44%   11-15
+/home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/models/related_document.py          20      3    85%   30, 49-51
+/home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/models/sale_order.py                25      2    92%   19, 43
+/home/odoo/12.0/l10n-italy/l10n_it_fatturapa_sale/models/sale_order_line.py           26      6    77%   25, 52-56
+----------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                 89     17    81%
