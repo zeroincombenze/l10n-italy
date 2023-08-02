@@ -177,7 +177,7 @@ ChangeLog History / Cronologia modifiche
 
 * [IMP] Upgraded layout / Aggiornamento impaginazione
 * [FIX] Final print: update result / Stampa ufficiale aggiorna dati su anno fiscale
-* [QUA] Test coverage 32% (190: 129+61) 
+ 
 
 
 

@@ -3,7 +3,7 @@
 
 * [IMP] Upgraded layout / Aggiornamento impaginazione
 * [FIX] Final print: update result / Stampa ufficiale aggiorna dati su anno fiscale
-* [QUA] Test coverage 32% (190: 129+61) 
+ 
 
 10.0.0.0.5 (2021-09-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,3 +30,4 @@
 * [IMP] Separatione line between records / Riga di separazione tra le registrazioni
 * [IMP] No print zero amounts / Non stampa importi a zero
 * [IMP] Partner name / Stampa ragione sociale soggetto
+ 

@@ -75,15 +75,15 @@ class Report(models.Model):
     @api.model
     def get_pdf(self, docids, report_name, html=None, data=None):
         report = super(Report, self).get_pdf(docids, report_name, html, data)
-        page = PdfFileReader(StringIO(report)).getNumPages()
         if (
                 data and "form" in data
-                and isinstance(data["form"]["l10n_it_count_fiscal_page_base"],
+                and isinstance(data["form"].get("l10n_it_count_fiscal_page_base"),
                                (int, long))
         ):
+            page = PdfFileReader(StringIO(report)).getNumPages()
             form = data["form"]
-            form["l10n_it_count_fiscal_page_base"] += page
             if form["print_state"] == "def" and form["daterange"]:
+                form["l10n_it_count_fiscal_page_base"] += page
                 daterange = self.env["date.range"].search(
                     [("id", "=", form["daterange"])]).get_fiscal_daterange()
                 if daterange:
