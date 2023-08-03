@@ -1,3 +1,9 @@
+10.0.1.3.13 (2023-08-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Overdue with expenses / INsoluto con spese
+* [QUA] Test coverage 66% (1155: 389+766) [113 TestPoint]
+
 10.0.1.3.12 (2023-05-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

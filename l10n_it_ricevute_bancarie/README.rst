@@ -304,6 +304,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.13 (2023-08-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Overdue with expenses / INsoluto con spese
+* [QUA] Test coverage 66% (1155: 389+766) [113 TestPoint]
+
 10.0.1.3.12 (2023-05-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -320,17 +326,6 @@ ChangeLog History / Cronologia modifiche
 
 * [IMP] Riba flag updatable / Scadenza Riba modificabile
 * [REF] Process refactoring
-
-10.0.1.3.9 (2022-07-20)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Riba flag read-only / Scadenza Riba non modificabile
-
-10.0.1.3.8 (2022-06-29)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [TNL] Translation
-* [IMP] Riba flag updatable / Scadenza Riba modificabile
 
 
 

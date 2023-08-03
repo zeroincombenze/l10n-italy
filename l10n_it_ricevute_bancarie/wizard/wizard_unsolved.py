@@ -115,7 +115,7 @@ class RibaUnsolved(models.TransientModel):
             not wizard.unsolved_journal_id
             or not wizard.overdue_account_debit_id
             or not wizard.overdue_account_credit_id
-            or not wizard.overdue_expenses_account_id
+            or (not wizard.overdue_expenses_account_id and wizard.expense_amount)
         ):
             raise UserError(_("Every account is mandatory"))
 
@@ -143,7 +143,7 @@ class RibaUnsolved(models.TransientModel):
                         "name": _("Ri.Ba. Bank"),
                         "account_id": wizard.overdue_account_credit_id.id,
                         "debit": 0.0,
-                        "credit": wizard.riba_bank_amount,
+                        "credit": wizard.bank_amount,
                         "partner_id": distinta_line.partner_id.id,
                     },
                 ),
