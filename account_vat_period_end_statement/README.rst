@@ -134,8 +134,8 @@ OCA comparation / Confronto con OCA
 |
 |
 
-Getting started / Come iniziare
-===============================
+Getting started / Primi passi
+=============================
 
 |Try Me|
 
@@ -169,20 +169,21 @@ Installation / Installazione
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    # Upgrade virtual environment
+    vem amend $HOME/10.0/venv_odoo
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
+* |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **account_vat_period_end_statement** > Install
 
@@ -200,16 +201,16 @@ Upgrade / Aggiornamento
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -218,6 +219,7 @@ From UI: go to:
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **account_vat_period_end_statement** > Update
+
 
 |
 
@@ -257,16 +259,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Journal entry creation error / Errore creazione movimento contabile
-
-10.0.1.5.3 (2022-07-04)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Minor updates
-
-10.0.1.5.2 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Tax nature renamed
 
 
 
@@ -311,12 +303,6 @@ Contributors / Collaboratori
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 
-Maintainer / Manutenzione
--------------------------
-
-
-
-
 |
 
 ----------------
@@ -324,12 +310,12 @@ Maintainer / Manutenzione
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
 
@@ -340,7 +326,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-07-21
+Last Update / Ultimo aggiornamento: 2023-08-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -400,4 +386,5 @@ Last Update / Ultimo aggiornamento: 2022-07-21
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
+
 
