@@ -1,7 +1,4 @@
-**Italiano**
-
-Aggiunge il campo email PEC nel profilo del partner
-
-**English**
+PEC Mail
+--------
 
 Add PEC Mail field in partner profile
