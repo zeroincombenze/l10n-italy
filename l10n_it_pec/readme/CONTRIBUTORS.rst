@@ -2,3 +2,4 @@
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Stefano Consolaro <https://github.com/mymage>
 * Alex Comba <alex.comba@agilebg.com>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
