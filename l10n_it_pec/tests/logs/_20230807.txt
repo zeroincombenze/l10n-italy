@@ -1,0 +1,8 @@
+Couldn't read '/home/odoo/8.0/didotech_80/l10n_it_pec' as a config file
+
++===================================================================
+| please test [36ml10n_it_pec[0m (8.0): [32mSUCCESS![0m
++===================================================================
+
+Couldn't read '/home/odoo/8.0/didotech_80/l10n_it_pec' as a config file
+Couldn't read '/home/odoo/8.0/didotech_80/l10n_it_pec' as a config file

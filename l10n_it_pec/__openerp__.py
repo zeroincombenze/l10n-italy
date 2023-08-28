@@ -9,7 +9,7 @@
 #    (<http://www.openerp-italia.org>).
 #
 {
-    'name': 'Pec Mail',
+    'name': 'Italian Localization - Email PEC',
     'version': '8.0.0.1.0',
     'category': 'Localisation/Italy',
     'author': 'Odoo Italia Associazione,Odoo Community Association (OCA)',
