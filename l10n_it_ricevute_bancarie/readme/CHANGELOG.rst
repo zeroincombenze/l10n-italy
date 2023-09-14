@@ -1,7 +1,7 @@
 10.0.1.3.14 (2023-09-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] RiBA account reconciled after payment / Contoo effetti attivi riconciliato dopo incasso
+* [IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso
 * [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
 * [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
 
