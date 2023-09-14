@@ -96,10 +96,10 @@ class RibaConfiguration(models.Model):
         oldname="overdue_account_credit_id",
         domain=[("internal_type", "=", "receivable")],
     )
-    overdue_account_credit_id = fields.Many2one(
-        "account.account",
-        "Overdue Bank account",
-    )
+    # overdue_account_credit_id = fields.Many2one(
+    #     "account.account",
+    #     "Overdue Bank account",
+    # )
     overdue_expenses_account_id = fields.Many2one(
         "account.account", "Protest charge account"
     )
@@ -154,8 +154,8 @@ class RibaConfiguration(models.Model):
     def onchange_some_fields(self):
         if self.bank_expense_account_id and not self.overdue_expenses_account_id:
             self.overdue_expenses_account_id = self.bank_expense_account_id
-        if self.accreditation_account_debit_id and not self.overdue_account_credit_id:
-            self.overdue_account_credit_id = self.accreditation_account_debit_id
+        # if self.accreditation_account_debit_id and not self.overdue_account_credit_id:
+        #     self.overdue_account_credit_id = self.accreditation_account_debit_id
         if self.acceptance_journal_id and not self.settlement_journal_id:
             self.settlement_journal_id = self.acceptance_journal_id
         if self.acceptance_journal_id and not self.accreditation_journal_id:

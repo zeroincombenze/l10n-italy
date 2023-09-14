@@ -47,7 +47,7 @@ class RibaUnsolved(models.TransientModel):
     @api.model
     def _get_overdue_account_credit_id(self):
         return self.env["riba.configuration"].get_default_value_by_list_line(
-            "overdue_account_credit_id"
+            "liquidity_account_id"
         )
 
     @api.model
@@ -63,17 +63,7 @@ class RibaUnsolved(models.TransientModel):
         domain=[("type", "=", "bank")],
         default=_get_unsolved_journal_id,
     )
-    # effects_account_id = fields.Many2one(
-    #     "account.account",
-    #     "Effects account",
-    #     domain=[("internal_type", "=", "receivable")],
-    #     default=_get_effects_account_id,
-    # )
     effects_amount = fields.Float("Effects amount", default=_get_effects_amount)
-    # riba_overdue_account_debit_id = fields.Many2one(
-    #     "account.account", "Ri.Ba. bank account",
-    #     default=_get_riba_overdue_account_debit_id
-    # )
     riba_bank_amount = fields.Float("Ri.Ba. bank amount", default=_get_effects_amount)
     overdue_account_debit_id = fields.Many2one(
         "account.account",
@@ -107,8 +97,8 @@ class RibaUnsolved(models.TransientModel):
         if not active_id:
             raise UserError(_("No active ID found"))
         move_model = self.env["account.move"]
-        invoice_model = self.env["account.invoice"]
-        move_line_model = self.env["account.move.line"]
+        # invoice_model = self.env["account.invoice"]
+        # move_line_model = self.env["account.move.line"]
         distinta_line = self.env["riba.distinta.line"].browse(active_id)
         wizard = self
         if (
@@ -177,41 +167,41 @@ class RibaUnsolved(models.TransientModel):
                     overdue_line_id = line.id
                     break
             for line_dist in distinta_line.move_line_ids:
-                move_ids = [
+                line_ids = [
                     line_dist.move_line_id.id,
                     overdue_line_id,
                 ]
-                self.env["account.move.line"].browse(move_ids).remove_move_reconcile()
+                self.env["account.move.line"].browse(line_ids).remove_move_reconcile()
 
             for acceptance_move_line in distinta_line.acceptance_move_id.line_ids:
                 if (
                     acceptance_move_line.account_id.id
                     == wizard.overdue_account_debit_id.id
                 ):
-                    move_ids = [
+                    line_ids = [
                         overdue_line_id,
                         acceptance_move_line.id,
                     ]
                     break
-            self.env["account.move.line"].browse(move_ids).reconcile()
+            self.env["account.move.line"].browse(line_ids).reconcile()
 
-        to_be_reconciled = []
-        for move_line in move.line_ids:
-            if move_line.account_id.id == wizard.overdue_account_debit_id.id:
-                for riba_move_line in distinta_line.move_line_ids:
-                    invoice_ids = []
-                    if riba_move_line.move_line_id.invoice_id:
-                        invoice_ids = [riba_move_line.move_line_id.invoice_id.id]
-                    elif riba_move_line.move_line_id.unsolved_invoice_ids:
-                        invoice_ids = [
-                            i.id
-                            for i in riba_move_line.move_line_id.unsolved_invoice_ids
-                        ]
-                    invoice_model.browse(invoice_ids).write(
-                        {
-                            "unsolved_move_line_ids": [(4, move_line.id)],
-                        }
-                    )
+        # to_be_reconciled = []
+        # for move_line in move.line_ids:
+        #     if move_line.account_id.id == wizard.overdue_account_debit_id.id:
+        #         for riba_move_line in distinta_line.move_line_ids:
+        #             invoice_ids = []
+        #             if riba_move_line.move_line_id.invoice_id:
+        #                 invoice_ids = [riba_move_line.move_line_id.invoice_id.id]
+        #             elif riba_move_line.move_line_id.unsolved_invoice_ids:
+        #                 invoice_ids = [
+        #                     i.id
+        #                     for i in riba_move_line.move_line_id.unsolved_invoice_ids
+        #                 ]
+        #             invoice_model.browse(invoice_ids).write(
+        #                 {
+        #                     "unsolved_move_line_ids": [(4, move_line.id)],
+        #                 }
+        #             )
 
         distinta_line.write(
             {
@@ -219,10 +209,10 @@ class RibaUnsolved(models.TransientModel):
             }
         )
         distinta_line.riba_line_set_state("unsolved")
-        to_be_reconciled_lines = move_line_model.with_context(
-            {"unsolved_reconciliation": True}
-        ).browse(to_be_reconciled)
-        to_be_reconciled_lines.reconcile()
+        # to_be_reconciled_lines = move_line_model.with_context(
+        #     {"unsolved_reconciliation": True}
+        # ).browse(to_be_reconciled)
+        # to_be_reconciled_lines.reconcile()
         distinta_line.distinta_id.signal_workflow("unsolved")
         return {
             "name": _("Unsolved Entry"),

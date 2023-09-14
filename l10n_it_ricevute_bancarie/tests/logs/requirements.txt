@@ -19,7 +19,7 @@ Chameleon==3.10.2
 chardet==4.0.0
 checksumdir==1.1.7
 click==7.1.2
-clodoo==2.0.5
+clodoo==2.0.7
 codecov==2.1.12
 codicefiscale==0.9
 configparser==4.0.2
@@ -64,6 +64,7 @@ jdcal==1.4.1
 Jinja2==2.10.1
 jsonlib==1.6.1
 lazy-object-proxy==1.6.0
+lisa==2.0.2
 lxml==4.9.2
 Mako==1.1.6
 MarkupSafe==1.1.1
@@ -132,7 +133,7 @@ python-gettext==4.1
 python-ldap==2.4.27
 python-magic==0.4.27
 python-openid==2.2.5
-python-plus==2.0.9
+python-plus==2.0.10
 python-stdnum==1.18
 pytz==2022.7.1
 pyusb==1.0.0
@@ -186,7 +187,7 @@ WSGIProxy2==0.5.1
 xlrd==1.0.0
 XlsxWriter==0.9.3
 xlwt==1.1.2
-z0bug-odoo==2.0.8
+z0bug-odoo==2.0.12
 z0lib==2.0.7
 z3c.pt==3.3.1
 zc.lockfile==2.0

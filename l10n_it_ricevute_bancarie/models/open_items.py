@@ -40,6 +40,7 @@ class OpenItems(object):
         self.env = None
         self.settlement_journal_id = False
         self.liquidity_account_id = False
+        self.acceptance_account_id = False
         self.bank_expense_account_id = False
         self.receivable_accs = []
         self.move_date = False
@@ -139,6 +140,7 @@ class OpenItems(object):
                 ("liquidity_account_id", "liquidity_account_id"),
                 ("settlement_journal_id", "settlement_journal_id"),
                 ("bank_expense_account_id", "bank_expense_account_id"),
+                ("acceptance_account_id", "acceptance_account_id"),
             ):
                 if not getattr(self, field):
                     if not getattr(config, cfgkey):
@@ -158,6 +160,7 @@ class OpenItems(object):
                 ("liquidity_account_id", "liquidity_account_id"),
                 ("settlement_journal_id", "bank_journal"),
                 ("bank_expense_account_id", "bank_expense_account_id"),
+                # ("acceptance_account_id", "acceptance_account_id"),
             ):
                 if not getattr(self, field):
                     if not config[cfgkey]:
@@ -259,6 +262,8 @@ class OpenItems(object):
                     move_line
                 ) in payorder_line.distinta_id.accreditation_move_id.line_ids:
                     self.add_move_line(move_line)
+                for move_line in payorder_line.payment_ids:
+                    self.add_move_line(move_line)
             elif self.odoo_version == 12:
                 for move in payorder_line.order_id.move_ids:
                     for move_line in move.line_ids:
@@ -356,7 +361,8 @@ class OpenItems(object):
 
     def couple_settlement(self, settlement_move):
         for line in settlement_move.line_ids:
-            if line.account_id == self.liquidity_account_id:
+            if line.account_id in (self.liquidity_account_id,
+                                   self.acceptance_account_id):
                 self.add_move_line(line)
 
     def do_reconciles(self):

@@ -52,9 +52,8 @@
 
                         <separator colspan="4" string="Unsolved (debit / credit)" />
                         <field name="overdue_account_debit_id" />
-                        <field name="overdue_account_credit_id" />
-                        <field name="overdue_expenses_account_id" />
                         <field name="unsolved_journal_id" />
+                        <field name="overdue_expenses_account_id" />
 
                     </group>
                 </form>

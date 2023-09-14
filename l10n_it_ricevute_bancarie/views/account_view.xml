@@ -12,9 +12,9 @@
                 <field name="active" position="after">
                     <field name="riba"/>
                     <field
-                    name="riba_payment_cost"
-                    attrs="{'invisible': [('riba', '=', False)]}"
-                />
+                        name="riba_payment_cost"
+                        attrs="{'invisible': [('riba', '=', False)]}"
+                    />
                 </field>
             </field>
         </record>

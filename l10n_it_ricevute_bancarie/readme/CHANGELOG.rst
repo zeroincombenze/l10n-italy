@@ -1,7 +1,14 @@
+10.0.1.3.14 (2023-09-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] RiBA account reconciled after payment / Contoo effetti attivi riconciliato dopo incasso
+* [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
+* [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
+
 10.0.1.3.13 (2023-08-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Overdue with expenses / INsoluto con spese
+* [FIX] Overdue with expenses / Insoluto con spese
 * [QUA] Test coverage 66% (1155: 389+766) [113 TestPoint]
 
 10.0.1.3.12 (2023-05-24)

@@ -445,7 +445,8 @@ class TestRiba(SingleTransactionCase):
         self.assertTrue(payment_order.acceptance_move_ids)
 
     def _validate_accepted_moves(self, payment_order, due_records):
-        acceptance_account_id = payment_order.config_id.acceptance_account_id
+        # acceptance_account_id = payment_order.config_id.acceptance_account_id
+        acceptance_account_id = self.env.ref("z0bug.coa_liq_tra1")
         template = []
         for due in due_records:
             tmpl_move = []
@@ -535,6 +536,7 @@ class TestRiba(SingleTransactionCase):
                 "account_id": acceptance_account_id,
                 "debit": 0.0,
                 "credit": due.credit or due.debit,
+                "reconciled": True,
             }
             tmpl_move.append(vals)
             vals = {
@@ -554,8 +556,49 @@ class TestRiba(SingleTransactionCase):
         self.validate_records(
             template, [ln.move_id for ln in payment_order.payment_ids])
 
-    def _riba_unsolved(self, distinta):
-        line_distinta = distinta.line_ids[0]
+    def _validate_payment_moves_with_unsolved(self, payment_order, due_records):
+        acceptance_account_id = self.env.ref("z0bug.coa_liq_tra1")
+        accreditation_account_debit_id = self.env.ref("z0bug.coa_liq_tra2").id
+        accreditation_account_credit_id = self.env.ref("z0bug.coa_bnk1a").id
+        liquidity_account_id = self.env.ref("z0bug.coa_bnk1").id
+
+        template = []
+        for due in due_records:
+            if due == payment_order.line_ids[0].move_line_ids.move_line_id:
+                continue
+            tmpl_move = []
+            vals = {
+                "account_id": liquidity_account_id,
+                "debit": due.debit or due.credit,
+                "credit": 0.0,
+            }
+            tmpl_move.append(vals)
+            vals = {
+                "account_id": acceptance_account_id,
+                "debit": 0.0,
+                "credit": due.credit or due.debit,
+                "reconciled": True,
+            }
+            tmpl_move.append(vals)
+            vals = {
+                "account_id": accreditation_account_credit_id,
+                "debit": due.debit or due.credit,
+                "credit": 0.0,
+            }
+            tmpl_move.append(vals)
+            vals = {
+                "account_id": accreditation_account_debit_id,
+                "debit": 0.0,
+                "credit": due.credit or due.debit,
+            }
+            tmpl_move.append(vals)
+            template.append({"line_ids": tmpl_move})
+
+        self.validate_records(
+            template, [ln.move_id for ln in payment_order.payment_ids])
+
+    def _riba_unsolved(self, payment_order):
+        line_distinta = payment_order.line_ids[0]
         self.resource_edit(
             resource=line_distinta,
             actions="riba_line_back2accredited",
@@ -573,8 +616,8 @@ class TestRiba(SingleTransactionCase):
         self.assertTrue(self.is_action(act_windows))
         self.assertEqual(line_distinta.state, "unsolved")
         self.assertTrue(line_distinta.unsolved_move_id)
-        self.assertEqual(distinta.state, "unsolved")
-        self.assertTrue(distinta.unsolved_move_ids)
+        self.assertEqual(payment_order.state, "unsolved")
+        self.assertTrue(payment_order.unsolved_move_ids)
 
     def _riba_solved(self, distinta):
         line_distinta = distinta.line_ids[0]
@@ -583,6 +626,12 @@ class TestRiba(SingleTransactionCase):
             actions="riba_line_back2solved",
         )
         self.assertEqual(line_distinta.state, "accredited")
+
+        self.resource_edit(
+            resource=line_distinta,
+            actions="riba_line_settlement",
+        )
+        self.assertEqual(line_distinta.state, "paid")
 
     def _distinta_back_accreditated(self, distinta):
         self.resource_edit(
@@ -645,7 +694,7 @@ class TestRiba(SingleTransactionCase):
     def test_riba(self):
         _logger.info("🎺 Starting test_riba()")
         self._edit_riba_config()
-        invoice, due_records = self._validate_invoice()
+        invoices, due_records = self._validate_invoice()
         payment_order = self._generate_payment_order(due_records)
         self._download_cbi(payment_order, due_records)
         self._payorder_accepted(payment_order)
@@ -658,22 +707,26 @@ class TestRiba(SingleTransactionCase):
         _logger.info("🎺 Reset test_riba()")
         self._distinta_back_accreditated(payment_order)
         self._distinta_back_accepted(payment_order)
-        # self._distinta_back_draft(payment_order)
-        # self._distinta_cancel(payment_order)
-        # self._distinta_reset_draft(payment_order)
+        self._distinta_back_draft(payment_order)
+        self._distinta_cancel(payment_order)
+        self._distinta_reset_draft(payment_order)
         #
-        # _logger.info("🎺 Repeat test_riba()")
-        # self._download_cbi(payment_order, due_records)
-        # self._payorder_accepted(payment_order)
-        # self._validate_accepted_moves(payment_order, due_records)
-        # self._riba_list_accreditation(payment_order, due_records)
-        # self._validate_accreditation_moves(payment_order, due_records)
-        # self._riba_confirm_all_payments(payment_order)
-        # self._validate_payment_moves(payment_order, due_records)
+        _logger.info("🎺 Repeat test_riba()")
+        self._download_cbi(payment_order, due_records)
+        self._payorder_accepted(payment_order)
+        self._validate_accepted_moves(payment_order, due_records)
+        self._payorder_accreditation(payment_order, due_records)
+        self._validate_accreditation_moves(payment_order, due_records)
+        self._confirm_all_payments(payment_order, due_records)
+        self._validate_payment_moves(payment_order, due_records)
         #
-        # _logger.info("🎺 Test unsolved and pay test_riba()")
-        # self._riba_unsolved(payment_order)
-        # self._riba_solved(payment_order)
-        # self._riba_unsolved(payment_order)
-        #
-        # self.pay_invoice(invoice, payment_order)
+        _logger.info("🎺 Test unsolved and pay test_riba()")
+        self._riba_unsolved(payment_order)
+        # Unsolve riba does not update payments
+        self._validate_payment_moves_with_unsolved(payment_order, due_records)
+        self._riba_solved(payment_order)
+        # Payments still remian unchanged
+        self._validate_payment_moves(payment_order, due_records)
+        self._riba_unsolved(payment_order)
+        # Pay unsolved invoice
+        self.pay_invoice(invoices[0], payment_order)
