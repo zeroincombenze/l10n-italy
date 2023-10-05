@@ -1,14 +1,11 @@
 
 ========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.37
+|icon| Send E-Invoice to SdI 10.0.1.0.38
 ========================================
-
 
 **Send E-Invoice to customer by SdI**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_send2sdi/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -37,7 +34,6 @@ In questa versione sono implementati il canale JSON verso hub di
 terzo incaricato e il canale PEC.
 
 
-|
 |
 
 Getting started / Primi passi
@@ -133,7 +129,7 @@ Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
@@ -160,6 +156,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.38 (2023-10-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 0/100
 
 10.0.1.0.37 (2023-08-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -188,18 +190,6 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] new state mapping
 
-10.0.1.0.29 (2022-08-31)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import e-invoice with multiple attachments
-* [FIX] Check for existent attachment (avoid raise)
-
-10.0.1.0.28 (2022-08-22)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] TD17/18/19 recognition
-
-
 
 |
 |
@@ -213,22 +203,24 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
 |
 
 Authors / Autori
 ----------------
 
-* `Pointec s.r.l. <https://www.pointec.it/>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+* `Pointec s.r.l. <https://www.pointec.it>`__
 
-
-Contributors / Collaboratori
+Contributors / Contributi da
 ----------------------------
 
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
+Maintainer / Manutenzione
+-------------------------
+
+Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 
@@ -245,17 +237,13 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
-
-|chat_with_us|
-
-
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-08-08
+Last Update / Ultimo aggiornamento: 2023-10-05
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0

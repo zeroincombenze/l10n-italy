@@ -9,7 +9,7 @@
 
 import json
 import os
-from datetime import datetime
+# from datetime import datetime
 
 import requests
 
@@ -29,24 +29,24 @@ class ItalyAdeSender(models.Model):
                 - chn.bonus_invoices_ctr
                 - 10
             )
-            if (
-                chn.avail_invoices_ctr < 0
-                and datetime.today() < datetime(2022, 6, 26)
-                and chn.bonus_invoices_ctr == 0
-            ):
-                chn.bonus_invoices_ctr = 5 - chn.avail_invoices_ctr
-                chn.avail_invoices_ctr = (
-                    chn.max_invoices_ctr
-                    - chn.used_invoices_ctr
-                    - chn.bonus_invoices_ctr
-                    - 10
-                )
-        if chn.avail_invoices_ctr <= 0:
+            # if (
+            #     chn.avail_invoices_ctr < 0
+            #     and datetime.today() < datetime(2022, 6, 26)
+            #     and chn.bonus_invoices_ctr == 0
+            # ):
+            #     chn.bonus_invoices_ctr = 5 - chn.avail_invoices_ctr
+            #     chn.avail_invoices_ctr = (
+            #         chn.max_invoices_ctr
+            #         - chn.used_invoices_ctr
+            #         - chn.bonus_invoices_ctr
+            #         - 10
+            #     )
+        if chn.avail_invoices_ctr <= 0:                                          # noqa
             chn.avail_message = _(
                 "You cannot send invoices. Please buy a new invoices pack!"
-            )
-        elif chn.avail_invoices_ctr <= 20:
-            chn.avail_message = _("Not many invoices!")
+            )                                                                    # noqa
+        elif chn.avail_invoices_ctr <= 20:                                       # noqa
+            chn.avail_message = _("Not many invoices!")                          # noqa
         else:
             chn.avail_message = ""
 
@@ -88,7 +88,6 @@ class ItalyAdeSender(models.Model):
             url = os.path.join(channel.sender_url, "Cerca")
             chn_inv_in = int(channel.param2) if channel.param2 else 2
             chn_inv_out = int(channel.param1) if channel.param1 else 1
-            # chn_inv_sent = int(channel.param3) if channel.param3 else 3
 
             data = {
                 "IdAzienda": int(channel.sender_company_id),
