@@ -8,6 +8,18 @@ from odoo.exceptions import Warning as UserError
 from odoo.tools.misc import flatten
 
 
+def fromisoformat(dt, sep="T", only_date=False):
+    if isinstance(dt, datetime):
+        return dt.strftime("%Y-%m-%d" if only_date else "%Y-%m-%d" + sep + "%H:%M:%S")
+    return dt.strftime("%Y-%m-%d" if only_date else "%Y-%m-%d" + sep + "00:00:00")
+
+
+def isoformat(dt, sep="T", only_date=False):
+    if len(dt) <= 10 or only_date:
+        return datetime.strptime(dt, "%Y-%m-%d").date()
+    return datetime.strptime(dt, "%Y-%m-%d" + sep + "%H:%M:%S")
+
+
 class WizardGiornale(models.TransientModel):
     _name = "wizard.giornale"
     _description = "Wizard journal report"
@@ -98,22 +110,17 @@ class WizardGiornale(models.TransientModel):
     @api.onchange("date_move_line_from")
     def on_change_date_start(self):
         if self.date_move_line_from:
-            self.year_footer = str(
-                datetime.strptime(self.date_move_line_from, "%Y-%m-%d").year
-            )
+            self.year_footer = str(isoformat(self.date_move_line_from).year)
 
     def load_values_from_fiscalyear(self, fiscal_daterange):
-        date_start = datetime.strptime(
-            fiscal_daterange.date_start, "%Y-%m-%d").date()
+        date_start = isoformat(fiscal_daterange.date_start)
         if fiscal_daterange.date_last_print and (
-                self.daterange.date_start
-                <= fiscal_daterange.date_last_print
-                <= self.daterange.date_end
+                (isoformat(self.daterange.date_start) - timedelta(days=1))
+                <= isoformat(fiscal_daterange.date_last_print)
+                <= isoformat(self.daterange.date_end)
         ):
             # Selected valid fiscal year
-            date_last_print = datetime.strptime(
-                fiscal_daterange.date_last_print, "%Y-%m-%d"
-            ).date()
+            date_last_print = isoformat(fiscal_daterange.date_last_print)
             # First valid date to print final journal
             self.last_def_date_print = date_last_print
             # Read-only field does not pass to wizard, so we do backup
@@ -129,10 +136,10 @@ class WizardGiornale(models.TransientModel):
             self.first_date_print = date_start
             self.date_move_line_from = date_start
             self.date_move_line_to = self.daterange.date_end
-        if fiscal_daterange.progressive_line_number != 0:
-            self.start_row = fiscal_daterange.progressive_line_number + 1
-        else:
-            self.start_row = fiscal_daterange.progressive_line_number
+        # if fiscal_daterange.progressive_line_number != 0:
+        #     self.start_row = fiscal_daterange.progressive_line_number + 1
+        # else:
+        self.start_row = fiscal_daterange.progressive_line_number
         self.progressive_debit = fiscal_daterange.progressive_debit
         self.progressive_credit = fiscal_daterange.progressive_credit
         self.fiscal_page_base = fiscal_daterange.progressive_page_number
