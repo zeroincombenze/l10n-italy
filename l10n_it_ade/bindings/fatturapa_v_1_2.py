@@ -4,9 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import pyxb
-if pyxb.__version__ == '1.2.4':
-    from fatturapa_v_1_2__1_2_4 import *
-elif pyxb.__version__ == '1.2.5':
+if pyxb.__version__ == '1.2.5':
     from fatturapa_v_1_2__1_2_5 import *
 elif pyxb.__version__ == '1.2.6':
     from fatturapa_v_1_2__1_2_6 import *

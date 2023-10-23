@@ -1,6 +1,3 @@
-Fattura Elettronica in
-----------------------
-
 Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm

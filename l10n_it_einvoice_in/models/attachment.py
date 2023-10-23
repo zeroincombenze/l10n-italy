@@ -63,14 +63,23 @@ class FatturaPAAttachmentIn(models.Model):
             '<?xml version="1.0" encoding="utf-8"[^?]*?>',
             '<?xml version="1.0" encoding="utf-8"?>',
             xml_string)
+        valid_header = (
+            '<p:FatturaElettronica'
+            ' xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"'
+            ' xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+            ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
+            ' versione="FPR12">')
         xml_string = re.sub(
             '<p:FatturaElettronica.*v1.2.*versione="FPR12">',
-            ('<p:FatturaElettronica'
-             ' xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"'
-             ' xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
-             ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
-             ' versione="FPR12">'),
+            valid_header,
             xml_string)
+        # xml_string = re.sub(
+        #     '<ns2:FatturaElettronica [^>]+">',
+        #     valid_header,
+        #     xml_string)
+        # xml_string = xml_string.replace(
+        #     "</ns2:FatturaElettronica>",
+        #     "</p:FatturaElettronica>")
 
         # Do not change order of parsing!!!
         for tag in (
@@ -83,6 +92,7 @@ class FatturaPAAttachmentIn(models.Model):
             "DatiConvenzione",
             "DatiRicezione",
             "NumeroCivico",
+            "DatiOrdineAcquisto",
         ):
             token = r"<%s>[ \t\n]*</%s>" % (tag, tag)
             xml_string = re.sub(token, "", xml_string, flags=re.DOTALL)

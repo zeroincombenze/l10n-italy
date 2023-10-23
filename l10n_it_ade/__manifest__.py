@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -8,10 +8,10 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
-    "name": "Agenzia delle Entrate",
-    "version": "10.0.0.3.7",
+    "name": "Agenzia delle Entrate (italian IRS)",
+    "version": "10.0.0.3.8",
     "category": "Localization/Italy",
-    "summary": "Codice e definizioni come da Agenzia delle Entrate",
+    "summary": "Codes & Definitions from IRS",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
     "development_status": "Beta",

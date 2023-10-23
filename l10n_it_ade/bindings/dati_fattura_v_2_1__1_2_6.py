@@ -358,10 +358,9 @@ RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
 # Follow(s) line(s) are ignored because string class
 # # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
-RateType._InitializeFacetMap(RateType._CF_whiteSpace,
-   RateType._CF_pattern,
-# Follow(s) line(s) are ignored because string class
-# #    RateType._CF_maxInclusive)
+# RateType._InitializeFacetMap(RateType._CF_whiteSpace,
+#    RateType._CF_pattern,
+#    RateType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}Amount2DecimalType

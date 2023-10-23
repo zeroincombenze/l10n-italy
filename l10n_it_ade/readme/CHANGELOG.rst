@@ -1,3 +1,10 @@
+10.0.0.3.8 (2023-10-23)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] pyxb 1.2.6
+* [IMP] Remove support for pyxb 1.2.4 / Rimosso supporto per pyxb 1.2.4
+* [QUA] Test coverage 66% (168: 57+111) [3 TestPoints] - quality rating 74 (target 100)
+
 10.0.0.3.7 (2023-02-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

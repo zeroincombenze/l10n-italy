@@ -4,9 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 import pyxb
-if pyxb.__version__ == '1.2.4':
-    from vat_settlement_v_1_0__1_2_4 import *
-elif pyxb.__version__ == '1.2.5':
+if pyxb.__version__ == '1.2.5':
     from vat_settlement_v_1_0__1_2_5 import *
 elif pyxb.__version__ == '1.2.6':
     from vat_settlement_v_1_0__1_2_6 import *

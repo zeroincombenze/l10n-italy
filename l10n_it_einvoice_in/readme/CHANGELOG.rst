@@ -1,3 +1,8 @@
+10.0.1.3.42 (2023-10-23)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with <DatiOrdineAcquisto></DatiOrdineAcquisto> / CRash in alcuni casi
+
 10.0.1.3.41 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -219,3 +224,4 @@
 * [FIX] Some supplier invoces with empty tags fail schema validation / Alcune fatture fornitori con tag vuoti non erano validate dallo schema
 * [FIX] Invoice supplier with existent REA code crashes / Fatture fornitori con codice REA esistente mandavano in crash il sistema
 * [IMP] New search algorithm finds similar names / Nuovo algoritmo di ricerca che trova nomi simili
+* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 500 (target 100)

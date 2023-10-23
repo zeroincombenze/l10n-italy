@@ -1,21 +1,18 @@
 
-=======================================
-|icon| Agenzia delle Entrate 10.0.0.3.7
-=======================================
+===========================================================================
+|icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.8
+===========================================================================
 
-
-**Codice e definizioni come da Agenzia delle Entrate**
+**Codes & Definitions from IRS**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ade/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
 |en| This module has no specific function for End-user.
@@ -24,16 +21,14 @@ It defines the structures by Italian IRS (Tax Authority) to manage
 all fiscal communications.
 Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement.
 
-This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__
+This module requires `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.6 <http://pyxb.sourceforge.net/>`__
 
 This code partially inherits some parts from l10n_it_account of OCA.
 
 
 |
 
-|it| Definizioni Agenzia delle Entrate
-
-::
+|it| ::
 
     Cosa è:
 
@@ -69,94 +64,48 @@ Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.
 
 |
 
-Features / Caratteristiche
+Features | Caratteristiche
 --------------------------
 
-Features / Funzioni
--------------------
-
-+------------------------------------------------------+----------+----------------------------------------------+
-| Feature / Funzione                                   |  Status  | Notes / Note                                 |
-+------------------------------------------------------+----------+----------------------------------------------+
-| Fiscal Invoice Type / Tipo fattura fiscale           | |check|  | Codifica tipo di fattura come da AdE         |
-+------------------------------------------------------+----------+----------------------------------------------+
-| Codice Carica                                        | |check|  | Codifica codice carica come da AdE           |
-+------------------------------------------------------+----------+----------------------------------------------+
-| Tax Nature / Natura fiscale dell'IVA                 | |check|  | Codifica natura fiscale dell'IVA come da AdE |
-+------------------------------------------------------+----------+----------------------------------------------+
++--------------------------------------------+----------+-----+----------------------------------------------+
+| Description | Descrizione                  | Z0incomb | OCA | Note(s)                                      |
++--------------------------------------------+----------+-----+----------------------------------------------+
+| Fiscal Invoice Type | Tipo fattura fiscale | ✅        | ✅   | Codifica tipo di fattura come da AdE         |
++--------------------------------------------+----------+-----+----------------------------------------------+
+| N/A | Codice Carica                        | ✅        | ✅   | Codifica codice carica come da AdE           |
++--------------------------------------------+----------+-----+----------------------------------------------+
+| Tax Nature | Natura fiscale dell'IVA       | ✅        | ✅   | Codifica natura fiscale dell'IVA come da AdE |
++--------------------------------------------+----------+-----+----------------------------------------------+
+| N/A | Codici Assosoftware                  | ✅        | ❌   | Codifica per interscambio                    |
++--------------------------------------------+----------+-----+----------------------------------------------+
 
 
 |
 |
 
-Certifications / Certificazioni
+Certifications | Certificazioni
 -------------------------------
 
-Certifications / Certificazioni
--------------------------------
-
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2020   | Validazione contro schema xml                |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2020   | Controllo tramite sito Agenzia delle Entrate |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
+| Logo | Logo   | Certification | Certificazione                                                                                                                                                                                   | Date       | Expiration  | Notes(s)                                     |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
+| |xml\_schema| | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                            | 01-06-2017 | 31-12-2023  | Validazione contro schema xml                |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
+| |FatturaPA|   | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__ | 01-06-2017 | 31-12-20203 | Controllo tramite sito Agenzia delle Entrate |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
 
 
 |
 
-Usage / Utilizzo
-----------------
-
-Usage / Uso
-===========
-
-|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Natura dell'IVA
-
-|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Tipi Fattura
-
-|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Codice Carica
-
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Dato Fattura Elettronica       | Modulo zeroincombenze       | Modello zeroincombenze    | Nome tecnico                 | Modulo OCA                  | Modello OCA               | Note tecnico OCA             | Note                                                                                                     |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Schema di definizione xsd      | l10n_it_ade                 |                           |                              | l10n_it_fatturapa           |                           |                              | Il modulo di zeroincombenze serve anche alla liquidazione IVA e comunicazione IVA (ex Spesometro)        |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Natura dell'IVA                | l10n_it_ade                 | italy.ade.tax.nature      | kind_id                    | l10n_it_account_tax_kind    | account.tax.kind          | tax_kind_id                  | Estensione della tabella account.tax usata anche da liquidazione IVA e comunicazione IVA (ex Spesometro) |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Termini di pagamento           | l10n_it_fiscal_payment_term | fatturapa.payment_term    |                              | l10n_it_fiscal_payment_term | fatturapa.payment_term    |                              | Modelle in comune                                                                                        |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Metodi di pagamento            | l10n_it_fiscal_payment_term | fatturapa.payment_method  |                              | l10n_it_fiscal_payment_term | fatturapa.payment_method  |                              | Modello in comune                                                                                        |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Codice Destinatario            | l10n_it_fiscal_ipa          | res.partner               | codice_destinatario          | l10n_it_fatturapa           | res.partner               | codice_destinatario          |                                                                                                          |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Partner è PA?                  | l10n_it_fiscal_ipa          | res.partner               | is_pa                        | l10n_it_fatturapa           | res.partner               | is_pa                        |                                                                                                          |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Soggetto a Fattura elettronica | l10n_it_fiscal_ipa          | res.partner               | electronic_invoice_subjected | l10n_it_fatturapa           | res.partner               | electronic_invoice_subjected | Il comportamento è diverso                                                                               |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-| Regime Fiscale                 | l10n_it_fatturapa           | fatturapa.fiscal_position | fiscal_position              | l10n_it_fatturapa           | fatturapa.fiscal_position |                              |                                                                                                          |
-+--------------------------------+-----------------------------+---------------------------+------------------------------+-----------------------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------------------+
-
-
-|
-|
-
-Getting started / Come iniziare
-===============================
+Getting started | Primi passi
+=============================
 
 |Try Me|
 
 
 |
 
-Installation / Installazione
+Installation | Installazione
 ----------------------------
 
 
@@ -169,11 +118,11 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -183,27 +132,28 @@ Installation / Installazione
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    # Upgrade virtual environment
+    vem amend $HOME/10.0/venv_odoo
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
+* |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
 
 
 |
 
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
 
 
@@ -214,16 +164,16 @@ Upgrade / Aggiornamento
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -233,19 +183,20 @@ From UI: go to:
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Update
 
+
 |
 
-Support / Supporto
+Support | Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
 |
 
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -264,41 +215,26 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.0.3.8 (2023-10-23)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] pyxb 1.2.6
+* [IMP] Remove support for pyxb 1.2.4 / Rimosso supporto per pyxb 1.2.4
+* [QUA] Test coverage 66% (168: 57+111) [3 TestPoints] - quality rating 74 (target 100)
 
 10.0.0.3.7 (2023-02-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Self invoice flag / Identificatore documento autofattura
 
-10.0.0.3.6 (2022-09-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] l10n_it_ade/binding numeric data with 2 decimals
-
-10.0.0.3.5 (2022-09-22)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] l10n_it_ade/binding refactoring
-
-10.0.0.3.4 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Best record display/ Migliorie visualizzazione codice
-* [IMP] Tax nature renamed
-
-10.0.0.3.3 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Regression test
-
-
 
 |
 |
 
-Credits / Didascalie
+Credits | Didascalie
 ====================
 
 Copyright
@@ -307,47 +243,29 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
 |
 
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-Authors
--------
+* SHS-AV s.r.l. <https://www.zeroincombenze.it>
 
-
-Contributors / Collaboratori
+Contributors | Contributi da
 ----------------------------
 
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-Contributors
-------------
 
-
-
-Acknowledges / Riconoscimenti
+Acknowledges | Riconoscimenti
 -----------------------------
 
-+-----------------------------------+-------------------------------------------+
-| |en|                              | |it|                                      |
-| This software inherits from past  | Questo software eredita da versioni       |
-| versions some parts of code. Even | passate alcune parti di codice. Anche     |
-| if people did not actively        | se non hanno partecipato attivamente allo |
-| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
-| acknowledge them for their prior  | persone che precedentemente vi hanno      |
-| contributions.                    | contribuito.                              |
-+-----------------------------------+-------------------------------------------+* Davide Corio <info@davidecorio.com>
-* Alex Comba <alex.comba@agilebg.com>
+* Davide Corio <info@davidecorio.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alex Comba <alex.comba@agilebg.com>
 
-
-Maintainer / Manutenzione
+Maintainer | Manutenzione
 -------------------------
 
-
-
+Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 
@@ -356,23 +274,19 @@ Maintainer / Manutenzione
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
-
-
-
-|chat_with_us|
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-02-14
+Last Update / Ultimo aggiornamento: 2023-10-23
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -432,4 +346,5 @@ Last Update / Ultimo aggiornamento: 2023-02-14
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
+
 

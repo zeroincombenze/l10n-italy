@@ -29,9 +29,7 @@ class ItalyAdeTaxNature(models.Model):
         return res
 
     @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
-        if not args:
-            args = []
+    def name_search(self, name="", args=[], operator="ilike", limit=100):
         if name:
             records = self.search(
                 ["|", ("name", operator, name), ("code", operator, name)] + args,

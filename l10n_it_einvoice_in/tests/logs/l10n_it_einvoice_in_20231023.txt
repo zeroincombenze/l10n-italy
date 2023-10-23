@@ -1,0 +1,61 @@
+2023-10-23 16:51:17,000 25834 DAEMON test_l10n_it_einvoice_in_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2023-10-23 14:51:23,351 28478 INFO ? odoo: Odoo version 10.0
+2023-10-23 14:51:23,352 28478 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/tests/logs/zero10.l10n-italy.l10n_it_einvoice_in.conf
+2023-10-23 14:51:23,352 28478 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-10-23 14:51:23,352 28478 INFO ? odoo: database: odoo10@localhost:default
+2023-10-23 14:51:23,370 28478 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:47674
+2023-10-23 14:51:23,390 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading 1 modules...
+2023-10-23 14:51:23,485 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2023-10-23 14:51:28,004 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading 52 modules...
+2023-10-23 14:51:28,142 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-10-23 14:51:28,397 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: 52 modules loaded in 0.39s, 0 queries
+2023-10-23 14:51:28,403 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading 53 modules...
+2023-10-23 14:51:28,682 28478 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-10-23 14:51:28,972 28478 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-10-23 14:51:28,981 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.registry: module l10n_it_einvoice_in: creating or updating database tables
+2023-10-23 14:51:29,242 28478 WARNING test_l10n_it_einvoice_in_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2023-10-23 14:51:30,307 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2023-10-23 14:51:30,418 28478 INFO test_l10n_it_einvoice_in_10 odoo.models: Storing computed values of fatturapa.attachment.in fields date_invoice0, invoices_number, invoices_total, registered, xml_supplier_id
+2023-10-23 14:51:30,516 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/security/ir.model.access.csv
+2023-10-23 14:51:30,627 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/views/account_view.xml
+2023-10-23 14:51:31,025 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/views/partner_view.xml
+2023-10-23 14:51:31,140 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/views/company_view.xml
+2023-10-23 14:51:31,217 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/wizard/wizard_import_fatturapa_view.xml
+2023-10-23 14:51:31,265 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/wizard/attachment_refresh_info_view.xml
+2023-10-23 14:51:31,341 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/wizard/link_to_existing_invoice.xml
+2023-10-23 14:51:31,773 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml running tests.
+2023-10-23 14:51:31,775 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00001_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestDuplicatedAttachment)
+2023-10-23 14:51:33,646 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00002_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2023-10-23 14:51:35,181 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00003_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2023-10-23 14:51:36,585 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00004_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2023-10-23 14:51:38,338 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00014_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2023-10-23 14:51:40,077 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00015_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2023-10-23 14:51:41,550 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: Ran 6 tests in 9.776s
+2023-10-23 14:51:41,550 28478 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: OK
+2023-10-23 14:51:41,550 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml tested in 9.78s, 8920 queries
+2023-10-23 14:51:41,576 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: 53 modules loaded in 13.17s, 8939 queries
+2023-10-23 14:51:41,698 28478 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2023-10-23 14:51:42,166 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: Modules loaded.
+2023-10-23 14:51:42,171 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-10-23 14:51:42,172 28478 INFO test_l10n_it_einvoice_in_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-10-23 14:51:42,288 28478 INFO test_l10n_it_einvoice_in_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-10-23 14:51:42,289 28478 INFO test_l10n_it_einvoice_in_10 odoo.service.server: Initiating shutdown
+2023-10-23 14:51:42,290 28478 INFO test_l10n_it_einvoice_in_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_in[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/models/account.py                      248    118    52%   57, 77-112, 115-125, 128-146, 149-167, 170-188, 191-212, 224-279, 282, 295, 298, 302-305, 308-312, 315-319, 322-326, 329-338, 367, 382, 384, 415, 423, 441, 463-493
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/models/attachment.py                   111     24    78%   53, 60, 112, 114-116, 121-126, 146, 150, 155, 160, 185-186, 190-199
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/models/company.py                       42     13    69%   50, 54-62, 87-102
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/models/partner.py                      226     51    77%   65, 89, 97, 115-120, 137-138, 151, 160-161, 191, 202, 207, 247, 259, 261-262, 273-274, 281, 306-307, 319-320, 322-323, 325, 328-330, 343-352, 354-356, 376, 380-381, 384, 386, 389-390
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/wizard/attachment_refresh_info.py       17     10    41%   10-17, 24-31
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/wizard/link_to_existing_invoice.py      50     38    24%   17-25, 30-33, 38-59, 62-83
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py      632    239    62%   49, 52, 60, 67, 90, 94, 96, 99-139, 176, 191-193, 200, 205-209, 211, 219, 230-231, 256-267, 269, 273-306, 329, 331, 333, 348-371, 403, 411-444, 447-457, 460-468, 476-505, 520, 558, 573, 608, 628, 630, 637-638, 643-644, 665-667, 681, 685-686, 688, 692-698, 703, 719-725, 742-757, 767, 791-792, 800-804, 832-833, 844, 866, 876-877, 881-894, 900-908, 923-924, 934-938, 950-954, 958-962, 966-970, 974-975, 988, 1033, 1036, 1065-1069, 1073-1077, 1084, 1087, 1099, 1109-1125, 1149-1156, 1180, 1192, 1198-1199, 1222-1226, 1232, 1234, 1241
+-----------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                1326    493    63%

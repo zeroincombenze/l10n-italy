@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 try:
     from unidecode import unidecode
-except ImportError as err:
+except ImportError as err:                                           # pragma: no cover
     _logger.debug(err)
 
 
@@ -42,6 +42,4 @@ class AccountInvoice(models.Model):
 
     def wep_text(self, text):
         """ "Do xml escape to avoid error StringLatinType"""
-        if text:
-            return escape(unidecode(text), XML_ESCAPE).strip()
-        return text
+        return unidecode(escape(text, XML_ESCAPE)).strip() if text else text

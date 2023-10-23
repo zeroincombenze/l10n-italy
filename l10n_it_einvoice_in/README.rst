@@ -1,27 +1,21 @@
 
-=========================================================================
-|icon| Italian Localization - Fattura elettronica - Ricezione 10.0.1.3.41
-=========================================================================
+========================================================
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.42
+========================================================
 
-
-**Ricezione fatture elettroniche**
+**E-invoice receive**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_in/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
-|en| EInvoice in
-----------------
-
-This module allows to import Electronic Bill XML files version 1.2.1
+|en| This module allows to import Electronic Bill XML files version 1.2.1
 
 http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
 
@@ -53,10 +47,7 @@ In the incoming electronic bill files list you will see, by default, files to be
 
 |
 
-|it| Fattura Elettronica in
----------------------------
-
-Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
+|it| Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
@@ -94,85 +85,64 @@ Magazzino →  Prodotti
 
 |
 
-Features / Caratteristiche
+Features | Caratteristiche
 --------------------------
 
-+--------------------------------------------------------+------------+---------------------------------+
-| Descrizione                                            | Stato      | Note                            |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitore, righe con IVA                  | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitore, righe senza IVA                | |check|    | Non riconosce esatto codice IVA |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con ritenuta d'acconto          | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori da agenti (enasarco)            | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con controllo su totale fattura | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con split-payment               | |no_check| |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da fornitori con reverse charge              | |info|     | Non riconosce esatto codice IVA |
-+--------------------------------------------------------+------------+---------------------------------+
-| E-Nota Credito da fornitore                            | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Gestione multi-aziendale                               | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Validazione e-fattura per azienda                      | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Generazione scadenzario passivo da e-fattura           | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| Livello contabile solo testata senza dettagli          | |check|    | Per collegare fatture manuali   |
-+--------------------------------------------------------+------------+---------------------------------+
-| Livello righe contabili per aliquote IVA               | |check|    | Per fatture con troppe righe    |
-+--------------------------------------------------------+------------+---------------------------------+
-| Livelllo righe contabili in dettaglio                  | |check|    |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da stabile organizzazione estera             | |info|     |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
-| e-fattura da rappresentante fiscale                    | |info|     |                                 |
-+--------------------------------------------------------+------------+---------------------------------+
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| Description | Descrizione                                    | Z0incomb | OCA | Note(s)                         |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitore, righe con IVA                  | ✅        | ✅   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitore, righe senza IVA                | ✅        | ✅   | Non riconosce esatto codice IVA |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitori con ritenuta d'acconto          | ✅        | ✅   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitori da agenti (enasarco)            | ✅        | ✅   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitori con controllo su totale fattura | ✅        | ❌   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitori con split-payment               | ❌        | ❌   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da fornitori con reverse charge              | |info|   | ❌   | Non riconosce esatto codice IVA |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | E-Nota Credito da fornitore                            | ✅        | ✅   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | Gestione multi-aziendale                               | ✅        | ❌   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | Validazione e-fattura per azienda                      | ✅        | ❌   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | Generazione scadenzario passivo da e-fattura           | ✅        | ✅   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | Livello contabile solo testata senza dettagli          | ✅        | ✅   | Per collegare fatture manuali   |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | Livello righe contabili per aliquote IVA               | ✅        | ❌   | Per fatture con troppe righe    |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | Livelllo righe contabili in dettaglio                  | ✅        | ✅   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A |e-fattura da stabile organizzazione estera              | ✅        | ❌   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
+| N/A | e-fattura da rappresentante fiscale                    | ✅        | ❌   |                                 |
++--------------------------------------------------------------+----------+-----+---------------------------------+
 
 
 |
 
-Usage / Utilizzo
+Usage | Utilizzo
 ----------------
 
-Se il fornitore specifica un codice noto nell'XML, questo verrà usato dal sistema per recuperare il prodotto corretto da usare nella riga fattura, impostando il conto e l'imposta collegati.
-
-|menu| Contabilità > Acquisti > Fattura elettronica
-
-Caricare un file XML
-Visualizzare il contenuto della fattura facendo clic su "Mostra anteprima"
-Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura già (automaticamente) creata
-
+N/A
 
 |
 
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-|
-
-Getting started / Come iniziare
-===============================
+Getting started | Primi passi
+=============================
 
 |Try Me|
 
 
 |
 
-Installation / Installazione
+Installation | Installazione
 ----------------------------
 
 
@@ -185,11 +155,11 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -220,7 +190,7 @@ From UI: go to:
 
 |
 
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
 
 
@@ -253,17 +223,17 @@ From UI: go to:
 
 |
 
-Support / Supporto
+Support | Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
 |
 
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -282,13 +252,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.1.3.42 (2023-10-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with  <DatiOrdineAcquisto></DatiOrdineAcquisto> / CRash in alcuni casi
 
 10.0.1.3.41 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash in some strange email
+* [FIX] Crash when xml tag with extra property
 
 10.0.1.3.40 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,34 +304,11 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Import e-invoice with WH / Errore importazione fatture con RA
 
-10.0.1.3.33 (2022-08-22)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Link to opened invoice too
-
-10.0.1.3.32 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Tax nature renamed
-* [FIX] Error _amount_withholding_tax
-
-10.0.1.3.31 (2022-06-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] DdT number = space
-* [FIX] New check on partner / Controlli su fornitore
-
-10.0.1.3.30 (2022-04-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] New foreign invoices w/o province / Fatture da estero senza provincia
-
-
 
 |
 |
 
-Credits / Didascalie
+Credits | Didascalie
 ====================
 
 Copyright
@@ -364,21 +317,18 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
 |
 
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `Innoviu srl <http://www.innoviu.com>`__
-* `Pointec s.r.l. <https://www.pointec.it/>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-Authors
--------
+* `Agile Business Group sagl <https://www.agilebg.com>`__
+* `Innoviu srl <https://www.innoviu.com>`__
+* `Pointec s.r.l. <https://www.pointec.it>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
 
-
-Contributors / Collaboratori
+Contributors | Contributi da
 ----------------------------
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -386,22 +336,11 @@ Contributors / Collaboratori
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-Contributors
-------------
 
-
-
-Translations by / Traduzioni a cura di
---------------------------------------
-
-* Sergio Zanchetta <https://github.com/primes2h>
-
-
-Maintainer / Manutenzione
+Maintainer | Manutenzione
 -------------------------
 
-
-
+Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 
@@ -410,23 +349,19 @@ Maintainer / Manutenzione
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
-
-
-
-|chat_with_us|
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-04-17
+Last Update / Ultimo aggiornamento: 2023-10-23
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

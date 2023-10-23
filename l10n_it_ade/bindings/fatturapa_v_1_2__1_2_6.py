@@ -5,7 +5,6 @@
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
 # Generated 2022-09-27 06:52:14.128319 by PyXB version 1.2.6 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-# by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 from __future__ import unicode_literals
 import logging
@@ -826,7 +825,6 @@ RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
 # Follow(s) line(s) are ignored because string class
 # # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 # RateType._InitializeFacetMap(RateType._CF_pattern,
-# Follow(s) line(s) are ignored because string class
 # #    RateType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType

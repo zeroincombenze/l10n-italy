@@ -1,5 +1,3 @@
-Definizioni Agenzia delle Entrate
-
 ::
 
     Cosa è:

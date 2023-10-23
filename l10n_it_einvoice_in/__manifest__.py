@@ -10,13 +10,13 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
-    "name": "Italian Localization - Fattura elettronica - Ricezione",
-    "version": "10.0.1.3.41",
+    "name": "ITA - Fattura elettronica - Ricezione",
+    "version": "10.0.1.3.42",
     "category": "Localization/Italy",
-    "summary": "Ricezione fatture elettroniche",
-    "author": "Agile Business Group, Innoviu, SHS-AV "
-              "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in",
+    "summary": "E-invoice receive",
+    "author": "Agile Business Group sagl, Innoviu srl, Pointec s.r.l.,"
+              "SHS-AV s.r.l., Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy/l10n_it_fatturapa_in",
     "license": "AGPL-3",
     "depends": [
         "account",

@@ -158,7 +158,7 @@ Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">History / Cronologia</h3>
+        <h3 class="oe_slogan" style="color:#162832;">ChangeLog History / Cronologia modifiche</h3>
         <div class="oe_span12">
 <h3>10.0.2.1.23 (2023-03-08)</h3>
 <p align="justify">
@@ -178,37 +178,39 @@ Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
 <ul>
 <li>[IMP] Company data view with name for field extentions</li>
 </ul>
+</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan" style="color:#162832;">Known issues / Problemi conosciuti</h3>
+        <div class="oe_span12">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png"/> Please, do not mix the following module with OCA Italy modules.
+<p align="justify">
+This module may be conflict with some OCA modules with error:
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png"/> name CryptoBinary used for multiple values in typeBinding
 </p><p align="justify">
 </p><p align="justify">
-<h3>10.0.2.1.20 (2022-07-07)</h3>
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png"/> Si consiglia di non mescolare i seguenti moduli con i moduli di OCA Italia.
 </p><p align="justify">
-<ul>
-<li>[IMP] Field einvoice_no_eq_cf_pi &amp; pa_move_pi_2_fc hidden</li>
-</ul>
+Lo schema di definizione xml, pubblicato con
+urn:www.agenziaentrate.gov.it:specificheTecniche &#232; base per tutti i file
+in formato xml da inviare all'Agenzia delle Entrate; come conseguenza
+nasce un conflitto tra moduli diversi che utilizzano uno schema che riferisce
+all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
 </p><p align="justify">
-<h3>10.0.2.1.19 (2022-06-30)</h3>
-</p><p align="justify">
-<ul>
-<li>[FIX] Model acces for withholding.data.line</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.2.1.18 (2022-06-20)</h3>
-</p><p align="justify">
-<ul>
-<li>[IMP] Fiscal document type renamed</li>
-<li>[IMP] Tax nature renamed</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.2.1.17 (2022-06-16)</h3>
-</p><p align="justify">
-<ul>
-<li>[IMP] Minor internal improvements / Migliorie interne minori</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.2.1.16 (2022-06-08)</h3>
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/exclamation.png"/> name CryptoBinary used for multiple values in typeBinding
 </p><p align="justify">
 <ul>
-<li>[FIX] Style sheet / Aggiornamento fogli di stile fattura XML</li>
+<li>This module replaces l10n_it_fatturapa of OCA distribution.</li>
+<li>Do not use l10n_it_base module of OCA distribution</li>
+<li>Do not use l10n_it_split_payment module of OCA distribution</li>
+<li>Do not use l10n_it_reverse_charge of OCA distribution</li>
+<li>Do not install l10n_it_codici_carica module of OCA distribution</li>
+<li>Do not install l10n_it_fiscal_document_type module of OCA distribution</li>
+<li>Do not install l10n_it_fiscalcode_invoice module of OCA distribution</li>
+<li>Do not install l10n_it_ipa module of OCA distribution</li>
+<li>Do not install l10n_it_esigibilita_iva of OCA distribution</li>
 </ul>
 </p>
         </div>
@@ -222,20 +224,20 @@ Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Authors / Autori:</p>
             <p class="oe_mt16"><ul>
+<li><a href="https://www.odoo-italia.org/">Associazione Odoo Italia</a></li>
+<li><a href="https://odoo-community.org/">Odoo Community Association (OCA)</a></li>
 <li><a href="https://abstract.it/">Abstract</a></li>
 <li><a href="https://www.agilebg.com/">Agile Business Group sagl</a></li>
 <li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
-</ul>
-<h2>Infrastructure for Italian Electronic Invoice + FatturaPA / Fattura Elettronica + FatturaPA</h2></p>
+</ul></p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors / Collaboratori:</p>
+            <p class="oe_mt16">Contributors / Contributi da:</p>
             <p class="oe_mt16"><ul>
 <li>Davide Corio &lt;davide.corio@abstract.it&gt;</li>
 <li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
 <li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
-</ul>
-<h2>Infrastructure for Italian Electronic Invoice + FatturaPA / Fattura Elettronica + FatturaPA</h2></p>
+</ul></p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
@@ -244,6 +246,6 @@ Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <p>This module is part of l10n-italy project.</p>
+        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
     </div>
 </section>

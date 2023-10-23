@@ -3,12 +3,9 @@
 |icon| EInvoice + FatturaPA 10.0.2.1.23
 =======================================
 
-
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_base/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
@@ -171,22 +168,8 @@ Usage / Uso
 
 |
 
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-|
-
-Getting started / Come iniziare
-===============================
+Getting started / Primi passi
+=============================
 
 |Try Me|
 
@@ -220,20 +203,21 @@ Installation / Installazione
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    # Upgrade virtual environment
+    vem amend $HOME/10.0/venv_odoo
 
 From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
+* |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Install
 
@@ -251,16 +235,16 @@ Upgrade / Aggiornamento
     # Case 1: you have not installed zeroincombenze tools
     git clone https://github.com/zeroincombenze/tools.git
     cd $HOME/tools
-    ./install_tools.sh -p
+    ./install_tools.sh -pT
     source $HOME/devel/activate_tools
     # Case 2: you have already installed zeroincombenze tools
     cd $HOME/tools
-    ./install_tools.sh -U
+    ./install_tools.sh -UT
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -270,13 +254,14 @@ From UI: go to:
 * |menu| Apps > Update Apps List
 * |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Update
 
+
 |
 
 Support / Supporto
 ------------------
 
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 |
@@ -354,34 +339,6 @@ ChangeLog History / Cronologia modifiche
 * [IMP] Company data view with name for field extentions
 
 
-10.0.2.1.20 (2022-07-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Field einvoice_no_eq_cf_pi & pa_move_pi_2_fc hidden
-
-10.0.2.1.19 (2022-06-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Model acces for withholding.data.line
-
-10.0.2.1.18 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Fiscal document type renamed
-* [IMP] Tax nature renamed
-
-10.0.2.1.17 (2022-06-16)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Minor internal improvements / Migliorie interne minori
-
-10.0.2.1.16 (2022-06-08)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Style sheet / Aggiornamento fogli di stile fattura XML
-
-
-
 |
 |
 
@@ -394,29 +351,23 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
 |
 
 Authors / Autori
 ----------------
 
-* `Abstract <https://abstract.it/>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-Authors
--------
+* `Associazione Odoo Italia <https://www.odoo-italia.org>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Abstract <https://abstract.it>`__
+* `Agile Business Group sagl <https://www.agilebg.com>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
-
-Contributors / Collaboratori
+Contributors / Contributi da
 ----------------------------
 
 * Davide Corio <davide.corio@abstract.it>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-Contributors
-------------
-
-
 
 Translations by / Traduzioni a cura di
 --------------------------------------
@@ -424,12 +375,10 @@ Translations by / Traduzioni a cura di
 * Sergio Zanchetta <https://github.com/primes2h>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-
 Maintainer / Manutenzione
 -------------------------
 
-
-
+Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 |
 
@@ -438,23 +387,19 @@ Maintainer / Manutenzione
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
-
-
-
-|chat_with_us|
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-03-09
+Last Update / Ultimo aggiornamento: 2023-10-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
@@ -514,4 +459,5 @@ Last Update / Ultimo aggiornamento: 2023-03-09
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
+
 
