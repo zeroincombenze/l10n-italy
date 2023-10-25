@@ -574,11 +574,8 @@ class FatturaPAAttachmentOut(models.Model):
                 valid_ix = -1
                 for ii, doc in enumerate(documenti):
                     data_caricamento = doc.get("DataCaricamento", doc["DataFattura"])
-                    if map_response(Evolve.document_state(doc)) in (
-                        "accepted",
-                        "discarted",
-                    ):
-                        # PA final workflow: accepted or discarded
+                    if map_response(Evolve.document_state(doc)) == "accepted":
+                        # PA final workflow: accepted
                         # last_date = data_caricamento
                         last_ix = ii
                         break
@@ -603,7 +600,7 @@ class FatturaPAAttachmentOut(models.Model):
                     # Final workflow for No PA subjects
                     last_ix = valid_ix
                 att_state = map_response(Evolve.document_state(documenti[last_ix]))
-                limit_date = (datetime.datetime.now() - timedelta(days=10)).strftime(
+                limit_date = (datetime.datetime.now() - timedelta(days=5)).strftime(
                     "%Y-%m-%d %H:%M:%S"
                 )
                 if (
@@ -612,7 +609,7 @@ class FatturaPAAttachmentOut(models.Model):
                     and att.sending_date < limit_date
                 ):
                     # Invoice sent since too much time: it is an error
-                    att_state = "recipient_error"
+                    att_state = "sender_error"
                 if att_state == "recipient_error":
                     delivered_date = datetime.datetime.strptime(
                         documenti[last_ix]["DataFattura"], "%Y-%m-%dT%H:%M:%S"

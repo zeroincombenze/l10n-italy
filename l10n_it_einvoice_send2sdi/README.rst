@@ -1,7 +1,7 @@
 
-========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.38
-========================================
+============================================================
+|icon| Send E-Invoice to SdI/Invio fatture a SDI 10.0.1.0.39
+============================================================
 
 **Send E-Invoice to customer by SdI**
 
@@ -12,7 +12,7 @@
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
 |en| Send invoices to Customer by SdI
@@ -36,7 +36,7 @@ terzo incaricato e il canale PEC.
 
 |
 
-Getting started / Primi passi
+Getting started | Primi passi
 =============================
 
 |Try Me|
@@ -44,7 +44,7 @@ Getting started / Primi passi
 
 |
 
-Installation / Installazione
+Installation | Installazione
 ----------------------------
 
 
@@ -57,11 +57,11 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -92,7 +92,7 @@ From UI: go to:
 
 |
 
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
 
 
@@ -125,7 +125,7 @@ From UI: go to:
 
 |
 
-Support / Supporto
+Support | Supporto
 ------------------
 
 
@@ -135,7 +135,7 @@ Support / Supporto
 |
 |
 
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -154,13 +154,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.39 (2023-10-25)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Rejected invoce / Stato fattura rifiutata
+* [FIX] NO response / Nessuna risposta da SDI
 
 10.0.1.0.38 (2023-10-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Minor improvements
+* [IMP] First very simple unit test
 * [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 0/100
 
 10.0.1.0.37 (2023-08-08)
@@ -189,12 +195,13 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] new state mapping
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)
 
 
 |
 |
 
-Credits / Didascalie
+Credits | Didascalie
 ====================
 
 Copyright
@@ -205,19 +212,19 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 |
 
-Authors / Autori
+Authors | Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 * `Pointec s.r.l. <https://www.pointec.it>`__
 
-Contributors / Contributi da
+Contributors | Contributi da
 ----------------------------
 
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Maintainer / Manutenzione
+Maintainer | Manutenzione
 -------------------------
 
 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -241,7 +248,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-10-05
+Last Update / Ultimo aggiornamento: 2023-10-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

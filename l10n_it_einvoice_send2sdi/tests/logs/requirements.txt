@@ -138,7 +138,7 @@ python-stdnum==1.18
 pytz==2022.7.1
 pyusb==1.0.0
 PyWebDAV==0.9.8
-PyXB==1.2.5
+PyXB==1.2.6
 PyYAML==3.12
 qrcode==5.3
 QUnitSuite==0.4

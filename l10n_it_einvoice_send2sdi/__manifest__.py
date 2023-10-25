@@ -5,17 +5,17 @@
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 {
     "name": "Send E-Invoice to SdI",
-    "version": "10.0.1.0.38",
+    "version": "10.0.1.0.39",
     "category": "Localization/Italy",
     "summary": "Send E-Invoice to customer by SdI",
     "author": "SHS-AV s.r.l.,Pointec s.r.l.",
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
     "development_status": "Beta",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "l10n_it_einvoice_base",
         "l10n_it_split_payment",

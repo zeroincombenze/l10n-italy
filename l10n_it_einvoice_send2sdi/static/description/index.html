@@ -1,12 +1,23 @@
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#162832;">Send E-Invoice to customer by SdI / Invio fatture a clienti attraverso SdI</h2>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Send E-Invoice to customer by SdI</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Invio e-fatture clienti allo SDI</h2>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">Send invoices to Customer by SdI
 <p align="justify">
@@ -17,7 +28,7 @@ http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">Invio fatture a clienti attraverso SdI
 <p align="justify">
@@ -29,14 +40,22 @@ In questa versione sono implementati il canale JSON verso hub di
 terzo incaricato e il canale PEC.
 </p></p>
         </div>
+        
     </div>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">ChangeLog History / Cronologia modifiche</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h3>10.0.1.0.38 (2023-10-05)</h3>
+<h3>10.0.1.0.39 (2023-10-25)</h3>
 <p align="justify">
 <ul>
-<li>[IMP] Minor improvements</li>
+<li>[FIX] Rejected invoce / Stato fattura rifiutata</li>
+<li>[FIX] NO response / Nessuna risposta da SDI</li>
+</ul>
+</p><p align="justify">
+<h3>10.0.1.0.38 (2023-10-05)</h3>
+</p><p align="justify">
+<ul>
+<li>[IMP] First very simple unit test</li>
 <li>[QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 0/100</li>
 </ul>
 </p><p align="justify">
@@ -70,6 +89,7 @@ terzo incaricato e il canale PEC.
 </p><p align="justify">
 <ul>
 <li>[FIX] new state mapping</li>
+<li>[QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)</li>
 </ul>
 </p>
         </div>
@@ -81,14 +101,14 @@ terzo incaricato e il canale PEC.
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16">Authors | Autori:</p>
             <p class="oe_mt16"><ul>
 <li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
 <li><a href="https://www.pointec.it/">Pointec s.r.l.</a></li>
 </ul></p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors / Contributi da:</p>
+            <p class="oe_mt16">Contributors | Contributi da:</p>
             <p class="oe_mt16"><ul>
 <li>Cesare Pellegrini &lt;cesare@pointec.it&gt;</li>
 <li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
