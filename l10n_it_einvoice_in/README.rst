@@ -1,4 +1,3 @@
-
 ========================================================
 |icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.42
 ========================================================
@@ -15,75 +14,30 @@
 Overview | Panoramica
 =====================
 
-|en| This module allows to import Electronic Bill XML files version 1.2.1
-
-http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
-
-received through the Exchange System (SdI).
-
-http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
-
-For every supplier, it is possible to set the 'E-bills Detail Level':
-
- - Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill
- - VAT code level: Line are cumulated by VAT code
- - Maximum level: Every line contained in electronic bill will create a line in bill
-
-Moreover, in supplier form you can set the 'E-bill Default Product': this product will be used, during generation of bills, when no other possible product is found. Tax and account of bill line will be set according to what configured in the product.
-
-Every product code used by suppliers can be set, in product form, in
-
-Inventory →  Products
-
-If supplier specifies a known code in XML, the system will use it to retrieve the correct product to be used in bill line, setting the related tax and account.
-
- * Go to Accounting →  Purchases →  Electronic Bill
- * Upload XML file
- * View bill content clicking on 'Show preview'
- * Run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill
-
-In the incoming electronic bill files list you will see, by default, files to be registered. These are files not yet linked to one or more bills.
+|en| This module allows to import
+`Electronic Bill XML files version 1.2.1 <http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm>`__
+received through the `
+Exchange System (SdI) <http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm>`__
 
 
-|
+|it| Questo modulo consente di importare i file
+`XML della fattura elettronica versione 1.2.1 <http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm>`__
+ricevuti attraverso il
+`Sistema di Interscambio (SdI) <http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm>`__
 
-|it| Questo modulo consente di importare i file XML della fattura elettronica versione 1.2.1
-
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
-
-ricevuti attraverso il Sistema di Interscambio (SdI).
-
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-
-
-::
-
-    Destinatari:
+Destinatari
+-----------
 
 Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
 
 
-::
+Normativa e prassi
+------------------
 
-    Normativa e prassi:
-
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
-
-
-Per ciascun fornitore è possibile impostare il "Livello dettaglio e-fatture":
-
- - Livello minimo: la fattura fornitore viene creata senza righe, che dovranno essere create dall'utente in base a quanto indicato nella fattura elettronica
- - Livello codice IVA: le righe sono cumulate per codice IVA
- - Livello massimo: le righe della fattura fornitore verranno generate a partire da tutte quelle presenti nella fattura elettronica
-
-Nella scheda fornitore è inoltre possibile impostare il "Prodotto predefinito per e-fattura": verrà usato, durante la generazione delle fatture fornitore, quando non sono disponibili altri prodotti adeguati. Il conto e l'imposta della riga fattura verranno impostati in base a quelli configurati nel prodotto.
-
-Tutti i codici prodotto usati dai fornitori possono essere impostati nella relativa scheda, in
-
-Magazzino →  Prodotti
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la
+`normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
 
 
-|
 
 Features | Caratteristiche
 --------------------------
@@ -91,48 +45,76 @@ Features | Caratteristiche
 +--------------------------------------------------------------+----------+-----+---------------------------------+
 | Description | Descrizione                                    | Z0incomb | OCA | Note(s)                         |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitore, righe con IVA                  | ✅        | ✅   |                                 |
+| N/A | e-fattura da fornitore, righe con IVA                  | ✅       | ✅  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitore, righe senza IVA                | ✅        | ✅   | Non riconosce esatto codice IVA |
+| N/A | e-fattura da fornitore, righe senza IVA                | ✅       | ✅  | Non riconosce esatto codice IVA |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitori con ritenuta d'acconto          | ✅        | ✅   |                                 |
+| N/A | e-fattura da fornitori con ritenuta d'acconto          | ✅       | ✅  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitori da agenti (enasarco)            | ✅        | ✅   |                                 |
+| N/A | e-fattura da fornitori da agenti (enasarco)            | ✅       | ✅  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitori con controllo su totale fattura | ✅        | ❌   |                                 |
+| N/A | e-fattura da fornitori con controllo su totale fattura | ✅       | ❌  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitori con split-payment               | ❌        | ❌   |                                 |
+| N/A | e-fattura da fornitori con split-payment               | ❌       | ❌  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da fornitori con reverse charge              | |info|   | ❌   | Non riconosce esatto codice IVA |
+| N/A | e-fattura da fornitori con reverse charge              | |info|   | ❌  | Non riconosce esatto codice IVA |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | E-Nota Credito da fornitore                            | ✅        | ✅   |                                 |
+| N/A | E-Nota Credito da fornitore                            | ✅       | ✅  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | Gestione multi-aziendale                               | ✅        | ❌   |                                 |
+| N/A | Gestione multi-aziendale                               | ✅       | ❌  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | Validazione e-fattura per azienda                      | ✅        | ❌   |                                 |
+| N/A | Validazione e-fattura per azienda                      | ✅       | ❌  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | Generazione scadenzario passivo da e-fattura           | ✅        | ✅   |                                 |
+| N/A | Generazione scadenzario passivo da e-fattura           | ✅       | ✅  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | Livello contabile solo testata senza dettagli          | ✅        | ✅   | Per collegare fatture manuali   |
+| N/A | Livello contabile solo testata senza dettagli          | ✅       | ✅  | Per collegare fatture manuali   |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | Livello righe contabili per aliquote IVA               | ✅        | ❌   | Per fatture con troppe righe    |
+| N/A | Livello righe contabili per aliquote IVA               | ✅       | ❌  | Per fatture con troppe righe    |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | Livelllo righe contabili in dettaglio                  | ✅        | ✅   |                                 |
+| N/A | Livelllo righe contabili in dettaglio                  | ✅       | ✅  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A |e-fattura da stabile organizzazione estera              | ✅        | ❌   |                                 |
+| N/A |e-fattura da stabile organizzazione estera              | ✅       | ❌  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
-| N/A | e-fattura da rappresentante fiscale                    | ✅        | ❌   |                                 |
+| N/A | e-fattura da rappresentante fiscale                    | ✅       | ❌  |                                 |
 +--------------------------------------------------------------+----------+-----+---------------------------------+
 
 
-|
+
+Configuration | Configurazione
+------------------------------
+
+For every supplier, it is possible to set the 'E-bills Detail Level':
+
+* Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill
+* VAT code level: Line are cumulated by VAT code
+* Maximum level: Every line contained in electronic bill will create a line in bill
+
+Moreover, in supplier form you can set the **E-bill Default Product**:
+this product will be used, during generation of bills,
+when no other possible product is found.
+Tax and account of bill line will be set according to what configured in the product.
+
+Every product code used by suppliers can be set, in product form, in
+
+☰ Inventory > Inventory Control > Products
+
+If supplier specifies a known code in XML, the system will use it to retrieve the
+correct product to be used in bill line, setting the related tax and account.
+
+
 
 Usage | Utilizzo
 ----------------
 
-N/A
+* ☰ Accounting > Purchases > Electronic Bill
+* Upload XML file
+* View bill content clicking on [Show preview]
+* Run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill
 
-|
+In the incoming electronic bill files list you will see, by default, files to be registered.
+These are files not yet linked to one or more bills.
+
+
 
 Getting started | Primi passi
 =============================
@@ -140,11 +122,26 @@ Getting started | Primi passi
 |Try Me|
 
 
-|
+Prerequisites | Prerequisiti
+----------------------------
+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
 
 Installation | Installazione
 ----------------------------
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -164,74 +161,31 @@ Installation | Installazione
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Install
-
-
-|
 
 Upgrade | Aggiornamento
 -----------------------
 
-
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_in** > Update
-
-
-|
 
 Support | Supporto
 ------------------
 
-
 |Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
 Get involved | Ci mettiamo in gioco
 ===================================
@@ -242,9 +196,10 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -252,13 +207,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.42 (2023-10-20)
+10.0.1.3.42 (2023-10-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Crash with  <DatiOrdineAcquisto></DatiOrdineAcquisto> / CRash in alcuni casi
+* [FIX] Crash with <DatiOrdineAcquisto></DatiOrdineAcquisto> / CRash in alcuni casi
 
 10.0.1.3.41 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -304,9 +260,24 @@ ChangeLog History | Cronologia modifiche
 
 * [FIX] Import e-invoice with WH / Errore importazione fatture con RA
 
+10.0.1.3.33 (2022-08-22)
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-|
-|
+* [IMP] Link to opened invoice too
+
+10.0.1.3.32 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+* [FIX] Error _amount_withholding_tax
+
+10.0.1.3.31 (2022-06-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] DdT number = space
+* [FIX] New check on partner / Controlli su fornitore
+
+
 
 Credits | Didascalie
 ====================
@@ -317,8 +288,6 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-|
-
 Authors | Autori
 ----------------
 
@@ -328,24 +297,27 @@ Authors | Autori
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 * `Odoo Community Association (OCA) <https://odoo-community.org>`__
 
+
+
 Contributors | Contributi da
 ----------------------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Roberto Onnis <roberto.onnis@innoviu.com>
-* Alessio Gerace <alessio.gerace@agilebg.com>
-* Cesare Pellegrini <cesare@pointec.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Roberto Onnis <roberto.onnis@innoviu.com>`__
+* `Alessio Gerace <alessio.gerace@agilebg.com>`__
+* `Cesare Pellegrini <cesare@pointec.it>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
 
 Maintainer | Manutenzione
 -------------------------
 
-Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
-|
+
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -358,10 +330,11 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 
 |
+|
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-10-23
+Last Update / Ultimo aggiornamento: 2023-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
@@ -421,5 +394,3 @@ Last Update / Ultimo aggiornamento: 2023-10-23
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
-
