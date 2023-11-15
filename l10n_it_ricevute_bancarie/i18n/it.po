@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:41+0000\n"
-"PO-Revision-Date: 2023-09-07 12:41+0000\n"
+"POT-Creation-Date: 2023-11-09 17:21+0000\n"
+"PO-Revision-Date: 2023-11-09 17:21+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
-"Language: it_IT\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -72,13 +72,13 @@ msgstr "Accettata"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move
 msgid "Account Entry"
-msgstr "Conto Registrazione"
+msgstr "Registrazione contabile"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_debit_id
 msgid "Account receiving amount when list is accepted by the bank.\n"
 "May be the liquidity bank account or a transitory account."
-msgstr "Conto contabile bancario di incasso effetti.\n"
+msgstr "conto contabile bancario di incasso effetti.\n"
 "Può essere un conto di liquidità oppure un conto transitorio."
 
 #. module: l10n_it_ricevute_bancarie
@@ -115,22 +115,22 @@ msgstr "Accredito RiBA %s"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_credit_id
 msgid "Accreditation account (credit side - C/O portfolio bank)"
-msgstr "Conto contabile accredito avere (Banca SBF)"
+msgstr "conto contabile accredito avere (Banca SBF)"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation2_account_credit_id
 msgid "Accreditation account (credit side – supplemental)"
-msgstr "Conto contabile accredito avere (supplementare)"
+msgstr "conto contabile accredito avere (supplementare)"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_account_debit_id
 msgid "Accreditation account (debit side - Subject To Collection C/O)"
-msgstr "Conto contabile accredito dare (Effetti SBF)"
+msgstr "conto contabile accredito dare (Effetti SBF)"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation2_account_debit_id
 msgid "Accreditation account (debit side – supplemental)"
-msgstr "Conto contabile accredito dare (supplementare)"
+msgstr "conto contabile accredito dare (supplementare)"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_date_accreditation
@@ -246,7 +246,7 @@ msgstr "Righe distinta RiBA"
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Annullare"
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.distinta,state:0
@@ -266,8 +266,12 @@ msgstr "Chiudere"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_payment_term_riba_payment_cost
-msgid "Collection fees amount. If different from 0, for each payment deadline an invoice line will be added to invoice, with this amount"
-msgstr "Collection fees importo. If different da 0, non valida in codice IVA each pagamento deadline an fattura riga will be added a fattura, with this importo"
+msgid ""
+"Collection fees amount. If different from 0, for each payment deadline an "
+"invoice line will be added to invoice, with this amount"
+msgstr ""
+"Collection fees importo. If different da 0, non valida in codice IVA each "
+"pagamento deadline an fattura riga will be added a fattura, with this importo"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_company
@@ -375,7 +379,9 @@ msgstr "Banca debitrice"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_config_settings_due_cost_service_id
 msgid "Default Service for RiBa Due Cost (collection fees) on invoice"
-msgstr "Calendario\" ecc Service non valida in codice IVA RiBa Dovuto Cost (collection fees) il fattura"
+msgstr ""
+"Calendario\" ecc Service non valida in codice IVA RiBa Dovuto Cost (collection "
+"fees) il fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_name
@@ -400,7 +406,7 @@ msgstr "Dettaglio"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_wizard_line_settlement_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.distinta_riba_action
@@ -438,7 +444,7 @@ msgstr "Costo presentazione"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Due Date"
-msgstr "Scadenza"
+msgstr "Data pagamento"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_config_settings_due_cost_service_id
@@ -449,7 +455,7 @@ msgstr "Dovuto cost service id"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_due_date
 msgid "Due date"
-msgstr "Data pagamento"
+msgstr "Data di scadenza"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_effects_amount
@@ -463,13 +469,13 @@ msgstr "Modo emissione"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:98
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:120
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:110
 #, python-format
 msgid "Every account is mandatory"
 msgstr "Tutti i conti sono obbligatori"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:159
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:149
 #, python-format
 msgid "Expenses"
 msgstr "Costi"
@@ -637,17 +643,21 @@ msgstr "Emesso"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move_line
 msgid "Journal Item"
-msgstr "Journal Item"
+msgstr "Movimento contabile"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_accreditation_journal_id
 msgid "Journal used when Ri.Ba. amount is accredited by the bank"
-msgstr "Sezionale used è impostato a form solamente RiBA importo is accredited da strumenti SEO a portata di mano banca"
+msgstr ""
+"Sezionale used è impostato a form solamente RiBA importo is accredited da "
+"strumenti SEO a portata di mano banca"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_acceptance_journal_id
 msgid "Journal used when Ri.Ba. is accepted by the bank"
-msgstr "Sezionale used è impostato a form solamente RiBA is accettata da strumenti SEO a portata di mano banca"
+msgstr ""
+"Sezionale used è impostato a form solamente RiBA is accettata da strumenti SEO "
+"a portata di mano banca"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration_unsolved_journal_id
@@ -689,7 +699,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_wizard_line_settlement_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation_write_date
@@ -702,7 +712,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_write_date
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_wizard_line_settlement_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_distinta_id
@@ -712,8 +722,11 @@ msgstr "Distinta"
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/models/riba.py:159
 #, python-format
-msgid "List %s is in state %s. You can only delete documents in state draft or canceled"
-msgstr "Distinta %s in stato %s. Si possono eliminare solo distinte in stato bozza o cancellate"
+msgid ""
+"List %s is in state %s. You can only delete documents in state draft or canceled"
+msgstr ""
+"distinta %s in stato %s. Si possono eliminare solo distinte in stato bozza o "
+"cancellate"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_move_line_riba_line_id
@@ -752,19 +765,21 @@ msgstr "No SIA Codice specificazione non valida in codice IVA: "
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:357
 #, python-format
 msgid "No VAT or Fiscal code specified for "
-msgstr "No PARTITA IVA o Fiscale codice specificazione non valida in codice IVA "
+msgstr ""
+"No PARTITA IVA o Fiscale codice specificazione non valida in codice IVA "
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:306
 #, python-format
 msgid "No VAT or Fiscalcode specified for: "
-msgstr "No PARTITA IVA o Codice fiscale specificazione non valida in codice IVA: "
+msgstr ""
+"No PARTITA IVA o Codice fiscale specificazione non valida in codice IVA: "
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:80
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:87
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:88
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:98
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:108
 #, python-format
 msgid "No active ID found"
 msgstr "No attivo ID s'"
@@ -792,18 +807,13 @@ msgid "Other Info"
 msgstr "Altre informazioni"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration_overdue_account_credit_id
-msgid "Overdue Bank account"
-msgstr "Scaduto Banca conto"
-
-#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved_overdue_account_credit_id
 msgid "Overdue Bank account (credit)"
 msgstr "Scaduto Banca conto (avere)"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:131
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:176
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:121
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:166
 #, python-format
 msgid "Overdue Effects"
 msgstr "Scaduto Effects"
@@ -838,12 +848,12 @@ msgstr "Pagato data"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_partial_reconcile
 msgid "Partial Reconcile"
-msgstr "Partial Riconciliazione"
+msgstr "Riconciliazione parziale"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr "Nominativo"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:81
@@ -863,7 +873,7 @@ msgstr "Termine di pagamento"
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Payments"
-msgstr "Pagamenti"
+msgstr "Payments"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/models/riba.py:508
@@ -879,7 +889,7 @@ msgstr "Protest charge conto"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "Reconciled"
-msgstr "Reconciliata"
+msgstr "Riconciliato"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_name
@@ -895,7 +905,9 @@ msgstr "Data di registrazione"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_config_settings_riba_payment_response
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_company_riba_payment_response
 msgid "Require to send back the response of the RiBa payment"
-msgstr "Require a send back strumenti SEO a portata di mano response of strumenti SEO a portata di mano RiBa pagamento"
+msgstr ""
+"Require a send back strumenti SEO a portata di mano response of strumenti SEO "
+"a portata di mano RiBa pagamento"
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:res.company,riba_payment_response:0
@@ -929,7 +941,7 @@ msgid "Ri.Ba. Accreditation"
 msgstr "RiBA Accredito"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:143
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:133
 #, python-format
 msgid "Ri.Ba. Bank"
 msgstr "RiBA Banca"
@@ -1046,7 +1058,7 @@ msgstr "Salvo buon fine"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "Search Journal Items"
-msgstr "Ricerca Sezionale Items"
+msgstr "Cerca scritture"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_line_settlement
@@ -1058,7 +1070,8 @@ msgstr "Impostare C/O riga liquidazioni"
 #: code:addons/l10n_it_ricevute_bancarie/models/account.py:214
 #, python-format
 msgid "Set a Service for Due Cost in Company Config"
-msgstr "Impostare un prodotto di servizio di costi bancari in configurazione azienda"
+msgstr ""
+"Impostare un prodotto di servizio di costi bancari in configurazione azienda"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -1127,17 +1140,25 @@ msgstr "Strumenti SEO a portata di mano insoluto is aprire"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_issue_view
 msgid "This wizard generates the Ri.Ba. list, do you confirm?"
-msgstr "This procedura guidata generates strumenti SEO a portata di mano RiBA distinta, do you confermare?"
+msgstr ""
+"This procedura guidata generates strumenti SEO a portata di mano RiBA "
+"distinta, do you confermare?"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
-msgid "This wizard generates the journal entry related to accreditation received from the bank"
-msgstr "This procedura guidata generates strumenti SEO a portata di mano sezionale registrazione related a accredito ricevuta da strumenti SEO a portata di mano banca"
+msgid ""
+"This wizard generates the journal entry related to accreditation received from "
+"the bank"
+msgstr ""
+"This procedura guidata generates strumenti SEO a portata di mano sezionale "
+"registrazione related a accredito ricevuta da strumenti SEO a portata di mano banca"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
 msgid "This wizard generates the journal entry related to an unsolved payment"
-msgstr "This procedura guidata generates strumenti SEO a portata di mano sezionale registrazione related a an insoluto pagamento"
+msgstr ""
+"This procedura guidata generates strumenti SEO a portata di mano sezionale "
+"registrazione related a an insoluto pagamento"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
@@ -1157,7 +1178,7 @@ msgstr "Importo totale"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
 msgid "Total Debit"
-msgstr "Debito totale"
+msgstr "Totale Dare"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_type
@@ -1190,7 +1211,7 @@ msgid "Unsolved Entries"
 msgstr "Insoluto Entries"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:228
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:218
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_unsolved_move_id
 #, python-format
 msgid "Unsolved Entry"
@@ -1210,10 +1231,10 @@ msgid "Unsolved Ri.Ba."
 msgstr "RiBA insoluta"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:123
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:113
 #, python-format
 msgid "Unsolved Ri.Ba. %s - line %s"
-msgstr "Riba insoluta %s - riga %s"
+msgstr "riba insoluta %s - riga %s"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_date_unsolved
@@ -1238,13 +1259,19 @@ msgstr "Utente"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
-msgid "You can also skip this step and set the distinta status to 'accredited' anyway"
-msgstr "You can also salta this passo e impostare strumenti SEO a portata di mano distinta stato a 'accredited' anyway"
+msgid ""
+"You can also skip this step and set the distinta status to 'accredited' anyway"
+msgstr ""
+"You can also salta this passo e impostare strumenti SEO a portata di mano "
+"distinta stato a 'accredited' anyway"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
-msgid "You can also skip this step and set the line status to 'unsolved' anyway"
-msgstr "You can also salta this passo e impostare strumenti SEO a portata di mano riga stato a 'insoluto' anyway"
+msgid ""
+"You can also skip this step and set the line status to 'unsolved' anyway"
+msgstr ""
+"You can also salta this passo e impostare strumenti SEO a portata di mano riga "
+"stato a 'insoluto' anyway"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_config_settings
