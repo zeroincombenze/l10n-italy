@@ -1,8 +1,14 @@
+10.0.1.0.40 (2023-11-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+
 10.0.1.0.39 (2023-10-25)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Rejected invoce / Stato fattura rifiutata
 * [FIX] NO response / Nessuna risposta da SDI
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)
 
 10.0.1.0.38 (2023-10-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~

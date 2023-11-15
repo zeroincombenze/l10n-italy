@@ -1,4 +1,3 @@
-
 ===========================================================================
 |icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.8
 ===========================================================================
@@ -62,7 +61,6 @@ dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
 Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.
 
 
-|
 
 Features | Caratteristiche
 --------------------------
@@ -70,18 +68,16 @@ Features | Caratteristiche
 +--------------------------------------------+----------+-----+----------------------------------------------+
 | Description | Descrizione                  | Z0incomb | OCA | Note(s)                                      |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| Fiscal Invoice Type | Tipo fattura fiscale | ✅        | ✅   | Codifica tipo di fattura come da AdE         |
+| Fiscal Invoice Type | Tipo fattura fiscale | ✅       | ✅  | Codifica tipo di fattura come da AdE         |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| N/A | Codice Carica                        | ✅        | ✅   | Codifica codice carica come da AdE           |
+| N/A | Codice Carica                        | ✅       | ✅  | Codifica codice carica come da AdE           |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| Tax Nature | Natura fiscale dell'IVA       | ✅        | ✅   | Codifica natura fiscale dell'IVA come da AdE |
+| Tax Nature | Natura fiscale dell'IVA       | ✅       | ✅  | Codifica natura fiscale dell'IVA come da AdE |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| N/A | Codici Assosoftware                  | ✅        | ❌   | Codifica per interscambio                    |
+| N/A | Codici Assosoftware                  | ✅       | ❌  | Codifica per interscambio                    |
 +--------------------------------------------+----------+-----+----------------------------------------------+
 
 
-|
-|
 
 Certifications | Certificazioni
 -------------------------------
@@ -95,7 +91,6 @@ Certifications | Certificazioni
 +---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
 
 
-|
 
 Getting started | Primi passi
 =============================
@@ -103,11 +98,16 @@ Getting started | Primi passi
 |Try Me|
 
 
-|
+Prerequisites | Prerequisiti
+----------------------------
+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+
 
 Installation | Installazione
 ----------------------------
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -151,11 +151,9 @@ From UI: go to:
 * |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
 
 
-|
 
 Upgrade | Aggiornamento
 -----------------------
-
 
 ::
 
@@ -184,17 +182,13 @@ From UI: go to:
 * |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Update
 
 
-|
 
 Support | Supporto
 ------------------
 
-
 |Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
 Get involved | Ci mettiamo in gioco
 ===================================
@@ -205,14 +199,16 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
 
 
 ChangeLog History | Cronologia modifiche
@@ -230,9 +226,28 @@ ChangeLog History | Cronologia modifiche
 
 * [IMP] Self invoice flag / Identificatore documento autofattura
 
+10.0.0.3.6 (2022-09-26)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-|
-|
+* [FIX] l10n_it_ade/binding numeric data with 2 decimals
+
+10.0.0.3.5 (2022-09-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] l10n_it_ade/binding refactoring
+
+10.0.0.3.4 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Best record display/ Migliorie visualizzazione codice
+* [IMP] Tax nature renamed
+
+10.0.0.3.3 (2022-04-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Regression test
+
+
 
 Credits | Didascalie
 ====================
@@ -243,31 +258,34 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-|
-
 Authors | Autori
 ----------------
 
-* SHS-AV s.r.l. <https://www.zeroincombenze.it>
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+
+
 
 Contributors | Contributi da
 ----------------------------
 
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
 
 Acknowledges | Riconoscimenti
 -----------------------------
 
-* Davide Corio <info@davidecorio.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Alex Comba <alex.comba@agilebg.com>`__
+
+
 
 Maintainer | Manutenzione
 -------------------------
 
-Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
-|
+
 
 ----------------
 
@@ -283,10 +301,11 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 
 |
+|
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-10-23
+Last Update / Ultimo aggiornamento: 2023-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -346,5 +365,3 @@ Last Update / Ultimo aggiornamento: 2023-10-23
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
-

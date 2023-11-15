@@ -1,7 +1,6 @@
-
-====================================
-|icon| Ricevute Bancarie 10.0.1.3.13
-====================================
+==============================================================
+|icon| Ricevute Bancarie/l10n_it_ricevute_bancarie 10.0.1.3.14
+==============================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ricevute_bancarie/static/description/icon.png
 
@@ -10,7 +9,7 @@
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
 |en| Module to manage Ricevute Bancarie
@@ -28,9 +27,8 @@ Con la distinta SBF sono gestite tutte le operazioni contabili come esposto in q
 Le operazioni contabili sono configurabili.
 
 
-|
 
-Features / Caratteristiche
+Features | Caratteristiche
 --------------------------
 
 +-------------------------------------------+---------+----------------------+
@@ -52,9 +50,10 @@ Features / Caratteristiche
 +-------------------------------------------+---------+----------------------+
 
 
+
 |
 
-Usage / Utilizzo
+Usage | Utilizzo
 ----------------
 
 L'utilizzo delle Ri.Ba. utilizza i seguenti menù:
@@ -87,17 +86,17 @@ Gestione distinta
 Ai fini di una corretta comprensione si ipotizza la gestiona da una fattura da 100€ + IVA.
 Si ricorda che a scrittura contabile è della fattura è la seguente:
 
-+------+-------------------+-----+-----+------+
-| Riga | Descrizione       | D   | A   | Note |
-+------+-------------------+-----+-----+------+
-| 1    | Emessa fattura    |     |     |      |
-+------+-------------------+-----+-----+------+
-| 1.1  | Crediti v/clienti | 122 |     |      |
-+------+-------------------+-----+-----+------+
-| 1.2  | Ricavi            |     | 100 |      |
-+------+-------------------+-----+-----+------+
-| 1.3  | IVA               |     | 22  |      |
-+------+-------------------+-----+-----+------+
++-----------+------------------------------------------+---------+---------+-----------+
+| Riga      | Descrizione                              | D       | A       | Note      |
++-----------+------------------------------------------+---------+---------+-----------+
+| 1         | Emessa fattura                           |         |         |           |
++-----------+------------------------------------------+---------+---------+-----------+
+| 1.1       | Crediti v/clienti                        | 122     |         |           |
++-----------+------------------------------------------+---------+---------+-----------+
+| 1.2       | Ricavi                                   |         | 100     |           |
++-----------+------------------------------------------+---------+---------+-----------+
+| 1.3       | IVA                                      |         | 22      |           |
++-----------+------------------------------------------+---------+---------+-----------+
 
 
 
@@ -110,47 +109,47 @@ Quando la banca conferma l'accettazione della distinta, dal menù `Contabilità 
 selezionare la distinta ed impostare lo stato di `Accettata` tramite l'apposito bottone.
 Se la distinta è di tipo SBF viene generata la seguente scrittura contabile (una registrazionne per ogni scadenza in distinta):
 
-+------+-------------------+-----+-----+----------------------+
-| Riga | Descrizione       | D   | A   | Note                 |
-+------+-------------------+-----+-----+----------------------+
-| 2    | Emissione RiBA    |     |     |                      |
-+------+-------------------+-----+-----+----------------------+
-| 2.1  | Crediti v/clienti |     | 122 | Riconciliata con 1.1 |
-+------+-------------------+-----+-----+----------------------+
-| 2.2  | Effetti SBF       | 122 |     |                      |
-+------+-------------------+-----+-----+----------------------+
++--------+------------------------------+------+------+-----------------------------------+
+| Riga   | Descrizione                  | D    | A    | Note                              |
++--------+------------------------------+------+------+-----------------------------------+
+| 2      | Emissione RiBA               |      |      |                                   |
++--------+------------------------------+------+------+-----------------------------------+
+| 2.1    | Crediti v/clienti            |      | 122  | Riconciliata con 1.1              |
++--------+------------------------------+------+------+-----------------------------------+
+| 2.2    | Effetti SBF                  | 122  |      |                                   |
++--------+------------------------------+------+------+-----------------------------------+
 
 
 
 Quando la banca accredita la distinta, impostare lo stato `Accreditata` tramite l'apposito bottone.
 Se la distinta è di tipo SBF si può generare la seguente scrittura contabile:
 
-+------+-------------------------+-----+-----+------+
-| Riga | Descrizione             | D   | A   | Note |
-+------+-------------------------+-----+-----+------+
-| 3    | Accredito distinta RiBA |     |     |      |
-+------+-------------------------+-----+-----+------+
-| 3.1  | Banca c/effetti         |     | 122 |      |
-+------+-------------------------+-----+-----+------+
-| 3.2  | Banca c/c               | 120 |     |      |
-+------+-------------------------+-----+-----+------+
-| 3.3  | Spese bancarie          | 2   |     |      |
-+------+-------------------------+-----+-----+------+
++----------+-------------------------------------------------+--------+--------+----------+
+| Riga     | Descrizione                                     | D      | A      | Note     |
++----------+-------------------------------------------------+--------+--------+----------+
+| 3        | Accredito distinta RiBA                         |        |        |          |
++----------+-------------------------------------------------+--------+--------+----------+
+| 3.1      | Banca c/effetti                                 |        | 122    |          |
++----------+-------------------------------------------------+--------+--------+----------+
+| 3.2      | Banca c/c                                       | 120    |        |          |
++----------+-------------------------------------------------+--------+--------+----------+
+| 3.3      | Spese bancarie                                  | 2      |        |          |
++----------+-------------------------------------------------+--------+--------+----------+
 
 
 
 Quando la ricevuta è effettivamente pagata dal cliente è possibile dichiararlo nella relativa riga della distinta.
 Se la distinta è di tipo SBF viene generata la sequente scrittura contabile:
 
-+------+---------------------+-----+-----+----------------------+
-| Riga | Descrizione         | D   | A   | Note                 |
-+------+---------------------+-----+-----+----------------------+
-| 4    | Pagamento effettivo |     |     |                      |
-+------+---------------------+-----+-----+----------------------+
-| 4.1  | Effetti SBF         |     | 122 | Riconciliata con 2.2 |
-+------+---------------------+-----+-----+----------------------+
-| 4.2  | Banca c/effetti     | 122 |     | Riconciliata con 3.1 |
-+------+---------------------+-----+-----+----------------------+
++--------+--------------------------------+------+------+----------------------------------+
+| Riga   | Descrizione                    | D    | A    | Note                             |
++--------+--------------------------------+------+------+----------------------------------+
+| 4      | Pagamento effettivo            |      |      |                                  |
++--------+--------------------------------+------+------+----------------------------------+
+| 4.1    | Effetti SBF                    |      | 122  | Riconciliata con 2.2             |
++--------+--------------------------------+------+------+----------------------------------+
+| 4.2    | Banca c/effetti                | 122  |      | Riconciliata con 3.1             |
++--------+--------------------------------+------+------+----------------------------------+
 
 
 
@@ -164,19 +163,23 @@ Le relative registrazioni contabili saranno inserite o rimosse in modo da manten
 Si può dichiarare ogni singola scadenza come pagata o insoluta. Anche per le singole scadenze è possibili ripristinare lo stato precedente.
 
 
-|
 
-Getting started / Primi passi
+Getting started | Primi passi
 =============================
 
 |Try Me|
 
 
-|
-
-Installation / Installazione
+Prerequisites | Prerequisiti
 ----------------------------
 
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+
+
+Installation | Installazione
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -187,11 +190,11 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
@@ -220,11 +223,9 @@ From UI: go to:
 * |menu| Setting > Apps |right_do| Select **l10n_it_ricevute_bancarie** > Install
 
 
-|
 
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
-
 
 ::
 
@@ -253,19 +254,15 @@ From UI: go to:
 * |menu| Setting > Apps |right_do| Select **l10n_it_ricevute_bancarie** > Update
 
 
-|
 
-Support / Supporto
+Support | Supporto
 ------------------
-
 
 |Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -274,9 +271,10 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -284,12 +282,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
 10.0.1.3.14 (2023-09-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+* [IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso
+* [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
 * [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
 
 10.0.1.3.13 (2023-08-03)
@@ -315,11 +316,31 @@ ChangeLog History / Cronologia modifiche
 * [IMP] Riba flag updatable / Scadenza Riba modificabile
 * [REF] Process refactoring
 
+10.0.1.3.9 (2022-07-20)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-|
-|
+* [FIX] Riba flag read-only / Scadenza Riba non modificabile
 
-Credits / Didascalie
+10.0.1.3.8 (2022-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [TNL] Translation
+* [IMP] Riba flag updatable / Scadenza Riba modificabile
+
+10.0.1.3.7 (2022-05-03)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Unsoved with 2 or more invoices / Insoluto di 2 o più fatture
+
+10.0.1.3.6 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
+* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
+
+
+
+Credits | Didascalie
 ====================
 
 Copyright
@@ -328,17 +349,17 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `Odoo Community Association (OCA) <https://odoo-community.org>`__
-* `Agile Business Group sagl <https://www.agilebg.com>`__
-* `Apulia Software s.r.l. <https://www.apuliasoftware.it>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+* Odoo Community Association (OCA) <https://odoo-community.org>
+* Agile Business Group sagl <https://www.agilebg.com>
+* Apulia Software s.r.l. <https://www.apuliasoftware.it>
+* SHS-AV s.r.l. <https://www.zeroincombenze.it>
 
-Contributors / Contributi da
+
+
+Contributors | Contributi da
 ----------------------------
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -350,12 +371,14 @@ Contributors / Contributi da
 * Alex Comba <alex.comba@agilebg.com>
 * Antonio M. Vigliotti <info@shs-av.com>
 
-Maintainer / Manutenzione
+
+
+Maintainer | Manutenzione
 -------------------------
 
 Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-|
+
 
 ----------------
 
@@ -371,10 +394,11 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 
 |
+|
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-09-14
+Last Update / Ultimo aggiornamento: 2023-11-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -434,5 +458,3 @@ Last Update / Ultimo aggiornamento: 2023-09-14
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
-
