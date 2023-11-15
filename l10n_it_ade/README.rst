@@ -20,12 +20,10 @@ It defines the structures by Italian IRS (Tax Authority) to manage
 all fiscal communications.
 Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement.
 
-This module requires `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.6 <http://pyxb.sourceforge.net/>`__
+This module requires `PyXB 1.2.6 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.6 <http://pyxb.sourceforge.net/>`__
 
 This code partially inherits some parts from l10n_it_account of OCA.
 
-
-|
 
 |it| ::
 
@@ -49,10 +47,6 @@ Tutti i soggetti passivi IVA in regime non forfettario
 * `DPR n. 633/72 <https://www.gazzettaufficiale.it/eli/id/1972/11/11/072U0633/sg>`__
 * DL 331/93
 * DL 41/95
-
-::
-
-|info| Questo modulo è incompatibile con alcuni moduli OCA.
 
 Tutti i moduli che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
@@ -104,6 +98,16 @@ Prerequisites | Prerequisiti
 * python 2.7+ (best 2.7.5+)
 * postgresql 9.2+ (best 9.5)
 
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
 
 
 Installation | Installazione
@@ -127,28 +131,10 @@ Installation | Installazione
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
 
 
 
@@ -157,29 +143,10 @@ Upgrade | Aggiornamento
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Update
 
 
 
@@ -201,6 +168,20 @@ In case of trouble, please check there if your issue has already been reported.
 
 
 
+Known issues | Roadmap
+----------------------
+
+This module is incompatible with:
+
+* l10n_it_account_tax_kind
+* l10n_it_causali_pagamento
+* l10n_it_fiscal_document_type
+* l10n_it_fiscal_payment_term
+* l10n_it_esigibilita_iva
+* l10n_it_fatturapa
+
+
+
 Proposals for enhancement
 -------------------------
 
@@ -214,7 +195,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.0.3.8 (2023-10-23)
+10.0.0.3.8 (2023-11-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] pyxb 1.2.6
@@ -288,7 +269,6 @@ Maintainer | Manutenzione
 
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.

@@ -21,10 +21,6 @@ Tutti i soggetti passivi IVA in regime non forfettario
 * DL 331/93
 * DL 41/95
 
-::
-
-|info| Questo modulo è incompatibile con alcuni moduli OCA.
-
 Tutti i moduli che generano file xml dipendenti
 dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
 `l10n_it_ade <{{GIT_URL_ROOT}}/tree/{{branch}}/l10n_it_ade>`__ come dipendenza.
