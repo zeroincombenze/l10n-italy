@@ -6,14 +6,14 @@
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">Send E-Invoice to customer by SdI
+            <h2 class="oe_slogan" style="color:#162832;">Send E-Invoice to customer through SdI
 </h2>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">Invio e-fatture clienti allo SDI
+            <h2 class="oe_slogan" style="color:#162832;">Invio e-fatture a clienti tramite SdI
 </h2>
         </div>
         <div class="oe_span6">
@@ -21,41 +21,71 @@
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Send invoices to Customer by SdI
-<p align="justify">
-Use a defined channel to send E-Invoice to Customer by SdI
-</p><p align="justify">
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-</p>
+            <p class="oe_mt16" align="justify">This module can send Italian e-invoices to Customer through
+<a href="http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm">Sdi</a>
 </p>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Invio fatture a clienti attraverso SdI
+            <p class="oe_mt16" align="justify">Questo modulo permette di inviare le fatture tramite uno canale
+<a href="http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm">Sdi</a>
 <p align="justify">
-Questo modulo permette di inviare le fatture tramite uno canale SdI
-</p><p align="justify">
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-</p><p align="justify">
-In questa versione sono implementati il canale JSON verso hub di
+In questa versione &#232; implementato uno specifico canale JSON verso hub di
 terzo incaricato e il canale PEC.
 </p>
 </p>
         </div>
-        
+        <img src="/l10n_it_einvoice_send2sdi/static/description/description.png" alt="Send E-Invoice to SdI" style="width:98%;max-width:1140px"/>
+
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Configuration &#187; Accounting &#187; Tax Authority Definition &#187; Sender Channel
+</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Definizioni Agenzia delle Entrate &#187; Canale Invio
+</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Click on button <span style="color:white;background-color:#7C7BAD">&#160;Invia&#160;a&#160;Sdi&#160;</span>
+</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Clicccare su bottone <span style="color:white;background-color:#7C7BAD">&#160;Invia&#160;a&#160;Sdi&#160;</span>
+</p>
+        </div>
     </div>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h3>10.0.1.0.40 (2023-11-14)</h3>
+<h4>10.0.1.0.40 (2023-11-15)</h4>
 <p align="justify">
 <ul>
 <li>[IMP] Minor improvements</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.39 (2023-10-25)</h3>
+<h4>10.0.1.0.39 (2023-10-25)</h4>
 </p><p align="justify">
 <ul>
 <li>[FIX] Rejected invoce / Stato fattura rifiutata</li>
@@ -63,43 +93,44 @@ terzo incaricato e il canale PEC.
 <li>[QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.38 (2023-10-05)</h3>
+<h4>10.0.1.0.38 (2023-10-05)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] First very simple unit test</li>
 <li>[QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 0/100</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.37 (2023-08-08)</h3>
+<h4>10.0.1.0.37 (2023-08-08)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Minor improvements</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.36 (2023-08-01)</h3>
+<h4>10.0.1.0.36 (2023-08-01)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Minor improvements</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.35 (2023-07-25)</h3>
+<h4>10.0.1.0.35 (2023-07-25)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Minor improvements</li>
 <li>[QUA] Test coverage 15% (816: 694+122)</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.34 (2023-07-04)</h3>
+<h4>10.0.1.0.34 (2023-07-04)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Minor improvements</li>
 <li>[QUA] Test coverage 15% (816: 694+122) </li>
 </ul>
 </p><p align="justify">
-<h3>10.0.1.0.33 (2023-04-20)</h3>
+<h4>10.0.1.0.33 (2023-04-20)</h4>
 </p><p align="justify">
 <ul>
 <li>[FIX] new state mapping</li>
+<li>[QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)</li>
 </ul>
 </p>
 
@@ -114,8 +145,8 @@ terzo incaricato e il canale PEC.
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Authors | Autori:</p>
             <p class="oe_mt16"><ul>
-<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
-<li><a href="https://www.pointec.it/">Pointec s.r.l.</a></li>
+<li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
+<li><a href="https://www.pointec.it">Pointec s.r.l.</a></li>
 </ul>
 </p>
         </div>
@@ -130,11 +161,13 @@ terzo incaricato e il canale PEC.
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <p>This module is maintained by the <b>SHS_AV s.r.l.</b>.</p>
+            <p>This module is maintained by the <b><a href="https://www.shs-av.com">SHS_AV s.r.l.</a></b>.</p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy ">l10n-italy
 </a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2023-11-15
+</p>
     </div>
 </section>
