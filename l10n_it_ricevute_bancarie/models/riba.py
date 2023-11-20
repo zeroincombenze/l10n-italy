@@ -446,7 +446,9 @@ class RibaListLine(models.Model):
                     "ref": "Ri.Ba. %s - line %s"
                     % (line.distinta_id.name, line.sequence),
                     "journal_id": journal.id,
-                    "date": line.distinta_id.registration_date,
+                    "date": line.distinta_id.registration_date
+                    if line.distinta_id.config_id.type == "sbf"
+                    else line.due_date,
                 }
             )
             to_be_reconciled = self.env["account.move.line"]
@@ -478,8 +480,10 @@ class RibaListLine(models.Model):
                     "name": "Ri.Ba. %s - line %s"
                     % (line.distinta_id.name, line.sequence),
                     "account_id": (
-                        line.acceptance_account_id.id
-                        or line.distinta_id.config_id.acceptance_account_id.id
+                        (line.acceptance_account_id.id
+                         or line.distinta_id.config_id.acceptance_account_id.id)
+                        if line.distinta_id.config_id.type == "sbf"
+                        else line.distinta_id.config_id.liquidity_account_id.id
                     ),
                     "partner_id": line.partner_id.id,
                     "date_maturity": line.due_date,

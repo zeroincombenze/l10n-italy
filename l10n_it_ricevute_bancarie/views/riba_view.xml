@@ -143,7 +143,7 @@
                             type='object'
                             string="Accepted"
                             class="oe_highlight"
-                            attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"
+                            attrs="{'invisible':[('state','!=','draft')]}"
                         />
                         <button
                             name="%(riba_accreditation_action)d"

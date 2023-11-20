@@ -1,4 +1,264 @@
 
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Ricevute Bancarie
+</h2>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Sommario non disponibile
+</h2>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Module to manage Ricevute Bancarie
+</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
+<p align="justify">
+Si pu&#242; configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine) o DI (Dopo Incasso).
+Con la distinta DI nessuna operazione contabile &#232; gestita dal programma.
+Si pu&#242; solo generare il file CBI da inviare in banca.
+Con la distinta SBF sono gestite tutte le operazioni contabili come esposto in questo documento.
+</p><p align="justify">
+Le operazioni contabili sono configurabili.
+</p>
+</p>
+        </div>
+        
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Features | Caratteristiche</h3>
+        <div class="oe_span12">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Feature / Funzione</td><td>Status</td><td>Notes / Note</td><td/>
+</tr><tr>
+<td>Emissione distinte RiBa</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/><td/>
+</tr><tr>
+<td>Download file CBI per la banca</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/><td/>
+</tr><tr>
+<td>Registrazioni contabili</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td>Se tipo distinta SBF</td><td/>
+</tr><tr>
+<td>Ripristino distinta allo stato precedente</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/><td/>
+</tr><tr>
+<td>Gestione insoluti</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/><td/>
+</tr><tr>
+<td>Ripristino scadenza insoluto o pagata</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/><td/>
+</tr><tr>
+<td>Stampa distinta</td><td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/check.png"/></td><td/><td/>
+</tr><tr>
+</tr></table>
+
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">L'utilizzo delle Ri.Ba. utilizza i seguenti men&#249;:
+<p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Pagamenti &gt; Ri.Ba Configurazione
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Management &gt; Termini di pagamento
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Ri.Ba &gt; Distinte
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Ri.Ba &gt; Emetti Ri.Ba
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Ri.Ba &gt; Fatture insolute
+</p><p align="justify">
+</p><p align="justify">
+<h4>Configurazione</h4>
+</p><p align="justify">
+Nella configurazione delle Ri.Ba. &#232; possibile specificare il tipo di distinta:
+</p><p align="justify">
+<ul>
+<li>DI (Dopo Incasso): nessuna registrazione &#232; effettuata automaticamente</li>
+<li>SBF (Salvo Buon Fine): sono emesse le registrazioni come descritte qui sotto</li>
+</ul>
+</p><p align="justify">
+Per attivare la gestione Ri.Ba. &#232; necessario impostare il tipo 'Ri.Ba.' nei termini di pagamento.
+</p><p align="justify">
+</p><p align="justify">
+<h4>Gestione distinta</h4>
+</p><p align="justify">
+Ai fini di una corretta comprensione si ipotizza la gestiona da una fattura da 100&#8364; + IVA.
+Si ricorda che a scrittura contabile &#232; della fattura &#232; la seguente:
+</p><p align="justify">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Riga</td><td>Descrizione</td><td>D</td><td>A</td><td>Note</td><td/>
+</tr><tr>
+<td>1</td><td>Emessa fattura</td><td/><td/><td/><td/>
+</tr><tr>
+<td>1.1</td><td>Crediti v/clienti</td><td>122</td><td/><td/><td/>
+</tr><tr>
+<td>1.2</td><td>Ricavi</td><td/><td>100</td><td/><td/>
+</tr><tr>
+<td>1.3</td><td>IVA</td><td/><td>22</td><td/><td/>
+</tr><tr/></table>
+</p><p align="justify">
+</p><p align="justify">
+</p><p align="justify">
+Per iniziare il flusso, usare il men&#249; `Contabilit&#224; &gt; Ri.Ba &gt; Emetti Ri.Ba`, selezionare le scadenze da inserire in distinta
+e dal bottone `Azione` selezionare `Emetti Ri.Ba`. Scegliere un conto bancario configurato.
+</p><p align="justify">
+Scaricare il file CBI da presentare in banca: dal bottone `Azione` selezionare `Esporta Ri.Ba`.
+</p><p align="justify">
+Quando la banca conferma l'accettazione della distinta, dal men&#249; `Contabilit&#224; &gt; Ri.Ba &gt; Emetti Ri.Ba`
+selezionare la distinta ed impostare lo stato di `Accettata` tramite l'apposito bottone.
+Se la distinta &#232; di tipo SBF viene generata la seguente scrittura contabile (una registrazionne per ogni scadenza in distinta):
+</p><p align="justify">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Riga</td><td>Descrizione</td><td>D</td><td>A</td><td>Note</td><td/>
+</tr><tr>
+<td>2</td><td>Emissione RiBA</td><td/><td/><td/><td/>
+</tr><tr>
+<td>2.1</td><td>Crediti v/clienti</td><td/><td>122</td><td>Riconciliata con 1.1</td><td/>
+</tr><tr>
+<td>2.2</td><td>Effetti SBF</td><td>122</td><td/><td/><td/>
+</tr><tr/></table>
+</p><p align="justify">
+</p><p align="justify">
+</p><p align="justify">
+Quando la banca accredita la distinta, impostare lo stato `Accreditata` tramite l'apposito bottone.
+Se la distinta &#232; di tipo SBF si pu&#242; generare la seguente scrittura contabile:
+</p><p align="justify">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Riga</td><td>Descrizione</td><td>D</td><td>A</td><td>Note</td><td/>
+</tr><tr>
+<td>3</td><td>Accredito distinta RiBA</td><td/><td/><td/><td/>
+</tr><tr>
+<td>3.1</td><td>Banca c/effetti</td><td/><td>122</td><td/><td/>
+</tr><tr>
+<td>3.2</td><td>Banca c/c</td><td>120</td><td/><td/><td/>
+</tr><tr>
+<td>3.3</td><td>Spese bancarie</td><td>2</td><td/><td/><td/>
+</tr><tr/></table>
+</p><p align="justify">
+</p><p align="justify">
+</p><p align="justify">
+Quando la ricevuta &#232; effettivamente pagata dal cliente &#232; possibile dichiararlo nella relativa riga della distinta.
+Se la distinta &#232; di tipo SBF viene generata la sequente scrittura contabile:
+</p><p align="justify">
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Riga</td><td>Descrizione</td><td>D</td><td>A</td><td>Note</td><td/>
+</tr><tr>
+<td>4</td><td>Pagamento effettivo</td><td/><td/><td/><td/>
+</tr><tr>
+<td>4.1</td><td>Effetti SBF</td><td/><td>122</td><td>Riconciliata con 2.2</td><td/>
+</tr><tr>
+<td>4.2</td><td>Banca c/effetti</td><td>122</td><td/><td>Riconciliata con 3.1</td><td/>
+</tr><tr/></table>
+</p><p align="justify">
+</p><p align="justify">
+</p><p align="justify">
+</p><p align="justify">
+<h4>Note finali</h4>
+</p><p align="justify">
+Per ogni stato della distinta &#232; possibile sia avanzare allo stato successivo che ripristinare lo stato precedente.
+Le relative registrazioni contabili saranno inserite o rimosse in modo da mantenere il sistema sempre nel corretto stato contabile.
+</p><p align="justify">
+Si pu&#242; dichiarare ogni singola scadenza come pagata o insoluta. Anche per le singole scadenze &#232; possibili ripristinare lo stato precedente.
+</p>
+</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"/>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
+        <div class="oe_span12">
+<h4>10.0.1.3.15 (2023-11-18)</h4>
+<p align="justify">
+[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+</p><p align="justify">
+<h4>10.0.1.3.14 (2023-09-14)</h4>
+</p><p align="justify">
+<ul>
+<li>[IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso</li>
+<li>[IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente</li>
+<li>[QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.13 (2023-08-03)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Overdue with expenses / Insoluto con spese</li>
+<li>[QUA] Test coverage 66% (1155: 389+766) [113 TestPoint]</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.12 (2023-05-24)</h4>
+</p><p align="justify">
+<ul>
+<li>[IMP] Two supplemental accreditation accounts / Due conti aggiuntivi in accredito</li>
+<li>[FIX] Confirm payment / Conferma pagamento</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.11 (2023-04-17)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Confirm invoice + refund / Errore accettazione fattura + NC</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.10 (2022-12-30)</h4>
+</p><p align="justify">
+<ul>
+<li>[IMP] Riba flag updatable / Scadenza Riba modificabile</li>
+<li>[REF] Process refactoring</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.9 (2022-07-20)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Riba flag read-only / Scadenza Riba non modificabile</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.8 (2022-06-29)</h4>
+</p><p align="justify">
+<ul>
+<li>[TNL] Translation</li>
+<li>[IMP] Riba flag updatable / Scadenza Riba modificabile</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.7 (2022-05-03)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Unsoved with 2 or more invoices / Insoluto di 2 o pi&#249; fatture</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.6 (2022-01-28)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Button [Cancel] in list / Bottone [Annulla] in distinta</li>
+<li>[IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta</li>
+</ul>
+</p>
+
+        </div>
+    </div>
+</section>
+
 <section class="oe_container oe_separator"/>
 
 <section class="oe_container">
@@ -6,55 +266,37 @@
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Authors | Autori:</p>
             <p class="oe_mt16"><ul>
-<li><a href="https://odoo-community.org/">Odoo Community Association (OCA)</a></li>
-</ul>
-<ul>
-<li><a href="https://www.agilebg.com/">Agile Business Group sagl</a></li>
-</ul>
-<ul>
-<li><a href="https://www.apuliasoftware.it/">Apulia Software s.r.l.</a></li>
-</ul>
-<ul>
-<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+<li><a href="https://odoo-community.org">Odoo Community Association (OCA)</a></li>
+<li><a href="https://www.agilebg.com">Agile Business Group sagl</a></li>
+<li><a href="https://www.apuliasoftware.it">Apulia Software s.r.l.</a></li>
+<li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
 </ul>
 </p>
         </div>
         <div class="oe_span6" align="left">
             <p class="oe_mt16">Contributors | Contributi da:</p>
             <p class="oe_mt16"><ul>
-<li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
-</ul>
-<ul>
-<li>Andrea Cometa &lt;a.cometa@apuliasoftware.it&gt;</li>
-</ul>
-<ul>
-<li>Andrea Gallina &lt;a.gallina@apuliasoftware.it&gt;</li>
-</ul>
-<ul>
-<li>Davide Corio &lt;info@davidecorio.com&gt;</li>
-</ul>
-<ul>
-<li>Giacomo Grasso &lt;giacomo.grasso@agilebg.com&gt;</li>
-</ul>
-<ul>
-<li>Gabriele Baldessari &lt;gabriele.baldessari@gmail.com&gt;</li>
-</ul>
-<ul>
-<li>Alex Comba &lt;alex.comba@agilebg.com&gt;</li>
-</ul>
-<ul>
-<li>Antonio M. Vigliotti &lt;info@shs-av.com&gt;</li>
+<li><a href="mailto:lorenzo.battistini@agilebg.com">Lorenzo Battistini</a></li>
+<li><a href="mailto:a.cometa@apuliasoftware.it">Andrea Cometa</a></li>
+<li><a href="mailto:a.gallina@apuliasoftware.it">Andrea Gallina</a></li>
+<li><a href="mailto:info@davidecorio.com">Davide Corio</a></li>
+<li><a href="mailto:giacomo.grasso@agilebg.com">Giacomo Grasso</a></li>
+<li><a href="mailto:gabriele.baldessari@gmail.com">Gabriele Baldessari</a></li>
+<li><a href="mailto:alex.comba@agilebg.com">Alex Comba</a></li>
+<li><a href="mailto:info@shs-av.com">Antonio M. Vigliotti</a></li>
 </ul>
 </p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <p>This module is maintained by the <b>SHS_AV s.r.l.</b>.</p>
+            <p>This module is maintained by the <b><a href="https://www.shs-av.com">SHS_AV s.r.l.</a></b>.</p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy ">l10n-italy
 </a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2023-11-20
+</p>
     </div>
 </section>

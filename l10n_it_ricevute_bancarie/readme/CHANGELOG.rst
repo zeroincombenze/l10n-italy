@@ -1,3 +1,8 @@
+10.0.1.3.15 (2023-11-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+
 10.0.1.3.14 (2023-09-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -23,37 +23,49 @@
                         />
                     </group>
                     <group
-                        string="Salvo buon fine"
-                        attrs="{'invisible': [('type','!=','sbf')]}"
+                        string="Salvo Buon Fine / Dopo Incasso"
                         colspan="4"
                         col="4"
                     >
                         <separator colspan="4" string="Acceptance (debit / credit)" />
                         <field
                             name="acceptance_account_id"
-                            attrs="{'required':[('type','=','sbf')]}"
+                            attrs="{'required':[('type','=','sbf')], 'invisible': [('type','!=','sbf')]}"
                         />
 
                         <field
                             name="acceptance_journal_id"
-                            attrs="{'required':[('type','=','sbf')]}"
+                            attrs="{'required': True}"
                         />
-                        <separator colspan="4" string="Accreditation (debit / credit)" />
-                        <field name="accreditation_account_debit_id" />
-                        <field name="accreditation_account_credit_id" />
-                        <field name="accreditation2_account_debit_id" />
-                        <field name="accreditation2_account_credit_id" />
-                        <field name="bank_expense_account_id" />
-                        <field name="accreditation_journal_id" />
+                        <separator colspan="4" string="Accreditation (debit / credit)"
+                                   attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="accreditation_account_debit_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="accreditation_account_credit_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="accreditation2_account_debit_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="accreditation2_account_credit_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="bank_expense_account_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="accreditation_journal_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
 
-                        <separator colspan="4" string="Settlement" />
+                        <separator colspan="4" string="Settlement"
+                                   attrs="{'invisible': [('type','!=','sbf')]}"/>
                         <field name="liquidity_account_id" />
-                        <field name="settlement_journal_id" />
+                        <field name="settlement_journal_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
 
-                        <separator colspan="4" string="Unsolved (debit / credit)" />
-                        <field name="overdue_account_debit_id" />
-                        <field name="unsolved_journal_id" />
-                        <field name="overdue_expenses_account_id" />
+                        <separator colspan="4" string="Unsolved (debit / credit)"
+                                   attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="overdue_account_debit_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="unsolved_journal_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
+                        <field name="overdue_expenses_account_id"
+                               attrs="{'invisible': [('type','!=','sbf')]}"/>
 
                     </group>
                 </form>

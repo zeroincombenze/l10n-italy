@@ -1,5 +1,5 @@
 ==============================================================
-|icon| Ricevute Bancarie/l10n_it_ricevute_bancarie 10.0.1.3.14
+|icon| Ricevute Bancarie/l10n_it_ricevute_bancarie 10.0.1.3.15
 ==============================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ricevute_bancarie/static/description/icon.png
@@ -14,8 +14,6 @@ Overview | Panoramica
 
 |en| Module to manage Ricevute Bancarie
 
-
-|
 
 |it| Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
 
@@ -50,8 +48,6 @@ Features | Caratteristiche
 +-------------------------------------------+---------+----------------------+
 
 
-
-|
 
 Usage | Utilizzo
 ----------------
@@ -176,6 +172,16 @@ Prerequisites | Prerequisiti
 * python 2.7+ (best 2.7.5+)
 * postgresql 9.2+ (best 9.5)
 
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
 
 
 Installation | Installazione
@@ -199,28 +205,10 @@ Installation | Installazione
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ricevute_bancarie** > Install
 
 
 
@@ -229,29 +217,10 @@ Upgrade | Aggiornamento
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ricevute_bancarie** > Update
 
 
 
@@ -285,6 +254,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.1.3.15 (2023-11-18)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
 
 10.0.1.3.14 (2023-09-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -352,36 +326,35 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors | Autori
 ----------------
 
-* Odoo Community Association (OCA) <https://odoo-community.org>
-* Agile Business Group sagl <https://www.agilebg.com>
-* Apulia Software s.r.l. <https://www.apuliasoftware.it>
-* SHS-AV s.r.l. <https://www.zeroincombenze.it>
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Agile Business Group sagl <https://www.agilebg.com>`__
+* `Apulia Software s.r.l. <https://www.apuliasoftware.it>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
 
 
 Contributors | Contributi da
 ----------------------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Andrea Cometa <a.cometa@apuliasoftware.it>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
-* Davide Corio <info@davidecorio.com>
-* Giacomo Grasso <giacomo.grasso@agilebg.com>
-* Gabriele Baldessari <gabriele.baldessari@gmail.com>
-* Alex Comba <alex.comba@agilebg.com>
-* Antonio M. Vigliotti <info@shs-av.com>
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Andrea Cometa <a.cometa@apuliasoftware.it>`__
+* `Andrea Gallina <a.gallina@apuliasoftware.it>`__
+* `Davide Corio <info@davidecorio.com>`__
+* `Giacomo Grasso <giacomo.grasso@agilebg.com>`__
+* `Gabriele Baldessari <gabriele.baldessari@gmail.com>`__
+* `Alex Comba <alex.comba@agilebg.com>`__
+* `Antonio M. Vigliotti <info@shs-av.com>`__
 
 
 
 Maintainer | Manutenzione
 -------------------------
 
-Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
 
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -398,7 +371,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-11-09
+Last Update / Ultimo aggiornamento: 2023-11-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

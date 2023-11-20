@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 17:21+0000\n"
-"PO-Revision-Date: 2023-11-09 17:21+0000\n"
+"POT-Creation-Date: 2023-11-20 14:15+0000\n"
+"PO-Revision-Date: 2023-11-20 14:15+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -782,7 +782,7 @@ msgstr ""
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:98
 #, python-format
 msgid "No active ID found"
-msgstr "No attivo ID s'"
+msgstr "Nessun ID attivo trovato"
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:res.company,riba_payment_response:0
@@ -859,7 +859,7 @@ msgstr "Nominativo"
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:81
 #, python-format
 msgid "Partner %s has not bank!!!"
-msgstr "Nominativo %s senza banca"
+msgstr "Nominativo %s senza banca!!!"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_payment_term
@@ -876,7 +876,7 @@ msgid "Payments"
 msgstr "Payments"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:508
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:512
 #, python-format
 msgid "Please define a Settlement journal"
 msgstr "Please define a Liquidazione sezionale"
@@ -922,7 +922,7 @@ msgstr "Riportare in bozza"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba
 msgid "Ri.Ba."
-msgstr "RiBA"
+msgstr "RiBA."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_configuration
@@ -1051,6 +1051,10 @@ msgstr "Registro venditi"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
+msgid "Salvo Buon Fine / Dopo Incasso"
+msgstr "Salvo Buon Fine / Dopo Incasso"
+
+#. module: l10n_it_ricevute_bancarie
 #: selection:riba.configuration,type:0
 msgid "Salvo buon fine"
 msgstr "Salvo buon fine"
@@ -1270,8 +1274,7 @@ msgstr ""
 msgid ""
 "You can also skip this step and set the line status to 'unsolved' anyway"
 msgstr ""
-"You can also salta this passo e impostare strumenti SEO a portata di mano riga "
-"stato a 'insoluto' anyway"
+"Si può saltare questo passo e impostare lo stato a 'insoluto' comunque"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_config_settings
