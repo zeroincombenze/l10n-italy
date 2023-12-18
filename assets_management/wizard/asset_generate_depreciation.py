@@ -17,7 +17,6 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
 
     @api.model
     def get_default_date_dep(self):
-
         def query_last_date(asset_id=None, final=None):
             query = (
                 "SELECT MAX(date) FROM asset_depreciation_line"
@@ -113,7 +112,8 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         deps = self.get_depreciations().with_context(
             dep_date=self.date_dep, final=self.final
         )
-        dep_lines = deps.generate_depreciation_lines(self.date_dep)
+        # dep_lines = deps.generate_depreciation_lines(self.date_dep)
+        deps.generate_depreciation_lines(self.date_dep)
         # deps.post_generate_depreciation_lines(dep_lines)
         if self._context.get("reload_window"):
             return {"type": "ir.actions.client", "tag": "reload"}
@@ -164,11 +164,12 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                         0,
                         0,
                         {
-                            "reason": "ATTENZIONE: la data inserita per l'ammortamento {curr}"
-                            " è fuori esercizio (inferiore a quella usuale "
-                            "per l'anno indicato {endy} ).".format(
-                                curr=current_date_str, endy=end_year_str
-                            )
+                            "reason":
+                                "ATTENZIONE: la data inserita per l'ammortamento"
+                                " {curr}"
+                                " è fuori esercizio (inferiore a quella usuale "
+                                "per l'anno indicato {endy} ).".format(
+                                    curr=current_date_str, endy=end_year_str)
                         },
                     )
                 )

@@ -161,8 +161,19 @@ class AssetDepreciation(models.Model):
     def write(self, vals):
         if "line_ids" in vals:
             for line in vals["line_ids"]:
-                if len(line) == 3 and line[2] and "asset_id" not in line[2]:
-                    line[2].update({"asset_id": self.asset_id.id})
+                if len(line) == 3 and line[2]:
+                    if "asset_id" not in line[2]:
+                        line[2].update({"asset_id": self.asset_id.id})
+                    if (
+                            line[0] == 0
+                            and line[2].get("move_type") == "purchase"
+                            and line[2].get("date")
+                            and not any(x for x in self if self.last_depreciation_date)
+                    ):
+                        vals["date_start"] = line[2]["date"]
+                        vals["amount_depreciable"] = (
+                            self.base_coeff * self.asset_id.purchase_amount)
+
         res = super().write(vals)
         need_norm = self.filtered(lambda d: d.need_normalize_first_dep_nr())
         if need_norm:

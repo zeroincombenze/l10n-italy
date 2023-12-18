@@ -267,6 +267,10 @@ class WizardInvoiceManageAsset(models.TransientModel):
 
         if not self.management_type:
             raise ValidationError(_("Couldn't determine which action should be done."))
+        if self.env["asset.depreciation.line"].search([("asset_id",
+                                                        "=",
+                                                        self.asset_id.id)]):
+            raise ValidationError(_("Cannot update depreciated asset!"))
 
     def check_pre_partial_dismiss_asset(self):
         self.ensure_one()

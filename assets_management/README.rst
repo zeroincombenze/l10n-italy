@@ -1,37 +1,39 @@
-
-===========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.0_29
-===========================================
-
+=========================================================
+|icon| ITA - Gestione Cespiti/Gestione beni 12.0.1.0.0_30
+=========================================================
 
 **Gestione Cespiti**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/assets_management/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
 |en| This modules allows account management of companies' assets.
 
+Italian assets management is very complex. This module manages
+all italian situations.
 
-|
+Please, read the "test/Test Workflow.xlsx" file with 4 asset examples.
+
 
 |it| Questo modulo permette di creare e gestire cespiti dalla sezione contabilità di Odoo.
 
+Il modulo è progettato per gestire tutte le complesse situazioni
+italiane.
 
-|
+Si consiglia di guardare il file "test/Test Workflow.xlsx" usato come
+modello di sviluppo e test.
 
-Usage / Utilizzo
+
+
+Usage | Utilizzo
 ----------------
-
-*** english ***
 
 You can create and manage assets from accounting section of Odoo.
 
@@ -44,47 +46,33 @@ Assets Management -> Generate Depreciations, or by triggering the same wizard fr
 form view.
 
 
-*** italiano ***
 
-È possibile creare e gestire cespiti dalla sezione contabilità di Odoo.
-
-La configurazione dei cespiti dev'essere fatta andando in
-Cespiti -> Configurazione Cespiti, dove si trovano le categorie dei beni, i
-tipi e le modalità di ammortamento.
-
-I cespiti possono essere creati manualmente o da fatture e registrazioni
-contabili. Gli ammortamenti possono essere generati utilizzando l'apposito
-wizard in Cespiti -> Gestione Cestpiti -> Genera Ammortamenti, o aprendo quello stesso wizard dalla
-scheda del cespite
-
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-|
-
-Getting started / Come iniziare
-===============================
+Getting started | Primi passi
+=============================
 
 |Try Me|
 
 
-|
-
-Installation / Installazione
+Prerequisites | Prerequisiti
 ----------------------------
 
+* python 3.7
+* postgresql 9.6+ (best 10.0+)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
+
+Installation | Installazione
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -95,79 +83,42 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/12.0                                                                 |
+| $HOME/12.0 |
 +----------------------------------------------------------------------------+
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 12.0 -O zero -o $HOME/12.0
-    vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode 
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **assets_management** > Install
+    deploy_odoo clone -r l10n-italy -b 12.0 -G zero -p $HOME/12.0
+    # Upgrade virtual environment
+    vem amend $HOME/12.0/venv_odoo
 
 
-|
 
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
-
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
-    vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
+    deploy_odoo update -r l10n-italy -b 12.0 -G zero -p $HOME/12.0
+    vem amend $HOME/12.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-|
 
-Support / Supporto
+Support | Supporto
 ------------------
 
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
-
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -176,9 +127,10 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -186,8 +138,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+12.0.1.0.0_30 (2023-12-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Dismissione bene totalmente ammortizzato
+* [FIX] Data inizio ammortamento da data fattura se cambio (data) fattura
+* [FIX] Valore iniziale da fattura se cambio (data) fattura
+* [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
+* [QUA] Test coverage 48% (3567: 1869+1698) [159 TestPoints] - quality rating 1037 (target 100)
 
 12.0.1.0.0_29 (2022-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -234,27 +196,9 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Fix errore salvataggio registrazione nel model asset
 
-12.0.1.0.0_19 (2021-12-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix visualizzazione creazione righe di altra natura (non ammortamento)
-
-12.0.1.0.0_18 (2021-12-21)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix validazione movimenti non ammortamento se flag consolidato
-
-12.0.1.0.0_17 (2021-12-10)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix errore installazione modulo
 
 
-
-|
-|
-
-Credits / Didascalie
+Credits | Didascalie
 ====================
 
 Copyright
@@ -263,65 +207,55 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `librERP <https://www.librerp.it>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
-* `Didotech srl <https://www.didotech.com>`__
-* `Open Force <https://www.openforce.it/>`__
-* `Takobi <https://www.takobi.online/>`__
-* `Takobi <https://takobi.online/>`__
-* `SHS-AV srl <https://www.zeroincombenze.it>`__
-* `Open Force <https://www.openforce.it>`__
+* `Openforce srls <https://www.openforce.it>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
 * `Takobi <https://takobi.online>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+* `Didotech s.r.l. <https://www.didotech.com>`__
 
 
-Contributors / Collaboratori
+
+Contributors | Contributi da
 ----------------------------
 
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-* Marco Tosato <marco.tosato@didotech.com>
-* Fabio Giovannelli <fabio.giovannelli@didotech.com>
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Silvio Gregorini <silviogregorini@openforce.it>
-* Stefano Pezzini <stefanopezzini@openforce.it>
-* Lorenzo Battistini <lb@takobi.online>
+* `Alessandro Camilli <alessandrocamilli@openforce.it>`__
+* `Silvio Gregorini <silviogregorini@openforce.it>`__
+* `Stefano Pezzini <stefanopezzini@openforce.it>`__
+* `Lorenzo Battistini <lb@takobi.online>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* `Marco Tosato <marco.tosato@didotech.com>`__
+* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
 
 
-Maintainer / Manutenzione
+
+Maintainer | Manutenzione
 -------------------------
 
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
 
-
-|
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
-
-|chat_with_us|
-
-
+|
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-09-28
+Last Update / Ultimo aggiornamento: 2023-12-18
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -381,4 +315,3 @@ Last Update / Ultimo aggiornamento: 2022-09-28
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-

@@ -163,7 +163,8 @@ class AssetDepreciationLine(models.Model):
         """
         dep = self.env["asset.depreciation"].browse(vals["depreciation_id"])
         dep_lines = dep.with_context(
-            depreciated_by_line=False).generate_depreciation_lines(
+            depreciated_by_line=False
+        ).generate_depreciation_lines(
             datetime.strptime(vals["date"], "%Y-%m-%d").date()
         )
         # dep_lines.generate_account_move()
@@ -172,37 +173,29 @@ class AssetDepreciationLine(models.Model):
     @api.model
     def check_4_values(self, vals):
         """Check for valid values on create"""
-        if (vals.get("partial_dismiss_percentage") and
-            not vals.get("partial_dismissal", False)
+        if vals.get("partial_dismiss_percentage") and not vals.get(
+            "partial_dismissal", False
         ):
-            raise ValidationError(
-                _("Partial dismiss without flag")
-            )
-        elif (vals.get("partial_dismissal", False) and
-              not vals.get("partial_dismiss_percentage", 0.0)
+            raise ValidationError(_("Partial dismiss without flag"))
+        elif vals.get("partial_dismissal", False) and not vals.get(
+            "partial_dismiss_percentage", 0.0
         ):
-            raise ValidationError(
-                _("Partial dismiss without percentage")
-            )
+            raise ValidationError(_("Partial dismiss without percentage"))
         if not vals.get("asset_id"):
-            raise ValidationError(
-                _("Missed asset")
-            )
+            raise ValidationError(_("Missed asset"))
         if not vals.get("depreciation_id"):
-            raise ValidationError(
-                _("Missed depreciation nature")
-            )
+            raise ValidationError(_("Missed depreciation nature"))
         vals["move_type"] = vals.get("move_type", "depreciated")
-        if 'message_follower_ids' in vals:
-            del vals['message_follower_ids']
-
+        if "message_follower_ids" in vals:
+            del vals["message_follower_ids"]
 
     @api.model
     def create(self, vals):
         self.check_4_values(vals)
-        if (self._context.get("depreciated_by_line") and
-              vals["move_type"] in ("in", "out")):
-
+        if self._context.get("depreciated_by_line") and vals["move_type"] in (
+            "in",
+            "out",
+        ):
             dep_lines = self.depreciation_before_in_out(vals)
             if "asset_accounting_info_ids" not in vals:
                 vals["asset_accounting_info_ids"] = [
@@ -218,7 +211,7 @@ class AssetDepreciationLine(models.Model):
                 ]
             else:
                 for acc_info in vals["asset_accounting_info_ids"]:
-                    acc_info[2]["related_dep_line_id"] =  dep_lines[0].id
+                    acc_info[2]["related_dep_line_id"] = dep_lines[0].id
 
         line = super().create(vals)
         if line.need_normalize_depreciation_nr():
@@ -420,7 +413,6 @@ class AssetDepreciationLine(models.Model):
         :param force: force normalization for every depreciations' lines
         """
         for dep in self.with_context(no_update_move=True).mapped("depreciation_id"):
-
             # Avoid if user chooses to use custom numbers
             if dep.force_all_dep_nr:
                 continue
@@ -483,7 +475,6 @@ class AssetDepreciationLine(models.Model):
             vals = {
                 "company_id": self.company_id.id,
                 "date": self.date,
-                "line_ids": [],
                 "ref": _("Asset: ") + self.asset_id.make_name(),
                 "line_ids": [],
             }
@@ -531,7 +522,6 @@ class AssetDepreciationLine(models.Model):
 
         # Asset depreciation
         if not self.partial_dismissal:
-
             if self.depreciation_id.mode_id.indirect_depreciation:
                 credit_account_id = self.asset_id.category_id.fund_account_id.id
             else:

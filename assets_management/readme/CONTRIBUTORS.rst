@@ -5,5 +5,3 @@
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Marco Tosato <marco.tosato@didotech.com>
 * Fabio Giovannelli <fabio.giovannelli@didotech.com>
-
-Base icon made by `surang <https://www.flaticon.com/authors/surang>`_ from `www.flaticon.com <https://www.flaticon.com/>`_.

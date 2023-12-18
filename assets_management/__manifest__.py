@@ -2,14 +2,15 @@
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 {
     "name": "ITA - Gestione Cespiti",
-    "version": "12.0.1.0.0_29",
+    "version": "12.0.1.0.0_30",
     "category": "Localization/Italy",
     "summary": "Gestione Cespiti",
-    "author": "Openforce, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "/tree/12.0/assets_management",
+    "author": ("Openforce srls,Odoo Community Association (OCA),Takobi"
+               ",SHS-AV s.r.l.,Didotech s.r.l."),
+    "website": "https://github.com/OCA/l10n-italy/tree/12.0/assets_management",
+    "development_status": "Beta",
     "license": "AGPL-3",
     "depends": [
         "account",
@@ -51,6 +52,6 @@
         "wizard/asset_generate_warning_view.xml",
         "wizard/asset_generate_open_view.xml",
     ],
-    "development_status": "Beta",
+    "maintainer": "* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__",
     "installable": True,
 }
