@@ -3,13 +3,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 #
 # The tests of this module are based on two cases; all data are in the excel file
-# in data/example.xlsx
-# The code of this unit tests:
-# * New asset creation
-# * Depreciation for 1.st year: fixed rate (asset #1) or pro-rata-temporis (asset #2)
-# * Depreciation for 2.nd year
-# * In / Out for asset value update
-# * Full (asset #1) and partial (asset #2) dismission
+# in "test/Test Workflow.xlsx" with follow work-flow:
+#
+# 1. New assets creation (4 items, #1 #2 #3 and #4) with tempary value 1/10
+# 2. Depreciation for 1.st year: fixed rate (#1 #3) or pro-rata-temporis (#2 #4)
+# 3. Link assets with purchase invoice: asset values updated
+# 4. Depreciation for 1.st year: fixed rate (#1 #3) or pro-rata-temporis (#2 #4)
+# 5. For asset #3 down value
+# 6. Depreciation for 2.nd year (#1 #2 #4 full year, #3 base on down value)
+# 7. Full (asset #1) and partial (asset #2) dismission
 #
 from datetime import datetime, date
 from calendar import isleap
@@ -26,6 +28,9 @@ _logger = logging.getLogger(__name__)
 #      Test values to check     #
 #################################
 TESTBED_VALUES = {
+    "cat_1.percentage": 25,
+    "cat_2.percentage": 24,
+
     "date.eoy[-2]": date(date.today().year - 2, 12, 31),
     "date.eoy[-1]": date(date.today().year - 1, 12, 31),
     "date.eoy": date(date.today().year, 12, 31),
@@ -35,32 +40,51 @@ TESTBED_VALUES = {
     "asset_1.purchase_amount": 1000.0,
     "asset_1.depreciation_amount[-2]": 125.0,
     "asset_1.depreciated_amount[-2]": 125.00,
+    "asset_1.residual_amount[-2]": 875.00,
+    "asset_1.depreciation_amount[-1]": 250.0,
+    "asset_1.depreciated_amount[-1]": 375.00,
+    "asset_1.residual_amount[-1]": 625.00,
 
     "asset_2.initial_amount": 250.0,
     "asset_2.initial_depreciation_amount": 15.12,
     "asset_2.purchase_amount": 2500.0,
     "asset_2.depreciation_amount[-2]": 151.23,
     "asset_2.depreciated_amount[-2]": 151.23,
-
+    "asset_2.residual_amount[-2]": 2348.77,
+    "asset_2.depreciation_amount[-1]": 600.0,
+    "asset_2.depreciated_amount[-1]": 751.23,
+    "asset_2.residual_amount[-1]": 1748.77,
 
     "asset_3.initial_amount": 100.0,
     "asset_3.initial_depreciation_amount": 12.50,
     "asset_3.purchase_amount": 1000.0,
     "asset_3.depreciation_amount[-2]": 125.0,
     "asset_3.depreciated_amount[-2]": 125.0,
+    "asset_3.residual_amount[-2]": 875.00,
+    # For leap year set (year-1)-03-30
+    "asset3.date.down[-1]": date(date.today().year - 1, 3, 31),
+    "asset_3.down_value[-1]": 725.0,
+    "asset_3.purchase_amount_post[-1]": 275.0,
+    "asset_3.depreciation_amount_pre[-1]": 61.64,
+    "asset_3.depreciation_amount[-1]": 51.8,
+    "asset_3.depreciated_amount[-1]": 238.44,
+    "asset_3.residual_amount[-1]": 36.56,
 
     "asset_4.initial_amount": 250.0,
     "asset_4.initial_depreciation_amount": 15.12,
     "asset_4.purchase_amount": 2500.0,
     "asset_4.depreciation_amount[-2]": 151.23,
     "asset_4.depreciated_amount[-2]": 151.23,
+    "asset_4.residual_amount[-2]": 2348.77,
+    "asset_4.depreciation_amount[-1]": 600.0,
+    "asset_4.depreciated_amount[-1]": 751.23,
+    "asset_4.residual_amount[-1]": 1748.77,
 
     "asset_1_2.date.disposal": date(date.today().year, 1, 31),
     "asset_4.date.disposal": date(date.today().year, 7, 31),
     "asset_1_3.date.disposal": date(date.today().year - 2, 12, 1),
     "asset_2_4.date.disposal": date(date.today().year - 2, 10, 1),
-    "cat_1.percentage": 25,
-    "cat_2.percentage": 24,
+
     "asset_1.sale_amount": 1400.0,
     "asset_2.sale_amount": 3210.0,
     "asset_4.sale_amount": 525.0,
@@ -240,7 +264,7 @@ class TestAssets(SingleTransactionCase):
                 return getattr(self, method)(dep)
 
     def _check_4_depreciation_line(
-        self, date_dep, dep, asset, amount=None, depreciation_nr=None, final=None
+        self, date_dep, dep, asset, amount=None, depreciation_nr=None, final=False
     ):
         """Run sequential tests on single line for amount, asset_id, date, number"""
         if amount:
@@ -264,7 +288,7 @@ class TestAssets(SingleTransactionCase):
         asset,
         amount=None,
         depreciation_nr=None,
-        final=None,
+        final=False,
         no_test_ctr=None,
     ):
         """Run tests for all depreciation type values + count for moves"""
@@ -311,11 +335,9 @@ class TestAssets(SingleTransactionCase):
         """Run 1.st year test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[-2]"]
         self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
-        nr = 0
         for xref in (
                 "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3", "z0bug.asset_4"):
             asset = self.resource_browse(xref)
-            nr += 1
             if not final:
                 self.assertEqual(
                     asset.state,
@@ -335,21 +357,24 @@ class TestAssets(SingleTransactionCase):
                     float_round(self.get_test_value(xref, "depreciated_amount[-2]"), 2),
                     "Invalid depreciated amount!",
                 )
+                self.assertEqual(
+                    float_round(dep.amount_residual, 2),
+                    float_round(self.get_test_value(xref, "residual_amount[-2]"), 2),
+                    "Invalid depreciated amount!",
+                )
 
     def _test_depreciation_all_assets_y1(self, final):
         """Run 2.nd year test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[-1]"]
         self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
-        nr = 0
         for xref in (
                 "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3", "z0bug.asset_4"):
             asset = self.resource_browse(xref)
-            nr += 1
             self._test_all_depreciation_lines(
                 date_dep,
                 asset,
                 amount=self.get_test_value(xref, "depreciation_amount[-1]"),
-                depreciation_nr=2,
+                depreciation_nr=3 if xref == "z0bug.asset_3" else 2,
                 final=final,
             )
             for dep in asset.depreciation_ids:
@@ -390,6 +415,38 @@ class TestAssets(SingleTransactionCase):
         else:
             self.assertTrue(self.is_action(act_windows))
         return act_windows
+
+    def _down_asset3(self):
+        date_dep = TESTBED_VALUES["asset3.date.down[-1]"]
+        down_value = TESTBED_VALUES["asset_3.down_value[-1]"]
+        dep_line_model = self.env["asset.depreciation.line"]
+        xref = "z0bug.asset_3"
+        asset = self.resource_browse(xref)
+        for dep in asset.depreciation_ids:
+            vals = {
+                "amount": down_value,
+                "asset_id": asset.id,
+                "depreciation_line_type_id": self.env.ref(
+                    "assets_management.adpl_type_sva"
+                ).id,
+                "date": date_dep.strftime("%Y-%m-%d"),
+                "depreciation_id": dep.id,
+                "move_type": "out",
+                "type_id": dep.type_id.id,
+                "name": "Asset loss",
+            }
+            dep_line_model.with_context(depreciated_by_line=True).create(vals)
+            self.assertEqual(
+                float_round(dep.amount_depreciable_updated, 2),
+                float_round(TESTBED_VALUES["asset_3.purchase_amount_post[-1]"], 2),
+                "Invalid asset updated value!",
+            )
+        self._test_all_depreciation_lines(
+            date_dep,
+            asset,
+            amount=self.get_test_value(xref, "depreciation_amount_pre[-1]"),
+            depreciation_nr=2,
+        )
 
     def run_buy_asset(self, xref_invoice, xref_line, xref_asset):
         invoice = self.resource_browse(xref_invoice)
@@ -1030,7 +1087,8 @@ class TestAssets(SingleTransactionCase):
 
         self._test_depreciation_all_assets_y2(final=False)
         self._test_depreciation_all_assets_y2(final=True)
-        # self._test_depreciation_all_assets_y1(False)
+        self._down_asset3()
+        self._test_depreciation_all_assets_y1(False)
         # self._test_asset_1()
         # self._test_asset_2()
         # self._test_asset_3()

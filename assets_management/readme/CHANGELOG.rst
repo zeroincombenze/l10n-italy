@@ -1,11 +1,11 @@
-12.0.1.0.0_30 (2023-12-18)
+12.0.1.0.0_30 (2023-12-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Dismissione bene totalmente ammortizzato
 * [FIX] Data inizio ammortamento da data fattura se cambio (data) fattura
 * [FIX] Valore iniziale da fattura se cambio (data) fattura
 * [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
-* [QUA] Test coverage 48% (3567: 1839+1728) [246 TestPoints] - quality rating 1065 (target 100)
+* [QUA] Test coverage 49% (3567: 1815+1752) [376 TestPoints] - quality rating 1094 (target 100)
 
 12.0.1.0.0_29 (2022-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
