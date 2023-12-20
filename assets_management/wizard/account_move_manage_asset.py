@@ -405,7 +405,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             "sale_amount": writeoff,
             "sale_date": move.date,
             "sale_move_id": move.id,
-            "sold": True,
+            # "sold": True,
         }
         for dep in asset.depreciation_ids:
             residual = dep.amount_residual

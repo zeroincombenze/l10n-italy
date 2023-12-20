@@ -267,10 +267,6 @@ class WizardInvoiceManageAsset(models.TransientModel):
 
         if not self.management_type:
             raise ValidationError(_("Couldn't determine which action should be done."))
-        if self.env["asset.depreciation.line"].search([("asset_id",
-                                                        "=",
-                                                        self.asset_id.id)]):
-            raise ValidationError(_("Cannot update depreciated asset!"))
 
     def check_pre_partial_dismiss_asset(self):
         self.ensure_one()
@@ -314,7 +310,10 @@ class WizardInvoiceManageAsset(models.TransientModel):
             raise ValidationError(
                 _("At least one invoice line is mandatory to update" " an asset!")
             )
-
+        if self.env["asset.depreciation.line"].search([("asset_id",
+                                                        "=",
+                                                        self.asset_id.id)]):
+            raise ValidationError(_("Cannot update depreciated asset!"))
         if not all(
             [
                 ln.account_id == self.asset_id.category_id.asset_account_id
@@ -350,7 +349,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
             amount += ln.currency_id.compute(ln.price_subtotal, currency)
         amount = round(amount, digits)
         vals = {
-            "customer_id": invoice.partner_id.id,
+            # "customer_id": invoice.partner_id.id,
             "asset_id": self.asset_id.id,
             "amount": amount,
             "date": self.dismiss_date.strftime("%Y-%m-%d")
@@ -653,7 +652,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
             amount += ln.currency_id.compute(ln.price_subtotal, currency)
         amount = round(amount, digits)
         vals = {
-            "customer_id": invoice.partner_id.id,
+            # "customer_id": invoice.partner_id.id,
             "asset_id": self.asset_id.id,
             "amount": amount,
             "date": self.dismiss_date.strftime("%Y-%m-%d"),
@@ -667,8 +666,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
             'sale_amount': amount,
             'sale_date': invoice.date,
             'sale_invoice_id': invoice.id,
-            'sold': True,
-            "partial_dismiss_percentage": 100.0,
+            # 'sold': True,
         }
         self.asset_id.write(vals)
 

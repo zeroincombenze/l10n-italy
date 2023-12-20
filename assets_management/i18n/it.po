@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (12.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 09:09+0000\n"
-"PO-Revision-Date: 2023-12-07 09:09+0000\n"
+"POT-Creation-Date: 2023-12-19 11:55+0000\n"
+"PO-Revision-Date: 2023-12-19 11:55+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -260,7 +260,7 @@ msgstr "Attività"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_state
 msgid "Activity State"
-msgstr "Stato attività"
+msgstr "Stato delle Attivit"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:299
@@ -747,13 +747,13 @@ msgstr "Indicare almeno una riga di fattura per creare un nuovo cespite!"
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:229
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:270
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:274
 #, python-format
 msgid "At least one move line is mandatory to dismiss an asset!"
 msgstr "Indicare almeno una riga di fattura per dismettere un cespite!"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:306
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:310
 #, python-format
 msgid "At least one move line is mandatory to update an asset!"
 msgstr "Indicare almeno una riga di fattura per aggiornare un cespite!"
@@ -810,7 +810,7 @@ msgstr "Saldo"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__base
 msgid "Base"
-msgstr ""
+msgstr "Imponibile"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_category.py:42
@@ -933,9 +933,9 @@ msgstr ""
 "Cannot eliminare registri sezionali while they're still used da asset categorie."
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:419
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:379
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:474
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:422
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:383
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:478
 #, python-format
 msgid "Cannot dismiss an asset earlier than the last depreciation date.\n"
 "(Dismiss date: {}, last depreciation date: {})."
@@ -953,7 +953,7 @@ msgstr "Cannot dismiss asset if righe come da different fatture!"
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:234
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:275
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:279
 #, python-format
 msgid "Cannot dismiss asset if move lines come from different account moves!"
 msgstr "Cannot dismiss asset if move righe come da different conto moves!"
@@ -978,6 +978,15 @@ msgstr ""
 #, python-format
 msgid "Cannot remove type {}: there is some depreciation line linked to it."
 msgstr "Cannot rimuovere tipo {}: there is some ammortamento riga  a it."
+
+#. module: assets_management
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:316
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:265
+#, python-format
+msgid "Cannot update depreciated asset!"
+msgstr ""
+"Cannot attiva questo campo solo per specificare un modello diverso dal modello "
+"di base depreciated immobilizzazione!"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation.py:357
@@ -1143,20 +1152,20 @@ msgstr ""
 "Could not determine how a collegamento move righe a asset in mode `{}`."
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:557
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:560
 #, python-format
 msgid ""
 "Could not retrieve depreciation line type from invoice `{}` (type `{}`)."
 msgstr "Could not retrieve ammortamento riga tipo da fattura `{}` (tipo `{}`)."
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:595
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:599
 #, python-format
 msgid "Could not retrieve depreciation line type from move `{}` (type `{}`)."
 msgstr "Could not retrieve ammortamento riga tipo da move `{}` (tipo `{}`)."
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:579
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:582
 #, python-format
 msgid ""
 "Could not update `{}`: not enough residual amount to write off invoice `{}`.\n"
@@ -1169,7 +1178,7 @@ msgstr ""
 "Maybe you should try a dismiss this asset metodo?"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:622
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:626
 #, python-format
 msgid ""
 "Could not update `{}`: not enough residual amount to write off move `{}`.\n"
@@ -1182,8 +1191,8 @@ msgstr ""
 "Maybe you should try a dismiss this asset metodo?"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:613
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:653
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:616
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:657
 #, python-format
 msgid "Could not update `{}`: not enough residual amount to write off.\n"
 "(Amount to write off: {}; residual amount: {}.)\n"
@@ -1354,7 +1363,7 @@ msgstr "Data"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__date_start
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__date_start
 msgid "Date Start"
-msgstr "Data iniziale"
+msgstr "Data Inizio"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__default
@@ -1731,17 +1740,17 @@ msgstr "Anno fiscale"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_follower_ids
 msgid "Followers"
-msgstr "Follower"
+msgstr "Seguaci"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Chi sta seguendo (canali)"
+msgstr "Seguaci (Channels)"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Chi sta seguendo (partner)"
+msgstr "Seguaci (Nominativi)"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation_line.py:250
@@ -1751,6 +1760,7 @@ msgid ""
 msgstr ""
 "Le seguenti linee sono collegato a registrazioni contabilizzare e non possono "
 "essere eliminate:\n"
+":"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation.py:202
@@ -1784,15 +1794,15 @@ msgid "From Nr"
 msgstr "Dal Nr"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:604
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:607
 #, python-format
 msgid "From invoice(s) "
 msgstr "Dalla fattura/e "
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:423
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:446
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:647
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:427
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:450
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:651
 #, python-format
 msgid "From move(s) "
 msgstr "Dalla registrazione/i "
@@ -1959,12 +1969,12 @@ msgstr ""
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
+msgstr "Px verificato/a nuovo messaggii require your attention."
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
+msgstr "Px verificato/a, nuovo messaggii require your attention."
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_has_error
@@ -2086,7 +2096,7 @@ msgstr "Fatture"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_is_follower
 msgid "Is Follower"
-msgstr "Sta seguendo"
+msgstr "È follower"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_account_journal
@@ -2334,7 +2344,7 @@ msgstr "Movimento"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_accounting_info__move_line_id
 msgid "Move Line"
-msgstr "Riga movimento"
+msgstr "Riga contabile"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__move_line_ids
@@ -2397,7 +2407,7 @@ msgstr "Scadenza prossima attività"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_summary
 msgid "Next Activity Summary"
-msgstr "Riepilogo prossima attività"
+msgstr "Sommario prossime attività"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_type_id
@@ -2440,7 +2450,7 @@ msgstr "Non ammortizzato"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Numero di azioni"
+msgstr "Numero of Azioni"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_has_error_counter
@@ -2450,7 +2460,7 @@ msgstr "Numero di errori"
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Numero di messaggi che richiedono un'azione"
+msgstr "Numero of messaggii which requires an azione"
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_has_error_counter
@@ -2460,7 +2470,7 @@ msgstr "Numero di messaggi con errore di consegna"
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_unread_counter
 msgid "Number of unread messages"
-msgstr "Numero di messaggi non letti"
+msgstr "Numero of unread messaggii"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__confirm_id
@@ -2558,13 +2568,13 @@ msgid "Partial dismiss without percentage"
 msgstr "Partial dismiss without percentuale"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:439
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:442
 #, python-format
 msgid "Partial dismissal from invoice(s) {}"
 msgstr "Dismissione Parziale dalla fattura/e {}"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:498
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:502
 #, python-format
 msgid "Partial dismissal from move(s) {}"
 msgstr "Dismissione Parziale dalla registrazione/i {}"
@@ -2632,15 +2642,15 @@ msgstr "Pianificato"
 #: code:addons/assets_management/wizard/account_invoice_manage_asset.py:274
 #: code:addons/assets_management/wizard/account_invoice_manage_asset.py:304
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:225
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:266
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:299
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:270
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:303
 #, python-format
 msgid "Please choose an asset before continuing!"
 msgstr "Scegli un Cespite prima di continuare!"
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_invoice_manage_asset.py:307
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:302
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:306
 #, python-format
 msgid "Please choose at least one depreciation type!"
 msgstr "Scegli almeno una riga di tipo ammortamento!"
@@ -2911,12 +2921,12 @@ msgstr ""
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_residual
 msgid "Residual Amount"
-msgstr "Importo residuo"
+msgstr "Ammontare residuo"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_user_id
 msgid "Responsible User"
-msgstr "Utente responsabile"
+msgstr "Responsabile Utente"
 
 #. module: assets_management
 #: selection:asset.depreciation.line,move_type:0
@@ -3171,12 +3181,12 @@ msgstr "Cespite non definito"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_unread
 msgid "Unread Messages"
-msgstr "Messaggi non letti"
+msgstr "Unread Messaggii"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr "Numero messaggi non letti"
+msgstr "Unread Messaggii Counter"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
@@ -3268,12 +3278,12 @@ msgstr ""
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__website_message_ids
 msgid "Website Messages"
-msgstr "Messaggi sito web"
+msgstr "Sito web Messaggii"
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__website_message_ids
 msgid "Website communication history"
-msgstr "Cronologia comunicazioni sito web"
+msgstr "Sito web comunicazione cronologia"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_wizard_asset_journal_report
@@ -3329,7 +3339,7 @@ msgstr ""
 "asset `{}`!"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:323
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:326
 #, python-format
 msgid ""
 "You need to choose invoice lines with account `{}` if you need them to update "
@@ -3350,7 +3360,7 @@ msgstr ""
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:249
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:290
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:294
 #, python-format
 msgid ""
 "You need to choose move lines with account `{}` if you need them to dismiss "
@@ -3360,7 +3370,7 @@ msgstr ""
 "asset `{}`!"
 
 #. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:318
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:322
 #, python-format
 msgid ""
 "You need to choose move lines with account `{}` if you need them to update "
@@ -3516,7 +3526,7 @@ msgstr "alla data {}"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation.py:813
-#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:460
+#: code:addons/assets_management/wizard/account_invoice_manage_asset.py:463
 #, python-format
 msgid "{} - Depreciation"
 msgstr "{} - Ammortamento"

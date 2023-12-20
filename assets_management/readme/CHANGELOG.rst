@@ -5,7 +5,7 @@
 * [FIX] Data inizio ammortamento da data fattura se cambio (data) fattura
 * [FIX] Valore iniziale da fattura se cambio (data) fattura
 * [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
-* [QUA] Test coverage 49% (3567: 1815+1752) [376 TestPoints] - quality rating 1094 (target 100)
+* [QUA] Test coverage 51% (3567: 1734+1833) [292 TestPoints] - quality rating 1133 (target 100)
 
 12.0.1.0.0_29 (2022-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
