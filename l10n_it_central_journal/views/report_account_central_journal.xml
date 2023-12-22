@@ -8,7 +8,7 @@
         <t t-call="l10n_it_account.internal_layout">
             <div class="page">
                 <t t-set="print_details" t-value="1" />
-                <table style="width:100%; font-size: small;" cellspacing="0">
+                <table style="width:100%; font-size: 0.6em;" cellspacing="0">
                         <style>
                             table {border: 0px;}
                             thead {background: #F5F5F5;}
@@ -30,20 +30,19 @@
                                 style="min-width:8%">Date</th>
                             <th
                                     class="left_without_line"
-                                    style="min-width:8% max-width:12%">Account move</th>
+                                    style="min-width:8% max-width:11%">Account move</th>
                             <th
                                 class="left_without_line"
-                                style="min-width:10% max-width:20%">Ref</th>
+                                style="min-width:9% max-width:20%">Ref</th>
                             <th
                                 class="left_without_line"
-                                style="min-width:6% max-width:10%">Account code</th>
+                                style="min-width:6% max-width:9%">Account code</th>
                             <th
                                     class="left_without_line"
-                                    style="min-width:10% max-width:16%">Account name</th>
-                            <!-- <th class="left_without_line" style="min-width:15%">Partner name</th> -->
+                                    style="min-width:12% max-width:16%">Account name</th>
                             <th
                                     class="left_without_line"
-                                    style="min-width:10% max-width:20%">Name</th>
+                                    style="min-width:9% max-width:20%">Name</th>
                             <th
                                 class="right_without_line"
                                 style="min-width:9%">Debit</th>

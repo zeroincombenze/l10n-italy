@@ -16,6 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class ReportGiornale(models.AbstractModel):
     _name = "report.l10n_it_central_journal.report_giornale"
+    _description = "Journal report"
 
     @api.model
     def render_html(self, docids, data=None):

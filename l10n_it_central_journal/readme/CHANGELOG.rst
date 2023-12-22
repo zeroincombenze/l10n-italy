@@ -1,3 +1,10 @@
+10.0.0.0.8 (2023-12-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Layout orientation / Orientamento di stampa
+* [IMP] FOnt size 9px / Dimensione fotn 9px
+* [QUA] Test coverage 33% (199: 134+65) [0 TestPoints] - quality rating 40 (target 100)
+
 10.0.0.0.7 (2023-09-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -35,4 +42,4 @@
 * [IMP] Separatione line between records / Riga di separazione tra le registrazioni
 * [IMP] No print zero amounts / Non stampa importi a zero
 * [IMP] Partner name / Stampa ragione sociale soggetto
- 
+* [QUA] Test coverage 32% (198: 134+64) [0 TestPoints] - quality rating 39 (target 100)

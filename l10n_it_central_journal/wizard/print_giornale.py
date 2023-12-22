@@ -100,6 +100,10 @@ class WizardGiornale(models.TransientModel):
     year_footer = fields.Char(
         string="Year for Footer", help="Value printed near number of page in the footer"
     )
+    orientation = fields.Selection([
+        ('Landscape', 'Landscape'),
+        ('Portrait', 'Portrait')
+        ], 'Orientation', default='Landscape')
 
     @api.onchange("daterange")
     def on_change_daterange(self):
@@ -173,17 +177,20 @@ class WizardGiornale(models.TransientModel):
         return move_line_ids
 
     def _prepare_datas_form(self):
-        wizard = self
         datas_form = {}
-        datas_form["date_move_line_from"] = wizard.date_move_line_from
-        datas_form["last_def_date_print"] = wizard.last_def_date_print
-        datas_form["date_move_line_to"] = wizard.date_move_line_to
-        datas_form["l10n_it_count_fiscal_page_base"] = wizard.fiscal_page_base
-        datas_form["progressive_debit"] = wizard.progressive_debit
-        datas_form["progressive_credit"] = wizard.progressive_credit
-        datas_form["start_row"] = wizard.start_row
-        datas_form["daterange"] = wizard.daterange.id
-        datas_form["year_footer"] = wizard.year_footer
+        datas_form["date_move_line_from"] = self.date_move_line_from
+        datas_form["last_def_date_print"] = self.last_def_date_print
+        datas_form["date_move_line_to"] = self.date_move_line_to
+        datas_form["l10n_it_count_fiscal_page_base"] = self.fiscal_page_base
+        datas_form["progressive_debit"] = self.progressive_debit
+        datas_form["progressive_credit"] = self.progressive_credit
+        datas_form["start_row"] = self.start_row
+        datas_form["daterange"] = self.daterange.id
+        datas_form["year_footer"] = self.year_footer
+        # Follow code is brutal because central journal is never printed concurrently
+        # and anyway orientation is a company preference
+        paperformat = self.env.ref("l10n_it_account.l10n_it_account_a4_portrait")
+        paperformat.orientation = self.orientation
         return datas_form
 
     @api.multi

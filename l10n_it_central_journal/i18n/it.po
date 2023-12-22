@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_central_journal
+# 	* l10n_it_central_journal
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 02:13+0000\n"
-"PO-Revision-Date: 2023-09-28 02:13+0000\n"
+"POT-Creation-Date: 2023-12-22 11:18+0000\n"
+"PO-Revision-Date: 2023-12-22 13:18+0100\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.report.xml,name:l10n_it_central_journal.action_report_giornale
@@ -87,10 +88,10 @@ msgstr "Data"
 #: model:ir.model,name:l10n_it_central_journal.model_date_range
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
-msgstr "Intervallo data"
+msgstr "Intervallo date"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:207
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:221
 #, python-format
 msgid "Date already printed"
 msgstr "Data già stampata"
@@ -165,6 +166,11 @@ msgid "Journals"
 msgstr "Registri sezionali"
 
 #. module: l10n_it_central_journal
+#: selection:wizard.giornale,orientation:0
+msgid "Landscape"
+msgstr "Orizzontale"
+
+#. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale___last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale___last_update
 msgid "Last Modified on"
@@ -201,8 +207,8 @@ msgid "Layout"
 msgstr "Impaginazione"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:205
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:209
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:219
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:223
 #, python-format
 msgid "Missing records"
 msgstr "Registrazioni mancanti"
@@ -213,23 +219,33 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:187
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:213
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:201
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:227
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato nella selezione corrente"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:202
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:216
 #, python-format
 msgid "No fiscal date range found! Please create one"
-msgstr "nessun intervallo date fiscale! Per favore impostarne almeno uno"
+msgstr "Nessun intervallo date fiscale! Per favore impostarne almeno uno"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:199
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:213
 #, python-format
 msgid "Only posted records"
 msgstr "Solo registrazioni contabilizzate"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_orientation
+msgid "Orientation"
+msgstr "Orientamento"
+
+#. module: l10n_it_central_journal
+#: selection:wizard.giornale,orientation:0
+msgid "Portrait"
+msgstr "Verticale"
 
 #. module: l10n_it_central_journal
 #: selection:wizard.giornale,target_move:0
@@ -260,7 +276,7 @@ msgstr "Dare progressivo"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_debit
 msgid "Progressive debit"
-msgstr "Progressivo dare"
+msgstr "Dare progressivo"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_line_number
@@ -280,7 +296,7 @@ msgstr "Pronto per la stampa"
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Ref"
-msgstr "Ammin"
+msgstr "Rif"
 
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_report
@@ -300,12 +316,12 @@ msgstr "Riga iniziale"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_print_state
 msgid "State"
-msgstr "Stato Federale"
+msgstr "Stato"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_target_move
 msgid "Target Move"
-msgstr "Target Move"
+msgstr "Finalità registrazioni"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_to
@@ -336,5 +352,3 @@ msgstr "o"
 #: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
 msgid "report.l10n_it_central_journal.report_giornale"
 msgstr "report.l10n_it_central_journal.report_giornale"
-
-

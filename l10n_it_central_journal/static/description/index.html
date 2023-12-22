@@ -1,62 +1,208 @@
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#162832;">Italian Localization - Account central journal / Stampa libro giornale fiscale.</h2>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Print fiscal account journal
+</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Account Central Journal</p>
+            <h2 class="oe_slogan" style="color:#162832;">Stampa libro giornale fiscale
+</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Stampa libro giornale fiscale.
+            <p class="oe_mt16" align="justify">This module prints the italian fiscal journal.
 <p align="justify">
-Questo modulo in alcune versioni &#232; chiamato account_central_journal.
-</p></p>
+Italian law requires some specific data on journal layout: this module
+respect these rules.
+</p><p align="justify">
+This module, sometime, is called account_central_journal.
+</p>
+</p>
         </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">
+<code>
+    Cosa &#232;:
+</code>
+<p align="justify">
+Questo modulo permette di stampare il libro giornale secondo le regole legali e
+fiscali italiane.
+Questo modulo differisce dall'analogo modulo OCA per alcune caratteristiche.
+Si prega di leggere attentamente le caratteristiche riportate in basso.
+</p><p align="justify">
+</p><p align="justify">
+</p><p align="justify">
+
+<code>
+    Destinatari:
+</code>
+</p><p align="justify">
+Tutti i soggetti passivi IVA
+</p><p align="justify">
+
+<code>
+    Normativa e prassi:
+</code>
+</p><p align="justify">
+<ul>
+<li><a href="https://def.finanze.it/DocTribFrontend/decodeurn?urn=urn:doctrib::DPR:1972-10-26;633_art39">Articolo 39 del  DPR n. 633/72 - Tenuta e conservazione documenti</a></li>
+<li><a href="https://def.finanze.it/DocTribFrontend/decodeurn?urn=urn:doctrib::DPR:1973-09-29;600_art22">Articolo 22 del  DPR n. 600/72 - Tenuta e conservazione documenti</a></li>
+</ul>
+</p>
+</p>
+        </div>
+        <img src="/l10n_it_central_journal/static/description/description.png" alt="ITA - Account central journal" style="width:98%;max-width:1140px"/>
+
     </div>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">OCA comparation / Confronto con OCA</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Features | Caratteristiche</h3>
         <div class="oe_span12">
 <table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
-<td>Description / Descrizione</td><td>OCA</td><td>Zeroincombenze</td><td>Notes / Note</td>
+<td>Description</td><td>Descrizione</td><td>Z0incombenze(R)</td><td>OCA</td><td>Note(s)</td><td/>
 </tr><tr>
-<td>Print layout / Impaginazione</td><td/><td>Min larghezza colonne</td><td>Miglioramenti layout</td>
+<td>Number sequence</td><td>Numerazione progressiva</td><td>&#9989;</td><td>&#9989;</td><td>Art. 2219 del CC</td><td/>
 </tr><tr>
-<td>Print layout / Impaginazione</td><td>Partner column</td><td>Nominativo integrato conto</td><td/>
+<td>Separation between moves</td><td>Riga separazione tra registrazioni</td><td>&#9989;</td><td>&#10060;</td><td/><td/>
 </tr><tr>
-<td>Journal search</td><td>Without company</td><td>Per azienda</td><td>Gestione multi-company</td>
+<td>Print layout</td><td>Impaginazione</td><td>Min larghezza colonne</td><td/><td>Miglioramenti layout</td><td/>
 </tr><tr>
-<td>Targert move</td><td>All</td><td>Solo contabilizzato</td><td>In stampa ufficiale &#232; un controllo bloccante</td>
+<td>Print layout</td><td>Impaginazione</td><td>Importi a zero non stampati</td><td>&#10060;</td><td/><td/>
 </tr><tr>
-<td>Date search</td><td/><td/><td>Procedimento modificato</td>
+<td>Journal search</td><td>Ricerca sezionali</td><td>Per azienda</td><td/><td>Gestione multi-company</td><td/>
 </tr><tr>
-<td>Ordine di stampa</td><td>date/name</td><td>date/name/id</td><td/>
+<td>Targert move</td><td>Finalit&#224; registrazioni</td><td>Solo contabilizzato</td><td>All</td><td>In stampa ufficiale &#232; un controllo bloccante</td><td/>
+</tr><tr>
+<td>Date search</td><td>Ricerca per data</td><td/><td/><td>Procedimento modificato</td><td/>
+</tr><tr>
+<td>Print order</td><td>Ordine di stampa</td><td>date/name/id</td><td>date/name</td><td/><td/>
+</tr><tr>
+<td>Final print</td><td>Stampa ufficiale</td><td>Aggiorna pagina su anno fiscale</td><td>&#10060;</td><td/><td/>
+</tr><tr>
+<td>Paper orientation</td><td>Orientamento carta</td><td>Orizzontale o verticale</td><td>Fixed</td><td/><td/>
+</tr><tr>
 </tr></table>
+
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">ChangeLog History / Cronologia modifiche</h3>
-        <div class="oe_span12">
-<h3>10.0.0.0.7 (2023-09-28)</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Configuration &#187; Accounting &#187; Date Ranges
 <p align="justify">
+Create a date range of type "Fiscal Year" or set "Fiscal Year" value to
+a date range to print.
+This record gather the fiscal progressive values.
+</p>
+</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Intervalli date
+<p align="justify">
+Creare un intervallo date di tipo "Anno fiscale" oppure assegnare il tipo "Annno fiscale"
+all'inteervallo date da stampare.
+Questo record raccoglie i dati fiscali progressivi.
+</p>
+</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Reports &#187; Central Journal
+<p align="justify">
+Set value to print.
+</p><p align="justify">
+<ul>
+<li>Date Range: choice fiscal year date range to print</li>
+<li>Journal: journal list to print; default: all journals are printed</li>
+<li>Layout - Orientation: choice Portrit or Landscape (default) orientation</li>
+<li>Layout - Target Move: which entries with specific state to print (default posted)</li>
+<li>Layout - Last Printed Page: page number printed in previous journal (fiscal requirement)</li>
+<li>Layout - Start Row: 1st row number, next to previous journal last line (fiscal requirement)</li>
+<li>Layout - Year for footer: fiscal year to print in journal footer (fiscal requirement)</li>
+</ul>
+</p><p align="justify">
+To print, click on button <span style="color:white;background-color:#7C7BAD">&#160;Print&#160;</span> or <span style="color:white;background-color:#7C7BAD">&#160;Final&#160;print&#160;</span>.
+Final Print cannot be repeated and set layout values on data range
+</p>
+</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Rendiconti &#187; Libro Giornale
+<p align="justify">
+Impostare i parametri di stampa.
+</p><p align="justify">
+<ul>
+<li>Intervallo date: scegliere l'intervallo date fiscale da stampare</li>
+<li>Sezionali: lista sezionali da stampare (predefinito tutti)</li>
+<li>Impaginazione - Orientamento: sceglire orizzontale (predefinto) o verticale</li>
+<li>Impaginazione - Finalit&#224; registrazioni: stato delle registrazioni da stampare (predefinito contabilizzate)</li>
+<li>Impaginazione - Ultima pagina su bollato: numero di pagina stampato nel precedente giornale (obbligo fiscale)</li>
+<li>Impaginazione - Riga iniziale: primo numero di riga di stampa,successivo all'ultima del precedente giornale (obbligo fiscale)</li>
+<li>Impaginazione - Anno nel piede: anno fiscale da riportare nel piede del giornale (obbligo fiscale)</li>
+</ul>
+</p><p align="justify">
+Per stampare fare click sul bottone <span style="color:white;background-color:#7C7BAD">&#160;Stampa&#160;</span> o <span style="color:white;background-color:#7C7BAD">Stampa&#160;definitiva</span>.
+La stampa definitiva non pu&#242; essere ripetuta e aggiorna i dati fiscali
+nell'intervallo date selezionato.
+</p>
+</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
+        <div class="oe_span12">
+<h4>10.0.0.0.8 (2023-12-22)</h4>
+<p align="justify">
+<ul>
+<li>[IMP] Layout orientation / Orientamento di stampa</li>
+<li>[IMP] FOnt size 9px / Dimensione fotn 9px</li>
+<li>[QUA] Test coverage 32% (198: 134+64) [0 TestPoints] - quality rating 39 (target 100)</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.0.0.7 (2023-09-28)</h4>
+</p><p align="justify">
 <ul>
 <li>[FIX] 1st line numer / Primo numero di riga</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.0.0.6 (2023-07-31)</h3>
+<h4>10.0.0.0.6 (2023-07-31)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Upgraded layout / Aggiornamento impaginazione</li>
-<li>[FIX] Final print: update result / Stampa ufficiale aggiorna dati su anno fiscale</li>
+<li>[FIX] Final print: update result / Stampa ufficiale aggiorna dati su anno fiscale
+ </li>
 </ul>
- 
 </p>
+
         </div>
     </div>
 </section>
@@ -66,28 +212,33 @@ Questo modulo in alcune versioni &#232; chiamato account_central_journal.
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16">Authors | Autori:</p>
             <p class="oe_mt16"><ul>
-<li><a href="https://www.dinamicheaziendali.it/">Dinamiche Aziendali</a></li>
-<li><a href="https://odoo-community.org/">Odoo Community Association (OCA)</a></li>
-<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
-</ul></p>
+<li><a href="https://www.dinamicheaziendali.it">Dinamiche Aziendali</a></li>
+<li><a href="https://odoo-community.org">Odoo Community Association (OCA)</a></li>
+<li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
+</ul>
+</p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors / Contributi da:</p>
+            <p class="oe_mt16">Contributors | Contributi da:</p>
             <p class="oe_mt16"><ul>
-<li>Gianmarco Conte &lt;gconte@dinamicheaziendali.it&gt;</li>
-<li>Lara Baggio &lt;lbaggio@linkgroup.it&gt;</li>
-<li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
-</ul></p>
+<li><a href="mailto:gconte@dinamicheaziendali.it">Gianmarco Conte</a></li>
+<li><a href="mailto:lbaggio@linkgroup.it">Lara Baggio</a></li>
+<li><a href="mailto:antoniomaria.vigliotti@gmail.com">Antonio Maria Vigliotti</a></li>
+</ul>
+</p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <p>This module is maintained by the <b>SHS_AV s.r.l.</b>.</p>
+            <p>This module is maintained by the <b><a href="https://www.shs-av.com">SHS_AV s.r.l.</a></b>.</p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
+        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy ">l10n-italy
+</a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2023-12-22
+</p>
     </div>
 </section>

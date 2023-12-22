@@ -1,0 +1,11 @@
+Description | Descrizione,Z0incombenze(R),OCA,Note(s)
+Number sequence | Numerazione progressiva,✅,✅,Art. 2219 del CC
+Separation between moves | Riga separazione tra registrazioni,✅,❌,
+Print layout | Impaginazione,Min larghezza colonne,,Miglioramenti layout
+Print layout | Impaginazione,Importi a zero non stampati,❌,
+Journal search | Ricerca sezionali,Per azienda,,Gestione multi-company
+Targert move | Finalità registrazioni,Solo contabilizzato,All,In stampa ufficiale è un controllo bloccante
+Date search | Ricerca per data,,,Procedimento modificato
+Print order | Ordine di stampa,date/name/id,date/name,
+Final print | Stampa ufficiale,Aggiorna pagina su anno fiscale,❌,
+Paper orientation | Orientamento carta,Orizzontale o verticale,Fixed,

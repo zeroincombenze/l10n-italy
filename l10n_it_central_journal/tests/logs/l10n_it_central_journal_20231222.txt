@@ -1,0 +1,38 @@
+2023-12-22 13:14:41,000 329670 DAEMON test_l10n_it_central_journal_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2023-12-22 12:14:46,190 331185 INFO ? odoo: Odoo version 10.0
+2023-12-22 12:14:46,191 331185 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_central_journal/tests/logs/zero10.l10n-italy.l10n_it_central_journal.conf
+2023-12-22 12:14:46,191 331185 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2023-12-22 12:14:46,191 331185 INFO ? odoo: database: odoo10@localhost:default
+2023-12-22 12:14:46,219 331185 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:24279
+2023-12-22 12:14:46,239 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading 1 modules...
+2023-12-22 12:14:46,359 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: 1 modules loaded in 0.12s, 0 queries
+2023-12-22 12:14:47,355 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading 35 modules...
+2023-12-22 12:14:47,514 331185 INFO test_l10n_it_central_journal_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2023-12-22 12:14:47,670 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: 35 modules loaded in 0.31s, 0 queries
+2023-12-22 12:14:47,675 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading 36 modules...
+2023-12-22 12:14:48,035 331185 INFO test_l10n_it_central_journal_10 odoo.modules.registry: module l10n_it_central_journal: creating or updating database tables
+2023-12-22 12:14:48,352 331185 INFO test_l10n_it_central_journal_10 odoo.models: Storing computed values of wizard.giornale fields company_id
+2023-12-22 12:14:48,408 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading l10n_it_central_journal/security/ir.model.access.csv
+2023-12-22 12:14:48,448 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading l10n_it_central_journal/report/reports.xml
+2023-12-22 12:14:48,498 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading l10n_it_central_journal/wizard/print_giornale.xml
+2023-12-22 12:14:48,579 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading l10n_it_central_journal/views/report_account_central_journal.xml
+2023-12-22 12:14:48,617 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: loading l10n_it_central_journal/views/date_range_view.xml
+2023-12-22 12:14:48,892 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: 36 modules loaded in 1.22s, 9 queries
+2023-12-22 12:14:49,449 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: Modules loaded.
+2023-12-22 12:14:49,454 331185 INFO test_l10n_it_central_journal_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2023-12-22 12:14:49,456 331185 INFO test_l10n_it_central_journal_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2023-12-22 12:14:49,521 331185 INFO test_l10n_it_central_journal_10 odoo.modules.registry: Registry changed, signaling through the database
+2023-12-22 12:14:49,522 331185 INFO test_l10n_it_central_journal_10 odoo.service.server: Initiating shutdown
+2023-12-22 12:14:49,522 331185 INFO test_l10n_it_central_journal_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_central_journal[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_central_journal/models/account.py              21      7    67%   33-42
+/home/odoo/10.0/l10n-italy/l10n_it_central_journal/models/central_journal.py      40     23    42%   23-49, 54-55, 60-70, 78-95
+/home/odoo/10.0/l10n-italy/l10n_it_central_journal/wizard/print_giornale.py      138    104    25%   12-14, 18-20, 28-43, 46-62, 109-112, 115-117, 120-151, 154-177, 180-194, 197-206, 209-238
+------------------------------------------------------------------------------------------------------------
+TOTAL                                                                            199    134    33%

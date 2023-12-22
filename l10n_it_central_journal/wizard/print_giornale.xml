@@ -29,6 +29,7 @@
                 </group>
                 <separator string="Layout" />
                 <group>
+                    <field name="orientation" />
                     <field name="target_move" />
                     <field name="fiscal_page_base" />
                     <field name="start_row" />
@@ -70,7 +71,6 @@
         parent="account.menu_finance_reports"
         action="action_giornale"
         id="menu_giornale"
-        icon="STOCK_PRINT"
     />
 
 </odoo>
