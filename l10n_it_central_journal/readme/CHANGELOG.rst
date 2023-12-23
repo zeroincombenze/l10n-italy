@@ -1,8 +1,8 @@
-10.0.0.0.8 (2023-12-22)
+10.0.0.0.8 (2023-12-23)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Layout orientation / Orientamento di stampa
-* [IMP] FOnt size 9px / Dimensione fotn 9px
+* [IMP] Font size 9px / Dimensione fotn 9px
 * [QUA] Test coverage 33% (199: 134+65) [0 TestPoints] - quality rating 40 (target 100)
 
 10.0.0.0.7 (2023-09-28)

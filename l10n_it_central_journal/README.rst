@@ -207,8 +207,8 @@ ChangeLog History | Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Layout orientation / Orientamento di stampa
-* [IMP] FOnt size 9px / Dimensione fotn 9px
-* [QUA] Test coverage 32% (198: 134+64) [0 TestPoints] - quality rating 39 (target 100)
+* [IMP] Font size 9px / Dimensione fotn 9px
+* [QUA] Test coverage 33% (199: 134+65) [0 TestPoints] - quality rating 40 (target 100)
 
 10.0.0.0.7 (2023-09-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -275,7 +275,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-12-22
+Last Update / Ultimo aggiornamento: 2023-12-23
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
