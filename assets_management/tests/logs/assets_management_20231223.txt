@@ -1,0 +1,148 @@
+2023-12-23 16:49:29,000 1396543 DAEMON test_odoo_12 run_odoo_debug.sh: cd /home/odoo/12.0/venv_odoo && source ./bin/activate
+2023-12-23 15:49:34,838 1398075 INFO ? odoo: Odoo version 12.0 
+2023-12-23 15:49:34,838 1398075 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/assets_management/tests/logs/zero12.l10n-italy.assets_management.conf 
+2023-12-23 15:49:34,838 1398075 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/apps-store', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/business-requirement', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/geospatial', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/iot', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/mgmtsystem', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/manufacture-reporting', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/mis-builder-contrib', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/pos', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/project-agile', '/home/odoo/12.0/project-reporting', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2023-12-23 15:49:34,838 1398075 INFO ? odoo: database: odoo12@localhost:default 
+2023-12-23 15:49:34,942 1398075 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2023-12-23 15:49:35,070 1398075 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:31567 
+2023-12-23 15:49:35,088 1398075 INFO test_odoo_12 odoo.modules.loading: loading 1 modules... 
+2023-12-23 15:49:35,096 1398075 INFO test_odoo_12 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries 
+2023-12-23 15:49:35,219 1398075 INFO test_odoo_12 odoo.modules.loading: updating modules list 
+2023-12-23 15:49:35,223 1398075 INFO test_odoo_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2023-12-23 15:49:45,451 1398075 INFO test_odoo_12 odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['assets_management'] to user __system__ #1 via n/a 
+2023-12-23 15:49:45,807 1398075 INFO test_odoo_12 odoo.modules.loading: loading 40 modules... 
+2023-12-23 15:49:46,167 1398075 INFO test_odoo_12 odoo.modules.loading: 40 modules loaded in 0.36s, 0 queries 
+2023-12-23 15:49:46,173 1398075 INFO test_odoo_12 odoo.modules.loading: loading 41 modules... 
+2023-12-23 15:49:46,941 1398075 INFO test_odoo_12 odoo.modules.registry: module assets_management: creating or updating database tables 
+2023-12-23 15:49:48,577 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.invoice.asset_ids 
+2023-12-23 15:49:48,584 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.invoice.dep_line_ids 
+2023-12-23 15:49:48,626 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.invoice.line.asset_ids 
+2023-12-23 15:49:48,634 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.invoice.line.dep_line_ids 
+2023-12-23 15:49:48,695 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.move.asset_ids 
+2023-12-23 15:49:48,702 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.move.dep_line_ids 
+2023-12-23 15:49:48,759 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.move.line.asset_ids 
+2023-12-23 15:49:48,766 1398075 INFO test_odoo_12 odoo.models: Storing computed values of account.move.line.dep_line_ids 
+2023-12-23 15:49:48,811 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.asset.state 
+2023-12-23 15:49:48,915 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_depreciable_updated 
+2023-12-23 15:49:48,916 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_depreciated 
+2023-12-23 15:49:48,917 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_gain 
+2023-12-23 15:49:48,917 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_historical 
+2023-12-23 15:49:48,918 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_in 
+2023-12-23 15:49:48,919 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_loss 
+2023-12-23 15:49:48,920 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_out 
+2023-12-23 15:49:48,920 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.amount_residual 
+2023-12-23 15:49:48,928 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.last_depreciation_date 
+2023-12-23 15:49:48,932 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.partial_dismiss_percentage 
+2023-12-23 15:49:48,934 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.state 
+2023-12-23 15:49:48,959 1398075 INFO test_odoo_12 odoo.models: Storing computed values of asset.depreciation.line.balance 
+2023-12-23 15:49:49,814 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/security/ir.model.access.csv 
+2023-12-23 15:49:49,885 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/security/res_groups.xml 
+2023-12-23 15:49:50,380 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/security/rules.xml 
+2023-12-23 15:49:50,510 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/data/ir_cron.xml 
+2023-12-23 15:49:50,537 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/data/asset_data.xml 
+2023-12-23 15:49:50,581 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/data/asset_journal_data.xml 
+2023-12-23 15:49:50,625 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/report/layout.xml 
+2023-12-23 15:49:50,654 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/report/paperformat.xml 
+2023-12-23 15:49:50,672 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/report/templates/asset_journal.xml 
+2023-12-23 15:49:51,104 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/report/templates/asset_previsional.xml 
+2023-12-23 15:49:51,452 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/report/reports.xml 
+2023-12-23 15:49:51,503 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/action_client.xml 
+2023-12-23 15:49:51,516 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_menuitems.xml 
+2023-12-23 15:49:51,584 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/account_invoice.xml 
+2023-12-23 15:49:51,873 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/account_move.xml 
+2023-12-23 15:49:52,021 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset.xml 
+2023-12-23 15:49:52,135 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_accounting_info.xml 
+2023-12-23 15:49:52,227 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_category.xml 
+2023-12-23 15:49:52,300 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_depreciation.xml 
+2023-12-23 15:49:52,371 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_depreciation_line.xml 
+2023-12-23 15:49:52,463 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_depreciation_line_type.xml 
+2023-12-23 15:49:52,533 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_depreciation_mode.xml 
+2023-12-23 15:49:52,603 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_depreciation_type.xml 
+2023-12-23 15:49:52,676 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/views/asset_tag.xml 
+2023-12-23 15:49:52,744 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/account_invoice_manage_asset_view.xml 
+2023-12-23 15:49:52,819 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/account_move_manage_asset_view.xml 
+2023-12-23 15:49:52,877 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/asset_generate_depreciation_view.xml 
+2023-12-23 15:49:52,929 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/asset_journal_report_view.xml 
+2023-12-23 15:49:52,976 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/asset_previsional_report_view.xml 
+2023-12-23 15:49:53,030 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/asset_generate_warning_view.xml 
+2023-12-23 15:49:53,060 1398075 INFO test_odoo_12 odoo.modules.loading: loading assets_management/wizard/asset_generate_open_view.xml 
+2023-12-23 15:49:53,099 1398075 INFO test_odoo_12 odoo.modules.loading: Module assets_management: loading demo 
+2023-12-23 15:49:53,654 1398075 INFO test_odoo_12 odoo.modules.module: odoo.addons.assets_management.tests.test_assets_management running tests. 
+2023-12-23 15:49:53,655 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.test_assets_management: test_asset (odoo.addons.assets_management.tests.test_assets_management.TestAssets) 
+2023-12-23 15:49:54,814 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.testenv: 🎺🎺🎺 Starting test v2.0.14 (debug_level=0, commit=True) 
+2023-12-23 15:49:54,818 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.testenv: 🎺🎺🎺 Testing module: assets_management (12.0.1.0.0_30) 
+2023-12-23 15:49:57,195 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.test_assets_management: 🎺 Testing test_asset 
+2023-12-23 15:49:58,608 1398075 INFO test_odoo_12 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [21, 20, 23, 22, 25, 24, 27, 26] 
+2023-12-23 15:49:58,640 1398075 INFO test_odoo_12 odoo.models.unlink: User #1 deleted account.move records with IDs: [8, 9, 10, 11] 
+2023-12-23 15:49:58,706 1398075 INFO test_odoo_12 odoo.models.unlink: User #1 deleted asset.depreciation.line records with IDs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] 
+2023-12-23 15:49:59,513 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,514 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,515 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,515 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,830 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,830 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,831 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:49:59,831 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,136 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,136 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,137 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,137 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,442 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,442 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,443 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:00,443 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:02,227 1398075 INFO test_odoo_12 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [41, 40, 43, 42, 45, 44, 47, 46] 
+2023-12-23 15:50:02,258 1398075 INFO test_odoo_12 odoo.models.unlink: User #1 deleted account.move records with IDs: [15, 16, 17, 18] 
+2023-12-23 15:50:02,342 1398075 INFO test_odoo_12 odoo.models.unlink: User #1 deleted asset.depreciation.line records with IDs: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] 
+2023-12-23 15:50:04,611 1398075 WARNING test_odoo_12 odoo.models: Comparing apples and oranges: wizard.asset.generate.depreciation(3,) == 9 (/home/odoo/12.0/odoo/api.py:807) 
+2023-12-23 15:50:04,611 1398075 WARNING test_odoo_12 odoo.models: Comparing apples and oranges: wizard.asset.generate.depreciation(3,) == 9 (/home/odoo/12.0/odoo/api.py:807) 
+2023-12-23 15:50:04,674 1398075 WARNING test_odoo_12 odoo.addons.base.models.res_currency: The `compute` method is deprecated. Use `_convert` instead 
+2023-12-23 15:50:07,429 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.testenv: ✨ Test data available on database test_odoo_12 
+2023-12-23 15:50:07,429 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.testenv: 🏆🥇 377 tests SUCCESSFULLY completed 
+2023-12-23 15:50:07,617 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.test_assets_management: Ran 1 test in 13.962s 
+2023-12-23 15:50:07,617 1398075 INFO test_odoo_12 odoo.addons.assets_management.tests.test_assets_management: OK 
+2023-12-23 15:50:07,617 1398075 INFO test_odoo_12 odoo.modules.module: odoo.addons.assets_management.tests.test_assets_management tested in 13.96s, 12110 queries 
+2023-12-23 15:50:07,682 1398075 INFO test_odoo_12 odoo.modules.loading: 41 modules loaded in 21.51s, 12133 queries 
+2023-12-23 15:50:08,534 1398075 INFO test_odoo_12 odoo.modules.loading: Modules loaded. 
+2023-12-23 15:50:08,545 1398075 INFO test_odoo_12 odoo.service.server: Starting post tests 
+2023-12-23 15:50:08,547 1398075 INFO test_odoo_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2023-12-23 15:50:08,547 1398075 INFO test_odoo_12 odoo.service.server: Initiating shutdown 
+2023-12-23 15:50:08,548 1398075 INFO test_odoo_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36massets_management[0m (12.0): [32mSUCCESS![0m
++===================================================================
+
+Name                                                                                      Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------------------------------------------
+/home/odoo/12.0/l10n-italy/assets_management/models/account_account.py                        9      4    56%   14-38
+/home/odoo/12.0/l10n-italy/assets_management/models/account_fiscal_year.py                   18      2    89%   26-27
+/home/odoo/12.0/l10n-italy/assets_management/models/account_invoice.py                       79     41    48%   35, 39, 47-88, 96, 111-117, 125, 132
+/home/odoo/12.0/l10n-italy/assets_management/models/account_invoice_line.py                  42      4    90%   29, 33, 46, 85
+/home/odoo/12.0/l10n-italy/assets_management/models/account_journal.py                        9      4    56%   14-30
+/home/odoo/12.0/l10n-italy/assets_management/models/account_move.py                          57     30    47%   35, 39, 47-57, 65, 71, 80-86, 97-117, 130
+/home/odoo/12.0/l10n-italy/assets_management/models/account_move_line.py                     31      8    74%   29, 33, 46, 52, 61-67
+/home/odoo/12.0/l10n-italy/assets_management/models/asset.py                                151     57    62%   17-18, 22-28, 127, 140, 142, 146-159, 162-163, 166, 170, 179, 184, 188, 207-209, 212, 219-226, 229, 235-252, 255-272, 275-287, 297
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_accounting_info.py                108     25    77%   79, 85, 109-110, 113-116, 119, 130-132, 149, 161, 170, 179, 208, 215, 226, 243-253
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_category.py                        50     12    76%   16, 20, 25, 28, 41, 125-135, 138-143
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_category_depreciation_type.py      14      0   100%
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_depreciation.py                   417    106    75%   151, 155-157, 161, 166, 180, 184, 188, 190, 197-201, 210, 215, 220-222, 225-227, 230-232, 235-237, 240-251, 265, 272, 277, 292-294, 312-314, 339-341, 354-356, 417, 419, 421, 427, 467-468, 494-505, 530-538, 552, 589, 611-612, 663, 665, 672-687, 690-691, 719, 728-729, 758, 774, 777-778, 782, 794, 803, 818, 873-880, 887, 892, 898, 901, 907, 910-913
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_depreciation_line.py              329     90    73%   174, 179, 183, 185, 187, 190, 193, 224, 228, 234, 236-238, 247-249, 260-261, 264, 270, 276, 284, 289-296, 299-301, 304-315, 318-319, 326, 338, 342, 373-374, 382, 391-392, 404, 418, 435-436, 439-441, 444, 486, 488-489, 528, 534-539, 582-598, 601-616, 641-649, 652-659, 702, 706, 727, 730, 737
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_depreciation_line_type.py          33     17    48%   17, 34-46, 49-50, 53-61
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_depreciation_mode.py               45     14    69%   16, 46-55, 58-77, 80, 84, 94, 101
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_depreciation_mode_line.py          35     11    69%   49-57, 64, 75-76
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_depreciation_type.py               27     11    59%   16, 35-47, 50-56, 59-65, 68-74
+/home/odoo/12.0/l10n-italy/assets_management/models/asset_tag.py                              9      2    78%   14-15
+/home/odoo/12.0/l10n-italy/assets_management/report/asset_journal.py                        445    285    36%   18-20, 99-113, 116-122, 125-137, 142-151, 161-163, 166-171, 174-234, 252-265, 284-295, 298-301, 304-309, 336-337, 340-341, 344-385, 438-440, 443-444, 447-448, 451-480, 483-528, 531-565, 598-600, 603-604, 607-608, 611-618, 681-683, 686-687, 692-693, 696-847, 939-941, 944-946
+/home/odoo/12.0/l10n-italy/assets_management/report/asset_journal_xlsx.py                   165    105    36%   56-61, 67-131, 142-149, 152, 155-163, 166, 169-202, 205, 208-240, 243, 246-285, 288, 291-355, 358, 363-377, 380, 385-417, 420, 423-493, 497-499, 502-527, 550, 557-560, 564-609, 612-613, 616-619, 622-630, 640, 644, 648, 652, 656
+/home/odoo/12.0/l10n-italy/assets_management/report/asset_previsional.py                    475    308    35%   19-21, 104-118, 121-127, 130-142, 147-156, 166-168, 171-179, 182-264, 283-296, 315-324, 327-330, 336-341, 368-369, 372-373, 376-417, 470-472, 475-476, 479-480, 483-512, 515-560, 563-597, 630-632, 635-636, 639-640, 643-650, 711, 714-728, 731-733, 736-737, 742-743, 746-760, 763-768, 771-889, 980-982, 985-987
+/home/odoo/12.0/l10n-italy/assets_management/report/asset_previsional_xlsx.py               156     99    37%   55-60, 66-130, 141-147, 150, 153-161, 164, 167-200, 203, 206-238, 241, 244-283, 286, 289-353, 356, 361-375, 378, 381-451, 455-457, 460-483, 504, 511-514, 518-559, 562-563, 566-569, 572-580, 590, 594, 598, 602, 606
+/home/odoo/12.0/l10n-italy/assets_management/wizard/account_invoice_manage_asset.py         257    112    56%   16-17, 20-21, 131, 143, 149, 157, 181, 187, 197-210, 215-235, 246, 254, 259, 266, 269, 272-294, 304, 307, 310, 316, 323-325, 334-336, 340-370, 373-378, 409-531, 559, 577, 581, 611, 615, 648
+/home/odoo/12.0/l10n-italy/assets_management/wizard/account_move_manage_asset.py            271    226    17%   16-17, 20-21, 124-133, 136-155, 158-189, 192-214, 223-248, 256-265, 268-293, 301-321, 330-332, 336-344, 347-355, 374-456, 459-460, 463-464, 467-561, 564-667, 671-679, 683-686
+/home/odoo/12.0/l10n-italy/assets_management/wizard/asset_generate_depreciation.py          100     15    85%   15, 19, 26, 39, 47, 55, 58, 62, 104, 134, 136, 142, 162, 178, 240
+/home/odoo/12.0/l10n-italy/assets_management/wizard/asset_generate_open.py                   41     26    37%   15-20, 23-24, 27-29, 32-34, 37-39, 71-103
+/home/odoo/12.0/l10n-italy/assets_management/wizard/asset_generate_warning.py                13      0   100%
+/home/odoo/12.0/l10n-italy/assets_management/wizard/asset_journal_report.py                  92     59    36%   16, 22-26, 29-30, 33-34, 37-38, 41-42, 45-46, 49-50, 91-93, 96-98, 101-103, 106-108, 111-116, 119-136, 139-151, 154-155
+/home/odoo/12.0/l10n-italy/assets_management/wizard/asset_previsional_report.py              89     57    36%   16, 22-26, 29-30, 33-34, 37-38, 41-42, 45-46, 87-89, 92-94, 97-99, 102-104, 107-112, 115-132, 135-147, 150-151
+-----------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                      3567   1730    51%

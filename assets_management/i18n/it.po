@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (12.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-19 11:55+0000\n"
-"PO-Revision-Date: 2023-12-19 11:55+0000\n"
+"POT-Creation-Date: 2023-12-23 12:44+0000\n"
+"PO-Revision-Date: 2023-12-23 12:44+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -1745,12 +1745,12 @@ msgstr "Seguaci"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Seguaci (Channels)"
+msgstr "Chi sta seguendo (canali)"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguaci (Nominativi)"
+msgstr "Chi sta seguendo (partner)"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation_line.py:250
@@ -1760,7 +1760,6 @@ msgid ""
 msgstr ""
 "Le seguenti linee sono collegato a registrazioni contabilizzare e non possono "
 "essere eliminate:\n"
-":"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation.py:202
@@ -1974,7 +1973,7 @@ msgstr "Px verificato/a nuovo messaggii require your attention."
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Px verificato/a, nuovo messaggii require your attention."
+msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_has_error
@@ -2901,13 +2900,13 @@ msgstr "Richiede Nr Amm.to"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__res_id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_accounting_doc__res_id
 msgid "Res"
-msgstr "Rif:"
+msgstr "Rif"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__res_model
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_accounting_doc__res_model
 msgid "Res Model"
-msgstr "Rif: Modello"
+msgstr "Rif"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:348
