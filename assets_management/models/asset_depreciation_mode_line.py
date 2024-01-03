@@ -57,7 +57,7 @@ class AssetDepreciationModeLine(models.Model):
                 self.percentage = 0
 
     def get_depreciation_amount_multiplier(self):
-        multiplier = 1
+        multiplier = 1.0
         nr = self._context.get("dep_nr")
         if nr is None:
             # Cannot compare to any line

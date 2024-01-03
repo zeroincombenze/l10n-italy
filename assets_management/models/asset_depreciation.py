@@ -507,7 +507,7 @@ class AssetDepreciation(models.Model):
     def get_computed_amounts(self, date_to=None, ext=None):
         """Evaluate all depreciation amounts:
         - amount_depreciated_updated: asset initial value + 'in' & 'out' lines
-        - last_depreciated_date: last date with 'in' & 'out' lines (only if ext)
+        - stuck_depreciable_date: last date with 'in' & 'out' lines (only if ext)
         - last_depreciation_date: last date of depreciation line
         - amount_depreciated: sum of 'depreciated' lines
         - amount_historical: sum of 'historical' lines
@@ -537,7 +537,7 @@ class AssetDepreciation(models.Model):
             if ext:
                 vals.update(
                     {
-                        "last_depreciable_date": False,
+                        "stuck_depreciable_date": False,
                         "amount_depreciable": amt_dep,
                     }
                 )
@@ -545,7 +545,7 @@ class AssetDepreciation(models.Model):
             non_residual_types = self.line_ids.get_non_residual_move_types()
             update_move_types = self.line_ids.get_update_move_types()
             amt_residual = amt_update = percentage = 0.0
-            last_depreciable_date = False
+            stuck_depreciable_date = False
             last_depreciation_date = False
             for ln in self.line_ids:
                 if date_to and ln.date > date_to:
@@ -556,8 +556,8 @@ class AssetDepreciation(models.Model):
                     amt_update += ln.balance
                     if ln.partial_dismissal:
                         percentage += ln.partial_dismiss_percentage
-                    if not last_depreciable_date or ln.date > last_depreciable_date:
-                        last_depreciable_date = ln.date
+                    if not stuck_depreciable_date or ln.date > stuck_depreciable_date:
+                        stuck_depreciable_date = ln.date
                 if ln.move_type == "depreciated":
                     if not last_depreciation_date or ln.date > last_depreciation_date:
                         last_depreciation_date = ln.date
@@ -573,7 +573,7 @@ class AssetDepreciation(models.Model):
             if ext:
                 vals.update(
                     {
-                        "last_depreciable_date": last_depreciable_date,
+                        "stuck_depreciable_date": stuck_depreciable_date,
                         "amount_depreciable": amt_dep,
                     }
                 )
@@ -617,17 +617,17 @@ class AssetDepreciation(models.Model):
         fy_dep = fiscal_year_obj.get_fiscal_year_by_date(
             dep_date, company=self.company_id
         )
-        last_depreciable_date = self.get_computed_amounts(
+        stuck_depreciable_date = self.get_computed_amounts(
             date_to=fy_dep.date_to, ext=True
-        )["last_depreciable_date"]
+        )["stuck_depreciable_date"]
 
         if dep_date < fields.Date.from_string(fy_dep.date_to):
             # Partial depreciation
             multiplier *= self.get_pro_rata_temporis_multiplier(dep_date, "std")
-        elif last_depreciable_date and last_depreciable_date != fy_dep.date_from:
+        elif stuck_depreciable_date and stuck_depreciable_date > fy_dep.date_from:
             # asset with 'in' / 'out' moves
             multiplier *= self.get_pro_rata_temporis_multiplier(
-                last_depreciable_date + datetime.timedelta(1), "dte"
+                stuck_depreciable_date + datetime.timedelta(1), "dte"
             )
         elif self.pro_rata_temporis or self._context.get("force_prorata"):
             fy_start = fiscal_year_obj.get_fiscal_year_by_date(
@@ -822,7 +822,7 @@ class AssetDepreciation(models.Model):
                 dep_date, company=dep.company_id
             )
             date_from = dep.get_computed_amounts(date_to=fiscal_year.date_to, ext=True)[
-                "last_depreciable_date"
+                "stuck_depreciable_date"
             ]
             if date_from and date_from > fiscal_year.date_from:
                 date_from = date_from + datetime.timedelta(1)
