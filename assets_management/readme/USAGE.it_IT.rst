@@ -1,10 +1,19 @@
-È possibile creare e gestire cespiti dalla sezione contabilità di Odoo.
+La gestione beni ammmoritzzabili (cespiti) é una sezione della contabilità di Odoo.
 
-La configurazione dei cespiti dev'essere fatta andando in
-Cespiti -> Configurazione Cespiti, dove si trovano le categorie dei beni, i
-tipi e le modalità di ammortamento.
+Pr la configurazione dei cespiti:
 
-I cespiti possono essere creati manualmente o da fatture e registrazioni
-contabili. Gli ammortamenti possono essere generati utilizzando l'apposito
-wizard in Cespiti -> Gestione Cestpiti -> Genera Ammortamenti, o aprendo quello stesso wizard dalla
-scheda del cespite
+☰ Cespiti > Configurazione Cespiti > Tipi
+
+☰ Cespiti > Configurazione Cespiti > Modalità di ammortamento
+
+☰ Cespiti > Configurazione Cespiti > Categorie dei beni
+
+I beni (cespiti) possono essere creati da fatture o registrazioni contabili o del menù:
+
+☰ Cespiti > Gestione Cespiti
+
+Gli ammortamenti possono essere generati utilizzando l'apposito wizard in
+
+☰ Cespiti > Gestione Cespiti > Genera Ammortamenti
+
+☰ Cespiti > Gestione Cespiti > Eseguire lo stesso wizard dalla scheda del cespite

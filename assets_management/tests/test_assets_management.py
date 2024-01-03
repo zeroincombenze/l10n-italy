@@ -41,21 +41,18 @@ TESTBED_VALUES = {
     # Disposal rate 20%
     "asset_4.partial_dismis_percentage[-2]": 20,
 
-    "cat_1.percentage": 25,
-    "cat_2.percentage": 24,
-
     "asset_1.initial_amount": 100.0,
     "asset_1.purchase_amount": 1000,
-    "asset_1.initial_depreciation_amount": 12.5,
-    "asset_1.depreciation_amount[-3]": 125,
-    "asset_1.depreciated_amount[-3]": 125,
-    "asset_1.residual_amount[-3]": 875,
-    "asset_1.depreciation_amount[-2]": 250,
-    "asset_1.depreciated_amount[-2]": 375,
-    "asset_1.residual_amount[-2]": 625,
-    "asset_1.depreciation_amount[-1]": 250,
-    "asset_1.depreciated_amount[-1]": 625,
-    "asset_1.residual_amount[-1]": 375,
+    "asset_1.initial_depreciation_amount": 17.5,
+    "asset_1.depreciation_amount[-3]": 175,
+    "asset_1.depreciated_amount[-3]": 175,
+    "asset_1.residual_amount[-3]": 825,
+    "asset_1.depreciation_amount[-2]": 350,
+    "asset_1.depreciated_amount[-2]": 525,
+    "asset_1.residual_amount[-2]": 475,
+    "asset_1.depreciation_amount[-1]": 350,
+    "asset_1.depreciated_amount[-1]": 875,
+    "asset_1.residual_amount[-1]": 125,
 
     "asset_2.initial_amount": 250,
     "asset_2.purchase_amount": 2500,
@@ -81,10 +78,7 @@ TESTBED_VALUES = {
     "asset_3.residual_amount_pre[-2]": 813.36,
     "asset_3.down_value[-2]": 725,
     "asset_3.depreciation_amount[-2]": 51.8,
-    "asset_3.depreciated_amount_post[-2]": 238.44,
     "asset_3.purchase_amount_post[-2]": 275,
-    "asset_3.residual_amount[_post[-2]": 36.56,
-    # "asset_3.depreciation_amount[-2]": 113.44,
     "asset_3.depreciated_amount[-2]": 238.44,
     "asset_3.residual_amount[-2]": 36.56,
     "asset_3.depreciation_amount[-1]": 36.56,
@@ -105,8 +99,6 @@ TESTBED_VALUES = {
     "asset_4.sold_value[-2]": 400.06,
     "asset_4.gain[-2]": 124.94,
     "asset_4.depreciation_amount[-2]": 211.26,
-    "asset_4.residual_amount[_post[-2]": 1888.68,
-    # "asset_4.depreciation_amount[-2]": 710.98,
     "asset_4.depreciated_amount[-2]": 710.98,
     "asset_4.residual_amount[-2]": 1888.68,
     "asset_4.depreciation_amount[-1]": 503.99,
@@ -274,10 +266,10 @@ class TestAssets(SingleTransactionCase):
             )
         self.assertEqual(dep.asset_id, asset, "Invalid dep. asset id!")
         self.assertEqual(dep.date, date_dep, "Invalid dep. date %s!" % dep.date)
-        # if depreciation_nr:
-        #     self.assertEqual(
-        #         dep.depreciation_nr, depreciation_nr, "Invalid depreciation number!"
-        #     )
+        if depreciation_nr:
+            self.assertEqual(
+                dep.depreciation_nr, depreciation_nr, "Invalid depreciation number!"
+            )
         self.assertEqual(dep.final, final, "Invalid dep. final flag!")
         self._check_4_move(dep)
 
@@ -395,7 +387,7 @@ class TestAssets(SingleTransactionCase):
                 date_dep,
                 asset,
                 amount=self.get_test_value(xref, "depreciation_amount[-1]"),
-                depreciation_nr=3 if xref in ("z0bug.asset_3", "z0bug.asset_4") else 2,
+                depreciation_nr=4 if xref in ("z0bug.asset_3", "z0bug.asset_4") else 3,
                 final=final,
             )
             for dep in asset.depreciation_ids:

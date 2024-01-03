@@ -485,7 +485,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         move = self.move_line_ids.mapped("move_id")
         move_nums = move.name
 
-        writeoff = 0
+        writeoff = 0.0
         for ln in self.move_line_ids:
             writeoff += ln.currency_id.compute(ln.credit - ln.debit, currency)
         writeoff = round(writeoff, digits)
@@ -493,8 +493,8 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         vals = {"depreciation_ids": []}
         for dep in asset.depreciation_ids:
             if dep.pro_rata_temporis:
-                dep_writeoff = writeoff * dep.get_pro_rata_temporis_multiplier(
-                    dismiss_date, "std"
+                dep_writeoff = round(writeoff * dep.get_pro_rata_temporis_multiplier(
+                    dismiss_date, "std"), digits
                 )
             else:
                 dep_writeoff = writeoff

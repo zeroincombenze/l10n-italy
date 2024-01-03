@@ -89,7 +89,7 @@ class AssetDepreciationMode(models.Model):
                 )
 
     def get_depreciation_amount_multiplier(self):
-        multiplier = 1
+        multiplier = 1.0
         if not self:
             return multiplier
 

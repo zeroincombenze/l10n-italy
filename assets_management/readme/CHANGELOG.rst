@@ -6,7 +6,7 @@
 * [FIX] Errato calcolo ammortamento in anno successivo a svalutazione/rivalutazione
 * [FIX] Valore iniziale da fattura se cambio (data) fattura
 * [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
-* [QUA] Test coverage 52% (3567: 1729+1838) [411 TestPoints] - quality rating 50 (target 100)
+* [QUA] Test coverage 52% (3567: 1729+1838) [462 TestPoints] - quality rating 52 (target 100)
 
 12.0.1.0.0_29 (2022-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
