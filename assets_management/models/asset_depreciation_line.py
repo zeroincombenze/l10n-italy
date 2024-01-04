@@ -165,7 +165,8 @@ class AssetDepreciationLine(models.Model):
         dep_lines = dep.with_context(
             depreciated_by_line=False
         ).generate_depreciation_lines(
-            datetime.strptime(vals["date"], "%Y-%m-%d").date()
+            datetime.strptime(vals["date"], "%Y-%m-%d").date(),
+            ignore_depreciated=False if vals["move_type"] == "in" else True
         )
         # dep_lines.generate_account_move()
         return dep_lines
@@ -209,7 +210,7 @@ class AssetDepreciationLine(models.Model):
                         },
                     )
                 ]
-            else:
+            elif dep_lines:
                 for acc_info in vals["asset_accounting_info_ids"]:
                     acc_info[2]["related_dep_line_id"] = dep_lines[0].id
 

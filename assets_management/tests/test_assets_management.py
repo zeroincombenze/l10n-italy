@@ -17,7 +17,6 @@
 # 7. Full (asset #1) and partial (asset #2) disposal
 #
 from datetime import datetime, date
-from calendar import isleap
 import logging
 
 from odoo.tools.float_utils import float_round
@@ -33,10 +32,12 @@ TESTBED_VALUES = {
     "date.eoy[-3]": date(date.today().year - 3, 12, 31),
     "date.eoy[-2]": date(date.today().year - 2, 12, 31),
     "date.eoy[-1]": date(date.today().year - 1, 12, 31),
-    "date.eoy": date(date.today().year, 12, 31),
-    # For leap year set (year - 2)-03-30
+    "date.eoy[0]": date(date.today().year, 12, 31),
+    "date.eoy[0.1]": date(date.today().year, 1, 31),
+    "date.eoy[0.2]": date(date.today().year, 1, 15),
+    # If leap year set (year - 2)-03-30
     "asset3.date_down[-2]": date(date.today().year - 2, 3, 31),
-    # For leap year set (year - 2)-07-30
+    # If leap year set (year - 2)-07-30
     "asset4.date_disposal[-2]": date(date.today().year - 2, 7, 31),
     # Disposal rate 20%
     "asset_4.partial_dismis_percentage[-2]": 20,
@@ -53,6 +54,15 @@ TESTBED_VALUES = {
     "asset_1.depreciation_amount[-1]": 350,
     "asset_1.depreciated_amount[-1]": 875,
     "asset_1.residual_amount[-1]": 125,
+    "asset_1.depreciation_amount[0.1]": 29.64,
+    "asset_1.depreciated_amount[0.1]": 904.64,
+    "asset_1.residual_amount[0.1]": 95.36,
+    "asset_1.depreciation_amount[0.2]": 14.34,
+    "asset_1.depreciated_amount[0.2]": 889.34,
+    "asset_1.residual_amount[0.2]": 110.66,
+    "asset_1.sale_amount[0.2]": 400.00,
+    "asset_1.sold_value[0.2]": 110.66,
+    "asset_1.gain[0.2]": 289.34,
 
     "asset_2.initial_amount": 250,
     "asset_2.purchase_amount": 2500,
@@ -66,6 +76,12 @@ TESTBED_VALUES = {
     "asset_2.depreciation_amount[-1]": 600,
     "asset_2.depreciated_amount[-1]": 1351.23,
     "asset_2.residual_amount[-1]": 1148.77,
+    "asset_2.depreciation_amount[0.1]": 50.82,
+    "asset_2.depreciated_amount[0.1]": 1402.05,
+    "asset_2.residual_amount[0.1]": 1697.95,
+    "asset_2.sale_amount[0]": 1000.00,
+    "asset_2.loss[0]": 97.95,
+
 
     "asset_3.initial_amount": 100.0,
     "asset_3.purchase_amount": 1000,
@@ -83,7 +99,13 @@ TESTBED_VALUES = {
     "asset_3.residual_amount[-2]": 36.56,
     "asset_3.depreciation_amount[-1]": 36.56,
     "asset_3.depreciated_amount[-1]": 275,
-    "asset_3.residual_amount[-1]": 0,
+    "asset_3.residual_amount[-1]": 0.0,
+    "asset_3.depreciation_amount[0.1]": 0.0,
+    "asset_3.depreciated_amount[0.1]": 275,
+    "asset_3.residual_amount[0.1]": 0.0,
+    "asset_3.sale_amount[0.2]": 250.00,
+    "asset_3.sold_value[0.2]": 250.00,
+    "asset_3.gain[0.2]": 250.00,
 
     "asset_4.initial_amount": 250.0,
     "asset_4.purchase_amount": 2500,
@@ -103,7 +125,10 @@ TESTBED_VALUES = {
     "asset_4.residual_amount[-2]": 1888.68,
     "asset_4.depreciation_amount[-1]": 503.99,
     "asset_4.depreciated_amount[-1]": 1214.97,
-    "asset_4.residual_amount[-1]": 884.97,
+    "asset_4.residual_amount[-1]": 1384.69,
+    "asset_4.depreciation_amount[0.1]": 42.69,
+    "asset_4.depreciated_amount[0.1]": 1257.66,
+    "asset_4.residual_amount[0.1]": 1342.0,
 }
 
 
@@ -135,39 +160,6 @@ class TestAssets(SingleTransactionCase):
 
     def get_test_value(self, xref, item):
         return TESTBED_VALUES[self.get_xref4test(xref, item)]
-
-    def set_sale_invoice_asset_4(self):
-        tax = self.get_sale_tax()
-        vals = {
-            "partner_id": self.env.ref("base.res_partner_2").id,
-            "type": "out_invoice",
-            "date_invoice":
-                TESTBED_VALUES["asset_4.date.disposal"].strftime("%Y-%m-%d"),
-            "invoice_line_ids": [],
-        }
-        vals["invoice_line_ids"].append(
-            (
-                0,
-                0,
-                {
-                    "name": "Asset Four",
-                    "account_id": self.asset_1.category_id.asset_account_id.id,
-                    "price_unit": TESTBED_VALUES["asset_4.sale_amount"],
-                    "quantiy": 1.0,
-                    "invoice_line_tax_ids": [(6, 0, [tax.id])],
-                },
-            )
-        )
-        self.sale_invoice4 = self.env["account.invoice"].create(vals)
-        self.sale_invoice4.journal_id.update_posted = True  # Assure invoice cancel
-        self.sale_invoice4.action_invoice_open()
-
-    def _day_rate(self, date_from, date_to, is_leap=None):
-        return ((date_to - date_from).days + 1) / (365 if not is_leap else 366)
-
-    def _remove_depreciation_lines(self, asset=None, date_from=None):
-        date_from = date_from or date(date.today().year, 1, 1)
-        self._get_depreciation_lines(asset=asset, date_from=date_from).unlink()
 
     def _get_depreciation_lines(
         self, asset=None, move_type=None, date_from=None, date_to=None
@@ -205,46 +197,6 @@ class TestAssets(SingleTransactionCase):
                 raise (
                     TypeError,
                     "Invalid line account for fund move %s" % dep.move_id.id,
-                )
-
-    def _check_4_move_gain(self, dep):
-        for line in dep.move_id.line_ids:
-            if line.account_id == self.account_gain:
-                self.assertEqual(
-                    dep.amount,
-                    line.credit,
-                    "Invalid credit amount for gain move %s" % dep.move_id.id,
-                )
-            elif line.account_id == self.account_fixed_assets:
-                self.assertEqual(
-                    dep.amount,
-                    line.debit,
-                    "Invalid debit amount for gain move %s" % dep.move_id.id,
-                )
-            else:
-                raise (
-                    TypeError,
-                    "Invalid line account for gain move %s" % dep.move_id.id,
-                )
-
-    def _check_4_move_out(self, dep):
-        for line in dep.move_id.line_ids:
-            if line.account_id == self.account_fixed_assets:
-                self.assertEqual(
-                    dep.amount,
-                    line.credit,
-                    "Invalid credit amount for out move %s" % dep.move_id.id,
-                )
-            elif line.account_id == self.account_loss:
-                self.assertEqual(
-                    dep.amount,
-                    line.debit,
-                    "Invalid debit amount for out move %s" % dep.move_id.id,
-                )
-            else:
-                raise (
-                    TypeError,
-                    "Invalid line account for out move %s" % dep.move_id.id,
                 )
 
     def _check_4_move(self, dep):
@@ -303,7 +255,7 @@ class TestAssets(SingleTransactionCase):
 
     def _initial_test_depreciation(self):
         """Run 1.st year test on all assets"""
-        date_dep = TESTBED_VALUES["date.eoy"]
+        date_dep = TESTBED_VALUES["date.eoy[0]"]
         self._run_wizard_4_depreciation(date_dep=date_dep)
         nr = 0
         for xref in ("z0bug.asset_1", "z0bug.asset_3"):
@@ -397,6 +349,28 @@ class TestAssets(SingleTransactionCase):
                     "Invalid depreciated amount for asset %s [-1]!" % asset.name,
                 )
 
+    def _test_depreciation_all_assets_y0_1(self, final):
+        """Run current year (jan, 31th) test on all assets"""
+        date_dep = TESTBED_VALUES["date.eoy[0.1]"]
+        self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
+        # Asset #3 is full depreciated
+        for xref in ("z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_4"):
+            asset = self.resource_browse(xref)
+            self._test_all_depreciation_lines(
+                date_dep,
+                asset,
+                amount=self.get_test_value(xref, "depreciation_amount[0.1]"),
+                depreciation_nr=5 if xref in ("z0bug.asset_3", "z0bug.asset_4") else 4,
+                final=final,
+            )
+            for dep in asset.depreciation_ids:
+                self.assertEqual(
+                    float_round(dep.amount_depreciated, 2),
+                    float_round(self.get_test_value(xref,
+                                                    "depreciated_amount[0.1]"), 2),
+                    "Invalid depreciated amount for asset %s [0.1]!" % asset.name,
+                )
+
     def _run_wizard_4_depreciation(
         self, date_dep=None, asset=None, final=False, windows_break=None
     ):
@@ -461,19 +435,104 @@ class TestAssets(SingleTransactionCase):
             depreciation_nr=2,
         )
 
-    def run_dismis_asset_4(self):
-        # date_dep = TESTBED_VALUES["asset4.date_disposal[-2]"]
-        # sale_value = TESTBED_VALUES["asset_4.sale_amount[-2]"]
-        # dep_line_model = self.env["asset.depreciation.line"]
-        xref_asset = "z0bug.asset_4"
-        # asset = self.resource_browse(xref_asset)
-        xref_invoice = "z0bug.sale_invoice_4"
+    def run_disposal_asset_1_3(self):
+        xref_asset = "z0bug.asset_1"
+        asset = self.resource_browse(xref_asset)
+        xref_invoice = "z0bug.sale_invoice_13"
         invoice = self.resource_browse(xref_invoice)
-        invoice.action_invoice_open()
-        xref_line = "z0bug.sale_invoice_4_1"
         act_windows = self.resource_edit(
             invoice, actions="open_wizard_manage_asset")
         self.assertTrue(self.is_action(act_windows))
+        xref_line = "z0bug.sale_invoice_13_1"
+        self.wizard(
+            act_windows=act_windows,
+            records=invoice,
+            web_changes=[
+                ("management_type", "dismiss"),
+                ("asset_id", xref_asset),
+                ("invoice_line_ids", xref_line),
+            ],
+            button_name="link_asset",
+            button_ctx={"show_asset": 0},
+        )
+
+        for dep in self._get_depreciation_lines(asset=asset,
+                                                move_type="loss",
+                                                date_from=invoice.date):
+            self.assertEqual(
+                float_round(dep.amount, 2),
+                float_round(self.get_test_value(xref_asset, "loss[0.2]"), 2),
+                "Invalid loss amount for asset %s!" % asset.name,
+            )
+
+        xref_asset = "z0bug.asset_3"
+        asset = self.resource_browse(xref_asset)
+        act_windows = self.resource_edit(
+            invoice, actions="open_wizard_manage_asset")
+        self.assertTrue(self.is_action(act_windows))
+        xref_line = "z0bug.sale_invoice_13_2"
+        self.wizard(
+            act_windows=act_windows,
+            records=invoice,
+            web_changes=[
+                ("management_type", "dismiss"),
+                ("asset_id", xref_asset),
+                ("invoice_line_ids", xref_line),
+            ],
+            button_name="link_asset",
+            button_ctx={"show_asset": 0},
+        )
+
+        for dep in self._get_depreciation_lines(asset=asset,
+                                                move_type="gain",
+                                                date_from=invoice.date):
+            self.assertEqual(
+                float_round(dep.amount, 2),
+                float_round(self.get_test_value(xref_asset, "gain[0.2]"), 2),
+                "Invalid gain amount for asset %s!" % asset.name,
+            )
+
+    def run_disposal_asset_2(self):
+        # date_dep = TESTBED_VALUES["date.eoy[0.1]"]
+        xref_asset = "z0bug.asset_2"
+        asset = self.resource_browse(xref_asset)
+        xref_invoice = "z0bug.sale_invoice_2"
+        invoice = self.resource_browse(xref_invoice)
+        act_windows = self.resource_edit(
+            invoice, actions="open_wizard_manage_asset")
+        self.assertTrue(self.is_action(act_windows))
+        xref_line = "z0bug.sale_invoice_2_1"
+        self.wizard(
+            act_windows=act_windows,
+            records=invoice,
+            web_changes=[
+                ("management_type", "dismiss"),
+                ("asset_id", xref_asset),
+                ("invoice_line_ids", xref_line),
+            ],
+            button_name="link_asset",
+            button_ctx={"show_asset": 0},
+        )
+
+        for dep in self._get_depreciation_lines(asset=asset,
+                                                move_type="loss",
+                                                date_from=invoice.date):
+            self.assertEqual(
+                float_round(dep.amount, 2),
+                float_round(self.get_test_value(xref_asset, "loss[0]"), 2),
+                "Invalid loss amount for asset %s!" % asset.name,
+            )
+
+    def run_disposal_asset_4(self):
+        xref_asset = "z0bug.asset_4"
+        asset = self.resource_browse(xref_asset)
+        xref_invoice = "z0bug.sale_invoice_4"
+        invoice = self.resource_browse(xref_invoice)
+        invoice.action_invoice_open()
+        act_windows = self.resource_edit(
+            invoice, actions="open_wizard_manage_asset")
+        self.assertTrue(self.is_action(act_windows))
+        xref_line = "z0bug.sale_invoice_4_1"
         self.wizard(
             act_windows=act_windows,
             records=invoice,
@@ -489,6 +548,15 @@ class TestAssets(SingleTransactionCase):
             button_name="link_asset",
             button_ctx={"show_asset": 0},
         )
+
+        for dep in self._get_depreciation_lines(asset=asset,
+                                                move_type="gain",
+                                                date_from=invoice.date):
+            self.assertEqual(
+                float_round(dep.amount, 2),
+                float_round(self.get_test_value(xref_asset, "gain[-2]"), 2),
+                "Invalid gain amount for asset %s!" % asset.name,
+            )
 
     def run_buy_asset(self, xref_invoice, xref_line, xref_asset):
         invoice = self.resource_browse(xref_invoice)
@@ -536,68 +604,10 @@ class TestAssets(SingleTransactionCase):
             "z0bug.purchase_invoice_1_2",
             "z0bug.asset_4")
 
-    def run_dismis_asset_1(self):
-        asset = self.asset_1
-        act_window = self.sale_invoice.open_wizard_manage_asset()
-        act_window = self.envtest_wizard_start(act_window)
-        self.envtest_wizard_exec(
-            act_window,
-            button_name="link_asset",
-            button_ctx={"show_asset": 0},
-            web_changes=[
-                ("management_type", "dismiss"),
-                ("invoice_ids", [(6, 0, [self.sale_invoice.id])]),
-                ("asset_id", self.asset_1.id),
-            ],
-        )
-        year = date.today().year
-        dismis_date = TESTBED_VALUES["asset_1_2.date.disposal"]
-        rate = self._day_rate(date(year, 1, 1), dismis_date, is_leap=isleap(year))
-        depreciation_amount = float_round(
-            TESTBED_VALUES["asset_1.depreciation_amount"] * rate, 2
-        )
-        depreciated_amount = float_round(
-            TESTBED_VALUES["asset_1.amount_depreciated[-2]"] + depreciation_amount, 2
-        )
-        self._test_all_depreciation_lines(
-            dismis_date, asset, amount=depreciation_amount, depreciation_nr=3
-        )
-        for dep in self._get_depreciation_lines(
-            asset=asset,
-            move_type="out",
-            date_from=dismis_date,
-            date_to=dismis_date,
-        ):
-            down_value = float_round(
-                TESTBED_VALUES["asset_1.purchase_amount"] - depreciated_amount, 2
-            )
-            self.assertEqual(
-                float_round(dep.amount, 2), down_value, "Invalid disposal amount!"
-            )
-            self._check_4_move(dep)
-        for dep in self._get_depreciation_lines(
-            asset=asset,
-            move_type="gain",
-            date_from=dismis_date,
-            date_to=dismis_date,
-        ):
-            down_value = float_round(
-                TESTBED_VALUES["asset_1.sale_amount"]
-                - (TESTBED_VALUES["asset_1.purchase_amount"] - depreciated_amount),
-                2,
-            )
-            self.assertEqual(
-                float_round(dep.amount, 2), down_value, "Invalid gain amount!"
-            )
-            self._check_4_move(dep)
-
     def _validate_invoices(self):
         self.resource_browse("z0bug.purchase_invoice_1").action_invoice_open()
         self.resource_browse("z0bug.purchase_invoice_2").action_invoice_open()
-        self.resource_browse("z0bug.sale_invoice_1").action_invoice_open()
-        for xref in (
-                "z0bug.purchase_invoice_1", "z0bug.purchase_invoice_2",
-                "z0bug.sale_invoice_1"):
+        for xref in ("z0bug.purchase_invoice_1", "z0bug.purchase_invoice_2"):
             self.assertEqual(
                 self.resource_browse(xref).state,
                 "open",
@@ -630,6 +640,14 @@ class TestAssets(SingleTransactionCase):
         self._test_depreciation_all_assets_y3(final=False)
         self._test_depreciation_all_assets_y3(final=True)
         self._down_asset3()
-        self.run_dismis_asset_4()
+        self.run_disposal_asset_4()
         self._test_depreciation_all_assets_y2(False)
         self._test_depreciation_all_assets_y1(False)
+        self._test_depreciation_all_assets_y0_1(False)
+
+        for xref_invoice in "z0bug.sale_invoice_13", "z0bug.sale_invoice_2":
+            invoice = self.resource_browse(xref_invoice)
+            invoice.action_invoice_open()
+
+        self.run_disposal_asset_2()
+        self.run_disposal_asset_1_3()

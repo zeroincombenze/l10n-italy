@@ -266,15 +266,17 @@ class AssetDepreciation(models.Model):
         for dep in self:
             dep.update(dep.get_computed_amounts())
 
-    def check_before_generate_depreciation_lines(self, dep_date):
+    def check_before_generate_depreciation_lines(self, dep_date,
+                                                 ignore_depreciated=False):
         # Check if self is a valid recordset
         if not self or not dep_date:
             raise ValidationError(
                 _("Cannot create any depreciation according to current settings.")
             )
 
-        if any([dep for dep in self if dep.state == "totally_depreciated"]):
-            raise ValidationError("Cannot update totally depreciated types")
+        if not ignore_depreciated:
+            if any([dep for dep in self if dep.state == "totally_depreciated"]):
+                raise ValidationError("Cannot update totally depreciated types")
 
         for dep in self:
             lines = dep.mapped("line_ids")
@@ -360,20 +362,23 @@ class AssetDepreciation(models.Model):
                     ).format(asset=asset_name, nature=nature_name)
                 )
 
-    def delete_current_depreciation_line(self, dep_date):
-        self.check_before_generate_depreciation_lines(dep_date)
+    def delete_current_depreciation_line(self, dep_date, ignore_depreciated=False):
+        self.check_before_generate_depreciation_lines(
+            dep_date, ignore_depreciated=ignore_depreciated)
         lines_to_delete = self.check_current_depreciation_lines(dep_date)
         if lines_to_delete:
             lines_to_delete.button_remove_account_move()
             lines_to_delete.unlink()
 
-    def generate_depreciation_lines(self, dep_date):
+    def generate_depreciation_lines(self, dep_date, ignore_depreciated=False):
         # Set new date within context if necessary
-        self.delete_current_depreciation_line(dep_date)
+        self.delete_current_depreciation_line(
+            dep_date, ignore_depreciated=ignore_depreciated)
 
         new_lines = self.env["asset.depreciation.line"]
         for dep in self:
-            new_lines |= dep.generate_depreciation_lines_single(dep_date)
+            if dep.state != "totally_depreciated":
+                new_lines |= dep.generate_depreciation_lines_single(dep_date)
 
         return new_lines
 
@@ -426,7 +431,7 @@ class AssetDepreciation(models.Model):
         else:
             dismis_date = vals["date"]
         deps = self.get_depreciations(date_ref=vals["date"], asset_ids=vals["asset_id"])
-        partial_dismiss_percentage = vals.get("partial_dismiss_percentage", 100)
+        partial_dismiss_percentage = vals.get("partial_dismiss_percentage", 100.0)
         if "partial_dismiss_percentage" in vals and partial_dismiss_percentage < 100.0:
             vals["partial_dismissal"] = True
 
@@ -458,7 +463,8 @@ class AssetDepreciation(models.Model):
                 move_types="out",
             )[0]
             vals["depreciation_id"] = dep.id
-            balance = round(dismis_amount - dep_line.amount, digits)
+            balance = round(dismis_amount - dep_line.amount - dep.amount_residual,
+                            digits)
             vals["amount"] = abs(balance)
             if balance > 0:
                 vals["move_type"] = "gain"
@@ -792,10 +798,6 @@ class AssetDepreciation(models.Model):
         for d in self:
             if force or d.need_normalize_first_dep_nr():
                 d.onchange_normalize_first_dep_nr()
-    #
-    # def post_generate_depreciation_lines(self, lines=None):
-    #     lines = lines or self.env["asset.depreciation.line"]
-    #     lines.filtered("requires_account_move").button_generate_account_move()
 
     def prepare_depreciation_line_vals(self, dep_date):
         self.ensure_one()
