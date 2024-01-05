@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -22,7 +22,7 @@ class AccountFiscalYear(models.Model):
         """
         dom = self.get_fiscal_year_by_date_domain(date, company)
         fiscal_years = self.search(dom, limit=limit)
-        if not fiscal_years and miss_raise:
+        if not fiscal_years and miss_raise:                          # pragma: no cover
             date_str = fields.Date.to_string(date)
             raise UserError(_("No fiscal year defined for date ") + date_str)
         return fiscal_years

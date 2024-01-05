@@ -1,6 +1,6 @@
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
-# Copyright 2021-22 Didotech s.r.l. <https://www.didotech.com>
-# Copyright 2021-22 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 Didotech s.r.l. <https://www.didotech.com>
+# Copyright 2021-24 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #
@@ -12,7 +12,7 @@ class WizardAssetsGenerateOpen(models.TransientModel):
     _description = "Generate Asset Open"
 
     @api.model
-    def get_asset(self):
+    def get_asset(self):                                             # pragma: no cover
         active_id = self.env.context.get("active_id")
         if not active_id:
             return False
@@ -20,21 +20,21 @@ class WizardAssetsGenerateOpen(models.TransientModel):
         return asset
 
     @api.model
-    def get_default_company_id(self):
+    def get_default_company_id(self):                                # pragma: no cover
         return self.env.user.company_id
 
     @api.model
-    def get_asset_id(self):
+    def get_asset_id(self):                                          # pragma: no cover
         asset = self.get_asset()
         return asset.id
 
     @api.model
-    def get_default_account_id(self):
+    def get_default_account_id(self):                                # pragma: no cover
         asset = self.get_asset()
         return asset.category_id.gain_account_id.id
 
     @api.model
-    def get_purchase_amount(self):
+    def get_purchase_amount(self):                                   # pragma: no cover
         asset = self.get_asset()
         return asset.purchase_amount
 

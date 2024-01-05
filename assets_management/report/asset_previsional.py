@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from collections import OrderedDict
@@ -763,7 +763,8 @@ class ReportDepreciationLineByYear(models.TransientModel):
         self.ensure_one()
         dep = self.report_depreciation_id.depreciation_id
         to_date = min(self.fiscal_year_id.date_to, self.report_id.date)
-        previsional_lines = dep.generate_depreciation_lines(to_date)
+        previsional_lines = dep.generate_depreciation_lines(
+            to_date, ignore_depreciated=True)
         self.dep_line_ids += previsional_lines
         self.report_id.previsional_line_ids += previsional_lines
 

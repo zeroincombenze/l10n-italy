@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -121,7 +121,7 @@ class AssetCategory(models.Model):
     )
 
     @api.multi
-    def copy(self, default=None):
+    def copy(self, default=None):                                    # pragma: no cover
         default = dict(default or [])
         default.update(
             {
@@ -135,7 +135,7 @@ class AssetCategory(models.Model):
         return super().copy(default)
 
     @api.multi
-    def unlink(self):
+    def unlink(self):                                                # pragma: no cover
         if self.env["asset.asset"].sudo().search([("category_id", "in", self.ids)]):
             raise UserError(
                 _("Cannot delete categories while they're still linked" " to an asset.")

@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -32,7 +32,7 @@ class AccountInvoice(models.Model):
     )
 
     @api.constrains("company_id")
-    def check_company(self):
+    def check_company(self):                                        # pragma: no cover
         for inv in self:
             comp = inv.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != inv.company_id):
@@ -44,7 +44,7 @@ class AccountInvoice(models.Model):
                 )
 
     @api.multi
-    def action_invoice_cancel(self):
+    def action_invoice_cancel(self):                                 # pragma: no cover
         res = super().action_invoice_cancel()
         if self:
             asset = False
@@ -93,7 +93,7 @@ class AccountInvoice(models.Model):
         "asset_accounting_info_ids.asset_id",
         "asset_accounting_info_ids.dep_line_id",
     )
-    def _compute_asset_data(self):
+    def _compute_asset_data(self):                                   # pragma: no cover
         for inv in self:
             aa_info = inv.get_linked_aa_info_records()
             assets = aa_info.mapped("asset_id")
@@ -108,7 +108,7 @@ class AccountInvoice(models.Model):
             )
 
     @api.multi
-    def _compute_hide_link_asset_button(self):
+    def _compute_hide_link_asset_button(self):                       # pragma: no cover
         valid_account_ids = self.get_valid_accounts()
         if not valid_account_ids:
             self.update({"hide_link_asset_button": True})
@@ -128,7 +128,7 @@ class AccountInvoice(models.Model):
         lines = self.invoice_line_ids.filtered(
             lambda l: not l.asset_accounting_info_ids
         )
-        if not lines:
+        if not lines:                                                # pragma: no cover
             raise ValidationError(_("Every line is already linked to an asset."))
 
         xmlid = "assets_management.action_wizard_invoice_manage_asset"

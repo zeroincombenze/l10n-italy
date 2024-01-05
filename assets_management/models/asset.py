@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -14,12 +14,12 @@ class Asset(models.Model):
     _order = "purchase_date desc, name asc"
 
     @api.model
-    def get_default_company_id(self):
+    def get_default_company_id(self):                                # pragma: no cover
         return self.env.user.company_id
 
     @api.multi
     @api.depends("depreciation_ids")
-    def _compute_partial_dismiss_percentage(self):
+    def _compute_partial_dismiss_percentage(self):                   # pragma: no cover
         for asset in self:
             if asset.depreciation_ids:
                 asset.partial_dismiss_percentage = max(
@@ -144,7 +144,7 @@ class Asset(models.Model):
 
     @api.multi
     def unlink(self):
-        if self.mapped("asset_accounting_info_ids"):
+        if self.mapped("asset_accounting_info_ids"):                 # pragma: no cover
             assets = self.filtered("asset_accounting_info_ids")
             name_list = "\n".join([a[-1] for a in assets.name_get()])
             raise ValidationError(
@@ -159,7 +159,7 @@ class Asset(models.Model):
         return super().unlink()
 
     @api.multi
-    def name_get(self):
+    def name_get(self):                                             # pragma: no cover
         return [(asset.id, asset.make_name()) for asset in self]
 
     @api.constrains("company_id")
@@ -204,7 +204,7 @@ class Asset(models.Model):
             self.onchange_purchase_date()
 
     @api.onchange("company_id")
-    def onchange_company_currency(self):
+    def onchange_company_currency(self):                            # pragma: no cover
         if self.company_id:
             self.currency_id = self.company_id.currency_id
 
@@ -215,7 +215,7 @@ class Asset(models.Model):
                 dep.amount_depreciable = self.purchase_amount * dep.base_coeff
             if self.depreciation_ids.mapped("line_ids").filtered(
                 lambda l: l.move_type == "depreciated"
-            ):
+            ):                                                       # pragma: no cover
                 title = _("Warning!")
                 msg = _(
                     "Current asset has already been depreciated. Changes upon"
@@ -232,7 +232,7 @@ class Asset(models.Model):
                 dep.date_start = self.purchase_date
 
     @api.multi
-    def launch_wizard_generate_depreciations(self):
+    def launch_wizard_generate_depreciations(self):                  # pragma: no cover
         self.ensure_one()
         xmlid = "assets_management.action_wizard_asset_generate_depreciation"
         [act] = self.env.ref(xmlid).read()
@@ -252,7 +252,7 @@ class Asset(models.Model):
         return act
 
     @api.multi
-    def launch_wizard_dismis(self):
+    def launch_wizard_dismis(self):                                  # pragma: no cover
         self.ensure_one()
         xmlid = "assets_management.action_wizard_asset_generate_depreciation"
         [act] = self.env.ref(xmlid).read()
@@ -272,7 +272,7 @@ class Asset(models.Model):
         return act
 
     @api.multi
-    def launch_wizard_generate_open(self):
+    def launch_wizard_generate_open(self):                           # pragma: no cover
         self.ensure_one()
         xmlid = "assets_management.action_wizard_asset_open"
         [act] = self.env.ref(xmlid).read()

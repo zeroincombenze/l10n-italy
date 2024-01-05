@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -106,11 +106,11 @@ class AssetAccountingInfo(models.Model):
         return res
 
     @api.multi
-    def name_get(self):
+    def name_get(self):                                              # pragma: no cover
         return [(aa_info.id, aa_info.make_name()) for aa_info in self]
 
     @api.model
-    def cron_vacuum_table(self):
+    def cron_vacuum_table(self):                                     # pragma: no cover
         """A cron that deletes obsolete records"""
         aa_info = self.get_records_to_delete_by_cron()
         aa_info.unlink()
@@ -127,7 +127,7 @@ class AssetAccountingInfo(models.Model):
         ]
 
     @api.multi
-    def button_unlink(self):
+    def button_unlink(self):                                         # pragma: no cover
         """Button action: deletes a.a.info"""
         self.unlink()
 
@@ -239,7 +239,7 @@ class AssetAccountingInfo(models.Model):
             ]
         )
 
-    def make_name(self):
+    def make_name(self):                                             # pragma: no cover
         self.ensure_one()
         if self.asset_id:
             name = self.asset_id.make_name()

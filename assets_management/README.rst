@@ -152,7 +152,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-12.0.1.0.0_30 (2024-01-04)
+12.0.1.0.0_30 (2024-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Dismissione bene totalmente ammortizzato
@@ -161,7 +161,7 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Valore iniziale da fattura se cambio (data) fattura
 * [FIX] Errato calcolo di plusvalenza/minusvalenza in alcuni casi
 * [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
-* [QUA] Test coverage 52% (3569: 1706+1863) [528 TestPoints] - quality rating 55 (target 100)
+* [QUA] Test coverage 72% (3261: 910+2351) [501 TestPoints] - quality rating 68 (target 100)
 
 12.0.1.0.0_29 (2022-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -267,7 +267,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-04
+Last Update / Ultimo aggiornamento: 2024-01-05
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

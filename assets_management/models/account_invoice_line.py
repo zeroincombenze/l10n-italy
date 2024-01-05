@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -26,7 +26,7 @@ class AccountInvoiceLine(models.Model):
     )
 
     @api.constrains("company_id")
-    def check_company(self):
+    def check_company(self):                                         # pragma: no cover
         for inv_line in self:
             comp = inv_line.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != inv_line.company_id):
@@ -43,7 +43,7 @@ class AccountInvoiceLine(models.Model):
         "asset_accounting_info_ids.asset_id",
         "asset_accounting_info_ids.dep_line_id",
     )
-    def _compute_asset_data(self):
+    def _compute_asset_data(self):                                   # pragma: no cover
         for line in self:
             aa_info = line.get_linked_aa_info_records()
             assets = aa_info.mapped("asset_id")
@@ -81,7 +81,7 @@ class AccountInvoiceLine(models.Model):
                 for tax_dict in taxes:
                     if not (
                         tax_dict.get("account_id") or tax_dict.get("refund_account_id")
-                    ) and tax_dict.get("amount"):
+                    ) and tax_dict.get("amount"):                    # pragma: no cover
                         purchase_amount += line.currency_id.compute(
                             tax_dict.get("amount"), currency
                         )

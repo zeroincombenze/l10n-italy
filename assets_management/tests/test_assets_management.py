@@ -161,7 +161,7 @@ class TestAssets(SingleTransactionCase):
     def get_test_value(self, xref, item):
         return TESTBED_VALUES[self.get_xref4test(xref, item)]
 
-    def _get_depreciation_lines(
+    def get_depreciation_lines(
         self, asset=None, move_type=None, date_from=None, date_to=None
     ):
         dep_line_model = self.env["asset.depreciation.line"]
@@ -179,7 +179,7 @@ class TestAssets(SingleTransactionCase):
             domain.append(("date", "<=", date_to))
         return dep_line_model.search(domain)
 
-    def _check_4_move_depreciated(self, dep):
+    def check_4_move_depreciated(self, dep):
         for line in dep.move_id.line_ids:
             if line.account_id == self.env.ref("z0bug.coa_conf_xfa_fund"):
                 self.assertEqual(
@@ -199,13 +199,13 @@ class TestAssets(SingleTransactionCase):
                     "Invalid line account for fund move %s" % dep.move_id.id,
                 )
 
-    def _check_4_move(self, dep):
+    def check_4_move(self, dep):
         if dep.move_id:
             method = "_check_4_move_%s" % dep.move_type
             if hasattr(self, method):
                 return getattr(self, method)(dep)
 
-    def _check_4_depreciation_line(
+    def check_4_depreciation_line(
         self, date_dep, dep, asset, amount=None, depreciation_nr=None, final=False
     ):
         """Run sequential tests on single line for amount, asset_id, date, number"""
@@ -223,7 +223,7 @@ class TestAssets(SingleTransactionCase):
                 dep.depreciation_nr, depreciation_nr, "Invalid depreciation number!"
             )
         self.assertEqual(dep.final, final, "Invalid dep. final flag!")
-        self._check_4_move(dep)
+        self.check_4_move(dep)
 
     def _test_all_depreciation_lines(
         self,
@@ -236,8 +236,8 @@ class TestAssets(SingleTransactionCase):
     ):
         """Run tests for all depreciation type values + count for moves"""
         ctr = 0
-        for dep in self._get_depreciation_lines(asset=asset, date_from=date_dep):
-            self._check_4_depreciation_line(
+        for dep in self.get_depreciation_lines(asset=asset, date_from=date_dep):
+            self.check_4_depreciation_line(
                 date_dep,
                 dep,
                 asset,
@@ -253,10 +253,10 @@ class TestAssets(SingleTransactionCase):
                 "Missed depreciation move for asset %s!" % asset.name
             )
 
-    def _initial_test_depreciation(self):
+    def initial_test_depreciation(self):
         """Run 1.st year test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[0]"]
-        self._run_wizard_4_depreciation(date_dep=date_dep)
+        self.run_wizard_4_depreciation(date_dep=date_dep)
         nr = 0
         for xref in ("z0bug.asset_1", "z0bug.asset_3"):
             asset = self.resource_browse(xref)
@@ -266,7 +266,7 @@ class TestAssets(SingleTransactionCase):
                 "partially_depreciated",
                 "Asset %s initial not 'partially_depreciated' state!" % asset.name,
             )
-            for dep in self._get_depreciation_lines(asset=asset, date_from=date_dep):
+            for dep in self.get_depreciation_lines(asset=asset, date_from=date_dep):
                 self.assertEqual(
                     float_round(dep.amount, 2),
                     float_round(self.get_test_value(
@@ -278,7 +278,7 @@ class TestAssets(SingleTransactionCase):
     def _test_depreciation_all_assets_y3(self, final):
         """Run 1.st year test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[-3]"]
-        self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
+        self.run_wizard_4_depreciation(date_dep=date_dep, final=final)
         for xref in (
                 "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3", "z0bug.asset_4"):
             asset = self.resource_browse(xref)
@@ -310,7 +310,7 @@ class TestAssets(SingleTransactionCase):
     def _test_depreciation_all_assets_y2(self, final):
         """Run 2.nd year test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[-2]"]
-        self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
+        self.run_wizard_4_depreciation(date_dep=date_dep, final=final)
         for xref in (
                 "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3", "z0bug.asset_4"):
             asset = self.resource_browse(xref)
@@ -331,7 +331,7 @@ class TestAssets(SingleTransactionCase):
     def _test_depreciation_all_assets_y1(self, final):
         """Run 2.nd year test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[-1]"]
-        self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
+        self.run_wizard_4_depreciation(date_dep=date_dep, final=final)
         for xref in (
                 "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3", "z0bug.asset_4"):
             asset = self.resource_browse(xref)
@@ -352,7 +352,7 @@ class TestAssets(SingleTransactionCase):
     def _test_depreciation_all_assets_y0_1(self, final):
         """Run current year (jan, 31th) test on all assets"""
         date_dep = TESTBED_VALUES["date.eoy[0.1]"]
-        self._run_wizard_4_depreciation(date_dep=date_dep, final=final)
+        self.run_wizard_4_depreciation(date_dep=date_dep, final=final)
         # Asset #3 is full depreciated
         for xref in ("z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_4"):
             asset = self.resource_browse(xref)
@@ -371,7 +371,7 @@ class TestAssets(SingleTransactionCase):
                     "Invalid depreciated amount for asset %s [0.1]!" % asset.name,
                 )
 
-    def _run_wizard_4_depreciation(
+    def run_wizard_4_depreciation(
         self, date_dep=None, asset=None, final=False, windows_break=None
     ):
         date_dep = date_dep or TESTBED_VALUES["date.eoy[-3]"]
@@ -403,7 +403,7 @@ class TestAssets(SingleTransactionCase):
             self.assertTrue(self.is_action(act_windows))
         return act_windows
 
-    def _down_asset3(self):
+    def down_asset3(self):
         date_dep = TESTBED_VALUES["asset3.date_down[-2]"]
         down_value = TESTBED_VALUES["asset_3.down_value[-2]"]
         dep_line_model = self.env["asset.depreciation.line"]
@@ -456,9 +456,9 @@ class TestAssets(SingleTransactionCase):
             button_ctx={"show_asset": 0},
         )
 
-        for dep in self._get_depreciation_lines(asset=asset,
-                                                move_type="loss",
-                                                date_from=invoice.date):
+        for dep in self.get_depreciation_lines(asset=asset,
+                                               move_type="loss",
+                                               date_from=invoice.date):
             self.assertEqual(
                 float_round(dep.amount, 2),
                 float_round(self.get_test_value(xref_asset, "loss[0.2]"), 2),
@@ -483,9 +483,9 @@ class TestAssets(SingleTransactionCase):
             button_ctx={"show_asset": 0},
         )
 
-        for dep in self._get_depreciation_lines(asset=asset,
-                                                move_type="gain",
-                                                date_from=invoice.date):
+        for dep in self.get_depreciation_lines(asset=asset,
+                                               move_type="gain",
+                                               date_from=invoice.date):
             self.assertEqual(
                 float_round(dep.amount, 2),
                 float_round(self.get_test_value(xref_asset, "gain[0.2]"), 2),
@@ -514,9 +514,9 @@ class TestAssets(SingleTransactionCase):
             button_ctx={"show_asset": 0},
         )
 
-        for dep in self._get_depreciation_lines(asset=asset,
-                                                move_type="loss",
-                                                date_from=invoice.date):
+        for dep in self.get_depreciation_lines(asset=asset,
+                                               move_type="loss",
+                                               date_from=invoice.date):
             self.assertEqual(
                 float_round(dep.amount, 2),
                 float_round(self.get_test_value(xref_asset, "loss[0]"), 2),
@@ -549,9 +549,9 @@ class TestAssets(SingleTransactionCase):
             button_ctx={"show_asset": 0},
         )
 
-        for dep in self._get_depreciation_lines(asset=asset,
-                                                move_type="gain",
-                                                date_from=invoice.date):
+        for dep in self.get_depreciation_lines(asset=asset,
+                                               move_type="gain",
+                                               date_from=invoice.date):
             self.assertEqual(
                 float_round(dep.amount, 2),
                 float_round(self.get_test_value(xref_asset, "gain[-2]"), 2),
@@ -604,7 +604,7 @@ class TestAssets(SingleTransactionCase):
             "z0bug.purchase_invoice_1_2",
             "z0bug.asset_4")
 
-    def _validate_invoices(self):
+    def validate_invoices(self):
         self.resource_browse("z0bug.purchase_invoice_1").action_invoice_open()
         self.resource_browse("z0bug.purchase_invoice_2").action_invoice_open()
         for xref in ("z0bug.purchase_invoice_1", "z0bug.purchase_invoice_2"):
@@ -613,24 +613,57 @@ class TestAssets(SingleTransactionCase):
                 "open",
             )
 
-    def _prevalidate_assets(self):
+    def prevalidate_assets(self):
         for xref in (
-                "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3", "z0bug.asset_4"):
+                "z0bug.asset_0", "z0bug.asset_1", "z0bug.asset_2", "z0bug.asset_3",
+                "z0bug.asset_4"):
             asset = self.resource_browse(xref)
             self.assertEqual(asset.state, "non_depreciated")
             self.assertFalse(asset.supplier_id)
             self.assertFalse(asset.customer_id)
-            self.assertEqual(asset.purchase_amount,
-                             self.get_test_value(xref, "initial_amount"),
-                             "Invalid purchase amount for asset %s" % asset.name)
+            if xref == "z0bug.asset_0":
+                asset.unlink()
+            else:
+                self.assertEqual(asset.purchase_amount,
+                                 self.get_test_value(xref, "initial_amount"),
+                                 "Invalid purchase amount for asset %s" % asset.name)
+
+    def print_journal(self):
+        date_print = TESTBED_VALUES["date.eoy[-1]"]
+        vals = {}
+        web_changes = [("date", datetime.strftime(date_print, "%Y-%m-%d"))]
+        act_windows = self.wizard(
+            "assets_management",
+            "action_wizard_asset_journal_report",
+            default=vals,
+            button_name="button_export_asset_journal_pdf",
+            web_changes=web_changes,
+
+        )
+        self.assertTrue(isinstance(act_windows, dict))
+        self.assertTrue("report_name" in act_windows)
+
+        date_print = TESTBED_VALUES["date.eoy[0]"]
+        vals = {}
+        web_changes = [("date", datetime.strftime(date_print, "%Y-%m-%d"))]
+        act_windows = self.wizard(
+            "assets_management",
+            "action_wizard_asset_previsional_report",
+            default=vals,
+            button_name="button_export_asset_previsional_pdf",
+            web_changes=web_changes,
+
+        )
+        self.assertTrue(isinstance(act_windows, dict))
+        self.assertTrue("report_name" in act_windows)
 
     def test_asset(self):
         _logger.info(
             "🎺 Testing test_asset"
         )
-        self._prevalidate_assets()
-        self._initial_test_depreciation()
-        self._validate_invoices()
+        self.prevalidate_assets()
+        self.initial_test_depreciation()
+        self.validate_invoices()
 
         self.run_buy_asset_1()
         self.run_buy_asset_2()
@@ -639,11 +672,11 @@ class TestAssets(SingleTransactionCase):
 
         self._test_depreciation_all_assets_y3(final=False)
         self._test_depreciation_all_assets_y3(final=True)
-        self._down_asset3()
+        self.down_asset3()
         self.run_disposal_asset_4()
-        self._test_depreciation_all_assets_y2(False)
-        self._test_depreciation_all_assets_y1(False)
-        self._test_depreciation_all_assets_y0_1(False)
+        self._test_depreciation_all_assets_y2(final=False)
+        self._test_depreciation_all_assets_y1(final=False)
+        self._test_depreciation_all_assets_y0_1(final=False)
 
         for xref_invoice in "z0bug.sale_invoice_13", "z0bug.sale_invoice_2":
             invoice = self.resource_browse(xref_invoice)
@@ -651,3 +684,5 @@ class TestAssets(SingleTransactionCase):
 
         self.run_disposal_asset_2()
         self.run_disposal_asset_1_3()
+
+        self.print_journal()

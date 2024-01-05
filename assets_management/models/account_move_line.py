@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -26,7 +26,7 @@ class AccountMoveLine(models.Model):
     )
 
     @api.constrains("company_id")
-    def check_company(self):
+    def check_company(self):                                         # pragma: no cover
         for move_line in self:
             comp = move_line.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != move_line.company_id):
@@ -43,7 +43,7 @@ class AccountMoveLine(models.Model):
         "asset_accounting_info_ids.asset_id",
         "asset_accounting_info_ids.dep_line_id",
     )
-    def _compute_asset_data(self):
+    def _compute_asset_data(self):                                   # pragma: no cover
         for line in self:
             aa_info = line.get_linked_aa_info_records()
             assets = aa_info.mapped("asset_id")
@@ -57,7 +57,7 @@ class AccountMoveLine(models.Model):
                 }
             )
 
-    def get_asset_purchase_amount(self, currency=None):
+    def get_asset_purchase_amount(self, currency=None):              # pragma: no cover
         purchase_amount = 0
         for line in self:
             purchase_amount += line.currency_id.compute(

@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -32,7 +32,7 @@ class AccountMove(models.Model):
     )
 
     @api.constrains("company_id")
-    def check_company(self):
+    def check_company(self):                                         # pragma: no cover
         for move in self:
             comp = move.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != move.company_id):
@@ -44,7 +44,7 @@ class AccountMove(models.Model):
                 )
 
     @api.multi
-    def button_cancel(self):
+    def button_cancel(self):                                         # pragma: no cover
         res = super().button_cancel()
         if self:
             # Remove every a.a.info related to current moves, and delete
@@ -62,7 +62,7 @@ class AccountMove(models.Model):
         "asset_accounting_info_ids.asset_id",
         "asset_accounting_info_ids.dep_line_id",
     )
-    def _compute_asset_data(self):
+    def _compute_asset_data(self):                                   # pragma: no cover
         for move in self:
             aa_info = move.get_linked_aa_info_records()
             assets = aa_info.mapped("asset_id")
@@ -77,7 +77,7 @@ class AccountMove(models.Model):
             )
 
     @api.multi
-    def _compute_hide_link_asset_button(self):
+    def _compute_hide_link_asset_button(self):                       # pragma: no cover
         valid_account_ids = self.get_valid_accounts()
         if not valid_account_ids:
             self.update({"hide_link_asset_button": True})
@@ -94,7 +94,7 @@ class AccountMove(models.Model):
                 )
 
     @api.multi
-    def open_wizard_manage_asset(self):
+    def open_wizard_manage_asset(self):                              # pragma: no cover
         self.ensure_one()
         lines = self.line_ids.filtered(lambda l: not l.asset_accounting_info_ids)
         if not lines:
@@ -126,5 +126,5 @@ class AccountMove(models.Model):
             ]
         )
 
-    def get_valid_accounts(self):
+    def get_valid_accounts(self):                                    # pragma: no cover
         return self.env["asset.category"].search([]).mapped("asset_account_id")

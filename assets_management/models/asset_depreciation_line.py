@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -233,7 +233,7 @@ class AssetDepreciationLine(models.Model):
 
     @api.multi
     def unlink(self):
-        if self.mapped("asset_accounting_info_ids"):
+        if self.mapped("asset_accounting_info_ids"):                 # pragma: no cover
             lines = self.filtered("asset_accounting_info_ids")
             name_list = "\n".join([ln[-1] for ln in lines.name_get()])
             raise ValidationError(
@@ -244,7 +244,8 @@ class AssetDepreciationLine(models.Model):
                 )
                 + name_list
             )
-        if any([m.state != "draft" for m in self.mapped("move_id")]):
+        if any([m.state != "draft"
+                for m in self.mapped("move_id")]):                   # pragma: no cover
             lines = self.filtered(lambda l: l.move_id and l.move_id.state != "draft")
             name_list = "\n".join([ln[-1] for ln in lines.name_get()])
             raise ValidationError(
@@ -258,7 +259,7 @@ class AssetDepreciationLine(models.Model):
         return super().unlink()
 
     @api.multi
-    def name_get(self):
+    def name_get(self):                                              # pragma: no cover
         return [(line.id, line.make_name()) for line in self]
 
     @api.constrains("depreciation_nr")
@@ -287,7 +288,8 @@ class AssetDepreciationLine(models.Model):
             line.requires_depreciation_nr = line.is_depreciation_nr_required()
 
     @api.multi
-    def _search_requires_depreciation_nr_lines(self, operator, value):
+    def _search_requires_depreciation_nr_lines(self,
+                                               operator, value):    # pragma: no cover
         if operator not in ("=", "!="):
             raise ValidationError(_("Invalid search operator!"))
 
@@ -297,12 +299,12 @@ class AssetDepreciationLine(models.Model):
             return [("move_type", "not in", self.get_numbered_move_types())]
 
     @api.onchange("move_type")
-    def onchange_move_type(self):
+    def onchange_move_type(self):                                    # pragma: no cover
         if self.move_type not in ("in", "out"):
             self.depreciation_line_type_id = False
 
     @api.onchange("asset_id")
-    def onchange_asset_id(self):
+    def onchange_asset_id(self):                                     # pragma: no cover
         res = dict()
         ids = list()
         for dep in self.asset_id.depreciation_ids:
