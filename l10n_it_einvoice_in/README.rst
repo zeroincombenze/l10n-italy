@@ -1,5 +1,5 @@
 ========================================================
-|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.42
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.43
 ========================================================
 
 **E-invoice receive**
@@ -28,13 +28,13 @@ ricevuti attraverso il
 Destinatari
 -----------
 
-Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+Il modulo è destinato a tutte le aziende che dal 2019 emettono fattura elettronica
 
 
 Normativa e prassi
 ------------------
 
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la
+Le leggi inerenti la fattura elettronica sono numerose. Consultare la
 `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
 
 
@@ -106,10 +106,14 @@ correct product to be used in bill line, setting the related tax and account.
 Usage | Utilizzo
 ----------------
 
-* ☰ Accounting > Purchases > Electronic Bill
-* Upload XML file
+* ☰ Accounting > Purchases > Electronic Bill > [Create]
+* Upload XML file and click on [Save]
+
+
+If you use the module *l10n_it_einvoice_send2sdi* you will see records from SdI.
+
 * View bill content clicking on [Show preview]
-* Run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill
+* Click in [Action] and run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill
 
 In the incoming electronic bill files list you will see, by default, files to be registered.
 These are files not yet linked to one or more bills.
@@ -211,10 +215,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.43 (2024-01-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with <RiferimentoTesto></RiferimentoTesto> / Crash in alcuni casi
+* [FIX] Search state/district by country code from vat / Ricerca provincia con nazione da PI
+* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
+
 10.0.1.3.42 (2023-10-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash with <DatiOrdineAcquisto></DatiOrdineAcquisto> / Crash in alcuni casi
+* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
 
 10.0.1.3.41 (2023-04-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -271,12 +283,6 @@ ChangeLog History | Cronologia modifiche
 * [IMP] Tax nature renamed
 * [FIX] Error _amount_withholding_tax
 
-10.0.1.3.31 (2022-06-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] DdT number = space
-* [FIX] New check on partner / Controlli su fornitore
-
 
 
 Credits | Didascalie
@@ -310,6 +316,13 @@ Contributors | Contributi da
 
 
 
+Translations by | Traduzioni a cura di
+--------------------------------------
+
+* `Sergio Zanchetta <https://github.com/primes2h>`__
+
+
+
 Maintainer | Manutenzione
 -------------------------
 
@@ -334,7 +347,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-11-21
+Last Update / Ultimo aggiornamento: 2024-01-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

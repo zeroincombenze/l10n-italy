@@ -37,17 +37,18 @@ ricevuti attraverso il
 <p align="justify">
 <h3>Destinatari</h3>
 </p><p align="justify">
-Il modulo &#232; destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+Il modulo &#232; destinato a tutte le aziende che dal 2019 emettono fattura elettronica
 </p><p align="justify">
 </p><p align="justify">
 <h3>Normativa e prassi</h3>
 </p><p align="justify">
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la
+Le leggi inerenti la fattura elettronica sono numerose. Consultare la
 <a href="https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm">normativa fattura elettronica</a>
 </p>
 </p>
         </div>
-        
+        <img src="/l10n_it_einvoice_in/static/description/description.png" alt="ITA - Fattura elettronica - Ricezione" style="width:98%;max-width:1140px"/>
+
     </div>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Features | Caratteristiche</h3>
@@ -156,12 +157,18 @@ recuperare il prodotto corretto da usare nella riga fattura, impostando il conto
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><ul>
-<li><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Purchases &#187; Electronic Bill</li>
-<li>Upload XML file</li>
-<li>View bill content clicking on <span style="color:white;background-color:#7C7BAD">&#160;Show&#160;preview&#160;</span></li>
-<li>Run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill</li>
+<li><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Purchases &#187; Electronic Bill &#187; <span style="color:white;background-color:#7C7BAD">&#160;Create&#160;</span></li>
+<li>Upload XML file and click on <span style="color:white;background-color:#7C7BAD">&#160;Save&#160;</span></li>
 </ul>
 <p align="justify">
+</p><p align="justify">
+If you use the module <i>l10n_it_einvoice_send2sdi</i> you will see records from SdI.
+</p><p align="justify">
+<ul>
+<li>View bill content clicking on <span style="color:white;background-color:#7C7BAD">&#160;Show&#160;preview&#160;</span></li>
+<li>Click in <span style="color:white;background-color:#7C7BAD">&#160;Action&#160;</span> and run 'Import e-bill' wizard to create a draft bill or run 'Link to existing bill' to link the XML file to an already (automatically) created bill</li>
+</ul>
+</p><p align="justify">
 In the incoming electronic bill files list you will see, by default, files to be registered.
 These are files not yet linked to one or more bills.
 </p>
@@ -172,21 +179,39 @@ These are files not yet linked to one or more bills.
                 <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><ul>
-<li><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Acquisti &#187; Fattura elettronica</li>
-<li>Caricare un file XML</li>
-<li>Visualizzare il contenuto della fattura facendo clic su <span style="color:white;background-color:#7C7BAD">Mostra&#160;anteprima</span></li>
-<li>Eseguire la procedura guidata "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura gi&#224; (automaticamente) creata</li>
+<li><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Acquisti &#187; Fattura elettronica &#187; <span style="color:white;background-color:#7C7BAD">&#160;Creare&#160;</span></li>
+<li>Caricare un file XML e fare click su <span style="color:white;background-color:#7C7BAD">&#160;Salvare&#160;</span></li>
 </ul>
+<p align="justify">
+Se si utilizza il modulo <i>l10n_it_einvoice_send2sdi</i> i dati sono caricati
+automaticamente alla ricezione da SdI.
+</p><p align="justify">
+<ul>
+<li>Visualizzare il contenuto della fattura facendo click su <span style="color:white;background-color:#7C7BAD">Mostra&#160;anteprima</span></li>
+<li>Fare click su <span style="color:white;background-color:#7C7BAD">&#160;Azione&#160;</span> e su "Importa e-fattura" per creare una fattura in bozza oppure "Collega a fattura esistente" per collegare il file XML a una fattura gi&#224; (automaticamente) creata</li>
+</ul>
+</p><p align="justify">
+La videta mostra solo i file non registrati ma &#232; possibile modificare il filtro.
+</p>
 </p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h4>10.0.1.3.42 (2023-10-23)</h4>
+<h4>10.0.1.3.43 (2024-01-08)</h4>
 <p align="justify">
 <ul>
+<li>[FIX] Crash with &lt;RiferimentoTesto&gt;&lt;/RiferimentoTesto&gt; / Crash in alcuni casi</li>
+<li>[FIX] Search state/district by country code from vat / Ricerca provincia con nazione da PI</li>
+<li>[QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.42 (2023-10-23)</h4>
+</p><p align="justify">
+<ul>
 <li>[FIX] Crash with &lt;DatiOrdineAcquisto&gt;&lt;/DatiOrdineAcquisto&gt; / Crash in alcuni casi</li>
+<li>[QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)</li>
 </ul>
 </p><p align="justify">
 <h4>10.0.1.3.41 (2023-04-11)</h4>
@@ -253,13 +278,6 @@ These are files not yet linked to one or more bills.
 <li>[IMP] Tax nature renamed</li>
 <li>[FIX] Error _amount_withholding_tax</li>
 </ul>
-</p><p align="justify">
-<h4>10.0.1.3.31 (2022-06-14)</h4>
-</p><p align="justify">
-<ul>
-<li>[FIX] DdT number = space</li>
-<li>[FIX] New check on partner / Controlli su fornitore</li>
-</ul>
 </p>
 
         </div>
@@ -301,7 +319,7 @@ These are files not yet linked to one or more bills.
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy ">l10n-italy
 </a> project.</p>
-        <p>Published information on | Informazioni pubblicate: 2023-11-21
+        <p>Published information on | Informazioni pubblicate: 2024-01-08
 </p>
     </div>
 </section>

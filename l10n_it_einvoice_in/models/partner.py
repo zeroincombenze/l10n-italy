@@ -50,10 +50,10 @@ class Partner(models.Model):
         country_model = self.env["res.country"]
         return country_model.search([("code", "=", CountryCode)])
 
-    def ProvinceByCode(self, provinceCode):
+    def ProvinceByCode(self, provinceCode, country_code="IT"):
         province_model = self.env["res.country.state"]
         return province_model.search(
-            [("code", "=", provinceCode), ("country_id.code", "=", "IT")]
+            [("code", "=", provinceCode), ("country_id.code", "=", country_code)]
         )
 
     def check_partner_base_data(self, partner_id, DatiAnagrafici, fatturapa):
@@ -110,7 +110,8 @@ class Partner(models.Model):
             and DatiAnagrafici.IdFiscaleIVA.IdPaese not in ("EU", "SM")
         ):
             Provincia = partner_xml.Sede.Provincia
-            prov_sede = self.ProvinceByCode(Provincia)
+            prov_sede = self.ProvinceByCode(
+                Provincia, country_code=DatiAnagrafici.IdFiscaleIVA.IdPaese)
             if not prov_sede:
                 if fatturapa:
                     fatturapa.log_inconsistency(

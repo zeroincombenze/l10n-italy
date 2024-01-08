@@ -6,11 +6,11 @@ ricevuti attraverso il
 Destinatari
 -----------
 
-Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+Il modulo è destinato a tutte le aziende che dal 2019 emettono fattura elettronica
 
 
 Normativa e prassi
 ------------------
 
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la
+Le leggi inerenti la fattura elettronica sono numerose. Consultare la
 `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
