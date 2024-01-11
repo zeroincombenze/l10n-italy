@@ -32,5 +32,6 @@ def set_company_conai_product(cr):
                     ])
             )
 
+
 def set_company_conai_product_post(cr, registry):
     set_company_conai_product(cr)

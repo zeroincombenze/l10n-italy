@@ -9,8 +9,8 @@
 #
 {
     "name": "CONAI Management",
-    "summary": "Dati CONAI in fattura e calcolo importi",
-    "version": "10.0.0.1.9",
+    "summary": "CONAI data and amount evalutation",
+    "version": "10.0.0.1.10",
     "category": "Localization/Italy",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",

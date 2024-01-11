@@ -1,42 +1,13 @@
 # -*- coding: utf-8 -*-
-import os
+# import os
 import logging
 from .testenv import MainTest as SingleTransactionCase
 
 _logger = logging.getLogger(__name__)
 
-TEST_ACCOUNT_ACCOUNT = {
-    # Input (received) VAT account
-    "z0bug.coa_tax_iva": {
-        "code": "111200",
-        "reconcile": False,
-        "user_type_id": "account.data_account_type_current_liabilities",
-        "name": "IVA n/debito",
-    },
-    "z0bug.coa_sale": {
-        "code": "200000",
-        "name": "Merci c/vendita",
-        "user_type_id": "account.data_account_type_revenue",
-        "reconcile": False,
-    },
-}
-
-TEST_ACCOUNT_TAX = {
-    "external.22v": {
-        "amount_type": "percent",
-        "account_id": "z0bug.coa_tax_iva",
-        "name": "IVA 22% su vendite",
-        "refund_account_id": "z0bug.coa_tax_iva",
-        "amount": 22,
-        "type_tax_use": "sale",
-        "price_include": False,
-        "description": "22v",
-    },
-}
-
 TEST_PRODUCT_TEMPLATE = {
     "z0bug.product_template_1": {
-        "property_account_income_id": "z0bug.coa_sale",
+        "property_account_income_id": "l10n_generic_coa.conf_a_sale",
         "name": "Prodotto Alpha",
         "weight": 0.1,
         "type": "consu",
@@ -45,11 +16,11 @@ TEST_PRODUCT_TEMPLATE = {
         "lst_price": 0.84,
         "default_code": "AA",
         "uom_po_id": "product.product_uom_unit",
-        "taxes_id": "external.22v",
+        "taxes_id": "z0bug.tax_22v",
         "conai_category_id": "l10n_it_conai.ca",
     },
     "z0bug.product_template_2": {
-        "property_account_income_id": "z0bug.coa_sale",
+        "property_account_income_id": "l10n_generic_coa.conf_a_sale",
         "name": "Prodotto Beta",
         "weight": 0.2,
         "type": "consu",
@@ -58,7 +29,7 @@ TEST_PRODUCT_TEMPLATE = {
         "lst_price": 3.38,
         "default_code": "BB",
         "uom_po_id": "product.product_uom_unit",
-        "taxes_id": "external.22v",
+        "taxes_id": "z0bug.tax_22v",
         "conai_category_id": "l10n_it_conai.al",
     },
 }
@@ -82,9 +53,9 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "price_unit": 0.42,
         "quantity": 100,
         "product_uom": "product.product_uom_unit",
-        "account_id": "z0bug.coa_sale",
+        "account_id": "l10n_generic_coa.conf_a_sale",
         "name": "Prodotto Alpha",
-        "invoice_line_tax_ids": "external.22v",
+        "invoice_line_tax_ids": "z0bug.tax_22v",
     },
     "z0bug.invoice_Z0_1_2": {
         "sequence": 2,
@@ -93,9 +64,9 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "price_unit": 1.69,
         "quantity": 20,
         "product_uom": "product.product_uom_unit",
-        "account_id": "z0bug.coa_sale",
+        "account_id": "l10n_generic_coa.conf_a_sale",
         "name": "Prodotto Beta",
-        "invoice_line_tax_ids": "external.22v",
+        "invoice_line_tax_ids": "z0bug.tax_22v",
     },
 }
 
@@ -121,7 +92,7 @@ TEST_SALE_ORDER = {
     "z0bug.sale_order_Z0_1": {
         "origin": "Test1",
         "client_order_ref": "230123",
-        "date_order": "####-##-<#",
+        "date_order": "####-##-01",
         "partner_id": "z0bug.res_partner_2",
     },
 }
@@ -134,7 +105,7 @@ TEST_SALE_ORDER_LINE = {
         "price_unit": 0.42,
         "product_uom_qty": 100,
         "product_uom": "product.product_uom_unit",
-        "tax_id": "external.22v",
+        "tax_id": "z0bug.tax_22v",
         "name": "Prodotto Alpha",
     },
     "z0bug.sale_order_Z0_1_2": {
@@ -144,7 +115,7 @@ TEST_SALE_ORDER_LINE = {
         "price_unit": 1.69,
         "product_uom_qty": 20,
         "product_uom": "product.product_uom_unit",
-        "tax_id": "external.22v",
+        "tax_id": "z0bug.tax_22v",
         "name": "Prodotto Beta",
     },
 }
@@ -167,18 +138,12 @@ class TestConai(SingleTransactionCase):
         super(TestConai, self).setUp()
         # Add following statement just for get debug information
         self.debug_level = 0
-        data = {"TEST_SETUP_LIST": TEST_SETUP_LIST}
-        for resource in TEST_SETUP_LIST:
-            item = "TEST_%s" % resource.upper().replace(".", "_")
-            data[item] = globals()[item]
-        self.declare_all_data(data)  # TestEnv swallows the data
+        self.odoo_commit_test = True
         self.setup_company(
             self.default_company(),
             xref="z0bug.mycompany",
             partner_xref="z0bug.partner_mycompany",
             recv_xref="z0bug.coa_recv",
-            # pay_xref="z0bug.coa_pay",
-            # bnk1_xref="z0bug.coa_bnk1",
             values={
                 "name": "Test Company",
                 "vat": "IT05111810015",
@@ -189,10 +154,6 @@ class TestConai(SingleTransactionCase):
 
     def tearDown(self):
         super(TestConai, self).tearDown()
-        if os.environ.get("ODOO_COMMIT_TEST", ""):  # pragma: no cover
-            # Save test environment, so it is available to dump
-            self.env.cr.commit()  # pylint: disable=invalid-commit
-            _logger.info("✨ Test data committed")
 
     def _test_conai_order(self):
         _logger.info("🎺 Testing test_conai (order)")
@@ -248,6 +209,34 @@ class TestConai(SingleTransactionCase):
                 records += line
         self.validate_records(templates, records)
 
+    def _test_create_ddt(self):
+        _logger.info("🎺 Testing Create DdT")
+        order = self.resource_browse("z0bug.sale_order_Z0_1")
+        self.assertNotEqual(order.invoice_status, "invoiced")
+        self.resource_edit(order, actions="action_create_ddt")
+        ddt = self.resource_browse("z0bug.sale_order_Z0_1").ddt_ids[0]
+        self.resource_edit(
+            ddt,
+            web_changes=[
+                ("carriage_condition_id", "l10n_it_ddt.carriage_condition_PA"),
+                ("goods_description_id", "l10n_it_ddt.goods_description_CAR"),
+                ("transportation_reason_id", "l10n_it_ddt.transportation_reason_VEN"),
+                ("transportation_method_id", "l10n_it_ddt.transportation_method_DES"),
+            ],
+            actions=["save", "set_done"])
+        self.assertEqual(ddt.state, "done")
+        self.wizard(
+            module="l10n_it_ddt",
+            action_name="action_ddt_create_invoice",
+            records=ddt,
+            # web_changes=[],
+            button_name="create_invoice",
+        )
+        self.assertEqual(
+            self.resource_browse("z0bug.sale_order_Z0_1").invoice_status,
+            "invoiced")
+
     def test_conai(self):
         self._test_conai_order()
         self._test_conai_invoice()
+        self._test_create_ddt()

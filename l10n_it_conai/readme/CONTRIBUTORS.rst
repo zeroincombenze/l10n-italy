@@ -1,1 +1,1 @@
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__

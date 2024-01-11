@@ -85,37 +85,37 @@ class ItalyConaiStatement(models.Model):
                 ("journal_id", "in", journal_ids),
             ]
             for invoice in self.env["account.invoice"].search(domain, order="number"):
-                for inv_line in invoice.invoice_line_ids:
+                for invLine in invoice.invoice_line_ids:
                     if (
-                        not inv_line.conai_category_id
-                        and not inv_line.conai_category2_id
+                        not invLine.conai_category_id
+                        and not invLine.conai_category2_id
                     ):
                         continue
-                    if inv_line.conai_category_id:
+                    if invLine.conai_category_id:
                         weight2 = 0.0
                         category2 = False
-                        if inv_line.product_id:
+                        if invLine.product_id:
                             weight2 = (
-                                inv_line.product_id.weight2
-                                or inv_line.product_id.product_tmpl_id.weight2
-                            ) * inv_line.quantity
+                                invLine.product_id.weight2
+                                or invLine.product_id.product_tmpl_id.weight2
+                            ) * invLine.quantity
                             category2 = (
-                                inv_line.product_id.conai_category2_id
-                                or inv_line.product_id.product_tmpl_id.conai_category2_id
+                                invLine.product_id.conai_category2_id
+                                or invLine.product_id.product_tmpl_id.conai_category2_id
                             )
                         statement_line_ids = manage_invoice_line(
                             statement,
                             invoice,
-                            inv_line,
-                            inv_line.conai_category_id,
-                            inv_line.weight - weight2,
+                            invLine,
+                            invLine.conai_category_id,
+                            invLine.weight - weight2,
                             statement_line_ids,
                         )
                         if weight2 and category2:
                             statement_line_ids = manage_invoice_line(
                                 statement,
                                 invoice,
-                                inv_line,
+                                invLine,
                                 category2,
                                 weight2,
                                 statement_line_ids,

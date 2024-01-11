@@ -215,7 +215,7 @@ class SaleOrderLine(models.Model):
                 )
             self.evaluate_conai_amount()
 
-    @api.multi
+    # @api.multi
     @api.onchange("price_unit", "product_uom_qty", "discount", "conai_category_id")
     def evaluate_conai_amount(self):
         self._compute_weight()
