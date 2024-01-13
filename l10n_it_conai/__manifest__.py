@@ -14,7 +14,7 @@
     "category": "Localization/Italy",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "account",
         "l10n_it_ddt",
