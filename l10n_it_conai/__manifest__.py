@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-24 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -42,5 +42,6 @@
     "installable": True,
     "maintainer": "Zeroincombenze (R)",
     "development_status": "Beta",
+    "application": True,
     "post_init_hook": "set_company_conai_product_post",
 }
