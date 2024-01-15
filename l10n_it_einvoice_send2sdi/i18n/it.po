@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 07:35+0000\n"
-"PO-Revision-Date: 2023-11-14 07:35+0000\n"
+"POT-Creation-Date: 2024-01-15 10:47+0000\n"
+"PO-Revision-Date: 2024-01-15 10:47+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -162,7 +162,7 @@ msgstr "Fatture multiple di un unico xml"
 #: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:1011
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
-msgstr "nessun server di PEC in ricezione. Configurarne almeno uno."
+msgstr "Nessun server di PEC in ricezione. Configurarne almeno uno."
 
 #. module: l10n_it_einvoice_send2sdi
 #: code:addons/l10n_it_einvoice_send2sdi/models/italy_ade_sender.py:49
@@ -251,22 +251,22 @@ msgstr "Stato Federale"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_bonus_invoices_ctr
 msgid "Total # of bonus invoices"
-msgstr "totale fatture bouns/malus"
+msgstr "Totale fatture bouns/malus"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_used_invoices_ctr
 msgid "Total # of invoices sent and received"
-msgstr "numero totale di fatture inviate e ricevute"
+msgstr "Numero totale di fatture inviate e ricevute"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_max_invoices_ctr
 msgid "Total # of invoices to send or receive"
-msgstr "numero totale di fatture da inviare o ricevere"
+msgstr "Numero totale di fatture da inviare o ricevere"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_avail_invoices_ctr
 msgid "Total # of invoices you can still send or receive"
-msgstr "numero totale di fatture che possono essere inviate o ricevute"
+msgstr "Numero totale di fatture che possono essere inviate o ricevute"
 
 #. module: l10n_it_einvoice_send2sdi
 #: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:699
@@ -316,11 +316,9 @@ msgstr "Si possono inviare solo file pronti all'invio."
 #, python-format
 msgid "You cannot send invoices. Please buy a new invoices pack!"
 msgstr ""
-"non è possibile inviare fatture. Per favore acquistare un nuovo pacchetto!"
+"Non è possibile inviare fatture. Per favore acquistare un nuovo pacchetto!"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "on"
 msgstr "il"
-
-
