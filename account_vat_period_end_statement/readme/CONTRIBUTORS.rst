@@ -1,5 +1,5 @@
 * Lorenzo Battistini <https://github.com/eLBati>
-* Elena Carlesso
+* Elena Carlesso <False>
 * Marco Marchiori <marcomarkiori@gmail.com>
 * Sergio Corato <sergiocorato@gmail.com>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
@@ -7,6 +7,5 @@
 * Alessandro Camilli <camillialex@gmail.com>
 * Simone Rubino <simone.rubino@agilebg.com>
 * Giacomo Grasso <giacomo.grasso.82@gmail.com>
-* Lara Baggio <http://linkgroup.it/>
+* Lara Baggio <https://linkgroup.it>
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
-
