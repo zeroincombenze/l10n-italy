@@ -6,4 +6,5 @@ Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement
 
 This module requires `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.6 <http://pyxb.sourceforge.net/>`__
 
-This code partially inherits some parts from l10n_it_account of OCA.
+This code partially inherits some parts from *l10n_it_account*
+and *l10n_it_fiscal_document_type* of OCA.

@@ -326,7 +326,20 @@ La fattura può essere emessa entro il mese successivo alla consegna merce.</fie
         <field name="out_refund">False</field>
         <field name="in_refund">False</field>
         <field name="priority">3</field>
-        <field name="is_self_invoice">0</field>
+        <field name="is_self_invoice">1</field>
+    </record>
+    <record id="fatturapa_TD28" model="italy.ade.invoice.type">
+        <field name="code">TD28</field>
+        <field name="name">acquisti da San Marino con IVA (fattura cartacea)</field>
+        <field name="scope">IT EU XX,out_invoice,Out_refund,in_invoice,In_refund</field>
+        <field name="help"></field>
+        <field name="active">1</field>
+        <field name="out_invoice">True</field>
+        <field name="in_invoice">False</field>
+        <field name="out_refund">False</field>
+        <field name="in_refund">False</field>
+        <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
     </record>
 
 </odoo>

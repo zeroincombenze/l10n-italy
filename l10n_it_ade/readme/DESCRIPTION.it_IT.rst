@@ -23,4 +23,5 @@ Tutti i moduli che generano file xml dipendenti dallo schema dell'Agenzia delle 
 devono dichiare il modulo `l10n_it_ade <{{GIT_URL_ROOT}}/tree/{{branch}}/l10n_it_ade>`__
 come dipendenza.
 
-Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.
+Questo modulo eredita alcune parti di codice dai moduli *l10n_it_account*
+e *l10n_it_fiscal_document_type* di OCA.

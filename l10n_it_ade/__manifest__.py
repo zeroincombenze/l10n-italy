@@ -9,7 +9,7 @@
 #
 {
     "name": "Agenzia delle Entrate (italian IRS)",
-    "version": "10.0.0.3.8",
+    "version": "10.0.0.3.9",
     "category": "Localization/Italy",
     "summary": "Codes & Definitions from IRS",
     "author": "SHS-AV s.r.l.",

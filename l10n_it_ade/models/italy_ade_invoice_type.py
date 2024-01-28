@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2018-20 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2018-24 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -20,7 +20,7 @@ class ItalyAdeInvoiceType(models.Model):
     code = fields.Char(
         string="Code", size=5, required=True, help="Code assigned by Tax Authority"
     )
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(string="Name", size=100, required=True)
     help = fields.Text(string="Help")
     out_invoice = fields.Boolean(string="Customer Invoice")
     in_invoice = fields.Boolean(string="Vendor Bill")
@@ -38,3 +38,15 @@ class ItalyAdeInvoiceType(models.Model):
             res.append(
                 (doc_type.id, '[%s] %s' % (doc_type.code, doc_type.name)))
         return res
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if not args:
+            args = []
+        if name:
+            records = self.search([
+                '|', ('name', operator, name), ('code', operator, name)
+                ] + args, limit=limit)
+        else:
+            records = self.search(args, limit=limit)
+        return records.name_get()

@@ -1,5 +1,5 @@
 ===========================================================================
-|icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.8
+|icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.9
 ===========================================================================
 
 **Codes & Definitions from IRS**
@@ -22,7 +22,8 @@ Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement
 
 This module requires `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.6 <http://pyxb.sourceforge.net/>`__
 
-This code partially inherits some parts from l10n_it_account of OCA.
+This code partially inherits some parts from *l10n_it_account*
+and *l10n_it_fiscal_document_type* of OCA.
 
 
 |it| Questo modulo non ha funzioni specifiche per l'utente finale.
@@ -47,8 +48,13 @@ Tutti i moduli che generano file xml dipendenti dallo schema dell'Agenzia delle 
 devono dichiare il modulo `l10n_it_ade <https://github.com/zeroincombenze/l10n-italy/tree/10.0/l10n_it_ade>`__
 come dipendenza.
 
-Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.
+Questo modulo eredita alcune parti di codice dai moduli *l10n_it_account*
+e *l10n_it_fiscal_document_type* di OCA.
 
+
+|thumbnail|
+
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ade/static/description/description.png
 
 
 Features | Caratteristiche
@@ -71,13 +77,20 @@ Features | Caratteristiche
 Certifications | Certificazioni
 -------------------------------
 
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
-| Logo | Logo   | Certification | Certificazione                                                                                                                                                                                   | Date       | Expiration  | Notes(s)                                     |
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
-| |xml\_schema| | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                            | 01-06-2017 | 31-12-2023  | Validazione contro schema xml                |
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
-| |FatturaPA|   | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__ | 01-06-2017 | 31-12-20203 | Controllo tramite sito Agenzia delle Entrate |
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
+Logo | Logo,Certification | Certificazione,Date,Expiration date,Notes(s)
+|xml\_schema|,`ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__,01-06-2017,31-12-2023,Validazione contro schema xml
+|FatturaPA|,`FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__,01-06-2017,31-12-20203,Controllo tramite sito Agenzia delle Entrate
+
+
+
+Configuration | Configurazione
+------------------------------
+
+☰ Accounting > Configuration > Accounting > Tax Authority definition > Tax Nature
+
+☰ Accounting > Configuration > Accounting > Tax Authority definition > Invoice Type
+
+☰ Accounting > Configuration > Accounting > Tax Authority definition > Codici Carica
 
 
 
@@ -190,6 +203,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.3.9 (2024-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document TD28 / Documento fiscale TD28
+* [IMP] Fiscal document: searching improvements / Migliorie ricerca documento fiscale
+* [FIX] TD20 is self invoice
+
 10.0.0.3.8 (2023-11-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -225,8 +245,8 @@ ChangeLog History | Cronologia modifiche
 
 
 
-Credits | Didascalie
-====================
+Credits | Gratitutide e stima
+=============================
 
 Copyright
 ---------
@@ -241,8 +261,8 @@ Authors | Autori
 
 
 
-Contributors | Contributi da
-----------------------------
+Contributors | Partecipanti
+---------------------------
 
 * `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
@@ -251,8 +271,10 @@ Contributors | Contributi da
 Acknowledges | Riconoscimenti
 -----------------------------
 
+* `Davide Corio <info@davidecorio.com>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Alex Comba <alex.comba@agilebg.com>`__
+* `Sergio Zanchetta <https://github.com/primes2h>`__
 
 
 
@@ -280,41 +302,20 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-11-15
+Last Update / Ultimo aggiornamento: 2024-01-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -338,5 +339,3 @@ Last Update / Ultimo aggiornamento: 2023-11-15
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP

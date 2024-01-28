@@ -1,3 +1,10 @@
+10.0.0.3.9 (2024-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document TD28 / Documento fiscale TD28
+* [IMP] Fiscal document: searching improvements / Migliorie ricerca documento fiscale
+* [FIX] TD20 is self invoice
+
 10.0.0.3.8 (2023-11-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -70,3 +77,4 @@
 * [IMP] Use both pyxb 1.2.4 both 1.2.5 (automatic detection)
 * [IMP] File xml without characters not accepted by Tax Authority
 * [FIX] Link fiscal type refund by refund / Riconoscimento NC fiscale da documento Odoo
+* [QUA] Test coverage 64% (176: 63+113) [3 TestPoints] - quality rating 42 (target 100)

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-23 07:48+0000\n"
-"PO-Revision-Date: 2023-10-23 07:48+0000\n"
+"POT-Creation-Date: 2024-01-28 12:38+0000\n"
+"PO-Revision-Date: 2024-01-28 12:38+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -73,7 +73,7 @@ msgstr "Il codice esiste già!"
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_codice_carica_code
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_invoice_type_code
 msgid "Code assigned by Tax Authority"
-msgstr "Code assigned by Tax Authority"
+msgstr "Codice assigned da Imposta Authority"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_italy_ade_codice_carica
@@ -84,7 +84,7 @@ msgstr "Codice Carica"
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_codice_carica_form
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_codice_carica_tree
 msgid "Codice carica"
-msgstr "Codice carica"
+msgstr "Codice Carica"
 
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_ade_codice_carica
@@ -94,7 +94,7 @@ msgstr "Codici Carica"
 #. module: l10n_it_ade
 #: model:ir.actions.act_window,name:l10n_it_ade.action_ade_codice_carica
 msgid "Codici carica"
-msgstr "Codici carica"
+msgstr "Codici Carica"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_create_uid
@@ -190,7 +190,7 @@ msgstr "Tipo Fattura"
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_is_self_invoice
 msgid "It is self invoice"
-msgstr "It is self invoice"
+msgstr "It is se stesso fattura"
 
 #. module: l10n_it_ade
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_form
@@ -243,19 +243,19 @@ msgstr "Nome"
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_assosoftware_tree
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_nature_tree
 msgid "Natura IVA"
-msgstr "Natura IVA"
+msgstr "Natura Iva"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_kind_id
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_assosoftware_nature
 msgid "Nature"
-msgstr "Nature"
+msgstr "Natura"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_tax_kind_id
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_tax_assosoftware_nature
 msgid "Nature of tax code: may be taxable, out of scope, etc ..."
-msgstr "natura del codice: può essere imponibile, fuori campo, eccetera …"
+msgstr "Natura del codice: può essere imponibile, fuori campo, eccetera …."
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_res_partner
@@ -276,7 +276,7 @@ msgstr "Registro avvisi di parcella"
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_codice_carica_scope
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_invoice_type_scope
 msgid "Reserved to specific scope"
-msgstr "Reserved a specific scope"
+msgstr "Riservato e specific scope"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_journal_rev_charge
