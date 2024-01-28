@@ -1,0 +1,54 @@
+2024-01-27 19:33:43,000 3185025 DAEMON test_account_vat_period_end_statement_12 run_odoo_debug.sh: cd /home/odoo/12.0/venv_odoo && source ./bin/activate
+2024-01-27 18:33:52,677 3187963 INFO ? odoo: Odoo version 12.0 
+2024-01-27 18:33:52,678 3187963 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/account_vat_period_end_statement/tests/logs/zero12.l10n-italy.account_vat_period_end_statement.conf 
+2024-01-27 18:33:52,678 3187963 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/apps-store', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/business-requirement', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/geospatial', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/iot', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/mgmtsystem', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/manufacture-reporting', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/mis-builder-contrib', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/pos', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/project-agile', '/home/odoo/12.0/project-reporting', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2024-01-27 18:33:52,678 3187963 INFO ? odoo: database: odoo12@localhost:default 
+2024-01-27 18:33:52,950 3187963 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2024-01-27 18:33:53,216 3187963 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:29418 
+2024-01-27 18:33:53,261 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading 1 modules... 
+2024-01-27 18:33:53,272 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries 
+2024-01-27 18:33:53,413 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: updating modules list 
+2024-01-27 18:33:53,432 3187963 INFO test_account_vat_period_end_statement_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2024-01-27 18:34:08,000 3187963 INFO test_account_vat_period_end_statement_12 odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['account_vat_period_end_statement'] to user __system__ #1 via n/a 
+2024-01-27 18:34:08,445 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading 42 modules... 
+2024-01-27 18:34:08,890 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: 42 modules loaded in 0.44s, 0 queries 
+2024-01-27 18:34:08,896 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading 43 modules... 
+2024-01-27 18:34:09,652 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.registry: module account_vat_period_end_statement: creating or updating database tables 
+2024-01-27 18:34:10,181 3187963 INFO test_account_vat_period_end_statement_12 odoo.models: Storing computed values of account.vat.period.end.statement.reconciled 
+2024-01-27 18:34:10,182 3187963 INFO test_account_vat_period_end_statement_12 odoo.models: Storing computed values of account.vat.period.end.statement.residual 
+2024-01-27 18:34:10,194 3187963 INFO test_account_vat_period_end_statement_12 odoo.models: Storing computed values of account.vat.period.end.statement.payment_ids 
+2024-01-27 18:34:10,387 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/wizard/add_period.xml 
+2024-01-27 18:34:10,439 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/wizard/remove_period.xml 
+2024-01-27 18:34:10,476 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/security/ir.model.access.csv 
+2024-01-27 18:34:10,553 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/security/security.xml 
+2024-01-27 18:34:10,576 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/report/reports.xml 
+2024-01-27 18:34:10,601 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/views/report_vatperiodendstatement.xml 
+2024-01-27 18:34:10,682 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/views/config.xml 
+2024-01-27 18:34:10,758 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: loading account_vat_period_end_statement/views/account_view.xml 
+2024-01-27 18:34:10,949 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: Module account_vat_period_end_statement: loading demo 
+2024-01-27 18:34:10,975 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.module: odoo.addons.account_vat_period_end_statement.tests.test_vat_statement running tests. 
+2024-01-27 18:34:10,975 3187963 INFO test_account_vat_period_end_statement_12 odoo.addons.account_vat_period_end_statement.tests.test_vat_statement: test_vat_statement (odoo.addons.account_vat_period_end_statement.tests.test_vat_statement.TestTax) 
+2024-01-27 18:34:13,360 3187963 INFO test_account_vat_period_end_statement_12 odoo.addons.account_vat_period_end_statement.tests.test_vat_statement: Ran 1 test in 2.385s 
+2024-01-27 18:34:13,360 3187963 INFO test_account_vat_period_end_statement_12 odoo.addons.account_vat_period_end_statement.tests.test_vat_statement: OK 
+2024-01-27 18:34:13,405 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: 43 modules loaded in 4.51s, 1651 queries 
+2024-01-27 18:34:14,239 3187963 INFO test_account_vat_period_end_statement_12 odoo.modules.loading: Modules loaded. 
+2024-01-27 18:34:14,245 3187963 INFO test_account_vat_period_end_statement_12 odoo.service.server: Starting post tests 
+2024-01-27 18:34:14,246 3187963 INFO test_account_vat_period_end_statement_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2024-01-27 18:34:14,247 3187963 INFO test_account_vat_period_end_statement_12 odoo.service.server: Initiating shutdown 
+2024-01-27 18:34:14,247 3187963 INFO test_account_vat_period_end_statement_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36maccount_vat_period_end_statement[0m (12.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/12.0/l10n-italy/account_vat_period_end_statement/tests/logs/coverage_account_vat_period_end_statement_12rc -m
+[34;107mName                                                                                  Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------------------------
+/home/odoo/12.0/l10n-italy/account_vat_period_end_statement/models/account.py           329     85    74%   17, 27, 39, 51, 73, 88, 93, 97, 281-287, 290-294, 297, 313-318, 321, 323, 326, 328, 331, 361, 377, 396, 404-420, 434, 442-458, 461-477, 480-494, 506-518, 532, 547, 575, 577, 593, 599-600, 644-650, 662-663, 667-669, 673, 679-680
+/home/odoo/12.0/l10n-italy/account_vat_period_end_statement/models/config.py              6      0   100%
+/home/odoo/12.0/l10n-italy/account_vat_period_end_statement/report/vat_statement.py      45     33    27%   20-29, 32-36, 41-80, 85-101
+/home/odoo/12.0/l10n-italy/account_vat_period_end_statement/wizard/add_period.py         22     14    36%   20-38
+/home/odoo/12.0/l10n-italy/account_vat_period_end_statement/wizard/remove_period.py      26     13    50%   17-19, 28-38
+-------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                   428    145    66%
+[0m

@@ -1,36 +1,20 @@
-
-===============================================
-|icon| ITA - Inversione contabile 12.0.1.2.7_46
-===============================================
-
+======================================================================
+|icon| ITA - Inversione contabile/l10n_it_reverse_charge 12.0.1.2.7_46
+======================================================================
 
 **Inversione contabile**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_reverse_charge/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
-|en| Module to handle reverse charge IVA in vendor bills.
-
-The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
-Furthermore, the vendor bill cancellation and reopening procedure is automated.
-
-It is also possible to use the "additional vendor self billing" mode.
-This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
-The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.
-
-
-|
-
-|it| Inversione contabile
+|en| **Italiano**
 
 Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore.
 
@@ -41,149 +25,26 @@ Inoltre è automatizzata la procedura di annullamento e riapertura della fattura
 Questa modalità è usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
 L'autofattura passiva verrà poi totalmente riconciliata con l'autofattura attiva, anch'essa intestata alla propria azienda.
 
+**English**
+
+Module to handle reverse charge IVA in vendor bills.
+
+The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
+Furthermore, the vendor bill cancellation and reopening procedure is automated.
+
+It is also possible to use the "additional vendor self billing" mode.
+This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
+The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.
 
 
-|
+|it| Nessuna informazione disponibile
 
-Usage / Utilizzo
-----------------
+|thumbnail|
 
-Creare l'imposta **22% intra UE** - Vendite:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
-   :alt: 22% intra UE - Vendite
-   :width: 600 px
-
-Creare l'imposta **22% intra UE** - Acquisti:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
-  :alt: 22% intra UE - Acquisti
-  :width: 600 px
-
-Creare l'imposta **22% extra UE** - Vendite:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
-   :alt: 22% extra UE - Vendite
-   :width: 600 px
-
-Creare l'imposta **22% extra UE** - Acquisti:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
-  :alt: 22% extra UE - Acquisti
-  :width: 600 px
-
-Creare il conto 'Transitorio autofatturazione':
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
-  :alt: conto transitorio Autofattura
-  :width: 600 px
-
-Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transitorio autofatturazione' appena creato:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
-  :alt: Registro pagamento autofattura
-  :width: 600 px
-
-Modificare il tipo inversione contabile **Intra-UE (autofattura)**:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
-  :alt: inversione contabile con Autofattura
-  :width: 600 px
-
-Il registro autofattura deve essere di tipo 'Vendita'.
-
-Modificare il tipo inversione contabile **Extra-UE (autofattura)**:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
-  :alt: inversione contabile con Autofattura
-  :width: 600 px
-
-Il 'Registro autofattura passiva' deve essere di tipo 'Acquisto'.
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_reverse_charge/static/description/description.png
 
 
-Nella posizione fiscale, impostare il tipo inversione contabile:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
-  :alt: Impostazione posizioni fiscali Intra CEE
-  :width: 600 px
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
-  :alt: Impostazione posizioni fiscali Extra CEE
-  :width: 600 px
-
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-|
-
-Getting started / Come iniziare
-===============================
-
-|Try Me|
-
-
-|
-
-Installation / Installazione
-----------------------------
-
-
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| These instructions are just an  | Istruzioni di esempio valide solo per    |
-| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
-| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
-|                                 |                                          |
-| Installation is built with:     | L'installazione è costruita con:         |
-+---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
-+---------------------------------+------------------------------------------+
-| Suggested deployment is:        | Posizione suggerita per l'installazione: |
-+---------------------------------+------------------------------------------+
-| $HOME/12.0                                                                 |
-+----------------------------------------------------------------------------+
-
-::
-
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 12.0 -O zero -o $HOME/12.0
-    vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode 
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_reverse_charge** > Install
-
-
-|
-
-Configuration / Configurazione
+Configuration | Configurazione
 ------------------------------
 
 **Italiano**
@@ -316,47 +177,79 @@ In the fiscal position, set the reverse charge type:
   :width: 600 px
 
 
-|
 
-Upgrade / Aggiornamento
------------------------
+Getting started | Primi passi
+=============================
 
+|Try Me|
+
+
+Prerequisites | Prerequisiti
+----------------------------
+
+* python 3.7
+* postgresql 9.6+ (best 10.0+)
 
 ::
 
     cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
     source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
-    vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
+
+
+
+Installation | Installazione
+----------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
+|                                 |                                          |
+| Installation is built with:     | L'installazione è costruita con:         |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
++---------------------------------+------------------------------------------+
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| $HOME/12.0 |
++----------------------------------------------------------------------------+
+
+::
+
+    # Odoo repository installation; OCB repository must be installed
+    deploy_odoo clone -r l10n-italy -b 12.0 -G zero -p $HOME/12.0
+    # Upgrade virtual environment
+    vem amend $HOME/12.0/venv_odoo
+
+
+
+Upgrade | Aggiornamento
+-----------------------
+
+::
+
+    deploy_odoo update -r l10n-italy -b 12.0 -G zero -p $HOME/12.0
+    vem amend $HOME/12.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-|
 
-Support / Supporto
+Support | Supporto
 ------------------
 
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
-
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -365,9 +258,17 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
+Known issues | Roadmap
+----------------------
+
+Only the **self-invoice** method is managed, **VAT integration** method is not managed yet.
+
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -375,62 +276,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
-----------------------------------------
 
-12.0.1.2.7_46 (2023-02-15)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Self invoice date is equla to purchase invoice and diff from date / Data auto-fattura eguale a fattura fornitori e diversa da data contabile
-* [FIX] Validation error on self invoice in prior year / Errata segnalazione di errore per auto-fatture anno preceente
-* [TEST] Regressione test: 25% (456/340)
-
-12.0.1.2.7_45 (2022-06-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Element '<field name="enable_date">' cannot be located in parent view
-
-12.0.1.2.7_44 (2022-04-13)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Set date & date_invoice of self-invoice = invoice / Date auto-fattura = fattura
-
-12.0.1.2.7_43 (2022-04-13)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Set check on RC tax / Impostato check su tassa reverse charge
-
-12.0.1.2.7_42 (2022-04-01)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Wrong customer partner / Errato partner cliente
-
-12.0.1.2.7_41 (2022-03-18)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Self invoice wrong date / Data registrazione errata in autofattura
-
-12.0.1.2.7_40 (2022-03-15)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] More currency invoices / Fatture in valuta (più copertura)
-
-12.0.1.2.7_39 (2022-02-25)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Currency invoices / Fatture in valuta
-
-12.0.1.2.7_38 (2022-02-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Invalid tax nature check / Errato controllo natura codice IVA
-
-
-
-|
-|
-
-Credits / Didascalie
+Credits | Didascalie
 ====================
 
 Copyright
@@ -439,98 +286,64 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `Odoo Community Association (OCA) <https://odoo-community.org>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-* `Didotech s.r.l. <https://www.didotech.com>`__
-* `LibrERP <https://www.librerp.it>`__
-Authors
--------
+* LibrERP enterprise network and other partners <False>
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
 
-Contributors / Collaboratori
+
+Contributors | Contributi da
 ----------------------------
 
-* Davide Corio
-* Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-* Marco Tosato <marco.tosato@didotech.com>
-* Fabio Giovannelli <fabio.giovannelli@didotech.com>
-Contributors
-------------
+* Davide Corio <False>
+* `Alex Comba <alex.comba@agilebg.com>`__
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
+* `Marco Tosato <marco.tosato@didotech.com>`__
 
 
 
-Maintainer / Manutenzione
+Maintainer | Manutenzione
 -------------------------
 
+* `LibrERP enterprise network <https://www.librerp.it>`__
 
 
-
-|
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
-
-|chat_with_us|
-
-
+|
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-02-17
+Last Update / Ultimo aggiornamento: 2024-01-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=12.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=12.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
     :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -554,6 +367,3 @@ Last Update / Ultimo aggiornamento: 2023-02-17
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP
-
