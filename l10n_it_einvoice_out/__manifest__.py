@@ -5,21 +5,22 @@
 # Copyright 2018-19 - Odoo Italia Associazione <https://www.odoo-italia.org>
 # Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
-    "name": "Italian Localization - FatturaPA - Emission",
-    "version": "10.0.1.0.26",
+    "name": "Italian Localization - FatturaPA - Emissione",
+    "version": "10.0.1.0.27",
     "category": "Localization/Italy",
     "summary": "E-Invoice emission",
-    "author": "Odoo Community Association (OCA) and other subjects",
-    "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "author": ("SHS-AV s.r.l."),
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Beta",
+    "license": "AGPL-3",
     "depends": [
         "l10n_it_einvoice_base",
         "l10n_it_split_payment",
     ],
-    "external_dependencies": {"python": ["unidecode"]},
+    "external_dependencies": {'python': ['unidecode']},
     "data": [
         "wizard/wizard_export_fatturapa_view.xml",
         "wizard/attachment_refresh_info_view.xml",
@@ -27,5 +28,6 @@
         "views/account_view.xml",
         "security/ir.model.access.csv",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
 }

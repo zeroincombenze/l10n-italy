@@ -4,9 +4,9 @@ from odoo.exceptions import UserError
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IdFiscaleType,
-    AnagraficaType,
+    # AnagraficaType,
     CessionarioCommittenteType,
-    DatiTrasmissioneType,
+    # DatiTrasmissioneType,
     IndirizzoType,
 )
 
@@ -29,55 +29,56 @@ class WizardExportFatturapa(models.TransientModel):
         )
         return True
 
-    def setDatiTrasmissione(self, company, partner, fatturapa):
-        super(WizardExportFatturapa, self).setDatiTrasmissione(
-            company, partner, fatturapa)
-        if self.env.context.get("company_partner"):
-            company, partner = partner, company.partner_id
-            fatturapa.FatturaElettronicaHeader.DatiTrasmissione = DatiTrasmissioneType()
-            self._setIdTrasmittente_rc(company, fatturapa)
-            self._setFormatoTrasmissione(partner, fatturapa)
-            self._setCodiceDestinatario(partner, fatturapa)
-            # self._setContattiTrasmittente(company, fatturapa)
+    # def setDatiTrasmissione(self, company, partner, fatturapa):
+    #     super(WizardExportFatturapa, self).setDatiTrasmissione(
+    #         company, partner, fatturapa)
+    #     if self.env.context.get("company_partner"):
+    #         company, partner = partner, company.partner_id
+    #         fatturapa.FatturaElettronicaHeader.DatiTrasmissione =
+    #                                   DatiTrasmissioneType()
+    #         self._setIdTrasmittente_rc(company, fatturapa)
+    #         self._setFormatoTrasmissione(partner, fatturapa)
+    #         self._setCodiceDestinatario(partner, fatturapa)
+    #         # self._setContattiTrasmittente(company, fatturapa)
 
-    def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
-        res = super(WizardExportFatturapa, self)._setDatiAnagraficiCedente(
-            CedentePrestatore, company)
-        if self.env.context.get("rc_supplier"):
-            partner = self.env.context["rc_supplier"]
-            CedentePrestatore.DatiAnagrafici.CodiceFiscale = None
-            fiscal_document_type_codes = self.env.context.get(
-                'invoices_fiscal_document_type_codes')
-            # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
-            # TD17, TD18 e TD19; in caso contrario il file viene scartato
-            if partner.vat:
-                IdPaese = partner.vat[0:2]
-                IdCodice = partner.vat[2:]
-                if any([x in ['TD17', 'TD18', 'TD19'] for
-                        x in fiscal_document_type_codes]):
-                    if IdPaese == 'IT':
-                        IdPaese = partner.country_id.code
-                    if IdPaese == 'IT':
-                        IdPaese = "EU"
-                        IdCodice = partner.vat
-                if (IdPaese != 'EU' and
-                    IdPaese not in self.env['res.country'].search(
-                        []).mapped('code')):
-                    raise ValueError(_(
-                        "Country code does not exist or it is not mapped in countries: "
-                        "%s" % partner.vat[0:2]
-                    ))
-                CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=IdPaese, IdCodice=IdCodice)
-            elif partner.country_id.code and partner.country_id.code != 'IT':
-                CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.country_id.code, IdCodice='99999999999')
-            else:
-                raise UserError(
-                    _("Impossible to set IdFiscaleIVA for %s") % partner.display_name)
-            CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
-                Denominazione=partner.wep_text(partner.name))
-        return res
+    # def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
+    #     res = super(WizardExportFatturapa, self)._setDatiAnagraficiCedente(
+    #         CedentePrestatore, company)
+    #     if self.env.context.get("rc_supplier"):
+    #         partner = self.env.context["rc_supplier"]
+    #         CedentePrestatore.DatiAnagrafici.CodiceFiscale = None
+    #         fiscal_document_type_codes = self.env.context.get(
+    #             'self_invoices_fiscaldoc_codes')
+    #         # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
+    #         # TD17, TD18 e TD19; in caso contrario il file viene scartato
+    #         if partner.vat:
+    #             IdPaese = partner.vat[0:2]
+    #             IdCodice = partner.vat[2:]
+    #             if any([x in ['TD17', 'TD18', 'TD19'] for
+    #                     x in fiscal_document_type_codes]):
+    #                 if IdPaese == 'IT':
+    #                     IdPaese = partner.country_id.code
+    #                 if IdPaese == 'IT':
+    #                     IdPaese = "EU"
+    #                     IdCodice = partner.vat
+    #             if (IdPaese != 'EU' and
+    #                 IdPaese not in self.env['res.country'].search(
+    #                     []).mapped('code')):
+    #                 raise ValueError(_(
+    #                     "Country code does not exist or it is not mapped in"
+    #                     "countries: %s" % partner.vat[0:2]
+    #                 ))
+    #             CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+    #                 IdPaese=IdPaese, IdCodice=IdCodice)
+    #         elif partner.country_id.code and partner.country_id.code != 'IT':
+    #             CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+    #                 IdPaese=partner.country_id.code, IdCodice='99999999999')
+    #         else:
+    #             raise UserError(
+    #                 _("Impossible to set IdFiscaleIVA for %s") % partner.display_name)
+    #         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
+    #             Denominazione=partner.wep_text(partner.name))
+    #     return res
 
     def _setSedeCedente(self, CedentePrestatore, company):
         res = super(WizardExportFatturapa, self)._setSedeCedente(
@@ -227,13 +228,13 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(_(
                 "Selected invoices are both with and without reverse charge. You "
                 "should selected a smaller set of invoices"))
-        invoices_fiscal_document_type_codes = invoices.filtered(
-            lambda x: x.fiscal_document_type_id.code in ['TD17', 'TD18', 'TD19']
+        self_invoices_fiscaldoc_codes = invoices.filtered(
+            lambda x: x.is_self_invoice
         )
-        invoices_fiscal_document_type1_codes = invoices.filtered(
-            lambda x: x.fiscal_document_type_id.code not in ['TD17', 'TD18', 'TD19']
+        invoices_fiscaldoc_codes = invoices.filtered(
+            lambda x: not x.is_self_invoice
         )
-        if invoices_fiscal_document_type_codes and invoices_fiscal_document_type1_codes:
+        if self_invoices_fiscaldoc_codes and invoices_fiscaldoc_codes:
             raise UserError(_(
                 "Select invoices are of too many fiscal document types: "
                 "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
@@ -247,9 +248,9 @@ class WizardExportFatturapa(models.TransientModel):
         if rc_suppliers:
             context["rc_supplier"] = rc_suppliers[0]
             context[
-                "invoices_fiscal_document_type_codes"
+                "self_invoices_fiscaldoc_codes"
             ] = [x.fiscal_document_type_id.code
-                 for x in invoices_fiscal_document_type_codes]
+                 for x in self_invoices_fiscaldoc_codes]
             context["company_partner"] = company.partner_id
         return super(WizardExportFatturapa, self).exportInvoiceXML(
             company, partner, invoice_ids, attach, context=context

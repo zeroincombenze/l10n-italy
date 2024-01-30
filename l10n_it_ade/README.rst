@@ -34,7 +34,7 @@ Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 Destinatari
 -----------
 
-Tutti i soggetti passivi IVA in regime non forfettario
+Tutti i soggetti passivi IVA in regime
 
 
 Normativa e prassi
@@ -78,8 +78,8 @@ Certifications | Certificazioni
 -------------------------------
 
 Logo | Logo,Certification | Certificazione,Date,Expiration date,Notes(s)
-|xml\_schema|,`ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__,01-06-2017,31-12-2023,Validazione contro schema xml
-|FatturaPA|,`FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__,01-06-2017,31-12-20203,Controllo tramite sito Agenzia delle Entrate
+|xml\_schema|,`ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__,01-06-2017,31-12-2024,Validazione contro schema xml
+|FatturaPA|,`FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__,01-06-2017,31-12-2024,Controllo tramite sito Agenzia delle Entrate
 
 
 
@@ -271,6 +271,7 @@ Contributors | Partecipanti
 Acknowledges | Riconoscimenti
 -----------------------------
 
+* `Alessandro Camilli <alessandrocamilli@openforce.it>`__
 * `Davide Corio <info@davidecorio.com>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Alex Comba <alex.comba@agilebg.com>`__
@@ -302,7 +303,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-28
+Last Update / Ultimo aggiornamento: 2024-01-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -9,7 +9,7 @@ Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 Destinatari
 -----------
 
-Tutti i soggetti passivi IVA in regime non forfettario
+Tutti i soggetti passivi IVA in regime
 
 
 Normativa e prassi

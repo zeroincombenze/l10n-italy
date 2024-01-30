@@ -14,6 +14,7 @@
         "l10n_it_einvoice_in",
         "l10n_it_reverse_charge",
     ],
+    "version_depends": ["l10n_it_einvoice_out>=10.0.1.0.27"],
     "data": ['views/rc_type_views.xml'],
     "installable": True,
 }

@@ -1,3 +1,8 @@
+10.0.1.0.5 (2024-01-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [QUA] Test coverage 20% (130: 104+26) [1 TestPoints] - quality rating 14 (target 100)
+
 10.0.1.0.4 (2023-03-07)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -11,7 +16,7 @@
 10.0.1.0.2 (2022-10-04)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] No latin charr in partner / Anagrafica estera con caratteri non latini
+* [FIX] No latin chars in partner / Anagrafica estera con caratteri non latini
 
 10.0.1.0.1 (2022-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~

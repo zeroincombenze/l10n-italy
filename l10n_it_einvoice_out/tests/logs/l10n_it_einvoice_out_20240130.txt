@@ -1,0 +1,104 @@
+2024-01-30 16:58:56,000 3016016 DAEMON test_l10n_it_einvoice_out_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-01-30 15:59:01,519 3018393 INFO ? odoo: Odoo version 10.0
+2024-01-30 15:59:01,520 3018393 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/tests/logs/zero10.l10n-italy.l10n_it_einvoice_out.conf
+2024-01-30 15:59:01,520 3018393 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/apps-store', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/business-requirement', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/donation', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/event', u'/home/odoo/10.0/geospatial', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/infrastructure', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/manufacture-reporting', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mgmtsystem', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/operating-unit', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/pos', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/project-agile', u'/home/odoo/10.0/project-reporting', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/webkit-tools', u'/home/odoo/10.0/website', u'/home/odoo/10.0/website-cms', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-01-30 15:59:01,521 3018393 INFO ? odoo: database: odoo10@localhost:default
+2024-01-30 15:59:01,541 3018393 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:49333
+2024-01-30 15:59:01,560 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading 1 modules...
+2024-01-30 15:59:01,688 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: 1 modules loaded in 0.13s, 0 queries
+2024-01-30 15:59:04,485 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading 46 modules...
+2024-01-30 15:59:04,684 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-01-30 15:59:04,924 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: 46 modules loaded in 0.44s, 0 queries
+2024-01-30 15:59:04,933 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading 47 modules...
+2024-01-30 15:59:05,343 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2024-01-30 15:59:05,880 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2024-01-30 15:59:05,899 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.registry: module l10n_it_einvoice_out: creating or updating database tables
+2024-01-30 15:59:06,263 3018393 WARNING test_l10n_it_einvoice_out_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2024-01-30 15:59:06,406 3018393 INFO test_l10n_it_einvoice_out_10 odoo.models: Storing computed values of fatturapa.attachment.out fields date_invoice0, has_pdf_invoice_print, invoice_partner_id, invoices_number, invoices_total
+2024-01-30 15:59:06,482 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/wizard/wizard_export_fatturapa_view.xml
+2024-01-30 15:59:06,565 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/wizard/attachment_refresh_info_view.xml
+2024-01-30 15:59:06,619 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/views/attachment_view.xml
+2024-01-30 15:59:06,765 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/views/account_view.xml
+2024-01-30 15:59:06,902 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/security/ir.model.access.csv
+2024-01-30 15:59:07,702 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_out.tests.test_fattura running tests.
+2024-01-30 15:59:07,702 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.test_fattura: test_account_invoice (odoo.addons.l10n_it_einvoice_out.tests.test_fattura.TestInvoice)
+2024-01-30 15:59:08,149 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2024-01-30 15:59:08,151 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2024-01-30 15:59:09,077 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🎺🎺🎺 Starting test v2.0.15 (debug_level=0, commit=True)
+2024-01-30 15:59:09,081 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🎺🎺🎺 Testing module: l10n_it_einvoice_out (10.0.1.0.27)
+2024-01-30 15:59:10,322 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-01-30 15:59:10,325 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-01-30 15:59:10,479 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:10,481 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:10,619 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_5 not found
+2024-01-30 15:59:10,772 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_5 not found
+2024-01-30 15:59:10,918 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_5 not found
+2024-01-30 15:59:11,077 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:11,509 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_sp not found
+2024-01-30 15:59:11,511 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:11,650 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_sp not found
+2024-01-30 15:59:11,655 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:11,807 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:11,957 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-01-30 15:59:11,959 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-01-30 15:59:12,110 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_0 not found
+2024-01-30 15:59:12,276 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_nl not found
+2024-01-30 15:59:12,280 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_0 not found
+2024-01-30 15:59:12,565 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-01-30 15:59:12,716 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:12,719 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-01-30 15:59:12,900 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_rc not found
+2024-01-30 15:59:12,902 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-01-30 15:59:12,905 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-01-30 15:59:13,191 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_li not found
+2024-01-30 15:59:13,193 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-01-30 15:59:13,340 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_li not found
+2024-01-30 15:59:13,342 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-01-30 15:59:13,496 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-01-30 15:59:13,498 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-01-30 15:59:13,652 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_sp not found
+2024-01-30 15:59:13,654 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-01-30 15:59:19,808 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-01-30 15:59:20,462 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-01-30 15:59:21,217 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-01-30 15:59:23,627 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:23,634 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:23,636 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:24,692 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:24,702 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:24,704 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:25,517 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:25,525 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:25,527 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:26,327 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:26,336 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:26,339 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.models: Comparing apples and oranges: italy.ade.invoice.type(1,) == 1 (/home/odoo/10.0/l10n-italy/l10n_it_einvoice_base/models/account_invoice.py:598)
+2024-01-30 15:59:27,434 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🏆🥇 53 tests SUCCESSFULLY completed
+2024-01-30 15:59:27,436 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.test_fattura: Ran 1 test in 19.733s
+2024-01-30 15:59:27,436 3018393 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.test_fattura: OK
+2024-01-30 15:59:27,436 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_out.tests.test_fattura tested in 19.73s, 18656 queries
+2024-01-30 15:59:27,470 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: 47 modules loaded in 22.54s, 18671 queries
+2024-01-30 15:59:27,594 3018393 WARNING test_l10n_it_einvoice_out_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2024-01-30 15:59:28,109 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: Modules loaded.
+2024-01-30 15:59:28,115 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-01-30 15:59:28,116 3018393 INFO test_l10n_it_einvoice_out_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-01-30 15:59:28,258 3018393 INFO test_l10n_it_einvoice_out_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-01-30 15:59:28,260 3018393 INFO test_l10n_it_einvoice_out_10 odoo.service.server: Initiating shutdown
+2024-01-30 15:59:28,260 3018393 INFO test_l10n_it_einvoice_out_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_out[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/tests/logs/coverage_l10n_it_einvoice_out_10rc -m
+[34;107mName                                                                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/models/account.py                      16      6    62%   33-44
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/models/attachment.py                   68     16    76%   52, 70-74, 78, 86, 97, 100-101, 109-115
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/wizard/attachment_refresh_info.py       9      1    89%   18
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py     653    263    60%   98, 114-115, 129, 143, 146-147, 171-172, 205, 207, 220, 257, 263, 268, 288, 310, 324, 339, 346-380, 420-444, 478, 480, 532-536, 559-564, 570, 575-604, 607-632, 640, 646, 648, 654, 656, 658, 679-707, 710-751, 755, 768, 770, 774, 781, 783, 794, 819, 830, 837-853, 855-869, 881, 902, 904, 923, 929, 931, 967-969, 971, 984-988, 995, 1004, 1019, 1022, 1040-1047, 1051-1063, 1067-1142, 1189, 1220, 1237, 1241, 1256, 1276, 1285, 1328-1329, 1333-1362
+-----------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                 746    286    62%
+[0m
