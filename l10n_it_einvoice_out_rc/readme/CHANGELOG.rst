@@ -1,7 +1,7 @@
-10.0.1.0.5 (2024-01-30)
+10.0.1.0.5 (2024-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [QUA] Test coverage 20% (130: 104+26) [1 TestPoints] - quality rating 14 (target 100)
+* [QUA] Test coverage 78% (101: 22+79) [20 TestPoints] - quality rating 79 (target 100)
 
 10.0.1.0.4 (2023-03-07)
 ~~~~~~~~~~~~~~~~~~~~~~~

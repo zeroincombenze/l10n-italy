@@ -48,7 +48,7 @@ class WizardExportFatturapa(models.TransientModel):
     #         partner = self.env.context["rc_supplier"]
     #         CedentePrestatore.DatiAnagrafici.CodiceFiscale = None
     #         fiscal_document_type_codes = self.env.context.get(
-    #             'self_invoices_fiscaldoc_codes')
+    #             'self_invoices_by_fiscaldoc')
     #         # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
     #         # TD17, TD18 e TD19; in caso contrario il file viene scartato
     #         if partner.vat:
@@ -80,40 +80,40 @@ class WizardExportFatturapa(models.TransientModel):
     #             Denominazione=partner.wep_text(partner.name))
     #     return res
 
-    def _setSedeCedente(self, CedentePrestatore, company):
-        res = super(WizardExportFatturapa, self)._setSedeCedente(
-            CedentePrestatore, company)
-        if self.env.context.get("rc_supplier"):
-            partner = self.env.context["rc_supplier"]
-            if not partner.street:
-                raise UserError(
-                    _('Partner %s, Street is not set.') % partner.display_name)
-            if not partner.city:
-                raise UserError(
-                    _('Partner %s, City is not set.') % partner.display_name)
-            if not partner.country_id:
-                raise UserError(
-                    _('Partner %s, Country is not set.') % partner.display_name)
-            if partner.codice_destinatario == 'XXXXXXX':
-                CedentePrestatore.Sede = (
-                    IndirizzoType(
-                        Indirizzo=encode_for_export(partner.street, 60),
-                        CAP='00000',
-                        Comune=encode_for_export(partner.city, 60),
-                        Provincia='EE',
-                        Nazione=partner.country_id.code))
-            else:
-                if not partner.zip:
-                    raise UserError(
-                        _('Partner %s, ZIP is not set.') % partner.display_name)
-                CedentePrestatore.Sede = IndirizzoType(
-                    Indirizzo=encode_for_export(partner.street, 60),
-                    CAP=partner.zip,
-                    Comune=encode_for_export(partner.city, 60),
-                    Nazione=partner.country_id.code)
-                if partner.state_id:
-                    CedentePrestatore.Sede.Provincia = partner.state_id.code
-        return res
+    # def _setSedeCedente(self, CedentePrestatore, company):
+    #     res = super(WizardExportFatturapa, self)._setSedeCedente(
+    #         CedentePrestatore, company)
+    #     if self.env.context.get("rc_supplier"):
+    #         partner = self.env.context["rc_supplier"]
+    #         if not partner.street:
+    #             raise UserError(
+    #                 _('Partner %s, Street is not set.') % partner.display_name)
+    #         if not partner.city:
+    #             raise UserError(
+    #                 _('Partner %s, City is not set.') % partner.display_name)
+    #         if not partner.country_id:
+    #             raise UserError(
+    #                 _('Partner %s, Country is not set.') % partner.display_name)
+    #         if partner.codice_destinatario == 'XXXXXXX':
+    #             CedentePrestatore.Sede = (
+    #                 IndirizzoType(
+    #                     Indirizzo=encode_for_export(partner.street, 60),
+    #                     CAP='00000',
+    #                     Comune=encode_for_export(partner.city, 60),
+    #                     Provincia='EE',
+    #                     Nazione=partner.country_id.code))
+    #         else:
+    #             if not partner.zip:
+    #                 raise UserError(
+    #                     _('Partner %s, ZIP is not set.') % partner.display_name)
+    #             CedentePrestatore.Sede = IndirizzoType(
+    #                 Indirizzo=encode_for_export(partner.street, 60),
+    #                 CAP=partner.zip,
+    #                 Comune=encode_for_export(partner.city, 60),
+    #                 Nazione=partner.country_id.code)
+    #             if partner.state_id:
+    #                 CedentePrestatore.Sede.Provincia = partner.state_id.code
+    #     return res
 
     def _setStabileOrganizzazione(self, CedentePrestatore, company):
         res = super(WizardExportFatturapa, self)._setStabileOrganizzazione(
@@ -142,16 +142,16 @@ class WizardExportFatturapa(models.TransientModel):
             CedentePrestatore.RiferimentoAmministrazione = None
         return res
 
-    def setCessionarioCommittente(self, partner, fatturapa):
-        super(WizardExportFatturapa, self).setCessionarioCommittente(
-            partner, fatturapa)
-        if self.env.context.get("company_partner"):
-            partner = self.env.context["company_partner"]
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
-                CessionarioCommittenteType()
-            )
-            self._setDatiAnagraficiCessionario(partner, fatturapa)
-            self._setSedeCessionario(partner, fatturapa)
+    # def setCessionarioCommittente(self, partner, fatturapa):
+    #     super(WizardExportFatturapa, self).setCessionarioCommittente(
+    #         partner, fatturapa)
+    #     if self.env.context.get("company_partner"):
+    #         partner = self.env.context["company_partner"]
+    #         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
+    #             CessionarioCommittenteType()
+    #         )
+    #         self._setDatiAnagraficiCessionario(partner, fatturapa)
+    #         self._setSedeCessionario(partner, fatturapa)
 
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
@@ -217,24 +217,23 @@ class WizardExportFatturapa(models.TransientModel):
     ):
         context = context or {}
         invoices = self.env["account.invoice"].browse(invoice_ids)
-        invoices_with_rc = False
-        invoices_without_rc = False
-        for invoice in invoices:
-            if invoice.rc_purchase_invoice_id:
-                invoices_with_rc = True
-            else:
-                invoices_without_rc = True
+        invoices_with_rc = invoices.filtered(
+            lambda x: x.rc_purchase_invoice_id
+        )
+        invoices_without_rc = invoices.filtered(
+            lambda x: not x.rc_purchase_invoice_id
+        )
         if invoices_with_rc and invoices_without_rc:
             raise UserError(_(
                 "Selected invoices are both with and without reverse charge. You "
                 "should selected a smaller set of invoices"))
-        self_invoices_fiscaldoc_codes = invoices.filtered(
+        self_invoices_by_fiscaldoc = invoices.filtered(
             lambda x: x.is_self_invoice
         )
-        invoices_fiscaldoc_codes = invoices.filtered(
+        invoices_no_self_by_fiscaldoc = invoices.filtered(
             lambda x: not x.is_self_invoice
         )
-        if self_invoices_fiscaldoc_codes and invoices_fiscaldoc_codes:
+        if self_invoices_by_fiscaldoc and invoices_no_self_by_fiscaldoc:
             raise UserError(_(
                 "Select invoices are of too many fiscal document types: "
                 "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
@@ -248,9 +247,9 @@ class WizardExportFatturapa(models.TransientModel):
         if rc_suppliers:
             context["rc_supplier"] = rc_suppliers[0]
             context[
-                "self_invoices_fiscaldoc_codes"
+                "invoices_no_self_by_fiscaldoc"
             ] = [x.fiscal_document_type_id.code
-                 for x in self_invoices_fiscaldoc_codes]
+                 for x in invoices_no_self_by_fiscaldoc]
             context["company_partner"] = company.partner_id
         return super(WizardExportFatturapa, self).exportInvoiceXML(
             company, partner, invoice_ids, attach, context=context

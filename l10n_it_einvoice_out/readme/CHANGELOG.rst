@@ -1,8 +1,8 @@
-10.0.1.0.27 (2024-01-30)
+10.0.1.0.27 (2024-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Self e-invoice management - Emissione auto-fatture
-* [QUA] Test coverage 62% (746: 286+460) [53 TestPoints] - quality rating 49 (target 100)
+* [QUA] Test coverage 64% (756: 275+481) [86 TestPoints] - quality rating 57 (target 100)
 
 10.0.1.0.26 (2023-06-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
