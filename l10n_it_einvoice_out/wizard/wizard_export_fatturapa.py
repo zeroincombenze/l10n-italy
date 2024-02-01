@@ -215,9 +215,9 @@ class WizardExportFatturapa(models.TransientModel):
         return value
 
     def _setIdTrasmittente(self, company_partner, fatturapa):
-
         if not company_partner.country_id:
-            raise UserError(_("Company %s, Country not set.") % company_partner.display_name)
+            raise UserError(_("Company %s, Country not set.")
+                            % company_partner.display_name)
         IdPaese = company_partner.country_id.code
         IdCodice = company_partner.fiscalcode if hasattr(company_partner,
                                                          "fiscalcode") else False
@@ -778,6 +778,8 @@ class WizardExportFatturapa(models.TransientModel):
         if self_invoice:
             self._setDatiAnagraficiCessionario(company.partner_id, fatturapa)
             self._setSedeCessionario(company.partner_id, fatturapa)
+            if invoices[0].sender == "CC":
+                fatturapa.FatturaElettronicaHeader.SoggettoEmittente = "CC"
         else:
             self._setDatiAnagraficiCessionario(partner, fatturapa)
             self._setSedeCessionario(partner, fatturapa)
@@ -1231,16 +1233,6 @@ class WizardExportFatturapa(models.TransientModel):
     ):
         context = context or {}
         invoices = self.env["account.invoice"].browse(invoice_ids)
-        # invoices_with_rc = invoices.filtered(
-        #     lambda x: x.rc_purchase_invoice_id
-        # )
-        # invoices_without_rc = invoices.filtered(
-        #     lambda x: not x.rc_purchase_invoice_id
-        # )
-        # if invoices_with_rc and invoices_without_rc:
-        #     raise UserError(_(
-        #         "Selected invoices are both with and without reverse charge."
-        #         " You should selected a smaller set of invoices"))
         self_invoices_by_fiscaldoc = invoices.filtered(
             lambda x: x.is_self_invoice
         )
@@ -1263,6 +1255,16 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(_(
                 "Selected invoices are both PA and not PA."
                 " You should selected a smaller set of invoices"))
+        invoices_sender_cc = invoices.filtered(
+            lambda x: x.sender == "CC"
+        )
+        invoices_no_cc = invoices.filtered(
+            lambda x: not x.sender
+        )
+        if invoices_sender_cc and invoices_no_cc:
+            raise UserError(_(
+                "Selected invoices are both sender 'CC' and no sender."
+                " You should selected a smaller set of invoices"))
 
         context[
             "self_invoices_by_fiscaldoc"
@@ -1284,45 +1286,7 @@ class WizardExportFatturapa(models.TransientModel):
                         _("E-invoice export file still present for invoice %s.")
                         % (invoice.number)
                     )
-                # if (
-                #     invoice.fiscal_position_id
-                #     and hasattr(invoice.fiscal_position_id, "lettera_intento")
-                #     and invoice.fiscal_position_id.lettera_intento
-                #     and not self.env["ir.module.module"].search(
-                #         [
-                #             ("name", "=", "l10n_it_einvoice_out_li"),
-                #             ("state", "=", "installed"),
-                #         ]
-                #     )
-                # ):
-                #     raise UserError(
-                #         _(
-                #             "Questo software non supporta la normativa 2002 "
-                #             "delle lettere di intento.\n"
-                #             "Per favore, contattare il fornitore di servizi software "
-                #             "per ottenere l'aggiornamento fiscale!"
-                #         )
-                #     )
-                # if (
-                #     invoice.fiscal_document_type_id.code in ("TD16",
-                #                                              "TD17",
-                #                                              "TD18",
-                #                                              "TD19")
-                #     and not self.env["ir.module.module"].search(
-                #         [
-                #             ("name", "=", "l10n_it_einvoice_out_rc"),
-                #             ("state", "=", "installed"),
-                #         ]
-                #     )
-                # ):
-                #     raise UserError(
-                #         _(
-                #             "Questo software non supporta la normativa 2002 "
-                #             "delle autofatture in reverse-charge.\n"
-                #             "Per favore, contattare il fornitore di servizi software "
-                #             "per ottenere l'aggiornamento fiscale!"
-                #         )
-                #     )
+
                 if self.report_print_menu:
                     self.generate_attach_report(invoice)
                 invoice_body = FatturaElettronicaBodyType()

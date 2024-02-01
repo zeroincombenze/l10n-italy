@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from odoo import models, _
 from odoo.exceptions import UserError
-from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+# from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IdFiscaleType,
     # AnagraficaType,
-    CessionarioCommittenteType,
+    # CessionarioCommittenteType,
     # DatiTrasmissioneType,
-    IndirizzoType,
+    # IndirizzoType,
 )
 
 

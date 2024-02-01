@@ -109,6 +109,7 @@ TEST_ACCOUNT_INVOICE = {
         "fiscal_position_id": "z0bug.fiscalpos_it",
         "comment": "l10n_it_einvoice_out test\nSelf Invoice",
         "fiscal_document_type_id": "l10n_it_ade.fatturapa_TD20",
+        "sender": "CC",
     },
 }
 
@@ -274,6 +275,7 @@ class TestInvoice(SingleTransactionCase):
             "CedentePrestatore/DatiAnagrafici/IdFiscaleIVA/IdCodice": vat[2:],
             "CedentePrestatore/Sede/CAP": zip,
             "CedentePrestatore/Sede/Provincia": state_code,
+            "CessionarioCommittente/SoggettoEmittente": "CC",
         })
         self._test_file_xml(xml, test_vals)
 

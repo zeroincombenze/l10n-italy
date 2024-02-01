@@ -1,7 +1,6 @@
-
-=======================================
-|icon| EInvoice + FatturaPA 10.0.2.1.23
-=======================================
+=============================================================
+|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.24
+=============================================================
 
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
 
@@ -12,30 +11,39 @@
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
-|en| EInvoice + FatturaPA
--------------------------
-
-This module manage infrastructure to manage Italian E Invoice and FatturaPA
+|en| This module manage infrastructure to manage Italian E Invoice and FatturaPA
 as per send to the SdI (Exchange System by Italian Tax Authority)
 
+`Italian e-invoice laws <https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche>`__
 
-|
 
-|it| Fattura Elettronica + FatturaPA
-------------------------------------
+|it| Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
+Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di
+interscambio SdI.
 
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
-Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di interscambio SdI.
+In anagrafica clienti i dati per la fattura elettronica sono inseribili nella
+scheda "Agenzia delle Entrate".
 
-In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".
-Le casistiche previste sono:
 
-::
+Destinatari
+~~~~~~~~~~~
 
-    Fattura elettronica a soggetto IVA
+Il modulo è destinato a tutte le aziende che dal 2019 emettono fattura elettronica
+
+Normativa
+~~~~~~~~~
+
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare
+la `normativa fattura elettronica <https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche>`__
+
+
+Fattura elettronica a soggetto IVA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Installare il modulo *l10n_it_einvoice_out*
 
 Si tratta della casistica più comune. Selezionare "Soggetto a fattura elettronica"
 e compilare il "Codice destinatario" o la "PEC".
@@ -43,25 +51,34 @@ La partita IVA è un dato obligatorio ai fini dell'invio.
 L'eventuale invio di una fattura in formato PDF è una fattura di cortesia e non
 ha valore legale.
 
-::
+Fattura elettronica a PA
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Fattura elettronica a PA
+Installare il modulo *l10n_it_einvoice_out*
 
 Questa casistica è attiva già dal 2016. Impostare "Pubblica Amministrazione"
-e compilare il "Codice ufficio".
+e compilare il "Codice ufficio". Prestare attenzione alla normativa sulla scissione dei
+pagamenti e all'inserimento dei dati aggiuntivi CIG e CUP.
 
-::
+Fattura elettronica da DdT (TD24)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Fattura elettronica a privato senza partita IVA
+Installare il modulo *l10n_it_einvoice_ddt*
+
+Fattura elettronica a privato senza partita IVA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Installare il modulo *l10n_it_einvoice_out*
 
 La legge non prevede l'obbligo di emissione della fattura elettronica ma è
 ammessa l'emissione a condizione che venga inviata una fattura in formato PDF
-al cliente. Inserire il valore "0000000" nel codice destinatario
-e il codice fiscale.
+al cliente. Inserire il valore "0000000" nel codice destinatario e il codice fiscale.
 
-::
 
-    Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
+Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Installare il modulo *l10n_it_einvoice_out*
 
 Casistica in cui un cliente con partita IVA che non abbia fornito
 ne il proprio Codice Destinatario ne la propria PEC. Si riconduce al caso
@@ -69,71 +86,65 @@ precedente, inserendo il valore "0000000" nel codice destinatario ed il
 codice fiscale. Anche in questo caso è obbligatorio inviare una fattura in
 formato PDF al cliente.
 
-::
+Fattura elettronica a rappresentante fiscale in Italia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Fattura elettronica a rappresentante fiscale in Italia
+Installare il modulo *l10n_it_einvoice_out*
 
 Casistica di aziende estere con rappresentanza fiscale in Italia.
 Inserire nei contatti un indirizzo di fatturazione di tipo "Rappresentante fiscale"
 con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa al rappresentante fiscale.
 
-::
+Fattura elettronica a stabile organizzazione
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Fattura elettronica a stabile organizzazione
+Installare il modulo *l10n_it_einvoice_out*
 
 Casistica di aziende estere con stabile organizzazione in Italia.
 Inserire nei contatti un indirizzo di fatturazione di tipo "Stabile organizzazione"
 con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa alla stabile organizzazione.
 
-::
+Fattura elettronica a soggetto estero
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Fattura elettronica a soggetto estero
+Installare il modulo *l10n_it_einvoice_out*
 
 Inserire il valore XXXXXXX nel codice destinatario. Il file XML viene generato
-con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
-Anche in questo caso è obbligatorio inviare una fattura in
-formato PDF al cliente.
+con le opportune correzioni per la validazioni dell'Agenzia delle Entrate.
+Anche in questo caso è obbligatorio inviare una fattura in formato PDF al cliente.
 
-Se il soggetto non ha ne partita IVA ne codice fiscale il campo viene compilato
-con il valore di configurazione "No EU customer TIN" del menù
-`Contabilità > Configurazione > Configurazione`
-Il valore predefinito è "%(iso)s99999999999" che inserisce la partita IVA di 11 cifre 9
-precedute dal codice ISO del cliente.
-Il valore potrebbe cambiare in quanto il terzo incaricato potrebbe effettuare
-controlli di validazione prima dell'invio all'Agenzia delle Entrate.
+Se il soggetto non ha ne partita IVA ne codice fiscale, nella fattura elettronica
+viene inserita una partita IVA convenzionale "%(iso)s99999999999" con il codice ISO
+della nazione cliente e 11 cifre '9'.
 
-::
+Il campo CAP viene convenzionalmente compilato con "00000" e la provincia con "EE".
 
-Configurare le imposte riguardo a "Natura non imponibile",
-"Riferimento legislativo" ed "Esigibilità IVA"
+Emissione fattura con dichiarazione di intento
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
+Installare il modulo *l10n_it_einvoice_li*
 
-::
-
-    Destinatari:
-
-Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+Inserire il riferimento della lettera di intento.
 
 
-::
+Emissione auto-fattura
+~~~~~~~~~~~~~~~~~~~~~~
 
-    Normativa e prassi:
-
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
-
-Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
-
-* Il codice TD20 è utilizzabile solo per le autofatture rif. art. 6 c.8 D.Lgs 471/97 (fatture non ricevute dopo 4 mesi)
-* Le autofatture in reverse charge devono avere il codice TD01
+Casistica per fatture ricevute in regime di reverse charge (tipi documento da TD16 a
+TD19) oppure per emissione auto-fatture per integrazione (TD20, TD21, TD25, TD27 e
+TD28). Per l'emissione delle autofatture in regime di reverse charge, installare il
+modulo *l10n_it_einvoice_out_rc* mentre l'emissione di auto-fatture in integrazione
+installare il modulo *l10n_it_einvoice_out*
 
 
-|
-|
+|thumbnail|
 
-Certifications / Certificazioni
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_base/static/description/description.png
+
+
+Certifications | Certificazioni
 -------------------------------
 
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
@@ -145,40 +156,54 @@ Certifications / Certificazioni
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
-|
 
-Usage / Utilizzo
-----------------
+Configuration | Configurazione
+------------------------------
 
-Usage / Uso
-===========
+☰  Configuration > Configuration > Invoicing > Fattura PA
 
-|menu| Contabilità > Configurazione > Configurazione
+☰  Invoicing > Configuration > Tax > Tax > Set Nature
 
-* Posizione fiscale: impostare la posizione fiscale da inserire in fattura elettronica. Solitamente "Regime Ordinario"
-* Sequenza: numeratore dei file XML
-* REA Office: provincia della CCIAA dell'azienda
-* REA number: numero di iscrizione dell'azienda alla CCIAA (senza sigla provincia)
-* REA capital: capitale sociale, espresso in €
-* REA copartner: impostare se socio unico e più soci
-* REA liquidation: impostare attivo a meno che l'azienda sia in cessazione attività
-* No EU customer TIN: valore da inserire come P.IVA nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA
-* No EU customer fc: valore da inserire come CF nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA
+☰  Invoicing > Configuration > Management > Payment Terms
+
+☰  Invoicing > Customers > Customers > Set data
+
+☰  Invoicing > Configuration > Invoicing > Fiscal Positions
+
+Read only:
+
+☰  Invoicing > Configuration > Invoicing > IRS definition > Tax natue
+
+☰  Invoicing > Configuration > Invoicing > IRS definition > Invoice type
 
 
-|
 
-Getting started / Primi passi
+Getting started | Primi passi
 =============================
 
 |Try Me|
 
 
-|
-
-Installation / Installazione
+Prerequisites | Prerequisiti
 ----------------------------
 
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
+
+Installation | Installazione
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -189,85 +214,42 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Install
 
 
-|
-
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
-
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_base** > Update
 
 
-|
-
-Support / Supporto
+Support | Supporto
 ------------------
-
 
 |Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -276,9 +258,9 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
-|
 
-Known issues / Roadmap
+
+Known issues | Roadmap
 ----------------------
 
 |en| Please, do not mix the following module with OCA Italy modules.
@@ -309,9 +291,9 @@ all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
 * Do not install l10n_it_esigibilita_iva of OCA distribution
 
 
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -319,8 +301,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.2.1.24 (2024-02-01)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Sender on invoice header / Soggetto emittente in testata fattura
+* [QUA] Test coverage 61% (515: 202+313) [0 TestPoints] - quality rating 37 (target 100)
 
 10.0.2.1.23 (2023-03-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -339,11 +328,36 @@ ChangeLog History / Cronologia modifiche
 * [IMP] Company data view with name for field extentions
 
 
-|
-|
+10.0.2.1.20 (2022-07-07)
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Credits / Didascalie
-====================
+* [IMP] Field einvoice_no_eq_cf_pi & pa_move_pi_2_fc hidden
+
+10.0.2.1.19 (2022-06-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Model acces for withholding.data.line
+
+10.0.2.1.18 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
+
+10.0.2.1.17 (2022-06-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor internal improvements / Migliorie interne minori
+
+10.0.2.1.16 (2022-06-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Style sheet / Aggiornamento fogli di stile fattura XML
+
+
+
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -351,39 +365,47 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `Associazione Odoo Italia <https://www.odoo-italia.org>`__
-* `Odoo Community Association (OCA) <https://odoo-community.org>`__
-* `Abstract <https://abstract.it>`__
-* `Agile Business Group sagl <https://www.agilebg.com>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
-Contributors / Contributi da
-----------------------------
 
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-Translations by / Traduzioni a cura di
+Contributors | Partecipanti
+---------------------------
+
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
+
+Acknowledges | Riconoscimenti
+-----------------------------
+
+* `Agile Business Group sagl <https://www.agilebg.com>`__
+* `Abstract <https://www.abstract.it>`__
+* `Odoo Italia Network <https://www.odoo-italia.net>`__
+* `Davide Corio <davide.corio@abstract.it>`__
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+
+
+
+Translations by | Traduzioni a cura di
 --------------------------------------
 
-* Sergio Zanchetta <https://github.com/primes2h>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Sergio Zanchetta <https://github.com/primes2h>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
-Maintainer / Manutenzione
+
+
+Maintainer | Manutenzione
 -------------------------
 
-Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
-|
+
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -396,44 +418,24 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 
 |
+|
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-10-11
+Last Update / Ultimo aggiornamento: 2024-02-01
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -457,7 +459,3 @@ Last Update / Ultimo aggiornamento: 2023-10-11
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP
-
-

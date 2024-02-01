@@ -1,35 +1,63 @@
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#162832;">Infrastructure for Italian Electronic Invoice + FatturaPA / Fattura Elettronica + FatturaPA</h2>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Infrastructure for Italian Electronic Invoice + FatturaPA</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify"><h2>Infrastructure for Italian Electronic Invoice + FatturaPA / Fattura Elettronica + FatturaPA</h2>
-<p align="justify">
-This module manage infrastructure to manage Italian E Invoice and FatturaPA
+            <h2 class="oe_slogan" style="color:#162832;">Infrastruttura per Fattura elettronica e FatturaPA</h2>
+        </div>
+        <div class="oe_demo oe_screenshot">
+            
+        </div>
+    </div>
+</section>
+
+<section>
+    <div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">This module manage infrastructure to manage Italian E Invoice and FatturaPA
 as per send to the SdI (Exchange System by Italian Tax Authority)
+<p align="justify">
+<a href="https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche">Italian e-invoice laws</a>
 </p></p>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify"><h2>Infrastructure for Italian Electronic Invoice + FatturaPA / Fattura Elettronica + FatturaPA</h2>
+            <p class="oe_mt16" align="justify">Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
+Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di
+interscambio SdI.
 <p align="justify">
-Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
-Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di interscambio SdI.
+In anagrafica clienti i dati per la fattura elettronica sono inseribili nella
+scheda "Agenzia delle Entrate".
 </p><p align="justify">
-In anagrafica clienti i dati per la fattura elettronica sono inseribili nella scheda "Agenzia delle Entrate".
-Le casistiche previste sono:
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a soggetto IVA
-</code>
+<h4>Destinatari</h4>
+</p><p align="justify">
+Il modulo &#232; destinato a tutte le aziende che dal 2019 emettono fattura elettronica
+</p><p align="justify">
+<h4>Normativa</h4>
+</p><p align="justify">
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare
+la <a href="https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche">normativa fattura elettronica</a>
+</p><p align="justify">
+</p><p align="justify">
+<h4>Fattura elettronica a soggetto IVA</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 Si tratta della casistica pi&#249; comune. Selezionare "Soggetto a fattura elettronica"
 e compilare il "Codice destinatario" o la "PEC".
@@ -37,28 +65,30 @@ La partita IVA &#232; un dato obligatorio ai fini dell'invio.
 L'eventuale invio di una fattura in formato PDF &#232; una fattura di cortesia e non
 ha valore legale.
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a PA
-</code>
+<h4>Fattura elettronica a PA</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 Questa casistica &#232; attiva gi&#224; dal 2016. Impostare "Pubblica Amministrazione"
-e compilare il "Codice ufficio".
+e compilare il "Codice ufficio". Prestare attenzione alla normativa sulla scissione dei
+pagamenti e all'inserimento dei dati aggiuntivi CIG e CUP.
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a privato senza partita IVA
-</code>
+<h4>Fattura elettronica da DdT (TD24)</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_ddt</i>
+</p><p align="justify">
+<h4>Fattura elettronica a privato senza partita IVA</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 La legge non prevede l'obbligo di emissione della fattura elettronica ma &#232;
 ammessa l'emissione a condizione che venga inviata una fattura in formato PDF
-al cliente. Inserire il valore "0000000" nel codice destinatario
-e il codice fiscale.
+al cliente. Inserire il valore "0000000" nel codice destinatario e il codice fiscale.
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
-</code>
+</p><p align="justify">
+<h4>Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 Casistica in cui un cliente con partita IVA che non abbia fornito
 ne il proprio Codice Destinatario ne la propria PEC. Si riconduce al caso
@@ -66,83 +96,104 @@ precedente, inserendo il valore "0000000" nel codice destinatario ed il
 codice fiscale. Anche in questo caso &#232; obbligatorio inviare una fattura in
 formato PDF al cliente.
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a rappresentante fiscale in Italia
-</code>
+<h4>Fattura elettronica a rappresentante fiscale in Italia</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 Casistica di aziende estere con rappresentanza fiscale in Italia.
 Inserire nei contatti un indirizzo di fatturazione di tipo "Rappresentante fiscale"
 con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa al rappresentante fiscale.
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a stabile organizzazione
-</code>
+<h4>Fattura elettronica a stabile organizzazione</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 Casistica di aziende estere con stabile organizzazione in Italia.
 Inserire nei contatti un indirizzo di fatturazione di tipo "Stabile organizzazione"
 con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa alla stabile organizzazione.
 </p><p align="justify">
-
-<code>
-    Fattura elettronica a soggetto estero
-</code>
+<h4>Fattura elettronica a soggetto estero</h4>
+</p><p align="justify">
+Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
 Inserire il valore XXXXXXX nel codice destinatario. Il file XML viene generato
-con le opportune correzione per la validazioni dell'Agenzia delle Entrate.
-Anche in questo caso &#232; obbligatorio inviare una fattura in
-formato PDF al cliente.
+con le opportune correzioni per la validazioni dell'Agenzia delle Entrate.
+Anche in questo caso &#232; obbligatorio inviare una fattura in formato PDF al cliente.
 </p><p align="justify">
-Se il soggetto non ha ne partita IVA ne codice fiscale il campo viene compilato
-con il valore di configurazione "No EU customer TIN" del men&#249;
-<code>Contabilit&#224; &gt; Configurazione &gt; Configurazione</code>
-Il valore predefinito &#232; "%(iso)s99999999999" che inserisce la partita IVA di 11 cifre 9
-precedute dal codice ISO del cliente.
-Il valore potrebbe cambiare in quanto il terzo incaricato potrebbe effettuare
-controlli di validazione prima dell'invio all'Agenzia delle Entrate.
+Se il soggetto non ha ne partita IVA ne codice fiscale, nella fattura elettronica
+viene inserita una partita IVA convenzionale "%(iso)s99999999999" con il codice ISO
+della nazione cliente e 11 cifre '9'.
 </p><p align="justify">
-
-<code>
-</code>
-Configurare le imposte riguardo a "Natura non imponibile",
-"Riferimento legislativo" ed "Esigibilit&#224; IVA"
+Il campo CAP viene convenzionalmente compilato con "00000" e la provincia con "EE".
 </p><p align="justify">
-Configurare i dati della fattura elettronica nella configurazione della contabilit&#224;, dove necessario
+<h4>Emissione fattura con dichiarazione di intento</h4>
 </p><p align="justify">
-
-<code>
-    Destinatari:
-</code>
+Installare il modulo <i>l10n_it_einvoice_li</i>
 </p><p align="justify">
-Il modulo &#232; destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+Inserire il riferimento della lettera di intento.
 </p><p align="justify">
 </p><p align="justify">
-
-<code>
-    Normativa e prassi:
-</code>
+<h4>Emissione auto-fattura</h4>
 </p><p align="justify">
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la <a href="https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm/">normativa fattura elettronica</a>
-</p><p align="justify">
-Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
-</p><p align="justify">
-<ul>
-<li>Il codice TD20 &#232; utilizzabile solo per le autofatture rif. art. 6 c.8 D.Lgs 471/97 (fatture non ricevute dopo 4 mesi)</li>
-<li>Le autofatture in reverse charge devono avere il codice TD01</li>
-</ul>
+Casistica per fatture ricevute in regime di reverse charge (tipi documento da TD16 a
+TD19) oppure per emissione auto-fatture per integrazione (TD20, TD21, TD25, TD27 e
+TD28). Per l'emissione delle autofatture in regime di reverse charge, installare il
+modulo <i>l10n_it_einvoice_out_rc</i> mentre l'emissione di auto-fatture in integrazione
+installare il modulo <i>l10n_it_einvoice_out</i>
 </p></p>
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">Usage / Utilizzo</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Certifications | Certificazioni</h3>
         <div class="oe_span12">
-<h1>Usage / Uso</h1>
+<table style="width:100%; padding:2px; border-spacing:2px; text-align:left;"><tr>
+<td>Logo</td><td>Ente/Certificato</td><td>Data inizio</td><td>Da fine</td><td>Note</td><td/>
+</tr><tr>
+<td/><td>xml\_schema</td><td/><td><a href="https://www.fatturapa.gov.it/export/fatturazione/it/strumenti.htm">ISO + Agenzia delle Entrate</a></td><td>01-06-2017</td><td>31-12-2019</td><td>Validazione contro schema xml</td><td/>
+</tr><tr>
+<td><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png"/></td><td><a href="https://www.fatturapa.gov.it/export/fatturazione/it/index.htm">FatturaPA</a></td><td>01-06-2017</td><td>31-12-2019</td><td>Controllo tramite sito Agenzia delle Entrate</td><td/>
+</tr><tr>
+</tr></table>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/>  Configuration &#187; Configuration &#187; Invoicing &#187; Fattura PA
 <p align="justify">
-<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/awesome/menu.png"/> Contabilit&#224; &gt; Configurazione &gt; Configurazione
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Invoicing &#187; Configuration &#187; Tax &#187; Tax &#187; Set Nature
 </p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Invoicing &#187; Configuration &#187; Management &#187; Payment Terms
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Invoicing &#187; Customers &#187; Customers &#187; Set data
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Invoicing &#187; Configuration &#187; Invoicing &#187; Fiscal Positions
+</p><p align="justify">
+Read only:
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Invoicing &#187; Configuration &#187; Invoicing &#187; IRS definition &#187; Tax natue
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Invoicing &#187; Configuration &#187; Invoicing &#187; IRS definition &#187; Invoice type
+</p></p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Configurazione &#187; Configurazione &#187; Contabilit&#224; &#187; Fattura PA
+<p align="justify">
 <ul>
 <li>Posizione fiscale: impostare la posizione fiscale da inserire in fattura elettronica. Solitamente "Regime Ordinario"</li>
 <li>Sequenza: numeratore dei file XML</li>
@@ -151,38 +202,95 @@ Note fiscali da circolare Agenzia delle Entrate su tipo documento fiscale:
 <li>REA capital: capitale sociale, espresso in &#8364;</li>
 <li>REA copartner: impostare se socio unico e pi&#249; soci</li>
 <li>REA liquidation: impostare attivo a meno che l'azienda sia in cessazione attivit&#224;</li>
-<li>No EU customer TIN: valore da inserire come P.IVA nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA</li>
-<li>No EU customer fc: valore da inserire come CF nel file XML in caso di emissione di fatture elettroniche a clienti extra-UE, senza P.IVA</li>
 </ul>
-</p>
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Configurazione &#187; Imposte &#187; Imposte &#187; Impostare natura codici IVA
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Configurazione &#187; Management &#187; Termini di pagamento &#187; Collegare i termini di pagamento con i relativi termini fiscali
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Clienti &#187; Clienti &#187; Impostare Codice Destinatario o PEC o IPA, nazione, partita IVA, codice fiscale
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Posizioni fiscali &#187; Collegare posizioni fiscali con regimi fiscali
+</p><p align="justify">
+Per consultazione (non modificare):
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Definizioni Agenzia delle Entrate &#187; Natura dell'IVA
+</p><p align="justify">
+<span class="fa fa-th-large" style="color:#7C7BAD"/>  Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Definizioni Agenzia delle Entrate &#187; Tipi Fattura
+</p></p>
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">ChangeLog History / Cronologia modifiche</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h3>10.0.2.1.23 (2023-03-08)</h3>
+<h4>10.0.2.1.24 (2024-02-01)</h4>
 <p align="justify">
+<ul>
+<li>[IMP] Sender on invoice header / Soggetto emittente in testata fattura</li>
+<li>[QUA] Test coverage 61% (515: 202+313) [0 TestPoints] - quality rating 37 (target 100)</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.2.1.23 (2023-03-08)</h4>
+</p><p align="justify">
 <ul>
 <li>[FIX] Fiscal document type for refund / TD04 per note credito</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.2.1.22 (2023-02-13)</h3>
+<h4>10.0.2.1.22 (2023-02-13)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Self invoice flag / Identificatore documento autofattura</li>
 <li>[IMP] Date updatable for self invoice / Data contabile modificabile per le auto-fatture</li>
 </ul>
 </p><p align="justify">
-<h3>10.0.2.1.21 (2022-11-14)</h3>
+<h4>10.0.2.1.21 (2022-11-14)</h4>
 </p><p align="justify">
 <ul>
 <li>[IMP] Company data view with name for field extentions</li>
 </ul>
+</p><p align="justify">
+</p><p align="justify">
+<h4>10.0.2.1.20 (2022-07-07)</h4>
+</p><p align="justify">
+<ul>
+<li>[IMP] Field einvoice_no_eq_cf_pi &amp; pa_move_pi_2_fc hidden</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.2.1.19 (2022-06-30)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Model acces for withholding.data.line</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.2.1.18 (2022-06-20)</h4>
+</p><p align="justify">
+<ul>
+<li>[IMP] Fiscal document type renamed</li>
+<li>[IMP] Tax nature renamed</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.2.1.17 (2022-06-16)</h4>
+</p><p align="justify">
+<ul>
+<li>[IMP] Minor internal improvements / Migliorie interne minori</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.2.1.16 (2022-06-08)</h4>
+</p><p align="justify">
+<ul>
+<li>[FIX] Style sheet / Aggiornamento fogli di stile fattura XML</li>
+</ul>
 </p>
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">Known issues / Problemi conosciuti</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Known issues | Problemi conosciuti</h3>
         <div class="oe_span12">
 <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png"/> Please, do not mix the following module with OCA Italy modules.
 <p align="justify">
@@ -217,35 +325,39 @@ all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
     </div>
 </section>
 
-<section class="oe_container oe_separator"/>
-
 <section class="oe_container">
     <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Credits | Ringraziamenti</h3>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16"><b>Authors | Autori:</b></p>
             <p class="oe_mt16"><ul>
-<li><a href="https://www.odoo-italia.org/">Associazione Odoo Italia</a></li>
-<li><a href="https://odoo-community.org/">Odoo Community Association (OCA)</a></li>
-<li><a href="https://abstract.it/">Abstract</a></li>
-<li><a href="https://www.agilebg.com/">Agile Business Group sagl</a></li>
-<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+<li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
 </ul></p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors / Contributi da:</p>
+            <p class="oe_mt16"><b>Contributors | Partecipanti:</b></p>
             <p class="oe_mt16"><ul>
-<li>Davide Corio &lt;davide.corio@abstract.it&gt;</li>
-<li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
-<li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
+<li><a href="mailto:antoniomaria.vigliotti@gmail.com">Antonio Maria Vigliotti</a></li>
+</ul></p>
+        </div>
+        <div class="oe_span6" align="left">
+            <p class="oe_mt16"><b>Acknowledges | Riconoscimenti:</b></p>
+            <p class="oe_mt16"><ul>
+<li><a href="https://www.agilebg.com">Agile Business Group sagl</a></li>
+<li><a href="https://www.abstract.it">Abstract</a></li>
+<li><a href="https://www.odoo-italia.net">Odoo Italia Network</a></li>
+<li><a href="mailto:davide.corio@abstract.it">Davide Corio</a></li>
+<li><a href="mailto:lorenzo.battistini@agilebg.com">Lorenzo Battistini</a></li>
 </ul></p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <p>This module is maintained by the <b>SHS_AV s.r.l.</b>.</p>
+            <p>This module is maintained by the <b><a href="https://www.shs-av.com">SHS_AV s.r.l.</a></b>.</p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2024-02-01</p>
     </div>
 </section>

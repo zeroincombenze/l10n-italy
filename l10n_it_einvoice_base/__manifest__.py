@@ -9,11 +9,12 @@
 #
 {
     "name": "EInvoice + FatturaPA",
-    "summary": "Infrastructure for Italian Electronic Invoice + FatturaPA",
-    "version": "10.0.2.1.23",
+    "version": "10.0.2.1.24",
     "category": "Localization/Italy",
-    "author": "Odoo Italia Associazione,Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy",
+    "summary": "Infrastructure for Italian Electronic Invoice + FatturaPA",
+    "author": "SHS-AV s.r.l.",
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Beta",
     "license": "AGPL-3",
     "depends": [
         "account",
@@ -26,7 +27,7 @@
         "l10n_it_pec",
         "l10n_it_fiscal_payment_term",
     ],
-    "external_dependencies": {"python": ["pyxb"]},
+    "external_dependencies": {'python': ['pyxb']},
     "data": [
         "security/ir.model.access.csv",
         "data/fatturapa_fiscal_position.xml",
@@ -43,5 +44,6 @@
         "views/welfare_fund_type_view.xml",
         "wizard/set_invoice_type_view.xml",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
 }

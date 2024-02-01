@@ -13,6 +13,7 @@
                        attrs="{'readonly': [('is_self_invoice', '=', False)]}"
                        groups="account.group_account_user"/>
                 <field name="fiscal_document_type_id" options="{'no_create': True}" />
+                <field name="sender" />
                 <field name="type" readonly="1" />
             </xpath>
             <field name="partner_bank_id" position="attributes">

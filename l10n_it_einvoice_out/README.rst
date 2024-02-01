@@ -17,28 +17,27 @@ Overview | Panoramica
 |en| This module allows you to generate the fatturaPA XML file version 1.2.1
 which will be sent to the SdI (Exchange System by Italian Tax Authority)
 
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
+`Italian e-invoice laws <https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche>`__
 
-|warning| Read carefully note of module l10n_it_einvoice_base before install this module
+|warning| Read carefully note of module *l10n_it_einvoice_base* before install this module
 
 
-|it| Questo modulo permette di generare il file xml della fatturaPA versione 1.2
+|it| Questo modulo permette di generare il file xml della fatturaPA versione 1.2.1
 da trasmettere al sistema di interscambio SdI.
 
-::
 
-    Destinatari:
+Destinatari
+~~~~~~~~~~~
 
-Il modulo è destinato a tutte le aziende che dal 2019 dovranno emettere fattura elettronica
+Il modulo è destinato a tutte le aziende che dal 2019 emettono fattura elettronica
 
+Normativa
+~~~~~~~~~
 
-::
+Le leggi inerenti la fattura elettronica sono numerose. Potete consultare
+la `normativa fattura elettronica <https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche>`__
 
-    Normativa:
-
-Le leggi inerenti la fattura elettronica sono numerose. Potete consultare la `normativa fattura elettronica <https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm>`__
-
-Per maggiori info leggere le informazioni relative al modulo l10n_it_einvoice_base
+Per maggiori info leggere le informazioni relative al modulo *l10n_it_einvoice_base*
 
 
 |thumbnail|
@@ -198,11 +197,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.0.27 (2024-01-31)
+10.0.1.0.27 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Self e-invoice management - Emissione auto-fatture
-* [QUA] Test coverage 62% (744: 281+463) [69 TestPoints] - quality rating 53 (target 100)
+* [QUA] Test coverage 64% (762: 276+486) [87 TestPoints] - quality rating 57 (target 100)
 
 10.0.1.0.26 (2023-06-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -242,8 +241,8 @@ ChangeLog History | Cronologia modifiche
 
 
 
-Credits | Gratitutide e stima
-=============================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -310,7 +309,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-31
+Last Update / Ultimo aggiornamento: 2024-02-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -12,7 +12,7 @@
     "version": "10.0.1.0.27",
     "category": "Localization/Italy",
     "summary": "E-Invoice emission",
-    "author": ("SHS-AV s.r.l."),
+    "author": "SHS-AV s.r.l.",
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
     "development_status": "Beta",
     "license": "AGPL-3",
