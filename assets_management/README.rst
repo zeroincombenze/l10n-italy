@@ -1,5 +1,5 @@
 =========================================================
-|icon| ITA - Gestione Cespiti/Gestione beni 12.0.1.0.0_30
+|icon| ITA - Gestione Cespiti/Gestione beni 12.0.1.0.0_31
 =========================================================
 
 **Gestione Cespiti**
@@ -30,6 +30,10 @@ italiane.
 Si consiglia di guardare il file "test/Test Workflow.xlsx" usato come
 modello di sviluppo e test.
 
+
+|thumbnail|
+
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/assets_management/static/description/description.png
 
 
 Usage | Utilizzo
@@ -152,6 +156,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.0_31 (2024-01-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Dismissione bene totalmente ammortizzato da più anni
+* [QUA]
+
 12.0.1.0.0_30 (2024-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -161,7 +171,7 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Valore iniziale da fattura se cambio (data) fattura
 * [FIX] Errato calcolo di plusvalenza/minusvalenza in alcuni casi
 * [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
-* [QUA] Test coverage 72% (3261: 910+2351) [501 TestPoints] - quality rating 68 (target 100)
+* [QUA] Test coverage 72% (3244: 893+2351) [501 TestPoints] - quality rating 69 (target 100)
 
 12.0.1.0.0_29 (2022-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -210,8 +220,8 @@ ChangeLog History | Cronologia modifiche
 
 
 
-Credits | Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -230,8 +240,8 @@ Authors | Autori
 
 
 
-Contributors | Contributi da
-----------------------------
+Contributors | Partecipanti
+---------------------------
 
 * `Alessandro Camilli <alessandrocamilli@openforce.it>`__
 * `Silvio Gregorini <silviogregorini@openforce.it>`__
@@ -267,41 +277,20 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-05
+Last Update / Ultimo aggiornamento: 2024-02-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=12.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=12.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=12.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/12.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
     :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -325,5 +314,3 @@ Last Update / Ultimo aggiornamento: 2024-01-05
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP

@@ -1,3 +1,9 @@
+12.0.1.0.0_31 (2024-02-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Dismissione bene totalmente ammortizzato da più anni
+* [QUA] Test coverage 72% (3267: 899+2368) [501 TestPoints] - quality rating 69 (target 100)
+
 12.0.1.0.0_30 (2024-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

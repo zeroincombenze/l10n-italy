@@ -415,6 +415,45 @@ class AssetDepreciation(models.Model):
         #     )
         return line_model.create(vals)
 
+    def generate_empty_lines_for_disposal_asset(self, deps, vals):
+        fiscal_year_model = self.env["account.fiscal.year"]
+        fy = False
+        dep_date = vals["date"]
+        for dep in deps:
+            lines = dep.mapped("line_ids")
+            if not fy:
+                fy = fiscal_year_model.get_fiscal_year_by_date(
+                    dep_date, company=dep.asset_id.company_id
+                )
+                prior_fy_date_to = fy.date_from - datetime.timedelta(1)
+
+            if dep.asset_id.purchase_date > prior_fy_date_to:
+                continue
+
+            older_lines = lines.filtered(
+                lambda ln: (
+                    ln.move_type == "depreciated" and ln.date <= prior_fy_date_to
+                )
+            )
+            last_depreciation_date = False
+            if older_lines:
+                last_depreciation_date = max([x.date for x in older_lines])
+            if not last_depreciation_date:
+                continue
+
+            # Disposal for full depreciated asset: create asset depreciation line
+            # with 0 amount to keep timeline continuity
+            while last_depreciation_date < prior_fy_date_to:
+                last_depreciation_date += datetime.timedelta(1)
+                fy_prior = fiscal_year_model.get_fiscal_year_by_date(
+                    last_depreciation_date, company=dep.asset_id.company_id
+                )
+                # vals["date"] = fy_prior.date_to
+                # vals["depreciation_id"] = dep.id
+                # vals["amount"] = 0.0
+                dep.generate_depreciation_lines_single(fy_prior.date_to)
+                last_depreciation_date = fy_prior.date_to
+
     def generate_dismiss_line(self, vals, invoice_line_ids=None):
         """Generate dismission records.
         May be calls by invoice wizard (with invoice_line_ids)
@@ -435,6 +474,8 @@ class AssetDepreciation(models.Model):
         partial_dismiss_percentage = vals.get("partial_dismiss_percentage", 100.0)
         if "partial_dismiss_percentage" in vals and partial_dismiss_percentage < 100.0:
             vals["partial_dismissal"] = True
+
+        self.generate_empty_lines_for_disposal_asset(deps, vals)
 
         # Write out lines: depreciation line will be created before 'out' write!
         out_lines = self.env["asset.depreciation.line"]

@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Gestione Cespiti",
-    "version": "12.0.1.0.0_30",
+    "version": "12.0.1.0.0_31",
     "category": "Localization/Italy",
     "summary": "Gestione Cespiti",
     "author": ("Openforce srls,Odoo Community Association (OCA),Takobi"
