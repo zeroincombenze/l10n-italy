@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (12.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-05 18:28+0000\n"
-"PO-Revision-Date: 2022-06-05 18:28+0000\n"
+"POT-Creation-Date: 2024-01-27 18:47+0000\n"
+"PO-Revision-Date: 2024-01-27 18:47+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
-"Language: it_IT\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -29,7 +29,7 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_tax__rc_sale_tax_id
 msgid "Codice iva vendite"
-msgstr ""
+msgstr "Codice IVA vendite"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position
@@ -47,16 +47,16 @@ msgid "Has RC"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:342
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:345
 #, python-format
 msgid "Internal error: invalid debit/credit side"
-msgstr ""
+msgstr "Errore interno: invalid debit/credit side"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:768
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:771
 #, python-format
 msgid "Internal error: no rc line found!"
-msgstr ""
+msgstr "Errore interno: no rc riga s'!"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice
@@ -71,12 +71,12 @@ msgstr "Riga fattura"
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__amount_rc
 msgid "Iva RC"
-msgstr ""
+msgstr "IVA RC"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_journal
 msgid "Journal"
-msgstr "Registro"
+msgstr "Sezionale"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_move
@@ -97,32 +97,32 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_purchase_invoice_id
 msgid "RC Purchase Invoice"
-msgstr "Fattura acquisto in RC"
+msgstr "Fattura di acquisto in RC"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_self_invoice_id
 msgid "RC Self Invoice"
-msgstr "Autofattura in RC"
+msgstr "Autofattura"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_self_purchase_invoice_id
 msgid "RC Self Purchase Invoice"
-msgstr "Autofattura acquisto in RC"
+msgstr "Autofattura passiva"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__amount_rc
 msgid "RC Tax"
-msgstr ""
+msgstr "RC Imposta"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__amount_rc_company_currency
 msgid "RC Tax in Company Currency"
-msgstr ""
+msgstr "RC Imposta in Azienda Divisa"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_type
 msgid "RC Type"
-msgstr ""
+msgstr "Tipo RC"
 
 #. module: l10n_it_reverse_charge
 #: selection:account.fiscal.position,rc_type:0
@@ -145,21 +145,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_bank_statement_import_journal_creation__rev_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_journal__rev_charge
 msgid "Reverse Charge journal"
-msgstr ""
+msgstr "Sezionale inversione contabile"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__rc_type
 msgid "Reverse charge"
-msgstr ""
+msgstr "Carica inversa"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:252
 #, python-format
 msgid "Reverse charge self invoice"
-msgstr ""
+msgstr "Invertire charge se stesso fattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:262
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:265
 #, python-format
 msgid "Reverse charge self invoice.\n"
 "Supplier: %s\n"
@@ -185,8 +185,10 @@ msgstr "Tipo documento fiscale autofattura"
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_bank_statement_import_journal_creation__rev_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_journal__rev_charge
-msgid "Set to True if this journal is used to store reverse-charge self-invoices"
+msgid ""
+"Set to True if this journal is used to store reverse-charge self-invoices"
 msgstr ""
+"Impostare e Vero if questo sezionale is used e store reverse-charge self-invoices"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_tax
@@ -194,24 +196,27 @@ msgid "Tax"
 msgstr "Imposta"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:915
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:918
 #, python-format
-msgid "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount ({e_bill_amount_tax})"
+msgid ""
+"Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
+"({e_bill_amount_tax})"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:618
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:621
 #, python-format
 msgid "There are more than one payment line.\n"
 "In that case account entries cannot be canceledautomatically. Please proceed manually"
 msgstr "È presente più di una riga di pagamento.\n"
-"In tal caso le registrazioni non possono essere annullate automaticamente. Procedere manualmente"
+"In tal caso le registrazioni non possono essere annullate automaticamente. "
+"Procedere manualmente"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:61
 #, python-format
 msgid "Tipo RC %s di codice IVA %s non valida per reverse charge."
-msgstr ""
+msgstr "Tipo RC %s di codice IVA %s non valida per invertire charge."
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:55
@@ -222,17 +227,19 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__partner_type
 msgid "Tipo di Partner"
-msgstr ""
+msgstr "Tipo di Nominativo"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_tax__rc_type
 msgid "Tipo reverse charge"
-msgstr ""
+msgstr "Tipo invertire charge"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:940
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:943
 #, python-format
-msgid "Total amount ({bill_amount_total}) does not match with e-bill total amount ({e_bill_amount_total})"
+msgid ""
+"Total amount ({bill_amount_total}) does not match with e-bill total amount "
+"({e_bill_amount_total})"
 msgstr ""
 
 #. module: l10n_it_reverse_charge

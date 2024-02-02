@@ -12,7 +12,8 @@
     "depends": [
         "l10n_it_fatturapa_out",
         "l10n_it_dichiarazione_intento",
+        "account_duedates",
     ],
     "installable": True,
-    "autoinstall": True,
+    "autoinstall": False,
 }

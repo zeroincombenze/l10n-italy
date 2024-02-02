@@ -1,0 +1,50 @@
+2024-01-25 13:01:32,000 259979 DAEMON test_l10n_it_location_nuts_12 run_odoo_debug.sh: cd /home/odoo/12.0/venv_odoo && source ./bin/activate
+2024-01-25 12:01:39,225 261526 INFO ? odoo: Odoo version 12.0 
+2024-01-25 12:01:39,225 261526 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/l10n_it_location_nuts/tests/logs/zero12.l10n-italy.l10n_it_location_nuts.conf 
+2024-01-25 12:01:39,225 261526 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/apps-store', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/business-requirement', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/geospatial', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/iot', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/mgmtsystem', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/manufacture-reporting', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/mis-builder-contrib', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/pos', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/project-agile', '/home/odoo/12.0/project-reporting', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2024-01-25 12:01:39,225 261526 INFO ? odoo: database: odoo12@localhost:default 
+2024-01-25 12:01:39,374 261526 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2024-01-25 12:01:39,521 261526 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:63088 
+2024-01-25 12:01:39,606 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: loading 1 modules... 
+2024-01-25 12:01:39,615 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries 
+2024-01-25 12:01:39,735 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: updating modules list 
+2024-01-25 12:01:39,740 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2024-01-25 12:01:52,732 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['l10n_it_location_nuts'] to user __system__ #1 via n/a 
+2024-01-25 12:01:53,060 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: loading 22 modules... 
+2024-01-25 12:01:53,270 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: 22 modules loaded in 0.21s, 0 queries 
+2024-01-25 12:01:53,276 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: loading 23 modules... 
+2024-01-25 12:01:53,606 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.registry: module l10n_it_location_nuts: creating or updating database tables 
+2024-01-25 12:01:53,653 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: Module l10n_it_location_nuts: loading demo 
+2024-01-25 12:01:53,672 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.hooks: Setting Italy NUTS configuration 
+2024-01-25 12:01:53,688 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.module: odoo.addons.l10n_it_location_nuts.tests.test_nuts running tests. 
+2024-01-25 12:01:53,719 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.base_location_nuts.wizard.nuts_import: Importing NUTS 2013 English... 
+2024-01-25 12:01:53,720 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.base_location_nuts.wizard.nuts_import: Starting to download https://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?TargetUrl=ACT_OTH_CLS_DLD&StrNom=NUTS_2013&StrFormat=XML&StrLanguageCode=EN&StrLayoutCode=HIERARCHIC 
+2024-01-25 12:01:54,176 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.base_location_nuts.wizard.nuts_import: Download successfully 207695 bytes 
+2024-01-25 12:01:54,185 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: ERROR 
+2024-01-25 12:01:54,188 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: ====================================================================== 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: ERROR: setUpClass (odoo.addons.l10n_it_location_nuts.tests.test_nuts.TestNUTS) 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: Traceback (most recent call last): 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `   File "/home/odoo/12.0/odoo/tests/common.py", line 191, in _handleClassSetUp 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `     setUpClass() 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `   File "/home/odoo/12.0/l10n-italy/l10n_it_location_nuts/tests/test_nuts.py", line 13, in setUpClass 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `     importer.run_import() 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `   File "/home/odoo/12.0/partner-contact/base_location_nuts/wizard/nuts_import.py", line 199, in run_import 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `     xmlcontent = self._download_nuts() 
+2024-01-25 12:01:54,188 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `   File "/home/odoo/12.0/partner-contact/base_location_nuts/wizard/nuts_import.py", line 138, in _download_nuts 
+2024-01-25 12:01:54,189 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: `     raise UserError(_('Downloaded file is not a valid XML file')) 
+2024-01-25 12:01:54,189 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: ` odoo.exceptions.UserError: ('Downloaded file is not a valid XML file', '') 
+2024-01-25 12:01:54,189 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: Ran 0 tests in 0.500s 
+2024-01-25 12:01:54,189 261526 ERROR test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts: FAILED 
+2024-01-25 12:01:54,189 261526 INFO test_l10n_it_location_nuts_12 odoo.addons.l10n_it_location_nuts.tests.test_nuts:  (errors=1) 
+2024-01-25 12:01:54,189 261526 ERROR test_l10n_it_location_nuts_12 odoo.modules.module: Module l10n_it_location_nuts: 0 failures, 1 errors 
+2024-01-25 12:01:54,208 261526 INFO test_l10n_it_location_nuts_12 odoo.modules.loading: 23 modules loaded in 0.93s, 31 queries 
+2024-01-25 12:01:54,592 261526 ERROR test_l10n_it_location_nuts_12 odoo.modules.loading: At least one test failed when loading the modules. 
+2024-01-25 12:01:54,602 261526 INFO test_l10n_it_location_nuts_12 odoo.service.server: Starting post tests 
+2024-01-25 12:01:54,603 261526 INFO test_l10n_it_location_nuts_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2024-01-25 12:01:54,603 261526 INFO test_l10n_it_location_nuts_12 odoo.service.server: Initiating shutdown 
+2024-01-25 12:01:54,603 261526 INFO test_l10n_it_location_nuts_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36ml10n_it_location_nuts[0m (12.0): [31mFAILED![0m
++===================================================================
+

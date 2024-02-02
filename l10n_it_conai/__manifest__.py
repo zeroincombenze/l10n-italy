@@ -8,7 +8,7 @@
 #
 {
     "name": "CONAI Management",
-    "version": "12.0.10.0.0.1.10",
+    "version": "12.0.0.1.10",
     "category": "Localization/Italy",
     "summary": "CONAI data and amount evalutation",
     "author": "SHS-AV s.r.l.",
@@ -37,7 +37,7 @@
         "views/conai_statement.xml",
         "report/conai_statement.xml",
     ],
-    "maintainer": "Zeroincombenze (R)",
-    "installable": True,
-    "post_init_hook": "set_company_conai_product_post",
+    "maintainer": "Zeroincombenze (R) <False>",
+    "installable": False,
+    "application": True,
 }

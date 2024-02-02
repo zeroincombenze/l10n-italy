@@ -126,8 +126,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
-Credits | Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -144,8 +144,8 @@ Authors | Autori
 
 
 
-Contributors | Contributi da
-----------------------------
+Contributors | Partecipanti
+---------------------------
 
 * `TAKOBI <https://takobi.online>`__
 
@@ -175,7 +175,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-25
+Last Update / Ultimo aggiornamento: 2024-02-02
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

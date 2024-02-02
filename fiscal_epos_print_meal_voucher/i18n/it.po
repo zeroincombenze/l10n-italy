@@ -1,20 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* fiscal_epos_print_meal_voucher
+#	* fiscal_epos_print_meal_voucher
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo (12.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-19 12:49+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2024-01-25 11:24+0000\n"
+"PO-Revision-Date: 2024-01-25 11:24+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model_terms:ir.ui.view,arch_db:fiscal_epos_print_meal_voucher.view_pos_config_form
@@ -24,7 +24,7 @@ msgstr ""
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_account_bank_statement_line
 msgid "Bank Statement Line"
-msgstr "Riga estratto conto"
+msgstr "Banca Dichiarazione Riga"
 
 #. module: fiscal_epos_print_meal_voucher
 #. openerp-web
@@ -38,19 +38,19 @@ msgstr "Impossibile pagare con ticket più dell'importo dovuto"
 #: code:addons/fiscal_epos_print_meal_voucher/static/src/xml/pos.xml:34
 #, python-format
 msgid "Issue ticket credit"
-msgstr ""
+msgstr "Segnalazione ticket avere"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_account_journal
 msgid "Journal"
-msgstr "Registro"
+msgstr "Sezionale"
 
 #. module: fiscal_epos_print_meal_voucher
 #. openerp-web
 #: code:addons/fiscal_epos_print_meal_voucher/static/src/js/screens.js:72
 #, python-format
 msgid "Missing ticket credit product"
-msgstr ""
+msgstr "Mancante ticket avere prodotti"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model.fields,field_description:fiscal_epos_print_meal_voucher.field_account_bank_statement_line__pos_tickets_number
@@ -63,36 +63,39 @@ msgstr "Numero di ticket POS"
 #, python-format
 msgid "Please configure Ticket credit product in Point of sale configuration"
 msgstr ""
+"Per favore configurazione Ticket avere prodotti in Point di vendita configurazione"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_pos_config
 msgid "Point of Sale Configuration"
-msgstr ""
+msgstr "Configurazione POS"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_pos_order
 msgid "Point of Sale Orders"
-msgstr "Ordini punto vendita"
+msgstr "Punto Vendita"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model.fields,help:fiscal_epos_print_meal_voucher.field_pos_config__ticket_credit_product_id
 #: model_terms:ir.ui.view,arch_db:fiscal_epos_print_meal_voucher.view_pos_config_form
 msgid ""
-"Product used when issuing credit instead of giving change after receiving "
-"meal vouchers"
+"Product used when issuing credit instead of giving change after receiving meal "
+"vouchers"
 msgstr ""
+"Prodotti used è impostato a form solamente issuing avere metodo di giving "
+"modifica dopo receiving pasti vouchers"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model.fields,field_description:fiscal_epos_print_meal_voucher.field_pos_config__ticket_credit_product_id
 msgid "Ticket credit product"
-msgstr ""
+msgstr "Ticket avere prodotti"
 
 #. module: fiscal_epos_print_meal_voucher
 #. openerp-web
 #: code:addons/fiscal_epos_print_meal_voucher/static/src/xml/pos.xml:12
 #, python-format
 msgid "Tickets N."
-msgstr "N. buoni"
+msgstr "N. buoni."
 
 #. module: fiscal_epos_print_meal_voucher
 #. openerp-web
@@ -100,3 +103,5 @@ msgstr "N. buoni"
 #, python-format
 msgid "Wrong tickets total"
 msgstr "Totale ticket sbagliato"
+
+
