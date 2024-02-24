@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-15 10:47+0000\n"
-"PO-Revision-Date: 2024-01-15 10:47+0000\n"
+"POT-Creation-Date: 2024-02-24 16:25+0000\n"
+"PO-Revision-Date: 2024-02-24 16:25+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -284,7 +284,7 @@ msgstr "Metodo di consegna non supportato"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "Verifica invio"
-msgstr "Verifica invio"
+msgstr "Verifica Inio"
 
 #. module: l10n_it_einvoice_send2sdi
 #: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:743
@@ -322,3 +322,5 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "on"
 msgstr "il"
+
+
