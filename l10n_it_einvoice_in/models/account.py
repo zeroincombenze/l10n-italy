@@ -15,7 +15,8 @@ class AccountInvoice(models.Model):
     )
     inconsistencies = fields.Text("Import Inconsistencies", copy=False)
     e_invoice_line_ids = fields.One2many(
-        "einvoice.line", "invoice_id", string="Lines Detail", readonly=True, copy=False
+        "einvoice.line", "invoice_id",
+        string="e-Lines Detail", readonly=True, copy=False
     )
 
     e_invoice_amount_untaxed = fields.Monetary(

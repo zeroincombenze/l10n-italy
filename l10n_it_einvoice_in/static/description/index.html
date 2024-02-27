@@ -6,16 +6,24 @@
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">E-invoice receive
-</h2>
+            <h2 class="oe_slogan" style="color:#162832;">E-invoice receive</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">Ricezione fattura elettronica
-</h2>
+            <h2 class="oe_slogan" style="color:#162832;">Ricezione fattura elettronica</h2>
         </div>
+        <div class="oe_demo oe_screenshot">
+            :alt: ITA - Fattura elettronica - Ricezione
+:width: 98%
+<img src="description.png"/>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
@@ -23,8 +31,7 @@
             </p>
             <p class="oe_mt16" align="justify">This module allows to import
 <a href="http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm">Electronic Bill XML files version 1.2.1</a>
-received through the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm">Exchange System (SdI)</a>
-</p>
+received through the <a href="http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm">Exchange System (SdI)</a></p>
         </div>
         <div class="oe_span6">
             <p align="center">
@@ -44,12 +51,12 @@ Il modulo &#232; destinato a tutte le aziende che dal 2019 emettono fattura elet
 </p><p align="justify">
 Le leggi inerenti la fattura elettronica sono numerose. Consultare la
 <a href="https://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm">normativa fattura elettronica</a>
-</p>
-</p>
+</p></p>
         </div>
-        <img src="/l10n_it_einvoice_in/static/description/description.png" alt="ITA - Fattura elettronica - Ricezione" style="width:98%;max-width:1140px"/>
-
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Features | Caratteristiche</h3>
         <div class="oe_span12">
@@ -89,9 +96,11 @@ Le leggi inerenti la fattura elettronica sono numerose. Consultare la
 <td>N/A</td><td>e-fattura da rappresentante fiscale</td><td>&#9989;</td><td>&#10060;</td><td/><td/>
 </tr><tr>
 </tr></table>
-
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
         <div class="oe_span6">
@@ -118,8 +127,7 @@ Every product code used by suppliers can be set, in product form, in
 </p><p align="justify">
 If supplier specifies a known code in XML, the system will use it to retrieve the
 correct product to be used in bill line, setting the related tax and account.
-</p>
-</p>
+</p></p>
         </div>
         <div class="oe_span6">
             <p align="center">
@@ -145,10 +153,12 @@ Tutti i codici prodotto usati dai fornitori possono essere impostati nella relat
 </p><p align="justify">
 Se il fornitore specifica un codice noto nell'XML, questo verr&#224; usato dal sistema per
 recuperare il prodotto corretto da usare nella riga fattura, impostando il conto collegato.
-</p>
-</p>
+</p></p>
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
         <div class="oe_span6">
@@ -171,8 +181,7 @@ If you use the module <i>l10n_it_einvoice_send2sdi</i> you will see records from
 </p><p align="justify">
 In the incoming electronic bill files list you will see, by default, files to be registered.
 These are files not yet linked to one or more bills.
-</p>
-</p>
+</p></p>
         </div>
         <div class="oe_span6">
             <p align="center">
@@ -192,15 +201,23 @@ automaticamente alla ricezione da SdI.
 </ul>
 </p><p align="justify">
 La videta mostra solo i file non registrati ma &#232; possibile modificare il filtro.
-</p>
-</p>
+</p></p>
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h4>10.0.1.3.43 (2024-01-08)</h4>
+<h4>10.0.1.3.44 (2024-02-36)</h4>
 <p align="justify">
+<ul>
+<li>[IMP] E-Lines detail: name changed</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.43 (2024-01-08)</h4>
+</p><p align="justify">
 <ul>
 <li>[FIX] Crash with &lt;RiferimentoTesto&gt;&lt;/RiferimentoTesto&gt; / Crash in alcuni casi</li>
 <li>[FIX] Search state/district by country code from vat / Ricerca provincia con nazione da PI</li>
@@ -271,44 +288,34 @@ La videta mostra solo i file non registrati ma &#232; possibile modificare il fi
 <ul>
 <li>[IMP] Link to opened invoice too</li>
 </ul>
-</p><p align="justify">
-<h4>10.0.1.3.32 (2022-06-20)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] Tax nature renamed</li>
-<li>[FIX] Error _amount_withholding_tax</li>
-</ul>
 </p>
-
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_separator"/>
-
 <section class="oe_container">
     <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Credits | Ringraziamenti</h3>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Authors | Autori:</p>
+            <p class="oe_mt16"><b>Authors | Autori:</b></p>
             <p class="oe_mt16"><ul>
 <li><a href="https://www.agilebg.com">Agile Business Group sagl</a></li>
-<li><a href="https://www.innoviu.com">Innoviu srl</a></li>
+<li>Innoviu srl &lt;False&gt;</li>
 <li><a href="https://www.pointec.it">Pointec s.r.l.</a></li>
 <li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
 <li><a href="https://odoo-community.org">Odoo Community Association (OCA)</a></li>
-</ul>
-</p>
+<li><a href="http://www.innoviu.com">Innoviu Srl</a></li>
+</ul></p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors | Contributi da:</p>
+            <p class="oe_mt16"><b>Contributors | Partecipanti:</b></p>
             <p class="oe_mt16"><ul>
 <li><a href="mailto:lorenzo.battistini@agilebg.com">Lorenzo Battistini</a></li>
 <li><a href="mailto:roberto.onnis@innoviu.com">Roberto Onnis</a></li>
 <li><a href="mailto:alessio.gerace@agilebg.com">Alessio Gerace</a></li>
 <li><a href="mailto:cesare@pointec.it">Cesare Pellegrini</a></li>
 <li><a href="mailto:antoniomaria.vigliotti@gmail.com">Antonio Maria Vigliotti</a></li>
-</ul>
-</p>
+</ul></p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
@@ -317,9 +324,7 @@ La videta mostra solo i file non registrati ma &#232; possibile modificare il fi
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy ">l10n-italy
-</a> project.</p>
-        <p>Published information on | Informazioni pubblicate: 2024-01-08
-</p>
+        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2024-02-26</p>
     </div>
 </section>

@@ -192,9 +192,9 @@
                     string="E-bill Details"
                     attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"
                 >
-                    <group string="Lines Detail">
+                    <group string="e-Lines Detail">
                         <field name="e_invoice_line_ids" nolabel="1">
-                            <tree string="Lines Detail">
+                            <tree string="e-Lines Detail">
                                 <field name="line_number" />
                                 <field name="name" />
                                 <field name="qty" />
