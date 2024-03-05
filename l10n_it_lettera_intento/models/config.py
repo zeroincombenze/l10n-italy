@@ -19,7 +19,7 @@ HELP = (
     "%(aut.min)s Autorizzazione ministeriale\n"
 )
 DEFAULT = (
-    "Operazione senza IVA Vs. lettera d'intento n. %(vs.prot)s "
+    "Operazione senza IVA Vs. lettera d'intento n. %(aut.min)s "
     "del %(vs.data)s, ns. prot. %(ns.prot)s del %(ns.data)s."
 )
 

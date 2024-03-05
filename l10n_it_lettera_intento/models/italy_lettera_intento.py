@@ -18,7 +18,7 @@ class ItalyLetteraIntento(models.Model):
     @api.depends("plafond")
     def _used_plafond(self):
         for lett in self:
-            if lett.partner_id and lett.company_id:
+            if lett.partner_id and lett.company_id and isinstance(lett.id, (int, long)):
                 partner_id = lett.partner_id.id
                 company_id = lett.company_id.id
                 query = """SELECT SUM(credit) - SUM(debit)
@@ -35,7 +35,7 @@ class ItalyLetteraIntento(models.Model):
                 """ % {
                     "company_id": company_id,
                     "partner_id": partner_id,
-                    "date": lett.customer_date,
+                    # "date": lett.customer_date,
                     "lett": lett.id,
                 }
                 self.env.cr.execute(query)
@@ -51,7 +51,14 @@ class ItalyLetteraIntento(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", default=lambda self: self.env.user.company_id
     )
-    partner_id = fields.Many2one(comodel_name="res.partner", string="Partner")
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Partner",
+        domain=["|",
+                ("property_account_position_id.lettera_intento", "=", True),
+                ("property_account_position_id", "=", False),
+                ]
+    )
     customer_ref = fields.Char("Customer Ref.")
     customer_date = fields.Date(string="Customer Date")
     customer_autmin = fields.Char("Autorizzazione ministeriale")

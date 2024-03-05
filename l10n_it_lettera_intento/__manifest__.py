@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2019-24 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -9,12 +9,17 @@
 #
 {
     "name": "Lettere di intento",
-    "summary": "Lettere di intento",
-    "version": "10.0.0.1.7",
+    "version": "10.0.0.1.8",
     "category": "Generic Modules/Accounting",
+    "summary": "Lettere di intento",
     "author": "SHS-AV s.r.l.",
-    "website": "https://github.com/OCA/l10n-italy",
-    "depends": ["base", "l10n_it_einvoice_stamp"],
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Alpha",
+    "license": "LGPL-3",
+    "depends": [
+        "base",
+        "l10n_it_einvoice_stamp",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
@@ -23,5 +28,6 @@
         "views/config_view.xml",
         "views/account_invoice_view.xml",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
 }
