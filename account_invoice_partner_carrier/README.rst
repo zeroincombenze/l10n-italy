@@ -14,7 +14,7 @@
 Overview | Panoramica
 =====================
 
-|en| This module adda the Partner Carrier field on account invoice
+|en| This module adds the Partner Carrier field on account invoice
 
 
 |it| QUesto modulo aggiunge il campo nominativo vettore in fattura.

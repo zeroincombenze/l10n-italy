@@ -28,11 +28,9 @@
         "l10n_it_fiscal_payment_term",
         "account_invoice_partner_carrier",
     ],
-    "conflicts": [
-        "l10n_it_fatturapa"
-    ],
     "external_dependencies": {'python': ['pyxb']},
     "version_external_dependencies": ["pyxb>=1.2.5"],
+    "conflicts": ["l10n_it_fatturapa"],
     "data": [
         "security/ir.model.access.csv",
         "data/fatturapa_fiscal_position.xml",

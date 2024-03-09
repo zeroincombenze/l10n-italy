@@ -1,9 +1,6 @@
-
 ================================
 |Zeroincombenze| l10n-italy 10.0
 ================================
-|Build Status| |Codecov Status| |license gpl| |Try Me|
-
 
 .. contents::
 
@@ -41,11 +38,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_central_journal              | |no_check| | |halt|     | Account Central Journal                                                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_invoice_entry_date           | 10.0.0.2.0 | |halt|     | Account Invoice Entry Dates                                                      |
+| account_invoice_entry_date           | 10.0.0.2.0 | |halt|     | Set Account Invoice Entry Dates easy visible                                     |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_entry_dates          | |halt|     | |no_check| | Registration, vat/balance application dates                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_invoice_partner_carrier      | 10.0.0.1.0 | |no_check| | Add the Partner Carrier field on account.invoice                                 |
+| account_invoice_partner_carrier      | 10.0.0.1.0 | |no_check| | Add the Partner Carrier field on account invoice                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_report_ddt_group     | |halt|     | 10.0.0.3.2 | Account invoice report grouped by DDT                                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -54,8 +51,6 @@ Avaiable Addons / Moduli disponibili
 | account_period                       | 10.0.0.1.0 | |no_check| | Account Period                                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_vat_period_end_statement     | 10.0.1.5.4 | 10.0.1.5.1 | Versamento Iva periodica (mensile o trimestrale)                                 |
-+--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| assigned_bank                        | 10.0.0.1.2 | |no_check| | Assign internal bank to customers or supplier                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | base_multireport                     | 10.0.0.2.2 | |no_check| | Manage document multiple reports                                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -73,7 +68,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_account_tax_kind             | |no_check| | 10.0.2.0.0 | Italian Localisation - Natura delle aliquote IVA                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_ade                          | 10.0.0.3.7 | |no_check| | Codice e definizioni come da Agenzia delle Entrate                               |
+| l10n_it_ade                          | 10.0.0.3.9 | |no_check| | Codes & Definitions from IRS                                                     |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | |same|     | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -87,11 +82,11 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_causali_pagamento            | 10.0.2.0.0 | |same|     | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenut |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_central_journal              | 10.0.0.0.5 | 10.0.1.0.3 | Italian Localization - Account central journal                                   |
+| l10n_it_central_journal              | 10.0.0.0.7 | 10.0.1.0.3 | Print fiscal account journal                                                     |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_codici_carica                | |no_check| | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_conai                        | 10.0.0.1.7 | |no_check| | Dati CONAI in fattura e calcolo importi                                          |
+| l10n_it_conai                        | 10.0.0.1.1 | |no_check| | CONAI data and amount evalutation                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_corrispettivi                | 10.0.1.1.0 | 10.0.1.2.4 | Italian Localization - Corrispettivi                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -109,17 +104,17 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_import_zip          | 10.0.1.0.6 | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_in                  | 10.0.1.3.3 | |no_check| | Ricezione fatture elettroniche                                                   |
+| l10n_it_einvoice_in                  | 10.0.1.3.4 | |no_check| | E-invoice receive                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out                 | 10.0.1.0.2 | |no_check| | E-Invoice emission                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out_ddt             | 10.0.1.0.2 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
+| l10n_it_einvoice_out_ddt             | 10.0.1.0.3 | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_li              | 10.0.1.0.2 | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_rc              | 10.0.1.0.4 | |no_check| | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_send2sdi            | 10.0.1.0.3 | |no_check| | Send E-Invoice to customer by SdI                                                |
+| l10n_it_einvoice_send2sdi            | 10.0.1.0.4 | |no_check| | Send E-Invoice to customer through SdI                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_stamp               | 10.0.1.0.5 | |no_check| | Tax stamp automatic management                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -159,7 +154,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscal_payment_term          | 10.0.1.0.1 | 10.0.2.0.0 | Electronic & Fiscal invoices payment                                             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_fiscalcode                   | 10.0.1.0.3 | 10.0.1.3.0 | Italian Localisation - Fiscal Code                                               |
+| l10n_it_fiscalcode                   | 10.0.1.0.4 | 10.0.1.3.0 | Italian Localisation - Fiscal Code                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_fiscalcode_invoice           | 10.0.1.0.0 | |same|     | Italian Fiscal Code in invoice PDF                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -173,13 +168,13 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ipa                          | |no_check| | 10.0.2.0.0 | IPA Code (IndicePA)                                                              |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_lettera_intento              | 10.0.0.1.7 | |no_check| | Lettere di intento                                                               |
+| l10n_it_lettera_intento              | 10.0.0.1.8 | |no_check| | Lettere di intento                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_location_nuts                | |no_check| | 10.0.1.0.1 | NUTS specific options for Italy                                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_partially_deductible_vat     | |halt|     | |halt|     | Italy - Partially Deductible VAT                                                 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_pec                          | 10.0.1.0.0 | |same|     | Pec Mail                                                                         |
+| l10n_it_pec                          | 10.0.1.0.0 | |same|     | Aggiunge il campo email PEC al partner                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_pos_fatturapa                | |no_check| | 10.0.1.0.0 | Gestione dati fattura elettronica del cliente all'interno dell'interfaccia del P |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -229,8 +224,6 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | multibase_plus                       | 10.0.0.1.5 | |no_check| | Enhanced Odoo Features                                                           |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| prodotti_espresso                    | 10.0.1.0.5 | |no_check| | Prodotti espresso                                                                |
-+--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 
 
 
@@ -264,23 +257,22 @@ Getting started / Come iniziare
 Prerequisites / Prerequisiti
 ----------------------------
 
-
 * python 2.7+ (best 2.7.5+)
 * postgresql 9.2+ (best 9.5)
-* asn1crypto
-* codicefiscale
-* pycrypto
-* os0
-* past
-* pkcs7
-* PyPDF2
-* pyxb==1.2.5
-* Unidecode<1.3.0
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
 
 
 Installation / Installazione
 ----------------------------
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -291,54 +283,28 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 10.0 -O zero -o $HOME/10.0
-    vem create $HOME/10.0/venv_odoo -O 10.0 -a "*" -DI -o $HOME/10.0
-
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    # Upgrade virtual environment
+    vem amend $HOME/10.0/venv_odoo
 
 
 Upgrade / Aggiornamento
 -----------------------
 
-
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 10.0 -o $HOME/10.0 -U
-    vem amend $HOME/10.0/venv_odoo -o $HOME/10.0
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -346,9 +312,7 @@ Upgrade / Aggiornamento
 Support / Supporto
 ------------------
 
-
-|Zeroincombenze| This project is mainly maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-
+|Zeroincombenze| This project is mainly supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 
@@ -361,9 +325,9 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change on oh these modules, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -371,8 +335,309 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare uno dei moduli, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-History / Cronologia
---------------------
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+l10n_it_einvoice_out_ddt: 10.0.1.0.3 (2024-03-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invalid name for carier_id, right name is partner_carrier_id
+* [QUA] Test coverage 19% (43: 35+8) [0 TestPoints] - quality rating 12 (target 100)
+
+
+l10n_it_einvoice_base: 10.0.2.1.25 (2024-03-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Field carrier_id conflicts with other modules
+* [QUA] Test coverage 61% (515: 202+313) [0 TestPoints] - quality rating 37 (target 100)
+
+
+l10n_it_lettera_intento: 10.0.0.1.8 (2024-03-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash on creation lettera intento / Crash durante creazione lettera di intento
+* [IMP] Domain on partner / Selezione clienti con pos.fiscale assente o con lettera di intento
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.41 (2024-02-24)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 10 (target 100)
+
+
+l10n_it_einvoice_in: 10.0.1.3.44 (2024-02-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] E-Lines detail: name changed
+
+
+l10n_it_einvoice_out_rc: 10.0.1.0.5 (2024-02-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [QUA] Test coverage 78% (100: 22+78) [20 TestPoints] - quality rating 79 (target 100)
+
+
+l10n_it_einvoice_out: 10.0.1.0.27 (2024-02-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Self e-invoice management - Emissione auto-fatture
+* [QUA] Test coverage 64% (762: 276+486) [87 TestPoints] - quality rating 57 (target 100)
+
+
+l10n_it_einvoice_base: 10.0.2.1.24 (2024-02-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Sender on invoice header / Soggetto emittente in testata fattura
+* [QUA] Test coverage 61% (515: 202+313) [0 TestPoints] - quality rating 37 (target 100)
+
+
+l10n_it_ade: 10.0.0.3.9 (2024-01-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document TD28 / Documento fiscale TD28
+* [IMP] Fiscal document: searching improvements / Migliorie ricerca documento fiscale
+* [FIX] TD20 is self invoice
+
+
+l10n_it_conai: 10.0.0.1.10 (2024-01-13)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [QUA] Test coverage 67% (505: 166+339) [23 TestPoints] - quality rating 48 (target 100)
+
+
+l10n_it_einvoice_in: 10.0.1.3.43 (2024-01-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with <RiferimentoTesto></RiferimentoTesto> / Crash in alcuni casi
+* [FIX] Search state/district by country code from vat / Ricerca provincia con nazione da PI
+* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
+
+
+l10n_it_central_journal: 10.0.0.0.8 (2023-12-23)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Layout orientation / Orientamento di stampa
+* [IMP] Font size 9px / Dimensione fotn 9px
+* [QUA] Test coverage 33% (199: 134+65) [0 TestPoints] - quality rating 40 (target 100)
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.15 (2023-11-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.40 (2023-11-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)
+
+
+l10n_it_ade: 10.0.0.3.8 (2023-11-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] pyxb 1.2.6
+* [IMP] Remove support for pyxb 1.2.4 / Rimosso supporto per pyxb 1.2.4
+* [QUA] Test coverage 66% (168: 57+111) [3 TestPoints] - quality rating 74 (target 100)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.39 (2023-10-25)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Rejected invoce / Stato fattura rifiutata
+* [FIX] NO response / Nessuna risposta da SDI
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)
+
+
+l10n_it_einvoice_in: 10.0.1.3.42 (2023-10-23)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with <DatiOrdineAcquisto></DatiOrdineAcquisto> / Crash in alcuni casi
+* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.38 (2023-10-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] First very simple unit test
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 0/100
+
+
+l10n_it_central_journal: 10.0.0.0.7 (2023-09-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] 1st line numer / Primo numero di riga
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.14 (2023-09-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso
+* [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
+* [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.37 (2023-08-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.13 (2023-08-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Overdue with expenses / Insoluto con spese
+* [QUA] Test coverage 66% (1155: 389+766) [113 TestPoint]
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.36 (2023-08-01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+
+
+l10n_it_central_journal: 10.0.0.0.6 (2023-07-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Upgraded layout / Aggiornamento impaginazione
+* [FIX] Final print: update result / Stampa ufficiale aggiorna dati su anno fiscale
+ 
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.35 (2023-07-25)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 15% (816: 694+122)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.34 (2023-07-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 15% (816: 694+122) 
+
+
+base_multireport: 10.0.0.2.28 (2023-06-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice report with due dates from account lines / Date scadenza stampa fattura da righe contabili
+* [QUA] Test coverage 39% (650: 395+255) 
+
+
+l10n_it_ddt: 10.0.1.8.25 (2023-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Cancel DdT from order with invoice / Annullo DdT da ordine con fattura
+* [IMP] Cancel DdT check for backorder / Annullo DdT controlla se creato ordine saldo
+* [QUA] Coverage 67% (1377/453) + 247cp
+
+
+l10n_it_einvoice_out: 10.0.1.0.26 (2023-06-12)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Foreign customer w/o vat but with fiscalcode / Cliente estero senza PI ma con CF
+* [QUA] Coverage 60% (731/292) + 39cp
+
+
+l10n_it_ddt: 10.0.1.8.24 (2023-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] DdT from 'done' order / Emissione DdT da ordini bloccati
+* [IMP] Check for dependecies version / Controllo versione dipendenze
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.12 (2023-05-24)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Two supplemental accreditation accounts / Due conti aggiuntivi in accredito
+* [FIX] Confirm payment / Conferma pagamento
+
+
+base_multireport: 10.0.0.2.27 (2023-05-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Layout review / Controllo formattazione stampa
+
+
+l10n_it_ddt: 10.0.1.8.23 (2023-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong line weight evaluation / Errato calcolo peso riga
+
+
+l10n_it_conai: 10.0.0.1.9 (2023-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong CONAI quantity / Errata quantità CONAI
+* [IMP] Coverage test 63% (504, 188, +20)
+
+
+base_multireport: 10.0.0.2.26 (2023-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Logo: some time is not printed / IL logo a volte non è stampato
+
+
+l10n_it_ddt: 10.0.1.8.22 (2023-05-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Report wrong carrier value / Errato valore vettore in stampa
+
+
+base_multireport: 10.0.0.2.25 (2023-05-03)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Report wrong carrier value / Errato valore vettore in stampa
+
+
+l10n_it_conai: 10.0.0.1.8 (2023-04-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] CONAI summary line upgradable / Righe riepilogo CONAI modificabili da operatore
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.33 (2023-04-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] new state mapping
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.11 (2023-04-17)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Confirm invoice + refund / Errore accettazione fattura + NC
+
+
+l10n_it_ddt: 10.0.1.8.21 (2023-04-17)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine
+* [FIX] Crash with module sale order revision
+* [IMP] New test coverage 67% (1373/449/+247)
+
+
+l10n_it_fiscalcode: 10.0.1.0.4 (2023-04-13)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check FC/individual of child record / Controllo CF/PF su record figli
+
+
+l10n_it_einvoice_in: 10.0.1.3.40 (2023-04-11)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Import e-invoice from RSM / Importazione file XML da San Marino
+* [FIX] Crash when two emails
+
+
+l10n_it_einvoice_in: 10.0.1.3.39 (2023-04-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Check for double email / Controllo doppia mail
+* [IMP] New search method to avoid new partner when receiving self-invoice / Controlli per evitare duplicazione fornitore auto-fattura
+
 
 l10n_it_einvoice_out: 10.0.1.0.25 (2023-03-24)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -404,200 +669,8 @@ l10n_it_einvoice_out_rc: 10.0.1.0.3 (2023-03-06)
 * [FIX] Self-invoice TD17-19 with "IT" vat / Codice IVA italiano modificato eper autofatture TD17-19
 
 
-l10n_it_reverse_charge: 10.0.1.6 (2023-02-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] The invoice date of self invoice is the same of the date of purchase invoice / Data auto-fattura come data contabile fattura di acquisto
-
-
-l10n_it_einvoice_in: 10.0.1.3.37 (2023-02-16)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Now module does not depend on l10n_it_ddt / Ora il modulo non richiede l'installazione del DdT
-
-
-l10n_it_ddt: 10.0.1.8.20 (2023-02-16)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Field carrie_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
-
-
-multibase_plus: 10.0.0.1.6 (2023-02-15)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] multibase_plus: invoice data in invoice tree / Data contabile in vista fatture
-
-
-l10n_it_reverse_charge: 10.0.1.5 (2023-02-13)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] The date may be different from invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture
-
-
-l10n_it_einvoice_base: 10.0.2.1.22 (2023-02-13)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Self invoice flag / Identificatore documento autofattura
-* [IMP] Date updatable for self invoice / Data contabile modificabile per le auto-fatture
-
-
-l10n_it_ade: 10.0.0.3.7 (2023-02-13)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Self invoice flag / Identificatore documento autofattura
-
-
-prodotti_espresso: 12.0.1.0.5 (2023-02-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] flag espresso on invoice line / righe fattura con flag prodotto espresso
-
-
-l10n_it_lettera_intento: 10.0.0.1.7 (2023-01-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Amount based on document id / Calcolo plafond basato su id lettera intento
-
-
-prodotti_espresso: 12.0.1.0.4 (2023-01-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
-
-
-l10n_it_ddt: 10.0.1.8.19 (2023-01-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
-
-
-
-account_invoice_partner_carrier: 10.0.0.1.0 (2023-01-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] First release / Prima versione
-
-
-l10n_it_ricevute_bancarie: 10.0.1.3.10 (2022-12-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Riba flag updatable / Scadenza Riba modificabile
-* [REF] Process refactoring
-
-
-l10n_it_einvoice_in: 10.0.1.3.36 (2022-12-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import e-invoice with carrier / Errore importazione fatture con spedizioniere
-
-
-
-multibase_plus: 10.0.0.1.5 (2022-12-23)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] multibase_plus: supplier ref / Riferimento fornitori in lista ordini fornitori
-
-
-
-l10n_it_ddt: 10.0.1.8.18 (2022-12-14)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Delivery price in invoice / Calcolo totale spedizioni
-* [IMP] Test coverage increased
-
-
-prodotti_espresso: 12.0.1.0.3 (2022-11-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Invio mail
-
-
-l10n_it_ddt: 10.0.1.8.17 (2022-11-24)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Order.carrier_id when import / Metodo di consegna impostato durante import record
-
-
-
-l10n_it_einvoice_in: 10.0.1.3.35 (2022-11-14)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import e-invoice with round amount / Errore importazione fatture con arrotondamenti
-
-
-l10n_it_einvoice_base: 10.0.2.1.21 (2022-11-14)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Company data view with name for field extentions
-
-
-
-l10n_it_einvoice_in: 10.0.1.3.34 (2022-11-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Import e-invoice with WH / Errore importazione fatture con RA
-
-
-prodotti_espresso: 12.0.1.0.2 (2022-10-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Gestione costi spedizione da DdT
-
-
-l10n_it_ddt: 10.0.1.8.16 (2022-10-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Delivery carrier / Metodo di consegna
-
-
-prodotti_espresso: 12.0.1.0.1 (2022-10-05)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Prodotto spedizione espresso
-
-
-l10n_it_einvoice_out_rc: 10.0.1.0.2 (2022-10-04)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] No latin charr in partner / Anagrafica estera con caratteri non latini
-
-
-l10n_it_ddt: 10.0.1.8.15 (2022-10-04)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
-
-
-l10n_it_einvoice_out_rc: 10.0.1.0.1 (2022-09-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Refund of TD17..TD19 / Nota credito con TD17..TD19
-
-
-
-l10n_it_einvoice_out: 10.0.1.0.24 (2022-09-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Partner name w/o quote / Rimosso carattere apostrofo da nome
-
-
-l10n_it_ade: 10.0.0.3.6 (2022-09-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] l10n_it_ade/binding numeric data with 2 decimals
-
-
-l10n_it_ade: 10.0.0.3.5 (2022-09-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] l10n_it_ade/binding refactoring
-
-
-
-
-
-Credits / Didascalie
-====================
+Credits / Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -607,59 +680,33 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 ----------------
 
-
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
-
-
-|chat_with_us|
-
-
+|
 |
 
 
-Last Update / Ultimo aggiornamento: 2023-03-09
+Last Update / Ultimo aggiornamento: 2024-03-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt:
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
+    :alt: 
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -683,5 +730,3 @@ Last Update / Ultimo aggiornamento: 2023-03-09
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP

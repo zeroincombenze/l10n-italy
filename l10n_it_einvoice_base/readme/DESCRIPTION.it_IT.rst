@@ -1,6 +1,3 @@
-Fattura Elettronica + FatturaPA
--------------------------------
-
 Questo modulo gestisce l'infrastruttura per generare il file xml della Fattura
 Elettronica e della FatturaPA, versione 1.2.1, da trasmettere al sistema di
 interscambio SdI.
@@ -10,19 +7,19 @@ scheda "Agenzia delle Entrate".
 
 
 Destinatari
-~~~~~~~~~~~
+-----------
 
 Il modulo è destinato a tutte le aziende che dal 2019 emettono fattura elettronica
 
 Normativa
-~~~~~~~~~
+---------
 
 Le leggi inerenti la fattura elettronica sono numerose. Potete consultare
 la `normativa fattura elettronica <https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche>`__
 
 
 Fattura elettronica a soggetto IVA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -33,7 +30,7 @@ L'eventuale invio di una fattura in formato PDF è una fattura di cortesia e non
 ha valore legale.
 
 Fattura elettronica a PA
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -42,12 +39,12 @@ e compilare il "Codice ufficio". Prestare attenzione alla normativa sulla scissi
 pagamenti e all'inserimento dei dati aggiuntivi CIG e CUP.
 
 Fattura elettronica da DdT (TD24)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 Installare il modulo *l10n_it_einvoice_ddt*
 
 Fattura elettronica a privato senza partita IVA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -57,7 +54,7 @@ al cliente. Inserire il valore "0000000" nel codice destinatario e il codice fis
 
 
 Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -68,7 +65,7 @@ codice fiscale. Anche in questo caso è obbligatorio inviare una fattura in
 formato PDF al cliente.
 
 Fattura elettronica a rappresentante fiscale in Italia
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -78,7 +75,7 @@ con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa al rappresentante fiscale.
 
 Fattura elettronica a stabile organizzazione
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -88,7 +85,7 @@ con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa alla stabile organizzazione.
 
 Fattura elettronica a soggetto estero
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 Installare il modulo *l10n_it_einvoice_out*
 
@@ -103,7 +100,7 @@ della nazione cliente e 11 cifre '9'.
 Il campo CAP viene convenzionalmente compilato con "00000" e la provincia con "EE".
 
 Emissione fattura con dichiarazione di intento
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 Installare il modulo *l10n_it_einvoice_li*
 
@@ -111,7 +108,7 @@ Inserire il riferimento della lettera di intento.
 
 
 Emissione auto-fattura
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 Casistica per fatture ricevute in regime di reverse charge (tipi documento da TD16 a
 TD19) oppure per emissione auto-fatture per integrazione (TD20, TD21, TD25, TD27 e

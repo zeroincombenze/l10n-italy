@@ -45,17 +45,17 @@ In anagrafica clienti i dati per la fattura elettronica sono inseribili nella
 scheda "Agenzia delle Entrate".
 </p><p align="justify">
 </p><p align="justify">
-<h4>Destinatari</h4>
+<h3>Destinatari</h3>
 </p><p align="justify">
 Il modulo &#232; destinato a tutte le aziende che dal 2019 emettono fattura elettronica
 </p><p align="justify">
-<h4>Normativa</h4>
+<h3>Normativa</h3>
 </p><p align="justify">
 Le leggi inerenti la fattura elettronica sono numerose. Potete consultare
 la <a href="https://www.agenziaentrate.gov.it/portale/normativa-prassi-e-regole-tecniche-fatture-elettroniche">normativa fattura elettronica</a>
 </p><p align="justify">
 </p><p align="justify">
-<h4>Fattura elettronica a soggetto IVA</h4>
+<h3>Fattura elettronica a soggetto IVA</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -65,7 +65,7 @@ La partita IVA &#232; un dato obligatorio ai fini dell'invio.
 L'eventuale invio di una fattura in formato PDF &#232; una fattura di cortesia e non
 ha valore legale.
 </p><p align="justify">
-<h4>Fattura elettronica a PA</h4>
+<h3>Fattura elettronica a PA</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -73,11 +73,11 @@ Questa casistica &#232; attiva gi&#224; dal 2016. Impostare "Pubblica Amministra
 e compilare il "Codice ufficio". Prestare attenzione alla normativa sulla scissione dei
 pagamenti e all'inserimento dei dati aggiuntivi CIG e CUP.
 </p><p align="justify">
-<h4>Fattura elettronica da DdT (TD24)</h4>
+<h3>Fattura elettronica da DdT (TD24)</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_ddt</i>
 </p><p align="justify">
-<h4>Fattura elettronica a privato senza partita IVA</h4>
+<h3>Fattura elettronica a privato senza partita IVA</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -86,7 +86,7 @@ ammessa l'emissione a condizione che venga inviata una fattura in formato PDF
 al cliente. Inserire il valore "0000000" nel codice destinatario e il codice fiscale.
 </p><p align="justify">
 </p><p align="justify">
-<h4>Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC</h4>
+<h3>Fattura elettronica a soggetto IVA senza Codice Destinatario ne PEC</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -96,7 +96,7 @@ precedente, inserendo il valore "0000000" nel codice destinatario ed il
 codice fiscale. Anche in questo caso &#232; obbligatorio inviare una fattura in
 formato PDF al cliente.
 </p><p align="justify">
-<h4>Fattura elettronica a rappresentante fiscale in Italia</h4>
+<h3>Fattura elettronica a rappresentante fiscale in Italia</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -105,7 +105,7 @@ Inserire nei contatti un indirizzo di fatturazione di tipo "Rappresentante fisca
 con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa al rappresentante fiscale.
 </p><p align="justify">
-<h4>Fattura elettronica a stabile organizzazione</h4>
+<h3>Fattura elettronica a stabile organizzazione</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -114,7 +114,7 @@ Inserire nei contatti un indirizzo di fatturazione di tipo "Stabile organizzazio
 con la partita IVA italiana ed i dati per la fatturazione elettronica.
 La fattura va emessa alla stabile organizzazione.
 </p><p align="justify">
-<h4>Fattura elettronica a soggetto estero</h4>
+<h3>Fattura elettronica a soggetto estero</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_out</i>
 </p><p align="justify">
@@ -128,14 +128,14 @@ della nazione cliente e 11 cifre '9'.
 </p><p align="justify">
 Il campo CAP viene convenzionalmente compilato con "00000" e la provincia con "EE".
 </p><p align="justify">
-<h4>Emissione fattura con dichiarazione di intento</h4>
+<h3>Emissione fattura con dichiarazione di intento</h3>
 </p><p align="justify">
 Installare il modulo <i>l10n_it_einvoice_li</i>
 </p><p align="justify">
 Inserire il riferimento della lettera di intento.
 </p><p align="justify">
 </p><p align="justify">
-<h4>Emissione auto-fattura</h4>
+<h3>Emissione auto-fattura</h3>
 </p><p align="justify">
 Casistica per fatture ricevute in regime di reverse charge (tipi documento da TD16 a
 TD19) oppure per emissione auto-fatture per integrazione (TD20, TD21, TD25, TD27 e
@@ -350,7 +350,6 @@ all'urn dell'Agenzia delle Entrate, di cui sopra, segnalato dall'errore:
         <div class="oe_span6" align="left">
             <p class="oe_mt16"><b>Acknowledges | Riconoscimenti:</b></p>
             <p class="oe_mt16"><ul>
-<li><a href="https://www.abstract.it">Abstract</a></li>
 <li><a href="https://www.odoo-italia.net">Odoo Italia Network</a></li>
 <li><a href="mailto:davide.corio@abstract.it">Davide Corio</a></li>
 <li><a href="mailto:lorenzo.battistini@agilebg.com">Lorenzo Battistini</a></li>
