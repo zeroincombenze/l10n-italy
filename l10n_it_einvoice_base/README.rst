@@ -1,5 +1,5 @@
 =============================================================
-|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.24
+|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.25
 =============================================================
 
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
@@ -150,9 +150,9 @@ Certifications | Certificazioni
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                     | Data inizio   | Da fine      | Note                                         |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <https://www.fatturapa.gov.it/export/fatturazione/it/strumenti.htm>`__  | 01-06-2017    | 31-12-2019   | Validazione contro schema xml                |
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <https://www.fatturapa.gov.it/export/fatturazione/it/strumenti.htm>`__  | 01-06-2017    | 31-12-2024   | Validazione contro schema xml                |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.fatturapa.gov.it/export/fatturazione/it/index.htm>`__                        | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
+| |FatturaPA|          | `FatturaPA <https://www.fatturapa.gov.it/export/fatturazione/it/index.htm>`__                        | 01-06-2017    | 31-12-2024   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
@@ -305,6 +305,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.25 (2024-03-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Field carrier_id conflicts with other modules
+* [QUA] Test coverage 61% (515: 202+313) [0 TestPoints] - quality rating 37 (target 100)
+
 10.0.2.1.24 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -382,7 +388,6 @@ Contributors | Partecipanti
 Acknowledges | Riconoscimenti
 -----------------------------
 
-* `Agile Business Group sagl <https://www.agilebg.com>`__
 * `Abstract <https://www.abstract.it>`__
 * `Odoo Italia Network <https://www.odoo-italia.net>`__
 * `Davide Corio <davide.corio@abstract.it>`__
@@ -422,7 +427,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-02-01
+Last Update / Ultimo aggiornamento: 2024-03-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

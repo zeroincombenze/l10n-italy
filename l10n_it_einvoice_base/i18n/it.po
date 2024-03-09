@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 08:06+0000\n"
-"PO-Revision-Date: 2024-02-01 09:43+0100\n"
+"POT-Creation-Date: 2024-03-09 10:56+0000\n"
+"PO-Revision-Date: 2024-03-09 13:19+0100\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_fatturapa_related_document_type_lineRef
@@ -157,11 +157,6 @@ msgid "Cancel"
 msgstr "Annullare"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_carrier_id
-msgid "Carrier"
-msgstr "Vettore"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.actions.act_window,name:l10n_it_einvoice_base.action_ade_cassa_previdenziale model:ir.ui.menu,name:l10n_it_einvoice_base.menu_ade_cassa_previdenziale
 msgid "Cassa previdenziale"
 msgstr "Cassa Previdenziale"
@@ -174,17 +169,17 @@ msgstr "Somma di controllo/SHA1"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_client_id
 msgid "Client ID"
-msgstr "Cliente ID"
+msgstr "ID Cliente"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_client_id
 msgid "Client ID assigned by 3th Party Sender"
-msgstr "Identificatore assegnato da terzo incaricato"
+msgstr "Identificativo assegnato da terzo incaricato"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_client_key
 msgid "Client key"
-msgstr "Cliente chiave"
+msgstr "Chiave cliente"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_client_key
@@ -210,7 +205,7 @@ msgstr "Azienda"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_sender_company_id
 msgid "Company ID"
-msgstr "Azienda ID"
+msgstr "ID Azienda"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_sender_company_id
@@ -498,7 +493,7 @@ msgstr "Data effettiva della sanzione"
 #. module: l10n_it_einvoice_base
 #: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_fattura_pa_payables
 msgid "Electronic Bill"
-msgstr "Fattura elettronica"
+msgstr "Fattura fornitore elettronica"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.ui.menu,name:l10n_it_einvoice_base.menu_fattura_pa_receivables model:ir.ui.view,arch_db:l10n_it_einvoice_base.view_account_config_settings
@@ -593,7 +588,7 @@ msgstr "Formato"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_name
 msgid "Give a unique name for Sender Channel"
-msgstr "Assegnamento nome univoco del canale di invio"
+msgstr "Assegnare nome univoco al canale di invio"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_gross_weight
@@ -630,7 +625,7 @@ msgstr "INPS"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_hub_ip_addr
 msgid "IP Address to connect"
-msgstr "IP Indirizzo a connect"
+msgstr "Indirizzo IP per connessione"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_pa_move_pi_2_fc model:ir.model.fields,help:l10n_it_einvoice_base.field_res_company_pa_move_pi_2_fc
@@ -638,8 +633,8 @@ msgid ""
 "If partner has TIN and not fiscalcode, move TIN to fiscalcode\n"
 "If both are set, do not insert TIN"
 msgstr ""
-"If partner has P.IVA e not fiscalcode, move P.IVA a fiscalcode\n"
-"If both are set, do not insert P.IVA"
+"Il nominativo ha P.IVA ma non il codice fiscale, spostare P.IVA nel codice fuscale\n"
+"Se ambedue sono impostati, non inserire la P.IVA"
 
 #. module: l10n_it_einvoice_base
 #: selection:faturapa.summary.data,payability:0
@@ -788,7 +783,7 @@ msgstr "Numero riga"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_ddt_lineRef
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_lineRef
 msgid "Line Ref."
-msgstr "Rif."
+msgstr "Rif. riga."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_liquidation
@@ -798,7 +793,7 @@ msgstr "Attiva/In liquidazione"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_max_payment_date
 msgid "Maximum Date for Payment"
-msgstr "Data massima per il pagamento"
+msgstr "Data limite per il pagamento"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_rea_partner
@@ -814,7 +809,7 @@ msgstr "Tipo MIME"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_pa_move_pi_2_fc
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_pa_move_pi_2_fc
 msgid "Move TIN to FC if partner is PA"
-msgstr "Trasforma P.IVA in codice fiscale se PA"
+msgstr "Trasformare P.IVA in codice fiscale se PA"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_comune
@@ -884,7 +879,7 @@ msgstr "Non inserire CF se identico alla partita IVA"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_non_taxable_nature
 msgid "No taxable nature"
-msgstr "Natura base non imponibile"
+msgstr "Natura non imponibile"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_welfare_fund_data_line_tax_kind_id
@@ -909,7 +904,7 @@ msgstr "Ordine"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_related_document_type_code
 msgid "Order Agreement Code"
-msgstr "Codice commessa"
+msgstr "Codice contratto"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_indirizzo
@@ -1011,7 +1006,7 @@ msgstr "Riga di pagamento"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_days
 msgid "Payment Term Days"
-msgstr "Giorni termine di pagamento"
+msgstr "Giorni condizione di pagamento"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_fatturapa_payment_detail_payment_term_start
@@ -1284,7 +1279,7 @@ msgstr ""
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_is_self_invoice
 msgid "Self invoice"
-msgstr "Se stesso fattura"
+msgstr "Auto-fattura"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_sender
@@ -1326,13 +1321,13 @@ msgstr "Metodo di invio"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_config_settings_fatturapa_sequence_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_res_company_fatturapa_sequence_id
 msgid "Sequence"
-msgstr "Sequence"
+msgstr "Sequenza"
 
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:120
 #, python-format
 msgid "Sequence %s already used by journal %s. Please select another one."
-msgstr "Sequenza %s già utilizzata da registro %s. Selezionarne un’altra."
+msgstr "Sequenza %s già utilizzata da registro %s. Selezionarne un'altra."
 
 #. module: l10n_it_einvoice_base
 #: code:addons/l10n_it_einvoice_base/models/res_company.py:112
@@ -1353,7 +1348,7 @@ msgstr "Impostare tipo"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_italy_ade_sender_company_id
 msgid "Set company, if specific company channel"
-msgstr "Set azienda, if specific azienda channel"
+msgstr "Impostare azienda, se specifico del canale"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.actions.act_window,name:l10n_it_einvoice_base.action_set_account_type
@@ -1384,7 +1379,7 @@ msgstr "Nome file registrato"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_civico
 msgid "Street number of the address (no need to specify if already present in the address field)"
-msgstr "Indirizzo number of the address (NO need a specify if already present in the address campo)"
+msgstr "Num. civico indirizzo (non specificare se già presente in indirizzo)"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_electronic_invoice_subjected
@@ -1497,11 +1492,6 @@ msgstr ""
 "Importo del bollo"
 
 #. module: l10n_it_einvoice_base
-#: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_carrier_id
-msgid "Tag 2.1.9.1.3 <Anagrafica>"
-msgstr "Etichetta 2.1.9.1.3 <Anagrafica>"
-
-#. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_transport_vehicle
 msgid "Tag 2.1.9.2 <MezzoTrasporto>"
 msgstr "Etichetta 2.1.9.2 <MezzoTrasporto>"
@@ -1524,7 +1514,7 @@ msgstr "Etichetta 2.2.1.15 <RiferimentoAmministrazione>"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_faturapa_summary_data_tax_rate
 msgid "Tax Rate"
-msgstr "Aliquota"
+msgstr "Aliquota IVA"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_fiscal_position_regime_fiscale
@@ -1539,7 +1529,7 @@ msgstr "Rappresentante fiscale"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_fatturapa_attachments_res_model
 msgid "The database object this attachment will be attached to."
-msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
+msgstr "L'oggetto del database a cui verrà allegato questo allegato."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_config_settings_fatturapa_stabile_organizzazione
@@ -1588,7 +1578,7 @@ msgstr "Procedura per impostare il tipo di fattura fiscale"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_fiscal_position_fiscal_document_type_id
 msgid "To be used when sending self invoices to the exchange system"
-msgstr "A be used è impostato a form solamente sending self invoices a the exchange system"
+msgstr "Da usare per inviare le auto.fatture al sistema di scambio"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_italy_ade_sender_trace
@@ -1655,7 +1645,7 @@ msgstr "Veicolo"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_vehicle_registration
 msgid "Vehicle Registration"
-msgstr "Veicolo Registration"
+msgstr "Registrazione veicolo"
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,field_description:l10n_it_einvoice_base.field_account_invoice_virtual_stamp
@@ -1716,7 +1706,7 @@ msgstr "Causale ritenuta"
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_fatturapa_attachments_type
 msgid "You can either upload a file from your computer or copy/paste an internet link to your file."
-msgstr "È possibile caricare un file dal computer oppure fare copia/incolla di un collegamento Internet nel file."
+msgstr "Puoi inviare un file dal computer o copiare/incollare un indirizzo Internet che è collegato al tuo file."
 
 #. module: l10n_it_einvoice_base
 #: model:ir.model.fields,help:l10n_it_einvoice_base.field_account_invoice_efatt_stabile_organizzazione_cap

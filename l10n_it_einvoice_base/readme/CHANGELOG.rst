@@ -1,3 +1,9 @@
+10.0.2.1.25 (2024-03-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Field carrier_id conflicts with other modules
+* [QUA] Test coverage 61% (515: 202+313) [0 TestPoints] - quality rating 37 (target 100)
+
 10.0.2.1.24 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

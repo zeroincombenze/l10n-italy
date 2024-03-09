@@ -4,17 +4,15 @@
 #
 {
     "name": "Partner Carrier on invoice",
-    "summary": "Add the Partner Carrier field on account.invoice",
     "version": "10.0.0.1.0",
     "category": "Localization/Italy",
+    "summary": "Add the Partner Carrier field on account invoice",
     "author": "SHS-AV s.r.l.",
-    "website": "https://zeroincombenze.it",
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Alpha",
     "license": "AGPL-3",
-    "depends": [
-        "account",
-    ],
-    "data": [
-        "views/account.xml",
-    ],
+    "depends": ["account"],
+    "data": ["views/account.xml"],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
 }

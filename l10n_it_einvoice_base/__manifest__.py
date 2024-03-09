@@ -9,7 +9,7 @@
 #
 {
     "name": "EInvoice + FatturaPA",
-    "version": "10.0.2.1.24",
+    "version": "10.0.2.1.25",
     "category": "Localization/Italy",
     "summary": "Infrastructure for Italian Electronic Invoice + FatturaPA",
     "author": "SHS-AV s.r.l.",
@@ -26,8 +26,13 @@
         "l10n_it_ade",
         "l10n_it_pec",
         "l10n_it_fiscal_payment_term",
+        "account_invoice_partner_carrier",
+    ],
+    "conflicts": [
+        "l10n_it_fatturapa"
     ],
     "external_dependencies": {'python': ['pyxb']},
+    "version_external_dependencies": ["pyxb>=1.2.5"],
     "data": [
         "security/ir.model.access.csv",
         "data/fatturapa_fiscal_position.xml",
@@ -46,4 +51,5 @@
     ],
     "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
+    "pre_init_hook": "check_4_depending",
 }

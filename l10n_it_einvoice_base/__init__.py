@@ -10,3 +10,4 @@
 from . import models
 from . import wizard
 from . import controllers
+from ._check4deps_ import check_4_depending

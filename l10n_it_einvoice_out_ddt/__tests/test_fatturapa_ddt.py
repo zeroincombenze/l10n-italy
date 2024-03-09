@@ -143,7 +143,7 @@ class TestInvoiceDDT(FatturaPACommon):
         self.env["ddt.from.pickings"].with_context(
             {"active_ids": self.so3.picking_ids.ids}
         ).create({}).create_ddt()
-        self.so3.ddt_ids[0].carrier_id = self.intermediario.id
+        self.so3.ddt_ids[0].partner_carrier_id = self.intermediario.id
         self.so3.ddt_ids[0].set_done()
         invoice_wizard = (
             self.env["ddt.create.invoice"]
