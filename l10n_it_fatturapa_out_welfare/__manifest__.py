@@ -22,4 +22,5 @@
         "views/account_invoice_views.xml",
         "views/welfare_fund_type_amount_views.xml",
     ],
+    "installable": True
 }

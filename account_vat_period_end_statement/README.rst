@@ -188,8 +188,8 @@ ChangeLog History | Cronologia modifiche
 
 
 
-Credits | Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -202,14 +202,14 @@ Authors | Autori
 
 * `Agile Business Group sagl <https://www.agilebg.com>`__
 * `Odoo Community Association (OCA) <https://odoo-community.org>`__
-* `Link It Spa <https://www.linkgroup.it>`__
+* `LinkIt Spa <http://http://www.linkgroup.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 * `Didotech s.r.l. <https://www.didotech.com>`__
 
 
 
-Contributors | Contributi da
-----------------------------
+Contributors | Partecipanti
+---------------------------
 
 * `Lorenzo Battistini <https://github.com/eLBati>`__
 * Elena Carlesso <False>
@@ -220,7 +220,7 @@ Contributors | Contributi da
 * `Alessandro Camilli <camillialex@gmail.com>`__
 * `Simone Rubino <simone.rubino@agilebg.com>`__
 * `Giacomo Grasso <giacomo.grasso.82@gmail.com>`__
-* `Link It Spa <https://www.linkgroup.it>`__
+* `LinkIt Spa <http://http://www.linkgroup.it>`__
 * `Gianmarco Conte <gconte@dinamicheaziendali.it>`__
 
 
@@ -249,7 +249,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-27
+Last Update / Ultimo aggiornamento: 2024-03-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

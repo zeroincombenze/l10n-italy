@@ -1,115 +1,38 @@
+========================================================
+|icon| Split Payment/l10n_it_split_payment 12.0.1.0.1_11
+========================================================
 
-==================================
-|icon| Split Payment 12.0.1.0.1_10
-==================================
-
-
-.. |icon| image:: https://raw.githubusercontent.com/PowERP-cloud/l10n-italy/12.0/l10n_it_split_payment/static/description/icon.png
-
-|Maturity| |Build Status| |license opl|
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/icon.png
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
-|en| Manage enhanced split payment
+|en| **Italiano**
 
+Legge: https://goo.gl/7Atg3u (Art. 17-ter.)
 
-|
-
-|it| Gestione evoluta della scissione dei pagamenti
-
-
-|
-
-Usage / Utilizzo
-----------------
-
-**Italiano**
-
-Per usare questo modulo, è necessario selezionare la posizione fiscale corretta nelle fatture
+Modulo per generare registrazioni contabili scissione dei pagamenti
 
 **English**
 
-To use this module, you need to select the correct fiscal position in invoices
+Law: https://goo.gl/7Atg3u (Art. 17-ter.)
+
+Module to generate Split Payment accounting entries
 
 
-|
+|it| Nessuna informazione disponibile
 
-OCA comparation / Confronto con OCA
------------------------------------
+|thumbnail|
 
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/description.png
 
 
-|
-|
-
-Getting started / Come iniziare
-===============================
-
-|Try Me|
-
-
-|
-
-Installation / Installazione
-----------------------------
-
-
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| These instructions are just an  | Istruzioni di esempio valide solo per    |
-| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
-| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
-|                                 |                                          |
-| Installation is built with:     | L'installazione è costruita con:         |
-+---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
-+---------------------------------+------------------------------------------+
-| Suggested deployment is:        | Posizione suggerita per l'installazione: |
-+---------------------------------+------------------------------------------+
-| $HOME/12.0                                                                 |
-+----------------------------------------------------------------------------+
-
-::
-
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 12.0 -O powerp -o $HOME/12.0
-    vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
-
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode 
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_split_payment** > Install
-
-
-|
-
-Configuration / Configurazione
+Configuration | Configurazione
 ------------------------------
 
 **Italiano**
@@ -124,7 +47,7 @@ To configure this module, you need to:
 
 * go to Accounting → Configuration → Settings and configure 'Split Payment Write-off account' (like 'IVA n/debito sospesa SP'). Write-off account should be different from standard debit VAT, in order to separately add it in VAT statement.
 
-.. figure:: static/settings.png
+.. figure:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/settings.png
    :alt: Configuration
    :width: 600 px
 
@@ -139,11 +62,11 @@ To configure this module, you need to:
 * add a new tax (Accounting → Configuration → Accounting → Taxes). IVA al 22% SPL should be configured like the following:
 
 
-.. figure:: static/SP.png
+.. figure:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/SP.png
    :alt: 22SPL
    :width: 600 px
 
-.. figure:: static/SP2.png
+.. figure:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/SP2.png
    :alt: 22SPL
    :width: 600 px
 
@@ -158,140 +81,119 @@ To configure this module, you need to:
 * configure the fiscal position (Accounting → Configuration → Accounting → Fiscal Positions) used for split payment, setting 'Split Payment' flag. In fiscal position, map standard VAT with SP VAT, like the following:
 
 
-.. figure:: static/fiscal_position.png
+.. figure:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/fiscal_position.png
    :alt: Fiscal position
    :width: 600 px
 
 
 
-|
+Usage | Utilizzo
+----------------
 
-Upgrade / Aggiornamento
------------------------
+**Italiano**
 
+Per usare questo modulo, è necessario selezionare la posizione fiscale corretta nelle fatture
+
+**English**
+
+To use this module, you need to select the correct fiscal position in invoices
+
+
+
+Getting started | Primi passi
+=============================
+
+|Try Me|
+
+
+Prerequisites | Prerequisiti
+----------------------------
+
+* python 3.7
+* postgresql 9.6+ (best 10.0+)
 
 ::
 
     cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
     source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
-    vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
+
+
+
+Installation | Installazione
+----------------------------
+
++---------------------------------+------------------------------------------+
+| |en|                            | |it|                                     |
++---------------------------------+------------------------------------------+
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
+|                                 |                                          |
+| Installation is built with:     | L'installazione è costruita con:         |
++---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
++---------------------------------+------------------------------------------+
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| $HOME/12.0 |
++----------------------------------------------------------------------------+
+
+::
+
+    # Odoo repository installation; OCB repository must be installed
+    deploy_odoo clone -r l10n-italy -b 12.0 -G zero -p $HOME/12.0
+    # Upgrade virtual environment
+    vem amend $HOME/12.0/venv_odoo
+
+
+
+Upgrade | Aggiornamento
+-----------------------
+
+::
+
+    deploy_odoo update -r l10n-italy -b 12.0 -G zero -p $HOME/12.0
+    vem amend $HOME/12.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-|
 
-Support / Supporto
+Support | Supporto
 ------------------
 
-
-This module is maintained by the / Questo modulo è mantenuto dalla rete di imprese `Powerp <http://www.powerp.it/>`__
-
-Developer companies are / I soci sviluppatori sono:
-
-* `Didotech s.r.l. <http://www.didotech.com>`__
-* `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/PowERP-cloud/l10n-italy/issues>`_.
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
+
+
 
 Proposals for enhancement
 -------------------------
 
-
-If you have a proposal to change this module, you may want to send an email to <info@powerp.it> for initial feedback.
+|en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
-
-ChangeLog History / Cronologia modifiche
-----------------------------------------
-
-12.0.1.0.1_10 (2021-08-19)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Impostato controlli su generazione registrazione contabile
-
-12.0.1.0.1_9 (2021-08-19)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Refactoring metodo di pagamento 'tax'
-
-12.0.1.0.1_8 (2021-08-17)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Corretto controllo versione oca
-
-12.0.1.0.1_7 (2021-08-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato filtro sui movimenti contabili per l'inserimento nella fattura elettronica
-* [FIX] Corretto totale in xml
-
-12.0.1.0.1_6 (2021-06-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestita iva multipla
-
-12.0.1.0.1_5 (2021-06-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestita riga di storno dell'iva per stampa registro
-
-12.0.1.0.1_4 (2021-06-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestita riga di storno dell'iva inclusa nel totale fattura
-
-12.0.1.0.1_3 (2021-06-21)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestita azienda per riconciliazione movimenti contabili
-
-12.0.1.0.1_2 (2021-06-21)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Aggiornato numero versione
-
-12.0.1.0.3 (2021-06-18)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Inserito in fattura il campo "netto a pagare" e relativo calcolo
-
-12.0.1.0.2 (2021-06-17)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Impostate funzionalità sui totali, sulle scadenze e sulla registrazione contabile
+|it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
 
-|
-|
-
-Credits / Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -299,98 +201,68 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
-* `powERP <https://www.powerp.it>`__
+* `Abstract <https://www.abstract.it>`__
+* Agile Business Group <False>
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
-* `Didotech srl <https://www.didotech.com>`__
 
 
-Contributors / Collaboratori
-----------------------------
 
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-* Marco Tosato <marco.tosato@didotech.com>
-* Fabio Giovannelli <fabio.giovannelli@didotech.com>
+Contributors | Partecipanti
+---------------------------
+
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* `Marco Tosato <marco.tosato@didotech.com>`__
+* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
+* `Davide Corio <davide.corio@abstract.it>`__
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Alessio Gerace <alessio.gerace@agilebg.com>`__
+* `Giacomo Grasso <giacomo.grasso.82@gmail.com>`__
+* `Ruben Tonetto <https://github.com/ruben-tonetto>`__
 
 
-Maintainer / Manutenzione
+
+Maintainer | Manutenzione
 -------------------------
 
-
-This module is maintained by the / Questo modulo è mantenuto dalla rete di imprese Powerp <http://www.powerp.it/>
-Developer companies are / I soci sviluppatori sono:
-* Didotech s.r.l. <http://www.didotech.com>
-* SHS-AV s.r.l. <https://www.shs-av.com/>
+* powERP enterprise network <False>
 
 
-|
 
 ----------------
 
+|en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
+is mainly designed to cover Italian law and markeplace.
 
-|en| **Powerp** is an Italian enterprises network, whose mission is to develop high-level addons designed for Italian enterprise companies.
-
-`Powerp <http://www.powerp.it/>`__ code adds new enhanced features to Italian localization and it released under `LGPL <https://www.gnu.org/licenses/lgpl-3.0.html>`__ or `OPL <https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html>`__ licenses.
-
-|it| `Powerp <http://www.powerp.it/>`__ è una rete di imprese italiane, nata con la missione di sviluppare moduli per le PMI.
-
-Il codice di `Powerp <http://www.powerp.it/>`__ aggiunge caratteristiche evolute alla localizzazione italiana; il codice è rilasciato con licenze `LGPL <https://www.gnu.org/licenses/lgpl-3.0.html>`__ e `OPL <https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html>`__
-
-I soci fondatori sono:
-
-* `Didotech s.r.l. <http://www.didotech.com>`__
-* `SHS-AV s.r.l. <https://www.shs-av.com/>`__
-* `Xplain s.r.l. <http://x-plain.it//>`__
+|it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
+che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
-
-|chat_with_us|
-
-
+|
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-10-13
+Last Update / Ultimo aggiornamento: 2024-03-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/PowERP-cloud/l10n-italy.svg?branch=12.0
-    :target: https://travis-ci.com/PowERP-cloud/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/PowERP-cloud/l10n-italy/badge.svg?branch=12.0
-    :target: https://coveralls.io/github/PowERP-cloud/l10n-italy?branch=12.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/PowERP-cloud/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/PowERP-cloud/l10n-italy/branch/12.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-12.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/12.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
     :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -414,6 +286,3 @@ Last Update / Ultimo aggiornamento: 2021-10-13
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
-

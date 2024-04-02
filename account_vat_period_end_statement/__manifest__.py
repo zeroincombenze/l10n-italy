@@ -9,7 +9,7 @@
     "category": "Localization/Italy",
     "summary": "Allow to create the periodic 'VAT Statement'",
     "author": ("Agile Business Group sagl,Odoo Community Association (OCA),LinkIt Spa"
-               ",SHS-AV s.r.l."),
+               ",SHS-AV s.r.l.,Didotech s.r.l."),
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
     "development_status": "Alpha",
     "license": "AGPL-3",
@@ -32,5 +32,5 @@
         "views/account_view.xml",
     ],
     "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
-    "installable": True,
+    "installable": False,
 }

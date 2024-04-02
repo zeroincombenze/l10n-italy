@@ -1,0 +1,47 @@
+2024-03-26 17:34:11,000 2036421 DAEMON test_l10n_it_split_payment_12 run_odoo_debug.sh: cd /home/odoo/12.0/venv_odoo && source ./bin/activate
+2024-03-26 16:34:16,980 2038073 INFO ? odoo: Odoo version 12.0 
+2024-03-26 16:34:16,981 2038073 INFO ? odoo: Using configuration file at /home/odoo/12.0/l10n-italy/l10n_it_split_payment/tests/logs/zero12.l10n-italy.l10n_it_split_payment.conf 
+2024-03-26 16:34:16,981 2038073 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/addons/12.0', '/home/odoo/12.0/odoo/addons', '/home/odoo/12.0/addons', '/home/odoo/.local/share/Odoo12/addons', '/home/odoo/12.0/account-analytic', '/home/odoo/12.0/account-budgeting', '/home/odoo/12.0/account-closing', '/home/odoo/12.0/account-consolidation', '/home/odoo/12.0/account-financial-reporting', '/home/odoo/12.0/account-financial-tools', '/home/odoo/12.0/account-fiscal-rule', '/home/odoo/12.0/account-invoice-reporting', '/home/odoo/12.0/account-invoicing', '/home/odoo/12.0/account-payment', '/home/odoo/12.0/account-reconcile', '/home/odoo/12.0/bank-payment', '/home/odoo/12.0/bank-statement-import', '/home/odoo/12.0/brand', '/home/odoo/12.0/calendar', '/home/odoo/12.0/commission', '/home/odoo/12.0/community-data-files', '/home/odoo/12.0/connector', '/home/odoo/12.0/contract', '/home/odoo/12.0/credit-control', '/home/odoo/12.0/crm', '/home/odoo/12.0/currency', '/home/odoo/12.0/data-protection', '/home/odoo/12.0/delivery-carrier', '/home/odoo/12.0/dms', '/home/odoo/12.0/e-commerce', '/home/odoo/12.0/edi', '/home/odoo/12.0/helpdesk', '/home/odoo/12.0/hr', '/home/odoo/12.0/intrastat-extrastat', '/home/odoo/12.0/knowledge', '/home/odoo/12.0/l10n-italy', '/home/odoo/12.0/l10n-italy-supplemental', '/home/odoo/12.0/maintenance', '/home/odoo/12.0/management-system', '/home/odoo/12.0/manufacture', '/home/odoo/12.0/margin-analysis', '/home/odoo/12.0/mis-builder', '/home/odoo/12.0/multi-company', '/home/odoo/12.0/partner-contact', '/home/odoo/12.0/product-attribute', '/home/odoo/12.0/product-pack', '/home/odoo/12.0/product-variant', '/home/odoo/12.0/profiles', '/home/odoo/12.0/project', '/home/odoo/12.0/purchase-reporting', '/home/odoo/12.0/purchase-workflow', '/home/odoo/12.0/queue', '/home/odoo/12.0/report-print-send', '/home/odoo/12.0/reporting-engine', '/home/odoo/12.0/rma', '/home/odoo/12.0/sale-reporting', '/home/odoo/12.0/sale-workflow', '/home/odoo/12.0/search-engine', '/home/odoo/12.0/server-auth', '/home/odoo/12.0/server-backend', '/home/odoo/12.0/server-brand', '/home/odoo/12.0/server-env', '/home/odoo/12.0/server-tools', '/home/odoo/12.0/server-ux', '/home/odoo/12.0/social', '/home/odoo/12.0/stock-logistics-barcode', '/home/odoo/12.0/stock-logistics-reporting', '/home/odoo/12.0/stock-logistics-transport', '/home/odoo/12.0/stock-logistics-warehouse', '/home/odoo/12.0/stock-logistics-workflow', '/home/odoo/12.0/storage', '/home/odoo/12.0/timesheet', '/home/odoo/12.0/uncovered', '/home/odoo/12.0/web', '/home/odoo/12.0/website', '/home/odoo/12.0/wms', '/home/odoo/12.0/zerobug-test', '/home/odoo/12.0/venv_odoo/lib/python3.7/site-packages/odoo/addons'] 
+2024-03-26 16:34:16,981 2038073 INFO ? odoo: database: odoo12@localhost:default 
+2024-03-26 16:34:17,137 2038073 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /home/odoo/12.0/venv_odoo/bin/wkhtmltopdf 
+2024-03-26 16:34:17,258 2038073 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:59847 
+2024-03-26 16:34:17,277 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: loading 1 modules... 
+2024-03-26 16:34:17,287 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries 
+2024-03-26 16:34:17,420 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: updating modules list 
+2024-03-26 16:34:17,424 2038073 INFO test_l10n_it_split_payment_12 odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2024-03-26 16:34:28,254 2038073 INFO test_l10n_it_split_payment_12 odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['l10n_it_split_payment'] to user __system__ #1 via n/a 
+2024-03-26 16:34:28,672 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: loading 42 modules... 
+2024-03-26 16:34:29,085 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: 42 modules loaded in 0.41s, 0 queries 
+2024-03-26 16:34:29,094 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: loading 43 modules... 
+2024-03-26 16:34:29,827 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.registry: module l10n_it_split_payment: creating or updating database tables 
+2024-03-26 16:34:30,095 2038073 INFO test_l10n_it_split_payment_12 odoo.models: Storing computed values of account.invoice.amount_sp 
+2024-03-26 16:34:30,337 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: loading l10n_it_split_payment/views/account_view.xml 
+2024-03-26 16:34:30,520 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: loading l10n_it_split_payment/views/config_view.xml 
+2024-03-26 16:34:30,689 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: Module l10n_it_split_payment: loading demo 
+2024-03-26 16:34:30,718 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.module: odoo.addons.l10n_it_split_payment.tests.test_splitpayment running tests. 
+2024-03-26 16:34:30,718 2038073 INFO test_l10n_it_split_payment_12 odoo.addons.l10n_it_split_payment.tests.test_splitpayment: test_invoice (odoo.addons.l10n_it_split_payment.tests.test_splitpayment.TestSP) 
+2024-03-26 16:34:31,981 2038073 INFO test_l10n_it_split_payment_12 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [24, 23, 22, 21, 20] 
+2024-03-26 16:34:32,003 2038073 INFO test_l10n_it_split_payment_12 odoo.models.unlink: User #1 deleted account.move records with IDs: [8] 
+2024-03-26 16:34:33,581 2038073 INFO test_l10n_it_split_payment_12 odoo.addons.l10n_it_split_payment.tests.test_splitpayment: Ran 1 test in 2.862s 
+2024-03-26 16:34:33,581 2038073 INFO test_l10n_it_split_payment_12 odoo.addons.l10n_it_split_payment.tests.test_splitpayment: OK 
+2024-03-26 16:34:33,613 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: 43 modules loaded in 4.52s, 2094 queries 
+2024-03-26 16:34:34,370 2038073 INFO test_l10n_it_split_payment_12 odoo.modules.loading: Modules loaded. 
+2024-03-26 16:34:34,382 2038073 INFO test_l10n_it_split_payment_12 odoo.service.server: Starting post tests 
+2024-03-26 16:34:34,383 2038073 INFO test_l10n_it_split_payment_12 odoo.service.server: All post-tested in 0.00s, 0 queries 
+2024-03-26 16:34:34,383 2038073 INFO test_l10n_it_split_payment_12 odoo.service.server: Initiating shutdown 
+2024-03-26 16:34:34,383 2038073 INFO test_l10n_it_split_payment_12 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+
++===================================================================
+| please test [36ml10n_it_split_payment[0m (12.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/12.0/l10n-italy/l10n_it_split_payment/tests/logs/coverage_l10n_it_split_payment_12rc -m
+[34;107mName                                                                     Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------------------
+/home/odoo/12.0/l10n-italy/l10n_it_split_payment/init_hook.py               11      1    91%   31
+/home/odoo/12.0/l10n-italy/l10n_it_split_payment/models/account.py         102     30    71%   23, 53, 64, 102, 108, 115, 153, 162-163, 172-173, 188-191, 198-221
+/home/odoo/12.0/l10n-italy/l10n_it_split_payment/models/account_tax.py       9      1    89%   12
+/home/odoo/12.0/l10n-italy/l10n_it_split_payment/models/config.py            7      0   100%
+------------------------------------------------------------------------------------------------------
+TOTAL                                                                      129     32    75%
+[0m
