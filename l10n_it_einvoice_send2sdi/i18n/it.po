@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-24 16:25+0000\n"
-"PO-Revision-Date: 2024-02-24 16:25+0000\n"
+"POT-Creation-Date: 2024-05-04 07:21+0000\n"
+"PO-Revision-Date: 2024-05-04 07:21+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -117,7 +117,7 @@ msgstr "Stato e-fattura"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model,name:l10n_it_einvoice_send2sdi.model_mail_thread
 msgid "Email Thread"
-msgstr "E-mai collegate"
+msgstr "Collegate e-mail"
 
 #. module: l10n_it_einvoice_send2sdi
 #: selection:account.invoice,fatturapa_state:0
@@ -128,7 +128,7 @@ msgstr "Errore"
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_invoice_fatturapa_send2sdi_form
 msgid "Invia a SDI"
-msgstr "Inviare a SDI"
+msgstr "SDI https inviare"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model,name:l10n_it_einvoice_send2sdi.model_account_invoice
@@ -179,7 +179,7 @@ msgstr "Messaggio PEC [%s] non processato"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model,name:l10n_it_einvoice_send2sdi.model_fetchmail_server
 msgid "POP/IMAP Server"
-msgstr "Server POP/IMAP"
+msgstr "Attach server"
 
 #. module: l10n_it_einvoice_send2sdi
 #: selection:account.invoice,fatturapa_state:0
@@ -246,7 +246,7 @@ msgstr "Confermare la consegna"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,field_description:l10n_it_einvoice_send2sdi.field_fatturapa_attachment_out_state
 msgid "State"
-msgstr "Stato Federale"
+msgstr "Stato"
 
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model.fields,help:l10n_it_einvoice_send2sdi.field_italy_ade_sender_bonus_invoices_ctr
@@ -284,7 +284,7 @@ msgstr "Metodo di consegna non supportato"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "Verifica invio"
-msgstr "Verifica Inio"
+msgstr "Inio verifica"
 
 #. module: l10n_it_einvoice_send2sdi
 #: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:743
@@ -321,6 +321,6 @@ msgstr ""
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "on"
-msgstr "il"
+msgstr "FIX"
 
 
