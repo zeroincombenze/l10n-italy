@@ -51,7 +51,8 @@ class ResCompany(models.Model):
             return self.env.user.company_id
         if vat and vat == self.env.user.company_id.vat:
             return self.env.user.company_id
-        companies = self.search([("vat", "=", vat)])
+        # Weird bug: sometimes search by vat does not worrk (internal issues)
+        companies = self.search([("partner_id.vat", "=", vat)])
         if not companies:
             raise UserError(
                 _(

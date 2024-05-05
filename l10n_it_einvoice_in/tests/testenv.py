@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Test Environment v2.0.16
+"""Test Environment v2.0.18
 
 You can locate the recent testenv.py in testenv directory of module
 https://github.com/zeroincombenze/tools/tree/master/z0bug_odoo/testenv
@@ -650,6 +650,7 @@ class MainTest(test_common.TransactionCase):
         super(MainTest, self).setUp()
         self.odoo_major_version = release.version_info[0] if release else 0
         self.debug_level = 0
+        self.title_logged = False
         self.PYCODESET = "utf-8"
         self._logger = _logger
         # List of stored data by groups: grp1: [a,b,c], grp2: [d,e,f]
@@ -1732,7 +1733,8 @@ class MainTest(test_common.TransactionCase):
                     6,
                     0,
                     [
-                        x.id if isinstance(x.id, (int, long)) else x.id.origin
+                        x.id if isinstance(x.id, (int, long))
+                        else getattr(x.id, "origin", False)
                         for x in value
                     ],
                 )
@@ -1834,7 +1836,11 @@ class MainTest(test_common.TransactionCase):
     def _convert_to_write(self, record, new=None, orig=None):
         values = {}
         for field in list(record._fields.keys()):
-            if field in BLACKLIST_COLUMNS or record._fields[field].readonly:
+            if (
+                    field in BLACKLIST_COLUMNS
+                    or record._fields[field].compute
+                    or record._fields[field].related
+            ):
                 continue
             value = self._convert_field_to_write(record, field)
             if value is None:  # pragma: no cover
@@ -2956,7 +2962,7 @@ class MainTest(test_common.TransactionCase):
         locale=None,
         group=None,
         merge="local",
-        setup_list=None,
+        setup_list=[],
         data_dir=None,
     ):
         """Create all record from declared data.
@@ -3003,28 +3009,31 @@ class MainTest(test_common.TransactionCase):
             if "TEST_SETUP_LIST" in inspect.stack()[ix][0].f_globals:
                 found = True
                 break
-        if not setup_list:
-            if found:
-                data = {
-                    "TEST_SETUP_LIST":
-                        inspect.stack()[ix][0].f_globals["TEST_SETUP_LIST"]
-                }
-                for resource in data["TEST_SETUP_LIST"]:
-                    init_resource_data(resource, data, ix + 1)
-                self.declare_all_data(data)
-        elif setup_list:
+        if setup_list:
             data = {"TEST_SETUP_LIST": setup_list}
-            for resource in setup_list:
-                init_resource_data(resource, data, ix + 1 if found else ix)
-            self.declare_all_data(data, group=group)
+        elif found:
+            data = {
+                "TEST_SETUP_LIST":
+                    inspect.stack()[ix][0].f_globals["TEST_SETUP_LIST"]
+            }
+        else:
+            self.raise_error("No data declared")
+        for resource in data["TEST_SETUP_LIST"]:
+            init_resource_data(resource, data, ix + 1 if found else ix)
+        self.declare_all_data(data, group=group)
         setup_list = setup_list or self.get_resource_list(group=group)
+        if not self.title_logged:
+            self._logger.info(
+                "🎺🎺🎺 Starting test v2.0.18 (debug_level=%s, commit=%s)"
+                % (self.debug_level, getattr(self, "odoo_commit_test", False))
+            )
+            self._logger.info(
+                "🎺🎺 Testing module: %s (%s)"
+                % (self.module.name, self.module.installed_version)
+            )
+            self.title_logged = True
         self._logger.info(
-            "🎺🎺🎺 Starting test v2.0.16 (debug_level=%s, commit=%s)"
-            % (self.debug_level, getattr(self, "odoo_commit_test", False))
-        )
-        self._logger.info(
-            "🎺🎺🎺 Testing module: %s (%s)"
-            % (self.module.name, self.module.installed_version)
+            "🎺🎺 Loading data from: %s " % ", ".join(setup_list)
         )
         self.log_stack()
         if locale:  # pragma: no cover
@@ -3043,7 +3052,11 @@ class MainTest(test_common.TransactionCase):
                         # Childs record already loaded with header record
                         continue
                 self.resource_make(resource, xref, group=group)
-        if self.odoo_major_version < 13:
+        if (
+                self.odoo_major_version < 13
+                and group
+                and "account.journal" in self.setup_data_list[group]
+        ):
             self.env["account.journal"].search([("update_posted", "!=", True)]).write(
                 {"update_posted": True}
             )
@@ -3656,5 +3669,7 @@ class MainTest(test_common.TransactionCase):
             "🐞%d assertion validated for validate_records(%s)"
             % (ctr_assertion, self.tmpl_repr(template, match=True)),
         )
+
+
 
 
