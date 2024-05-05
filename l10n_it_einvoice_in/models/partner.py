@@ -355,6 +355,9 @@ class Partner(models.Model):
                 vals["parent_id"] = rec.id
                 vals["type"] = "invoice"
                 rec = False
+        if rec.id == self.env.user.company_id.partner_id:
+            # Avoid company update form self invoice
+            return rec.id
         if rec:
             try:
                 if rec.type != "invoice":
