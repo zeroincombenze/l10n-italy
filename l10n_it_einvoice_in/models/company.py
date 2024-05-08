@@ -53,6 +53,11 @@ class ResCompany(models.Model):
             vat = vat[2:]
         if vat == self.env.user.company_id.vat:
             return self.env.user.company_id
+        if (
+                self.env.user.company_id.vat.startswith("EUIT")
+                and vat == self.env.user.company_id.vat[2:]
+        ):
+            return self.env.user.company_id
         companies = self.search([("vat", "=", vat)])
         if not companies:
             raise UserError(

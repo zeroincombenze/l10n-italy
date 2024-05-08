@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 17:08+0000\n"
-"PO-Revision-Date: 2024-05-05 17:08+0000\n"
+"POT-Creation-Date: 2024-05-08 18:56+0000\n"
+"PO-Revision-Date: 2024-05-08 18:56+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -24,7 +24,7 @@ msgid ""
 "Nessun termine di pagamento soddisfa alla fattura XML. Verificare le scadenze!"
 msgstr ""
 "\n"
-"Nessun termine di pagamento soddisfa alla fattura XML. scadenze le verificare!"
+"Nessun termine di pagamento soddisfa alla fattura XML. Verificare le scadenze!"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:712
@@ -81,7 +81,7 @@ msgstr "Conto arrotondamento attivo"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_admin_ref
 msgid "Administration Reference"
-msgstr "Amministrativo amministrazione"
+msgstr "Riferimento amministrativo"
 
 #. module: l10n_it_einvoice_in
 #: selection:res.partner,e_invoice_detail_level:0
@@ -108,7 +108,7 @@ msgstr "Nome allegato"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_local_url
 msgid "Attachment URL"
-msgstr "Allegato allegato"
+msgstr "URL allegato"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:1112
@@ -177,7 +177,7 @@ msgid "Code Value"
 msgstr "Valore codice"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:82
+#: code:addons/l10n_it_einvoice_in/models/partner.py:86
 #, python-format
 msgid "Cognome da XML '%s' differisce da dato in sistema'%s'."
 msgstr "Cognome da XML '%s' differisce da dato in sistema'%s'."
@@ -193,7 +193,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:204
+#: code:addons/l10n_it_einvoice_in/models/partner.py:208
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:130
 #, python-format
 msgid "Country Code %s not found in the system."
@@ -231,12 +231,12 @@ msgstr "Creazione"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_other_data_name
 msgid "Data Type"
-msgstr "Dati dati"
+msgstr "Tipo dati"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_db_datas
 msgid "Database Data"
-msgstr "Dati banca"
+msgstr "Dati database"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_date_invoice0
@@ -246,7 +246,7 @@ msgstr "Data fattura"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_other_data_date_ref
 msgid "Date Reference"
-msgstr "Data data"
+msgstr "Riferimento data"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:768
@@ -268,7 +268,7 @@ msgstr "Descrizione"
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Discount Supplement"
-msgstr "Maggiorazione sconto"
+msgstr "Sconto maggiorazione"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_account_config_settings_sconto_maggiorazione_product_id
@@ -422,7 +422,7 @@ msgstr "Il file %s è già collegato alle fatture."
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_datas
 msgid "File Content"
-msgstr "Contenuto il file"
+msgstr "Contenuto file"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_datas_fname
@@ -432,7 +432,7 @@ msgstr "Nome file"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_file_size
 msgid "File Size"
-msgstr "File il file"
+msgstr "Dimensione file"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:1192
@@ -448,7 +448,7 @@ msgstr "Forzare validazione e-fattura"
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "General Data"
-msgstr "Dati generale"
+msgstr "Dati generali"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:493
@@ -471,7 +471,7 @@ msgstr "Cronologia"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_wizard_import_fatturapa_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_wizard_link_to_invoice_id
 msgid "ID"
-msgstr "Conto"
+msgstr "ID"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_fatturapa_attachment_in_invoices_total
@@ -510,7 +510,7 @@ msgstr "Importazione fattura elettronica"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_account_invoice_inconsistencies
 msgid "Import Inconsistencies"
-msgstr "Nell importazione"
+msgstr "Incongruenze nell'importazione"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_fatturapa_in_attachment_form
@@ -602,7 +602,7 @@ msgstr "Dettaglio riga"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_line_number
 msgid "Line Number"
-msgstr "Riga riga"
+msgstr "Numero riga"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.wizard_link_supplier_invoice
@@ -629,7 +629,7 @@ msgstr "Massimo"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_mimetype
 msgid "Mime Type"
-msgstr "MIME tipo"
+msgstr "Tipo MIME"
 
 #. module: l10n_it_einvoice_in
 #: selection:res.partner,e_invoice_detail_level:0
@@ -667,7 +667,7 @@ msgstr "Natura"
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:201
 #, python-format
 msgid "Nessun codice IVA con aliquota %s e natura %s. Inserirne uno."
-msgstr "Nessun codice IVA con aliquota %s natura ubuntu %s. Inserirne uno."
+msgstr "Nessun codice IVA con aliquota %s e natura %s. Inserirne uno."
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/models/account.py:443
@@ -679,10 +679,10 @@ msgstr "Ritenuta con causale documento %s e aliquota %s non trovata."
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:559
 #, python-format
 msgid "Nome banca con BIC '%s' non impostato. Impossibile creare banca."
-msgstr "Nome banca con BIC '%s' non impostato. banca creare impossibile."
+msgstr "Nome banca con BIC '%s' non impostato. Impossibile creare banca."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:74
+#: code:addons/l10n_it_einvoice_in/models/partner.py:78
 #, python-format
 msgid "Nome da XML '%s' differisce da dato in sistema'%s'."
 msgstr "Nome da XML '%s' differisce da dato in sistema'%s'."
@@ -690,13 +690,13 @@ msgstr "Nome da XML '%s' differisce da dato in sistema'%s'."
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_other_data_num_ref
 msgid "Number Reference"
-msgstr "Numero numero"
+msgstr "Riferimento numero"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_other_data_ids
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Other Administrative Data"
-msgstr "Dati amministrativi altro"
+msgstr "Altri dati amministrativi"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model,name:l10n_it_einvoice_in.model_res_partner
@@ -763,26 +763,26 @@ msgstr ""
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Progress data"
-msgstr "Dati avanzamento"
+msgstr "Dati stato avanzamento lavori"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:118
 #: code:addons/l10n_it_einvoice_in/models/partner.py:122
+#: code:addons/l10n_it_einvoice_in/models/partner.py:126
 #, python-format
 msgid "Provincia \"%s\" non presente in archivio"
-msgstr "\" \"%s\" non presente in archivio"
+msgstr "Provincia \"%s\" non presente in archivio"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:140
+#: code:addons/l10n_it_einvoice_in/models/partner.py:144
 #, python-format
 msgid "Provincia albo \"%s\" non presente in archivio "
-msgstr "\" albo \"%s\" non presente in archivio "
+msgstr "Provincia albo \"%s\" non presente in archivio "
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:163
+#: code:addons/l10n_it_einvoice_in/models/partner.py:167
 #, python-format
 msgid "Provincia ufficio REA \"%s\" non presente in archivio"
-msgstr "\" unipersonale ufficio \"%s\" non presente in archivio"
+msgstr "Provincia ufficio REA \"%s\" non presente in archivio"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_qty
@@ -790,7 +790,7 @@ msgid "Quantity"
 msgstr "Quantità"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:66
+#: code:addons/l10n_it_einvoice_in/models/partner.py:70
 #, python-format
 msgid "Ragione sociale da XML '%s' differisce da dato in sistema'%s'."
 msgstr "Ragione sociale da XML '%s' differisce da dato in sistema'%s'."
@@ -804,7 +804,7 @@ msgstr "Riaggiornare"
 #: model:ir.actions.act_window,name:l10n_it_einvoice_in.action_refresh_attachment_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.wizard_attachment_in_refresh
 msgid "Refresh attachment info"
-msgstr "Informazione allegato riaggiornare"
+msgstr "Riaggiornare informazioni allegato"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.actions.act_window,name:l10n_it_einvoice_in.action_duedate_attachment_in
@@ -820,7 +820,7 @@ msgstr "Registrata"
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Related Documents"
-msgstr "Documenti collegato"
+msgstr "Documenti collegati"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_discount_rise_price_e_invoice_line_id
@@ -842,7 +842,7 @@ msgstr "Campo risorsa"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_res_id
 msgid "Resource ID"
-msgstr "Risorsa risorsa"
+msgstr "ID risorsa"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_res_model
@@ -861,7 +861,7 @@ msgid ""
 "Rilevati troppi codici IVA con aliquota %s e natura %s. Eventualmente "
 "selezionare il codice corretto."
 msgstr ""
-"Rilevati troppi codici IVA con aliquota %s natura ubuntu %s. Eventualmente "
+"Rilevati troppi codici IVA con aliquota %s e natura %s. Eventualmente "
 "selezionare il codice corretto."
 
 #. module: l10n_it_einvoice_in
@@ -897,12 +897,12 @@ msgstr "Arrotondamento attivo"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_service_type
 msgid "Sale Provision Type"
-msgstr "Prestazione cessione vendita"
+msgstr "Tipo cessione prestazione"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Stable Organization"
-msgstr "Organizzazione stabile"
+msgstr "Stabile organizzazione"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_store_fname
@@ -930,7 +930,7 @@ msgid "Take this action, if you want import data from e-invoice xml file"
 msgstr "Eseguire questa azione per importare una e-fattura da file xml"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:152
+#: code:addons/l10n_it_einvoice_in/models/partner.py:156
 #, python-format
 msgid "Tax Regime %s not present in your system."
 msgstr "Regime fiscale %s non presente nel sistema."
@@ -954,8 +954,8 @@ msgid ""
 "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
 "({e_bill_amount_tax})"
 msgstr ""
-"Importo taxed ({bill_amount_tax}) importo taxed e-bill with corrispondenza not "
-"does ({e_bill_amount_tax})"
+"Taxed importo ({bill_amount_tax}) does not corrispondenza with e-bill taxed "
+"importo ({e_bill_amount_tax})"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_other_data_text_ref
@@ -1016,8 +1016,8 @@ msgid ""
 "Total amount ({bill_amount_total}) does not match with e-bill total amount "
 "({e_bill_amount_total})"
 msgstr ""
-"Importo totale ({bill_amount_total}) importo total e-bill with corrispondenza "
-"not does ({e_bill_amount_total})"
+"Importo totale ({bill_amount_total}) does not corrispondenza with e-bill total "
+"importo ({e_bill_amount_total})"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:1157
@@ -1040,14 +1040,12 @@ msgstr "Tipo"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_uid
 msgid "Uid"
-msgstr ""
-"Something resi valore applicazioni  il modulo \" di seguito potete trovare la "
-"vostra fattura corrisponde domanda operatore il modulo \""
+msgstr "Uid"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_unit_price
 msgid "Unit Price"
-msgstr "Prezzo unità"
+msgstr "Prezzo Unitario"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_uom
@@ -1061,8 +1059,8 @@ msgid ""
 "Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed "
 "amount ({e_bill_amount_untaxed})"
 msgstr ""
-"Importo non tassato ({bill_amount_untaxed}) importo untaxed e-bill with "
-"corrispondenza not does ({e_bill_amount_untaxed})"
+"Importo imponibile ({bill_amount_untaxed}) does not corrispondenza with e-bill "
+"untaxed importo ({e_bill_amount_untaxed})"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_url
@@ -1095,7 +1093,7 @@ msgid "VAT Rate"
 msgstr "Aliquota IVA"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/company.py:57
+#: code:addons/l10n_it_einvoice_in/models/company.py:64
 #, python-format
 msgid ""
 "VAT number %s of customer invoice is not the same of the current company"
@@ -1109,13 +1107,13 @@ msgid ""
 "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor "
 "reference ({e_bill_vendor_ref})"
 msgstr ""
-"Fornitore riferimento ({bill_vendor_ref}) riferimento fornitore e-bill with "
-"corrispondenza not does ({e_bill_vendor_ref})"
+"Fornitore riferimento ({bill_vendor_ref}) does not corrispondenza with e-bill "
+"fornitore riferimento ({e_bill_vendor_ref})"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Welfare Fund"
-msgstr "Previdenziale cassa"
+msgstr "Cassa previdenziale"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:439
@@ -1132,7 +1130,7 @@ msgstr "Welfare Fund Data Prodotti"
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Welfare Fund Details"
-msgstr "Dettaglii cassa dettagli"
+msgstr "Dettagli cassa previdenziale"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:424
@@ -1143,7 +1141,7 @@ msgstr "Cassa previdenziale non definita."
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_fatturapa_in_attachment_tree
 msgid "Xml Attachment"
-msgstr "Allegato allegato"
+msgstr "Allegato XML"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_fatturapa_attachment_in_type
@@ -1169,7 +1167,7 @@ msgstr "account.config.settings"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_account_invoice_e_invoice_line_ids
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "e-Lines Detail"
-msgstr "Dettaglio dettaglio"
+msgstr "dettaglio e-righe"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model,name:l10n_it_einvoice_in.model_einvoice_line
@@ -1184,7 +1182,7 @@ msgstr "einvoice.line.other.dati"
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_fatturapa_in_attachment_form
 msgid "on"
-msgstr "FIX"
+msgstr "il"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model,name:l10n_it_einvoice_in.model_wizard_attachment_in_duedate

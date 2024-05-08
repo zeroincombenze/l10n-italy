@@ -46,6 +46,10 @@ class Partner(models.Model):
         required=True,
     )
 
+    def check_vat(self, vat):
+        country, code = vat[:2].lower(), vat[2:].replace(" ", "")
+        return self.simple_vat_check(country, code)
+
     def CountryByCode(self, CountryCode):
         country_model = self.env["res.country"]
         return country_model.search([("code", "=", CountryCode)])
@@ -351,14 +355,17 @@ class Partner(models.Model):
                 if defvals:
                     rec.write(defvals)
                 rec = rec.parent_id
+            if rec == self.env.user.company_id.partner_id:
+                # Avoid company update form self invoice
+                return rec.id
             if rec and not rec.parent_id and not is_the_same(rec, vals):
                 vals["parent_id"] = rec.id
                 vals["type"] = "invoice"
                 rec = False
-        if rec.id == self.env.user.company_id.partner_id:
-            # Avoid company update form self invoice
-            return rec.id
         if rec:
+            if rec == self.env.user.company_id.partner_id:
+                # Avoid company update form self invoice
+                return rec.id
             try:
                 if rec.type != "invoice":
                     for field in keep:
@@ -376,7 +383,7 @@ class Partner(models.Model):
                         and rec[item] == vals[item]
                     ):
                         del vals[item]
-                if vals.get("vat") and vals["vat"][2:].startswith("999999999"):
+                if vals.get("vat") and not self.check_vat(vals["vat"]):
                     del vals["vat"]
                 if vals:
                     rec.write(vals)
@@ -386,10 +393,11 @@ class Partner(models.Model):
         else:
             if vals.get("type") == "invoice" and "rea_code" in vals:
                 del vals["rea_code"]
-            if vals.get("vat") and vals["vat"][2:].startswith("999999999"):
+            if vals.get("vat") and not self.check_vat(vals["vat"]):
                 del vals["vat"]
             try:
                 id = self.create(vals).id
             except BaseException as e:
                 raise UserError(e)
         return id
+

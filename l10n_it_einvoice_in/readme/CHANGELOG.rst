@@ -1,3 +1,11 @@
+10.0.1.3.46 (2024-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Again weird error linking self-invoice
+* [FIX] Avoid company data update from self-invoice / Non cambia dati aziendali da auto-fattura
+* [FIX] Cannot import e-invoice with wrong vat / Ignora PI se errata in e-fattura
+* [QUA] Test coverage 63% (1337: 498+839) [0 TestPoints] - quality rating 38 (target 100)
+
 10.0.1.3.45 (2024-05-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
