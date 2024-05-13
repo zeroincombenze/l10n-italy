@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-04 07:21+0000\n"
-"PO-Revision-Date: 2024-05-04 07:21+0000\n"
+"POT-Creation-Date: 2024-05-13 07:54+0000\n"
+"PO-Revision-Date: 2024-05-13 07:54+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -179,7 +179,7 @@ msgstr "Messaggio PEC [%s] non processato"
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.model,name:l10n_it_einvoice_send2sdi.model_fetchmail_server
 msgid "POP/IMAP Server"
-msgstr "Attach server"
+msgstr "POP/IMAP server"
 
 #. module: l10n_it_einvoice_send2sdi
 #: selection:account.invoice,fatturapa_state:0
@@ -321,6 +321,6 @@ msgstr ""
 #. module: l10n_it_einvoice_send2sdi
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_send2sdi.view_fatturapa_evolve_attachment_form
 msgid "on"
-msgstr "FIX"
+msgstr "per"
 
 

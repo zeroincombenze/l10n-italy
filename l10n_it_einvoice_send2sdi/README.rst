@@ -1,5 +1,5 @@
 ============================================================
-|icon| Send E-Invoice to SdI/Invio fatture a SdI 10.0.1.0.42
+|icon| Send E-Invoice to SdI/Invio fatture a SdI 10.0.1.0.43
 ============================================================
 
 **Send E-Invoice to customer through SdI**
@@ -153,6 +153,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.43 (2024-05-13)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 10 (target 100)
+
 10.0.1.0.42 (2024-05-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -262,7 +268,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-05-04
+Last Update / Ultimo aggiornamento: 2024-05-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
