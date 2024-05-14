@@ -153,6 +153,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.44 (2024-05-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invoice rejected in some cases
+* [QUA] Test coverage 15% (814: 688+126) [1 TestPoints] - quality rating 10 (target 100)
+
 10.0.1.0.43 (2024-05-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -268,7 +274,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-05-13
+Last Update / Ultimo aggiornamento: 2024-05-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

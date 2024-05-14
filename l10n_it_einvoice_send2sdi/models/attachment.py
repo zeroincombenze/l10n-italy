@@ -64,14 +64,26 @@ def text2html(text):
 def map_response(state):
     res = evolve_stato_mapping.get(state)
     if not res:
-        if state.lower().startswith("inviat") or state.lower().startswith("in attesa "):
+        if re.match(
+                "^(inviat[oiae]|in attesa di|importato|controlli .*validazione)",
+                state, re.I):
             res = "sent"
-        elif state.lower().startswith("il documento non "):
-            res = "validated"
-        elif state.lower().startswith("ricevuta "):
-            res = "validated"
-        elif "rifiutato" in state.lower():
+        elif re.match(
+                "^(il documento non |notific[ahe]+ .*scart[oiae]|errore)",
+                state, re.I):
+            res = "rejected"
+        elif re.match(
+                "^(ricevut[ae] .*mancata|notific[ahe]+ .*decorrenza)",
+                state, re.I):
+            res = "recipient_error"
+        elif re.match(
+                "^notifica .*esito.*rifiutat",
+                state, re.I):
             res = "discarted"
+        elif re.match(
+                "^notifica .*esito.*accettat",
+                state, re.I):
+            res = "accepted"
         else:
             res = "sender_error"
     return res
