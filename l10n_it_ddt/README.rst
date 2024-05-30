@@ -1,116 +1,108 @@
+==========================
+|icon| DDT/DdT 10.0.1.8.26
+==========================
 
-===================
-|icon|  10.0.1.8.25
-===================
+**Delivery Document Type**
 
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze//10.0//static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/icon.png
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
-|en| This module manages the Italian deliver document AKA DdT
+|en| This module manages the Italian deliver document AKA DdT.
+The DdT is a document container of picking, so every action on the DDT
+is appled to all pickings inside DdT.
+
+You can create invoices from DdT rather than invoice from Sale Orders.
+
+
+|it| Gestione documento di trasporto, conosciuto anche come DdT.
+Il DDT è documento contenitore dei prelievi; così ogni azione sul DdT
+viene applicata a tutti i prelievi dentro il DdT.
+
+Il modulo permette anche di creare fatture basate su DdT in alternativa alla
+fatturazione da ordini.
+
+
+|thumbnail|
+
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ddt/static/description/description.gif
+
+
+Configuration | Configurazione
+------------------------------
+
+☰ Inventory > DdT Data > Type
+
+☰ Inventory > DdT Data > Carriage Condition
+
+☰ Inventory > DdT Data > Descriptions of goods
+
+☰ Inventory > DdT Data > Reasons of Transportation
+
+☰ Inventory > DdT Data > Methods of Transportation
+
+
+
+Usage | Utilizzo
+----------------
 
 You can automatically create a DDT From a Sale Order, setting
 'Automatically create the DDT' field that will automatically create the DDT on
 Sale Order confirmation.
 
 You can also directly create a DDT using
-Inventory -> Operations -> DDT
-menu and add existings delivery orders to it, in the 'transfers' tab.
 
-You can add lines to an existing DDT using the 'Details' tab.
-Lines can be descriptive or linked to a product. If linked to a product,
-the stock movement will also be created.
+☰ Inventory > Operations > DDT
+
+menu and add existing delivery orders to it, in the [`transfers`] tab.
 
 When you work with delivery orders, you can create a DDT selecting 1 or more
-pickings and launching the action 'DDT from pickings'.
+pickings and launching the action [DDT from pickings].
 
-Also, you can select 1 or more pickings and run 'add pickings to DDT' to add
+Also, you can select 1 or more pickings and run [add pickings to DDT] to add
 the selected delivery orders to an existing DDT
 
 If the state of the delivery orders allows it, you can deliver them from the
-DDT directly, clicking 'put in pack' and 'package done'.
-
-Otherwise, you can process delivery orders separately, then go to the DDT and
-click on 'set done'.
+DDT directly, clicking [put in pack] and [package done]
 
 Finally you can create your invoice directly from the DDT using the
 'Create Invoice' button that creates a new Invoice with the ddt lines as
 invoice lines
 
 
-|
 
-|it| Gestione documento di trasporto, conosciuto anche come DdT
-
-È possibile creare automaticamente un DDT da un ordine di vendita, impostando
-il campo 'crea automaticamente il DDT' che creerà il DDT alla conferma
-dell'ordine.
-
-È anche possibile creare un DDT direttamente, usando
-Inventario -> Operazioni -> DDT
-e aggiungendo degli ordini di consegna esistenti al DDT, nel tab
-'trasferimenti'.
-
-È possibile aggiungere righe ad un DDT esistente usando il tab 'Dettaglio'.
-Le righe possono essere descrittive o collegate a prodotti. Le righe collegate
-ad un prodotto creeranno anche i movimenti di magazzino.
-
-Se si lavora con gli ordini di consegna, è possibile creare un DDT selezionando
-1 o più ordini di consegna ed eseguendo l'azione 'DDT da Picking'.
-
-Inoltre, è possibile selezionare 1 o più ordini di consegna ed eseguire
-'aggiungi Picking al DDT' per aggiungere gli ordini selezionati ad un DDT
-esistente.
-
-Se lo stato degli ordini di consegna lo permette, è possibile consegnarli tutti
-direttamente dal DDT, cliccando sui bottoni 'metti nel pacco' e
-'pacco completato'.
-
-Altrimenti, è possibile processare gli ordini di consegna separatamente, poi
-andare sul DDT e cliccare su 'imposta completato'.
-
-Infine, è possibile creare la fattura direttamente dal DDT usando il bottone
-'crea fattura' il quale crea una nuova fattura usando le righe del DDT.
-
-E' possibile fatturare i DDT che hanno una 'Causale trasporto' impostata come 'da fatturare'
-
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-|
-
-Getting started / Come iniziare
-===============================
+Getting started | Primi passi
+=============================
 
 |Try Me|
 
 
-|
-
-Installation / Installazione
+Prerequisites | Prerequisiti
 ----------------------------
 
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
+
+Installation | Installazione
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -121,96 +113,54 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    deploy_odoo clone -r  -b 10.0 -G zero -p $HOME/10.0
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **** > Install
 
 
-|
-
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
-
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
-    deploy_odoo update -r  -b 10.0 -G zero -p $HOME/10.0
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **** > Update
 
 
-|
-
-Support / Supporto
+Support | Supporto
 ------------------
 
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
-
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/zeroincombenze//issues>`_.
+<https://github.com/zeroincombenze/l10n-italy/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -218,8 +168,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.1.8.26 (2024-05-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong inheritance for delivery values
+* [IMP] Delivery Carrier Notes
+* [QUA] Test coverage 67% (1385: 454+931) [266 TestPoints] - quality rating 72 (target 100)
 
 10.0.1.8.25 (2023-06-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -284,23 +242,10 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
 
-10.0.1.8.14 (2022-09-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Functions refactoring / Software ristrutturato
-* [IMP] Added regression tests / Aggiunti test automatici
-* [FIX] l10n_it_ade dependency / Corretta dipendenza
-* [IMP] More check for <add_to_ddt> function / Nuovi controlli
-* [FIX] All picking states driven by DdT / Prelivei guidati da DdT
-* [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
 
 
-
-|
-|
-
-Credits / Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -308,98 +253,72 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
+* Odoo Community Association (OCA) and other subjects <False>
 * `Abstract <https://www.abstract.it>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
-* `Apulia Software <https://www.apuliasoftware.it>`__
-* `Open Force <https://www.openforce.it/>`__
-* `Dinamiche Aziendali <http://www.dinamicheaziendali.it>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+* `Agile Business Group sagl <https://www.agilebg.com>`__
+* `Apulia Software s.r.l. <https://www.apuliasoftware.it>`__
+* `Open Force <https://www.openforce.it>`__
+* `Dinamiche Aziendali <https://www.dinamicheaziendali.it>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
 
-Contributors / Collaboratori
-----------------------------
 
-* Davide Corio <davide.corio@abstract.it>
-* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Antonio M. Vigliotti <info@shs-av.com>
+Contributors | Partecipanti
+---------------------------
+
+* `Davide Corio <davide.corio@abstract.it>`__
+* `Nicola Malcontenti <nicola.malcontenti@agilebg.com>`__
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Francesco Apruzzese <f.apruzzese@apuliasoftware.it>`__
+* `Andrea Gallina <a.gallina@apuliasoftware.it>`__
+* `Alex Comba <alex.comba@agilebg.com>`__
+* `Alessandro Camilli <alessandrocamilli@openforce.it>`__
+* `Gianmarco Conte <gconte@dinamicheaziendali.it>`__
+* `Antonio M. Vigliotti <info@shs-av.com>`__
 
 
-Maintainer / Manutenzione
+
+Maintainer | Manutenzione
 -------------------------
 
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
 
-
-|
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
-
-
-
-|chat_with_us|
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
 |
+|
 
-This module is part of  project.
+This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 
+Last Update / Ultimo aggiornamento: 2024-05-30
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze//badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze//branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze//branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA//branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA//branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -423,7 +342,3 @@ Last Update / Ultimo aggiornamento:
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP
-
-

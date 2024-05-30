@@ -129,9 +129,13 @@ TEST_RES_PARTNER = {
         "supplier": False,
         "vat": "DE812526315",
         "lang": "en_US",
+        "transportation_method_id": "l10n_it_ddt.transportation_method_COR",
         "customer": True,
         "name": "Axilor GmbH",
         "is_company": True,
+        "carriage_condition_id": "l10n_it_ddt.carriage_condition_PAF",
+        "goods_description_id": "l10n_it_ddt.goods_description_CAR",
+        "delivery_carrier_note": "Ma-Ve 09:00-13:00 14:30-18:30"
     },
 }
 
@@ -159,6 +163,16 @@ TEST_SALE_ORDER = {
         "partner_id": "z0bug.res_partner_2",
         "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
         "carrier_id": "delivery.normal_delivery_carrier",
+    },
+    # Sale Order wich customer has delivery note
+    "z0bug.sale_order_Z0_5": {
+        "origin": "Test5",
+        "client_order_ref": "XX/25/004",
+        "date_order": "####-##-##",
+        "partner_id": "z0bug.res_partner_13",
+        "ddt_type_id": "l10n_it_ddt.ddt_type_ddt",
+        "carrier_id": "delivery.normal_delivery_carrier",
+        "note": "Shipping by train"
     },
 }
 
@@ -193,6 +207,17 @@ TEST_SALE_ORDER_LINE = {
         "product_uom_qty": 250,
         "tax_id": "external.22v",
         "name": "Prodotto Rho",
+    },
+    "z0bug.sale_order_Z0_5_1": {
+        "sequence": 1,
+        "product_id": "z0bug.product_product_2",
+        "weight": 2,
+        "order_id": "z0bug.sale_order_Z0_5",
+        "price_unit": 1.69,
+        "product_uom_qty": 100,
+        "product_uom": "product.product_uom_unit",
+        "tax_id": "external.22v",
+        "name": "Prodotto Beta",
     },
 }
 
@@ -333,18 +358,27 @@ class TestDdt(SingleTransactionCase):
                 % order.carriage_condition_id,
             )
             # Good description from Customer
-            self.assertEqual(
-                order.goods_description_id,
-                self.env.ref("l10n_it_ddt.goods_description_SFU"),
-                msg="Invalid order goods description %s!" % order.goods_description_id,
-            )
+            if order.origin == "Test5":
+                self.assertEqual(
+                    order.goods_description_id,
+                    self.env.ref("l10n_it_ddt.goods_description_CAR"),
+                    msg="Invalid order goods description %s!"
+                        % order.goods_description_id,
+                )
+            else:
+                self.assertEqual(
+                    order.goods_description_id,
+                    self.env.ref("l10n_it_ddt.goods_description_SFU"),
+                    msg="Invalid order goods description %s!"
+                        % order.goods_description_id,
+                )
         # Now we set the same carrier for both orders
         # order.carrier_id = self.env.ref("delivery.normal_delivery_carrier").id
         # order.action_confirm()
         self.resource_edit(
             order,
             web_changes=[
-                ("partner_id", self.resource_bind("z0bug.res_partner_13").id),
+                ("partner_id", self.resource_browse("z0bug.res_partner_13").id),
                 ("partner_id", saved_partner.id),
                 ("carrier_id", self.env.ref("delivery.normal_delivery_carrier").id),
             ],
@@ -460,6 +494,17 @@ class TestDdt(SingleTransactionCase):
             10.0,
             msg="Wrong delivery price",
         )
+        if order.note:
+            notes = order.note + "\n" + (order.partner_id.delivery_carrier_note or "")
+        else:
+            notes = order.partner_id.delivery_carrier_note or ""
+        if not notes:
+            notes = False
+        self.assertEqual(
+            notes,
+            ddt.note,
+            msg="Wrong note on DdT",
+        )
         self.resource_edit(order, actions="action_view_ddt")
         return ddt
 
@@ -546,7 +591,7 @@ class TestDdt(SingleTransactionCase):
         self.resource_edit(
             ddt,
             web_changes=[
-                ("partner_id", self.resource_bind("z0bug.res_partner_13").id),
+                ("partner_id", self.resource_browse("z0bug.res_partner_13").id),
                 ("partner_id", saved_partner.id),
             ],
             actions=actions,
@@ -580,7 +625,7 @@ class TestDdt(SingleTransactionCase):
         ddt = self._create_ddt_from_more_orders(orders, old_ddt_number)
         invoice = self._create_invoice_from_1_ddt(
             ddt, orders,
-            count_delivery=2 if policy=="order" else 1,
+            count_delivery=2 if policy == "order" else 1,
             policy=policy)
         if purge:
             self._remove_invoice(invoice, ddt, orders)
@@ -662,7 +707,7 @@ class TestDdt(SingleTransactionCase):
         self.assertTrue("domain" in act_windows)
         invoice = self.env["account.invoice"].search(act_windows["domain"])[0]
         self._check_for_invoice(invoice,
-                                count_delivery=2 if policy=="order" else 1,
+                                count_delivery=2 if policy == "order" else 1,
                                 policy=policy)
         if purge:
             self._remove_invoice(invoice, ddts, orders)
@@ -696,7 +741,7 @@ class TestDdt(SingleTransactionCase):
         self.assertTrue("domain" in act_windows)
         invoice = self.env["account.invoice"].search(act_windows["domain"])[0]
         self._check_for_invoice(invoice,
-                                count_delivery=2 if policy=="order" else 1,
+                                count_delivery=2 if policy == "order" else 1,
                                 policy=policy)
         if purge:
             self._remove_invoice(invoice, ddt, orders)
@@ -706,7 +751,10 @@ class TestDdt(SingleTransactionCase):
         orders = self.env["sale.order"]
         for xref in TEST_SALE_ORDER.keys():
             order = self._create_sale_order(xref)
-            orders += order
+            if order.origin != "Test5":
+                orders += order
+            else:
+                order5 = order
 
         invoice, old_ddt_number = self._test_add_picking_to_ddt(orders, purge=True)
         self._test_1_ddt_from_2_orders(orders, old_ddt_number, purge=True)
@@ -723,3 +771,6 @@ class TestDdt(SingleTransactionCase):
         self._test_2_ddts_1_invoice(orders, purge=True, policy="delivery")
         self._test_wizard_1_ddt_from_2_orders(orders, purge=True, policy="delivery")
         self._test_wizard_1_ddt_from_pickings(orders, purge=None, policy="delivery")
+
+        #
+        self._test_wizard_1_ddt_from_pickings(order5, purge=False, policy="delivery")

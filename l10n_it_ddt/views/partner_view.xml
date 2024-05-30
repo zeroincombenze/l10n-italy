@@ -20,6 +20,7 @@
                     />
                     <field name="ddt_show_price"/>
                     <field name="ddt_invoice_exclude"/>
+                    <field name="delivery_carrier_note"/>
                 </group>
             </xpath>
 

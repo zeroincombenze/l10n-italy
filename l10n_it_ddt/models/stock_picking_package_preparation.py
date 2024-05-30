@@ -90,6 +90,7 @@ class StockPickingPackagePreparation(models.Model):
             "carrier_id": "property_delivery_carrier_id",
             "show_price": "ddt_show_price",
             "pricelist_id": "property_product_pricelist",
+            "note": "delivery_carrier_note",
         },
         "stock.ddt.type": {
             "ddt_type_id": "id",
@@ -390,7 +391,7 @@ class StockPickingPackagePreparation(models.Model):
         carriage_condition_id    | Ok | 2. | Ok | Ok | X  | Ok
         transportation_reason_id | Ok | 2. | Ok | Ok | X  | Ok
         transportation_method_id | Ok | 2. | Ok | Ok | X  | Ok
-        partner_carrier_id       | X  | X  | Ok | Ok | X  | Ok
+        partner_carrier_id       | 7. | X  | Ok | Ok | X  | Ok
         show_price               | 5. | X  | X  | X  | X  | Ok
         pricelist_id             | Ok | X  | X  | X  | X  | Ok
         note                     | X  | Ok | Ok | Ok | X  | Ok
@@ -407,6 +408,7 @@ class StockPickingPackagePreparation(models.Model):
         4.  field name is "number_of packages"
         5.  field name is "ddt_show_price"
         6.  field name is "shipping_weight"
+        7.  field name is delivery_carrier_note and it is merged on the top
 
         (*) field evaluated by sum, searched only in <sp> and <so>
 
@@ -484,7 +486,7 @@ class StockPickingPackagePreparation(models.Model):
             tgt_fieldname = self.fieldname_of_model(target, fieldname)
             pp_fieldname = fieldname
 
-        if vals.get(tgt_fieldname):
+        if vals.get(tgt_fieldname) and tgt_fieldname != "note":
             # There is already the current document value
             return vals
         if source_name == "stock.picking":
@@ -531,6 +533,7 @@ class StockPickingPackagePreparation(models.Model):
             )
 
         # 4.th from customer
+        note_by_partner = False
         if not vals.get(tgt_fieldname):
             vals = get_ref_obj(
                 vals,
@@ -541,6 +544,7 @@ class StockPickingPackagePreparation(models.Model):
                 source_name,
                 partner,
             )
+            note_by_partner = True
 
         # Last: from defaults
         if not vals.get(tgt_fieldname):
@@ -549,6 +553,14 @@ class StockPickingPackagePreparation(models.Model):
             elif defaults and tgt_fieldname in defaults:
                 vals[tgt_fieldname] = defaults[tgt_fieldname]
 
+        # Append carrier note to document note
+        if tgt_fieldname == "note" and partner and not note_by_partner:
+            vals[tgt_fieldname] = (
+                (partner.delivery_carrier_note or "")
+                + ("\n" if partner.delivery_carrier_note else "")
+                + vals.get(tgt_fieldname, ""))
+            if not vals[tgt_fieldname]:
+                del vals[tgt_fieldname]
         return vals
 
     @api.model
@@ -630,6 +642,7 @@ class StockPickingPackagePreparation(models.Model):
             vals = self.get_delivery_value(
                 vals, picking, "ddt_type_id", defaults=defaults
             )
+        ddt_type = None
         if not vals.get("ddt_type_id"):
             ddt_type = self.env["stock.ddt.type"].search([], limit=1)
             if ddt_type:
@@ -647,7 +660,9 @@ class StockPickingPackagePreparation(models.Model):
                 ("transportation_method_id", _("transportation method")),
                 ("pricelist_id", _("pricelist")),
             ):
-                vals = self.get_delivery_value(vals, picking, field, defaults=defaults)
+                vals = self.get_delivery_value(
+                    vals, picking, field,
+                    defaults=defaults, partner=partner, order=order, ddt_type=ddt_type)
             # Evaluate sum of numeric values
             vals = self.sum_delivery_value(vals, picking, "parcels")
             vals = self.sum_delivery_value(vals, picking, "weight")
@@ -972,7 +987,8 @@ class StockPickingPackagePreparation(models.Model):
             else:
                 if ddt.partner_shipping_id:
                     group_method = (
-                        ddt.partner_shipping_id.commercial_partner_id.ddt_invoicing_group
+                        ddt.partner_shipping_id.commercial_partner_id.
+                        ddt_invoicing_group
                     )
                 else:
                     group_method = (
@@ -1418,7 +1434,8 @@ class StockPickingPackagePreparationLine(models.Model):
             if self.sale_line_id:
                 fpos = (
                     self.sale_line_id.order_id.fiscal_position_id
-                    or self.sale_line_id.order_id.partner_id.property_account_position_id
+                    or self.sale_line_id.order_id.partner_id.
+                    property_account_position_id
                 )
             if fpos:
                 account = fpos.map_account(account)

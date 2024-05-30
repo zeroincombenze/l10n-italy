@@ -46,3 +46,4 @@ class ResPartner(models.Model):
         "invoiced from DDT. If set on the partner, this parameter will"
         "be automatically applied to Sale Orders.",
     )
+    delivery_carrier_note = fields.Text(string="Delivery Carrier Note")

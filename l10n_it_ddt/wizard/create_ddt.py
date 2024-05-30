@@ -3,7 +3,7 @@
 #    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
 
-from odoo import models, _
+from odoo import _, models
 
 
 class WizardCreateDdt(models.TransientModel):

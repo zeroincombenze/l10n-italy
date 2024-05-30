@@ -4,11 +4,14 @@
 #
 {
     "name": "DDT",
-    "summary": "Delivery Document Type",
-    "version": "10.0.1.8.25",
+    "version": "10.0.1.8.26",
     "category": "Localization/Italy",
-    "author": "Odoo Community Association (OCA) and other subjects",
-    "website": "https://github.com/OCA/l10n-italy",
+    "summary": "Delivery Document Type",
+    "author": ("Odoo Community Association (OCA) and other subjects,Abstract"
+",Agile Business Group sagl,Apulia Software s.r.l.,Open Force"
+               ",Dinamiche Aziendali,SHS-AV s.r.l."),
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Alpha",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_ade",
@@ -20,9 +23,7 @@
         "account_invoice_pricelist",
         "account_invoice_partner_carrier",
     ],
-    "version_depends": [
-        "stock_picking_package_preparation_line>=10.0.1.0.5",
-    ],
+    "version_depends": ["stock_picking_package_preparation_line>=10.0.1.0.5"],
     "data": [
         "security/ir.model.access.csv",
         "security/security.xml",
@@ -30,7 +31,7 @@
         "views/stock_picking_package_preparation.xml",
         "views/ddt_data.xml",
         "views/stock_picking.xml",
-        "views/partner.xml",
+        "views/partner_view.xml",
         "views/product.xml",
         "views/account.xml",
         "views/sale.xml",
@@ -46,5 +47,6 @@
         "views/report_ddt.xml",
         "data/mail_template_data.xml",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
 }

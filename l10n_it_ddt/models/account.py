@@ -2,7 +2,7 @@
 #
 #    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 #
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
 
@@ -182,8 +182,9 @@ class AccountInvoiceLine(models.Model):
     @api.onchange("product_id", "quantity")
     def _compute_weight(self):
         if self.product_id:
-            prod_weight = (self.product_id.weight
-                           or self.product_id.product_tmpl_id.weight)
+            prod_weight = (
+                self.product_id.weight or self.product_id.product_tmpl_id.weight
+            )
             if not self.weight or self.weight <= (prod_weight * 1.05):
                 self.weight = prod_weight * self.quantity
 
