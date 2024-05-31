@@ -1,3 +1,9 @@
+10.0.0.1.11 (2024-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check for version of l10n_it_ddt to depend on
+* [QUA] Test coverage 67% (505: 166+339) [23 TestPoints] - quality rating 48 (target 100)
+
 10.0.0.1.10 (2024-01-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

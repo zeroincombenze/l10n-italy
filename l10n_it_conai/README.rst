@@ -179,6 +179,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.1.11 (2024-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check for version of l10n_it_ddt to depend on
+* [QUA] Test coverage 67% (505: 166+339) [23 TestPoints] - quality rating 48 (target 100)
+
 10.0.0.1.10 (2024-01-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -197,8 +203,8 @@ ChangeLog History | Cronologia modifiche
 
 
 
-Credits | Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -213,8 +219,8 @@ Authors | Autori
 
 
 
-Contributors | Contributi da
-----------------------------
+Contributors | Partecipanti
+---------------------------
 
 * `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
@@ -244,7 +250,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-13
+Last Update / Ultimo aggiornamento: 2024-05-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -21,6 +21,7 @@
         "sale",
         "stock_picking_package_preparation",
     ],
+    "version_depends": ["l10n_it_ddt>=10.0.1.8.26"],
     "data": [
         "security/ir.model.access.csv",
         "data/conai_product_category.xml",
@@ -44,4 +45,5 @@
     "development_status": "Beta",
     "application": True,
     "post_init_hook": "set_company_conai_product_post",
+    "pre_init_hook": "check_4_depending",
 }

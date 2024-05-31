@@ -10,3 +10,4 @@
 from . import models
 from . import post_install
 from .post_install import set_company_conai_product_post, set_company_conai_product
+from ._check4deps_ import check_4_depending

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Test Environment v2.0.14
+"""Test Environment v2.0.19
 
 You can locate the recent testenv.py in testenv directory of module
 https://github.com/zeroincombenze/tools/tree/master/z0bug_odoo/testenv
@@ -326,7 +326,7 @@ char / text
 Char and Text values are python string; please use unicode whenever is possible
 even when you test Odoo 10.0 or less.
 
-You can evalute the field value engaging a simple python expression inside tags like in
+You can evaluate the field value engaging a simple python expression inside tags like in
 following syntax:
 
     "<?odoo EXPRESSION ?>"
@@ -645,10 +645,12 @@ def is_iterable(obj):
 
 
 class MainTest(test_common.TransactionCase):
+
     def setUp(self):
         super(MainTest, self).setUp()
         self.odoo_major_version = release.version_info[0] if release else 0
         self.debug_level = 0
+        self.title_logged = False
         self.PYCODESET = "utf-8"
         self._logger = _logger
         # List of stored data by groups: grp1: [a,b,c], grp2: [d,e,f]
@@ -671,6 +673,8 @@ class MainTest(test_common.TransactionCase):
         self.childs_resource = {}
         self.uninstallable_modules = []
         self.convey_record = {}
+        # Enable commit data
+        self.odoo_commit_test = True
         if not hasattr(self, "assert_counter"):
             self.assert_counter = 0
         self.module = None
@@ -696,7 +700,15 @@ class MainTest(test_common.TransactionCase):
             self.env.cr.commit()  # pylint: disable=invalid-commit
             _logger.info("✨ Test data available on database %s" % self.env.cr.dbname)
         super(MainTest, self).tearDown()
-        self._logger.info("🏆🥇 %d tests SUCCESSFULLY completed" % self.assert_counter)
+        if os.name == "posix":
+            GREEN = "\033[1;32m"
+            CLEAR = "\033[0m"
+        else:  # pragma: no cover
+            GREEN = ""
+            CLEAR = ""
+        self._logger.info(
+            ("🏆🥇 " + GREEN + "%d tests SUCCESSFULLY completed" + CLEAR)
+            % self.assert_counter)
 
     # ---------------------------------------
     # --  Unicode encode/decode functions  --
@@ -764,7 +776,13 @@ class MainTest(test_common.TransactionCase):
                 break
 
     def raise_error(self, mesg):  # pragma: no cover
-        self._logger.info("🛑 " + mesg)
+        if os.name == "posix":
+            RED = "\033[1;31m"
+            CLEAR = "\033[0m"
+        else:  # pragma: no cover
+            RED = ""
+            CLEAR = ""
+        self._logger.info("🛑 " + RED + mesg + CLEAR)
         raise ValueError(mesg)
 
     # ----------------------------------
@@ -959,8 +977,14 @@ class MainTest(test_common.TransactionCase):
 
     def set_datadir(self, data_dir=None, merge="local", raise_if_not_found=True):
         def get_default_data_dir():
-            data_dir = get_module_resource(self.module.name, "tests", "data")
-            return data_dir if data_dir and os.path.isdir(data_dir) else None
+            for data_dir in (
+                get_module_resource(self.module.name, "tests", "data"),
+                get_module_resource(self.module.name, "data"),
+                get_module_resource(self.module.name, "tests")
+            ):
+                if data_dir and os.path.isdir(data_dir):
+                    return data_dir
+            return None
 
         if merge not in ("local", "zerobug"):  # pragma: no cover
             self.raise_error("Invalid value %s ('zerobug' or 'local')" % merge)
@@ -1064,15 +1088,20 @@ class MainTest(test_common.TransactionCase):
     @api.model
     def _unpack_xref(self, xref):
         # This is a 3 level external reference for header/detail relationship
-        try:
-            xref, ln = xref.rsplit("_", 1)
-        except ValueError:
-            self.log_lvl_1(" 🌍 Invalid detail xref %s" % xref)
-            ln = ""
-        if ln.isdigit():
-            ln = int(ln) or False
-        elif isinstance(ln, basestring) and self._is_xref(ln):
-            ln = self._get_xref_id(self._get_model_of_xref(xref), xref=ln, fmt="id")
+        ln = ""
+        if (
+                ("." in xref and "_" in xref.split(".", 1)[1])
+                # or ("." not in xref and "_" in xref)
+        ):
+            try:
+                xref, ln = xref.rsplit("_", 1)
+            except ValueError:
+                self.log_lvl_1(" 🌍 Invalid detail xref %s" % xref)
+                ln = ""
+            if ln.isdigit():
+                ln = int(ln) or False
+            elif isinstance(ln, basestring) and self._is_xref(ln):
+                ln = self._get_xref_id(self._get_model_of_xref(xref), xref=ln, fmt="id")
         return xref, ln
 
     @api.model
@@ -1526,12 +1555,13 @@ class MainTest(test_common.TransactionCase):
         def mergelist(value):
             # itertool.chain.from_iterable cannot work with [int, int, ...]
             res = []
-            for item in value:
-                if hasattr(item, "__iter__"):
-                    for x in mergelist(item):
-                        res.append(x)
-                else:
-                    res.append(item)
+            if value:
+                for item in value:
+                    if hasattr(item, "__iter__"):
+                        for x in mergelist(item):
+                            res.append(x)
+                    else:
+                        res.append(item)
             return res
 
         def value2list(value):
@@ -1717,7 +1747,8 @@ class MainTest(test_common.TransactionCase):
                     6,
                     0,
                     [
-                        x.id if isinstance(x.id, (int, long)) else x.id.origin
+                        x.id if isinstance(x.id, (int, long))
+                        else getattr(x.id, "origin", False)
                         for x in value
                     ],
                 )
@@ -1795,9 +1826,12 @@ class MainTest(test_common.TransactionCase):
                         " 🕶️ field %s does not exist in %s" % (field, resource)
                     )
                     continue
-
                 value = self._cast_field(
-                    resource, field, values[field], fmt=fmt, group=group
+                    resource,
+                    field,
+                    values[field],
+                    fmt=fmt if fmt != "id" else "cmd",
+                    group=group
                 )
                 if value is None and (
                     not keep_null or field not in ("company_id", "currency_id")
@@ -1816,7 +1850,11 @@ class MainTest(test_common.TransactionCase):
     def _convert_to_write(self, record, new=None, orig=None):
         values = {}
         for field in list(record._fields.keys()):
-            if field in BLACKLIST_COLUMNS or record._fields[field].readonly:
+            if (
+                    field in BLACKLIST_COLUMNS
+                    or record._fields[field].compute
+                    or record._fields[field].related
+            ):
                 continue
             value = self._convert_field_to_write(record, field)
             if value is None:  # pragma: no cover
@@ -1868,8 +1906,10 @@ class MainTest(test_common.TransactionCase):
                     ctx["active_id"] = records[0].id
                 else:
                     ctx["active_id"] = False
+                ctx["active_model"] = records[0]._name
             else:
                 ctx["active_id"] = records.id
+                ctx["active_model"] = records._name
         return ctx
 
     def _finalize_ctx_act_windows(self, records, act_windows, ctx={}):
@@ -2447,8 +2487,7 @@ class MainTest(test_common.TransactionCase):
                 xref_parent = values[parent_name]
                 ln = False
             else:
-                name, ln = self._unpack_xref(name)
-                xref_parent = "%s.%s" % (module, name)
+                xref_parent, ln = self._unpack_xref(xref)
             parent_rec = self.resource_browse(
                 xref_parent,
                 resource=self.parent_resource[resource],
@@ -2552,7 +2591,8 @@ class MainTest(test_common.TransactionCase):
             return None
         if self._is_xref(xref):
             self._add_xref(xref, res.id, resource)
-            self.store_resource_data(resource, xref, values, group=group)
+            self.store_resource_data(
+                resource, xref, self._purge_values(values, timed=True), group=group)
             (
                 resource_child,
                 xref_child,
@@ -2636,6 +2676,8 @@ class MainTest(test_common.TransactionCase):
                 )
 
                 return None
+        if record and self._is_xref(xref):
+            self._add_xref(xref, record.id, resource)
         return record
 
     @api.model
@@ -2858,7 +2900,6 @@ class MainTest(test_common.TransactionCase):
         Returns:
             default company for user
         """
-
         def store_acc_alias(xref, acc_type, chart_name):
             if chart_name.endswith("_prefix"):
                 acc_code = getattr(chart_template, chart_name)
@@ -2935,7 +2976,7 @@ class MainTest(test_common.TransactionCase):
         locale=None,
         group=None,
         merge="local",
-        setup_list=None,
+        setup_list=[],
         data_dir=None,
     ):
         """Create all record from declared data.
@@ -2963,7 +3004,6 @@ class MainTest(test_common.TransactionCase):
         Returns:
             None
         """
-
         def init_resource_data(resource, data, ix):
             item = self.get_test_name(resource)
             if ix is not False and item in inspect.stack()[ix][0].f_globals:
@@ -2975,34 +3015,39 @@ class MainTest(test_common.TransactionCase):
             else:
                 self.raise_error("No data supplied for %s" % resource)
 
+        if not hasattr(self, "module"):
+            raise EnvironmentError("super().setUp() not called before test!")
         self.set_datadir(data_dir=data_dir, merge=merge)
         ix = found = False
         for ix in range(10):
             if "TEST_SETUP_LIST" in inspect.stack()[ix][0].f_globals:
                 found = True
                 break
-        if not setup_list:
-            if found:
-                data = {
-                    "TEST_SETUP_LIST":
-                        inspect.stack()[ix][0].f_globals["TEST_SETUP_LIST"]
-                }
-                for resource in data["TEST_SETUP_LIST"]:
-                    init_resource_data(resource, data, ix + 1)
-                self.declare_all_data(data)
-        elif setup_list:
+        if setup_list:
             data = {"TEST_SETUP_LIST": setup_list}
-            for resource in setup_list:
-                init_resource_data(resource, data, ix + 1 if found else ix)
-            self.declare_all_data(data, group=group)
+        elif found:
+            data = {
+                "TEST_SETUP_LIST":
+                    inspect.stack()[ix][0].f_globals["TEST_SETUP_LIST"]
+            }
+        else:
+            self.raise_error("No data declared")
+        for resource in data["TEST_SETUP_LIST"]:
+            init_resource_data(resource, data, ix + 1 if found else ix)
+        self.declare_all_data(data, group=group)
         setup_list = setup_list or self.get_resource_list(group=group)
+        if not self.title_logged:
+            self._logger.info(
+                "🎺🎺🎺 Starting test v2.0.19 (debug_level=%s, commit=%s)"
+                % (self.debug_level, getattr(self, "odoo_commit_test", False))
+            )
+            self._logger.info(
+                "🎺🎺 Testing module: %s (%s)"
+                % (self.module.name, self.module.installed_version)
+            )
+            self.title_logged = True
         self._logger.info(
-            "🎺🎺🎺 Starting test v2.0.14 (debug_level=%s, commit=%s)"
-            % (self.debug_level, getattr(self, "odoo_commit_test", False))
-        )
-        self._logger.info(
-            "🎺🎺🎺 Testing module: %s (%s)"
-            % (self.module.name, self.module.installed_version)
+            "🎺🎺 Loading data from: %s " % ", ".join(setup_list)
         )
         self.log_stack()
         if locale:  # pragma: no cover
@@ -3015,13 +3060,17 @@ class MainTest(test_common.TransactionCase):
             for xref in sorted(self.get_resource_data_list(resource, group=group)):
                 if resource_parent:
                     parent_xref, ln = self._unpack_xref(xref)
-                    if self.get_resource_data(
+                    if ln and self.get_resource_data(
                         resource_parent, parent_xref, group=group
                     ):
                         # Childs record already loaded with header record
                         continue
                 self.resource_make(resource, xref, group=group)
-        if self.odoo_major_version < 13:
+        if (
+                self.odoo_major_version < 13
+                and group
+                and "account.journal" in self.setup_data_list[group]
+        ):
             self.env["account.journal"].search([("update_posted", "!=", True)]).write(
                 {"update_posted": True}
             )
@@ -3057,6 +3106,7 @@ class MainTest(test_common.TransactionCase):
         * Value to assign
         * Optional function to execute (i.e. specific onchange)
 
+        You can easily get the field name form GUI with developer mode active.
         If field is associate to an onchange function the relative onchange functions
         are execute after value assignment. If onchange set another field with another
         onchange the relative another onchange are executed until all onchange are
@@ -3081,9 +3131,12 @@ class MainTest(test_common.TransactionCase):
                                    issued record
             default (dict): default value to assign
             web_changes (list): list of tuples (field, value); see <wiz_edit>
+            actions (str or list or tuple): action to execute; if not supplied will be
+                                            execute "save" for existent record or
+                                            "create" if no record supplied.
 
         Returns:
-            windows action to execute or obj record
+            windows action to execute or obj record from [create, save] actions
         """
         self.log_stack()
         actions = actions or (
@@ -3208,23 +3261,25 @@ class MainTest(test_common.TransactionCase):
             isinstance(act_windows, dict)
             and act_windows.get("type")
             in (
-                "ir.actions.act_window",
-                "ir.actions.client",
-                "ir.actions.act_window_close",
-                "ir.actions.report",
-            )
-            if no_report
-            else (
-                "ir.actions.act_window",
-                "ir.actions.client",
-                "ir.actions.act_window_close",
+                (
+                    "ir.actions.act_window",
+                    "ir.actions.client",
+                    "ir.actions.act_window_close",
+                    "ir.actions.report",
+                )
+                if no_report
+                else (
+                    "ir.actions.act_window",
+                    "ir.actions.client",
+                    "ir.actions.act_window_close",
+                )
             )
         )
 
     @api.model
     def wizard(
         self,
-        module=None,
+        module=".",
         action_name=None,
         act_windows=None,
         records=None,
@@ -3628,3 +3683,8 @@ class MainTest(test_common.TransactionCase):
             "🐞%d assertion validated for validate_records(%s)"
             % (ctr_assertion, self.tmpl_repr(template, match=True)),
         )
+
+
+
+
+

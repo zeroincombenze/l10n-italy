@@ -44,6 +44,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
+* [FIX] Service line marked as invoiced / Righe servizi impostate come fatturate
 
 
 10.0.1.8.18 (2022-12-14)
