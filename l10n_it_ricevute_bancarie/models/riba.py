@@ -193,6 +193,8 @@ class RibaList(models.Model):
             for line in riba_list.line_ids:
                 line.riba_line_back2accepted(harmless=True)
             riba_list.signal_workflow("accepted")
+            if riba_list.state != "accepted" and riba_list.config_id.type == "incasso":
+                riba_list.riba_accepted()
 
     @api.multi
     def back_to_accredited(self):
@@ -201,6 +203,11 @@ class RibaList(models.Model):
             for line in riba_list.line_ids:
                 line.riba_line_back2accredited(harmless=True)
             riba_list.signal_workflow("accredited")
+            if (
+                    riba_list.state != "accredited"
+                    and riba_list.config_id.type == "incasso"
+            ):
+                riba_list.riba_accredited()
 
     @api.multi
     def settle_all_line(self):

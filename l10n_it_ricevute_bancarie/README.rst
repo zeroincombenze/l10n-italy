@@ -1,6 +1,6 @@
-==============================================================
-|icon| Ricevute Bancarie/l10n_it_ricevute_bancarie 10.0.1.3.15
-==============================================================
+=======================================================
+|icon| Ricevute Bancarie/Ricevute Bancarie" 10.0.1.3.16
+=======================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ricevute_bancarie/static/description/icon.png
 
@@ -12,18 +12,28 @@
 Overview | Panoramica
 =====================
 
-|en| Module to manage Ricevute Bancarie
+|en| Module to manage Ricevute Bancarie.
+
+Module can record invoice payment and download file CBI to send to bank.
 
 
-|it| Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta in banca.
+|it| Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta
+in banca.
 
-Si può configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine) o DI (Dopo Incasso).
-Con la distinta DI nessuna operazione contabile è gestita dal programma.
-Si può solo generare il file CBI da inviare in banca.
-Con la distinta SBF sono gestite tutte le operazioni contabili come esposto in questo documento.
+Si può configurare un conto bancario di presentazione di tipo SBF (Salvo Buon Fine)
+o DI (Dopo Incasso).
+Con la distinta DI viene solo gestito il pagamento delle fatture alla data di scadenze
+e nessuna altra operazione contabile.
+Con la distinta SBF sono gestite tutte le operazioni contabili inerenti il portafolgio.
+
+In ogni caso si può solo generare il file CBI da inviare in banca.
 
 Le operazioni contabili sono configurabili.
 
+
+|thumbnail|
+
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_ricevute_bancarie/static/description/description.png
 
 
 Features | Caratteristiche
@@ -49,114 +59,23 @@ Features | Caratteristiche
 
 
 
+Configuration | Configurazione
+------------------------------
+
+☰ Invoicing > Configuration > Management > RiBA configuration
+
+☰ Invoicing > Configuration > Management > Payment Terms
+
+
+
 Usage | Utilizzo
 ----------------
 
-L'utilizzo delle Ri.Ba. utilizza i seguenti menù:
+☰ Invoicing > Ri.Ba > Ri.Ba List
 
-|menu| Contabilità > Pagamenti > Ri.Ba Configurazione
+☰ Invoicing > Ri.Ba > Issue Ri.Ba
 
-|menu| Contabilità > Management > Termini di pagamento
-
-|menu| Contabilità > Ri.Ba > Distinte
-
-|menu| Contabilità > Ri.Ba > Emetti Ri.Ba
-
-|menu| Contabilità > Ri.Ba > Fatture insolute
-
-
-Configurazione
-~~~~~~~~~~~~~~
-
-Nella configurazione delle Ri.Ba. è possibile specificare il tipo di distinta:
-
-* DI (Dopo Incasso): nessuna registrazione è effettuata automaticamente
-* SBF (Salvo Buon Fine): sono emesse le registrazioni come descritte qui sotto
-
-Per attivare la gestione Ri.Ba. è necessario impostare il tipo 'Ri.Ba.' nei termini di pagamento.
-
-
-Gestione distinta
-~~~~~~~~~~~~~~~~~
-
-Ai fini di una corretta comprensione si ipotizza la gestiona da una fattura da 100€ + IVA.
-Si ricorda che a scrittura contabile è della fattura è la seguente:
-
-+-----------+------------------------------------------+---------+---------+-----------+
-| Riga      | Descrizione                              | D       | A       | Note      |
-+-----------+------------------------------------------+---------+---------+-----------+
-| 1         | Emessa fattura                           |         |         |           |
-+-----------+------------------------------------------+---------+---------+-----------+
-| 1.1       | Crediti v/clienti                        | 122     |         |           |
-+-----------+------------------------------------------+---------+---------+-----------+
-| 1.2       | Ricavi                                   |         | 100     |           |
-+-----------+------------------------------------------+---------+---------+-----------+
-| 1.3       | IVA                                      |         | 22      |           |
-+-----------+------------------------------------------+---------+---------+-----------+
-
-
-
-Per iniziare il flusso, usare il menù `Contabilità > Ri.Ba > Emetti Ri.Ba`, selezionare le scadenze da inserire in distinta
-e dal bottone `Azione` selezionare `Emetti Ri.Ba`. Scegliere un conto bancario configurato.
-
-Scaricare il file CBI da presentare in banca: dal bottone `Azione` selezionare `Esporta Ri.Ba`.
-
-Quando la banca conferma l'accettazione della distinta, dal menù `Contabilità > Ri.Ba > Emetti Ri.Ba`
-selezionare la distinta ed impostare lo stato di `Accettata` tramite l'apposito bottone.
-Se la distinta è di tipo SBF viene generata la seguente scrittura contabile (una registrazionne per ogni scadenza in distinta):
-
-+--------+------------------------------+------+------+-----------------------------------+
-| Riga   | Descrizione                  | D    | A    | Note                              |
-+--------+------------------------------+------+------+-----------------------------------+
-| 2      | Emissione RiBA               |      |      |                                   |
-+--------+------------------------------+------+------+-----------------------------------+
-| 2.1    | Crediti v/clienti            |      | 122  | Riconciliata con 1.1              |
-+--------+------------------------------+------+------+-----------------------------------+
-| 2.2    | Effetti SBF                  | 122  |      |                                   |
-+--------+------------------------------+------+------+-----------------------------------+
-
-
-
-Quando la banca accredita la distinta, impostare lo stato `Accreditata` tramite l'apposito bottone.
-Se la distinta è di tipo SBF si può generare la seguente scrittura contabile:
-
-+----------+-------------------------------------------------+--------+--------+----------+
-| Riga     | Descrizione                                     | D      | A      | Note     |
-+----------+-------------------------------------------------+--------+--------+----------+
-| 3        | Accredito distinta RiBA                         |        |        |          |
-+----------+-------------------------------------------------+--------+--------+----------+
-| 3.1      | Banca c/effetti                                 |        | 122    |          |
-+----------+-------------------------------------------------+--------+--------+----------+
-| 3.2      | Banca c/c                                       | 120    |        |          |
-+----------+-------------------------------------------------+--------+--------+----------+
-| 3.3      | Spese bancarie                                  | 2      |        |          |
-+----------+-------------------------------------------------+--------+--------+----------+
-
-
-
-Quando la ricevuta è effettivamente pagata dal cliente è possibile dichiararlo nella relativa riga della distinta.
-Se la distinta è di tipo SBF viene generata la sequente scrittura contabile:
-
-+--------+--------------------------------+------+------+----------------------------------+
-| Riga   | Descrizione                    | D    | A    | Note                             |
-+--------+--------------------------------+------+------+----------------------------------+
-| 4      | Pagamento effettivo            |      |      |                                  |
-+--------+--------------------------------+------+------+----------------------------------+
-| 4.1    | Effetti SBF                    |      | 122  | Riconciliata con 2.2             |
-+--------+--------------------------------+------+------+----------------------------------+
-| 4.2    | Banca c/effetti                | 122  |      | Riconciliata con 3.1             |
-+--------+--------------------------------+------+------+----------------------------------+
-
-
-
-
-Note finali
-~~~~~~~~~~~
-
-Per ogni stato della distinta è possibile sia avanzare allo stato successivo che ripristinare lo stato precedente.
-Le relative registrazioni contabili saranno inserite o rimosse in modo da mantenere il sistema sempre nel corretto stato contabile.
-
-Si può dichiarare ogni singola scadenza come pagata o insoluta. Anche per le singole scadenze è possibili ripristinare lo stato precedente.
+☰ Invoicing > Ri.Ba > Unsolved Invoices
 
 
 
@@ -255,17 +174,23 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.15 (2023-11-18)
+10.0.1.3.16 (2024-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+* [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso
+* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
+
+10.0.1.3.15 (2023-11-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
 
 10.0.1.3.14 (2023-09-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso
 * [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
-* [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
 
 10.0.1.3.13 (2023-08-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -301,21 +226,10 @@ ChangeLog History | Cronologia modifiche
 * [TNL] Translation
 * [IMP] Riba flag updatable / Scadenza Riba modificabile
 
-10.0.1.3.7 (2022-05-03)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Unsoved with 2 or more invoices / Insoluto di 2 o più fatture
-
-10.0.1.3.6 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
-* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
 
 
-
-Credits | Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -333,8 +247,8 @@ Authors | Autori
 
 
 
-Contributors | Contributi da
-----------------------------
+Contributors | Partecipanti
+---------------------------
 
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Andrea Cometa <a.cometa@apuliasoftware.it>`__
@@ -371,41 +285,20 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-11-20
+Last Update / Ultimo aggiornamento: 2024-05-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -429,5 +322,3 @@ Last Update / Ultimo aggiornamento: 2023-11-20
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP

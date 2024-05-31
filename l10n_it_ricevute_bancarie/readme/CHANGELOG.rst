@@ -1,14 +1,20 @@
+10.0.1.3.16 (2024-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso
+* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
+
 10.0.1.3.15 (2023-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+* [IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
 
 10.0.1.3.14 (2023-09-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso
 * [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
-* [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
 
 10.0.1.3.13 (2023-08-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,43 +49,3 @@
 
 * [TNL] Translation
 * [IMP] Riba flag updatable / Scadenza Riba modificabile
-
-10.0.1.3.7 (2022-05-03)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Unsoved with 2 or more invoices / Insoluto di 2 o più fatture
-
-10.0.1.3.6 (2022-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
-* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
-
-10.0.1.3.5 (2020-05-06)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Set sequence in cost line / Imposta sequenza in riga addebito spese (in modo da inserirla in fondo)
-
-
-10.0.1.3.2 (2020-01-20)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Unsolve can reopen invoice / L'insoluto puà riaprire la fattura
-
-
-10.0.1.3.1 (2019-07-17)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Added back state of workflow path / Possibilità di rispistino stato precedente
-* [IMP] Added back state of paid/unsolved record / Possibilità di ripristino stato Ri.Ba. pagate o insolute
-
-
-10.0.1.1.3 (2019-06-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix bug export CBI payment list file with no ASCII characters / Rimosso errore file CBI quando presenti lettere accentate
-
-10.0.1.1.2 (2018-11-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix bug in copy invoice when this module is installed / Rimosso errore copia fatture quando questo modulo è installato
