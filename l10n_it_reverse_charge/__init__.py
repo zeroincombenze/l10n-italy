@@ -6,3 +6,4 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from . import models
+from ._check4deps_ import check_4_depending

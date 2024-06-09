@@ -1,153 +1,154 @@
+==========================================================================================
+|icon| ITA - Comunicazione liquidazione IVA/l10n_it_vat_statement_communication 10.0.1.5.4
+==========================================================================================
 
-======================================================
-|icon| ITA - Comunicazione liquidazione IVA 10.0.1.5.3
-======================================================
-
-
-**Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate**
+**Comunicazione liquidazione IVA ed esportazione file xml conforme alle specifiche dell'Agenzia delle Entrate**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_vat_statement_communication/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
 
 
-Overview / Panoramica
+
+Overview | Panoramica
 =====================
 
-|en| VAT statement to send
+|en| Comunicazione liquidazione IVA ed export file XML, conforme alle specifiche dell''Agenzia delle Entrate.
+
+I dati possono essere caricati da liquidazioni IVA effettuate in odoo tramite `account_vat_period_end_statement`
 
 
-|
+|it| Nessuna informazione disponibile
 
-|it| ::
+|thumbnail|
 
-    Cosa è:
-
-Modello di liquidazione IVA periodica, conosciuta anche come LIPE, presentato esclusivamente per via telematica. Sostituisce il precedente modello IP17.
-
-::
-
-    Destinatari:
-
-Tutti i soggetti passivi IVA in regime non forfettario
-
-::
-
-    Normativa e prassi:
-
-*     Dalla dichiarazione e comunicazione annuale (articoli 8 e 8-bis del DPR n. 322/98).
-* `Articolo 21 bis del D.L. n. 78 del 2010 - Comunicazioni dei dati delle liquidazioni periodiche Iva <https://www.agenziaentrate.gov.it/portale/documents/20143/289254/Articolo+21+bis+del+dl+78+2010+aggiornato+dal+dl+crescita.pdf/d34f861d-5b43-24e2-cf42-62b6cf02e602>`__
-* `Provvedimento del 27 marzo 2017 - Definizione delle informazioni da trasmettere <https://www.agenziaentrate.gov.it/portale/web/guest/normativa-e-prassi/provvedimenti/2017/marzo-2017-provvedimenti/provvedimento-27-marzo-2017-liquidazioni-periodiche-iva>`__
-* `Provvedimento del 21 marzo 2018 - Modifica delle informazioni da trasmettere <https://www.agenziaentrate.gov.it/portale/web/guest/normativa-e-prassi/provvedimenti/2018/marzo-2018-provvedimenti/provvedimento-21032018-iva-periodica>`__
-* `FAQ <https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/liquidazioni-periodiche-iva/faq-liquidaz-iva>`__
-* `Altre info Agenzia delle Entrate <https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/liquidazioni-periodiche-iva>`__
-
-|
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_vat_statement_communication/static/description/
 
 
-|
+Configuration | Configurazione
+------------------------------
 
-OCA comparation / Confronto con OCA
------------------------------------
+|it| Per generare i periodi della dichiarazione IVA,
+aprire Impostazioni > Fatturazione > Configurazione > Intervalli data > Generazione intervalli data e selezionare:
+
+* prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l'anno)
+* durata: 1 mese
+* numero di intervalli da generare: 12
+* tipo: creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare
+* data iniziale: primo giorno del primo periodo che sarà generato (tipicamente il primo giorno dell'anno i.e. 01/01/2018)
+
+Per caricare l'importo corretto, un'imposta deve essere associata al conto utilizzato nella liquidazione:
+
+* aprire l'imposta da Fatturazione > Configurazione > Contabilità > Imposte,
+* nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
+  per il campo 'Conto utilizzato per la liquidazione IVA'.
+
+Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
+nei dati aziendali, nella scheda 'Liquidazione IVA'.
 
 
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
+|en| In order to generate VAT statement's periods,
+open Accounting > Configuration > Date ranges > Generate Date Ranges and select:
+
+* range name prefix: prefix identifying the periods to be generated (usually the year)
+* duration: 1 month
+* number of ranges to generate: 12
+* type: create a type or use an existing one, no specific configuration is required
+* date start: first day of the first period to be generated (usually the first day of the year e.g. 01/01/2018)
+
+In order to load the correct amount from tax, the tax has to be
+associated to the account involved in the statement:
+
+* open a tax in Accounting > Configuration > Accounting > Taxes,
+* in the tab 'Advanced Options' select the correct account (for instance the account debit VAT)
+  for the field 'Account used for VAT statement'.
+
+If you need to calculate interest, you can add default information in your
+company data (percentage and account), in the 'VAT statement' tab.
 
 
-|
-|
 
-Getting started / Come iniziare
-===============================
+Usage | Utilizzo
+----------------
+
+- Creare una nuova comunicazione.
+- Nel "Quadro VP" aggiungere una voce selezionando in alto la liquidazione, precedentemente creata, da inserire.
+
+
+
+Getting started | Primi passi
+=============================
 
 |Try Me|
 
 
-|
-
-Installation / Installazione
+Prerequisites | Prerequisiti
 ----------------------------
 
-
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| These instruction are just an   | Istruzioni di esempio valide solo per    |
-| example to remember what        | distribuzioni Linux CentOS 7, Ubuntu 14+ |
-| you have to do on Linux.        | e Debian 8+                              |
-|                                 |                                          |
-| Installation is built with:     | L'installazione è costruita con:         |
-+---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
-+---------------------------------+------------------------------------------+
-| Suggested deployment is:        | Posizione suggerita per l'installazione: |
-+---------------------------------+------------------------------------------+
-| /home/odoo/10.0/l10n-italy/                                                |
-+----------------------------------------------------------------------------+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
 
 ::
 
     cd $HOME
-    git clone https://github.com/zeroincombenze/tools.git
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
-    ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    odoo_install_repository l10n-italy -b 10.0 -O zero
-    venv_mgr create /opt/odoo/VENV-10.0 -O 10.0 -DI
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode 
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_vat_statement_communication** > Install
 
-|
-
-Upgrade / Aggiornamento
------------------------
-
+Installation | Installazione
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
-| When you want upgrade and you   | Per aggiornare, se avete installato con  |
-| installed using above           | le istruzioni di cui sopra:              |
-| statements:                     |                                          |
+| These instructions are just an  | Istruzioni di esempio valide solo per    |
+| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
+| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
+|                                 |                                          |
+| Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
++---------------------------------+------------------------------------------+
+| Suggested deployment is:        | Posizione suggerita per l'installazione: |
++---------------------------------+------------------------------------------+
+| $HOME/10.0 |
++----------------------------------------------------------------------------+
 
 ::
 
-    odoo_install_repository l10n-italy -b 10.0 -O zero -U
-    venv_mgr amend /opt/odoo/VENV-10.0 -O 10.0 -DI
+    # Odoo repository installation; OCB repository must be installed
+    deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    # Upgrade virtual environment
+    vem amend $HOME/10.0/venv_odoo
+
+
+
+Upgrade | Aggiornamento
+-----------------------
+
+::
+
+    deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
+    vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_vat_statement_communication** > Update
 
-|
-
-Support / Supporto
+Support | Supporto
 ------------------
 
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
-
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -156,20 +157,20 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
-|
-|
 
-Credits / Didascalie
-====================
+
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -177,94 +178,72 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
+* Openforce di Camilli Alessandro <False>
 * `Odoo Community Association (OCA) <https://odoo-community.org>`__
-* `Associazione Odoo Italia <http://www.odoo-italia.org>`__
-* `Domsense s.r.l. (<http://www.domsense.com>)`__
-* `Agile Business Group sagl <http://www.agilebg.com>`__
-* `LinkIt Spa (<http://http://www.linkgroup.it>)`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
 
-Contributors / Collaboratori
-----------------------------
 
-* Lorenzo Battistini <https://github.com/eLBati>
-* Elena Carlesso
-* Marco Marchiori <marcomarkiori@gmail.com>
-* Sergio Corato <sergiocorato@gmail.com>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Alessandro Camilli <camillialex@gmail.com>
-* Simone Rubino <simone.rubino@agilebg.com>
-* Giacomo Grasso <giacomo.grasso.82@gmail.com>
-* Lara Baggio <http://linkgroup.it/>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors | Partecipanti
+---------------------------
+
+* `Lorenzo Battistini <https://github.com/eLBati>`__
+* Elena Carlesso <False>
+* `Marco Marchiori <marcomarkiori@gmail.com>`__
+* `Sergio Corato <sergiocorato@gmail.com>`__
+* `Andrea Gallina <a.gallina@apuliasoftware.it>`__
+* `Alex Comba <alex.comba@agilebg.com>`__
+* `Alessandro Camilli <camillialex@gmail.com>`__
+* `Simone Rubino <simone.rubino@agilebg.com>`__
+* `Giacomo Grasso <giacomo.grasso.82@gmail.com>`__
+* `LinkIt Spa <http://http://www.linkgroup.it>`__
+* `Gianmarco Conte <gconte@dinamicheaziendali.it>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* Lara Baggio <False>
 
 
-|
+
+Maintainer | Manutenzione
+-------------------------
+
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
-|chat_with_us|
-
-
+|
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2020-06-15
+Last Update / Ultimo aggiornamento: 2024-06-06
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alfa
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.org/zeroincombenze/l10n-italy
-    :alt: github.com
+    :alt: 
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
-    :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
+    :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -288,6 +267,3 @@ Last Update / Ultimo aggiornamento: 2020-06-15
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
-

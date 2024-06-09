@@ -1,0 +1,88 @@
+2024-06-06 13:58:03,000 152270 DAEMON test_l10n_it_ade_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-06-06 11:59:47,402 153982 INFO ? odoo: Odoo version 10.0
+2024-06-06 11:59:47,402 153982 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ade/tests/logs/zero10.l10n-italy.l10n_it_ade.conf
+2024-06-06 11:59:47,402 153982 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-06-06 11:59:47,402 153982 INFO ? odoo: database: odoo10@localhost:5432
+2024-06-06 11:59:47,420 153982 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:54080
+2024-06-06 11:59:47,434 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading 1 modules...
+2024-06-06 11:59:47,521 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2024-06-06 11:59:48,103 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading 30 modules...
+2024-06-06 11:59:48,205 153982 INFO test_l10n_it_ade_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-06-06 11:59:48,292 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: 30 modules loaded in 0.19s, 0 queries
+2024-06-06 11:59:48,297 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading 31 modules...
+2024-06-06 11:59:48,607 153982 INFO test_l10n_it_ade_10 odoo.modules.registry: module l10n_it_ade: creating or updating database tables
+2024-06-06 11:59:49,102 153982 INFO test_l10n_it_ade_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2024-06-06 11:59:49,182 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/security/ir.model.access.csv
+2024-06-06 11:59:49,334 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/data/italy_ade_tax_nature.xml
+2024-06-06 11:59:49,434 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/data/italy_ade_codice_carica.xml
+2024-06-06 11:59:49,497 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/data/italy_ade_invoice_type.xml
+2024-06-06 11:59:49,594 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/data/italy_ade_tax_assosoftware.xml
+2024-06-06 11:59:49,949 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/ir_ui_menu.xml
+2024-06-06 11:59:49,998 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/account_tax_view.xml
+2024-06-06 11:59:50,045 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/account_journal.xml
+2024-06-06 11:59:50,094 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/codice_carica_view.xml
+2024-06-06 11:59:50,178 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/tax_nature_view.xml
+2024-06-06 11:59:50,295 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/tax_assosoftware_view.xml
+2024-06-06 11:59:50,376 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: loading l10n_it_ade/views/invoice_type_view.xml
+2024-06-06 11:59:50,961 153982 INFO test_l10n_it_ade_10 odoo.modules.module: odoo.addons.l10n_it_ade.tests.test_ade running tests.
+2024-06-06 11:59:50,961 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: test_00_mix (odoo.addons.l10n_it_ade.tests.test_ade.TestAde)
+2024-06-06 11:59:51,069 153982 WARNING test_l10n_it_ade_10 py.warnings: /home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/z0bug_odoo/z0bug_odoo_lib.py:66: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  if row[field] == r'\N':
+
+2024-06-06 11:59:51,069 153982 WARNING test_l10n_it_ade_10 py.warnings: /home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/z0bug_odoo/z0bug_odoo_lib.py:68: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif row[field] == r'\\N':
+
+2024-06-06 11:59:51,090 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺🎺 Starting test v2.0.19 (debug_level=0, commit=True)
+2024-06-06 11:59:51,093 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Testing module: l10n_it_ade (10.0.0.3.9)
+2024-06-06 11:59:51,093 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Loading data from: italy.ade.codice.carica, italy.ade.tax.nature, italy.ade.invoice.type 
+2024-06-06 11:59:51,132 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: 🎺 Testing test_00_mix
+2024-06-06 11:59:51,132 153982 WARNING test_l10n_it_ade_10 py.warnings: /home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/unidecode/__init__.py:64: RuntimeWarning: Argument <type 'str'> is not an unicode object. Passing an encoded string will likely have unexpected results.
+  _warn_if_not_unicode(string)
+
+2024-06-06 11:59:51,146 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🏆🥇 [1;32m5 tests SUCCESSFULLY completed[0m
+2024-06-06 11:59:51,148 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: test_01_codice_carica (odoo.addons.l10n_it_ade.tests.test_ade.TestAde)
+2024-06-06 11:59:51,182 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺🎺 Starting test v2.0.19 (debug_level=0, commit=True)
+2024-06-06 11:59:51,185 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Testing module: l10n_it_ade (10.0.0.3.9)
+2024-06-06 11:59:51,185 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Loading data from: italy.ade.codice.carica, italy.ade.tax.nature, italy.ade.invoice.type 
+2024-06-06 11:59:51,221 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: 🎺 Testing test_01_codice_carica
+2024-06-06 11:59:51,234 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🏆🥇 [1;32m3 tests SUCCESSFULLY completed[0m
+2024-06-06 11:59:51,236 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: test_02_natura (odoo.addons.l10n_it_ade.tests.test_ade.TestAde)
+2024-06-06 11:59:51,271 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺🎺 Starting test v2.0.19 (debug_level=0, commit=True)
+2024-06-06 11:59:51,273 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Testing module: l10n_it_ade (10.0.0.3.9)
+2024-06-06 11:59:51,274 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Loading data from: italy.ade.codice.carica, italy.ade.tax.nature, italy.ade.invoice.type 
+2024-06-06 11:59:51,308 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: 🎺 Testing test_02_natura
+2024-06-06 11:59:51,320 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🏆🥇 [1;32m3 tests SUCCESSFULLY completed[0m
+2024-06-06 11:59:51,322 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: test_03_invoice_type (odoo.addons.l10n_it_ade.tests.test_ade.TestAde)
+2024-06-06 11:59:51,366 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺🎺 Starting test v2.0.19 (debug_level=0, commit=True)
+2024-06-06 11:59:51,369 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Testing module: l10n_it_ade (10.0.0.3.9)
+2024-06-06 11:59:51,369 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🎺🎺 Loading data from: italy.ade.codice.carica, italy.ade.tax.nature, italy.ade.invoice.type 
+2024-06-06 11:59:51,404 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: 🎺 Testing test_03_invoice_type
+2024-06-06 11:59:51,417 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.testenv: 🏆🥇 [1;32m3 tests SUCCESSFULLY completed[0m
+2024-06-06 11:59:51,419 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: Ran 4 tests in 0.458s
+2024-06-06 11:59:51,419 153982 INFO test_l10n_it_ade_10 odoo.addons.l10n_it_ade.tests.test_ade: OK
+2024-06-06 11:59:51,445 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: 31 modules loaded in 3.15s, 170 queries
+2024-06-06 11:59:51,926 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: Modules loaded.
+2024-06-06 11:59:51,933 153982 INFO test_l10n_it_ade_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-06-06 11:59:51,935 153982 INFO test_l10n_it_ade_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-06-06 11:59:51,988 153982 INFO test_l10n_it_ade_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-06-06 11:59:51,989 153982 INFO test_l10n_it_ade_10 odoo.service.server: Initiating shutdown
+2024-06-06 11:59:51,990 153982 INFO test_l10n_it_ade_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ade[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_ade/tests/logs/coverage_l10n_it_ade_10rc -m
+[34;107mName                                                          Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_ade/models/account_invoice.py                 11      0   100%
+l10n-italy/l10n_it_ade/models/account_journal.py                 30     18    40%   34-55, 58-59, 62-63, 66-67, 70-71
+l10n-italy/l10n_it_ade/models/account_tax.py                      8      0   100%
+l10n-italy/l10n_it_ade/models/italy_ade_codice_carica.py         16      1    94%   26
+l10n-italy/l10n_it_ade/models/italy_ade_invoice_type.py          31      7    77%   35, 44-52
+l10n-italy/l10n_it_ade/models/italy_ade_tax_assosoftware.py      16      6    62%   28-37
+l10n-italy/l10n_it_ade/models/italy_ade_tax_nature.py            21      2    90%   25, 39
+l10n-italy/l10n_it_ade/models/res_partner.py                     43     29    33%   19-20, 36-38, 41-48, 51-53, 56-58, 64-75
+-------------------------------------------------------------------------------------------
+TOTAL                                                           176     63    64%
+[0m

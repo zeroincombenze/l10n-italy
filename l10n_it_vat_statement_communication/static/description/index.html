@@ -1,87 +1,157 @@
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#162832;">Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate / ::</h2>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Comunicazione liquidazione IVA ed esportazione file xml conforme alle specifiche dell'Agenzia delle Entrate</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">VAT statement to send</p>
+            <h2 class="oe_slogan" style="color:#162832;">Sommario non disponibile</h2>
         </div>
-        <div class="oe_span6">
-            <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
-            </p>
-            <p class="oe_mt16" align="justify">
-<code>
-    Cosa &#232;:
-</code>
-<p align="justify">
-Modello di liquidazione IVA periodica, conosciuta anche come LIPE, presentato esclusivamente per via telematica. Sostituisce il precedente modello IP17.
-</p><p align="justify">
-
-<code>
-    Destinatari:
-</code>
-</p><p align="justify">
-Tutti i soggetti passivi IVA in regime non forfettario
-</p><p align="justify">
-
-<code>
-    Normativa e prassi:
-</code>
-</p><p align="justify">
-<ul>
-<li>    Dalla dichiarazione e comunicazione annuale (articoli 8 e 8-bis del DPR n. 322/98).</li>
-<li><a href="https://www.agenziaentrate.gov.it/portale/documents/20143/289254/Articolo+21+bis+del+dl+78+2010+aggiornato+dal+dl+crescita.pdf/d34f861d-5b43-24e2-cf42-62b6cf02e602/">Articolo 21 bis del D.L. n. 78 del 2010 - Comunicazioni dei dati delle liquidazioni periodiche Iva</a></li>
-<li><a href="https://www.agenziaentrate.gov.it/portale/web/guest/normativa-e-prassi/provvedimenti/2017/marzo-2017-provvedimenti/provvedimento-27-marzo-2017-liquidazioni-periodiche-iva/">Provvedimento del 27 marzo 2017 - Definizione delle informazioni da trasmettere</a></li>
-<li><a href="https://www.agenziaentrate.gov.it/portale/web/guest/normativa-e-prassi/provvedimenti/2018/marzo-2018-provvedimenti/provvedimento-21032018-iva-periodica/">Provvedimento del 21 marzo 2018 - Modifica delle informazioni da trasmettere</a></li>
-<li><a href="https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/liquidazioni-periodiche-iva/faq-liquidaz-iva/">FAQ</a></li>
-<li><a href="https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/liquidazioni-periodiche-iva/">Altre info Agenzia delle Entrate</a></li>
-</ul>
-</p><p align="justify">
-<br/>
-</p></p>
+        <div class="oe_demo oe_screenshot">
+            Unknown description_img
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_separator"/>
+<section>
+    <div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Comunicazione liquidazione IVA ed export file XML, conforme alle specifiche dell''Agenzia delle Entrate.
+<p align="justify">
+I dati possono essere caricati da liquidazioni IVA effettuate in odoo tramite `account_vat_period_end_statement`
+</p></p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Nessuna informazione disponibile</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png"/> Per generare i periodi della dichiarazione IVA,
+aprire Impostazioni &gt; Fatturazione &gt; Configurazione &gt; Intervalli data &gt; Generazione intervalli data e selezionare:
+<p align="justify">
+<ul>
+<li>prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l'anno)</li>
+<li>durata: 1 mese</li>
+<li>numero di intervalli da generare: 12</li>
+<li>tipo: creare un tipo o utilizzarne uno esistente, non &#232; richiesta una configurazione particolare</li>
+<li>data iniziale: primo giorno del primo periodo che sar&#224; generato (tipicamente il primo giorno dell'anno i.e. 01/01/2018)</li>
+</ul>
+</p><p align="justify">
+Per caricare l'importo corretto, un'imposta deve essere associata al conto utilizzato nella liquidazione:
+</p><p align="justify">
+<ul>
+<li>aprire l'imposta da Fatturazione &gt; Configurazione &gt; Contabilit&#224; &gt; Imposte,</li>
+<li>nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
+  per il campo 'Conto utilizzato per la liquidazione IVA'.</li>
+</ul>
+</p><p align="justify">
+Per calcolare gli interessi, &#232; possibile aggiungere le informazioni da utilizzare (conto e percentuale)
+nei dati aziendali, nella scheda 'Liquidazione IVA'.
+</p><p align="justify">
+</p><p align="justify">
+<img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png"/> In order to generate VAT statement's periods,
+open Accounting &gt; Configuration &gt; Date ranges &gt; Generate Date Ranges and select:
+</p><p align="justify">
+<ul>
+<li>range name prefix: prefix identifying the periods to be generated (usually the year)</li>
+<li>duration: 1 month</li>
+<li>number of ranges to generate: 12</li>
+<li>type: create a type or use an existing one, no specific configuration is required</li>
+<li>date start: first day of the first period to be generated (usually the first day of the year e.g. 01/01/2018)</li>
+</ul>
+</p><p align="justify">
+In order to load the correct amount from tax, the tax has to be
+associated to the account involved in the statement:
+</p><p align="justify">
+<ul>
+<li>open a tax in Accounting &gt; Configuration &gt; Accounting &gt; Taxes,</li>
+<li>in the tab 'Advanced Options' select the correct account (for instance the account debit VAT)
+  for the field 'Account used for VAT statement'.</li>
+</ul>
+</p><p align="justify">
+If you need to calculate interest, you can add default information in your
+company data (percentage and account), in the 'VAT statement' tab.
+</p></p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"/>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">- Creare una nuova comunicazione.
+- Nel "Quadro VP" aggiungere una voce selezionando in alto la liquidazione, precedentemente creata, da inserire.</p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"/>
+        </div>
+    </div>
+</section>
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Credits | Ringraziamenti</h3>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16"><b>Authors | Autori:</b></p>
             <p class="oe_mt16"><ul>
-<li><a href="https://odoo-community.org/">Odoo Community Association (OCA)</a></li>
-<li><a href="http://www.odoo-italia.org/">Associazione Odoo Italia</a></li>
-<li><a href="http://www.domsense.com/">Domsense s.r.l.</a></li>
-<li><a href="http://www.agilebg.com/">Agile Business Group sagl</a></li>
-<li><a href="http://http://www.linkgroup.it/">LinkIt Spa</a></li>
-<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+<li>Openforce di Camilli Alessandro &lt;False&gt;</li>
+<li><a href="https://odoo-community.org">Odoo Community Association (OCA)</a></li>
+<li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
 </ul></p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors / Collaboratori:</p>
+            <p class="oe_mt16"><b>Contributors | Partecipanti:</b></p>
             <p class="oe_mt16"><ul>
-<li>Lorenzo Battistini &lt;https://github.com/eLBati&gt;</li>
-<li>Elena Carlesso</li>
-<li>Marco Marchiori &lt;marcomarkiori@gmail.com&gt;</li>
-<li>Sergio Corato &lt;sergiocorato@gmail.com&gt;</li>
-<li>Andrea Gallina &lt;a.gallina@apuliasoftware.it&gt;</li>
-<li>Alex Comba &lt;alex.comba@agilebg.com&gt;</li>
-<li>Alessandro Camilli &lt;camillialex@gmail.com&gt;</li>
-<li>Simone Rubino &lt;simone.rubino@agilebg.com&gt;</li>
-<li>Giacomo Grasso &lt;giacomo.grasso.82@gmail.com&gt;</li>
-<li>Lara Baggio &lt;http://linkgroup.it/&gt;</li>
-<li>Gianmarco Conte &lt;gconte@dinamicheaziendali.it&gt;</li>
-<li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
+<li>Alessandro Camilli &lt;False&gt;</li>
+<li>Lorenzo Battistini &lt;False&gt;</li>
+<li>Lara Baggio &lt;False&gt;</li>
 </ul></p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <p>This module is part of l10n-italy project.</p>
+        <div class="oe_span12">
+            <p>This module is maintained by the <b><a href="https://www.shs-av.com">SHS_AV s.r.l.</a></b>.</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2024-06-06</p>
     </div>
 </section>

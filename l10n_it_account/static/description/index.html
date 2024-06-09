@@ -1,95 +1,124 @@
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#162832;">Italian Localization - Account / Modulo di servizio contabile</h2>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <h2 class="oe_slogan" style="color:#162832;">Base account for Italian Localizzation</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/en_US.png" alt="English"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify"><h2>Italian Localization - Account / Modulo di servizio contabile</h2>
+            <h2 class="oe_slogan" style="color:#162832;">Base per contabilit&#224; italiana</h2>
+        </div>
+        <div class="oe_demo oe_screenshot">
+            <img src="description.png" alt="Italian Localization - Account" style="width:98%;max-width:1140px"/>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify">Technical module that supplies some structures usable by other modules like
+<i>l10n_it_vat_registries</i> and <i>account_vat_period_end_statement</i>
 <p align="justify">
-Used by modules like l10n_it_vat_registries and account_vat_period_end_statement
+External module can use the field <code>amount_net_pay</code> which is the amount to pay
+the invoice. In some cases, the total invoice amount and the amount to pay can be
+different; the most common cases are:
+</p><p align="justify">
+<ul>
+<li>reverse charge</li>
+<li>Italian split-payment</li>
+<li>withholding tax</li>
+</ul>
+</p><p align="justify">
+The field <code>amount_net_pay</code> is visible just if it is different from Total Invoice
+Amount.
 </p></p>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="https://raw.githubusercontent.com/zeroincombenze/grymb/master/flags/it_IT.png" alt="Italiano"/>
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify"><h2>Italian Localization - Account / Modulo di servizio contabile</h2>
+            <p class="oe_mt16" align="justify">Modulo tecnico che fornisce alcune strutture utilizzabili da altri moduli
+come <i>l10n_it_vat_registries</i> e <i>account_vat_period_end_statement</i>
 <p align="justify">
-Usato da moduli come l10n_it_vat_registries e account_vat_period_end_statement.
+I moduli esterni possono usare il campo <code>amount_net_pay</code> che contiene l'importo
+della fattura da pagare. In alcuni casi fiscali, l'importo della fattira da
+pagare differisce dal totale fattura; i casi pi&#249; comuni sono:
+</p><p align="justify">
+<ul>
+<li>reverse charge</li>
+<li>split-payment</li>
+<li>ritenute d'acconto</li>
+</ul>
+</p><p align="justify">
+Il campi <code>amount_net_pay</code> &#232; visibile solo se diverso dal totale fattura.
+Il modulo pu&#242; essere usato sia per i documenti passivi che attivi.
 </p></p>
         </div>
     </div>
+</section>
+
+<section>
     <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan" style="color:#162832;">History / Cronologia</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h3>10.0.1.2.11 (2022-06-29)</h3>
+<h4>10.0.1.2.12 (2024-06-09)</h4>
 <p align="justify">
 <ul>
+<li>[IMP] Field amount_net_pay displayed on invoice form / Netto a pagare visualizzato in fattura</li>
+<li>[QUA] Test coverage 81% (93: 18+75) [0 TestPoints] - quality rating 49 (target 100)</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.2.11 (2022-06-29)</h4>
+</p><p align="justify">
+<ul>
 <li>[IMP] Field amount_net_pay from withholding tax</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.1.2.10 (2022-04-21)</h3>
-</p><p align="justify">
-<ul>
-<li>[IMP] Function tax.is_rc() / Funzione tax.is_rc()</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.1.2.9 (2022-03-08)</h3>
-</p><p align="justify">
-<ul>
-<li>[FIX] Strange bug in print VAT registry</li>
-<li>[IMP] New flag RC in tax / Nuovo flag RC in tassa</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.1.2.8 (2022-01-28)</h3>
-</p><p align="justify">
-<ul>
-<li>[IMP] New function for einvoice</li>
-</ul>
-</p><p align="justify">
-<h3>10.0.1.2.7 (2021-07-19)</h3>
-</p><p align="justify">
-<ul>
-<li>[FIX] Journal page</li>
 </ul>
 </p>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_separator"/>
-
 <section class="oe_container">
     <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Credits | Ringraziamenti</h3>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Authors / Autori:</p>
+            <p class="oe_mt16"><b>Authors | Autori:</b></p>
             <p class="oe_mt16"><ul>
-<li><a href="https://www.abstract.it/">Abstract</a></li>
-<li><a href="https://www.agilebg.com/">Agile Business Group sagl</a></li>
-<li><a href="http://www.linkgroup.it/">Link It Spa</a></li>
-<li><a href="https://www.zeroincombenze.it/">SHS-AV s.r.l.</a></li>
+<li><a href="https://odoo-community.org">Odoo Community Association (OCA)</a></li>
+<li><a href="https://www.abstract.it">Abstract</a></li>
+<li><a href="https://www.agilebg.com">Agile Business Group sagl</a></li>
+<li><a href="http://http://www.linkgroup.it">LinkIt Spa</a></li>
+<li><a href="https://www.zeroincombenze.it">SHS-AV s.r.l.</a></li>
 </ul></p>
         </div>
         <div class="oe_span6" align="left">
-            <p class="oe_mt16">Contributors / Collaboratori:</p>
+            <p class="oe_mt16"><b>Contributors | Partecipanti:</b></p>
             <p class="oe_mt16"><ul>
-<li>Davide Corio &lt;davide.corio@abstract.it&gt;</li>
-<li>Lorenzo Battistini &lt;lorenzo.battistini@agilebg.com&gt;</li>
-<li>Antonio Maria Vigliotti &lt;antoniomaria.vigliotti@gmail.com&gt;</li>
-<li>Alex Comba &lt;alex.comba@agilebg.com&gt;</li>
+<li><a href="mailto:davide.corio@abstract.it">Davide Corio</a></li>
+<li><a href="mailto:lorenzo.battistini@agilebg.com">Lorenzo Battistini</a></li>
+<li><a href="mailto:antoniomaria.vigliotti@gmail.com">Antonio Maria Vigliotti</a></li>
+<li><a href="mailto:alex.comba@agilebg.com">Alex Comba</a></li>
 </ul></p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <p>This module is maintained by the <b>SHS_AV s.r.l.</b>.</p>
+            <p>This module is maintained by the <b><a href="https://www.shs-av.com">SHS_AV s.r.l.</a></b>.</p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
-        <p>This module is part of l10n-italy project.</p>
+        <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
+        <p>Published information on | Informazioni pubblicate: 2024-06-09</p>
     </div>
 </section>

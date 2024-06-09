@@ -5,17 +5,21 @@
 #
 {
     "name": "Italian Withholding Tax",
-    "version": "10.0.1.2.7",
+    "version": "10.0.1.2.8",
     "category": "Account",
-    "author": "Odoo Community Association (OCA) and other subjects",
-    "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "summary": "Italian Withholding Tax",
+    "author": ("Odoo Community Association (OCA) and other subjects,Open Force"
+               ",Agile Business Group sagl,SHS-AV s.r.l."),
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Beta",
+    "license": "AGPL-3",
     "depends": [
         "account",
         "l10n_it_account",
         "l10n_it_causali_pagamento",
         "l10n_it_einvoice_base",
     ],
+    "version_depends": ["l10n_it_account>=10.0.1.2.12"],
     "data": [
         "views/account.xml",
         "views/withholding_tax.xml",
@@ -23,5 +27,7 @@
         "workflow.xml",
         "security/security.xml",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
+    "pre_init_hook": "check_4_depending",
 }

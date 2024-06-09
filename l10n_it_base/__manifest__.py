@@ -10,8 +10,10 @@
     "version": "10.0.0.2.18",
     "category": "Generic Modules/Accounting",
     "summary": "Managing Italian addresses",
-    "author": "Odoo Community Association (OCA), Pexego,",
-    "website": "https://github.com/OCA/l10n-italy",
+    "author": ("Odoo Community Association (OCA),Pexego,Agile Business Group sagl"
+               ",Innoviu Srl,SHS-AV s.r.l."),
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Alpha",
     "license": "LGPL-3",
     "depends": [
         "base",
@@ -23,6 +25,6 @@
         "views/city_view.xml",
         "data/res.city.xml",
     ],
-    "installable": True,
     "maintainer": "Antonio Maria Vigliotti",
+    "installable": True,
 }

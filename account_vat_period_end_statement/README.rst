@@ -1,21 +1,17 @@
-
-========================================
-|icon| ITA - Liquidazione IVA 10.0.1.5.4
-========================================
-
+=========================================================================
+|icon| ITA - Liquidazione IVA/account_vat_period_end_statement 10.0.1.5.4
+=========================================================================
 
 **Versamento Iva periodica (mensile o trimestrale)**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_vat_period_end_statement/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
 
 .. contents::
 
 
 
-Overview / Panoramica
+Overview | Panoramica
 =====================
 
 |en| This module evaluates VAT to pay (or on credit).
@@ -23,8 +19,6 @@ Overview / Panoramica
 Previous debit or credit amount is read from previous VAT statement, according
 to its payments status.
 
-
-|
 
 |it| Versamento Iva periodica
 
@@ -62,9 +56,55 @@ Normativa non supportata da questo software:
 * Articolo 24 del DPR n. 633/72) - Registrazione dei corrispettivi
 
 
-|
+|thumbnail|
 
-Usage / Utilizzo
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_vat_period_end_statement/static/description/
+
+
+Configuration | Configurazione
+------------------------------
+
+|it| Per generare i periodi della dichiarazione IVA,
+aprire Impostazioni > Fatturazione > Configurazione > Intervalli data > Generazione intervalli data e selezionare:
+
+* prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l'anno)
+* durata: 1 mese
+* numero di intervalli da generare: 12
+* tipo: creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare
+* data iniziale: primo giorno del primo periodo che sarà generato (tipicamente il primo giorno dell'anno i.e. 01/01/2018)
+
+Per caricare l'importo corretto, un'imposta deve essere associata al conto utilizzato nella liquidazione:
+
+* aprire l'imposta da Fatturazione > Configurazione > Contabilità > Imposte,
+* nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
+  per il campo 'Conto utilizzato per la liquidazione IVA'.
+
+Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
+nei dati aziendali, nella scheda 'Liquidazione IVA'.
+
+
+|en| In order to generate VAT statement's periods,
+open Accounting > Configuration > Date ranges > Generate Date Ranges and select:
+
+* range name prefix: prefix identifying the periods to be generated (usually the year)
+* duration: 1 month
+* number of ranges to generate: 12
+* type: create a type or use an existing one, no specific configuration is required
+* date start: first day of the first period to be generated (usually the first day of the year e.g. 01/01/2018)
+
+In order to load the correct amount from tax, the tax has to be
+associated to the account involved in the statement:
+
+* open a tax in Accounting > Configuration > Accounting > Taxes,
+* in the tab 'Advanced Options' select the correct account (for instance the account debit VAT)
+  for the field 'Account used for VAT statement'.
+
+If you need to calculate interest, you can add default information in your
+company data (percentage and account), in the 'VAT statement' tab.
+
+
+
+Usage | Utilizzo
 ----------------
 
 |en| In order to create a 'VAT Statement', open Accounting > Adviser > VAT Statements.
@@ -109,9 +149,8 @@ La liquidazione può essere pagata come qualunque altro debito, con la riconcili
 È inoltre possibile stampare la liquidazione IVA cliccando su Stampa > Stampa liquidazione IVA.
 
 
-|
 
-OCA comparation / Confronto con OCA
+OCA comparation | Confronto con OCA
 -----------------------------------
 
 +--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
@@ -131,20 +170,33 @@ OCA comparation / Confronto con OCA
 +--------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------+
 
 
-|
-|
 
-Getting started / Primi passi
+Getting started | Primi passi
 =============================
 
 |Try Me|
 
 
-|
-
-Installation / Installazione
+Prerequisites | Prerequisiti
 ----------------------------
 
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
+
+Installation | Installazione
+----------------------------
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -155,85 +207,42 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__ |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| $HOME/10.0                                                                 |
+| $HOME/10.0 |
 +----------------------------------------------------------------------------+
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **account_vat_period_end_statement** > Install
 
 
-|
-
-Upgrade / Aggiornamento
+Upgrade | Aggiornamento
 -----------------------
-
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
-
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **account_vat_period_end_statement** > Update
 
 
-|
-
-Support / Supporto
+Support | Supporto
 ------------------
 
+|Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
-|Zeroincombenze| This module is maintained by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
-
-Get involved / Ci mettiamo in gioco
+Get involved | Ci mettiamo in gioco
 ===================================
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
@@ -242,9 +251,10 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -252,7 +262,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
-ChangeLog History / Cronologia modifiche
+
+ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
 10.0.1.5.4 (2022-07-20)
@@ -260,13 +271,20 @@ ChangeLog History / Cronologia modifiche
 
 * [FIX] Journal entry creation error / Errore creazione movimento contabile
 
+10.0.1.5.3 (2022-07-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor updates
+
+10.0.1.5.2 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
 
 
-|
-|
 
-Credits / Didascalie
-====================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -274,39 +292,44 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-
-|
-
-Authors / Autori
+Authors | Autori
 ----------------
 
+* Agile Business Group <False>
 * `Odoo Community Association (OCA) <https://odoo-community.org>`__
-* `Associazione Odoo Italia <http://www.odoo-italia.org>`__
-* `Agile Business Group sagl <http://www.agilebg.com>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-* `Lara Baggio <http://linkgroup.it/>`__
+* `LinkIt Spa <http://http://www.linkgroup.it>`__
+* `Associazione Odoo Italia <https://www.odoo-italia.org>`__
+* `Agile Business Group sagl <https://www.agilebg.com>`__
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
 
-Contributors / Collaboratori
-----------------------------
 
-* Lorenzo Battistini <https://github.com/eLBati>
-* Elena Carlesso
-* Marco Marchiori <marcomarkiori@gmail.com>
-* Sergio Corato <sergiocorato@gmail.com>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Alessandro Camilli <camillialex@gmail.com>
-* Simone Rubino <simone.rubino@agilebg.com>
-* Giacomo Grasso <giacomo.grasso.82@gmail.com>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+Contributors | Partecipanti
+---------------------------
+
+* `Lorenzo Battistini <https://github.com/eLBati>`__
+* Elena Carlesso <False>
+* `Marco Marchiori <marcomarkiori@gmail.com>`__
+* `Sergio Corato <sergiocorato@gmail.com>`__
+* `Andrea Gallina <a.gallina@apuliasoftware.it>`__
+* `Alex Comba <alex.comba@agilebg.com>`__
+* `Alessandro Camilli <camillialex@gmail.com>`__
+* `Simone Rubino <simone.rubino@agilebg.com>`__
+* `Giacomo Grasso <giacomo.grasso.82@gmail.com>`__
+* `Gianmarco Conte <gconte@dinamicheaziendali.it>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* `LinkIt Spa <http://http://www.linkgroup.it>`__
 
 
-|
+
+Maintainer | Manutenzione
+-------------------------
+
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -318,49 +341,25 @@ che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
 La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
-
-|chat_with_us|
-
-
+|
 |
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-08-14
+Last Update / Ultimo aggiornamento: 2024-06-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=10.0
-    :target: https://travis-ci.com/zeroincombenze/l10n-italy
-    :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=10.0
-    :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=10.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-10.svg
-    :target: https://wiki.zeroincombenze.org/en/Odoo/10.0/dev
-    :alt: Technical Documentation
-.. |Help| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-10.svg
-    :target: https://wiki.zeroincombenze.org/it/Odoo/10.0/man
-    :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-10.svg
     :target: https://erp10.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/10.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/10.0
-    :alt: Codecov
-.. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
-   :target: https://odoo-italia.org
-   :alt: Odoo Italia Associazione
 .. |Zeroincombenze| image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
    :target: https://www.zeroincombenze.it/
    :alt: Zeroincombenze
@@ -384,7 +383,3 @@ Last Update / Ultimo aggiornamento: 2023-08-14
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/Desktoptelematico.md
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
-.. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP
-
-

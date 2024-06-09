@@ -179,7 +179,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.0.1.11 (2024-05-31)
+10.0.0.1.11 (2024-06-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Check for version of l10n_it_ddt to depend on
@@ -250,7 +250,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-05-31
+Last Update / Ultimo aggiornamento: 2024-06-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

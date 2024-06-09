@@ -1,3 +1,13 @@
+10.0.1.7 (2024-06-09)
+~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Tax with RC requires RC fiscal position / Controllo codici IVA con RC e posizione fiscale
+* [IMP] Show net to pay (see l10n_it_account) / Visualizza netto a pagare (vedere l10n_it_account)
+* [IMP] RC Amount stored in invoice record / Importo IVA RC in fattura
+* [IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare
+* [IMP] Regression tests
+* [QUA] Test coverage 64% (410: 149+261) [22 TestPoints] - quality rating 47 (target 100)
+
 10.0.1.6 (2023-02-20)
 ~~~~~~~~~~~~~~~~~~~~~
 

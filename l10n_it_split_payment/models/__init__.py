@@ -4,5 +4,6 @@
 # Copyright 2016  Alessio Gerace - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from . import account
+from . import account_fiscal_position
+from . import account_invoice
 from . import config

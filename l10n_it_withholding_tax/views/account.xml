@@ -64,13 +64,6 @@
                     options="{'currency_field': 'currency_id'}"
                     attrs="{'invisible': [('withholding_tax', '=', False)]}"
                 />
-                    <field
-                    name="amount_net_pay"
-                    widget="monetary"
-                    options="{'currency_field': 'currency_id'}"
-                    class="oe_subtotal_footer_separator"
-                    attrs="{'invisible': [('withholding_tax', '=', False)]}"
-                />
                 </xpath>
 
             </field>
@@ -138,13 +131,6 @@
                     name="withholding_tax_amount"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
-                    attrs="{'invisible': [('withholding_tax', '=', False)]}"
-                />
-                    <field
-                    name="amount_net_pay"
-                    widget="monetary"
-                    options="{'currency_field': 'currency_id'}"
-                    class="oe_subtotal_footer_separator"
                     attrs="{'invisible': [('withholding_tax', '=', False)]}"
                 />
                 </xpath>

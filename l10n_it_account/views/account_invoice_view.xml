@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_invoice_form_net_pay" model="ir.ui.view">
+        <field name="name">account.invoice.form.net.pay</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="residual" position="before">
+                <field name="hide_net_pay" invisible="1"/>
+                <field  class="oe_subtotal_footer_separator"
+                        name="amount_net_pay"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                        attrs="{'invisible': [('hide_net_pay', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_invoice_supplier_form_net_pay" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.net.pay</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="residual" position="before">
+                <field name="hide_net_pay" invisible="1"/>
+                <field  class="oe_subtotal_footer_separator"
+                        name="amount_net_pay"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                        attrs="{'invisible': [('hide_net_pay', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -6,16 +6,16 @@
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">Reverse Charge for Italy</h2>
+            <h2 class="oe_slogan" style="color:#162832;">Manage Reverse Charge Tax for Italy</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">Sommario non disponibile</h2>
+            <h2 class="oe_slogan" style="color:#162832;">Gestione IVA in reverse charge per Italia</h2>
         </div>
         <div class="oe_demo oe_screenshot">
-            
+            <img src="description.png" alt="Reverse Charge Tax" style="width:98%;max-width:1140px"/>
         </div>
     </div>
 </section>
@@ -27,30 +27,42 @@
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Module to handle reverse charge IVA in vendor bills.
+            <p class="oe_mt16" align="justify">Module to manage reverse charge tax in vendor bills and customer invoices.
 <p align="justify">
-The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
-Furthermore, the vendor bill cancellation and reopening procedure is automated.
+Tis module allows you to automate the accounting entries linked to invoices from
+intra-EU and extra-EU suppliers.
+In order to manage the reverse charge tax a self-invoice is created and an account
+entry is created too.
+After these 3 entries, the amount to pay to supplier is the invoice total without tax.
 </p><p align="justify">
-It is also possible to use the "additional vendor self billing" mode.
-This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
-The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.
+All fiscal and legal Italian laws are satisfied,
+</p><p align="justify">
+When supplier invoice is cancelled, the self invoice is cancelled too and account
+entry is deleted.
+</p><p align="justify">
+For customer invoices tha due amount is evaluated.
 </p></p>
         </div>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Inversione contabile
+            <p class="oe_mt16" align="justify">Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore e
+nelle fatture clienti.
 <p align="justify">
-Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore.
+Questo modulo permette di automatizzare le registrazioni contabili collegate alle
+fatture fornitori intra UE ed extra UE, necessarie per gestire l'inversione
+contabile IVA.
+Per gestire l'inversione contabile viene generata un'auto-fattura di vendita che
+storna l'IVA in acquisto e una registrazione di giroconto per azzerare il credito
+derivante dall'auto-fattura.
+Con queste 3 operazioni il debito verso la fattura di acquisto &#232; pari alla sola
+imponibile e l'IVA &#232; riportata nei documenti fiscali come previsto dalla normativa.
 </p><p align="justify">
-Il modulo permette di automatizzare le registrazioni contabili derivate dalle fatture fornitori intra UE ed extra UE mediante l'inversione contabile IVA.
-Inoltre &#232; automatizzata la procedura di annullamento e riapertura della fattura fornitore.
+L'annullo della fattura fornitore, annulla anche l'auto-fattura ed elimina la
+registrazione di giroconto.
 </p><p align="justify">
-&#200; inoltre possibile utilizzare la modalit&#224; "con autofattura fornitore aggiuntiva".
-Questa modalit&#224; &#232; usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
-L'autofattura passiva verr&#224; poi totalmente riconciliata con l'autofattura attiva, anch'essa intestata alla propria azienda.
+Per le fatture di vendita viene soltanto calcolato l'importo da incassare.
 </p></p>
         </div>
     </div>
@@ -58,20 +70,43 @@ L'autofattura passiva verr&#224; poi totalmente riconciliata con l'autofattura a
 
 <section>
     <div class="oe_row oe_spaced">
-        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
         <div class="oe_span6">
             <p align="center">
                 <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
                 <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">To configure this module, you need to:
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Configuration &#187; Account &#187; Taxes
 <p align="justify">
-Creare l'imposta <b>22% intra UE</b> Vendita:
+Create sale tax <b>22% intra UE</b>:
 </p><p align="justify">
 </p>
 
-Creare l'imposta <b>22% intra UE</b> Acquisti:
+Create purchase tax <b>22% intra UE</b>:
 
+Create sale tax <b>22% extra UE</b>:
+
+Create purchase tax <b>22% extra UE</b>:
+
+
+&#9776; Accounting &gt; Configuration &gt; Account &gt; RC Types
+
+Create reverse chare tye <b>Intra UE (autofattura)</b>:
+
+&#9776; Accounting &gt; Configuration &gt; Account &gt; Fiscal Position
+<img src="tax_22_a_e_ue.png" alt="22% extra UE Acqisti" style="width:400px;max-width:1140px"/></p>
+        </div>
+        <div class="oe_span6">
+            <p align="center">
+                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+            </p>
+            <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Imposte
+<p align="justify">
+Creare l'imposta <b>22% intra UE</b> Vendita:
+</p><p align="justify">
+Creare l'imposta <b>22% intra UE</b> Acquisti:
+</p><p align="justify">
+</p>
 
 Creare l'imposta <b>22% extra UE</b> Vendita:
 
@@ -79,32 +114,12 @@ Creare l'imposta <b>22% extra UE</b> Vendita:
 Creare l'imposta <b>22% extra UE</b> Acquisti:
 
 
+&#9776; Contabilit&#224; &gt; Configurazione &gt; Contabilit&#224; &gt; Tipi di reverse charge
+
 Creare il tipo reverse charge <b>Intra UE (autofattura)</b>:
 
-
-Il sezionale autofattura deve essere di tipo 'vendita'
-
-Creare il tipo reverse charge <b>Extra-EU (autofattura)</b> :
-
-
-Il 'Sezionale autofattura passiva' deve essere di tipo 'acquisto'
-
-Il 'Conto transitorio autofattura' va configurato come segue:
-
-
-Il 'Sezionale pagamento autofattura' deve essere configurato con il 'Conto transitorio autofattura':
-
-
-Nella posizione fiscale, impostare il tipo reverse charge
-
-
-<img src="fiscal_pos_extra.png" alt="Impostazione posizioni fiscali Extra CEE" style="width:600 px;max-width:1140px"/></p>
-        </div>
-        <div class="oe_span6">
-            <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
-            </p>
-            <p class="oe_mt16" align="justify"/>
+&#9776; Contabilit&#224; &gt; Configurazione &gt; Contabilit&#224; &gt; Posizioni fiscalie
+<img src="tax_22_v_e_ue.png" alt="22% extra UE Vendita" style="width:400px;max-width:1140px"/></p>
         </div>
     </div>
 </section>
@@ -113,8 +128,19 @@ Nella posizione fiscale, impostare il tipo reverse charge
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h4>10.0.1.6 (2023-02-20)</h4>
+<h4>10.0.1.7 (2024-06-09)</h4>
 <p align="justify">
+<ul>
+<li>[FIX] Tax with RC requires RC fiscal position / Controllo codici IVA con RC e posizione fiscale</li>
+<li>[IMP] Show net to pay (see l10n_it_account) / Visualizza netto a pagare (vedere l10n_it_account)</li>
+<li>[IMP] RC Amount stored in invoice record / Importo IVA RC in fattura</li>
+<li>[IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare</li>
+<li>[IMP] Regression tests</li>
+<li>[QUA] Test coverage 64% (410: 149+261) [22 TestPoints] - quality rating 47 (target 100)</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.6 (2023-02-20)</h4>
+</p><p align="justify">
 <ul>
 <li>[IMP] The invoice date of self invoice is the same of the date of purchase invoice / Data auto-fattura come data contabile fattura di acquisto</li>
 </ul>
@@ -149,7 +175,7 @@ Nella posizione fiscale, impostare il tipo reverse charge
         <div class="oe_span6" align="left">
             <p class="oe_mt16"><b>Contributors | Partecipanti:</b></p>
             <p class="oe_mt16"><ul>
-<li>Davide Corio &lt;False&gt;</li>
+<li><a href="mailto:davide.corio@abstract.it">Davide Corio</a></li>
 <li><a href="mailto:alex.comba@agilebg.com">Alex Comba</a></li>
 <li><a href="mailto:lorenzo.battistini@agilebg.com">Lorenzo Battistini</a></li>
 <li><a href="mailto:antoniomaria.vigliotti@gmail.com">Antonio Maria Vigliotti</a></li>
@@ -163,6 +189,6 @@ Nella posizione fiscale, impostare il tipo reverse charge
     </div>
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
-        <p>Published information on | Informazioni pubblicate: 2024-04-22</p>
+        <p>Published information on | Informazioni pubblicate: 2024-06-09</p>
     </div>
 </section>

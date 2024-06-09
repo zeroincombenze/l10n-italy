@@ -1,10 +1,16 @@
-Inversione contabile
+Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore e
+nelle fatture clienti.
 
-Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore.
+Questo modulo permette di automatizzare le registrazioni contabili collegate alle
+fatture fornitori intra UE ed extra UE, necessarie per gestire l'inversione
+contabile IVA.
+Per gestire l'inversione contabile viene generata un'auto-fattura di vendita che
+storna l'IVA in acquisto e una registrazione di giroconto per azzerare il credito
+derivante dall'auto-fattura.
+Con queste 3 operazioni il debito verso la fattura di acquisto è pari alla sola
+imponibile e l'IVA è riportata nei documenti fiscali come previsto dalla normativa.
 
-Il modulo permette di automatizzare le registrazioni contabili derivate dalle fatture fornitori intra UE ed extra UE mediante l'inversione contabile IVA.
-Inoltre è automatizzata la procedura di annullamento e riapertura della fattura fornitore.
+L'annullo della fattura fornitore, annulla anche l'auto-fattura ed elimina la
+registrazione di giroconto.
 
-È inoltre possibile utilizzare la modalità "con autofattura fornitore aggiuntiva".
-Questa modalità è usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
-L'autofattura passiva verrà poi totalmente riconciliata con l'autofattura attiva, anch'essa intestata alla propria azienda.
+Per le fatture di vendita viene soltanto calcolato l'importo da incassare.

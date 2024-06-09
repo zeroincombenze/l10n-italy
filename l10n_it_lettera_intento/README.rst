@@ -20,7 +20,7 @@ Overview | Panoramica
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/description.png
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/
 
 
 Getting started | Primi passi
@@ -129,16 +129,6 @@ ChangeLog History | Cronologia modifiche
 
 * [FIX] Amount based on document id / Calcolo plafond basato su id lettera intento
 
-10.0.0.1.6 (2022-06-14)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash with massive edit / Crash per modifiche massive
-
-10.0.0.1.5 (2022-06-10)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] New menu / Nuovo menù
-
 
 
 Credits | Ringraziamenti
@@ -188,7 +178,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-03-05
+Last Update / Ultimo aggiornamento: 2024-06-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

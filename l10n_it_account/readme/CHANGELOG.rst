@@ -1,3 +1,9 @@
+10.0.1.2.12 (2024-06-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field amount_net_pay displayed on invoice form / Netto a pagare visualizzato in fattura
+* [QUA] Test coverage 81% (93: 18+75) [0 TestPoints] - quality rating 49 (target 100)
+
 10.0.1.2.11 (2022-06-29)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

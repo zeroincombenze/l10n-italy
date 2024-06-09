@@ -3,22 +3,24 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# Copyright 2019-22 Antonio M. Vigliotti - SHS-Av srl
+# Copyright 2019-24 Antonio M. Vigliotti - SHS-Av srl
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
-    "name": "Reverse Charge IVA",
-    "version": "10.0.1.6",
+    "name": "Reverse Charge Tax",
+    "version": "10.0.1.7",
     "category": "Localization/Italy",
-    "summary": "Reverse Charge for Italy",
-    "author": "Odoo Italia Network,Odoo Community Association (OCA)",
-    "license": "LGPL-3",
-    "website": "https://github.com/OCA/l10n-italy",
+    "summary": "Manage Reverse Charge Tax for Italy",
+    "author": "Odoo Italia Network,Odoo Community Association (OCA),SHS-AV s.r.l.",
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Beta",
+    "license": "AGPL-3",
     "depends": [
         "account_accountant",
         "account_cancel",
         "l10n_it_ade",
+        "l10n_it_account",
     ],
+    "version_depends": ["l10n_it_account>=10.0.1.2.12"],
     "data": [
         "security/ir.model.access.csv",
         "data/rc_type.xml",
@@ -29,5 +31,7 @@
         "views/account_tax_view.xml",
         "security/reverse_charge_security.xml",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
+    "pre_init_hook": "check_4_depending",
 }

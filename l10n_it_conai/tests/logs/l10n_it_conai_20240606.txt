@@ -1,0 +1,78 @@
+2024-06-06 12:03:39,000 32538 DAEMON test_l10n_it_conai_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-06-06 10:03:44,966 33987 INFO ? odoo: Odoo version 10.0
+2024-06-06 10:03:44,967 33987 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_conai/tests/logs/zero10.l10n-italy.l10n_it_conai.conf
+2024-06-06 10:03:44,967 33987 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-06-06 10:03:44,967 33987 INFO ? odoo: database: odoo10@localhost:5432
+2024-06-06 10:03:44,984 33987 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:47217
+2024-06-06 10:03:45,000 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading 1 modules...
+2024-06-06 10:03:45,087 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2024-06-06 10:03:47,238 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading 46 modules...
+2024-06-06 10:03:47,339 33987 INFO test_l10n_it_conai_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-06-06 10:03:48,021 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: 46 modules loaded in 0.78s, 0 queries
+2024-06-06 10:03:48,027 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading 47 modules...
+2024-06-06 10:03:48,559 33987 WARNING test_l10n_it_conai_10 odoo.fields: Field italy.conai.statement.category.conai_exemption_id with unknown comodel_name None
+2024-06-06 10:03:48,591 33987 WARNING test_l10n_it_conai_10 odoo.fields: Field italy.conai.statement.line.conai_exemption_id with unknown comodel_name None
+2024-06-06 10:03:48,756 33987 INFO test_l10n_it_conai_10 odoo.modules.registry: module l10n_it_conai: creating or updating database tables
+2024-06-06 10:03:50,078 33987 INFO test_l10n_it_conai_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2024-06-06 10:03:50,249 33987 INFO test_l10n_it_conai_10 odoo.models: Storing computed values of sale.order.line fields conai_exemption_id, date_order
+2024-06-06 10:03:50,251 33987 INFO test_l10n_it_conai_10 odoo.models: Storing computed values of account.invoice.line fields conai_exemption_id, date_invoice
+2024-06-06 10:03:50,437 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/security/ir.model.access.csv
+2024-06-06 10:03:50,674 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/data/conai_product_category.xml
+2024-06-06 10:03:50,734 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/data/conai_partner_category.xml
+2024-06-06 10:03:50,753 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/data/product_template.xml
+2024-06-06 10:03:51,081 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/account_config_view.xml
+2024-06-06 10:03:51,159 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/product_category_view.xml
+2024-06-06 10:03:51,276 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/partner_category_view.xml
+2024-06-06 10:03:51,374 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/picking_view.xml
+2024-06-06 10:03:51,470 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/account_invoice_view.xml
+2024-06-06 10:03:51,700 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/product_view.xml
+2024-06-06 10:03:51,791 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/partner_view.xml
+2024-06-06 10:03:51,905 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/sale_order_view.xml
+2024-06-06 10:03:52,010 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/views/conai_statement.xml
+2024-06-06 10:03:52,119 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: loading l10n_it_conai/report/conai_statement.xml
+2024-06-06 10:03:52,729 33987 INFO test_l10n_it_conai_10 odoo.modules.module: odoo.addons.l10n_it_conai.tests.test_conai running tests.
+2024-06-06 10:03:52,730 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: test_conai (odoo.addons.l10n_it_conai.tests.test_conai.TestConai)
+2024-06-06 10:03:53,007 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2024-06-06 10:03:53,009 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2024-06-06 10:03:53,210 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🎺🎺🎺 Starting test v2.0.19 (debug_level=0, commit=True)
+2024-06-06 10:03:53,214 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🎺🎺 Testing module: l10n_it_conai (10.0.0.1.10)
+2024-06-06 10:03:53,214 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🎺🎺 Loading data from: account.account, account.tax, product.template, res.partner, sale.order, sale.order.line, account.invoice, account.invoice.line 
+2024-06-06 10:03:55,560 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: 🎺 Testing test_conai (order)
+2024-06-06 10:03:55,912 33987 WARNING test_l10n_it_conai_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2024-06-06 10:03:57,572 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: 🎺 Testing test_conai (invoice)
+2024-06-06 10:03:58,470 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: 🎺 Testing Create DdT
+2024-06-06 10:03:59,120 33987 INFO test_l10n_it_conai_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [12, 13]
+2024-06-06 10:03:59,167 33987 INFO test_l10n_it_conai_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [14, 15]
+2024-06-06 10:03:59,198 33987 INFO test_l10n_it_conai_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [16, 17]
+2024-06-06 10:04:01,217 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.testenv: 🏆🥇 [1;32m23 tests SUCCESSFULLY completed[0m
+2024-06-06 10:04:01,220 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: Ran 1 test in 8.490s
+2024-06-06 10:04:01,220 33987 INFO test_l10n_it_conai_10 odoo.addons.l10n_it_conai.tests.test_conai: OK
+2024-06-06 10:04:01,220 33987 INFO test_l10n_it_conai_10 odoo.modules.module: odoo.addons.l10n_it_conai.tests.test_conai tested in 8.49s, 8324 queries
+2024-06-06 10:04:01,256 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: 47 modules loaded in 13.23s, 8369 queries
+2024-06-06 10:04:02,041 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: Modules loaded.
+2024-06-06 10:04:02,060 33987 INFO test_l10n_it_conai_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-06-06 10:04:02,061 33987 INFO test_l10n_it_conai_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-06-06 10:04:02,153 33987 INFO test_l10n_it_conai_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-06-06 10:04:02,155 33987 INFO test_l10n_it_conai_10 odoo.service.server: Initiating shutdown
+2024-06-06 10:04:02,155 33987 INFO test_l10n_it_conai_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_conai[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_conai/tests/logs/coverage_l10n_it_conai_10rc -m
+[34;107mName                                                                                   Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/account_config.py                          7      0   100%
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/account_invoice.py                       141     48    66%   35, 69-72, 80, 84-89, 101-111, 113, 126, 157-165, 170-171, 173, 208, 214, 218-226, 229-234, 239, 245-247
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/italy_conai_partner_category.py           11      0   100%
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/italy_conai_product_category.py           37      2    95%   55, 64
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/italy_conai_statement.py                  98     55    44%   40-125, 128-175, 210-211
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/partner.py                                 4      0   100%
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/product.py                                24      8    67%   30-33, 56-59
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/sale_order.py                            133     46    65%   32, 63-66, 76-81, 93-103, 105, 119, 149-157, 162-163, 165, 199, 205, 208-216, 220-225, 230, 236-238
+/home/odoo/10.0/l10n-italy/l10n_it_conai/models/stock_picking_package_preparation.py      41      7    83%   23, 48, 50, 58-59, 63-64
+/home/odoo/10.0/l10n-italy/l10n_it_conai/post_install.py                                   9      0   100%
+--------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                    505    166    67%
+[0m

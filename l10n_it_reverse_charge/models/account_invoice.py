@@ -3,38 +3,12 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
-# Copyright 2019-22 Antonio M. Vigliotti - SHS-Av srl
+# Copyright 2019-24 Antonio M. Vigliotti - SHS-Av srl
 
 from odoo import api, fields, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
-
-
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
-
-    @api.multi
-    def _set_rc_flag(self, invoice):
-        self.ensure_one()
-        if invoice.type in ["in_invoice", "in_refund"]:
-            fposition = invoice.fiscal_position_id
-            rc = bool(fposition.rc_type_id)
-            if rc:
-                for tax in self.invoice_line_tax_ids:
-                    if not tax.rc:
-                        rc = False
-                        break
-            self.rc = rc
-
-    @api.onchange("invoice_line_tax_ids")
-    def onchange_invoice_line_tax_id(self):
-        self._set_rc_flag(self.invoice_id)
-
-    rc = fields.Boolean("RC")
-
-    def _set_additional_fields(self, invoice):
-        self._set_rc_flag(invoice)
-        return super(AccountInvoiceLine, self)._set_additional_fields(invoice)
+import odoo.addons.decimal_precision as dp
 
 
 class AccountInvoice(models.Model):
@@ -58,11 +32,25 @@ class AccountInvoice(models.Model):
         copy=False,
         readonly=True,
     )
+    amount_rc = fields.Float(
+        string="Reverse Charge Amount",
+        digits=dp.get_precision("Account"),
+        store=True,
+        readonly=True,
+        copy=False,
+        compute="_compute_amount",
+    )
+    rc = fields.Boolean("RC",
+                        compute="_compute_amount",)
 
     @api.onchange("fiscal_position_id")
-    def onchange_rc_fiscal_position_id(self):
+    def _onchange_fiscal_position_id(self):
+        res = super(AccountInvoice, self)._onchange_fiscal_position_id()
         for line in self.invoice_line_ids:
-            line._set_rc_flag(self)
+            res = line._onchange_invoice_line_tax_ids()
+            if res:
+                return res
+        return res
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
@@ -70,7 +58,7 @@ class AccountInvoice(models.Model):
         # In some cases (like creating the invoice from PO),
         # fiscal position's onchange is triggered
         # before than being changed by this method.
-        self.onchange_rc_fiscal_position_id()
+        self._onchange_fiscal_position_id()
         return res
 
     @api.multi
@@ -175,8 +163,24 @@ class AccountInvoice(models.Model):
         if invoice_currency != main_currency:
             round_curr = main_currency.round
             rc_amount_tax = invoice_currency.compute(rc_amount_tax, main_currency)
-
         return round_curr(rc_amount_tax)
+
+    @api.depends(
+        "invoice_line_ids.price_subtotal",
+        "tax_line_ids.amount",
+        "amount_total",
+        "currency_id",
+        "company_id",
+        "date_invoice",
+    )
+    def _compute_amount(self):
+        super(AccountInvoice, self)._compute_amount()
+        for invoice in self:
+            invoice.amount_rc = -invoice.compute_rc_amount_tax()
+            invoice.rc = (True
+                          if invoice.invoice_line_ids.filtered(lambda ln: ln.rc)
+                          else False)
+            invoice._compute_net_pay()
 
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
@@ -441,7 +445,10 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).invoice_validate()
         fp = self.fiscal_position_id
         rc_type = fp and fp.rc_type_id
-        if rc_type and rc_type.method == "selfinvoice" and self.amount_total:
+        if (
+                self.type in ("in_invoice", "in_refund")
+                and rc_type and rc_type.method == "selfinvoice"
+                and self.amount_total):
             if not rc_type.with_supplier_self_invoice:
                 self.generate_self_invoice()
             else:
@@ -543,3 +550,132 @@ class AccountInvoice(models.Model):
                 for tax in taxes:
                     res += tax["amount"]
         return res
+
+    def get_receivable_line_ids(self):
+        if not self.id:
+            return []
+        query = (
+            "SELECT l.id "
+            "FROM account_move_line l, account_invoice i "
+            "WHERE i.id = %s AND l.move_id = i.move_id "
+            "AND l.account_id = i.account_id order by date_maturity"
+        )
+        self._cr.execute(query, (self.id,))
+        return [row[0] for row in self._cr.fetchall()]
+
+    def reconcile_invoice_lines(self):
+        reconcile_model = self.env["account.move.line.reconcile"]
+        ids = self.get_receivable_line_ids()
+        reconcile_model.with_context(active_ids=ids).trans_rec_reconcile_full()
+
+    def _build_debit_line(self, rc_tax):
+        vals = {
+            "name": _("Reverse Charge Payment Write Off"),
+            "partner_id": self.partner_id.id,
+            "account_id": rc_tax.account_id.id,
+            "journal_id": self.journal_id.id,
+            "date": self.date_invoice,
+            "date_maturity": self.date_invoice,
+            "debit": abs(self.amount_rc),
+            "credit": 0,
+            "tax_line_id": rc_tax.id,
+        }
+        if self.type == "out_refund":
+            vals["debit"] = 0
+            vals["credit"] = abs(self.amount_rc)
+        return vals
+
+    def _build_credit_line(self, rc_tax):
+        vals = {
+            "name": _("Reverse Charge Payment Write Off"),
+            "partner_id": self.partner_id.id,
+            "account_id": self.account_id.id,
+            "journal_id": self.journal_id.id,
+            "date": self.date_invoice,
+            "date_maturity": self.date_invoice,
+            "credit": abs(self.amount_rc),
+            "debit": 0,
+            "tax_line_id": rc_tax.id,
+        }
+        if self.type == "out_refund":
+            vals["credit"] = 0
+            vals["debit"] = abs(self.amount_rc)
+        return vals
+
+    @api.multi
+    def action_move_create(self):
+        res = super(AccountInvoice, self).action_move_create()
+        for invoice in self:
+            if (
+                    invoice.type in ("in_invoice", "in_refund")
+                    or invoice.amount_rc == 0
+                    or invoice.rc_purchase_invoice_id
+            ):
+                continue
+            posted = False
+            if invoice.move_id.state == "posted":
+                posted = True
+                invoice.move_id.state = "draft"
+            InvoiceLine = self.env["account.move.line"]
+            rc_tax = None
+            for rc_line in invoice.invoice_line_ids.filtered(lambda ln: ln.rc):
+                for tax in rc_line.invoice_line_tax_ids:
+                    rc_tax = tax
+                    break
+                if rc_tax:
+                    break
+            write_off_line_vals = invoice._build_debit_line(rc_tax)
+            write_off_line_vals["move_id"] = invoice.move_id.id
+            InvoiceLine.with_context(check_move_validity=False).create(
+                write_off_line_vals
+            )
+            write_off_line_vals = invoice._build_credit_line(rc_tax)
+            write_off_line_vals["move_id"] = invoice.move_id.id
+            InvoiceLine.with_context(check_move_validity=False).create(
+                write_off_line_vals
+            )
+            if posted:
+                invoice.move_id.state = "posted"
+            self.reconcile_invoice_lines()
+        return res
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = "account.invoice.line"
+
+    rc = fields.Boolean("RC", default=False)
+
+    @api.multi
+    @api.depends("invoice_line_tax_ids")
+    def _set_rc_flag(self, invoice=None):
+        # self.ensure_one()
+        for line in self:
+            inv = invoice or line.invoice_id
+            if inv.type in ["in_invoice", "in_refund"]:
+                inv_with_rc = bool(inv.fiscal_position_id.rc_type_id)
+            else:
+                inv_with_rc = True
+            for tax in line.invoice_line_tax_ids:
+                line.rc = inv_with_rc and tax.rc
+
+    @api.onchange("invoice_line_tax_ids")
+    def _onchange_invoice_line_tax_ids(self):
+        res = super(AccountInvoiceLine, self)._onchange_invoice_line_tax_ids()
+        if self.invoice_id.type in ["in_invoice", "in_refund"]:
+            inv_with_rc = bool(self.invoice_id.fiscal_position_id.rc_type_id)
+        else:
+            inv_with_rc = True
+        for tax in self.invoice_line_tax_ids:
+            if tax.rc and not inv_with_rc:
+                return {
+                    "warning": {
+                        "title": "Invalid tax code",
+                        "message": (
+                            "Invalid tax code '%s' for fiscal position %s!\n"
+                            "You need a Reverse Charge fiscal position to do this."
+                            % (tax.name, self.invoice_id.fiscal_position_id.name)),
+                    }
+                }
+            self._set_rc_flag()
+        return res
+

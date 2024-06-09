@@ -1,8 +1,14 @@
-Module to handle reverse charge IVA in vendor bills.
+Module to manage reverse charge tax in vendor bills and customer invoices.
 
-The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
-Furthermore, the vendor bill cancellation and reopening procedure is automated.
+Tis module allows you to automate the accounting entries linked to invoices from
+intra-EU and extra-EU suppliers.
+In order to manage the reverse charge tax a self-invoice is created and an account
+entry is created too.
+After these 3 entries, the amount to pay to supplier is the invoice total without tax.
 
-It is also possible to use the "additional vendor self billing" mode.
-This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
-The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.
+All fiscal and legal Italian laws are satisfied,
+
+When supplier invoice is cancelled, the self invoice is cancelled too and account
+entry is deleted.
+
+For customer invoices tha due amount is evaluated.

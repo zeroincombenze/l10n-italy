@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 import logging
 from .testenv import MainTest as SingleTransactionCase
 
@@ -8,49 +7,88 @@ _logger = logging.getLogger(__name__)
 
 # Record data for base models
 
-TEST_ACCOUNT_ACCOUNT = {
-    "z0bug.coa_tax_recv": {
-        "code": "111200",
-        "reconcile": False,
-        "user_type_id": "account.data_account_type_current_liabilities",
-        "name": "IVA n/debito",
-    },
-    "z0bug.coa_sale": {
-        "code": "200000",
-        "name": "Merci c/vendita",
-        "user_type_id": "account.data_account_type_revenue",
-        "reconcile": False,
-    },
-    "z0bug.coa_sale2": {
-        "code": "200010",
-        "name": "Ricavi da servizi",
-        "user_type_id": "account.data_account_type_revenue",
-        "reconcile": False,
-    },
-}
 
 TEST_SETUP_LIST = [
     "account.account",
+    "account.tax",
+    "account.journal",
+    "account.rc.type",
+    "account.rc.type.tax",
+    "account.fiscal.position",
+    "account.payment.term",
+    "account.payment.term.line",
+    "product.template",
+    "res.partner",
+    "account.invoice",
+    "account.invoice.line",
 ]
 
 
 class TestReverseCharge(SingleTransactionCase):
     def setUp(self):
         super(TestReverseCharge, self).setUp()
+        # Add following statement just for get debug information
         self.debug_level = 0
-        data = {"TEST_SETUP_LIST": TEST_SETUP_LIST}
-        for resource in TEST_SETUP_LIST:
-            item = "TEST_%s" % resource.upper().replace(".", "_")
-            data[item] = globals()[item]
-        self.declare_all_data(data)
-        self.setup_env()
+        self.odoo_commit_test = True
+        self.setup_company(
+            self.default_company(),
+            xref="z0bug.mycompany",
+            partner_xref="z0bug.partner_mycompany",
+            recv_xref="z0bug.coa_recv",
+            values={
+                "name": "Test Company",
+                "vat": "IT05111810015",
+                "country_id": "base.it",
+            },
+        )
+        self.setup_env()  # Create test environment
 
     def tearDown(self):
         super(TestReverseCharge, self).tearDown()
-        if os.environ.get("ODOO_COMMIT_TEST", ""):
-            # Save test environment, so it is available to use
-            self.env.cr.commit()  # pylint: disable=invalid-commit
-            _logger.info("✨ Test data committed")
 
-    def test_ddt(self):
-        pass
+    def _test_rc_1_purchase(self):
+        invoice = self.resource_browse("z0bug.invoice_ZI_6")
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.amount_tax, 32.97)
+        self.assertEqual(invoice.amount_total, 182.85)
+        self.assertEqual(invoice.amount_net_pay, 160.85)
+        self.assertEqual(invoice.residual, 160.85)
+        self.assertEqual(invoice.amount_rc, -22.0)
+        self.assertEqual(invoice.rc_self_invoice_id.amount_tax, 22.0)
+        self.assertEqual(invoice.rc_self_invoice_id.amount_total, 122.0)
+
+    def _test_rc_1_sale(self):
+        invoice = self.resource_browse("z0bug.invoice_Z0_9")
+        invoice.action_invoice_open()
+        self.assertEqual(round(invoice.amount_tax, 2), 32.91)
+        self.assertEqual(invoice.amount_total, 182.50)
+        self.assertEqual(invoice.amount_net_pay, 160.50)
+        self.assertEqual(invoice.residual, 160.50)
+        self.assertEqual(invoice.amount_rc, -22.0)
+
+        template = []
+        tmpl_move = []
+        vals = {
+            "account_id": invoice.account_id.id,
+            "debit": 182.50,
+            "credit": 0.0,
+            "tax_line_id": False,
+            "tax_ids": [],
+        }
+        tmpl_move.append(vals)
+        vals = {
+            "account_id": invoice.account_id.id,
+            "debit": 0.0,
+            "credit": 22.0,
+            "tax_line_id": self.env.ref("z0bug.tax_a17c6cv"),
+            "tax_ids": [],
+        }
+        tmpl_move.append(vals)
+        template.append({"line_ids": tmpl_move})
+        self.validate_records(template, invoice.move_id)
+
+    def test_rc(self):
+        _logger.info("🎺 Testing Reverse Charge")
+        self._test_rc_1_purchase()
+        self._test_rc_1_sale()
+

@@ -173,16 +173,6 @@ TEST_ACCOUNT_INVOICE_LINE = {
         "invoice_line_tax_wt_ids": "z0bug.wt_1040",
         "quantity": 1,
     },
-    "z0bug.invoice_ZI_1_1": {
-        "product_id": "z0bug.product_product_0",
-        "invoice_id": "z0bug.invoice_ZI_1",
-        "price_unit": 1500,
-        "account_id": "external.4204",
-        "name": "Costituzione società",
-        "invoice_line_tax_ids": "external.22a",
-        "invoice_line_tax_wt_ids": "z0bug.wt_1040",
-        "quantity": 1,
-    },
 }
 
 # Record data for models to test

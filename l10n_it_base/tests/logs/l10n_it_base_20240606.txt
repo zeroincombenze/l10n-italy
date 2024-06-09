@@ -1,0 +1,108 @@
+2024-06-06 12:06:57,000 39043 DAEMON test_l10n_it_base_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-06-06 10:08:58,732 41814 INFO ? odoo: Odoo version 10.0
+2024-06-06 10:08:58,732 41814 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_base/tests/logs/zero10.l10n-italy.l10n_it_base.conf
+2024-06-06 10:08:58,732 41814 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-06-06 10:08:58,733 41814 INFO ? odoo: database: odoo10@localhost:5432
+2024-06-06 10:08:58,751 41814 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:47414
+2024-06-06 10:08:58,766 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading 1 modules...
+2024-06-06 10:08:58,859 41814 INFO test_l10n_it_base_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2024-06-06 10:08:59,509 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading 33 modules...
+2024-06-06 10:08:59,646 41814 INFO test_l10n_it_base_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-06-06 10:08:59,841 41814 INFO test_l10n_it_base_10 odoo.modules.loading: 33 modules loaded in 0.33s, 0 queries
+2024-06-06 10:08:59,848 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading 34 modules...
+2024-06-06 10:09:00,606 41814 INFO test_l10n_it_base_10 odoo.modules.registry: module l10n_it_base: creating or updating database tables
+2024-06-06 10:09:00,793 41814 INFO test_l10n_it_base_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2024-06-06 10:09:00,847 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading l10n_it_base/security/ir.model.access.csv
+2024-06-06 10:09:00,896 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading l10n_it_base/views/res_partner_view.xml
+2024-06-06 10:09:01,212 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading l10n_it_base/views/city_view.xml
+2024-06-06 10:09:01,324 41814 INFO test_l10n_it_base_10 odoo.modules.loading: loading l10n_it_base/data/res.city.xml
+2024-06-06 10:09:26,627 41814 INFO test_l10n_it_base_10 odoo.modules.module: odoo.addons.l10n_it_base.tests.test_partner running tests.
+2024-06-06 10:09:26,627 41814 INFO test_l10n_it_base_10 odoo.addons.l10n_it_base.tests.test_partner: test_res_partner (odoo.addons.l10n_it_base.tests.test_partner.ResPartner)
+2024-06-06 10:09:26,714 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module base: loading translation file (it) for language it_IT
+2024-06-06 10:09:26,715 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/odoo/addons/base/i18n/it.po
+2024-06-06 10:09:28,167 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web: loading translation file (it) for language it_IT
+2024-06-06 10:09:28,168 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web/i18n/it.po
+2024-06-06 10:09:28,334 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_kanban: loading translation file (it) for language it_IT
+2024-06-06 10:09:28,334 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_kanban/i18n/it.po
+2024-06-06 10:09:28,357 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module base_setup: loading translation file (it) for language it_IT
+2024-06-06 10:09:28,357 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/base_setup/i18n/it.po
+2024-06-06 10:09:28,404 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module decimal_precision: loading translation file (it) for language it_IT
+2024-06-06 10:09:28,404 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/decimal_precision/i18n/it.po
+2024-06-06 10:09:28,914 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module bus: loading translation file (it) for language it_IT
+2024-06-06 10:09:28,914 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/bus/i18n/it.po
+2024-06-06 10:09:29,489 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_tour: loading translation file (it) for language it_IT
+2024-06-06 10:09:29,489 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_tour/i18n/it.po
+2024-06-06 10:09:29,512 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module mail: loading translation file (it) for language it_IT
+2024-06-06 10:09:29,512 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/mail/i18n/it.po
+2024-06-06 10:09:30,041 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module report: loading translation file (it) for language it_IT
+2024-06-06 10:09:30,042 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/report/i18n/it.po
+2024-06-06 10:09:30,120 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module product: loading translation file (it) for language it_IT
+2024-06-06 10:09:30,120 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/product/i18n/it.po
+2024-06-06 10:09:30,462 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module analytic: loading translation file (it) for language it_IT
+2024-06-06 10:09:30,462 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/analytic/i18n/it.po
+2024-06-06 10:09:31,171 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_planner: loading translation file (it) for language it_IT
+2024-06-06 10:09:31,171 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_planner/i18n/it.po
+2024-06-06 10:09:31,204 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module account: loading translation file (it) for language it_IT
+2024-06-06 10:09:31,204 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/account/i18n/it.po
+2024-06-06 10:09:32,776 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module account_bank_statement_import: loading translation file (it) for language it_IT
+2024-06-06 10:09:32,776 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/account_bank_statement_import/i18n/it.po
+2024-06-06 10:09:32,876 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_settings_dashboard: loading translation file (it) for language it_IT
+2024-06-06 10:09:32,877 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_settings_dashboard/i18n/it.po
+2024-06-06 10:09:32,905 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module fetchmail: loading translation file (it) for language it_IT
+2024-06-06 10:09:32,905 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/fetchmail/i18n/it.po
+2024-06-06 10:09:32,974 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module l10n_generic_coa: no translation for language it
+2024-06-06 10:09:32,976 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module l10n_us: no translation for language it
+2024-06-06 10:09:32,978 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module auth_crypt: loading translation file (it) for language it_IT
+2024-06-06 10:09:32,979 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/auth_crypt/i18n/it.po
+2024-06-06 10:09:33,687 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_editor: loading translation file (it) for language it_IT
+2024-06-06 10:09:33,687 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_editor/i18n/it.po
+2024-06-06 10:09:33,804 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module sales_team: loading translation file (it) for language it_IT
+2024-06-06 10:09:33,805 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/sales_team/i18n/it.po
+2024-06-06 10:09:33,889 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module procurement: loading translation file (it) for language it_IT
+2024-06-06 10:09:33,890 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/procurement/i18n/it.po
+2024-06-06 10:09:34,060 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module sale: loading translation file (it) for language it_IT
+2024-06-06 10:09:34,060 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/sale/i18n/it.po
+2024-06-06 10:09:34,446 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module auth_signup: loading translation file (it) for language it_IT
+2024-06-06 10:09:34,446 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/auth_signup/i18n/it.po
+2024-06-06 10:09:34,494 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module portal: loading translation file (it) for language it_IT
+2024-06-06 10:09:34,494 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/portal/i18n/it.po
+2024-06-06 10:09:35,066 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module payment: loading translation file (it) for language it_IT
+2024-06-06 10:09:35,066 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/payment/i18n/it.po
+2024-06-06 10:09:35,208 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module portal_sale: loading translation file (it) for language it_IT
+2024-06-06 10:09:35,208 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/portal_sale/i18n/it.po
+2024-06-06 10:09:35,223 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module base_import: loading translation file (it) for language it_IT
+2024-06-06 10:09:35,223 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/base_import/i18n/it.po
+2024-06-06 10:09:35,368 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_calendar: loading translation file (it) for language it_IT
+2024-06-06 10:09:35,368 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_calendar/i18n/it.po
+2024-06-06 10:09:35,909 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_diagram: loading translation file (it) for language it_IT
+2024-06-06 10:09:35,909 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_diagram/i18n/it.po
+2024-06-06 10:09:36,450 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module account_check_printing: loading translation file (it) for language it_IT
+2024-06-06 10:09:36,450 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/account_check_printing/i18n/it.po
+2024-06-06 10:09:36,513 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module payment_transfer: loading translation file (it) for language it_IT
+2024-06-06 10:09:36,513 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/payment_transfer/i18n/it.po
+2024-06-06 10:09:36,531 41814 INFO test_l10n_it_base_10 odoo.addons.base.ir.ir_translation: module web_kanban_gauge: loading translation file (it) for language it_IT
+2024-06-06 10:09:36,532 41814 INFO test_l10n_it_base_10 odoo.tools.translate: loading /home/odoo/10.0/addons/web_kanban_gauge/i18n/it.po
+2024-06-06 10:09:36,558 41814 INFO test_l10n_it_base_10 odoo.addons.l10n_it_base.tests.test_partner: 🎺 Testing res.partner[z0bug.res_partner_1]
+2024-06-06 10:09:37,024 41814 INFO test_l10n_it_base_10 odoo.addons.l10n_it_base.tests.test_partner: Ran 1 test in 10.397s
+2024-06-06 10:09:37,025 41814 INFO test_l10n_it_base_10 odoo.addons.l10n_it_base.tests.test_partner: OK
+2024-06-06 10:09:37,025 41814 INFO test_l10n_it_base_10 odoo.modules.module: odoo.addons.l10n_it_base.tests.test_partner tested in 10.40s, 25898 queries
+2024-06-06 10:09:37,049 41814 INFO test_l10n_it_base_10 odoo.modules.loading: 34 modules loaded in 37.20s, 25904 queries
+2024-06-06 10:09:37,525 41814 INFO test_l10n_it_base_10 odoo.modules.loading: Modules loaded.
+2024-06-06 10:09:37,532 41814 INFO test_l10n_it_base_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-06-06 10:09:37,533 41814 INFO test_l10n_it_base_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-06-06 10:09:37,594 41814 INFO test_l10n_it_base_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-06-06 10:09:37,595 41814 INFO test_l10n_it_base_10 odoo.service.server: Initiating shutdown
+2024-06-06 10:09:37,595 41814 INFO test_l10n_it_base_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_base[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_base/tests/logs/coverage_l10n_it_base_10rc -m
+[34;107mName                                            Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------
+l10n-italy/l10n_it_base/models/res_city.py         13      0   100%
+l10n-italy/l10n_it_base/models/res_partner.py      94     19    80%   16, 30, 32, 75-76, 96, 100, 104-105, 108-109, 112-122
+-----------------------------------------------------------------------------
+TOTAL                                             107     19    82%
+[0m

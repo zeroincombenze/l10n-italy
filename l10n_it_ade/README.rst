@@ -203,7 +203,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.0.3.9 (2024-01-28)
+10.0.0.3.9 (2024-01-29)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Fiscal document TD28 / Documento fiscale TD28
@@ -238,15 +238,10 @@ ChangeLog History | Cronologia modifiche
 * [IMP] Best record display/ Migliorie visualizzazione codice
 * [IMP] Tax nature renamed
 
-10.0.0.3.3 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Regression test
 
 
-
-Credits | Gratitutide e stima
-=============================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -271,7 +266,6 @@ Contributors | Partecipanti
 Acknowledges | Riconoscimenti
 -----------------------------
 
-* `Alessandro Camilli <alessandrocamilli@openforce.it>`__
 * `Davide Corio <info@davidecorio.com>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Alex Comba <alex.comba@agilebg.com>`__
@@ -303,7 +297,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-29
+Last Update / Ultimo aggiornamento: 2024-06-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

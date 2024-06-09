@@ -1,0 +1,42 @@
+2024-06-06 13:34:05,000 115940 DAEMON test_l10n_it_fiscalcode_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-06-06 11:35:49,859 118138 INFO ? odoo: Odoo version 10.0
+2024-06-06 11:35:49,860 118138 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_fiscalcode/tests/logs/zero10.l10n-italy.l10n_it_fiscalcode.conf
+2024-06-06 11:35:49,860 118138 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-06-06 11:35:49,860 118138 INFO ? odoo: database: odoo10@localhost:5432
+2024-06-06 11:35:49,876 118138 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:52643
+2024-06-06 11:35:49,891 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading 1 modules...
+2024-06-06 11:35:49,979 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2024-06-06 11:35:50,545 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading 31 modules...
+2024-06-06 11:35:50,642 118138 INFO test_l10n_it_fiscalcode_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-06-06 11:35:50,730 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: 31 modules loaded in 0.19s, 0 queries
+2024-06-06 11:35:50,736 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading 32 modules...
+2024-06-06 11:35:51,049 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.registry: module l10n_it_fiscalcode: creating or updating database tables
+2024-06-06 11:35:51,334 118138 INFO test_l10n_it_fiscalcode_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2024-06-06 11:35:51,389 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading l10n_it_fiscalcode/views/fiscalcode_view.xml
+2024-06-06 11:35:51,489 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading l10n_it_fiscalcode/wizard/compute_fc_view.xml
+2024-06-06 11:35:51,616 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading l10n_it_fiscalcode/data/res.city.it.code.csv
+2024-06-06 11:36:43,364 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: loading l10n_it_fiscalcode/security/ir.model.access.csv
+2024-06-06 11:36:43,892 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.module: odoo.addons.l10n_it_fiscalcode.tests.test_fiscalcode running tests.
+2024-06-06 11:36:43,894 118138 INFO test_l10n_it_fiscalcode_10 odoo.addons.l10n_it_fiscalcode.tests.test_fiscalcode: test_fiscalcode_compute (odoo.addons.l10n_it_fiscalcode.tests.test_fiscalcode.TestFiscalCode)
+2024-06-06 11:36:44,314 118138 INFO test_l10n_it_fiscalcode_10 odoo.addons.l10n_it_fiscalcode.tests.test_fiscalcode: Ran 1 test in 0.420s
+2024-06-06 11:36:44,315 118138 INFO test_l10n_it_fiscalcode_10 odoo.addons.l10n_it_fiscalcode.tests.test_fiscalcode: OK
+2024-06-06 11:36:44,353 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: 32 modules loaded in 53.62s, 308 queries
+2024-06-06 11:36:45,070 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: Modules loaded.
+2024-06-06 11:36:45,078 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-06-06 11:36:45,079 118138 INFO test_l10n_it_fiscalcode_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-06-06 11:36:45,080 118138 INFO test_l10n_it_fiscalcode_10 odoo.service.server: Initiating shutdown
+2024-06-06 11:36:45,080 118138 INFO test_l10n_it_fiscalcode_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_fiscalcode[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_fiscalcode/tests/logs/coverage_l10n_it_fiscalcode_10rc -m
+[34;107mName                                                       Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------
+l10n-italy/l10n_it_fiscalcode/models/res_city_it_code.py      29      0   100%
+l10n-italy/l10n_it_fiscalcode/models/res_partner.py          137    100    27%   14-15, 18-19, 37, 43, 46, 52, 57-68, 72-76, 80-84, 88-128, 162-201, 204-212, 215-219, 222-223
+l10n-italy/l10n_it_fiscalcode/wizard/compute_fc.py            86     38    56%   45-54, 84, 89-92, 94, 104, 107-134, 139, 150, 155, 165
+----------------------------------------------------------------------------------------
+TOTAL                                                        252    138    45%
+[0m

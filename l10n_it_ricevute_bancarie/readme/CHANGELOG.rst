@@ -1,4 +1,4 @@
-10.0.1.3.16 (2024-05-31)
+10.0.1.3.16 (2024-06-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso

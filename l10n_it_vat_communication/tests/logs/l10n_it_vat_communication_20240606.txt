@@ -1,0 +1,67 @@
+2024-06-06 12:25:52,000 64437 DAEMON test_l10n_it_vat_communication_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-06-06 10:28:11,988 67070 INFO ? odoo: Odoo version 10.0
+2024-06-06 10:28:11,989 67070 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_vat_communication/tests/logs/zero10.l10n-italy.l10n_it_vat_communication.conf
+2024-06-06 10:28:11,990 67070 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-06-06 10:28:11,990 67070 INFO ? odoo: database: odoo10@localhost:5432
+2024-06-06 10:28:12,019 67070 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:48550
+2024-06-06 10:28:12,040 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading 1 modules...
+2024-06-06 10:28:12,218 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: 1 modules loaded in 0.18s, 0 queries
+2024-06-06 10:28:13,664 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading 37 modules...
+2024-06-06 10:28:13,774 67070 INFO test_l10n_it_vat_communication_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-06-06 10:28:13,897 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: 37 modules loaded in 0.23s, 0 queries
+2024-06-06 10:28:13,902 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading 38 modules...
+2024-06-06 10:28:14,157 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_xml_company in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,157 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_xml_invoice in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,157 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_xml_fattura_header in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.communication_open in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.build_tax_tree in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_xml_cessionario_cedente in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.communication_draft in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.test_open in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_invoice_list in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_riepilogo_list in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_partner_list in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,158 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.set_progressivo_telematico in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,159 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.onchange_fiscalcode in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,159 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method AccountVatCommunication.get_xml_riepilogo in module odoo.addons.l10n_it_vat_communication.models.account
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_export_vat_communication_DTR in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_export_vat_communication in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_get_name in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_get_sede in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_get_cedente_prestatore in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_get_dati_fattura_header in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,349 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_get_cessionario_committente in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,350 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_get_dte_dtr in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,350 67070 WARNING test_l10n_it_vat_communication_10 odoo.api: Deprecated method WizardVatCommunication.old_export_vat_communication_DTE in module odoo.addons.l10n_it_vat_communication.wizard.models.wizard_export
+2024-06-06 10:28:14,381 67070 WARNING test_l10n_it_vat_communication_10 odoo.fields: Field account.vat.communication.dte.line.tax_vat_id with unknown comodel_name 'account.tax.code'
+2024-06-06 10:28:14,397 67070 WARNING test_l10n_it_vat_communication_10 odoo.fields: Field account.vat.communication.dtr.line.tax_vat_id with unknown comodel_name 'account.tax.code'
+2024-06-06 10:28:14,457 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.registry: module l10n_it_vat_communication: creating or updating database tables
+2024-06-06 10:28:15,314 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading l10n_it_vat_communication/security/ir.model.access.csv
+2024-06-06 10:28:15,471 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading l10n_it_vat_communication/wizard/views/add_period.xml
+2024-06-06 10:28:15,527 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading l10n_it_vat_communication/wizard/views/remove_period.xml
+2024-06-06 10:28:15,570 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading l10n_it_vat_communication/views/account_view.xml
+2024-06-06 10:28:15,794 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading l10n_it_vat_communication/wizard/views/wizard_export_view.xml
+2024-06-06 10:28:15,841 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: loading l10n_it_vat_communication/wizard/views/set_invoice_commtype_view.xml
+2024-06-06 10:28:16,050 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: 38 modules loaded in 2.15s, 18 queries
+2024-06-06 10:28:16,568 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: Modules loaded.
+2024-06-06 10:28:16,574 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-06-06 10:28:16,576 67070 INFO test_l10n_it_vat_communication_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-06-06 10:28:16,638 67070 INFO test_l10n_it_vat_communication_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-06-06 10:28:16,640 67070 INFO test_l10n_it_vat_communication_10 odoo.service.server: Initiating shutdown
+2024-06-06 10:28:16,640 67070 INFO test_l10n_it_vat_communication_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_vat_communication[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_vat_communication/tests/logs/coverage_l10n_it_vat_communication_10rc -m
+[34;107mName                                                                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_vat_communication/models/account.py                         629    492    22%   20-21, 71-105, 109-112, 117-121, 124-132, 135-138, 249-255, 258-259, 264-281, 284-295, 298, 301, 304, 322-352, 355-361, 373-512, 515-599, 602-606, 609-613, 616-630, 635-674, 681-685, 692-696, 702-714, 722-725, 734-748, 756-774, 783-790, 796-800, 807-811, 816-930, 933-947, 950-990, 1004-1022, 1028-1039, 1043-1048, 1140-1158, 1164-1174, 1180-1186
+l10n-italy/l10n_it_vat_communication/wizard/models/add_period.py                16     11    31%   19-38
+l10n-italy/l10n_it_vat_communication/wizard/models/remove_period.py             23     13    43%   17, 21-25, 32-43
+l10n-italy/l10n_it_vat_communication/wizard/models/set_invoice_commtype.py       8      4    50%   10-15
+l10n-italy/l10n_it_vat_communication/wizard/models/wizard_export.py            266    228    14%   21-22, 83-85, 100, 103, 108-117, 120-121, 130-205, 208-209, 219-260, 263-264, 275-306, 309-310, 321-352, 355-356, 367-499, 502-503, 513-516, 519-520, 525-528, 531-532, 537-589, 599-600
+----------------------------------------------------------------------------------------------------------
+TOTAL                                                                          942    748    21%
+[0m

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019-22 Antonio M. Vigliotti - SHS-Av srl
+# Copyright 2019-24 Antonio M. Vigliotti - SHS-Av srl
 
 from odoo import api, fields, models
 

@@ -172,7 +172,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.8.26 (2024-05-30)
+10.0.1.8.26 (2024-06-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Wrong inheritance for delivery values
@@ -218,6 +218,7 @@ ChangeLog History | Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Sale confirm remove duplicate delivery lines / Conferma ordine rimuove righe consegna duplicate
+* [FIX] Service line marked as invoiced / Righe servizi impostate come fatturate
 
 
 10.0.1.8.18 (2022-12-14)
@@ -305,7 +306,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-05-30
+Last Update / Ultimo aggiornamento: 2024-06-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

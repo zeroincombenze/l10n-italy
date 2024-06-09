@@ -1,8 +1,8 @@
-=========================================================
-|icon| Reverse Charge IVA/l10n_it_reverse_charge 10.0.1.6
-=========================================================
+========================================================
+|icon| Reverse Charge Tax/IVA in reverse charge 10.0.1.7
+========================================================
 
-**Reverse Charge for Italy**
+**Manage Reverse Charge Tax for Italy**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_reverse_charge/static/description/icon.png
 
@@ -14,26 +14,38 @@
 Overview | Panoramica
 =====================
 
-|en| Module to handle reverse charge IVA in vendor bills.
+|en| Module to manage reverse charge tax in vendor bills and customer invoices.
 
-The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
-Furthermore, the vendor bill cancellation and reopening procedure is automated.
+Tis module allows you to automate the accounting entries linked to invoices from
+intra-EU and extra-EU suppliers.
+In order to manage the reverse charge tax a self-invoice is created and an account
+entry is created too.
+After these 3 entries, the amount to pay to supplier is the invoice total without tax.
 
-It is also possible to use the "additional vendor self billing" mode.
-This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
-The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.
+All fiscal and legal Italian laws are satisfied,
+
+When supplier invoice is cancelled, the self invoice is cancelled too and account
+entry is deleted.
+
+For customer invoices tha due amount is evaluated.
 
 
-|it| Inversione contabile
+|it| Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore e
+nelle fatture clienti.
 
-Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore.
+Questo modulo permette di automatizzare le registrazioni contabili collegate alle
+fatture fornitori intra UE ed extra UE, necessarie per gestire l'inversione
+contabile IVA.
+Per gestire l'inversione contabile viene generata un'auto-fattura di vendita che
+storna l'IVA in acquisto e una registrazione di giroconto per azzerare il credito
+derivante dall'auto-fattura.
+Con queste 3 operazioni il debito verso la fattura di acquisto è pari alla sola
+imponibile e l'IVA è riportata nei documenti fiscali come previsto dalla normativa.
 
-Il modulo permette di automatizzare le registrazioni contabili derivate dalle fatture fornitori intra UE ed extra UE mediante l'inversione contabile IVA.
-Inoltre è automatizzata la procedura di annullamento e riapertura della fattura fornitore.
+L'annullo della fattura fornitore, annulla anche l'auto-fattura ed elimina la
+registrazione di giroconto.
 
-È inoltre possibile utilizzare la modalità "con autofattura fornitore aggiuntiva".
-Questa modalità è usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
-L'autofattura passiva verrà poi totalmente riconciliata con l'autofattura attiva, anch'essa intestata alla propria azienda.
+Per le fatture di vendita viene soltanto calcolato l'importo da incassare.
 
 
 |thumbnail|
@@ -41,72 +53,32 @@ L'autofattura passiva verrà poi totalmente riconciliata con l'autofattura attiv
 .. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_reverse_charge/static/description/description.png
 
 
-Usage | Utilizzo
-----------------
+Configuration | Configurazione
+------------------------------
 
-To configure this module, you need to:
+☰ Accounting > Configuration > Account > Taxes
 
-Creare l'imposta **22% intra UE** Vendita:
+Create sale tax **22% intra UE**:
 
 .. figure:: /l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
    :alt: 22% intra UE Vendita
-   :width: 600 px
+   :width: 400px
 
-Creare l'imposta **22% intra UE** Acquisti:
+Create purchase tax **22% intra UE**:
 
-.. figure:: /l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
-  :alt: 22% intra UE Acqisti
-  :width: 600 px
+Create sale tax **22% extra UE**:
 
-Creare l'imposta **22% extra UE** Vendita:
-
-.. figure:: /l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
-   :alt: 22% extra UE Vendita
-   :width: 600 px
-
-Creare l'imposta **22% extra UE** Acquisti:
+Create purchase tax **22% extra UE**:
 
 .. figure:: /l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
   :alt: 22% extra UE Acqisti
-  :width: 600 px
+  :width: 400px
 
-Creare il tipo reverse charge **Intra UE (autofattura)**:
+☰ Accounting > Configuration > Account > RC Types
 
-.. figure:: /l10n_it_reverse_charge/static/description/rc_selfinvoice.png
-  :alt: reverse charge con Autofattura
-  :width: 600 px
+Create reverse chare tye **Intra UE (autofattura)**:
 
-Il sezionale autofattura deve essere di tipo 'vendita'
-
-Creare il tipo reverse charge **Extra-EU (autofattura)** :
-
-.. figure:: /l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
-  :alt: reverse charge con Autofattura
-  :width: 600 px
-
-Il 'Sezionale autofattura passiva' deve essere di tipo 'acquisto'
-
-Il 'Conto transitorio autofattura' va configurato come segue:
-
-.. figure:: /l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
-  :alt: conto transitorio Autofattura
-  :width: 600 px
-
-Il 'Sezionale pagamento autofattura' deve essere configurato con il 'Conto transitorio autofattura':
-
-.. figure:: /l10n_it_reverse_charge/static/description/sezionale_riconciliazione.png
-  :alt: Sezionale pagamento autofattura
-  :width: 600 px
-
-Nella posizione fiscale, impostare il tipo reverse charge
-
-.. figure:: /l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
-  :alt: Impostazione posizioni fiscali Intra CEE
-  :width: 600 px
-
-.. figure:: /l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
-  :alt: Impostazione posizioni fiscali Extra CEE
-  :width: 600 px
+☰ Accounting > Configuration > Account > Fiscal Position
 
 
 
@@ -205,6 +177,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.7 (2024-06-09)
+~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Tax with RC requires RC fiscal position / Controllo codici IVA con RC e posizione fiscale
+* [IMP] Show net to pay (see l10n_it_account) / Visualizza netto a pagare (vedere l10n_it_account)
+* [IMP] RC Amount stored in invoice record / Importo IVA RC in fattura
+* [IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare
+* [IMP] Regression tests
+* [QUA] Test coverage 64% (410: 149+261) [22 TestPoints] - quality rating 47 (target 100)
+
 10.0.1.6 (2023-02-20)
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -243,7 +225,7 @@ Authors | Autori
 Contributors | Partecipanti
 ---------------------------
 
-* Davide Corio <False>
+* `Davide Corio <davide.corio@abstract.it>`__
 * `Alex Comba <alex.comba@agilebg.com>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
@@ -274,9 +256,9 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-04-22
+Last Update / Ultimo aggiornamento: 2024-06-09
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
