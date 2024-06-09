@@ -1,0 +1,1 @@
+2024-06-09 21:29:44,000 1233984 DAEMON test_odoo_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate

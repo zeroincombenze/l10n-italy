@@ -568,7 +568,7 @@ class AccountInvoice(models.Model):
         ids = self.get_receivable_line_ids()
         reconcile_model.with_context(active_ids=ids).trans_rec_reconcile_full()
 
-    def _build_debit_line(self, rc_tax):
+    def _build_rc_debit_line(self, rc_tax):
         vals = {
             "name": _("Reverse Charge Payment Write Off"),
             "partner_id": self.partner_id.id,
@@ -585,7 +585,7 @@ class AccountInvoice(models.Model):
             vals["credit"] = abs(self.amount_rc)
         return vals
 
-    def _build_credit_line(self, rc_tax):
+    def _build_rc_credit_line(self, rc_tax):
         vals = {
             "name": _("Reverse Charge Payment Write Off"),
             "partner_id": self.partner_id.id,
@@ -624,12 +624,12 @@ class AccountInvoice(models.Model):
                     break
                 if rc_tax:
                     break
-            write_off_line_vals = invoice._build_debit_line(rc_tax)
+            write_off_line_vals = invoice._build_rc_debit_line(rc_tax)
             write_off_line_vals["move_id"] = invoice.move_id.id
             InvoiceLine.with_context(check_move_validity=False).create(
                 write_off_line_vals
             )
-            write_off_line_vals = invoice._build_credit_line(rc_tax)
+            write_off_line_vals = invoice._build_rc_credit_line(rc_tax)
             write_off_line_vals["move_id"] = invoice.move_id.id
             InvoiceLine.with_context(check_move_validity=False).create(
                 write_off_line_vals

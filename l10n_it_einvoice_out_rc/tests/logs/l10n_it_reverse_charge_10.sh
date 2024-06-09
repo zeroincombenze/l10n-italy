@@ -1,0 +1,1 @@
+cd /home/odoo/10.0; /home/odoo/10.0/odoo-bin --stop-after-init -d test_l10n_it_reverse_charge_10 --config=/home/odoo/10.0/l10n-italy/l10n_it_reverse_charge/tests/logs/zero10.l10n_it_reverse_charge.conf --log-level=error -i account,account_accountant,account_cancel,analytic,base,base_setup,bus,decimal_precision,l10n_it_ade,mail,product,report,web,web_kanban,web_planner,web_tour

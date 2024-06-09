@@ -185,7 +185,7 @@ ChangeLog History | Cronologia modifiche
 * [IMP] RC Amount stored in invoice record / Importo IVA RC in fattura
 * [IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare
 * [IMP] Regression tests
-* [QUA] Test coverage 64% (410: 149+261) [22 TestPoints] - quality rating 47 (target 100)
+* [QUA] Test coverage 64% (410: 147+263) [26 TestPoints] - quality rating 49 (target 100)
 
 10.0.1.6 (2023-02-20)
 ~~~~~~~~~~~~~~~~~~~~~

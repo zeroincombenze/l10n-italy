@@ -29,92 +29,6 @@ class WizardExportFatturapa(models.TransientModel):
         )
         return True
 
-    # def setDatiTrasmissione(self, company, partner, fatturapa):
-    #     super(WizardExportFatturapa, self).setDatiTrasmissione(
-    #         company, partner, fatturapa)
-    #     if self.env.context.get("company_partner"):
-    #         company, partner = partner, company.partner_id
-    #         fatturapa.FatturaElettronicaHeader.DatiTrasmissione =
-    #                                   DatiTrasmissioneType()
-    #         self._setIdTrasmittente_rc(company, fatturapa)
-    #         self._setFormatoTrasmissione(partner, fatturapa)
-    #         self._setCodiceDestinatario(partner, fatturapa)
-    #         # self._setContattiTrasmittente(company, fatturapa)
-
-    # def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
-    #     res = super(WizardExportFatturapa, self)._setDatiAnagraficiCedente(
-    #         CedentePrestatore, company)
-    #     if self.env.context.get("rc_supplier"):
-    #         partner = self.env.context["rc_supplier"]
-    #         CedentePrestatore.DatiAnagrafici.CodiceFiscale = None
-    #         fiscal_document_type_codes = self.env.context.get(
-    #             'self_invoices_by_fiscaldoc')
-    #         # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
-    #         # TD17, TD18 e TD19; in caso contrario il file viene scartato
-    #         if partner.vat:
-    #             IdPaese = partner.vat[0:2]
-    #             IdCodice = partner.vat[2:]
-    #             if any([x in ['TD17', 'TD18', 'TD19'] for
-    #                     x in fiscal_document_type_codes]):
-    #                 if IdPaese == 'IT':
-    #                     IdPaese = partner.country_id.code
-    #                 if IdPaese == 'IT':
-    #                     IdPaese = "EU"
-    #                     IdCodice = partner.vat
-    #             if (IdPaese != 'EU' and
-    #                 IdPaese not in self.env['res.country'].search(
-    #                     []).mapped('code')):
-    #                 raise ValueError(_(
-    #                     "Country code does not exist or it is not mapped in"
-    #                     "countries: %s" % partner.vat[0:2]
-    #                 ))
-    #             CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-    #                 IdPaese=IdPaese, IdCodice=IdCodice)
-    #         elif partner.country_id.code and partner.country_id.code != 'IT':
-    #             CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-    #                 IdPaese=partner.country_id.code, IdCodice='99999999999')
-    #         else:
-    #             raise UserError(
-    #                 _("Impossible to set IdFiscaleIVA for %s") % partner.display_name)
-    #         CedentePrestatore.DatiAnagrafici.Anagrafica = AnagraficaType(
-    #             Denominazione=partner.wep_text(partner.name))
-    #     return res
-
-    # def _setSedeCedente(self, CedentePrestatore, company):
-    #     res = super(WizardExportFatturapa, self)._setSedeCedente(
-    #         CedentePrestatore, company)
-    #     if self.env.context.get("rc_supplier"):
-    #         partner = self.env.context["rc_supplier"]
-    #         if not partner.street:
-    #             raise UserError(
-    #                 _('Partner %s, Street is not set.') % partner.display_name)
-    #         if not partner.city:
-    #             raise UserError(
-    #                 _('Partner %s, City is not set.') % partner.display_name)
-    #         if not partner.country_id:
-    #             raise UserError(
-    #                 _('Partner %s, Country is not set.') % partner.display_name)
-    #         if partner.codice_destinatario == 'XXXXXXX':
-    #             CedentePrestatore.Sede = (
-    #                 IndirizzoType(
-    #                     Indirizzo=encode_for_export(partner.street, 60),
-    #                     CAP='00000',
-    #                     Comune=encode_for_export(partner.city, 60),
-    #                     Provincia='EE',
-    #                     Nazione=partner.country_id.code))
-    #         else:
-    #             if not partner.zip:
-    #                 raise UserError(
-    #                     _('Partner %s, ZIP is not set.') % partner.display_name)
-    #             CedentePrestatore.Sede = IndirizzoType(
-    #                 Indirizzo=encode_for_export(partner.street, 60),
-    #                 CAP=partner.zip,
-    #                 Comune=encode_for_export(partner.city, 60),
-    #                 Nazione=partner.country_id.code)
-    #             if partner.state_id:
-    #                 CedentePrestatore.Sede.Provincia = partner.state_id.code
-    #     return res
-
     def _setStabileOrganizzazione(self, CedentePrestatore, company):
         res = super(WizardExportFatturapa, self)._setStabileOrganizzazione(
             CedentePrestatore, company)
@@ -142,17 +56,6 @@ class WizardExportFatturapa(models.TransientModel):
             CedentePrestatore.RiferimentoAmministrazione = None
         return res
 
-    # def setCessionarioCommittente(self, partner, fatturapa):
-    #     super(WizardExportFatturapa, self).setCessionarioCommittente(
-    #         partner, fatturapa)
-    #     if self.env.context.get("company_partner"):
-    #         partner = self.env.context["company_partner"]
-    #         fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
-    #             CessionarioCommittenteType()
-    #         )
-    #         self._setDatiAnagraficiCessionario(partner, fatturapa)
-    #         self._setSedeCessionario(partner, fatturapa)
-
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
@@ -163,10 +66,6 @@ class WizardExportFatturapa(models.TransientModel):
             invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
                 fiscal_document_type_id
         ):
-            # body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento = (
-            #     invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
-            #     fiscal_document_type_id.code
-            # )
             body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento = (
                 invoice.fiscal_document_type_id.code)
         if invoice.type in ['out_refund', 'in_refund'] \

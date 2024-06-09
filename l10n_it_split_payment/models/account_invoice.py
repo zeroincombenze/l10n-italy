@@ -59,7 +59,7 @@ class AccountInvoice(models.Model):
         ids = invoice.get_receivable_line_ids()
         reconcile_model.with_context(active_ids=ids).trans_rec_reconcile_full()
 
-    def _build_debit_line(self):
+    def _build_sp_debit_line(self):
         if not self.company_id.sp_account_id:
             raise UserError(
                 _(
@@ -90,7 +90,7 @@ class AccountInvoice(models.Model):
             vals["credit"] = abs(self.amount_sp)
         return vals
 
-    def _build_credit_line(self, invoice):
+    def _build_sp_credit_line(self, invoice):
         move_line_pool = self.env["account.move.line"]
         ids = invoice.get_receivable_line_ids()
         if ids:
@@ -192,12 +192,12 @@ class AccountInvoice(models.Model):
                     invoice.move_id.state = "draft"
                 self._compute_split_payments()
                 line_model = self.env["account.move.line"]
-                write_off_line_vals = invoice._build_debit_line()
+                write_off_line_vals = invoice._build_sp_debit_line()
                 write_off_line_vals["move_id"] = invoice.move_id.id
                 line_model.with_context(check_move_validity=False).create(
                     write_off_line_vals
                 )
-                write_off_line_vals = invoice._build_credit_line(invoice)
+                write_off_line_vals = invoice._build_sp_credit_line(invoice)
                 write_off_line_vals["move_id"] = invoice.move_id.id
                 line_model.with_context(check_move_validity=False).create(
                     write_off_line_vals

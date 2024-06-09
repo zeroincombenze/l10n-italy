@@ -1047,7 +1047,16 @@ class WizardExportFatturapa(models.TransientModel):
                 )
                 if tax.kind_id.code == self.line_desc:
                     found_code_line_desc = True
-            if tax.payability:
+            if hasattr(tax, "rc") and tax.rc:
+                riepilogo.RiferimentoNormativo = encode_for_export(
+                    tax.law_reference or tax.name, 100
+                )
+            elif tax.payability == "S":
+                riepilogo.RiferimentoNormativo = encode_for_export(
+                    tax.law_reference or tax.name, 100
+                )
+                riepilogo.EsigibilitaIVA = tax.payability
+            elif tax.amount and tax.payability:
                 riepilogo.EsigibilitaIVA = tax.payability
             # TODO
 

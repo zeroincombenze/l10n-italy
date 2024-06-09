@@ -18,7 +18,7 @@
     "license": "AGPL-3",
     "depends": [
         "l10n_it_einvoice_base",
-        "l10n_it_split_payment",
+        # "l10n_it_split_payment",
     ],
     "external_dependencies": {'python': ['unidecode']},
     "data": [

@@ -596,7 +596,7 @@ class AccountInvoice(models.Model):
             self.fiscal_document_type_id = False
         elif (
             not self.fiscal_document_type_id
-            or self.fiscal_document_type_id not in ids
+            or self.fiscal_document_type_id.id not in ids
         ):
             self.fiscal_document_type_id = ids[0]
 

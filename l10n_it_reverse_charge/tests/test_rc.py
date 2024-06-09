@@ -47,19 +47,40 @@ class TestReverseCharge(SingleTransactionCase):
         super(TestReverseCharge, self).tearDown()
 
     def _test_rc_1_purchase(self):
-        invoice = self.resource_browse("z0bug.invoice_ZI_6")
-        invoice.action_invoice_open()
+        xref = "z0bug.invoice_ZI_6"
+        invoice = self.resource_browse(xref=xref)
+        self.resource_edit(resource=invoice, actions="action_invoice_open")
+        invoice = self.resource_browse(xref=xref)
+        self.assertEqual(
+            invoice.state,
+            "open",
+            msg="action_invoice_open() FAILED: no state changed!"
+        )
         self.assertEqual(invoice.amount_tax, 32.97)
         self.assertEqual(invoice.amount_total, 182.85)
         self.assertEqual(invoice.amount_net_pay, 160.85)
         self.assertEqual(invoice.residual, 160.85)
         self.assertEqual(invoice.amount_rc, -22.0)
-        self.assertEqual(invoice.rc_self_invoice_id.amount_tax, 22.0)
-        self.assertEqual(invoice.rc_self_invoice_id.amount_total, 122.0)
+        self_invoice = invoice.rc_self_invoice_id
+        self.assertTrue(self_invoice)
+        self.assertEqual(
+            self_invoice.state,
+            "paid",
+            msg="Invalid self-invoice status"
+        )
+        self.assertEqual(self_invoice.amount_tax, 22.0)
+        self.assertEqual(self_invoice.amount_total, 122.0)
 
     def _test_rc_1_sale(self):
-        invoice = self.resource_browse("z0bug.invoice_Z0_9")
-        invoice.action_invoice_open()
+        xref = "z0bug.invoice_Z0_9"
+        invoice = self.resource_browse(xref=xref)
+        self.resource_edit(resource=invoice, actions="action_invoice_open")
+        invoice = self.resource_browse(xref=xref)
+        self.assertEqual(
+            invoice.state,
+            "open",
+            msg="action_invoice_open() FAILED: no state changed!"
+        )
         self.assertEqual(round(invoice.amount_tax, 2), 32.91)
         self.assertEqual(invoice.amount_total, 182.50)
         self.assertEqual(invoice.amount_net_pay, 160.50)

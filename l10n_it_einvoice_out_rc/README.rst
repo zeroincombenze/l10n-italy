@@ -1,6 +1,6 @@
-============================================================================================================
-|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge/l10n_it_einvoice_out_rc 10.0.1.0.4
-============================================================================================================
+===================================================================
+|icon| ITA - Emissione e-auto-fattura con reverse charge 10.0.1.0.4
+===================================================================
 
 **Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge**
 
@@ -14,54 +14,20 @@
 Overview | Panoramica
 =====================
 
-|en| ====================================================================================
-|icon| ITA - Fattura elettronica - Emissione e-fattura con reverse charge 10.0.1.0.0
-====================================================================================
+|en| This module integrates the *l10n_it_einvoice_out* and *l10n_it_reverse_charge*.
+The module *l10n_it_reverse_charge* creates a self invoice from purchase invoice with
+reverse charge. This module creates the e-invoice from self-invoice.
 
 
-**Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge**
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_out_rc/static/description/icon.png
-
-|Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
-
-
-.. contents::
-
-
-
-Overview / Panoramica
-=====================
-
-|en|
-
-|
-
-|it| N/D
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-|
-
-
-|it| N/D
+|it| Questo module integra le funzione di *l10n_it_einvoice_out* e *l10n_it_reverse_charge*.
+Il modulo *l10n_it_reverse_charge* crea un'auto-fattura da una fattura fornitore con
+reverse charge, sia locali che esteri.
+Questo modulo creta il file xml della fattura elettronica dell'auto-fattura.
 
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_out_rc/static/description/
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_out_rc/static/description/description.png
 
 
 Getting started | Primi passi

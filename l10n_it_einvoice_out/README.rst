@@ -229,11 +229,6 @@ ChangeLog History | Cronologia modifiche
 
 * [IMP] Tax nature renamed
 
-10.0.1.0.21 (2022-06-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] PDF attachment removed when XML deleted / Stampe PDF eliminate quanto file XML rimosso
-
 
 
 Credits | Ringraziamenti
@@ -303,7 +298,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-06-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
