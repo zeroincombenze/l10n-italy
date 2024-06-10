@@ -1,3 +1,96 @@
+l10n_it_account: 10.0.1.2.12 (2024-06-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field amount_net_pay displayed on invoice form / Netto a pagare visualizzato in fattura
+* [QUA] Test coverage 81% (93: 18+75) [0 TestPoints] - quality rating 49 (target 100)
+
+
+l10n_it_withholding_tax: 10.0.1.2.8 (2024-06-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depending on l10n_it_account for amount_net_pay
+* [QUA] Test coverage 29% (542: 387+155) [0 TestPoints] - quality rating 18 (target 100)
+
+
+l10n_it_split_payment: 10.0.1.1.2 (2024-06-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depending on l10n_it_account for amount_net_pay
+* [IMP] Show net to pay (see l10n_it_account) / Visualizza netto a pagare (vedere l10n_it_account)
+* [QUA] Test coverage 73% (142: 39+103) [0 TestPoints] - quality rating 44 (target 100)
+
+
+l10n_it_reverse_charge: 10.0.1.7 (2024-06-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Tax with RC requires RC fiscal position / Controllo codici IVA con RC e posizione fiscale
+* [IMP] Show net to pay (see l10n_it_account) / Visualizza netto a pagare (vedere l10n_it_account)
+* [IMP] RC Amount stored in invoice record / Importo IVA RC in fattura
+* [IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare
+* [IMP] Regression tests
+* [QUA] Test coverage 64% (410: 147+263) [26 TestPoints] - quality rating 49 (target 100)
+
+
+l10n_it_ricevute_bancarie: 10.0.1.3.16 (2024-06-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso
+* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
+
+
+l10n_it_ddt: 10.0.1.8.26 (2024-06-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong inheritance for delivery values
+* [IMP] Delivery Carrier Notes
+* [QUA] Test coverage 67% (1385: 454+931) [266 TestPoints] - quality rating 72 (target 100)
+
+
+l10n_it_conai: 10.0.0.1.11 (2024-06-06)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Check for version of l10n_it_ddt to depend on
+* [QUA] Test coverage 67% (505: 166+339) [23 TestPoints] - quality rating 48 (target 100)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.44 (2024-05-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Invoice rejected in some cases
+* [QUA] Test coverage 15% (814: 688+126) [1 TestPoints] - quality rating 10 (target 100)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.43 (2024-05-13)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 10 (target 100)
+
+
+l10n_it_einvoice_in: 10.0.1.3.46 (2024-05-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Again weird error linking self-invoice
+* [FIX] Avoid company data update from self-invoice / Non cambia dati aziendali da auto-fattura
+* [FIX] Cannot import e-invoice with wrong vat / Ignora PI se errata in e-fattura
+* [QUA] Test coverage 63% (1337: 498+839) [0 TestPoints] - quality rating 38 (target 100)
+
+
+l10n_it_einvoice_in: 10.0.1.3.45 (2024-05-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Weird error linking self-invoice
+* [IMP] Avoid company data update from self-invoice
+* [QUA] Test coverage 63% (1330: 495+835) [0 TestPoints] - quality rating 38 (target 100)
+
+
+l10n_it_einvoice_send2sdi: 10.0.1.0.42 (2024-05-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 10 (target 100)
+
+
 l10n_it_einvoice_out_ddt: 10.0.1.0.3 (2024-03-09)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -36,6 +129,7 @@ l10n_it_einvoice_out_rc: 10.0.1.0.5 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [QUA] Test coverage 78% (100: 22+78) [20 TestPoints] - quality rating 79 (target 100)
+
 
 
 l10n_it_einvoice_out: 10.0.1.0.27 (2024-02-01)
@@ -85,7 +179,8 @@ l10n_it_central_journal: 10.0.0.0.8 (2023-12-23)
 l10n_it_ricevute_bancarie: 10.0.1.3.15 (2023-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+* [IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso
+* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
 
 
 l10n_it_einvoice_send2sdi: 10.0.1.0.40 (2023-11-15)
@@ -136,7 +231,6 @@ l10n_it_ricevute_bancarie: 10.0.1.3.14 (2023-09-14)
 
 * [IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso
 * [IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente
-* [QUA] Test coverage 78% (1141: 252+889) [258 TestPoints] - quality rating 46/100
 
 
 l10n_it_einvoice_send2sdi: 10.0.1.0.37 (2023-08-08)
@@ -200,134 +294,6 @@ l10n_it_einvoice_out: 10.0.1.0.26 (2023-06-12)
 
 * [IMP] Foreign customer w/o vat but with fiscalcode / Cliente estero senza PI ma con CF
 * [QUA] Coverage 60% (731/292) + 39cp
-
-
-l10n_it_ddt: 10.0.1.8.24 (2023-05-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] DdT from 'done' order / Emissione DdT da ordini bloccati
-* [IMP] Check for dependecies version / Controllo versione dipendenze
-
-
-l10n_it_ricevute_bancarie: 10.0.1.3.12 (2023-05-24)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Two supplemental accreditation accounts / Due conti aggiuntivi in accredito
-* [FIX] Confirm payment / Conferma pagamento
-
-
-base_multireport: 10.0.0.2.27 (2023-05-10)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Layout review / Controllo formattazione stampa
-
-
-l10n_it_ddt: 10.0.1.8.23 (2023-05-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Wrong line weight evaluation / Errato calcolo peso riga
-
-
-l10n_it_conai: 10.0.0.1.9 (2023-05-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Wrong CONAI quantity / Errata quantità CONAI
-* [IMP] Coverage test 63% (504, 188, +20)
-
-
-base_multireport: 10.0.0.2.26 (2023-05-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Logo: some time is not printed / IL logo a volte non è stampato
-
-
-l10n_it_ddt: 10.0.1.8.22 (2023-05-03)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Report wrong carrier value / Errato valore vettore in stampa
-
-
-base_multireport: 10.0.0.2.25 (2023-05-03)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Report wrong carrier value / Errato valore vettore in stampa
-
-
-l10n_it_conai: 10.0.0.1.8 (2023-04-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] CONAI summary line upgradable / Righe riepilogo CONAI modificabili da operatore
-
-
-l10n_it_einvoice_send2sdi: 10.0.1.0.33 (2023-04-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] new state mapping
-
-
-l10n_it_ricevute_bancarie: 10.0.1.3.11 (2023-04-17)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Confirm invoice + refund / Errore accettazione fattura + NC
-
-
-l10n_it_ddt: 10.0.1.8.21 (2023-04-17)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Delivery price from DN or Sale Order / Calcolo trasporto da DdT o Ordine
-* [FIX] Crash with module sale order revision
-* [IMP] New test coverage 67% (1373/449/+247)
-
-
-l10n_it_fiscalcode: 10.0.1.0.4 (2023-04-13)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Check FC/individual of child record / Controllo CF/PF su record figli
-
-
-l10n_it_einvoice_in: 10.0.1.3.40 (2023-04-11)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Import e-invoice from RSM / Importazione file XML da San Marino
-* [FIX] Crash when two emails
-
-
-l10n_it_einvoice_in: 10.0.1.3.39 (2023-04-04)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Check for double email / Controllo doppia mail
-* [IMP] New search method to avoid new partner when receiving self-invoice / Controlli per evitare duplicazione fornitore auto-fattura
-
-
-l10n_it_einvoice_out: 10.0.1.0.25 (2023-03-24)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] First regression tests: coverage 60% (733/296)
-
-
-l10n_it_einvoice_in: 10.0.1.3.38 (2023-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Import RC invoice w/o tax rate / Import fatture RC senza aliquota IVA
-
-
-l10n_it_einvoice_base: 10.0.2.1.23 (2023-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fiscal document type for refund / TD04 per note credito
-
-
-l10n_it_einvoice_out_rc: 10.0.1.0.4 (2023-03-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] AttributeError: 'DatiPagamentoType' object has no attribute 'ImportoPagamento'
-
-
-l10n_it_einvoice_out_rc: 10.0.1.0.3 (2023-03-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Self-invoice TD17-19 with "IT" vat / Codice IVA italiano modificato eper autofatture TD17-19
-
 
 
 
