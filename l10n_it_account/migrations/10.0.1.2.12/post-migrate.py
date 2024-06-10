@@ -16,5 +16,5 @@ def migrate(cr, version):
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
         Invoice = env["account.invoice"]
-        for invoice in Invoice.search([()]):
+        for invoice in Invoice.search([]):
             invoice._compute_net_pay()

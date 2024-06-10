@@ -1,4 +1,4 @@
-10.0.1.2.12 (2024-06-09)
+10.0.1.2.12 (2024-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Field amount_net_pay displayed on invoice form / Netto a pagare visualizzato in fattura
