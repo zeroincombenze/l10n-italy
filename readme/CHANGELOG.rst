@@ -1,3 +1,10 @@
+l10n_it_ricevute_bancarie: 10.0.1.3.16 (2024-06-11)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Evaluate bank cost matches with all invoice lines / Spese bancarie verificate con righe fatture
+* [QUA] Test coverage 78% (1150: 258+892) [258 TestPoints] - quality rating 83 (target 100)
+
+
 l10n_it_account: 10.0.1.2.12 (2024-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -29,13 +36,6 @@ l10n_it_reverse_charge: 10.0.1.7 (2024-06-09)
 * [IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare
 * [IMP] Regression tests
 * [QUA] Test coverage 64% (410: 147+263) [26 TestPoints] - quality rating 49 (target 100)
-
-
-l10n_it_ricevute_bancarie: 10.0.1.3.16 (2024-06-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso
-* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
 
 
 l10n_it_ddt: 10.0.1.8.26 (2024-06-06)
