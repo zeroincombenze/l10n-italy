@@ -174,11 +174,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.16 (2024-06-06)
+10.0.1.3.16 (2024-06-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso
-* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
+* [FIX] Evaluate bank cost matches with all invoice lines / Spese bancarie verificate con righe fatture
+* [QUA] Test coverage 78% (1150: 258+892) [258 TestPoints] - quality rating 83 (target 100)
 
 10.0.1.3.15 (2023-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -285,7 +285,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-06-11
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

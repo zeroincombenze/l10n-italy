@@ -1,8 +1,8 @@
-10.0.1.3.16 (2024-06-06)
+10.0.1.3.16 (2024-06-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Workflow for list with "DI" configuraiton  / Workflow per distinte al dopo-incasso
-* [QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)
+* [FIX] Evaluate bank cost matches with all invoice lines / Spese bancarie verificate con righe fatture
+* [QUA] Test coverage 78% (1150: 258+892) [258 TestPoints] - quality rating 83 (target 100)
 
 10.0.1.3.15 (2023-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~

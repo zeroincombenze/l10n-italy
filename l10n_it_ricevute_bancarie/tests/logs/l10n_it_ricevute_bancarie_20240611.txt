@@ -1,0 +1,124 @@
+2024-06-11 11:14:08,000 1887053 DAEMON test_l10n_it_ricevute_bancarie_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-06-11 09:14:13,238 1888585 INFO ? odoo: Odoo version 10.0
+2024-06-11 09:14:13,239 1888585 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/logs/zero10.l10n-italy.l10n_it_ricevute_bancarie.conf
+2024-06-11 09:14:13,239 1888585 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo12/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-06-11 09:14:13,239 1888585 INFO ? odoo: database: odoo10@localhost:5432
+2024-06-11 09:14:13,259 1888585 INFO ? odoo.service.server: HTTP service (werkzeug) running on nb200z0.:62246
+2024-06-11 09:14:13,274 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading 1 modules...
+2024-06-11 09:14:13,367 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: 1 modules loaded in 0.09s, 0 queries
+2024-06-11 09:14:14,409 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading 36 modules...
+2024-06-11 09:14:14,515 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-06-11 09:14:14,634 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: 36 modules loaded in 0.22s, 0 queries
+2024-06-11 09:14:14,641 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading 37 modules...
+2024-06-11 09:14:14,981 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.registry: module l10n_it_ricevute_bancarie: creating or updating database tables
+2024-06-11 09:14:15,155 1888585 WARNING test_l10n_it_ricevute_bancarie_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2024-06-11 09:14:16,513 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2024-06-11 09:14:16,671 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models: Storing computed values of account.invoice fields is_unsolved
+2024-06-11 09:14:16,791 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/partner_view.xml
+2024-06-11 09:14:16,900 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/configuration_view.xml
+2024-06-11 09:14:16,969 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/data/riba_sequence.xml
+2024-06-11 09:14:16,983 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_accreditation.xml
+2024-06-11 09:14:17,025 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_unsolved.xml
+2024-06-11 09:14:17,100 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_line_settlement.xml
+2024-06-11 09:14:17,146 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/riba_view.xml
+2024-06-11 09:14:17,325 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/account_view.xml
+2024-06-11 09:14:17,722 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.xml
+2024-06-11 09:14:17,769 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.xml
+2024-06-11 09:14:17,815 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/account_config_view.xml
+2024-06-11 09:14:17,877 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/data/riba_workflow.xml
+2024-06-11 09:14:17,980 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/distinta_report.xml
+2024-06-11 09:14:18,046 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/views/report.xml
+2024-06-11 09:14:18,068 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/security/ir.model.access.csv
+2024-06-11 09:14:18,371 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: loading l10n_it_ricevute_bancarie/demo/riba_demo.xml
+2024-06-11 09:14:19,221 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.module: odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba running tests.
+2024-06-11 09:14:19,222 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: test_riba (odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba.TestRiba)
+2024-06-11 09:14:19,660 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2024-06-11 09:14:19,661 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2024-06-11 09:14:19,756 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺🎺🎺 Starting test v2.0.19 (debug_level=0, commit=True)
+2024-06-11 09:14:19,760 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺🎺 Testing module: l10n_it_ricevute_bancarie (10.0.1.3.16)
+2024-06-11 09:14:19,760 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🎺🎺 Loading data from: account.account, account.tax, account.payment.term, account.payment.term.line, product.template, res.partner, res.partner.bank, account.journal, riba.configuration, account.invoice, account.invoice.line 
+2024-06-11 09:14:21,560 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Starting test_riba()
+2024-06-11 09:14:22,999 1888585 WARNING test_l10n_it_ricevute_bancarie_10 py.warnings: /home/odoo/10.0/venv_odoo/lib/python2.7/site-packages/unidecode/__init__.py:64: RuntimeWarning: Argument <type 'str'> is not an unicode object. Passing an encoded string will likely have unexpected results.
+  _warn_if_not_unicode(string)
+
+2024-06-11 09:14:25,704 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Reset test_riba()
+2024-06-11 09:14:25,830 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [4]
+2024-06-11 09:14:25,844 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [4]
+2024-06-11 09:14:25,983 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [36, 35, 34, 33]
+2024-06-11 09:14:26,002 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [14]
+2024-06-11 09:14:26,123 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [5]
+2024-06-11 09:14:26,135 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [5]
+2024-06-11 09:14:26,259 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [40, 39, 38, 37]
+2024-06-11 09:14:26,280 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [15]
+2024-06-11 09:14:26,401 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [6]
+2024-06-11 09:14:26,413 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [6]
+2024-06-11 09:14:26,528 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [44, 43, 42, 41]
+2024-06-11 09:14:26,547 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [16]
+2024-06-11 09:14:26,713 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [32, 31]
+2024-06-11 09:14:26,731 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [13]
+2024-06-11 09:14:27,007 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [1]
+2024-06-11 09:14:27,021 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [1]
+2024-06-11 09:14:27,109 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [26, 25]
+2024-06-11 09:14:27,128 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [10]
+2024-06-11 09:14:27,338 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [2]
+2024-06-11 09:14:27,353 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [2]
+2024-06-11 09:14:27,443 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [28, 27]
+2024-06-11 09:14:27,463 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [11]
+2024-06-11 09:14:27,598 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [3]
+2024-06-11 09:14:27,610 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [3]
+2024-06-11 09:14:27,697 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [30, 29]
+2024-06-11 09:14:27,715 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [12]
+2024-06-11 09:14:27,783 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Repeat test_riba()
+2024-06-11 09:14:30,595 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: 🎺 Test unsolved and pay test_riba()
+2024-06-11 09:14:30,701 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [10]
+2024-06-11 09:14:30,714 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [10]
+2024-06-11 09:14:30,816 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [56, 55, 54, 53]
+2024-06-11 09:14:30,835 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [21]
+2024-06-11 09:14:31,302 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [7]
+2024-06-11 09:14:31,317 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [7]
+2024-06-11 09:14:31,585 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [13]
+2024-06-11 09:14:31,599 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [13]
+2024-06-11 09:14:31,688 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [66, 65]
+2024-06-11 09:14:31,707 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [24]
+2024-06-11 09:14:32,545 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [14]
+2024-06-11 09:14:32,559 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [14]
+2024-06-11 09:14:32,662 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move.line records with IDs: [70, 69, 68, 67]
+2024-06-11 09:14:32,681 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.move records with IDs: [25]
+2024-06-11 09:14:33,145 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.partial.reconcile records with IDs: [15]
+2024-06-11 09:14:33,161 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models.unlink: User #1 deleted account.full.reconcile records with IDs: [15]
+2024-06-11 09:14:34,118 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.testenv: 🏆🥇 [1;32m258 tests SUCCESSFULLY completed[0m
+2024-06-11 09:14:34,121 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: Ran 1 test in 14.900s
+2024-06-11 09:14:34,122 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba: OK
+2024-06-11 09:14:34,122 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.module: odoo.addons.l10n_it_ricevute_bancarie.tests.test_riba tested in 14.90s, 16243 queries
+2024-06-11 09:14:34,163 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: 37 modules loaded in 19.52s, 16264 queries
+2024-06-11 09:14:34,676 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: Modules loaded.
+2024-06-11 09:14:34,682 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-06-11 09:14:34,683 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-06-11 09:14:34,765 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-06-11 09:14:34,766 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.service.server: Initiating shutdown
+2024-06-11 09:14:34,766 1888585 INFO test_l10n_it_ricevute_bancarie_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_ricevute_bancarie[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/tests/logs/coverage_l10n_it_ricevute_bancarie_10rc -m
+[34;107mName                                                                                     Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/models/account.py                     209     85    59%   91-113, 141-155, 166, 171-172, 174, 195-198, 201, 213-266, 275, 282-290, 293-314, 319-326, 356-357, 360, 374
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/models/account_config.py               16      6    62%   32-39
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/models/open_items.py                  209     58    72%   62, 65, 79, 83, 85, 88-89, 96-99, 147, 151-172, 178, 183-191, 209, 214, 241-244, 266-270, 282-296, 318, 322-324, 326, 332-333, 342-349, 352-359
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/models/partner.py                       5      0   100%
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/models/riba.py                        342     41    88%   23, 31, 40, 144, 147, 155-165, 168, 175, 186, 197, 200, 210, 213, 222, 239, 244, 254, 264, 271, 278, 286, 288, 296, 300, 304, 314, 333, 337, 343, 366-367, 378, 391, 445, 513, 538, 612
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/models/riba_config.py                  47      1    98%   154
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/report/distinta_qweb.py                 8      3    62%   15-21
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py         58     14    76%   16, 22, 28, 34, 40, 42, 78-82, 87, 98, 127
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_line_settlement.py       16     11    31%   19-31
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py     119     10    92%   22-23, 289, 296, 306, 332-333, 339, 349, 356
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py            52     12    77%   24, 63-69, 80, 84-108
+/home/odoo/10.0/l10n-italy/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py              69     17    75%   16, 28, 30, 42, 48, 54, 86-93, 98, 110, 144
+----------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                     1150    258    78%
+[0m

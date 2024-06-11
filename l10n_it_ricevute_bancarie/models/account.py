@@ -212,24 +212,35 @@ class AccountInvoice(models.Model):
 
             if not invoice.company_id.due_cost_service_id:
                 raise UserError(_("Set a Service for Due Cost in Company Config"))
+            service_prod = invoice.company_id.due_cost_service_id
             # ---- Apply Due Cost on invoice only on first due of the month
             # ---- Get Date of first due
-            move_line = self.env["account.move.line"].search(
-                [("partner_id", "=", invoice.partner_id.id)]
+            MoveLines = self.env["account.move.line"]
+            move_lines = MoveLines.search(
+                [("partner_id", "=", invoice.partner_id.id),
+                 ("riba", "=", True),
+                 ("date_maturity", ">=", invoice.date)],
+                order="date_maturity desc"
             )
-            # ---- Filtered recordset with date_maturity
-            move_line = move_line.filtered(lambda ln: ln.date_maturity is not False)
-            # ---- Sorted
-            move_line = move_line.sorted(key=lambda r: r.date_maturity)
+            service_lines = MoveLines.search(
+                [("partner_id", "=", invoice.partner_id.id),
+                 ("product_id", "=", service_prod.id)],
+                order="date_maturity desc"
+            )
             # ---- Get date
-            previous_date_due = move_line.mapped("date_maturity")
-            pterm = self.env["account.payment.term"].browse(self.payment_term_id.id)
-            pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)
-            for pay_date in pterm_list[0]:
+            previous_date_due = move_lines.mapped("date_maturity")
+            payterm = self.env["account.payment.term"].browse(self.payment_term_id.id)
+            payterm_list = payterm.compute(value=1, date_ref=self.date_invoice)
+            for pay_date in payterm_list[0]:
                 if not self.month_check(pay_date[0], previous_date_due):
-                    # ---- Get Line values for service product
-                    service_prod = invoice.company_id.due_cost_service_id
-                    line_obj = self.env["account.invoice.line"]
+                    if any([pay_date[0] in ln.name for ln in service_lines]):
+                        continue
+                    if any([(ln.product_id
+                             and ln.product_id == service_prod
+                             and pay_date[0] in ln.name)
+                            for ln in invoice.invoice_line_ids]):
+                        continue
+                    InvoiceLine = self.env["account.invoice.line"]
                     account = service_prod.product_tmpl_id.get_product_accounts(
                         invoice.fiscal_position_id
                     )["income"]
@@ -239,8 +250,9 @@ class AccountInvoice(models.Model):
                         "invoice_id": invoice.id,
                         "price_unit": (invoice.payment_term_id.riba_payment_cost),
                         "due_cost_line": True,
-                        "name": _("{line_name}").format(
+                        "name": _("{line_name} ({date})").format(
                             line_name=service_prod.name,
+                            date=pay_date[0],
                         ),
                         "account_id": account.id,
                         "sequence": 99999,
@@ -249,21 +261,22 @@ class AccountInvoice(models.Model):
                     if invoice.company_id.due_cost_service_id.taxes_id:
                         tax = invoice.company_id.due_cost_service_id.taxes_id
                         line_vals.update({"invoice_line_tax_ids": [(4, tax.id)]})
-                    line_obj.create(line_vals)
+                    InvoiceLine.create(line_vals)
                     # ---- recompute invoice taxes
-                    invoice.compute_taxes()
-        super(AccountInvoice, self).action_move_create()
-        for invoice in self:
-            if (
-                invoice.type != "out_invoice"
-                or not invoice.payment_term_id
-                or not invoice.payment_term_id.riba
-            ):
-                continue
-            for move_line in invoice.move_id.line_ids:
-                if move_line.account_id.internal_type == "receivable":
-                    move_line.riba = invoice.payment_term_id.riba
-        return True
+            invoice.compute_taxes()
+        res = super(AccountInvoice, self).action_move_create()
+        if res:
+            for invoice in self:
+                if (
+                    invoice.type != "out_invoice"
+                    or not invoice.payment_term_id
+                    or not invoice.payment_term_id.riba
+                ):
+                    continue
+                for move_lines in invoice.move_id.line_ids:
+                    if move_lines.account_id.internal_type == "receivable":
+                        move_lines.riba = invoice.payment_term_id.riba
+        return res
 
     @api.multi
     def action_invoice_draft(self):

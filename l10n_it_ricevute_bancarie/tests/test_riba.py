@@ -730,3 +730,4 @@ class TestRiba(SingleTransactionCase):
         self._riba_unsolved(payment_order)
         # Pay unsolved invoice
         self.pay_invoice(invoices[0], payment_order)
+
