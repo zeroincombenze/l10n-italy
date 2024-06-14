@@ -94,6 +94,7 @@ class FatturaPAAttachmentIn(models.Model):
             "NumeroCivico",
             "DatiOrdineAcquisto",
             "RiferimentoTesto",
+            "RiferimentoNormativo",
         ):
             token = r"<%s>[ \t\n]*</%s>" % (tag, tag)
             xml_string = re.sub(token, "", xml_string, flags=re.DOTALL)

@@ -1,3 +1,10 @@
+10.0.1.3.47 (2024-06-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash with <AdministrativeReference></AdministrativeReference>
+* [QUA] Test coverage 63% (1337: 498+839) [0 TestPoints] - quality rating 38 (target 100)
+
+
 10.0.1.3.46 (2024-05-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
