@@ -551,18 +551,6 @@ class AccountInvoice(models.Model):
                     res += tax["amount"]
         return res
 
-    def get_receivable_line_ids(self):
-        if not self.id:
-            return []
-        query = (
-            "SELECT l.id "
-            "FROM account_move_line l, account_invoice i "
-            "WHERE i.id = %s AND l.move_id = i.move_id "
-            "AND l.account_id = i.account_id order by date_maturity"
-        )
-        self._cr.execute(query, (self.id,))
-        return [row[0] for row in self._cr.fetchall()]
-
     def reconcile_invoice_lines(self):
         reconcile_model = self.env["account.move.line.reconcile"]
         ids = self.get_receivable_line_ids()

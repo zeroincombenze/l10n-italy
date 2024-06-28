@@ -44,6 +44,18 @@ class AccountInvoice(models.Model):
         # Here function should be overridden
         pass
 
+    def get_receivable_line_ids(self):
+        if not self.id:
+            return []
+        query = (
+            "SELECT l.id "
+            "FROM account_move_line l, account_invoice i "
+            "WHERE i.id = %s AND l.move_id = i.move_id "
+            "AND l.account_id = i.account_id order by date_maturity,abs(balance)"
+        )
+        self._cr.execute(query, (self.id,))
+        return [row[0] for row in self._cr.fetchall()]
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"

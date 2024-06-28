@@ -1,3 +1,9 @@
+10.0.1.1.3 (2024-06-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function get_receivable_line_ids moved to l10n_it_account
+* [QUA] Test coverage 73% (135: 37+98) [0 TestPoints] - quality rating 44 (target 100)
+
 10.0.1.1.2 (2024-06-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,5 +1,5 @@
 ===============================
-|icon| Split Payment 10.0.1.1.2
+|icon| Split Payment 10.0.1.1.3
 ===============================
 
 **Italian Split Payment Management**
@@ -129,17 +129,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.1.3 (2024-06-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function get_receivable_line_ids moved to l10n_it_account
+* [QUA] Test coverage 73% (135: 37+98) [0 TestPoints] - quality rating 44 (target 100)
+
 10.0.1.1.2 (2024-06-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Depending on l10n_it_account for amount_net_pay
 * [IMP] Show net to pay (see l10n_it_account) / Visualizza netto a pagare (vedere l10n_it_account)
 * [QUA] Test coverage 73% (142: 39+103) [0 TestPoints] - quality rating 44 (target 100)
-
-10.0.1.1.1 (2022-06-29)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Depending on l10n_it_account for amount_net_pay
 
 
 
@@ -197,7 +198,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-09
+Last Update / Ultimo aggiornamento: 2024-06-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

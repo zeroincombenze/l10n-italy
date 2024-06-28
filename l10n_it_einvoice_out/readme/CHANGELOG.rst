@@ -1,3 +1,9 @@
+10.0.1.0.28 (2024-06-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] SP Refund / Nota credito SP
+* [QUA] Test coverage 64% (767: 279+488) [87 TestPoints] - quality rating 57 (target 100)
+
 10.0.1.0.27 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

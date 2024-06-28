@@ -1,5 +1,5 @@
 =============================================================================================
-|icon| Italian Localization - FatturaPA - Emissione/Emissione fattura elettronica 10.0.1.0.27
+|icon| Italian Localization - FatturaPA - Emissione/Emissione fattura elettronica 10.0.1.0.28
 =============================================================================================
 
 **E-Invoice emission**
@@ -197,6 +197,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.28 (2024-06-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] SP Refund / Nota credito SP
+* [QUA] Test coverage 64% (767: 279+488) [87 TestPoints] - quality rating 57 (target 100)
+
 10.0.1.0.27 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -218,16 +224,6 @@ ChangeLog History | Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Partner name w/o quote / Rimosso carattere apostrofo da nome
-
-10.0.1.0.23 (2022-07-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] PA with vat / PA con partita IVA invece che CF
-
-10.0.1.0.22 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Tax nature renamed
 
 
 
@@ -298,7 +294,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-09
+Last Update / Ultimo aggiornamento: 2024-06-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -1,5 +1,5 @@
 =========================================================================
-|icon| Italian Localization - Account/Localizzazione italiana 10.0.1.2.12
+|icon| Italian Localization - Account/Localizzazione italiana 10.0.1.2.13
 =========================================================================
 
 **Base account for Italian Localizzation**
@@ -144,16 +144,17 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.13 (2024-06-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function get_receivable_line_ids from l10n_it_split_payments and l10n_it_reverse_charge
+* [QUA] Test coverage 77% (99: 23+76) [0 TestPoints] - quality rating 47 (target 100)
+
 10.0.1.2.12 (2024-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Field amount_net_pay displayed on invoice form / Netto a pagare visualizzato in fattura
 * [QUA] Test coverage 81% (93: 18+75) [0 TestPoints] - quality rating 49 (target 100)
-
-10.0.1.2.11 (2022-06-29)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Field amount_net_pay from withholding tax
 
 
 
@@ -211,7 +212,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-10
+Last Update / Ultimo aggiornamento: 2024-06-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

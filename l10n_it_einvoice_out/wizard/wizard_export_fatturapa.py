@@ -1124,7 +1124,7 @@ class WizardExportFatturapa(models.TransientModel):
                 # OIA split-payment management
                 if TipoDocumento == "TD04":
                     if move_line.debit > 0.0:
-                        credit_amount = move_line.credit
+                        credit_amount = move_line.debit
                         continue
                 else:
                     if move_line.credit > 0.0:

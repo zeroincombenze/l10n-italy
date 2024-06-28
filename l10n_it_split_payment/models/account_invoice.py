@@ -114,20 +114,6 @@ class AccountInvoice(models.Model):
         return vals
 
     @api.multi
-    def get_receivable_line_ids(self):
-        # return the move line ids with the same account as the invoice self
-        if not self.id:
-            return []
-        query = (
-            "SELECT l.id "
-            "FROM account_move_line l, account_invoice i "
-            "WHERE i.id = %s AND l.move_id = i.move_id "
-            "AND l.account_id = i.account_id order by date_maturity"
-        )
-        self._cr.execute(query, (self.id,))
-        return [row[0] for row in self._cr.fetchall()]
-
-    @api.multi
     def get_vat_spl_line_ids(self):
         # return the move line ids with the split payment
         if not self.id:

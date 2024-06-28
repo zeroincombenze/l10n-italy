@@ -1,3 +1,9 @@
+10.0.1.2.13 (2024-06-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function get_receivable_line_ids from l10n_it_split_payments and l10n_it_reverse_charge
+* [QUA] Test coverage 77% (99: 23+76) [0 TestPoints] - quality rating 47 (target 100)
+
 10.0.1.2.12 (2024-06-10)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
