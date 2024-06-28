@@ -1,3 +1,9 @@
+10.0.0.1.12 (2024-06-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Conai excemtio 100% / Esenzione Conai 100%
+* [QUA] Test coverage 67% (508: 168+340) [23 TestPoints] - quality rating 48 (target 100)
+
 10.0.0.1.11 (2024-06-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

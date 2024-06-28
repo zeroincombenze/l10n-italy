@@ -10,7 +10,7 @@
 {
     "name": "CONAI Management",
     "summary": "CONAI data and amount evalutation",
-    "version": "10.0.0.1.10",
+    "version": "10.0.0.1.11",
     "category": "Localization/Italy",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",

@@ -153,6 +153,9 @@ class AccountInvoice(models.Model):
                     "conai_manual": False,
                     "sequence": 99999,
                 }
+                if line_vals["quantity"] == 0:
+                    line_vals["price_unit"] = 0.0
+                    line_vals["quantity"] = 1.0
                 if conai_category in conai_invoice_lines:
                     inv_line = conai_invoice_lines[conai_category]["line"]
                     if conai_invoice_lines[conai_category]["conai_manual"]:

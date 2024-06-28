@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 
 def check_4_depending(cr):
-    """check_4_depending v2.0.19
+    """check_4_depending v2.0.20
     This function check for valid modules which current module depends on.
     Usually Odoo checks for depending on, through "depends" field in the manifest, but
     Odoo does not check for the version range neither check for incompatibilities.
@@ -74,7 +74,8 @@ def check_4_depending(cr):
             )
             if "!" not in op:
                 uninstallable_reason += (
-                    " - Use config param <disable_module_incompatibility> to install!")
+                    " - Set system param <disable_module_incompatibility> to True"
+                    " in order to force installation or upgrade!")
             _logger.error(uninstallable_reason)
             if not disable_check or "!" in op:
                 return uninstallable_reason
@@ -96,7 +97,8 @@ def check_4_depending(cr):
             )
             if "?" in op:
                 uninstallable_reason += (
-                    " - Use config param <disable_module_incompatibility> to install!")
+                    " - Set system param <disable_module_incompatibility> to True"
+                    " in order to force installation or upgrade!")
             _logger.error(uninstallable_reason)
             if not disable_check or "?" not in op:
                 return uninstallable_reason
@@ -113,7 +115,8 @@ def check_4_depending(cr):
             )
             if "?" in op:
                 uninstallable_reason += (
-                    " - Use config param <disable_module_incompatibility> to install!")
+                    " - Set system param <disable_module_incompatibility> to True"
+                    " in order to force installation or upgrade!")
             _logger.error(uninstallable_reason)
             if not disable_check or "?" not in op:
                 return uninstallable_reason
@@ -252,6 +255,7 @@ def check_4_depending(cr):
     check_for_all_dependecies(
         manifest.get("conflicts", []), mtype="conflicts", disable_check=disable_check
     )
+
 
 
 

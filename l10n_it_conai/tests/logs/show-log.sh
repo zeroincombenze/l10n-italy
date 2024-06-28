@@ -1,1 +1,1 @@
-less -R $(readlink -f $(dirname $0))/l10n_it_conai_20240606.txt
+less -R $(readlink -f $(dirname $0))/l10n_it_conai_20240628.txt
