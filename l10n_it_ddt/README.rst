@@ -1,5 +1,5 @@
 ==========================
-|icon| DDT/DdT 10.0.1.8.26
+|icon| DDT/DdT 10.0.1.8.27
 ==========================
 
 **Delivery Document Type**
@@ -172,11 +172,18 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.27 (2024-07-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong inheritance for delivery values / Valori di spedizione non ereditati
+* [FIX] Sometime it does not load Delivery Carrier Notes / A volte non carica note per il corriere
+* [QUA] Test coverage 67% (1384: 454+930) [266 TestPoints] - quality rating 72 (target 100)
+
 10.0.1.8.26 (2024-06-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Wrong inheritance for delivery values
-* [IMP] Delivery Carrier Notes
+* [FIX] Wrong inheritance for delivery values / Valori di spedizione non ereditati
+* [IMP] Delivery Carrier Notes / Note per il corriere
 * [QUA] Test coverage 67% (1385: 454+931) [266 TestPoints] - quality rating 72 (target 100)
 
 10.0.1.8.25 (2023-06-13)
@@ -237,11 +244,6 @@ ChangeLog History | Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Delivery carrier / Metodo di consegna
-
-10.0.1.8.15 (2022-10-04)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Delivery to no contact customer / Consegna a soggetto non contatto del cliente
 
 
 
@@ -306,7 +308,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-07-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

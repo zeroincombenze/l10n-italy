@@ -449,28 +449,27 @@ class StockPickingPackagePreparation(models.Model):
             source_name,
             obj,
         ):
-            if not obj:
-                # Object (carrier/partner/...) does not exist
-                obj_fieldname = self.fieldname_of_model(obj_name, fieldname)
-                if obj_fieldname:
-                    # Object can supply field value: search to load object
-                    tgt_ref_name = self.fieldname_of_model(target, ref_fieldname)
-                    src_ref_name = self.fieldname_of_model(source_name, ref_fieldname)
-                    if vals.get(tgt_ref_name):
-                        # Load form vals ID
-                        obj = self.env[obj_name].browse(vals[tgt_ref_name])
-                    elif src_ref_name and source and source[src_ref_name]:
-                        # Load object from source
-                        obj = source[src_ref_name]
-                    elif source_name == "stock.picking":
-                        # Load object from sale.order
-                        src_ref_name = self.fieldname_of_model(
-                            "sale.order", ref_fieldname
-                        )
-                        obj = source.sale_id[src_ref_name]
-                if obj and obj_name:
-                    tgt_fieldname = self.fieldname_of_model(target, fieldname)
-                    vals = store_value(vals, tgt_fieldname, obj_fieldname, obj)
+            # Object (carrier/partner/...) does not exist
+            obj_fieldname = self.fieldname_of_model(obj_name, fieldname)
+            if not obj and obj_fieldname:
+                # Object can supply field value: search to load object
+                tgt_ref_name = self.fieldname_of_model(target, ref_fieldname)
+                src_ref_name = self.fieldname_of_model(source_name, ref_fieldname)
+                if vals.get(tgt_ref_name):
+                    # Load form vals ID
+                    obj = self.env[obj_name].browse(vals[tgt_ref_name])
+                elif src_ref_name and source and source[src_ref_name]:
+                    # Load object from source
+                    obj = source[src_ref_name]
+                elif source_name == "stock.picking":
+                    # Load object from sale.order
+                    src_ref_name = self.fieldname_of_model(
+                        "sale.order", ref_fieldname
+                    )
+                    obj = source.sale_id[src_ref_name]
+            if obj and obj_fieldname:
+                tgt_fieldname = self.fieldname_of_model(target, fieldname)
+                vals = store_value(vals, tgt_fieldname, obj_fieldname, obj)
             return vals
 
         if source and source._name not in ("stock.picking", "sale.order"):

@@ -4,11 +4,11 @@
 #
 {
     "name": "DDT",
-    "version": "10.0.1.8.26",
+    "version": "10.0.1.8.27",
     "category": "Localization/Italy",
     "summary": "Delivery Document Type",
     "author": ("Odoo Community Association (OCA) and other subjects,Abstract"
-",Agile Business Group sagl,Apulia Software s.r.l.,Open Force"
+               ",Agile Business Group sagl,Apulia Software s.r.l.,Open Force"
                ",Dinamiche Aziendali,SHS-AV s.r.l."),
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
     "development_status": "Alpha",

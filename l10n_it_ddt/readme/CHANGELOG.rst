@@ -1,8 +1,15 @@
+10.0.1.8.27 (2024-07-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Wrong inheritance for delivery values / Valori di spedizione non ereditati
+* [FIX] Sometime it does not load Delivery Carrier Notes / A volte non carica note per il corriere
+* [QUA] Test coverage 67% (1384: 454+930) [266 TestPoints] - quality rating 72 (target 100)
+
 10.0.1.8.26 (2024-06-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Wrong inheritance for delivery values
-* [IMP] Delivery Carrier Notes
+* [FIX] Wrong inheritance for delivery values / Valori di spedizione non ereditati
+* [IMP] Delivery Carrier Notes / Note per il corriere
 * [QUA] Test coverage 67% (1385: 454+931) [266 TestPoints] - quality rating 72 (target 100)
 
 10.0.1.8.25 (2023-06-13)
