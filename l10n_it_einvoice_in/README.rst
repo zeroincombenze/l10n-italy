@@ -224,7 +224,7 @@ ChangeLog History | Cronologia modifiche
 
 * [FIX] Wrong invoice total if wrong rounding / Totale fattura errato in caso di errato arrotondamento
 * [IMP] Store and show e-invoice totals / Memorizza e mostra totali e-fattura
-* [QUA] Test coverage 64% (1356: 483+873) [0 TestPoints] - quality rating 39 (target 100)
+* [QUA] Test coverage 64% (1361: 485+876) [0 TestPoints] - quality rating 39 (target 100)
 
 10.0.1.3.47 (2024-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~

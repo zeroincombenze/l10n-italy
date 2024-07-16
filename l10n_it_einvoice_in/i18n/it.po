@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-16 17:06+0000\n"
-"PO-Revision-Date: 2024-07-16 17:06+0000\n"
+"POT-Creation-Date: 2024-07-16 19:22+0000\n"
+"PO-Revision-Date: 2024-07-16 19:22+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -294,7 +294,7 @@ msgid "Display Name"
 msgstr "Mostrare nome"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:417
+#: code:addons/l10n_it_einvoice_in/models/account.py:423
 #, python-format
 msgid "Document type %s not handled."
 msgstr "Tipo di documento %s non gestito."
@@ -495,7 +495,7 @@ msgstr ""
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.wizard_import_fatturapa_form_view
 msgid "Import"
-msgstr "Importazione"
+msgstr "Importare"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model,name:l10n_it_einvoice_in.model_wizard_import_fatturapa
@@ -544,7 +544,7 @@ msgid "Invoice Line"
 msgstr "Riga fattura"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:282
+#: code:addons/l10n_it_einvoice_in/models/account.py:288
 #, python-format
 msgid ""
 "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date "
@@ -670,7 +670,7 @@ msgid "Nessun codice IVA con aliquota %s e natura %s. Inserirne uno."
 msgstr "Nessun codice IVA con aliquota %s e natura %s. Inserirne uno."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:477
+#: code:addons/l10n_it_einvoice_in/models/account.py:483
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr "Ritenuta con causale documento %s e aliquota %s non trovata."
@@ -864,13 +864,13 @@ msgstr ""
 "codice corretto."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:104
+#: code:addons/l10n_it_einvoice_in/models/account.py:110
 #, python-format
 msgid "Round down account is not set in Accounting Settings"
 msgstr "Conto arrotondamento passivo non definito in Impostazioni Contabili"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:113
+#: code:addons/l10n_it_einvoice_in/models/account.py:119
 #, python-format
 msgid "Round up account is not set in Accounting Settings"
 msgstr "Conto arrotondamento attivo non definito in Impostazioni Contabili"
@@ -882,13 +882,13 @@ msgid "Rounding Tax"
 msgstr "Arrotondamento Imposta"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:106
+#: code:addons/l10n_it_einvoice_in/models/account.py:112
 #, python-format
 msgid "Rounding down"
 msgstr "Arrotondamento passivo"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:115
+#: code:addons/l10n_it_einvoice_in/models/account.py:121
 #, python-format
 msgid "Rounding up"
 msgstr "Arrotondamento attivo"
@@ -947,7 +947,7 @@ msgstr ""
 "Imposta used non valida in codice IVA arrotondamento importo il fatture."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:175
+#: code:addons/l10n_it_einvoice_in/models/account.py:181
 #, python-format
 msgid ""
 "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
@@ -962,7 +962,7 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:459
+#: code:addons/l10n_it_einvoice_in/models/account.py:465
 #, python-format
 msgid ""
 "The bill contains withholding tax with payment reason %s, but such a tax is "
@@ -977,7 +977,7 @@ msgid "The database object this attachment will be attached to."
 msgstr "L'oggetto del database a cui verrà allegato questo allegato."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:138
+#: code:addons/l10n_it_einvoice_in/models/account.py:144
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
 msgstr "La fattura '%s' non combacia con la relativa e-fattura"
@@ -1008,7 +1008,7 @@ msgid "Total Price"
 msgstr "Prezzo totale"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:196
+#: code:addons/l10n_it_einvoice_in/models/account.py:202
 #, python-format
 msgid ""
 "Total amount ({bill_amount_total}) does not match with e-bill total amount "
@@ -1049,7 +1049,7 @@ msgid "Unit of measure"
 msgstr "Unità di misura"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:154
+#: code:addons/l10n_it_einvoice_in/models/account.py:160
 #, python-format
 msgid ""
 "Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed "
@@ -1095,7 +1095,7 @@ msgid "VAT number %s of customer invoice is not the same of the current company"
 msgstr "La partita IVA %s del cliente fattura non corrisponde a quella dell'azienda"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:267
+#: code:addons/l10n_it_einvoice_in/models/account.py:273
 #, python-format
 msgid ""
 "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor "

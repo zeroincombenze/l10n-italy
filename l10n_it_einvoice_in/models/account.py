@@ -45,7 +45,7 @@ class AccountInvoice(models.Model):
 
     e_invoice_received_date = fields.Date(string="E-Bill Received Date")
 
-    @api.multi
+    @api.one
     @api.depends(
         "invoice_line_ids.price_subtotal",
         "tax_line_ids.amount",
@@ -58,42 +58,48 @@ class AccountInvoice(models.Model):
     )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        for inv in self:
-            if inv.e_invoice_amount_total != 0.0 or inv.efatt_xml_rounding != 0.0:
+        if self.e_invoice_amount_total == 0.0 or self.efatt_xml_rounding != 0.0:
+            round_curr = self.currency_id.round
+            if not self.e_invoice_amount_untaxed or not self.e_invoice_amount_tax:
                 e_invoice_amount_tax = e_invoice_amount_untaxed = 0.0
-                for ln in inv.e_invoice_line_ids:
+                for ln in self.e_invoice_line_ids:
                     e_invoice_amount_untaxed += ln.total_price
-                    e_invoice_amount_tax += ln.tax_amount
-                amount_total = inv.e_invoice_amount_total or (
+                    e_invoice_amount_tax += ln.total_price * ln.tax_amount / 100
+                e_invoice_amount_tax = round_curr(e_invoice_amount_tax)
+                amount_total = self.e_invoice_amount_total or round_curr(
                     e_invoice_amount_untaxed
                     + e_invoice_amount_tax
-                    + inv.efatt_xml_rounding)
-                inv.efatt_rounding = (amount_total
-                                      - e_invoice_amount_untaxed
-                                      - e_invoice_amount_tax)
-                inv.e_invoice_amount_untaxed = e_invoice_amount_untaxed
-                inv.e_invoice_amount_tax = e_invoice_amount_tax
-                if amount_total != inv.amount_total:
-                    inv.amount_total += inv.efatt_rounding
-                    amount_total_company_signed = inv.amount_total
-                    if (
-                        inv.currency_id
-                        and inv.company_id
-                        and inv.currency_id != inv.company_id.currency_id
-                    ):
-                        currency_id = inv.currency_id
-                        amount_total_company_signed = currency_id.compute(
-                            inv.amount_total, inv.company_id.currency_id
-                        )
-                    sign = inv.type in ["in_refund", "out_refund"] and -1 or 1
-                    inv.amount_total_company_signed = amount_total_company_signed * sign
-                    inv.amount_total_signed = inv.amount_total * sign
+                    + self.efatt_xml_rounding)
+                self.e_invoice_amount_untaxed = e_invoice_amount_untaxed
+                self.e_invoice_amount_tax = e_invoice_amount_tax
+            else:
+                amount_total = self.amount_total
+            self.efatt_rounding = round_curr(amount_total
+                                             - self.e_invoice_amount_untaxed
+                                             - self.e_invoice_amount_tax)
+            if abs(amount_total - self.amount_total) > 0.01:
+                self.amount_total += self.efatt_rounding
+                amount_total_company_signed = self.amount_total
+                if (
+                    self.currency_id
+                    and self.company_id
+                    and self.currency_id != self.company_id.currency_id
+                ):
+                    currency_id = self.currency_id
+                    amount_total_company_signed = currency_id.compute(
+                        self.amount_total, self.company_id.currency_id
+                    )
+                sign = self.type in ["in_refund", "out_refund"] and -1 or 1
+                self.amount_total_company_signed = amount_total_company_signed * sign
+                self.amount_total_signed = self.amount_total * sign
 
     @api.model
     def invoice_line_move_line_get(self):
         """Append global rounding move lines"""
         res = super(AccountInvoice, self).invoice_line_move_line_get()
-
+        # TODO> Remove early, BUGFIX
+        if abs(self.efatt_rounding) > 1.0:
+            self._compute_amount()
         if self.efatt_rounding != 0:
             if self.efatt_rounding > 0:
                 arrotondamenti_account_id = (
