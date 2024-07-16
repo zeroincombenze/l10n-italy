@@ -192,6 +192,18 @@
                     string="E-bill Details"
                     attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"
                 >
+                    <group string="General Data">
+                        <group>
+                            <field name="efatt_xml_rounding"/>
+                            <field name="art73"/>
+                        </group>
+                        <group>
+                            <field name="e_invoice_amount_untaxed"/>
+                            <field name="e_invoice_amount_tax"/>
+                            <field name="efatt_rounding"/>
+                            <field name="e_invoice_amount_total"/>
+                        </group>
+                    </group>
                     <group string="e-Lines Detail">
                         <field name="e_invoice_line_ids" nolabel="1">
                             <tree string="e-Lines Detail">
@@ -369,12 +381,6 @@
                             <field name="efatt_stabile_organizzazione_comune" />
                             <field name="efatt_stabile_organizzazione_provincia" />
                             <field name="efatt_stabile_organizzazione_nazione" />
-                        </group>
-                    </group>
-                    <group>
-                        <group string="General Data">
-                            <field name="efatt_rounding" />
-                            <field name="art73" />
                         </group>
                     </group>
                 </page>

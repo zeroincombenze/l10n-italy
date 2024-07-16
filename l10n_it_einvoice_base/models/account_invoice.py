@@ -534,6 +534,12 @@ class AccountInvoice(models.Model):
         copy=False,
     )
     # 2.1.1.10
+    efatt_xml_rounding = fields.Float(
+        "Rounding",
+        readonly=True,
+        help="Rounding amount from e-invoice",
+        copy=False,
+    )
     efatt_rounding = fields.Float(
         "Rounding",
         readonly=True,

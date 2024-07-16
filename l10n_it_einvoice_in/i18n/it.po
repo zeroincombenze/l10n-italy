@@ -1,21 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_einvoice_in
+#	* l10n_it_einvoice_in
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 16:00+0000\n"
-"PO-Revision-Date: 2024-06-14 18:12+0200\n"
+"POT-Creation-Date: 2024-07-16 17:06+0000\n"
+"PO-Revision-Date: 2024-07-16 17:06+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:733
@@ -125,12 +124,10 @@ msgstr "Allegati"
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:583
 #, python-format
-msgid ""
-"BIC richiesto ma non rilevato in file XML\n"
+msgid "BIC richiesto ma non rilevato in file XML\n"
 "IBAN: %s\n"
 "Nome Banca: %s\n"
-msgstr ""
-"BIC richiesto ma non rilevato in il file XML\n"
+msgstr "BIC richiesto ma non rilevato in il file XML\n"
 "IBAN: %s\n"
 "Nome Banca: %s\n"
 
@@ -249,7 +246,7 @@ msgstr "Data fattura"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_other_data_date_ref
 msgid "Date Reference"
-msgstr "Data riferimento"
+msgstr "Data di riferimento"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:768
@@ -294,10 +291,10 @@ msgstr "Dettagli  sconto e maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_wizard_import_fatturapa_display_name
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_wizard_link_to_invoice_display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr "Mostrare nome"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:383
+#: code:addons/l10n_it_einvoice_in/models/account.py:417
 #, python-format
 msgid "Document type %s not handled."
 msgstr "Tipo di documento %s non gestito."
@@ -479,21 +476,21 @@ msgstr "ID"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_fatturapa_attachment_in_invoices_total
 msgid ""
-"If specified by supplier, total amount of the document net of any discount and including "
-"tax charged to the buyer/ordered"
+"If specified by supplier, total amount of the document net of any discount and "
+"including tax charged to the buyer/ordered"
 msgstr ""
-"Se specificato dal fornitore, importo totale del documento al netto di eventuali sconti e "
-"tasse a carico dell'acquirente"
+"Se specificato dal fornitore, importo totale del documento al netto di "
+"eventuali sconti e tasse a carico dell'acquirente"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:296
 #, python-format
 msgid ""
-"Il file XML ha codice IVA %s. Il prodotto %s ha codice IVA %s. Selezionare il codice IVA "
-"corretto,"
+"Il file XML ha codice IVA %s. Il prodotto %s ha codice IVA %s. Selezionare il "
+"codice IVA corretto,"
 msgstr ""
-"Il il file XML ha codice IVA %s. Il prodotto %s ha codice IVA %s. Selezionare il codice "
-"IVA corretto,"
+"Il il file XML ha codice IVA %s. Il prodotto %s ha codice IVA %s. Selezionare "
+"il codice IVA corretto,"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.wizard_import_fatturapa_form_view
@@ -547,7 +544,7 @@ msgid "Invoice Line"
 msgstr "Riga fattura"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:267
+#: code:addons/l10n_it_einvoice_in/models/account.py:282
 #, python-format
 msgid ""
 "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date "
@@ -645,14 +642,15 @@ msgstr "Minimo"
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_res_users_e_invoice_detail_level
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_wizard_import_fatturapa_e_invoice_detail_level
 msgid ""
-"Minimum level: Bill is created with no lines; User will have to create them, according to "
-"what specified in the electronic bill.\n"
-"Maximum level: every line contained in the electronic bill will create a line in the bill."
+"Minimum level: Bill is created with no lines; User will have to create them, "
+"according to what specified in the electronic bill.\n"
+"Maximum level: every line contained in the electronic bill will create a line "
+"in the bill."
 msgstr ""
-"Minimo livello: Fattura is creato with NO righe; Utente will have a creare them, according "
-"a what specified in il modulo \" electronic fattura.\n"
-"Massimo livello: every riga contained in il modulo \" electronic fattura will creare a "
-"riga in il modulo \" fattura."
+"Minimo livello: Fattura is creato with NO righe; Utente will have a creare "
+"them, according a what specified in il modulo \" electronic fattura.\n"
+"Massimo livello: every riga contained in il modulo \" electronic fattura will "
+"creare a riga in il modulo \" fattura."
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:230
@@ -672,7 +670,7 @@ msgid "Nessun codice IVA con aliquota %s e natura %s. Inserirne uno."
 msgstr "Nessun codice IVA con aliquota %s e natura %s. Inserirne uno."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:443
+#: code:addons/l10n_it_einvoice_in/models/account.py:477
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr "Ritenuta con causale documento %s e aliquota %s non trovata."
@@ -742,7 +740,7 @@ msgstr "Data fine periodo"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_period_start_date
 msgid "Period Start Date"
-msgstr "Data fine periodo"
+msgstr "Data inizio periodo"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_fatturapa_attachment_in_ftpa_preview_link
@@ -764,7 +762,7 @@ msgstr "Prodotto usato come modello per l'elemento XML ScontoMaggiorazione delle
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
 msgid "Progress data"
-msgstr "Dati stato avanzamento lavori"
+msgstr "Dati avanzamento"
 
 #. module: l10n_it_einvoice_in
 #: code:addons/l10n_it_einvoice_in/models/partner.py:122
@@ -859,20 +857,20 @@ msgstr "Nome risorsa"
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:212
 #, python-format
 msgid ""
-"Rilevati troppi codici IVA con aliquota %s e natura %s. Eventualmente selezionare il "
-"codice corretto."
+"Rilevati troppi codici IVA con aliquota %s e natura %s. Eventualmente "
+"selezionare il codice corretto."
 msgstr ""
 "Rilevati troppi codici IVA con aliquota %s e natura %s. Eventualmente selezionare il "
 "codice corretto."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:89
+#: code:addons/l10n_it_einvoice_in/models/account.py:104
 #, python-format
 msgid "Round down account is not set in Accounting Settings"
 msgstr "Conto arrotondamento passivo non definito in Impostazioni Contabili"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:98
+#: code:addons/l10n_it_einvoice_in/models/account.py:113
 #, python-format
 msgid "Round up account is not set in Accounting Settings"
 msgstr "Conto arrotondamento attivo non definito in Impostazioni Contabili"
@@ -884,13 +882,13 @@ msgid "Rounding Tax"
 msgstr "Arrotondamento Imposta"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:91
+#: code:addons/l10n_it_einvoice_in/models/account.py:106
 #, python-format
 msgid "Rounding down"
 msgstr "Arrotondamento passivo"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:100
+#: code:addons/l10n_it_einvoice_in/models/account.py:115
 #, python-format
 msgid "Rounding up"
 msgstr "Arrotondamento attivo"
@@ -945,10 +943,11 @@ msgstr "Ritenuta d'acconto"
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_account_config_settings_arrotondamenti_tax_id
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_res_company_arrotondamenti_tax_id
 msgid "Tax used for rounding amount on bills."
-msgstr "Imposta used non valida in codice IVA arrotondamento importo il fatture."
+msgstr ""
+"Imposta used non valida in codice IVA arrotondamento importo il fatture."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:160
+#: code:addons/l10n_it_einvoice_in/models/account.py:175
 #, python-format
 msgid ""
 "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
@@ -963,11 +962,11 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:425
+#: code:addons/l10n_it_einvoice_in/models/account.py:459
 #, python-format
 msgid ""
-"The bill contains withholding tax with payment reason %s, but such a tax is not found in "
-"your system. Please set it."
+"The bill contains withholding tax with payment reason %s, but such a tax is "
+"not found in your system. Please set it."
 msgstr ""
 "La fattura contiene una ritenuta fiscale con causale pagamento %s che non è presente nel "
 "sistema. Inserirla, per favore."
@@ -978,7 +977,7 @@ msgid "The database object this attachment will be attached to."
 msgstr "L'oggetto del database a cui verrà allegato questo allegato."
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:123
+#: code:addons/l10n_it_einvoice_in/models/account.py:138
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
 msgstr "La fattura '%s' non combacia con la relativa e-fattura"
@@ -1006,10 +1005,10 @@ msgstr "Da registrare"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_einvoice_line_total_price
 msgid "Total Price"
-msgstr "Tot"
+msgstr "Prezzo totale"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:181
+#: code:addons/l10n_it_einvoice_in/models/account.py:196
 #, python-format
 msgid ""
 "Total amount ({bill_amount_total}) does not match with e-bill total amount "
@@ -1050,11 +1049,11 @@ msgid "Unit of measure"
 msgstr "Unità di misura"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:139
+#: code:addons/l10n_it_einvoice_in/models/account.py:154
 #, python-format
 msgid ""
-"Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed amount "
-"({e_bill_amount_untaxed})"
+"Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed "
+"amount ({e_bill_amount_untaxed})"
 msgstr ""
 "Importo esente ({bill_amount_untaxed}) non corrisponde con e-fattura "
 "({e_bill_amount_untaxed})"
@@ -1068,8 +1067,8 @@ msgstr "URL"
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_res_partner_e_invoice_default_account_id
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_res_users_e_invoice_default_account_id
 msgid ""
-"Used by electronic invoice XML import. If filled in, generated bill lines will use this "
-"account when no other possible product is found."
+"Used by electronic invoice XML import. If filled in, generated bill lines will "
+"use this account when no other possible product is found."
 msgstr ""
 "Usato in importazione fattura elettronica XML. Se valorizzato, le righe fattura "
 "utilizzeranno questo prodotto quando non altrimenti dichiarato."
@@ -1078,8 +1077,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_res_partner_e_invoice_default_product_id
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_res_users_e_invoice_default_product_id
 msgid ""
-"Used by electronic invoice XML import. If filled in, generated bill lines will use this "
-"product when no other possible product is found."
+"Used by electronic invoice XML import. If filled in, generated bill lines will "
+"use this product when no other possible product is found."
 msgstr ""
 "Usato in importazione fattura elettronica XML. Se valorizzato, le righe fattura "
 "utilizzeranno questo prodotto quando non altrimenti dichiarato."
@@ -1096,11 +1095,11 @@ msgid "VAT number %s of customer invoice is not the same of the current company"
 msgstr "La partita IVA %s del cliente fattura non corrisponde a quella dell'azienda"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/account.py:252
+#: code:addons/l10n_it_einvoice_in/models/account.py:267
 #, python-format
 msgid ""
-"Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor reference "
-"({e_bill_vendor_ref})"
+"Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor "
+"reference ({e_bill_vendor_ref})"
 msgstr ""
 "Fornitore riferimento ({bill_vendor_ref}) riferimento fornitore e-bill with corrispondenza "
 "not does ({e_bill_vendor_ref})"
@@ -1120,7 +1119,7 @@ msgstr "Cassa previdenziale %s non presente nel sistema."
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_account_config_settings_cassa_previdenziale_product_id
 #: model:ir.model.fields,field_description:l10n_it_einvoice_in.field_res_company_cassa_previdenziale_product_id
 msgid "Welfare Fund Data Product"
-msgstr "Welfare Fund Data Prodotti"
+msgstr "Prodotto dati fund welfare"
 
 #. module: l10n_it_einvoice_in
 #: model:ir.ui.view,arch_db:l10n_it_einvoice_in.view_invoice_form_fatturapa_in
@@ -1141,8 +1140,8 @@ msgstr "Allegato XML"
 #. module: l10n_it_einvoice_in
 #: model:ir.model.fields,help:l10n_it_einvoice_in.field_fatturapa_attachment_in_type
 msgid ""
-"You can either upload a file from your computer or copy/paste an internet link to your "
-"file."
+"You can either upload a file from your computer or copy/paste an internet link "
+"to your file."
 msgstr ""
 "Puoi inviare un file dal computer o copiare/incollare un indirizzo Internet che è "
 "collegato al tuo file."

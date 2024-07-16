@@ -1,5 +1,5 @@
 =============================================================
-|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.25
+|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.26
 =============================================================
 
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
@@ -305,6 +305,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.26 (2024-07-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New field efatt_xml_rounding
+* [QUA] Test coverage 61% (516: 202+314) [0 TestPoints] - quality rating 37 (target 100)
+
 10.0.2.1.25 (2024-03-09)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -332,23 +338,6 @@ ChangeLog History | Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Company data view with name for field extentions
-
-
-10.0.2.1.20 (2022-07-07)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Field einvoice_no_eq_cf_pi & pa_move_pi_2_fc hidden
-
-10.0.2.1.19 (2022-06-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Model acces for withholding.data.line
-
-10.0.2.1.18 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Fiscal document type renamed
-* [IMP] Tax nature renamed
 
 
 
@@ -416,7 +405,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-07-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -1232,6 +1232,7 @@ class WizardImportFatturapa(models.TransientModel):
                         vals["intermediary"] = intermediary_id
                 if vals:
                     invoice.write(vals)
+                invoice.set_einvoice_data(FatturaBody)
                 new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, FatturaBody)
 

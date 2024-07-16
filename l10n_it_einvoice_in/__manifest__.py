@@ -11,7 +11,7 @@
 #
 {
     "name": "ITA - Fattura elettronica - Ricezione",
-    "version": "10.0.1.3.47",
+    "version": "10.0.1.3.48",
     "category": "Localization/Italy",
     "summary": "E-invoice receive",
     "author": "Agile Business Group sagl, Innoviu srl, Pointec s.r.l.,"
@@ -30,6 +30,7 @@
         "l10n_it_reverse_charge",
         'l10n_it_withholding_tax',
     ],
+    "version_depends": ["l10n_it_einvoice_base>=10.0.2.1.26"],
     "data": [
         "security/ir.model.access.csv",
         "views/account_view.xml",
@@ -40,4 +41,5 @@
         "wizard/link_to_existing_invoice.xml",
     ],
     "installable": True,
+    "pre_init_hook": "check_4_depending",
 }

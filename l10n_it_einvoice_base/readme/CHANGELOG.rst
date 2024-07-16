@@ -1,3 +1,9 @@
+10.0.2.1.26 (2024-07-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New field efatt_xml_rounding
+* [QUA] Test coverage 61% (516: 202+314) [0 TestPoints] - quality rating 37 (target 100)
+
 10.0.2.1.25 (2024-03-09)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

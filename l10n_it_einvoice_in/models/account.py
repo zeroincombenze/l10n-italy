@@ -54,25 +54,40 @@ class AccountInvoice(models.Model):
         "date_invoice",
         "type",
         "efatt_rounding",
+        "efatt_xml_rounding",
     )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
         for inv in self:
-            if inv.efatt_rounding != 0:
-                inv.amount_total += inv.efatt_rounding
-                amount_total_company_signed = inv.amount_total
-                if (
-                    inv.currency_id
-                    and inv.company_id
-                    and inv.currency_id != inv.company_id.currency_id
-                ):
-                    currency_id = inv.currency_id
-                    amount_total_company_signed = currency_id.compute(
-                        inv.amount_total, inv.company_id.currency_id
-                    )
-                sign = inv.type in ["in_refund", "out_refund"] and -1 or 1
-                inv.amount_total_company_signed = amount_total_company_signed * sign
-                inv.amount_total_signed = inv.amount_total * sign
+            if inv.e_invoice_amount_total != 0.0 or inv.efatt_xml_rounding != 0.0:
+                e_invoice_amount_tax = e_invoice_amount_untaxed = 0.0
+                for ln in inv.e_invoice_line_ids:
+                    e_invoice_amount_untaxed += ln.total_price
+                    e_invoice_amount_tax += ln.tax_amount
+                amount_total = inv.e_invoice_amount_total or (
+                    e_invoice_amount_untaxed
+                    + e_invoice_amount_tax
+                    + inv.efatt_xml_rounding)
+                inv.efatt_rounding = (amount_total
+                                      - e_invoice_amount_untaxed
+                                      - e_invoice_amount_tax)
+                inv.e_invoice_amount_untaxed = e_invoice_amount_untaxed
+                inv.e_invoice_amount_tax = e_invoice_amount_tax
+                if amount_total != inv.amount_total:
+                    inv.amount_total += inv.efatt_rounding
+                    amount_total_company_signed = inv.amount_total
+                    if (
+                        inv.currency_id
+                        and inv.company_id
+                        and inv.currency_id != inv.company_id.currency_id
+                    ):
+                        currency_id = inv.currency_id
+                        amount_total_company_signed = currency_id.compute(
+                            inv.amount_total, inv.company_id.currency_id
+                        )
+                    sign = inv.type in ["in_refund", "out_refund"] and -1 or 1
+                    inv.amount_total_company_signed = amount_total_company_signed * sign
+                    inv.amount_total_signed = inv.amount_total * sign
 
     @api.model
     def invoice_line_move_line_get(self):
@@ -306,32 +321,49 @@ class AccountInvoice(models.Model):
         return {"type": "ir.actions.client", "tag": "reload"}
 
     @api.model
+    def float_from_tag(self, tag):
+        return float(tag) if tag else 0.0
+
+    @api.model
     def compute_xml_amount_untaxed(self, FatturaBody):
         amount_untaxed = 0.0
         for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
-            amount_untaxed += float(Riepilogo.ImponibileImporto or 0.0)
+            amount_untaxed += self.float_from_tag(Riepilogo.ImponibileImporto)
         return amount_untaxed
 
     @api.model
     def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
-        rounding = float(
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento or 0.0
+        amount_total = self.float_from_tag(
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento)
+        rounding = self.float_from_tag(
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento)
+        return amount_total or (amount_untaxed + amount_tax + rounding)
+
+    @api.model
+    def compute_xml_rounding(self, amount_total, amount_untaxed, amount_tax):
+        return (
+            amount_total - amount_untaxed - amount_tax
         )
-        return amount_untaxed + amount_tax + rounding
 
     @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
         amount_tax = 0.0
         for Riepilogo in DatiRiepilogo:
-            amount_tax += float(Riepilogo.Imposta or 0.0)
+            amount_tax += self.float_from_tag(Riepilogo.Imposta)
         return amount_tax
 
     def set_einvoice_data(self, fattura):
         self.ensure_one()
         amount_untaxed = self.compute_xml_amount_untaxed(fattura)
         amount_tax = self.compute_xml_amount_tax(fattura.DatiBeniServizi.DatiRiepilogo)
+        efatt_xml_rounding = self.float_from_tag(
+            fattura.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
+        )
         amount_total = self.compute_xml_amount_total(
             fattura, amount_untaxed, amount_tax
+        )
+        efatt_rounding = self.compute_xml_rounding(
+            amount_total, amount_untaxed, amount_tax
         )
         reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
         date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
@@ -341,6 +373,8 @@ class AccountInvoice(models.Model):
                 "e_invoice_amount_untaxed": amount_untaxed,
                 "e_invoice_amount_tax": amount_tax,
                 "e_invoice_amount_total": amount_total,
+                "efatt_rounding": efatt_rounding,
+                "efatt_xml_rounding": efatt_xml_rounding,
                 "e_invoice_reference": reference,
                 "e_invoice_date_invoice": date_invoice,
             }
@@ -408,7 +442,7 @@ class AccountInvoice(models.Model):
         }
         # 2.1.1.10
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
-            invoice_data["efatt_rounding"] = float(
+            invoice_data["efatt_xml_rounding"] = self.float_from_tag(
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
             )
         # 2.1.1.12
@@ -433,9 +467,9 @@ class AccountInvoice(models.Model):
             wt_found = False
             for wt in wts:
                 wt_aliquota = wt.tax * wt.base
-                if wt_aliquota == float(
+                if wt_aliquota == self.float_from_tag(
                     Withholding.AliquotaRitenuta
-                ) or wt.tax == float(Withholding.AliquotaRitenuta):
+                ) or wt.tax == self.float_from_tag(Withholding.AliquotaRitenuta):
                     wt_found = wt
                     break
             if not wt_found:
@@ -487,8 +521,9 @@ class AccountInvoice(models.Model):
                 company_id = company.id
                 account_tax = wizard.get_tax(company_id, line.AliquotaIVA, line.Natura)
                 if account_tax not in e_invoice_line_ids_2:
-                    e_invoice_line_ids_2[account_tax] = float(0)
-                e_invoice_line_ids_2[account_tax] += float(line.PrezzoTotale)
+                    e_invoice_line_ids_2[account_tax] = 0.0
+                e_invoice_line_ids_2[account_tax] += self.float_from_tag(
+                    line.PrezzoTotale)
 
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
