@@ -43,15 +43,17 @@ class ResPartner(models.Model):
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
-                return True
+                continue
             elif (
-                len(partner.fiscalcode) != 16
-                and partner.parent_id == False
-                and partner.individual
+                partner.country_id
+                and partner.parent_id is False
+                and self.country_id.code == "IT"
+                and len(partner.fiscalcode) not in (11, 16)
             ):
                 return False
             else:
-                return True
+                continue
+        return True
 
     @api.multi
     def _join_lastname_particle(self, fields):

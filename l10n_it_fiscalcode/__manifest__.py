@@ -6,20 +6,23 @@
 #
 {
     "name": "Italian Localisation - Fiscal Code",
-    "version": "10.0.1.0.4",
+    "version": "10.0.1.0.5",
     "category": "Localisation/Italy",
-    "author": "Odoo Italia Network, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy",
+    "summary": "Italian Localisation - Fiscal Code",
+    "author": ("Odoo Italia Network,Odoo Community Association (OCA)"
+               ",Agile Business Group sagl,Abstract,Apulia Software s.r.l."
+               ",SHS-AV s.r.l."),
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Production/Stable",
     "license": "AGPL-3",
     "depends": ["base_vat"],
-    "external_dependencies": {
-        "python": ["codicefiscale"],
-    },
+    "external_dependencies": {'python': ['codicefiscale']},
     "data": [
         "views/fiscalcode_view.xml",
         "wizard/compute_fc_view.xml",
         "data/res.city.it.code.csv",
         "security/ir.model.access.csv",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
 }

@@ -1,9 +1,6 @@
-.. $if branch in '7.0'
-* Agile Business Group sagl <http://www.agilebg.com>
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
-.. $elif branch in '10.0'
-* Agile Business Group sagl <http://www.agilebg.com>
+* Odoo Italia Network <https://www.odoo-italia.net>
+* Odoo Community Association (OCA) <https://odoo-community.org>
+* Agile Business Group sagl <https://www.agilebg.com>
 * Abstract <https://www.abstract.it>
-* Apulia Software <https://www.apuliasoftware.it>
-* SHS-AV s.r.l. <https://www.zeroincombenze.it/>
-.. $fi
+* Apulia Software s.r.l. <https://www.apuliasoftware.it>
+* SHS-AV s.r.l. <https://www.zeroincombenze.it>

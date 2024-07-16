@@ -1,16 +1,3 @@
-.. $if branch in '7.0'
-* Davide Corio <davide.corio@domsense.com>
-* Luca Subiaco <subluca@gmail.com>
-* Simone Orsi <simone.orsi@domsense.com>
-* Mario Riva <mario.riva@domsense.com>
-* Mauro Soligo <mauro.soligo@katodo.com>
-* Giovanni Barzan <giovanni.barzan@gmail.com>
-* Lorenzo Battistini <lorenzo.battistini@albatos.com>
-* Roberto Onnis <onnis.roberto@gmail.com>
-* Franco Tampieri <franco.tampieri@agilebg.com>
-* Andrea Cometa <info@andreacometa.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-.. $elif branch in '10.0'
 * Davide Corio <davide.corio@abstract.it>
 * Luca Subiaco <subluca@gmail.com>
 * Simone Orsi <simone.orsi@domsense.com>
@@ -25,4 +12,3 @@
 * Alex Comba <alex.comba@agilebg.com>
 * Simone Rubino <simone.rubino@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-.. $fi

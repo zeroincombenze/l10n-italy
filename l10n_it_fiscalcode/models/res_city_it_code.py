@@ -25,6 +25,7 @@ class ResCityItCode(models.Model):
     """
 
     _name = "res.city.it.code"
+    _description = "National city codes"
 
     national_code = fields.Char("National code", size=4)
     cadastre_code = fields.Char("Belfiore cadastre code (not used anymore)", size=4)
@@ -41,6 +42,7 @@ class ResCityItCode(models.Model):
 
 class ResCityItCodeDistinct(models.Model):
     _name = "res.city.it.code.distinct"
+    _description = "National city codes distinct"
     _auto = False
 
     name = fields.Char("Name", size=100)

@@ -1,5 +1,5 @@
 =======================================================================
-|icon| Italian Localisation - Fiscal Code/l10n_it_fiscalcode 10.0.1.0.4
+|icon| Italian Localisation - Fiscal Code/l10n_it_fiscalcode 10.0.1.0.5
 =======================================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_fiscalcode/static/description/icon.png
@@ -19,7 +19,6 @@ Split full name into first and last name, when individual person.
 
 |it| Verifica la validità del codice fiscale durante l'immissione dei dati anagrafici.
 Inoltre permette di generare il codice fiscale dai dati.
-Divide la ragione sociale in cognome e nome nel caso di persone fisiche.
 
 
 |thumbnail|
@@ -30,19 +29,19 @@ Divide la ragione sociale in cognome e nome nel caso di persone fisiche.
 Features | Caratteristiche
 --------------------------
 
-+---------------------------------+---------+---------------------------------+
-| Feature / Funzione              | Status  | Notes / Note                    |
-+---------------------------------+---------+---------------------------------+
-| Controllo validità CF Italia    | |check| | Verifica carattere di controllo |
-+---------------------------------+---------+---------------------------------+
-| Accetta Partita IVA             | |check| | Per aziende controllate         |
-+---------------------------------+---------+---------------------------------+
-| Genera CF da dati               | |check| |                                 |
-+---------------------------------+---------+---------------------------------+
-| Campo libero per partner esteri | |check| |                                 |
-+---------------------------------+---------+---------------------------------+
-| Separazione cognome e nome      | |check| |                                 |
-+---------------------------------+---------+---------------------------------+
++---------------------------------------+----------+---------------------------------------+
+| Feature / Funzione                    | Status   | Notes / Note                          |
++---------------------------------------+----------+---------------------------------------+
+| Controllo validità CF Italia          | |check|  | Verifica carattere di controllo       |
++---------------------------------------+----------+---------------------------------------+
+| Accetta Partita IVA                   | |check|  | Per aziende controllate               |
++---------------------------------------+----------+---------------------------------------+
+| Genera CF da dati                     | |check|  |                                       |
++---------------------------------------+----------+---------------------------------------+
+| Campo libero per partner esteri       | |check|  |                                       |
++---------------------------------------+----------+---------------------------------------+
+| Separazione cognome e nome            | |check|  |                                       |
++---------------------------------------+----------+---------------------------------------+
 
 
 
@@ -153,15 +152,17 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.5 (2024-07-16)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Company fiscalcode / Cddice fiscale aziendale
+* [FIX] Minor fiexs
+* [QUA] Test coverage 46% (259: 139+120) [0 TestPoints] - quality rating 28 (target 100)
+
 10.0.1.0.4 (2023-04-13)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Check FC/individual of child record / Controllo CF/PF su record figli
-
-10.0.1.0.3 (2022-04-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Regression tests
 
 
 
@@ -230,9 +231,9 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-07-16
 
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
+.. |Maturity| image:: https://img.shields.io/badge/maturity-Mature-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
