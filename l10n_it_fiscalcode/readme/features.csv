@@ -1,0 +1,5 @@
+Feature / Funzione,Status,Notes / Note
+Controllo validità CF Italia,|check|,Verifica carattere di controllo
+Accetta Partita IVA,|check|,Per aziende controllate
+Genera CF da dati,|check|,
+Campo libero per partner esteri,|check|,

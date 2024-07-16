@@ -1,4 +1,4 @@
-* Davide Corio
+* Davide Corio <davide.corio@abstract.it>
 * Luca Subiaco <subluca@gmail.com>
 * Simone Orsi <simone.orsi@domsense.com>
 * Mario Riva <mario.riva@agilebg.com>
@@ -6,7 +6,7 @@
 * Giovanni Barzan <giovanni.barzan@gmail.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis <onnis.roberto@gmail.com>
-* Franco Tampieri
+* Franco Tampieri <franco.tampieri@agilebg.com>
 * Andrea Cometa <info@andreacometa.it>
-* Andrea Gallina
+* Andrea Gallina <False>
 * Matteo Bilotta <mbilotta@linkgroup.it>
