@@ -142,11 +142,10 @@ class WizardImportFatturapa(models.TransientModel):
             skeys=(
                 ["vat", "fiscalcode", "is_company"],
                 ["vat", "name", "is_company"],
-                ["fiscalcode", "type"],
+                ["fiscalcode", "%name", "is_company"],
+                ["vat", "%name", "is_company"],
                 ["vat", "is_company"],
-                ["name", "is_company"],
-                ["vat"],
-                ["name"],
+                ["name", "!vat", "is_company"],
             ),
             constraints=[("id", "!=", "parent_id")],
             keep=[
@@ -385,8 +384,39 @@ class WizardImportFatturapa(models.TransientModel):
         return res
 
     def _prepareWelfareLine(self, credit_account_id, line, wt_found=False):
+        TipoCassa = line.TipoCassa or False
+        AlCassa = line.AlCassa and (float(line.AlCassa) / 100) or None
+        ImportoContributoCassa = (
+            line.ImportoContributoCassa and float(line.ImportoContributoCassa) or None
+        )
+        ImponibileCassa = line.ImponibileCassa and float(line.ImponibileCassa) or None
+        AliquotaIVA = line.AliquotaIVA and (float(line.AliquotaIVA) / 100) or None
+        Ritenuta = line.Ritenuta or ""
+        Natura = line.Natura or False
+        tax_kind_id = self.get_natura(Natura) if Natura else False
+        RiferimentoAmministrazione = line.RiferimentoAmministrazione or ""
+        WelfareTypeModel = self.env["welfare.fund.type"]
+        if not TipoCassa:
+            raise UserError(_("Welfare Fund is not defined."))
+        WelfareType = WelfareTypeModel.search([("code", "=", TipoCassa)])
+        res = {
+            "welfare_rate_tax": AlCassa,
+            "welfare_amount_tax": ImportoContributoCassa,
+            "welfare_taxable": ImponibileCassa,
+            "welfare_Iva_tax": AliquotaIVA,
+            "subjected_withholding": Ritenuta,
+            "tax_kind_id": tax_kind_id,
+            "pa_line_code": RiferimentoAmministrazione,
+            # "invoice_id": invoice_id,
+        }
+        if not WelfareType:
+            raise UserError(
+                _("Welfare Fund %s not present in your system.") % TipoCassa
+            )
+        else:
+            res["name"] = WelfareType[0].id
+
         retLine = self._prepare_generic_line_data(line)
-        AlCassa = line.AlCassa or 0
         retLine.update(
             {
                 "name": "Cassa previdenziale %s%%" % AlCassa,
@@ -394,9 +424,10 @@ class WizardImportFatturapa(models.TransientModel):
                 "account_id": credit_account_id,
             }
         )
-        ImportoContributoCassa = (
-            line.ImportoContributoCassa and float(line.ImportoContributoCassa) or None
-        )
+        if self.env.user.company_id.cassa_previdenziale_product_id:
+            retLine["product_id"] = (
+                self.env.user.company_id.cassa_previdenziale_product_id.id)
+
         if ImportoContributoCassa:
             retLine["price_unit"] = float(line.ImportoContributoCassa)
         else:
@@ -405,7 +436,7 @@ class WizardImportFatturapa(models.TransientModel):
         if wt_found and line.Ritenuta:
             retLine["invoice_line_tax_wt_ids"] = [(6, 0, [wt_found.id])]
 
-        return retLine
+        return retLine, res
 
     def _prepareWelfareData(self, invoice_id, line):
         TipoCassa = line.TipoCassa or False
@@ -910,10 +941,16 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale
         if Walfares and self.e_invoice_detail_level == "2":
-            for walfareLine in Walfares:
-                invoice_line_data = self._prepareWelfareLine(
-                    credit_account.id, walfareLine, wt_found
+            invoice_data["welfare_fund_ids"] = []
+            # WelfareFundLineModel = self.env["welfare.fund.data.line"]
+            for WelfareLine in Walfares:
+                invoice_line_data, welfare_line = self._prepareWelfareLine(
+                    credit_account.id, WelfareLine, wt_found
                 )
+                # WelfareFundLineModel.create(welfare_line)
+                if WelfareLine.TipoCassa == "TC07":
+                    continue
+                invoice_data["welfare_fund_ids"].append((0, 0, welfare_line))
                 invoice_line_id = invoice_line_model.create(invoice_line_data).id
                 invoice_lines.append(invoice_line_id)
         invoice_data["invoice_line_ids"] = [(6, 0, invoice_lines)]

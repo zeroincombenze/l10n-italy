@@ -234,14 +234,12 @@ class Partner(models.Model):
         else:
             vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
         SKEYS = (
-            ["vat", "fiscalcode", "type"],
-            ["vat", "%name", "type"],
-            ["fiscalcode", "%name", "type"],
-            ["rea_code"],
-            ["%name", "%city", "type"],
             ["vat", "fiscalcode", "is_company"],
-            ["vat"],
-            ["%name", "%street", "%city", "is_company"],
+            ["vat", "name", "is_company"],
+            ["fiscalcode", "%name", "is_company"],
+            ["vat", "%name", "is_company"],
+            ["vat", "is_company"],
+            ["name", "!vat", "is_company"],
         )
         partner_id = self.synchro2(
             "res.partner",
@@ -320,7 +318,11 @@ class Partner(models.Model):
             repeat = False
             for key in keys:
                 ilike = False
-                if key.startswith("%"):
+                if key.startswith("!"):
+                    key = key[1:]
+                    domain.append([key, "=", False])
+                    continue
+                if key.startswith(("%", "_")):
                     ilike = key[0]
                     key = key[1:]
                 if key not in vals and key == "type":
@@ -333,7 +335,9 @@ class Partner(models.Model):
                     domain = []
                     break
                 elif ilike:
-                    domain.append([key, "ilike", vals[key].replace(" ", ilike)])
+                    domain.append([key,
+                                   "ilike",
+                                   vals[key].replace(" ", ilike).replace(".", ilike)])
                 else:
                     domain.append([key, "=", vals[key]])
             if domain:

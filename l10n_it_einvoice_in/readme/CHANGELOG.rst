@@ -3,8 +3,10 @@
 
 * [FIX] Wrong invoice total if wrong rounding / Totale fattura errato in caso di errato arrotondamento
 * [IMP] Store and show e-invoice totals / Memorizza e mostra totali e-fattura
-* [IMP] Memorizza dati terzo intermediario
-* [QUA] Test coverage 55% (1357: 605+752) [0 TestPoints] - quality rating 34 (target 100)
+* [IMP] Dati terzo intermediario in fattura
+* [IMP] Cassa previdenziale in fattura
+* [IMP] Best partner searching / Migliorie ricerca partner
+* [QUA] Test coverage 68% (1382: 443+939) [0 TestPoints] - quality rating 41 (target 100)
 
 10.0.1.3.47 (2024-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~

@@ -274,7 +274,7 @@ class FatturapaCommon(SingleTransactionCase):
         ).id
         self.headphones = self.env.ref("product.product_product_7_product_template")
         self.imac = self.env.ref("product.product_product_8_product_template")
-        self.service = self.env.ref("product.service_delivery")
+        self.service = self.env.ref("l10n_it_einvoice_in.cassa_previdenziale")
         self.env.user.company_id.cassa_previdenziale_product_id = self.service.id
         # Set both active and passive account rounding
         arrotondamenti_attivi_account_id = (

@@ -33,6 +33,7 @@
     "version_depends": ["l10n_it_einvoice_base>=10.0.2.1.26"],
     "data": [
         "security/ir.model.access.csv",
+        "data/product.xml",
         "views/account_view.xml",
         "views/partner_view.xml",
         'views/company_view.xml',
