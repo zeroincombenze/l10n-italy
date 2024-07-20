@@ -1,9 +1,10 @@
-10.0.1.3.48 (2024-07-16)
+10.0.1.3.48 (2024-07-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Wrong invoice total if wrong rounding / Totale fattura errato in caso di errato arrotondamento
 * [IMP] Store and show e-invoice totals / Memorizza e mostra totali e-fattura
-* [QUA] Test coverage 64% (1361: 485+876) [0 TestPoints] - quality rating 39 (target 100)
+* [IMP] Memorizza dati terzo intermediario
+* [QUA] Test coverage 55% (1357: 605+752) [0 TestPoints] - quality rating 34 (target 100)
 
 10.0.1.3.47 (2024-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~

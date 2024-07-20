@@ -3,7 +3,7 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError, ValidationError
 # import odoo.addons.decimal_precision as dp
-from odoo.tools import float_compare
+from odoo.tools import float_compare, float_is_zero
 from odoo.tools.translate import _
 
 
@@ -45,6 +45,26 @@ class AccountInvoice(models.Model):
 
     e_invoice_received_date = fields.Date(string="E-Bill Received Date")
 
+    @api.multi
+    def _compute_einvoice_amounts(self):
+        for invoice in self:
+            round_curr = invoice.currency_id.round
+            e_invoice_amount_tax = e_invoice_amount_untaxed = line_amount = 0.0
+            for ln in invoice.fatturapa_summary_ids:
+                e_invoice_amount_untaxed += ln.amount_untaxed
+                e_invoice_amount_tax += ln.amount_tax
+            for ln in invoice.e_invoice_line_ids:
+                line_amount += ln.total_price
+            invoice.e_invoice_amount_untaxed = round_curr(e_invoice_amount_untaxed)
+            invoice.e_invoice_amount_tax = round_curr(e_invoice_amount_tax)
+            invoice.efatt_xml_rounding = round_curr(e_invoice_amount_untaxed
+                                                    - line_amount)
+            if not invoice.e_invoice_amount_total:
+                invoice.e_invoice_amount_total = round_curr(
+                    self.e_invoice_amount_untaxed
+                    + self.e_invoice_amount_tax
+                    + self.efatt_xml_rounding)
+
     @api.one
     @api.depends(
         "invoice_line_ids.price_subtotal",
@@ -53,54 +73,60 @@ class AccountInvoice(models.Model):
         "company_id",
         "date_invoice",
         "type",
-        "efatt_rounding",
-        "efatt_xml_rounding",
     )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        if self.e_invoice_amount_total == 0.0 or self.efatt_xml_rounding != 0.0:
-            round_curr = self.currency_id.round
-            if not self.e_invoice_amount_untaxed or not self.e_invoice_amount_tax:
-                e_invoice_amount_tax = e_invoice_amount_untaxed = 0.0
-                for ln in self.e_invoice_line_ids:
-                    e_invoice_amount_untaxed += ln.total_price
-                    e_invoice_amount_tax += ln.total_price * ln.tax_amount / 100
-                e_invoice_amount_tax = round_curr(e_invoice_amount_tax)
-                amount_total = self.e_invoice_amount_total or round_curr(
-                    e_invoice_amount_untaxed
-                    + e_invoice_amount_tax
-                    + self.efatt_xml_rounding)
-                self.e_invoice_amount_untaxed = e_invoice_amount_untaxed
-                self.e_invoice_amount_tax = e_invoice_amount_tax
-            else:
-                amount_total = self.amount_total
-            self.efatt_rounding = round_curr(amount_total
-                                             - self.e_invoice_amount_untaxed
-                                             - self.e_invoice_amount_tax)
-            if abs(amount_total - self.amount_total) > 0.01:
-                self.amount_total += self.efatt_rounding
-                amount_total_company_signed = self.amount_total
-                if (
-                    self.currency_id
-                    and self.company_id
-                    and self.currency_id != self.company_id.currency_id
-                ):
-                    currency_id = self.currency_id
-                    amount_total_company_signed = currency_id.compute(
-                        self.amount_total, self.company_id.currency_id
-                    )
-                sign = self.type in ["in_refund", "out_refund"] and -1 or 1
-                self.amount_total_company_signed = amount_total_company_signed * sign
-                self.amount_total_signed = self.amount_total * sign
+        # rounding = self.currency_id.rounding
+        # if not float_is_zero(self.e_invoice_amount_total - self.amount_total,
+        #                      precision_rounding=rounding):
+        #     # TODO> temporary fix bug
+        #     if self.date < "2024-07-20":
+        #         self._compute_einvoice_amounts()
+        #     round_curr = self.currency_id.round
+        #     if (
+        #         float_is_zero(self.e_invoice_amount_untaxed,
+        #                       precision_rounding=rounding)
+        #         or float_is_zero(self.e_invoice_amount_tax,
+        #         precision_rounding=rounding)
+        #     ):
+        #         e_invoice_amount_tax = e_invoice_amount_untaxed = 0.0
+        #         for ln in self.e_invoice_line_ids:
+        #             e_invoice_amount_untaxed += ln.total_price
+        #             e_invoice_amount_tax += ln.total_price * ln.tax_amount / 100
+        #         e_invoice_amount_tax = round_curr(e_invoice_amount_tax)
+        #         self.e_invoice_amount_untaxed = e_invoice_amount_untaxed
+        #         self.e_invoice_amount_tax = e_invoice_amount_tax
+        #     e_invoice_amount_total = self.e_invoice_amount_total or round_curr(
+        #         self.e_invoice_amount_untaxed
+        #         + self.e_invoice_amount_tax
+        #         + self.efatt_xml_rounding)
+        #     # Do not set self.efatt_rounding here because below self.amount_total = *
+        #     # triger again this function and reset it
+        #     efatt_rounding = round_curr(e_invoice_amount_total - self.amount_total)
+        #     if not float_is_zero(e_invoice_amount_total - self.amount_total,
+        #                          precision_rounding=rounding):
+        #         self.amount_total += efatt_rounding
+        #         amount_total_company_signed = self.amount_total
+        #         if (
+        #             self.currency_id
+        #             and self.company_id
+        #             and self.currency_id != self.company_id.currency_id
+        #         ):
+        #             currency_id = self.currency_id
+        #             amount_total_company_signed = currency_id.compute(
+        #                 self.amount_total, self.company_id.currency_id
+        #             )
+        #         sign = self.type in ["in_refund", "out_refund"] and -1 or 1
+        #         self.amount_total_company_signed = amount_total_company_signed * sign
+        #         self.amount_total_signed = self.amount_total * sign
+        #         self.efatt_rounding = efatt_rounding
 
     @api.model
     def invoice_line_move_line_get(self):
         """Append global rounding move lines"""
         res = super(AccountInvoice, self).invoice_line_move_line_get()
-        # TODO> Remove early, BUGFIX
-        if abs(self.efatt_rounding) > 1.0:
-            self._compute_amount()
-        if self.efatt_rounding != 0:
+        if not float_is_zero(self.efatt_rounding,
+                             precision_rounding=self.currency_id.rounding):
             if self.efatt_rounding > 0:
                 arrotondamenti_account_id = (
                     self.env.user.company_id.arrotondamenti_passivi_account_id
@@ -346,12 +372,6 @@ class AccountInvoice(models.Model):
         return amount_total or (amount_untaxed + amount_tax + rounding)
 
     @api.model
-    def compute_xml_rounding(self, amount_total, amount_untaxed, amount_tax):
-        return (
-            amount_total - amount_untaxed - amount_tax
-        )
-
-    @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
         amount_tax = 0.0
         for Riepilogo in DatiRiepilogo:
@@ -362,14 +382,13 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         amount_untaxed = self.compute_xml_amount_untaxed(fattura)
         amount_tax = self.compute_xml_amount_tax(fattura.DatiBeniServizi.DatiRiepilogo)
-        efatt_xml_rounding = self.float_from_tag(
-            fattura.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
-        )
         amount_total = self.compute_xml_amount_total(
             fattura, amount_untaxed, amount_tax
         )
-        efatt_rounding = self.compute_xml_rounding(
-            amount_total, amount_untaxed, amount_tax
+        efatt_xml_rounding = (
+            (amount_total - amount_untaxed - amount_tax)
+            or self.float_from_tag(
+                fattura.DatiGenerali.DatiGeneraliDocumento.Arrotondamento)
         )
         reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
         date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
@@ -379,7 +398,7 @@ class AccountInvoice(models.Model):
                 "e_invoice_amount_untaxed": amount_untaxed,
                 "e_invoice_amount_tax": amount_tax,
                 "e_invoice_amount_total": amount_total,
-                "efatt_rounding": efatt_rounding,
+                "efatt_rounding": 0.0,
                 "efatt_xml_rounding": efatt_xml_rounding,
                 "e_invoice_reference": reference,
                 "e_invoice_date_invoice": date_invoice,

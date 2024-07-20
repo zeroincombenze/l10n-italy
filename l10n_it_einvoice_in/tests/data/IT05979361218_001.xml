@@ -9,7 +9,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <IdPaese>IT</IdPaese>
                 <IdCodice>05979361218</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>006</ProgressivoInvio>
+            <ProgressivoInvio>001</ProgressivoInvio>
             <FormatoTrasmissione>FPA12</FormatoTrasmissione>
             <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
         </DatiTrasmissione>
@@ -17,7 +17,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>05979361218</IdCodice>
+                    <IdCodice>05979361218         </IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
                     <Denominazione>SOCIETA' ALPHA BETA SRL</Denominazione>
@@ -33,7 +33,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <CAP>07100</CAP>
                 <Comune>SASSARI</Comune>
                 <Provincia>SS</Provincia>
-                <Nazione>IT</Nazione>
+                <Nazione></Nazione>
             </Sede>
         </CedentePrestatore>
         <CessionarioCommittente>
@@ -51,18 +51,6 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
-        <TerzoIntermediarioOSoggettoEmittente>
-            <DatiAnagrafici>
-                <IdFiscaleIVA>
-                    <IdPaese>IT</IdPaese>
-                    <IdCodice>02886610241</IdCodice>
-                </IdFiscaleIVA>
-                <Anagrafica>
-                    <Denominazione>Rappresentante fiscale</Denominazione>
-                    <CodEORI>1234567890123</CodEORI>
-                </Anagrafica>
-            </DatiAnagrafici>
-        </TerzoIntermediarioOSoggettoEmittente>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody>
         <DatiGenerali>
@@ -70,7 +58,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2024-07-16</Data>
-                <Numero>14021</Numero>
+                <Numero>FT/2024/0006</Numero>
                 <DatiCassaPrevidenziale>
                     <TipoCassa>TC22</TipoCassa>
                     <AlCassa>0.00</AlCassa>
@@ -123,7 +111,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             </DettaglioPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2024-09-14</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2024-07-14</DataScadenzaPagamento>
                 <ImportoPagamento>27.00</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>

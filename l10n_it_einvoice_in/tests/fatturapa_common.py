@@ -19,10 +19,10 @@ class FatturapaCommon(SingleTransactionCase):
                 return path, out.read()
 
     def create_tax_22a(self):
-        tax_model = self.env["account.tax"]
-        tax_id = tax_model.search([("description", "=", "22a")])
+        AccountTax = self.env["account.tax"]
+        tax_id = AccountTax.search([("description", "=", "22a")])
         if tax_id:
-            return tax_model.browse(tax_id)
+            return AccountTax.browse(tax_id)
         account_id = (
             self.env["account.account"]
             .search(
@@ -37,8 +37,9 @@ class FatturapaCommon(SingleTransactionCase):
             )
             .id
         )
-        return tax_model.create(
+        return AccountTax.create(
             {
+                "company_id": self.env.user.company_id.id,
                 "name": "22% e-bill",
                 "description": "22a",
                 "type_tax_use": "purchase",
@@ -51,10 +52,10 @@ class FatturapaCommon(SingleTransactionCase):
         )
 
     def create_tax_a27a(self):
-        tax_model = self.env["account.tax"]
-        tax_id = tax_model.search([("description", "=", "a27a")])
+        AccountTax = self.env["account.tax"]
+        tax_id = AccountTax.search([("description", "=", "a27a")])
         if tax_id:
-            return tax_model.browse(tax_id)
+            return AccountTax.browse(tax_id)
         kind_id = (
             self.env["italy.ade.tax.nature"]
             .search(
@@ -69,8 +70,9 @@ class FatturapaCommon(SingleTransactionCase):
             )
             .id
         )
-        return tax_model.create(
+        return AccountTax.create(
             {
+                "company_id": self.env.user.company_id.id,
                 "name": "art. 27 regime minimi",
                 "description": "a27a",
                 "type_tax_use": "purchase",
@@ -80,11 +82,42 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
-    def create_tax_a17c2a(self):
-        tax_model = self.env["account.tax"]
-        tax_id = tax_model.search([("description", "=", "a17c2a")])
+    def create_tax_a10a(self):
+        AccountTax = self.env["account.tax"]
+        tax_id = AccountTax.search([("description", "=", "a10a")])
         if tax_id:
-            return tax_model.browse(tax_id)
+            return AccountTax.browse(tax_id)
+        kind_id = (
+            self.env["italy.ade.tax.nature"]
+            .search(
+                [
+                    (
+                        "code",
+                        "=",
+                        "N4"
+                    )
+                ],
+                limit=1,
+            )
+            .id
+        )
+        return AccountTax.create(
+            {
+                "company_id": self.env.user.company_id.id,
+                "name": "art. 10",
+                "description": "a10a",
+                "type_tax_use": "purchase",
+                "amount_type": "percent",
+                "amount": 0.0,
+                "kind_id": kind_id,
+            }
+        )
+
+    def create_tax_a17c2a(self):
+        AccountTax = self.env["account.tax"]
+        tax_id = AccountTax.search([("description", "=", "a17c2a")])
+        if tax_id:
+            return AccountTax.browse(tax_id)
         kind_id = (
             self.env["italy.ade.tax.nature"]
             .search(
@@ -99,8 +132,9 @@ class FatturapaCommon(SingleTransactionCase):
             )
             .id
         )
-        return tax_model.create(
+        return AccountTax.create(
             {
+                "company_id": self.env.user.company_id.id,
                 "name": "art. 17 comma 2",
                 "description": "a17c2a",
                 "type_tax_use": "purchase",

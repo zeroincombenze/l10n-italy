@@ -81,7 +81,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2022-12-18</Data>
+                <Data>2024-07-18</Data>
                 <Numero>123</Numero>
                 <DatiCassaPrevidenziale>
                     <TipoCassa>TC01</TipoCassa>
@@ -104,7 +104,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <DatiContratto>
                 <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
                 <IdDocumento>123</IdDocumento>
-                <Data>2021-09-01</Data>
+                <Data>2022-04-02</Data>
                 <NumItem>5</NumItem>
                 <CodiceCUP>123abc</CodiceCUP>
                 <CodiceCIG>456def</CodiceCIG>
@@ -143,7 +143,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                     <Provincia>CN</Provincia>
                     <Nazione>IT</Nazione>
                 </IndirizzoResa>
-                <DataOraConsegna>2022-10-22T16:46:12.000+02:00</DataOraConsegna>
+                <DataOraConsegna>2022-05-23T16:46:12.000+02:00</DataOraConsegna>
             </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
@@ -174,36 +174,36 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <CondizioniPagamento>TP01</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2023-04-30</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2024-11-30</DataScadenzaPagamento>
                 <ImportoPagamento>20.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2023-05-01</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2024-12-01</DataDecorrenzaPenale>
             </DettaglioPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2023-05-30</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2024-12-31</DataScadenzaPagamento>
                 <ImportoPagamento>9.00</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>1.00</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2023-05-31</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2025-01-01</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>
         <DatiPagamento>
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2023-06-30</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2025-01-31</DataScadenzaPagamento>
                 <ImportoPagamento>1.50</ImportoPagamento>
                 <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
                 <IBAN>IT28V0100003245232200001200</IBAN>
                 <BIC>GEBABEBB</BIC>
                 <PenalitaPagamentiRitardati>0.15</PenalitaPagamentiRitardati>
-                <DataDecorrenzaPenale>2023-07-01</DataDecorrenzaPenale>
+                <DataDecorrenzaPenale>2025-02-01</DataDecorrenzaPenale>
             </DettaglioPagamento>
         </DatiPagamento>
         <Allegati>
