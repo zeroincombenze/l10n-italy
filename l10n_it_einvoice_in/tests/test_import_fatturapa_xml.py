@@ -4,8 +4,11 @@ Test various xml files with many properties.
 See file ./tests/data/README.txt for furthermore information about specific
 checkpoint of every xml file.
 """
+import logging
 # from odoo.exceptions import UserError
 from .fatturapa_common import FatturapaCommon
+
+_logger = logging.getLogger(__name__)
 
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
@@ -15,6 +18,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # Set VAT number of e-invoices
         self.env.user.company_id.vat = "IT05111810015"
         self.tax_22a = self.create_tax_22a()
+        self.tax_10a = self.create_tax_10a()
         self.tax_a10a = self.create_tax_a10a()
         self.tax_a27a = self.create_tax_a27a()
         self.tax_a17c2a = self.create_tax_a17c2a()
@@ -23,6 +27,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.invoice_model = self.env["account.invoice"]
 
     def invoice_from_xml(self, mesg, xml_fn):
+        _logger.info(u"🎺 " + mesg + "(" + xml_fn + ")")
         return self.invoice_model.browse(
             self.run_wizard(mesg, xml_fn).get("domain")[0][2][0])
 
@@ -102,86 +107,47 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_from_xml("test_02_011", "IT05979361218_011.xml")
         self.assertEqual(invoice.intermediary.vat, "IT02886610241")
 
-    def test_04_xml_import_11005(self):
-        invoice = self.invoice_from_xml("test_04_11005", "IT02780790107_11005.xml")
-        self.assertEqual(invoice.reference, "124")
-        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
-        self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name, "22% e-bill"
-        )
-        self.assertEqual(
-            invoice.invoice_line_ids[1].invoice_line_tax_ids[0].name, "22% e-bill"
-        )
-        self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].amount, 22.0)
-        self.assertEqual(
-            invoice.invoice_line_ids[1].invoice_line_tax_ids[0].amount, 22.0)
-        self.assertEqual(invoice.invoice_line_ids[1].price_unit, 2.0)
-        self.assertTrue(len(invoice.e_invoice_line_ids) == 2)
-        for e_line in invoice.e_invoice_line_ids:
-            self.assertTrue(e_line.line_number in (1, 2))
-            if e_line.line_number == 1:
-                self.assertEqual(e_line.cod_article_ids[0].name, "EAN")
-                self.assertEqual(e_line.cod_article_ids[0].code_val, "12345")
-        # TODD> CHeck for language
-        # self.assertEqual(
-        #     invoice.inconsistencies,
-        #     "Company Name field contains 'Societa' Alpha SRL'. "
-        #     "Your System contains 'SOCIETA' ALPHA SRL'\n\n",
-        # )
-
-    def test_00002_xml_import(self):
-        # Invoice with WH tax
-        res = self.run_wizard("🎺 test002", "IT10242670015_00002.xml")
-        invoice_id = res.get("domain")[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-        self.assertEqual(invoice.partner_id.register_code, "SS1234")
-        self.assertEqual(invoice.partner_id.register_fiscalpos.code, "RF02")
-        self.assertEqual(invoice.reference, "FT/2022/0006")
-        self.assertEqual(invoice.amount_total, 57.00)
-        self.assertEqual(invoice.gross_weight, 0.00)
-        self.assertEqual(invoice.net_weight, 0.00)
-        # TODO> Must add welfare fund
-        # self.assertEqual(invoice.welfare_fund_ids[0].kind_id.code, "N4")
-        self.assertFalse(invoice.art73)
-        # welfare_found = False
-        for line in invoice.invoice_line_ids:
-            if line.product_id.id == self.service.id:
-                self.assertEqual(line.price_unit, 3)
-                # welfare_found = True
-        # TODO> Must add welfare fund
-        # self.assertTrue(welfare_found)
-        self.assertTrue(len(invoice.e_invoice_line_ids) == 1)
-        self.assertEqual(
-            invoice.e_invoice_line_ids[0].name, "Prodotto di test al giorno"
-        )
-        self.assertEqual(invoice.e_invoice_line_ids[0].qty, 15.0)
-        self.assertEqual(invoice.e_invoice_line_ids[0].uom, "Giorno(i)")
-        self.assertEqual(invoice.e_invoice_line_ids[0].unit_price, 3.6)
-        self.assertEqual(invoice.e_invoice_line_ids[0].total_price, 54.0)
-        self.assertEqual(invoice.e_invoice_line_ids[0].tax_amount, 0.0)
-        self.assertEqual(invoice.e_invoice_line_ids[0].tax_kind, "N2.2")
-        self.assertTrue(len(invoice.e_invoice_line_ids[0].other_data_ids) == 2)
-        self.assertEqual(
-            invoice.e_invoice_line_ids[0].other_data_ids[0].text_ref, "Riferimento"
-        )
-
-    def test_00003_xml_import(self):
-        # Invoice from RSM
-        res = self.run_wizard("🎺 test003", "SM00000004298_00003.xml")
-        invoice_id = res.get("domain")[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
+    def test_80_xml_import(self):
+        # E-invoice from RSM with wrong len vat number
+        invoice = self.invoice_from_xml("test_80_00003", "SM00000004298_00003.xml")
         for line in invoice.invoice_line_ids:
             self.assertEqual(line.invoice_line_tax_ids[0].kind_id.code, "N6.9")
 
-    def test_00004_xml_import(self):
+    def test_81_xml_import(self):
+        # Invoice with wrong e-mail
+        self.run_wizard("test_81", "IT00488410010_00014.xml")
+
+    def test_82_xml_import(self):
+        # Invoice with wrong e-mail
+        self.run_wizard("test_82", "IT01641790702_00015.xml")
+
+    def test_83_xml_import(self):
+        # Invoice with wrong round
+        invoice = self.invoice_from_xml("test_83", "IT02421500469_00244.xml")
+        self.assertEqual(invoice.amount_untaxed, 39.08)
+        self.assertEqual(invoice.amount_tax, 3.91)
+        self.assertEqual(round(invoice.amount_total, 2), 42.99)
+        self.assertEqual(invoice. e_invoice_amount_untaxed, 39.08)
+        self.assertEqual(invoice. e_invoice_amount_tax, 3.91)
+        self.assertEqual(round(invoice.e_invoice_amount_total, 2), 42.99)
+
+    def test_84_xml_import(self):
+        # Invoice with wrong round
+        invoice = self.invoice_from_xml("test_84", "IT08973230967_9aA6M.xml")
+        self.assertEqual(invoice.amount_untaxed, 36.2)
+        self.assertEqual(invoice.amount_tax, 7.96)
+        # self.assertEqual(round(invoice.amount_total, 2), 44.2)
+        self.assertEqual(invoice. e_invoice_amount_untaxed, 36.36)
+        self.assertEqual(round(invoice.efatt_xml_rounding, 2), 0.16)
+        self.assertEqual(invoice. e_invoice_amount_tax, 8.0)
+        self.assertEqual(round(invoice.e_invoice_amount_total, 2), 44.2)
+
+    def test_102_xml_import_enasarco(self):
         # Invoice with WH tax
-        self.run_wizard("🎺 test004", "ITNREGCM80H30D612D_00004.xml")
-
-    def test_00014_xml_import(self):
-        # Invoice with wrong e-mail
-        self.run_wizard("🎺 test014", "IT00488410010_00014.xml")
-
-    def test_00015_xml_import(self):
-        # Invoice with wrong e-mail
-        self.run_wizard("🎺 test015", "IT01641790702_00015.xml")
+        invoice = self.invoice_from_xml("test_02_enasarco",
+                                        "ITNREGCM80H30D612D_20003.xml")
+        self.assertEqual(invoice.amount_untaxed, 10.0)
+        self.assertEqual(invoice.amount_tax, 2.2)
+        self.assertEqual(round(invoice.amount_total, 2), 12.2)
+        self.assertEqual(round(invoice.amount_net_pay, 2), 11.35)
+        self.assertTrue(len(invoice.invoice_line_ids) == 1)

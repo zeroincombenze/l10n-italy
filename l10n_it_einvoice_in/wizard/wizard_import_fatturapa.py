@@ -1167,6 +1167,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         # compute the invoice
         invoice.compute_taxes()
+        invoice._compute_einvoice_amounts()
         return invoice_id
 
     def compute_xml_amount_untaxed(self, DatiRiepilogo):

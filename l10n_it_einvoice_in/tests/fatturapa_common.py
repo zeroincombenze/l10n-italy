@@ -51,6 +51,39 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
+    def create_tax_10a(self):
+        AccountTax = self.env["account.tax"]
+        tax_id = AccountTax.search([("description", "=", "10a")])
+        if tax_id:
+            return AccountTax.browse(tax_id)
+        account_id = (
+            self.env["account.account"]
+            .search(
+                [
+                    (
+                        "user_type_id",
+                        "=",
+                        self.env.ref("account.data_account_type_current_assets").id,
+                    )
+                ],
+                limit=1,
+            )
+            .id
+        )
+        return AccountTax.create(
+            {
+                "company_id": self.env.user.company_id.id,
+                "name": "10% e-bill",
+                "description": "10a",
+                "type_tax_use": "purchase",
+                "amount_type": "percent",
+                "amount": 10.0,
+                "account_id": account_id,
+                "refund_account_id": account_id,
+                "sequence": 10,
+            }
+        )
+
     def create_tax_a27a(self):
         AccountTax = self.env["account.tax"]
         tax_id = AccountTax.search([("description", "=", "a27a")])
@@ -276,6 +309,7 @@ class FatturapaCommon(SingleTransactionCase):
         self.imac = self.env.ref("product.product_product_8_product_template")
         self.service = self.env.ref("l10n_it_einvoice_in.cassa_previdenziale")
         self.env.user.company_id.cassa_previdenziale_product_id = self.service.id
+        self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
         # Set both active and passive account rounding
         arrotondamenti_attivi_account_id = (
             self.env["account.account"]
