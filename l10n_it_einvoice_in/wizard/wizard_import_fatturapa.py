@@ -159,65 +159,13 @@ class WizardImportFatturapa(models.TransientModel):
         )
 
     def get_tax(self, company_id, AliquotaIVA, Natura, partner=None):
-        account_tax_model = self.env["account.tax"]
-        nature_model = self.env["italy.ade.tax.nature"]
-        ir_values_model = self.env["ir.values"]
-        AliquotaIVA_fp = float(AliquotaIVA)
-        supplier_taxes_ids = ir_values_model.get_default(
-            "product.product", "supplier_taxes_id", company_id=company_id
-        )
-        def_purchase_tax = False
-        is_rc = account_tax_model.is_rc(nature=Natura)
-        default_tax = account_tax_model.search(
-            [("type_tax_use", "=", "purchase"),
-             ("amount", "!=", 0.0)], limit=1, order="sequence")
-        if supplier_taxes_ids:
-            def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
-        domain = []
-        domain.append(("company_id", "=", company_id))
-        domain.append(("type_tax_use", "=", "purchase"))
-        if AliquotaIVA_fp != 0.0:
-            domain.append(("amount", "=", AliquotaIVA_fp))
-        elif is_rc:
-            # Some supplier use N6 w/o Vax rate!
-            domain.append("|")
-            domain.append(("amount", "=", default_tax[0].amount))
-            domain.append(("amount", "=", 0.0))
-        domain.append(("rc", "=", is_rc))
-        if Natura:
-            if "." not in Natura:
-                # Code 2020
-                kind_ids = nature_model.search([("code", "like", Natura)])
-                if kind_ids:
-                    domain.append(("kind_id", "in", [x.id for x in kind_ids]))
-            else:
-                kind_id = nature_model.search([("code", "=", Natura)])
-                if kind_id:
-                    domain.append(("kind_id", "=", kind_id.id))
-        account_taxes = account_tax_model.search(domain, order="sequence")
-        if not account_taxes:
-            raise UserError(
-                _("Nessun codice IVA con aliquota " "%s e natura %s. Inserirne uno.")
-                % (AliquotaIVA, Natura)
-            )
-        if len(account_taxes) > 1:
-            if partner and partner.register_fiscalpos.code == "RF19" and Natura == "N2":
-                domain.append(("name", "ilike", "%190%"))
-                account_taxes2 = account_tax_model.search(domain, order="sequence")
-                if len(account_taxes2):
-                    account_taxes = account_taxes2
-        if len(account_taxes) > 1:
-            self.log_inconsistency(
-                _(
-                    "Rilevati troppi codici IVA con aliquota %s "
-                    "e natura %s. Eventualmente selezionare il codice corretto."
-                )
-                % (AliquotaIVA, Natura)
-            )
-        if def_purchase_tax and def_purchase_tax.amount == AliquotaIVA_fp:
-            account_tax_id = def_purchase_tax.id
-        else:
-            account_tax_id = account_taxes[0].id
+        AccountTax = self.env["account.tax"]
+        account_tax_id, errmsg = AccountTax.search_tax_by_code_kind(
+            company_id, AliquotaIVA, Natura, partner=partner)
+        if not account_tax_id:
+            raise UserError(errmsg)
+        if errmsg:
+            self.log_inconsistency(errmsg)
         return account_tax_id
 
     def get_natura(self, Natura):
@@ -1168,6 +1116,7 @@ class WizardImportFatturapa(models.TransientModel):
         # compute the invoice
         invoice.compute_taxes()
         invoice._compute_einvoice_amounts()
+        invoice.create_round_lines()
         return invoice_id
 
     def compute_xml_amount_untaxed(self, DatiRiepilogo):

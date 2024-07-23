@@ -11,7 +11,7 @@
 #
 {
     "name": "ITA - Fattura elettronica - Ricezione",
-    "version": "10.0.1.3.48",
+    "version": "10.0.1.3.49",
     "category": "Localization/Italy",
     "summary": "E-invoice receive",
     "author": "Agile Business Group sagl, Innoviu srl, Pointec s.r.l.,"

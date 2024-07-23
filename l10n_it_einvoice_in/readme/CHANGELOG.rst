@@ -1,4 +1,10 @@
-10.0.1.3.48 (2024-07-21)
+10.0.1.3.49 (2024-07-23)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Force validation
+* [QUA] Test coverage 70% (1460: 444+1016) [0 TestPoints] - quality rating 42 (target 100)
+
+10.0.1.3.48 (2024-07-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Wrong invoice total if wrong rounding / Totale fattura errato in caso di errato arrotondamento

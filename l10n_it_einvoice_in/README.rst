@@ -1,5 +1,5 @@
 ========================================================
-|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.48
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.49
 ========================================================
 
 **E-invoice receive**
@@ -219,7 +219,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.48 (2024-07-21)
+10.0.1.3.49 (2024-07-23)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Force validation
+* [QUA] Test coverage 70% (1460: 444+1016) [0 TestPoints] - quality rating 42 (target 100)
+
+10.0.1.3.48 (2024-07-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Wrong invoice total if wrong rounding / Totale fattura errato in caso di errato arrotondamento
@@ -292,11 +298,6 @@ ChangeLog History | Cronologia modifiche
 
 * [IMP] Import RC invoice w/o tax rate / Import fatture RC senza aliquota IVA
 
-10.0.1.3.37 (2023-02-16)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Now module does not depend on l10n_it_ddt / Ora il modulo non richiede l'installazione del DdT
-
 
 
 Credits | Ringraziamenti
@@ -362,7 +363,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-07-21
+Last Update / Ultimo aggiornamento: 2024-07-23
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

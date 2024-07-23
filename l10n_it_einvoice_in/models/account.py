@@ -2,8 +2,7 @@
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError, ValidationError
-# import odoo.addons.decimal_precision as dp
-from odoo.tools import float_compare, float_is_zero
+from odoo.tools import float_is_zero
 from odoo.tools.translate import _
 
 
@@ -84,30 +83,95 @@ class AccountInvoice(models.Model):
                                  precision_rounding=rounding)
         ):
             self._compute_einvoice_amounts()
-        # if not float_is_zero(self.efatt_xml_rounding,
-        #                      precision_rounding=rounding):
-        #     round_curr = self.currency_id.round
-        #     #
-        #     # Do not set self.efatt_rounding here because below self.amount_total = *
-        #     # trigger again this function and reset it
-        #     efatt_rounding = round_curr(self.e_invoice_amount_total
-        #                                 - self.amount_total)
-        #     if not float_is_zero(efatt_rounding, precision_rounding=rounding):
-        #         self.amount_total += efatt_rounding
-        #         amount_total_company_signed = self.amount_total
-        #         if (
-        #             self.currency_id
-        #             and self.company_id
-        #             and self.currency_id != self.company_id.currency_id
-        #         ):
-        #             currency_id = self.currency_id
-        #             amount_total_company_signed = currency_id.compute(
-        #                 self.amount_total, self.company_id.currency_id
-        #             )
-        #         sign = self.type in ["in_refund", "out_refund"] and -1 or 1
-        #         self.amount_total_company_signed = amount_total_company_signed * sign
-        #         self.amount_total_signed = self.amount_total * sign
-        #         self.efatt_rounding = efatt_rounding
+
+    def load_rounding_values(self, round_amount, tax_rate=None, tax_kind=None):
+        if round_amount > 0:
+            arrotondamenti_account_id = (
+                self.env.user.company_id.arrotondamenti_passivi_account_id
+            )
+            if not arrotondamenti_account_id:
+                raise UserError(
+                    _("Round down account is not set in Accounting Settings")
+                )
+            name = _("Rounding down")
+        else:
+            arrotondamenti_account_id = (
+                self.env.user.company_id.arrotondamenti_attivi_account_id
+            )
+            if not arrotondamenti_account_id:
+                raise UserError(
+                    _("Round up account is not set in Accounting Settings")
+                )
+            name = _("Rounding up")
+        if tax_rate or tax_kind:
+            tax_id, errmsg = self.env["account.tax"].search_tax_by_code_kind(
+                self.company_id.id, tax_rate, tax_kind)
+        else:
+            tax_id = self.env.user.company_id.arrotondamenti_tax_id.id
+        return {
+            "name": name,
+            "price_unit": round_amount,
+            "account_id": arrotondamenti_account_id.id,
+            "invoice_line_tax_ids": [(6, 0, [tax_id])],
+            "quantity": 1,
+        }
+
+    @api.one
+    def create_round_lines(self):
+        self.ensure_one()
+        rounding = self.currency_id.rounding
+        round_curr = self.currency_id.round
+        if not float_is_zero(
+                round_curr(self.e_invoice_amount_untaxed - self.amount_untaxed),
+                precision_rounding=rounding):
+            round_lines = []
+            for ln in self.fatturapa_summary_ids:
+                if not ln.rounding:
+                    continue
+                vals = self.load_rounding_values(
+                    ln.rounding, tax_rate=ln.tax_rate, tax_kind=ln.non_taxable_nature)
+                round_lines.append(vals)
+            if round_lines:
+                for inv_line in self.invoice_line_ids:
+                    for round_line in round_lines:
+                        if (
+                            not round_line.get("found")
+                            and inv_line.account_id.id == round_line["account_id"]
+                            and inv_line.invoice_line_tax_ids
+                            == round_line["invoice_line_tax_ids"][0][2]
+                            and inv_line.quantity == round_line["quantity"]
+                        ):
+                            inv_line.write(round_line)
+                            round_line["found"] = True
+                            break
+                for round_line in round_lines:
+                    if not round_line.get("found"):
+                        round_line["sequence"] = 998
+                        round_line["invoice_id"] = self.id
+                        inv_line.create(round_line)
+                        round_line["found"] = True
+                self.compute_taxes()
+                if not float_is_zero(
+                        round_curr(self.e_invoice_amount_total - self.amount_total),
+                        precision_rounding=rounding):
+                    vals = self.load_rounding_values(
+                        round_curr(self.e_invoice_amount_total - self.amount_total))
+                    for inv_line in self.invoice_line_ids:
+                        if (
+                                inv_line.account_id.id == vals["account_id"]
+                                and inv_line.invoice_line_tax_ids
+                                == vals["invoice_line_tax_ids"][0][2]
+                                and inv_line.quantity == vals["quantity"]
+                        ):
+                            inv_line.write(vals)
+                            vals["found"] = True
+                            break
+                    if not vals.get("found"):
+                        vals["sequence"] = 998
+                        vals["invoice_id"] = self.id
+                        inv_line.create(vals)
+                        vals["found"] = True
+                    self.compute_taxes()
 
     @api.model
     def invoice_line_move_line_get(self):
@@ -149,6 +213,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def invoice_validate(self):
+        self._compute_e_invoice_validation_error()
         for invoice in self:
             if (
                 invoice.e_invoice_validation_error
@@ -162,63 +227,58 @@ class AccountInvoice(models.Model):
 
     def e_inv_check_amount_untaxed(self):
         error_message = ""
+        rounding = self.currency_id.rounding
+        round_curr = self.currency_id.round
         if (
-            self.e_invoice_amount_untaxed
-            and float_compare(
-                self.amount_untaxed,
-                abs(self.e_invoice_amount_untaxed),
-                precision_rounding=self.currency_id.rounding,
-            )
-            != 0
+            not float_is_zero(
+                round_curr(self.e_invoice_amount_untaxed - self.amount_untaxed),
+                precision_rounding=rounding)
+            and not float_is_zero(
+                round_curr(self.e_invoice_amount_untaxed
+                           - self.amount_untaxed
+                           - self.efatt_xml_rounding),
+                precision_rounding=rounding)
         ):
             error_message = _(
                 "Untaxed amount ({bill_amount_untaxed}) "
                 "does not match with "
                 "e-bill untaxed amount ({e_bill_amount_untaxed})"
             ).format(
-                bill_amount_untaxed=self.amount_untaxed or 0,
+                bill_amount_untaxed=self.amount_untaxed,
                 e_bill_amount_untaxed=self.e_invoice_amount_untaxed,
             )
         return error_message
 
     def e_inv_check_amount_tax(self):
         error_message = ""
-        if (
-            self.e_invoice_amount_tax
-            and float_compare(
-                self.amount_tax,
-                abs(self.e_invoice_amount_tax),
-                precision_rounding=self.currency_id.rounding,
-            )
-            != 0
-        ):
+        rounding = self.currency_id.rounding
+        round_curr = self.currency_id.round
+        if not float_is_zero(
+                round_curr(self.e_invoice_amount_tax - self.amount_tax),
+                precision_rounding=rounding):
             error_message = _(
                 "Taxed amount ({bill_amount_tax}) "
                 "does not match with "
                 "e-bill taxed amount ({e_bill_amount_tax})"
             ).format(
-                bill_amount_tax=self.amount_tax or 0,
+                bill_amount_tax=self.amount_tax,
                 e_bill_amount_tax=self.e_invoice_amount_tax,
             )
         return error_message
 
     def e_inv_check_amount_total(self):
         error_message = ""
-        if (
-            self.e_invoice_amount_total
-            and float_compare(
-                self.amount_total,
-                abs(self.e_invoice_amount_total),
-                precision_rounding=self.currency_id.rounding,
-            )
-            != 0
-        ):
+        rounding = self.currency_id.rounding
+        round_curr = self.currency_id.round
+        if not float_is_zero(
+                round_curr(self.e_invoice_amount_total - self.amount_total),
+                precision_rounding=rounding):
             error_message = _(
                 "Total amount ({bill_amount_total}) "
                 "does not match with "
                 "e-bill total amount ({e_bill_amount_total})"
             ).format(
-                bill_amount_total=self.amount_total or 0,
+                bill_amount_total=self.amount_total,
                 e_bill_amount_total=self.e_invoice_amount_total,
             )
         return error_message
