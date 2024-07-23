@@ -183,6 +183,7 @@
                         attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"
                 >
                     <group>
+                        <field name="e_invoice_validation_error" invisible="1"/>
                         <field
                             name="e_invoice_force_validation"
                             attrs="{'invisible': [('e_invoice_validation_error','=',False)]}"
