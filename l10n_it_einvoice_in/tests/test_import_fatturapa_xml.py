@@ -160,9 +160,20 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice. e_invoice_amount_tax, 2.35)
         self.assertEqual(round(invoice.e_invoice_amount_total, 2), 25.9)
 
-    def test_902_xml_import_enasarco(self):
+    def test_902_xml_import_autogrill(self):
+        # Tax rounded 3.3 EUR
+        invoice = self.invoice_from_xml("test_902_autogrill",
+                                        "IT0526289001424201_BQ1Ll.xml")
+        self.assertEqual(round(invoice.amount_untaxed, 2), 58.05)
+        self.assertEqual(invoice.amount_tax, 11.33)
+        self.assertEqual(round(invoice.amount_total, 2), 69.38)
+        self.assertEqual(invoice. e_invoice_amount_untaxed, 61.38)
+        self.assertEqual(invoice. e_invoice_amount_tax, 11.33)
+        self.assertEqual(round(invoice.e_invoice_amount_total, 2), 69.38)
+
+    def test_903_xml_import_enasarco(self):
         # Invoice with WH tax
-        invoice = self.invoice_from_xml("test_902_enasarco",
+        invoice = self.invoice_from_xml("test_903_enasarco",
                                         "ITNREGCM80H30D612D_20003.xml")
         self.assertEqual(invoice.amount_untaxed, 10.0)
         self.assertEqual(invoice.amount_tax, 2.2)

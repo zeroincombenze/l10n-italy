@@ -237,6 +237,7 @@ class Partner(models.Model):
         else:
             vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
         SKEYS = (
+            ["rea_office", "rea_code"],
             ["vat", "fiscalcode", "is_company", "type"],
             ["vat", "name", "is_company", "type"],
             ["fiscalcode", "%name", "is_company", "type"],

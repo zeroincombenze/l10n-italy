@@ -71,6 +71,18 @@ class AccountInvoice(models.Model):
                 + self.e_invoice_amount_tax
                 + self.efatt_xml_rounding)
 
+    @api.model
+    def float_diff_in_range(self, left, right):
+        rounding = self.currency_id.rounding
+        return (
+            float_compare(left,
+                          right,
+                          precision_rounding=rounding) != 0
+            and float_compare(left,
+                              right,
+                              precision_rounding=rounding * 1.9) == 0
+        )
+
     @api.multi
     def compute_taxes(self):
         res = super(AccountInvoice, self).compute_taxes()
@@ -80,7 +92,7 @@ class AccountInvoice(models.Model):
             if not invoice.e_invoice_amount_total:
                 continue
 
-            rounding = invoice.currency_id.rounding
+            # rounding = invoice.currency_id.rounding
             for inv_tax_line in invoice.tax_line_ids:
                 for ln in invoice.fatturapa_summary_ids:
                     if (
@@ -88,23 +100,9 @@ class AccountInvoice(models.Model):
                         or ln.non_taxable_nature != inv_tax_line.tax_id.kind_id
                     ):
                         continue
-                    if (
-                        float_compare(inv_tax_line.amount,
-                                      ln.amount_tax,
-                                      precision_rounding=rounding)
-                        and not float_compare(inv_tax_line.amount,
-                                              ln.amount_tax,
-                                              precision_rounding=rounding * 2)
-                    ):
+                    if self.float_diff_in_range(inv_tax_line.amount, ln.amount_tax):
                         inv_tax_line.amount = ln.amount_tax
-                    if (
-                        float_compare(inv_tax_line.base,
-                                      ln.amount_untaxed,
-                                      precision_rounding=rounding)
-                        and not float_compare(inv_tax_line.base,
-                                              ln.amount_untaxed,
-                                              precision_rounding=rounding * 2)
-                    ):
+                    if self.float_diff_in_range(inv_tax_line.base, ln.amount_untaxed):
                         inv_tax_line.base = ln.amount_untaxed
         return res
 
@@ -145,57 +143,81 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         rounding = self.currency_id.rounding
         round_curr = self.currency_id.round
-        if not float_is_zero(
-                round_curr(self.e_invoice_amount_untaxed - self.amount_untaxed),
-                precision_rounding=rounding):
-            round_lines = []
-            for ln in self.fatturapa_summary_ids:
-                if not ln.rounding:
-                    continue
+        force_round_total = False
+        # if not float_is_zero(
+        #         round_curr(self.e_invoice_amount_untaxed - self.amount_untaxed),
+        #         precision_rounding=rounding):
+        round_lines = []
+        for ln in self.fatturapa_summary_ids:
+            if ln.rounding:
                 vals = self.load_rounding_values(
-                    ln.rounding, tax_rate=ln.tax_rate, tax_kind=ln.non_taxable_nature)
+                    ln.rounding,
+                    tax_rate=ln.tax_rate,
+                    tax_kind=ln.non_taxable_nature)
                 round_lines.append(vals)
-            if round_lines:
-                for inv_line in self.invoice_line_ids:
-                    for round_line in round_lines:
-                        if (
-                            not round_line.get("found")
-                            and inv_line.account_id.id == round_line["account_id"]
-                            and inv_line.invoice_line_tax_ids.id
-                            == round_line["invoice_line_tax_ids"][0][2][0]
-                            and inv_line.quantity == round_line["quantity"]
-                        ):
-                            inv_line.write(round_line)
-                            round_line["found"] = True
-                            break
-                for round_line in round_lines:
-                    if not round_line.get("found"):
-                        round_line["sequence"] = 998
-                        round_line["invoice_id"] = self.id
-                        inv_line.create(round_line)
-                        round_line["found"] = True
-                self.compute_taxes()
-                if not float_is_zero(
-                        round_curr(self.e_invoice_amount_total - self.amount_total),
-                        precision_rounding=rounding):
+            else:
+                found_tax_line = False
+                for inv_tax_line in self.tax_line_ids:
+                    if (
+                        ln.tax_rate == inv_tax_line.tax_id.amount
+                        and ln.non_taxable_nature == inv_tax_line.tax_id.kind_id
+                    ):
+                        found_tax_line = True
+                        break
+                if (
+                    found_tax_line
+                    and round_curr(ln.amount_untaxed - inv_tax_line.base)
+                ):
                     vals = self.load_rounding_values(
-                        round_curr(self.e_invoice_amount_total - self.amount_total))
-                    for inv_line in self.invoice_line_ids:
-                        if (
-                                inv_line.account_id.id == vals["account_id"]
-                                and inv_line.invoice_line_tax_ids.id
-                                == vals["invoice_line_tax_ids"][0][2][0]
-                                and inv_line.quantity == vals["quantity"]
-                        ):
-                            inv_line.write(vals)
-                            vals["found"] = True
-                            break
-                    if not vals.get("found"):
-                        vals["sequence"] = 998
-                        vals["invoice_id"] = self.id
-                        inv_line.create(vals)
-                        vals["found"] = True
-                    self.compute_taxes()
+                        round_curr(ln.amount_untaxed - inv_tax_line.base),
+                        tax_rate=ln.tax_rate,
+                        tax_kind=ln.non_taxable_nature)
+                    round_lines.append(vals)
+        if round_lines:
+            for inv_line in self.invoice_line_ids:
+                for round_line in round_lines:
+                    if (
+                        not round_line.get("found")
+                        and inv_line.account_id.id == round_line["account_id"]
+                        and inv_line.invoice_line_tax_ids.id
+                        == round_line["invoice_line_tax_ids"][0][2][0]
+                        and inv_line.quantity == round_line["quantity"]
+                    ):
+                        inv_line.write(round_line)
+                        round_line["found"] = True
+                        break
+            for round_line in round_lines:
+                if not round_line.get("found"):
+                    round_line["sequence"] = 997
+                    round_line["invoice_id"] = self.id
+                    inv_line.create(round_line)
+                    round_line["found"] = True
+            self.compute_taxes()
+            force_round_total = True
+        if (
+            (force_round_total and not float_is_zero(
+                (self.e_invoice_amount_total - self.amount_total),
+                precision_rounding=rounding))
+            or self.float_diff_in_range(self.e_invoice_amount_total, self.amount_total)
+        ):
+            vals = self.load_rounding_values(
+                round_curr(self.e_invoice_amount_total - self.amount_total))
+            for inv_line in self.invoice_line_ids:
+                if (
+                        inv_line.account_id.id == vals["account_id"]
+                        and inv_line.invoice_line_tax_ids.id
+                        == vals["invoice_line_tax_ids"][0][2][0]
+                        and inv_line.quantity == vals["quantity"]
+                ):
+                    inv_line.write(vals)
+                    vals["found"] = True
+                    break
+            if not vals.get("found"):
+                vals["sequence"] = 998
+                vals["invoice_id"] = self.id
+                inv_line.create(vals)
+                vals["found"] = True
+            self.compute_taxes()
 
     @api.model
     def invoice_line_move_line_get(self):

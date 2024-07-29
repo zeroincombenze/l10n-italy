@@ -830,11 +830,25 @@ class WizardImportFatturapa(models.TransientModel):
                 "partner_id": partner_id,
                 "journal_id": purchase_journal.id,
                 # 'origin': xmlData.datiOrdineAcquisto,
-                "fiscal_position_id": partner.property_account_position_id.id,
                 "company_id": company.id,
                 "fatturapa_attachment_in_id": fatturapa_attachment.id,
             }
         )
+        if (
+                not hasattr(partner.property_account_position_id, 'split_payment')
+                or not partner.property_account_position_id.split_payment
+        ):
+            invoice_data["fiscal_position_id"] = partner.property_account_position_id.id
+        else:
+            domain = [
+                ("name", "ilike", "ita"),
+                ("split_payment", "=", False)
+            ]
+            if hasattr(partner.property_account_position_id, 'rc_type_id'):
+                domain.append(("rc_type_id", "=", False),)
+            ids = self.env["account.fiscal.position"].search(domain)
+            if ids:
+                invoice_data["fiscal_position_id"] = ids[0].id
 
         # 2.2.1
         invoice_lines = []
