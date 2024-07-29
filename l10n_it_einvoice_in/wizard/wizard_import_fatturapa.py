@@ -140,12 +140,12 @@ class WizardImportFatturapa(models.TransientModel):
             "res.partner",
             vals,
             skeys=(
-                ["vat", "fiscalcode", "is_company"],
-                ["vat", "name", "is_company"],
-                ["fiscalcode", "%name", "is_company"],
-                ["vat", "%name", "is_company"],
-                ["vat", "is_company"],
-                ["name", "!vat", "is_company"],
+                ["vat", "fiscalcode", "is_company", "type"],
+                ["vat", "name", "is_company", "type"],
+                ["fiscalcode", "%name", "is_company", "type"],
+                ["vat", "%name", "is_company", "type"],
+                ["vat", "is_company", "type"],
+                ["name", "!vat", "is_company", "type"],
             ),
             constraints=[("id", "!=", "parent_id")],
             keep=[
@@ -1114,8 +1114,8 @@ class WizardImportFatturapa(models.TransientModel):
         )
 
         # compute the invoice
+        invoice.set_einvoice_data(FatturaBody)
         invoice.compute_taxes()
-        invoice._compute_einvoice_amounts()
         invoice.create_round_lines()
         return invoice_id
 
@@ -1219,7 +1219,6 @@ class WizardImportFatturapa(models.TransientModel):
                         vals["intermediary"] = intermediary_id
                 if vals:
                     invoice.write(vals)
-                invoice.set_einvoice_data(FatturaBody)
                 new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, FatturaBody)
 

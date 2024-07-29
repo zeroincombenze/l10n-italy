@@ -22,7 +22,7 @@ class FatturapaCommon(SingleTransactionCase):
         AccountTax = self.env["account.tax"]
         tax_id = AccountTax.search([("description", "=", "22a")])
         if tax_id:
-            return AccountTax.browse(tax_id)
+            return tax_id
         account_id = (
             self.env["account.account"]
             .search(
@@ -55,7 +55,7 @@ class FatturapaCommon(SingleTransactionCase):
         AccountTax = self.env["account.tax"]
         tax_id = AccountTax.search([("description", "=", "10a")])
         if tax_id:
-            return AccountTax.browse(tax_id)
+            return tax_id
         account_id = (
             self.env["account.account"]
             .search(
@@ -88,7 +88,7 @@ class FatturapaCommon(SingleTransactionCase):
         AccountTax = self.env["account.tax"]
         tax_id = AccountTax.search([("description", "=", "a27a")])
         if tax_id:
-            return AccountTax.browse(tax_id)
+            return tax_id
         kind_id = (
             self.env["italy.ade.tax.nature"]
             .search(
@@ -119,7 +119,7 @@ class FatturapaCommon(SingleTransactionCase):
         AccountTax = self.env["account.tax"]
         tax_id = AccountTax.search([("description", "=", "a10a")])
         if tax_id:
-            return AccountTax.browse(tax_id)
+            return tax_id
         kind_id = (
             self.env["italy.ade.tax.nature"]
             .search(
@@ -150,7 +150,7 @@ class FatturapaCommon(SingleTransactionCase):
         AccountTax = self.env["account.tax"]
         tax_id = AccountTax.search([("description", "=", "a17c2a")])
         if tax_id:
-            return AccountTax.browse(tax_id)
+            return tax_id
         kind_id = (
             self.env["italy.ade.tax.nature"]
             .search(
@@ -179,7 +179,11 @@ class FatturapaCommon(SingleTransactionCase):
         )
 
     def create_wt_85(self):
-        return self.env["withholding.tax"].create(
+        WithholdingTax = self.env["withholding.tax"]
+        wh_id = WithholdingTax.search([("code", "=", "850")])
+        if wh_id:
+            return wh_id
+        return WithholdingTax.create(
             {
                 "name": "850",
                 "code": "850",
@@ -193,7 +197,11 @@ class FatturapaCommon(SingleTransactionCase):
         )
 
     def create_wt_115(self):
-        return self.env["withholding.tax"].create(
+        WithholdingTax = self.env["withholding.tax"]
+        wh_id = WithholdingTax.search([("code", "=", "1150")])
+        if wh_id:
+            return wh_id
+        return WithholdingTax.create(
             {
                 "name": "1150",
                 "code": "1150",
@@ -207,7 +215,11 @@ class FatturapaCommon(SingleTransactionCase):
         )
 
     def create_wt_23_20q(self):
-        return self.env["withholding.tax"].create(
+        WithholdingTax = self.env["withholding.tax"]
+        wh_id = WithholdingTax.search([("code", "=", "2320q")])
+        if wh_id:
+            return wh_id
+        return WithholdingTax.create(
             {
                 "name": "2320q",
                 "code": "2320q",
@@ -221,7 +233,11 @@ class FatturapaCommon(SingleTransactionCase):
         )
 
     def create_wt_4q(self):
-        return self.env["withholding.tax"].create(
+        WithholdingTax = self.env["withholding.tax"]
+        wh_id = WithholdingTax.search([("code", "=", "4q")])
+        if wh_id:
+            return wh_id
+        return WithholdingTax.create(
             {
                 "name": "4q",
                 "code": "4q",
@@ -232,6 +248,29 @@ class FatturapaCommon(SingleTransactionCase):
                 "payment_term": self.env.ref("account.account_payment_term").id,
                 "rate_ids": [(0, 0, {"tax": 4.0, "base": 1.0})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.q").id,
+            }
+        )
+
+    def create_partner_with_rea(self):
+        ResPartner = self.env["res.partner"]
+        partner_id = ResPartner.search([("rea_code", "=", "1580695")])
+        if partner_id:
+            return partner_id
+        return ResPartner.create(
+            {
+                "is_company": True,
+                "name": "TIM SPA",
+                "street": "Via Gaetano Negri, 1",
+                "city": "Milano",
+                "zip": "20123",
+                "state_id": self.env.ref("base.state_it_mi").id,
+                "country_id": self.env.ref("base.it").id,
+                "vat": "IT00488410010",
+                "supplier": True,
+                "rea_office": self.env.ref("base.state_it_mi").id,
+                "rea_code": "1580695",
+                "rea_capital": 11677002855.10,
+
             }
         )
 

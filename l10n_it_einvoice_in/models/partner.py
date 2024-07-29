@@ -2,7 +2,7 @@
 
 import logging
 
-from past.builtins import basestring
+from datetime import datetime
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -117,6 +117,8 @@ class Partner(models.Model):
                 "zip": Sede.CAP,
                 "city": Sede.Comune,
             }
+            if hasattr(Sede, "NumeroCivico") and Sede.NumeroCivico:
+                vals["street"] += ", " + Sede.NumeroCivico
             if (
                     Sede.Provincia
                     and Sede.Provincia != "EE"
@@ -163,7 +165,8 @@ class Partner(models.Model):
                 else:
                     vals["register_province"] = prov[0].id
             vals["register_code"] = DatiAnagrafici.NumeroIscrizioneAlbo or ""
-            vals["register_regdate"] = DatiAnagrafici.DataIscrizioneAlbo or ""
+            vals["register_regdate"] = datetime.strftime(
+                DatiAnagrafici.DataIscrizioneAlbo, "%Y-%m-%d") or ""
 
         if hasattr(DatiAnagrafici, "RegimeFiscale") and DatiAnagrafici.RegimeFiscale:
             rf_code = DatiAnagrafici.RegimeFiscale
@@ -234,12 +237,12 @@ class Partner(models.Model):
         else:
             vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
         SKEYS = (
-            ["vat", "fiscalcode", "is_company"],
-            ["vat", "name", "is_company"],
-            ["fiscalcode", "%name", "is_company"],
-            ["vat", "%name", "is_company"],
-            ["vat", "is_company"],
-            ["name", "!vat", "is_company"],
+            ["vat", "fiscalcode", "is_company", "type"],
+            ["vat", "name", "is_company", "type"],
+            ["fiscalcode", "%name", "is_company", "type"],
+            ["vat", "%name", "is_company", "type"],
+            ["vat", "is_company", "type"],
+            ["name", "!vat", "is_company", "type"],
         )
         partner_id = self.synchro2(
             "res.partner",
@@ -315,7 +318,6 @@ class Partner(models.Model):
         rec = False
         for keys in skeys:
             domain = []
-            repeat = False
             for key in keys:
                 ilike = False
                 if key.startswith("!"):
@@ -326,8 +328,7 @@ class Partner(models.Model):
                     ilike = key[0]
                     key = key[1:]
                 if key not in vals and key == "type":
-                    domain.append([key, "=", "invoice"])
-                    repeat = True
+                    domain.append([key, "=", "contact"])
                 elif key not in vals and key in MAGIC_FIELDS:
                     if MAGIC_FIELDS[key]:
                         domain.append([key, "=", MAGIC_FIELDS[key]])
@@ -356,49 +357,40 @@ class Partner(models.Model):
                     rec = rec_with_valid_vat(rec[0])
                     if rec:
                         break
-                if repeat:
-                    for i, kk in enumerate(domain):
-                        if kk[0] == "type":
-                            domain[i][2] = "contact"
-                    domain.append(("parent_id", "=", False))
-                    rec = self.search(domain)
-                    if rec:
-                        rec = rec_with_valid_vat(rec[0])
-                        if rec:
-                            break
         if rec:
-            if rec.parent_id and is_the_same(rec.parent_id, vals):
-                defvals = {}
-                if rec.rea_code:
-                    defvals["rea_code"] = False
-                if rec.type == "contact":
-                    defvals["type"] = "invoice"
-                if rec.name == rec.parent_id.name:
-                    defvals["name"] = False
-                if defvals:
-                    rec.write(defvals)
+            if rec.parent_id and rec.type == "invoice":
                 rec = rec.parent_id
             if rec == self.env.user.company_id.partner_id:
                 # Avoid company update form self invoice
                 return rec.id
-            if rec and not rec.parent_id and not is_the_same(rec, vals):
-                vals["parent_id"] = rec.id
-                vals["type"] = "invoice"
-                rec = False
-        if rec:
-            if rec == self.env.user.company_id.partner_id:
-                # Avoid company update form self invoice
-                return rec.id
+            if not is_the_same(rec, vals):
+                found = False
+                for rec_inv in self.search(
+                        [("parent_id", "=", rec.id), ("type", "=", "invoice")]):
+                    if is_the_same(rec_inv, vals):
+                        found = True
+                        break
+                if not found:
+                    vals_inv = vals.copy()
+                    vals_inv["type"] = "invoice"
+                    vals_inv["parent_id"] = rec.id
+                    for field in ("rea_code",
+                                  "rea_office",
+                                  "rea_capital",
+                                  "rea_member_type",
+                                  "rea_liquidation_state"):
+                        if field in vals_inv:
+                            del vals_inv[field]
+                    if rec.name == rec.parent_id.name:
+                        vals_inv["name"] = False
+                    self.env["res.partner"].create(vals_inv)
             try:
-                if rec.type != "invoice":
-                    for field in keep:
-                        if field in vals and rec[field]:
-                            del vals[field]
-                    for field in default:
-                        if not vals.get(field) and field in default:
-                            vals[field] = default[field]
-                if "rea_code" in vals and (rec.rea_code or rec.type == "invoice"):
-                    del vals["rea_code"]
+                for field in keep:
+                    if field in vals and rec[field]:
+                        del vals[field]
+                for field in default:
+                    if not vals.get(field) and field in default:
+                        vals[field] = default[field]
                 for item in vals.keys():
                     if (
                         vals[item] is None
@@ -414,8 +406,9 @@ class Partner(models.Model):
             except BaseException as e:
                 raise UserError(e)
         else:
-            if vals.get("type") == "invoice" and "rea_code" in vals:
-                del vals["rea_code"]
+            vals["type"] = "contact"
+            vals["is_company"] = True
+            vals["supplier"] = True
             if vals.get("vat") and not self.check_vat(vals["vat"]):
                 del vals["vat"]
             try:
@@ -423,4 +416,3 @@ class Partner(models.Model):
             except BaseException as e:
                 raise UserError(e)
         return id
-

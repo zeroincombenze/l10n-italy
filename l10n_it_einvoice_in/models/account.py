@@ -2,7 +2,7 @@
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, float_compare
 from odoo.tools.translate import _
 
 
@@ -47,7 +47,15 @@ class AccountInvoice(models.Model):
     @api.multi
     def _compute_einvoice_amounts(self):
         for invoice in self:
+            # Evaluate e_invoice_amount(s) just for invoice created before this upgraded
+            # module
+            if (
+                invoice.e_invoice_amount_total
+                and invoice.e_invoice_amount_untaxed
+            ):
+                continue
             round_curr = invoice.currency_id.round
+            # rounding = invoice.currency_id.rounding
             e_invoice_amount_tax = e_invoice_amount_untaxed = line_amount = 0.0
             for ln in invoice.fatturapa_summary_ids:
                 e_invoice_amount_untaxed += ln.amount_untaxed
@@ -58,31 +66,47 @@ class AccountInvoice(models.Model):
             invoice.e_invoice_amount_tax = round_curr(e_invoice_amount_tax)
             invoice.efatt_xml_rounding = round_curr(line_amount
                                                     - e_invoice_amount_untaxed)
-            if not invoice.e_invoice_amount_total:
-                invoice.e_invoice_amount_total = round_curr(
-                    self.e_invoice_amount_untaxed
-                    + self.e_invoice_amount_tax
-                    + self.efatt_xml_rounding)
+            invoice.e_invoice_amount_total = round_curr(
+                self.e_invoice_amount_untaxed
+                + self.e_invoice_amount_tax
+                + self.efatt_xml_rounding)
 
-    @api.one
-    @api.depends(
-        "invoice_line_ids.price_subtotal",
-        "tax_line_ids.amount",
-        "currency_id",
-        "company_id",
-        "date_invoice",
-        "type",
-    )
-    def _compute_amount(self):
-        super(AccountInvoice, self)._compute_amount()
-        rounding = self.currency_id.rounding
-        if (
-                float_is_zero(self.e_invoice_amount_untaxed,
-                              precision_rounding=rounding)
-                or float_is_zero(self.e_invoice_amount_tax,
-                                 precision_rounding=rounding)
-        ):
-            self._compute_einvoice_amounts()
+    @api.multi
+    def compute_taxes(self):
+        res = super(AccountInvoice, self).compute_taxes()
+        for invoice in self:
+            if invoice.type not in ("in_invoice", "in_refund"):
+                continue
+            if not invoice.e_invoice_amount_total:
+                continue
+
+            rounding = invoice.currency_id.rounding
+            for inv_tax_line in invoice.tax_line_ids:
+                for ln in invoice.fatturapa_summary_ids:
+                    if (
+                        ln.tax_rate != inv_tax_line.tax_id.amount
+                        or ln.non_taxable_nature != inv_tax_line.tax_id.kind_id
+                    ):
+                        continue
+                    if (
+                        float_compare(inv_tax_line.amount,
+                                      ln.amount_tax,
+                                      precision_rounding=rounding)
+                        and not float_compare(inv_tax_line.amount,
+                                              ln.amount_tax,
+                                              precision_rounding=rounding * 2)
+                    ):
+                        inv_tax_line.amount = ln.amount_tax
+                    if (
+                        float_compare(inv_tax_line.base,
+                                      ln.amount_untaxed,
+                                      precision_rounding=rounding)
+                        and not float_compare(inv_tax_line.base,
+                                              ln.amount_untaxed,
+                                              precision_rounding=rounding * 2)
+                    ):
+                        inv_tax_line.base = ln.amount_untaxed
+        return res
 
     def load_rounding_values(self, round_amount, tax_rate=None, tax_kind=None):
         if round_amount > 0:
@@ -137,8 +161,8 @@ class AccountInvoice(models.Model):
                         if (
                             not round_line.get("found")
                             and inv_line.account_id.id == round_line["account_id"]
-                            and inv_line.invoice_line_tax_ids
-                            == round_line["invoice_line_tax_ids"][0][2]
+                            and inv_line.invoice_line_tax_ids.id
+                            == round_line["invoice_line_tax_ids"][0][2][0]
                             and inv_line.quantity == round_line["quantity"]
                         ):
                             inv_line.write(round_line)
@@ -159,8 +183,8 @@ class AccountInvoice(models.Model):
                     for inv_line in self.invoice_line_ids:
                         if (
                                 inv_line.account_id.id == vals["account_id"]
-                                and inv_line.invoice_line_tax_ids
-                                == vals["invoice_line_tax_ids"][0][2]
+                                and inv_line.invoice_line_tax_ids.id
+                                == vals["invoice_line_tax_ids"][0][2][0]
                                 and inv_line.quantity == vals["quantity"]
                         ):
                             inv_line.write(vals)
@@ -215,6 +239,7 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         self._compute_e_invoice_validation_error()
         for invoice in self:
+            invoice._compute_einvoice_amounts()
             if (
                 invoice.e_invoice_validation_error
                 and not invoice.e_invoice_force_validation
@@ -409,49 +434,40 @@ class AccountInvoice(models.Model):
         amount_untaxed = 0.0
         for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
             amount_untaxed += self.float_from_tag(Riepilogo.ImponibileImporto)
-        return amount_untaxed
+        return self.currency_id.round(amount_untaxed)
 
     @api.model
-    def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
+    def compute_xml_amount_total(self, FatturaBody):
         amount_total = self.float_from_tag(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento)
         rounding = self.float_from_tag(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento)
-        return amount_total or (amount_untaxed + amount_tax + rounding)
+        return amount_total or self.currency_id.round(
+            self.e_invoice_amount_untaxed + self.e_invoice_amount_tax + rounding)
 
     @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
         amount_tax = 0.0
         for Riepilogo in DatiRiepilogo:
             amount_tax += self.float_from_tag(Riepilogo.Imposta)
-        return amount_tax
+        return self.currency_id.round(amount_tax)
 
     def set_einvoice_data(self, fattura):
         self.ensure_one()
-        amount_untaxed = self.compute_xml_amount_untaxed(fattura)
-        amount_tax = self.compute_xml_amount_tax(fattura.DatiBeniServizi.DatiRiepilogo)
-        amount_total = self.compute_xml_amount_total(
-            fattura, amount_untaxed, amount_tax
-        )
-        efatt_xml_rounding = (
-            (amount_untaxed + amount_tax - amount_total)
+        self.e_invoice_amount_untaxed = self.compute_xml_amount_untaxed(fattura)
+        self.e_invoice_amount_tax = self.compute_xml_amount_tax(
+            fattura.DatiBeniServizi.DatiRiepilogo)
+        self.e_invoice_amount_total = self.compute_xml_amount_total(fattura)
+        self.e_fatt_rounding = 0.0
+        self.efatt_xml_rounding = (
+            (self.e_invoice_amount_untaxed
+             + self.e_invoice_amount_tax
+             - self.e_invoice_amount_total)
             or self.float_from_tag(
                 fattura.DatiGenerali.DatiGeneraliDocumento.Arrotondamento)
         )
-        reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
-        date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
-
-        self.update(
-            {
-                "e_invoice_amount_untaxed": amount_untaxed,
-                "e_invoice_amount_tax": amount_tax,
-                "e_invoice_amount_total": amount_total,
-                "efatt_rounding": 0.0,
-                "efatt_xml_rounding": efatt_xml_rounding,
-                "e_invoice_reference": reference,
-                "e_invoice_date_invoice": date_invoice,
-            }
-        )
+        self.e_invoice_reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
+        self.e_invoice_date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
 
     def xml_get_header_data(
         self,

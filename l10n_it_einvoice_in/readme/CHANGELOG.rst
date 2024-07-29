@@ -1,3 +1,12 @@
+10.0.1.3.50 (2024-07-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sometime invoice address duplicated / A volte veniva creato un duplicato dell'indirizzo di fatturazione
+* [IMP] Revaluate amount_untaxed by e-invoice / Forza imponibile da e-fattura se diff < 1 cent
+* [IMP] Revaluate amount_tax by e-invoice / Forza IVA da e-fattura se diff < 1 cent
+* [IMP] Ingloba numero civico se separato
+* [QUA] Test coverage 70% (1460: 445+1015) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.3.49 (2024-07-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

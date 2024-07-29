@@ -219,6 +219,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.50 (2024-07-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Revaluate amount_untaxed by e-invoice / Forza imponibile da e-fattura se diff < 1 cent
+* [IMP] Revaluate amount_tax by e-invoice / Forza IVA da e-fattura se diff < 1 cent
+* [QUA] Test coverage 70% (1460: 445+1015) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.3.49 (2024-07-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -293,11 +300,6 @@ ChangeLog History | Cronologia modifiche
 * [IMP] Check for double email / Controllo doppia mail
 * [IMP] New search method to avoid new partner when receiving self-invoice / Controlli per evitare duplicazione fornitore auto-fattura
 
-10.0.1.3.38 (2023-03-08)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Import RC invoice w/o tax rate / Import fatture RC senza aliquota IVA
-
 
 
 Credits | Ringraziamenti
@@ -363,7 +365,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-07-23
+Last Update / Ultimo aggiornamento: 2024-07-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
