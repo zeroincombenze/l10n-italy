@@ -137,7 +137,7 @@ class WelfareFundType(models.Model):
     def _compute_clean_display_name(self):
         for record in self:
             name = record.name
-            if record.name and record.description:
+            if record.code and record.name:
                 name = u"[%s] %s" % (record.code, record.name)
             record.display_name = name
 

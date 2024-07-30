@@ -1,3 +1,9 @@
+10.0.2.1.27 (2024-07-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] welfare.fund description
+* [QUA] Test coverage 61% (516: 202+314) [0 TestPoints] - quality rating 37 (target 100)
+
 10.0.2.1.26 (2024-07-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

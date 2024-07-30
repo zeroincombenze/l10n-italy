@@ -1,5 +1,5 @@
 =============================================================
-|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.26
+|icon| EInvoice + FatturaPA/l10n_it_einvoice_base 10.0.2.1.27
 =============================================================
 
 **Infrastructure for Italian Electronic Invoice + FatturaPA**
@@ -305,6 +305,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.2.1.27 (2024-07-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] welfare.fund description
+* [QUA] Test coverage 61% (516: 202+314) [0 TestPoints] - quality rating 37 (target 100)
+
 10.0.2.1.26 (2024-07-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -405,7 +411,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-07-16
+Last Update / Ultimo aggiornamento: 2024-07-30
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

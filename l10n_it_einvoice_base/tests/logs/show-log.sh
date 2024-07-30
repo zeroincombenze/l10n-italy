@@ -1,1 +1,1 @@
-less -R $(readlink -f $(dirname $0))/l10n_it_einvoice_base_20240716.txt
+less -R $(readlink -f $(dirname $0))/l10n_it_einvoice_base_20240730.txt
