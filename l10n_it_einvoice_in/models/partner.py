@@ -165,8 +165,9 @@ class Partner(models.Model):
                 else:
                     vals["register_province"] = prov[0].id
             vals["register_code"] = DatiAnagrafici.NumeroIscrizioneAlbo or ""
-            vals["register_regdate"] = datetime.strftime(
-                DatiAnagrafici.DataIscrizioneAlbo, "%Y-%m-%d") or ""
+            if DatiAnagrafici.DataIscrizioneAlbo:
+                vals["register_regdate"] = datetime.strftime(
+                    DatiAnagrafici.DataIscrizioneAlbo, "%Y-%m-%d") or ""
 
         if hasattr(DatiAnagrafici, "RegimeFiscale") and DatiAnagrafici.RegimeFiscale:
             rf_code = DatiAnagrafici.RegimeFiscale

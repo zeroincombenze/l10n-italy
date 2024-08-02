@@ -1,3 +1,9 @@
+10.0.1.3.51 (2024-08-02)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Errore DatiAnagrafici.DataIscrizioneAlbo, "%Y-%m-%d")
+* [QUA] Test coverage 70% (1480: 446+1034) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.3.50 (2024-07-29)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
