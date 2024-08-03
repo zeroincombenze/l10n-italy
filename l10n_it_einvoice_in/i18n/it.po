@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 13:29+0000\n"
-"PO-Revision-Date: 2024-07-29 13:29+0000\n"
+"POT-Creation-Date: 2024-08-02 11:54+0000\n"
+"PO-Revision-Date: 2024-08-02 11:54+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -199,7 +199,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:230
+#: code:addons/l10n_it_einvoice_in/models/partner.py:231
 #: code:addons/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py:130
 #, python-format
 msgid "Country Code %s not found in the system."
@@ -784,7 +784,7 @@ msgid "Provincia albo \"%s\" non presente in archivio "
 msgstr "Provincia albo \"%s\" non presente in archivio "
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:187
+#: code:addons/l10n_it_einvoice_in/models/partner.py:188
 #, python-format
 msgid "Provincia ufficio REA \"%s\" non presente in archivio"
 msgstr "Provincia ufficio REA \"%s\" non presente in archivio"
@@ -944,7 +944,7 @@ msgid "Tax"
 msgstr "Imposte"
 
 #. module: l10n_it_einvoice_in
-#: code:addons/l10n_it_einvoice_in/models/partner.py:176
+#: code:addons/l10n_it_einvoice_in/models/partner.py:177
 #, python-format
 msgid "Tax Regime %s not present in your system."
 msgstr "Regime fiscale %s non presente nel sistema."

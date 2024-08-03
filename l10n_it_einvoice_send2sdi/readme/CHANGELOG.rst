@@ -1,3 +1,9 @@
+10.0.1.0.46 (2024-08-03)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 15% (812: 688+124) [1 TestPoints] - quality rating 10 (target 100)
+
 10.0.1.0.45 (2024-07-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
