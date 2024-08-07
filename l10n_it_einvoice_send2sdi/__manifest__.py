@@ -9,7 +9,7 @@
 #
 {
     "name": "Send E-Invoice to SdI",
-    "version": "10.0.1.0.46",
+    "version": "10.0.1.0.47",
     "category": "Localization/Italy",
     "summary": "Send E-Invoice to customer through SdI",
     "author": "SHS-AV s.r.l.,Pointec s.r.l.",
