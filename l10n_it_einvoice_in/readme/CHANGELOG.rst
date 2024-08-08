@@ -1,3 +1,9 @@
+10.0.1.3.52 (2024-08-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Errore import fatture con N2.2
+* [QUA] Test coverage 70% (1480: 446+1034) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.3.51 (2024-08-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

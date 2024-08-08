@@ -153,7 +153,7 @@ class AccountInvoice(models.Model):
                 vals = self.load_rounding_values(
                     ln.rounding,
                     tax_rate=ln.tax_rate,
-                    tax_kind=ln.non_taxable_nature)
+                    tax_kind=ln.non_taxable_nature.code)
                 round_lines.append(vals)
             else:
                 found_tax_line = False
@@ -171,7 +171,7 @@ class AccountInvoice(models.Model):
                     vals = self.load_rounding_values(
                         round_curr(ln.amount_untaxed - inv_tax_line.base),
                         tax_rate=ln.tax_rate,
-                        tax_kind=ln.non_taxable_nature)
+                        tax_kind=ln.non_taxable_nature.code)
                     round_lines.append(vals)
         if round_lines:
             for inv_line in self.invoice_line_ids:
