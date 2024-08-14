@@ -30,7 +30,7 @@ class AccountInvoice(models.Model):
         string="E-invoice vendor reference", readonly=True
     )
 
-    e_invoice_date_invoice = fields.Date(string="E-invoice invoice date", readonly=True)
+    e_invoice_date_invoice = fields.Date(string="E-invoice date", readonly=True)
 
     e_invoice_validation_error = fields.Boolean(
         compute="_compute_e_invoice_validation_error"
@@ -80,31 +80,47 @@ class AccountInvoice(models.Model):
                           precision_rounding=rounding) != 0
             and float_compare(left,
                               right,
-                              precision_rounding=rounding * 1.9) == 0
+                              precision_rounding=rounding * 10.0) == 0
         )
 
-    @api.multi
-    def compute_taxes(self):
-        res = super(AccountInvoice, self).compute_taxes()
-        for invoice in self:
-            if invoice.type not in ("in_invoice", "in_refund"):
-                continue
-            if not invoice.e_invoice_amount_total:
-                continue
+    # @api.multi
+    # def compute_taxes(self):
+    #     res = super(AccountInvoice, self).compute_taxes()
+    #     for invoice in self:
+    #         if invoice.type not in ("in_invoice", "in_refund"):
+    #             continue
+    #         if not invoice.e_invoice_amount_total:
+    #             continue
+    #
+    #         # rounding = invoice.currency_id.rounding
+    #         for inv_tax_line in invoice.tax_line_ids:
+    #             for ln in invoice.fatturapa_summary_ids:
+    #                 if (
+    #                     ln.tax_rate != inv_tax_line.tax_id.amount
+    #                     or ln.non_taxable_nature != inv_tax_line.tax_id.kind_id
+    #                 ):
+    #                     continue
+    #                 if self.float_diff_in_range(inv_tax_line.amount, ln.amount_tax):
+    #                     inv_tax_line.amount = ln.amount_tax
+    #                 if self.float_diff_in_range(inv_tax_line.base, ln.amount_untaxed):
+    #                     inv_tax_line.base = ln.amount_untaxed
+    #     return res
 
-            # rounding = invoice.currency_id.rounding
-            for inv_tax_line in invoice.tax_line_ids:
-                for ln in invoice.fatturapa_summary_ids:
-                    if (
-                        ln.tax_rate != inv_tax_line.tax_id.amount
-                        or ln.non_taxable_nature != inv_tax_line.tax_id.kind_id
-                    ):
-                        continue
-                    if self.float_diff_in_range(inv_tax_line.amount, ln.amount_tax):
-                        inv_tax_line.amount = ln.amount_tax
-                    if self.float_diff_in_range(inv_tax_line.base, ln.amount_untaxed):
-                        inv_tax_line.base = ln.amount_untaxed
-        return res
+    @api.multi
+    def get_taxes_values(self):
+        tax_grouped = super(AccountInvoice, self).get_taxes_values()
+        if self.type in ("in_invoice", "in_refund") and self.e_invoice_amount_total:
+            Tax = self.env["account.tax"]
+            for ln in self.fatturapa_summary_ids:
+                tax_id, errmsg = Tax.search_tax_by_code_kind(
+                    self.company_id.id, ln.tax_rate, ln.non_taxable_nature.code)
+                for vals in tax_grouped.items():
+                    if tax_id == vals[1]["tax_id"]:
+                        if self.float_diff_in_range(vals[1]["base"], ln.amount_untaxed):
+                            vals[1]["base"] = ln.amount_untaxed
+                        if self.float_diff_in_range(vals[1]["amount"], ln.amount_tax):
+                            vals[1]["amount"] = ln.amount_tax
+        return tax_grouped
 
     def load_rounding_values(self, round_amount, tax_rate=None, tax_kind=None):
         if round_amount > 0:
@@ -144,9 +160,6 @@ class AccountInvoice(models.Model):
         rounding = self.currency_id.rounding
         round_curr = self.currency_id.round
         force_round_total = False
-        # if not float_is_zero(
-        #         round_curr(self.e_invoice_amount_untaxed - self.amount_untaxed),
-        #         precision_rounding=rounding):
         round_lines = []
         for ln in self.fatturapa_summary_ids:
             if ln.rounding:
@@ -259,9 +272,9 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def invoice_validate(self):
-        self._compute_e_invoice_validation_error()
         for invoice in self:
             invoice._compute_einvoice_amounts()
+            invoice._compute_e_invoice_validation_error()
             if (
                 invoice.e_invoice_validation_error
                 and not invoice.e_invoice_force_validation

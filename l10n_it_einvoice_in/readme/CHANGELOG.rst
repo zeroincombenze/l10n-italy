@@ -1,3 +1,10 @@
+10.0.1.3.53 (2024-08-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Rounding based on get_taxes_values()
+* [IMP] Delta rounding increased / Range di cattura arrotondamenti incrementato
+* [QUA] Test coverage 70% (1477: 444+1033) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.3.52 (2024-08-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,5 +1,5 @@
 ========================================================
-|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.52
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.53
 ========================================================
 
 **E-invoice receive**
@@ -219,6 +219,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.53 (2024-08-14)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Rounding based on get_taxes_values()
+* [IMP] Delta rounding increased / Range di cattura arrotondamenti incrementato
+* [QUA] Test coverage 70% (1477: 444+1033) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.3.52 (2024-08-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -296,12 +303,6 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Crash with <DatiOrdineAcquisto></DatiOrdineAcquisto> / Crash in alcuni casi
 * [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
 
-10.0.1.3.41 (2023-04-11)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash in some strange email
-* [FIX] Crash when xml tag with extra property
-
 
 
 Credits | Ringraziamenti
@@ -367,7 +368,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-08-08
+Last Update / Ultimo aggiornamento: 2024-08-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
