@@ -160,32 +160,37 @@ class AccountInvoice(models.Model):
         rounding = self.currency_id.rounding
         round_curr = self.currency_id.round
         force_round_total = False
-        round_lines = []
+        summary_amounts = {}
         for ln in self.fatturapa_summary_ids:
+            kk = (ln.tax_rate, ln.non_taxable_nature)
+            if kk not in summary_amounts:
+                summary_amounts[kk] = {"amt": 0.0, "tax": 0.0}
+            summary_amounts[kk]["amt"] += ln.amount_untaxed
+            summary_amounts[kk]["tax"] += ln.amount_tax
             if ln.rounding:
-                vals = self.load_rounding_values(
-                    ln.rounding,
-                    tax_rate=ln.tax_rate,
-                    tax_kind=ln.non_taxable_nature.code)
-                round_lines.append(vals)
-            else:
-                found_tax_line = False
-                for inv_tax_line in self.tax_line_ids:
-                    if (
-                        ln.tax_rate == inv_tax_line.tax_id.amount
-                        and ln.non_taxable_nature == inv_tax_line.tax_id.kind_id
-                    ):
-                        found_tax_line = True
-                        break
+                kk = (0.0, None)
+                if kk not in summary_amounts:
+                    summary_amounts[kk] = {"amt": 0.0, "tax": 0.0}
+                summary_amounts[kk]["amt"] -= ln.amount_untaxed
+        round_lines = []
+        for item in summary_amounts.items():
+            found_tax_line = False
+            for inv_tax_line in self.tax_line_ids:
                 if (
-                    found_tax_line
-                    and round_curr(ln.amount_untaxed - inv_tax_line.base)
+                    item[0][0] == inv_tax_line.tax_id.amount
+                    and item[0][1] == inv_tax_line.tax_id.kind_id
                 ):
-                    vals = self.load_rounding_values(
-                        round_curr(ln.amount_untaxed - inv_tax_line.base),
-                        tax_rate=ln.tax_rate,
-                        tax_kind=ln.non_taxable_nature.code)
-                    round_lines.append(vals)
+                    found_tax_line = True
+                    break
+            if (
+                not found_tax_line
+                or round_curr(item[1]["amt"] - inv_tax_line.base)
+            ):
+                vals = self.load_rounding_values(
+                    round_curr(item[1]["amt"] - inv_tax_line.base),
+                    tax_rate=item[0][0],
+                    tax_kind=item[0][1].code if item[0][1] else None)
+                round_lines.append(vals)
         if round_lines:
             for inv_line in self.invoice_line_ids:
                 for round_line in round_lines:
