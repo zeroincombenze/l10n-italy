@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-03 05:57+0000\n"
-"PO-Revision-Date: 2024-08-03 05:57+0000\n"
+"POT-Creation-Date: 2024-08-29 18:11+0000\n"
+"PO-Revision-Date: 2024-08-29 18:11+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -159,7 +159,7 @@ msgid "Multiple invoice to one xml"
 msgstr "Fatture multiple di un unico xml"
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:1023
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:1030
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
 msgstr "Nessun server di PEC in ricezione. Configurarne almeno uno."
@@ -299,7 +299,7 @@ msgid "You can not reset files in 'recipient_error' state."
 msgstr "Non è possibile ripristinare i file con errato destinatario."
 
 #. module: l10n_it_einvoice_send2sdi
-#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:1012
+#: code:addons/l10n_it_einvoice_send2sdi/models/attachment.py:1019
 #, python-format
 msgid "You can only delete 'ready to send' files."
 msgstr "Si possono eliminare solo file pronti all'invio."

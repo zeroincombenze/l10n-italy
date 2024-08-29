@@ -1006,6 +1006,13 @@ class FatturaPAAttachmentOut(models.Model):
             raise UserError(_("Unsupported sending method"))
 
     @api.multi
+    def send_all_xml_invoices(self):
+        for einvoice in self.search([("state", "=", "ready")]):
+            self.end_einvoice()
+            # commit every table to avoid too big transaction
+            self.env.cr.commit()  # pylint: disable=invalid-commit
+
+    @api.multi
     def unlink(self):
         for att in self:
             if att.state not in ("ready", "rejected", "discarted"):
