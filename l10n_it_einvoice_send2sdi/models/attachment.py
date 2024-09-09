@@ -1008,7 +1008,7 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_all_xml_invoices(self):
         for einvoice in self.search([("state", "=", "ready")]):
-            self.end_einvoice()
+            einvoice.send_einvoice()
             # commit every table to avoid too big transaction
             self.env.cr.commit()  # pylint: disable=invalid-commit
 

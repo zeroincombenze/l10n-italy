@@ -1,8 +1,13 @@
+10.0.1.0.49 (2024-09-09)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [QUA] Test coverage 15% (817: 692+125) [0 TestPoints] - quality rating 10 (target 100)
+
 10.0.1.0.48 (2024-08-29)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Send by cron / Invio fatture schedulato
-"* [QUA] Test coverage 15% (817: 692+125) [0 TestPoints] - quality rating 10 (target 100)"
+* [QUA] Test coverage 15% (817: 692+125) [0 TestPoints] - quality rating 10 (target 100)
 
 10.0.1.0.46 (2024-08-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
