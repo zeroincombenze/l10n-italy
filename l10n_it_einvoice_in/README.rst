@@ -1,5 +1,5 @@
 ========================================================
-|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.53
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.55
 ========================================================
 
 **E-invoice receive**
@@ -219,12 +219,24 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.53 (2024-08-23)
+10.0.1.3.55 (2024-09-10)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Error message if missing tax code / Segnalazione di errore se manca cod.IVA arrotondamento
+* [QUA] Test coverage 70% (1488: 445+1043) [0 TestPoints] - quality rating 43 (target 100)
+
+10.0.1.3.54 (2024-08-23)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Best evaluate for round lines / Miglioramento valutazione righe di arrotondamento
+* [QUA] Test coverage 70% (1486: 444+1042) [0 TestPoints] - quality rating 42 (target 100)
+
+10.0.1.3.53 (2024-08-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Rounding based on get_taxes_values()
 * [IMP] Delta rounding increased / Range di cattura arrotondamenti incrementato
-"* [QUA] Test coverage 70% (1486: 450+1036) [0 TestPoints] - quality rating 42 (target 100)"
+* [QUA] Test coverage 70% (1477: 444+1033) [0 TestPoints] - quality rating 42 (target 100)
 
 10.0.1.3.52 (2024-08-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -289,19 +301,6 @@ ChangeLog History | Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] E-Lines detail: name changed
-
-10.0.1.3.43 (2024-01-08)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash with <RiferimentoTesto></RiferimentoTesto> / Crash in alcuni casi
-* [FIX] Search state/district by country code from vat / Ricerca provincia con nazione da PI
-* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
-
-10.0.1.3.42 (2023-10-23)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Crash with <DatiOrdineAcquisto></DatiOrdineAcquisto> / Crash in alcuni casi
-* [QUA] Test coverage 63% (1326: 493+833) [0 TestPoints] - quality rating 38 (target 100)
 
 
 
@@ -368,7 +367,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-08-23
+Last Update / Ultimo aggiornamento: 2024-09-10
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

@@ -49,6 +49,7 @@ gevent==1.2.2
 gitdb2==2.0.6
 GitPython==2.1.15
 greenlet==0.4.10
+holidays==0.9.12
 html2text==2019.8.11
 idna==2.10
 importlib-metadata==2.1.3

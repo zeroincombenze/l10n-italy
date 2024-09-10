@@ -146,6 +146,10 @@ class AccountInvoice(models.Model):
                 self.company_id.id, tax_rate, tax_kind)
         else:
             tax_id = self.env.user.company_id.arrotondamenti_tax_id.id
+            if not tax_id:
+                raise UserError(
+                    _("Round down tax code is not set in Accounting Settings")
+                )
         return {
             "name": name,
             "price_unit": round_amount,

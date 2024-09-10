@@ -1,8 +1,14 @@
+10.0.1.3.55 (2024-09-10)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Error message if missing tax code / Segnalazione di errore se manca cod.IVA arrotondamento
+* [QUA] Test coverage 70% (1488: 445+1043) [0 TestPoints] - quality rating 43 (target 100)
+
 10.0.1.3.54 (2024-08-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Best evaluate for round lines / Miglioramento valutazione righe di arrotondamento
-* [QUA] Test coverage 70% (1486: 444+1042) [0 TestPoints] - quality rating 42 (target 100)"
+* [QUA] Test coverage 70% (1486: 444+1042) [0 TestPoints] - quality rating 42 (target 100)
 
 10.0.1.3.53 (2024-08-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
