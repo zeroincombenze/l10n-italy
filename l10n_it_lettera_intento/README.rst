@@ -1,5 +1,5 @@
 ====================================================
-|icon| Lettere di intento/Lettera intento 10.0.0.1.8
+|icon| Lettere di intento/Lettera intento 10.0.0.1.9
 ====================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/icon.png
@@ -20,7 +20,7 @@ Overview | Panoramica
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/description.png
 
 
 Getting started | Primi passi
@@ -118,11 +118,19 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.1.9 (2024-11-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Validate by date / Validazione dichiarazione per data
+* [IMP] Date start and end for declaration / Data validità dichiarazione inizio e fine
+* [QUA] Test coverage 38% (146: 91+55) [0 TestPoints] - quality rating 23 (target 100)
+
 10.0.0.1.8 (2024-03-05)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash on creation lettera intento / Crash durante creazione lettera di intento
 * [IMP] Domain on partner / Selezione clienti con pos.fiscale assente o con lettera di intento
+* [QUA] Test coverage 37% (140: 88+52) [0 TestPoints] - quality rating 23 (target 100)
 
 10.0.0.1.7 (2023-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,7 +186,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-11-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

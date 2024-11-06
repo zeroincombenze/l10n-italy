@@ -40,6 +40,9 @@ class AccountInvoice(models.Model):
             fiscalpos = invoice.fiscal_position_id
         if invoice:
             lettera_intento = invoice.lettera_intento_id
+            date_invoice = invoice.date_invoice
+        else:
+            date_invoice = self.date_invoice
         if fiscalpos and fiscalpos.lettera_intento:
             if "lettera_intento_id" in vals or not lettera_intento:
                 partner_id = (
@@ -48,10 +51,21 @@ class AccountInvoice(models.Model):
                     or False
                 )
                 if partner_id:
+                    domain = [
+                        ("partner_id", "=", partner_id),
+                        ("date", "<=", date_invoice),
+                        "|",
+                        ("date_start", "=", False),
+                        ("date_start", ">=", date_invoice),
+                        "|",
+                        ("date_end", "=", False),
+                        ("date_end", "<=", date_invoice),
+                    ]
                     lettera_ids = self.env["italy.lettera.intento"].search(
-                        [("partner_id", "=", partner_id)], order="date desc"
+                        domain, order="date desc"
                     )
-                    if lettera_ids:
+                    if lettera_ids and (not lettera_intento
+                                        or lettera_intento not in lettera_ids):
                         vals["lettera_intento_id"] = lettera_ids[0].id
             vals["tax_stamp"] = True
             if not invoice:

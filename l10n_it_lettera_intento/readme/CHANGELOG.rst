@@ -1,8 +1,16 @@
+10.0.0.1.9 (2024-11-06)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Validate by date / Validazione dichiarazione per data
+* [IMP] Date start and end for declaration / Data validità dichiarazione inizio e fine
+* [QUA] Test coverage 38% (146: 91+55) [0 TestPoints] - quality rating 23 (target 100)
+
 10.0.0.1.8 (2024-03-05)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash on creation lettera intento / Crash durante creazione lettera di intento
 * [IMP] Domain on partner / Selezione clienti con pos.fiscale assente o con lettera di intento
+* [QUA] Test coverage 37% (140: 88+52) [0 TestPoints] - quality rating 23 (target 100)
 
 10.0.0.1.7 (2023-01-31)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,4 +36,3 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Fiscal pos. note in invoice comment / Campo note posizione fiscale copiato in fattura
-* [QUA] Test coverage 37% (140: 88+52) [0 TestPoints] - quality rating 23 (target 100)

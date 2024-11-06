@@ -48,6 +48,8 @@ class ItalyLetteraIntento(models.Model):
 
     name = fields.Char("Name", copy=False)
     date = fields.Date(string="Date")
+    date_start = fields.Date()
+    date_end = fields.Date()
     company_id = fields.Many2one(
         "res.company", string="Company", default=lambda self: self.env.user.company_id
     )
@@ -71,6 +73,7 @@ class ItalyLetteraIntento(models.Model):
     plafond = fields.Monetary(string="Plafond")
     plafond_used = fields.Monetary(string="Used Plafond", compute=_used_plafond)
     plafond_avaiable = fields.Monetary(string="Avaiable Plafond", compute=_used_plafond)
+    active = fields.Boolean(string="Active", default=True)
 
     @api.multi
     def name_get(self):
