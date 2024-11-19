@@ -9,7 +9,7 @@
 #
 {
     "name": "Italian Localization - FatturaPA - Emissione",
-    "version": "10.0.1.0.28",
+    "version": "10.0.1.0.29",
     "category": "Localization/Italy",
     "summary": "E-Invoice emission",
     "author": "SHS-AV s.r.l.",
@@ -18,8 +18,8 @@
     "license": "AGPL-3",
     "depends": [
         "l10n_it_einvoice_base",
-        # "l10n_it_split_payment",
     ],
+    "version_depends": ["l10n_it_einvoice_base>=10.0.2.1.27"],
     "external_dependencies": {'python': ['unidecode']},
     "data": [
         "wizard/wizard_export_fatturapa_view.xml",
@@ -30,4 +30,5 @@
     ],
     "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
+    "pre_init_hook": "check_4_depending",
 }

@@ -827,9 +827,6 @@ class WizardExportFatturapa(models.TransientModel):
             ImportoTotaleDocumento="%.2f" % float_round(ImportoTotaleDocumento, 2),
         )
 
-        # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
-        # ScontoMaggiorazione, Arrotondamento,
-
         if invoice.comment:
             # max length of Causale is 200
             caus_list = invoice.comment.split("\n")
@@ -893,6 +890,15 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def setDatiDDT(self, invoice, body):
+        return True
+
+    def setDatiRitenuta(self, invoice, body):
+        return True
+
+    def setDatiBollo(self, invoice, body):
+        return True
+
+    def setDatiCassaPrevidenziale(self, invoice, body):
         return True
 
     def _get_prezzo_unitario(self, line):
@@ -1198,6 +1204,9 @@ class WizardExportFatturapa(models.TransientModel):
         self.setDatiGeneraliDocumento(inv, FatturaElettronicaBody)
         self.setDettaglioLinee(inv, FatturaElettronicaBody)
         self.setDatiDDT(inv, FatturaElettronicaBody)
+        self.setDatiRitenuta(inv, FatturaElettronicaBody)
+        self.setDatiBollo(inv, FatturaElettronicaBody)
+        self.setDatiCassaPrevidenziale(inv, FatturaElettronicaBody)
         self.setDatiTrasporto(inv, FatturaElettronicaBody)
         self.setRelatedDocumentTypes(inv, FatturaElettronicaBody)
         self.setDatiRiepilogo(inv, FatturaElettronicaBody)

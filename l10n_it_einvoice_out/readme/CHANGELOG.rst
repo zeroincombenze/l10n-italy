@@ -1,3 +1,9 @@
+10.0.1.0.29 (2024-11-19)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Predispozione emisisone ritenuta d'acconto (richiede modulo supplementare)
+* [QUA] Test coverage 64% (776: 279+497) [87 TestPoints] - quality rating 57 (target 100)
+
 10.0.1.0.28 (2024-06-28)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,0 +1,92 @@
+2024-11-19 14:47:42,000 393785 DAEMON test_l10n_it_einvoice_out_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2024-11-19 13:47:47,036 395264 INFO ? odoo: Odoo version 10.0
+2024-11-19 13:47:47,037 395264 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/tests/logs/zero10.l10n-italy.l10n_it_einvoice_out.conf
+2024-11-19 13:47:47,037 395264 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo12/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2024-11-19 13:47:47,037 395264 INFO ? odoo: database: odoo10@localhost:5432
+2024-11-19 13:47:47,054 395264 INFO ? odoo.service.server: HTTP service (werkzeug) running on NB200Z0.:51060
+2024-11-19 13:47:47,071 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading 1 modules...
+2024-11-19 13:47:47,191 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: 1 modules loaded in 0.12s, 0 queries
+2024-11-19 13:47:48,542 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading 41 modules...
+2024-11-19 13:47:48,629 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2024-11-19 13:47:48,766 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: 41 modules loaded in 0.22s, 0 queries
+2024-11-19 13:47:48,771 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading 42 modules...
+2024-11-19 13:47:49,400 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.registry: module l10n_it_einvoice_out: creating or updating database tables
+2024-11-19 13:47:49,801 395264 WARNING test_l10n_it_einvoice_out_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2024-11-19 13:47:49,939 395264 INFO test_l10n_it_einvoice_out_10 odoo.models: Storing computed values of fatturapa.attachment.out fields date_invoice0, has_pdf_invoice_print, invoice_partner_id, invoices_number, invoices_total
+2024-11-19 13:47:50,058 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/wizard/wizard_export_fatturapa_view.xml
+2024-11-19 13:47:50,136 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/wizard/attachment_refresh_info_view.xml
+2024-11-19 13:47:50,188 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/views/attachment_view.xml
+2024-11-19 13:47:50,357 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/views/account_view.xml
+2024-11-19 13:47:50,494 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: loading l10n_it_einvoice_out/security/ir.model.access.csv
+2024-11-19 13:47:51,085 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_out.tests.test_fattura running tests.
+2024-11-19 13:47:51,086 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.test_fattura: test_account_invoice (odoo.addons.l10n_it_einvoice_out.tests.test_fattura.TestInvoice)
+2024-11-19 13:47:51,421 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2024-11-19 13:47:51,422 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2024-11-19 13:47:52,188 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🎺🎺🎺 Starting test v2.0.21 (debug_level=0, commit=True)
+2024-11-19 13:47:52,192 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🎺🎺 Testing module: l10n_it_einvoice_out (10.0.1.0.29)
+2024-11-19 13:47:52,192 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🎺🎺 Loading data from: account.account, account.fiscal.position, account.journal, account.tax, account.payment.term, account.payment.term.line, res.partner, res.partner.bank, product.template, res.company, account.invoice, account.invoice.line 
+2024-11-19 13:47:53,329 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:47:53,334 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:47:53,524 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:53,526 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:53,657 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_5 not found
+2024-11-19 13:47:53,769 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_5 not found
+2024-11-19 13:47:53,880 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_5 not found
+2024-11-19 13:47:54,028 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:54,383 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_sp not found
+2024-11-19 13:47:54,385 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:54,538 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_sp not found
+2024-11-19 13:47:54,545 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:54,697 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:54,815 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:47:54,817 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:47:54,953 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_0 not found
+2024-11-19 13:47:55,124 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_nl not found
+2024-11-19 13:47:55,127 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_0 not found
+2024-11-19 13:47:55,395 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-11-19 13:47:55,567 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:55,570 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_3 not found
+2024-11-19 13:47:55,737 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_rc not found
+2024-11-19 13:47:55,739 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-11-19 13:47:55,742 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-11-19 13:47:56,023 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_li not found
+2024-11-19 13:47:56,025 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-11-19 13:47:56,130 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_li not found
+2024-11-19 13:47:56,132 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-11-19 13:47:56,268 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-11-19 13:47:56,270 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_4 not found
+2024-11-19 13:47:56,411 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.fiscalpos_sp not found
+2024-11-19 13:47:56,413 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:48:02,293 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:48:02,678 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-11-19 13:48:03,131 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_2 not found
+2024-11-19 13:48:03,470 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.payment_1 not found
+2024-11-19 13:48:03,482 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: ⚠ External reference z0bug.invoice_Z0_6 not found
+2024-11-19 13:48:09,782 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.testenv: 🏆🥇 [1;32m87 tests SUCCESSFULLY completed[0m
+2024-11-19 13:48:09,785 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.test_fattura: Ran 1 test in 18.698s
+2024-11-19 13:48:09,785 395264 INFO test_l10n_it_einvoice_out_10 odoo.addons.l10n_it_einvoice_out.tests.test_fattura: OK
+2024-11-19 13:48:09,785 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_out.tests.test_fattura tested in 18.70s, 19514 queries
+2024-11-19 13:48:09,816 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: 42 modules loaded in 21.04s, 19525 queries
+2024-11-19 13:48:10,374 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: Modules loaded.
+2024-11-19 13:48:10,378 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2024-11-19 13:48:10,378 395264 INFO test_l10n_it_einvoice_out_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2024-11-19 13:48:10,503 395264 INFO test_l10n_it_einvoice_out_10 odoo.modules.registry: Registry changed, signaling through the database
+2024-11-19 13:48:10,505 395264 INFO test_l10n_it_einvoice_out_10 odoo.service.server: Initiating shutdown
+2024-11-19 13:48:10,506 395264 INFO test_l10n_it_einvoice_out_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_out[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/tests/logs/coverage_l10n_it_einvoice_out_10rc -m
+[34;107mName                                                                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/models/account.py                      16      6    62%   33-44
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/models/attachment.py                   68     16    76%   52, 70-74, 78, 86, 97, 100-101, 109-115
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/wizard/attachment_refresh_info.py       9      1    89%   18
+/home/odoo/10.0/l10n-italy/l10n_it_einvoice_out/wizard/wizard_export_fatturapa.py     683    256    63%   98, 114-115, 129, 143, 146-147, 171-172, 205, 207, 219, 257, 264, 269, 290, 339-343, 347, 353-357, 371, 408, 410, 419, 430-454, 488, 490, 548-552, 571-576, 582, 587-616, 619-644, 651, 657, 659, 665, 667, 669, 690-718, 721-762, 766, 788, 790, 794, 803, 814, 836, 847, 854-870, 872-886, 907, 928, 930, 949, 955, 957, 993-995, 997, 1010-1014, 1021, 1030, 1045, 1048, 1057, 1061-1064, 1075-1082, 1086-1098, 1102-1177, 1230, 1261, 1273, 1283, 1299, 1303, 1309, 1329, 1358-1359, 1363-1392
+-----------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                 776    279    64%
+[0m
