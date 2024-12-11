@@ -11,12 +11,13 @@
 from odoo import api, fields, models
 
 fatturapa_attachment_state_mapping = {
-    "ready": "ready",
-    "sent": "sent",
-    "validated": "delivered",
+    # "ready": "ready",
+    # "sent": "sent",
+    # "validated": "delivered",
     "sender_error": "error",
     "recipient_error": "error",
     "rejected": "error",
+
 }
 
 
@@ -41,9 +42,13 @@ class AccountInvoice(models.Model):
     @api.depends("fatturapa_attachment_out_id.state")
     def _compute_fatturapa_state(self):
         for record in self:
-            record.fatturapa_state = fatturapa_attachment_state_mapping.get(
+            fatturapa_state = fatturapa_attachment_state_mapping.get(
+                record.fatturapa_attachment_out_id.state,
                 record.fatturapa_attachment_out_id.state
             )
+            if fatturapa_state == "delivered" and record.state == "paid":
+                fatturapa_state = "accepted"
+            record.fatturapa_state = fatturapa_state
 
     @api.multi
     def send_einvoice(self):
