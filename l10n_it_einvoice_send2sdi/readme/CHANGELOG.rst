@@ -1,4 +1,4 @@
-10.0.1.0.50 (2024-12-11)
+10.0.1.0.50 (2024-12-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] New Evolve PA states / Nuovi stati fattura PA

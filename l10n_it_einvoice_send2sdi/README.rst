@@ -153,7 +153,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.0.50 (2024-12-11)
+10.0.1.0.50 (2024-12-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] New Evolve PA states / Nuovi stati fattura PA
@@ -276,7 +276,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-12-11
+Last Update / Ultimo aggiornamento: 2024-12-12
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

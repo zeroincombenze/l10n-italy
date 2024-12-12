@@ -13,11 +13,10 @@ from odoo import api, fields, models
 fatturapa_attachment_state_mapping = {
     # "ready": "ready",
     # "sent": "sent",
-    # "validated": "delivered",
+    "validated": "delivered",
     "sender_error": "error",
     "recipient_error": "error",
     "rejected": "error",
-
 }
 
 
