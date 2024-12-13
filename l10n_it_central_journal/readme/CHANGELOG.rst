@@ -1,3 +1,8 @@
+10.0.0.0.9 (2024-12-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Layout orientation / Orientamento di stampa
+
 10.0.0.0.8 (2023-12-23)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -42,4 +47,4 @@
 * [IMP] Separatione line between records / Riga di separazione tra le registrazioni
 * [IMP] No print zero amounts / Non stampa importi a zero
 * [IMP] Partner name / Stampa ragione sociale soggetto
-* [QUA] Test coverage 32% (198: 134+64) [0 TestPoints] - quality rating 39 (target 100)
+* [QUA] Test coverage 32% (200: 135+65) [0 TestPoints] - quality rating 20 (target 100)

@@ -5,7 +5,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "ITA - Account central journal",
-    "version": "10.0.0.0.7",
+    "version": "10.0.0.0.9",
     "category": "Localization/Italy",
     "summary": "Print fiscal account journal",
     "author": "Dinamiche Aziendali,Odoo Community Association (OCA),SHS-AV s.r.l.",

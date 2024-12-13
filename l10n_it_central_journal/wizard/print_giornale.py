@@ -101,9 +101,9 @@ class WizardGiornale(models.TransientModel):
         string="Year for Footer", help="Value printed near number of page in the footer"
     )
     orientation = fields.Selection([
-        ('Landscape', 'Landscape'),
-        ('Portrait', 'Portrait')
-        ], 'Orientation', default='Landscape')
+        ('landscape', 'Landscape'),
+        ('portrait', 'Portrait')
+        ], 'Orientation', default='landscape')
 
     @api.onchange("daterange")
     def on_change_daterange(self):
@@ -189,8 +189,10 @@ class WizardGiornale(models.TransientModel):
         datas_form["year_footer"] = self.year_footer
         # Follow code is brutal because central journal is never printed concurrently
         # and anyway orientation is a company preference
-        paperformat = self.env.ref("l10n_it_account.l10n_it_account_a4_portrait")
-        paperformat.orientation = self.orientation
+        paperformat = self.env.ref(
+            "l10n_it_account.l10n_it_account_a4_%s" % self.orientation)
+        report = self.env.ref("l10n_it_central_journal.action_report_giornale")
+        report.write({"paperformat_id": paperformat.id})
         return datas_form
 
     @api.multi

@@ -1,5 +1,5 @@
 ==============================================================
-|icon| ITA - Account central journal/Libro giornale 10.0.0.0.7
+|icon| ITA - Account central journal/Libro giornale 10.0.0.0.9
 ==============================================================
 
 **Print fiscal account journal**
@@ -207,6 +207,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.0.9 (2024-12-13)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Layout orientation / Orientamento di stampa
+
 10.0.0.0.8 (2023-12-23)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -279,7 +284,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2024-12-13
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
