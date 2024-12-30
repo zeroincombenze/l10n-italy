@@ -187,6 +187,7 @@ class WizardGiornale(models.TransientModel):
         datas_form["start_row"] = self.start_row
         datas_form["daterange"] = self.daterange.id
         datas_form["year_footer"] = self.year_footer
+        datas_form["orientation"] = self.orientation
         # Follow code is brutal because central journal is never printed concurrently
         # and anyway orientation is a company preference
         paperformat = self.env.ref(

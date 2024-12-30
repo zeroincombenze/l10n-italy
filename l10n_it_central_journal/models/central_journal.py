@@ -38,6 +38,7 @@ class ReportGiornale(models.AbstractModel):
             "l10n_it_count_fiscal_page_base":
                 data["form"]["l10n_it_count_fiscal_page_base"],
             "start_row": data["form"]["start_row"],
+            "orientation": data["form"]["orientation"],
             "year_footer": data["form"]["year_footer"],
             "date_move_line_to": data["form"]["date_move_line_to"],
             "daterange": data["form"]["daterange"],

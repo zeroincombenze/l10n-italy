@@ -1,3 +1,9 @@
+10.0.1.2.14 (2024-12-30)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Function to print central journal with orientation / Funzioni stampa libro giornale con orientamento
+* [QUA] Test coverage 77% (99: 23+76) [0 TestPoints] - quality rating 47 (target 100)
+
 10.0.1.2.13 (2024-06-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
