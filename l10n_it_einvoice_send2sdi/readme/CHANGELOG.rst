@@ -1,3 +1,9 @@
+10.0.1.0.51 (2025-01-13)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] New Evolve PA states / Nuovi stati fattura PA
+* [QUA] Test coverage 15% (821: 694+127) [1 TestPoints] - quality rating 10 (target 100)
+
 10.0.1.0.50 (2024-12-12)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -17,6 +17,7 @@ fatturapa_attachment_state_mapping = {
     "sender_error": "error",
     "recipient_error": "error",
     "rejected": "error",
+    "discarted": "error",
 }
 
 
