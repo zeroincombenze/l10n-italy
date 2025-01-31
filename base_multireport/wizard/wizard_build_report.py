@@ -44,10 +44,10 @@ class WizardBuildReport(models.TransientModel):
 
     def build_report(self, ctx=None):
         ctx = ctx or {}
-        cls = self.env[ctx["active_model"]]
+        Binder = self.env[ctx["active_model"]]
         rec_id = ctx["active_id"]
         wizard = self
-        self = cls.browse(rec_id)
+        self = Binder.browse(rec_id)
         if wizard.make_custom_header:
             self.custom_header = HEADER_DEFAULT
             self.header_mode = "line-up5"
@@ -62,7 +62,7 @@ class WizardBuildReport(models.TransientModel):
             self.footer_mode = (
                 "standard" if ctx["active_model"] == "multireport.style" else ""
             )
-        if wizard.default_body_header:
+        if wizard.default_er:
             if ctx["active_model"] == "multireport.template":
                 if self.ir_model_id:
                     self.ir_model_id.model

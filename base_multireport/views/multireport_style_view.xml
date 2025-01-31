@@ -106,6 +106,14 @@
                                 />
                             </group>
                         </page>
+                        <page name="picking_list" string="Picking document">
+                            <group>
+                                <field
+                                    name="template_stock_picking"
+                                    attrs="{'readonly': [('origin', '=', 'odoo')]}"
+                                />
+                            </group>
+                        </page>
                         <page name="packing_list" string="Delivery document">
                             <group>
                                 <field

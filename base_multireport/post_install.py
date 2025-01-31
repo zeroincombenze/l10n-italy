@@ -34,7 +34,7 @@ Cordiali Saluti
 
 
 def update_template_ref(cr):
-    """Set the default values for variuos entities. This function is called by
+    """Set the default values for various entities. This function is called by
     migrate and post-install processes; both processes supply cr param.
 
     Args:
@@ -49,6 +49,7 @@ def update_template_ref(cr):
             vals = {}
             for name in (
                 "template_sale_order",
+                "template_stock_picking",
                 "template_stock_picking_package_preparation",
                 "template_account_invoice",
                 "template_purchase_order",
@@ -61,13 +62,12 @@ def update_template_ref(cr):
         mr_style_model = env["multireport.style"]
         def_vals = {
             "template_sale_order": env.ref("base_multireport.mr_t_saleorder").id,
+            "template_stock_picking": env.ref("base_multireport.mr_t_picking").id,
             "template_stock_picking_package_preparation": env.ref(
-                "base_multireport.mr_t_deliverydocument"
-            ).id,
+                "base_multireport.mr_t_ddt").id,
             "template_account_invoice": env.ref("base_multireport.mr_t_invoice").id,
             "template_purchase_order": env.ref(
-                "base_multireport.mr_t_purchaseorder"
-            ).id,
+                "base_multireport.mr_t_purchaseorder").id,
         }
         domain = [("origin", "!=", "odoo")]
         for mr_style in mr_style_model.search(domain):
@@ -83,6 +83,7 @@ def update_template_ref(cr):
                 "in",
                 (
                     "sale.order",
+                    "stock.picking",
                     "stock.picking.package.preparation",
                     "account.invoice",
                     "purchase.order",

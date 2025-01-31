@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import time
 from datetime import datetime
 
@@ -18,16 +17,16 @@ class ReportOverdue(models.AbstractModel):
             "SELECT m.name AS move_id,l.date,l.name,l.ref,l.date_maturity,"
             "l.partner_id,l.blocked,l.amount_currency,l.currency_id,"
             "CASE WHEN at.type = 'receivable' and l.amount_residual > 0.0 "
-                "THEN SUM(l.amount_residual) "
-                "ELSE 0.0 "
+            "THEN SUM(l.amount_residual) "
+            "ELSE 0.0 "
             "END AS debit,"
             "CASE WHEN at.type = 'receivable'  and l.amount_residual < 0.0 "
-                "THEN SUM(l.amount_residual * -1) "
-                "ELSE 0.0 "
+            "THEN SUM(l.amount_residual * -1) "
+            "ELSE 0.0 "
             "END AS credit,"
             "CASE WHEN l.date_maturity < %s "
-                "THEN SUM(l.amount_residual) "
-                "ELSE 0.0 "
+            "THEN SUM(l.amount_residual) "
+            "ELSE 0.0 "
             "END AS mat "
             "FROM account_move_line l "
             "JOIN account_account_type at ON (l.user_type_id = at.id) "
@@ -37,7 +36,8 @@ class ReportOverdue(models.AbstractModel):
             "l.full_reconcile_id IS NULL AND "
             "l.amount_residual <> 0.0 "
             "GROUP BY l.partner_id,l.date_maturity,l.date,l.name,l.ref,"
-            "at.type,l.blocked,l.amount_currency,l.currency_id,l.amount_residual,m.name,move_id "
+            "at.type,l.blocked,l.amount_currency,l.currency_id,l.amount_residual,"
+            "m.name,move_id "
             "ORDER BY l.partner_id,l.date_maturity,l.date",
             ((fields.date.today(),) + (tuple(partner_ids),)),
         )
@@ -68,9 +68,11 @@ class ReportOverdue(models.AbstractModel):
                     totals[partner_id][currency] = {
                         fn: 0.0 for fn in ["due", "paid", "mat", "total"]
                     }
-                for (field, tot_field) in (("debit", "due"),
-                                           ("credit", "paid"),
-                                           ("mat", "mat")):
+                for field, tot_field in (
+                    ("debit", "due"),
+                    ("credit", "paid"),
+                    ("mat", "mat"),
+                ):
                     if line[field] and line["currency_id"]:
                         line[field] = line["amount_currency"]
                     if not line["blocked"]:

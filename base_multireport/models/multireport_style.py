@@ -156,12 +156,16 @@ class MultireportStyle(models.Model):
         "encoded data to be used as Ending Page PDF.\n"
         "You have access to variables `env` and `docs`",
     )
-    # TODO: remove early
     # sale.order values
     template_sale_order = fields.Many2one(
         "multireport.template", "Sale order template", help="Sale order model"
     )
-    # stock.picking[.package.preparation] values
+    # stock.picking values
+    template_stock_picking = fields.Many2one(
+        "multireport.template",
+        "Picking document template",
+    )
+    # stock.picking.package.preparation values
     template_stock_picking_package_preparation = fields.Many2one(
         "multireport.template",
         "Delivery document template",

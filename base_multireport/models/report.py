@@ -30,6 +30,7 @@ class Report(models.Model):
         "account.invoice": "account.report_invoice",
         "stock.picking.package.preparation": "l10n_it_ddt.report_ddt",
         "purchase.order": "purchase.report_purchaseorder_document",
+        "stock.picking": "stock.report_delivery_document",
     }
     BOOL_PARAMS = [
         "no_header_logo",
@@ -40,22 +41,23 @@ class Report(models.Model):
     }
 
     @api.model
-    def select_reportname(self, document):
-        model = document.__class__.__name__
+    def select_reportname(self, document, force=True):
+        # model = document.__class__.__name__
+        model_name = document._name
         rule_model = self.env["multireport.selection.rules"]
         ir_model_model = self.env["ir.model"]
         ir_ui_view_model = self.env["ir.ui.view"]
-        model_id = ir_model_model.search([("model", "=", model)])
+        model_id = ir_model_model.search([("model", "=", model_name)])
         if model_id:
             domain = [
                 ("active", "=", True),
                 "|",
                 ("model_id", "=", model_id.id),
-                ("model_name", "=", model),
+                ("model_name", "=", model_name),
             ]
         else:
             domain = [("active", "=", True)]
-        reportname = self.RPT_BY_MODEL.get(model, None)
+        reportname = self.RPT_BY_MODEL.get(model_name, None) if force else None
         for rule in rule_model.search(domain, order="sequence"):
             if rule.action == "odoo":
                 break
@@ -66,7 +68,7 @@ class Report(models.Model):
 
     @api.model
     def get_doc_n_repo_params(self, document, report):
-        reportname = self.select_reportname(document)
+        reportname = self.select_reportname(document, force=True)
         company = False
         report_model_style = False
         if hasattr(document, "company_id"):
@@ -115,7 +117,6 @@ class Report(models.Model):
         reportname, company, report_model_style, pdf_report = self.env[
             "report"
         ].get_doc_n_repo_params(doc, report)
-        # model = report.model.replace(".", "_")
         model = doc._name.replace(".", "_")
         # Fallback value path: report, template, style, partner, company
         value = get_obj_value(param)
@@ -198,8 +199,6 @@ class Report(models.Model):
             value = value % param
             if param == "custom_header":
                 value = 'div class="header">%s</div>' % value
-            # elif param == 'custom_footer':
-            #    value = 'div class="footer">%s</div>' % value
         return value or None
 
     @api.multi

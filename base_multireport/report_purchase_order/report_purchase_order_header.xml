@@ -41,8 +41,8 @@
             </div>
         </div>
 
-        <h2 t-if="o.state != 'draft'">Conferma Ordine #<span t-field="o.name" /></h2>
-        <h2 t-if="o.state == 'draft'">Richiesta di Acquisto #<span
+        <h2 t-if="o.state not in ('draft', 'sent', 'to approve')">Conferma Ordine #<span t-field="o.name" /></h2>
+        <h2 t-if="o.state in ('draft', 'sent', 'to approve')">Richiesta di Acquisto #<span
                 t-field="o.name"
             /></h2>
 

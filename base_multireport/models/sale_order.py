@@ -16,6 +16,8 @@ class SaleOrder(models.Model):
     # Override print_quotation method in sale module
     @api.multi
     def print_quotation(self):
-        self.filtered(lambda s: s.state == "draft").write({"state": "sent"})
+        action = super(SaleOrder, self).print_quotation()
         reportname = self.env["report"].select_reportname(self)
-        return self.env["report"].get_action(self, reportname)
+        if reportname:
+            action["reportname"] = reportname
+        return action

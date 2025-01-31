@@ -1,5 +1,5 @@
 =========================================================
-|icon| base_rule_multireport/base_multireport 10.0.0.2.28
+|icon| base_rule_multireport/base_multireport 10.0.0.2.29
 =========================================================
 
 **Manage document multiple reports**
@@ -440,6 +440,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.29 (2024-01-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sometimes, some random reports fall in crash
+* [FIX] Purchase order, sometime status was not recognized
+* [IMP] New custom repor delivery slip
+* [QUA] Test coverage 39% (650: 395+255)
+
 10.0.0.2.28 (2023-06-29)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -510,7 +518,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2025-01-31
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

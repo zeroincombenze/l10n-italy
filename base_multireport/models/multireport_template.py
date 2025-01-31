@@ -46,6 +46,7 @@ class MultireportTemplate(models.Model):
             "sale.order": "saleorder",
             "account.invoice": "invoice",
             "stock.picking.package.preparation": "ddt",
+            "stock.picking.package": "delivery",
             "purchase.order": "purchaseorder",
         }.get(model, "")
         xref = self.env["ir.model.data"].search(
@@ -233,9 +234,9 @@ class MultireportTemplate(models.Model):
         help="Name of footer associated to this template",
     )
 
-
-class MultireportTemplateLine(models.Model):
-    _name = "multireport.template.line"
-    _description = "Multi Report Template Line"
-
-    template_id = fields.Many2one("multireport.template", required=True)
+#
+# class MultireportTemplateLine(models.Model):
+#     _name = "multireport.template.line"
+#     _description = "Multi Report Template Line"
+#
+#     template_id = fields.Many2one("multireport.template", required=True)

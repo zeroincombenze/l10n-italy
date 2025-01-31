@@ -27,10 +27,11 @@ class AccountInvoice(models.Model):
     # Override print_quotation method in sale module
     @api.multi
     def invoice_print(self):
-        self.ensure_one()
-        self.sent = True
+        action = super(AccountInvoice, self).invoice_print()
         reportname = self.env["report"].select_reportname(self)
-        return self.env["report"].get_action(self, reportname)
+        if reportname:
+            action["reportname"] = reportname
+        return action
 
 
 class AccountInvoiceLine(models.Model):
