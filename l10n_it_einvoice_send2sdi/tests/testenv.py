@@ -598,7 +598,6 @@ PARENT_RESOURCE = {
 KEY_CANDIDATE = (
     "acc_number",
     "code_prefix",
-    "prefix",
     "default_code",
     "sequence",
     "login",
