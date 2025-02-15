@@ -35,6 +35,12 @@
         <field name="footer_id" ref="report.external_layout_footer" />
         <field name="ir_model_id" ref="delivery.model_stock_picking" />
     </record>
+    <record id="mr_t_delivery" model="multireport.template">
+        <field name="name">Delivery template</field>
+        <field name="header_id" ref="report.external_layout_header" />
+        <field name="footer_id" ref="report.external_layout_footer" />
+        <field name="ir_model_id" ref="delivery.model_stock_picking" />
+    </record>
     <record id="mr_t_ddt" model="multireport.template">
         <field name="name">Delivery Document template</field>
         <field name="payment_term_position">auto</field>

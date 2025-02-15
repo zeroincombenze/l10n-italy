@@ -1,0 +1,85 @@
+2025-02-15 09:46:14,000 91408 DAEMON test_base_multireport_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2025-02-15 08:46:17,780 92999 INFO ? odoo: Odoo version 10.0
+2025-02-15 08:46:17,780 92999 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/base_multireport/tests/logs/zero10.l10n-italy.base_multireport.conf
+2025-02-15 08:46:17,780 92999 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2025-02-15 08:46:17,780 92999 INFO ? odoo: database: odoo10@localhost:5432
+2025-02-15 08:46:17,806 92999 INFO ? odoo.service.server: HTTP service (werkzeug) running on NB200Z0.:46172
+2025-02-15 08:46:17,821 92999 INFO test_base_multireport_10 odoo.modules.loading: loading 1 modules...
+2025-02-15 08:46:17,940 92999 INFO test_base_multireport_10 odoo.modules.loading: 1 modules loaded in 0.12s, 0 queries
+2025-02-15 08:46:20,860 92999 INFO test_base_multireport_10 odoo.modules.loading: loading 60 modules...
+2025-02-15 08:46:21,012 92999 INFO test_base_multireport_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2025-02-15 08:46:21,323 92999 INFO test_base_multireport_10 odoo.modules.loading: 60 modules loaded in 0.46s, 0 queries
+2025-02-15 08:46:21,329 92999 INFO test_base_multireport_10 odoo.modules.loading: loading 61 modules...
+2025-02-15 08:46:21,868 92999 INFO test_base_multireport_10 odoo.modules.registry: module base_multireport: creating or updating database tables
+2025-02-15 08:46:22,427 92999 WARNING test_base_multireport_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2025-02-15 08:46:22,795 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/security/ir.model.access.csv
+2025-02-15 08:46:22,868 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/data/multireport_style.xml
+2025-02-15 08:46:22,881 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/data/multireport_template.xml
+2025-02-15 08:46:22,913 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/data/multireport_selection_rules.xml
+2025-02-15 08:46:22,926 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/wizard/wizard_build_report_view.xml
+2025-02-15 08:46:22,982 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/views/multireport_style_view.xml
+2025-02-15 08:46:23,062 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/views/ir_actions_report_xml_view.xml
+2025-02-15 08:46:23,098 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/views/multireport_template_view.xml
+2025-02-15 08:46:23,151 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/views/multireport_selection_rules_view.xml
+2025-02-15 08:46:23,216 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/views/config_view.xml
+2025-02-15 08:46:23,255 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/views/layout_templates.xml
+2025-02-15 08:46:23,278 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/paper_format.xml
+2025-02-15 08:46:23,289 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/header-footer.xml
+2025-02-15 08:46:23,345 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/multireport_sale_order.xml
+2025-02-15 08:46:23,377 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/multireport_ddt.xml
+2025-02-15 08:46:23,406 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/multireport_invoice.xml
+2025-02-15 08:46:23,487 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/multireport_purchase_order.xml
+2025-02-15 08:46:23,567 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/multireport_picking.xml
+2025-02-15 08:46:23,615 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report/multireport_overdue.xml
+2025-02-15 08:46:23,641 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_ddt/report_ddt.xml
+2025-02-15 08:46:23,659 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_ddt/report_ddt_header.xml
+2025-02-15 08:46:23,677 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_ddt/report_ddt_lines.xml
+2025-02-15 08:46:23,695 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_ddt/report_ddt_footer.xml
+2025-02-15 08:46:23,729 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_sale_order/report_sale_order.xml
+2025-02-15 08:46:23,751 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_sale_order/report_sale_order_header.xml
+2025-02-15 08:46:23,785 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_sale_order/report_sale_order_lines.xml
+2025-02-15 08:46:23,802 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_sale_order/report_sale_order_footer.xml
+2025-02-15 08:46:23,820 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_account_invoice/report_invoice.xml
+2025-02-15 08:46:23,876 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_account_invoice/report_invoice_header.xml
+2025-02-15 08:46:23,927 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_account_invoice/report_invoice_lines.xml
+2025-02-15 08:46:23,944 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_account_invoice/report_invoice_footer.xml
+2025-02-15 08:46:23,993 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_purchase_order/report_purchase_order.xml
+2025-02-15 08:46:24,013 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_purchase_order/report_purchase_order_header.xml
+2025-02-15 08:46:24,032 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_purchase_order/report_purchase_order_lines.xml
+2025-02-15 08:46:24,056 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_purchase_order/report_purchase_order_footer.xml
+2025-02-15 08:46:24,078 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_overdue/report_overdue.xml
+2025-02-15 08:46:24,114 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_picking/report_deliveryslip.xml
+2025-02-15 08:46:24,133 92999 INFO test_base_multireport_10 odoo.modules.loading: loading base_multireport/report_picking/report_stockpicking_operations.xml
+2025-02-15 08:46:24,501 92999 INFO test_base_multireport_10 odoo.modules.loading: 61 modules loaded in 3.17s, 6 queries
+2025-02-15 08:46:24,924 92999 INFO test_base_multireport_10 odoo.modules.loading: Modules loaded.
+2025-02-15 08:46:24,930 92999 INFO test_base_multireport_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2025-02-15 08:46:24,931 92999 INFO test_base_multireport_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2025-02-15 08:46:25,001 92999 INFO test_base_multireport_10 odoo.modules.registry: Registry changed, signaling through the database
+2025-02-15 08:46:25,002 92999 INFO test_base_multireport_10 odoo.service.server: Initiating shutdown
+2025-02-15 08:46:25,002 92999 INFO test_base_multireport_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36mbase_multireport[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/base_multireport/tests/logs/coverage_base_multireport_10rc -m
+[34;107mName                                                                                      Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/base_multireport/models/account_invoice.py                        86     69    20%   29-34, 41-70, 73-106, 109-118, 121-125, 128-133, 136-138
+/home/odoo/10.0/l10n-italy/base_multireport/models/account_overdue_report.py                 39     30    23%   12, 15-48, 52-94
+/home/odoo/10.0/l10n-italy/base_multireport/models/ir_actions_report_xml.py                  47     18    62%   44, 47-68, 71-72, 218-225
+/home/odoo/10.0/l10n-italy/base_multireport/models/multireport_selection_rules.py            24      1    96%   21
+/home/odoo/10.0/l10n-italy/base_multireport/models/multireport_style.py                      26      0   100%
+/home/odoo/10.0/l10n-italy/base_multireport/models/multireport_template.py                   34      7    79%   42-56
+/home/odoo/10.0/l10n-italy/base_multireport/models/purchase_order.py                         15      8    47%   13-18, 21-23
+/home/odoo/10.0/l10n-italy/base_multireport/models/report.py                                210    186    11%   46-67, 70-81, 84-202, 206-208, 213-234, 238-330
+/home/odoo/10.0/l10n-italy/base_multireport/models/res_company.py                             7      0   100%
+/home/odoo/10.0/l10n-italy/base_multireport/models/sale_order.py                             10      6    40%   18-23
+/home/odoo/10.0/l10n-italy/base_multireport/models/stock_picking_package_preparation.py      65     48    26%   33-45, 52-61, 64-68, 71-76, 81-110
+/home/odoo/10.0/l10n-italy/base_multireport/post_install.py                                  57      4    93%   137-138, 141-142
+/home/odoo/10.0/l10n-italy/base_multireport/wizard/wizard_build_report.py                    30     20    33%   46-69
+-----------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                       650    397    39%
+[0m

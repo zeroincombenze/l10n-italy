@@ -7,7 +7,7 @@
 {
     "name": "base_rule_multireport",
     "summary": "Manage document multiple reports",
-    "version": "10.0.0.2.29",
+    "version": "10.0.0.2.30",
     "category": "Generic Modules/Accounting",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
@@ -62,6 +62,7 @@
         "report_purchase_order/report_purchase_order_footer.xml",
         "report_overdue/report_overdue.xml",
         "report_picking/report_deliveryslip.xml",
+        "report_picking/report_stockpicking_operations.xml",
     ],
     "external_dependencies": {
         "python": [

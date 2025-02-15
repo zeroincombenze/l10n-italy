@@ -1,9 +1,15 @@
 10.0.0.2.29 (2024-01-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+* [IMP] New custom report picking
+* [QUA] Test coverage 39% (650: 395+255)
+
+10.0.0.2.29 (2024-01-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 * [FIX] Sometimes, some random reports fall in crash
 * [FIX] Purchase order, sometime status was not recognized
-* [IMP] New custom repor delivery slip
+* [IMP] New custom report delivery slip
 * [QUA] Test coverage 39% (650: 395+255)
 
 10.0.0.2.28 (2023-06-29)

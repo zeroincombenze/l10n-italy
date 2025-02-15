@@ -30,7 +30,7 @@ class Report(models.Model):
         "account.invoice": "account.report_invoice",
         "stock.picking.package.preparation": "l10n_it_ddt.report_ddt",
         "purchase.order": "purchase.report_purchaseorder_document",
-        "stock.picking": "stock.report_delivery_document",
+        "stock.picking": "stock.report_picking",
     }
     BOOL_PARAMS = [
         "no_header_logo",
