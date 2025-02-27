@@ -41,7 +41,7 @@
                             </div>
                             <div t-if="o.partner_id" name="partner_header">
                                 <div t-field="o.partner_id"
-                                     t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                     t-options='{"widget": "contact", "fields": ["name", "address", "phone"], "no_marker": True, "phone_icons": True}'/>
                                 <p t-if="o.sudo().partner_id.vat">VAT:
                                     <span t-field="o.sudo().partner_id.vat"/>
                                 </p>
@@ -65,6 +65,12 @@
                                 <th name="td_sched_date_h">
                                     <strong>Scheduled Date</strong>
                                 </th>
+                                <th>
+                                    <strong>Weight</strong>
+                                </th>
+                                <th>
+                                    <strong>Delivery Carrier Note</strong>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,6 +86,12 @@
                                 </td>
                                 <td name="td_sched_date">
                                     <span t-field="o.min_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.weight"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_id.delivery_carrier_note"/>
                                 </td>
                             </tr>
                         </tbody>

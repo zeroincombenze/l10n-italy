@@ -1,6 +1,6 @@
-=========================================================
-|icon| base_rule_multireport/base_multireport 10.0.0.2.30
-=========================================================
+================================================================
+|icon| base_rule_multireport/Multi modelli di stampa 10.0.0.2.31
+================================================================
 
 **Manage document multiple reports**
 
@@ -36,7 +36,7 @@ Il modulo è costruito sui seguenti concetti:
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/base_multireport/static/description/
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/base_multireport/static/description/description.png
 
 
 Features | Caratteristiche
@@ -338,13 +338,6 @@ In xml report it is also possible test the existence of a field. The should be a
 
 
 
-OCA comparation | Confronto con OCA
------------------------------------
-
-This module is exclusive of Zeroincombenze® and is not avaiable on OCA repository.
-
-
-
 Getting started | Primi passi
 =============================
 
@@ -440,10 +433,22 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.31 (2024-02-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Picking: net weight, delivery note / Peso netto, note consegna in prelievo
+* [QUA] Test coverage 39% (650: 395+255)
+
+10.0.0.2.30 (2024-02-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New custom report picking / Nuova stampa prelievo personalizzato
+* [QUA] Test coverage 39% (650: 395+255)
+
 10.0.0.2.29 (2024-01-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] New custom report picking
+* [IMP] New custom report picking slip
 * [QUA] Test coverage 39% (650: 395+255)
 
 10.0.0.2.29 (2024-01-15)
@@ -524,7 +529,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-02-15
+Last Update / Ultimo aggiornamento: 2025-02-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

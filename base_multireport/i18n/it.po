@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-15 08:20+0000\n"
-"PO-Revision-Date: 2025-02-15 09:29+0100\n"
+"POT-Creation-Date: 2025-02-27 13:02+0000\n"
+"PO-Revision-Date: 2025-02-27 14:41+0100\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
@@ -115,7 +115,7 @@ msgstr "<strong>Commerciale:</strong>"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_picking
 msgid "<strong>Commitment Date</strong>"
-msgstr "<strong>Data pianificata</strong>"
+msgstr "<strong>Data richiesta</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_purchase_order_header
@@ -146,6 +146,11 @@ msgstr "<strong>Data validità:</strong>"
 #: model:ir.ui.view,arch_db:base_multireport.report_delivery_document
 msgid "<strong>Date</strong>"
 msgstr "<strong>Data</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_picking
+msgid "<strong>Delivery Carrier Note</strong>"
+msgstr "<strong>Nota vettore consegna</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_invoice_body_header model:ir.ui.view,arch_db:base_multireport.report_purchase_order_header
@@ -307,7 +312,7 @@ msgstr "<strong>Termini di pagamento:</strong>"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt_footer model:ir.ui.view,arch_db:base_multireport.report_invoice_footer
 msgid "<strong>Totale a pagare</strong>"
-msgstr "<strong>Totale a pagare</strong>"
+msgstr "<strong>Totale da pagare</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt_lines model:ir.ui.view,arch_db:base_multireport.report_purchase_order_lines
@@ -333,7 +338,12 @@ msgstr "<strong>Vostro Riferimento:</strong>"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_saleorder_body_header
 msgid "<strong>Vs. riferimento:</strong>"
-msgstr "<strong>Vs. riferimento:</strong>"
+msgstr "<strong>riferimento vs.:</strong>"
+
+#. module: base_multireport
+#: model:ir.ui.view,arch_db:base_multireport.report_picking
+msgid "<strong>Weight</strong>"
+msgstr "<strong>Peso</strong>"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_style_form
@@ -732,7 +742,7 @@ msgstr "Dovuto"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_overdue_document
 msgid "Due Date"
-msgstr "Data pagamento"
+msgstr "Data scadenza"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_account_invoice_due_records
@@ -898,13 +908,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multireport.field_report_base_multireport_report_overdue_id
 #: model:ir.model.fields,field_description:base_multireport.field_wizard_build_report_id
 msgid "ID"
-msgstr ""
-"CONTO BANCA\n"
-"    IL CAMBIO DI PER BANCA IL CAMBIO DI NON VALIDA IN CODICE IVA ANOTHER LA DATA DI BLOCCO PER I CONSULENTI DEVE QUINDI ESSERE IMPOSTATA PRIMA DI QUELLA "
-"PER GLI UTENTI E. ID. DICHIARAZIONE IL CAMBIO DI THROUGH THEM FINDING DA SECONDO IL CAMBIO DI PERIODO RIGA ONE CREDITI ONE\n"
-"    AL MOMENTO DELL'ACQUISIZIONE IL CODICE VIENE ASSOCIATO ALLA IL CAMBIO DI ENDIF\n"
-"        PER UN IMPORTO PARI A RIGA IL CAMBIO DI TUTTO/I RICONCILIAZIONE MANUALMENTE LA DATA DI BLOCCO PER I CONSULENTI DEVE QUINDI ESSERE IMPOSTATA PRIMA "
-"DI QUELLA PER GLI UTENTI CAN TU"
+msgstr "ID"
 
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.report_ddt_footer
@@ -1082,12 +1086,12 @@ msgstr "Nome dello stile"
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_header_id
 msgid "Name of body header associated to this template"
-msgstr "Nome of corpo header associated a this modello"
+msgstr "Nome dell'intestazione corpo associata"
 
 #. module: base_multireport
 #: model:ir.model.fields,help:base_multireport.field_multireport_template_footer_id
 msgid "Name of footer associated to this template"
-msgstr "Nome of piè di pagina associated a this modello"
+msgstr "Nome del piè di pagina corpo associato"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_template_name
@@ -1107,7 +1111,7 @@ msgstr "No codice"
 #. module: base_multireport
 #: selection:ir.actions.report.xml,description_mode:0 selection:multireport.style,description_mode:0 selection:multireport.template,description_mode:0
 msgid "No code & Only first line"
-msgstr "No codice & solo"
+msgstr "No codice & Solo prima riga"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,code_mode:0 selection:multireport.style,code_mode:0 selection:multireport.template,code_mode:0
@@ -1194,7 +1198,7 @@ msgstr "In intestazione senza IBAN"
 #. module: base_multireport
 #: selection:ir.actions.report.xml,description_mode:0 selection:multireport.style,description_mode:0 selection:multireport.template,description_mode:0
 msgid "Only first line"
-msgstr "Solo"
+msgstr "Solo prima riga"
 
 #. module: base_multireport
 #: selection:ir.actions.report.xml,address_mode:0 selection:multireport.style,address_mode:0 selection:multireport.template,address_mode:0
@@ -1435,7 +1439,7 @@ msgstr "Rapporto rendiconto"
 #. module: base_multireport
 #: model:ir.ui.view,arch_db:base_multireport.view_multireport_template_tree
 msgid "Report Template"
-msgstr "Rendiconto Modello"
+msgstr "Modello Rendiconto"
 
 #. module: base_multireport
 #: model:ir.model.fields,field_description:base_multireport.field_multireport_style_origin

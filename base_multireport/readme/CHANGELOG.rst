@@ -1,7 +1,19 @@
+10.0.0.2.31 (2024-02-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Picking: net weight, delivery note / Peso netto, note consegna in prelievo
+* [QUA] Test coverage 39% (650: 395+255)
+
+10.0.0.2.30 (2024-02-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New custom report picking / Nuova stampa prelievo personalizzato
+* [QUA] Test coverage 39% (650: 395+255)
+
 10.0.0.2.29 (2024-01-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] New custom report picking
+* [IMP] New custom report picking slip
 * [QUA] Test coverage 39% (650: 395+255)
 
 10.0.0.2.29 (2024-01-15)

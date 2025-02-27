@@ -114,7 +114,7 @@ class AccountInvoiceLine(models.Model):
         if style_mode in ("nocode", "nocode1"):
             i = value.find("]")
             if value[0] == "[" and i >= 0:
-                value = value[i + 1 :].lstrip()
+                value = value[i + 1:].lstrip()
         return value
 
     def code_2_print(self, style_mode=None):
