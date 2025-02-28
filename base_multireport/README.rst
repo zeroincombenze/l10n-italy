@@ -1,5 +1,5 @@
 ================================================================
-|icon| base_rule_multireport/Multi modelli di stampa 10.0.0.2.31
+|icon| base_rule_multireport/Multi modelli di stampa 10.0.0.2.32
 ================================================================
 
 **Manage document multiple reports**
@@ -433,6 +433,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.32 (2024-02-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Picking: no delivery note / No note consegna in prelievo
+* [QUA] Test coverage 39% (650: 395+255)
+
 10.0.0.2.31 (2024-02-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -529,7 +535,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-02-27
+Last Update / Ultimo aggiornamento: 2025-02-28
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

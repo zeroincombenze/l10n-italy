@@ -68,9 +68,6 @@
                                 <th>
                                     <strong>Weight</strong>
                                 </th>
-                                <th>
-                                    <strong>Delivery Carrier Note</strong>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,9 +86,6 @@
                                 </td>
                                 <td>
                                     <span t-field="o.weight"/>
-                                </td>
-                                <td>
-                                    <span t-field="o.partner_id.delivery_carrier_note"/>
                                 </td>
                             </tr>
                         </tbody>
@@ -191,6 +185,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <hr/>
                     <p t-if="o.state in ['draft', 'waiting', 'confirmed']">
                         You do not have any products reserved for this picking. Please click the 'Reserve' button
                         to check if products are available.

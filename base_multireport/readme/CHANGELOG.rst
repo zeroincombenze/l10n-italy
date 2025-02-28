@@ -1,3 +1,9 @@
+10.0.0.2.32 (2024-02-28)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Picking: no delivery note / No note consegna in prelievo
+* [QUA] Test coverage 39% (650: 395+255)
+
 10.0.0.2.31 (2024-02-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
