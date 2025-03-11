@@ -1,0 +1,152 @@
+2025-03-10 20:14:26,000 19385 DAEMON test_l10n_it_ddt_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2025-03-10 19:14:32,316 21070 INFO ? odoo: Odoo version 10.0
+2025-03-10 19:14:32,316 21070 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/logs/zero10.l10n-italy.l10n_it_ddt.conf
+2025-03-10 19:14:32,316 21070 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo10/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/marketplace', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2025-03-10 19:14:32,319 21070 INFO ? odoo: database: odoo10@localhost:5432
+2025-03-10 19:14:32,346 21070 INFO ? odoo.service.server: HTTP service (werkzeug) running on NB200Z0.:47063
+2025-03-10 19:14:32,368 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading 1 modules...
+2025-03-10 19:14:32,514 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: 1 modules loaded in 0.14s, 0 queries
+2025-03-10 19:14:34,788 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading 39 modules...
+2025-03-10 19:14:34,929 21070 INFO test_l10n_it_ddt_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2025-03-10 19:14:35,149 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: 39 modules loaded in 0.36s, 0 queries
+2025-03-10 19:14:35,157 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading 41 modules...
+2025-03-10 19:14:35,806 21070 INFO test_l10n_it_ddt_10 odoo.modules.registry: module delivery: creating or updating database tables
+2025-03-10 19:14:36,869 21070 INFO test_l10n_it_ddt_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2025-03-10 19:14:36,926 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of stock.picking fields weight
+2025-03-10 19:14:36,929 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of stock.move fields weight
+2025-03-10 19:14:36,931 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of sale.order fields delivery_price
+2025-03-10 19:14:36,932 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of delivery.carrier fields fixed_price
+2025-03-10 19:14:37,118 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/security/ir.model.access.csv
+2025-03-10 19:14:37,310 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/security/delivery_security.xml
+2025-03-10 19:14:37,328 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/views/delivery_view.xml
+2025-03-10 19:14:37,932 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/views/partner_view.xml
+2025-03-10 19:14:38,031 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/views/product_template_view.xml
+2025-03-10 19:14:38,113 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/views/product_packaging_view.xml
+2025-03-10 19:14:38,196 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/data/delivery_data.xml
+2025-03-10 19:14:38,622 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/views/report_shipping.xml
+2025-03-10 19:14:38,672 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/views/report_deliveryslip.xml
+2025-03-10 19:14:38,719 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/data/delivery_demo.xml
+2025-03-10 19:14:39,336 21070 INFO test_l10n_it_ddt_10 odoo.models.unlink: User #1 deleted delivery.price.rule records with IDs: [3]
+2025-03-10 19:14:39,848 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading delivery/../account/test/account_minimal_test.xml
+2025-03-10 19:14:40,687 21070 INFO test_l10n_it_ddt_10 odoo.modules.module: odoo.addons.delivery.tests.test_delivery_cost running tests.
+2025-03-10 19:14:40,688 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_cost: test_00_delivery_cost (odoo.addons.delivery.tests.test_delivery_cost.TestDeliveryCost)
+2025-03-10 19:14:49,671 21070 INFO test_l10n_it_ddt_10 odoo.addons.base.res.res_config: getting next operation
+2025-03-10 19:14:49,671 21070 INFO test_l10n_it_ddt_10 odoo.addons.base.res.res_config: getting next ir.actions.todo()
+2025-03-10 19:14:49,675 21070 INFO test_l10n_it_ddt_10 odoo.addons.base.res.res_config: next action is None
+2025-03-10 19:14:49,678 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_cost: Ran 1 test in 8.990s
+2025-03-10 19:14:49,678 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_cost: OK
+2025-03-10 19:14:49,679 21070 INFO test_l10n_it_ddt_10 odoo.modules.module: odoo.addons.delivery.tests.test_delivery_cost tested in 8.99s, 5008 queries
+2025-03-10 19:14:50,230 21070 INFO test_l10n_it_ddt_10 odoo.modules.registry: module l10n_it_ddt: creating or updating database tables
+2025-03-10 19:14:52,236 21070 INFO test_l10n_it_ddt_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2025-03-10 19:14:52,502 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of account.invoice.line fields ddt_id, ddt_sequence
+2025-03-10 19:14:52,505 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of stock.picking.package.preparation fields amount_tax, amount_total, amount_untaxed, currency_id, delivery_price, to_be_invoiced
+2025-03-10 19:14:52,506 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of account.invoice fields delivery_price
+2025-03-10 19:14:52,507 21070 INFO test_l10n_it_ddt_10 odoo.models: Storing computed values of stock.picking.package.preparation.line fields currency_id, date, ddt_number, partner_id, price_subtotal, price_tax, price_total, sale_id, sale_line_id
+2025-03-10 19:14:52,640 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/security/ir.model.access.csv
+2025-03-10 19:14:52,862 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/security/security.xml
+2025-03-10 19:14:52,906 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/data/ddt_data.xml
+2025-03-10 19:14:52,989 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking_package_preparation.xml
+2025-03-10 19:14:53,563 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/ddt_data.xml
+2025-03-10 19:14:54,052 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_picking.xml
+2025-03-10 19:14:54,211 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/partner_view.xml
+2025-03-10 19:14:54,363 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/product.xml
+2025-03-10 19:14:54,588 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/account.xml
+2025-03-10 19:14:54,701 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/sale.xml
+2025-03-10 19:14:55,099 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/stock_location.xml
+2025-03-10 19:14:55,205 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/delivery_carrier_view.xml
+2025-03-10 19:14:55,342 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/config_view.xml
+2025-03-10 19:14:55,440 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/add_picking_to_ddt.xml
+2025-03-10 19:14:55,505 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_from_picking.xml
+2025-03-10 19:14:55,569 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_create_invoice.xml
+2025-03-10 19:14:55,644 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_line_create_invoice.xml
+2025-03-10 19:14:55,751 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/ddt_invoicing.xml
+2025-03-10 19:14:55,818 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/wizard/create_ddt.xml
+2025-03-10 19:14:55,868 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/views/report_ddt.xml
+2025-03-10 19:14:55,986 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: loading l10n_it_ddt/data/mail_template_data.xml
+2025-03-10 19:14:56,037 21070 INFO test_l10n_it_ddt_10 odoo.addons.base.ir.ir_translation: module l10n_it_ddt: loading base translation file en for language en_US
+2025-03-10 19:14:56,038 21070 INFO test_l10n_it_ddt_10 odoo.tools.translate: loading /home/odoo/10.0/l10n-italy/l10n_it_ddt/i18n/en.po
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 174, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/usr/lib/python2.7/SimpleHTTPServer.py", line 235, in <module>
+    test()
+  File "/usr/lib/python2.7/SimpleHTTPServer.py", line 231, in test
+    BaseHTTPServer.test(HandlerClass, ServerClass)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 606, in test
+    httpd = ServerClass(server_address, HandlerClass)
+  File "/usr/lib/python2.7/SocketServer.py", line 420, in __init__
+    self.server_bind()
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
+    SocketServer.TCPServer.server_bind(self)
+  File "/usr/lib/python2.7/SocketServer.py", line 434, in server_bind
+    self.socket.bind(self.server_address)
+  File "/usr/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+2025-03-10 19:14:57,468 21070 INFO test_l10n_it_ddt_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt running tests.
+2025-03-10 19:14:57,469 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: test_ddt (odoo.addons.l10n_it_ddt.tests.test_ddt.TestDdt)
+2025-03-10 19:14:57,896 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺🎺🎺 Starting test v2.0.21 (debug_level=0, commit=True)
+2025-03-10 19:14:57,900 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺🎺 Testing module: l10n_it_ddt (10.0.1.8.27)
+2025-03-10 19:14:57,900 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🎺🎺 Loading data from: account.account, account.tax, delivery.carrier, product.template, stock.ddt.type, res.partner 
+2025-03-10 19:14:59,811 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_2]
+2025-03-10 19:15:01,299 21070 WARNING test_l10n_it_ddt_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2025-03-10 19:15:03,340 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_5]
+2025-03-10 19:15:04,091 21070 WARNING test_l10n_it_ddt_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2025-03-10 19:15:05,314 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Testing sale.order[z0bug.sale_order_Z0_4]
+2025-03-10 19:15:07,370 21070 WARNING test_l10n_it_ddt_10 odoo.osv.expression: The domain term '('product_id', '=', [40, 41, 42])' should use the 'in' or 'not in' operator.
+2025-03-10 19:15:08,509 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT and then add picking to it
+2025-03-10 19:15:08,511 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Creating DdT from order SO010
+2025-03-10 19:15:09,350 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: 🎺 Adding picking to DdT
+2025-03-10 19:15:10,135 21070 INFO test_l10n_it_ddt_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [12, 13]
+2025-03-10 19:15:10,192 21070 INFO test_l10n_it_ddt_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [15, 16]
+2025-03-10 19:15:10,226 21070 INFO test_l10n_it_ddt_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [17, 18]
+2025-03-10 19:15:10,860 21070 INFO test_l10n_it_ddt_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [14]
+2025-03-10 19:15:10,907 21070 INFO test_l10n_it_ddt_10 odoo.models.unlink: User #1 deleted stock.move.operation.link records with IDs: [21]
+2025-03-10 19:15:11,386 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ERROR
+2025-03-10 19:15:11,387 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.testenv: 🏆🥇 [1;32m36 tests SUCCESSFULLY completed[0m
+2025-03-10 19:15:11,389 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ======================================================================
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ERROR: test_ddt (odoo.addons.l10n_it_ddt.tests.test_ddt.TestDdt)
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: Traceback (most recent call last):
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/test_ddt.py", line 759, in test_ddt
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     invoice, old_ddt_number = self._test_add_picking_to_ddt(orders, purge=True)
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/test_ddt.py", line 615, in _test_add_picking_to_ddt
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     ddt, orders, count_delivery=count_delivery, policy=policy)
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/tests/test_ddt.py", line 560, in _create_invoice_from_1_ddt
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     invoice_ids = ddt.action_invoice_create()
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/models/stock_picking_package_preparation.py", line 1032, in action_invoice_create
+2025-03-10 19:15:11,389 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     inv_data = ddt._prepare_invoice()
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/models/stock_picking_package_preparation.py", line 874, in _prepare_invoice
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     invoice_vals = order._prepare_invoice()
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/l10n-italy/l10n_it_ddt/models/sale_order.py", line 178, in _prepare_invoice
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     vals = super(SaleOrder, self)._prepare_invoice()
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/addons/sale_stock/models/sale_order.py", line 71, in _prepare_invoice
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     invoice_vals = super(SaleOrder, self)._prepare_invoice()
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `   File "/home/odoo/10.0/addons/sale/models/sale.py", line 287, in _prepare_invoice
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: `     raise UserError(_('Please define an accounting sale journal for this company.'))
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: ` UserError: (u'Please define an accounting sale journal for this company.', '')
+2025-03-10 19:15:11,390 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: Ran 1 test in 13.920s
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt: FAILED
+2025-03-10 19:15:11,390 21070 INFO test_l10n_it_ddt_10 odoo.addons.l10n_it_ddt.tests.test_ddt:  (errors=1)
+2025-03-10 19:15:11,390 21070 INFO test_l10n_it_ddt_10 odoo.modules.module: odoo.addons.l10n_it_ddt.tests.test_ddt tested in 13.92s, 10446 queries
+2025-03-10 19:15:11,390 21070 ERROR test_l10n_it_ddt_10 odoo.modules.module: Module l10n_it_ddt: 0 failures, 1 errors
+2025-03-10 19:15:11,444 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: 41 modules loaded in 36.29s, 15544 queries
+2025-03-10 19:15:12,079 21070 ERROR test_l10n_it_ddt_10 odoo.modules.loading: At least one test failed when loading the modules.
+2025-03-10 19:15:12,154 21070 INFO test_l10n_it_ddt_10 odoo.modules.module: odoo.addons.delivery.tests.test_delivery_stock_move running tests.
+2025-03-10 19:15:12,155 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_stock_move: test_01_delivery_stock_move (odoo.addons.delivery.tests.test_delivery_stock_move.StockMoveInvoice)
+2025-03-10 19:15:12,181 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_stock_move: skipped 'No Chart of account found'
+2025-03-10 19:15:12,184 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_stock_move: Ran 1 test in 0.029s
+2025-03-10 19:15:12,184 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_stock_move: OK
+2025-03-10 19:15:12,184 21070 INFO test_l10n_it_ddt_10 odoo.addons.delivery.tests.test_delivery_stock_move:  (skipped=1)
+2025-03-10 19:15:12,185 21070 INFO test_l10n_it_ddt_10 odoo.modules.loading: All post-tested in 0.03s, 4 queries
+2025-03-10 19:15:12,187 21070 INFO test_l10n_it_ddt_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2025-03-10 19:15:12,299 21070 INFO test_l10n_it_ddt_10 odoo.service.server: Initiating shutdown
+2025-03-10 19:15:12,299 21070 INFO test_l10n_it_ddt_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+2025-03-10 19:15:12,558 21070 WARNING ? odoo.sql_db: Cursor not closed explicitly
+Please enable sql debugging to trace the caller.
+
++===================================================================
+| please test [36ml10n_it_ddt[0m (10.0): [31mFAILED![0m
++===================================================================
+

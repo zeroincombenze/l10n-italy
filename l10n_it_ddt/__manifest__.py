@@ -4,7 +4,7 @@
 #
 {
     "name": "DDT",
-    "version": "10.0.1.8.27",
+    "version": "10.0.1.8.28",
     "category": "Localization/Italy",
     "summary": "Delivery Document Type",
     "author": ("Odoo Community Association (OCA) and other subjects,Abstract"

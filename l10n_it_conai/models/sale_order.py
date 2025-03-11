@@ -200,7 +200,7 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             prod_weight = (self.product_id.weight
                            or self.product_id.product_tmpl_id.weight)
-            line_weight = self.weight = prod_weight * self.product_uom_qty
+            line_weight = prod_weight * self.product_uom_qty
             if (line_weight * 1.5) >= self.weight <= (line_weight * 0.7):
                 self.weight = line_weight
 

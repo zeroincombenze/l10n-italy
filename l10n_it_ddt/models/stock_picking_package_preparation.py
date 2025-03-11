@@ -145,7 +145,7 @@ class StockPickingPackagePreparation(models.Model):
         if signature:
             a = signature.find(">")
             b = signature.find("<", a)
-            signature = signature[a + 1 : b]
+            signature = signature[a + 1: b]
             res = self.env["stock.ddt.type"].search(
                 [("name", "ilike", signature)], limit=1
             )

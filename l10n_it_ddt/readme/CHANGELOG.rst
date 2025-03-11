@@ -1,3 +1,9 @@
+10.0.1.8.28 (2025-03-10)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Product w/o weight / Prodotti senza peso
+* [QUA] Test coverage 67% (1384: 454+930) [266 TestPoints] - quality rating 72 (target 100)
+
 10.0.1.8.27 (2024-07-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
         if signature:
             a = signature.find(">")
             b = signature.find("<", a)
-            signature = signature[a + 1 : b]
+            signature = signature[a + 1: b]
             res = self.env["stock.ddt.type"].search(
                 [("name", "ilike", signature)], limit=1
             )
@@ -334,9 +334,14 @@ class SaleOrderLine(models.Model):
     @api.depends("product_id", 'product_uom_qty')
     def _compute_weight(self):
         if self.product_id:
-            self.weight = (
-                self.product_id.weight or self.product_id.product_tmpl_id.weight
-            ) * self.product_uom_qty
+            prod_weight = (self.product_id.weight
+                           or self.product_id.product_tmpl_id.weight)
+            line_weight = prod_weight * self.product_uom_qty
+            if (
+                    line_weight
+                    and (line_weight * 1.5) >= self.weight <= (line_weight * 0.7)
+            ):
+                self.weight = line_weight
 
     @api.multi
     def _prepare_invoice_line(self, qty):
