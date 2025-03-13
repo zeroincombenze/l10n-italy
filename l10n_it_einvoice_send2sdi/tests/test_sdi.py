@@ -40,4 +40,3 @@ class TestSdi(SingleTransactionCase):
         channel = self.resource_browse("l10n_it_einvoice_base.einvoice_json")
         channel._compute_available()
         self.assertEqual(990, channel.avail_invoices_ctr)
-
