@@ -121,7 +121,7 @@ class FatturaPAAttachmentIn(models.Model):
             x = re.search(token, xml_string)
             while x:
                 new_token = "%s</%s>" % (
-                    xml_string[x.start() : x.end()][: len(tag) + 12],
+                    xml_string[x.start(): x.end()][: len(tag) + 12],
                     tag,
                 )
                 xml_string = re.sub(token, new_token, xml_string)

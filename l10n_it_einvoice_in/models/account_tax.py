@@ -17,7 +17,7 @@ class AccountTax(models.Model):
         is_rc = self.is_rc(nature=tax_kind)
         default_tax = self.search(
             [("type_tax_use", "=", "purchase"),
-             ("amount", "!=", 0.0)], limit=1, order="sequence")
+             ("amount", "!=", 0.0)], limit=1, order="sequence,id")
         if supplier_taxes_ids:
             def_purchase_tax = self.browse(supplier_taxes_ids)[0]
         domain = []

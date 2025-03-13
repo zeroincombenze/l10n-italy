@@ -655,7 +655,7 @@ class WizardImportFatturapa(models.TransientModel):
                 due_date = dline.DataScadenzaPagamento or False
                 due_amt = dline.ImportoPagamento or 0.0
                 if num_days == 0 and due_date:
-                    num_days = (due_date - date_invoice).days
+                    num_days = (due_date.date() - date_invoice.date()).days
                 elif not due_date:
                     due_date = date_invoice
                 totdue.append([due_date, eval(due_amt), num_days])
