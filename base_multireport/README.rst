@@ -535,7 +535,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-02-28
+Last Update / Ultimo aggiornamento: 2025-03-14
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

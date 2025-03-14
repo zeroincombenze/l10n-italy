@@ -1,4 +1,4 @@
-10.0.1.3.56 (2025-03-13)
+10.0.1.3.56 (2025-03-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Due date equal to invoice date / Crash se data scadenza eguale a data fattura
