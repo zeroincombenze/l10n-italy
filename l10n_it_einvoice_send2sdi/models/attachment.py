@@ -145,6 +145,17 @@ class FatturaPAAttachmentIn(models.Model):
                         "FromValue": limit_date,
                     }
                 ]
+            elif 0 > domain_mode >= -60:
+                limit_date = (
+                    datetime.datetime.now() + timedelta(days=domain_mode)
+                ).strftime("%Y-%m-%dT%H:%M:%S")
+                data["Filtri"] = [
+                    {
+                        "NomeCampo": "DataFattura",
+                        "Criterio": ">",
+                        "FromValue": limit_date,
+                    }
+                ]
             elif domain_mode == 0:
                 limit_date = (datetime.datetime.now() - timedelta(days=59)).strftime(
                     "%Y-%m-%dT%H:%M:%S"

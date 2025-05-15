@@ -1,3 +1,9 @@
+10.0.1.0.54 (2025-05-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New domain mode based on invoice date
+* [QUA] Test coverage 15% (824: 697+127) [1 TestPoints] - quality rating 10 (target 100)
+
 10.0.1.0.53 (2025-03-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
