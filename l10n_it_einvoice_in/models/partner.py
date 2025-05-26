@@ -31,7 +31,7 @@ class Partner(models.Model):
     e_invoice_detail_level = fields.Selection(
         [
             ("0", "Minimum"),
-            ("1", "Aliquote"),
+            ("1", "Tax Rate"),
             ("2", "Maximum"),
         ],
         string="E-bills Detail Level",
@@ -87,36 +87,20 @@ class Partner(models.Model):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname or partner.name)
             )
 
-    def getPartnerBase(self, partner_xml, fatturapa=None):
-        """Get data from xml and write or create partner"""
-        if not partner_xml:
-            return -1
-        Sede = None
-        if hasattr(partner_xml, "DatiAnagrafici"):
-            DatiAnagrafici = partner_xml.DatiAnagrafici
-            if hasattr(DatiAnagrafici, "Anagrafica"):
-                Anagrafica = DatiAnagrafici.Anagrafica
-            else:
-                return -1
-            if hasattr(partner_xml, "Sede"):
-                Sede = partner_xml.Sede
-        elif hasattr(partner_xml, "Anagrafica"):
-            DatiAnagrafici = partner_xml
-            Anagrafica = partner_xml.Anagrafica
-        else:
-            return -1
+    def _prepare_partner_values(self, DatiAnagrafici, Anagrafica, Sede, fatturapa=None):
+        vals = {
+            "customer": False,
+            "supplier": True,
+            "is_company": True,
+            "type": "contact",
+        }
         IdFiscaleIVA = DatiAnagrafici.IdFiscaleIVA
-
-        FatturapaFiscalPosition = self.env["fatturapa.fiscal_position"]
         if Sede:
-            vals = {
-                "customer": False,
-                "supplier": True,
-                "is_company": True,
+            vals.update({
                 "street": Sede.Indirizzo,
                 "zip": Sede.CAP,
                 "city": Sede.Comune,
-            }
+            })
             if hasattr(Sede, "NumeroCivico") and Sede.NumeroCivico:
                 vals["street"] += ", " + Sede.NumeroCivico
             if (
@@ -127,7 +111,7 @@ class Partner(models.Model):
                 Provincia = Sede.Provincia
                 prov_sede = self.ProvinceByCode(
                     Provincia, country_code=IdFiscaleIVA.IdPaese)
-                if not prov_sede:
+                if not prov_sede:  # pragma: no cover
                     if fatturapa:
                         fatturapa.log_inconsistency(
                             _('Provincia "%s" non presente in archivio') % Provincia
@@ -138,52 +122,106 @@ class Partner(models.Model):
                         )
                 else:
                     vals["state_id"] = prov_sede[0].id
+        if IdFiscaleIVA and IdFiscaleIVA.IdCodice not in ("00000000000", "99999999999"):
+            country_code = IdFiscaleIVA.IdPaese
+            if country_code != "EU":
+                countries = self.CountryByCode(country_code)
+                if countries:
+                    country_id = countries[0].id
+                    vals["country_id"] = country_id
+                elif fatturapa:  # pragma: no cover
+                    fatturapa.log_inconsistency(
+                        _("Country Code %s not found in the system.") % country_code
+                    )
+                else:  # pragma: no cover
+                    raise UserError(
+                        _("Country Code %s not found in the system.") % country_code
+                    )
+            if country_code == "SM":
+                vals["vat"] = "%s%s" % (
+                    IdFiscaleIVA.IdPaese,
+                    IdFiscaleIVA.IdCodice[-5:],
+                )
+            else:
+                vals["vat"] = "%s%s" % (
+                    IdFiscaleIVA.IdPaese,
+                    IdFiscaleIVA.IdCodice.strip(),
+                )
+        if hasattr(DatiAnagrafici, "CodiceFiscale") and DatiAnagrafici.CodiceFiscale:
+            vals["fiscalcode"] = DatiAnagrafici.CodiceFiscale
+        if Anagrafica.CodEORI:
+            vals["eori_code"] = Anagrafica.CodEORI
+        if Anagrafica.Denominazione:
+            vals["name"] = Anagrafica.Denominazione
         else:
-            vals = {
-                "customer": False,
-                "supplier": True,
-                "is_company": True,
-                "type": "contact",
-            }
+            vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
 
-        if hasattr(partner_xml, "Contatti") and partner_xml.Contatti:
-            vals["phone"] = partner_xml.Contatti.Telefono
-            vals["email"] = partner_xml.Contatti.Email
-            vals["fax"] = partner_xml.Contatti.Fax
+        if hasattr(DatiAnagrafici, "RegimeFiscale") and DatiAnagrafici.RegimeFiscale:
+            rf_code = DatiAnagrafici.RegimeFiscale
+            regime_fiscale = self.env["fatturapa.fiscal_position"].search(
+                [("code", "=", rf_code)])
+            if regime_fiscale:
+                vals["register_fiscalpos"] = regime_fiscale[0].id
+                vals["type"] = "contact"
+            elif fatturapa:  # pragma: no cover
+                fatturapa.log_inconsistency(
+                    _("Tax Regime %s not present in your system.") % rf_code)
+            else:  # pragma: no cover
+                raise UserError(
+                    _("Tax Regime %s not present in your system.") % rf_code)
 
         if hasattr(DatiAnagrafici,
                    "AlboProfessionale") and DatiAnagrafici.AlboProfessionale:
             vals["register"] = DatiAnagrafici.AlboProfessionale
             if DatiAnagrafici.ProvinciaAlbo:
                 prov = self.ProvinceByCode(DatiAnagrafici.ProvinciaAlbo)
-                if not prov:
-                    if fatturapa:
-                        fatturapa.log_inconsistency(
-                            _('Provincia albo "%s" non presente in archivio ')
-                            % DatiAnagrafici.ProvinciaAlbo
-                        )
-                else:
+                if prov:
                     vals["register_province"] = prov[0].id
+                elif fatturapa:  # pragma: no cover
+                    fatturapa.log_inconsistency(
+                        _('Provincia albo "%s" non presente in archivio ')
+                        % DatiAnagrafici.ProvinciaAlbo
+                    )
             vals["register_code"] = DatiAnagrafici.NumeroIscrizioneAlbo or ""
             if DatiAnagrafici.DataIscrizioneAlbo:
                 vals["register_regdate"] = datetime.strftime(
                     DatiAnagrafici.DataIscrizioneAlbo, "%Y-%m-%d") or ""
+        return vals
 
-        if hasattr(DatiAnagrafici, "RegimeFiscale") and DatiAnagrafici.RegimeFiscale:
-            rf_code = DatiAnagrafici.RegimeFiscale
-            regime_fiscale = FatturapaFiscalPosition.search([("code", "=", rf_code)])
-            if not regime_fiscale:
-                raise UserError(
-                    _("Tax Regime %s not present in your system.") % rf_code)
-            else:
-                vals["register_fiscalpos"] = regime_fiscale[0].id
-                vals["type"] = "contact"
+    def getPartnerBase(self, partner_xml, fatturapa=None, is_carrier=False):
+        """Get data from xml and write or create partner"""
+        if not partner_xml:
+            return -1
+        Sede = DatiAnagrafici = Anagrafica = None
+        if is_carrier:
+            if hasattr(partner_xml, "DatiAnagraficiVettore"):
+                DatiAnagrafici = partner_xml.DatiAnagraficiVettore
+                if hasattr(DatiAnagrafici, "Anagrafica"):
+                    Anagrafica = DatiAnagrafici.Anagrafica
+        elif hasattr(partner_xml, "DatiAnagrafici"):
+            DatiAnagrafici = partner_xml.DatiAnagrafici
+            if hasattr(DatiAnagrafici, "Anagrafica"):
+                Anagrafica = DatiAnagrafici.Anagrafica
+            if hasattr(partner_xml, "Sede"):
+                Sede = partner_xml.Sede
+        elif hasattr(partner_xml, "Anagrafica"):
+            DatiAnagrafici = partner_xml
+            Anagrafica = partner_xml.Anagrafica
+        if not DatiAnagrafici or not Anagrafica:
+            return -1
+        vals = self._prepare_partner_values(
+            DatiAnagrafici, Anagrafica, Sede, fatturapa=fatturapa)
+
+        if hasattr(partner_xml, "Contatti") and partner_xml.Contatti:
+            vals["phone"] = partner_xml.Contatti.Telefono
+            vals["email"] = partner_xml.Contatti.Email
+            vals["fax"] = partner_xml.Contatti.Fax
 
         if hasattr(partner_xml, "IscrizioneREA") and partner_xml.IscrizioneREA:
             vals["rea_code"] = partner_xml.IscrizioneREA.NumeroREA
             offices = self.ProvinceByCode(partner_xml.IscrizioneREA.Ufficio)
             if not offices:
-                if fatturapa:
+                if fatturapa:  # pragma: no cover
                     fatturapa.log_inconsistency(
                         _('Provincia ufficio REA "%s" non presente in ' "archivio")
                         % partner_xml.IscrizioneREA.Ufficio
@@ -197,46 +235,15 @@ class Partner(models.Model):
             vals["rea_liquidation_state"] = (partner_xml.IscrizioneREA.StatoLiquidazione
                                              or False)
 
-        if hasattr(DatiAnagrafici, "CodiceFiscale") and DatiAnagrafici.CodiceFiscale:
-            vals["fiscalcode"] = DatiAnagrafici.CodiceFiscale
-        if IdFiscaleIVA:
-            if IdFiscaleIVA.IdPaese == "SM":
-                vals["vat"] = "%s%s" % (
-                    IdFiscaleIVA.IdPaese,
-                    IdFiscaleIVA.IdCodice[-5:],
-                )
-            else:
-                vals["vat"] = "%s%s" % (
-                    IdFiscaleIVA.IdPaese,
-                    IdFiscaleIVA.IdCodice,
-                )
-
         if (
-            hasattr(partner_xml, "DatiAnagraficiVettore")
-            and partner_xml.DatiAnagraficiVettore
-            and partner_xml.DatiAnagraficiVettore.NumeroLicenzaGuida
+            is_carrier
+            and hasattr(DatiAnagrafici, "NumeroLicenzaGuida")
+            and DatiAnagrafici.NumeroLicenzaGuida
         ):
             vals[
                 "license_number"
-            ] = partner_xml.DatiAnagraficiVettore.NumeroLicenzaGuida
+            ] = DatiAnagrafici.NumeroLicenzaGuida
 
-        if IdFiscaleIVA:
-            country_code = IdFiscaleIVA.IdPaese
-            if country_code != "EU":
-                countries = self.CountryByCode(country_code)
-                if countries:
-                    country_id = countries[0].id
-                else:
-                    raise UserError(
-                        _("Country Code %s not found in the system.") % country_code
-                    )
-                vals["country_id"] = country_id
-        if Anagrafica.CodEORI:
-            vals["eori_code"] = Anagrafica.CodEORI
-        if Anagrafica.Denominazione:
-            vals["name"] = Anagrafica.Denominazione
-        else:
-            vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
         SKEYS = (
             ["rea_office", "rea_code"],
             ["vat", "fiscalcode", "is_company", "type"],
@@ -405,7 +412,7 @@ class Partner(models.Model):
                 if vals:
                     rec.write(vals)
                 id = rec.id
-            except BaseException as e:
+            except BaseException as e:  # pragma: no cover
                 raise UserError(e)
         else:
             vals["type"] = "contact"

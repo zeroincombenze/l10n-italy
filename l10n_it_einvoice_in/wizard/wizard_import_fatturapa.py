@@ -25,7 +25,7 @@ class WizardImportFatturapa(models.TransientModel):
     e_invoice_detail_level = fields.Selection(
         [
             ("0", "Minimum"),
-            ("1", "Aliquote"),
+            ("1", "Tax rate"),
             ("2", "Maximum"),
         ],
         string="E-bills Detail Level",
@@ -88,75 +88,7 @@ class WizardImportFatturapa(models.TransientModel):
     def getCarrirerPartner(self, Carrier):
         if not Carrier:
             return -1
-        if hasattr(Carrier, "DatiAnagraficiVettore"):
-            DatiAnagrafici = Carrier.DatiAnagraficiVettore
-        else:
-            return -1
-        if hasattr(DatiAnagrafici, "Anagrafica"):
-            Anagrafica = DatiAnagrafici.Anagrafica
-        else:
-            return -1
-        self.env["fatturapa.fiscal_position"]
-        vals = {
-            "customer": False,
-            "supplier": True,
-            "is_company": True,
-        }
-
-        if DatiAnagrafici.CodiceFiscale:
-            vals["fiscalcode"] = DatiAnagrafici.CodiceFiscale
-        if (
-            DatiAnagrafici.IdFiscaleIVA
-            and DatiAnagrafici.IdFiscaleIVA.IdPaese
-            and DatiAnagrafici.IdFiscaleIVA.IdCodice
-            and DatiAnagrafici.IdFiscaleIVA.IdCodice != "00000000000"
-            and DatiAnagrafici.IdFiscaleIVA.IdCodice != "99999999999"
-        ):
-            vals["vat"] = "%s%s" % (
-                DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                DatiAnagrafici.IdFiscaleIVA.IdCodice,
-            )
-
-        if DatiAnagrafici.NumeroLicenzaGuida:
-            vals["license_number"] = Carrier.DatiAnagraficiVettore.NumeroLicenzaGuida
-
-        if DatiAnagrafici.IdFiscaleIVA:
-            CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-            countries = self.env["res.partner"].CountryByCode(CountryCode)
-            if countries:
-                country_id = countries[0].id
-            else:
-                raise UserError(
-                    _("Country Code %s not found in the system.") % CountryCode
-                )
-            vals["country_id"] = country_id
-        if Anagrafica.CodEORI:
-            vals["eori_code"] = Anagrafica.CodEORI
-        if Anagrafica.Denominazione:
-            vals["name"] = Anagrafica.Denominazione
-        else:
-            vals["name"] = "%s %s" % (Anagrafica.Cognome, Anagrafica.Nome)
-        return self.env["res.partner"].synchro2(
-            "res.partner",
-            vals,
-            skeys=(
-                ["vat", "fiscalcode", "is_company", "type"],
-                ["vat", "name", "is_company", "type"],
-                ["fiscalcode", "%name", "is_company", "type"],
-                ["vat", "%name", "is_company", "type"],
-                ["vat", "is_company", "type"],
-                ["name", "!vat", "is_company", "type"],
-            ),
-            constraints=[("id", "!=", "parent_id")],
-            keep=[
-                "customer",
-                "country_id",
-                "name",
-            ],
-            default={
-                "type": "contact",
-            },
-        )
+        return self.env["res.partner"].getPartnerBase(Carrier, is_carrier=True)
 
     def get_tax(self, company_id, AliquotaIVA, Natura, partner=None):
         AccountTax = self.env["account.tax"]
@@ -173,7 +105,7 @@ class WizardImportFatturapa(models.TransientModel):
             tax_kind_ids = self.env["italy.ade.tax.nature"].search(
                 [("code", "=", Natura)]
             )
-            if not tax_kind_ids:
+            if not tax_kind_ids:  # pragma: no cover
                 self.log_inconsistency(_("Natura %s non trovata") % Natura)
                 return False
             else:
@@ -794,6 +726,92 @@ class WizardImportFatturapa(models.TransientModel):
                 )
         return einvoiceline
 
+    def set_payments_data(self, FatturaBody, invoice, partner, company):
+        PaymentsData = FatturaBody.DatiPagamento
+        if PaymentsData:
+            for PaymentLine in PaymentsData:
+                cond = PaymentLine.CondizioniPagamento or False
+                if not cond:
+                    raise UserError(_("Payment method code not found in document."))
+                terms = self.env["fatturapa.payment_term"].search([("code", "=", cond)])
+                if not terms:
+                    raise UserError(_("Payment method code %s is incorrect.") % cond)
+                else:
+                    term_id = terms[0].id
+                PayDataId = self.env["fatturapa.payment.data"].create(
+                    {"payment_terms": term_id, "invoice_id": invoice.id}
+                ).id
+                self._createPayamentsLine(PayDataId, PaymentLine, partner.id, company)
+        self.set_payment_term(invoice, company, PaymentsData)
+        if (
+            partner.property_payment_term_id
+            and invoice.payment_term_id != partner.property_payment_term_id
+        ):
+            self.log_inconsistency(
+                _('\nTermine di pagamento da XML "%s" ' 'diverso da anagrafica "%s"')
+                % (
+                    invoice.payment_term_id and invoice.payment_term_id.name or "",
+                    partner.property_payment_term_id.name,
+                )
+            )
+
+    def set_delivery_data(self, FatturaBody, invoice):
+        Delivery = FatturaBody.DatiGenerali.DatiTrasporto
+        if Delivery:
+            delivery_dict = {
+                "transport_vehicle": Delivery.MezzoTrasporto or "",
+                "transport_reason": Delivery.CausaleTrasporto or "",
+                "number_items": Delivery.NumeroColli or 0,
+                "description": Delivery.Descrizione or "",
+                "unit_weight": Delivery.UnitaMisuraPeso or 0.0,
+                "gross_weight": Delivery.PesoLordo or 0.0,
+                "net_weight": Delivery.PesoNetto or 0.0,
+                "pickup_datetime": Delivery.DataOraRitiro or False,
+                "transport_date": Delivery.DataInizioTrasporto or False,
+                "delivery_datetime": Delivery.DataOraConsegna or False,
+                "delivery_address": "",
+                "ftpa_incoterms": Delivery.TipoResa,
+            }
+            delivery_id = self.getCarrirerPartner(Delivery)
+            if delivery_id > 0:
+                delivery_dict["delivery_carrier_id"] = delivery_id
+
+            if Delivery.IndirizzoResa:
+                delivery_dict["delivery_address"] = "{}, {}\n{} - {}\n{} {}".format(
+                    repr(Delivery.IndirizzoResa.Indirizzo) or "",
+                    Delivery.IndirizzoResa.NumeroCivico or "",
+                    Delivery.IndirizzoResa.CAP or "",
+                    repr(Delivery.IndirizzoResa.Comune) or "",
+                    Delivery.IndirizzoResa.Provincia or "",
+                    Delivery.IndirizzoResa.Nazione or "",
+                )
+            invoice.write(delivery_dict)
+
+    def set_summary_data(self, FatturaBody, invoice):
+        Summary_datas = FatturaBody.DatiBeniServizi.DatiRiepilogo
+        if Summary_datas:
+            for summary in Summary_datas:
+                summary_line = {
+                    "tax_rate": summary.AliquotaIVA or 0.0,
+                    "non_taxable_nature": self.get_natura(summary.Natura),
+                    "incidental_charges": summary.SpeseAccessorie or 0.0,
+                    "rounding": summary.Arrotondamento or 0.0,
+                    "amount_untaxed": summary.ImponibileImporto or 0.0,
+                    "amount_tax": summary.Imposta or 0.0,
+                    "payability": summary.EsigibilitaIVA or False,
+                    "law_reference": summary.RiferimentoNormativo or "",
+                    "invoice_id": invoice.id,
+                }
+                self.env["faturapa.summary.data"].create(summary_line)
+
+    def set_e_invoice_lines(self, FatturaBody, invoice_data):
+        e_invoice_line_ids = []
+        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+            einvoiceline = self.create_e_invoice_line(line)
+            e_invoice_line_ids.append(einvoiceline.id)
+        if e_invoice_line_ids:
+            invoice_data["e_invoice_line_ids"] = [(6, 0, e_invoice_line_ids)]
+
     def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
         invoice_model = self.env["account.invoice"]
         invoice_line_model = self.env["account.invoice.line"]
@@ -802,9 +820,6 @@ class WizardImportFatturapa(models.TransientModel):
         # WelfareFundLineModel = self.env['welfare.fund.data.line']
         SalModel = self.env["faturapa.activity.progress"]
         DdTModel = self.env["fatturapa.related_ddt"]
-        PaymentDataModel = self.env["fatturapa.payment.data"]
-        PaymentTermsModel = self.env["fatturapa.payment_term"]
-        SummaryDatasModel = self.env["faturapa.summary.data"]
         partner_model = self.env["res.partner"]
         partner = partner_model.browse(partner_id)
         if partner.parent_id:
@@ -852,7 +867,6 @@ class WizardImportFatturapa(models.TransientModel):
 
         # 2.2.1
         invoice_lines = []
-        e_invoice_line_ids = []
         e_invoice_line_ids_2 = {}
 
         if partner.e_invoice_default_account_id:
@@ -886,9 +900,6 @@ class WizardImportFatturapa(models.TransientModel):
 
                 e_invoice_line_ids_2[account_tax] += float(line.PrezzoTotale)
 
-            einvoiceline = self.create_e_invoice_line(line)
-            e_invoice_line_ids.append(einvoiceline.id)
-
         for (account_tax, price) in e_invoice_line_ids_2.items():
             invoice_line_data = {
                 "name": credit_account.name,
@@ -916,7 +927,7 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice_line_id = invoice_line_model.create(invoice_line_data).id
                 invoice_lines.append(invoice_line_id)
         invoice_data["invoice_line_ids"] = [(6, 0, invoice_lines)]
-        invoice_data["e_invoice_line_ids"] = [(6, 0, e_invoice_line_ids)]
+        self.set_e_invoice_lines(FatturaBody, invoice_data)
         try:
             invoice = invoice_model.create(invoice_data)
         except BaseException as e:
@@ -926,6 +937,8 @@ class WizardImportFatturapa(models.TransientModel):
             # invoice._amount_withholding_tax()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
+
+        invoice.set_vendor_bill_date(FatturaBody)
 
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
@@ -1011,52 +1024,10 @@ class WizardImportFatturapa(models.TransientModel):
                             }
                         )
         # 2.1.9
-        Delivery = FatturaBody.DatiGenerali.DatiTrasporto
-        if Delivery:
-            delivery_dict = {
-                "transport_vehicle": Delivery.MezzoTrasporto or "",
-                "transport_reason": Delivery.CausaleTrasporto or "",
-                "number_items": Delivery.NumeroColli or 0,
-                "description": Delivery.Descrizione or "",
-                "unit_weight": Delivery.UnitaMisuraPeso or 0.0,
-                "gross_weight": Delivery.PesoLordo or 0.0,
-                "net_weight": Delivery.PesoNetto or 0.0,
-                "pickup_datetime": Delivery.DataOraRitiro or False,
-                "transport_date": Delivery.DataInizioTrasporto or False,
-                "delivery_datetime": Delivery.DataOraConsegna or False,
-                "delivery_address": "",
-                "ftpa_incoterms": Delivery.TipoResa,
-            }
-            delivery_id = self.getCarrirerPartner(Delivery)
-            if delivery_id > 0:
-                delivery_dict["delivery_carrier_id"] = delivery_id
+        self.set_delivery_data(FatturaBody, invoice)
 
-            if Delivery.IndirizzoResa:
-                delivery_dict["delivery_address"] = "{}, {}\n{} - {}\n{} {}".format(
-                    repr(Delivery.IndirizzoResa.Indirizzo) or "",
-                    Delivery.IndirizzoResa.NumeroCivico or "",
-                    Delivery.IndirizzoResa.CAP or "",
-                    repr(Delivery.IndirizzoResa.Comune) or "",
-                    Delivery.IndirizzoResa.Provincia or "",
-                    Delivery.IndirizzoResa.Nazione or "",
-                )
-            invoice.write(delivery_dict)
         # 2.2.2
-        Summary_datas = FatturaBody.DatiBeniServizi.DatiRiepilogo
-        if Summary_datas:
-            for summary in Summary_datas:
-                summary_line = {
-                    "tax_rate": summary.AliquotaIVA or 0.0,
-                    "non_taxable_nature": self.get_natura(summary.Natura),
-                    "incidental_charges": summary.SpeseAccessorie or 0.0,
-                    "rounding": summary.Arrotondamento or 0.0,
-                    "amount_untaxed": summary.ImponibileImporto or 0.0,
-                    "amount_tax": summary.Imposta or 0.0,
-                    "payability": summary.EsigibilitaIVA or False,
-                    "law_reference": summary.RiferimentoNormativo or "",
-                    "invoice_id": invoice_id,
-                }
-                SummaryDatasModel.create(summary_line)
+        self.set_summary_data(FatturaBody, invoice)
 
         # 2.1.10
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale
@@ -1075,33 +1046,8 @@ class WizardImportFatturapa(models.TransientModel):
             }
             invoice.write(veicle_vals)
         # 2.4
-        PaymentsData = FatturaBody.DatiPagamento
-        if PaymentsData:
-            for PaymentLine in PaymentsData:
-                cond = PaymentLine.CondizioniPagamento or False
-                if not cond:
-                    raise UserError(_("Payment method code not found in document."))
-                terms = PaymentTermsModel.search([("code", "=", cond)])
-                if not terms:
-                    raise UserError(_("Payment method code %s is incorrect.") % cond)
-                else:
-                    term_id = terms[0].id
-                PayDataId = PaymentDataModel.create(
-                    {"payment_terms": term_id, "invoice_id": invoice_id}
-                ).id
-                self._createPayamentsLine(PayDataId, PaymentLine, partner_id, company)
-        self.set_payment_term(invoice, company, PaymentsData)
-        if (
-            partner.property_payment_term_id
-            and invoice.payment_term_id != partner.property_payment_term_id
-        ):
-            self.log_inconsistency(
-                _('\nTermine di pagamento da XML "%s" ' 'diverso da anagrafica "%s"')
-                % (
-                    invoice.payment_term_id and invoice.payment_term_id.name or "",
-                    partner.property_payment_term_id.name,
-                )
-            )
+        self.set_payments_data(FatturaBody, invoice, partner, company)
+
         # 2.5
         AttachmentsData = FatturaBody.Allegati
         if AttachmentsData:
@@ -1130,6 +1076,7 @@ class WizardImportFatturapa(models.TransientModel):
         # compute the invoice
         invoice.set_einvoice_data(FatturaBody)
         invoice.compute_taxes()
+        invoice.process_negative_lines()
         invoice.create_round_lines()
         return invoice_id
 
@@ -1181,6 +1128,7 @@ class WizardImportFatturapa(models.TransientModel):
     def importFatturaPA(self):
         fatturapa_attachment_model = self.env["fatturapa.attachment.in"]
         fatturapa_attachment_ids = self.env.context.get("active_ids", False)
+        linked_invoice = self.env.context.get("linked_invoice", False)
         invoice_model = self.env["account.invoice"]
         partner_model = self.env["res.partner"]
         new_invoices = []
@@ -1213,10 +1161,14 @@ class WizardImportFatturapa(models.TransientModel):
                 # reset inconsistencies
                 self.__dict__.update(self.with_context(inconsistencies="").__dict__)
 
-                invoice_id = self.invoiceCreate(
-                    fatt, fatturapa_attachment, FatturaBody, partner_id
-                )
-                invoice = invoice_model.browse(invoice_id)
+                if linked_invoice:
+                    invoice = linked_invoice
+                    invoice_id = invoice.id
+                else:
+                    invoice_id = self.invoiceCreate(
+                        fatt, fatturapa_attachment, FatturaBody, partner_id
+                    )
+                    invoice = invoice_model.browse(invoice_id)
                 self.set_StabileOrganizzazione(cedentePrestatore, invoice)
                 vals = {}
                 if TaxRappresentative:

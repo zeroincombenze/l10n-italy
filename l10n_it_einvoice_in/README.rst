@@ -1,5 +1,5 @@
 ========================================================
-|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.56
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.57
 ========================================================
 
 **E-invoice receive**
@@ -219,6 +219,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.57 (2025-05-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Inovice link set e-invoice data / Collega a fattura aggiorna dati e-fattura
+* [QUA] Test coverage 75% (1463: 371+1092) [0 TestPoints] - quality rating 43 (target 100)
+
 10.0.1.3.56 (2025-03-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -296,13 +302,6 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Cannot import e-invoice with wrong vat / Ignora PI se errata in e-fattura
 * [QUA] Test coverage 63% (1337: 498+839) [0 TestPoints] - quality rating 38 (target 100)
 
-10.0.1.3.45 (2024-05-05)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Weird error linking self-invoice
-* [IMP] Avoid company data update from self-invoice
-* [QUA] Test coverage 63% (1330: 495+835) [0 TestPoints] - quality rating 38 (target 100)
-
 
 
 Credits | Ringraziamenti
@@ -368,7 +367,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-03-14
+Last Update / Ultimo aggiornamento: 2025-05-26
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

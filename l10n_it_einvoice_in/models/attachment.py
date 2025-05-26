@@ -141,7 +141,9 @@ class FatturaPAAttachmentIn(models.Model):
             x = pattern.search(xml_string, ofs)
         return xml_string
 
+    @api.multi
     def get_invoice_obj(self):
+        self.ensure_one()
         xml_string = self.get_xml_string()
         if xml_string:
             return fatturapa_v_1_2.CreateFromDocument(xml_string)

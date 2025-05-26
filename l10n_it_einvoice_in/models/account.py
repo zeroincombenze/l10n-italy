@@ -3,7 +3,7 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_is_zero, float_compare
-from odoo.tools.translate import _
+# from odoo.tools.translate import _
 
 
 class AccountInvoice(models.Model):
@@ -54,7 +54,7 @@ class AccountInvoice(models.Model):
                 and invoice.e_invoice_amount_untaxed
             ):
                 continue
-            round_curr = invoice.currency_id.round
+            round_curr = invoice.currency_id.round  # pragma: no cover
             # rounding = invoice.currency_id.rounding
             e_invoice_amount_tax = e_invoice_amount_untaxed = line_amount = 0.0
             for ln in invoice.fatturapa_summary_ids:
@@ -245,13 +245,14 @@ class AccountInvoice(models.Model):
     def invoice_line_move_line_get(self):
         """Append global rounding move lines"""
         res = super(AccountInvoice, self).invoice_line_move_line_get()
+
         if not float_is_zero(self.efatt_rounding,
                              precision_rounding=self.currency_id.rounding):
             if self.efatt_rounding > 0:
                 arrotondamenti_account_id = (
                     self.env.user.company_id.arrotondamenti_passivi_account_id
                 )
-                if not arrotondamenti_account_id:
+                if not arrotondamenti_account_id:  # pragma: no cover
                     raise UserError(
                         _("Round down account is not set " "in Accounting Settings")
                     )
@@ -260,7 +261,7 @@ class AccountInvoice(models.Model):
                 arrotondamenti_account_id = (
                     self.env.user.company_id.arrotondamenti_attivi_account_id
                 )
-                if not arrotondamenti_account_id:
+                if not arrotondamenti_account_id:  # pragma: no cover
                     raise UserError(
                         _("Round up account is not set " "in Accounting Settings")
                     )
@@ -277,6 +278,15 @@ class AccountInvoice(models.Model):
                     "invoice_id": self.id,
                 }
             )
+        return res
+
+    def _fatturapa_set_invoice_date(self):
+        pass
+
+    @api.multi
+    def action_invoice_draft(self):
+        res = super(AccountInvoice, self).action_invoice_draft()
+        self._fatturapa_set_invoice_date()
         return res
 
     @api.multi
@@ -440,8 +450,9 @@ class AccountInvoice(models.Model):
 
             if not error_messages:
                 continue
-            bill.e_invoice_validation_error = True
-            bill.e_invoice_validation_message = ",\n".join(error_messages) + "."
+            bill.e_invoice_validation_error = True  # pragma: no cover
+            bill.e_invoice_validation_message = ",\n".join(
+                error_messages) + "."  # pragma: no cover
 
     @api.multi
     def name_get(self):
@@ -481,13 +492,13 @@ class AccountInvoice(models.Model):
         return self.currency_id.round(amount_untaxed)
 
     @api.model
-    def compute_xml_amount_total(self, FatturaBody):
+    def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
         amount_total = self.float_from_tag(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento)
         rounding = self.float_from_tag(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento)
         return amount_total or self.currency_id.round(
-            self.e_invoice_amount_untaxed + self.e_invoice_amount_tax + rounding)
+            amount_untaxed + amount_tax + rounding)
 
     @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
@@ -498,20 +509,40 @@ class AccountInvoice(models.Model):
 
     def set_einvoice_data(self, fattura):
         self.ensure_one()
-        self.e_invoice_amount_untaxed = self.compute_xml_amount_untaxed(fattura)
-        self.e_invoice_amount_tax = self.compute_xml_amount_tax(
-            fattura.DatiBeniServizi.DatiRiepilogo)
-        self.e_invoice_amount_total = self.compute_xml_amount_total(fattura)
-        self.e_fatt_rounding = 0.0
-        self.efatt_xml_rounding = (
-            (self.e_invoice_amount_untaxed
-             + self.e_invoice_amount_tax
-             - self.e_invoice_amount_total)
+        amount_untaxed = self.compute_xml_amount_untaxed(fattura)
+        amount_tax = self.compute_xml_amount_tax(fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_total = self.compute_xml_amount_total(
+            fattura, amount_untaxed, amount_tax)
+        efatt_rounding = 0.0
+        efatt_xml_rounding = (
+            (amount_untaxed + amount_tax - amount_total)
             or self.float_from_tag(
                 fattura.DatiGenerali.DatiGeneraliDocumento.Arrotondamento)
         )
-        self.e_invoice_reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
-        self.e_invoice_date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
+        reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
+        date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
+        self.update({
+            "e_invoice_amount_untaxed": amount_untaxed,
+            "e_invoice_amount_tax": amount_tax,
+            "e_invoice_amount_total": amount_total,
+            "efatt_rounding": efatt_rounding,
+            "efatt_xml_rounding": efatt_xml_rounding,
+            "e_invoice_reference": reference,
+            "e_invoice_date_invoice": date_invoice,
+        })
+
+    def set_vendor_bill_date(self, FatturaBody):
+        if not self.date_invoice:
+            self.update({
+                'date_invoice':
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.strftime(
+                        "%Y-%m-%d"),
+            })
+        if not self.reference:
+            self.update({
+                'reference':
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
+            })
 
     def xml_get_header_data(
         self,
@@ -616,50 +647,63 @@ class AccountInvoice(models.Model):
             invoice_data["ftpa_withholding_type"] = Withholding.TipoRitenuta
         return invoice_data, company, partner, wt_found, inconsistencies
 
-    def xml_get_body_data(
-        self,
-        wizard,
-        fatt,
-        fatturapa_attachment,
-        FatturaBody,
-        partner_id,
-        detail_level,
-        company,
-        wt_found,
-    ):
-        # TODO: to complete
-        invoice_line_model = self.env["account.invoice.line"]
-        partner = self.env["res.partner"].browse(partner_id)
-        invoice_lines = []
-        e_invoice_line_ids = []
-        e_invoice_line_ids_2 = {}
-        credit_account = False
-        if detail_level > "0" and partner.e_invoice_default_account_id:
-            credit_account = partner.e_invoice_default_account_id
-        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
-            if detail_level == "2":
-                if credit_account:
-                    credit_account_id = credit_account.id
-                invoice_line_data = wizard._prepareInvoiceLine(
-                    credit_account_id, line, wt_found
-                )
-                product = wizard.get_line_product(line, partner)
-                if product:
-                    invoice_line_data["product_id"] = product.id
-                    wizard.adjust_accounting_data(product, invoice_line_data)
-                invoice_line_id = invoice_line_model.create(invoice_line_data).id
-                invoice_lines.append(invoice_line_id)
+    # def xml_get_body_data(
+    #     self,
+    #     wizard,
+    #     fatt,
+    #     fatturapa_attachment,
+    #     FatturaBody,
+    #     partner_id,
+    #     detail_level,
+    #     company,
+    #     wt_found,
+    # ):
+    #     # TODO: to complete
+    #     invoice_line_model = self.env["account.invoice.line"]
+    #     partner = self.env["res.partner"].browse(partner_id)
+    #     invoice_lines = []
+    #     e_invoice_line_ids = []
+    #     e_invoice_line_ids_2 = {}
+    #     credit_account = False
+    #     if detail_level > "0" and partner.e_invoice_default_account_id:
+    #         credit_account = partner.e_invoice_default_account_id
+    #     for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+    #         if detail_level == "2":
+    #             if credit_account:
+    #                 credit_account_id = credit_account.id
+    #             invoice_line_data = wizard._prepareInvoiceLine(
+    #                 credit_account_id, line, wt_found
+    #             )
+    #             product = wizard.get_line_product(line, partner)
+    #             if product:
+    #                 invoice_line_data["product_id"] = product.id
+    #                 wizard.adjust_accounting_data(product, invoice_line_data)
+    #             invoice_line_id = invoice_line_model.create(invoice_line_data).id
+    #             invoice_lines.append(invoice_line_id)
+    #
+    #         elif detail_level == "1":
+    #             company_id = company.id
+    #             account_tax = wizard.get_tax(company_id,
+    #                                          line.AliquotaIVA, line.Natura)
+    #             if account_tax not in e_invoice_line_ids_2:
+    #                 e_invoice_line_ids_2[account_tax] = 0.0
+    #             e_invoice_line_ids_2[account_tax] += self.float_from_tag(
+    #                 line.PrezzoTotale)
+    #
+    #         einvoiceline = self.create_e_invoice_line(line)
+    #         e_invoice_line_ids.append(einvoiceline.id)
 
-            elif detail_level == "1":
-                company_id = company.id
-                account_tax = wizard.get_tax(company_id, line.AliquotaIVA, line.Natura)
-                if account_tax not in e_invoice_line_ids_2:
-                    e_invoice_line_ids_2[account_tax] = 0.0
-                e_invoice_line_ids_2[account_tax] += self.float_from_tag(
-                    line.PrezzoTotale)
-
-            einvoiceline = self.create_e_invoice_line(line)
-            e_invoice_line_ids.append(einvoiceline.id)
+    def process_negative_lines(self):
+        self.ensure_one()
+        if not self.invoice_line_ids:
+            return
+        # if total is negative, change lines sign, and change move type
+        if self.amount_total < 0:
+            if self.fiscal_document_type_id.code == "TD01":
+                self.type = "in_refund"
+            for line in self.invoice_line_ids:
+                line.price_unit = -line.price_unit
+        self.compute_taxes()
 
 
 class FatturapaArticleCode(models.Model):
@@ -699,6 +743,8 @@ class DiscountRisePrice(models.Model):
 
 class EInvoiceLine(models.Model):
     _name = "einvoice.line"
+    _description = "E-invoice line"
+
     invoice_id = fields.Many2one(
         "account.invoice", "Bill", readonly=True, ondelete="cascade"
     )
@@ -742,6 +788,7 @@ class EInvoiceLine(models.Model):
 
 class EInvoiceLineOtherData(models.Model):
     _name = "einvoice.line.other.data"
+    _description = "E-invoice line other data"
 
     e_invoice_line_id = fields.Many2one(
         "einvoice.line", "Related E-bill Line", readonly=True

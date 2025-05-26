@@ -66,6 +66,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice. e_invoice_amount_untaxed, 57.0)
         self.assertEqual(invoice. e_invoice_amount_tax, 0.0)
         self.assertEqual(invoice.e_invoice_amount_total, 57.0)
+        invoice.invoice_validate()
 
     def test_01_xml_import_11004(self):
         # Supplier name like previous, rappresentante fiscale + fiscal code
@@ -145,7 +146,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 8.0)
         self.assertEqual(round(invoice.amount_total, 2), 44.2)
         self.assertEqual(invoice. e_invoice_amount_untaxed, 36.36)
-        # self.assertEqual(round(invoice.efatt_xml_rounding, 2), 0.16)
+        # self.assertEqual(round(invoice.e_invoice_xml_rounding, 2), 0.16)
         self.assertEqual(invoice. e_invoice_amount_tax, 8.0)
         self.assertEqual(round(invoice.e_invoice_amount_total, 2), 44.2)
 
