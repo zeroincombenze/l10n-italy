@@ -8,14 +8,13 @@
 #
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-import datetime
 import hashlib
 import json
 import logging
 import os
 import re
 from base64 import b64decode, b64encode
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 import pytz
 import requests
@@ -128,6 +127,7 @@ class FatturaPAAttachmentIn(models.Model):
             url = os.path.join(send_channel.sender_url, "Cerca")
             archive_in = int(send_channel.param2) if send_channel.param2 else 2
             domain_mode = int(send_channel.param4) if send_channel.param4 else 0
+            last_demand = send_channel.param5
 
             data = {
                 "IdAzienda": int(send_channel.sender_company_id),
@@ -136,7 +136,7 @@ class FatturaPAAttachmentIn(models.Model):
             }
             if 0 < domain_mode <= 60:
                 limit_date = (
-                    datetime.datetime.now() - timedelta(days=domain_mode)
+                    datetime.now() - timedelta(days=domain_mode)
                 ).strftime("%Y-%m-%dT%H:%M:%S")
                 data["Filtri"] = [
                     {
@@ -147,7 +147,7 @@ class FatturaPAAttachmentIn(models.Model):
                 ]
             elif 0 > domain_mode >= -60:
                 limit_date = (
-                    datetime.datetime.now() + timedelta(days=domain_mode)
+                    datetime.now() + timedelta(days=domain_mode)
                 ).strftime("%Y-%m-%dT%H:%M:%S")
                 data["Filtri"] = [
                     {
@@ -157,9 +157,17 @@ class FatturaPAAttachmentIn(models.Model):
                     }
                 ]
             elif domain_mode == 0:
-                limit_date = (datetime.datetime.now() - timedelta(days=59)).strftime(
-                    "%Y-%m-%dT%H:%M:%S"
-                )
+                if last_demand:
+                    last_dt = datetime.strptime(last_demand, "%Y-%m-%dT%H:%M:%S")
+                if (
+                        last_demand
+                        and last_dt.day == datetime.now().day
+                        and last_dt.month == datetime.now().month
+                ):
+                    limit_date = last_demand
+                else:
+                    limit_date = (datetime.now()
+                                  - timedelta(days=20)).strftime("%Y-%m-%dT%H:%M:%S")
                 data["Filtri"] = [
                     {
                         "NomeCampo": "DataDownload",
@@ -183,6 +191,10 @@ class FatturaPAAttachmentIn(models.Model):
             if not (200 <= response.status_code < 300):
                 _logger.error("FAILED request.post: %s" % response.status_code)
                 continue
+
+            last_demand = (datetime.now()
+                           - timedelta(seconds=3600)).strftime("%Y-%m-%dT%H:%M:%S")
+            send_channel.write({"param5": last_demand})
 
             try:
                 documenti = response.json()
@@ -259,12 +271,20 @@ class FatturaPAAttachmentIn(models.Model):
             "uid": documento["Uid"],
         }
 
-        if attach_model.search(
-            [
+        if attach_vals["name"].endswith(".p7m"):
+            search_domain = [
+                "|",
+                ("name", "=", attach_vals["name"]),
+                ("name", "=", attach_vals["name"][: -4]),
+                ("uid", "=", attach_vals["uid"])
+            ]
+        else:
+            search_domain = [
                 ("name", "=", attach_vals["name"]),
                 ("uid", "=", attach_vals["uid"])
             ]
-        ):
+
+        if attach_model.search(search_domain):
             return
 
         try:
@@ -558,7 +578,7 @@ class FatturaPAAttachmentOut(models.Model):
         last_ix = -1
         if not Evolve.has_document(data):
             # No invoice got from server
-            limit_date = (datetime.datetime.now() - timedelta(days=1)).strftime(
+            limit_date = (datetime.now() - timedelta(days=1)).strftime(
                 "%Y-%m-%d %H:%M:%S"
             )
             if not att.sending_date or (
@@ -623,7 +643,7 @@ class FatturaPAAttachmentOut(models.Model):
                     # Final workflow for No PA subjects
                     last_ix = valid_ix
                 att_state = map_response(Evolve.document_state(documenti[last_ix]))
-                limit_date = (datetime.datetime.now() - timedelta(days=5)).strftime(
+                limit_date = (datetime.now() - timedelta(days=5)).strftime(
                     "%Y-%m-%d %H:%M:%S"
                 )
                 if (
@@ -634,12 +654,12 @@ class FatturaPAAttachmentOut(models.Model):
                     # Invoice sent since too much time: it is an error
                     att_state = "sender_error"
                 if att_state == "recipient_error":
-                    delivered_date = datetime.datetime.strptime(
+                    delivered_date = datetime.strptime(
                         documenti[last_ix]["DataFattura"], "%Y-%m-%dT%H:%M:%S"
                     ) + timedelta(days=32)
                     if (
                         last_ix == valid_ix
-                        or delivered_date < datetime.datetime.today()
+                        or delivered_date < datetime.today()
                     ):
                         # Invoice sent for a long time w/o error: it is ok
                         att_state = "validated"
@@ -664,7 +684,7 @@ class FatturaPAAttachmentOut(models.Model):
             '<table border="2px" cellpadding="2px" style="padding: 5px;">'
             + row_fmt.replace("td", "th")
         ) % (
-            datetime.datetime.now(),
+            datetime.now(),
             "Data Caricamento",
             "Stato Invio SdI",
             "Tipo Documento",
@@ -735,10 +755,10 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_verify_all(self):
         # Recupero tutte le fatture in modalita send
-        date_limit_no_pa = (datetime.datetime.now() - timedelta(days=30)).strftime(
+        date_limit_no_pa = (datetime.now() - timedelta(days=30)).strftime(
             "%Y-%m-%d"
         )
-        date_limit_pa = (datetime.datetime.now() - timedelta(days=150)).strftime(
+        date_limit_pa = (datetime.now() - timedelta(days=150)).strftime(
             "%Y-%m-%d"
         )
         attachments = self.env["fatturapa.attachment.out"].search(
@@ -1087,7 +1107,7 @@ class Evolve:
     def header(send_channel):
         if send_channel is False or not send_channel.client_key:
             return False
-        now = datetime.datetime.now(pytz.timezone("Europe/Rome")).strftime(
+        now = datetime.now(pytz.timezone("Europe/Rome")).strftime(
             "%Y-%m-%d %H.%M.%S"
         )
         aes = AES.new(

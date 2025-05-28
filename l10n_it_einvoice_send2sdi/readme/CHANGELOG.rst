@@ -1,3 +1,10 @@
+10.0.1.0.55 (2025-05-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Received filename .xml.p7m are equal to .xml / File firmati equiparati a non firmati
+* [IMP] Search incremental documents / Ricerca incrementale dei documenti
+* [QUA] Test coverage 15% (833: 707+126) [1 TestPoints] - quality rating 12 (target 100)
+
 10.0.1.0.54 (2025-05-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
