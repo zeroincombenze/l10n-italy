@@ -480,7 +480,7 @@ class StockPickingPackagePreparation(models.Model):
             # Issued target model name
             tgt_fieldname = fieldname
             pp_fieldname = self.reverse_fieldname_of_model(target, fieldname)
-        else:
+        else:  # pragma: no cover
             # Old way, pp/DdT name
             tgt_fieldname = self.fieldname_of_model(target, fieldname)
             pp_fieldname = fieldname
@@ -613,7 +613,7 @@ class StockPickingPackagePreparation(models.Model):
                     )
                 if not partner_invoice_id:
                     partner_invoice_id = order.partner_invoice_id
-                if partner_invoice_id != order.partner_invoice_id:
+                if partner_invoice_id != order.partner_invoice_id:  # pragma: no cover
                     if vals["partner_shipping_id"] != order.partner_shipping_id:
                         raise UserError(
                             _("Selected Pickings have different Invoice Partner")
@@ -675,7 +675,8 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def action_put_in_pack(self, raise_any_done=None):
         raise_any_done = True if raise_any_done is None else raise_any_done
-        if raise_any_done and any([x for x in self.picking_ids if x.state == "done"]):
+        if raise_any_done and any(
+                [x for x in self.picking_ids if x.state == "done"]):  # pragma: no cover
             raise UserError(
                 _("Impossible to put in pack a picking whose state is 'done'")
             )
@@ -706,7 +707,7 @@ class StockPickingPackagePreparation(models.Model):
                         'procurement_ids').filtered(
                         lambda picking: picking.state not in (
                             'cancel', 'draft', 'done')).cancel()
-                except BaseException:
+                except BaseException:  # pragma: no cover
                     pass
         return super(StockPickingPackagePreparation, self).action_cancel()
 
@@ -779,7 +780,6 @@ class StockPickingPackagePreparation(models.Model):
     @api.depends("name", "ddt_number", "partner_id.name", "date")
     def _compute_clean_display_name(self):
         for prep in self:
-            name = ""
             if prep.ddt_number:
                 if prep.name:
                     name = "[%s] %s" % (prep.name, prep.ddt_number)
@@ -811,7 +811,7 @@ class StockPickingPackagePreparation(models.Model):
         for prep in self:
             if prep.weight_manual:
                 prep.weight = prep.weight_manual
-            elif not prep.package_id:
+            elif not prep.package_id:  # pragma: no cover
                 quants = self.env["stock.quant"]
                 for picking in prep.picking_ids:
                     for line in picking.move_lines:
@@ -944,8 +944,8 @@ class StockPickingPackagePreparation(models.Model):
                 "weight": self.weight,
                 "gross_weight": self.gross_weight,
                 "volume": self.volume,
-                # "fiscal_document_type_id":
-                #     self.env.ref("l10n_it_ade.fatturapa_TD24").id,
+                "fiscal_document_type_id":
+                    self.env.ref("l10n_it_ade.fatturapa_TD24").id,
             }
         )
         return invoice_vals

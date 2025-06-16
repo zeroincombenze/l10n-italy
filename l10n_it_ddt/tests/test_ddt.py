@@ -314,6 +314,8 @@ class TestDdt(SingleTransactionCase):
         model = "sale.order"
         _logger.info(u"🎺 Testing %s[%s]" % (model, xref))
         order = self.resource_make(model, xref, group="order")
+        for line in order.order_line:
+            line._compute_weight()
         saved_partner = order.partner_id
         if order.origin == "Test2":
             self.assertEqual(
@@ -441,6 +443,7 @@ class TestDdt(SingleTransactionCase):
     def _set_ddt_done(self, ddts):
         ddts = ddts if isinstance(ddts, (list, tuple)) else [ddts]
         for ddt in ddts:
+            ddt.button_dummy()
             ddt.set_done()
             self.assertEqual(ddt.state, "done", msg="Invalid DdT state %s!" % ddt.state)
             for picking in ddt.picking_ids:
@@ -540,6 +543,7 @@ class TestDdt(SingleTransactionCase):
         return ddt
 
     def _check_for_invoice(self, invoice, count_delivery=1, policy="order"):
+        self.assertEqual("TD24", invoice.fiscal_document_type_id.code)
         if policy == "order":
             # Invoice delivery price is zero because in invoice delivery price are in
             # set in invoice lines

@@ -119,7 +119,7 @@ class StockPicking(models.Model):
 
     @api.model
     def check_is_linked_ddt(self):
-        if self.ddt_ids:
+        if self.ddt_ids:   # pragma: no cover
             raise UserError(
                 _("Selected Picking %s is already linked to DDT: %s")
                 % (

@@ -31,7 +31,7 @@ class DeliveryCarrier(models.Model):
     def get_invoice_price_available(self, invoice):
         self.ensure_one()
         if invoice.company_id.delivery_price_policy == "delivery":
-            total = weight = volume = quantity = 0
+            weight = volume = quantity = 0
             total_delivery = 0.0
             for line in invoice.invoice_line_ids:
                 if line.is_delivery:

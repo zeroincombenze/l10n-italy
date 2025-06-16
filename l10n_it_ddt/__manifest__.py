@@ -4,7 +4,7 @@
 #
 {
     "name": "DDT",
-    "version": "10.0.1.8.28",
+    "version": "10.0.1.8.29",
     "category": "Localization/Italy",
     "summary": "Delivery Document Type",
     "author": ("Odoo Community Association (OCA) and other subjects,Abstract"
@@ -15,6 +15,7 @@
     "license": "AGPL-3",
     "depends": [
         "l10n_it_ade",
+        "l10n_it_einvoice_base",
         "sale_stock",
         "stock",
         "stock_account",
