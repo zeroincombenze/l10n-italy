@@ -1,3 +1,8 @@
+10.0.1.0.7 (2025-07-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] XML filename with 3 char suffix / File xml con suffisso di 3 caratteri
+
 10.0.1.0.6 (2022-05-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -17,3 +22,4 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] No error importi  base64 .xml.p7m files
+* [QUA] Test coverage 33% (49: 33+16) [0 TestPoints] - quality rating 22 (target 100)

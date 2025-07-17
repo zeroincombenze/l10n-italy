@@ -1,5 +1,5 @@
 ==============================================================================
-|icon| Fattura elettronica - Import ZIP/l10n_it_einvoice_import_zip 10.0.1.0.6
+|icon| Fattura elettronica - Import ZIP/l10n_it_einvoice_import_zip 10.0.1.0.7
 ==============================================================================
 
 **Importazione di file XML di fatture elettroniche da uno ZIP**
@@ -120,15 +120,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.7 (2025-07-17)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] XML filename with 3 char suffix / File xml con suffisso di 3 caratteri
+
 10.0.1.0.6 (2022-05-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri (lost?)
-
-10.0.1.0.5 (2022-01-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri
 
 
 
@@ -179,7 +179,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2025-07-17
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
