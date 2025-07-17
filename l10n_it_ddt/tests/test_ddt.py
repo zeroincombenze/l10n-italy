@@ -676,6 +676,15 @@ class TestDdt(SingleTransactionCase):
         self.assertTrue(invoice, msg="Cannot create invoice!")
         self.assertTrue(ddt1.invoice_id, msg="DdT not set to invoiced!")
         self.assertTrue(ddt2.invoice_id, msg="DdT not set to invoiced!")
+        if policy == "delivery":
+            self.resource_edit(
+                invoice,
+                actions=["delivery_set", "save"]
+            )
+            self.assertTrue(
+                invoice.delivery_price,
+                msg="Wrong delivery price"
+            )
         for order in orders:
             self.assertEqual(
                 order.invoice_status,

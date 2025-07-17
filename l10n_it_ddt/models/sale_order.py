@@ -331,6 +331,16 @@ class SaleOrderLine(models.Model):
 
     weight = fields.Float(string="Line Weight")
 
+    @api.multi
+    @api.onchange("product_uom_qty")
+    def onchange_product_uom_qty(self):
+        for line in self:
+            if self.product_id:
+                prod_weight = (self.product_id.weight
+                               or self.product_id.product_tmpl_id.weight)
+                line.weight = prod_weight * self.product_uom_qty
+        return {}
+
     @api.depends("product_id", 'product_uom_qty')
     def _compute_weight(self):
         if self.product_id:
@@ -338,8 +348,9 @@ class SaleOrderLine(models.Model):
                            or self.product_id.product_tmpl_id.weight)
             line_weight = prod_weight * self.product_uom_qty
             if (
-                    line_weight
-                    and (line_weight * 1.5) >= self.weight <= (line_weight * 0.7)
+                    not self.weight
+                    or line_weight >= (self.weight * 1.5)
+                    or (line_weight and line_weight <= (self.weight * 0.7))
             ):
                 self.weight = line_weight
 
