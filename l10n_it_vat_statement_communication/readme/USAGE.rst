@@ -1,2 +1,2 @@
-- Creare una nuova comunicazione.
-- Nel "Quadro VP" aggiungere una voce selezionando in alto la liquidazione, precedentemente creata, da inserire.
+- Create new statement
+- Inside "Quadro VP" add row selecting VAT statememnt

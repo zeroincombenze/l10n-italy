@@ -1,21 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_vat_statement_communication
+#	* l10n_it_vat_statement_communication
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 10:33+0000\n"
-"PO-Revision-Date: 2020-06-23 10:33+0000\n"
+"POT-Creation-Date: 2025-07-19 06:16+0000\n"
+"PO-Revision-Date: 2025-07-19 06:16+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
-"Language: it_IT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -43,9 +42,24 @@ msgid "<b>VP14</b> VAT to pay"
 msgstr "<b>VP14</b> IVA da versare"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP1</b>"
+msgstr "<b>VP1</b>"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP2</b>"
+msgstr "<b>VP2</b>"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 msgid "<b>VP2</b> Profitable operations total (without VAT)"
 msgstr "<b>VP2</b> Totale operazioni attive (al netto dell’IVA)"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP3</b>"
+msgstr "<b>VP3</b>"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -53,9 +67,19 @@ msgid "<b>VP3</b> Unprofitable operations total (without VAT)"
 msgstr "<b>VP3</b> Totale operazioni passive (al netto dell’IVA)"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP4</b>"
+msgstr "<b>VP4</b>"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 msgid "<b>VP4</b> Due VAT"
 msgstr "<b>VP4</b> IVA esigibile"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP5</b>"
+msgstr "<b>VP5</b>"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -63,14 +87,29 @@ msgid "<b>VP5</b> Deducted VAT"
 msgstr "<b>VP5</b> IVA detratta"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP6</b>"
+msgstr "<b>VP6</b>"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 msgid "<b>VP6</b> Debit VAT"
 msgstr "<b>VP6</b> IVA dovuta"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP7</b>"
+msgstr "<b>VP7</b>"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 msgid "<b>VP7</b> Previous period debit, not grater than 25,82 €"
-msgstr "<b>VP7</b> Debito periodo precedente non superiore a 25,82 €"
+msgstr "<b>VP7</b> Debito periodo precedente non superiore a 100 €"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "<b>VP8</b>"
+msgstr "<b>VP8</b>"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -93,6 +132,11 @@ msgid "<span>Computation method: </span>"
 msgstr "<span>metodo: </span>"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "Anno di imposta"
+msgstr "Anno di imposta"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp_versamento_auto_UE
 msgid "Auto UE payment"
 msgstr "Versamento auto UE"
@@ -105,8 +149,7 @@ msgstr "Annullare"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
 msgid ""
-"Click on <strong>Export</strong> to generate VAT statement communication "
-"file."
+"Click on <strong>Export</strong> to generate VAT statement communication file."
 msgstr ""
 "Cliccare su <strong>Esportare</strong> per generare il file liquidazione "
 "IVA."
@@ -118,19 +161,11 @@ msgstr "Chiudere"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,exceptional_events:0
-#: selection:comunicazione.liquidazione.vp,exceptional_events
-#: selection:comunicazione.liquidazione.vp,exceptional_events
-#: selection:comunicazione.liquidazione.vp,exceptional_events
-#: selection:comunicazione.liquidazione.vp,exceptional_events
 msgid "Code 1"
 msgstr "Codice 1"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,exceptional_events:0
-#: selection:comunicazione.liquidazione.vp,exceptional_events
-#: selection:comunicazione.liquidazione.vp,exceptional_events
-#: selection:comunicazione.liquidazione.vp,exceptional_events
-#: selection:comunicazione.liquidazione.vp,exceptional_events
 msgid "Code 9"
 msgstr "Codice 9"
 
@@ -146,28 +181,17 @@ msgstr "Comunicazione"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione,delegate_commitment:0
-#: selection:comunicazione.liquidazione,delegate_commitment
-#: selection:comunicazione.liquidazione,delegate_commitment
-#: selection:comunicazione.liquidazione,delegate_commitment
-#: selection:comunicazione.liquidazione,delegate_commitment
 msgid "Communication prepared by sender"
 msgstr "Comunicazione preparata da chi effettua l'invio"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione,delegate_commitment:0
-#: selection:comunicazione.liquidazione,delegate_commitment
-#: selection:comunicazione.liquidazione,delegate_commitment
-#: selection:comunicazione.liquidazione,delegate_commitment
-#: selection:comunicazione.liquidazione,delegate_commitment
 msgid "Communication prepared by taxpayer"
 msgstr "Comunicazione preparata dal contribuente"
 
 #. module: l10n_it_vat_statement_communication
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:35
+#, python-format
 msgid "Communication with identifier {} already exists"
 msgstr "Comunicazione con identificativo {} già esistente"
 
@@ -217,6 +241,11 @@ msgid "Credit due VAT"
 msgstr "IVA dovuta a credito"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "Credito periodo precedente"
+msgstr "Credito periodo precedente"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_date_commitment
 msgid "Date commitment"
 msgstr "Data dell’impegno"
@@ -232,6 +261,11 @@ msgid "Debit VAT"
 msgstr "IVA a debito"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "Debito periodo precedente"
+msgstr "Debito periodo precedente"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
 msgid "Declarant"
 msgstr "Dichiarante"
@@ -242,14 +276,11 @@ msgid "Declarant Fiscalcode"
 msgstr "Codice fiscale dichiarante"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:178
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:183
+#, python-format
 msgid ""
-"Declarant Fiscalcode is required. You can enable the                 "
-"section with different declarant option"
+"Declarant Fiscalcode is required. You can enable the                 section "
+"with different declarant option"
 msgstr ""
 "Il codice fiscale del dichiarante è obbligatorio. È possibile abilitare "
 "la                 sezione con le varie opzioni per il dichiarante"
@@ -283,6 +314,7 @@ msgstr "Firma dell’incaricato"
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file_display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp_display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_report_l10n_it_vat_statement_communication_report_vat_statement_display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -358,11 +390,8 @@ msgid "Fiscalcode company"
 msgstr "Codice fiscale dell’azienda"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:188
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:196
+#, python-format
 msgid "For group's statement, controller's TIN must be empty"
 msgstr ""
 "Per la liquidazione del gruppo, la P.IVA del controllante deve essere "
@@ -384,11 +413,8 @@ msgid "Group's statement"
 msgstr "Liquidazione IVA di gruppo"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:191
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:200
+#, python-format
 msgid "Group's statement not valid, as fiscal code is 16 characters"
 msgstr ""
 "Liquidazione del gruppo non valida, visto che il codice fiscale è d 16 "
@@ -398,8 +424,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file_id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp_id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_report_l10n_it_vat_statement_communication_report_vat_statement_id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "IVA detratta"
+msgstr "IVA detratta"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "IVA dovuta"
+msgstr "IVA dovuta"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "IVA esigibile"
+msgstr "IVA esigibile"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_res_company_vsc_supply_code
@@ -416,6 +458,7 @@ msgstr "Identificativo"
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione___last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file___last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp___last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_report_l10n_it_vat_statement_communication_report_vat_statement___last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -445,10 +488,6 @@ msgstr "Mese"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,period_type:0
-#: selection:comunicazione.liquidazione.vp,period_type
-#: selection:comunicazione.liquidazione.vp,period_type
-#: selection:comunicazione.liquidazione.vp,period_type
-#: selection:comunicazione.liquidazione.vp,period_type
 msgid "Monthly"
 msgstr "Mensile"
 
@@ -458,13 +497,15 @@ msgid "Name"
 msgstr "Descrizione"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:19
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:20
+#, python-format
 msgid "No communication selected"
 msgstr "Nessuna comunicazione selezionata"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "Partita IVA contribuente"
+msgstr "Partita IVA contribuente"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp_period_type
@@ -487,6 +528,11 @@ msgid "Previous year credit"
 msgstr "Credito anno precedente"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.actions.report.xml,name:l10n_it_vat_statement_communication.report_vat_statement_communication
+msgid "Print Statement Communication"
+msgstr "Comunicazione IVA (LIPE)"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp_imponibile_operazioni_attive
 msgid "Profitable operations total (without VAT)"
 msgstr "Totale operazioni attive (al netto dell’IVA)"
@@ -498,10 +544,6 @@ msgstr "Trimestre"
 
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,period_type:0
-#: selection:comunicazione.liquidazione.vp,period_type
-#: selection:comunicazione.liquidazione.vp,period_type
-#: selection:comunicazione.liquidazione.vp,period_type
-#: selection:comunicazione.liquidazione.vp,period_type
 msgid "Quarterly"
 msgstr "Trimestrale"
 
@@ -526,11 +568,8 @@ msgid "Signature"
 msgstr "Firma"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:197
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:205
+#, python-format
 msgid "Specify role code of declarant"
 msgstr "Specificare codice carica del dichiarante"
 
@@ -570,14 +609,11 @@ msgid "Taxpayer Fiscalcode"
 msgstr "Codice fiscale contribuente"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:170
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:169
+#, python-format
 msgid ""
-"Taxpayer Fiscalcode is required. It's accepted codes                     "
-"with lenght 11 or 16 chars"
+"Taxpayer Fiscalcode is required. It's accepted codes                     with "
+"lenght 11 or 16 chars"
 msgstr ""
 "Il codice fiscale del contribuente è obbligatorio. Sono accettati codici"
 "                     di 11 o 16 caratteri"
@@ -606,6 +642,16 @@ msgstr "Totale base imponibile"
 #: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
 msgid "Total VAT"
 msgstr "IVA totale"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "Totale operazioni attive al netto dell'IVA"
+msgstr "Totale operazioni attive al netto dell'IVA"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.ui.view,arch_db:l10n_it_vat_statement_communication.report_vat_communication_document
+msgid "Totale operazioni passive al netto dell'IVA"
+msgstr "Totale operazioni passive al netto dell'IVA"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp_imponibile_operazioni_passive
@@ -672,45 +718,34 @@ msgid "Vat statement communication supply code"
 msgstr "Vat statement communication supply code"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:218
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:235
+#, python-format
 msgid "With delegate in commitment section, you need to check 'delegate sign'"
 msgstr ""
 "Con l'incaricato nella sezione impegno, è necessario selezionare 'firma "
 "incaricato'"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:209
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:220
+#, python-format
 msgid "With intermediary fiscal code, you need to specify commitment code"
 msgstr ""
 "Con il codice fiscale dell'intermediario, è necessario specificare il "
 "codice impegno"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:213
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:227
+#, python-format
 msgid "With intermediary fiscal code, you need to specify commitment date"
 msgstr ""
 "Con il codice fiscale dell'intermediario, è necessario specificare la "
 "data impegno"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:203
-msgid "With this role code, you need to specify fiscal code of declarant company"
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:211
+#, python-format
+msgid ""
+"With this role code, you need to specify fiscal code of declarant company"
 msgstr ""
 "Con questo codice carica, è necessario specificare il codice fiscale "
 "dell'azienda dichiarante"
@@ -721,29 +756,20 @@ msgid "Year"
 msgstr "Anno"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:164
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:161
+#, python-format
 msgid "Year required"
 msgstr "Anno di imposta"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:23
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:22
+#, python-format
 msgid "You can export only 1 communication at a time"
 msgstr "È possibile esportare solo una comunicazione alla volta"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:46
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
+#, python-format
 msgid "month"
 msgstr "mese"
 
@@ -753,11 +779,8 @@ msgid "or"
 msgstr "o"
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:48
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:50
+#, python-format
 msgid "quarter"
 msgstr "trimestre"
 

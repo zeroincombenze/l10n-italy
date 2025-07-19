@@ -1,8 +1,8 @@
-==========================================================================================
-|icon| ITA - Comunicazione liquidazione IVA/l10n_it_vat_statement_communication 10.0.1.5.4
-==========================================================================================
+=====================================================================================
+|icon| ITA - Comunicazione liquidazione IVA/Comunicazione liquidazione IVA 10.0.1.5.5
+=====================================================================================
 
-**Comunicazione liquidazione IVA ed esportazione file xml conforme alle specifiche dell'Agenzia delle Entrate**
+**Esportazione file xml LIPE**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_vat_statement_communication/static/description/icon.png
 
@@ -14,41 +14,23 @@
 Overview | Panoramica
 =====================
 
-|en| Comunicazione liquidazione IVA ed export file XML, conforme alle specifiche dell''Agenzia delle Entrate.
+|en| Italian fiscal due.
+
+
+|it| Comunicazione liquidazione IVA ed export file XML, conforme alle specifiche dell''Agenzia delle Entrate.
 
 I dati possono essere caricati da liquidazioni IVA effettuate in odoo tramite `account_vat_period_end_statement`
 
 
-|it| Nessuna informazione disponibile
-
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_vat_statement_communication/static/description/
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_vat_statement_communication/static/description/description.png
 
 
 Configuration | Configurazione
 ------------------------------
 
-|it| Per generare i periodi della dichiarazione IVA,
-aprire Impostazioni > Fatturazione > Configurazione > Intervalli data > Generazione intervalli data e selezionare:
-
-* prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l'anno)
-* durata: 1 mese
-* numero di intervalli da generare: 12
-* tipo: creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare
-* data iniziale: primo giorno del primo periodo che sarà generato (tipicamente il primo giorno dell'anno i.e. 01/01/2018)
-
-Per caricare l'importo corretto, un'imposta deve essere associata al conto utilizzato nella liquidazione:
-
-* aprire l'imposta da Fatturazione > Configurazione > Contabilità > Imposte,
-* nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
-  per il campo 'Conto utilizzato per la liquidazione IVA'.
-
-Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
-nei dati aziendali, nella scheda 'Liquidazione IVA'.
-
-
-|en| In order to generate VAT statement's periods,
+In order to generate VAT statement's periods,
 open Accounting > Configuration > Date ranges > Generate Date Ranges and select:
 
 * range name prefix: prefix identifying the periods to be generated (usually the year)
@@ -72,8 +54,8 @@ company data (percentage and account), in the 'VAT statement' tab.
 Usage | Utilizzo
 ----------------
 
-- Creare una nuova comunicazione.
-- Nel "Quadro VP" aggiungere una voce selezionando in alto la liquidazione, precedentemente creata, da inserire.
+- Create new statement
+- Inside "Quadro VP" add row selecting VAT statememnt
 
 
 
@@ -169,6 +151,17 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
+ChangeLog History | Cronologia modifiche
+----------------------------------------
+
+10.0.1.5.4 (2025-07-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Report print
+* [QUA] Test coverage 28% (389: 282+107) [0 TestPoints] - quality rating 19 (target 100)
+
+
+
 Credits | Ringraziamenti
 ========================
 
@@ -190,18 +183,8 @@ Authors | Autori
 Contributors | Partecipanti
 ---------------------------
 
-* `Lorenzo Battistini <https://github.com/eLBati>`__
-* Elena Carlesso <False>
-* `Marco Marchiori <marcomarkiori@gmail.com>`__
-* `Sergio Corato <sergiocorato@gmail.com>`__
-* `Andrea Gallina <a.gallina@apuliasoftware.it>`__
-* `Alex Comba <alex.comba@agilebg.com>`__
-* `Alessandro Camilli <camillialex@gmail.com>`__
-* `Simone Rubino <simone.rubino@agilebg.com>`__
-* `Giacomo Grasso <giacomo.grasso.82@gmail.com>`__
-* `LinkIt Spa <http://http://www.linkgroup.it>`__
-* `Gianmarco Conte <gconte@dinamicheaziendali.it>`__
-* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* Alessandro Camilli <False>
+* Lorenzo Battistini <False>
 * Lara Baggio <False>
 
 
@@ -230,7 +213,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2025-07-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
