@@ -1,7 +1,13 @@
+10.0.1.3.58 (2025-07-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Avoid duplicate rea_code error on disabled partner / No errore codice REA duplicato con nominatico archiviato con codice REA
+* [QUA] Test coverage 75% (1470: 372+1098) [0 TestPoints] - quality rating 43 (target 100)
+
 10.0.1.3.57 (2025-05-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Inovice link set e-invoice data / Collega a fattura aggiorna dati e-fattura
+* [IMP] Invoice link set e-invoice data / Collega a fattura aggiorna dati e-fattura
 * [QUA] Test coverage 75% (1463: 371+1092) [0 TestPoints] - quality rating 43 (target 100)
 
 10.0.1.3.56 (2025-03-14)

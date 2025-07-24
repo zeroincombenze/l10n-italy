@@ -1,0 +1,83 @@
+2025-07-24 07:19:39,567 329635 INFO ? odoo: Odoo version 10.0
+2025-07-24 07:19:39,567 329635 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/tests/logs/zero10.l10n-italy.l10n_it_einvoice_in.conf
+2025-07-24 07:19:39,567 329635 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo10/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/marketplace', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2025-07-24 07:19:39,567 329635 INFO ? odoo: database: odoo10@localhost:5432
+2025-07-24 07:19:39,583 329635 INFO ? odoo.service.server: HTTP service (werkzeug) running on NB200Z0.localdomain:24482
+2025-07-24 07:19:39,598 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading 1 modules...
+2025-07-24 07:19:39,667 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: 1 modules loaded in 0.07s, 0 queries
+2025-07-24 07:19:42,548 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading 52 modules...
+2025-07-24 07:19:42,638 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2025-07-24 07:19:42,803 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: 52 modules loaded in 0.26s, 0 queries
+2025-07-24 07:19:42,810 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading 53 modules...
+2025-07-24 07:19:42,995 329635 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-07-24 07:19:42,995 329635 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-07-24 07:19:43,203 329635 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-07-24 07:19:43,203 329635 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-07-24 07:19:43,209 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.registry: module l10n_it_einvoice_in: creating or updating database tables
+2025-07-24 07:19:43,329 329635 WARNING test_l10n_it_einvoice_in_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2025-07-24 07:19:43,873 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.auth_crypt.models.res_users: Hashing passwords, may be slow for databases with many users...
+2025-07-24 07:19:43,930 329635 INFO test_l10n_it_einvoice_in_10 odoo.models: Storing computed values of fatturapa.attachment.in fields date_invoice0, invoices_number, invoices_total, registered, xml_supplier_id
+2025-07-24 07:19:43,959 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/security/ir.model.access.csv
+2025-07-24 07:19:44,008 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/data/product.xml
+2025-07-24 07:19:44,125 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/views/account_view.xml
+2025-07-24 07:19:44,329 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/views/partner_view.xml
+2025-07-24 07:19:44,397 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/views/company_view.xml
+2025-07-24 07:19:44,437 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/wizard/wizard_import_fatturapa_view.xml
+2025-07-24 07:19:44,463 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/wizard/attachment_refresh_info_view.xml
+2025-07-24 07:19:44,542 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: loading l10n_it_einvoice_in/wizard/link_to_existing_invoice.xml
+2025-07-24 07:19:44,771 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml running tests.
+2025-07-24 07:19:44,772 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_00_xml_import_001 (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:45,010 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_00_001(IT05979361218_001.xml)
+2025-07-24 07:19:46,248 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_01_xml_import_11004 (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:46,355 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_01_11004(IT02780790107_11004.xml)
+2025-07-24 07:19:47,307 329635 WARNING test_l10n_it_einvoice_in_10 odoo.models: account.invoice.write() with unknown fields: delivery_carrier_id
+2025-07-24 07:19:47,901 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_02_xml_import_011 (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:48,004 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_02_011(IT05979361218_011.xml)
+2025-07-24 07:19:49,114 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_80_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:49,221 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_80_00003(SM00000004298_00003.xml)
+2025-07-24 07:19:50,474 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_81_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:50,591 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_81_00014(IT00488410010_00014.xml)
+2025-07-24 07:19:51,837 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_82_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:53,520 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_83_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:53,624 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_83(IT02421500469_00244.xml)
+2025-07-24 07:19:54,771 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_84_xml_import (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:54,881 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_84(IT08973230967_9aA6M.xml)
+2025-07-24 07:19:57,015 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_901_xml_import_autogrill (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:57,110 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_901_autogrill(IT0526289001424201_AVH2R.xml)
+2025-07-24 07:19:58,259 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_902_xml_import_autogrill (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:19:58,349 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_902_autogrill(IT0526289001424201_BQ1Ll.xml)
+2025-07-24 07:20:00,523 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: test_903_xml_import_enasarco (odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml.TestFatturaPAXMLValidation)
+2025-07-24 07:20:00,613 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: 🎺 test_903_enasarco(ITNREGCM80H30D612D_20003.xml)
+2025-07-24 07:20:01,616 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: Ran 11 tests in 16.845s
+2025-07-24 07:20:01,616 329635 INFO test_l10n_it_einvoice_in_10 odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml: OK
+2025-07-24 07:20:01,616 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.module: odoo.addons.l10n_it_einvoice_in.tests.test_import_fatturapa_xml tested in 16.85s, 24796 queries
+2025-07-24 07:20:01,633 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: 53 modules loaded in 18.82s, 24817 queries
+2025-07-24 07:20:01,739 329635 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-07-24 07:20:01,739 329635 WARNING test_l10n_it_einvoice_in_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-07-24 07:20:01,968 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: Modules loaded.
+2025-07-24 07:20:01,972 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2025-07-24 07:20:01,973 329635 INFO test_l10n_it_einvoice_in_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2025-07-24 07:20:02,015 329635 INFO test_l10n_it_einvoice_in_10 odoo.modules.registry: Registry changed, signaling through the database
+2025-07-24 07:20:02,016 329635 INFO test_l10n_it_einvoice_in_10 odoo.service.server: Initiating shutdown
+2025-07-24 07:20:02,016 329635 INFO test_l10n_it_einvoice_in_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_einvoice_in[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_einvoice_in/tests/logs/coverage_l10n_it_einvoice_in_10rc -m
+[34;107mName                                                                Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_einvoice_in/models/account.py                      342     74    78%   48, 59-69, 75, 110, 120, 131, 140, 150, 162, 208-210, 234-236, 245-281, 284, 287-290, 293, 301, 321, 338, 355, 399, 410, 414, 418, 422, 425, 440, 458, 471, 474, 478-481, 484, 488, 495, 504, 536, 542, 566, 581, 583, 622, 640, 699, 702-705
+l10n-italy/l10n_it_einvoice_in/models/account_tax.py                   49     10    80%   22, 47, 52-60, 62, 70, 74
+l10n-italy/l10n_it_einvoice_in/models/attachment.py                   113     26    77%   53, 55, 60, 114, 116-118, 123-128, 145, 150, 154, 159, 164, 189-190, 194-203
+l10n-italy/l10n_it_einvoice_in/models/company.py                       46     16    65%   50, 53, 56-69, 94-109
+l10n-italy/l10n_it_einvoice_in/models/partner.py                      236     27    89%   194, 243, 281, 293, 307-308, 315, 340, 342-343, 357-358, 360-361, 363, 376, 379, 384-386, 397, 399, 416, 418, 429, 432-433
+l10n-italy/l10n_it_einvoice_in/wizard/attachment_refresh_info.py       17     10    41%   10-17, 24-31
+l10n-italy/l10n_it_einvoice_in/wizard/link_to_existing_invoice.py      56     43    23%   20-28, 33-36, 41-69, 72-113
+l10n-italy/l10n_it_einvoice_in/wizard/wizard_import_fatturapa.py      611    166    73%   49, 52, 60, 67, 90, 98, 100, 140-146, 148, 152-185, 208, 210, 280, 293, 314, 322-355, 358-368, 371-379, 387-416, 431, 469, 539, 541, 548-549, 554-555, 576-578, 599, 603-609, 614, 630-636, 678, 711-715, 735, 738, 750, 826-827, 838, 858-866, 873, 883-884, 888-901, 904-912, 933-934, 978-982, 986-987, 998-1018, 1043-1047, 1057, 1097-1104, 1128, 1141, 1147-1148, 1165-1166, 1194
+-------------------------------------------------------------------------------------------------
+TOTAL                                                                1470    372    75%
+[0m

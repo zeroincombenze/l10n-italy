@@ -1,5 +1,5 @@
 ========================================================
-|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.57
+|icon| ITA - Fattura elettronica - Ricezione 10.0.1.3.58
 ========================================================
 
 **E-invoice receive**
@@ -219,10 +219,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.3.58 (2025-07-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Avoid duplicate rea_code error on disabled partner / No errore codice REA duplicato con nominatico archiviato con codice REA
+* [QUA] Test coverage 75% (1470: 372+1098) [0 TestPoints] - quality rating 43 (target 100)
+
 10.0.1.3.57 (2025-05-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Inovice link set e-invoice data / Collega a fattura aggiorna dati e-fattura
+* [IMP] Invoice link set e-invoice data / Collega a fattura aggiorna dati e-fattura
 * [QUA] Test coverage 75% (1463: 371+1092) [0 TestPoints] - quality rating 43 (target 100)
 
 10.0.1.3.56 (2025-03-14)
@@ -294,15 +300,6 @@ ChangeLog History | Cronologia modifiche
 * [QUA] Test coverage 63% (1337: 498+839) [0 TestPoints] - quality rating 38 (target 100)
 
 
-10.0.1.3.46 (2024-05-08)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Again weird error linking self-invoice
-* [FIX] Avoid company data update from self-invoice / Non cambia dati aziendali da auto-fattura
-* [FIX] Cannot import e-invoice with wrong vat / Ignora PI se errata in e-fattura
-* [QUA] Test coverage 63% (1337: 498+839) [0 TestPoints] - quality rating 38 (target 100)
-
-
 
 Credits | Ringraziamenti
 ========================
@@ -367,7 +364,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-05-26
+Last Update / Ultimo aggiornamento: 2025-07-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

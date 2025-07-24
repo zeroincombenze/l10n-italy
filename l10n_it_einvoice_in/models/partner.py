@@ -362,6 +362,11 @@ class Partner(models.Model):
                     if add_domain:
                         domain.append(constr)
                 rec = self.search(domain)
+                if not rec and ("rea_code" in domain[0] or "rea_code" in domain[1]):
+                    domain.append(["active", "=", False])
+                    rec = self.search(domain)
+                    rec.write({"rea_office": False, "rea_code": False})
+                    rec = False
                 if rec:
                     rec = rec_with_valid_vat(rec[0])
                     if rec:
@@ -409,6 +414,8 @@ class Partner(models.Model):
                         del vals[item]
                 if vals.get("vat") and not self.check_vat(vals["vat"]):
                     del vals["vat"]
+                if not rec.active:
+                    vals["active"] = True
                 if vals:
                     rec.write(vals)
                 id = rec.id
