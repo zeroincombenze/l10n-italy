@@ -1,1 +1,0 @@
-cd /home/odoo/10.0; /home/odoo/10.0/odoo-bin --stop-after-init -d test_odoo_10 --config=/home/odoo/10.0/l10n-italy/account_invoice_partner_carrier/tests/logs/zero10.l10n-italy.account_invoice_partner_carrier.conf --log-level=error -i account,analytic,base,base_setup,bus,decimal_precision,mail,product,report,web,web_kanban,web_planner,web_tour

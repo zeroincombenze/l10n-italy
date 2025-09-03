@@ -1,1 +1,0 @@
-cd /home/odoo/10.0; /home/odoo/10.0/odoo-bin --stop-after-init -d test_l10n_it_fiscalcode_10 --config=/home/odoo/10.0/l10n-italy/l10n_it_fiscalcode/tests/logs/zero10.l10n-italy.l10n_it_fiscalcode.conf --log-level=error -i account,analytic,base,base_setup,base_vat,bus,decimal_precision,mail,product,report,web,web_kanban,web_planner,web_tour
