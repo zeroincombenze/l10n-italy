@@ -1,1 +1,0 @@
-cd /home/odoo/12.0; /home/odoo/12.0/odoo-bin --stop-after-init -d test_l10n_it_website_portal_ipa_12 --config=/home/odoo/12.0/l10n-italy/l10n_it_website_portal_ipa/tests/logs/zero12.l10n-italy.l10n_it_website_portal_ipa.conf --log-level=error -i base,base_setup,bus,http_routing,l10n_it_ipa,mail,portal,web,web_tour

@@ -1,1 +1,0 @@
-cd /home/odoo/oca12; /home/odoo/oca12/odoo-bin --stop-after-init -d test_odoo_12 --config=/home/odoo/oca12/l10n-italy/l10n_it_account/tests/logs/odoo12.l10n_it_account.conf --log-level=error -i account,account_fiscal_year,account_tax_balance,analytic,base,base_setup,bus,date_range,decimal_precision,digest,http_routing,mail,portal,product,uom,web,web_tour

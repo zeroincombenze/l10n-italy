@@ -1,1 +1,0 @@
-less -R $(readlink -f $(dirname $0))/l10n_it_website_portal_fatturapa_sale_20230324.txt
