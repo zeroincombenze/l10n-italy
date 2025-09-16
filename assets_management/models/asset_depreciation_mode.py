@@ -42,7 +42,7 @@ class AssetDepreciationMode(models.Model):
     )
 
     @api.multi
-    def copy(self, default=None):
+    def copy(self, default=None):                       # pragma: no cover
         default = dict(default or [])
         default.update(
             {

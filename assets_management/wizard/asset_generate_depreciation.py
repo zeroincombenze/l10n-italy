@@ -32,7 +32,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         asset_id = self._context.get("active_id")
         date = query_last_date(asset_id=asset_id, final=True)
         if not date or not date[0]:
-            date = query_last_date(final=False)
+            date = query_last_date(asset_id=asset_id, final=False)
         if not date or not date[0]:
             query = "SELECT MIN(purchase_date) FROM asset_asset "
             if asset_id:

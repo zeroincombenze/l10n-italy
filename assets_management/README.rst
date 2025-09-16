@@ -33,7 +33,7 @@ modello di sviluppo e test.
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/assets_management/static/description/description.png
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/assets_management/static/description/
 
 
 Usage | Utilizzo
@@ -156,11 +156,17 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-12.0.1.0.0_31 (2024-01-31)
+12.0.1.0.1 (2025-09-16)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Proposta data ammortamento su singolo bene
+* [QUA] Test coverage 72% (3221: 899+2322) [499 TestPoints] - quality rating 59 (target 100)
+
+12.0.1.0.0_31 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Dismissione bene totalmente ammortizzato da più anni
-* [QUA]
+* [QUA] Test coverage 72% (3267: 899+2368) [501 TestPoints] - quality rating 69 (target 100)
 
 12.0.1.0.0_30 (2024-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -172,51 +178,6 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Errato calcolo di plusvalenza/minusvalenza in alcuni casi
 * [IMP] Non è più possibile collegare una fattura ad un bene ammortizzato
 * [QUA] Test coverage 72% (3244: 893+2351) [501 TestPoints] - quality rating 69 (target 100)
-
-12.0.1.0.0_29 (2022-09-19)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Refactoring per gestione dismissione parziale
-
-12.0.1.0.0_28 (2022-09-14)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Corretti bug dismissione cespite
-
-12.0.1.0.0_27 (2022-08-24)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato controllo su data ammortamento e data dismissione
-
-12.0.1.0.0_26 (2022-08-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Aggiornato dismissione parziale
-
-12.0.1.0.0_25 (2022-08-18)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Riabilitata la possibilità di inserire una riga cespite come richiesto dalla Community
-
-12.0.1.0.0_24 (2022-08-18)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Risolto bug inserimento info nella righe ammortamenti
-
-12.0.1.0.0_23 (2022-08-17)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato ammortamento della dismissione nella riga fattura
-
-12.0.1.0.0_22 (2022-08-17)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestito annullamento fattura di vendita collegata al cespite
-
-12.0.1.0.0_20 (2022-03-18)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix errore salvataggio registrazione nel model asset
 
 
 
@@ -277,7 +238,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-02-01
+Last Update / Ultimo aggiornamento: 2025-09-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

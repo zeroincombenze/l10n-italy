@@ -1,3 +1,9 @@
+12.0.1.0.1 (2025-09-16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Proposta data ammortamento su singolo bene
+* [QUA] Test coverage 72% (3221: 899+2322) [499 TestPoints] - quality rating 59 (target 100)
+
 12.0.1.0.0_31 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -46,10 +46,10 @@ class DepLineType(models.Model):
         return super().unlink()
 
     @api.multi
-    def name_get(self):
+    def name_get(self):                       # pragma: no cover
         return [(line_type.id, line_type.make_name()) for line_type in self]
 
-    def make_name(self):
+    def make_name(self):                      # pragma: no cover
         self.ensure_one()
         name = ""
         if self.code:
