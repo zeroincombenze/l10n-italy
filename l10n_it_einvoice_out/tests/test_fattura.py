@@ -374,14 +374,3 @@ class TestInvoice(SingleTransactionCase):
             records=attachments,
             button_name="refresh_info"
         )
-
-
-
-
-
-
-
-
-
-
-

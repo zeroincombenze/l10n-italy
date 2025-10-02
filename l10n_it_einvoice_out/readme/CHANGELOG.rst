@@ -1,3 +1,9 @@
+10.0.1.0.30 (2025-10-02)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Segnalazione immediata di cliente non soggetto a fattura elettronica
+* [QUA] Test coverage 64% (777: 279+498) [87 TestPoints] - quality rating 48 (target 100)
+
 10.0.1.0.29 (2024-11-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,5 +1,5 @@
 =============================================================================================
-|icon| Italian Localization - FatturaPA - Emissione/Emissione fattura elettronica 10.0.1.0.29
+|icon| Italian Localization - FatturaPA - Emissione/Emissione fattura elettronica 10.0.1.0.30
 =============================================================================================
 
 **E-Invoice emission**
@@ -74,9 +74,9 @@ Certifications | Certificazioni
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 | Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2019   | Validazione contro schema xml                |
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2025   | Validazione contro schema xml                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2019   | Controllo tramite sito Agenzia delle Entrate |
+| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2025   | Controllo tramite sito Agenzia delle Entrate |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
@@ -197,6 +197,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.30 (2025-10-02)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Segnalazione immediata di cliente non soggetto a fattura elettronica
+* [QUA] Test coverage 64% (777: 279+498) [87 TestPoints] - quality rating 48 (target 100)
+
 10.0.1.0.29 (2024-11-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -214,17 +220,6 @@ ChangeLog History | Cronologia modifiche
 
 * [IMP] Self e-invoice management - Emissione auto-fatture
 * [QUA] Test coverage 64% (762: 276+486) [87 TestPoints] - quality rating 57 (target 100)
-
-10.0.1.0.26 (2023-06-12)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Foreign customer w/o vat but with fiscalcode / Cliente estero senza PI ma con CF
-* [QUA] Coverage 60% (731/292) + 39cp
-
-10.0.1.0.25 (2023-03-24)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] First regression tests: coverage 60% (733/296)
 
 
 
@@ -254,6 +249,7 @@ Contributors | Partecipanti
 Acknowledges | Riconoscimenti
 -----------------------------
 
+* `Agile Business Group sagl <https://www.agilebg.com>`__
 * `Innoviu Srl <http://www.innoviu.com>`__
 * `Odoo Italia Network <https://www.odoo-italia.net>`__
 * `Davide Corio <davide.corio@agilebg.com>`__
@@ -295,7 +291,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-11-19
+Last Update / Ultimo aggiornamento: 2025-10-02
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

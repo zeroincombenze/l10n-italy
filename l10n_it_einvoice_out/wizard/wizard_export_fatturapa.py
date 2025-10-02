@@ -835,7 +835,7 @@ class WizardExportFatturapa(models.TransientModel):
                 if not causale:
                     continue
                 causale_list_200 = [
-                    causale[i : i + 200] for i in range(0, len(causale), 200)
+                    causale[i: i + 200] for i in range(0, len(causale), 200)
                 ]
                 for causale200 in causale_list_200:
                     # Remove non latin chars, but go back to unicode string,
@@ -1327,10 +1327,12 @@ class WizardExportFatturapa(models.TransientModel):
         for partner in invoices_by_partner:
             if not partner.electronic_invoice_subjected and not partner.is_pa:
                 raise UserError(
-                    _("Partner %s is not subjected to electronic invoice!")
-                    % partner.name
+                    _("Partner %s in invoice %s not subjected to electronic invoice!")
+                    % (partner.name or partner.commercial_partner_id.name,
+                       invoice_model.browse(invoices_by_partner[partner][0]).number)
                 )
 
+        for partner in invoices_by_partner:
             context_partner = self.env.context.copy()
             context_partner.update({"lang": partner.lang})
             for invoice_ids in invoices_by_partner[partner]:
