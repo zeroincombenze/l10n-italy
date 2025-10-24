@@ -1,5 +1,5 @@
 ========================================================
-|icon| Reverse Charge Tax/IVA in reverse charge 10.0.1.8
+|icon| Reverse Charge Tax/IVA in reverse charge 10.0.1.9
 ========================================================
 
 **Manage Reverse Charge Tax for Italy**
@@ -177,6 +177,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.9 (2025-10-24)
+~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Data for RC self-invoice on fiscal position / Dati auto-fattura in posizione fiscale
+* [QUA] Test coverage 80% (377: 74+303) [36 TestPoints] - quality rating 53 (target 100)
+
+
 10.0.1.8 (2024-06-28)
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -192,16 +199,6 @@ ChangeLog History | Cronologia modifiche
 * [IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare
 * [IMP] Regression tests
 * [QUA] Test coverage 64% (410: 147+263) [26 TestPoints] - quality rating 49 (target 100)
-
-10.0.1.6 (2023-02-20)
-~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] The invoice date of self invoice is the same of the date of purchase invoice / Data auto-fattura come data contabile fattura di acquisto
-
-10.0.1.5 (2023-02-13)
-~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] The date may be different from invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture
 
 
 
@@ -257,7 +254,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-28
+Last Update / Ultimo aggiornamento: 2025-10-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

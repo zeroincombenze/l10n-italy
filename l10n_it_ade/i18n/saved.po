@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ade
+# 	* l10n_it_ade
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-24 06:40+0000\n"
-"PO-Revision-Date: 2025-10-24 06:40+0000\n"
+"POT-Creation-Date: 2024-01-28 12:38+0000\n"
+"PO-Revision-Date: 2024-02-01 09:34+0100\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_active
@@ -36,22 +37,22 @@ msgstr "Codice Assosoftware"
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_rev_charge
 msgid "Check if reverse charge EU invoices journal"
-msgstr "Selezionare se registro fatture con inversione contabile"
+msgstr "Seleziona se registro fatture con inversione contabile"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_einvoice
 msgid "Check if this is a E-Invoice Journal"
-msgstr "Selezionare se registro e-fatture"
+msgstr "Seleziona se registro e-fatture"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_proforma
 msgid "Check if this is a Proforma Journal"
-msgstr "Selezionare se registro avvisi di parcella"
+msgstr "Selezione se registro avvisi di parcella"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_account_journal_anom_sale_receipts
 msgid "Check if this is the Anonimous Sale Receipts Journal"
-msgstr "Selezionare se registro corrispettivi"
+msgstr "Seleziona se registro corrispettivi"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_code
@@ -84,7 +85,7 @@ msgstr "Codice Carica"
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_codice_carica_form
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_codice_carica_tree
 msgid "Codice carica"
-msgstr "Codice carica"
+msgstr "Codice Carica"
 
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_ade_codice_carica
@@ -94,7 +95,7 @@ msgstr "Codici Carica"
 #. module: l10n_it_ade
 #: model:ir.actions.act_window,name:l10n_it_ade.action_ade_codice_carica
 msgid "Codici carica"
-msgstr "Codici carica"
+msgstr "Codici Carica"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_create_uid
@@ -141,16 +142,11 @@ msgid "E-Invoice journal"
 msgstr "Sezionale e-fatture"
 
 #. module: l10n_it_ade
-#: model:ir.model.fields,field_description:l10n_it_ade.field_account_invoice_fiscal_document_type_id
-msgid "Fiscal Document Type"
-msgstr "Tipo documento fiscale"
-
-#. module: l10n_it_ade
 #: model:ir.actions.act_window,name:l10n_it_ade.action_invoice_type
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_invoice_type_form
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_invoice_type_tree
 msgid "Fiscal Document Types"
-msgstr "Fiscal Document Types"
+msgstr "Tipi documenti fiscali"
 
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_fiscal_report
@@ -167,7 +163,7 @@ msgstr "Tipo documento fiscale"
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_help
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_help
 msgid "Help"
-msgstr "Aiuto"
+msgstr "Guida"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_id
@@ -221,7 +217,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_assosoftware_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_write_date
@@ -229,22 +225,12 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_assosoftware_write_date
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_tax_nature_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_law_reference
 msgid "Law reference"
 msgstr "Riferimento legislativo"
-
-#. module: l10n_it_ade
-#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_rc_purchase_tax_id
-msgid "Mapped Purchase Tax Code"
-msgstr "Codice IVA acquisti associato"
-
-#. module: l10n_it_ade
-#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_rc_sale_tax_id
-msgid "Mapped Sale Tax Code"
-msgstr "Codice IVA vendite associato"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_name
@@ -258,7 +244,7 @@ msgstr "Nome"
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_assosoftware_tree
 #: model:ir.ui.view,arch_db:l10n_it_ade.view_tax_nature_tree
 msgid "Natura IVA"
-msgstr "Natura IVA"
+msgstr "Natura Iva"
 
 #. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_kind_id
@@ -271,11 +257,6 @@ msgstr "Natura"
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_tax_assosoftware_nature
 msgid "Nature of tax code: may be taxable, out of scope, etc ..."
 msgstr "Natura del codice: può essere imponibile, fuori campo, eccetera …."
-
-#. module: l10n_it_ade
-#: selection:account.tax,rc_type:0
-msgid "No RC"
-msgstr "No RC"
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_res_partner
@@ -293,11 +274,6 @@ msgid "Proforma journal"
 msgstr "Registro avvisi di parcella"
 
 #. module: l10n_it_ade
-#: selection:account.tax,rc_type:0
-msgid "RC with self.invoice"
-msgstr "RC con auto-fattura"
-
-#. module: l10n_it_ade
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_codice_carica_scope
 #: model:ir.model.fields,help:l10n_it_ade.field_italy_ade_invoice_type_scope
 msgid "Reserved to specific scope"
@@ -309,27 +285,15 @@ msgid "Reverse Charge Journal"
 msgstr "Sezionale inversione contabile"
 
 #. module: l10n_it_ade
-#: model:ir.model.fields,field_description:l10n_it_ade.field_account_tax_rc_type
-msgid "Reverse Charge Policy"
-msgstr "Politica di Reverse Charge"
-
-#. module: l10n_it_ade
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_codice_carica_scope
 #: model:ir.model.fields,field_description:l10n_it_ade.field_italy_ade_invoice_type_scope
 msgid "Scope"
-msgstr "Scope"
+msgstr "Scopo"
 
 #. module: l10n_it_ade
 #: selection:account.tax,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
-
-#. module: l10n_it_ade
-#: model:ir.model.fields,help:l10n_it_ade.field_account_invoice_fiscal_document_type_id
-msgid "Tag 2.1.1.1 <TipoDocumento>\n"
-"Tipo documento fiscale."
-msgstr "Tag 2.1.1.1 <TipoDocumento>\n"
-"Tipo documento fiscale."
 
 #. module: l10n_it_ade
 #: model:ir.model,name:l10n_it_ade.model_account_tax
@@ -340,7 +304,7 @@ msgstr "Imposta"
 #: model:ir.model,name:l10n_it_ade.model_italy_ade_tax_assosoftware
 #: model:ir.model.fields,help:l10n_it_ade.field_account_tax_assosoftware_id
 msgid "Tax Assosoftware classification"
-msgstr "Tax Assosoftware classification"
+msgstr "Classificazione IVA Assosoftware"
 
 #. module: l10n_it_ade
 #: model:ir.ui.menu,name:l10n_it_ade.menu_ade

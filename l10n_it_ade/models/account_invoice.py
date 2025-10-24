@@ -10,7 +10,7 @@
 import logging
 from xml.sax.saxutils import escape
 
-from odoo import models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -39,6 +39,15 @@ XML_ESCAPE = {
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
+
+    fiscal_document_type_id = fields.Many2one(
+        "italy.ade.invoice.type",
+        string="Fiscal Document Type",
+        oldname="invoice_type_id",
+        copy=False,
+        help="Tag 2.1.1.1 <TipoDocumento>\n"
+             "Tipo documento fiscale."
+    )
 
     def wep_text(self, text):
         """ "Do xml escape to avoid error StringLatinType"""

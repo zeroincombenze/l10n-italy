@@ -12,6 +12,12 @@
         <field name="arch" type="xml">
             <field name="country_group_id" position="after">
                 <field name="rc_type_id" />
+                <field name="rc_type" />
+                <field name="partner_type" />
+                <field name="self_journal_id" />
+                <field name="payment_journal_id" />
+                <field name="transient_account_id" />
+                <field name="rc_fiscal_document_type_id" />
             </field>
         </field>
     </record>

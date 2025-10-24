@@ -47,6 +47,7 @@ class TestReverseCharge(SingleTransactionCase):
         super(TestReverseCharge, self).tearDown()
 
     def _test_rc_1_purchase(self):
+        # Test old deprecated mode
         xref = "z0bug.invoice_ZI_6"
         invoice = self.resource_browse(xref=xref)
         self.resource_edit(resource=invoice, actions="action_invoice_open")
@@ -108,8 +109,64 @@ class TestReverseCharge(SingleTransactionCase):
         template.append({"line_ids": tmpl_move})
         self.validate_records(template, invoice.move_id)
 
+    def _test_rc_2_purchase(self):
+        # Test new mode
+        self.env["account.journal"].search([("update_posted", "!=", True)]).write(
+            {"update_posted": True}
+        )
+        xref = "z0bug.invoice_ZI_6"
+        invoice = self.resource_browse(xref=xref)
+        invoice.action_invoice_cancel()
+        invoice.action_invoice_draft()
+        # Transform old stype configuration to new configuration
+        fp = invoice.fiscal_position_id
+        rct = invoice.fiscal_position_id.rc_type_id
+        fp.write({
+            "rc_type": rct.rc_type,
+            "partner_type": rct.partner_type,
+            "partner_id": rct.partner_id.id,
+            "self_journal_id": rct.self_journal_id.id,
+            "payment_journal_id": rct.payment_journal_id.id,
+            "transient_account_id": rct.transient_account_id.id,
+        })
+        rct.write({
+            "rc_type": False,
+            # "rc_type_id": False,
+            "partner_type": False,
+            "partner_id": False,
+            "self_journal_id": False,
+            "payment_journal_id": False,
+            "transient_account_id": False,
+        })
+        for taxmap in rct.tax_ids:
+            taxmap.purchase_tax_id.write({
+                "rc_sale_tax_id": taxmap.sale_tax_id.id
+            })
+
+        self.resource_edit(resource=invoice, actions="action_invoice_open")
+        invoice = self.resource_browse(xref=xref)
+        self.assertEqual(
+            invoice.state,
+            "open",
+            msg="action_invoice_open() FAILED: no state changed!"
+        )
+        self.assertEqual(invoice.amount_tax, 32.97)
+        self.assertEqual(invoice.amount_total, 182.85)
+        self.assertEqual(invoice.amount_net_pay, 160.85)
+        self.assertEqual(invoice.residual, 160.85)
+        self.assertEqual(invoice.amount_rc, -22.0)
+        self_invoice = invoice.rc_self_invoice_id
+        self.assertTrue(self_invoice)
+        self.assertEqual(
+            self_invoice.state,
+            "paid",
+            msg="Invalid self-invoice status"
+        )
+        self.assertEqual(self_invoice.amount_tax, 22.0)
+        self.assertEqual(self_invoice.amount_total, 122.0)
+
     def test_rc(self):
         _logger.info("🎺 Testing Reverse Charge")
         self._test_rc_1_purchase()
         self._test_rc_1_sale()
-
+        self._test_rc_2_purchase()

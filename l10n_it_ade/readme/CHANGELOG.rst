@@ -1,3 +1,11 @@
+10.0.0.3.10 (2025-10-24)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document TD29 / Documento fiscale TD29
+* [IMP] New account tax mapping / Associazione conto IVA vendite acquisti su codice
+* [IMP] Fiscal document type moved from l10n_it_einvoice_base / Documento fiscale 
+* [QUA] Test coverage 65% (190: 66+124) [14 TestPoints] - quality rating 44 (target 100)
+
 10.0.0.3.9 (2024-01-29)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -33,15 +33,17 @@ class AccountInvoice(models.Model):
         readonly=True,
     )
     amount_rc = fields.Float(
-        string="Reverse Charge Amount",
+        string="RC Tax Amount",
         digits=dp.get_precision("Account"),
         store=True,
         readonly=True,
         copy=False,
         compute="_compute_amount",
     )
-    rc = fields.Boolean("RC",
-                        compute="_compute_amount",)
+    rc = fields.Boolean(
+        string="RC Type",
+        compute="_compute_amount",
+    )
 
     @api.onchange("fiscal_position_id")
     def _onchange_fiscal_position_id(self):
@@ -61,20 +63,6 @@ class AccountInvoice(models.Model):
         self._onchange_fiscal_position_id()
         return res
 
-    @api.multi
-    def _get_original_suppliers(self):
-        rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
-        supplier_invoices = self.env["account.invoice"]
-        for rc_purchase_invoice in rc_purchase_invoices:
-            current_supplier_invoices = self.search(
-                [("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)]
-            )
-            if current_supplier_invoices:
-                supplier_invoices |= current_supplier_invoices
-            else:
-                supplier_invoices |= rc_purchase_invoice
-        return supplier_invoices.mapped("partner_id")
-
     def rc_inv_line_vals(self, line):
         return {
             "product_id": line.product_id.id,
@@ -86,11 +74,6 @@ class AccountInvoice(models.Model):
         }
 
     def rc_inv_vals(self, partner, account, rc_type, lines, currency):
-        if self.type == "in_invoice":
-            type = "out_invoice"
-        else:
-            type = "out_refund"
-
         comment = _(
             "Reverse charge self invoice.\n"
             "Supplier: %s\n"
@@ -103,18 +86,23 @@ class AccountInvoice(models.Model):
              self.number)
         return {
             "partner_id": partner.id,
-            "type": type,
             "account_id": account.id,
-            "journal_id": rc_type.journal_id.id,
-            "invoice_line_ids": lines,
+            "journal_id": rc_type.self_journal_id.id,
+            "type": {
+                # 'in_invoice': 'out_invoice',
+                "in_refund": "out_refund",
+            }.get(self.type, "out_invoice"),
+            "date_due": self.date_invoice,
             "date_invoice": self.date,
-            "date": self.date,
             "origin": self.number,
             "rc_purchase_invoice_id": self.id,
-            "name": rc_type.self_invoice_text,
+            # "name": rc_type.self_invoice_text,
+            "name": _("Reverse charge self invoice"),
             "currency_id": currency.id,
             "fiscal_position_id": False,
             "payment_term_id": False,
+            "invoice_line_ids": lines,
+            "date": self.date,
             "comment": comment,
         }
 
@@ -160,7 +148,7 @@ class AccountInvoice(models.Model):
         # compute_rc_amount_tax is used for debit/credit fields
         invoice_currency = self.currency_id.with_context(date=self.date_invoice)
         main_currency = self.company_currency_id.with_context(date=self.date_invoice)
-        if invoice_currency != main_currency:
+        if invoice_currency != main_currency:  # pragma: no cover
             round_curr = main_currency.round
             rc_amount_tax = invoice_currency.compute(rc_amount_tax, main_currency)
         return round_curr(rc_amount_tax)
@@ -267,7 +255,6 @@ class AccountInvoice(models.Model):
         rc_invoice = self.rc_self_invoice_id
         payment_credit_line_data = self.rc_payment_credit_line_vals(rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(self.amount_total)
-        # payment_credit_line_data['credit'])
         rc_payment_data["line_ids"] = [
             (0, 0, payment_debit_line_data),
             (0, 0, payment_credit_line_data),
@@ -291,7 +278,7 @@ class AccountInvoice(models.Model):
         rc_lines_to_rec.reconcile()
 
     def prepare_reconcile_supplier_invoice(self):
-        rc_type = self.fiscal_position_id.rc_type_id
+        rc_type = self.get_rc_type()
         move_model = self.env["account.move"]
         rc_payment_data = self.rc_payment_vals(rc_type)
         rc_payment = move_model.create(rc_payment_data)
@@ -320,7 +307,7 @@ class AccountInvoice(models.Model):
         inv_lines_to_rec.reconcile()
 
     def reconcile_rc_invoice(self, rc_payment):
-        rc_type = self.fiscal_position_id.rc_type_id
+        rc_type = self.get_rc_type()
         move_line_model = self.env["account.move.line"]
         rc_invoice = self.rc_self_invoice_id
         rc_payment_credit_line_data = self.rc_payment_credit_line_vals(rc_invoice)
@@ -343,11 +330,18 @@ class AccountInvoice(models.Model):
         rc_lines_to_rec.reconcile()
 
     def generate_self_invoice(self):
-        rc_type = self.fiscal_position_id.rc_type_id
-        if not rc_type.payment_journal_id.default_credit_account_id:
+        rc_type = self.get_rc_type()
+        if (
+                not rc_type
+                or not rc_type.payment_journal_id
+                or not rc_type.payment_journal_id.default_credit_account_id
+        ):
             raise UserError(
-                _("There is no default credit account defined \n" 'on journal "%s".')
-                % rc_type.payment_journal_id.name
+                _("There is no journal neither default credit account on journal '%s'"
+                  % (
+                      rc_type and rc_type.payment_journal_id
+                      and rc_type.payment_journal_id.name
+                  ))
             )
         if rc_type.partner_type == "other":
             rc_partner = rc_type.partner_id
@@ -358,7 +352,8 @@ class AccountInvoice(models.Model):
 
         rc_invoice_lines = []
         for line in self.invoice_line_ids:
-            if line.rc:
+            if line.rc or (self.fiscal_document_type_id
+                           and self.fiscal_document_type_id.is_self_invoice):
                 rc_invoice_line = self.rc_inv_line_vals(line)
                 line_tax_ids = line.invoice_line_tax_ids
                 if not line_tax_ids:
@@ -366,17 +361,22 @@ class AccountInvoice(models.Model):
                         _("Invoice line\n%s\nis RC but has not tax") % line.name
                     )
                 tax_ids = list()
-                for tax_mapping in rc_type.tax_ids:
-                    for line_tax_id in line_tax_ids:
-                        if tax_mapping.purchase_tax_id == line_tax_id:
-                            tax_ids.append(tax_mapping.sale_tax_id.id)
-                if not tax_ids:
+                transient_account = rc_type.transient_account_id
+                for line_tax in line_tax_ids:
+                    if line_tax.rc_sale_tax_id:
+                        tax_ids.append(line_tax.rc_sale_tax_id.id)
+                if not tax_ids and rc_type:
+                    for tax_mapping in rc_type.tax_ids:
+                        for line_tax_id in line_tax_ids:
+                            if tax_mapping.purchase_tax_id == line_tax_id:
+                                tax_ids.append(tax_mapping.sale_tax_id.id)
+                if not tax_ids or not transient_account:
                     raise UserError(
-                        _("Tax code used is not a RC tax.\nCan't " "find tax mapping")
+                        _("Tax code used is not a RC tax.\nCan't find tax mapping")
                     )
                 if line_tax_ids:
                     rc_invoice_line["invoice_line_tax_ids"] = [(6, False, tax_ids)]
-                rc_invoice_line["account_id"] = rc_type.transitory_account_id.id
+                rc_invoice_line["account_id"] = transient_account.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
@@ -384,7 +384,7 @@ class AccountInvoice(models.Model):
             )
 
             # create or write the self invoice
-            if self.rc_self_invoice_id:
+            if self.rc_self_invoice_id:  # pragma: no cover
                 # this is needed when user takes back to draft supplier
                 # invoice, edit and validate again
                 rc_invoice = self.rc_self_invoice_id
@@ -397,14 +397,17 @@ class AccountInvoice(models.Model):
                 self.rc_self_invoice_id = rc_invoice.id
             rc_invoice.action_invoice_open()
 
-            if rc_type.with_supplier_self_invoice:
+            if (
+                    "with_supplier_self_invoice" in rc_type._fields
+                    and rc_type.with_supplier_self_invoice
+            ):
                 self.reconcile_supplier_invoice()
             else:
                 rc_payment = self.prepare_reconcile_supplier_invoice()
                 self.reconcile_rc_invoice(rc_payment)
                 self.partially_reconcile_supplier_invoice(rc_payment)
 
-    def generate_supplier_self_invoice(self):
+    def generate_supplier_self_invoice(self):  # pragma: no cover
         rc_type = self.fiscal_position_id.rc_type_id
         if not len(rc_type.tax_ids) == 1:
             raise UserError(_("Can't find 1 tax mapping for %s" % rc_type.name))
@@ -426,7 +429,7 @@ class AccountInvoice(models.Model):
             inv_line.invoice_line_tax_ids = [
                 (6, 0, [rc_type.tax_ids[0].purchase_tax_id.id])
             ]
-            inv_line.account_id = rc_type.transitory_account_id.id
+            inv_line.account_id = rc_type.transient_account_id.id
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
         # temporary disabling self invoice automations
@@ -443,18 +446,25 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         res = super(AccountInvoice, self).invoice_validate()
-        fp = self.fiscal_position_id
-        rc_type = fp and fp.rc_type_id
+        rc_type = self.get_rc_type()
         if (
                 self.type in ("in_invoice", "in_refund")
-                and rc_type and rc_type.method == "selfinvoice"
+                and rc_type and rc_type.rc_type == "self"
                 and self.amount_total):
-            if not rc_type.with_supplier_self_invoice:
+            if (
+                    "with_supplier_self_invoice" not in rc_type._fields
+                    or not rc_type.with_supplier_self_invoice
+            ):
                 self.generate_self_invoice()
-            else:
+            else:  # pragma: no cover
                 # See with_supplier_self_invoice field help
                 self.generate_supplier_self_invoice()
                 self.rc_self_purchase_invoice_id.generate_self_invoice()
+        elif (
+                self.type in ("in_invoice", "in_refund")
+                and self.fiscal_document_type_id.is_self_invoice
+        ):
+            self.generate_self_invoice()
         return res
 
     def remove_rc_payment(self):
@@ -509,11 +519,11 @@ class AccountInvoice(models.Model):
     def action_cancel(self):
         for inv in self:
             rc_type = inv.fiscal_position_id.rc_type_id
-            if rc_type and rc_type.method == "selfinvoice" and inv.rc_self_invoice_id:
+            if rc_type and rc_type.rc_type == "self" and inv.rc_self_invoice_id:
                 inv.remove_rc_payment()
             elif (
                 rc_type
-                and rc_type.method == "selfinvoice"
+                and rc_type.rc_type == "self"
                 and inv.rc_self_purchase_invoice_id
             ):
                 inv.rc_self_purchase_invoice_id.remove_rc_payment()
@@ -627,6 +637,19 @@ class AccountInvoice(models.Model):
             self.reconcile_invoice_lines()
         return res
 
+    def get_rc_type(self):
+        # Get pseudo RC type from invoice both in new style or in old deprecated style
+        rc_type = False
+        if (
+                "rc_type" in self.fiscal_position_id._fields
+                and self.fiscal_position_id.rc_type == "self"
+        ):
+            rc_type = self.fiscal_position_id
+        else:
+            # Old deprecated style
+            rc_type = self.fiscal_position_id.rc_type_id
+        return rc_type
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
@@ -666,4 +689,3 @@ class AccountInvoiceLine(models.Model):
                 }
             self._set_rc_flag()
         return res
-

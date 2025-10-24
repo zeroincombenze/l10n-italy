@@ -1,6 +1,6 @@
-===========================================================================
-|icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.9
-===========================================================================
+============================================================================
+|icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.10
+============================================================================
 
 **Codes & Definitions from IRS**
 
@@ -78,8 +78,8 @@ Certifications | Certificazioni
 -------------------------------
 
 Logo | Logo,Certification | Certificazione,Date,Expiration date,Notes(s)
-|xml\_schema|,`ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__,01-06-2017,31-12-2024,Validazione contro schema xml
-|FatturaPA|,`FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__,01-06-2017,31-12-2024,Controllo tramite sito Agenzia delle Entrate
+|xml\_schema|,`ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__,01-06-2017,31-12-2026,Validazione contro schema xml
+|FatturaPA|,`FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__,01-06-2017,31-12-2026,Controllo tramite sito Agenzia delle Entrate
 
 
 
@@ -203,6 +203,14 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.3.10 (2025-10-24)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document TD29 / Documento fiscale TD29
+* [IMP] New account tax mapping / Associazione conto IVA vendite acquisti su codice
+* [IMP] Fiscal document type moved from l10n_it_einvoice_base / Documento fiscale 
+* [QUA] Test coverage 65% (190: 66+124) [14 TestPoints] - quality rating 44 (target 100)
+
 10.0.0.3.9 (2024-01-29)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -216,27 +224,6 @@ ChangeLog History | Cronologia modifiche
 * [FIX] pyxb 1.2.6
 * [IMP] Remove support for pyxb 1.2.4 / Rimosso supporto per pyxb 1.2.4
 * [QUA] Test coverage 66% (168: 57+111) [3 TestPoints] - quality rating 74 (target 100)
-
-10.0.0.3.7 (2023-02-13)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Self invoice flag / Identificatore documento autofattura
-
-10.0.0.3.6 (2022-09-26)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] l10n_it_ade/binding numeric data with 2 decimals
-
-10.0.0.3.5 (2022-09-22)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] l10n_it_ade/binding refactoring
-
-10.0.0.3.4 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Best record display/ Migliorie visualizzazione codice
-* [IMP] Tax nature renamed
 
 
 
@@ -266,6 +253,7 @@ Contributors | Partecipanti
 Acknowledges | Riconoscimenti
 -----------------------------
 
+* `Alessandro Camilli <alessandrocamilli@openforce.it>`__
 * `Davide Corio <info@davidecorio.com>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Alex Comba <alex.comba@agilebg.com>`__
@@ -297,7 +285,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2025-10-24
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

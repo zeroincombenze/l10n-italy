@@ -9,7 +9,7 @@
 #
 {
     "name": "Agenzia delle Entrate (italian IRS)",
-    "version": "10.0.0.3.9",
+    "version": "10.0.0.3.10",
     "category": "Localization/Italy",
     "summary": "Codes & Definitions from IRS",
     "author": "SHS-AV s.r.l.",
@@ -31,6 +31,7 @@
         "views/tax_nature_view.xml",
         "views/tax_assosoftware_view.xml",
         "views/invoice_type_view.xml",
+        "views/account_invoice_view.xml",
     ],
     "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,

@@ -13,6 +13,7 @@
                 <field name="in_invoice" />
                 <field name="out_refund" />
                 <field name="in_refund" />
+                <field name="is_self_invoice" />
             </tree>
         </field>
     </record>

@@ -43,7 +43,7 @@
                                     'required': [('partner_type', '=', 'other')]}"
                         />
                         <field
-                            name="journal_id"
+                            name="self_journal_id"
                             attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}"
@@ -68,7 +68,7 @@
                                     'required': [('method', '=', 'selfinvoice')]}"
                         />
                         <field
-                            name="transitory_account_id"
+                            name="transient_account_id"
                             attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}"
@@ -106,7 +106,7 @@
                 <field name="name" />
                 <field name="method" />
                 <field name="partner_type" />
-                <field name="journal_id" />
+                <field name="self_journal_id" />
                 <field name="payment_journal_id" />
             </tree>
         </field>

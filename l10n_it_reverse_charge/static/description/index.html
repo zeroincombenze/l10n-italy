@@ -3,14 +3,14 @@
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
-                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="l10n_uk.png" alt="English" style="width:28px;height:16px;"/>
+                <img src="l10n_us.png" alt="English" style="width:28px;height:16px;"/>
             </p>
             <h2 class="oe_slogan" style="color:#162832;">Manage Reverse Charge Tax for Italy</h2>
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+                <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
             <h2 class="oe_slogan" style="color:#162832;">Gestione IVA in reverse charge per Italia</h2>
         </div>
@@ -24,8 +24,8 @@
     <div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
-                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="l10n_uk.png" alt="English" style="width:28px;height:16px;"/>
+                <img src="l10n_us.png" alt="English" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">Module to manage reverse charge tax in vendor bills and customer invoices.
 <p align="justify">
@@ -45,7 +45,7 @@ For customer invoices tha due amount is evaluated.
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+                <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">Modulo per gestire l'inversione contabile (reverse charge) nelle fatture fornitore e
 nelle fatture clienti.
@@ -73,8 +73,8 @@ Per le fatture di vendita viene soltanto calcolato l'importo da incassare.
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
-                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="l10n_uk.png" alt="English" style="width:28px;height:16px;"/>
+                <img src="l10n_us.png" alt="English" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Accounting &#187; Configuration &#187; Account &#187; Taxes
 <p align="justify">
@@ -98,7 +98,7 @@ Create reverse chare tye <b>Intra UE (autofattura)</b>:
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+                <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Configurazione &#187; Contabilit&#224; &#187; Imposte
 <p align="justify">
@@ -128,8 +128,16 @@ Creare il tipo reverse charge <b>Intra UE (autofattura)</b>:
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h4>10.0.1.8 (2024-06-28)</h4>
+<h4>10.0.1.9 (2025-10-24)</h4>
 <p align="justify">
+<ul>
+<li>[IMP] Data for RC self-invoice on fiscal position / Dati auto-fattura in posizione fiscale</li>
+<li>[QUA] Test coverage 80% (377: 74+303) [36 TestPoints] - quality rating 53 (target 100)</li>
+</ul>
+</p><p align="justify">
+</p><p align="justify">
+<h4>10.0.1.8 (2024-06-28)</h4>
+</p><p align="justify">
 <ul>
 <li>[IMP] Function get_receivable_line_ids moved to l10n_it_account</li>
 <li>[QUA] Test coverage 64% (404: 146+258) [26 TestPoints] - quality rating 49 (target 100)</li>
@@ -144,18 +152,6 @@ Creare il tipo reverse charge <b>Intra UE (autofattura)</b>:
 <li>[IMP] Sale invoice / Gestione fatture di vendita con RC e netto a pagare</li>
 <li>[IMP] Regression tests</li>
 <li>[QUA] Test coverage 64% (410: 147+263) [26 TestPoints] - quality rating 49 (target 100)</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.6 (2023-02-20)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] The invoice date of self invoice is the same of the date of purchase invoice / Data auto-fattura come data contabile fattura di acquisto</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.5 (2023-02-13)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] The date may be different from invoice date for self invoice / Data fattura e contabile diverse per le auto-fatture</li>
 </ul>
 </p>
         </div>
@@ -190,6 +186,6 @@ Creare il tipo reverse charge <b>Intra UE (autofattura)</b>:
     </div>
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
-        <p>Published information on | Informazioni pubblicate: 2024-06-28</p>
+        <p>Published information on | Informazioni pubblicate: 2025-10-24</p>
     </div>
 </section>

@@ -241,6 +241,8 @@ TipoDocumentoType.TD24 = TipoDocumentoType._CF_enumeration.addEnumeration(unicod
 TipoDocumentoType.TD25 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD25', tag='TD25')
 TipoDocumentoType.TD26 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD26', tag='TD26')
 TipoDocumentoType.TD27 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD27', tag='TD27')
+TipoDocumentoType.TD28 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD28', tag='TD28')
+TipoDocumentoType.TD29 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD29', tag='TD29')
 TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_length,
    TipoDocumentoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoDocumentoType', TipoDocumentoType)

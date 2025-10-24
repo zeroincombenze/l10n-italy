@@ -36,16 +36,31 @@ class AccountRCType(models.Model):
     _name = "account.rc.type"
     _description = "Reverse Charge Type"
 
+    def _compute_rc_type(self):
+        self.rc_type = "self" if self.method in ("selfinvoice", "integration") else ""
+
     name = fields.Char("Name", required=True)
+    # Deprecated
     method = fields.Selection(
         (("integration", "VAT Integration"), ("selfinvoice", "Self Invoice")),
         string="Method",
         required=True,
     )
+    # Following field is to manage compatibility with new style
+    rc_type = fields.Selection(
+        selection=[
+            ("", "No RC"),
+            # ("local", "RC domestic"),
+            ("self", "RC with self.invoice"),
+        ],
+        string="Reverse Charge Policy",
+        compute="_compute_rc_type",
+    )
     partner_type = fields.Selection(
         (("supplier", "Supplier"), ("other", "Other")),
         string="Self Invoice Partner Type",
     )
+    # Deprecated
     with_supplier_self_invoice = fields.Boolean(
         "With additional supplier self invoice",
         help="Flag this to enable the creation of an additional supplier self"
@@ -59,11 +74,13 @@ class AccountRCType(models.Model):
         string="Self Invoice Partner",
         help="Partner used on RC self invoices.",
     )
-    journal_id = fields.Many2one(
+    self_journal_id = fields.Many2one(
         "account.journal",
         string="Self Invoice Journal",
         help="Journal used on RC self invoices.",
+        oldname="journal_id",
     )
+    # Deprecated
     supplier_journal_id = fields.Many2one(
         "account.journal",
         string="Supplier Self Invoice Journal",
@@ -74,7 +91,7 @@ class AccountRCType(models.Model):
         string="Self Invoice Payment Journal",
         help="Journal used to pay RC self invoices.",
     )
-    transitory_account_id = fields.Many2one(
+    transient_account_id = fields.Many2one(
         "account.account",
         string="Self Invoice Transitory Account",
         help="Transitory account used on self invoices.",
@@ -87,6 +104,7 @@ class AccountRCType(models.Model):
         copy=False,
     )
     description = fields.Text("Description")
+    # Deprecated
     self_invoice_text = fields.Text("Text in Self Invoice")
     company_id = fields.Many2one(
         "res.company",

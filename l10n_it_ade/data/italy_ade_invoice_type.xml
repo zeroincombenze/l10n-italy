@@ -341,5 +341,18 @@ La fattura può essere emessa entro il mese successivo alla consegna merce.</fie
         <field name="priority">3</field>
         <field name="is_self_invoice">1</field>
     </record>
+    <record id="fatturapa_TD29" model="italy.ade.invoice.type">
+        <field name="code">TD29</field>
+        <field name="name">Autofattura per omessa o irregolare fattura</field>
+        <field name="scope">IT EU XX,in_invoice</field>
+        <field name="help">Documento auto emesso.</field>
+        <field name="active">1</field>
+        <field name="out_invoice">True</field>
+        <field name="in_invoice">True</field>
+        <field name="out_refund">False</field>
+        <field name="in_refund">False</field>
+        <field name="priority">3</field>
+        <field name="is_self_invoice">1</field>
+    </record>
 
 </odoo>

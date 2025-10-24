@@ -15,6 +15,9 @@
                             attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"
                         />
                         <field name="payability" />
+                        <field name="rc_type"/>
+                        <field name="rc_sale_tax_id" attrs="{'invisible': [('type_tax_use', '=', 'sale')]}"/>
+                        <field name="rc_purchase_tax_id" attrs="{'invisible': [('type_tax_use', '=', 'purchase')]}"/>
                         <field name="assosoftware_id" options="{'no_create': True}" />
                     </group>
                 </page>

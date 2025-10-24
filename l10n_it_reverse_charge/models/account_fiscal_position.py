@@ -11,4 +11,39 @@ from odoo import fields, models
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
-    rc_type_id = fields.Many2one("account.rc.type", "RC Type")
+    # Old deprectaed style field
+    rc_type_id = fields.Many2one("account.rc.type", "RC Type (Deprecated)")
+    rc_type = fields.Selection(
+        selection=[
+            ("", "No RC"),
+            # ("local", "RC domestic"),
+            ("self", "RC with self.invoice"),
+        ],
+        string="Reverse Charge Policy",
+        default="",
+    )
+    partner_type = fields.Selection(
+        selection=[("supplier", "Supplier"), ("other", "Company")],
+        string="Self-Invoice Partner Type",
+        default="",
+    )
+    self_journal_id = fields.Many2one(
+        "account.journal",
+        string="Self-Invoice Journal",
+        domain=[("type", "=", "sale")],
+        default="",
+    )
+    payment_journal_id = fields.Many2one(
+        "account.journal",
+        string="Self Invoice Payment Journal",
+        help="Journal used to pay RC self invoices.",
+    )
+    transient_account_id = fields.Many2one(
+        "account.account",
+        string="Self Invoice Transitory Account",
+        help="Transitory account used on self invoices.",
+    )
+    rc_fiscal_document_type_id = fields.Many2one(
+        "italy.ade.invoice.type",
+        string="Self Invoice Fiscal Document Type",
+    )
