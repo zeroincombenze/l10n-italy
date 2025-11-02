@@ -88,7 +88,7 @@ class AccountPartialReconcile(models.Model):
         # Search payment move
         rec_line_payment = False
         for rec_line in rec_lines:
-            if rec_line.id != rec_line_statement.id:
+            if not rec_line_statement or rec_line.id != rec_line_statement.id:
                 rec_line_payment = rec_line
         # Generate wt moves
         wt_moves = []

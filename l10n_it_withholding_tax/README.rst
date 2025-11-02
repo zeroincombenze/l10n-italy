@@ -145,16 +145,17 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.9 (2025-11-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Sale invoice witj WT / Fattura cliente con RA
+* [QUA] Test coverage 27% (582: 427+155) [0 TestPoints] - quality rating 19 (target 100)
+
 10.0.1.2.8 (2024-06-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Depending on l10n_it_account for amount_net_pay
 * [QUA] Test coverage 29% (542: 387+155) [0 TestPoints] - quality rating 18 (target 100)
-
-10.0.1.2.7 (2020-06-29)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Field amount_net_pay moved in l10n_it_account
 
 
 
@@ -211,7 +212,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-09
+Last Update / Ultimo aggiornamento: 2025-11-02
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

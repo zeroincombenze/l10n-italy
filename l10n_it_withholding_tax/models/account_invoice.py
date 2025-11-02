@@ -3,7 +3,7 @@
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
 
 
@@ -75,8 +75,8 @@ class AccountInvoice(models.Model):
         ).create(vals)
 
         if (
-            any(line.invoice_line_tax_wt_ids for line in invoice.invoice_line_ids)
-            and not invoice.withholding_tax_line_ids
+                any(line.invoice_line_tax_wt_ids for line in invoice.invoice_line_ids)
+                and not invoice.withholding_tax_line_ids
         ):
             invoice.compute_taxes()
 
@@ -104,15 +104,19 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).action_move_create()
 
         for inv in self:
+            if self.type in ["out_invoice", "out_refund"]:
+                inv.move_id.button_cancel()
+                final_vals = []
+                reconcile_lines = self.env["account.move.line"]
             # Rates
-            rate_num = 0
+            rate_nums = 0
             for move_line in inv.move_id.line_ids:
                 if move_line.account_id.internal_type not in ["receivable", "payable"]:
                     continue
-                rate_num += 1
-            if rate_num:
+                rate_nums += 1
+            if rate_nums:
                 wt_rate = round(
-                    inv.withholding_tax_amount / rate_num,
+                    inv.withholding_tax_amount / rate_nums,
                     dp_obj.precision_get("Account"),
                 )
             wt_residual = inv.withholding_tax_amount
@@ -122,15 +126,61 @@ class AccountInvoice(models.Model):
                 if move_line.account_id.internal_type not in ["receivable", "payable"]:
                     continue
                 i += 1
-                if i == rate_num:
+                if i == rate_nums:
                     wt_amount = wt_residual
                 else:
                     wt_amount = wt_rate
                 wt_residual -= wt_amount
+                if self.type in ["out_invoice", "out_refund"]:
+                    vals = {
+                        "account_id": move_line.account_id.id,
+                        "partner_id": move_line.partner_id.id,
+                        "move_id": move_line.move_id.id,
+                        "name": move_line.name,
+                        "ref": move_line.ref,
+                        "invoice_id": self.id,
+                    }
+                    if move_line.debit > 0.0:
+                        vals["credit"] = wt_amount
+                        final_vals.append(vals)
+                    elif move_line.credit > 0.0:
+                        vals["debit"] = wt_amount
+                        final_vals.append(vals)
+                    reconcile_lines |= move_line
                 # update line
                 move_line.write({"withholding_tax_amount": wt_amount})
-            # Create WT Statement
-            self.create_wt_statement()
+            if self.type in ["out_invoice", "out_refund"]:
+                MoveLine = self.env["account.move.line"].with_context(
+                    check_move_validity=False)
+                wt_amount = 0.0
+                for vals in final_vals:
+                    wt_amount += vals.get("credit", 0.0) - vals.get("debit", 0.0)
+                    reconcile_lines |= MoveLine.create(vals)
+                recorded = False
+                for line in self.invoice_line_ids:
+                    for tax in line.invoice_line_tax_wt_ids:
+                        if wt_amount > 0.0:
+                            vals["account_id"] = tax.account_payable_id.id
+                            vals["debit"] = wt_amount
+                            vals["credit"] = 0.0
+                        else:
+                            vals["account_id"] = tax.account_receivable_id.id
+                            vals["credit"] = -wt_amount
+                            vals["debit"] = 0.0
+                        vals["name"] = _("WT %s - %s") % (tax.code, tax.name)
+                        vals["ref"] = vals["name"]
+                        vals["invoice_id"] = self.id
+                        MoveLine.create(vals)
+                        recorded = True
+                        break
+                    if recorded:
+                        break
+            if self.type in ["out_invoice", "out_refund"]:
+                inv.move_id.post()
+                reconcile_lines.with_context().reconcile()
+            else:
+                # Create WT Statement
+                self.create_wt_statement()
         return res
 
     @api.multi
@@ -183,7 +233,7 @@ class AccountInvoice(models.Model):
             if self.type in ["in_refund", "out_refund"]:
                 wt_base_amount = -1 * wt_base_amount
                 wt_tax_amount = -1 * wt_tax_amount
-            val = {
+            vals = {
                 "date": self.move_id.date,
                 "move_id": self.move_id.id,
                 "invoice_id": self.id,
@@ -192,7 +242,7 @@ class AccountInvoice(models.Model):
                 "base": wt_base_amount,
                 "tax": wt_tax_amount,
             }
-            wt_statement_obj.create(val)
+            wt_statement_obj.create(vals)
 
 
 class AccountInvoiceLine(models.Model):
