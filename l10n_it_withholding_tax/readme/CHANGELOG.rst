@@ -1,7 +1,13 @@
+10.0.1.2.9 (2025-11-03)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Error validate invoice
+* [QUA] Test coverage 27% (583: 428+155) [0 TestPoints] - quality rating 19 (target 100)
+
 10.0.1.2.9 (2025-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Sale invoice witj WT / Fattura cliente con RA
+* [FIX] Sale invoice with WT / Fattura cliente con RA
 * [QUA] Test coverage 27% (582: 427+155) [0 TestPoints] - quality rating 19 (target 100)
 
 10.0.1.2.8 (2024-06-09)

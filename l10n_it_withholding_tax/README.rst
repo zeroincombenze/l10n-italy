@@ -1,5 +1,5 @@
 =================================================================
-|icon| Italian Withholding Tax/l10n_it_withholding_tax 10.0.1.2.8
+|icon| Italian Withholding Tax/l10n_it_withholding_tax 10.0.1.2.9
 =================================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_withholding_tax/static/description/icon.png
@@ -145,10 +145,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.2.9 (2025-11-03)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Error validate invoice
+* [QUA] Test coverage 27% (583: 428+155) [0 TestPoints] - quality rating 19 (target 100)
+
 10.0.1.2.9 (2025-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] Sale invoice witj WT / Fattura cliente con RA
+* [FIX] Sale invoice with WT / Fattura cliente con RA
 * [QUA] Test coverage 27% (582: 427+155) [0 TestPoints] - quality rating 19 (target 100)
 
 10.0.1.2.8 (2024-06-09)
@@ -212,7 +218,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-11-02
+Last Update / Ultimo aggiornamento: 2025-11-03
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
