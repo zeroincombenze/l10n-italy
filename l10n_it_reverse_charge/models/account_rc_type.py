@@ -13,6 +13,7 @@ class AccountRCTypeTax(models.Model):
     _name = "account.rc.type.tax"
     _description = "Tax Mapping for self invoices"
 
+    # Deprecated model
     rc_type_id = fields.Many2one(
         "account.rc.type", string="RC type", required=True, ondelete="cascade"
     )
@@ -51,7 +52,7 @@ class AccountRCType(models.Model):
         selection=[
             ("", "No RC"),
             # ("local", "RC domestic"),
-            ("self", "RC with self.invoice"),
+            ("self", "RC with self invoice"),
         ],
         string="Reverse Charge Policy",
         compute="_compute_rc_type",

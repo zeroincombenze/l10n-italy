@@ -11,7 +11,7 @@ from odoo import fields, models
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
-    # Old deprectaed style field
+    # Old deprected style field
     rc_type_id = fields.Many2one("account.rc.type", "RC Type (Deprecated)")
     rc_type = fields.Selection(
         selection=[
@@ -42,8 +42,4 @@ class AccountFiscalPosition(models.Model):
         "account.account",
         string="Self Invoice Transitory Account",
         help="Transitory account used on self invoices.",
-    )
-    rc_fiscal_document_type_id = fields.Many2one(
-        "italy.ade.invoice.type",
-        string="Self Invoice Fiscal Document Type",
     )

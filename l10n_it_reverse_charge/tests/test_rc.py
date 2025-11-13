@@ -167,6 +167,9 @@ class TestReverseCharge(SingleTransactionCase):
 
     def test_rc(self):
         _logger.info("🎺 Testing Reverse Charge")
+        # BUG WORKAROUND
+        self.resource_browse("z0bug.tax_a17c6ca").rc_sale_tax_id = self.resource_browse(
+            "z0bug.tax_a17c6ca")
         self._test_rc_1_purchase()
         self._test_rc_1_sale()
         self._test_rc_2_purchase()

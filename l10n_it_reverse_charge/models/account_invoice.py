@@ -99,7 +99,7 @@ class AccountInvoice(models.Model):
             # "name": rc_type.self_invoice_text,
             "name": _("Reverse charge self invoice"),
             "currency_id": currency.id,
-            "fiscal_position_id": False,
+            "fiscal_position_id": self.fiscal_position_id.id,
             "payment_term_id": False,
             "invoice_line_ids": lines,
             "date": self.date,
@@ -344,7 +344,7 @@ class AccountInvoice(models.Model):
                   ))
             )
         if rc_type.partner_type == "other":
-            rc_partner = rc_type.partner_id
+            rc_partner = self.company_id.partner_id
         else:
             rc_partner = self.partner_id
         rc_currency = self.currency_id
@@ -362,6 +362,10 @@ class AccountInvoice(models.Model):
                     )
                 tax_ids = list()
                 transient_account = rc_type.transient_account_id
+                if not transient_account:
+                    raise UserError(
+                        _("Undeclared transient account in fiscal position")
+                    )
                 for line_tax in line_tax_ids:
                     if line_tax.rc_sale_tax_id:
                         tax_ids.append(line_tax.rc_sale_tax_id.id)
@@ -370,7 +374,7 @@ class AccountInvoice(models.Model):
                         for line_tax_id in line_tax_ids:
                             if tax_mapping.purchase_tax_id == line_tax_id:
                                 tax_ids.append(tax_mapping.sale_tax_id.id)
-                if not tax_ids or not transient_account:
+                if not tax_ids:
                     raise UserError(
                         _("Tax code used is not a RC tax.\nCan't find tax mapping")
                     )

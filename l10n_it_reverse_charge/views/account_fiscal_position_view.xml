@@ -17,7 +17,6 @@
                 <field name="self_journal_id" />
                 <field name="payment_journal_id" />
                 <field name="transient_account_id" />
-                <field name="rc_fiscal_document_type_id" />
             </field>
         </field>
     </record>

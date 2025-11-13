@@ -1,9 +1,8 @@
-10.0.1.9 (2025-10-24)
+10.0.1.9 (2025-11-13)
 ~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Data for RC self-invoice on fiscal position / Dati auto-fattura in posizione fiscale
-* [QUA] Test coverage 80% (377: 74+303) [36 TestPoints] - quality rating 53 (target 100)
-
+* [QUA] Test coverage 79% (378: 80+298) [36 TestPoints] - quality rating 53 (target 100)
 
 10.0.1.8 (2024-06-28)
 ~~~~~~~~~~~~~~~~~~~~~
