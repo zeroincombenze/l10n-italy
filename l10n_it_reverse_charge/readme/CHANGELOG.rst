@@ -1,3 +1,9 @@
+10.0.1.10 (2025-12-16)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Valida anche autofatture importate ma non precedentemente generate (commercialista)
+* [QUA] Test coverage 79% (378: 80+298) [36 TestPoints] - quality rating 53 (target 100)
+
 10.0.1.9 (2025-11-13)
 ~~~~~~~~~~~~~~~~~~~~~
 
