@@ -9,7 +9,7 @@
 #
 {
     "name": "Lettere di intento",
-    "version": "10.0.0.1.9",
+    "version": "10.0.0.1.10",
     "category": "Generic Modules/Accounting",
     "summary": "Lettere di intento",
     "author": "SHS-AV s.r.l.",

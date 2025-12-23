@@ -1,3 +1,9 @@
+10.0.0.1.10 (2025-12-19)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Evaluate plafond in mixed invoices / Calcolo plafond corretto per fattura miste IVA
+* [QUA] Test coverage 41% (156: 92+64) [0 TestPoints] - quality rating 27 (target 100)
+
 10.0.0.1.9 (2024-11-06)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

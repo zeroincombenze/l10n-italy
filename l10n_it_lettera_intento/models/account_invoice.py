@@ -10,6 +10,7 @@
 import logging
 
 from odoo import api, fields, models
+import odoo.addons.decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
 
@@ -28,6 +29,27 @@ class AccountInvoice(models.Model):
         string="Num. Lettera di intento",
         # domain=lambda self: [('partner_id', '=', self.partner_id.id)],
     )
+    amount_di = fields.Float(
+        string="RC Tax Amount",
+        digits=dp.get_precision("Account"),
+        store=True,
+        readonly=True,
+        copy=False,
+        compute="_compute_amount",
+    )
+
+    def _compute_amount(self):
+        super(AccountInvoice, self)._compute_amount()
+        for invoice in self:
+            amount_di = 0.0
+            for line in invoice.invoice_line_ids:
+                # Workaround: may work well for 99%
+                if (
+                        line.invoice_line_tax_ids
+                        and line.invoice_line_tax_ids[0].amount == 0.0
+                ):
+                    amount_di += line.price_subtotal
+            invoice.amount_di = amount_di
 
     @api.model
     def set_values_4_1(self, invoice, vals):

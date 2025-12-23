@@ -1,6 +1,6 @@
-====================================================
-|icon| Lettere di intento/Lettera intento 10.0.0.1.9
-====================================================
+=====================================================
+|icon| Lettere di intento/Lettera intento 10.0.0.1.10
+=====================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/icon.png
 
@@ -20,7 +20,7 @@ Overview | Panoramica
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/description.png
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_lettera_intento/static/description/
 
 
 Getting started | Primi passi
@@ -118,6 +118,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.0.1.10 (2025-12-19)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Evaluate plafond in mixed invoices / Calcolo plafond corretto per fattura miste IVA
+* [QUA] Test coverage 41% (156: 92+64) [0 TestPoints] - quality rating 27 (target 100)
+
 10.0.0.1.9 (2024-11-06)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -131,11 +137,6 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Crash on creation lettera intento / Crash durante creazione lettera di intento
 * [IMP] Domain on partner / Selezione clienti con pos.fiscale assente o con lettera di intento
 * [QUA] Test coverage 37% (140: 88+52) [0 TestPoints] - quality rating 23 (target 100)
-
-10.0.0.1.7 (2023-01-31)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Amount based on document id / Calcolo plafond basato su id lettera intento
 
 
 
@@ -186,7 +187,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-11-06
+Last Update / Ultimo aggiornamento: 2025-12-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
