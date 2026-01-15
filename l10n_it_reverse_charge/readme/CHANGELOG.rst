@@ -1,3 +1,9 @@
+10.0.1.11 (2025-01-15)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Genera autofattura da fattura TD01 con RC locale
+* [QUA] Test coverage 79% (378: 80+298) [36 TestPoints] - quality rating 53 (target 100)
+
 10.0.1.10 (2025-12-16)
 ~~~~~~~~~~~~~~~~~~~~~~
 

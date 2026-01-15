@@ -469,9 +469,10 @@ class AccountInvoice(models.Model):
                 self.rc_self_purchase_invoice_id.generate_self_invoice()
         elif (
                 self.type in ("in_invoice", "in_refund")
-                and self.fiscal_document_type_id.is_self_invoice
-                and ("fatturapa_attachment_in_id" not in self
-                     or not self.fatturapa_attachment_in_id)
+                # and (self.fiscal_document_type_id.is_self_invoice)
+                # and ("fatturapa_attachment_in_id" not in self
+                #      or not self.fatturapa_attachment_in_id)
+                and self.amount_rc
         ):
             self.generate_self_invoice()
         return res
