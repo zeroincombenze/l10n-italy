@@ -58,6 +58,23 @@ class TestDichiarazioneIntento(SingleTransactionCase):
         self.assertEqual(invoice.amount_total, 160.50)
         self.assertEqual(invoice.amount_di, 100.00)
 
+    def _test_di_2_sale(self):
+        xref = "z0bug.invoice_Z0_9"
+        invoice = self.resource_browse(xref=xref)
+        vals = {
+            "name": "Lettera Intento",
+            "date": "%s-01-01" % invoice.date[0:4],
+            "date_start": "%s-01-01" % invoice.date[0:4],
+            "date_end": "%s-12-31" % invoice.date[0:4],
+            "partner_id": invoice.partner_id.id,
+            "customer_autmin": "1234567890",
+            "plafond": 10000,
+        }
+        li = self.env["italy.lettera.intento"].create(vals)
+        invoice.write({"lettera_intento_id": li.id})
+        self.assertEqual(invoice.lettera_intento_id.id, li.id)
+
     def test_di(self):
         _logger.info("🎺 Testing Dichiarazione Intento")
         self._test_di_1_sale()
+        self._test_di_2_sale()

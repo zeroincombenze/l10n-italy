@@ -57,7 +57,7 @@ class AccountInvoice(models.Model):
         if "fiscal_position_id" in vals:
             fiscalpos = self.env["account.fiscal.position"].browse(
                 vals["fiscal_position_id"]
-            )
+            )       # pragma: no cover
         elif invoice:
             fiscalpos = invoice.fiscal_position_id
         if invoice:
@@ -90,12 +90,12 @@ class AccountInvoice(models.Model):
                                         or lettera_intento not in lettera_ids):
                         vals["lettera_intento_id"] = lettera_ids[0].id
             vals["tax_stamp"] = True
-            if not invoice:
-                if vals.get("comment"):
-                    if vals["comment"].find(fiscalpos.note) < 0:
-                        vals["comment"] += "\n%s" % fiscalpos.note
-                else:
-                    vals["comment"] = fiscalpos.note
+            if (
+                    not invoice
+                    and fiscalpos.note
+                    and fiscalpos.note not in vals.get("comment", "")
+            ):
+                vals["comment"] = vals.get("comment", "") + "\n" + fiscalpos.note
         return vals
 
     @api.model
