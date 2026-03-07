@@ -2,7 +2,7 @@
 
 from . import models
 from . import tools
-from .init_hook import pre_init_hook
+from ._check4deps_ import check_4_depending
 from odoo import api, SUPERUSER_ID
 
 

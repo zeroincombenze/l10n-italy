@@ -742,5 +742,3 @@ msgstr "Sezionale ritenute"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__wt_types
 msgid "Withholding tax type"
 msgstr "Withholding tax type"
-
-

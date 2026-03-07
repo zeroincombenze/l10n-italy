@@ -1,5 +1,5 @@
 ======================================================================
-|icon| ITA - Inversione contabile/l10n_it_reverse_charge 12.0.1.2.7_46
+|icon| ITA - Inversione contabile/l10n_it_reverse_charge 12.0.1.2.7_47
 ======================================================================
 
 **Inversione contabile**
@@ -41,7 +41,7 @@ The self-bill will then be completely reconciled with the self-invoice, which is
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_reverse_charge/static/description/description.png
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_reverse_charge/static/description/
 
 
 Configuration | Configurazione
@@ -330,7 +330,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-04-22
+Last Update / Ultimo aggiornamento: 2026-03-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

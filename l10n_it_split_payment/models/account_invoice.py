@@ -10,12 +10,6 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__file__)
 
 
-class AccountFiscalPosition(models.Model):
-    _inherit = "account.fiscal.position"
-
-    split_payment = fields.Boolean("Split Payment")
-
-
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
@@ -27,17 +21,18 @@ class AccountInvoice(models.Model):
                 inv.amount_net_pay = inv.amount_total - inv.amount_sp
         return res
 
-    # end _compute_net_pay
-
     amount_sp = fields.Float(
         string="Split Payment",
         digits=dp.get_precision("Account"),
         store=True,
         readonly=True,
+        copy=False,
         compute="_compute_amount",
     )
     split_payment = fields.Boolean(
-        "Is Split Payment", related="fiscal_position_id.split_payment"
+        "Split Payment",
+        related="fiscal_position_id.split_payment",
+        copy=False,
     )
 
     @api.one
@@ -52,12 +47,13 @@ class AccountInvoice(models.Model):
     )
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        self.amount_sp = 0
-        self.amount_total = self.amount_untaxed + self.amount_tax
-        if self.fiscal_position_id.split_payment:
-            self.amount_sp = self.amount_tax
-            self.amount_tax = 0
-        # self.amount_total = self.amount_untaxed + self.amount_tax
+        for invoice in self:
+            invoice.amount_sp = 0
+            invoice.amount_total = invoice.amount_untaxed + invoice.amount_tax
+            if invoice.fiscal_position_id.split_payment:
+                invoice.amount_sp = self.amount_tax
+                invoice.amount_tax = 0
+                invoice._compute_net_pay()
 
     def _build_debit_line(self, tax):
         if not self.company_id.sp_account_id:
@@ -176,13 +172,6 @@ class AccountInvoice(models.Model):
                     invoice.move_id.state = "posted"
                 invoice._compute_residual()
         return res
-
-    # @api.multi
-    # def get_receivable_line_ids(self):
-    #     # return the move line ids with the same account as the invoice self
-    #     self.ensure_one()
-    #     return self.move_id.line_ids.filtered(
-    #         lambda r: r.account_id.id == self.account_id.id).ids
 
     @api.multi
     def get_receivable_line_ids(self):

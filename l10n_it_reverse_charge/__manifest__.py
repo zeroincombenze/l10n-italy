@@ -6,7 +6,7 @@
 #
 {
     "name": "ITA - Inversione contabile",
-    "version": "12.0.1.2.7_46",
+    "version": "12.0.1.2.7_47",
     "category": "Localization/Italy",
     "summary": "Inversione contabile",
     "author": "LibrERP enterprise network and other partners",
@@ -15,6 +15,7 @@
     "license": "LGPL-3",
     "depends": [
         "account",
+        "l10n_it_account_zma",
         "account_cancel",
         "l10n_it_account_tax_kind",
         "account_move_line_type",

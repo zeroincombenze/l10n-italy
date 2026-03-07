@@ -1,5 +1,5 @@
 ========================================================
-|icon| Split Payment/l10n_it_split_payment 12.0.1.0.1_11
+|icon| Split Payment/l10n_it_split_payment 12.0.1.0.1_12
 ========================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/icon.png
@@ -25,11 +25,12 @@ Law: https://goo.gl/7Atg3u (Art. 17-ter.)
 Module to generate Split Payment accounting entries
 
 
-|it| Nessuna informazione disponibile
+|it| Descrizione non disponibile
+
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/description.png
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_split_payment/static/description/
 
 
 Configuration | Configurazione
@@ -192,6 +193,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
+ChangeLog History | Cronologia modifiche
+----------------------------------------
+
+12.0.0.1.0 (2018-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Initial implementation / Implementazione iniziale
+
+
+
 Credits | Ringraziamenti
 ========================
 
@@ -214,9 +225,6 @@ Authors | Autori
 Contributors | Partecipanti
 ---------------------------
 
-* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
-* `Marco Tosato <marco.tosato@didotech.com>`__
-* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
 * `Davide Corio <davide.corio@abstract.it>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Alessio Gerace <alessio.gerace@agilebg.com>`__
@@ -249,7 +257,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-03-26
+Last Update / Ultimo aggiornamento: 2026-03-07
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

@@ -45,7 +45,7 @@ class AccountInvoiceLine(models.Model):
     def onchange_invoice_line_tax_id(self):
         res = dict()
         invoice_rc_type = self.invoice_id.fiscal_position_id.rc_type
-        if self.invoice_id.type in ["in_invoice", "in_refund",] and invoice_rc_type in [
+        if self.invoice_id.type in ["in_invoice", "in_refund"] and invoice_rc_type in [
             "local",
             "self",
         ]:

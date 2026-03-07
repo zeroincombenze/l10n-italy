@@ -33,10 +33,9 @@
         'views/res_config_settings_views.xml',
         'reports/account_reports_view.xml',
         'views/account_view.xml',
-        'views/account_invoice_view.xml',
     ],
-    'installable': True,
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
+    "installable": True,
+    "pre_init_hook": "check_4_depending",
     "post_init_hook": "_l10n_it_account_post_init",
-    'pre_init_hook': 'pre_init_hook',
-    "maintainer": "LibrERP enterprise network",
 }

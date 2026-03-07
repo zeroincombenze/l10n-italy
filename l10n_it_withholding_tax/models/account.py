@@ -1,8 +1,8 @@
-# Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
-# Copyright 2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2018-15 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2018-26 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
 from odoo.addons.account.models.account_payment import (
@@ -22,7 +22,7 @@ class AccountFullReconcile(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(AccountFullReconcile, self).create(vals)
+        res = super().create(vals)
         wt_moves = res._get_wt_moves()
         for wt_move in wt_moves:
             if wt_move.full_reconcile_id:
@@ -33,7 +33,7 @@ class AccountFullReconcile(models.Model):
     def unlink(self):
         for rec in self:
             wt_moves = rec._get_wt_moves()
-            super(AccountFullReconcile, rec).unlink()
+            super().unlink()
             for wt_move in wt_moves:
                 if not wt_move.full_reconcile_id:
                     wt_move.action_set_to_draft()
@@ -70,7 +70,7 @@ class AccountPartialReconcile(models.Model):
                 vals.update({'amount': invoice.amount_net_pay})
 
         # Create reconciliation
-        reconcile = super(AccountPartialReconcile, self).create(vals)
+        reconcile = super().create(vals)
         # Avoid re-generate wt moves if the move line is an wt move.
         # It's possible if the user unreconciles a wt move under invoice
         ld = self.env['account.move.line'].browse(vals.get('debit_move_id'))
@@ -179,7 +179,7 @@ class AccountPartialReconcile(models.Model):
                 if wt_move.statement_id not in statements:
                     statements.append(wt_move.statement_id)
 
-        res = super(AccountPartialReconcile, self).unlink()
+        res = super().unlink()
         # Recompute statement values
         for st in statements:
             st._compute_total()
@@ -280,7 +280,7 @@ class AccountAbstractPayment(models.AbstractModel):
         """
         Compute amount to pay proportionally to amount total - wt
         """
-        rec = super(AccountAbstractPayment, self).default_get(fields)
+        rec = super().default_get(fields)
         invoice_defaults = self.resolve_2many_commands(
             'invoice_ids', rec.get('invoice_ids')
         )
@@ -303,7 +303,7 @@ class AccountAbstractPayment(models.AbstractModel):
             if invoice.withholding_tax:
                 original_values[invoice] = invoice.residual_signed
                 invoice.residual_signed = invoice.amount_net_pay_residual
-        res = super(AccountAbstractPayment, self)._compute_payment_amount(
+        res = super()._compute_payment_amount(
             invoices, currency
         )
         for invoice in original_values:
@@ -353,7 +353,7 @@ class AccountMoveLine(models.Model):
                 wt_move.button_cancel()
                 wt_move.unlink()
 
-        return super(AccountMoveLine, self).remove_move_reconcile()
+        return super().remove_move_reconcile()
 
 
 class AccountReconciliation(models.AbstractModel):
@@ -370,7 +370,7 @@ class AccountReconciliation(models.AbstractModel):
         """
         Net amount for invoices with withholding tax
         """
-        res = super(AccountReconciliation, self)._prepare_move_lines(
+        res = super()._prepare_move_lines(
             move_lines, target_currency, target_date, recs_count
         )
         for dline in res:
@@ -454,6 +454,7 @@ class AccountInvoice(models.Model):
                 if not line.withholding_tax_generated_by_move_id:
                     amount_net_pay_residual -= line.debit or line.credit
             invoice.amount_net_pay_residual = amount_net_pay_residual
+        return res
 
     withholding_tax = fields.Boolean('Withholding Tax')
     withholding_tax_in_print = fields.Boolean(
@@ -492,9 +493,7 @@ class AccountInvoice(models.Model):
 
     @api.model
     def create(self, vals):
-        invoice = super(
-            AccountInvoice, self.with_context(mail_create_nolog=True)
-        ).create(vals)
+        invoice = super().create(vals)
 
         if (
             any(
@@ -526,7 +525,7 @@ class AccountInvoice(models.Model):
         Split amount withholding tax on account move lines
         '''
         dp_obj = self.env['decimal.precision']
-        res = super(AccountInvoice, self).action_move_create()
+        res = super().action_move_create()
         for inv in self:
             if inv.withholding_tax_amount:
                 # Rates
@@ -629,7 +628,7 @@ class AccountInvoice(models.Model):
 
     @api.model
     def _get_payments_vals(self):
-        payment_vals = super(AccountInvoice, self)._get_payments_vals()
+        payment_vals = super()._get_payments_vals()
         if self.payment_move_line_ids:
             for payment_val in payment_vals:
                 move_line = self.env['account.move.line'].browse(
@@ -731,7 +730,7 @@ class AccountPayment(models.Model):
         """
         Compute amount to pay proportionally to amount total - wt
         """
-        rec = super(AccountPayment, self).default_get(fields)
+        rec = super().default_get(fields)
         invoice_defaults = self.resolve_2many_commands(
             'invoice_ids', rec.get('invoice_ids')
         )
