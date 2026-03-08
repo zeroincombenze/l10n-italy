@@ -18,6 +18,12 @@ class ResCompany(models.Model):
     email_exchange_system = fields.Char(
         string='Exchange System Email Address',
         related='sdi_channel_id.email_exchange_system', readonly=True)
+    e_invoice_user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="E-bill creator",
+        help="This user will be used at supplier e-bill creation.",
+        default=lambda self: self.env.user.id
+    )
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -35,3 +41,7 @@ class AccountConfigSettings(models.TransientModel):
     email_exchange_system = fields.Char(
         string='Exchange System Email Address',
         related='sdi_channel_id.email_exchange_system', readonly=True)
+    e_invoice_user_id = fields.Many2one(
+        related='company_id.e_invoice_user_id',
+        readonly=False,
+    )

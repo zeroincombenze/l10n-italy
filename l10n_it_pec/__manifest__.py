@@ -6,7 +6,7 @@
     'name': 'Italian Localization - Email PEC',
     'version': '12.0.1.0.1',
     'category': 'Localization/Italy',
-    'summary': 'Aggiunge il campo email PEC al partner',
+    'summary': 'Modulo personalizzato dissuaso in favore di modulo OCA',
     'author': "Odoo Italia Network,Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_pec',
     'license': 'AGPL-3',
