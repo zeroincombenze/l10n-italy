@@ -796,7 +796,8 @@ class WizardExportFatturapa(models.TransientModel):
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
                     ImportoPagamento=ImportoPagamento,
-                    CodicePagamento=invoice.payment_term_id.note or invoice.payment_term_id.name
+                    CodicePagamento=invoice.payment_term_id.note
+                    or invoice.payment_term_id.name
                 )
 
                 # Add only the existing optional fields
@@ -910,10 +911,8 @@ class WizardExportFatturapa(models.TransientModel):
             context = {}
         invoice_obj = self.env['account.invoice']
         if partner.is_pa or partner.parent_id and partner.parent_id.is_pa:
-            # fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PA, SistemaEmittente=SOFTWARE_IN_USE)
             fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PA)
         else:
-            # fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PR, SistemaEmittente=SOFTWARE_IN_USE)
             fatturapa = FatturaElettronica(versione=FORMATO_TRASMISSIONE_PR)
         try:
             self.with_context(context). \
@@ -1007,7 +1006,8 @@ class WizardExportFatturapa(models.TransientModel):
             'name': "Export FatturaPA",
             'res_model': 'account.invoice',
             'view_mode': 'tree',
-            'view_id': self.env.ref('l10n_it_fatturapa_out.view_export_fattura_simulation_tree').id,
+            'view_id': self.env.ref(
+                'l10n_it_fatturapa_out.view_export_fattura_simulation_tree').id,
             "target": "current",
             'domain': [('id', 'in', self._context['active_ids'])]
         }

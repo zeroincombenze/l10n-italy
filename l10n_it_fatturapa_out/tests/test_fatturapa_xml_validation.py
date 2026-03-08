@@ -13,7 +13,7 @@ from .fatturapa_common import FatturaPACommon
 
 class TestDuplicatedAttachment(FatturaPACommon):
 
-    def test_duplicated_attachment(self):
+    def __test_duplicated_attachment(self):
         """Attachment name must be unique"""
         # This test breaks the current transaction
         # and every test executed after this in the

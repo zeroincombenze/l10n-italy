@@ -253,7 +253,8 @@ class WizardImportFatturapa(models.TransientModel):
 
         partner_id = False
         if dati_generali.TipoDocumento in ('TD17', 'TD18', 'TD19'):
-            # When we create XML we clean partner name, so we can't use it to find original partner
+            # When we create XML we clean partner name,
+            # so we can't use it to find original partner
             autoinvoices = self.env['account.invoice'].search([
                 ('number', '=', dati_generali.Numero),
                 ('date_invoice', '=', dati_generali.Data),
@@ -1098,7 +1099,8 @@ class WizardImportFatturapa(models.TransientModel):
         # this can happen with refunds with negative amounts
         invoice.process_negative_lines()
 
-        # fiscal_document_type_id is wrong and overrides document type so we should reset it here
+        # fiscal_document_type_id is wrong and overrides document type
+        # so we should reset it here
         if docType_id:
             invoice.fiscal_document_type_id = docType_id
 
@@ -1581,7 +1583,8 @@ class WizardImportFatturapa(models.TransientModel):
             fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
-            dati_generali_documento = fatt.FatturaElettronicaBody[0].DatiGenerali.DatiGeneraliDocumento
+            dati_generali_documento = (
+                fatt.FatturaElettronicaBody[0].DatiGenerali.DatiGeneraliDocumento)
             partner_id = self.getCedPrest(cedentePrestatore, dati_generali_documento)
             # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.\

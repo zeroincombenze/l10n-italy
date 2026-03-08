@@ -92,7 +92,8 @@ class FatturaPAAttachmentIn(models.Model):
                 .with_context(from_attachment=att)
             fatt = wiz_obj.get_invoice_obj(att)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            dati_generali_documento = fatt.FatturaElettronicaBody[0].DatiGenerali.DatiGeneraliDocumento
+            dati_generali_documento = (
+                fatt.FatturaElettronicaBody[0].DatiGenerali.DatiGeneraliDocumento)
             partner_id = wiz_obj.getCedPrest(cedentePrestatore, dati_generali_documento)
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
@@ -187,6 +188,9 @@ class FatturaPAAttachmentIn(models.Model):
 
             return {
                 'type': 'ir.actions.act_url',
-                'url': f"web/content/?model=ir.attachment&field=datas&filename_field=datas_fname&download=true&filename={attach_vals['name']}&id={zip_att.id}",
+                'url': (
+                    "web/content/?model=ir.attachment&field=datas&filename_field"
+                    "=datas_fname&download=true&filename"
+                    f"={attach_vals['name']}&id={zip_att.id}"),
                 'target': 'self'
             }

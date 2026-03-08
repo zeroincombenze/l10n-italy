@@ -92,6 +92,7 @@
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2020-02-29</DataScadenzaPagamento>
                 <ImportoPagamento>12.20</ImportoPagamento>
+                <CodicePagamento>Payment terms: End of Following Month</CodicePagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>

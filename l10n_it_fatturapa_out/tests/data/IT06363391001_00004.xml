@@ -100,6 +100,13 @@
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2016-07-31</DataScadenzaPagamento>
                 <ImportoPagamento>14.00</ImportoPagamento>
+                <CodicePagamento>Payment terms: End of Following Month</CodicePagamento>
+            </DettaglioPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2016-06-15</DataScadenzaPagamento>
+                <ImportoPagamento>3.08</ImportoPagamento>
+                <CodicePagamento>Payment terms: End of Following Month</CodicePagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>

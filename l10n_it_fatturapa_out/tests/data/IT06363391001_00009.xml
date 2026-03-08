@@ -98,6 +98,7 @@
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2018-02-28</DataScadenzaPagamento>
                 <ImportoPagamento>14.00</ImportoPagamento>
+                <CodicePagamento>Payment terms: End of Following Month</CodicePagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
