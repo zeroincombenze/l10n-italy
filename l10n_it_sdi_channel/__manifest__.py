@@ -2,34 +2,34 @@
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 {
     "name": "Italian Localization - Fattura elettronica - Canale SdI",
-    "summary": "Aggiunge il canale di invio/ricezione dei file XML "
-               "attraverso lo SdI",
-    "version": "12.0.1.3.3",
-    "development_status": "Beta",
+    "version": "12.0.2.3.0",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
-               'l10n_it_sdi_channel',
-    "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
-    "maintainers": ["sergiocorato"],
+    "summary": "Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI",
+    "author": ("Efatto.it di Sergio Corato,Odoo Community Association (OCA)"
+               ",SHS-AV s.r.l."),
+    "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
+    "development_status": "Beta",
     "license": "AGPL-3",
-    "application": False,
-    "installable": True,
     "depends": [
         "account",
-        "fetchmail",
         "l10n_it_fatturapa",
+        "l10n_it_fatturapa_in",
+        "l10n_it_fatturapa_out",
     ],
     "data": [
         "security/ir.model.access.csv",
         "security/security.xml",
+        "data/mail_message_subtype_data.xml",
+        "views/account_invoice_views.xml",
         "views/sdi_view.xml",
         "views/company_view.xml",
-        'views/fetchmail_server.xml',
-        'views/ir_mail_server.xml',
-        "data/config_parameter.xml",
-        "demo/sdi_channel_demo.xml"
+        "views/fatturapa_attachment_views.xml",
+        "wizards/send_to_sdi_views.xml",
     ],
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
+    "installable": True,
+    "application": False,
+    "maintainers": ["sergiocorato"],
 }

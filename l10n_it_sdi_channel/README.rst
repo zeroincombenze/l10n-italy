@@ -1,5 +1,5 @@
 =============================================================================================
-|icon| Italian Localization - Fattura elettronica - Canale SdI/l10n_it_sdi_channel 12.0.1.3.3
+|icon| Italian Localization - Fattura elettronica - Canale SdI/l10n_it_sdi_channel 12.0.2.3.0
 =============================================================================================
 
 **Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI**
@@ -35,7 +35,8 @@ through mail PEC, WEB API or SFTP to the Exchange System (ES).
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
 
-|it| Nessuna informazione disponibile
+|it| Descrizione non disponibile
+
 
 |thumbnail|
 
@@ -152,6 +153,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
+ChangeLog History | Cronologia modifiche
+----------------------------------------
+
+12.0.0.1.0 (2018-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Initial implementation / Implementazione iniziale
+
+
+
 Credits | Ringraziamenti
 ========================
 
@@ -176,6 +187,7 @@ Contributors | Partecipanti
 * `Sergio Corato <info@efatto.it>`__
 * `Lorenzo Battistini <https://github.com/eLBati>`__
 * `Sergio Zanchetta <https://github.com/primes2h>`__
+* `Ooops <https://www.ooops404.com>`__
 
 
 

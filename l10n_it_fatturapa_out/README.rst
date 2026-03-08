@@ -1,6 +1,6 @@
-================================================================================
-|icon| ITA - Fattura elettronica - Emissione/l10n_it_fatturapa_out 12.0.2.2.5_10
-================================================================================
+=============================================================================
+|icon| ITA - Fattura elettronica - Emissione/l10n_it_fatturapa_out 12.0.3.2.3
+=============================================================================
 
 **Emissione fatture elettroniche**
 
@@ -207,16 +207,25 @@ Contributors | Partecipanti
 ---------------------------
 
 * Davide Corio <False>
-* `Alex Comba <alex.comba@agilebg.com>`__
-* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
-* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
-* `Marco Tosato <marco.tosato@didotech.com>`__
-* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
+* `Lorenzo Battistini <https://github.com/eLBati>`__
 * Roberto Onnis <False>
 * Alessio Gerace <False>
+* Alex Comba <False>
 * `Sergio Zanchetta <https://github.com/primes2h>`__
 * `Giovanni Serra <giovanni@gslab.it>`__
 * `Tecnativa <https://www.tecnativa.com>`__
+* * Víctor Martínez <False>
+* Maintainers <False>
+* ~~~~~~~~~~~ <False>
+* This module is maintained by the OCA. <False>
+* .. image:: https://odoo-community.org/logo.png <False>
+* :alt: Odoo Community Association <False>
+* :target: https://odoo-community.org <False>
+* OCA, or the Odoo Community Association, is a nonprofit organization whose <False>
+* mission is to support the collaborative development of Odoo features and <False>
+* promote its widespread use. <False>
+* `This module is part of the OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_fatturapa_out>`__
+* You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute. <False>
 
 
 

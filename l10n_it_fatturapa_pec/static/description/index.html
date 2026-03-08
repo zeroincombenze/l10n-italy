@@ -12,7 +12,7 @@
             <p align="center">
                 <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
-            <h2 class="oe_slogan" style="color:#162832;">Sommario non disponibile</h2>
+            <h2 class="oe_slogan" style="color:#162832;">Documentazione non disponibile</h2>
         </div>
         <div class="oe_demo oe_screenshot">
             Unknown description_img
@@ -52,7 +52,7 @@ Notifications from ES are parsed and transmission state is tracked.
             <p align="center">
                 <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
-            <p class="oe_mt16" align="justify">Nessuna informazione disponibile</p>
+            <p class="oe_mt16" align="justify">Descrizione non disponibile</p>
         </div>
     </div>
 </section>
@@ -69,6 +69,21 @@ Notifications from ES are parsed and transmission state is tracked.
 <p align="justify">
 Consultare il modulo `l10n_it_sdi_channel`.
 </p><p align="justify">
+Creare un nuovo canale di tipo PEC (unico supportato per ora) e indicare:
+</p><p align="justify">
+- Il server PEC da utilizzare per inviare/ricevere attraverso lo SdI
+- La email PEC dello SdI, inizialmente uguale a sdi01@pec.fatturapa.it
+</p><p align="justify">
+Dopo il primo invio, lo SdI risponder&#224; segnalando l'indirizzo da utilizzare per gli invii successivi, da inserire nella configurazione del server PEC dedicato.
+</p><p align="justify">
+Nella configurazione del server smtp, sezione "PEC e fattura elettronica", selezionare la casella "Server PEC e-fattura".
+</p><p align="justify">
+Indicare quindi la email da usare per l'invio e la ricezione, solitamente &#232; uguale al nome utente di connessione (pu&#242; essere diversa in casi particolari).
+</p><p align="justify">
+&#200; preferibile avere una email dedicata solo alla fatturazione elettronica, in quanto i messaggi di altro tipo non possono essere gestiti da Odoo (verrebbero marcati comunque come letti).
+</p><p align="justify">
+Se si usano altri server SMTP per l'invio di email non PEC, &#232; necessario aumentare la loro priorit&#224; rispetto a quella del server PEC.
+</p><p align="justify">
 Lo stato dell'esportazione XML pu&#242; essere forzato impostando 'Permettere di forzare lo stato dell'esportazione e-fattura' nelle impostazioni tecniche dell'utente.
 </p><p align="justify">
 Per ogni azienda, in
@@ -80,6 +95,21 @@ specificare l'utente che sar&#224; utilizzato come creatore delle e-fatture forn
 <b>English</b>
 </p><p align="justify">
 See `l10n_it_sdi_channel` module.
+</p><p align="justify">
+Create a new PEC channel type (the only one supported right now) and indicate:
+</p><p align="justify">
+- PEC server to be used for sending to/receiving from ES
+- ES PEC email, initially equal to sdi01@pec.fatturapa.it
+</p><p align="justify">
+After sending the first email, ES will reply indicating the address to use for all the others, to be entered in dedicated PEC server configuration.
+</p><p align="justify">
+In smtp server configuration, select 'E-invoice PEC server' in 'PEC and Electronic Invoice' section.
+</p><p align="justify">
+Then specify the email to use for sending and receiving, it is usually equal to connection username (can be different in special cases).
+</p><p align="justify">
+It would be better to have a dedicated email for electronic invoicing, because other kind of messages can't be managed by Odoo (they would be marked as seen).
+</p><p align="justify">
+If you use other SMTP servers for non-PEC email sending, you need to increase their priority as compared to PEC server one.
 </p><p align="justify">
 XML export state can ba forced setting 'Allow to force the supplier e-bill export state' in user's technical settings.
 </p><p align="justify">
@@ -129,6 +159,20 @@ Supplier electronic bills are automatically created, fetched from PEC mailbox.
     </div>
 </section>
 
+<section>
+    <div class="oe_row oe_spaced">
+        <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
+        <div class="oe_span12">
+<h4>12.0.0.1.0 (2018-10-04)</h4>
+<p align="justify">
+<ul>
+<li>Initial implementation / Implementazione iniziale</li>
+</ul>
+</p>
+        </div>
+    </div>
+</section>
+
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Credits | Ringraziamenti</h3>
@@ -147,8 +191,21 @@ Supplier electronic bills are automatically created, fetched from PEC mailbox.
 <li><a href="mailto:info@efatto.it">Sergio Corato</a></li>
 <li><a href="https://github.com/eLBati">Lorenzo Battistini</a></li>
 <li><a href="https://github.com/primes2h">Sergio Zanchetta</a></li>
-<li><a href="mailto:giovanni@gslab.it">Giovanni Serra</a></li>
 <li><a href="https://www.tecnativa.com">Tecnativa</a></li>
+<li>* V&#237;ctor Mart&#237;nez &lt;False&gt;</li>
+<li><a href="https://www.ooops404.com">Ooops</a></li>
+<li><a href="mailto:giovanni@gslab.it">* Giovanni Serra</a></li>
+<li>Maintainers &lt;False&gt;</li>
+<li>~~~~~~~~~~~ &lt;False&gt;</li>
+<li>This module is maintained by the OCA. &lt;False&gt;</li>
+<li>.. image:: https://odoo-community.org/logo.png &lt;False&gt;</li>
+<li>:alt: Odoo Community Association &lt;False&gt;</li>
+<li>:target: https://odoo-community.org &lt;False&gt;</li>
+<li>OCA, or the Odoo Community Association, is a nonprofit organization whose &lt;False&gt;</li>
+<li>mission is to support the collaborative development of Odoo features and &lt;False&gt;</li>
+<li>promote its widespread use. &lt;False&gt;</li>
+<li><a href="https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_fatturapa_pec">This module is part of the OCA/l10n-italy</a></li>
+<li>You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute. &lt;False&gt;</li>
 </ul></p>
         </div>
     </div>

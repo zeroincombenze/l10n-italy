@@ -4,6 +4,8 @@ from odoo.exceptions import ValidationError, UserError
 from odoo.tools import float_compare
 import odoo.addons.decimal_precision as dp
 
+from .company import REGISTRATION_DATE_TO_FIELD
+
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
@@ -97,6 +99,34 @@ class AccountInvoice(models.Model):
         return res
 
     @api.multi
+    def _fatturapa_set_invoice_date(self):
+        """
+        Set the Accounting date of invoices coming from e-invoices.
+
+        The date is set according to
+        the configuration of `in_invoice_registration_date`.
+        """
+        invoice_fields = self._fields.keys()
+        get_invoice_default_date_field = REGISTRATION_DATE_TO_FIELD.get
+
+        # Edit only invoices coming from e-invoices
+        fatturapa_invoices = self.filtered('fatturapa_attachment_in_id')
+        for invoice in fatturapa_invoices:
+            company = invoice.company_id
+            invoice_default_date_field = get_invoice_default_date_field(
+                company.in_invoice_registration_date,
+            )
+            if invoice_default_date_field in invoice_fields:
+                invoice.date = invoice[invoice_default_date_field]
+        return True
+
+    @api.multi
+    def action_invoice_draft(self):
+        res = super(AccountInvoice, self).action_invoice_draft()
+        self._fatturapa_set_invoice_date()
+        return res
+
+    @api.multi
     def invoice_validate(self):
         for invoice in self:
             if (invoice.e_invoice_validation_error and
@@ -104,6 +134,7 @@ class AccountInvoice(models.Model):
                 raise ValidationError(
                     _("The invoice '%s' doesn't match the related e-invoice") %
                     invoice.display_name)
+
         return super(AccountInvoice, self).invoice_validate()
 
     def e_inv_check_amount_untaxed(self):
@@ -169,8 +200,14 @@ class AccountInvoice(models.Model):
                 "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
                 "found. Please manually check Withholding tax Amount\n"
             ))
-        if sum(self.ftpa_withholding_ids.mapped('amount'))\
-                != self.withholding_tax_amount:
+        if (
+            float_compare(
+                sum(self.ftpa_withholding_ids.mapped("amount")),
+                self.withholding_tax_amount,
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
+        ):
             error_message += (_(
                 "E-bill contains ImportoRitenuta %s but created invoice has got"
                 " %s\n" % (
@@ -303,12 +340,14 @@ class AccountInvoice(models.Model):
 
     def process_negative_lines(self):
         self.ensure_one()
-        for line in self.invoice_line_ids:
-            if line.price_unit >= 0:
-                return
-        # if every line is negative, change them all
-        for line in self.invoice_line_ids:
-            line.price_unit = -line.price_unit
+        if not self.invoice_line_ids:
+            return
+        # if total is negative, change lines sign, and change move type
+        if self.amount_total < 0:
+            if self.fiscal_document_type_id.code == "TD01":
+                self.type = "in_refund"
+            for line in self.invoice_line_ids:
+                line.price_unit = -line.price_unit
         self.compute_taxes()
 
 

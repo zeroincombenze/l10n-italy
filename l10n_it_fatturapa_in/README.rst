@@ -1,6 +1,6 @@
-==============================================================================
-|icon| ITA - Fattura elettronica - Ricezione/l10n_it_fatturapa_in 12.0.2.6.1_5
-==============================================================================
+=============================================================================
+|icon| ITA - Fattura elettronica - Ricezione/l10n_it_fatturapa_in 12.0.3.1.10
+=============================================================================
 
 **Ricezione fatture elettroniche**
 
@@ -35,7 +35,8 @@ received through the Exchange System (ES).
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
 
-|it| Nessuna informazione disponibile
+|it| Descrizione non disponibile
+
 
 |thumbnail|
 
@@ -218,6 +219,16 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
+
+
+
+ChangeLog History | Cronologia modifiche
+----------------------------------------
+
+12.0.0.1.0 (2018-10-04)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Initial implementation / Implementazione iniziale
 
 
 

@@ -16,11 +16,6 @@ class ResCompany(models.Model):
         related="sdi_channel_id.email_exchange_system",
         readonly=True,
     )
-    e_invoice_user_id = fields.Many2one(
-        "res.users", "E-bill creator",
-        help="This user will be used at supplier e-bill creation.",
-        default=lambda self: self.env.user.id
-    )
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -35,8 +30,4 @@ class AccountConfigSettings(models.TransientModel):
         string="Exchange System Email Address",
         related="company_id.sdi_channel_id.email_exchange_system",
         readonly=True,
-    )
-    e_invoice_user_id = fields.Many2one(
-        related='company_id.e_invoice_user_id',
-        readonly=False,
     )

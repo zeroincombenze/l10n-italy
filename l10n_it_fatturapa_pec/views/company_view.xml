@@ -19,7 +19,7 @@
                             </div>
                             <div class="content-group">
                                 <div class="row">
-                                                                        <label
+                                    <label
                                         for="email_from_for_fatturaPA"
                                         class="col-lg-6 o_form_label"
                                     />
@@ -37,8 +37,6 @@
                                         name="email_exchange_system"
                                         class="col-lg-6"
                                     />
-                                    <label for="e_invoice_user_id" class="col-lg-6 o_light_label"/>
-                                    <field name="e_invoice_user_id" class="col-lg-6"/>
                                 </div>
                             </div>
                         </div>

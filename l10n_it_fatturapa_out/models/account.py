@@ -40,8 +40,6 @@ class AccountInvoice(models.Model):
         store='true',
     )
 
-    simulation_data = fields.Char('Simulation data', size=200)
-
     @api.multi
     @api.depends('fatturapa_attachment_out_id.state')
     def _compute_fatturapa_state(self):
