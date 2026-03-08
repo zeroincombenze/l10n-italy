@@ -6,6 +6,7 @@
 
 {
     'name': 'Italian Localisation - Natura delle aliquote IVA',
+    "summary": "Modulo personalizzato dissuaso in favore di modulo OCA",
     'version': '12.0.2.1.0_2',
     'development_status': 'Production/Stable',
     'category': 'Localisation/Italy',

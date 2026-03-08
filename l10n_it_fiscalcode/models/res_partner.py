@@ -1,24 +1,43 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import codicefiscale
-from odoo import models, fields, api
+from codicefiscale import isvalid
+
+from odoo import _, models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     @api.multi
+    @api.constrains('fiscalcode')
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
+                # Because it is not mandatory
                 continue
+            elif partner.company_type == 'person':
+                # Person case
+                if partner.company_name:
+                    # In E-commerce, if there is company_name,
+                    # the user might insert VAT in fiscalcode field.
+                    # Perform the same check as Company case
+                    continue
+                if len(partner.fiscalcode) != 16:
+                    # Check fiscalcode length of a person
+                    msg = _("The fiscal code must have 16 characters.")
+                    raise ValidationError(msg)
+                if not isvalid(partner.fiscalcode):
+                    # Check fiscalcode validity
+                    msg = _("The fiscal code isn't valid.")
+                    raise ValidationError(msg)
             elif (
-                    partner.country_id
-                    and partner.parent_id is False
-                    and self.country_id.code == "IT"
-                    and len(partner.fiscalcode) not in (11, 16)
+                    self.country_id.code == "IT"
+                    and len(partner.fiscalcode) == 11
             ):
-                return False
+                res_partner_model = self.env["res.partner"]
+                chk = res_partner_model.simple_vat_check("it", self.fiscalcode)
+                return bool(chk)
             else:
                 continue
         return True
@@ -26,49 +45,7 @@ class ResPartner(models.Model):
     fiscalcode = fields.Char(
         'Fiscal Code', size=16, help="Italian Fiscal Code")
 
-    _constraints = [
-        (check_fiscalcode,
-         "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
-    ]
-
     @api.onchange("fiscalcode")
-    def onchange_fiscalcode(self):
-        name = "fiscalcode"
+    def _fiscalcode_changed(self):
         if self.fiscalcode:
-            if self.country_id and self.country_id.code != "IT":
-                self.individual = True
-            elif len(self.fiscalcode) == 11:
-                res_partner_model = self.env["res.partner"]
-                chk = res_partner_model.simple_vat_check("it", self.fiscalcode)
-                if not chk:
-                    return {
-                        "value": {name: False},
-                        "warning": {
-                            "title": "Invalid fiscalcode!",
-                            "message": "Invalid vat number",
-                        },
-                    }
-                self.individual = False
-            elif len(self.fiscalcode) != 16:
-                return {
-                    "value": {name: False},
-                    "warning": {
-                        "title": "Invalid len!",
-                        "message": "Fiscal code len must be 11 or 16",
-                    },
-                }
-            else:
-                self.individual = True
-                self.fiscalcode = self.fiscalcode.upper()
-                chk = codicefiscale.control_code(self.fiscalcode[0:15])
-                if chk != self.fiscalcode[15]:
-                    value = self.fiscalcode[0:15] + chk
-                    return {
-                        "value": {name: value},
-                        "warning": {
-                            "title": "Invalid fiscalcode!",
-                            "message": "Fiscal code could be %s" % (value),
-                        },
-                    }
-        else:
-            self.individual = False
+            self.fiscalcode = self.fiscalcode.upper()

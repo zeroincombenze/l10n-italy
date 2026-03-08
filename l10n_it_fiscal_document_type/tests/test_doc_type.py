@@ -91,7 +91,7 @@ class TestDocType(TransactionCase):
         self.assertEqual(refund.fiscal_document_type_id.id, self.TD04.id)
 
     @users("Adviser", "admin")
-    def _test_access(self):
+    def test_access(self):
         """Users can only read fiscal documents,
         Users can't create/update/delete fiscal documents."""
         # Arrange

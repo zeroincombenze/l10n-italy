@@ -4,6 +4,7 @@
 
 {
     'name': "Italian Localization - Esigibilita' IVA",
+    "summary": "Modulo personalizzato dissuaso in favore di modulo OCA",
     'version': '12.0.2.0.0',
     'development_status': 'Beta',
     'category': 'Account',

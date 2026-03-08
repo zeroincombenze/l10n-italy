@@ -1,6 +1,6 @@
-==================================================================
-|icon| ITA - Tipi di documento fiscale per dichiarativi 12.0.2.2.0
-==================================================================
+================================================================================================================
+|icon| Italian Localization - Tipi di documento fiscale per dichiarativi/l10n_it_fiscal_document_type 12.0.2.2.0
+================================================================================================================
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_fiscal_document_type/static/description/icon.png
 
@@ -12,23 +12,36 @@
 Overview | Panoramica
 =====================
 
-|en| Document type table with codes as provided for by the Italian Revenue Service.
+|en| **Italiano**
+
+Tabella con codici tipo documento previsti dall'Agenzia delle Entrate.
+
+**English**
+
+Document type table with codes as provided for by the Italian Revenue Agency.
 
 
-|it| Tabella con codici tipo documento previsti dall'Agenzia delle Entrate.
-
+|it| Nessuna informazione disponibile
 
 |thumbnail|
 
-.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_fiscal_document_type/static/description/description.png
+.. |thumbnail| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_fiscal_document_type/static/description/
 
 
 Configuration | Configurazione
 ------------------------------
 
+**Italiano**
+
+Per configurare i tipi di documento fiscale selezionare:
+
+Contabilità →  Configurazione →  Contabilità →  Localizzazione italiana →  Tipi documento fiscale
+
+**Inglese**
+
 You can configure fiscal document types choosing:
 
-☰ Accounting > Configuration > Accounting > Italian Localization > Fiscal document types
+Accounting →  Configuration →  Accounting →  Italian Localization →  Fiscal document types
 
 
 
@@ -124,21 +137,8 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
-ChangeLog History | Cronologia modifiche
-----------------------------------------
-
-12.0.2.2.0 (2024-01-28)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Fiscal document TD28 / Documento fiscale TD28
-* [IMP] OCA synchronization
-* [IMP] Regression test for access
-* [QUA] Test coverage 92% (98: 8+90) [0 TestPoints] - quality rating 56 (target 100)
-
-
-
-Credits | Gratitutide e stima
-=============================
+Credits | Ringraziamenti
+========================
 
 Copyright
 ---------
@@ -149,7 +149,7 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors | Autori
 ----------------
 
-* `LinkIt Spa <https://www.linkgroup.it>`__
+* Link It srl <False>
 * `Odoo Community Association (OCA) <https://odoo-community.org>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
@@ -162,7 +162,21 @@ Contributors | Partecipanti
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Gianmarco Conte <gconte@dinamicheaziendali.it>`__
 * `Sergio Zanchetta <https://github.com/primes2h>`__
-* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+* Other credits <False>
+* ~~~~~~~~~~~~~ <False>
+* The development of this module has been financially supported by: <False>
+* `Odoo Italia Network <https://www.odoo-italia.net>`__
+* Maintainers <False>
+* ~~~~~~~~~~~ <False>
+* This module is maintained by the OCA. <False>
+* .. image:: https://odoo-community.org/logo.png <False>
+* :alt: Odoo Community Association <False>
+* :target: https://odoo-community.org <False>
+* OCA, or the Odoo Community Association, is a nonprofit organization whose <False>
+* mission is to support the collaborative development of Odoo features and <False>
+* promote its widespread use. <False>
+* `This module is part of the OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_fiscal_document_type>`__
+* You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute. <False>
 
 
 
@@ -208,7 +222,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-01-28
+Last Update / Ultimo aggiornamento: 2026-03-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

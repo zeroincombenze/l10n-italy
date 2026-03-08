@@ -7,12 +7,14 @@
 
 {
     "name": "ITA - Codice IPA",
+    "summary": "Modulo personalizzato dissuaso in favore di modulo OCA",
     "version": "12.0.1.0.2",
     "development_status": "Beta",
     "category": "Localisation/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),"
               "Odoo Italia Network",
-    "website": "https://github.com/OCA/l10n-italy",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_ipa",
     "license": "AGPL-3",
     "depends": ['base'],
     "data": [
