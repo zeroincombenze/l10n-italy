@@ -6,7 +6,7 @@
     "name": "Italian Localization - Fattura elettronica - Canale SdI",
     "version": "12.0.2.3.0",
     "category": "Hidden",
-    "summary": "Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI",
+    'summary': 'Modulo personalizzato dissuaso in favore di modulo OCA',
     "author": ("Efatto.it di Sergio Corato,Odoo Community Association (OCA)"
                ",SHS-AV s.r.l."),
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",

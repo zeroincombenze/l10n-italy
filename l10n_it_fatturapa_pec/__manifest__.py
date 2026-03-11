@@ -9,7 +9,7 @@
     "name": "ITA - Fattura elettronica - Supporto PEC",
     "version": "12.0.2.2.1",
     "category": "Localization/Italy",
-    "summary": "Invio fatture elettroniche tramite PEC",
+    'summary': 'Modulo personalizzato dissuaso in favore di modulo OCA',
     "author": ("Openforce Srls Unipersonale,Odoo Community Association (OCA)"
                ",SHS-AV s.r.l."),
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",

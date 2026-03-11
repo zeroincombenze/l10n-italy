@@ -2,7 +2,7 @@
 |icon| ITA - Fattura elettronica - Emissione/l10n_it_fatturapa_out 12.0.3.2.3
 =============================================================================
 
-**Emissione fatture elettroniche**
+**Modulo personalizzato dissuaso in favore di modulo OCA**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_fatturapa_out/static/description/icon.png
 
@@ -253,7 +253,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2026-03-08
+Last Update / Ultimo aggiornamento: 2026-03-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

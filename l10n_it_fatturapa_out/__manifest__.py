@@ -10,7 +10,7 @@
     'version': '12.0.3.2.3',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
-    'summary': 'Emissione fatture elettroniche',
+    'summary': 'Modulo personalizzato dissuaso in favore di modulo OCA',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy'

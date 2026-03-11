@@ -149,7 +149,8 @@ class FatturaPACommon(AccountTestUsers):
         return self.getFilePath(path)
 
     def _create_invoice(self):
-        invoice_form = Form(self.invoice_model)
+        invoice_form = Form(self.invoice_model,
+                            view=self.env.ref('account.invoice_form'))
         invoice_form.partner_id = self.res_partner_fatturapa_0
         with invoice_form.invoice_line_ids.new() as invoice_line:
             invoice_line.product_id = self.product_product_10

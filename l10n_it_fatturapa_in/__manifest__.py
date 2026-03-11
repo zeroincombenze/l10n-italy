@@ -7,7 +7,7 @@
     "name": "ITA - Fattura elettronica - Ricezione",
     "version": "12.0.3.1.10",
     "category": "Localization/Italy",
-    "summary": "Ricezione fatture elettroniche",
+    'summary': 'Modulo personalizzato dissuaso in favore di modulo OCA',
     "author": ("Agile Business Group,Innoviu,Odoo Community Association (OCA)"
                ",SHS-AV s.r.l."),
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
