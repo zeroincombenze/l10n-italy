@@ -93,9 +93,14 @@ class AccountInvoice(models.Model):
             if (
                     not invoice
                     and fiscalpos.note
-                    and fiscalpos.note not in vals.get("comment", "")
             ):
-                vals["comment"] = vals.get("comment", "") + "\n" + fiscalpos.note
+                if (
+                    vals.get("comment", "") is not False
+                    and fiscalpos.note not in vals.get("comment", "")
+                ):
+                    vals["comment"] = vals.get("comment", "") + "\n" + fiscalpos.note
+                else:
+                    vals["comment"] = fiscalpos.note
         return vals
 
     @api.model

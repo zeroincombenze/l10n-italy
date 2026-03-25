@@ -1,8 +1,8 @@
-10.0.0.1.11 (2026-02-26)
+10.0.0.1.11 (2026-03-25)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Crash if not fiscal note / Crash se nota fiscale vuota
-* [QUA] Test coverage 68% (152: 48+104) [5 TestPoints] - quality rating 42 (target 100)
+* [QUA] Test coverage 68% (154: 50+104) [5 TestPoints] - quality rating 42 (target 100)
 
 10.0.0.1.10 (2025-12-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~
