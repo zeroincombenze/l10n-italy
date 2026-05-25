@@ -331,6 +331,10 @@ class SaleOrderLine(models.Model):
 
     weight = fields.Float(string="Line Weight")
 
+    @api.model
+    def weight_in_range(self, weight, prod_weight):
+        return prod_weight * 0.7 <= weight <= prod_weight * 1.5
+
     @api.multi
     @api.onchange("product_uom_qty")
     def onchange_product_uom_qty(self):
@@ -345,19 +349,16 @@ class SaleOrderLine(models.Model):
     def _compute_weight(self):
         if self.product_id:
             prod_weight = (self.product_id.weight
-                           or self.product_id.product_tmpl_id.weight)
-            line_weight = prod_weight * self.product_uom_qty
-            if (
-                    not self.weight
-                    or line_weight >= (self.weight * 1.5)
-                    or (line_weight and line_weight <= (self.weight * 0.7))
-            ):
-                self.weight = line_weight
+                           or self.product_id.product_tmpl_id.weight
+                           ) * self.product_uom_qty
+            if not self.weight_in_range(self.weight, prod_weight):
+                self.weight = prod_weight
 
     @api.multi
     def _prepare_invoice_line(self, qty):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         res["is_delivery"] = self.is_delivery
+        res["weight"] = self.weight
         if self.is_delivery:
             res["sequence"] = int(res.get("sequence", "10")) + 100
         return res

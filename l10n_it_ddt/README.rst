@@ -1,5 +1,5 @@
 ==========================
-|icon| DDT/DdT 10.0.1.8.30
+|icon| DDT/DdT 10.0.1.8.31
 ==========================
 
 **Delivery Document Type**
@@ -172,6 +172,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.31 (2026-05-23)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Line weight from order line to invoice line
+* [QUA] Test coverage 70% (1374: 413+961) [280 TestPoints] - quality rating 61 (target 100)
+
 10.0.1.8.30 (2025-07-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -267,7 +273,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2025-07-17
+Last Update / Ultimo aggiornamento: 2026-05-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

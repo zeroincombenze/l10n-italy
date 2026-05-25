@@ -179,16 +179,17 @@ class AccountInvoiceLine(models.Model):
     )
     is_delivery = fields.Boolean(string="Is a Delivery", default=False)
 
+    @api.model
+    def weight_in_range(self, weight, prod_weight):
+        return prod_weight * 0.7 <= weight <= prod_weight * 1.5
+
     @api.onchange("product_id", "quantity")
     def _compute_weight(self):
         if self.product_id:
             prod_weight = (self.product_id.weight
                            or self.product_id.product_tmpl_id.weight)
             line_weight = prod_weight * self.quantity
-            if (
-                    line_weight
-                    and (line_weight * 1.5) >= self.weight <= (line_weight * 0.7)
-            ):
+            if not self.weight_in_range(self.weight, line_weight):
                 self.weight = line_weight
 
     @api.multi
