@@ -333,7 +333,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def weight_in_range(self, weight, prod_weight):
-        return prod_weight and (prod_weight * 0.7 <= weight <= prod_weight * 1.5)
+        return prod_weight * 0.7 <= weight <= prod_weight * 1.5
 
     @api.multi
     @api.onchange("product_uom_qty")
@@ -351,7 +351,7 @@ class SaleOrderLine(models.Model):
             prod_weight = (self.product_id.weight
                            or self.product_id.product_tmpl_id.weight
                            ) * self.product_uom_qty
-            if not self.weight_in_range(self.weight, prod_weight):
+            if prod_weight and not self.weight_in_range(self.weight, prod_weight):
                 self.weight = prod_weight
 
     @api.multi

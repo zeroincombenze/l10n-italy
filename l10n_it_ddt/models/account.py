@@ -181,7 +181,7 @@ class AccountInvoiceLine(models.Model):
 
     @api.model
     def weight_in_range(self, weight, prod_weight):
-        return prod_weight and (prod_weight * 0.7 <= weight <= prod_weight * 1.5)
+        return prod_weight * 0.7 <= weight <= prod_weight * 1.5
 
     @api.onchange("product_id", "quantity")
     def _compute_weight(self):
@@ -189,7 +189,7 @@ class AccountInvoiceLine(models.Model):
             prod_weight = (self.product_id.weight
                            or self.product_id.product_tmpl_id.weight)
             line_weight = prod_weight * self.quantity
-            if not self.weight_in_range(self.weight, line_weight):
+            if line_weight and not self.weight_in_range(self.weight, line_weight):
                 self.weight = line_weight
 
     @api.multi
