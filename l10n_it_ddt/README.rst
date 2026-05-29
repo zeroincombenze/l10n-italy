@@ -203,13 +203,6 @@ ChangeLog History | Cronologia modifiche
 * [FIX] Sometime it does not load Delivery Carrier Notes / A volte non carica note per il corriere
 * [QUA] Test coverage 67% (1384: 454+930) [266 TestPoints] - quality rating 72 (target 100)
 
-10.0.1.8.26 (2024-06-06)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Wrong inheritance for delivery values / Valori di spedizione non ereditati
-* [IMP] Delivery Carrier Notes / Note per il corriere
-* [QUA] Test coverage 67% (1385: 454+931) [266 TestPoints] - quality rating 72 (target 100)
-
 
 
 Credits | Ringraziamenti
@@ -273,7 +266,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2026-05-25
+Last Update / Ultimo aggiornamento: 2026-05-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

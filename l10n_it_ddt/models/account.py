@@ -181,7 +181,7 @@ class AccountInvoiceLine(models.Model):
 
     @api.model
     def weight_in_range(self, weight, prod_weight):
-        return prod_weight * 0.7 <= weight <= prod_weight * 1.5
+        return prod_weight and (prod_weight * 0.7 <= weight <= prod_weight * 1.5)
 
     @api.onchange("product_id", "quantity")
     def _compute_weight(self):
