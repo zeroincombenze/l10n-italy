@@ -56,11 +56,7 @@ class ComunicazioneLiquidazione(models.Model):
             dich.name = name
 
     def _get_identificativo(self):
-        dichiarazioni = self.search([])
-        if dichiarazioni:
-            return len(dichiarazioni) + 1
-        else:
-            return 1
+        return max([x.identificativo for x in self.search([])] or [0]) + 1
 
     company_id = fields.Many2one(
         "res.company", string="Company", required=True, default=_default_company

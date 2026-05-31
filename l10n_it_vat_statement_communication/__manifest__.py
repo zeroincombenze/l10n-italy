@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "ITA - Comunicazione liquidazione IVA",
-    "version": "10.0.1.5.5",
+    "version": "10.0.1.5.6",
     "category": "Account",
     "summary": "Esportazione file xml LIPE",
     "author": ("Openforce di Camilli Alessandro,Odoo Community Association (OCA)"
