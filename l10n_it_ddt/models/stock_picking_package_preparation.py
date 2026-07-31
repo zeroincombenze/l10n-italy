@@ -434,7 +434,7 @@ class StockPickingPackagePreparation(models.Model):
                 if src_fieldname == "id":
                     vals[tgt_fieldname] = src_obj.id
                 elif src_obj[src_fieldname]:
-                    if src_fieldname.endswith("_id"):
+                    if hasattr(src_obj[src_fieldname], "id"):
                         vals[tgt_fieldname] = src_obj[src_fieldname].id
                     else:
                         vals[tgt_fieldname] = src_obj[src_fieldname]

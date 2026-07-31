@@ -1,3 +1,9 @@
+10.0.1.8.32 (2026-07-31)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Ddt to customer with pricelist crashes / Errore creazione DdT cliente con listino
+* [QUA] Test coverage 70% (1380: 416+964) [280 TestPoints] - quality rating 61 (target 100)
+
 10.0.1.8.31 (2026-05-23)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
