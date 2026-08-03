@@ -501,7 +501,10 @@ class RibaListLine(models.Model):
             )
             move.post()
             if to_be_reconciled:
-                to_be_reconciled.reconcile()
+                try:
+                    to_be_reconciled.reconcile()
+                except BaseException:
+                    pass
             line.write(
                 {
                     "acceptance_move_id": move.id,
