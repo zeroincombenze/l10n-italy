@@ -7,7 +7,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Reverse Charge Tax",
-    "version": "10.0.1.11",
+    "version": "10.0.1.12",
     "category": "Localization/Italy",
     "summary": "Manage Reverse Charge Tax for Italy",
     "author": "Odoo Italia Network,Odoo Community Association (OCA),SHS-AV s.r.l.",

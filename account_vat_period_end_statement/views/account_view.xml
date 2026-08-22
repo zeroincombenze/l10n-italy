@@ -287,7 +287,7 @@
                             <field name="residual" />
                         </group>
                         <separator string="Payments" />
-                        <field name="payment_ids" nolabel="1" />
+                        <field name="payment_ids" nolabel="1" editable="bottom"/>
                     </page>
                     <page string="Print Options">
                         <group colspan="4" string="Page Number">

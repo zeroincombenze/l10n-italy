@@ -469,9 +469,6 @@ class AccountInvoice(models.Model):
                 self.rc_self_purchase_invoice_id.generate_self_invoice()
         elif (
                 self.type in ("in_invoice", "in_refund")
-                # and (self.fiscal_document_type_id.is_self_invoice)
-                # and ("fatturapa_attachment_in_id" not in self
-                #      or not self.fatturapa_attachment_in_id)
                 and self.amount_rc
         ):
             self.generate_self_invoice()
@@ -479,6 +476,7 @@ class AccountInvoice(models.Model):
 
     def remove_rc_payment(self):
         inv = self
+        payment_move = False
         if inv.payment_move_line_ids:
             if len(inv.payment_move_line_ids) > 1:
                 raise UserError(
@@ -509,17 +507,21 @@ class AccountInvoice(models.Model):
                 .mapped("full_reconcile_id.reconciled_line_ids")
             )
             rec_partial_lines.remove_move_reconcile()
-            # remove move reconcile related to the self invoice
-            move = inv.rc_self_invoice_id.move_id
-            rec_lines = (
-                move.mapped("line_ids")
-                .filtered("full_reconcile_id")
-                .mapped("full_reconcile_id.reconciled_line_ids")
-            )
-            rec_lines.remove_move_reconcile()
-            # cancel self invoice
-            self_invoice = self.browse(inv.rc_self_invoice_id.id)
-            self_invoice.action_invoice_cancel()
+
+        # remove move reconcile related to the self invoice
+        move = inv.rc_self_invoice_id.move_id
+        rec_lines = (
+            move.mapped("line_ids")
+            .filtered("full_reconcile_id")
+            .mapped("full_reconcile_id.reconciled_line_ids")
+        )
+        rec_lines.remove_move_reconcile()
+        payment_move = [
+            x.move_id for x in rec_lines if x.move_id.journal_id.type != "sale"][0]
+        # cancel self invoice
+        self_invoice = inv.rc_self_invoice_id
+        self_invoice.action_invoice_cancel()
+        if payment_move:
             # invalidate and delete the payment move generated
             # by the self invoice creation
             payment_move.button_cancel()
