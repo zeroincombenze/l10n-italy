@@ -278,9 +278,26 @@ class RibaList(models.Model):
     def riba_cancel(self):
         # Workflow internal function
         for riba_list in self:
-            riba_list.state = "cancel"
             for line in riba_list.line_ids:
+                line.riba_line_back2solved(harmless=True)
+                if line.payment_ids:
+                    for move_line in line.payment_ids:
+                        line.payment_ids = [(3, move_line.id)]
+                        for ln in move_line.move_id.line_ids:
+                            if ln.reconciled:
+                                ln.remove_move_reconcile()
+                        move_line.move_id.button_cancel()
+                        move_line.move_id.unlink()
+                if line.acceptance_move_id:
+                    line.acceptance_move_id.line_ids.remove_move_reconcile()
+                    line.acceptance_move_id.button_cancel()
+                    line.acceptance_move_id.unlink()
                 line.state = "cancel"
+            if riba_list.accreditation_move_id:
+                riba_list.accreditation_move_id.line_ids.remove_move_reconcile()
+                riba_list.accreditation_move_id.button_cancel()
+                riba_list.accreditation_move_id.unlink()
+            riba_list.state = "cancel"
 
     @api.multi
     def test_state(self, states):

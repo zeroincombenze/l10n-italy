@@ -546,7 +546,7 @@ class TestRiba(SingleTransactionCase):
             }
             tmpl_move.append(vals)
             vals = {
-                "account_id": accreditation_account_debit_id ,
+                "account_id": accreditation_account_debit_id,
                 "debit": 0.0,
                 "credit": due.credit or due.debit,
             }
@@ -730,4 +730,3 @@ class TestRiba(SingleTransactionCase):
         self._riba_unsolved(payment_order)
         # Pay unsolved invoice
         self.pay_invoice(invoices[0], payment_order)
-

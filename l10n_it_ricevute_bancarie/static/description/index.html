@@ -14,8 +14,8 @@
     <div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
-                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="l10n_uk.png" alt="English" style="width:28px;height:16px;"/>
+                <img src="l10n_us.png" alt="English" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">Module to manage Ricevute Bancarie.
 <p align="justify">
@@ -24,7 +24,7 @@ Module can record invoice payment and download file CBI to send to bank.
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+                <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">Modulo per gestire i pagamenti tramite ricevuta bancaria e presentazione distinta
 in banca.
@@ -74,8 +74,8 @@ Le operazioni contabili sono configurabili.
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Configuration | Configurazione</h3>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
-                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="l10n_uk.png" alt="English" style="width:28px;height:16px;"/>
+                <img src="l10n_us.png" alt="English" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Invoicing &#187; Configuration &#187; Management &#187; RiBA configuration
 <p align="justify">
@@ -84,7 +84,7 @@ Le operazioni contabili sono configurabili.
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+                <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Contabilit&#224; &#187; Management &#187; Ri.Ba Configurazione
 <p align="justify">
@@ -108,8 +108,8 @@ Per attivare la gestione Ri.Ba. &#232; necessario impostare il tipo 'Ri.Ba.' nei
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">Usage | Utilizzo</h3>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_uk/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
-                <img src="/l10n_us/static/description/icon.png" alt="English" style="width:16px;height:16px;"/>
+                <img src="l10n_uk.png" alt="English" style="width:28px;height:16px;"/>
+                <img src="l10n_us.png" alt="English" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify"><span class="fa fa-th-large" style="color:#7C7BAD"/> Invoicing &#187; Ri.Ba &#187; Ri.Ba List
 <p align="justify">
@@ -120,7 +120,7 @@ Per attivare la gestione Ri.Ba. &#232; necessario impostare il tipo 'Ri.Ba.' nei
         </div>
         <div class="oe_span6">
             <p align="center">
-                <img src="/l10n_it/static/description/icon.png" alt="Italiano" style="width:16px;height:16px;"/>
+                <img src="l10n_it.png" alt="Italiano" style="width:28px;height:16px;"/>
             </p>
             <p class="oe_mt16" align="justify">L'utilizzo delle Ri.Ba. utilizza i seguenti men&#249;:
 <p align="justify">
@@ -216,65 +216,18 @@ Si pu&#242; dichiarare ogni singola scadenza come pagata o insoluta. Anche per l
     <div class="oe_row oe_spaced">
         <h3 align="center" style="color:#162832;font-size: 26px;font-weight: 300;">ChangeLog History | Cronologia modifiche</h3>
         <div class="oe_span12">
-<h4>10.0.1.3.16 (2024-06-11)</h4>
+<h4>10.0.1.3.17 (2026-08-26)</h4>
 <p align="justify">
+<ul>
+<li>[QUA] Test coverage 77% (1166: 271+895) [258 TestPoints] - quality rating 66 (target 100)</li>
+<li>[FIX] Cancel Ri.Ba. list now deletes related account entries / Annullamento distinta Ri.Ba. ora elimina le registrazioni contabili collegate</li>
+</ul>
+</p><p align="justify">
+<h4>10.0.1.3.16 (2024-06-11)</h4>
+</p><p align="justify">
 <ul>
 <li>[FIX] Evaluate bank cost matches with all invoice lines / Spese bancarie verificate con righe fatture</li>
 <li>[QUA] Test coverage 78% (1150: 258+892) [258 TestPoints] - quality rating 83 (target 100)</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.15 (2023-11-20)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] Invoice payment with "DI" configuraiton / Pagamento fattura anche al Dopo Incasso</li>
-<li>[QUA] Test coverage 78% (1145: 254+891) [258 TestPoints] - quality rating 83 (target 100)</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.14 (2023-09-14)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] RiBA account reconciled after payment / Conto effetti attivi riconciliato dopo incasso</li>
-<li>[IMP] Unsolved accounts set automatically / Conti insoluti imposttai automaticamente</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.13 (2023-08-03)</h4>
-</p><p align="justify">
-<ul>
-<li>[FIX] Overdue with expenses / Insoluto con spese</li>
-<li>[QUA] Test coverage 66% (1155: 389+766) [113 TestPoint]</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.12 (2023-05-24)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] Two supplemental accreditation accounts / Due conti aggiuntivi in accredito</li>
-<li>[FIX] Confirm payment / Conferma pagamento</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.11 (2023-04-17)</h4>
-</p><p align="justify">
-<ul>
-<li>[FIX] Confirm invoice + refund / Errore accettazione fattura + NC</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.10 (2022-12-30)</h4>
-</p><p align="justify">
-<ul>
-<li>[IMP] Riba flag updatable / Scadenza Riba modificabile</li>
-<li>[REF] Process refactoring</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.9 (2022-07-20)</h4>
-</p><p align="justify">
-<ul>
-<li>[FIX] Riba flag read-only / Scadenza Riba non modificabile</li>
-</ul>
-</p><p align="justify">
-<h4>10.0.1.3.8 (2022-06-29)</h4>
-</p><p align="justify">
-<ul>
-<li>[TNL] Translation</li>
-<li>[IMP] Riba flag updatable / Scadenza Riba modificabile</li>
 </ul>
 </p>
         </div>
@@ -314,6 +267,6 @@ Si pu&#242; dichiarare ogni singola scadenza come pagata o insoluta. Anche per l
     </div>
     <div class="oe_row oe_spaced">
         <p>This module is part of <a href="https://github.com/zeroincombenze/l10n-italy">l10n-italy</a> project.</p>
-        <p>Published information on | Informazioni pubblicate: 2024-06-11</p>
+        <p>Published information on | Informazioni pubblicate: 2026-08-26</p>
     </div>
 </section>

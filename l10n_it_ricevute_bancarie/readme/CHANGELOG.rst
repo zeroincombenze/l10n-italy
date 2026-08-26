@@ -1,3 +1,9 @@
+10.0.1.3.17 (2026-08-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [QUA] Test coverage 77% (1166: 271+895) [258 TestPoints] - quality rating 66 (target 100)
+* [FIX] Cancel Ri.Ba. list now deletes related account entries / Annullamento distinta Ri.Ba. ora elimina le registrazioni contabili collegate
+
 10.0.1.3.16 (2024-06-11)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
