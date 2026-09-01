@@ -1,3 +1,9 @@
+10.0.1.8.33 (2026-09-01)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Delivery cost policy default never applied / Politica costo consegna: default mai applicato
+* [FIX] Dependencies version check not enabled / Controllo versione dipendenze non attivo
+
 10.0.1.8.32 (2026-07-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

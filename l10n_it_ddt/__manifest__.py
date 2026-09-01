@@ -4,7 +4,7 @@
 #
 {
     "name": "DDT",
-    "version": "10.0.1.8.32",
+    "version": "10.0.1.8.33",
     "category": "Localization/Italy",
     "summary": "Delivery Document Type",
     "author": ("Odoo Community Association (OCA) and other subjects,Abstract"
@@ -50,4 +50,5 @@
     ],
     "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
     "installable": True,
+    "pre_init_hook": "check_4_depending",
 }

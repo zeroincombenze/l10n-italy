@@ -23,7 +23,7 @@ class ResCompany(models.Model):
             ("delivery", "From Delivery Note"),
         ],
         string="Delivery Cost Policy",
-        defauly="order",
+        default="order",
         help="How to evaluate delivery cost on invoice",
     )
 
