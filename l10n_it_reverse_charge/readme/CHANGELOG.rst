@@ -1,3 +1,8 @@
+10.0.1.13 (2026-10-05)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Cancel invoice: IndexError when self invoice has no payment / Annullo fattura: errore IndexError se l'auto-fattura non ha pagamento
+
 10.0.1.12 (2026-08-22)
 ~~~~~~~~~~~~~~~~~~~~~~
 

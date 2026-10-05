@@ -516,8 +516,10 @@ class AccountInvoice(models.Model):
             .mapped("full_reconcile_id.reconciled_line_ids")
         )
         rec_lines.remove_move_reconcile()
-        payment_move = [
-            x.move_id for x in rec_lines if x.move_id.journal_id.type != "sale"][0]
+        if not payment_move:
+            payment_move = rec_lines.mapped("move_id").filtered(
+                lambda m: m.journal_id.type != "sale" and m != inv.move_id
+            )[:1]
         # cancel self invoice
         self_invoice = inv.rc_self_invoice_id
         self_invoice.action_invoice_cancel()
