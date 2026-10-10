@@ -31,7 +31,6 @@ class AccountInvoice(models.Model):
     @api.depends(
         "invoice_line_ids.price_subtotal",
         "tax_line_ids.amount",
-        "amount_total",
         "currency_id",
         "company_id",
         "date_invoice",

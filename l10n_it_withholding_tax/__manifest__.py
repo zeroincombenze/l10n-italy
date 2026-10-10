@@ -5,7 +5,7 @@
 #
 {
     "name": "Italian Withholding Tax",
-    "version": "10.0.1.2.9",
+    "version": "10.0.1.2.10",
     "category": "Account",
     "summary": "Italian Withholding Tax",
     "author": ("Odoo Community Association (OCA) and other subjects,Open Force"

@@ -28,7 +28,6 @@ class AccountInvoice(models.Model):
         "invoice_line_ids.invoice_line_tax_wt_ids.tax",
         "tax_line_ids.amount",
         # "withholding_tax_line_ids.tax",
-        "amount_total",
         "currency_id",
         "company_id",
         "date_invoice",

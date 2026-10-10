@@ -1,3 +1,9 @@
+10.0.1.14 (2026-10-10)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [QUA] Test coverage 79% (382: 81+301) [36 TestPoints] - quality rating 53 (target 100)
+* [FIX] Field amount_total depends on itself
+
 10.0.1.13 (2026-10-05)
 ~~~~~~~~~~~~~~~~~~~~~~
 

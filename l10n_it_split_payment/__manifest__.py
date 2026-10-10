@@ -6,7 +6,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Split Payment",
-    "version": "10.0.1.1.3",
+    "version": "10.0.1.1.4",
     "category": "Localization/Italy",
     "summary": "Italian Split Payment Management",
     "author": ("Abstract,Agile Business Group,Odoo Community Association (OCA)"
